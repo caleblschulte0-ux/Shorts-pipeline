@@ -1545,8 +1545,14 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         _round_barh(ax, y, tip, lw, color, zorder=3)              # grown bar
         img = _icon(p.label)
         cap_w = vmax * 0.055                    # visual width of the tip cap
+        _icon_px = 0.0
         if img is not None:
-            oi = OffsetImage(img, zoom=0.9)
+            _zoom = 0.9
+            oi = OffsetImage(img, zoom=_zoom)
+            # Its width in DISPLAY pixels — `OffsetImage` draws the array at
+            # `zoom` x its pixel size, so this is exact and dpi-independent.
+            # The short-bar value label is offset past it below.
+            _icon_px = float(getattr(img, "shape", (0, 72))[1]) * _zoom
             ax.add_artist(AnnotationBbox(oi, (tip, y), frameon=False, zorder=5,
                                          box_alignment=(0.5, 0.5)))
         else:
@@ -1566,9 +1572,21 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
                          fontsize=30, color="white", fontweight="bold", zorder=7,
                          alpha=_lblalpha(reveal))
         else:                            # short bar -> value just past the tip
-            tt = ax.text(tip + cap_w + vmax * 0.03, y, _lab, va="center",
-                         ha="left", fontsize=30, color=color, fontweight="bold",
-                         zorder=7, alpha=_lblalpha(reveal))
+            # PAST THE ICON, not past the tip. A 1% bar's cap-plus-3% offset is
+            # a few data units and the icon centred on that tip is ~65 display
+            # pixels wide, so the graphic sat squarely on the number it was
+            # annotating. The showrunner said so in as many words on
+            # `melatonin-kids-er-surge` (2026-09-09): "a red CAR clip-art sits
+            # on the 'Intensive care' row ... it fully covers the 1% value it
+            # is meant to annotate" — and `junk_imagery` is FATAL, so that beat
+            # cost the whole story. Offsetting in display pixels is the only
+            # unit in which the icon's own size is actually known here.
+            tt = ax.annotate(_lab, xy=(tip + cap_w, y),
+                             xytext=(_icon_px / 2.0 + 10, 0),
+                             textcoords="offset pixels",
+                             va="center", ha="left", fontsize=30, color=color,
+                             fontweight="bold", zorder=7,
+                             alpha=_lblalpha(reveal))
         specs.append((p.value, "art", tt, None))
     # Tighter xlim (was 1.5) now the value lives inside the bar: the bars fill
     # more of the card width (less dead navy on the right), leaving just enough

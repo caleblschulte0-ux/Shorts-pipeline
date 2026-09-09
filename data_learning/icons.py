@@ -18,7 +18,7 @@ _CDN = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/{cp}.png
 # (keyword substrings) -> twemoji codepoint. First match wins, so put the more
 # specific concepts before the generic money/category ones.
 _MAP: list[tuple[tuple[str, ...], str]] = [
-    (("daycare", "infant", "toddler", "child", "kid"), "1f9d2"),   # child
+    (("daycare", "infant", "toddler", "child", "children", "kid"), "1f9d2"),
     (("baby", "birth", "newborn", "maternity"), "1f476"),          # baby
     (("dog", "puppy"), "1f415"),
     (("cat", "kitten"), "1f408"),
@@ -38,9 +38,12 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("flight", "plane", "airline", "air travel", "aviation"), "2708"),
     (("car", "auto", "vehicle", "ev"), "1f697"),
     (("college", "tuition", "student", "university", "degree"), "1f393"),
-    (("insurance", "hospital", "health", "medical", "premium"), "1f3e5"),
+    (("insurance", "hospital", "health", "healthcare", "medical",
+      "premium"), "1f3e5"),
     (("wildfire", "fire"), "1f525"),
     (("phone", "screen", "smartphone", "social"), "1f4f1"),
+    # Before the generic water key: "drinking water" was a breaking WAVE.
+    (("drinking water", "freshwater", "tap"), "1f6b0"),
     (("ocean", "water", "sea"), "1f30a"),
     (("sleep",), "1f634"),
     (("energy", "power", "electric"), "26a1"),
@@ -55,15 +58,14 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("coral", "reef", "marine", "protected area"), "1fab8"),
     (("solar", "renewable"), "2600"),
     (("nuclear", "atom", "reactor"), "269b"),
-    (("fossil", "coal", "oil", "petrol", "gas"), "1f6e2"),
+    (("fossil", "coal", "oil", "petrol", "gas", "gasoline"), "1f6e2"),
     (("battery",), "1f50c"),
-    (("internet", "broadband", "online", "web"), "1f310"),
+    (("internet", "broadband", "online", "web", "website"), "1f310"),
     (("computer", "laptop", "research", "science", "lab"), "1f52c"),
     (("satellite", "space", "rocket", "launch"), "1f680"),
     (("toilet", "sanitation", "sewer"), "1f6bd"),
-    (("drinking water", "freshwater", "tap"), "1f6b0"),
     (("rain", "precipitation"), "1f327"),
-    (("city", "urban", "skyline"), "1f3d9"),
+    (("city", "cities", "urban", "skyline"), "1f3d9"),
     (("village", "rural", "farmhouse"), "1f3e1"),
     (("people", "population", "crowd"), "1f465"),
     (("school", "classroom", "pupil", "literacy", "teacher"), "1f3eb"),
@@ -72,9 +74,10 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("smoke", "co2", "carbon", "greenhouse"), "1f4a8"),
     (("thermometer", "temperature", "heat"), "1f321"),
     (("glacier", "ice", "arctic", "snow"), "1f9ca"),
+    # Before the generic passenger key: "rail passengers" is a TRAIN.
+    (("train", "rail", "railway", "railroad"), "1f686"),
     (("plane travel", "tourism", "tourist", "passenger"), "1f9f3"),
-    (("train", "rail"), "1f686"),
-    (("ship", "port", "container"), "1f6a2"),
+    (("ship", "shipping", "port", "container"), "1f6a2"),
     (("road", "highway", "truck"), "1f6e3"),
     (("worker", "labor", "labour", "employ", "job"), "1f477"),
     (("heart", "cardiac", "blood"), "2764"),
@@ -92,11 +95,70 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
 ]
 
 
+# A key matches a WORD, not a run of letters anywhere inside one.
+#
+# The old rule was `k in label.lower()`, and the showrunner's FATAL
+# `junk_imagery` check spent a week telling us what that costs:
+#
+#   2026-09-02..09  f1-pit-stop-vanishing-act, SIX blocked renders
+#       "a cartoon HOUSE icon sits on the 'Current record' bar"
+#       — cur-RENT-record, matched against the housing key
+#   2026-09-09      melatonin-kids-er-surge
+#       "a red CAR clip-art sits on the 'Intensive care' row ... it fully
+#        covers the 1% value it is meant to annotate"
+#       — CAR-e, matched against the vehicle key
+#
+# `junk_imagery` is the ONE fatal check: it blocks at any score, on any
+# policy, because mismatched imagery is a trust defect rather than a craft
+# one. So every one of those was a video that did not post, from a substring
+# collision nobody could see in the code.
+#
+# The same rule was quietly mislabelling plenty more: "tourism" -> music (via
+# "tour"), "coalition" -> an oil pipe (via "coal"), "Costa Rica" -> a banknote
+# (via "cost"), "kidney" -> a child (via "kid"), "beef" -> a bee. And `"ev"`
+# for electric vehicles matched every "level", "seven", "revenue" and
+# "development" in the catalogue.
+#
+# So: a key must be a PREFIX OF A WHOLE TOKEN, and what is left over after it
+# has to be a plain inflection — unless the key is a deliberate stem, of which
+# there are several ("vaccin", "immuniz", "agricultur", "manufactur",
+# "pollinat", "employ"). Six characters is the line between the two; every
+# stem in the table is at least that long and every collision above came from
+# a key of four or fewer.
+_WORD = __import__("re").compile(r"[a-z0-9]+")
+# No bare "d": it turns "card" into "car", which is the exact defect this
+# rule exists to stop.
+_INFLECT = ("", "s", "es", "ed", "ing")
+_STEM_LEN = 6
+
+
+def _token_matches(token: str, key: str) -> bool:
+    if not token.startswith(key):
+        return False
+    rest = token[len(key):]
+    return not rest or len(key) >= _STEM_LEN or rest in _INFLECT
+
+
+def _phrase_matches(tokens: list[str], key: str) -> bool:
+    """A multi-word key ("drinking water") matches consecutive tokens."""
+    parts = _WORD.findall(key)
+    if not parts:
+        return False
+    for i in range(len(tokens) - len(parts) + 1):
+        if all(_token_matches(tokens[i + j], parts[j])
+               for j in range(len(parts))):
+            return True
+    return False
+
+
 def emoji_codepoint(label: str) -> str | None:
-    s = (label or "").lower()
+    tokens = _WORD.findall((label or "").lower())
+    if not tokens:
+        return None
     for keys, cp in _MAP:
-        if any(k in s for k in keys):
-            return cp
+        for k in keys:
+            if _phrase_matches(tokens, k):
+                return cp
     return None
 
 

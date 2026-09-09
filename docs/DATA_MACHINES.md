@@ -346,7 +346,7 @@ and both lies pointed the same way — at a machine that was fine.
 Both times the harness said a good machine was broken. Check the harness
 before changing the machine.
 
-## The three things the reviewer keeps blocking, as numbers
+## The four things the reviewer keeps blocking, as numbers
 
 The showrunner watches every video and its notes are consistent enough to be
 turned into deterministic checks. Each of these was one cause, not a hundred:
@@ -355,6 +355,7 @@ turned into deterministic checks. Each of these was one cause, not a hundred:
 |---|---|---|
 | `empty_void` — "the entire lower two-thirds blank blue gradient" | `RBOT` was 1180 of 1920, "above the game strip", a layout this channel has not had for years. 158 configured scenes have >1 element and every one drew in the top 61%. | `RBOT` 1560; `shared/frame_occupancy.py` measures coverage and the largest empty band; `tests/test_the_frame_is_used.py` holds every machine under a 34% ceiling |
 | `bare_number_card` — "the number is stated, not demonstrated" | `draw_timeline` reached its rising filled area only when every item carried a `period` field, and fell back to a hairline ruler without one. The items were labelled 2007..2025. | the label IS the period when it is a year — coverage 5.4% → 35.5% on the blocked data |
+| `junk_imagery` — "a cartoon HOUSE icon sits on the 'Current record' bar" | `icons.emoji_codepoint` matched `key in label.lower()`, so cur-**RENT**-record picked up the housing key and "intensive **CAR**e" the vehicle one. This is the ONE fatal check — it blocks at any score on any policy — and it took six renders of `f1-pit-stop-vanishing-act` in a week plus `melatonin-kids-er-surge`, every one a story that did not post | a key must be a prefix of a whole TOKEN with only a plain inflection left over (a key of six or more may be a deliberate stem: `vaccin`, `immuniz`, `agricultur`); `tests/test_the_icon_must_be_about_the_label.py` pins the quoted verdicts as named cases |
 | `decorative_mascot` — "the same arms-out pose in five beats" | `viz_director` already picks a different performance per beat; the renderer's `_act()` threw it away and asked a map keyed on CHART KIND, where bars/comparison/rank all mean `push_bar` — and `scene`, which is every machine beat, was absent entirely | `_act()` honours `perf_spec`; `scene` has its own default |
 
 **Measure with the FURNITURE.** The studio draws the title near the top and
@@ -362,6 +363,39 @@ burns the caption near the bottom of every frame, so measuring a bare machine
 over-reports the void at both ends — the first sweep flagged ten machines that
 are fine in production. Only a gap still empty with the title and caption
 present is real.
+
+**And measure again WITHOUT it, inside the box.** A band is only as long as
+the first thing that interrupts it, and the furniture interrupts everything.
+The burnt-in caption at y≈1690 and the progress rule at y≈1860 sit inside the
+bottom void of a short picture and cut it into pieces, none of which reaches
+the ceiling: a machine that stops at 55% of the frame height scores 24% on the
+composite while a viewer sees the bottom half as empty gradient. Measured
+2026-09-09 across the whole kit, **not one machine exceeded the composite
+ceiling and ten exceeded 22% inside their own box** — queue 33%, basket 32%,
+spotlight 32%, bridge 26%, road 26%, trophies 26%, hurdle 26%, density 25%,
+slider 25%, wheel 22%.
+
+So there are two questions and they need two calls.
+`fo.verdict(frame, max_void=0.34)` over the whole composited frame asks *is
+this frame acceptable*; `fo.measure(layer, top=RTOP, bottom=MACHINE_BOT)` with
+only the title composited asks *did the machine fill the space it was given*,
+under a 24% ceiling. The second is the one a machine can be TUNED against,
+because its answer does not depend on furniture the machine never drew.
+`fo.measure` also reports `head` and `tail` separately: a tail is a picture
+that stopped early, a head is one that started late, and an interior void is
+two pictures with a gap between them. Three defects, three different fixes.
+
+What the ten fixes actually were, because the pattern repeats: **the picture
+grows to fill the box** (the queue sizes each person from the count the beat
+ends on; the trophy shelf wraps into a grid and the cup stays a cup instead of
+becoming a 22×96 tally mark), **the picture stands on the floor** (the ferris
+wheel, the bridge's chasm), or **the thing the caption is about gets drawn
+where it is** (the hurdle's margin as an arrow between the two lines it names,
+the bridge's missing piers as ghosts in the gap). Only one needed a new
+element: the spotlight's lane says "somewhere in here" and says nothing about
+the wandering, so the series itself is drawn above it — value across, time
+down — which is what "it never settled" looks like rather than an assertion
+that it did not.
 
 ## Say the number the picture shows
 
@@ -413,9 +447,16 @@ the line.
 6. **Render a contact sheet at three reveals and LOOK at it.** Every layout
    bug in this file was found by looking, not by a test: clipped labels that
    turned "Interviewed 380" into "Interviewed 3", a gear pair centred on the
-   wrong width, a bucket that never moved.
-7. **Add it to the measured motion case list** and run it. Not the source
+   wrong width, a bucket that never moved. Look for the word REFUSED on the
+   tile too — `_guarded` catches, so a machine that dies on every input in the
+   catalogue silently draws a chart instead, and that is what `draw_sorter`
+   did for a day while the suite was green.
+7. **Never slice a label.** `fit_text(d, text, size, max_w)` returns a
+   `(font, text)` pair and BOTH halves have to be used — three machines drew
+   the fitted string at a hardcoded size, which measures one thing and prints
+   another. `label[:12]` shipped "1990 (pre-vacc" to the channel.
+8. **Add it to the measured motion case list** and run it. Not the source
    pattern — the frames.
-8. **Offline only.** No network, no generated imagery. The image provider
+9. **Offline only.** No network, no generated imagery. The image provider
    returns HTTP 500 at 54–89s a call; a machine that depends on it is a
    machine that is not there on the day it is needed.
