@@ -464,8 +464,8 @@
           "shot_index": 2,
           "phrase": "a mechanic's lien against the property",
           "query": "legal document filing",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
@@ -485,8 +485,8 @@
           "shot_index": 5,
           "phrase": "a title company will not close",
           "query": "real estate closing table",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -505,20 +505,20 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 2,
+        "missing": 6,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
         "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5",
-        "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
         "reddit-subcontractor-lien-payback-s3-dd17b057109c",
         "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
-        "reddit-subcontractor-lien-payback-s5-681143662167",
         "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
-        "reddit-subcontractor-lien-payback-s7-f79a42e1532d"
+        "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
+        "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+        "reddit-subcontractor-lien-payback-s5-681143662167"
       ]
     }
   ],
@@ -786,32 +786,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s2-c04a65e5cea7.png",
-      "prompt_sha256": "626dbe58253fc3cceb8e02d81372f5f766cbec1b8db33660e9e97a6bd76dacb6",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s2-c04a65e5cea7.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: legal document filing. It accompanies the narration: \"a mechanic's lien against the property\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
       "safe_request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
       "drive_filename": "20260909__reddit-subcontractor-lien-payback-s3-dd17b057109c.png",
@@ -847,32 +821,6 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: bank loan paperwork. It accompanies the narration: \"refinancing the building that same month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s5-681143662167.png",
-      "prompt_sha256": "e4c6f00852f62c0c23dd8379776bb3c1dc55fa26482781b2a68fb56fd11b686a",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s5-681143662167.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: real estate closing table. It accompanies the narration: \"a title company will not close\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -940,6 +888,62 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s2-c04a65e5cea7.png",
+      "prompt_sha256": "626dbe58253fc3cceb8e02d81372f5f766cbec1b8db33660e9e97a6bd76dacb6",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s2-c04a65e5cea7.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: legal document filing. It accompanies the narration: \"a mechanic's lien against the property\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s5-681143662167.png",
+      "prompt_sha256": "e4c6f00852f62c0c23dd8379776bb3c1dc55fa26482781b2a68fb56fd11b686a",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s5-681143662167.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: real estate closing table. It accompanies the narration: \"a title company will not close\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     }
   ],
   "media_protocol": {

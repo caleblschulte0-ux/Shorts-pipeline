@@ -26,7 +26,12 @@
     },
     {
       "phrase": "a mechanic's lien against the property",
-      "query": "legal document filing"
+      "query": "legal document filing",
+      "pin_query": "mechanic's lien",
+      "pin_context": "legal document construction debt collection",
+      "news_query": "mechanic's lien",
+      "news_angle": "The narrator filed a mechanic's lien against a property to force payment from a general contractor.",
+      "image_url": "https://live.staticflickr.com/6091/6372375697_7cef21e303_b.jpg"
     },
     {
       "phrase": "the property owner",
@@ -38,7 +43,12 @@
     },
     {
       "phrase": "a title company will not close",
-      "query": "real estate closing table"
+      "query": "real estate closing table",
+      "pin_query": "property title",
+      "pin_context": "real estate ownership legal document",
+      "news_query": "property title",
+      "news_angle": "The property title was encumbered by a mechanic's lien, preventing the owner's refinancing until it was cleared.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Property_Law_-_Gavel_and_Block_and_House_Keys.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
     },
     {
       "phrase": "wired the full amount plus the late fee",
