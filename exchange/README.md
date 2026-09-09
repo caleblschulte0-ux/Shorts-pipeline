@@ -448,9 +448,9 @@ commits, with a verification between them, is the whole safeguard. (If
 hard error naming this rule.)
 
 Phase B reads `authored` whether or not a bundle exists, so a slate you
-write with no bundle present still renders and still uploads. Its 12:45 UTC
-backstop cron runs regardless of what did or did not fire earlier, so you do
-not need anything upstream of you to have worked.
+write with no bundle present still renders and still uploads. Its
+08:30-Central backstop cron runs regardless of what did or did not fire
+earlier, so you do not need anything upstream of you to have worked.
 
 Everything you need is in `bundle.json` → `authoring_request`:
 

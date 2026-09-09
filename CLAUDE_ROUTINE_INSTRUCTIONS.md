@@ -72,14 +72,14 @@ chain takes over and renders later.
 > | you author + push | ~4:20 AM Central (09:19 UTC observed) |
 > | Exchange Phase A | immediately after auto-merge; 09:45 UTC cron backstop |
 > | ChatGPT task | **6:00 AM Central** |
-> | Exchange Phase B | the moment ChatGPT writes DONE; 12:45 UTC backstop |
+> | Exchange Phase B | the moment ChatGPT writes DONE; 08:30-Central backstop |
 > | render + upload | right after Phase B |
 > | videos go live | 8:00, 9:30, 11:00, 12:30, 2:00, 3:30 Central |
 >
 > **What this means for you, concretely:**
 > - **Nothing about how you author changes.** Same 6 packages, same rules.
 > - **Don't panic if no video exists an hour after you push.** That is now
->   normal and correct. The backstop cron at 06:15 UTC guarantees the day
+>   normal and correct. The backstop cron at 08:30 Central guarantees the day
 >   ships even if ChatGPT never answers.
 > - **A `query` you write may get AI-generated art instead of stock.** The
 >   judge flags a shot as weak when the media is a generic stand-in for a

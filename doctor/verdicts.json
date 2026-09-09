@@ -823,10 +823,16 @@
       "commit": "ea4cdbf"
     },
     "47afe3adb739": {
-      "verdict": "doing",
-      "date": "20260825",
-      "because": "Verified in shared/camera_float.py: FLOAT_A was retuned 20->44 on 2026-08-16 (crop cost 44px/8.1% per side, not the 20px/1.9% both that file's docstring and engines/chart_race.py line 827 still claim), while engines/chart_race.py still fits titles/axes to the old margin. The math checks out (crop.x ranges 0..88 against content laid out for a ~43px margin) and matches the cited showrunner clipping verdicts. Real bug, but not this run's build \u2014 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds exactly one item. Queued for the next doctor build; the fix is small (recompute the title/axis safe box from camera_float's actual worst-case inset, or refresh the stale comments) and should not require lowering the float amplitude.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Resolved by the 2026-08-25 camera-float retirement, one day after this was filed. The clipping cause was the moving crop (scale 1080->1168, crop travelling x=0..88); shared/camera_float.py is now a headstone whose public surface raises, nothing in the repo imports it, and engines/chart_race.py applies no full-frame transform at all \u2014 grep confirms zero importers and no scale/crop/zoompan in the renderer. With no transform the title's W*0.92 fit leaves a real 4% margin per side, so the safe-area arithmetic the finding disputed is no longer being spent. The stale 20px/1.9% comments it cites went with the code. tests/test_camera_float.py holds the retirement shut, so the transform cannot come back and re-open this.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260825",
+          "because": "Verified in shared/camera_float.py: FLOAT_A was retuned 20->44 on 2026-08-16 (crop cost 44px/8.1% per side, not the 20px/1.9% both that file's docstring and engines/chart_race.py line 827 still claim), while engines/chart_race.py still fits titles/axes to the old margin. The math checks out (crop.x ranges 0..88 against content laid out for a ~43px margin) and matches the cited showrunner clipping verdicts. Real bug, but not this run's build \u2014 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds exactly one item. Queued for the next doctor build; the fix is small (recompute the title/axis safe box from camera_float's actual worst-case inset, or refresh the stale comments) and should not require lowering the float amplitude."
+        }
+      ]
     },
     "8d1b5d1e1f69": {
       "verdict": "doing",

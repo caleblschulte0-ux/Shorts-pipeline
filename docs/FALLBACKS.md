@@ -119,7 +119,7 @@ for `exchange/bundles/<date>/bundle.json`, never by looking for a green
 checkmark.
 
 If ChatGPT no-shows, Policy A holds: Phase B self-fills the gaps with real
-media and the 12:45 UTC backstop cron renders the day anyway.
+media and the 08:30-Central backstop cron renders the day anyway.
 
 ## 3. Media, render, upload
 
