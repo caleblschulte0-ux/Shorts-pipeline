@@ -2677,8 +2677,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     _rw = int(vw * RECAP_SCALE)
                     _rh = int(vh * RECAP_SCALE)
                     _rx = (W - _rw) // 2
+                    # THE RECAP REPLAYS ITS BUILD, it does not carry on with
+                    # the tail of one.
+                    #
+                    # Measured on `colorado-wolves-return` 2026-09-09, the
+                    # video held that morning: during the frozen window the
+                    # recap IS moving — 3-8% of its pixels — and it does not
+                    # matter, because the gate reads the MEAN change inside a
+                    # 16x16 block and 8% of a block changing by 43 is a mean
+                    # of 3.4 against a threshold of 6. A chart 98% built moves
+                    # by sub-pixels, and shrinking it to 62% for the closing
+                    # shrinks that again.
+                    #
+                    # Replaying is the honest large-amplitude motion the
+                    # closing needs and the one it can have for free: the
+                    # payoff chart redraws itself under the takeaway. `setpts`
+                    # compresses the whole sequence into the closing window,
+                    # so the bars sweep across bands that were dead.
+                    _span = max(0.05, t1 - t0)
+                    _k = (t1 - _close0) / _span
                     fc.append(f"[{lab}]split=2[{lab}a][{lab}b]")
-                    fc.append(f"[{lab}b]scale={_rw}:{_rh}[{lab}d]")
+                    fc.append(
+                        f"[{lab}b]scale={_rw}:{_rh},"
+                        f"setpts=(PTS-STARTPTS)*{_k:.5f}+{_close0:.3f}/TB"
+                        f"[{lab}d]")
                     fc.append(
                         f"[{prev}][{lab}a]overlay=x={vx}:y={vy}:"
                         f"enable='between(t,{t0:.2f},{_close0:.2f})'"

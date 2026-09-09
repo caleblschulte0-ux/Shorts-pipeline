@@ -432,7 +432,14 @@ def main() -> int:
     log = _load_log(args.log)
     results = []
     uploader = None
-    rendered = 0
+    # `posted` gates the SLATE (what the registry asks for); `attempts`
+    # bounds the cost. A block costs a story, never the day — see the loop.
+    posted = 0
+    attempts = 0
+    # Three tries per slot before the run gives up. Wide enough to survive a
+    # bad patch in the queue (this morning four in a row were held), narrow
+    # enough that a systematically broken render does not walk the catalogue.
+    attempt_cap = max(6, (args.max_per_run or 4) * 3)
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
 
     # PER-DAY cap, not just per-RUN. `--max-per-run` alone cannot hold the
@@ -512,9 +519,30 @@ def main() -> int:
         # (see the 2026-08-06/07 explainer.yml failures: "done: 0/5 ok"
         # after dozens of "[groq] 429 rate-limited" retries). Deferred
         # stories still get reviewed — on the run where they're actually up.
-        if args.max_per_run and rendered >= args.max_per_run:
-            print(f"[{slug}] deferred to next run (hit --max-per-run="
-                  f"{args.max_per_run})")
+        # THE SLATE COUNTS WHAT POSTED, NOT WHAT WAS ATTEMPTED.
+        #
+        # Operator, 2026-09-09: "the gates can block stuff but then we try
+        # again — no, never posting."
+        #
+        # `rendered` was incremented BEFORE the render and before the
+        # showrunner, so a BLOCK consumed a slot exactly as if it had posted.
+        # That morning's run rendered four stories, the gate held all four,
+        # the budget hit zero, and all 79 remaining stories in the queue
+        # printed "deferred to next run". The channel went dark for a day
+        # with a full queue and a working pipeline — the gates were right
+        # every time and it still cost the whole slate.
+        #
+        # A block costs a STORY. It must never cost the day. So the slate is
+        # gated on `posted`, and a separate, larger cap bounds the ATTEMPTS
+        # so a systematically broken run still stops instead of grinding
+        # through the whole catalogue.
+        if args.max_per_run and posted >= args.max_per_run:
+            print(f"[{slug}] slate full ({posted}/{args.max_per_run} posted)")
+            continue
+        if attempts >= attempt_cap:
+            print(f"[{slug}] deferred to next run — {attempts} attempts made "
+                  f"for {posted} post(s), attempt cap {attempt_cap} reached",
+                  flush=True)
             continue
 
         # PRE-RENDER editorial gate (#2 real data, #3 premise bar). A story that
@@ -530,7 +558,7 @@ def main() -> int:
                                 "error": "editorial_hold",
                                 "reasons": pre["reasons"]})
                 continue
-        rendered += 1
+        attempts += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
         from data_learning import studio_render       # lazy: needs Pillow etc.
@@ -634,6 +662,7 @@ def main() -> int:
             results.append({"slug": slug, "ok": True,
                             "url": "(dry-run)" if not blocked
                                    else "(dry-run, showrunner BLOCK)"})
+            posted += 1        # a preview fills its slot; nothing is uploaded
             continue
 
         if blocked:
@@ -647,6 +676,7 @@ def main() -> int:
             print(f"[{slug}] rendered + reviewed OK, but PUBLISH FROZEN — not "
                   f"uploading. Re-run with --publish to release.", flush=True)
             results.append({"slug": slug, "ok": True, "url": "(frozen)"})
+            posted += 1        # it cleared every gate; publishing is frozen
             continue
 
         publish_at = None
@@ -771,6 +801,7 @@ def main() -> int:
         # Durable BEFORE the next render starts — a reclaimed runner between
         # here and the end of the run would otherwise cost a duplicate upload.
         _persist_posted_log_now(args.log, slug)
+        posted += 1                     # the slate counts THIS, not attempts
         results.append({"slug": slug, "ok": True, "url": url})
 
     # ------------------------------------------------------------------ #
