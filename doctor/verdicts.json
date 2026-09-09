@@ -902,10 +902,16 @@
       ]
     },
     "0bf9780d6272": {
-      "verdict": "doing",
-      "date": "20260827",
-      "because": "Verified: shared/punchup_guard.check() only runs numeric_claims/proper_nouns comparisons on original.script vs rewritten.script; apply() then copies rewritten title/hook through PUNCHUP_FIELDS with zero claim checking on those fields, even though the registry lists title/hook as editable and protects quantitative claims/entities. Real gap in the fact-guard. Accepted; queued behind the higher-ranked bug fix this run.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped: field_problems() runs inside check() and covers title, hook, punch overlays and hashtags \u2014 INVENTED (not present anywhere in the original package) and SWAPPED (the field both lost and gained a claim, judged per numeric kind so a rate-for-rate swap is refused while a reframe around a quantity the package already states is not). A field that only drops a claim is allowed: a headline that states less states nothing false. The subtle part was that proper_nouns is tuned for prose and reads a Title Case headline as a line of entities, so the first draft refused honest rewords \u2014 _field_entities falls back to prose-confirmed names plus CamelCase where casing carries no signal. Measured over the 260 real packages in state/trending_packages: 0 identity rejects, 0 wording-only rejects, 259/260 fabricated title percentages caught, 260/260 invented hook entities caught. Those measurements are tests in tests/test_punchup_fields.py, so it cannot quietly become an off switch.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260827",
+          "because": "Verified: shared/punchup_guard.check() only runs numeric_claims/proper_nouns comparisons on original.script vs rewritten.script; apply() then copies rewritten title/hook through PUNCHUP_FIELDS with zero claim checking on those fields, even though the registry lists title/hook as editable and protects quantitative claims/entities. Real gap in the fact-guard. Accepted; queued behind the higher-ranked bug fix this run."
+        }
+      ]
     },
     "3de32f29a8e4": {
       "verdict": "doing",

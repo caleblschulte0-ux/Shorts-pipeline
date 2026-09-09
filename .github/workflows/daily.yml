@@ -90,10 +90,15 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
 
-      - name: Pre-flight — kill switch + failure counter
-        id: preflight
+      # Its OWN step, deliberately. tests/test_split_worker.py and
+      # tests/test_production_outcome.py execute the kill-switch step's
+      # script verbatim to prove the Phase B and backoff logic; a judge
+      # check wedged at the top of that script aborts every one of them
+      # before the logic under test runs. A separate step also makes the
+      # missing secret its own red line in the Actions tab instead of a
+      # failure attributed to the kill switch.
+      - name: Pre-flight — a fail-closed gate needs a judge
         env:
-          # Read here ONLY to assert it exists — see the judge check below.
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
@@ -110,6 +115,11 @@ jobs:
             echo "::error::no showrunner judge available (set CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY) — trending fails closed, so every render would be held"
             exit 1
           fi
+
+      - name: Pre-flight — kill switch + failure counter
+        id: preflight
+        run: |
+          set -e
           # A COMPLETED PHASE B RUN IS NOT THE SAME THING AS A FINISHED DAY.
           #
           # exchange_phase_b.yml fires on TWO candidate UTC hours so the code
