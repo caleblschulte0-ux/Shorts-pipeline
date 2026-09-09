@@ -22,7 +22,11 @@
     },
     {
       "phrase": "eleven-minute walkthrough video",
-      "query": "person filming boxes phone"
+      "query": "person filming boxes phone",
+      "pin_query": "Eleven-Minute Walkthrough Video",
+      "pin_context": "video evidence documentation moving claim",
+      "news_query": "Eleven-Minute Walkthrough Video",
+      "news_angle": "The Eleven-Minute Walkthrough Video served as crucial documentation proving the grandmother's clock was loaded onto the moving truck."
     },
     {
       "phrase": "timestamped, narrated, clock included",
@@ -42,11 +46,20 @@
     },
     {
       "phrase": "a check for the clock's full appraised value",
-      "query": "bank check envelope"
+      "query": "bank check envelope",
+      "pin_query": "Check for Full Appraised Value",
+      "pin_context": "payment settlement compensation dispute",
+      "news_query": "Check for Full Appraised Value",
+      "news_angle": "The Check for Full Appraised Value was received by the customer as compensation for the lost grandmother's clock after providing video evidence."
     },
     {
       "phrase": "an apology email",
-      "query": "email inbox laptop"
+      "query": "email inbox laptop",
+      "pin_query": "Apology Email",
+      "pin_context": "email communication settlement dispute",
+      "news_query": "Apology Email",
+      "news_angle": "An Apology Email was sent to the customer by the movers after settling the claim for the lost grandmother's clock.",
+      "image_url": "https://live.staticflickr.com/1185/1485001785_24df74d5ef.jpg"
     }
   ],
   "punches": [
