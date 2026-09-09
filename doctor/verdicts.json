@@ -1067,10 +1067,16 @@
       ]
     },
     "d486c2fbfdaf": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed at tests/test_phase_b_render_handoff.py:71-81 (test_a_rejected_dispatch_fails_the_job): it only regex-matches the YAML step body text for 'HTTP...!=...204' and 'exit 1' nearby, never executes the shell branch or mocks the dispatch API. A refactor that leaves those tokens in an unreachable branch or a comment would still pass. Real test-quality gap on a critical handoff; fix is to extract the dispatch/verify logic into a script with an injectable HTTP client and test real status codes.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. The dispatch-and-verify is scripts/dispatch_render.py with an injectable opener; tests/test_dispatch_render.py executes it against 204, 401/403/404/422, 500, a timeout, a reset, a malformed response and a missing token, asserting the process exit code \u2014 which is what the workflow reads. A 202 is refused too: a different success code is a contract change to hear about, not guess at. The old text assertions are replaced by one thin wiring check, per the proposal. Caught on the way: the neighbouring preflight assertion matched by startswith('Pre-flight') and had silently started asserting against a second pre-flight step added earlier in this branch; now matched by full name.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed at tests/test_phase_b_render_handoff.py:71-81 (test_a_rejected_dispatch_fails_the_job): it only regex-matches the YAML step body text for 'HTTP...!=...204' and 'exit 1' nearby, never executes the shell branch or mocks the dispatch API. A refactor that leaves those tokens in an unreachable branch or a comment would still pass. Real test-quality gap on a critical handoff; fix is to extract the dispatch/verify logic into a script with an injectable HTTP client and test real status codes."
+        }
+      ]
     },
     "a2d4a0aea829": {
       "verdict": "done",

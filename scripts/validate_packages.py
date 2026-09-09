@@ -36,7 +36,9 @@ def main() -> int:
                     help="package directory (e.g. "
                          "state/trending_packages/20260608)")
     ap.add_argument("--min-coverage", type=float, default=70.0,
-                    help="fail if any package's shot-coverage % is below "
+                    # `%%` — argparse expands help strings with `%` and a
+                    # bare one made `--help` itself crash with a TypeError.
+                    help="fail if any package's shot-coverage %% is below "
                          "this (default 70). 100 = every visual the LLM "
                          "names has a shot covering it.")
     ap.add_argument("--min-illustration", type=float, default=0.0,

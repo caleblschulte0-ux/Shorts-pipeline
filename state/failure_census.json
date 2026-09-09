@@ -1,124 +1,162 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "decorative_mascot": {
-   "count": 7,
+  "temporal_gate": {
+   "count": 12,
    "stories": {
-    "the-world-has-less-land-than-it-did-in-2013": 2,
-    "world-renewable-power-was-still-only-19-7-after-two-decades": 2,
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 2,
-    "global-health-spending-exceeds-1300-per-person": 1
+    "buybacks-beat-dividends": 3,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "sea-level-rise-rate-doubled": 5,
+    "container-ships-floating-cities": 1,
+    "colorado-wolves-return": 2
    },
    "timestamps": [
-    "2026-08-24T23:03:50+00:00",
-    "2026-08-24T23:21:22+00:00",
-    "2026-08-24T23:31:23+00:00",
-    "2026-08-24T23:48:34+00:00",
-    "2026-08-25T13:39:33+00:00",
-    "2026-08-25T13:56:12+00:00",
-    "2026-08-25T14:12:00+00:00"
+    "2026-09-07T21:12:03+00:00",
+    "2026-09-07T21:34:25+00:00",
+    "2026-09-07T21:40:36+00:00",
+    "2026-09-07T21:47:36+00:00",
+    "2026-09-07T21:54:46+00:00",
+    "2026-09-08T19:14:00+00:00",
+    "2026-09-08T19:20:22+00:00",
+    "2026-09-09T10:21:22+00:00",
+    "2026-09-09T10:27:10+00:00",
+    "2026-09-09T10:33:02+00:00",
+    "2026-09-09T10:39:17+00:00",
+    "2026-09-09T10:46:24+00:00"
    ],
    "examples": [
-    "decorative_mascot: From hook@0.3 to seg1:end (t=0.3-24.0s, roughly the first 40% of the video) Data holds the same arms-out standing pose and merely drifts across the bar stack (hook@1.5, seg0:mid, se",
-    "decorative_mascot: Data hovers in the same mid-right spot with identical arm-out pose across seg0:start, seg1:mid, seg2:end and seg3:mid \u2014 he never sets up or pays off any bit tied to a stat; at seg3:",
-    "decorative_mascot: Data holds the same walking/reaching pose and merely slides along the bar tip or line \u2014 identical silhouette at hook@0.3, seg0:mid, seg1:end, seg2:start, seg2:end, seg3:mid and payo"
+    "temporal_gate: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.92s of 51.21s (~2.1s frozen)",
+    "temporal_gate: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "temporal_gate: max_dup_run 84 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=43.42s of 49.25s (~3.5s frozen)"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 11,
+   "stories": {
+    "buybacks-beat-dividends": 1,
+    "f1-pit-stop-vanishing-act": 10
+   },
+   "timestamps": [
+    "2026-09-07T21:20:39+00:00",
+    "2026-09-08T20:25:25+00:00",
+    "2026-09-08T20:25:25+00:00",
+    "2026-09-08T20:31:37+00:00",
+    "2026-09-08T20:31:37+00:00",
+    "2026-09-08T20:38:28+00:00",
+    "2026-09-08T20:38:28+00:00",
+    "2026-09-09T10:07:51+00:00",
+    "2026-09-09T10:07:51+00:00",
+    "2026-09-09T10:14:11+00:00",
+    "2026-09-09T10:14:11+00:00"
+   ],
+   "examples": [
+    "empty_void: seg1:mid and seg1:end leave roughly the bottom two-thirds of the 9:16 frame flat dark with only a 2px rule and a thumbnail-sized mascot occupying it; seg3:end is worse \u2014 one lone bill tile",
+    "decorative_mascot: Data never runs a setup->action->payoff bit: he stands over the 'Current record' label in hook@0.3, stands among the clocks in seg1:mid, stands inside the yellow bar in seg2:start a",
+    "empty_void: seg3:end is ~75% empty navy gradient holding two thumbnail-sized mascots, two hairlines and a stray dotted column at the right edge; seg2:mid/seg2:end waste the entire bottom half the same"
+   ],
+   "recurred_after_fix": false
+  },
+  "bare_number": {
+   "count": 2,
+   "stories": {
+    "buybacks-beat-dividends": 1,
+    "four-day-workweek-spreads": 1
+   },
+   "timestamps": [
+    "2026-09-07T21:20:39+00:00",
+    "2026-09-07T21:28:08+00:00"
+   ],
+   "examples": [
+    "bare_number_card: seg1:mid and seg1:end are just the text '$1,000B' and '2025' floating above a hairline timeline \u2014 no filling, stacking or comparison; the number is stated, not demonstrated.",
+    "bare_number_card: seg1:mid and seg1:end are a giant '14.8%' / '21.7%' counter on an empty gradient \u2014 the gauge arc it should be filling is zoomed almost entirely off-frame, so no demonstration remains"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 5,
+   "count": 1,
    "stories": {
-    "the-world-has-less-land-than-it-did-in-2013": 1,
-    "dubai_s_airport_quietly_buried_heathrow": 1,
-    "msc_just_ended_maersk_s_25_year_reign": 1,
-    "pakistan_quietly_passed_brazil_in_popula": 1,
-    "the_sign_said_beat_any_price__so_i_did_": 1
+    "four-day-workweek-spreads": 1
    },
    "timestamps": [
-    "2026-08-24T23:21:22+00:00",
-    "2026-08-25T14:30:49+00:00",
-    "2026-08-25T14:32:37+00:00",
-    "2026-08-25T14:34:25+00:00",
-    "2026-08-25T14:40:46+00:00"
+    "2026-09-07T21:28:08+00:00"
    ],
    "examples": [
-    "empty_void: seg3:start/seg3:mid leave the entire top half (y\u2248150\u2013380) blank navy above the flat 20.8 line, and the bar-race frames (seg2:start) leave wide empty gutters right of every unfilled track.",
-    "empty_void: hook@0.3 and hook@0.8 are almost entirely black \u2014 one ~1cm red stub near the top-left is the only mark in the plot area, gridlines invisible, and the whole lower two-thirds of the frame is",
-    "empty_void: hook@0.3 and hook@0.8 are ~90% black \u2014 two ~1cm line stubs pinned to the top-left with the entire 0\u20132.5M plot region empty; that lower ~60% of the plot stays dead black through mid5 (t=12."
+    "empty_void: seg1:mid/seg1:end leave the entire lower two-thirds as blank blue gradient, and seg4:start through payoff@-0.4 leave roughly the bottom third below 'each = 5%' completely empty."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
    "count": 1,
    "stories": {
-    "the_sign_said_beat_any_price__so_i_did_": 1
+    "f1-pit-stop-vanishing-act": 1
    },
    "timestamps": [
-    "2026-08-25T14:40:46+00:00"
+    "2026-09-08T20:31:37+00:00"
    ],
    "examples": [
-    "junk_imagery: mid5/payoff@-1.8/payoff@-0.4 hold a German-language decorative wall plaque reading 'Auf ist, wenn auf ist.' over an English price-match story, and mid2 is a blank black ECCO monitor scre"
+    "junk_imagery: hook@0.3\u2013seg1:start: a yellow house/building emoji sits on top of the 'Current record' row label (f00\u2013f07), an icon with nothing to do with F1 pit stops, and it clips the label text."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
-   "min": 1,
-   "max": 2
+   "median": 0,
+   "min": 0,
+   "max": 3
   },
   "data_demo": {
-   "median": 3,
-   "min": 2,
-   "max": 4
+   "median": 0,
+   "min": 0,
+   "max": 3
   },
   "mascot": {
-   "median": 2,
-   "min": 1,
-   "max": 4
+   "median": 0,
+   "min": 0,
+   "max": 3
   },
   "craft": {
-   "median": 1,
-   "min": 1,
-   "max": 2
+   "median": 0,
+   "min": 0,
+   "max": 1
   },
   "pace": {
-   "median": 2,
-   "min": 1,
-   "max": 2
+   "median": 0,
+   "min": 0,
+   "max": 1
   },
   "payoff": {
-   "median": 1,
-   "min": 1,
+   "median": 0,
+   "min": 0,
    "max": 2
   },
   "temporal_craft": {
-   "median": 2,
-   "min": 2,
-   "max": 3
+   "median": 1,
+   "min": 1,
+   "max": 2
   }
  },
  "scores": [
-  61,
-  43,
+  5,
   52,
-  52,
-  43,
-  53,
-  52,
-  48,
   57,
+  5,
+  5,
+  5,
+  5,
+  9,
+  9,
+  34,
   39,
+  39,
+  56,
   43,
-  61,
-  61,
-  74,
-  69,
-  65,
-  70,
-  74,
-  66,
-  56
+  39,
+  5,
+  5,
+  5,
+  5,
+  5
  ]
 }

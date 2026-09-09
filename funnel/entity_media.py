@@ -361,6 +361,7 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
             if (url and age < _POS_TTL) or (not url and age < _NEG_TTL):
                 return url or None
     chosen = ""
+    ev: dict = {}
     try:
         from funnel import topic_media as topic_media
         urls = topic_media.search(entity, context)
@@ -369,20 +370,151 @@ def resolve_entity_media(entity: str, context: str = "") -> str | None:
         # og:image links rot within days — skip the dead ones instead
         # of caching a 404 we'll render a blank shot from.
         for u in urls or []:
-            if url_is_image(u):
+            probe = probe_image(u)
+            if probe["ok"]:
                 chosen = u
+                cls, provider = _classify_host(u)
+                ev = {"url": u, "title": entity, "query": context,
+                      "source_class": cls, "provider": provider,
+                      "width": probe["width"], "height": probe["height"],
+                      "content_type": probe["content_type"],
+                      "verified_at": probe["verified_at"],
+                      "resolved_by": "entity_media"}
                 break
     except Exception as e:  # noqa: BLE001
         print(f"  [entity_media resolve fail] {entity!r}: {e}")
-    cache[key] = {"url": chosen, "ts": time.time()}
+    cache[key] = {"url": chosen, "ts": time.time(), "ev": ev}
     _save_cache(cache)
     return chosen or None
+
+
+def resolve_entity_evidence(entity: str, context: str = "") -> dict | None:
+    """The same resolution, WITH what was learned doing it.
+
+    `resolve_entity_media` returns `str | None` and always has, so every
+    caller keeps working; this is the shape the media judge needs. The
+    evidence names the entity we ASKED the provider for and the provider
+    answered — third-party confirmation of the subject, which is exactly
+    what a shot copying its own phrase into a candidate title is not
+    (`media_judge._media_for` is explicit about refusing that).
+
+    Shares the resolution cache, so calling both costs one lookup."""
+    url = resolve_entity_media(entity, context=context)
+    if not url:
+        return None
+    ctx_norm = " ".join((context or "").lower().split())[:80]
+    key = f"{entity.lower()}|{ctx_norm}" if ctx_norm else entity.lower()
+    rec = _load_cache().get(key)
+    if isinstance(rec, dict) and isinstance(rec.get("ev"), dict) and rec["ev"]:
+        return dict(rec["ev"])
+    # A legacy cache entry has a URL and no evidence. Verifying it again
+    # here would double every render's network cost for a record that will
+    # refresh on its own TTL, so report what we know and let the judge
+    # treat the rest as unverified.
+    cls, provider = _classify_host(url)
+    return {"url": url, "title": entity, "query": context,
+            "source_class": cls, "provider": provider,
+            "resolved_by": "entity_media"}
 
 
 # ---------- URL verification ----------
 
 _VERIFY_UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/120 Safari/537.36")
+
+
+_HOST_CLASS = (
+    # (host substring, source_class, provider) — the class vocabulary is
+    # media_judge.CLASS_RANK's, and these are the three families
+    # `topic_media.search` actually returns.
+    ("upload.wikimedia.org", "open_or_licensed", "wikimedia"),
+    ("wikimedia.org", "open_or_licensed", "wikimedia"),
+    ("wikipedia.org", "open_or_licensed", "wikipedia"),
+)
+
+
+def _classify_host(url: str) -> tuple[str, str]:
+    """(source_class, provider) from the URL's host.
+
+    Deliberately conservative: anything that is not a Wikimedia/Wikipedia
+    file is `unverified`, which is what the judge already assumes. A news
+    site's og:image is a real image at a real URL, but its licence is not
+    ours to assert."""
+    try:
+        host = urllib.parse.urlsplit(url).netloc.lower()
+    except Exception:                                    # noqa: BLE001
+        return "unverified", ""
+    for needle, cls, provider in _HOST_CLASS:
+        if needle in host:
+            return cls, provider
+    return "unverified", host
+
+
+def probe_image(url: str, timeout: float = 8.0) -> dict:
+    """Verify `url` AND report what was verified.
+
+    `url_is_image` answers yes/no and throws away everything else it saw.
+    That was the whole problem in doctor finding 4e9af949a9c9: enrichment
+    identified an entity, disambiguated it, resolved a URL and confirmed it
+    was a live image — then persisted the bare URL, so the media judge (whose
+    production path builds `{"url": ...}` and nothing else) scored it with no
+    subject text, no dimensions and `source_class: unverified`. A verified
+    encyclopedic photo of the named subject scored ~0.13 and was replaced by
+    a generated image.
+
+    Returns `{"ok", "content_type", "width", "height", "verified_at"}`.
+    Dimensions come from the first chunk of the file, which the fallback GET
+    was already fetching a byte of; when the header cannot be parsed they
+    stay 0 and the judge treats them as unverified, which is correct — a
+    guessed dimension would be worse than none."""
+    out = {"ok": False, "content_type": "", "width": 0, "height": 0,
+           "verified_at": ""}
+    for method in ("HEAD", "GET"):
+        try:
+            headers = {"User-Agent": _VERIFY_UA}
+            if method == "GET":
+                headers["Range"] = "bytes=0-65535"
+            req = urllib.request.Request(url, method=method, headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                ctype = (resp.headers.get("Content-Type") or "").lower()
+                if resp.status not in (200, 206):
+                    continue
+                if not ctype.startswith("image/"):
+                    return out          # 200 with an HTML error page
+                out["ok"] = True
+                out["content_type"] = ctype.split(";")[0].strip()
+                out["verified_at"] = _utc_now()
+                if method == "GET":
+                    out.update(_dims(resp.read()))
+                return out
+        except urllib.error.HTTPError as e:
+            if method == "HEAD" and e.code in (403, 405, 501):
+                continue
+            return out
+        except Exception:  # noqa: BLE001
+            return out
+    return out
+
+
+def _utc_now() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _dims(head: bytes) -> dict:
+    """Width/height from the first bytes of an image, or zeros.
+
+    Zeros are honest: `media_judge` treats unknown dimensions as unverified
+    rather than as large enough, so a failed parse costs the resolution
+    credit and nothing else."""
+    try:
+        import io
+
+        from PIL import Image
+        im = Image.open(io.BytesIO(head))
+        return {"width": int(im.width), "height": int(im.height)}
+    except Exception:  # noqa: BLE001 — truncated header, exotic format
+        return {}
 
 
 def url_is_image(url: str, timeout: float = 8.0) -> bool:
@@ -398,26 +530,7 @@ def url_is_image(url: str, timeout: float = 8.0) -> bool:
 
     HEAD first (cheap); some CDNs reject HEAD with 405, so fall back
     to a Range-limited GET before giving up."""
-    for method in ("HEAD", "GET"):
-        try:
-            headers = {"User-Agent": _VERIFY_UA}
-            if method == "GET":
-                headers["Range"] = "bytes=0-0"
-            req = urllib.request.Request(url, method=method, headers=headers)
-            with urllib.request.urlopen(req, timeout=timeout) as resp:
-                ctype = (resp.headers.get("Content-Type") or "").lower()
-                if resp.status in (200, 206) and ctype.startswith("image/"):
-                    return True
-                if resp.status in (200, 206):
-                    # Resolved but not an image (e.g. an HTML error page
-                    # served with 200) — reject, don't retry.
-                    return False
-        except urllib.error.HTTPError as e:
-            if method == "HEAD" and e.code in (403, 405, 501):
-                continue          # server dislikes HEAD — retry as GET
-            return False
-        except Exception:  # noqa: BLE001 — timeouts, DNS, TLS: all unusable
-            return False
+    return bool(probe_image(url, timeout=timeout)["ok"])
     return False
 
 
@@ -474,18 +587,37 @@ def verify_shot_urls(pkg: dict, *, verbose: bool = True) -> int:
         orig = url
         norm = commons_thumb_url(url)
         candidates = [norm, orig] if norm != orig else [orig]
-        chosen = next((c for c in candidates if url_is_image(c)), None)
+        chosen = probe = None
+        for c in candidates:
+            pr = probe_image(c)
+            if pr["ok"]:
+                chosen, probe = c, pr
+                break
         if chosen:
             if s.get("image_url"):
                 s["image_url"] = chosen
             if s.get("image"):
                 s["image"] = chosen
+            # Evidence for a ROUTINE-supplied URL, and note what is NOT in
+            # it: no `title`. We confirmed this URL is a live image of the
+            # stated dimensions from that host; we have no third-party
+            # statement that it depicts the shot's subject. Claiming one
+            # would be the shot certifying itself, which is precisely what
+            # `media_judge._media_for` refuses to let a pinned URL do.
+            cls, provider = _classify_host(chosen)
+            s["media_evidence"] = {
+                "url": chosen, "source_class": cls, "provider": provider,
+                "width": probe["width"], "height": probe["height"],
+                "content_type": probe["content_type"],
+                "verified_at": probe["verified_at"],
+                "resolved_by": "verify_shot_urls"}
             continue
         if verbose:
             print(f"  [entity_media] BROKEN url dropped "
                   f"({(s.get('phrase') or '?')[:30]!r}): {orig[:80]}")
         s.pop("image_url", None)
         s.pop("image", None)
+        s.pop("media_evidence", None)      # never outlive its URL
         dropped += 1
     if verbose and dropped:
         print(f"  [entity_media] dropped {dropped} unresolvable image "
@@ -599,11 +731,17 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
         target.setdefault("news_angle", story_angle)
         if target.get("image_url") or target.get("image"):
             continue
-        url = resolve_entity_media(entity, context=context)
-        if not url:
+        ev = resolve_entity_evidence(entity, context=context)
+        if not ev:
             missed_media.append(entity)
             continue
+        url = ev["url"]
         target["image_url"] = url
+        # The judge's production path builds its candidate from the shot
+        # alone (`judge_package(pkg, None)`), so anything enrichment learned
+        # and did not write down here is lost before scoring
+        # (doctor finding 4e9af949a9c9).
+        target["media_evidence"] = ev
         attached += 1
         if verbose:
             print(f"  [entity_media] {entity!r} (ctx: {context[:40]!r}) "

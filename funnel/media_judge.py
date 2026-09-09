@@ -226,8 +226,28 @@ def judge_package(pkg: dict, media_by_shot: dict | list | None = None, *,
             # "title" guarantees ~100% overlap with itself regardless of
             # what the URL actually shows. A bare pinned URL is genuinely
             # unverified — pass only the URL and let it judge as such.
-            if shot.get("image_url"):
-                return {"url": shot["image_url"]}
+            #
+            # `media_evidence` is the exception, and only because it is not
+            # the shot talking about itself. `funnel.entity_media` writes it
+            # when it RESOLVED and VERIFIED the media: the entity it asked a
+            # provider for and got an answer to, the host's licence family,
+            # and the dimensions read off the file. Without it, enrichment
+            # would identify a subject, disambiguate it, fetch an
+            # encyclopedic photo of it and confirm it live — and this
+            # function would then score `{"url": ...}` at ~0.13 and order a
+            # generated replacement for it (doctor finding 4e9af949a9c9).
+            #
+            # A routine-supplied URL that only got verified carries NO
+            # `title`, so it earns the resolution and provenance credit it
+            # actually evidenced and none of the subject-relevance credit it
+            # did not. A bare URL with no evidence at all still judges as
+            # unverified, exactly as before.
+            url = shot.get("image_url")
+            if url:
+                ev = shot.get("media_evidence")
+                if isinstance(ev, dict) and str(ev.get("url") or "") == str(url):
+                    return {**ev, "url": url}
+                return {"url": url}
             return None
 
         verdicts = []
