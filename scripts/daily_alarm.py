@@ -223,6 +223,32 @@ def check(date: str, now=None) -> dict:
     # So: prefer the recorded verdict, and evaluate live for any task that
     # has none. The live answer reads the same filesystem and is just as
     # true; it only lacks the "we checked at 07:00" timestamp.
+    # PHASE A READINESS — judged BEFORE the media worker, so a day that
+    # never got a bundle is named as such instead of arriving later as a
+    # media-worker no-show. Same rule as below: prefer the recorded
+    # verdict, evaluate live when there is none, because a watchdog that
+    # did not fire must not read as a clean day.
+    try:
+        import phase_a_watchdog as _paw
+        _pa = _paw.verdict(date)
+        _pa_live = False
+        if not isinstance(_pa, dict):
+            _pa, _pa_live = _paw.evaluate(date), True
+        if _pa.get("status") == "MISSING":
+            alarm("phase_a_never_ran", "critical",
+                  _pa.get("headline") or
+                  f"No exchange bundle exists for {date}.",
+                  "Phase A's only trigger independent of upstream authoring "
+                  "is one cron whose drift is measured in hours. With no "
+                  "bundle the 06:00 Central media worker has nothing to work "
+                  "from and the day renders without the exchange. Dispatch "
+                  "exchange_phase_a.yml for this date."
+                  + (" (No readiness record — computed live, so check that "
+                     "phase_a_watchdog.yml is firing too.)"
+                     if _pa_live else ""))
+    except Exception as exc:  # noqa: BLE001
+        notes.append(f"phase A readiness not read: {exc}")
+
     _wd = {}
     try:
         import chatgpt_watchdog as _cw

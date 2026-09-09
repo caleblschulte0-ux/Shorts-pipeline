@@ -995,10 +995,16 @@
       ]
     },
     "5187e34e11f3": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: .github/workflows/exchange_phase_a.yml has only one trigger independent of upstream authoring (schedule cron 45 9 UTC); workflow_run and push both depend on something upstream having already run/pushed. The workflow's own comments document multi-hour cron drift. Real gap, but the proposed fix (a fail-closed idempotent readiness watchdog with durable refusal state) is a multi-file, multi-workflow feature \u2014 too large for one session alongside everything else ruled today. Queued for a dedicated session.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Built in this session. scripts/phase_a_watchdog.py judges at 05:00 Central (an hour before the 06:00 media worker) whether the day's bundle exists on main, records a durable verdict to state/phase_a_readiness/<date>.json, and fails closed. .github/workflows/phase_a_watchdog.yml runs it on PAIRED crons (0 10 and 0 11 UTC, gated in code by shared/centraltime), dispatches exchange_phase_a.yml when the bundle is absent, polls main for up to 20 minutes, re-judges, persists the verdict even on failure, and exits 1 so the run goes red. Also closed the reason 08-29/08-30 stayed green: chatgpt_watchdog.media_expectation read a missing bundle as '0 images requested' -> not_required -> ok, so the one check aimed at that morning excused the failure; it now defers to the readiness verdict and reports REQUIRED when Phase A never ran. daily_alarm surfaces it (phase_a_never_ran), preferring the record and evaluating live when absent. 24 tests in tests/test_phase_a_readiness.py.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: .github/workflows/exchange_phase_a.yml has only one trigger independent of upstream authoring (schedule cron 45 9 UTC); workflow_run and push both depend on something upstream having already run/pushed. The workflow's own comments document multi-hour cron drift. Real gap, but the proposed fix (a fail-closed idempotent readiness watchdog with durable refusal state) is a multi-file, multi-workflow feature \u2014 too large for one session alongside everything else ruled today. Queued for a dedicated session."
+        }
+      ]
     },
     "02da0ae2137f": {
       "verdict": "doing",

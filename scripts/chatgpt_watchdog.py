@@ -91,7 +91,40 @@ def media_expectation(date: str) -> tuple[bool, str]:
     """
     bundle = _load(_bundle_dir(date) / "bundle.json")
     if not isinstance(bundle, dict):
-        return False, "no bundle.json for this date — Phase A has not run"
+        # A MISSING BUNDLE IS NOT "NOTHING TO DO".
+        # This returned required=False, so a day where Phase A never ran
+        # came out `not_required` -> ok -> green, and the one check pointed
+        # at that morning EXCUSED the failure it existed to catch. That is
+        # exactly the trap this file's own header names: "nothing here"
+        # reading as "nothing to do". It happened on 2026-08-29 and again
+        # on 2026-08-30 (doctor 5187e34e11f3).
+        #
+        # The media worker is still not at fault — it cannot invent a
+        # bundle — so this does not blame it. It defers to the readiness
+        # verdict, which is the check that CAN judge Phase A, and stays
+        # silent only while that verdict says the day is still young.
+        # ONE module instance, not two. Importing this as
+        # `scripts.phase_a_watchdog` when something else already imported
+        # it as `phase_a_watchdog` gives two module objects with two
+        # separate ROOTs — so one writes the verdict and the other reads a
+        # different directory and sees nothing. Prefer whatever is already
+        # loaded; only import if neither name is.
+        try:
+            import sys as _sys
+            _m = (_sys.modules.get("phase_a_watchdog")
+                  or _sys.modules.get("scripts.phase_a_watchdog"))
+            if _m is None:
+                import phase_a_watchdog as _m           # noqa: F811
+            v = _m.verdict(date) or {}
+        except Exception:  # noqa: BLE001
+            v = {}
+        if v.get("status") == "MISSING":
+            return True, ("no bundle.json — PHASE A NEVER RAN for this "
+                          "date (see state/phase_a_readiness/"
+                          f"{date}.json)")
+        return False, ("no bundle.json for this date — Phase A has not run "
+                       "(readiness verdict: "
+                       f"{v.get('status') or 'not recorded'})")
     n = len(bundle.get("requests") or [])
     if not n:
         return False, "the bundle asks for 0 images"
@@ -158,21 +191,13 @@ def _deadline_passed(task: str, date: str, now=None) -> bool:
     which is the same trap that put Phase B's backstop fifteen minutes
     before the finalizer for half of every year.
     """
-    now = now or datetime.now(timezone.utc)
-    try:
-        from zoneinfo import ZoneInfo
-        now = now.astimezone(ZoneInfo("America/Chicago"))
-    except Exception:                                    # noqa: BLE001
-        pass
-    try:
-        day = datetime.strptime(str(date), "%Y%m%d").date()
-    except ValueError:
-        return True
-    if now.date() > day:
-        return True                      # the day is over; judge it
-    if now.date() < day:
-        return False
-    return now.hour >= DEADLINE_CENTRAL.get(task, 9)
+    # Delegates to shared/centraltime — the single definition. This logic
+    # existed here verbatim while three other modules carried their own
+    # copy of the timezone, and the docs carried two stale copies of the
+    # derived UTC hours (the doctor caught that drift on 2026-08-22).
+    from shared import centraltime
+    return centraltime.deadline_passed(
+        date, DEADLINE_CENTRAL.get(task, 9), now)
 
 
 def evaluate(task: str, date: str, now=None) -> dict:
