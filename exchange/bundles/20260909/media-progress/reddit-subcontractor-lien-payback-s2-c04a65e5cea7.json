@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+  "safe_request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "626dbe58253fc3cceb8e02d81372f5f766cbec1b8db33660e9e97a6bd76dacb6",
+  "prompt_used": "An editorial illustration for a short-form video: legal document filing. It accompanies the narration: \"a mechanic's lien against the property\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+    "filename": "20260909__reddit-subcontractor-lien-payback-s2-c04a65e5cea7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3082646769167ca003481e0f85810ae66d79b5415b53ec2aa69f18b68b39bfa7",
+    "bytes": 1651204,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-09T11:31:00Z"
+}
