@@ -1609,6 +1609,17 @@
       ],
       "words_first_10s": 24,
       "scene_changes_before_5s": 3
+    },
+    "podcasts-passed-radio-spoken-word": {
+      "url": "https://youtube.com/shorts/j1M2nEyX4qE",
+      "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
+      "at": "2026-09-09T21:33:27.894451+00:00",
+      "publish_at": "2026-09-09T20:03:34Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 50.4
     }
   },
   "uploads": [
@@ -1647,6 +1658,15 @@
       "state": "posted",
       "slug": "chickenpox-vaccine-collapse",
       "at": "2026-09-09T18:15:48.524670+00:00"
+    },
+    {
+      "claimed_at": "2026-09-09T21:33:19.684030+00:00",
+      "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
+      "publish_at": "2026-09-09T20:03:34Z",
+      "url": "https://youtube.com/shorts/j1M2nEyX4qE",
+      "state": "posted",
+      "slug": "podcasts-passed-radio-spoken-word",
+      "at": "2026-09-09T21:33:27.894451+00:00"
     }
   ]
 }
