@@ -114,6 +114,8 @@ def analyze(video: Path) -> dict | None:
         step = max(1, int(round(fps / 6)))
         subjects: list[Subject] = []
         prev_gray, idx, samples = None, 0, 0
+        col_energy = np.zeros(sw, dtype=np.float64)
+        row_energy = np.zeros(sh, dtype=np.float64)
         while True:
             ok, frame = cap.read()
             if not ok:
@@ -149,6 +151,18 @@ def analyze(video: Path) -> dict | None:
                     best.hs.append(float(fh))
                     best.xs.append(cxf)
                     best.talk += m
+                # WHERE the action is, horizontally. The face cascade only
+                # answers "is there a trackable face"; on a clips channel
+                # the answer is usually no (gameplay, IRL, moving camera),
+                # and the whole frame was then shown at 31.6% of a 9:16
+                # canvas. A column-wise frame-difference profile costs one
+                # extra mean() on arrays we have already decoded and tells
+                # us where to point the camera when no face does.
+                if prev_gray is not None and prev_gray.shape == gray.shape:
+                    d = np.abs(gray.astype(np.int16)
+                               - prev_gray.astype(np.int16))
+                    col_energy += d.mean(axis=0)
+                    row_energy += d.mean(axis=1)
                 prev_gray = gray
             idx += 1
         cap.release()
@@ -157,7 +171,9 @@ def analyze(video: Path) -> dict | None:
         for s in subjects:
             s.presence = s.n / samples  # type: ignore[attr-defined]
         return {"sw": sw, "sh": sh, "samples": samples,
-                "subjects": subjects}
+                "subjects": subjects,
+                "col_energy": col_energy.tolist(),
+                "row_energy": row_energy.tolist()}
     except Exception:  # noqa: BLE001
         return None
 
@@ -232,10 +248,82 @@ def plan(an: dict, layout: str, subs: list, reason: str) -> list[Shot] | None:
     return None
 
 
+# How much of the 9:16 canvas the sharp picture should fill when no face
+# is trackable. A 16:9 source fitted whole into 1080x1920 is 1080x607 —
+# 31.6% BY CONSTRUCTION, with two thirds of the frame blurred padding. That
+# is the single loudest "reposted clip" signal a Short can carry, and it was
+# the default on 52 of the last 97 posted videos. Cropping to 3:4 of the
+# source lifts the sharp area to ~75% while still leaving a soft band for
+# the hook card and captions. Full 9:16 would fill it completely but throws
+# away 68% of the width, which loses the HUD/second person too often.
+ACTION_CROP_ASPECT = (3, 4)
+MIN_ACTION_GAIN = 1.25       # don't bother re-encoding for a tiny win
+
+
+def action_window(an: dict, aspect: tuple = ACTION_CROP_ASPECT) -> tuple | None:
+    """(w, h, x, y): the `aspect` window over the busiest part of the frame.
+
+    Used when classify() says "wide" — i.e. no persistent face. The choice
+    is not arbitrary: it is the window maximising summed frame-difference
+    energy, so the crop points at whatever is actually MOVING. Returns None
+    when the source is already tall enough that cropping buys nothing."""
+    sw, sh = int(an.get("sw") or 0), int(an.get("sh") or 0)
+    if sw <= 0 or sh <= 0:
+        return None
+    aw, ah = aspect
+    want_w = int(round(min(sw, sh * aw / ah)))
+    if want_w >= sw * 0.98:
+        return None                      # already >= this tall; nothing to do
+    # sharp-area gain vs fitting the whole frame; skip a re-encode for <25%
+    if (sw / want_w) < MIN_ACTION_GAIN:
+        return None
+    col = [float(v) for v in (an.get("col_energy") or [])]
+    if len(col) != sw or sum(col) <= 0:
+        x = (sw - want_w) / 2.0
+    else:
+        total = sum(col)
+        # CENTRE ON THE ACTION, don't just contain it. Maximising summed
+        # energy alone ties across every window that holds the busy region,
+        # and argmax then returns the LEFTMOST of them — putting the subject
+        # against the edge of frame. The energy centroid is where a camera
+        # operator would point.
+        centroid = sum(i * v for i, v in enumerate(col)) / total
+        # A FLAT profile means motion is everywhere (a panning camera, a
+        # busy scene). Its centroid is meaningless, so say so and centre.
+        even = total / sw
+        peaky = sum(abs(v - even) for v in col) / total
+        x = (centroid - want_w / 2.0) if peaky > 0.25 else (sw - want_w) / 2.0
+    x = max(0, min(int(x), sw - want_w))
+    # even dimensions keep libx264 happy
+    return (want_w - want_w % 2, sh - sh % 2, x - x % 2, 0)
+
+
 def _render_single_crop(video: Path, shot: Shot, out: Path) -> Path | None:
     w, h, x, y = shot.crop
     vf = f"crop={w}:{h}:{x}:{y},scale={CANVAS_W}:{CANVAS_H}"
     return _ff(video, vf, out)
+
+
+def _render_action_crop(video: Path, shot: Shot, out: Path) -> Path | None:
+    """Action crop -> full-width sharp picture, blur-filled to the canvas.
+
+    NOT _render_single_crop: that force-scales the crop to 1080x1920, which
+    is only correct because every other crop mode computes a 9:16 rectangle
+    (crop_w = sh*9/16). A 3:4 action window pushed through it would be
+    STRETCHED — everyone in frame 30% too wide. Preserve the aspect: scale
+    to fill the width, then blur-fill the remaining band exactly the way the
+    house layout does, so captions and the hook card still have somewhere to
+    sit."""
+    w, h, x, y = shot.crop
+    fc = (f"[0:v]crop={w}:{h}:{x}:{y},split=2[c0][c1];"
+          f"[c0]scale={CANVAS_W}:{CANVAS_H}:"
+          f"force_original_aspect_ratio=increase,"
+          f"crop={CANVAS_W}:{CANVAS_H},gblur=sigma=28,"
+          f"eq=brightness=-0.03[bg];"
+          f"[c1]scale={CANVAS_W}:{CANVAS_H}:"
+          f"force_original_aspect_ratio=decrease[fg];"
+          f"[bg][fg]overlay=(W-w)/2:(H-h)/2[vout]")
+    return _ff_complex(video, fc, out)
 
 
 def _render_split(video: Path, shot: Shot, an: dict, out: Path) -> Path | None:
@@ -366,6 +454,25 @@ def build(video: Path, work: Path,
                                        if getattr(s, "presence", 0)
                                        >= PERSIST_MIN]))
         if layout == "wide":
+            # NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING.
+            # This returned None, and the caller then blur-filled the whole
+            # 16:9 frame into 9:16 — a 31.6% sharp band. Point the camera at
+            # the motion instead; the footage fills three quarters of the
+            # canvas and the clip stops looking like a repost.
+            win = action_window(an)
+            if win is not None:
+                shot = Shot(mode="action", reason=reason + " — cropped to "
+                            "the motion instead of shrinking the whole frame",
+                            subjects=[], crop=win)
+                out = work / "shotplan.mp4"
+                rendered = _render_action_crop(video, shot, out)
+                if rendered is not None:
+                    summary.update(layout="action",
+                                   reason=shot.reason,
+                                   shots=[{"mode": "action",
+                                           "reason": shot.reason}],
+                                   crop=list(win))
+                    return rendered, summary
             return None, summary
         shots = plan(an, layout, subs, reason)
         if not shots:

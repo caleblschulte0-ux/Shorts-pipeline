@@ -1290,10 +1290,17 @@ def main() -> int:  # noqa: C901
     _floor = _rqsig.parameters["min_active_ratio"].default
     # a 16:9 source fitted into 1080x1920 is 1080x607 = 31.6% BY
     # CONSTRUCTION — a floor above that condemns every render we make
-    check("the letterbox floor cannot fire on a normal 16:9 fit (0.316)",
-          _floor < 0.316)
-    check("...but still catches a frame boxed twice (~0.10-0.18)",
-          _floor > 0.18)
+    # CORRECTED 2026-09-09 by measurement. The house blur-fill padding is
+    # dimmed BLURRED CONTENT, not black, so cropdetect leaves it alone and
+    # a normal render reports ratio 1.00 — not the 0.316 its geometry
+    # suggests. Measured at limit=16: bar-boxed source 0.32, our own
+    # render 1.00. The floor was briefly dropped to 0.22 on the untested
+    # assumption that our style scored 0.32, which disabled detection of
+    # the genuinely bar-boxed sources this engine exists to catch.
+    check("the letterbox floor still catches a bar-boxed source (0.32)",
+          _floor > 0.32)
+    check("...and our own blur-fill render measures 1.00, so it is never "
+          "at risk from that floor", _floor < 1.0)
     check("a failing letterbox probe cannot erase confirmed defects",
           "the {len(problems)} finding(s) above still stand"
           in (REPO / "engines" / "render_qa.py").read_text())
@@ -1453,15 +1460,25 @@ def main() -> int:  # noqa: C901
     # — which is a description of the layout, not a defect. It rejected a
     # clip that had just passed the content gate at 0.55.
     _qa_src = (REPO / "third_capture" / "clip_qa.py").read_text()
-    check("the vision critic is told the blur-fill layout is deliberate",
-          "THE HOUSE LAYOUT IS NOT A DEFECT" in _qa_src)
-    check("...and that it must judge the SHARP band, not the padding",
-          "Judge ONLY the sharp band" in _qa_src
-          and "Report blur only where the SHARP band" in _qa_src)
-    check("the house-style phrasings are named so they can't be reported "
-          "as problems",
-          all(p in _qa_src for p in ("mostly blurry", "letterboxed",
-                                     "subject small in frame")))
+    check("the vision critic is told the blurred padding is deliberate",
+          "THE BLURRED PADDING IS DELIBERATE" in _qa_src)
+    check("...and must not report the padding itself as a defect",
+          "letterboxed" in _qa_src
+          and "Report blur only where the SHARP region" in _qa_src)
+    # CORRECTION (same day): this used to also forbid reporting "subject
+    # small in frame". That was wrong. The critic was right to complain —
+    # 52 of the last 97 posted clips were a 31.6% sharp band because
+    # shot_plan gave up on framing whenever no face was trackable, and
+    # silencing the critic hid it instead of fixing it. Now that the
+    # renderer crops toward the action, a tiny subject is a REAL defect
+    # again and the critic must be able to say so, or nothing catches a
+    # regression.
+    check("the critic CAN still call out a frame the picture barely fills "
+          "(silencing it hid the framing bug, it did not fix it)",
+          "SHOULD say so" in _qa_src
+          and "three quarters" in _qa_src)
+    check("...while small-but-clear stays acceptable",
+          "Small-but-clear is fine" in _qa_src)
     check("the critic KEEPS its power to block genuinely broken output",
           all(p in _qa_src for p in ("cropped half out", "black, garbled",
                                      "cover a face")))
@@ -1618,6 +1635,174 @@ def main() -> int:  # noqa: C901
           "_shape = (" in _rt_src and "analysed -> subclusters" in _rt_src)
     check("the digest names that outcome distinctly",
           "NO SHARED EVENT" in (REPO / "scripts" / "judges.py").read_text())
+
+    # ====== the edit must look EDITED, not decorated ===================
+    # Operator, 2026-09-09: "we do random jump cuts and random Android ass
+    # emojis when we shouldn't... nothing about what we do looks like a
+    # real edit." It was accurate. Every cut but the first fired a punch
+    # transition + a whoosh; every money moment fired speed lines, TWO
+    # copies of the same emoji, and a slam word — falling back to a generic
+    # series emoji and the word "WAIT" when the author nominated nothing.
+    import third_capture.auto_edit as _ae
+    _ae_src = (REPO / "third_capture" / "auto_edit.py").read_text()
+
+    _w = [{"w": f"w{i}", "s": i * 2.0, "e": i * 2.0 + 0.4} for i in range(20)]
+    _m = [(t / 2.0, 0.1) for t in range(80)]
+    for _i, (_t, _v) in enumerate(_m):
+        if abs(_t - 12) < 0.5 or abs(_t - 30) < 0.5:
+            _m[_i] = (_t, 1.0)
+    _edl = _ae.build_edl_edit(_w, 40.0, _ae.Style(edit_mode=True), _m)
+    _tr = [i for i, sg in enumerate(_edl.segments) if sg.trans_in]
+    _wh = [c for c in _edl.sfx_cues if c[1] == "whoosh"]
+    check(f"punch transitions are BUDGETED, not one per cut "
+          f"({len(_tr)} over {len(_edl.segments)} segments)",
+          0 < len(_tr) <= _ae.TRANSITION_BUDGET)
+    check("...and never more than a third of the cuts",
+          len(_tr) <= max(1, (len(_edl.segments) - 1) // 3))
+    check(f"whooshes come out of the SAME budget ({len(_wh)}) — a video "
+          f"that whooshes eight times is one nobody believes",
+          len(_wh) <= _ae.TRANSITION_BUDGET)
+    check("the transitions land on the strongest cuts, not the first ones",
+          _tr != list(range(1, len(_tr) + 1)))
+
+    # emphasis must be nominated by the author for THIS clip
+    check("no generic emoji/word fallback survives in the overlay builder",
+          "SERIES_EMOJI.get(s" not in _ae_src
+          and "SERIES_WORD.get(s" not in _ae_src)
+    check("a clip the author nominated nothing for gets NO overlay "
+          "emphasis at all (the footage carries it)",
+          'if money_out is not None and (word or emoji)' in _ae_src)
+    check("the emoji is never mirrored into a pair",
+          _ae_src.count('"type": "emoji"') == 1)
+    check("speed lines only ride an emphasis that actually exists",
+          _ae_src.index('"type": "lines"') > _ae_src.index('if word:'))
+
+    # and the author contract has to ALLOW nothing, or none of this binds
+    _au_src = (REPO / "third_capture" / "author.py").read_text()
+    check("the author may return NO emoji, and is told to default to it",
+          'DEFAULT TO ""' in _au_src)
+    check("...and is told not to reach for a generic hype word",
+          "never reach for a generic hype" in _au_src)
+    check("an out-of-whitelist emoji still normalises to none, not to a "
+          "default", 'if emoji not in _EMOJI_OK:' in _au_src
+          and 'emoji = ""' in _au_src)
+
+    # ====== the picture must FILL the frame ============================
+    # The real reason the output "looks like a repost": classify() returns
+    # "wide" whenever no face is trackable — the common case on a clips
+    # channel — and build() then bailed to the caller's blur-fill of the
+    # WHOLE 16:9 frame. A 16:9 source in 1080x1920 is 1080x607: a 31.6%
+    # sharp band with two thirds blurred padding, on 52 of the last 97
+    # posted clips.
+    import third_capture.shot_plan as _sp
+    _SW, _SH = 1920, 1080
+    _col = [0.1] * _SW
+    for _x in range(1300, 1600):
+        _col[_x] = 9.0
+    _win = _sp.action_window({"sw": _SW, "sh": _SH, "col_energy": _col})
+    check("a wide 16:9 source gets an action crop instead of a thin band",
+          _win is not None)
+    _w, _h, _x, _y = _win
+    check("the crop is TALLER than 16:9 (that is the whole point)",
+          (_h / _w) > (9 / 16))
+    _sharp_before = (1080 * (1080 * 9 / 16)) / (1080 * 1920)
+    _fit_h = min(1920, 1080 * _h / _w)
+    _sharp_after = (1080 * _fit_h) / (1080 * 1920)
+    check(f"sharp picture area rises {_sharp_before:.0%} -> {_sharp_after:.0%}",
+          _sharp_after > 2 * _sharp_before)
+    check("the crop CENTRES on the motion, it does not merely contain it "
+          "(argmax alone ties and returns the leftmost window, putting the "
+          "subject against the edge)",
+          abs((_x + _w / 2) - 1450) < _w * 0.10)
+    check("a FLAT motion profile centres instead of chasing noise",
+          abs((lambda r: r[2] + r[0] / 2)(
+              _sp.action_window({"sw": _SW, "sh": _SH,
+                                 "col_energy": [1.0] * _SW}))
+              - _SW / 2) <= 2)
+    check("a source already 9:16 is left alone",
+          _sp.action_window({"sw": 1080, "sh": 1920,
+                             "col_energy": [1.0] * 1080}) is None)
+    check("a 4:5 source is left alone (too little to gain for a re-encode)",
+          _sp.action_window({"sw": 1080, "sh": 1350,
+                             "col_energy": [1.0] * 1080}) is None)
+    check("no motion profile at all still yields a safe centred crop",
+          _sp.action_window({"sw": _SW, "sh": _SH}) is not None)
+
+    _sp_src = (REPO / "third_capture" / "shot_plan.py").read_text()
+    check("analyze records WHERE the action is, not just whether a face "
+          "persists", "col_energy" in _sp_src and "row_energy" in _sp_src)
+    check("the action crop preserves aspect — _render_single_crop force-"
+          "scales to 1080x1920 and would stretch a 3:4 window 30% wide",
+          "def _render_action_crop" in _sp_src
+          and "_render_action_crop(video, shot, out)" in _sp_src)
+    check("...and blur-fills the remainder so captions still have a band",
+          "gblur=sigma=28" in _sp_src.split(
+              "def _render_action_crop")[1].split("def ")[0])
+    check("the wide branch no longer just gives up",
+          "NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING"
+          in _sp_src)
+
+    # ====== captions must emphasise MEANING, not character count =======
+    # The coloured word was `max(len(tok))` — the longest one. That is a
+    # character count wearing emphasis as a costume: it colours "ACTUALLY"
+    # over "NO", and it fires in nearly every group, which is how captions
+    # come out looking auto-generated.
+    from third_capture import clip_edit as _ce2
+    _emi = _ce2._emphasis_index
+    check("a DRAWLED short word beats a long fast one (per-word timings "
+          "are real prosodic stress; length is not)",
+          _emi([{"w": "no", "s": 0, "e": 0.5},
+                {"w": "actually", "s": 0.5, "e": 0.95},
+                {"w": "the", "s": 0.95, "e": 1.0}],
+               ["NO", "ACTUALLY", "THE"]) == 0)
+    check("a genuinely held content word is coloured",
+          _emi([{"w": "bro", "s": 0, "e": 0.15},
+                {"w": "insane", "s": 0.15, "e": 0.75}],
+               ["BRO", "INSANE"]) == 1)
+    check("a line nobody stressed gets NO colour at all — rationing it is "
+          "what makes it mean something when it appears",
+          _emi([{"w": "and", "s": 0, "e": 0.2},
+                {"w": "then", "s": 0.2, "e": 0.4}], ["AND", "THEN"]) is None)
+    check("a drawled STOPWORD is never the point of the line",
+          _emi([{"w": "the", "s": 0, "e": 0.9},
+                {"w": "car", "s": 0.9, "e": 1.0}], ["THE", "CAR"]) is None)
+    check("evenly-spoken content words get nothing",
+          _emi([{"w": "he", "s": 0, "e": 0.15},
+                {"w": "walked", "s": 0.15, "e": 0.45},
+                {"w": "over", "s": 0.45, "e": 0.72}],
+               ["HE", "WALKED", "OVER"]) is None)
+    check("short exclamations are eligible — a 3-char floor excluded "
+          "exactly the punchiest words a streamer says",
+          "no" not in _ce2._CAP_DULL and "yes" not in _ce2._CAP_DULL)
+    check("the length-based picker is gone",
+          "max(range(len(toks)), key=lambda i: len(toks[i]))"
+          not in (REPO / "third_capture" / "clip_edit.py").read_text())
+
+    # ====== the hook card is the first frame anyone sees ===============
+    _wh = _ce2.wrap_hook
+    for _h in ("THEN IT ALL WENT WRONG",
+               "SHE KEPT DISRESPECTING HER AND HE FINALLY SNAPPED",
+               "HIS RIZZ ACTUALLY WORKED"):
+        _t, _fs = _wh(_h)
+        _widest = max(len(ln) for ln in _t.split("\n")) * _fs * _ce2._ANTON_ADV
+        check(f"hook fits the canvas: {_h[:28]!r} -> {_fs}px, "
+              f"{_widest:.0f}px wide", _widest <= 1080)
+    check("a long hook wraps rather than running off both edges "
+          "(x=(w-text_w)/2 goes NEGATIVE once text_w exceeds the canvas)",
+          "\n" in _wh("SHE KEPT DISRESPECTING HER AND HE FINALLY SNAPPED")[0])
+    check("...and shrinks only when two lines still will not fit",
+          _wh("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z LONGER "
+              "STILL")[1] < 72)
+    check("a short hook is NOT shrunk needlessly",
+          _wh("THEN IT ALL WENT WRONG")[1] == 72)
+    check("an empty hook is handled", _wh("")[0] == "")
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("the hook fades in and out instead of a box snapping on at t=0",
+          ":alpha='" in _ce_src2 and "if(lt(t,0.25),t/0.25," in _ce_src2)
+    check("the hook uses the CAPTION treatment (outline + shadow), not a "
+          "solid meme box — two text looks in one video is its own tell",
+          "boxcolor=black@0.72" not in _ce_src2
+          and "borderw=7:bordercolor=black" in _ce_src2)
 
     print()
     if FAILS:

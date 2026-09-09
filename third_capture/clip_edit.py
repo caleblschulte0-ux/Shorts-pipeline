@@ -613,6 +613,110 @@ def _clean(token: str) -> str:
     return re.sub(r"[{}\\]", "", token).upper()
 
 
+# Words that are never the point of a line, so never the word we colour.
+_CAP_DULL = set("""
+a an the and or but so if then than that this these those there here
+i me my we us our you your he him his she her it its they them their
+is am are was were be been being do does did done have has had
+of to in on at by for from with without into onto up down out off over
+about like just so very really too also not ok okay
+im ive youre youve hes shes its theyre thats what when where who how why
+gonna wanna gotta kinda sorta
+""".split())
+
+
+def _emphasis_index(group: list[dict], toks: list[str]) -> int | None:
+    """Which word in this caption group should carry the colour, if any.
+
+    This used to be `max(len(tok))` — the LONGEST word. That is a character
+    count, not emphasis: it colours "ACTUALLY" over "NO" and highlights
+    something in nearly every group, which is how captions end up looking
+    auto-generated. Two better signals, both already in hand:
+
+      1. DRAWL. We have per-word timings. A speaker stretching a word is
+         literally stressing it, so duration-per-character is real prosodic
+         emphasis rather than a proxy for it.
+      2. It has to be a content word. A drawn-out "THEEE" is not the point
+         of the line.
+
+    Returns None when nothing in the group stands out — an uncoloured
+    caption is the correct, common answer, and rationing the colour is what
+    makes it mean anything when it does appear."""
+    best, best_r = None, 0.0
+    for i, g in enumerate(group):
+        tok = toks[i].strip()
+        core = re.sub(r"[^A-Za-z']", "", tok).lower()
+        # >=2, not >=3: "NO", "OH", "WHY" are the punchiest words a
+        # streamer says, and a 3-char floor excluded exactly those. The
+        # stoplist, not the length, is what keeps "we"/"it"/"is" out.
+        if len(core) < 2 or core in _CAP_DULL:
+            continue
+        dur = float(g.get("e", 0)) - float(g.get("s", 0))
+        if dur <= 0:
+            continue
+        # seconds per character, normalised against a natural ~0.075 s/char
+        r = (dur / len(core)) / 0.075
+        if r > best_r:
+            best, best_r = i, r
+    # 1.25x the natural rate = audibly held. Calibrated against real word
+    # timings: "INSANE" drawn out over 0.60s (0.10 s/char, 1.33x) is
+    # emphasis and must qualify; "BRO" clipped at 0.15s (0.67x) is not.
+    # Below the line nothing is being stressed and the caption reads fine
+    # in one colour, which is the common case by design.
+    return best if best is not None and best_r >= 1.25 else None
+
+
+# Rough advance width of Anton in ALL CAPS, as a fraction of font size.
+# Anton is a condensed grotesque; measured over A-Z it averages ~0.52em.
+_ANTON_ADV = 0.52
+
+
+def wrap_hook(hook: str, max_w: int = 980, size: int = 72,
+              max_lines: int = 2) -> tuple[str, int]:
+    """(text_with_newlines, fontsize) for the hook card.
+
+    The card was drawn at a fixed 72px with no wrapping and centred by
+    x=(w-text_w)/2. The author is instructed to write 4-8 words IN CAPS, and
+    at 72px Anton that passes 1080px around 30 characters — past which
+    text_w exceeds the canvas, x goes NEGATIVE and the hook runs off both
+    edges of the first frame every viewer sees. Wrap to at most two lines,
+    then shrink only if two lines still do not fit."""
+    words = str(hook or "").split()
+    if not words:
+        return "", size
+    for fs in range(size, 39, -4):
+        per = max(1.0, fs * _ANTON_ADV)
+        budget = int(max_w / per)
+        lines, cur = [], ""
+        for w in words:
+            trial = f"{cur} {w}".strip()
+            if len(trial) <= budget or not cur:
+                cur = trial
+            else:
+                lines.append(cur)
+                cur = w
+        if cur:
+            lines.append(cur)
+        if len(lines) <= max_lines and all(len(ln) <= budget for ln in lines):
+            return "\n".join(lines), fs
+    # Nothing fits in two lines even at the floor: let it wrap to as many as
+    # it needs at the smallest size rather than clipping it off-screen.
+    fs = 40
+    per = max(1.0, fs * _ANTON_ADV)
+    budget = int(max_w / per)
+    lines, cur = [], ""
+    for w in words:
+        trial = f"{cur} {w}".strip()
+        if len(trial) <= budget or not cur:
+            cur = trial
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return "\n".join(lines), fs
+
+
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
               max_group: int = 3, burn_credit: bool = False) -> Path:
     """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
@@ -637,8 +741,8 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
         if _CAPTION_BLOCKLIST.search(" ".join(toks)):
             group.clear()
             return
-        emph = max(range(len(toks)), key=lambda i: len(toks[i]))
-        if len(toks[emph]) >= 4:
+        emph = _emphasis_index(group, toks)
+        if emph is not None:
             toks[emph] = "{%s}%s{%s}" % (_YELLOW, toks[emph], _WHITE)
         lines.append(f"Dialogue: 1,{_ts(s)},{_ts(e)},Pop,"
                      f"{_POP_FX}{' '.join(toks)}\n")
@@ -886,12 +990,40 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         _bands = list((sp_summary or {}).get("face_bands")
                       or [[0.34, 0.66]])
         _bands.append([0.65, 0.80])                    # caption zone
+        # RESERVE THE HOOK CARD TOO. It was never in this list, so the
+        # emoji's first-choice position (0.15, height 0.16 -> 0.15-0.31)
+        # could land straight on top of the hook whenever a money moment
+        # fell inside the first 3 seconds. Wrapping the hook to two lines
+        # makes it taller, so the overlap has to be declared rather than
+        # left to luck. Computed from the ACTUAL wrapped text, not assumed.
+        _hook_txt, _hook_size = wrap_hook(hook) if hook else ("", 72)
+        _hook_band = None
+        if _hook_txt:
+            _n = len(_hook_txt.split("\n"))
+            _h_px = _n * _hook_size * 1.2 + (_n - 1) * 14
+            _hook_band = [230 / CANVAS_H, (230 + _h_px + 20) / CANVAS_H]
 
-        def _safe_y(cands: list[float], frac_h: float) -> float:
+        def _safe_y(cands: list[float], frac_h: float,
+                    extra: list | None = None) -> float:
+            bands = _bands + (extra or [])
             for c in cands:
-                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in _bands):
+                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in bands):
                     return c
-            return cands[0]
+            # NOTHING FITS: fall back to the least-bad candidate rather than
+            # cands[0]. The old code returned cands[0] unconditionally,
+            # which is how an overlay ended up sitting on whatever it was
+            # supposed to avoid — a "safe zone" that silently gives up is
+            # worse than none, because it reads as deliberate placement.
+            def _overlap(c: float) -> float:
+                return sum(max(0.0, min(c + frac_h, b1) - max(c, b0))
+                           for b0, b1 in bands)
+            return min(cands, key=_overlap)
+
+        # The hook only exists for the first 3s. An overlay that lands
+        # after it is not competing for that space, so reserving the band
+        # unconditionally would push every emoji down for nothing.
+        def _hook_extra(s_t: float) -> list:
+            return [_hook_band] if (_hook_band and s_t < 3.0) else []
 
         emoji_y = _safe_y([0.15, 0.30, 0.50, 0.04], 0.16)
         word_y = _safe_y([0.40, 0.28, 0.55, 0.09], 0.09)
@@ -928,12 +1060,34 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 ":boxborderw=18:x=(w-text_w)/2:y=150"
                 f":enable='between(t,{ov['s']:.2f},{ov['e']:.2f})'")
         if hook:
+            # THE FIRST FRAME EVERY VIEWER SEES. It was a hard black box
+            # with a 26px border, snapping on at t=0 and off at t=3.0, at a
+            # fixed 72px with no wrapping — so a 4-8 word ALL-CAPS hook (what
+            # the author is told to write) ran off both edges once it passed
+            # ~30 characters, because x=(w-text_w)/2 goes negative.
+            # Three fixes, all visible in the first second:
+            #   - wrap to two lines and shrink only if it still won't fit
+            #   - match the CAPTION treatment (heavy outline + shadow)
+            #     instead of a solid box. Two different text looks in one
+            #     video is itself an amateur signal, and the box is the
+            #     meme-caption cliche the operator is trying to get away
+            #     from.
+            #   - fade in and out. A black rectangle appearing and vanishing
+            #     on a hard frame boundary reads as an overlay stuck on top
+            #     of someone else's video, which is exactly what it was.
+            htxt, hsize = _hook_txt, _hook_size
             hf = tmp / "hook.txt"
-            hf.write_text(hook)
+            hf.write_text(htxt)
+            _fade = ("if(lt(t,0.25),t/0.25,"
+                     "if(lt(t,2.55),1,max(0,(3.0-t)/0.45)))")
             text_draws.append(
                 f"drawtext=fontfile={FONT_BOLD}:textfile={hf}:expansion=none"
-                ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
-                ":boxborderw=26:x=(w-text_w)/2:y=230"
+                f":fontsize={hsize}:fontcolor=white"
+                ":borderw=7:bordercolor=black@0.92"
+                ":shadowcolor=black@0.55:shadowx=0:shadowy=5"
+                ":line_spacing=14"
+                f":alpha='{_fade}'"
+                ":x=(w-text_w)/2:y=230"
                 ":enable='between(t,0,3.0)'")
 
         # Image overlays (behind the text): speed-lines flash first, then the
@@ -1054,5 +1208,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             "cut": [t0, t1], "duration_s": round(dur, 2),
             "opening_trim_s": opening_adv, "closing_trim_s": closing_trim,
             "caption_words": len(words), "hook": hook,
-            "reframe": "face" if reframed is not None else "blur",
+            # NAME THE REFRAME BY WHAT IT ACTUALLY IS. This said "face"
+            # for ANY reframe, which was true while every reframe mode was
+            # face-driven (closeup/two_shot/split/stacked). The action crop
+            # is aimed at MOTION and by definition runs when no face is
+            # trackable — labelling it "face" makes clip_qa run its
+            # face-visibility check and reject it for containing no face,
+            # which is every clip the crop exists to serve. Caught by
+            # scripts/smoke_third.py before it reached the channel.
+            "reframe": ("blur" if reframed is None else
+                        (sp_summary or {}).get("layout") or "face"),
             **ledger_ae}

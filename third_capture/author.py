@@ -81,10 +81,17 @@ Rules:
   - slam: the punchline word(s) that slam on screen at the peak — 1-2
     words, <= 12 chars, taken VERBATIM from the transcript (the funniest/
     most explosive thing actually said), or "" when nothing said fits.
-    Never write a word nobody said.
-  - emoji: exactly one of "skull" | "fire" | "sob" | "joy" | "eyes" |
-    "mindblown" | "scream" | "flushed" | "pleading" | "rage" — the
-    reaction a viewer would actually comment on this moment.
+    Never write a word nobody said, and never reach for a generic hype
+    exclamation to fill the field — "" is the right answer far more often
+    than not. It only earns the screen when the line itself is the joke.
+  - emoji: "" (EMPTY) unless this exact moment genuinely earns one, or one
+    of "skull" | "fire" | "sob" | "joy" | "eyes" | "mindblown" | "scream" |
+    "flushed" | "pleading" | "rage". DEFAULT TO "". A reaction emoji is
+    emphasis, and emphasis on everything is emphasis on nothing — an emoji
+    stuck over ordinary footage is the loudest "cheap reposted clip" signal
+    we produce. Earn it: there must be a single visible instant a viewer
+    would actually react to that way. If you are choosing one because the
+    field exists, the answer is "".
   - replay_worthy: true ONLY if the peak moment genuinely rewards seeing
     twice (a visible event, a wild line). Talking with nothing visual
     happening = false.

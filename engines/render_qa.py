@@ -96,20 +96,25 @@ def _active_ratio(video: Path, duration: float) -> float:
     BLACK bars — blurred padding is a stylistic choice some layouts make
     on purpose and is left to the vision critic.
 
-    DO THE ARITHMETIC BEFORE CHANGING THE THRESHOLD. A normal 16:9 source
-    fitted into a 1080x1920 canvas is 1080x607 — the picture is 31.6% of
-    the frame BY CONSTRUCTION, on every single render this channel makes.
-    A default of 0.55 therefore condemned the house style: on a dark IRL
-    stream the blurred padding falls under cropdetect's limit, the crop
-    snaps to the sharp band, 0.32 < 0.55, and clip_qa turns "fail" into a
-    self-heal to the SIMPLE render — which is the same blur-fill graph, so
-    it fails identically and a good clip is blocklisted. Worse, the
-    ladder's last-resort rung pads with literal black to the same 0.32, so
-    the rung whose entire job is "a clip must ALWAYS ship" could only ever
-    produce output this engine rejected.
-    `limit=16` keeps this to genuinely near-black bars, and 0.22 catches
-    what the message actually claims — a frame boxed TWICE (~0.10-0.18) —
-    while leaving a single honest 16:9 fit alone."""
+    MEASURED, NOT ASSUMED (2026-09-09). The blurred padding this channel
+    fills a 9:16 canvas with is dimmed BLURRED CONTENT, not black, and it
+    sits well above cropdetect's limit — so a normal house render reports
+    100% active, not the 31.6% its geometry might suggest. Verified on real
+    renders at limit=16:
+
+        bar-boxed source (608px picture in a 1920 frame) -> crop 608x1080,
+                                                            ratio 0.32
+        our blur-fill 9:16 render                        -> crop 1080x1920,
+                                                            ratio 1.00
+
+    So this check has never fired on our own output, and the floor does not
+    need to be lowered to protect it. It was briefly dropped to 0.22 on the
+    assumption that the house style scored 0.32; that assumption was wrong
+    and it disabled detection of genuinely bar-boxed sources (which is what
+    the engine is for). 0.55 comfortably separates the two measured cases.
+
+    Keep limit=16: at 8 the real black bars above stopped being detected
+    at all (crop=1920:1080), and at 24 nothing improved."""
     dims = subprocess.check_output(
         ["ffprobe", "-v", "quiet", "-select_streams", "v:0",
          "-show_entries", "stream=width,height", "-of", "csv=p=0",
@@ -135,7 +140,7 @@ def check(video: str | Path, *,
           open_window_s: float = 0.8,
           freeze_min_s: float = 2.0,
           max_av_drift_s: float = 0.35,
-          min_active_ratio: float = 0.22) -> dict:
+          min_active_ratio: float = 0.55) -> dict:
     """Full mechanical QA pass. Raises on analyzer failure (missing file,
     no ffmpeg, probe error) — callers that need the best-effort contract
     use maybe_check(). Returns:
