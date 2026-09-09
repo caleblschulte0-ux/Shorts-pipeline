@@ -1146,10 +1146,16 @@
       "history": []
     },
     "0cc2e7f231ca": {
-      "verdict": "doing",
+      "verdict": "done",
       "date": "20260909",
-      "because": "Verified: shared/media_checkpoint.py claim_or_wait() reclaims an expired/corrupt claim via an unconditional atomic_write_json(path, claim) after reading the prior claim, with no compare-and-swap against the value just observed. Two workers racing on the same expired claim can both be granted=True. Narrow window but a real duplicate-generation bug in the exchange's own concurrency primitive; queued.",
-      "history": []
+      "because": "Fixed and shipped. The expired/corrupt/re-entrant reclaim path is now exclusive via a <claim>.json.reclaim lock, with a re-read of the claim INSIDE the lock as the actual decision \u2014 a late worker reads an active claim that is not its own and loses. Neither the lock nor the re-read alone is sufficient, so both are there. A lock orphaned by a dead worker ages out after RECLAIM_LOCK_SECONDS and is stolen, following the same rule as the lease, and the re-read still guards the write. The lock file does not match the *.json glob so nothing reads it as a claim. Five tests including the threaded two-worker race; three fail against the unfixed file on every run.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: shared/media_checkpoint.py claim_or_wait() reclaims an expired/corrupt claim via an unconditional atomic_write_json(path, claim) after reading the prior claim, with no compare-and-swap against the value just observed. Two workers racing on the same expired claim can both be granted=True. Narrow window but a real duplicate-generation bug in the exchange's own concurrency primitive; queued."
+        }
+      ]
     },
     "b6648006da7e": {
       "verdict": "doing",
