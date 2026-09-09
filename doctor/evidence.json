@@ -2626,8 +2626,8 @@
     }
   ],
   "recent_commits": [
-    "1792a38 2026-09-08 doctor: findings for 20260908",
-    "51b491c 2026-09-09 doctor: evidence pack + backlog 2026-09-09 [skip ci]"
+    "be3779d 2026-09-09 exchange: phase A bundle for 20260909 [skip ci]",
+    "e3dc277 2026-09-09 daily packages 2026-09-09 (#342)"
   ],
   "channel_performance": {
     "trending": {
@@ -2827,13 +2827,6 @@
   },
   "open_backlog": [
     {
-      "signature": "73ecfd950397",
-      "title": "Long-form checks the repository kill switch before checkout",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
-    },
-    {
       "signature": "aaeb12de3ebd",
       "title": "Restore explainer delivery before interpreting its topic test",
       "horizon": "strategy",
@@ -2866,7 +2859,7 @@
       "title": "A mismatched response can still promote authored packages",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "abfb291b5f65",
@@ -2957,14 +2950,14 @@
       "title": "The relaunched long-form renderer cannot yet clear its existing motion floor",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "0cc2e7f231ca",
       "title": "Expired media leases can be reclaimed by two workers",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "347e2440278c",
@@ -2978,7 +2971,7 @@
       "title": "Long-form upload and dedupe state are not one recoverable transaction",
       "horizon": "long_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "7f087a105388",
@@ -3013,14 +3006,14 @@
       "title": "Long-form silently publishes without its promised custom thumbnail",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "ad9061de9638",
       "title": "Phase A exits green when READY was not written",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "66364106b455",
@@ -3056,13 +3049,6 @@
       "horizon": "strategy",
       "severity": "medium",
       "ruling": "doing"
-    },
-    {
-      "signature": "f037737f7224",
-      "title": "Establish a measured 16:9 launch cohort before expanding long-form",
-      "horizon": "strategy",
-      "severity": "medium",
-      "ruling": "new"
     },
     {
       "signature": "34e98321286f",
@@ -3139,7 +3125,7 @@
       "title": "Long-form selection has no depth threshold",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -3618,6 +3604,20 @@
       "date": "20260904",
       "because": "Agreed with the finding's own conclusion: keep the registered cadence/mix unchanged for now. The trending recovery (0->9 posts) is one day and the leading explainer result is only 6.8h old; neither is a stable enough sample to justify a registry change, and there is nothing to build here beyond what the finding itself recommends (no action). Parking for revisit once more mature samples accumulate rather than settling it as not_doing, since the direction call itself may look different in a few weeks.",
       "revisit_after": "20261004"
+    },
+    {
+      "signature": "73ecfd950397",
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Merged in PR #340: checkout now runs before the PAUSED kill-switch check in longform.yml, with a regression test (structural across all scheduled publishers + executable against the real preflight shell) that fails pre-fix and passes post-fix.",
+      "revisit_after": null
+    },
+    {
+      "signature": "f037737f7224",
+      "verdict": "later",
+      "date": "20260909",
+      "because": "The proposal (treat the first 3 gate-clearing 16:9 uploads as a measured launch cohort before expanding) is sound direction and not a lower-bar strategy, but it has nothing to act on yet: post-relaunch long-form has zero gate-clearing uploads (the one candidate was BLOCKED \u2014 see 73ecfd950397/f08a10274ea9, now ruled doing). There is also no live proposal to expand long-form's cadence for this to guard against; it already runs a fixed weekly cron outside the registry. Re-file with new_evidence_since once the motion-floor fix ships and the first 16:9 candidate actually posts \u2014 that is when cohort tracking has something to track.",
+      "revisit_after": "20261009"
     }
   ]
 }
