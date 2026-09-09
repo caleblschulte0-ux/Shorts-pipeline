@@ -1097,10 +1097,16 @@
       ]
     },
     "f7633072ef78": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: no test under tests/ parses exchange_phase_a.yml or asserts its trigger topology (workflow_run/push/schedule independence). tests/test_split_worker.py and tests/test_gap_coverage.py reference exchange_phase_a.py's Python logic (slate counting) but not the .yml workflow contract. Real coverage gap directly adjacent to the liveness bug (5187e34e11f3); worth a session on its own to write the workflow-contract test.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. tests/test_phase_a_topology.py parses exchange_phase_a.yml and holds: at least one trigger independent of upstream authoring, a backstop that fires after the Routine's observed 09:19 UTC, no branches filter on workflow_run (the 2026-07-30 outage), push paths covering every channel read from exchange_phase_a.PACKAGE_DIRS rather than typed out, one date expression shared by the bundle and commit steps, [skip ci] on the commit, and the readiness watchdog still pointed at this workflow and judging before the media worker needs the bundle. Mutation-tested: the branches filter restored, the backstop moved to 04:30, the schedule deleted, and third packages dropped from push paths are all caught. Runs in the full unit suite.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: no test under tests/ parses exchange_phase_a.yml or asserts its trigger topology (workflow_run/push/schedule independence). tests/test_split_worker.py and tests/test_gap_coverage.py reference exchange_phase_a.py's Python logic (slate counting) but not the .yml workflow contract. Real coverage gap directly adjacent to the liveness bug (5187e34e11f3); worth a session on its own to write the workflow-contract test."
+        }
+      ]
     },
     "f85f65be87b6": {
       "verdict": "doing",

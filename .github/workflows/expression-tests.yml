@@ -17,6 +17,12 @@ name: Expression Tests
 
 on:
   workflow_dispatch: {}
+  # CALLED BY THE MERGE GATE. auto-merge.yml squash-merges a claude PR the
+  # moment its own jobs go green, and this workflow was never one of them —
+  # so a PR changing pro_render.py could merge before any measured
+  # expression render had run, and the visual proof started only after the
+  # change was already on main (doctor finding 808fcf2f9b8e).
+  workflow_call: {}
   push:
     paths:
       - 'data_learning/expression.py'
@@ -24,15 +30,27 @@ on:
       - 'data_learning/perf_instrument.py'
       - 'data_learning/pro_render.py'
       - 'scripts/test_expressions.py'
+      - 'scripts/test_expressions_render.py'
       - 'scripts/verify_expressions.py'
       - 'scripts/verify_expression_gates.py'
       - 'scripts/perf_experiments.py'
       - '.github/workflows/expression-tests.yml'
+  # The PR paths were a SUBSET of the push paths: pro_render.py — the
+  # production renderer this contract is about — and the render test itself
+  # were both missing, so the very changes most worth proving were the ones
+  # that skipped the proof. Same list on both now.
   pull_request:
     paths:
       - 'data_learning/expression.py'
       - 'data_learning/scenes.py'
       - 'data_learning/perf_instrument.py'
+      - 'data_learning/pro_render.py'
+      - 'scripts/test_expressions.py'
+      - 'scripts/test_expressions_render.py'
+      - 'scripts/verify_expressions.py'
+      - 'scripts/verify_expression_gates.py'
+      - 'scripts/perf_experiments.py'
+      - '.github/workflows/expression-tests.yml'
 
 permissions:
   contents: read
@@ -58,6 +76,13 @@ jobs:
         run: python scripts/test_expressions.py
       - name: Measured visual proof (changed-pixel count per scene)
         run: python scripts/verify_expressions.py
+      # Phase 6-7: expressions in a REAL render context — four scenes at
+      # their planned durations, asserting they render at all and that the
+      # poses actually change. auto-merge.yml skips this file by name
+      # ("covered by expression-tests.yml") and expression-tests.yml did not
+      # run it, so it ran nowhere at all.
+      - name: Expressions in a real render context (4 scenes)
+        run: python scripts/test_expressions_render.py
       - name: Leak check — same scene x10 stays flat
         run: |
           python scripts/perf_experiments.py > /tmp/exp.log 2>&1 || { cat /tmp/exp.log; exit 1; }

@@ -166,9 +166,58 @@ jobs:
           done
           exit "$fail"
 
-  automerge:
-    needs: [sanity, tests]
+  # THE EXPRESSION SUITE IS PART OF THIS GATE, NOT A NEIGHBOUR OF IT.
+  #
+  # The heavy expression tests are deliberately skipped by the scripts/ loop
+  # above ("covered by expression-tests.yml"), and expression-tests.yml ran
+  # as a separate workflow that `automerge` did not need. So a PR changing
+  # data_learning/pro_render.py squash-merged the moment sanity+tests went
+  # green, and the measured visual proof started only after the change was
+  # already on main (doctor finding 808fcf2f9b8e). A proof that runs after
+  # the merge is a report, not a gate.
+  #
+  # Gated on the paths so an ordinary package PR does not pay for a 25-minute
+  # render: `expression` is SKIPPED when nothing it covers changed, and
+  # `automerge` accepts skipped — but never failure.
+  expression-paths:
     if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    outputs:
+      touched: ${{ steps.check.outputs.touched }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Does this PR touch the expression contract?
+        id: check
+        run: |
+          set -e
+          pip install --quiet pyyaml
+          # The path list lives in ONE place — expression-tests.yml's own
+          # pull_request paths — and this script reads it there, so the two
+          # cannot drift. Fails OPEN: see its docstring.
+          python3 scripts/expression_paths_touched.py \
+            "${{ github.event.pull_request.base.sha }}" \
+            "${{ github.event.pull_request.head.sha }}"
+
+  expression:
+    needs: [expression-paths]
+    if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false && needs.expression-paths.outputs.touched == 'true'
+    uses: ./.github/workflows/expression-tests.yml
+
+  automerge:
+    needs: [sanity, tests, expression]
+    # `always()` because `expression` is SKIPPED on a PR that touches none of
+    # its files, and a skipped dependency would otherwise skip this job too.
+    # Every result is then checked explicitly — a skipped expression suite is
+    # acceptable, a failed one is not, and sanity/tests must still be green.
+    if: >-
+      always()
+      && startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
+      && needs.sanity.result == 'success'
+      && needs.tests.result == 'success'
+      && needs.expression.result != 'failure'
+      && needs.expression.result != 'cancelled'
     runs-on: ubuntu-latest
     steps:
       - name: Squash-merge
