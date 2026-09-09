@@ -1,0 +1,25 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260909T193654Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start through payoff@-0.4 \u2014 the entire bottom ~40% of the frame is bare dark background, the container is a mostly-empty box with 5 tiles in it, and the only mascot is a ~20px sticker pinned to the left margin.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_closing_visual",
+  "visible_evidence": "seg4:start/mid and payoff@-1.8/-0.4: the caption reads 'Hospitalized fits in Sent home' with the previous scene's title 'outcomes for hospital-treated cases' still stacked under it; a ghost '5' sits behind a container that fills to only 5 of ~12 slots; the mascot is a ~20px sticker at the left edge; the lower 40% of the frame is empty; source text is baked over the bottom caption at payoff@-0.4.",
+  "root_cause": "The fits-into machine was fed the two bar LABELS as raw strings instead of an authored claim, so it draws a derived ratio ('Hospitalized fits in Sent home 5 times over') that the narration never makes, carries the prior scene's title into the new frame, and lays out its container in the upper third with no element occupying the lower half or a scaled mascot.",
+  "repair_goal": "Rebuild seg4 around the line the script actually closes on \u2014 the child-proof cap / 'gummies look exactly like candy' \u2014 as a single claim the picture states; drop the leftover 'outcomes for hospital-treated cases' title and the ghost '5', fill the frame vertically so no band larger than ~15% is empty, and put Data back at performing scale doing one bit tied to the closing (e.g. capping the bottle) instead of a 20px sticker."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

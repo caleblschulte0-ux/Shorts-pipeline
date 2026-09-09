@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260909T193654Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@0.3\u2013hook@2.2 (f00\u2013f06): a yellow house/building glyph is parked on the 'Current record' bar, clipping through it and covering the label text \u2014 irrelevant to an F1 pit stop and left behind when the mascot walks away by seg0:mid.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "broken_layout_and_wasted_frame",
+  "visible_evidence": "seg2:mid and seg2:end stack two competing headlines ('how long it takes' directly over 'how fast that really is'), the left label is truncated to 'Pit stop recor', the hourglass pair occupies only the top third, and the bottom 40% is empty with Data idling on a bare rule line.",
+  "root_cause": "The hourglass machine renders with the previous scene's title still on screen and is laid out to the top safe-area only; the mascot is placed on a default ground baseline outside the machine's bounds instead of being anchored to it, and the label is clipped by a fixed column width.",
+  "repair_goal": "Show one headline, fit the hourglass pair to fill the frame vertically (sand visibly draining at the 6:1 ratio), untruncate 'Pit stop record', and anchor Data to the machine \u2014 e.g. he tips/catches the falling sand \u2014 so the lower half carries content instead of void."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
