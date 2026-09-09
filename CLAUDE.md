@@ -495,3 +495,22 @@ A reviewer (ChatGPT) reads it and writes proposals into
   state — losing an entry means a duplicate upload.
 - Do NOT open PRs from `claude/*` branches casually: `auto-merge.yml`
   squash-merges any non-draft `claude/*` PR with no review.
+- **A session that keeps working on one branch must REBASE before every PR.**
+  Auto-merge SQUASHES, so the commit that lands on `main` is a different
+  object from the one on your branch. Keep committing on the same branch and
+  the next PR carries the already-merged commit as well, `mergeable_state`
+  comes back `dirty`, and the conflict is in a file you never touched twice.
+  It has cost this repo several cycles under three different names. The fix
+  is the same every time and takes ten seconds, so do it as a habit rather
+  than as a diagnosis:
+
+  ```bash
+  git fetch origin main
+  git checkout -qB <branch> origin/main && git cherry-pick <your new commits>
+  git merge-tree --write-tree HEAD origin/main >/dev/null; echo $?   # 0 = clean
+  git push -f -u origin <branch>
+  ```
+
+  Force-with-lease is safe here precisely because what you are dropping is
+  history `main` already has. If the branch carries UNMERGED commits beyond
+  it, keep them — cherry-pick them onto the new base instead of discarding.
