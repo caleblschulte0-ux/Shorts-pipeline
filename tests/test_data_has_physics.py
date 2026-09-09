@@ -1820,7 +1820,15 @@ class ABuilderNeverAcceptsWhatItsDrawingRefuses(unittest.TestCase):
         import inspect
         self.assertIn("NEST_MIN", inspect.getsource(vs.draw_nest))
         self.assertIn("NEST_MIN", inspect.getsource(vs.nest_scene))
-        self.assertNotIn("150", inspect.getsource(vs.draw_nest))
+        # The BAND is what must not be re-written as a literal — not the
+        # digits. A first version banned the bare string "150" and then
+        # failed on `by0 + 150`, an unrelated y-offset in a comment about a
+        # different bug entirely: a proximity check wearing the clothes of a
+        # semantic one, which is the same mistake the restatement detector
+        # made with its 600-character window.
+        src = inspect.getsource(vs.draw_nest)
+        self.assertNotIn("ratio > 150", src)
+        self.assertNotIn("ratio < 1.5", src)
 
     def test_the_shelf_limit_has_one_definition(self):
         import inspect
