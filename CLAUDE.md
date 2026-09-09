@@ -119,6 +119,16 @@ Four rules, all of which were learned the hard way and are held by
   machine and diffs them with the gate's own detector.
 - **One easing curve** — `viz_scene.settle()`. Four machines rolled their own
   ease-out and all four asymptoted into a still frame.
+- **A NAME LOOKED UP WITH A SILENT DEFAULT IS A CAPABILITY THAT DOES NOT
+  EXIST.** `ANIMATORS.get(act, _a_carry)`, `PROPS.get(prop, price_tag)`,
+  `key in label.lower()` — three lookups, and between them they cost
+  `decorative_mascot` 147 of this channel's 228 recorded verdicts and the
+  FATAL `junk_imagery` 63 more. Data stood in every scene holding a blank
+  price tag because `"none"` was not a prop and `"point"` was not an
+  animator; a chart put a HOUSE on "cur-RENT-record". The showrunner
+  described all of it precisely, for weeks, with every test green. When you
+  add a name to any of these tables, add the test that says it RESOLVES, in
+  the same change.
 
 A new machine goes through the checklist at the bottom of
 `docs/DATA_MACHINES.md`, which also records what is deliberately NOT built
@@ -495,3 +505,22 @@ A reviewer (ChatGPT) reads it and writes proposals into
   state — losing an entry means a duplicate upload.
 - Do NOT open PRs from `claude/*` branches casually: `auto-merge.yml`
   squash-merges any non-draft `claude/*` PR with no review.
+- **A session that keeps working on one branch must REBASE before every PR.**
+  Auto-merge SQUASHES, so the commit that lands on `main` is a different
+  object from the one on your branch. Keep committing on the same branch and
+  the next PR carries the already-merged commit as well, `mergeable_state`
+  comes back `dirty`, and the conflict is in a file you never touched twice.
+  It has cost this repo several cycles under three different names. The fix
+  is the same every time and takes ten seconds, so do it as a habit rather
+  than as a diagnosis:
+
+  ```bash
+  git fetch origin main
+  git checkout -qB <branch> origin/main && git cherry-pick <your new commits>
+  git merge-tree --write-tree HEAD origin/main >/dev/null; echo $?   # 0 = clean
+  git push -f -u origin <branch>
+  ```
+
+  Force-with-lease is safe here precisely because what you are dropping is
+  history `main` already has. If the branch carries UNMERGED commits beyond
+  it, keep them — cherry-pick them onto the new base instead of discarding.

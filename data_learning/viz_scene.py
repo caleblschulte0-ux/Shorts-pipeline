@@ -324,8 +324,83 @@ def _cx(box):
 
 _SCENE_HOST_CACHE: dict = {}
 
+#: WHAT A MACHINE ASKS FOR, and what it may be given.
+#:
+#: A machine picks a ROLE, not a pose. The role is a contract about the
+#: silhouette its layout was built around — `burden` hangs slabs off his
+#: hands, `staircase` needs him ascending, `trophies` wants him celebrating —
+#: and within that contract the director picks the actual performance, keyed
+#: on the story so a five-beat video does not run the same act five times.
+#:
+#: These names had NO other meaning until 2026-09-09. `compose_anim` resolves
+#: an action with `ANIMATORS.get(action, _a_carry)`, and of the six names the
+#: kit used, only `cheer` and `climb` were animators at all. `point` (18
+#: machines), `strain` (9), `think` (3) and `shock` (1) all fell through to
+#: the same carry pose — 31 of 41 call sites rendering a pixel-identical
+#: sprite, whose only motion is a 4px sway.
+#:
+#: `decorative_mascot` was the largest block class on this channel: 147 of its
+#: 228 recorded verdicts. It is an auto-fail, so it took the story with it.
+#: The judge described the defect exactly, over and over, for a month:
+#:
+#:     "Data holds the same arms-out standing pose while parked on a bar in
+#:      hook@0.8, seg1:mid, seg2:mid, seg3:mid and seg4:end — he relocates but
+#:      never performs a setup->action->payoff tied to the wolf counts"
+#:                                    colorado-wolves-return, 2026-09-07
+#:     "In every scene Data only stands"          f1-pit-stop, 2026-09-09
+#:
+#: He was not being directed badly. He was not being directed at all.
+SCENE_ROLES: dict = {
+    # He INDICATES the thing. Arm out, normal silhouette.
+    "point": ("point_at", "present", "lean_on", "hold_up"),
+    # It is HEAVY / it is going wrong. Braced or bearing.
+    "strain": ("block_wall", "shoved_bar", "stagger_under", "compressed"),
+    # He is READING it. Leaning in, weighing, peering.
+    "think": ("discover", "compare_scales", "lean_on"),
+    # It is BIGGER THAN HIM. Backing off, shielding, catching.
+    "shock": ("overwhelmed", "catch_fall", "get_buried"),
+    # It WORKED. Arms up.
+    "cheer": ("cheer", "transform_reveal", "race_sprint"),
+    # He is GOING UP IT.
+    "climb": ("climb", "climb_arc"),
+}
 
-def scene_host(action: str, phase: float):
+
+#: ROLE -> the nearest committed pose PNG, for a render environment with no
+#: libcairo2. `strain` and `climb` never had a file of their own, so wherever
+#: cairosvg cannot run, ten machines drew NO MASCOT and nothing said so — the
+#: `_host_pose` miss returns None exactly like a deliberate omission. Neither
+#: substitute is as good as the animated pose; both are better than an empty
+#: frame, and `duck` really does read as bracing.
+_ROLE_PNG = {"strain": "duck", "climb": "cheer", "hoist_stack": "cheer"}
+
+
+def scene_act(role: str, insight=None, kind: str = "") -> str:
+    """The animator this beat actually performs, from the machine's ROLE.
+
+    Deterministic on the story and the machine — a re-render is identical and
+    a diff of two runs still means something — and different per machine, so
+    the beats of one video do not repeat the same act. An unknown role is
+    returned unchanged so it fails the vocabulary test loudly rather than
+    silently becoming a carry pose.
+    """
+    pool = SCENE_ROLES.get(role)
+    if not pool:
+        return role
+    # `story` may be an Insight or, for the three elements that take a bare
+    # label instead of one (`unit_figures`, `balance`, `dot_field`), the label
+    # itself. Both are just a stable string to key the rotation on.
+    story = getattr(insight, "topic", None)
+    if story is None:
+        story = insight if isinstance(insight, str) else None
+    if not story:
+        return pool[0]
+    key = f"{story}|{role}|{kind}"
+    return pool[int(_hashlib.sha1(key.encode()).hexdigest()[:8], 16)
+                % len(pool)]
+
+
+def scene_host(action: str, phase: float, insight=None, kind: str = ""):
     """The host as a PIL image, ANIMATED — the pose for this point in the beat.
 
     Every scene element reached for `charts._host_pose`, which loads ONE fixed
@@ -338,7 +413,22 @@ def scene_host(action: str, phase: float):
     video with two scene visuals to a duplicate ratio of 0.462 against a
     ceiling of 0.45: once an element finishes revealing, a static host means
     the entire frame is static.
+
+    `action` is a ROLE (see `SCENE_ROLES`), resolved here to one of the real
+    animators. Passing the raw animator name still works — the roles and the
+    animator vocabulary do not collide — which is how `draw_hurdle` picks
+    cheer-or-strain from whether the number actually cleared the bar.
     """
+    # THE PNG FALLBACK SPEAKS THE OLD VOCABULARY, so it is keyed on the ROLE.
+    #
+    # `assets/mascot/host/` holds cheer, duck, idle, laugh, point, ride, shock
+    # and think — which is where the role names came from in the first place.
+    # `compose_anim` needs `point_at`; `_host_pose` needs `point`. Resolving
+    # first and falling back on the resolved name finds no file and returns
+    # None, i.e. NO MASCOT — which is what happens wherever libcairo2 is not
+    # installed, including the `tests` CI job. It cost five machines their
+    # host there while every one of them was fine locally.
+    role, action = action, scene_act(action, insight, kind)
     key = (action, round(max(0.0, min(1.0, phase)) * 60) / 60)
     if key in _SCENE_HOST_CACHE:
         return _SCENE_HOST_CACHE[key]
@@ -352,7 +442,7 @@ def scene_host(action: str, phase: float):
                                charts._perf_phase(key[1]))
         img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
     except Exception:  # noqa: BLE001 — a scene must never die over the host
-        img = charts._host_pose(action)
+        img = charts._host_pose(_ROLE_PNG.get(role, role))
     # CROP TO THE SPRITE. The rasteriser returns a 300x300 square and the host
     # occupies 134x210 of it — 55% empty either side, 30% top and bottom.
     # Every machine sizes him by height and anchors to that box, so he came
@@ -838,7 +928,7 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     # He stands on the figure that just landed, so he ADVANCES along the block
     # as the count grows: contact for STRICT_CONTACT, and honest motion for the
     # whole build rather than a sprite parked in a corner.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, label, "unit_figures")
     if host is not None:
         mh = int(max(150, min(300, side * 1.7)))
         mw = int(host.width * mh / host.height)
@@ -927,7 +1017,8 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # THE HOST RIDES THE HEAVY PAN. `render_scene` marks every scene
     # host_baked, which suppresses the travelling overlay — so an element that
     # draws no host ships a beat with none at all.
-    host = scene_host("cheer" if hi else "point", reveal)
+    host = scene_host("cheer" if hi else "point", reveal, label,
+                      "balance")
     if host is not None:
         mh = 230
         mw = int(host.width * mh / host.height)
@@ -1021,7 +1112,7 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
            fill=_rgba(color, int(255 * na)), anchor="mm")
     d.text((_cx(box), bot + 40), f"{label}   {charts._ulabel(value, unit)}",
            font=_pil_font(44), fill=_rgba(TEXT, int(235 * na)), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, label, "dot_field")
     if host is not None and cx_last is not None:
         mh = int(max(150, min(280, side * 2.2)))
         mw = int(host.width * mh / host.height)
@@ -1071,7 +1162,7 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     # frame measured a 33% void — a coin flip against the 34% ceiling, which
     # is not passing. The line is also the honest half of the claim: you can
     # SEE it not moving, rather than being told.
-    road_y = int(by0 + (by1 - by0) * 0.62)
+    road_y = int(by1 - 330)
     d.rounded_rectangle([bx0 + 30, road_y, bx1 - 30, road_y + 90], radius=12,
                         fill=_rgba(TEXT, 55))
     # DASHES STREAM PAST AT A CONSTANT SPEED — he is moving, the NUMBER is
@@ -1086,24 +1177,64 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     mid = sum(vals) / len(vals)
     _lo, _hi = min(vals), max(vals)
     _span = (_hi - _lo) or (abs(mid) * 0.04) or 1.0
-    _band_top = int(by0 + (by1 - by0) * 0.26)
-    _band_bot = road_y - 120
-    _pts_x = [bx0 + 90 + (bx1 - bx0 - 180) * (i / max(1, len(vals) - 1))
+    # A DEAD-FLAT LINE CANNOT FILL A TALL BAND — that is what makes it flat.
+    # Giving it more vertical room just moved the empty part around (28% void
+    # inside the box, measured 2026-09-09, all of it below the road). So the
+    # line keeps a modest band and the space underneath it is spent on the
+    # thing that is genuinely there: a stem per reading down to a year axis.
+    # Twenty stems the same length IS the finding, drawn rather than asserted.
+    _axis_y = int(road_y - 290)
+    _band_top = _axis_y - 380
+    # THE AXIS IS ZERO, and that is what makes the picture agree with the
+    # caption. Scaled to the series' OWN range, "barely moved" drew 50.0 and
+    # 50.2 as a full-amplitude mountain range — a 0.4% wobble rendered as the
+    # loudest thing on screen, directly contradicting the words underneath it.
+    # This machine is chosen precisely BECAUSE the number does not move, so
+    # the only scale that can tell the truth is one where not moving looks
+    # like not moving.
+    _base = min(0.0, _lo)
+    _topv = max(0.0, _hi)
+    _rng = (_topv - _base) or 1.0
+    # The series stops short of the right margin: he drives there, and at full
+    # width the last year label printed underneath him.
+    _pts_x = [bx0 + 90 + (bx1 - bx0 - 280) * (i / max(1, len(vals) - 1))
               for i in range(len(vals))]
-    _pts_y = [_band_bot - (_band_bot - _band_top) * ((v - _lo) / _span) * 0.55
-              - (_band_bot - _band_top) * 0.22 for v in vals]
+    _pts_y = [_axis_y - (_axis_y - _band_top) * ((v - _base) / _rng)
+              for v in vals]
     _shown = max(2, int(len(vals) * settle(reveal)))
+    for _x, _y in zip(_pts_x[:_shown], _pts_y[:_shown]):
+        d.line([(_x, _y), (_x, _axis_y)], fill=_rgba(color, 95), width=7)
+    d.line([(bx0 + 60, _axis_y), (bx1 - 60, _axis_y)],
+           fill=_rgba(TEXT, 110), width=5)
     d.line(list(zip(_pts_x[:_shown], _pts_y[:_shown])),
            fill=_rgba(color, 235), width=10, joint="curve")
     for _x, _y in zip(_pts_x[:_shown], _pts_y[:_shown]):
         d.ellipse([_x - 12, _y - 12, _x + 12, _y + 12], fill=_rgba(color, 245))
-    host = scene_host("point", reveal)
+    # Years under the axis, thinned so they never collide however many
+    # readings the series carries.
+    _every = max(1, int(_math.ceil(len(items) / 6.0)))
+    for _i in range(0, len(items), _every):
+        if _i >= _shown:
+            break
+        # The budget is the SLOT and the room either side of where the label
+        # is actually centred. Slot alone put a 390px-wide label centred at
+        # x=130 and it ran 65px off the left of the FRAME — two items make the
+        # slot enormous and the first tick is still near the edge.
+        _slot = int((bx1 - bx0 - 280) / max(1, len(items) / _every)) + 30
+        _room = int(min(_slot, 2 * (_pts_x[_i] - bx0 - 10),
+                        2 * (bx1 - _pts_x[_i] - 10)))
+        _yf, _yt = fit_text(d, str(getattr(items[_i], "label", "")), 30,
+                            max(60, _room), min_size=18)
+        d.text((_pts_x[_i], _axis_y + 40), _yt, font=_yf,
+               fill=_rgba(TEXT, 185), anchor="mm")
+    host = scene_host("point", reveal, insight, "road")
     if host is not None:
-        mh = 270
+        mh = 300
         mw = int(host.width * mh / host.height)
+        # He drives on the road at the RIGHT, clear of the year labels that
+        # now run under the axis across the middle of the frame.
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int((bx0 + bx1) / 2 - mw // 2),
-                                int(road_y - mh + 14)))
+                               (int(bx1 - mw - 70), int(road_y - mh + 14)))
     d.text(((bx0 + bx1) // 2, by0 + 58), charts._ulabel(mid, unit, group=True),
            font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
     lo_l = getattr(items[0], "label", "")
@@ -1213,7 +1344,7 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((lo + hi) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "tape")
     if host is not None:
         mh = int(min(340, max(0, _ground - (y + 150))))
         if mh > 120:
@@ -1242,7 +1373,12 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     if bv == 0:
         return None
     bx0, by0, bx1, by1 = box
-    y = int((max(by0 + 260, 420) + (by1 - 200)) / 2)
+    # The deck sits in the UPPER half and the chasm runs to the floor of the
+    # box. Centred, the whole machine was a 600px band across the middle with
+    # a quarter of the frame empty above it and a fifth empty below (26% void
+    # inside its own box, measured 2026-09-09) — and a gap you cannot see the
+    # bottom of is the shape of the claim anyway.
+    y = int(by0 + 580)
     x0, x1 = bx0 + 70, bx1 - 70
     frac = max(0.0, min(1.0, abs(v) / abs(bv))) * settle(reveal)
     # The deck is `frac` of the distance to the FAR BANK, not to the frame
@@ -1259,14 +1395,30 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     # A DROP, not a wall. Filled to the bottom of the safe box this was a
     # 1,500px dark rectangle under a thin deck — it read as the background
     # changing colour rather than as a gap with a bottom to fall to.
-    _chasm = min(300, int((by1 - deck_y) * 0.42))
-    d.rectangle([x0, deck_y + 34, x1, deck_y + 34 + _chasm],
-                fill=_rgba(charts.CARD, 90))
+    # It has a FLOOR. Filled to the bottom of the safe box with no bottom
+    # edge, this was a dark rectangle that read as the background changing
+    # colour rather than as a gap; given a canyon floor to land on, the same
+    # fill reads as depth and uses the frame it is in.
+    _floor = by1 - 116
+    d.rectangle([x0, deck_y + 34, x1, _floor], fill=_rgba(charts.CARD, 90))
+    d.rounded_rectangle([x0, _floor, x1, _floor + 26], radius=8,
+                        fill=_rgba(TEXT, 105))
+    for _fx in range(int(x0) + 40, int(x1) - 30, 118):
+        d.line([(_fx, _floor), (_fx + 46, _floor - 34)],
+               fill=_rgba(charts.CARD, 120), width=7)
     d.rounded_rectangle([x0, deck_y, edge, deck_y + 34], radius=8,
                         fill=_rgba(color, 245))
-    for px in range(x0 + 30, edge - 10, 66):        # pilings under what exists
-        d.line([(px, deck_y + 34), (px, deck_y + 120)],
+    # PILINGS TO THE FLOOR under what exists, and GHOST pilings under what does
+    # not. Stubs 120px long left the chasm as a flat dark rectangle, which is
+    # what a vision judge calls an empty void whatever the arithmetic says —
+    # and the piers that were never built are the truest picture of a shortfall
+    # there is.
+    for px in range(int(x0) + 30, int(edge) - 10, 66):
+        d.line([(px, deck_y + 34), (px, _floor)],
                fill=_rgba(color, 120), width=8)
+    for px in range(int(edge) + 40, int(far_x) - 10, 66):
+        for _sy in range(int(deck_y) + 44, int(_floor) - 10, 46):
+            d.line([(px, _sy), (px, _sy + 24)], fill=_rgba(WARN, 70), width=7)
     d.rounded_rectangle([far_x, deck_y - 26, x1, deck_y + 34], radius=8,
                         fill=_rgba(WARN, 235))
     d.text((x1, deck_y - 76), f"{getattr(base, 'label', 'target')}  "
@@ -1288,13 +1440,15 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
         d.text(((edge + far_x) // 2, gy + 60),
                f"{charts._ulabel(abs(bv - v), unit, group=True)} short",
                font=_pil_font(56), fill=_rgba(TEXT, int(245 * na)), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "how far it still has to go",
+           font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
     y = deck_y
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "bridge")
     if host is not None:
-        mh = 240
+        mh = 300
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(edge - mw + 20), int(y - mh)))
+                               (int(max(x0 + 6, edge - mw + 20)), int(y - mh)))
     return (v, "art", edge, y)
 
 
@@ -1333,7 +1487,7 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
                font=_cf, fill=_rgba(TEXT, int(190 * a)), anchor="mm")
     med = vals[mid_i]
     mx = int(bx0 + 60 + mid_i * w + w / 2)
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "centre")
     if host is not None:
         mh = 230
         mw = int(host.width * mh / host.height)
@@ -1375,7 +1529,7 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
             d.line([(x, y + 8), (x, bot + 30)], fill=_rgba(TEXT, 45), width=4)
     cx_, cy_ = pts[-1]
     host = scene_host("cheer" if ys[k_end] < ys[max(0, k_end - 1)]
-                      else "shock", reveal)
+                      else "shock", reveal, insight, "reversal")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1426,7 +1580,7 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx - 136, fy), charts._ulabel(v * e, unit, group=True),
            font=_pil_font(52), fill=_rgba(color, 255), anchor="rm")
     host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
-                      reveal)
+                      reveal, insight, "thermometer")
     if host is not None:
         mh = 220
         mw = int(host.width * mh / host.height)
@@ -1453,8 +1607,13 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
     span = (hi - lo) or 1.0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = int(by0 + (by1 - by0) * 0.42)
-    R = int(min((bx1 - bx0) * 0.42, (by1 - by0) * 0.30))
+    # THE WHEEL STANDS ON THE FLOOR OF THE BOX. At 0.42 of the height with a
+    # 0.30 radius its base landed at 78% and the bottom fifth of the frame was
+    # bare gradient — 22% void inside the box, measured 2026-09-09. A ferris
+    # wheel is a thing that sits on the ground; there is no reason for it to
+    # float in the upper two-thirds.
+    R = int(min((bx1 - bx0) * 0.44, (by1 - by0) * 0.32))
+    cy = int(by1 - 96 - 90 - R)
     e = settle(reveal)
     d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=_rgba(TEXT, 110),
               width=9)
@@ -1476,7 +1635,7 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
         big = 16 + 22 * ((v - lo) / span)
         d.ellipse([px - big, py - big, px + big, py + big],
                   fill=_rgba(color if v >= hi - 1e-9 else ACCENT, 235))
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "wheel")
     if host is not None:
         a = turn - _math.pi / 2
         px = int(cx + _math.cos(a) * R)
@@ -1545,7 +1704,7 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         r_ = 17 + 16 * (1.0 - t_)
         d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
                   fill=_rgba(HIGHLIGHT, 235))
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "darts")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1592,14 +1751,31 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     # empty — the picture of a backlog has to be able to get LONGER, so it
     # wraps, the way a real queue folds back on itself.
     n_wait = max(1, int(round(1 + frac * 29)))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "queue")
     mh = 280
     mw = int(host.width * mh / host.height) if host is not None else 170
     hx = bx0 + 60
     if host is not None:
         canvas.alpha_composite(_fit(host, mw, mh), (hx, ground - mh))
+    # THE CROWD IS SIZED TO FILL THE BOX AT ITS LARGEST, not to a fixed 96px.
+    # `sz = 96` put 30 icons in five rows 650px tall inside a 1140px region and
+    # left the top third of the frame bare — measured 33% void on 2026-09-09,
+    # the worst in the kit. The count still GROWS with the data (that is the
+    # claim); what is chosen once, up front, is how big each person is drawn,
+    # from the count the beat will END on. So the queue fills the frame as it
+    # finishes rather than stopping halfway up it.
+    left = hx + mw + 20
+    avail_w = max(240, bx1 - 40 - left)
+    avail_h = max(200, ground - (by0 + 190))
+    n_full = max(1, int(round(1 + 29)))       # the count at full reveal
     sz = 96
-    cols = max(3, int((bx1 - 40 - (hx + mw + 20)) // (sz + 12)))
+    for cand in range(180, 55, -6):
+        c = max(3, int(avail_w // (cand + 12)))
+        r = int(_math.ceil(n_full / c))
+        if r * (cand + 34) <= avail_h:
+            sz = cand
+            break
+    cols = max(3, int(avail_w // (sz + 12)))
     rowh = sz + 34
     first_top = ground - sz
     for k in range(n_wait):
@@ -1703,7 +1879,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(WARN, int(255 * na)), anchor="rm")
         d.line([(int(cx - full / 2 - 32), wy), (int(cx - full / 2 - 8), wy)],
                fill=_rgba(WARN, int(255 * na)), width=6)
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "bottleneck")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1771,7 +1947,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
     if fa > 0.0:
         d.text((cx, by1 - 140), f"only {frac * 100:.0f}% stay",
                font=_pil_font(48), fill=_rgba(TEXT, int(235 * fa)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "leaky")
     if host is not None:
         mh = 220
         mw = int(host.width * mh / host.height)
@@ -1851,7 +2027,8 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
            f"{'left over' if surplus >= 0 else 'short'}",
            font=_pil_font(58), fill=_rgba(net_col, 255), anchor="mm")
-    host = scene_host("cheer" if surplus >= 0 else "strain", reveal)
+    host = scene_host("cheer" if surplus >= 0 else "strain", reveal,
+                      insight, "inout")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1918,7 +2095,7 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
         px = int(cx + (tgt - cx) * t_)
         py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
         particle(d, _st["particle"], px, py, 14, _rgba(HIGHLIGHT, 225))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "sorter")
     if host is not None:
         mh = 210
         mw = int(host.width * mh / host.height)
@@ -2013,7 +2190,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, by1 - 120),
            f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
            font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "chain")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -2084,7 +2261,7 @@ def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
     if k and n:
         d.text((cx, cy + r + 92), f"about {k} in {n}", font=_pil_font(46),
                fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "spinner")
     if host is not None:
         mh = 210
         mw = int(host.width * mh / host.height)
@@ -2136,7 +2313,7 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(color, 255), anchor="mm")
     d.text(((bx0 + bx1) // 2, bot + 90), f"{p * 100:.1f}% chance",
            font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "doors")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2226,7 +2403,7 @@ def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(TEXT, 190), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "the data stops here",
            font=_pil_font(52), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "fan")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2290,7 +2467,7 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(42), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "they move together",
            font=_pil_font(56), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "gears")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2319,8 +2496,10 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
         return None
     bx0, by0, bx1, by1 = box
     x0, x1 = bx0 + 90, bx1 - 90
-    cy = int((by0 + by1) / 2) + 30
-    th = 74
+    # A little above centre and thicker, so the labels above the track sit
+    # under the studio title rather than 300px below it.
+    cy = int((by0 + by1) / 2) - 60
+    th = 96
     e = settle(reveal)
     hx = x0 + (x1 - x0) * (0.5 + (a_v / tot - 0.5) * e)
     d.rounded_rectangle([x0, cy - th, hx, cy + th], radius=14,
@@ -2354,17 +2533,22 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(46), fill=_rgba(col, 245), anchor=anc)
     d.text(((bx0 + bx1) // 2, by0 + 96), "you cannot have both",
            font=_pil_font(54), fill=_rgba(TEXT, 240), anchor="mm")
-    d.text(((bx0 + bx1) // 2, by1 - 130),
+    # The split reads UNDER the track it describes and he pushes the handle
+    # from below it. Pinned to `by1 - 130` with him above the track, the whole
+    # machine finished at 60% of the box and the rest was gradient — 25% void,
+    # measured 2026-09-09.
+    _say_y = cy + th + 210
+    d.text(((bx0 + bx1) // 2, _say_y),
            f"{a_v / tot * 100:.0f}% one way, {b_v / tot * 100:.0f}% the other",
            font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "slider")
     if host is not None:
-        mh = 190
+        mh = int(max(200, min(330, by1 - 20 - (_say_y + 50))))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(
             _fit(host, mw, mh),
             (int(min(bx1 - mw - 16, max(bx0 + 16, hx - mw // 2))),
-             int(cy - th - mh - 130)))
+             int(by1 - 20 - mh)))
     return (a_v, "art", int(hx), cy)
 
 
@@ -2387,7 +2571,7 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
     e = settle(reveal)
     side = int(min(((bx1 - bx0) - 50 * (n + 1)) / n, (by1 - by0) * 0.40, 420))
     gap = ((bx1 - bx0) - side * n) / (n + 1)
-    top = max(by0 + 280, 430)
+    top = max(by0 + 320, 470)
     # A FIXED grid, so the box is the "one square kilometre" and only the
     # filling changes. The busiest panel is full; the rest are its fraction.
     cells = 14
@@ -2417,12 +2601,18 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "density")
     if host is not None:
-        mh = 180
+        # He holds the whole foot of the frame. At 180px tucked in the corner
+        # there were 400px of nothing between the numbers and him — 25% void
+        # inside the box, measured 2026-09-09 — and the squares cannot grow to
+        # fill it, because they have to stay IDENTICAL and they are already at
+        # the width the frame allows.
+        mh = int(max(200, min(390, by1 - 30 - (top + side + 140))))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by1 - mh - 40)))
+                               (int((bx0 + bx1) // 2 - mw // 2),
+                                int(by1 - 30 - mh)))
     return (vals[0], "art", int(bx0 + gap + side // 2), top + side // 2)
 
 
@@ -2530,7 +2720,7 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
     d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "nest")
     if host is not None:
         mh = 170
         mw = int(host.width * mh / host.height)
@@ -2628,7 +2818,7 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, _s, 42, (bx1 - bx0) - 60, min_size=26)
     d.text((cx, by1 - 170), _s, font=_f,
            fill=_rgba(color, int(250 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "chairs")
     if host is not None:
         mh = 180
         mw = int(host.width * mh / host.height)
@@ -2725,7 +2915,7 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "how long it takes",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "hourglass")
     if host is not None:
         mh = 240
         mw = int(host.width * mh / host.height)
@@ -2773,44 +2963,64 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     n = len(items)
     top = max(by0 + 260, 420)
-    rowh = min((by1 - 190 - top) / n, 190.0)
+    # THE SHELF USES THE WHOLE BOX AND THE CUP STAYS A CUP.
+    #
+    # `rowh` was capped at 190 and the cup was a fixed 96px tall in a slot
+    # `530 / vmax` wide. At 24 titles that is a 22x96 spike: not a trophy, a
+    # TALLY MARK, which is precisely the bar chart this machine exists to
+    # replace. Three of those rows also left the bottom 40% of the frame bare
+    # (26% void inside the box, measured 2026-09-09).
+    #
+    # So the row is a GRID, the way the queue is: the cup is drawn at a size
+    # you can recognise and the row wraps when the count outruns the width.
+    # The size is chosen from the LARGEST count, once, so every row draws the
+    # same cup and the lengths stay comparable.
+    rowh = (by1 - 170 - top) / n
+    x0 = bx0 + 300
+    row_w = (bx1 - 20) - x0
+    cw = 26.0
+    for cand in (110, 96, 84, 72, 60, 50, 42, 34, 26):
+        c = max(1, int(row_w // (cand * 1.16)))
+        r = int(_math.ceil(vmax / c))
+        if r * (cand * 1.52) <= rowh - 34:
+            cw = float(cand)
+            break
+    cols = max(1, int(row_w // (cw * 1.16)))
+    cell_w, cell_h = cw * 1.16, cw * 1.52
     e = settle(reveal)
-    # Room reserved for BOTH the name on the left and the count on the right;
-    # the top row's trophies ran under its own number before this.
-    tw = min(((bx1 - bx0) - 300 - 170) / max(1.0, vmax), 62.0)
     for i, (p, v) in enumerate(zip(items, vals)):
         y = top + i * rowh
         col = color if i == 0 else ACCENT
         _f, _t = fit_text(d, _label_of(p), 34, 300 - 48, min_size=18)
         d.text((bx0 + 24, y + rowh * 0.42), _t,
                font=_f, fill=_rgba(TEXT, 230), anchor="lm")
-        x0 = bx0 + 300
         shown = int(round(v * max(0.0, min(1.0, e * n - i))))
         for k in range(shown):
-            x = x0 + k * tw
-            # cup, stem, base — small, but unmistakably a trophy
-            cw_ = max(10.0, tw - 8)
-            d.pieslice([x + 3, y + 14, x + 3 + cw_, y + 14 + cw_ * 1.15],
-                       0, 180, fill=_rgba(col, 240))
-            d.rounded_rectangle([x + 3, y + 12, x + 3 + cw_, y + 24],
-                                radius=4, fill=_rgba(col, 240))
-            d.rounded_rectangle([x + 3 + cw_ / 2 - 4, y + 14 + cw_ * 0.55,
-                                 x + 3 + cw_ / 2 + 4, y + 84], radius=3,
-                                fill=_rgba(col, 240))
-            d.rounded_rectangle([x + 6, y + 82, x + tw - 8, y + 96],
-                                radius=4, fill=_rgba(col, 240))
+            x = x0 + (k % cols) * cell_w
+            cy_ = y + 10 + (k // cols) * cell_h
+            # bowl, rim, stem, base — at any size, unmistakably a trophy
+            d.pieslice([x, cy_, x + cw, cy_ + cw * 1.15], 0, 180,
+                       fill=_rgba(col, 240))
+            d.rounded_rectangle([x, cy_ - 2, x + cw, cy_ + cw * 0.17],
+                                radius=max(2, cw * 0.07), fill=_rgba(col, 240))
+            d.rounded_rectangle([x + cw * 0.43, cy_ + cw * 0.55,
+                                 x + cw * 0.57, cy_ + cw * 1.14],
+                                radius=max(2, cw * 0.06), fill=_rgba(col, 240))
+            d.rounded_rectangle([x + cw * 0.14, cy_ + cw * 1.1,
+                                 x + cw * 0.86, cy_ + cw * 1.3],
+                                radius=max(2, cw * 0.07), fill=_rgba(col, 240))
         d.line([(x0 - 8, y + rowh - 22), (bx1 - 20, y + rowh - 22)],
                fill=_rgba(TEXT, 90), width=5)
-        d.text((bx1 - 24, y + rowh * 0.42), f"{v:,.0f}", font=_pil_font(42),
+        d.text((bx1 - 24, y + rowh - 62), f"{v:,.0f}", font=_pil_font(42),
                fill=_rgba(col, 245), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "one cup, one title",
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "trophies")
     if host is not None:
-        mh = 170
+        mh = 160
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 30), int(by1 - mh - 30)))
+                               (int(bx0 + 30), int(by1 - mh)))
     return (vals[0], "art", int(bx0 + 300), int(top + rowh * 0.4))
 
 
@@ -2831,9 +3041,12 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     e = settle(reveal)
     n = 2
+    # The baskets were 350px tall starting at y=470, so everything this
+    # machine draws finished by y=930 and the bottom third of the frame was
+    # bare — 32% void inside its own box, measured 2026-09-09.
     bw = int(min(((bx1 - bx0) - 140) / n, 420))
-    bh = int(min((by1 - by0) * 0.34, 350))
-    top = max(by0 + 300, 470)
+    bh = int(min((by1 - by0) * 0.40, 430))
+    top = max(by0 + 280, 430)
     gap = ((bx1 - bx0) - bw * n) / (n + 1)
     cap = 24
     for i, (p, v) in enumerate(zip(items, vals)):
@@ -2845,12 +3058,18 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
         shown = int(goods * min(1.0, e * 1.4))
         cols = 6
         cw = (bw - 90) / cols
+        # Groceries stack to the height of the basket they are in, so a taller
+        # basket is a fuller one rather than a bigger empty outline. `rows` is
+        # the FULL basket's row count, not this one's, or the cheaper side
+        # would draw taller items and read as more.
+        rows = int(_math.ceil(cap / cols))
+        rh = (bh - 60) / rows
         for k in range(shown):
             gx, gy = k % cols, k // cols
             wob = 4.0 * _math.sin(reveal * 6.5 + k * 0.8)
             gxp = x + 45 + gx * cw + wob
-            gyp = top + bh - 40 - gy * 46
-            d.rounded_rectangle([gxp, gyp - 34, gxp + cw - 10, gyp],
+            gyp = top + bh - 34 - gy * rh
+            d.rounded_rectangle([gxp, gyp - rh + 12, gxp + cw - 10, gyp],
                                 radius=7, fill=_rgba(col, 235))
         _bf, _bt = fit_text(d, _label_of(p), 38, max(90, int(bw) - 8),
                             min_size=22)
@@ -2863,14 +3082,19 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(48), fill=_rgba(TEXT, 240), anchor="mm")
     lost = (1.0 - min(vals) / vmax) * 100.0
     na = max(0.0, min(1.0, (reveal - 0.55) / 0.3))
-    d.text(((bx0 + bx1) // 2, by1 - 130), f"{lost:.0f}% less in the basket",
+    # The verdict sits UNDER the baskets it is about, not pinned to the foot of
+    # the frame with a gap between. He then holds the bottom band, which is the
+    # thing he is reacting to being right above him.
+    say_y = min(by1 - 330, top + bh + 200)
+    d.text(((bx0 + bx1) // 2, say_y), f"{lost:.0f}% less in the basket",
            font=_pil_font(42), fill=_rgba(WARN, int(240 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "basket")
     if host is not None:
-        mh = 170
+        mh = int(min(300, by1 - 20 - (say_y + 60)))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by0 + 150)))
+                               (int((bx0 + bx1) // 2 - mw // 2),
+                                int(by1 - 20 - mh)))
     return (vals[0], "art", int(bx0 + gap + bw / 2), top + bh // 2)
 
 
@@ -2920,7 +3144,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
         ty = min(ty, by) if k else by
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "tower")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -3026,7 +3250,7 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
         bounce = 26.0 * _math.exp(-1.3 * t_) * _math.cos(t_ * 5.0 * _math.pi)
         hx, hy = run_to, val_y - bounce
         act = "cheer" if cleared else "strain"
-    host = scene_host(act, reveal)
+    host = scene_host(act, reveal, insight, "hurdle")
     if host is not None:
         mh = 260
         mw = int(host.width * mh / host.height)
@@ -3044,10 +3268,35 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
            f"{getattr(star, 'label', '')}   {charts._ulabel(v, unit)}",
            font=_pil_font(70), fill=_rgba(color, 255), anchor="mm")
     _by = abs(abs(v) - abs(bv))
-    d.text((_cx, bot + 62),
-           (f"clears it by {charts._ulabel(_by, unit)}" if cleared
-            else f"{charts._ulabel(_by, unit)} short of it"),
-           font=_pil_font(46), fill=_rgba(TEXT, 230), anchor="mm")
+    _margin = f"clears it by {charts._ulabel(_by, unit)}" if cleared \
+        else f"{charts._ulabel(_by, unit)} short of it"
+    # THE MARGIN IS DRAWN WHERE IT IS — between his line and the bar. Printed
+    # only as a caption at the foot of the frame, the distance it names was
+    # the emptiest part of the picture: 430px of nothing between the two
+    # horizontals it is about (26% void inside the box, measured 2026-09-09).
+    _lo_y, _hi_y = sorted((val_y, bar_y))
+    if _hi_y - _lo_y > 120:
+        # Between the uprights, not outside them: to the right of the hurdle
+        # there is only 130px before the frame edge and "clears it by 5.4 yrs"
+        # came out as "clears it …" — and the arrow ran through the baseline's
+        # own label on the way.
+        _ax = int(_cx - _hw // 2)
+        _na = max(0.0, min(1.0, (reveal - 0.82) / 0.14))
+        _col = color if cleared else WARN
+        d.line([(_ax, _lo_y + 10), (_ax, _hi_y - 10)],
+               fill=_rgba(_col, int(210 * _na)), width=6)
+        for _ay, _dy in ((_lo_y + 10, 18), (_hi_y - 10, -18)):
+            d.line([(_ax, _ay), (_ax - 16, _ay + _dy)],
+                   fill=_rgba(_col, int(210 * _na)), width=6)
+            d.line([(_ax, _ay), (_ax + 16, _ay + _dy)],
+                   fill=_rgba(_col, int(210 * _na)), width=6)
+        _mf, _mt = fit_text(d, _margin, 46, max(160, bx1 - _ax - 40),
+                            min_size=26)
+        d.text((_ax + 22, (_lo_y + _hi_y) // 2), _mt, font=_mf,
+               fill=_rgba(TEXT, int(240 * _na)), anchor="lm")
+    else:
+        d.text((_cx, bot + 62), _margin,
+               font=_pil_font(46), fill=_rgba(TEXT, 230), anchor="mm")
     return (v, "art", (bx0 + bx1) // 2, val_y)
 
 
@@ -3118,7 +3367,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
             8.0, wv * 0.6)
         particle(d, _st["particle"], px, py, 10, _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "funnel")
     if host is not None and last_xy is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -3181,7 +3430,7 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
                             fill=_rgba(ACCENT, 225),
                             outline=_rgba(charts.CARD, 255), width=3)
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "conveyor")
     if host is not None:
         mh = 300
         mw = int(host.width * mh / host.height)
@@ -3273,7 +3522,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                 py = split_y + (bot - split_y) * u
             particle(d, _st["particle"], px, py, 11,
                      _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "pipes")
     if host is not None and last is not None:
         # Beside the trunk, not inside it — a wide trunk with him in the middle
         # read as a grey box the mascot was standing in.
@@ -3307,7 +3556,13 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
     if hi <= lo:
         return None
     bx0, by0, bx1, by1 = box
-    cx, cy = (bx0 + bx1) // 2, (by0 + by1) // 2 + 40
+    cx = (bx0 + bx1) // 2
+    # The lane sits LOW and the wandering it summarises is drawn above it.
+    # A lane on its own is one horizontal band across the middle of a 9:16
+    # frame: 32% of the box empty, measured 2026-09-09, and the showrunner's
+    # words for that shape are already on file — "a hairline at ~45% height,
+    # everything below it empty".
+    cy = by1 - 430
     e = settle(reveal)
     x0, x1 = bx0 + 150, bx1 - 150
     half = (x1 - x0) / 2.0
@@ -3324,6 +3579,28 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
         px = int(cx - half * e + 2 * half * e * fx)
         d.line([(px, cy - lane + 22), (px, cy + lane - 22)],
                fill=_rgba(TEXT, int(110 * e)), width=5)
+    # THE WANDERING ITSELF, above the lane: value across, TIME down. This is
+    # the series, not a summary of it, and it is the one picture that shows
+    # what "never settled" looks like rather than asserting it. It claims no
+    # direction — that is the whole point of this machine — because the eye
+    # reads the path as a zig-zag with no trend, which is exactly the finding.
+    hist_bot = cy - lane - 70
+    hist_top = by0 + 210
+    if hist_bot - hist_top > 160 and len(vals) > 1:
+        step = (hist_bot - hist_top) / (len(vals) - 1)
+        pts = []
+        for i, v in enumerate(vals):
+            fx = (v - lo) / (hi - lo)
+            pts.append((int(cx - half * e + 2 * half * e * fx),
+                        int(hist_top + i * step)))
+        upto = max(2, int(round(len(pts) * min(1.0, e * 1.15))))
+        if upto > 1:
+            d.line(pts[:upto], fill=_rgba(color, int(190 * e)), width=7,
+                   joint="curve")
+        for px, py in pts[:upto]:
+            d.ellipse([px - 13, py - 13, px + 13, py + 13],
+                      fill=_rgba(charts.CARD, int(235 * e)),
+                      outline=_rgba(color, int(235 * e)), width=5)
     # THE MARKER — still moving at the end of the visual, because the finding
     # is that it never settles
     wob = 0.5 + 0.5 * _math.sin(reveal * 7.0)
@@ -3350,12 +3627,14 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
            f"anywhere between {charts._ulabel(lo, unit)} and "
            f"{charts._ulabel(hi, unit)}",
            font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "spotlight")
     if host is not None:
-        mh = 230
+        mh = 240
         mw = int(host.width * mh / host.height)
+        # RIGHT of the centred sub-caption, standing on the floor of the box.
+        # On the left he stood on the words.
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(cy + lane + 176)))
+                               (int(bx1 - mw - 16), int(by1 - mh)))
     return (vals[-1], "art", mx, cy)
 
 
@@ -3427,7 +3706,7 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
             tall_xy = (int(sx + w / 2), sy)
     # Data at the foot of the tallest, small enough that the height means
     # something. He is the ruler, not the subject.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "skyline")
     if host is not None and tall_xy is not None:
         mh = 140
         mw = int(host.width * mh / host.height)
@@ -3487,7 +3766,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
             d.text((int(sx + w / 2), bot + 34), _tt, font=_tf,
                    fill=_rgba(TEXT, 190), anchor="mm")
             top_xy = (int(sx + w / 2), sy)
-    host = scene_host("climb", reveal)
+    host = scene_host("climb", reveal, insight, "staircase")
     if host is not None and top_xy is not None:
         mh = int(min(280, (bot - top) * 0.34))
         mw = int(host.width * mh / host.height)
@@ -3548,7 +3827,7 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
     ch = 150
     d.rounded_rectangle([sx0 + 16, cy - ch // 2, sx1 - 16, cy + ch // 2],
                         radius=14, fill=_rgba(color, 235))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "elevator")
     if host is not None:
         mh = ch - 18
         mw = int(host.width * mh / host.height)
@@ -3660,7 +3939,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # The slab is the LOAD: its thickness is the value against the range, so
     # the picture is the increase. The exact figure is in the line above.
     n_slabs = max(1, int(round(1 + frac * 7)))
-    host = scene_host("hoist_stack", reveal)
+    host = scene_host("hoist_stack", reveal, insight, "burden")
     mh = int(min(560, (by1 - by0) * 0.38))
     mw = int(host.width * mh / host.height) if host is not None else 280
     # He SINKS as it gets heavier — the knees give, so the load descends on him
@@ -3728,7 +4007,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, cy + 208), _gl, font=_gf, fill=_rgba(TEXT, 220), anchor="mm")
     # He stands UNDER the dial reading it, at a size that occupies the lower
     # band, rather than parked beside the arc as a sticker.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "gauge")
     if host is not None:
         mh = int(min(360, max(0, (by1 - (cy + 250))) * 0.92))
         if mh > 120:
@@ -3806,7 +4085,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     # Ease so the field surges out of the blocks and settles into its order,
     # rather than sliding at a constant rate like a loading bar.
     e = settle(reveal)
-    runner = scene_host("cheer", reveal)
+    runner = scene_host("cheer", reveal, insight, "race")
     rh = int(max(96, min(170, lane_h * 0.86)))
     rw = int(runner.width * rh / runner.height) if runner is not None else rh
     # the finish line
@@ -4067,7 +4346,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
     # Data's act varies with the demonstration: he POINTS OUT the stacking bill
     # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
-    host = scene_host("point" if bars else "cheer", r)
+    host = scene_host("point" if bars else "cheer", r, insight, "closing")
     mh = 268        # a strong presence, but not so big it collides with text
     if host is not None:
         mw = int(host.width * mh / host.height)
@@ -4148,7 +4427,7 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
     # Data rides the dot along the axis (composited straight into the beat).
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "timeline")
     if host is not None:
         from PIL import Image as _Im
         mh = 250

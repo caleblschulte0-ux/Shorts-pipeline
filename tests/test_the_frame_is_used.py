@@ -263,6 +263,103 @@ class CoverageThatDependsOnTHEDATA(unittest.TestCase):
         self.assertNotIn(", 600)", src)
 
 
+class TheFURNITUREMustNotRescueABareFrame(unittest.TestCase):
+    """`NoMachineLeavesAVoid` measures the COMPOSITED frame, and the studio
+    puts furniture on every frame it renders. That is right for asking "is the
+    finished frame acceptable" and useless for asking "did the machine fill
+    the space it was given", because **a band is only as long as the first
+    thing that interrupts it**.
+
+    The burnt-in caption at y≈1690 and the progress rule at y≈1860 sit inside
+    the bottom void of a short picture and cut it into pieces. A machine that
+    stops at 55% of the frame height therefore scores 24% — comfortably inside
+    the 34% ceiling — while a viewer sees the bottom half as empty gradient
+    and the showrunner writes `empty_void` in exactly those words.
+
+    Measured on 2026-09-09 across the whole kit: **not one machine exceeded
+    the composite ceiling**, and ten exceeded 22% inside their own box —
+    queue 33%, basket 32%, spotlight 32%, bridge 26%, road 26%, trophies 26%,
+    hurdle 26%, density 25%, slider 25%, wheel 22%. Every one of them was a
+    picture parked in the upper half of a 9:16 frame.
+
+    So this asks the machine's own question, over the box it was handed, with
+    only the studio TITLE composited — that much is genuinely above every
+    machine and none of them can be blamed for it.
+    """
+
+    #: 24%, against a floor of 12.1% that is simply the gap between the top of
+    #: the box and the title. A machine at 24% has roughly a ninth of its own
+    #: frame doing nothing, which is the point at which a reviewer starts to
+    #: notice; the worst in the kit now sits at 22%.
+    CEILING = 0.24
+
+    def _worst(self):
+        """The SAME sample per machine the composite sweep uses. Measuring the
+        two questions against different data is how a machine ends up with two
+        numbers and no answer."""
+        from tests._machine_samples import SAMPLES
+        worst = {}
+        for kind, ins in SAMPLES.items():
+            if kind not in vs._MACHINE_DRAW:
+                continue
+            safe = vs.drawable_insight(ins)
+            if safe is None:
+                continue
+            img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+            d = ImageDraw.Draw(img)
+            got = vs._guarded(kind, vs._MACHINE_DRAW[kind], d, img, BOX, safe,
+                              charts.HIGHLIGHT, 0.95, safe.unit)
+            if got is None:
+                continue              # refused honestly, nothing to judge
+            # ONLY the title. The caption and the progress rule are BELOW the
+            # box this machine was handed, so letting them into the
+            # measurement is letting furniture answer for the picture.
+            vs.draw_caption(d, (vs.RX0, 250, vs.RX1, 250), ins.topic, 1.0,
+                            size=52)
+            worst[kind] = fo.measure(img, top=vs.RTOP,
+                                     bottom=vs.MACHINE_BOT)["void"]
+        return worst
+
+    def test_no_machine_leaves_a_quarter_of_its_own_box_empty(self):
+        bad = {k: f"{v * 100:.0f}%" for k, v in self._worst().items()
+               if v > self.CEILING}
+        self.assertEqual(bad, {}, f"empty inside their own box: {bad}")
+
+    def test_the_measure_can_be_restricted_to_a_band(self):
+        """If `top`/`bottom` were ignored the sweep above would silently be
+        measuring the whole frame and passing for the wrong reason."""
+        img = Image.new("RGBA", (100, 100), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 20, 99, 30], fill=(255, 255, 255, 255))
+        self.assertAlmostEqual(fo.measure(img)["void"], 0.69, places=2)
+        self.assertAlmostEqual(fo.measure(img, top=10, bottom=60)["void"],
+                               0.58, places=2)
+
+    def test_head_and_tail_are_reported_separately(self):
+        """A picture that started late and one that stopped early are
+        different defects and get different fixes; one number for both sends
+        you to the wrong end of the machine."""
+        img = Image.new("RGBA", (100, 100), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        d.rectangle([0, 20, 99, 30], fill=(255, 255, 255, 255))
+        m = fo.measure(img)
+        self.assertAlmostEqual(m["head"], 0.20, places=2)
+        self.assertAlmostEqual(m["tail"], 0.69, places=2)
+
+    def test_an_empty_layer_is_all_void_not_an_exception(self):
+        img = Image.new("RGBA", (100, 100), (0, 0, 0, 0))
+        m = fo.measure(img, top=10, bottom=90)
+        self.assertEqual((m["void"], m["head"], m["tail"]), (1.0, 1.0, 1.0))
+
+    def test_the_composite_ceiling_is_still_enforced(self):
+        """This adds a question; it removes none. The whole-frame sweep in
+        `NoMachineLeavesAVoid` stays exactly as it was."""
+        import inspect
+        src = inspect.getsource(NoMachineLeavesAVoid)
+        self.assertIn("_furniture", src)
+        self.assertIn("0.34", src + inspect.getsource(fo.verdict))
+
+
 class TextStaysINSIDETheFrame(unittest.TestCase):
     """The operator watched a video that had already SHIPPED and read back
     what the gate had passed:
