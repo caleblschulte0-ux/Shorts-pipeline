@@ -1,0 +1,16 @@
+{
+ "slug": "bald-eagle-population-rebound",
+ "ts": "20260909T182417Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:end leaves roughly the middle 40% of the frame as bare gradient between the 9800 dashed line and the jump bar, and seg4:start-payoff@-0.4 shrink the entire payoff into a small inset card with dead margins on all sides.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_static_payoff",
+  "visible_evidence": "From seg4:start (42.54s) to payoff@-0.4 (49.03s) the frame is unchanged: a small inset card holding a tiny 2020->1963 slope line, the mascot standing motionless beside a '417' dot, and large unused dark margins above, below and to both sides of the card; the closing line sits in a static speech bubble.",
+  "root_cause": "The payoff beat renders a shrunken chart-in-a-card layout with no animation budget \u2014 the slope is already fully drawn at scene start and the mascot has no bit, so the last 7 seconds are a still image inside wasted frame.",
+  "repair_goal": "Make the final beat full-bleed and animated: draw the 417->71,467 line live across the scene, scale the numbers up to fill the frame instead of an inset card, and give the mascot a setup->action->payoff tied to the collapse-and-rebound (e.g. riding the line up) so the closer moves for its whole duration."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

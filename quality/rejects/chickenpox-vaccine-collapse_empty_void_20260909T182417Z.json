@@ -1,0 +1,16 @@
+{
+ "slug": "chickenpox-vaccine-collapse",
+ "ts": "20260909T182417Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:mid and seg3:end waste the bottom ~45% of the frame on bare gradient while the grid sits squeezed under two colliding headers; the same dead lower band recurs under the isotype grid at payoff@-1.8.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "craft",
+  "visible_evidence": "seg3:mid and seg3:end stack two truncated headers that overlap \u2014 'After vaccine (2 fits in Before vaccine (' clipped at both edges over 'deaths before vs after the vaccine' \u2014 a ghost grey '21' bleeds through the tiles, Data is parked tiny against the left frame edge doing nothing, and the bottom ~45% of the frame is empty gradient.",
+  "root_cause": "The fits-in machine renders its own auto-generated title on top of the scene's chart title without measuring width or reserving a band, the residual count label is drawn under rather than replaced by the tiles, and the grid is laid out in the upper half only, leaving the lower half unclaimed with the mascot outside the composition.",
+  "repair_goal": "Give seg3 one single-line header that fits the frame width, drop the ghost '21' behind the tiles, scale/center the tile grid so it uses the vertical space now empty, and put Data inside the demonstration \u2014 carrying or stacking a tile as the 21 fill in \u2014 instead of standing at the edge."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

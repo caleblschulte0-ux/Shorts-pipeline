@@ -1,0 +1,21 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260909T182417Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start through payoff@-0.4 (t=39.0-44.5s): the fits-into diagram occupies a small box in the upper third while the entire lower ~40% of the frame is empty dark background, and the mascot is a ~30px sticker pinned to the left edge.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg4:start/seg4:mid/payoff@-0.4 the 'Hospitalized fits in Sent home 5 times over' box is small and floats in the top third; the bottom 40% of the 1080x1920 frame is dead background, the mascot is a ~30px static sticker at the left margin, the '5' count is grey-on-grey and half-covered by the blue tiles, and the closing card, the 'COMMENT BELOW' line and the three-line source credit all pile onto the same bottom strip and overprint each other (payoff@-0.4).",
+  "root_cause": "The fits-into machine is rendered at its default small scale anchored to the upper safe area, with no vertical fill or mascot re-scale for the closing beat, so the layout never uses the lower half of the frame; the label/CTA/source overlays are placed independently and collide at the bottom.",
+  "repair_goal": "Rebuild seg4 to fill the frame: scale the fits-into container ~2x and center it vertically so the tiles occupy the lower two-thirds, animate the 5 copies dropping in one by one at full size, raise the '5' count to high-contrast type clear of the tiles, put Data at readable scale doing a real closing bit against the container (e.g. stacking/pushing the fifth copy in), and separate the closing card, CTA and source credit into non-overlapping bands."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
