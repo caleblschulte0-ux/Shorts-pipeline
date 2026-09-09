@@ -370,8 +370,8 @@
           "shot_index": 0,
           "phrase": "the antique clock",
           "query": "moving boxes truck",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
@@ -384,29 +384,29 @@
           "shot_index": 2,
           "phrase": "timestamped, narrated, clock included",
           "query": "grandfather clock antique",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "sixty dollars, the depreciated",
           "query": "insurance claim form",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "their own certificate of insurance clause",
           "query": "contract paperwork signing",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "flagged it to legal within the hour",
           "query": "office desk laptop",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -425,18 +425,18 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 3,
-        "missing": 5,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-movers-video-proof-claim-s0-8058fa3e580f",
+        "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
         "reddit-movers-video-proof-claim-s2-d07433115f65",
         "reddit-movers-video-proof-claim-s3-9d51c7eff016",
         "reddit-movers-video-proof-claim-s4-c85c45f06f60",
         "reddit-movers-video-proof-claim-s5-e0817f3f858d",
-        "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
         "reddit-movers-video-proof-claim-s6-75baa41897a0",
         "reddit-movers-video-proof-claim-s7-cec0587abc36"
       ]
@@ -450,15 +450,15 @@
           "shot_index": 0,
           "phrase": "the electrical rough-in on a twelve-unit building",
           "query": "electrician wiring construction",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "forty-one thousand dollars unpaid",
           "query": "unpaid invoice paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -471,15 +471,15 @@
           "shot_index": 3,
           "phrase": "the property owner",
           "query": "office building exterior",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "refinancing the building that same month",
           "query": "bank loan paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -492,33 +492,33 @@
           "shot_index": 6,
           "phrase": "wired the full amount plus the late fee",
           "query": "bank transfer laptop",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "refinance closed on schedule",
           "query": "handshake office deal",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 2,
-        "missing": 6,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
         "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5",
+        "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
         "reddit-subcontractor-lien-payback-s3-dd17b057109c",
         "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
+        "reddit-subcontractor-lien-payback-s5-681143662167",
         "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
-        "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
-        "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
-        "reddit-subcontractor-lien-payback-s5-681143662167"
+        "reddit-subcontractor-lien-payback-s7-f79a42e1532d"
       ]
     }
   ],
@@ -545,9 +545,39 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "safe_request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "drive_filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
+      "prompt_sha256": "91f569da9f92163502c9bd1b3f7289f5cfa685d4e881a5b7467c39744616d89d",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
+      "slug": "reddit-movers-video-proof-claim",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: person filming boxes phone. It accompanies the narration: \"eleven-minute walkthrough video\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-movers-video-proof-claim-s2-d07433115f65",
@@ -571,9 +601,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-movers-video-proof-claim-s3-9d51c7eff016",
@@ -597,9 +629,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-movers-video-proof-claim-s4-c85c45f06f60",
@@ -623,9 +657,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-movers-video-proof-claim-s5-e0817f3f858d",
@@ -637,32 +673,6 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: office desk laptop. It accompanies the narration: \"flagged it to legal within the hour\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
-      "safe_request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
-      "drive_filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
-      "prompt_sha256": "91f569da9f92163502c9bd1b3f7289f5cfa685d4e881a5b7467c39744616d89d",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
-      "slug": "reddit-movers-video-proof-claim",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: person filming boxes phone. It accompanies the narration: \"eleven-minute walkthrough video\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -759,9 +769,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5",
@@ -785,113 +797,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s3-dd17b057109c.png",
-      "prompt_sha256": "831263ca0f6381224533f3a5ba79fbbe4d1bd93adeef407540a1055a966bbd9d",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s3-dd17b057109c.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office building exterior. It accompanies the narration: \"the property owner\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s4-90a134bf26e6.png",
-      "prompt_sha256": "a93c37f88b91f98e5ce2f8d6cdac351f9efdfaaa818738bbc2da5736b6b28bbd",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s4-90a134bf26e6.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: bank loan paperwork. It accompanies the narration: \"refinancing the building that same month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s6-a2840be4db8c.png",
-      "prompt_sha256": "f39d8c2127f1376d9cf3d3f54b758fb6156a71125559b076f338e10c3686148f",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s6-a2840be4db8c.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: bank transfer laptop. It accompanies the narration: \"wired the full amount plus the late fee\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
-      "safe_request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
-      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s7-f79a42e1532d.png",
-      "prompt_sha256": "8744c563ee64b4fd508aed15605ea933dcce6c60894c0cfcf3356b8ee51e1fa2",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s7-f79a42e1532d.json",
-      "slug": "reddit-subcontractor-lien-payback",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: handshake office deal. It accompanies the narration: \"refinance closed on schedule\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
@@ -922,6 +832,62 @@
       "verdict": "weak"
     },
     {
+      "request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s3-dd17b057109c.png",
+      "prompt_sha256": "831263ca0f6381224533f3a5ba79fbbe4d1bd93adeef407540a1055a966bbd9d",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s3-dd17b057109c.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office building exterior. It accompanies the narration: \"the property owner\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s4-90a134bf26e6.png",
+      "prompt_sha256": "a93c37f88b91f98e5ce2f8d6cdac351f9efdfaaa818738bbc2da5736b6b28bbd",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s4-90a134bf26e6.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: bank loan paperwork. It accompanies the narration: \"refinancing the building that same month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
       "safe_request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
       "drive_filename": "20260909__reddit-subcontractor-lien-payback-s5-681143662167.png",
@@ -931,6 +897,62 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: real estate closing table. It accompanies the narration: \"a title company will not close\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s6-a2840be4db8c.png",
+      "prompt_sha256": "f39d8c2127f1376d9cf3d3f54b758fb6156a71125559b076f338e10c3686148f",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s6-a2840be4db8c.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: bank transfer laptop. It accompanies the narration: \"wired the full amount plus the late fee\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
+      "safe_request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
+      "drive_filename": "20260909__reddit-subcontractor-lien-payback-s7-f79a42e1532d.png",
+      "prompt_sha256": "8744c563ee64b4fd508aed15605ea933dcce6c60894c0cfcf3356b8ee51e1fa2",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s7-f79a42e1532d.json",
+      "slug": "reddit-subcontractor-lien-payback",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: handshake office deal. It accompanies the narration: \"refinance closed on schedule\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
