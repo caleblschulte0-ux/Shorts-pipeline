@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
+  "safe_request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e943a7afc787836553bb39a1bfc59d01eec051226eaf041d88bc0a5acb14ea54",
+  "prompt_used": "An editorial illustration for a short-form video: bank check envelope. It accompanies the narration: \"a check for the clock's full appraised value\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Kgm1YzdNb4v2X0MjhdO3xNI0cIhiEvn7",
+    "filename": "20260909__reddit-movers-video-proof-claim-s6-75baa41897a0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Kgm1YzdNb4v2X0MjhdO3xNI0cIhiEvn7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9efc69e014ff1efe83622365da6bc8ebcf5b0801d16ebdc2c85c33705b8b39be",
+    "bytes": 2134143,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-09T11:27:00Z"
+}
