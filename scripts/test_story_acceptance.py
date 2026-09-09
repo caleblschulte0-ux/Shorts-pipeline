@@ -1771,6 +1771,32 @@ def main() -> int:  # noqa: C901
           "max(range(len(toks)), key=lambda i: len(toks[i]))"
           not in (REPO / "third_capture" / "clip_edit.py").read_text())
 
+    # ====== the hook card is the first frame anyone sees ===============
+    _wh = _ce2.wrap_hook
+    for _h in ("THEN IT ALL WENT WRONG",
+               "SHE KEPT DISRESPECTING HER AND HE FINALLY SNAPPED",
+               "HIS RIZZ ACTUALLY WORKED"):
+        _t, _fs = _wh(_h)
+        _widest = max(len(ln) for ln in _t.split("\n")) * _fs * _ce2._ANTON_ADV
+        check(f"hook fits the canvas: {_h[:28]!r} -> {_fs}px, "
+              f"{_widest:.0f}px wide", _widest <= 1080)
+    check("a long hook wraps rather than running off both edges "
+          "(x=(w-text_w)/2 goes NEGATIVE once text_w exceeds the canvas)",
+          "\n" in _wh("SHE KEPT DISRESPECTING HER AND HE FINALLY SNAPPED")[0])
+    check("...and shrinks only when two lines still will not fit",
+          _wh("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z LONGER "
+              "STILL")[1] < 72)
+    check("a short hook is NOT shrunk needlessly",
+          _wh("THEN IT ALL WENT WRONG")[1] == 72)
+    check("an empty hook is handled", _wh("")[0] == "")
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("the hook fades in and out instead of a box snapping on at t=0",
+          ":alpha='" in _ce_src2 and "if(lt(t,0.25),t/0.25," in _ce_src2)
+    check("the hook uses the CAPTION treatment (outline + shadow), not a "
+          "solid meme box — two text looks in one video is its own tell",
+          "boxcolor=black@0.72" not in _ce_src2
+          and "borderw=7:bordercolor=black" in _ce_src2)
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")

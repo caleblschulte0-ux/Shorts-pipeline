@@ -666,6 +666,57 @@ def _emphasis_index(group: list[dict], toks: list[str]) -> int | None:
     return best if best is not None and best_r >= 1.25 else None
 
 
+# Rough advance width of Anton in ALL CAPS, as a fraction of font size.
+# Anton is a condensed grotesque; measured over A-Z it averages ~0.52em.
+_ANTON_ADV = 0.52
+
+
+def wrap_hook(hook: str, max_w: int = 980, size: int = 72,
+              max_lines: int = 2) -> tuple[str, int]:
+    """(text_with_newlines, fontsize) for the hook card.
+
+    The card was drawn at a fixed 72px with no wrapping and centred by
+    x=(w-text_w)/2. The author is instructed to write 4-8 words IN CAPS, and
+    at 72px Anton that passes 1080px around 30 characters — past which
+    text_w exceeds the canvas, x goes NEGATIVE and the hook runs off both
+    edges of the first frame every viewer sees. Wrap to at most two lines,
+    then shrink only if two lines still do not fit."""
+    words = str(hook or "").split()
+    if not words:
+        return "", size
+    for fs in range(size, 39, -4):
+        per = max(1.0, fs * _ANTON_ADV)
+        budget = int(max_w / per)
+        lines, cur = [], ""
+        for w in words:
+            trial = f"{cur} {w}".strip()
+            if len(trial) <= budget or not cur:
+                cur = trial
+            else:
+                lines.append(cur)
+                cur = w
+        if cur:
+            lines.append(cur)
+        if len(lines) <= max_lines and all(len(ln) <= budget for ln in lines):
+            return "\n".join(lines), fs
+    # Nothing fits in two lines even at the floor: let it wrap to as many as
+    # it needs at the smallest size rather than clipping it off-screen.
+    fs = 40
+    per = max(1.0, fs * _ANTON_ADV)
+    budget = int(max_w / per)
+    lines, cur = [], ""
+    for w in words:
+        trial = f"{cur} {w}".strip()
+        if len(trial) <= budget or not cur:
+            cur = trial
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return "\n".join(lines), fs
+
+
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
               max_group: int = 3, burn_credit: bool = False) -> Path:
     """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
@@ -981,12 +1032,34 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 ":boxborderw=18:x=(w-text_w)/2:y=150"
                 f":enable='between(t,{ov['s']:.2f},{ov['e']:.2f})'")
         if hook:
+            # THE FIRST FRAME EVERY VIEWER SEES. It was a hard black box
+            # with a 26px border, snapping on at t=0 and off at t=3.0, at a
+            # fixed 72px with no wrapping — so a 4-8 word ALL-CAPS hook (what
+            # the author is told to write) ran off both edges once it passed
+            # ~30 characters, because x=(w-text_w)/2 goes negative.
+            # Three fixes, all visible in the first second:
+            #   - wrap to two lines and shrink only if it still won't fit
+            #   - match the CAPTION treatment (heavy outline + shadow)
+            #     instead of a solid box. Two different text looks in one
+            #     video is itself an amateur signal, and the box is the
+            #     meme-caption cliche the operator is trying to get away
+            #     from.
+            #   - fade in and out. A black rectangle appearing and vanishing
+            #     on a hard frame boundary reads as an overlay stuck on top
+            #     of someone else's video, which is exactly what it was.
+            htxt, hsize = wrap_hook(hook)
             hf = tmp / "hook.txt"
-            hf.write_text(hook)
+            hf.write_text(htxt)
+            _fade = ("if(lt(t,0.25),t/0.25,"
+                     "if(lt(t,2.55),1,max(0,(3.0-t)/0.45)))")
             text_draws.append(
                 f"drawtext=fontfile={FONT_BOLD}:textfile={hf}:expansion=none"
-                ":fontsize=72:fontcolor=white:box=1:boxcolor=black@0.72"
-                ":boxborderw=26:x=(w-text_w)/2:y=230"
+                f":fontsize={hsize}:fontcolor=white"
+                ":borderw=7:bordercolor=black@0.92"
+                ":shadowcolor=black@0.55:shadowx=0:shadowy=5"
+                ":line_spacing=14"
+                f":alpha='{_fade}'"
+                ":x=(w-text_w)/2:y=230"
                 ":enable='between(t,0,3.0)'")
 
         # Image overlays (behind the text): speed-lines flash first, then the
