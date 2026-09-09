@@ -969,10 +969,16 @@
       "commit": "7d8ee9e"
     },
     "4e9af949a9c9": {
-      "verdict": "doing",
-      "date": "20260828",
-      "because": "Confirmed: funnel/entity_media.py resolve_entity_media returns str|None and enrich_package/verify_shot_urls persist only shot['image_url'], and media_judge.py's documented production fallback for a bare image_url constructs only {'url': ...}. Real information loss between verified enrichment and judging. Worth doing, but it is a multi-file evidence-shape change (entity_media + media_judge fallback + a new end-to-end test) that should follow the smaller package-failure fix (9a7e1bcece21) landing first, to avoid touching judge_package's contract twice in one week.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. entity_media now persists a media_evidence object beside image_url (subject, context, provider, source_class, verified dimensions, content type, verified_at) and media_judge's pinned fallback consumes it. Measured on the real scorer: bare URL 0.133 weak, verified-with-subject 0.817 strong, verified-only-no-subject 0.317 weak \u2014 so a verified encyclopedic photo no longer orders a generated replacement for itself, and verification alone still cannot certify subject relevance. The self-certification rule is enforced by shape: verify_shot_urls writes no title at all, evidence whose url does not match the shot's is ignored, non-dicts are ignored, and evidence is dropped whenever its URL is. probe_image replaces url_is_image's throw-away yes/no (url_is_image delegates to it) and reads dimensions from the first 64KB; an unparseable header leaves them 0, which the judge correctly treats as unverified. Host classification is conservative. 14 tests including the end-to-end case; 9 fail/error against the unfixed files.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260828",
+          "because": "Confirmed: funnel/entity_media.py resolve_entity_media returns str|None and enrich_package/verify_shot_urls persist only shot['image_url'], and media_judge.py's documented production fallback for a bare image_url constructs only {'url': ...}. Real information loss between verified enrichment and judging. Worth doing, but it is a multi-file evidence-shape change (entity_media + media_judge fallback + a new end-to-end test) that should follow the smaller package-failure fix (9a7e1bcece21) landing first, to avoid touching judge_package's contract twice in one week."
+        }
+      ]
     },
     "aab2495524a2": {
       "verdict": "done",
