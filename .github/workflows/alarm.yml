@@ -65,6 +65,41 @@ jobs:
             --body-file "$RUNNER_TEMP/alarm.md" \
             || echo "::warning::could not comment on issue $REPORT_ISSUE_NUMBER"
 
+      # THE ALARM COULD NOT REACH A PHONE, WHICH IS MOST OF WHY IT NEVER WORKED.
+      #
+      # This workflow is the only one allowed to be loud, and it was the only
+      # publishing-adjacent workflow with no ntfy path — `daily.yml` and
+      # `credentials.yml` both had one. So every alarm it raised went to a
+      # comment on issue #1, which is also where scout results and daily
+      # reports land: a firehose. It fired correctly on 09-06, 09-07, 09-08
+      # and 09-09 — four consecutive days of "the day did not do what it was
+      # supposed to" — and each one went unread while the channel posted one
+      # or two videos a day instead of four.
+      #
+      # A detector nobody hears is not a detector. Same lesson as a capability
+      # nothing calls, one layer out.
+      - name: Push the alarm to a phone
+        if: steps.judge.outputs.status != '0'
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          if [ -z "$NTFY_TOPIC" ]; then
+            echo "::warning title=alarm-cannot-reach-you::NTFY_TOPIC is not set,"
+            echo "::warning::so this alarm exists only as a comment on issue"
+            echo "::warning::#$REPORT_ISSUE_NUMBER and a red run. Set the secret"
+            echo "::warning::to be told on the day something breaks."
+            exit 0
+          fi
+          # First ~20 lines: the headline and the per-channel shortfall. The
+          # rest is detail that belongs in the issue comment, not a push.
+          MSG=$(head -20 "$RUNNER_TEMP/alarm.md" 2>/dev/null || echo "see the issue")
+          curl -fsS -d "$MSG" "https://ntfy.sh/$NTFY_TOPIC" \
+               -H "Title: Shorts pipeline — the day did not work" \
+               -H "Tags: rotating_light" \
+               -H "Priority: high" \
+               -H "Click: https://github.com/${{ github.repository }}/issues/$REPORT_ISSUE_NUMBER" \
+            || echo "::warning::ntfy push failed"
+
       - name: Fail the run so it is red in the Actions tab
         if: steps.judge.outputs.status != '0'
         run: |
