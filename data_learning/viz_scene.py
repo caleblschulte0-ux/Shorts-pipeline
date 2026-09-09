@@ -2455,8 +2455,21 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
         return None
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    side = int(min((bx1 - bx0) * 0.72, (by1 - by0) * 0.44, 600))
-    top = max(by0 + 300, 460)
+    # THE SQUARE USES THE FRAME IT WAS GIVEN.
+    #
+    # `0.44` of the height and a hard 600px cap are both leftovers from when
+    # the render box stopped at y=1180 — in a 1480-tall box they confine the
+    # nest to a square in the upper third, and the bottom 40% of a 9:16 frame
+    # is bare gradient. Measured on 2026-09-09 at a 7.5x ratio: 40% void
+    # against a 34% ceiling, and the showrunner said it in words on
+    # `melatonin-kids-er-surge` the same evening — "the fits-into diagram
+    # occupies a small box in the upper third".
+    #
+    # It went unnoticed because the nest's coverage depends on the DATA (the
+    # tile count follows the ratio) and `test_every_machine_fills_its_box`
+    # renders one sample per machine. It is now measured across the band.
+    side = int(min((bx1 - bx0) * 0.92, (by1 - by0) * 0.78))
+    top = max(by0 + 150, 300)
     e = settle(reveal)
     # Tiles ACROSS is ceil(sqrt(ratio)), because the claim is about AREA —
     # and the tile COUNT is the ratio itself, rounded, never the full grid.

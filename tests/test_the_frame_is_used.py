@@ -191,3 +191,73 @@ class TheMeasureItself(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class CoverageThatDependsOnTHEDATA(unittest.TestCase):
+    """One sample per machine is not enough for a machine whose geometry
+    follows its numbers.
+
+    `test_every_machine_fills_its_box` renders each machine once and passed
+    the nest at 28%. On 2026-09-09 the showrunner held
+    `melatonin-kids-er-surge` with "the fits-into diagram occupies a small
+    box in the upper third" — and at that story's 7.5x ratio the nest
+    measured **40% void** against a 34% ceiling. Same machine, same code,
+    different data.
+
+    The cause was `side = min(w*0.72, h*0.44, 600)`: a hard 600px cap and a
+    0.44 height factor, both left over from when the render box stopped at
+    y=1180. In a 1480-tall box they pin the nest to the upper third whatever
+    the ratio is.
+
+    It mattered that week because the nest had just been added to `duel` and
+    `dominance` — 40% of the catalogue — so a latent void became a daily one.
+    """
+
+    CEILING = 0.34      # the same ceiling the per-machine sweep uses
+
+    #: Machines whose drawn area is a function of the values, not just the
+    #: item count. These get swept across their whole accepted range.
+    DATA_DEPENDENT = {
+        "nest": [(r, 1.0) for r in (1.6, 2.5, 4.0, 7.5, 20.0, 60.0, 140.0)],
+        "density": [(r, 1.0) for r in (2.0, 10.0, 100.0, 1000.0)],
+        "hourglass": [(r, 1.0) for r in (1.2, 3.0, 12.0, 50.0)],
+        "tape": [(r, 1.0) for r in (1.05, 2.0, 10.0, 200.0)],
+    }
+
+    def test_the_frame_is_filled_at_every_ratio_not_just_one(self):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-09")
+        bad = {}
+        for kind, pairs in self.DATA_DEPENDENT.items():
+            if kind not in vs._MACHINE_DRAW:
+                continue
+            for big, small in pairs:
+                ins = Insight(kind="scene", topic="t", main_insight="m",
+                              items=[DataPoint(label="Big", value=float(big)),
+                                     DataPoint(label="Small", value=float(small))],
+                              source=src, unit="count", highlight_label="Big")
+                safe = vs.drawable_insight(ins)
+                if safe is None:
+                    continue
+                img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+                d = ImageDraw.Draw(img)
+                got = vs._guarded(kind, vs._MACHINE_DRAW[kind], d, img, BOX,
+                                  safe, charts.HIGHLIGHT, 0.95, "count")
+                if got is None:
+                    continue          # refused honestly, nothing to judge
+                _furniture(d, ins.topic)
+                v = fo.verdict(img, max_void=self.CEILING)
+                if not v["ok"]:
+                    bad[f"{kind}@{big:g}x"] = f"{v['void'] * 100:.0f}%"
+        self.assertEqual(bad, {}, f"void at some ratios but not others: {bad}")
+
+    def test_the_nest_is_not_capped_to_the_old_render_box(self):
+        """The 600px cap and the 0.44 height factor were sized for a frame
+        that ended at y=1180. Both are gone; if either returns the nest goes
+        back to a square in the upper third."""
+        import inspect
+        src = inspect.getsource(vs.draw_nest)
+        self.assertNotIn("* 0.44", src)
+        self.assertNotIn(", 600)", src)
