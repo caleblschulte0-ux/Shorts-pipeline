@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
+  "safe_request_id": "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "42de417939736b9bc2e4c07bf2a3380e77acdc0110cb979fbf94fc63ea530e2f",
+  "prompt_used": "An editorial illustration for a short-form video: electrician wiring construction. It accompanies the narration: \"the electrical rough-in on a twelve-unit building\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+    "filename": "20260909__reddit-subcontractor-lien-payback-s0-5d660c4266a1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "983d05a64cf79e14128b310f1709212df161833f30f74de3296d96c7ebe7bb93",
+    "bytes": 2049241,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-09T11:27:00Z"
+}
