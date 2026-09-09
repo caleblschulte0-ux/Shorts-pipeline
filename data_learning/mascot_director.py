@@ -189,11 +189,24 @@ def clipboard(cx, cy, s=1.0):
                       for i in range(4)))
 
 
+def no_prop(cx, cy, s=1.0, **kw):
+    """EMPTY HANDS.
+
+    `compose_anim` does `PROPS.get(spec["prop"], price_tag)`, and the whole
+    scene kit asks for `"prop": "none"` — which was not a key, so every one of
+    the ~40 machine beats handed Data a blank yellow PRICE TAG to hold. That
+    is the object the showrunner kept describing as a clipboard: "he just
+    stands at the right pole holding a clipboard and slides a few pixels"
+    (`buybacks-beat-dividends`, 2026-09-09).
+    """
+    return ""
+
+
 PROPS = {
     "eggs": egg, "soup_cans": soup_cans, "soup_can": soup_can, "cart": cart,
     "dollar": dollar, "coins": coins, "house": house, "gas_pump": gas_pump,
     "pill_bottle": pill_bottle, "price_tag": price_tag, "chart_bird": chart_bird,
-    "clipboard": clipboard,
+    "clipboard": clipboard, "none": no_prop,
 }
 
 # ------------------------------------------------------------------ actions

@@ -346,7 +346,7 @@ and both lies pointed the same way — at a machine that was fine.
 Both times the harness said a good machine was broken. Check the harness
 before changing the machine.
 
-## The four things the reviewer keeps blocking, as numbers
+## What the reviewer keeps blocking, as numbers
 
 The showrunner watches every video and its notes are consistent enough to be
 turned into deterministic checks. Each of these was one cause, not a hundred:
@@ -357,6 +357,15 @@ turned into deterministic checks. Each of these was one cause, not a hundred:
 | `bare_number_card` — "the number is stated, not demonstrated" | `draw_timeline` reached its rising filled area only when every item carried a `period` field, and fell back to a hairline ruler without one. The items were labelled 2007..2025. | the label IS the period when it is a year — coverage 5.4% → 35.5% on the blocked data |
 | `junk_imagery` — "a cartoon HOUSE icon sits on the 'Current record' bar" | `icons.emoji_codepoint` matched `key in label.lower()`, so cur-**RENT**-record picked up the housing key and "intensive **CAR**e" the vehicle one. This is the ONE fatal check — it blocks at any score on any policy — and it took six renders of `f1-pit-stop-vanishing-act` in a week plus `melatonin-kids-er-surge`, every one a story that did not post | a key must be a prefix of a whole TOKEN with only a plain inflection left over (a key of six or more may be a deliberate stem: `vaccin`, `immuniz`, `agricultur`); `tests/test_the_icon_must_be_about_the_label.py` pins the quoted verdicts as named cases |
 | `decorative_mascot` — "the same arms-out pose in five beats" | `viz_director` already picks a different performance per beat; the renderer's `_act()` threw it away and asked a map keyed on CHART KIND, where bars/comparison/rank all mean `push_bar` — and `scene`, which is every machine beat, was absent entirely | `_act()` honours `perf_spec`; `scene` has its own default |
+| `decorative_mascot`, still — "in every scene Data only stands ... holding a clipboard and slides a few pixels" | the SCENE kit was not directed at all. `compose_anim` does `ANIMATORS.get(action, _a_carry)`, and of the six names the kit used only `cheer` and `climb` were animators — `point` (18 machines), `strain` (9), `think` (3) and `shock` (1) all fell through to one carry pose, **31 of 41 call sites rendering a pixel-identical sprite** whose whole motion is a 4px sway. `"prop": "none"` was not a key in `PROPS` either, so `PROPS.get(name, price_tag)` gave him a blank yellow price tag to hold — the "clipboard" in the verdict | `viz_scene.SCENE_ROLES`: a machine names a ROLE (a contract about the silhouette its layout was built around), `scene_act` picks the performance inside it, rotated per story so five beats are five acts. `PROPS["none"]` draws nothing. `tests/test_the_mascot_is_actually_directed.py` renders the roles and compares arrays |
+
+**Both mascot rows are the same lesson twice.** A vocabulary resolved with
+`dict.get(name, default)` and never checked against its own table is a
+capability that quietly does not exist. It cost `decorative_mascot` 147 of
+this channel's 228 verdicts and `junk_imagery` 63 more, and in both cases the
+showrunner described the defect precisely, for weeks, while every test passed.
+When you add a name to any of these tables — an act, a prop, an icon key, a
+machine kind — **add the test that says it resolves**, in the same change.
 
 **Measure with the FURNITURE.** The studio draws the title near the top and
 burns the caption near the bottom of every frame, so measuring a bare machine

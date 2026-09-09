@@ -324,8 +324,83 @@ def _cx(box):
 
 _SCENE_HOST_CACHE: dict = {}
 
+#: WHAT A MACHINE ASKS FOR, and what it may be given.
+#:
+#: A machine picks a ROLE, not a pose. The role is a contract about the
+#: silhouette its layout was built around — `burden` hangs slabs off his
+#: hands, `staircase` needs him ascending, `trophies` wants him celebrating —
+#: and within that contract the director picks the actual performance, keyed
+#: on the story so a five-beat video does not run the same act five times.
+#:
+#: These names had NO other meaning until 2026-09-09. `compose_anim` resolves
+#: an action with `ANIMATORS.get(action, _a_carry)`, and of the six names the
+#: kit used, only `cheer` and `climb` were animators at all. `point` (18
+#: machines), `strain` (9), `think` (3) and `shock` (1) all fell through to
+#: the same carry pose — 31 of 41 call sites rendering a pixel-identical
+#: sprite, whose only motion is a 4px sway.
+#:
+#: `decorative_mascot` was the largest block class on this channel: 147 of its
+#: 228 recorded verdicts. It is an auto-fail, so it took the story with it.
+#: The judge described the defect exactly, over and over, for a month:
+#:
+#:     "Data holds the same arms-out standing pose while parked on a bar in
+#:      hook@0.8, seg1:mid, seg2:mid, seg3:mid and seg4:end — he relocates but
+#:      never performs a setup->action->payoff tied to the wolf counts"
+#:                                    colorado-wolves-return, 2026-09-07
+#:     "In every scene Data only stands"          f1-pit-stop, 2026-09-09
+#:
+#: He was not being directed badly. He was not being directed at all.
+SCENE_ROLES: dict = {
+    # He INDICATES the thing. Arm out, normal silhouette.
+    "point": ("point_at", "present", "lean_on", "hold_up"),
+    # It is HEAVY / it is going wrong. Braced or bearing.
+    "strain": ("block_wall", "shoved_bar", "stagger_under", "compressed"),
+    # He is READING it. Leaning in, weighing, peering.
+    "think": ("discover", "compare_scales", "lean_on"),
+    # It is BIGGER THAN HIM. Backing off, shielding, catching.
+    "shock": ("overwhelmed", "catch_fall", "get_buried"),
+    # It WORKED. Arms up.
+    "cheer": ("cheer", "transform_reveal", "race_sprint"),
+    # He is GOING UP IT.
+    "climb": ("climb", "climb_arc"),
+}
 
-def scene_host(action: str, phase: float):
+
+#: ROLE -> the nearest committed pose PNG, for a render environment with no
+#: libcairo2. `strain` and `climb` never had a file of their own, so wherever
+#: cairosvg cannot run, ten machines drew NO MASCOT and nothing said so — the
+#: `_host_pose` miss returns None exactly like a deliberate omission. Neither
+#: substitute is as good as the animated pose; both are better than an empty
+#: frame, and `duck` really does read as bracing.
+_ROLE_PNG = {"strain": "duck", "climb": "cheer", "hoist_stack": "cheer"}
+
+
+def scene_act(role: str, insight=None, kind: str = "") -> str:
+    """The animator this beat actually performs, from the machine's ROLE.
+
+    Deterministic on the story and the machine — a re-render is identical and
+    a diff of two runs still means something — and different per machine, so
+    the beats of one video do not repeat the same act. An unknown role is
+    returned unchanged so it fails the vocabulary test loudly rather than
+    silently becoming a carry pose.
+    """
+    pool = SCENE_ROLES.get(role)
+    if not pool:
+        return role
+    # `story` may be an Insight or, for the three elements that take a bare
+    # label instead of one (`unit_figures`, `balance`, `dot_field`), the label
+    # itself. Both are just a stable string to key the rotation on.
+    story = getattr(insight, "topic", None)
+    if story is None:
+        story = insight if isinstance(insight, str) else None
+    if not story:
+        return pool[0]
+    key = f"{story}|{role}|{kind}"
+    return pool[int(_hashlib.sha1(key.encode()).hexdigest()[:8], 16)
+                % len(pool)]
+
+
+def scene_host(action: str, phase: float, insight=None, kind: str = ""):
     """The host as a PIL image, ANIMATED — the pose for this point in the beat.
 
     Every scene element reached for `charts._host_pose`, which loads ONE fixed
@@ -338,7 +413,22 @@ def scene_host(action: str, phase: float):
     video with two scene visuals to a duplicate ratio of 0.462 against a
     ceiling of 0.45: once an element finishes revealing, a static host means
     the entire frame is static.
+
+    `action` is a ROLE (see `SCENE_ROLES`), resolved here to one of the real
+    animators. Passing the raw animator name still works — the roles and the
+    animator vocabulary do not collide — which is how `draw_hurdle` picks
+    cheer-or-strain from whether the number actually cleared the bar.
     """
+    # THE PNG FALLBACK SPEAKS THE OLD VOCABULARY, so it is keyed on the ROLE.
+    #
+    # `assets/mascot/host/` holds cheer, duck, idle, laugh, point, ride, shock
+    # and think — which is where the role names came from in the first place.
+    # `compose_anim` needs `point_at`; `_host_pose` needs `point`. Resolving
+    # first and falling back on the resolved name finds no file and returns
+    # None, i.e. NO MASCOT — which is what happens wherever libcairo2 is not
+    # installed, including the `tests` CI job. It cost five machines their
+    # host there while every one of them was fine locally.
+    role, action = action, scene_act(action, insight, kind)
     key = (action, round(max(0.0, min(1.0, phase)) * 60) / 60)
     if key in _SCENE_HOST_CACHE:
         return _SCENE_HOST_CACHE[key]
@@ -352,7 +442,7 @@ def scene_host(action: str, phase: float):
                                charts._perf_phase(key[1]))
         img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
     except Exception:  # noqa: BLE001 — a scene must never die over the host
-        img = charts._host_pose(action)
+        img = charts._host_pose(_ROLE_PNG.get(role, role))
     # CROP TO THE SPRITE. The rasteriser returns a 300x300 square and the host
     # occupies 134x210 of it — 55% empty either side, 30% top and bottom.
     # Every machine sizes him by height and anchors to that box, so he came
@@ -838,7 +928,7 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     # He stands on the figure that just landed, so he ADVANCES along the block
     # as the count grows: contact for STRICT_CONTACT, and honest motion for the
     # whole build rather than a sprite parked in a corner.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, label, "unit_figures")
     if host is not None:
         mh = int(max(150, min(300, side * 1.7)))
         mw = int(host.width * mh / host.height)
@@ -927,7 +1017,8 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # THE HOST RIDES THE HEAVY PAN. `render_scene` marks every scene
     # host_baked, which suppresses the travelling overlay — so an element that
     # draws no host ships a beat with none at all.
-    host = scene_host("cheer" if hi else "point", reveal)
+    host = scene_host("cheer" if hi else "point", reveal, label,
+                      "balance")
     if host is not None:
         mh = 230
         mw = int(host.width * mh / host.height)
@@ -1021,7 +1112,7 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
            fill=_rgba(color, int(255 * na)), anchor="mm")
     d.text((_cx(box), bot + 40), f"{label}   {charts._ulabel(value, unit)}",
            font=_pil_font(44), fill=_rgba(TEXT, int(235 * na)), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, label, "dot_field")
     if host is not None and cx_last is not None:
         mh = int(max(150, min(280, side * 2.2)))
         mw = int(host.width * mh / host.height)
@@ -1136,7 +1227,7 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
                             max(60, _room), min_size=18)
         d.text((_pts_x[_i], _axis_y + 40), _yt, font=_yf,
                fill=_rgba(TEXT, 185), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "road")
     if host is not None:
         mh = 300
         mw = int(host.width * mh / host.height)
@@ -1253,7 +1344,7 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((lo + hi) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "tape")
     if host is not None:
         mh = int(min(340, max(0, _ground - (y + 150))))
         if mh > 120:
@@ -1352,7 +1443,7 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, by0 + 90), "how far it still has to go",
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
     y = deck_y
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "bridge")
     if host is not None:
         mh = 300
         mw = int(host.width * mh / host.height)
@@ -1396,7 +1487,7 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
                font=_cf, fill=_rgba(TEXT, int(190 * a)), anchor="mm")
     med = vals[mid_i]
     mx = int(bx0 + 60 + mid_i * w + w / 2)
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "centre")
     if host is not None:
         mh = 230
         mw = int(host.width * mh / host.height)
@@ -1438,7 +1529,7 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
             d.line([(x, y + 8), (x, bot + 30)], fill=_rgba(TEXT, 45), width=4)
     cx_, cy_ = pts[-1]
     host = scene_host("cheer" if ys[k_end] < ys[max(0, k_end - 1)]
-                      else "shock", reveal)
+                      else "shock", reveal, insight, "reversal")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1489,7 +1580,7 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx - 136, fy), charts._ulabel(v * e, unit, group=True),
            font=_pil_font(52), fill=_rgba(color, 255), anchor="rm")
     host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
-                      reveal)
+                      reveal, insight, "thermometer")
     if host is not None:
         mh = 220
         mw = int(host.width * mh / host.height)
@@ -1544,7 +1635,7 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
         big = 16 + 22 * ((v - lo) / span)
         d.ellipse([px - big, py - big, px + big, py + big],
                   fill=_rgba(color if v >= hi - 1e-9 else ACCENT, 235))
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "wheel")
     if host is not None:
         a = turn - _math.pi / 2
         px = int(cx + _math.cos(a) * R)
@@ -1613,7 +1704,7 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         r_ = 17 + 16 * (1.0 - t_)
         d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
                   fill=_rgba(HIGHLIGHT, 235))
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "darts")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1660,7 +1751,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     # empty — the picture of a backlog has to be able to get LONGER, so it
     # wraps, the way a real queue folds back on itself.
     n_wait = max(1, int(round(1 + frac * 29)))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "queue")
     mh = 280
     mw = int(host.width * mh / host.height) if host is not None else 170
     hx = bx0 + 60
@@ -1788,7 +1879,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(WARN, int(255 * na)), anchor="rm")
         d.line([(int(cx - full / 2 - 32), wy), (int(cx - full / 2 - 8), wy)],
                fill=_rgba(WARN, int(255 * na)), width=6)
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "bottleneck")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -1856,7 +1947,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
     if fa > 0.0:
         d.text((cx, by1 - 140), f"only {frac * 100:.0f}% stay",
                font=_pil_font(48), fill=_rgba(TEXT, int(235 * fa)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "leaky")
     if host is not None:
         mh = 220
         mw = int(host.width * mh / host.height)
@@ -1936,7 +2027,8 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
            f"{'left over' if surplus >= 0 else 'short'}",
            font=_pil_font(58), fill=_rgba(net_col, 255), anchor="mm")
-    host = scene_host("cheer" if surplus >= 0 else "strain", reveal)
+    host = scene_host("cheer" if surplus >= 0 else "strain", reveal,
+                      insight, "inout")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2003,7 +2095,7 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
         px = int(cx + (tgt - cx) * t_)
         py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
         particle(d, _st["particle"], px, py, 14, _rgba(HIGHLIGHT, 225))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "sorter")
     if host is not None:
         mh = 210
         mw = int(host.width * mh / host.height)
@@ -2098,7 +2190,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, by1 - 120),
            f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
            font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "chain")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -2169,7 +2261,7 @@ def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
     if k and n:
         d.text((cx, cy + r + 92), f"about {k} in {n}", font=_pil_font(46),
                fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "spinner")
     if host is not None:
         mh = 210
         mw = int(host.width * mh / host.height)
@@ -2221,7 +2313,7 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(color, 255), anchor="mm")
     d.text(((bx0 + bx1) // 2, bot + 90), f"{p * 100:.1f}% chance",
            font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "doors")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2311,7 +2403,7 @@ def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(TEXT, 190), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "the data stops here",
            font=_pil_font(52), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "fan")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2375,7 +2467,7 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(42), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "they move together",
            font=_pil_font(56), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "gears")
     if host is not None:
         mh = 200
         mw = int(host.width * mh / host.height)
@@ -2449,7 +2541,7 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, _say_y),
            f"{a_v / tot * 100:.0f}% one way, {b_v / tot * 100:.0f}% the other",
            font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "slider")
     if host is not None:
         mh = int(max(200, min(330, by1 - 20 - (_say_y + 50))))
         mw = int(host.width * mh / host.height)
@@ -2509,7 +2601,7 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "density")
     if host is not None:
         # He holds the whole foot of the frame. At 180px tucked in the corner
         # there were 400px of nothing between the numbers and him — 25% void
@@ -2628,7 +2720,7 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
     d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "nest")
     if host is not None:
         mh = 170
         mw = int(host.width * mh / host.height)
@@ -2726,7 +2818,7 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, _s, 42, (bx1 - bx0) - 60, min_size=26)
     d.text((cx, by1 - 170), _s, font=_f,
            fill=_rgba(color, int(250 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "chairs")
     if host is not None:
         mh = 180
         mw = int(host.width * mh / host.height)
@@ -2823,7 +2915,7 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "how long it takes",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "hourglass")
     if host is not None:
         mh = 240
         mw = int(host.width * mh / host.height)
@@ -2923,7 +3015,7 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(col, 245), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "one cup, one title",
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "trophies")
     if host is not None:
         mh = 160
         mw = int(host.width * mh / host.height)
@@ -2996,7 +3088,7 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     say_y = min(by1 - 330, top + bh + 200)
     d.text(((bx0 + bx1) // 2, say_y), f"{lost:.0f}% less in the basket",
            font=_pil_font(42), fill=_rgba(WARN, int(240 * na)), anchor="mm")
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "basket")
     if host is not None:
         mh = int(min(300, by1 - 20 - (say_y + 60)))
         mw = int(host.width * mh / host.height)
@@ -3052,7 +3144,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
         ty = min(ty, by) if k else by
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "tower")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -3158,7 +3250,7 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
         bounce = 26.0 * _math.exp(-1.3 * t_) * _math.cos(t_ * 5.0 * _math.pi)
         hx, hy = run_to, val_y - bounce
         act = "cheer" if cleared else "strain"
-    host = scene_host(act, reveal)
+    host = scene_host(act, reveal, insight, "hurdle")
     if host is not None:
         mh = 260
         mw = int(host.width * mh / host.height)
@@ -3275,7 +3367,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
             8.0, wv * 0.6)
         particle(d, _st["particle"], px, py, 10, _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "funnel")
     if host is not None and last_xy is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
@@ -3338,7 +3430,7 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
                             fill=_rgba(ACCENT, 225),
                             outline=_rgba(charts.CARD, 255), width=3)
-    host = scene_host("strain", reveal)
+    host = scene_host("strain", reveal, insight, "conveyor")
     if host is not None:
         mh = 300
         mw = int(host.width * mh / host.height)
@@ -3430,7 +3522,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                 py = split_y + (bot - split_y) * u
             particle(d, _st["particle"], px, py, 11,
                      _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "pipes")
     if host is not None and last is not None:
         # Beside the trunk, not inside it — a wide trunk with him in the middle
         # read as a grey box the mascot was standing in.
@@ -3535,7 +3627,7 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
            f"anywhere between {charts._ulabel(lo, unit)} and "
            f"{charts._ulabel(hi, unit)}",
            font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
-    host = scene_host("think", reveal)
+    host = scene_host("think", reveal, insight, "spotlight")
     if host is not None:
         mh = 240
         mw = int(host.width * mh / host.height)
@@ -3614,7 +3706,7 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
             tall_xy = (int(sx + w / 2), sy)
     # Data at the foot of the tallest, small enough that the height means
     # something. He is the ruler, not the subject.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "skyline")
     if host is not None and tall_xy is not None:
         mh = 140
         mw = int(host.width * mh / host.height)
@@ -3674,7 +3766,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
             d.text((int(sx + w / 2), bot + 34), _tt, font=_tf,
                    fill=_rgba(TEXT, 190), anchor="mm")
             top_xy = (int(sx + w / 2), sy)
-    host = scene_host("climb", reveal)
+    host = scene_host("climb", reveal, insight, "staircase")
     if host is not None and top_xy is not None:
         mh = int(min(280, (bot - top) * 0.34))
         mw = int(host.width * mh / host.height)
@@ -3735,7 +3827,7 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
     ch = 150
     d.rounded_rectangle([sx0 + 16, cy - ch // 2, sx1 - 16, cy + ch // 2],
                         radius=14, fill=_rgba(color, 235))
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "elevator")
     if host is not None:
         mh = ch - 18
         mw = int(host.width * mh / host.height)
@@ -3847,7 +3939,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # The slab is the LOAD: its thickness is the value against the range, so
     # the picture is the increase. The exact figure is in the line above.
     n_slabs = max(1, int(round(1 + frac * 7)))
-    host = scene_host("hoist_stack", reveal)
+    host = scene_host("hoist_stack", reveal, insight, "burden")
     mh = int(min(560, (by1 - by0) * 0.38))
     mw = int(host.width * mh / host.height) if host is not None else 280
     # He SINKS as it gets heavier — the knees give, so the load descends on him
@@ -3915,7 +4007,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, cy + 208), _gl, font=_gf, fill=_rgba(TEXT, 220), anchor="mm")
     # He stands UNDER the dial reading it, at a size that occupies the lower
     # band, rather than parked beside the arc as a sticker.
-    host = scene_host("point", reveal)
+    host = scene_host("point", reveal, insight, "gauge")
     if host is not None:
         mh = int(min(360, max(0, (by1 - (cy + 250))) * 0.92))
         if mh > 120:
@@ -3993,7 +4085,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     # Ease so the field surges out of the blocks and settles into its order,
     # rather than sliding at a constant rate like a loading bar.
     e = settle(reveal)
-    runner = scene_host("cheer", reveal)
+    runner = scene_host("cheer", reveal, insight, "race")
     rh = int(max(96, min(170, lane_h * 0.86)))
     rw = int(runner.width * rh / runner.height) if runner is not None else rh
     # the finish line
@@ -4254,7 +4346,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
     # Data's act varies with the demonstration: he POINTS OUT the stacking bill
     # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
-    host = scene_host("point" if bars else "cheer", r)
+    host = scene_host("point" if bars else "cheer", r, insight, "closing")
     mh = 268        # a strong presence, but not so big it collides with text
     if host is not None:
         mw = int(host.width * mh / host.height)
@@ -4335,7 +4427,7 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
     # Data rides the dot along the axis (composited straight into the beat).
-    host = scene_host("cheer", reveal)
+    host = scene_host("cheer", reveal, insight, "timeline")
     if host is not None:
         from PIL import Image as _Im
         mh = 250

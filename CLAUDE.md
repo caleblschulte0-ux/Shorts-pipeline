@@ -119,6 +119,16 @@ Four rules, all of which were learned the hard way and are held by
   machine and diffs them with the gate's own detector.
 - **One easing curve** — `viz_scene.settle()`. Four machines rolled their own
   ease-out and all four asymptoted into a still frame.
+- **A NAME LOOKED UP WITH A SILENT DEFAULT IS A CAPABILITY THAT DOES NOT
+  EXIST.** `ANIMATORS.get(act, _a_carry)`, `PROPS.get(prop, price_tag)`,
+  `key in label.lower()` — three lookups, and between them they cost
+  `decorative_mascot` 147 of this channel's 228 recorded verdicts and the
+  FATAL `junk_imagery` 63 more. Data stood in every scene holding a blank
+  price tag because `"none"` was not a prop and `"point"` was not an
+  animator; a chart put a HOUSE on "cur-RENT-record". The showrunner
+  described all of it precisely, for weeks, with every test green. When you
+  add a name to any of these tables, add the test that says it RESOLVES, in
+  the same change.
 
 A new machine goes through the checklist at the bottom of
 `docs/DATA_MACHINES.md`, which also records what is deliberately NOT built

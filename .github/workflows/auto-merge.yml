@@ -124,8 +124,17 @@ jobs:
           #         invisibly, because the suite's exit code died in the
           #         tail pipe this gate used to run under (03ed6ae9f195).
           #         The first run with pipefail surfaced all 11 errors.
-          pip install -q pillow pyyaml requests numpy matplotlib
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          # cairosvg + libcairo2: THE MASCOT. Without them `compose_anim`
+          #         raises and the scene kit falls back to the eight committed
+          #         pose PNGs — a different sprite, a different size, and for
+          #         the roles with no PNG (strain, climb) no mascot AT ALL.
+          #         Production installs them (explainer.yml), so until
+          #         2026-09-09 every visual test in CI was measuring a render
+          #         that does not ship: the frame-occupancy sweep passed
+          #         locally and failed here on five machines, because five
+          #         machines had lost their host.
+          pip install -q pillow pyyaml requests numpy matplotlib cairosvg
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libcairo2
       # PIPEFAIL OR THE GATE IS DECORATION (doctor 03ed6ae9f195, 2026-08-24).
       # GitHub's default `run:` shell on Linux is `bash -e {0}` — NO pipefail —
       # so `unittest | tail` returned tail's zero and a red suite still
