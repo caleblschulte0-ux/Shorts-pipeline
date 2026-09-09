@@ -839,20 +839,39 @@ def unit_plan(value: float, per_value: float, cap: int = 60) -> tuple:
     """
     per = abs(float(per_value or 0)) or 1.0
     v = abs(float(value))
-    # ALWAYS a round unit. Honouring the authored `per_value` produced legends
-    # like "each = $24.9K", which is a worse thing to read than the raw number
-    # it was meant to make friendly. A count is only easier than a figure when
-    # the unit is something a person holds in their head.
+    # ONE ICON, ONE THING — whenever the number allows it.
+    #
+    # This is the whole premise in the docstring above ("counting them IS the
+    # number"), and the search below did not have it. For 12 crewed Moon
+    # landings it scored `each = 0.5` (24 icons, |24-18| = 6) exactly level
+    # with `each = 1` (12 icons, |12-18| = 6) and kept whichever it found
+    # first — the smaller step. The channel shipped twelve moons at half a
+    # Moon landing each:
+    #
+    #     "seg2:start uses red car pictograms for the count of crewed Moon
+    #      landings, with 12 icons at 'each = 0.5' — mismatched imagery and an
+    #      arithmetic legend"    fifty-years-since-moon-landing, 2026-09-09
+    #
+    # A unit below 1 on a countable quantity is not an isotype at all: it asks
+    # the viewer to count half-things and then multiply.
+    integral = v.is_integer()
+    if integral and 6 <= v <= cap:
+        return int(v), 1.0
     best = None
     step = 10.0 ** -6
     while step <= max(v, 1.0) * 10.0:
         for mult in (1.0, 2.0, 5.0):
             cand = step * mult
+            # Half of a whole thing does not exist. A genuinely fractional
+            # quantity (2.4 tonnes, 0.8 hectares) may still take one.
+            if integral and cand < 1.0:
+                continue
             k = int(round(v / cand))
             if 6 <= k <= cap:
                 # Prefer counts near 18 — enough to read as "a lot", few enough
-                # to actually count, and it tiles into a tidy block.
-                score = abs(k - 18)
+                # to actually count, and it tiles into a tidy block. On a TIE,
+                # the bigger unit: fewer icons, each worth something rounder.
+                score = (abs(k - 18), -cand)
                 if best is None or score < best[0]:
                     best = (score, k, cand)
         step *= 10.0
