@@ -1062,16 +1062,22 @@
       "revisit_after": "20261004"
     },
     "73ecfd950397": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260909",
-      "because": "picked up: reordering checkout before the kill-switch step in longform.yml + adding an ordering test",
+      "because": "Merged in PR #340: checkout now runs before the PAUSED kill-switch check in longform.yml, with a regression test (structural across all scheduled publishers + executable against the real preflight shell) that fails pre-fix and passes post-fix.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260909",
           "because": "Verified: .github/workflows/longform.yml runs the PAUSED test before actions/checkout@v4, so on a fresh runner it always tests an empty workspace and can never see a PAUSED file committed on main. Every other publishing workflow (daily/explainer/third/curiosity/story_forge) checks out first. This is the exact 2026-08-06 disabled-channel bug class recurring in the newest workflow. Fixing now: reorder + add an executable ordering test."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260909",
+          "because": "picked up: reordering checkout before the kill-switch step in longform.yml + adding an ordering test"
         }
-      ]
+      ],
+      "commit": "3feed21"
     },
     "b9f879c22ed1": {
       "verdict": "doing",
