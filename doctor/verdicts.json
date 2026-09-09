@@ -1055,10 +1055,16 @@
       ]
     },
     "694ab7c3e1d4": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed at .github/workflows/retro.yml: build_retro.py, review_proposals.py and the failure-census/advance-experiments steps are all continue-on-error: true, and the 'Commit brief + triage + summary' step (~198-214) commits whatever paths exist with no check that today's brief.json/triage.json were actually produced fresh. A silent failure in build_retro.py or review_proposals.py can still finish green with a stale or missing brief. Real gap; fix needs an explicit artifact-freshness gate before the commit step.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. scripts/retro_gate.py checks the day's OUTPUTS by name for the resolved date \u2014 brief.json + brief.md + triage.json nightly, triage.json on the proposals-push path \u2014 and reads the date stamped inside each file, so a rerun that resolved a different date cannot pass. Analytics/experiments/census stay best-effort as the finding recommended. The gate runs before the commit so it cannot be skipped, records its verdict, and the run fails in a final step: the commit still happens, because a red run with its diagnostics committed is retryable and one that threw them away is not. 14 tests; the five workflow-wiring assertions fail against the unfixed retro.yml.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed at .github/workflows/retro.yml: build_retro.py, review_proposals.py and the failure-census/advance-experiments steps are all continue-on-error: true, and the 'Commit brief + triage + summary' step (~198-214) commits whatever paths exist with no check that today's brief.json/triage.json were actually produced fresh. A silent failure in build_retro.py or review_proposals.py can still finish green with a stale or missing brief. Real gap; fix needs an explicit artifact-freshness gate before the commit step."
+        }
+      ]
     },
     "d486c2fbfdaf": {
       "verdict": "doing",
