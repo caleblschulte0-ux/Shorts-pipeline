@@ -785,10 +785,16 @@
       ]
     },
     "808fcf2f9b8e": {
-      "verdict": "doing",
-      "date": "20260824",
-      "because": "Real: expression-tests.yml is not a dependency of the squash merge and its PR paths omit pro_render.py. Wire as a required pre-merge job in a coming batch.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. expression-tests.yml offers workflow_call and auto-merge calls it as a required job; automerge accepts a SKIPPED expression suite (paths untouched, so an ordinary package PR does not pay for a 25-minute render) but never failure or cancelled \u2014 and because that needs always(), sanity's and tests' results are now checked explicitly, with a test saying so. PR paths aligned with push paths, so pro_render.py and test_expressions_render.py no longer skip their own proof. Found on the way: scripts/test_expressions_render.py ran nowhere at all \u2014 skipped by name in auto-merge as 'covered by expression-tests.yml' and not invoked by it; it passes as written (4/4 scenes) and is wired in, with a test that every script auto-merge skips by name is really run by that workflow. The path decision reads expression-tests.yml's own list rather than copying it, and fails open. 13 of the 14 tests fail against the unfixed workflows.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260824",
+          "because": "Real: expression-tests.yml is not a dependency of the squash merge and its PR paths omit pro_render.py. Wire as a required pre-merge job in a coming batch."
+        }
+      ]
     },
     "268b809a2bbb": {
       "verdict": "later",
