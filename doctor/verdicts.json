@@ -1043,10 +1043,16 @@
       "history": []
     },
     "a2d4a0aea829": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: README.md:33 still says 06:15 UTC and docs/FALLBACKS.md:86, exchange/README.md:451, CLAUDE_ROUTINE_INSTRUCTIONS.md:75/82 still say 12:45 UTC, while the live schedule (exchange_phase_b.yml) is paired UTC crons gated to 08:30 America/Chicago (also correctly documented at docs/FALLBACKS.md:220, so the doc contradicts itself). Small, mechanical, real \u2014 fixing now.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "All four runbooks now say 08:30 Central. Held by tests/test_docs_state_the_live_schedule.py rather than by remembering to update four files: no doc may state the backstop as a UTC wall-clock time, retired hours may appear only in prose that dates them, and every doc discussing the backstop must name the real time, derived from FINALIZER_HOUR_CENTRAL. Proven as a regression test by reintroducing the README wording. Historical explanations of why 12:45 UTC was wrong are deliberately kept.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: README.md:33 still says 06:15 UTC and docs/FALLBACKS.md:86, exchange/README.md:451, CLAUDE_ROUTINE_INSTRUCTIONS.md:75/82 still say 12:45 UTC, while the live schedule (exchange_phase_b.yml) is paired UTC crons gated to 08:30 America/Chicago (also correctly documented at docs/FALLBACKS.md:220, so the doc contradicts itself). Small, mechanical, real \u2014 fixing now."
+        }
+      ]
     },
     "f7633072ef78": {
       "verdict": "doing",
