@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260905",
+  "updated": "20260909",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1060,6 +1060,73 @@
       "because": "Agreed with the finding's own conclusion: keep the registered cadence/mix unchanged for now. The trending recovery (0->9 posts) is one day and the leading explainer result is only 6.8h old; neither is a stable enough sample to justify a registry change, and there is nothing to build here beyond what the finding itself recommends (no action). Parking for revisit once more mature samples accumulate rather than settling it as not_doing, since the direction call itself may look different in a few weeks.",
       "history": [],
       "revisit_after": "20261004"
+    },
+    "73ecfd950397": {
+      "verdict": "in_progress",
+      "date": "20260909",
+      "because": "picked up: reordering checkout before the kill-switch step in longform.yml + adding an ordering test",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: .github/workflows/longform.yml runs the PAUSED test before actions/checkout@v4, so on a fresh runner it always tests an empty workspace and can never see a PAUSED file committed on main. Every other publishing workflow (daily/explainer/third/curiosity/story_forge) checks out first. This is the exact 2026-08-06 disabled-channel bug class recurring in the newest workflow. Fixing now: reorder + add an executable ordering test."
+        }
+      ]
+    },
+    "b9f879c22ed1": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: shared/media_checkpoint.py contract_problems() mismatch is folded into 'refused' only for media requests (exchange_phase_b.py ~593-604); ingest(), ingest_explainer(), ingest_curiosity() are called unconditionally afterward and ingest_authored.py's collect() re-reads response.json directly with no contract verdict passed in. A stale/mismatched response can promote authored packages while only its media is blocked. Real high-severity isolation gap; queued to fix by threading the contract verdict into all three ingest paths.",
+      "history": []
+    },
+    "f08a10274ea9": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified against the run 34052953808 evidence: longform_render.py routes every beat to _still_beat() when hero/manim are unavailable or fail, and the Sept 6 candidate measured 8.4 effective FPS against the shared 11.0 floor. The gate did its job (correctly blocked); the fix belongs in the renderer's motion floor, not the gate. Real short_term engineering work, queued behind the two live bugs above.",
+      "history": []
+    },
+    "0cc2e7f231ca": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: shared/media_checkpoint.py claim_or_wait() reclaims an expired/corrupt claim via an unconditional atomic_write_json(path, claim) after reading the prior claim, with no compare-and-swap against the value just observed. Two workers racing on the same expired claim can both be granted=True. Narrow window but a real duplicate-generation bug in the exchange's own concurrency primitive; queued.",
+      "history": []
+    },
+    "b6648006da7e": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck.",
+      "history": []
+    },
+    "f87f60f38feb": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: longform_render.py's make_thumbnail() failure is caught broadly and printed as 'thumbnail skipped'; build_longform.py then passes thumbnail=None to the uploader and publishes anyway. tests/test_longform_gated.py only source-greps for 'thumbnail=thumb', so it can't catch this fail-open branch. Small, concrete fix; queued.",
+      "history": []
+    },
+    "ad9061de9638": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: shared/exchange_bundle.py mark_ready() swallows every exception and returns None; scripts/exchange_phase_a.py only uses the truthiness of that result for a print statement and unconditionally returns 0. A failed READY write is reported as a successful Phase A run. Small, concrete fix; queued behind this run's build (73ecfd950397, ranked first by severity).",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: shared/exchange_bundle.py mark_ready() swallows every exception and returns None; scripts/exchange_phase_a.py only uses the truthiness of that result for a print statement and unconditionally returns 0. A failed READY write is reported as a successful Phase A run. Small, concrete fix; queued and will likely be built this same session alongside the critical item since both are one-line-scope."
+        }
+      ]
+    },
+    "f037737f7224": {
+      "verdict": "later",
+      "date": "20260909",
+      "because": "The proposal (treat the first 3 gate-clearing 16:9 uploads as a measured launch cohort before expanding) is sound direction and not a lower-bar strategy, but it has nothing to act on yet: post-relaunch long-form has zero gate-clearing uploads (the one candidate was BLOCKED \u2014 see 73ecfd950397/f08a10274ea9, now ruled doing). There is also no live proposal to expand long-form's cadence for this to guard against; it already runs a fixed weekly cron outside the registry. Re-file with new_evidence_since once the motion-floor fix ships and the first 16:9 candidate actually posts \u2014 that is when cohort tracking has something to track.",
+      "history": [],
+      "revisit_after": "20261009"
+    },
+    "38fd2900770d": {
+      "verdict": "doing",
+      "date": "20260909",
+      "because": "Verified: build_longform.py pick_slug() selects the newest unused published explainer slug with no chapter-count/duration/claim-depth check, and the Sept 6 47-second all-still candidate shows clearing the Shorts gate does not imply long-form readiness. Real long_term design gap; queued behind the motion-floor and transaction-safety work it's related to.",
+      "history": []
     }
   }
 }

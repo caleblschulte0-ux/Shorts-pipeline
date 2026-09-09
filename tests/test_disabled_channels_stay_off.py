@@ -28,14 +28,25 @@ a deliberate act, which is the whole point.
 from __future__ import annotations
 
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 WF = ROOT / ".github" / "workflows"
+
+#: Every workflow that publishes on its own schedule and therefore must
+#: actually be able to SEE a PAUSED file committed on main, not an empty
+#: fresh-runner workspace. (doctor finding 73ecfd950397, 2026-09-09.)
+SCHEDULED_PUBLISHERS = ["daily.yml", "explainer.yml", "third.yml",
+                        "curiosity.yml", "story_forge.yml", "longform.yml"]
 
 #: Workflows that publish a channel/format the operator has switched off.
 #: To re-enable one: turn it on in the registry (or add the format), then
@@ -274,6 +285,87 @@ class TestAutoPauseIsABackoffNotALatch(unittest.TestCase):
         behavior; this just pins the wiring)."""
         src = (ROOT / "scripts" / "daily_alarm.py").read_text()
         self.assertIn("channel_auto_paused", src)
+
+
+class TestKillSwitchSeesTheCheckedOutRepo(unittest.TestCase):
+    """A fresh GitHub Actions runner's workspace is EMPTY until
+    `actions/checkout` populates it. A step that tests `[ -f PAUSED ]`
+    before checkout is therefore always testing an empty directory and can
+    never observe a PAUSED file committed on main — the pipeline kill
+    switch silently does nothing.
+
+    longform.yml shipped exactly this bug (doctor finding 73ecfd950397,
+    2026-09-09): its "Pre-flight — kill switch" step ran as step 0, before
+    the checkout at step 1. Every other scheduled publisher already got
+    this right. This test would have caught it, and pins the fix so it
+    cannot regress silently in either this workflow or a future one."""
+
+    def _steps(self, name: str, job: str) -> list[dict]:
+        wf = yaml.safe_load((WF / name).read_text())
+        return wf["jobs"][job]["steps"]
+
+    def _publishing_job(self, name: str) -> tuple[str, list[dict]]:
+        wf = yaml.safe_load((WF / name).read_text())
+        jobs = wf["jobs"]
+        # Some workflows (explainer/curiosity) also define a small "plan"
+        # job that only counts un-posted stories — never touches PAUSED and
+        # is not the publishing job this test is about.
+        for jobname, job in jobs.items():
+            steps = job.get("steps") or []
+            if any("PAUSED" in (s.get("run") or "") for s in steps):
+                return jobname, steps
+        self.fail(f"{name} has no step that checks PAUSED at all")
+
+    def test_checkout_precedes_every_kill_switch_check(self):
+        for name in SCHEDULED_PUBLISHERS:
+            if not (WF / name).exists():
+                continue
+            with self.subTest(workflow=name):
+                jobname, steps = self._publishing_job(name)
+                checkout_idx = next(
+                    (i for i, s in enumerate(steps)
+                     if str(s.get("uses", "")).startswith(
+                         "actions/checkout")), None)
+                paused_idx = next(
+                    i for i, s in enumerate(steps)
+                    if "PAUSED" in (s.get("run") or ""))
+                self.assertIsNotNone(
+                    checkout_idx,
+                    f"{name}:{jobname} has a PAUSED check but no checkout "
+                    f"step in the same job — it can never see a committed "
+                    f"PAUSED file")
+                self.assertLess(
+                    checkout_idx, paused_idx,
+                    f"{name}:{jobname} checks PAUSED (step {paused_idx}) "
+                    f"before actions/checkout (step {checkout_idx}) — on a "
+                    f"fresh runner this always tests an empty workspace and "
+                    f"the kill switch can never fire")
+
+    def test_longform_kill_switch_actually_fires_after_a_real_checkout(self):
+        """Executable, not just structural: run the step's own shell text
+        the way Actions does, once against a workspace that stands in for
+        "checkout already ran and PAUSED is in the repo", and once for the
+        normal unpaused case."""
+        _, steps = self._publishing_job("longform.yml")
+        preflight = next(s for s in steps if "PAUSED" in (s.get("run") or ""))
+        script = preflight["run"]
+
+        tmp = Path(tempfile.mkdtemp(prefix="longform-preflight-"))
+        try:
+            proc = subprocess.run(["bash", "-e", "-c", script], cwd=tmp,
+                                  capture_output=True, text=True)
+            self.assertEqual(proc.returncode, 0,
+                             "preflight must pass on a normal checked-out "
+                             "repo with no PAUSED file")
+
+            (tmp / "PAUSED").write_text("")
+            proc = subprocess.run(["bash", "-c", script], cwd=tmp,
+                                  capture_output=True, text=True)
+            self.assertNotEqual(proc.returncode, 0,
+                                "preflight must refuse once PAUSED exists "
+                                "in the (post-checkout) workspace")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":
