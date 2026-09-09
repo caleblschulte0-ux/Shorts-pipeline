@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-09-09T16:36:35+00:00",
+ "date": "20260909",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260909/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-movers-video-proof-claim-s0-8058fa3e580f.json",
+  "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
+  "reddit-movers-video-proof-claim-s2-d07433115f65.json",
+  "reddit-movers-video-proof-claim-s3-9d51c7eff016.json",
+  "reddit-movers-video-proof-claim-s4-c85c45f06f60.json",
+  "reddit-movers-video-proof-claim-s5-e0817f3f858d.json",
+  "reddit-movers-video-proof-claim-s6-75baa41897a0.json",
+  "reddit-movers-video-proof-claim-s7-cec0587abc36.json",
+  "reddit-subcontractor-lien-payback-s0-5d660c4266a1.json",
+  "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5.json",
+  "reddit-subcontractor-lien-payback-s2-c04a65e5cea7.json",
+  "reddit-subcontractor-lien-payback-s3-dd17b057109c.json",
+  "reddit-subcontractor-lien-payback-s4-90a134bf26e6.json",
+  "reddit-subcontractor-lien-payback-s5-681143662167.json",
+  "reddit-subcontractor-lien-payback-s6-a2840be4db8c.json",
+  "reddit-subcontractor-lien-payback-s7-f79a42e1532d.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
