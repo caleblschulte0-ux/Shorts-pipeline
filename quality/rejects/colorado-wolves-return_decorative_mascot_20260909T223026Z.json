@@ -1,0 +1,25 @@
+{
+ "slug": "colorado-wolves-return",
+ "ts": "20260909T223026Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only stands and rides: perched on the rising capsule (hook@0.8, seg2:start), standing beside the caliper holding a sign (seg1:mid), standing on the balance pan (seg2:end), and shrunk to a ~30px sticker in the corner of the nest box (seg4:mid) \u2014 no setup->action->payoff bit ti",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start/seg4:mid/payoff@-0.4 hold the same composition for ~5s: a speech bubble up top, a nest box occupying only the middle third with one then two blue squares, a ~30px mascot sticker in the corner, and a dead lower third. Labels stack and collide ('Wolves so far fits in Program target' over 'wolves so far vs the program's target') and the caption reads '2 times over' when 32 into 50 does not fit even twice.",
+  "root_cause": "The nest machine was sized to the middle band and never scaled to the vertical frame, and its multiple/count label is rounded up from 50/32=1.56 to '2', so the closing claim is both small and wrong.",
+  "repair_goal": "Rebuild the closing beat so the nest fills the vertical frame edge to edge, drop the duplicated title line, scale the mascot to a readable performer doing a real act on the shortfall (e.g. carrying the 18-wolf gap into the target box), and state the true relationship \u2014 32 of 50, 64% of the way \u2014 instead of '2 times over'."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

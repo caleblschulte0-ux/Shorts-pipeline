@@ -1,0 +1,9 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260909T223026Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=47.92s of 51.17s (~2.1s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

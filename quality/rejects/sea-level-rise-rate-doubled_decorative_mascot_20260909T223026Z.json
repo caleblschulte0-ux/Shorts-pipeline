@@ -1,0 +1,21 @@
+{
+ "slug": "sea-level-rise-rate-doubled",
+ "ts": "20260909T223026Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only perches: on top of the block stack (hook@0.3\u2013seg1:start), on a bar (seg1:mid, seg3:start), and stands beside the icon grid holding a BLANK yellow sign (seg2:start, seg3:end, payoff@-0.4). No setup->action->payoff anywhere.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "irrelevant_imagery",
+  "visible_evidence": "seg2:start (t=22.19s): 12 red car icons in a 3x4 grid under the header \"2024's rate: predicted vs. actual\" with legend 'each = 0.5' \u2014 the unit being counted is millimetres of ocean rise, and the picture is cars. seg2:mid (t=26.31s) then collapses to two tiny blobs in a mostly empty frame with the label 'Expected (from long-term trend' clipped off the right edge.",
+  "root_cause": "The icon-array machine fell back to a generic default glyph instead of a topic-derived one, so the pictograph unit is unrelated to the subject; the paired bubble compare is also laid out without an edge-safe area, so its category labels run off-frame.",
+  "repair_goal": "Replace the car glyph with a water-relevant unit (wave / droplet / tide-ruler tick) so 'each = 0.5 mm' is legible as ocean rise, and keep the 5.9-vs-4.3 comparison inside the safe area with both labels fully on screen and the circles sized to fill the frame."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

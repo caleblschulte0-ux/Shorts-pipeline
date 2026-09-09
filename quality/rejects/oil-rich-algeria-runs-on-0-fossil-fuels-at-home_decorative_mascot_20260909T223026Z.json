@@ -1,0 +1,21 @@
+{
+ "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
+ "ts": "20260909T223026Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data is parked beside the bars in hook@0.3 through seg1:start with no bit \u2014 he just slides right as the bars grow \u2014 and by seg3:start/seg3:end he is a ~20px sticker at the foot of the Kosovo bar doing nothing; no setup->action->payoff is ever tied to a number.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start/seg3:mid/payoff@-0.4 place a single narrow 86.1 column left of centre with Albania, Algeria, Angola and Antigua all drawn as flat '0' labels; the right two-thirds and the top third of the frame are empty dark gradient, the mascot is shrunk to an unreadable sprite at the bar's base, and the closing card floats detached above it \u2014 the payoff beat is the emptiest frame in the video.",
+  "root_cause": "The machine kept the alphabetical World Bank slice whose four peers have no data, rendered missing values as zero-height bars, and then laid the whole thing out at small scale in the upper-left instead of composing to the vertical canvas, so the climax has almost nothing to look at and reads as four countries genuinely consuming zero fossil fuel.",
+  "repair_goal": "Recompose seg3 so the comparison fills the frame: scale the 86.1 bar to the full canvas height with Algeria's 0.0% as the deliberate contrast beside it, drop or explicitly mark the no-data peers instead of drawing them as zeros, and give Data a real bit at the top of the Kosovo column (climbing it / being dwarfed by it) sized large enough to read."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

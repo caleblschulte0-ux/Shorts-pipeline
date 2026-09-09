@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260909T223026Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid and seg2:end waste the lower ~45% of the frame on empty gradient below a bare grey line with a thumbnail-sized mascot at far left; seg3:end is the same \u2014 a tiny title, two thin poles and nothing in the bottom half.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg2:mid and seg2:end the two hourglasses are crammed into the top third, the previous scene's title 'how long it takes' is still on screen stacked directly above 'how fast that really is' (two titles at once), the left label is clipped to 'Pit stop recor', and the entire bottom half is empty dark gradient with only a hairline floor and a tiny mascot pinned to the left edge. The 1.0s duplicate run at t=12.08 sits on the way into this scene.",
+  "root_cause": "The hourglass machine is laid out at chart scale in the upper band while the outgoing title from seg1 has not been cleared, so the scene occupies roughly a third of the canvas and the rest is unused; the label field is drawn at a width narrower than the series name.",
+  "repair_goal": "Fill the frame: scale the two hourglasses to ~200pt so the sand columns run most of the frame height, clear the outgoing title so only 'how fast that really is' is shown, un-clip the 'Pit stop record' label, and stage Data at the base of the pit-stop hourglass reacting to it draining (setup -> drain -> he is caught mid-blink) instead of parked on the left margin."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

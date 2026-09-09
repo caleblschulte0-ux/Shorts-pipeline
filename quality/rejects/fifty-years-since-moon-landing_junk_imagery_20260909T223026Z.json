@@ -1,0 +1,21 @@
+{
+ "slug": "fifty-years-since-moon-landing",
+ "ts": "20260909T223026Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg2:start (t=17.03s) counts 'Moon landings, Apollo era vs since' with a grid of 12 red CARS at 'each = 0.5' \u2014 a car icon has nothing to do with a crewed lunar landing, and the half-faded 12th car reads as a broken cutout.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:start (t=17.03s): the headline 'Moon landings, Apollo era vs since / 1969-1972 (Apollo era) 6' is illustrated with 12 red passenger CARS in a 3-wide grid over 'each = 0.5', one of them half-transparent; it then cuts to seg2:mid/end where the two axis captions '1969-1972 (Apollo era)' and '1973-2024 (since)' overprint each other and the subtitle into unreadable mush.",
+  "root_cause": "The pictograph machine fell back to a generic default icon instead of a topic-appropriate glyph for 'Moon landing', and the vs-comparison machine's category labels are not width-fitted or de-collided against the caption band.",
+  "repair_goal": "Replace the car icons with a moon/lunar-module/footprint glyph (or drop the pictograph and open on the 6-vs-0 comparison directly), unit at 'each = 1 landing' so 6 icons mean 6 landings, and lay the two category labels on separate lines above the caption band so neither overlaps the other or the subtitle."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

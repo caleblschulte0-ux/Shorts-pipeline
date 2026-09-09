@@ -1,0 +1,16 @@
+{
+ "slug": "podcasts-passed-radio-spoken-word",
+ "ts": "20260909T223026Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end and seg4:start\u2013payoff@-0.4 leave the entire lower 45% of the 9:16 frame as flat dark space with only two tiny mascots on hairline rules; seg2:mid also has ~60% of the frame empty below the dot grid.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "broken_label_and_layout",
+  "visible_evidence": "seg3:start/seg3:mid print the kicker 'DON'T IS 65% OF THE WHOLE' \u2014 a truncated category name ('Don't listen to a podcast weekly') rendered as a nonsense claim; the row label 'Listen to a podcast w' runs off the right edge and is clipped by the card, the two bars overlap into an unreadable dark stack at seg3:start, and by seg3:end the bars have vanished entirely leaving two tiny mascots on empty rules with no values on screen.",
+  "root_cause": "The share/part-of-whole machine is being fed the raw survey category strings as series labels without truncation-aware fitting, and the kicker template interpolates that same truncated label into an 'X IS n% OF THE WHOLE' sentence; the bar geometry is also laid out taller than the card so the fill and its labels clip.",
+  "repair_goal": "Rebuild seg3 so the 115M / 35% weekly-listener stat reads as one legible claim: label the two parts 'Listen weekly 35%' and 'Don't 65%' in full inside the frame, keep the kicker to a human sentence (no interpolated truncated label), fit both bars and their value tags entirely within the card, and hold the filled values on screen through the end of the beat instead of emptying to bare rules."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

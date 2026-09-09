@@ -1,0 +1,21 @@
+{
+ "slug": "bald-eagle-population-rebound",
+ "ts": "20260909T223026Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end waste the upper-left ~60% of the frame -- bare gradient from the title down to the axis, with the 1963 bar reduced to a hairline and the mascot a ~30px speck beside it.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid/end drop the styled dark card for a flat blue bar chart whose three bars hug the bottom-right quarter: the entire left and upper frame is empty gradient, the axis labels are truncated mid-word ('1963 (all', '2006 (yea'), the 71467 value label collides with the title 'bald eagle nesting pairs over time', and the mascot plus the 417 value are squashed into an unreadable clump on the baseline.",
+  "root_cause": "The scene fell back to a generic linear-scale bar chart sized to the largest value, so a 417-vs-71,467 range collapses two of three bars to nothing and leaves the plot area empty; the layout also lacks label-width fitting and title/value collision handling, and it does not inherit the card styling used by the surrounding beats.",
+  "repair_goal": "Rebuild seg1 as a full-frame demonstration of the 417 collapse that fills the canvas -- e.g. a log or broken axis (or a shrinking/vanishing unit visual) so the 1963 bar is legible at 200pt -- with untruncated labels, the value label clear of the title, the mascot scaled to match the other scenes and not overlapping the 417, and the same dark card treatment as seg0/seg2."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,18 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260909T223026Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=41.75s of 47.08s (~2.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

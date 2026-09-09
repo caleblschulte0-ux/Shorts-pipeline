@@ -1,0 +1,29 @@
+{
+ "slug": "buybacks-beat-dividends",
+ "ts": "20260909T223026Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid (t=11.01s) and seg1:end (t=15.46s) are a hairline timeline rule across the upper third with a tiny mascot, and the entire bottom ~60% of the 9:16 frame is flat black with nothing in it.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg1:mid (t=11.01s) the whole picture is a 1px-weight year axis at ~45% height, a ghosted '$1,000B' label and Data standing on the marker; below y~350 the frame is empty black for 5+ seconds, and seg1:end (t=15.46s) is the same layout with the marker slid to 2025 \u2014 the sparsest beat in the video for its longest stretch.",
+  "root_cause": "The scene picked a bare timeline/progress track as its machine and drew it at a single hairline height, so the relationship has no volume or vertical extent \u2014 it occupies one band of a vertical frame and nothing fills the remaining two-thirds, while the value labels render at near-background opacity.",
+  "repair_goal": "Replace the hairline timeline with a machine that uses the full 9:16 canvas and shows the 589B->806B->1000B climb as accumulating quantity (stacking/growing volume anchored to the frame bottom), keep the value labels at full contrast, and give Data one physical bit tied to the growth (climbing or being lifted by the pile) instead of standing on a marker that slides."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
