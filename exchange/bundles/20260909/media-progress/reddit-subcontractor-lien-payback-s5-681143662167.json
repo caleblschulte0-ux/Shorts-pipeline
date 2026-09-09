@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+  "safe_request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e4c6f00852f62c0c23dd8379776bb3c1dc55fa26482781b2a68fb56fd11b686a",
+  "prompt_used": "An editorial illustration for a short-form video: real estate closing table. It accompanies the narration: \"a title company will not close\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+    "filename": "20260909__reddit-subcontractor-lien-payback-s5-681143662167.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4ebda098736b27c9a6ba69f353c8c701d56d4a201b4001052f7f146c76c9158f",
+    "bytes": 1551697,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-09T11:34:00Z"
+}
