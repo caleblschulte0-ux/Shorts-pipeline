@@ -39,7 +39,11 @@
     },
     {
       "phrase": "their own certificate of insurance clause",
-      "query": "contract paperwork signing"
+      "query": "contract paperwork signing",
+      "pin_query": "Certificate of Insurance Clause",
+      "pin_context": "mover's insurance policy documentation",
+      "news_query": "Certificate of Insurance Clause",
+      "news_angle": "The narrator used the mover's own certificate of insurance clause to strengthen their claim for the missing clock."
     },
     {
       "phrase": "flagged it to legal within the hour",
