@@ -1,0 +1,122 @@
+name: Phase A readiness watchdog
+
+# IS THE DAY'S BUNDLE THERE BEFORE CHATGPT NEEDS IT? We answer, not it.
+#
+# Doctor finding 5187e34e11f3. exchange_phase_a.yml has three triggers and
+# only ONE is independent of upstream authoring having already happened: the
+# 09:45 UTC cron, whose own comments record GitHub drift measured in hours.
+# On 2026-08-29 and again on 2026-08-30 the 06:00 Central media worker
+# reached the handoff with no bundle and no package slate, and NOTHING WENT
+# RED — chatgpt_watchdog read the missing bundle as "0 images requested" and
+# reported not_required.
+#
+# This closes that gap from the front: judge at 05:00 Central, dispatch
+# Phase A when the bundle is absent, wait for it, judge again, and record a
+# durable verdict either way. Idempotent by construction — a bundle that
+# already exists short-circuits everything, and Phase A freezes the day's
+# bundle so a duplicate dispatch is harmless.
+#
+# CRONS ARE PAIRED AND GATED IN CODE, never a single UTC cron. 05:00 Central
+# is 10:00 UTC in summer (CDT) and 11:00 UTC in winter (CST); firing both and
+# letting shared/centraltime decide is the rule the repo learned twice (see
+# CLAUDE.md on Phase B's backstop). A run that fires "early" reports pending
+# and costs nothing.
+on:
+  schedule:
+    - cron: '0 10 * * *'   # 05:00 CDT
+    - cron: '0 11 * * *'   # 05:00 CST
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to judge (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: write          # needed to dispatch Phase A
+
+concurrency:
+  group: phase-a-watchdog
+  cancel-in-progress: false
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: First look
+        id: first
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          # Judge against what is on MAIN, not the triggering commit: Phase A
+          # commits the bundle, so a stale checkout is exactly how this would
+          # report a false MISSING and dispatch a duplicate.
+          git fetch origin main --depth=1
+          git checkout origin/main -- exchange/bundles 2>/dev/null || true
+          set +e
+          python3 scripts/phase_a_watchdog.py --date "$DATE"
+          echo "rc=$?" >> $GITHUB_OUTPUT
+
+      # Only when the bundle is genuinely absent past the deadline.
+      - name: Dispatch Phase A
+        if: steps.first.outputs.rc != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "::warning::no bundle for ${{ steps.first.outputs.date }} — dispatching Phase A"
+          gh workflow run exchange_phase_a.yml \
+            --repo "${{ github.repository }}" \
+            -f date="${{ steps.first.outputs.date }}" \
+            -f channel=trending || {
+              echo "::error::could not dispatch Phase A"; exit 1; }
+
+      # Wait for the bundle to land on main. Bounded: the media worker starts
+      # at 06:00 Central, so there is about an hour, and we spend at most 20
+      # minutes of it. Polling main (not the run's status) means we assert the
+      # thing that actually matters — the bundle is committed and readable.
+      - name: Wait for the bundle
+        if: steps.first.outputs.rc != '0'
+        run: |
+          for i in $(seq 1 20); do
+            sleep 60
+            git fetch origin main --depth=1 -q
+            if git cat-file -e "origin/main:exchange/bundles/${{ steps.first.outputs.date }}/bundle.json" 2>/dev/null; then
+              echo "bundle landed after ${i} minute(s)"; break
+            fi
+          done
+          git checkout origin/main -- exchange/bundles 2>/dev/null || true
+
+      - name: Final verdict
+        id: final
+        run: |
+          set +e
+          python3 scripts/phase_a_watchdog.py --date "${{ steps.first.outputs.date }}" --record
+          echo "rc=$?" >> $GITHUB_OUTPUT
+
+      # The record is the point — it is what chatgpt_watchdog reads to stop
+      # blaming the media worker for a bundle nobody wrote, and what proves
+      # WHEN we checked. Committed especially on a failure. No warning-swallow:
+      # a failed push must fail the step, same rule as chatgpt_watchdog.
+      - name: Persist the verdict
+        if: always()
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "watchdog: phase A readiness ${{ steps.first.outputs.date }} [skip ci]" \
+            state/phase_a_readiness
+
+      - name: Fail the run when the day has no bundle
+        if: always() && steps.final.outputs.rc != '0'
+        run: |
+          echo "::error::PHASE A NEVER RAN for ${{ steps.first.outputs.date }} — the 06:00 Central media worker is about to start with nothing. See state/phase_a_readiness/${{ steps.first.outputs.date }}.json"
+          exit 1
