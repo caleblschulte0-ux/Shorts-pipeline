@@ -1,0 +1,64 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260908",
+  "summary": "The September 7 critical trending repair outage remains real at 3/6, but it is already owned by active reliability and Phase A liveness backlog rather than needing a duplicate finding. Tuesday's exchange review found three new control-plane gaps: a response that declares the wrong frozen contract can still promote authored packages even though its media is refused; READY can fail to write while Phase A exits green; and two workers can both win reclamation of one expired media lease. Today's live exchange supplied the concrete coordination warning: the Finalizer committed a no-bundle partial response 11 seconds before Phase A landed, and nothing reconciled it afterward. Long-form still has no comparable post-relaunch audience sample, so no cadence or mix change is justified; the new long-term issue is upstream selection, because the builder chooses the newest unused short without testing whether it has enough depth to support a watch-page video.",
+  "alarm_ack": {
+    "production_repair_trending": "The 20260907 outcome remains repair_required at 3/6 after nine attempts. Active backlog 33ccbcdc479b already owns the decision to hold the mix until reliability is measurable, and 5187e34e11f owns timely Phase A recovery. This report does not call the outage fixed or weaken the showrunner."
+  },
+  "findings": [
+    {
+      "title": "A mismatched response can still promote authored packages",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/contract-isolation",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "scripts/ingest_authored.py",
+        "shared/media_checkpoint.py"
+      ],
+      "observation": "Phase B detects when response.json declares a registry revision, source commit, or production date that differs from the frozen bundle, but the mismatch is applied only to media pointers. The same response is then passed indirectly to ingest(), ingest_explainer(), and ingest_curiosity(), which reread response.json and can promote its authored content against the current day.",
+      "proposal": "Make contract validation an all-response admission decision before any consumer runs. On a declared mismatch, refuse authored packages, explainer rewrites, curiosity entries, script punch-ups, and media together; record the refusal in phase_b_report.json and add an adversarial test whose stale response contains otherwise valid authored content.",
+      "evidence": "shared/media_checkpoint.py:1062-1092 reports declared contract mismatches; scripts/exchange_phase_b.py:580-599 turns those problems into refused media IDs only, then lines 615-655 still call ingest(), ingest_explainer(), and ingest_curiosity(). scripts/ingest_authored.py:45-54, 192-204, and 264-269 read authored arrays directly from response.json without receiving the contract verdict."
+    },
+    {
+      "title": "Phase A exits green when READY was not written",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "exchange/phase-a-ready-signal",
+      "files": [
+        "scripts/exchange_phase_a.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "mark_ready() converts every filesystem error into None, and Phase A only prints the READY path when it is truthy; it still returns 0 after successfully writing bundle.json. A failed completion signal therefore looks like a successful Phase A run even though consumers that use READY cannot prove the bundle is complete.",
+      "proposal": "Treat a missing READY result as a Phase A write failure: print the exact path and return nonzero after leaving the valid bundle in place. Add a fault-injection test that makes the READY atomic write fail and asserts the command never reports successful completion.",
+      "evidence": "shared/exchange_bundle.py:463-472 catches every exception while writing exchange/bundles/<date>/READY and returns None. scripts/exchange_phase_a.py:330-345 checks `if ready` only for printing and then unconditionally returns 0."
+    },
+    {
+      "title": "Expired media leases can be reclaimed by two workers",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "exchange/media-lease-reclamation",
+      "files": [
+        "shared/media_checkpoint.py",
+        "tests/test_media_checkpoint.py"
+      ],
+      "observation": "Initial lease creation uses O_CREAT|O_EXCL, but expired, corrupt, or re-entrant claims are reclaimed with an unconditional atomic replace after the old claim is read. Two different workers that both observe the same expired claim can each overwrite it and both receive granted=true, duplicating generation and leaving the final checkpoint dependent on which worker finishes last.",
+      "proposal": "Make reclamation compare-and-swap against the exact prior claim, or serialize it with an atomic lock/rename protocol whose winner alone receives the lease. Add a two-contender concurrency test for an expired claim and require exactly one grant; preserve the existing live-claim, own-run retry, corruption, and crash-recovery behaviors.",
+      "evidence": "shared/media_checkpoint.py:746-766 uses O_CREAT|O_EXCL only for the first claim; lines 768-789 read the existing claim and then call atomic_write_json(path, claim) without rechecking that the observed value is still current. tests/test_media_checkpoint.py:566-617 covers sequential exclusion, own-run retry, one expired takeover, corruption, and release, but has no concurrent expired-reclaim case."
+    },
+    {
+      "title": "Long-form selection has no depth threshold",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "longform/source-readiness",
+      "files": [
+        "scripts/build_longform.py",
+        "data_learning/longform_render.py",
+        "data_learning/niche.config.json"
+      ],
+      "observation": "The long-form builder selects the newest published explainer slug that has not already been used, with no test for chapter count, narrative depth, expected duration, or whether the source contains enough distinct claims for a four-to-eight-minute watch-page video. The first substantive relaunch candidate rendered only 47 seconds, showing that clearing the Shorts gate does not prove long-form readiness.",
+      "proposal": "Add a source-readiness score before rendering that requires enough distinct sourced claims and a credible duration/chapter plan, then choose the highest-ready unused explainer rather than the newest one. When no story qualifies, hold the weekly slot and route the gap back to story development; keep the existing long-form showrunner and motion thresholds unchanged.",
+      "evidence": "scripts/build_longform.py:105-120 defines pick_slug() as the newest published unused story and performs no depth or duration check before scripts/build_longform.py:174-189 renders and invokes the showrunner. GitHub Actions run 34052953808 produced a 47-second all-still candidate from that path and the showrunner correctly blocked it; data_learning/longform_render.py:578-701 derives the finished duration from the selected story's existing sentence and segment windows."
+    }
+  ]
+}
