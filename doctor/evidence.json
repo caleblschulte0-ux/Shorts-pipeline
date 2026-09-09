@@ -1,43 +1,45 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260908",
-  "judged_date": "20260907",
+  "date": "20260909",
+  "judged_date": "20260908",
   "alarm": {
-    "date": "20260907",
+    "date": "20260908",
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_finalizer",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260908 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260908/response.json, exchange/bundles/20260908/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20260907.",
+        "detail": "explainer: 2/4 posted for 20260908.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 2/6 posted for 20260907.",
+        "detail": "third: 4/6 posted for 20260908.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "production_repair_trending",
+        "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending 20260907: production outcome says 3/6 uploaded and repair never completed (0 quarantined, 6 failed).",
-        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+        "detail": "trending: ZERO videos posted for 20260908 (registry wants 6).",
+        "fix": "Check the trending workflow run for 20260908. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 3/6; 3 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
+        "code": "channel_auto_paused",
+        "severity": "critical",
+        "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
+        "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "trending: 6/6 posted",
-      "failure counter at 1/2 \u2014 one more failing day auto-pauses trending",
-      "exchange: 14/14 ChatGPT images pinned",
-      "doctor: findings current (20260907)"
+      "slot fill not checked: daily_report.json has 9 row(s) and none belong to 20260908 \u2014 treating the report as absent for this date",
+      "doctor: findings current (20260908)"
     ],
     "deferred": false
   },
@@ -162,262 +164,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-04T15:15:56+00:00",
-      "slug": "undersea-cables-carry-internet",
-      "score": 57,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Solid, honest bar-race with a mascot who actually pushes the data \u2014 but the craft is leaky: labels clip off the right edge, zooms crop the card and its source line, and the hook is a chart build rather than an event.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3: opens on an already-drawn bar chart with a title card feel; the caption 'Satellites don't' overlaps and hides the '2000' year label, so the first frame is a collision, not a hook.",
-        "seg2:start / seg2:end: 'Satellite and other  5' and 'Submarine cables  95' are truncated at the right frame edge \u2014 the video's central claim (95%) is never shown as a complete, readable label.",
-        "seg2:mid: the zoom crops the whole card \u2014 title gone, source line gone, mascot static on a flat pink slab with the right half of the frame empty.",
-        "seg1:start and seg3:mid: the same crop bug \u2014 the source attribution line is sliced in half by the bottom edge and collides with the burned-in caption.",
-        "seg4:start: the closing callout box lands on top of the mascot and the 2010 bar, decapitating him and hiding the top row; two different source footers stack at the bottom simultaneously (seg4:mid through payoff@-0.4).",
-        "Mascot repeats essentially one action \u2014 lean-and-push the bar front \u2014 across hook, seg0, seg3 and seg4; position changes but the bit does not develop into a payoff."
-      ],
-      "fixes": [
-        "Pull all series labels inside the card's right margin (or place them inside the column) and clamp the seg2 camera to a safe area so 95% and 5% stay fully legible at max zoom.",
-        "Give seg2 a real demonstration: animate the pink 95% flooding up to its line with Data reacting as it passes him, instead of a pre-filled static column.",
-        "Constrain every zoom keyframe to keep the card's title and source line inside frame \u2014 fix the crop in seg1:start, seg2:mid and seg3:mid.",
-        "Offset the hook caption below the top bar so it stops covering the 2000 year label, and open on the first bar visibly snapping forward rather than a settled chart.",
-        "Reposition the closing callout to the empty lower-right track area so it stops covering the mascot and the 2010 row, and render only one source footer.",
-        "Vary Data's act per scene (push in seg0, get swept along in seg2, plant a flag on 597 in seg4) so the performance has setup -> action -> payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 110
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-04T15:23:24+00:00",
-      "slug": "f1-pit-stop-vanishing-act",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A generic recycled two-bar template with a stray house icon, a sticker mascot and colliding labels \u2014 nothing here demonstrates why 1.8 seconds is astonishing.",
-      "auto_fails": [
-        "junk_imagery: A cartoon HOUSE icon sits inside the 'Current record' bar for the entire opening chart (hook@0.3 f00, hook@1.5 f04, seg0:start f01, seg1:start f07) \u2014 a house has nothing to do with an F1 pit stop record.",
-        "decorative_mascot: Data holds the identical arms-out standing pose parked on top of the yellow pill at seg2:start (f10), seg3:start (f13), seg3:end (f15) and seg4:mid (f17) \u2014 no jack, no wheel gun, no setup\u2192action\u2192payoff tied to the 1.8s stop.",
-        "empty_void: At seg2:start (f10) and seg3:start (f13) the top ~55-60% of the card is blank dark navy with only a faint 'VS' \u2014 two small blobs huddled at the bottom and nothing else happening in the frame."
-      ],
-      "problems": [
-        "Hook is a slow bar-chart build under a plain title card ('F1 pit stop time' + '1950S PULLS AHEAD', f00\u2013f06) with the bars still empty at t=2.2s \u2014 no motion event and no reason to stay.",
-        "A house icon is baked into the 'Current record' bar across the whole opening chart (f00, f01, f04, f07) \u2014 irrelevant imagery on an F1 chart.",
-        "seg2 and seg3 use the identical two-pill 'VS' composition (f10 vs f13); the video shows the same picture three times with different labels.",
-        "Mascot repeats one arms-out standing pose on top of the yellow bar (f10, f13, f15, f17) \u2014 no bit tied to jacks, wheels or the crew.",
-        "Severe label collisions: 'Pit stop record'/'Human reaction time' overlap (f10, f12), 'Modern crew'/'1950s crew' overlap the source line (f11), and three stacked source lines pile onto the 'COMMENT BELOW' CTA at f18\u2013f20.",
-        "Bar values are ghosted, clipped or hidden \u2014 '.9'/'.8' cut off behind the mascot (f09), '0.3' clipped at the pill edge (f12), '20'/'3' still ghost-faded at f17."
-      ],
-      "fixes": [
-        "Open on the 1.8s stop actually happening \u2014 a car dropping onto the jack with a timer snapping to 1.80 in the first 12 frames \u2014 instead of an empty chart and a title.",
-        "Remove the house icon from the 'Current record' bar; use a tyre/stopwatch glyph or nothing.",
-        "Rebuild seg3 as twenty Data figures swarming a car versus three in the 1950s lane, filling the upper frame; keep the bar comparison for only one beat in the video.",
-        "Give Data a per-beat pit-crew act with setup\u2192action\u2192payoff: wheel gun spinning off a nut, jack slamming down, lollipop lifting \u2014 never the same pose twice.",
-        "Fix the label layout: stagger or shorten the two axis labels so they cannot overlap each other or the source line, and collapse the three end-card source lines into one line clear of the CTA.",
-        "Hold the camera so titles and right-edge labels stay in frame, and resolve every bar value to full opacity before its beat ends."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 113
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-04T15:31:09+00:00",
-      "slug": "f1-pit-stop-vanishing-act",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A competent bar-race buried under an irrelevant house icon, caption-over-chart collisions, and a mascot that just rides the bar instead of performing the stat.",
-      "auto_fails": [
-        "junk_imagery: A house/home building icon sits on the 'Current record' bar cap from hook@0.3 through seg1:end (f00-f09) \u2014 a residential house has nothing to do with an F1 pit stop, and at seg1:start it is a garbled cutout half-clipped by the bar.",
-        "decorative_mascot: From seg2:start through seg4:end (f10, f13, f15, f17, f19) Data stands centered on the yellow bar in an identical arms-out/arms-up idle with no setup->action->payoff tied to 1.8s vs 0.27s or 20 vs 3; he is a sticker riding the bar, not performing."
-      ],
-      "problems": [
-        "hook@0.3-2.2 (f00-f06): a house/home icon on the 'Current record' bar is unrelated to F1 pit stops and is the first thing in frame alongside the mascot.",
-        "hook@0.3-2.2: the oversized burned-in caption is drawn across the 1950s bar, and the yellow 'Current record' label overprints the mascot \u2014 three layers colliding in one band.",
-        "seg2:start/seg2:end (f10, f12): the axis labels collide into 'Pit stop recordHuman reaction time', and the source line runs underneath them.",
-        "seg2:end/seg3:end (f12, f15): the bar values (1.8, 0.3, 20, 3) are rendered in low-contrast grey inside the bars and are partly hidden behind the mascot at seg1:end (f09: '60', '.9', '.8' clipped).",
-        "seg3:mid (f14): the zoom crops 'Modern crew' / '1950s' labels off the right edge and the source line runs off frame.",
-        "seg2 through seg4 (f10, f13, f15, f17, f19): the mascot repeats the same standing arms-out idle on the yellow bar with no bit tied to the reaction-time or crew-size comparison."
-      ],
-      "fixes": [
-        "Drop the house icon from the 'Current record' row (or swap it for a pit-lane/tyre/stopwatch mark) so no off-topic imagery appears in the first 2s.",
-        "Move the hook caption to the lower third and add a collision offset so row labels never overprint the bars or the mascot.",
-        "Give the mascot one real bit per comparison: have him physically drop the jack / spin four wheels off and be gone before the pink reaction-time bar finishes filling, instead of standing on the bar cap.",
-        "Raise bar-value contrast and draw values outside/above the bar cap so 60, 1.8, 0.3, 20 and 3 are never occluded by the mascot.",
-        "Constrain the seg3:mid zoom so both category labels stay inside the safe area.",
-        "Fill the empty upper column area \u2014 start the vs-columns from the top or add a countdown/tick element there \u2014 so the frame's top half carries motion."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-04T15:40:01+00:00",
-      "slug": "great-wealth-transfer-2048",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The 2%-vs-98% payoff scene \u2014 the whole point of the video \u2014 is illegible: its two bar labels are printed on top of each other and run off the frame.",
-      "auto_fails": [
-        "decorative_mascot: Data has no setup->action->payoff bit: he perches on whatever shape is nearest and slides \u2014 atop the 105 bubble at seg1:start, leaning on the Millennials bar at seg2:start, standing on the purple bar at seg3:start, then drifting down it unchanged across seg4:start/mid/end."
-      ],
-      "problems": [
-        "seg3/seg4: the two bar captions overlap into unreadable text and collide with the source credit line, destroying the video's central comparison",
-        "seg3: the kicker 'WEALTHIEST 2% OF HOUSEHOLDS VS THE OTHER 98%' is cut off by the right edge of the frame",
-        "seg3/seg4: the pink 98% bar carries no number, so the 'equal to the other 98% combined' equality is never shown \u2014 only the purple bar gets a '62'",
-        "Mascot never performs a bit: across all six scenes he only perches on or slides down whichever shape is on screen, with no setup->action->payoff tied to any stat",
-        "hook@0.3: opens on a near-empty title card with a tiny idle mascot and one stray dot \u2014 the bubbles only start growing after ~0.8s, so frame one gives no reason to stay",
-        "seg4:start-end: the closing ~4s is a near-frozen bar chart with a speech bubble; measured duplicate_ratio 0.263 / effective 17.7fps shows judder rather than purposeful motion"
-      ],
-      "fixes": [
-        "Constrain each comparison label to its own bar column with wrap/shrink-to-fit and move both above the source credit so 'Wealthiest 2%' and 'The other 98%' never overlap; clamp the kicker to the card's safe width",
-        "Label BOTH bars with $62T and animate them rising to the identical height in sync so the equality lands visually",
-        "Give Data a real bit in seg3: have him try to carry the 2% bar's stack, stagger, and get flattened as the 98% bar matches it \u2014 setup, action, payoff",
-        "Replace the static hook with immediate motion: start the $124T mass already splitting into the 105/18 bubbles on frame one instead of a title card",
-        "Re-cut the final 4 seconds so something purposeful moves under the closing card \u2014 e.g. the 62 counting up or the bars settling \u2014 instead of holding a duplicated frame"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 147
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-04T17:08:04+00:00",
-      "slug": "china_led_for_70_years__india_just_passe",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "An honest, well-sourced race with a real leaderboard flip at 2023 \u2014 but the hook card sits illegibly on top of the chart and the label/flag collisions in the middle third make it read amateur.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3-1.5: hook banner occludes the China line and its axis label, then fades to unreadable dark gold on black while still on screen.",
-        "mid4/mid5 (2020, 2021): the 'China 1.4B' and 'India 1.4B' text labels and their flag markers collide and overlap each other at the converging tips \u2014 the exact moment the video's whole claim rests on is the messiest frame in it.",
-        "The overtake never reads visually: at payoff@-1.8 the two lines are still stacked and only the leaderboard order and the '#1 India' caption at payoff@-0.4 announce the flip.",
-        "mid0-mid2: the plot's entire lower half and right half are empty black while both series crowd the upper-left \u2014 the frame is composed for the 1950s and never rebalances.",
-        "Title wraps to two lines over the leaderboard, eating the top ~15% before the chart starts."
-      ],
-      "fixes": [
-        "Reposition the hook text into the empty lower-left of the plot area and give it a solid/high-contrast plate so it stays legible for its full duration and never covers a series.",
-        "Add collision avoidance to the tip labels: when two series are within ~5% on the y-axis, stagger the labels vertically (or offset one leftward) so the flags and text never overlap at the crossover.",
-        "Stage the overtake \u2014 hold a beat at 2022-2023, flash the crossing point, and animate the leaderboard rows swapping so the pass is something you SEE, not something the caption tells you.",
-        "Auto-zoom the y-axis to the active data band (or pan the x-window with the leading tip) so the early years don't render as a chart in the corner of a black field.",
-        "Trim the ~1.1s frozen tail at 13.25s or replace it with a final beat (delta callout, '+X since 1950') so the video ends on a move, not a still."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-04T17:10:04+00:00",
-      "slug": "cigarettes_lost_to_a_rechargeable_batter",
-      "score": 69,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "A genuinely good two-series race with a real crossover, wasted by a dead, glitchy first two seconds and a '#1' payoff pinned on a series that is itself collapsing.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3: opens on an empty chart with one tiny stub \u2014 the classic slow chart build the rubric forbids as an opener.",
-        "hook@0.8 / hook@1.5: the hook caption fades into an illegible dark-yellow smear over black; it looks like a bug, not a transition.",
-        "payoff@-0.4: the closing badge reads '#1 E-Cigarettes 8' while the green line has fallen from 27 to 8 \u2014 crowning a declining series undercuts the 'one habit replaced another' thesis and lands no whoa.",
-        "mid5 t=12.38s to payoff@-0.4 t=13.97s is near-identical (max duplicate run 1.04s at 13.33s); the tail coasts instead of building.",
-        "Title wraps to two lines and crowds the leaderboard directly beneath it, squeezing the plot area in the early frames."
-      ],
-      "fixes": [
-        "Pre-roll the race so the first visible frame is already near the 2014 crossover, or cold-open on the end-state for ~0.5s then rewind to 2011.",
-        "Render the hook caption at full opacity with its dark plate for its whole duration \u2014 no fade-to-brown; if it must exit, cut or slide it off rather than dissolving it.",
-        "Change the closing badge from '#1 E-Cigarettes' to the actual scale payoff: cigarettes 16% \u2192 1%, and call out that vaping peaked at 27.5% and is now falling too.",
-        "Add a marked beat at the crossover year (2015/2016) \u2014 pause the year counter for a half-second and flash the swap in the leaderboard so the moment one habit overtook the other is unmissable.",
-        "Tighten the tail: hold the final state for under a second and let the closing line land on motion rather than a frozen chart."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-09-04T17:12:15+00:00",
       "slug": "one_whale_boomed__another_is_vanishing_",
@@ -2631,16 +2377,261 @@
       "judge": "code-temporal-pregate",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T19:14:00+00:00",
+      "slug": "buybacks-beat-dividends",
+      "score": 9,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 49.0,
+        "dark_fraction": 0.0,
+        "sampled": 152
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T19:20:22+00:00",
+      "slug": "buybacks-beat-dividends",
+      "score": 9,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 49.0,
+        "dark_fraction": 0.0,
+        "sampled": 152
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T20:25:25+00:00",
+      "slug": "f1-pit-stop-vanishing-act",
+      "score": 34,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Real data metaphors are in here (clock units, hourglasses) but the mascot never performs, captions cover the numbers, and the scene the video ends on collapses into an empty frame with two tiny markers.",
+      "auto_fails": [
+        "decorative_mascot: Data never runs a setup->action->payoff bit: he stands over the 'Current record' label in hook@0.3, stands among the clocks in seg1:mid, stands inside the yellow bar in seg2:start and seg3:start, and idles on a bare ground line at the bottom of seg2:mid/seg2:end while the hourglasses run without him.",
+        "empty_void: seg3:end is ~75% empty navy gradient holding two thumbnail-sized mascots, two hairlines and a stray dotted column at the right edge; seg2:mid/seg2:end waste the entire bottom half the same way. (dark_fraction reads 0.0 only because the void is navy gradient, not black.)"
+      ],
+      "problems": [
+        "hook@0.3-hook@2.2: the opener is a slow bar-race build \u2014 exactly the 'chart slowly filling' opening the rubric refuses \u2014 with no event in the first second.",
+        "hook@0.8/seg0:mid: burned-in caption words ('stop used', 'to take') sit on top of the bars and hide the 1950s value '60'; at hook@0.3 the mascot covers the 'Current record' label and its number.",
+        "hook@0.3: the subtitle reads '1950S PULLS AHEAD' for a chart where the 1950s is the SLOWEST era \u2014 the kicker states the opposite of the claim.",
+        "seg1:mid: two titles stack on each other \u2014 '1950s  60' overlapping 'F1 pit stop time'; the same bleed-through repeats at seg2:mid/seg2:end where 'how long it takes' sits over 'how fast that really is'.",
+        "seg2:start/seg2:mid: axis labels are truncated mid-word \u2014 'Pit stop recor', 'Human reaction' \u2014 on a scene whose whole job is that comparison.",
+        "seg2:mid/seg2:end: the bottom half of the frame is empty gradient with a lone hairline and a thumbnail mascot doing nothing while the hourglasses drain above him."
+      ],
+      "fixes": [
+        "Open on an event, not a build: start at seg1's clock grid already dense and have 58 of the 60 seconds blow away in the first beat, or have Data start a stopwatch and get flattened by the pit crew \u2014 bars can arrive after 2s.",
+        "Move burned-in captions out of the plot area (bottom safe band only, as at hook@2.2) so no value is ever occluded, and keep the mascot out of the label column.",
+        "Fix the hook kicker: '1950S PULLS AHEAD' should read as the slow side (e.g. '1950S: A FULL MINUTE').",
+        "Clear the previous scene's title before drawing the next one so headers never stack (seg1:mid, seg2:mid).",
+        "Shrink or wrap axis labels to fit instead of clipping \u2014 'Pit stop record' and 'Human reaction time' must render whole.",
+        "Rebuild seg3 as a countable crowd: 20 crew units swarm one car against 3 units on the other side, filling the center and lower frame, and hold that composition through the scene rather than reducing to two markers."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T20:31:37+00:00",
+      "slug": "f1-pit-stop-vanishing-act",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Two genuinely good demonstrations (the 12-clock pictograph and the paired hourglasses) are sunk by a chart-shaped hook with colliding caption text, a mascot who never performs a bit, and a crew scene that empties the frame at the exact moment it should land.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3\u2013seg1:start: a yellow house/building emoji sits on top of the 'Current record' row label (f00\u2013f07), an icon with nothing to do with F1 pit stops, and it clips the label text.",
+        "decorative_mascot: Data merely stands: parked over the 'Current record' bar (hook@0.3), standing inside the yellow bar (seg3:start/seg3:mid), and idling on a line (seg3:end) \u2014 position changes between scenes but no setup\u2192action\u2192payoff bit is tied to any stat.",
+        "empty_void: seg3:end (t=31.73s) is ~85% empty navy field with two thumbnail-sized mascots and two hairline rules; seg2:mid/seg2:end also leave the entire lower half blank beneath the hourglasses."
+      ],
+      "problems": [
+        "Hook (hook@0.3\u2013hook@2.2) is a slow bar build with the caption text stamped across the bars ('stop used', 'to take', 'a minute.' all overlapping the 1950s bar) and the '60' value hidden behind it \u2014 no motion event, no reason to stay.",
+        "The hook subtitle reads '1950S PULLS AHEAD' over pit-stop DURATION bars: the slowest era is framed as winning, which inverts the video's own claim.",
+        "A house emoji overlaps the 'Current record' row label from hook@0.3 through seg1:start, and the mascot is parked on top of the same label.",
+        "Data is decorative in every scene \u2014 standing in a bar (seg3:start, seg3:mid), standing among clocks holding a box (seg1:mid), idling on a line (seg3:end). No setup \u2192 action \u2192 payoff anywhere.",
+        "seg3:end wastes ~85% of the frame on empty navy with two icon-sized figures; seg2:mid and seg2:end leave the whole lower half blank.",
+        "Axis labels truncate: 'Pit stop recor' at seg2:mid and seg2:end."
+      ],
+      "fixes": [
+        "Open on the pit-stop event itself, not a bar build: land the 60s and the 1.8s side by side within the first 12 frames (e.g. 60 clocks slamming in against one), and hold captions clear of the bars with a dedicated lower band.",
+        "Fix or drop the '1950S PULLS AHEAD' subtitle \u2014 for a lower-is-better metric the leader annotation must read as slowest/fastest, not 'pulls ahead'.",
+        "Remove the house glyph from the 'Current record' row and reserve the label gutter so neither the icon nor the mascot can overlap row text.",
+        "Give Data one real bit per beat tied to the stat: at seg1 he should be visibly running out of clocks; at seg3 he should be the one crew member in 1950 trying to do 20 jobs and losing.",
+        "Rebuild seg3 as a mass-vs-mass picture \u2014 ~20 crew figures swarming a car against 3, scaled to fill the frame, counts persistent \u2014 instead of two icons on rules.",
+        "Widen the seg2 label boxes so 'Pit stop record' fits, and lift the hourglasses down/scale them up so the lower half of the frame is used."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T20:38:28+00:00",
+      "slug": "f1-pit-stop-vanishing-act",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Two real demonstrations (the 60-second clock pictograph and the draining hourglasses) are stranded between a slow chart-build hook and a payoff that is a text bubble over two-thirds of empty frame, with Data decorating every scene instead of performing in one.",
+      "auto_fails": [
+        "decorative_mascot: Data never performs a bit tied to a stat: he is parked inside the yellow bar at seg2:start and seg3:mid, stands on a baseline at seg3:end, and is a motionless 30px figure through seg4:start-payoff@-0.4 \u2014 no setup->action->payoff in the whole video.",
+        "empty_void: seg3:end and all of seg4 waste roughly 60% of the frame \u2014 two ~30px mascots on thin rules with a dotted tick column jammed against the right edge and an entirely blank lower half; seg2:mid/seg2:end repeat it below the hourglasses."
+      ],
+      "problems": [
+        "hook@0.3 opens on a mid-build bar race with a caption slab over the bars \u2014 the exact 'slow chart build / plain title' opening the rubric bans; three of four bar tracks sit empty until seg1.",
+        "hook@0.3 through seg1:start: the mascot is drawn straight over the 'Current record' axis label, and the yellow house prop overlaps it too \u2014 the label is unreadable for the entire hook.",
+        "seg2:start label reads 'Pit stop recor' \u2014 truncated; seg2:mid/seg2:end stack two leftover titles ('how long it takes' above 'how fast that really is') as if a previous scene's header never cleared.",
+        "seg2:mid and seg2:end waste the bottom half of the frame: hourglasses live in the top third, then a bare gradient with one tiny mascot and a stray horizontal rule.",
+        "seg3:end and all of seg4 shrink both mascots to ~30px on hairlines with a dotted tick column clipped against the right edge and a blank lower half.",
+        "seg4:start -> payoff@-0.4 is effectively one held frame for ~3.5s; the closing line is asserted in a speech bubble rather than demonstrated."
+      ],
+      "fixes": [
+        "Replace the hook's bar-race build with a cold-open action: a 1950s stop playing out in real time \u2014 Data cranking a jack, wrestling a wheel off, sweat \u2014 and cut it dead at the 1.8s modern stop. Motion and a reason to stay in frame one, no chart.",
+        "Rebuild seg4 per weakest_scene: a full-frame 20-mechanic swarm resolving in 1.8s against a live-emptying timer, Data driving the bit, ending on a change rather than a held frame.",
+        "Give Data one real bit per beat tied to the number: he tries to blink once during the 1.8s hourglass and misses it (seg2); he hands out twenty numbered jobs and runs out of hands (seg3).",
+        "Clear the stale header before drawing seg2 so 'how long it takes' does not sit above 'how fast that really is', and widen the label box so 'Pit stop record' is not truncated.",
+        "Fill the lower two-thirds in seg2 and seg3: bring the hourglasses/crew rows down into the vertical centre and scale the mascot to at least 3x, or add a foreground element (pit lane, car) so the frame is composed rather than padded.",
+        "Move the dotted tick column in seg3:end/seg4 inboard off the right edge, and scale the two crew mascots up so 3-vs-20 reads as a crowd difference, not two identical icons."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-08T20:45:13+00:00",
+      "slug": "mail-volume-collapse",
+      "score": 56,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "Real physical metaphors (the draining mail tube, the 10B block stack) are undercut by broken transitional beats \u2014 a stray empty ellipse, an illegible ladder in seg2, and a judder-y 16.6 effective fps.",
+      "auto_fails": [],
+      "problems": [
+        "seg2:mid/end (f11, f12): the doubling is drawn as two thin rules with ~40px mascots and a clipped dashed strip \u2014 nothing legibly doubles, and the lower half of the frame is empty.",
+        "An unfilled cyan ellipse floats with nothing inside it across seg1:start (f07), seg1:mid (f08), seg2:mid (f11), seg2:end (f12) \u2014 reads as a prop that failed to render.",
+        "seg2:start (f10) and seg3:start (f13): the source line is clipped off the right edge mid-word ('accessed 202...').",
+        "seg4:start (f16) onward: the caption block, the CTA and the two-line source footer stack on top of each other at the bottom of the frame while the lower third is otherwise empty.",
+        "Cadence: duplicate_ratio 0.308 / effective_fps 16.6 with a 1.5s duplicate run at 36.75s \u2014 motion judders rather than glides.",
+        "Data perches with arms raised in essentially every scene (seg1:end f09, seg2:start f10, seg3:mid f14, seg4 f16-f20); no beat gives him a setup->action->payoff act."
+      ],
+      "fixes": [
+        "Cut the ladder machine from seg2 and keep the column comparison for the full segment, animating 2020 growing to visibly twice 2008 with Data pushed up as it passes.",
+        "Remove or fill the cyan ellipse prop so no empty outline ships in any frame.",
+        "Reflow the source attribution to wrap within the safe area so it is never clipped at the right edge, and reserve the bottom band for captions/CTA only.",
+        "Raise the render/interpolation rate so effective unique fps approaches the export rate \u2014 no 36-frame duplicate runs in the closing beat.",
+        "Give Data one real bit per segment: e.g. he tries to hold the falling mail level up in seg0 and gets carried down with it, then hauls a package that outweighs him in seg2.",
+        "Extend the block-stack build so it starts earlier than seg3:end and fills the lower third of the frame instead of leaving one block on empty background."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 37.67,
+        "dark_fraction": 0.0,
+        "sampled": 122
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "98ad425 2026-09-08 doctor: evidence pack + backlog 2026-09-08 [skip ci]",
-    "83465ac 2026-09-07 doctor: findings for 20260907"
+    "6142d4d 2026-09-08 doctor: findings for 20260908",
+    "73da258 2026-09-08 Refuse a one-fact story where there is another one to render instead (#339)"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-25": 2,
         "2026-08-26": 5,
         "2026-08-28": 9,
         "2026-08-29": 4,
@@ -2656,7 +2647,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-08-25": 5,
         "2026-08-26": 1,
         "2026-08-27": 1,
         "2026-08-28": 3,
@@ -2669,15 +2659,16 @@
         "2026-09-04": 2,
         "2026-09-05": 5,
         "2026-09-06": 2,
-        "2026-09-07": 1
+        "2026-09-07": 1,
+        "2026-09-08": 2,
+        "2026-09-09": 1
       },
-      "total_posted": 235,
-      "attempted": 235,
+      "total_posted": 238,
+      "attempted": 238,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-25": 4,
         "2026-08-26": 3,
         "2026-08-27": 1,
         "2026-08-28": 1,
@@ -2687,11 +2678,13 @@
         "2026-09-04": 6,
         "2026-09-05": 5,
         "2026-09-06": 4,
-        "2026-09-07": 2
+        "2026-09-07": 2,
+        "2026-09-08": 4,
+        "2026-09-09": 1
       },
-      "total_posted": 245,
-      "attempted": 446,
-      "rejected_or_pending": 201
+      "total_posted": 250,
+      "attempted": 456,
+      "rejected_or_pending": 206
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2708,60 +2701,60 @@
       "videos": 104,
       "top_by_vph": [
         {
+          "title": "The Lake That Basically Disappeared (3 Charts)",
+          "vph": 9.77,
+          "views": 901
+        },
+        {
           "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-          "vph": 13.54,
+          "vph": 9.76,
           "views": 798
         },
         {
-          "title": "The Lake That Basically Disappeared (3 Charts)",
-          "vph": 12.95,
-          "views": 899
-        },
-        {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 5.05,
+          "vph": 4.61,
           "views": 1220
         },
         {
           "title": "One Country's Median Age Is 15. Another's Is 50.",
-          "vph": 4.19,
+          "vph": 3.51,
           "views": 492
         },
         {
           "title": "The World Learned To Read. Not Everyone Did.",
-          "vph": 3.53,
+          "vph": 3.22,
           "views": 829
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 100,
+      "videos": 97,
       "top_by_vph": [
         {
           "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
-          "vph": 7.38,
-          "views": 180
+          "vph": 5.62,
+          "views": 265
         },
         {
           "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
-          "vph": 3.26,
-          "views": 143
+          "vph": 2.52,
+          "views": 168
         },
         {
           "title": "Lirik Wild Way Of Making Quick Cash In Wardogs",
-          "vph": 1.87,
+          "vph": 1.4,
           "views": 127
         },
         {
-          "title": "Nickmercs Can't Believe How BAD This Guy Was \ud83d\udc80",
-          "vph": 0.77,
-          "views": 70
+          "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
+          "vph": 0.63,
+          "views": 407
         },
         {
-          "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 0.65,
-          "views": 406
+          "title": "Nickmercs Can't Believe How BAD This Guy Was \ud83d\udc80",
+          "vph": 0.62,
+          "views": 70
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2869,6 +2862,13 @@
       "ruling": "doing"
     },
     {
+      "signature": "b9f879c22ed1",
+      "title": "A mismatched response can still promote authored packages",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "abfb291b5f65",
       "title": "Two explainer guardrail modules execute zero tests",
       "horizon": "small_fix",
@@ -2960,6 +2960,13 @@
       "ruling": "new"
     },
     {
+      "signature": "0cc2e7f231ca",
+      "title": "Expired media leases can be reclaimed by two workers",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "347e2440278c",
       "title": "Split Third attempts from the authoritative posted ledger",
       "horizon": "long_term",
@@ -3004,6 +3011,13 @@
     {
       "signature": "f87f60f38feb",
       "title": "Long-form silently publishes without its promised custom thumbnail",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "ad9061de9638",
+      "title": "Phase A exits green when READY was not written",
       "horizon": "small_fix",
       "severity": "medium",
       "ruling": "new"
@@ -3119,6 +3133,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "38fd2900770d",
+      "title": "Long-form selection has no depth threshold",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
