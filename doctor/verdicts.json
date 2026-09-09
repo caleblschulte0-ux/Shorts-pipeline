@@ -1031,10 +1031,16 @@
       ]
     },
     "02da0ae2137f": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed at third_capture/story_director.py:205-208: payoffish is computed over the FULL unbounded edl['beats'] before the list is truncated to MAX_BEATS=5 at line 215. The terminal-beat check at 271-276 only requires the last retained beat's role to be payoff/climax/reaction, never rechecking that a payoff/climax actually survived truncation. A 6-beat EDL whose only payoff is beat 6 can pass. Real bug, in scope for a future session (validation must run on the cleaned/bounded list, not the raw input).",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. The MAX_BEATS cap now keeps the first MAX_BEATS-1 beats plus the last payoff/climax rather than the first five \u2014 losing a middle escalation step instead of the ending, recorded in reasons as a repair. Rejecting the plan would have been the wrong fix: the arc is fine, it is one beat too long. A survivor check after the beats are BUILT (not over the input) covers the other way a payoff can disappear \u2014 a beat dying inside the loop on an unknown source or unusable window. A plan with no payoff anywhere is still refused by the original check. Four checks in scripts/test_story_acceptance.py; two fail against the unfixed file.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed at third_capture/story_director.py:205-208: payoffish is computed over the FULL unbounded edl['beats'] before the list is truncated to MAX_BEATS=5 at line 215. The terminal-beat check at 271-276 only requires the last retained beat's role to be payoff/climax/reaction, never rechecking that a payoff/climax actually survived truncation. A 6-beat EDL whose only payoff is beat 6 can pass. Real bug, in scope for a future session (validation must run on the cleaned/bounded list, not the raw input)."
+        }
+      ]
     },
     "694ab7c3e1d4": {
       "verdict": "doing",

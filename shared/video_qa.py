@@ -66,6 +66,59 @@ def _ffprobe(path: str) -> dict | None:
         return None
 
 
+
+def probe_decodable(path) -> bool | None:
+    """Does this file actually contain a decodable video stream?
+
+    Tri-state on purpose:
+      True   — a video stream with a positive duration is present
+      False  — the container parsed but holds no usable video
+      None   — cannot tell (no ffprobe on this box). Callers must treat
+               unknown as "keep going", never as a rejection: refusing every
+               clip because a tool is missing is a worse failure than the
+               one this catches.
+
+    Exists because `funnel/topic_video` cached any nonempty file as a
+    successful download (doctor finding aab2495524a2) — a truncated body from
+    a server that ignored Range, or a file left behind by an interrupted
+    process, was reused forever as valid media.
+    """
+    # Deliberately NOT routed through `_ffprobe`: that helper collapses "no
+    # ffprobe installed" and "ffprobe ran and rejected this file" into the
+    # same None, and those are opposite answers here — the second is exactly
+    # the corruption this exists to catch.
+    if not shutil.which("ffprobe"):
+        return None
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "quiet", "-print_format", "json",
+             "-show_format", "-show_streams", str(path)],
+            capture_output=True, text=True, timeout=60)
+    except Exception:  # noqa: BLE001 — timeout / OSError: cannot tell
+        return None
+    if out.returncode != 0:
+        return False
+    try:
+        info = json.loads(out.stdout)
+    except Exception:  # noqa: BLE001
+        return False
+    streams = info.get("streams") or []
+    vid = [st for st in streams if st.get("codec_type") == "video"]
+    if not vid:
+        return False
+    try:
+        dur = float((info.get("format") or {}).get("duration") or 0.0)
+    except (TypeError, ValueError):
+        dur = 0.0
+    if dur <= 0.0:
+        # Some truncated containers report no format duration; fall back to
+        # the stream's own, and only then call it undecodable.
+        try:
+            dur = float(vid[0].get("duration") or 0.0)
+        except (TypeError, ValueError):
+            dur = 0.0
+    return dur > 0.0
+
 def _collect_spans(stderr: str, kind: str,
                     duration: float | None = None) -> list[tuple[float, float]]:
     """Pair up <kind>_start / <kind>_end times from ffmpeg filter logs.
