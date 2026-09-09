@@ -1141,6 +1141,24 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # may hold several DISTINCT events. Split it into real events and
             # try each independently — one event record + one director call
             # per event, not one call over a mixed pile.
+            _subs = _semantic_subclusters(reports)
+            # RECORD THE SHAPE, ALWAYS. When every subcluster is a
+            # singleton the loop below simply `continue`s and the run
+            # recorded NOTHING for this cluster — the arm looked idle when
+            # it had actually done all the expensive work and found no two
+            # sources that belong to one event. That is the single most
+            # useful number for judging whether the story arm is starved,
+            # mis-clustered, or genuinely looking at unrelated clips.
+            _shape = (f"{len(reports)} analysed -> subclusters "
+                      f"{sorted((len(x) for x in _subs), reverse=True)}"
+                      f" over {len(set(r.get('date') for r in reports))} "
+                      f"date(s)")
+            print(f"[story] {who}: {_shape}", flush=True)
+            if not any(len(x) >= 2 for x in _subs):
+                _story_verdict(who, "no_shared_event",
+                               f"{_shape} — no two sources share an event, "
+                               f"so no director call was made")
+                continue
             for sub in _semantic_subclusters(reports):
                 if len(sub) < 2:
                     continue      # a lone source is not a story
@@ -1154,10 +1172,21 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 edl = story_director.plan_story(
                     sub, event, guidance=_story_guidance())
                 if not edl:
-                    print(f"[story] {elbl}: director says not a story",
-                          flush=True)
-                    _story_verdict(elbl, "not_a_story",
-                                   "director found no genuine arc")
+                    # NAME THE GATE. plan_story returns None for an
+                    # editorial "not a story" AND for ten different
+                    # structural violations, and this logged all of them
+                    # identically. Across 2026-08-10..09-08 that catch-all
+                    # was recorded 22 times on healthy-brain runs with zero
+                    # stories shipped, and nothing in the durable record
+                    # could say whether the director declined or produced a
+                    # plan that tripped a validator rule — i.e. whether the
+                    # story arm was working correctly or silently broken.
+                    rej = story_director.last_rejection()
+                    why = rej.get("why") or "director found no genuine arc"
+                    print(f"[story] {elbl}: no arc — {why}", flush=True)
+                    _story_verdict(elbl,
+                                   "not_a_story" if rej.get("editorial")
+                                   else "plan_rejected", why)
                     continue
                 plan_urls = [b["source_id"] for b in edl["beats"]]
                 if storyline.story_key(plan_urls) in shipped or \

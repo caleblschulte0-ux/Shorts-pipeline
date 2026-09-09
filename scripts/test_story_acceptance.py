@@ -442,9 +442,17 @@ def main() -> int:  # noqa: C901
     e = dict(base, hook_overlay="GO")            # 1 word
     check("hook <3 words rejected (#8)",
           story_director.validate_edl(e, durs) is None)
+    # #8's intent is "never SHIP a hook over 7 words", and that still
+    # holds — but it used to be enforced by discarding the entire
+    # validated arc, which is how a word count came to look identical to
+    # "the director found no genuine arc". Trimmed now, like the
+    # context_overlay beside it. The rule the reviewer asked for is the
+    # one asserted here: no over-long hook reaches the renderer.
     e = dict(base, hook_overlay="one two three four five six seven eight")
-    check("hook >7 words rejected (#8)",
-          story_director.validate_edl(e, durs) is None)
+    _v8 = story_director.validate_edl(e, durs)
+    check("hook >7 words never SHIPS over-long (#8)",
+          _v8 is None or len(_v8["hook_overlay"].split()) <= 7)
+    check("...and a word count no longer destroys the arc", _v8 is not None)
     e = dict(base, central_question="")
     check("empty central_question rejected (#8)",
           story_director.validate_edl(e, durs) is None)
@@ -1459,6 +1467,157 @@ def main() -> int:  # noqa: C901
                                      "cover a face")))
     check("...and still blocks on its own judgement, not a score",
           '"publish": true|false' in _qa_src)
+
+    # ====== a rejected story plan must NAME the gate ===================
+    # 2026-09-09: 3 stories have ever posted, the last on 2026-08-20. Over
+    # the 30 retained runs the story arm ran 20 slots and recorded
+    # "director found no genuine arc" 22 times on healthy-brain runs. That
+    # string was logged for an editorial "not a story" AND for ten
+    # different structural violations, so nothing in the durable record
+    # could say whether the gate was working or our own plan was malformed.
+    _sd2 = story_director
+    _D = {"a": 30.0, "b": 30.0}
+
+    def _edl(**over):
+        e = {"is_story": True, "structure": "chronological",
+             "premise": "p", "central_question": "q",
+             "hook_overlay": "he said what now",
+             "beats": [{"source_id": "a", "start": 1, "end": 8,
+                        "role": "setup", "purpose": "set it up"},
+                       {"source_id": "b", "start": 1, "end": 8,
+                        "role": "payoff", "purpose": "pay it off"}]}
+        e.update(over)
+        return e
+
+    _rs = []
+    _sd2.validate_edl({"is_story": False}, _D, {}, reasons=_rs)
+    check("an editorial 'not a story' says so in the record",
+          any("not a story" in r for r in _rs))
+    _rs = []
+    _sd2.validate_edl(_edl(beats=[{"source_id": "zzz", "start": 1, "end": 8,
+                                   "role": "setup", "purpose": "x"},
+                                  {"source_id": "b", "start": 1, "end": 8,
+                                   "role": "payoff", "purpose": "y"}]),
+                      _D, {}, reasons=_rs)
+    check("a STRUCTURAL rejection names the gate, not 'no genuine arc'",
+          any("unknown source" in r for r in _rs)
+          and not any("not a story" in r for r in _rs))
+
+    # the hook is cosmetic — this function already REPAIRS a malformed
+    # context_overlay, transition and framing. Only hook_overlay threw away
+    # an entire validated arc over a word count.
+    _rs = []
+    _out = _sd2.validate_edl(
+        _edl(hook_overlay="one two three four five six seven eight nine"),
+        _D, {}, reasons=_rs)
+    check("an over-long hook is TRIMMED, not fatal (the same treatment "
+          "context_overlay already gets)",
+          _out is not None and len(_out["hook_overlay"].split()) == 7)
+    check("...and the repair is recorded, not silent",
+          any("repaired" in r for r in _rs))
+    _rs = []
+    check("a hook under 3 words still rejects, and says why",
+          _sd2.validate_edl(_edl(hook_overlay="wow"), _D, {},
+                            reasons=_rs) is None
+          and any("too short" in r for r in _rs))
+
+    # every narrative law still bites
+    for _bad, _label in (
+            (_edl(structure="nonsense"), "unknown structure"),
+            (_edl(premise=""), "missing premise"),
+            (_edl(beats=[{"source_id": "a", "start": 1, "end": 1.2,
+                          "role": "setup", "purpose": "x"},
+                         {"source_id": "b", "start": 1, "end": 8,
+                          "role": "payoff", "purpose": "y"}]),
+             "sub-1.5s beat"),
+            (_edl(beats=[{"source_id": "a", "start": 1, "end": 8,
+                          "role": "setup", "purpose": "x"},
+                         {"source_id": "b", "start": 1, "end": 8,
+                          "role": "setup", "purpose": "y"}]),
+             "must end on the payoff")):
+        _rs = []
+        check(f"narrative law still rejects: {_label}",
+              _sd2.validate_edl(_bad, _D, {}, reasons=_rs) is None
+              and bool(_rs))
+    _rs = []
+    check("a clean plan still validates with no complaints",
+          _sd2.validate_edl(_edl(), _D, {}, reasons=_rs) is not None
+          and not _rs)
+
+    check("plan_story exposes the reason to its caller",
+          hasattr(_sd2, "last_rejection"))
+    check("run_third records plan_rejected separately from not_a_story",
+          '"plan_rejected", why' in _rt_src
+          and 'story_director.last_rejection()' in _rt_src)
+    check("the digest distinguishes an editorial no from OUR bug",
+          "PLAN REJECTED" in (REPO / "scripts" / "judges.py").read_text())
+
+    # ====== clustering must not invent people ==========================
+    # 2026-09-09 root cause of "no stories for 20 days": _entities treated
+    # EVERY capitalized token as a person, so real titles donated `death`,
+    # `worst`, `evil`, `siege`, `mercy`, `boat` as cast members. Real
+    # co-occurrences drowned in one-off noise pairs, and solo-streamer bags
+    # were the only clusters that ever survived to the director.
+    _sl2 = _sl
+    _kn = {"kaicenat", "xqc"}
+    _e = _sl2._entities("WORST DEATH SO FAR - DAY 3", "kaicenat", _kn)
+    check("an ALL-CAPS title donates no capitalized 'people' (its case "
+          "carries no signal)",
+          _e == {"kaicenat"})
+    _e = _sl2._entities("Kai Cenat Panics When He Cant See", "xqc", _kn)
+    check("a real known name IS still found in a Title-Case title",
+          "kaicenat" in _e and "xqc" in _e)
+    check("_has_case_signal is false for ALL CAPS and for all lowercase",
+          not _sl2._has_case_signal("WORST DEATH SO FAR")
+          and not _sl2._has_case_signal("worst death so far")
+          and _sl2._has_case_signal("Kai Cenat Panics When He Cant See"))
+
+    # the corpus teaches which capitalized tokens are English words
+    _corp = [{"title": "Ludwig Loses The Game", "channel": "ludwig",
+              "source_url": "u1", "date": "2026-09-01"},
+             {"title": "Xqc Loses The Game", "channel": "xqc",
+              "source_url": "u2", "date": "2026-09-02"},
+             {"title": "Forsen Loses The Game", "channel": "forsen",
+              "source_url": "u3", "date": "2026-09-03"}]
+    _deny = _sl2.common_tokens(_corp, min_channels=3)
+    check("a token appearing across many channels is learned as a WORD",
+          "loses" in _deny and "game" in _deny)
+    check("...and a name concentrated in one channel is NOT",
+          "ludwig" not in _deny and "xqc" not in _deny)
+
+    # aliases: one person must not split into two cast members
+    check("extraemily/emily resolve to ONE person (they formed a fake "
+          "two-person 'pair' cluster with themselves)",
+          _sl2.ALIASES.get("emily") == _sl2.ALIASES.get("extraemily"))
+
+    # an arc is a run of days, not a month of scattered clips
+    _mk = lambda i, d: {"source_url": f"c{i}", "title": "t",
+                        "channel": "xqc", "date": d}   # noqa: E731
+    _spread = ([_mk(i, f"2026-08-0{i+1}") for i in range(3)]
+               + [_mk(i + 10, f"2026-09-0{i+1}") for i in range(4)])
+    _win = _sl2._densest_window(_spread, 10)
+    check("the densest window is chosen, not the whole spread",
+          len(_win) == 4 and all(c["date"].startswith("2026-09")
+                                 for c in _win))
+    check("a tie prefers the MORE RECENT window (a live storyline beats a "
+          "stale one)",
+          _sl2._densest_window([_mk(0, "2026-08-01"), _mk(1, "2026-08-02"),
+                                _mk(2, "2026-09-01"), _mk(3, "2026-09-02")],
+                               10)[0]["date"] == "2026-09-01")
+    check("undated clips are kept (they cannot be excluded on evidence we "
+          "do not have)",
+          any(not c.get("date") for c in _sl2._densest_window(
+              _spread + [{"source_url": "cx", "title": "t",
+                          "channel": "xqc", "date": ""}], 10)))
+
+    # a cluster whose sources share no event must SAY so
+    check("a cluster that never reaches the director records why",
+          '"no_shared_event"' in _rt_src
+          and "no director call was made" in _rt_src)
+    check("...and the shape is logged every time, not only on failure",
+          "_shape = (" in _rt_src and "analysed -> subclusters" in _rt_src)
+    check("the digest names that outcome distinctly",
+          "NO SHARED EVENT" in (REPO / "scripts" / "judges.py").read_text())
 
     print()
     if FAILS:

@@ -81,6 +81,10 @@ ALIASES = {
     "adin": "adinross", "adinross": "adinross",
     "jason": "jasontheween", "jasontheween": "jasontheween",
     "tpain": "tpain", "pain": "tpain",
+    "emily": "extraemily", "extraemily": "extraemily",
+    "pixel": "ohnepixel", "ohnepixel": "ohnepixel",
+    "tyler": "loltyler1",
+    "soda": "sodapoppin", "sodapoppin": "sodapoppin",
 }
 
 
@@ -136,14 +140,58 @@ def near_dup(member_urls: list[str], shipped_member_lists: list[list[str]],
     return False
 
 
-def _entities(title: str, streamer: str, known: set[str]) -> set[str]:
+def _norm_ent(s: str) -> str:
+    # alnum-only lowercase so "caseoh_" and "CaseOh" are one person
+    return re.sub(r"[^a-z0-9]", "", str(s).lower())
+
+
+def _has_case_signal(title: str) -> bool:
+    """False when capitalization in this title carries no information.
+
+    'WORST DEATH SO FAR - DAY 3' capitalizes every word, so "capitalized =
+    probably a name" is meaningless there — it yielded WORST, DEATH, FAR
+    and DAY as people. Same for a title with no capitals at all."""
+    t = str(title)
+    letters = [c for c in t if c.isalpha()]
+    if len(letters) < 3:
+        return False
+    upper = sum(1 for c in letters if c.isupper())
+    return 0.05 < (upper / len(letters)) < 0.60
+
+
+def common_tokens(corpus: list[dict], min_channels: int = 3) -> set[str]:
+    """Capitalized tokens that are ENGLISH WORDS, learned from the corpus.
+
+    A 342-entry stoplist was losing to all of English — real titles kept
+    yielding `death`, `worst`, `evil`, `siege`, `feisty`, `mercy`, `boat`
+    as people, which buried every genuine co-occurrence in one-off noise
+    pairs and left solo-streamer bags as the only clusters that survived.
+
+    The signal that actually separates them needs no dictionary: a PERSON's
+    name is concentrated in a few channels, while a WORD shows up in clips
+    from many unrelated streamers. Anything appearing across `min_channels`
+    distinct channels is a word."""
+    by_tok: dict[str, set] = {}
+    for c in corpus:
+        title, ch = str(c.get("title", "")), _norm_ent(c.get("channel", ""))
+        if not _has_case_signal(title):
+            continue
+        for tok in re.findall(r"\b[A-Z][a-zA-Z]{2,15}\b", title):
+            t = _norm_ent(tok)
+            if t:
+                by_tok.setdefault(t, set()).add(ch)
+    return {t for t, chans in by_tok.items() if len(chans) >= min_channels}
+
+
+def _entities(title: str, streamer: str, known: set[str],
+              deny: set[str] | None = None) -> set[str]:
     """People a clip is about: its own streamer, any KNOWN streamer named in
     the title (matched case-insensitively anywhere), and capitalized
-    name-like tokens that survive the stoplist (catches people outside the
-    allowlist — 'Cudi', 'Tfue', 'Dean')."""
-    def _norm(s: str) -> str:
-        # alnum-only lowercase so "caseoh_" and "CaseOh" are one person
-        return re.sub(r"[^a-z0-9]", "", str(s).lower())
+    name-like tokens that survive the stoplist AND the corpus-learned
+    `deny` set (catches people outside the allowlist — 'Cudi', 'Tfue',
+    'Dean' — without also catching 'Death' and 'Worst')."""
+    _norm = _norm_ent
+    deny = deny or set()
 
     ents = set()
     if streamer:
@@ -154,10 +202,12 @@ def _entities(title: str, streamer: str, known: set[str]) -> set[str]:
         if k and re.search(rf"\b{re.escape(k)}\b", low):
             n = _norm(k)
             ents.add(ALIASES.get(n, n))
-    for tok in re.findall(r"\b[A-Z][a-zA-Z]{2,15}\b", str(title)):
-        t = _norm(tok)
-        if t and t not in _STOP and not t.isdigit():
-            ents.add(ALIASES.get(t, t))
+    # Capitalization is only evidence when the title actually varies case.
+    if _has_case_signal(title):
+        for tok in re.findall(r"\b[A-Z][a-zA-Z]{2,15}\b", str(title)):
+            t = _norm(tok)
+            if t and t not in _STOP and t not in deny and not t.isdigit():
+                ents.add(ALIASES.get(t, t))
     ents.discard("")
     return ents
 
@@ -206,8 +256,38 @@ def from_discovery(pool: list[dict]) -> list[dict]:
     return out
 
 
+def _densest_window(clips: list[dict], window_days: int) -> list[dict]:
+    """The largest run of clips falling inside any `window_days` window.
+
+    Ties break toward the MOST RECENT window: a live storyline beats an old
+    one. Clips with no date are kept (they cannot be excluded on evidence
+    we do not have)."""
+    dated = [c for c in clips if c.get("date")]
+    undated = [c for c in clips if not c.get("date")]
+    if len(dated) < 2:
+        return clips
+    def _d(c):
+        try:
+            return datetime.fromisoformat(str(c["date"])[:10]).date()
+        except ValueError:
+            return None
+    keyed = [(d, c) for c in dated if (d := _d(c)) is not None]
+    if len(keyed) < 2:
+        return clips
+    keyed.sort(key=lambda kc: kc[0])
+    best: list = []
+    for i, (start, _c) in enumerate(keyed):
+        win = [c for d, c in keyed[i:]
+               if (d - start).days <= window_days]
+        # >= keeps the latest window on a tie (loop runs oldest-first)
+        if len(win) >= len(best):
+            best = win
+    return best + undated
+
+
 def find_clusters(corpus: list[dict], known_streamers: list[str],
-                  max_members: int = 8) -> list[dict]:
+                  max_members: int = 8,
+                  window_days: int = 10) -> list[dict]:
     """Group the corpus into candidate storylines by shared people.
 
     Buckets on PAIRS of entities (two people = the classic beef/friendship
@@ -218,6 +298,13 @@ def find_clusters(corpus: list[dict], known_streamers: list[str],
     [{"who": [...], "clips": [...], "score": float}]."""
     known = {re.sub(r"[^a-z0-9]", "", str(k).lower())
              for k in known_streamers if k} - {""}
+    # Learn which capitalized tokens are ENGLISH WORDS from this corpus
+    # before extracting anyone. Without it every title donated junk
+    # "people" (death, worst, evil, mercy), which buried real
+    # co-occurrences under thousands of one-off noise pairs — none of which
+    # could ever reach the >=2 clips / >=2 dates bar, so solo-streamer bags
+    # were the only clusters that ever survived.
+    deny = common_tokens(corpus)
     items = []
     seen = set()
     for c in corpus:
@@ -225,7 +312,8 @@ def find_clusters(corpus: list[dict], known_streamers: list[str],
         if not ck or ck in seen:
             continue
         seen.add(ck)
-        ents = _entities(c.get("title", ""), c.get("channel", ""), known)
+        ents = _entities(c.get("title", ""), c.get("channel", ""), known,
+                         deny=deny)
         if ents:
             items.append((c, ents))
 
@@ -244,6 +332,17 @@ def find_clusters(corpus: list[dict], known_streamers: list[str],
     for who, clips in buckets.items():
         uniq = {clip_key(c["source_url"]): c for c in clips}
         clips = sorted(uniq.values(), key=lambda c: c.get("date", ""))
+        # AN ARC IS A RUN OF DAYS, NOT A MONTH OF SCATTERED CLIPS.
+        # A solo bucket used to be "this streamer's last 8 clips", spanning
+        # 6-19 days in practice. Downstream, _semantic_subclusters can only
+        # join sources inside the same ISO week (+-1) — so a 19-day bag can
+        # never form a single event out of its members, and we were paying
+        # a whisper pass and a vision call on each of 6 sources drawn from
+        # that spread before the director inevitably said "not a story".
+        # Narrow to the DENSEST window first, so the analysis budget is
+        # spent on clips that could plausibly be one thing.
+        if len(who) == 1 and clips:
+            clips = _densest_window(clips, window_days)
         dates = {c["date"] for c in clips if c.get("date")}
         if len(clips) < 2 or len(dates) < 2:
             continue                        # no change over time = no arc
