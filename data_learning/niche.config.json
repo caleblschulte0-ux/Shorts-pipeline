@@ -26519,6 +26519,237 @@
         }
       ],
       "words_by": "brain(attempt 2, judge llm-pass)"
+    },
+    {
+      "slug": "lab-grown-diamond-price-collapse",
+      "title": "Lab-Grown Diamonds Just Lost 90% Of Their Value",
+      "hook": "One diamond kept its price. One didn't.",
+      "closing": "Forever was only ever a marketing budget.",
+      "question": "Natural or lab-grown \u2014 which would you actually pick? Drop it below.",
+      "caption": "A lab-grown diamond now costs 14 times less than a natural one \u2014 factories can grow more than the world wants to buy. Here's how a $4,200 stone became a $380 one. \ud83d\udc8d",
+      "hashtags": [
+        "labgrowndiamonds",
+        "diamonds",
+        "engagementring",
+        "jewelry",
+        "naturaldiamonds",
+        "diamondprices",
+        "moneytalk",
+        "personalfinance",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lab_grown_diamond_price",
+          "params": {
+            "file": "lab_grown_diamond_price.json"
+          },
+          "insight_type": "trend",
+          "topic": "lab-grown diamond price",
+          "role": "1 \u00b7 THE CRASH",
+          "say": "In 2020, a lab-grown diamond cost about $4,200 a carat \u2014 almost the price of a real one. By 2025: $380."
+        },
+        {
+          "source": "offline",
+          "key": "diamond_price_snapshot_2025",
+          "params": {
+            "file": "diamond_price_snapshot_2025.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "topic": "natural vs. lab-grown price today",
+          "role": "2 \u00b7 THE GAP",
+          "say": "A natural 1-carat diamond still runs about $4,200. The lab-grown twin of that exact stone costs $380 \u2014 and a jeweler can't tell them apart."
+        },
+        {
+          "source": "offline",
+          "key": "lab_grown_ring_share",
+          "params": {
+            "file": "lab_grown_ring_share.json"
+          },
+          "insight_type": "trend",
+          "topic": "share of engagement rings",
+          "role": "3 \u00b7 THE SHIFT",
+          "say": "Which is why lab-grown went from 3 percent of engagement rings in 2018 to 47 percent by 2024. Manufacture rarity, and it stops being rare."
+        }
+      ]
+    },
+    {
+      "slug": "aquaculture-overtook-wild-fishing",
+      "title": "The Ocean Isn't Where Your Fish Comes From Anymore",
+      "hook": "Your salmon probably never saw the ocean.",
+      "closing": "The ocean didn't get emptier. It got outcompeted.",
+      "question": "Would you even notice if your fish was farmed? Tell me below.",
+      "caption": "Fish farms just did something they've never done before \u2014 out-produce every fishing boat on Earth combined. \"Wild-caught\" is quietly becoming the minority on your plate. \ud83d\udc1f",
+      "hashtags": [
+        "aquaculture",
+        "fishfarming",
+        "seafood",
+        "sustainability",
+        "ocean",
+        "fishing",
+        "foodsupply",
+        "fao",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "farmed_fish_production",
+          "params": {
+            "file": "farmed_fish_production.json"
+          },
+          "insight_type": "trend",
+          "topic": "farmed fish production",
+          "role": "1 \u00b7 THE CATCH-UP",
+          "say": "In 1990, almost every fish you ate was wild-caught. By 2022, farms produced 94 million tonnes \u2014 more than every fishing boat on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "farmed_vs_wild_share_2022",
+          "params": {
+            "file": "farmed_vs_wild_share_2022.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "farmed vs. wild share, 2022",
+          "role": "2 \u00b7 THE FLIP",
+          "say": "Wild catch has barely moved in 30 years; boats already take about as much as the ocean can regrow. In 2022, farms edged ahead: 51 to 49."
+        },
+        {
+          "source": "offline",
+          "key": "farmed_share_of_seafood_trend",
+          "params": {
+            "file": "farmed_share_of_seafood_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "share of your plate",
+          "role": "3 \u00b7 YOUR PLATE",
+          "say": "Which is why 57 percent of the fish on your plate now comes from a farm, not a net. 'Wild-caught' is becoming the rare label."
+        }
+      ]
+    },
+    {
+      "slug": "daylight-saving-time-in-decline",
+      "title": "Most Of The World Already Gave Up On This",
+      "hook": "Why do some clocks even still change?",
+      "closing": "Springing forward is going out of style.",
+      "question": "Does your clock still change twice a year? Tell me below.",
+      "caption": "Only 70 countries out of 195 still bother changing their clocks twice a year. Here's why more than half the world already gave up on daylight saving. \u23f0",
+      "hashtags": [
+        "daylightsaving",
+        "timezones",
+        "clocks",
+        "didyouknow",
+        "worldfacts",
+        "geography",
+        "interestingfacts",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "dst_countries_share_today",
+          "params": {
+            "file": "dst_countries_share_today.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "who still changes their clocks",
+          "role": "1 \u00b7 TODAY",
+          "say": "Only about 70 countries on Earth still spring forward and fall back. That's 36 percent. The other 64 either never bothered, or quit."
+        },
+        {
+          "source": "offline",
+          "key": "dst_decline_trend",
+          "params": {
+            "file": "dst_decline_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "countries dropping it",
+          "role": "2 \u00b7 THE EXIT",
+          "say": "More than 140 countries have tried daylight saving. In the last decade alone, Russia, Turkey, and Brazil all quietly walked away from it."
+        },
+        {
+          "source": "offline",
+          "key": "dst_population_coverage",
+          "params": {
+            "file": "dst_population_coverage.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "topic": "the biggest countries that skip it",
+          "role": "3 \u00b7 THE REAL SCALE",
+          "say": "Which barely matters anyway: India and China alone are 1.4 billion people each, and neither has ever observed daylight saving.",
+          "ascending": false
+        }
+      ]
+    },
+    {
+      "slug": "self-storage-outnumbers-starbucks",
+      "title": "There Are More Storage Units Than Starbucks In America",
+      "hook": "America built more of one than the other.",
+      "closing": "We didn't run out of space. We ran out of closets.",
+      "question": "How much stuff do you have in storage right now? Tell me below.",
+      "caption": "There are more self-storage facilities in America than Starbucks, McDonald's, and Subway combined \u2014 about 66,000 of them. Here's why we're all quietly renting extra closets. \ud83d\udce6",
+      "hashtags": [
+        "selfstorage",
+        "starbucks",
+        "realestate",
+        "declutter",
+        "smallbusiness",
+        "americanculture",
+        "didyouknow",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "storage_vs_chains_rank",
+          "params": {
+            "file": "storage_vs_chains_rank.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "topic": "storage units vs. America's chains",
+          "role": "1 \u00b7 THE COUNT",
+          "say": "There are about 66,000 self-storage facilities across America. Starbucks has roughly 16,800 stores. Four storage units for every coffee shop."
+        },
+        {
+          "source": "offline",
+          "key": "storage_vs_chains_share",
+          "params": {
+            "file": "storage_vs_chains_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "storage vs. 3 biggest chains combined",
+          "role": "2 \u00b7 THE SPLIT",
+          "say": "Stack storage against Starbucks, McDonald's, and Subway combined \u2014 50,600 locations \u2014 and self-storage still wins alone, by 15,000 buildings."
+        },
+        {
+          "source": "offline",
+          "key": "storage_facility_growth_trend",
+          "params": {
+            "file": "storage_facility_growth_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "why we built all of it",
+          "role": "3 \u00b7 THE REASON",
+          "say": "In 1984 there were about 6,600 storage facilities. Today there are 66,000. We didn't run out of coffee shops \u2014 we ran out of closets."
+        }
+      ]
     }
   ],
   "videos": [

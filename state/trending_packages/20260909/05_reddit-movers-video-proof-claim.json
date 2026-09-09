@@ -1,0 +1,75 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-movers-video-proof-claim",
+  "title": "They Lost My Grandmother's Clock. I Had Video.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "movers",
+    "insurance",
+    "consumerrights",
+    "karma",
+    "redditstories",
+    "shorts",
+    "satisfying",
+    "customerservice",
+    "moving"
+  ],
+  "script": "They lost my grandmother's clock? My cross-country movers arrived, and the antique clock I'd wrapped myself was suddenly missing from the truck. Their own contract required full-value protection claims to include documentation from before loading, so I pulled up the eleven-minute walkthrough video I'd filmed that morning, every box timestamped, narrated, clock included at the four-minute mark. Their claims adjuster opened with the standard offer: sixty dollars, the depreciated released-value rate. I forwarded the video instead, along with their own certificate of insurance clause. Support flagged it to legal within the hour. Two weeks later I got a check for the clock's full appraised value and an apology email. Funny how thorough a mover's contract reads once you've actually got the receipts. Turns out that sixty-dollar rate only applies when a customer can't prove otherwise.",
+  "shots": [
+    {
+      "phrase": "the antique clock",
+      "query": "moving boxes truck"
+    },
+    {
+      "phrase": "eleven-minute walkthrough video",
+      "query": "person filming boxes phone"
+    },
+    {
+      "phrase": "timestamped, narrated, clock included",
+      "query": "grandfather clock antique"
+    },
+    {
+      "phrase": "sixty dollars, the depreciated",
+      "query": "insurance claim form"
+    },
+    {
+      "phrase": "their own certificate of insurance clause",
+      "query": "contract paperwork signing"
+    },
+    {
+      "phrase": "flagged it to legal within the hour",
+      "query": "office desk laptop"
+    },
+    {
+      "phrase": "a check for the clock's full appraised value",
+      "query": "bank check envelope"
+    },
+    {
+      "phrase": "an apology email",
+      "query": "email inbox laptop"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the antique clock",
+      "text": "CLOCK: GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "sixty dollars, the depreciated",
+      "text": "$60 OFFER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a check for the clock's full appraised value",
+      "text": "FULL VALUE PAID",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "an apology email",
+      "text": "APOLOGY SENT",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "quiet documentation tension resolving into a full-value payout"
+}

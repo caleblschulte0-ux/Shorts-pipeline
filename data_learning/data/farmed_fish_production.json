@@ -1,0 +1,42 @@
+{
+  "key": "farmed_fish_production",
+  "title": "Global aquatic-animal production, farmed vs. wild-caught (million tonnes)",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "1990-2022 (selected years)",
+  "source": {
+    "name": "State of World Fisheries and Aquaculture (SOFIA) 2024",
+    "publisher": "UN Food and Agriculture Organization (FAO)",
+    "url": "https://www.fao.org/3/cd0683en/online/sofia/2024/world-fisheries-aquaculture-production.html",
+    "officiality": "official",
+    "access_date": "2026-09-09"
+  },
+  "notes": "Farmed (aquaculture) production of aquatic animals; 2022 is the first year it exceeded wild capture.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 13,
+      "period": "1990"
+    },
+    {
+      "label": "2000",
+      "value": 32,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 59,
+      "period": "2010"
+    },
+    {
+      "label": "2018",
+      "value": 82,
+      "period": "2018"
+    },
+    {
+      "label": "2022",
+      "value": 94.4,
+      "period": "2022"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "key": "lab_grown_ring_share",
+  "title": "Share of US engagement rings sold with a lab-grown center stone (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2018-2024 (annual)",
+  "source": {
+    "name": "Lab-grown diamond adoption in bridal jewelry",
+    "publisher": "The Knot Jewelry & Engagement Study; BriteCo industry reports",
+    "url": "https://modernjeweler.com/lab-grown-diamonds-represent-over-45-percent-of-us-engagement-ring-sales-says-briteco-report/",
+    "officiality": "industry",
+    "access_date": "2026-09-09"
+  },
+  "notes": "Reported anchors: ~3% (2018), ~25% (2022), 45%+ (2024). Intervening years interpolated to show the acceleration.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 3,
+      "period": "2018"
+    },
+    {
+      "label": "2019",
+      "value": 6,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 9,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 16,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 25,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 35,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 47,
+      "period": "2024"
+    }
+  ]
+}

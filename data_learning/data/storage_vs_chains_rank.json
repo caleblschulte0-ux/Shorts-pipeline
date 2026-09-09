@@ -1,0 +1,37 @@
+{
+  "key": "storage_vs_chains_rank",
+  "title": "US locations by chain/industry, 2025 (thousands)",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Self-storage facility count vs. major US chains",
+    "publisher": "Storagefront; Self Storage Association industry data",
+    "url": "https://www.storagefront.com/blogs/self-storage-vs-starbucks/",
+    "officiality": "industry",
+    "access_date": "2026-09-09"
+  },
+  "notes": "Self-storage facility count vs. store counts for the three chains most often used as a comparison benchmark.",
+  "points": [
+    {
+      "label": "Self-Storage Facilities",
+      "value": 66
+    },
+    {
+      "label": "Subway",
+      "value": 20.1
+    },
+    {
+      "label": "Starbucks",
+      "value": 16.8
+    },
+    {
+      "label": "McDonald's",
+      "value": 13.7
+    }
+  ],
+  "baseline": {
+    "label": "Starbucks + McDonald's + Subway Combined",
+    "value": 50.6
+  }
+}

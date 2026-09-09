@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-buried-music-formats",
+  "title": "Streaming Buried Every Other Way We Buy Music",
+  "hook": "CDs had a good run.",
+  "y_label": "Global recorded music revenue ($ millions)",
+  "duration": 13,
+  "source": "IFPI Global Music Report (2011-2023) revenue splits between streaming and physical + digital-download formats.",
+  "years": [
+    2011,
+    2013,
+    2015,
+    2017,
+    2019,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Streaming",
+      "color": "#1ed760",
+      "icon": "Spotify",
+      "values": [
+        400,
+        1000,
+        2900,
+        7400,
+        11400,
+        16900,
+        19400
+      ]
+    },
+    {
+      "name": "Physical + Downloads",
+      "color": "#c0392b",
+      "values": [
+        14900,
+        12500,
+        10300,
+        6400,
+        5900,
+        5400,
+        4900
+      ]
+    }
+  ],
+  "hashtags": [
+    "music",
+    "streaming",
+    "spotify",
+    "musicindustry",
+    "cds",
+    "vinyl",
+    "digitalmusic",
+    "data",
+    "shorts",
+    "trending",
+    "throwback"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

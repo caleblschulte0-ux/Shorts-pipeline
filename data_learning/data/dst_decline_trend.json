@@ -1,0 +1,42 @@
+{
+  "key": "dst_decline_trend",
+  "title": "Countries observing daylight saving time (estimated count)",
+  "unit": "index",
+  "geography": "World",
+  "time_coverage": "1980-2026 (selected years)",
+  "source": {
+    "name": "Historical daylight saving time adoption",
+    "publisher": "timeanddate.com; Pew Research Center",
+    "url": "https://www.timeanddate.com/time/dst/statistics.html",
+    "officiality": "estimate",
+    "access_date": "2026-09-09"
+  },
+  "notes": "More than 140 countries have tried DST at some point; roughly half have since abandoned it. Points are round estimates of countries actively observing it in each period, not an official annual census.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 140,
+      "period": "1980"
+    },
+    {
+      "label": "1995",
+      "value": 120,
+      "period": "1995"
+    },
+    {
+      "label": "2010",
+      "value": 95,
+      "period": "2010"
+    },
+    {
+      "label": "2019",
+      "value": 78,
+      "period": "2019"
+    },
+    {
+      "label": "2026",
+      "value": 70,
+      "period": "2026"
+    }
+  ]
+}

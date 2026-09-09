@@ -1,0 +1,75 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "reddit-subcontractor-lien-payback",
+  "title": "He Ghosted My Invoice. So I Filed A Lien.",
+  "hashtags": [
+    "prorevenge",
+    "contractor",
+    "construction",
+    "smallbusiness",
+    "karma",
+    "redditstories",
+    "shorts",
+    "satisfying",
+    "invoice",
+    "revenge"
+  ],
+  "script": "He thought I'd just eat the invoice. I finished the electrical rough-in on a twelve-unit building for a general contractor who had stiffed me twice before and always talked his way out of it. This time he ghosted for six weeks after final walkthrough, forty-one thousand dollars unpaid. I didn't call again. I filed a mechanic's lien against the property, exactly within my state's deadline, and mailed notice to both him and the property owner. Turns out the owner was refinancing the building that same month, and a title company will not close on a property with an active lien sitting right there on the report. The owner called the contractor demanding it resolved immediately. The contractor, apparently allergic to paperwork until it costs him a closing, wired the full amount plus the late fee within two days. Title cleared, my lien released, refinance closed on schedule, everyone happy except the guy who thought unpaid invoices just quietly disappear.",
+  "shots": [
+    {
+      "phrase": "the electrical rough-in on a twelve-unit building",
+      "query": "electrician wiring construction"
+    },
+    {
+      "phrase": "forty-one thousand dollars unpaid",
+      "query": "unpaid invoice paperwork"
+    },
+    {
+      "phrase": "a mechanic's lien against the property",
+      "query": "legal document filing"
+    },
+    {
+      "phrase": "the property owner",
+      "query": "office building exterior"
+    },
+    {
+      "phrase": "refinancing the building that same month",
+      "query": "bank loan paperwork"
+    },
+    {
+      "phrase": "a title company will not close",
+      "query": "real estate closing table"
+    },
+    {
+      "phrase": "wired the full amount plus the late fee",
+      "query": "bank transfer laptop"
+    },
+    {
+      "phrase": "refinance closed on schedule",
+      "query": "handshake office deal"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "forty-one thousand dollars unpaid",
+      "text": "$41,000 UNPAID",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a mechanic's lien against the property",
+      "text": "LIEN FILED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "wired the full amount plus the late fee",
+      "text": "PAID IN FULL",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "refinance closed on schedule",
+      "text": "DEAL CLOSED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "slow-burn contractor standoff resolving into a forced payout"
+}

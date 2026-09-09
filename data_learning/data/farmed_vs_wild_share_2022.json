@@ -1,0 +1,25 @@
+{
+  "key": "farmed_vs_wild_share_2022",
+  "title": "Share of world aquatic-animal production, 2022 (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2022",
+  "source": {
+    "name": "SOFIA 2024 \u2014 aquaculture vs. capture fisheries share",
+    "publisher": "UN Food and Agriculture Organization (FAO)",
+    "url": "https://www.fao.org/3/cd0683en/online/sofia/2024/key-messages.html",
+    "officiality": "official",
+    "access_date": "2026-09-09"
+  },
+  "notes": "2022: aquaculture reached 51% of total aquatic-animal production, the first time it passed wild capture.",
+  "points": [
+    {
+      "label": "Farmed",
+      "value": 51
+    }
+  ],
+  "baseline": {
+    "label": "Wild-Caught",
+    "value": 49
+  }
+}

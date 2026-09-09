@@ -1,0 +1,29 @@
+{
+  "key": "diamond_price_snapshot_2025",
+  "title": "1-carat diamond price by type, 2025 (dollars)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Natural vs. lab-grown 1-carat diamond price comparison",
+    "publisher": "BriteCo Lab-Grown vs. Natural Diamond Report",
+    "url": "https://brite.co/the-lab-grown-vs-natural-diamond-report/",
+    "officiality": "industry",
+    "access_date": "2026-09-09"
+  },
+  "notes": "Average retail/wholesale price for a comparable 1-carat stone in 2025.",
+  "points": [
+    {
+      "label": "Natural",
+      "value": 4200
+    },
+    {
+      "label": "Lab-Grown",
+      "value": 380
+    }
+  ],
+  "baseline": {
+    "label": "Natural (2025 avg.)",
+    "value": 4200
+  }
+}
