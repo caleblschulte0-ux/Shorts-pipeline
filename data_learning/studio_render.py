@@ -95,10 +95,17 @@ THEMES = [
     dict(highlight="#A78BFA", accent="#F472B6", warn="#FBBF24",
          grad=("0x0c0814", "0x241040", "0x3a1763", "0x120a20"),
          seed=13, voice="am_michael", vibe="dark"),
-    dict(highlight="#FBBF24", accent="#FB7185", warn="#34D399",
+    # The rose and the green were ΔE 4.6 apart for a colourblind viewer —
+    # below even the hard floor — and both are on screen together. Nudged to
+    # the nearest pair that clears it with room to spare (9.9). See
+    # `shared/palette.py` and `tests/test_palette.py::EveryThemeIsChecked`.
+    dict(highlight="#FBBF24", accent="#F26D73", warn="#36D8B0",
          grad=("0x141005", "0x3a2410", "0x4e3417", "0x1a1408"),
          seed=21, voice="bm_george", vibe="cinematic"),
-    dict(highlight="#34D399", accent="#22D3EE", warn="#FBBF24",
+    # The green and the cyan were ΔE 12.1 apart in NORMAL vision, under the
+    # hard floor of 15 that no labelling excuses — a full-colour viewer could
+    # not tell this theme's two leading colours apart.
+    dict(highlight="#20D88F", accent="#3FC5FF", warn="#FFB326",
          grad=("0x07140e", "0x0e3a2a", "0x175852", "0x0a201a"),
          seed=29, voice="am_adam", vibe="pulse"),
     dict(highlight="#FB7185", accent="#A78BFA", warn="#FBBF24",

@@ -225,6 +225,30 @@ def audit(colors=SERIES, surface: str = CARD) -> dict:
     return {"ok": not problems, "problems": problems}
 
 
+def audit_trio(colors, surface: str = CARD) -> dict:
+    """The same floors, for a set small enough that EVERY pair is on screen.
+
+    A per-story theme hands a machine three colours — highlight, accent,
+    warn — and all three are drawn at once, so adjacency means nothing here.
+    Two of the six themes failed this when it was first run: one had a rose
+    and a green ΔE 4.6 apart for a colourblind viewer, the other a green and
+    a cyan 12.1 apart in ordinary vision. One story in three.
+    """
+    problems = []
+    for c in colors:
+        k = contrast(c, surface)
+        if k < CONTRAST_FLOOR:
+            problems.append(f"{c} contrast {k:.2f} on {surface}")
+    for a, b in itertools.combinations(colors, 2):
+        d = delta_e(a, b)
+        if d < NORMAL_FLOOR:
+            problems.append(f"{a} vs {b} normal ΔE {d:.1f}")
+        d = min(delta_e(a, b, k) for k in ("deuteranopia", "protanopia"))
+        if d < CVD_FLOOR:
+            problems.append(f"{a} vs {b} colourblind ΔE {d:.1f}")
+    return {"ok": not problems, "problems": problems}
+
+
 def worst_pair(colors=SERIES) -> tuple:
     """The closest pair under any vision, for reporting."""
     out = []
