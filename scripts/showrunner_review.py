@@ -64,7 +64,31 @@ WEIGHTS = {
 # code BLOCKS if any is present, regardless of the numeric score. These are the
 # rubric's hard rules — they are not suggestions.
 AUTOFAIL_CHECKS = ["junk_imagery", "decorative_mascot", "bare_number_card",
-                   "dead_air", "empty_void"]
+                   "dead_air", "empty_void", "unreadable"]
+# `unreadable` was added on 2026-09-09, and the reason is the whole point of
+# having a gate. The operator watched a video this gate had PASSED and read
+# back what was on screen:
+#
+#     8s   "90 (pre-vaccine)"       the leading "19" outside the frame
+#     28s  "Not yet vaccinated  9"  the percent sign outside the frame
+#     20s  two labels printed on top of one another, unreadable
+#     36s  the mascot standing on the title, covering "vaccinated"
+#
+# The judge was RIGHT to pass it. Every hard check it had — junk_imagery,
+# decorative_mascot, bare_number_card, dead_air, empty_void — is about
+# CONTENT and MOTION. Not one is about whether the frame can be READ, so
+# there was no box to tick for a label cut off at the edge.
+#
+# That is a gap in the AUTHORITY, not in the five machines that happened to
+# be caught fixing it the same evening. A quality bar that cannot see
+# illegibility will ship illegible videos for as long as it exists, and the
+# next renderer reintroduces it the day after the last one is patched.
+#
+# It is deliberately NOT in FATAL_CHECKS. Under the `rebuild` policy only
+# junk_imagery hard-blocks, and a channel that has just started posting
+# again should not be stopped by a check on its first day — but it is asked,
+# answered, recorded in the verdict and the ledger, and it blocks under
+# `standard`, which is what the explainer runs.
 
 # DECISION POLICY — which auto-fails hard-block, and at what floor.
 #
@@ -635,6 +659,13 @@ frame label. Be strict — these are hard rules, not vibes:
                       demonstration
   dead_air            >= ~4s where nothing meaningful moves / two beats identical
   empty_void          large dead/black areas; the frame's space is wasted
+  unreadable          ANY text a viewer cannot read on a phone: cut off by
+                      the frame edge (a label reading "90 (" that should say
+                      "1990 ("), printed on top of other text, covered by
+                      the mascot or a mark, or so low-contrast against its
+                      background that it disappears. Judge it as a phone
+                      held at arm's length, not as a still you can zoom: if
+                      you have to work out what a label says, it is present.
 
 MOTION FACTS (measured in code, not opinion) — use them, especially for dead_air \
 and empty_void:
@@ -653,7 +684,8 @@ Return ONLY this JSON:
 {{"dimensions":{{"hook":int,"data_demo":int,"mascot":int,"craft":int,"pace":int,"payoff":int}},
  "checks":{{"junk_imagery":{{"present":bool,"evidence":str}},"decorative_mascot":{{"present":bool,"evidence":str}},
  "bare_number_card":{{"present":bool,"evidence":str}},"dead_air":{{"present":bool,"evidence":str}},
- "empty_void":{{"present":bool,"evidence":str}}}},
+ "empty_void":{{"present":bool,"evidence":str}},
+ "unreadable":{{"present":bool,"evidence":str}}}},
  "weakest_scene":{{"id":str,"index":int,"failure_class":str,
  "visible_evidence":str,"root_cause":str,"repair_goal":str}},
  "one_line":str,"problems":[str],"fixes":[str]}}
