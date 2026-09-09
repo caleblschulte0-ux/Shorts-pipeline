@@ -265,6 +265,31 @@ def main():
     out=Path(a.out) if a.out else ROOT/f"{a.story}.mp4"
     meta=render_story(story,out,work,music=a.music or None)
     print(f"[cine] rendered {out} ({meta['duration']:.1f}s)")
+    # ---- THE SHOWRUNNER DECIDES, HERE TOO --------------------------------
+    # This path rendered and uploaded to the EXPLAINER channel — the channel
+    # CLAUDE.md says fails CLOSED — while referencing the showrunner nowhere,
+    # from a workflow that carried neither CLAUDE_CODE_OAUTH_TOKEN nor
+    # GEMINI_API_KEY. An ungated publish path is exactly what let trending
+    # ship six months of unwatched videos while explainer was gated
+    # (docs/SYSTEM_AUDIT.md §B).
+    #
+    # It calls the SHARED gate, not a second copy of the policy: fail-closed
+    # on a publish run, SHOWRUNNER=off refused on a publish run, a BLOCK is
+    # sovereign. Nothing here can clear a hold — this only routes the cut to
+    # the judge that was always supposed to see it.
+    if a.upload:
+        from shared import showrunner_gate as _gate
+        ctx = {"slug": a.story, "title": meta.get("title"),
+               "hook": (story.get("hook") if isinstance(story, dict) else ""),
+               "segments": [str(x)[:160] for x in
+                            (meta.get("segments")
+                             or (story.get("segments") or []
+                                 if isinstance(story, dict) else []))][:8]}
+        gate = _gate.run(out, slug=a.story, context=ctx, will_upload=True)
+        _gate.log(gate, a.story)
+        if gate["blocked"]:
+            print(f"::error::[cine] HELD by the showrunner — {gate['reason']}")
+            return 1
     if a.upload:
         from datetime import datetime, timezone
         from shared.uploaders import YouTubeUploader

@@ -1014,6 +1014,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # which is how an overlay ended up sitting on whatever it was
             # supposed to avoid — a "safe zone" that silently gives up is
             # worse than none, because it reads as deliberate placement.
+
             def _overlap(c: float) -> float:
                 return sum(max(0.0, min(c + frac_h, b1) - max(c, b0))
                            for b0, b1 in bands)

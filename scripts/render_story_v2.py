@@ -259,6 +259,20 @@ def main():
     meta=render_story(st,out,work)
     print(f"[v2] rendered {out} ({meta['duration']:.1f}s), beats={[b['mechanic'] for b in st['beats']]}")
     if a.upload:
+        # THE SHOWRUNNER DECIDES. This defaults to --channel explainer, which
+        # fails CLOSED, and nothing in CI calls this script — so the only way
+        # it runs is a human running it by hand, which is precisely when a
+        # missing gate goes unnoticed. Same shared gate as post_stories and
+        # render_cinematic; never a second copy of the policy.
+        from shared import showrunner_gate as _gate
+        gate = _gate.run(out, slug=a.story,
+                         context={"slug": a.story, "title": meta.get("title")},
+                         will_upload=True)
+        _gate.log(gate, a.story)
+        if gate["blocked"]:
+            print(f"::error::[v2] HELD by the showrunner — {gate['reason']}")
+            return 1
+    if a.upload:
         from shared.uploaders import YouTubeUploader
         res=YouTubeUploader(channel=a.channel).upload(str(out),title=meta["title"],
             description=meta["description"],tags=meta["tags"],publish_at=a.publish_at or None,category="27")

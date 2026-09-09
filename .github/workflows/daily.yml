@@ -92,8 +92,24 @@ jobs:
 
       - name: Pre-flight — kill switch + failure counter
         id: preflight
+        env:
+          # Read here ONLY to assert it exists — see the judge check below.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -e
+          # A FAIL-CLOSED GATE WITH NO JUDGE HOLDS EVERYTHING.
+          #
+          # Trending fails closed through shared/showrunner_gate as of
+          # 2026-08-01. Without a judge this renders the whole slate and
+          # publishes NONE of it — green the whole way, which is the exact
+          # shape of failure the gate was introduced to end. CLAUDE.md
+          # requires every publishing workflow to say so in its preflight;
+          # this one carried the secrets and never checked them.
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (set CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY) — trending fails closed, so every render would be held"
+            exit 1
+          fi
           # A COMPLETED PHASE B RUN IS NOT THE SAME THING AS A FINISHED DAY.
           #
           # exchange_phase_b.yml fires on TWO candidate UTC hours so the code

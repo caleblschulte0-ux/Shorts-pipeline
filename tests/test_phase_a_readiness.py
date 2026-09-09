@@ -57,6 +57,26 @@ class TestTheClockIsJudgedLocally(unittest.TestCase):
         docs had grown two stale copies of the derived UTC hours."""
         self.assertEqual(centraltime.TZ, "America/Chicago")
 
+    def test_no_module_redefines_the_timezone(self):
+        """The copies are what let the docs drift — a second definition is
+        how "12:45 UTC" survived in two files after the schedule moved.
+        Comments and human-readable spec strings are fine; a module-level
+        ASSIGNMENT of the literal is not."""
+        import re
+        offenders = []
+        for pat in ("scripts/*.py", "shared/*.py", "funnel/*.py",
+                    "engines/*.py", "data_learning/*.py"):
+            for f in ROOT.glob(pat):
+                if f.name == "centraltime.py":
+                    continue
+                for i, line in enumerate(f.read_text().splitlines(), 1):
+                    if re.match(r'\s*[A-Z_]+\s*=\s*["\']America/Chicago["\']',
+                                line):
+                        offenders.append(f"{f.relative_to(ROOT)}:{i}")
+        self.assertEqual(offenders, [],
+                         "import TZ from shared.centraltime instead: "
+                         + ", ".join(offenders))
+
 
 class TestTheVerdict(unittest.TestCase):
     def setUp(self):
