@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-movers-video-proof-claim-s5-e0817f3f858d",
+  "safe_request_id": "reddit-movers-video-proof-claim-s5-e0817f3f858d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "39c9c133c967db51bbd6d98f97cb83c5158bcd2716c6b9eb5bbff444630720b1",
+  "prompt_used": "An editorial illustration for a short-form video: office desk laptop. It accompanies the narration: \"flagged it to legal within the hour\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QayWKOTxQDPRilNXtyRdwoqpkCJKjPut",
+    "filename": "20260909__reddit-movers-video-proof-claim-s5-e0817f3f858d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QayWKOTxQDPRilNXtyRdwoqpkCJKjPut",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "383a097c198e6a2fc2b4555b3f680983bd8ef81660c4dab32844090946875854",
+    "bytes": 1627563,
+    "format": "png",
+    "width": 1370,
+    "height": 1148
+  },
+  "verified_at": "2026-09-09T11:27:00Z"
+}
