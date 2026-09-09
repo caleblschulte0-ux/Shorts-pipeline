@@ -1140,6 +1140,24 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # may hold several DISTINCT events. Split it into real events and
             # try each independently — one event record + one director call
             # per event, not one call over a mixed pile.
+            _subs = _semantic_subclusters(reports)
+            # RECORD THE SHAPE, ALWAYS. When every subcluster is a
+            # singleton the loop below simply `continue`s and the run
+            # recorded NOTHING for this cluster — the arm looked idle when
+            # it had actually done all the expensive work and found no two
+            # sources that belong to one event. That is the single most
+            # useful number for judging whether the story arm is starved,
+            # mis-clustered, or genuinely looking at unrelated clips.
+            _shape = (f"{len(reports)} analysed -> subclusters "
+                      f"{sorted((len(x) for x in _subs), reverse=True)}"
+                      f" over {len(set(r.get('date') for r in reports))} "
+                      f"date(s)")
+            print(f"[story] {who}: {_shape}", flush=True)
+            if not any(len(x) >= 2 for x in _subs):
+                _story_verdict(who, "no_shared_event",
+                               f"{_shape} — no two sources share an event, "
+                               f"so no director call was made")
+                continue
             for sub in _semantic_subclusters(reports):
                 if len(sub) < 2:
                     continue      # a lone source is not a story

@@ -35,7 +35,8 @@ MARK = {"pass": "PASS", "reject": "REJECT", "unavailable": "-- DOWN",
         # an editorial "no" and a malformed plan need different responses:
         # the first is the gate working, the second is a bug in ours
         "not_a_story": "no arc (editorial)",
-        "plan_rejected": "PLAN REJECTED (ours, not the director's)"}
+        "plan_rejected": "PLAN REJECTED (ours, not the director's)",
+        "no_shared_event": "NO SHARED EVENT (never reached the director)"}
 
 
 def _fmt_judge(name: str, v: dict) -> list[str]:

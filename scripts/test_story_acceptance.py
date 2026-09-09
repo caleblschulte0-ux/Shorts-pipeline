@@ -1552,6 +1552,73 @@ def main() -> int:  # noqa: C901
     check("the digest distinguishes an editorial no from OUR bug",
           "PLAN REJECTED" in (REPO / "scripts" / "judges.py").read_text())
 
+    # ====== clustering must not invent people ==========================
+    # 2026-09-09 root cause of "no stories for 20 days": _entities treated
+    # EVERY capitalized token as a person, so real titles donated `death`,
+    # `worst`, `evil`, `siege`, `mercy`, `boat` as cast members. Real
+    # co-occurrences drowned in one-off noise pairs, and solo-streamer bags
+    # were the only clusters that ever survived to the director.
+    _sl2 = _sl
+    _kn = {"kaicenat", "xqc"}
+    _e = _sl2._entities("WORST DEATH SO FAR - DAY 3", "kaicenat", _kn)
+    check("an ALL-CAPS title donates no capitalized 'people' (its case "
+          "carries no signal)",
+          _e == {"kaicenat"})
+    _e = _sl2._entities("Kai Cenat Panics When He Cant See", "xqc", _kn)
+    check("a real known name IS still found in a Title-Case title",
+          "kaicenat" in _e and "xqc" in _e)
+    check("_has_case_signal is false for ALL CAPS and for all lowercase",
+          not _sl2._has_case_signal("WORST DEATH SO FAR")
+          and not _sl2._has_case_signal("worst death so far")
+          and _sl2._has_case_signal("Kai Cenat Panics When He Cant See"))
+
+    # the corpus teaches which capitalized tokens are English words
+    _corp = [{"title": "Ludwig Loses The Game", "channel": "ludwig",
+              "source_url": "u1", "date": "2026-09-01"},
+             {"title": "Xqc Loses The Game", "channel": "xqc",
+              "source_url": "u2", "date": "2026-09-02"},
+             {"title": "Forsen Loses The Game", "channel": "forsen",
+              "source_url": "u3", "date": "2026-09-03"}]
+    _deny = _sl2.common_tokens(_corp, min_channels=3)
+    check("a token appearing across many channels is learned as a WORD",
+          "loses" in _deny and "game" in _deny)
+    check("...and a name concentrated in one channel is NOT",
+          "ludwig" not in _deny and "xqc" not in _deny)
+
+    # aliases: one person must not split into two cast members
+    check("extraemily/emily resolve to ONE person (they formed a fake "
+          "two-person 'pair' cluster with themselves)",
+          _sl2.ALIASES.get("emily") == _sl2.ALIASES.get("extraemily"))
+
+    # an arc is a run of days, not a month of scattered clips
+    _mk = lambda i, d: {"source_url": f"c{i}", "title": "t",
+                        "channel": "xqc", "date": d}   # noqa: E731
+    _spread = ([_mk(i, f"2026-08-0{i+1}") for i in range(3)]
+               + [_mk(i + 10, f"2026-09-0{i+1}") for i in range(4)])
+    _win = _sl2._densest_window(_spread, 10)
+    check("the densest window is chosen, not the whole spread",
+          len(_win) == 4 and all(c["date"].startswith("2026-09")
+                                 for c in _win))
+    check("a tie prefers the MORE RECENT window (a live storyline beats a "
+          "stale one)",
+          _sl2._densest_window([_mk(0, "2026-08-01"), _mk(1, "2026-08-02"),
+                                _mk(2, "2026-09-01"), _mk(3, "2026-09-02")],
+                               10)[0]["date"] == "2026-09-01")
+    check("undated clips are kept (they cannot be excluded on evidence we "
+          "do not have)",
+          any(not c.get("date") for c in _sl2._densest_window(
+              _spread + [{"source_url": "cx", "title": "t",
+                          "channel": "xqc", "date": ""}], 10)))
+
+    # a cluster whose sources share no event must SAY so
+    check("a cluster that never reaches the director records why",
+          '"no_shared_event"' in _rt_src
+          and "no director call was made" in _rt_src)
+    check("...and the shape is logged every time, not only on failure",
+          "_shape = (" in _rt_src and "analysed -> subclusters" in _rt_src)
+    check("the digest names that outcome distinctly",
+          "NO SHARED EVENT" in (REPO / "scripts" / "judges.py").read_text())
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")
