@@ -6321,14 +6321,22 @@
       "banger": 0.75
     },
     "clip-20260909-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/nmplol/clip/VivaciousPeppyHamTheRinger-zPpMErOy74HtICbh",
-      "story_key": null,
-      "streamer": "nmplol",
+      "url": "https://youtube.com/shorts/615FBzxjf2U",
       "title": "Nmplol Did Not See That Coming",
       "kind": "twitch_clip",
-      "ts": "2026-09-09T15:43:15.980491+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-09T15:43:20.384582+00:00",
+      "uploaded_at": "2026-09-09T15:43:20.384604+00:00",
+      "publish_at": "2026-09-10T00:30:00Z",
+      "source_url": "https://www.twitch.tv/nmplol/clip/VivaciousPeppyHamTheRinger-zPpMErOy74HtICbh",
+      "streamer": "nmplol",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2507,
+      "banger": 0.5
     }
   }
 }
