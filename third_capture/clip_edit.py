@@ -613,6 +613,59 @@ def _clean(token: str) -> str:
     return re.sub(r"[{}\\]", "", token).upper()
 
 
+# Words that are never the point of a line, so never the word we colour.
+_CAP_DULL = set("""
+a an the and or but so if then than that this these those there here
+i me my we us our you your he him his she her it its they them their
+is am are was were be been being do does did done have has had
+of to in on at by for from with without into onto up down out off over
+about like just so very really too also not ok okay
+im ive youre youve hes shes its theyre thats what when where who how why
+gonna wanna gotta kinda sorta
+""".split())
+
+
+def _emphasis_index(group: list[dict], toks: list[str]) -> int | None:
+    """Which word in this caption group should carry the colour, if any.
+
+    This used to be `max(len(tok))` — the LONGEST word. That is a character
+    count, not emphasis: it colours "ACTUALLY" over "NO" and highlights
+    something in nearly every group, which is how captions end up looking
+    auto-generated. Two better signals, both already in hand:
+
+      1. DRAWL. We have per-word timings. A speaker stretching a word is
+         literally stressing it, so duration-per-character is real prosodic
+         emphasis rather than a proxy for it.
+      2. It has to be a content word. A drawn-out "THEEE" is not the point
+         of the line.
+
+    Returns None when nothing in the group stands out — an uncoloured
+    caption is the correct, common answer, and rationing the colour is what
+    makes it mean anything when it does appear."""
+    best, best_r = None, 0.0
+    for i, g in enumerate(group):
+        tok = toks[i].strip()
+        core = re.sub(r"[^A-Za-z']", "", tok).lower()
+        # >=2, not >=3: "NO", "OH", "WHY" are the punchiest words a
+        # streamer says, and a 3-char floor excluded exactly those. The
+        # stoplist, not the length, is what keeps "we"/"it"/"is" out.
+        if len(core) < 2 or core in _CAP_DULL:
+            continue
+        dur = float(g.get("e", 0)) - float(g.get("s", 0))
+        if dur <= 0:
+            continue
+        # seconds per character, normalised against a natural ~0.075 s/char
+        r = (dur / len(core)) / 0.075
+        if r > best_r:
+            best, best_r = i, r
+    # 1.25x the natural rate = audibly held. Calibrated against real word
+    # timings: "INSANE" drawn out over 0.60s (0.10 s/char, 1.33x) is
+    # emphasis and must qualify; "BRO" clipped at 0.15s (0.67x) is not.
+    # Below the line nothing is being stressed and the caption reads fine
+    # in one colour, which is the common case by design.
+    return best if best is not None and best_r >= 1.25 else None
+
+
 def build_ass(words: list[dict], credit: str, dur: float, out: Path,
               max_group: int = 3, burn_credit: bool = False) -> Path:
     """Word-pop subtitles (ALL-CAPS Anton, one yellow-emphasized word per
@@ -637,8 +690,8 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
         if _CAPTION_BLOCKLIST.search(" ".join(toks)):
             group.clear()
             return
-        emph = max(range(len(toks)), key=lambda i: len(toks[i]))
-        if len(toks[emph]) >= 4:
+        emph = _emphasis_index(group, toks)
+        if emph is not None:
             toks[emph] = "{%s}%s{%s}" % (_YELLOW, toks[emph], _WHITE)
         lines.append(f"Dialogue: 1,{_ts(s)},{_ts(e)},Pop,"
                      f"{_POP_FX}{' '.join(toks)}\n")

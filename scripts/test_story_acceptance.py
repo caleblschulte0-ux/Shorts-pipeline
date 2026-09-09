@@ -1735,6 +1735,42 @@ def main() -> int:  # noqa: C901
           "NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING"
           in _sp_src)
 
+    # ====== captions must emphasise MEANING, not character count =======
+    # The coloured word was `max(len(tok))` — the longest one. That is a
+    # character count wearing emphasis as a costume: it colours "ACTUALLY"
+    # over "NO", and it fires in nearly every group, which is how captions
+    # come out looking auto-generated.
+    from third_capture import clip_edit as _ce2
+    _emi = _ce2._emphasis_index
+    check("a DRAWLED short word beats a long fast one (per-word timings "
+          "are real prosodic stress; length is not)",
+          _emi([{"w": "no", "s": 0, "e": 0.5},
+                {"w": "actually", "s": 0.5, "e": 0.95},
+                {"w": "the", "s": 0.95, "e": 1.0}],
+               ["NO", "ACTUALLY", "THE"]) == 0)
+    check("a genuinely held content word is coloured",
+          _emi([{"w": "bro", "s": 0, "e": 0.15},
+                {"w": "insane", "s": 0.15, "e": 0.75}],
+               ["BRO", "INSANE"]) == 1)
+    check("a line nobody stressed gets NO colour at all — rationing it is "
+          "what makes it mean something when it appears",
+          _emi([{"w": "and", "s": 0, "e": 0.2},
+                {"w": "then", "s": 0.2, "e": 0.4}], ["AND", "THEN"]) is None)
+    check("a drawled STOPWORD is never the point of the line",
+          _emi([{"w": "the", "s": 0, "e": 0.9},
+                {"w": "car", "s": 0.9, "e": 1.0}], ["THE", "CAR"]) is None)
+    check("evenly-spoken content words get nothing",
+          _emi([{"w": "he", "s": 0, "e": 0.15},
+                {"w": "walked", "s": 0.15, "e": 0.45},
+                {"w": "over", "s": 0.45, "e": 0.72}],
+               ["HE", "WALKED", "OVER"]) is None)
+    check("short exclamations are eligible — a 3-char floor excluded "
+          "exactly the punchiest words a streamer says",
+          "no" not in _ce2._CAP_DULL and "yes" not in _ce2._CAP_DULL)
+    check("the length-based picker is gone",
+          "max(range(len(toks)), key=lambda i: len(toks[i]))"
+          not in (REPO / "third_capture" / "clip_edit.py").read_text())
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")
