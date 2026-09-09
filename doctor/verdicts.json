@@ -920,10 +920,16 @@
       ]
     },
     "3de32f29a8e4": {
-      "verdict": "doing",
-      "date": "20260827",
-      "because": "Verified: showrunner_review._temporal_evidence swallows every exception into a dict with effective_fps=None; temporal_hard_fail returns None (no block) and temporal_grade returns a neutral 2 for that unknown state, so a cadence-probe infra failure (ffmpeg/PIL/milestone import) reads as ordinary neutral evidence and the vision judge can still ship. This is exactly the fail-open gap CLAUDE.md's fail-closed rule for the showrunner exists to prevent on a publish run. Accepted; queued behind the bug fix and the punch-up guard fix.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. _temporal_evidence now carries an explicit measured flag; temporal_unmeasured() names the unknown state and fails closed on an unrecognised shape; review_video raises on it BEFORE the vision call, so showrunner_gate applies its existing publish-holds/preview-skips rule instead of the probe failure being laundered into neutral evidence. A milestone import failure raises for the same reason \u2014 measured cadence with no floor is an unapplied gate. The code floor's own 'never block blind' contract is deliberately unchanged and has tests saying so. tests/test_temporal_probe_is_measured.py covers all four cases the finding named; 7 of its 12 tests fail against the unfixed file.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260827",
+          "because": "Verified: showrunner_review._temporal_evidence swallows every exception into a dict with effective_fps=None; temporal_hard_fail returns None (no block) and temporal_grade returns a neutral 2 for that unknown state, so a cadence-probe infra failure (ffmpeg/PIL/milestone import) reads as ordinary neutral evidence and the vision judge can still ship. This is exactly the fail-open gap CLAUDE.md's fail-closed rule for the showrunner exists to prevent on a publish run. Accepted; queued behind the bug fix and the punch-up guard fix."
+        }
+      ]
     },
     "90428377a85b": {
       "verdict": "doing",

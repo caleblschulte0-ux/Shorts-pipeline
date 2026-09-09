@@ -84,6 +84,46 @@ def main() -> int:  # noqa: C901
     check("no payoff/climax beat rejected",
           story_director.validate_edl(e, durs) is None)
 
+    # ---- the MAX_BEATS cap must not cut the payoff off the story ----
+    # A six-beat plan whose only payoff is beat six satisfied the payoff
+    # check (computed over the FULL input), then lost that beat to
+    # `[:MAX_BEATS]`, and still passed because a terminal `reaction` counts
+    # as an ending. The cut stopped before the thing it was about
+    # (doctor finding 02da0ae2137f).
+    setup = dict(base["beats"][0])
+    long_plan = dict(base)
+    long_plan["beats"] = (
+        [dict(setup, purpose=f"step {i}", role="escalation") for i in range(5)]
+        + [dict(base["beats"][1], role="payoff")])
+    v = story_director.validate_edl(dict(long_plan), durs)
+    check("a payoff past the beat cap is KEPT, not cut",
+          v is not None and len(v["beats"]) == story_director.MAX_BEATS
+          and v["beats"][-1]["role"] == "payoff")
+    reasons = []
+    story_director.validate_edl(dict(long_plan), durs, reasons=reasons)
+    check("and the repair is recorded, not silent",
+          any("keeping the payoff" in r for r in reasons))
+
+    # The same plan with NO payoff anywhere past the cap is still refused by
+    # the original check — the repair must not become a way in.
+    no_payoff = dict(long_plan)
+    no_payoff["beats"] = [dict(b, role="escalation")
+                          for b in long_plan["beats"][:-1]] + [
+        dict(long_plan["beats"][-1], role="reaction")]
+    check("a plan with no payoff at all is still rejected",
+          story_director.validate_edl(no_payoff, durs) is None)
+
+    # And a payoff that dies INSIDE validation (unusable window) must not
+    # leave a passing plan behind: the survivor check reads what was built.
+    dying = dict(base)
+    dying["beats"] = [dict(base["beats"][0], role="setup"),
+                      dict(base["beats"][0], role="reaction",
+                           purpose="he reacts"),
+                      dict(base["beats"][1], role="payoff",
+                           source_id="c", start=90, end=99)]
+    check("a payoff whose window is unusable does not pass as a story",
+          story_director.validate_edl(dying, durs) is None)
+
     e = dict(base)
     e["beats"] = [dict(base["beats"][0],
                        context_overlay="THE STORY BEGINS"),
