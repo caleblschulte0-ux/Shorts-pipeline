@@ -378,7 +378,7 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
     frame rate, and the longest duplicate run. Objective — this is what a 90 on
     pretty stills was hiding."""
     ev = {"sample_fps": 24, "duplicate_ratio": None, "effective_fps": None,
-          "max_dup_run": None}
+          "max_dup_run": None, "measured": False}
     try:
         from PIL import Image
         sf = 24
@@ -390,6 +390,7 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
             check=True)
         imgs = sorted(seq.glob("t*.png"))
         if len(imgs) < 3:
+            ev["error"] = f"only {len(imgs)} sampled frames — nothing to measure"
             return ev
         px = [list(Image.open(p).getdata()) for p in imgs]
         n = len(px)
@@ -419,9 +420,34 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
         # turns the next one into a single look at the video.
         ev["max_dup_at_s"] = round(maxrun_start / float(sf), 2)
         ev["duration_s"] = round(n / float(sf), 2)
+        ev["measured"] = True
     except Exception as e:  # noqa: BLE001
         ev["error"] = str(e)[:120]
     return ev
+
+
+def temporal_unmeasured(ev: dict) -> str | None:
+    """Why the cadence probe produced no measurement, or None if it did.
+
+    Doctor finding 3de32f29a8e4: every failure in here — ffmpeg missing, a
+    PIL decode error, too few sampled frames, the milestone import — was
+    swallowed into `ev["error"]` and left the numbers as None. Downstream,
+    `temporal_hard_fail` returned "no failure" for unknown and
+    `temporal_grade` awarded a neutral 2, so a probe that measured NOTHING
+    reached the vision judge as ordinary evidence and could ship with a
+    bounded score. Nothing raised, so the fail-closed outer gate saw a
+    complete verdict and had no reason to hold.
+
+    "Never block blind" is right for the code FLOOR — it may only add blocks
+    on measured badness. It is not a licence to publish blind. So the
+    unknown state is surfaced as an infra failure and `review_video` raises,
+    which is the one place this repo decides publish-vs-preview:
+    `shared/showrunner_gate.decide()` turns a raise into a HOLD on a publish
+    run and a skip on a preview."""
+    if ev.get("measured"):
+        return None
+    why = ev.get("error") or "no measurement and no reason recorded"
+    return f"cadence probe produced no measurement: {why}"
 
 
 def temporal_grade(ev: dict) -> int:
@@ -444,8 +470,10 @@ def temporal_hard_fail(ev: dict) -> str | None:
     review'). Thresholds come from the active quality phase (milestones), so the
     floor RISES phase by phase instead of jumping straight to a bar that blocks
     everything. Returns the failure reason, or None when the render passes.
-    Unknown evidence (no ffmpeg / probe error) returns None — this gate only
-    ADDS blocks on measured badness, it never blocks blind."""
+    This gate only ADDS blocks on measured badness — it never blocks blind.
+    Unknown evidence still returns None here, but it no longer reaches this
+    function on a real review: `review_video` raises on an unmeasured probe
+    so the outer gate decides publish-vs-preview (3de32f29a8e4)."""
     fps = ev.get("effective_fps")
     dup = ev.get("duplicate_ratio")
     run = ev.get("max_dup_run")
@@ -458,8 +486,13 @@ def temporal_hard_fail(ev: dict) -> str | None:
             sys.path.insert(0, str(REPO))
             from data_learning.quality_milestones import active_phase
         ph = active_phase()
-    except Exception:  # noqa: BLE001 — gate must not die over an import
-        return None
+    except Exception as e:  # noqa: BLE001
+        # Measured cadence with no floor to measure it against is not a
+        # pass, it is an unapplied gate. Raising lets showrunner_gate decide
+        # publish-vs-preview instead of quietly grading everything neutral.
+        raise RuntimeError(
+            f"quality milestones unavailable ({e}) — the temporal floor "
+            "cannot be applied, so this render is unjudged") from e
     if fps < ph.min_effective_fps:
         return (f"effective_fps {fps} < {ph.min_effective_fps} "
                 f"({ph.name} floor) — low-fps source in a 30fps master")
@@ -668,6 +701,11 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             raise RuntimeError("no frames extracted (ffmpeg?)")
         motion = _motion_evidence(mp4, tdp)
         temporal = _temporal_evidence(mp4, tdp)
+        unmeasured = temporal_unmeasured(temporal)
+        if unmeasured:
+            # Before the vision call: an unjudgeable render should not cost a
+            # judge invocation, and it must not reach one as neutral evidence.
+            raise RuntimeError(unmeasured)
         # BUILD-TIME TEMPORAL GATE (code, BEFORE the expensive vision review):
         # a render whose measured cadence is below the active quality phase's
         # hard floor is invalid — block it outright without spending a vision

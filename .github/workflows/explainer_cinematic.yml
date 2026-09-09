@@ -75,10 +75,22 @@ jobs:
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          # The SHOWRUNNER's judge. This step publishes to a fail-closed
+          # channel, so without one of these the gate holds every render.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -e
           if [ -z "$YOUTUBE_TOKEN_JSON_EXPLAINER" ] || [ -z "$YOUTUBE_CLIENT_SECRETS_JSON" ]; then
             echo "::error::missing YouTube secrets for the explainer channel"; exit 1
+          fi
+          # A FAIL-CLOSED GATE WITH NO JUDGE HOLDS EVERYTHING. This step
+          # publishes to explainer, which fails closed, so without a judge it
+          # would render the whole matrix and upload none of it — green the
+          # whole way. Say so here rather than discovering it three renders
+          # later (CLAUDE.md, the showrunner section).
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (set CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY) — this is a publish run and the gate fails closed"; exit 1
           fi
           export YOUTUBE_EXPECTED_CHANNEL="${{ vars.EXPLAINER_EXPECTED_CHANNEL || 'short_explainer67' }}"
           START="${{ github.event.inputs.start_in_hours }}"; [ -z "$START" ] && START=2

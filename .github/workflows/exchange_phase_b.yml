@@ -222,15 +222,13 @@ jobs:
           # place as an idempotent fallback — run_trending_daily's own
           # posted-today dedupe makes a double-fire a safe no-op, exactly as
           # it already does for the belt-and-suspenders push trigger.
-          HTTP=$(curl -sS -o /tmp/dispatch_resp.txt -w '%{http_code}' \
-            -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/daily.yml/dispatches" \
-            -d '{"ref":"main"}')
-          if [ "$HTTP" != "204" ]; then
-            echo "::error::Daily Shorts dispatch FAILED for $D (HTTP $HTTP): $(cat /tmp/dispatch_resp.txt)"
-            echo "::error::Phase B applied for $D but the render handoff was never accepted — dispatch daily.yml manually: gh workflow run daily.yml --ref main"
-            exit 1
-          fi
-          echo "::notice::Daily Shorts explicitly dispatched for $D (HTTP 204 accepted)."
+          # The dispatch-and-verify itself lives in
+          # scripts/dispatch_render.py, where 204, 401/403/404/422, a
+          # timeout, a malformed response and a missing token are all
+          # EXECUTABLE test cases. Inline, its regression test could only
+          # search this text for the substring "204" and a nearby "exit 1"
+          # — a refactor could leave those tokens in a comment while a
+          # rejected dispatch exited zero (doctor finding d486c2fbfdaf).
+          python3 scripts/dispatch_render.py \
+            --repo "${{ github.repository }}" \
+            --workflow daily.yml --ref main --date "$D"

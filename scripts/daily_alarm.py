@@ -46,7 +46,7 @@ from shared import channel_registry as reg          # noqa: E402
 #: and a render takes ~an hour, so nothing before ~18:00 Central means
 #: anything.
 JUDGE_AFTER_HOUR_CENTRAL = 18
-CENTRAL = "America/Chicago"
+from shared.centraltime import TZ as CENTRAL      # noqa: E402  (one definition)
 
 
 def _load(path: Path, default=None):
@@ -279,7 +279,6 @@ def check(date: str, now=None) -> dict:
                   "DONE — re-fire the finalizer.")
         elif _o.get("status") == "ok":
             notes.append(f"chatgpt {_t}: artifact present")
-
 
     early = _too_early(date, now)
     if early:

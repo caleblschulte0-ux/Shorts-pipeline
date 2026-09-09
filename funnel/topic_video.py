@@ -63,6 +63,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from shared.video_qa import probe_decodable
+
 from funnel.topic_media import _get  # shared UA/Accept HTTP helper
 
 # Stock-footage download cache (audit Ticket 4). Lives in the repo's
@@ -141,7 +143,22 @@ def _download(url: str, dest: Path) -> Path | None:
     least the first chunk of.
     """
     if dest.exists() and dest.stat().st_size > 0:
-        return dest
+        # A nonempty file is not a valid one. A server that ignored the Range
+        # header, or a process interrupted mid-write, leaves a positive-size
+        # artifact here that every later call reused forever as a successful
+        # cache hit (doctor finding aab2495524a2). Probe it once; `None` means
+        # no ffprobe on this box, which is not evidence of corruption.
+        if probe_decodable(dest) is False:
+            print(f"      [topic_video] evicting undecodable cache entry "
+                  f"{dest.name}")
+            dest.unlink(missing_ok=True)
+        else:
+            return dest
+    # Download to a sidecar and RENAME on success. Writing straight to dest
+    # is what let an interrupted process leave a plausible-looking cache
+    # entry behind — the except branch below only runs if this process
+    # survives to reach it.
+    part = dest.with_name(dest.name + ".part")
     try:
         req = urllib.request.Request(url, headers={
             "User-Agent": UA,
@@ -150,7 +167,7 @@ def _download(url: str, dest: Path) -> Path | None:
         })
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
             written = 0
-            with dest.open("wb") as fh:
+            with part.open("wb") as fh:
                 while True:
                     chunk = r.read(64 * 1024)
                     if not chunk:
@@ -159,16 +176,24 @@ def _download(url: str, dest: Path) -> Path | None:
                     if written > MAX_BYTES:
                         break   # server ignored Range header — take what we got
                     fh.write(chunk)
-        if dest.stat().st_size < 10_000:
+        if part.stat().st_size < 10_000:
             # < 10 KB is almost certainly an error page or stub, not a clip.
-            dest.unlink()
+            part.unlink()
             return None
+        if probe_decodable(part) is False:
+            # The Range trick is supposed to leave a valid container holding
+            # the head of a long file. When the server ignores Range we stop
+            # at the byte cap mid-atom and get one that is not.
+            print(f"      [topic_video] discarding undecodable download "
+                  f"{url[:60]}")
+            part.unlink()
+            return None
+        part.replace(dest)
         return dest
     except Exception as e:  # noqa: BLE001
         # Don't leave a half-written file in the cache or the next
         # render thinks it succeeded.
-        if dest.exists():
-            dest.unlink()
+        part.unlink(missing_ok=True)
         print(f"      [topic_video download fail] {url[:60]}: {e}")
         return None
 

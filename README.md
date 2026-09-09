@@ -30,7 +30,7 @@ Claude Routine authors the day's packages, opens a PR
 ```
 
 - **A ChatGPT no-show never costs the day** — Phase B self-fills from the
-  22-provider funnel and a 06:15 UTC backstop cron renders regardless.
+  22-provider funnel and the 08:30-Central backstop cron renders regardless.
 - **Punch-ups can't invent facts** — `shared/punchup_guard.py` rejects any
   rewrite that changes a number, date, entity, or the beat structure, and the
   original script ships instead.

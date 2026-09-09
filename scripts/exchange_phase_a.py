@@ -54,11 +54,37 @@ _PACKAGE_MARKERS = ("script", "text", "series", "shots", "subreddit",
                     "broll_query", "segments")
 
 
-def is_package(obj) -> bool:
-    """True for a renderable package, False for config/report/metadata."""
+def is_package(obj, channel: str = "trending") -> bool:
+    """True for a renderable package, False for config/report/metadata.
+
+    Two tests, unioned, because they answer different questions.
+
+    `_PACKAGE_MARKERS` is a permissive "this is content, not a config or a
+    report" heuristic, and it stays: a trending `reddit_story` is recognised
+    by having a script and shots long before the registry's detector (which
+    keys on `subreddit`) would look at it.
+
+    The registry is the AUTHORITY on what a registered format looks like, and
+    it had to be consulted because the marker list was a second, quietly
+    stale copy of that knowledge. Third's active clip format is detected by
+    `source_url`, which no marker mentioned — so Phase A accepted
+    `--channel third`, read a canonical `{slug, source_url}` capture recipe
+    successfully, and logged it as a non-package. The Third branch got an
+    empty slate while valid packages sat on disk (doctor finding
+    7f087a105388).
+
+    A registry that cannot be read falls back to the markers rather than
+    rejecting everything: this predicate's job is to exclude config files,
+    and the registry's own validity is checked elsewhere, loudly."""
     if not isinstance(obj, dict):
         return False
-    return any(obj.get(k) for k in _PACKAGE_MARKERS)
+    if any(obj.get(k) for k in _PACKAGE_MARKERS):
+        return True
+    try:
+        from shared import channel_registry as _cr
+        return _cr.classify(obj, channel) is not None
+    except Exception:                                    # noqa: BLE001
+        return False
 
 
 def load_packages(channel: str, date: str) -> list[dict]:
@@ -77,7 +103,7 @@ def load_packages(channel: str, date: str) -> list[dict]:
         except Exception:                            # noqa: BLE001
             print(f"[phase-a] skipping unreadable package {p}")
             continue
-        if not is_package(pkg):
+        if not is_package(pkg, channel):
             print(f"[phase-a] skipping non-package file {name} "
                   f"(no script/text/series/shots)")
             continue

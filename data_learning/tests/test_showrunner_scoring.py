@@ -13,9 +13,12 @@ asserts so the check still runs in a bare CI step).
 from __future__ import annotations
 
 import importlib.util
+import sys
 from pathlib import Path
 
 _REPO = Path(__file__).resolve().parents[2]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
 _spec = importlib.util.spec_from_file_location(
     "showrunner_review", _REPO / "scripts" / "showrunner_review.py")
 sr = importlib.util.module_from_spec(_spec)
@@ -134,21 +137,8 @@ def test_block_max_diff_separates_held_from_motion():
 
 
 def _main() -> int:
-    fns = [v for k, v in sorted(globals().items())
-           if k.startswith("test_") and callable(v)]
-    failed = 0
-    for fn in fns:
-        try:
-            fn()
-            print(f"  ok   {fn.__name__}")
-        except AssertionError as e:
-            failed += 1
-            print(f"  FAIL {fn.__name__}: {e}")
-    print(f"\nscores: weak={sr.compute_score(WEAK)} "
-          f"baseline={sr.compute_score(BASELINE)} "
-          f"strong={sr.compute_score(STRONG)}  bar={sr.MIN_SCORE}")
-    print("PASS" if not failed else f"{failed} FAILED")
-    return 1 if failed else 0
+    from data_learning.tests._runner import run
+    return run(globals(), "showrunner scoring")
 
 
 if __name__ == "__main__":

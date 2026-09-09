@@ -85,6 +85,19 @@ def _norm_num(tok: str) -> str:
     return tok.lower().replace(",", "").replace(" ", "").rstrip(".")
 
 
+def _num_kind(tok: str) -> str:
+    """Which KIND of quantity a normalized claim token is.
+
+    Swap detection compares like with like — see `_field_problems`."""
+    if "%" in tok:
+        return "percent"
+    if tok[:1] in "$€£":
+        return "money"
+    if _YEAR.fullmatch(tok):
+        return "year"
+    return "plain"
+
+
 def numeric_claims(text: str) -> Counter:
     """Every quantitative claim in a piece of text, normalized — WITH its
     occurrence count.
@@ -148,6 +161,179 @@ def proper_nouns(text: str) -> set[str]:
     return out
 
 
+# --- claim-bearing fields other than the script -------------------------
+# `apply` copies title, hook, hashtags and punches straight through, and
+# until 2026-09-09 `check` looked at NONE of them (doctor finding
+# 0bf9780d6272). A rewrite could leave the script byte-identical, sail
+# through every check above, and put an unsupported percentage or the wrong
+# company in the TITLE — the one line most viewers read.
+#
+# The rules per field, and why they are not simply the script rules:
+#
+#   INVENTED  — a number or entity in the rewritten field that appears
+#               NOWHERE in the original package (title + hook + script +
+#               punches). Rejected. Moving a number out of the script and
+#               into the title is a legitimate punch-up, so the pool is the
+#               whole original package, not the same field.
+#   SWAPPED   — the field both lost a claim and gained one. "Rents fell 12%"
+#               -> "Rents fell 21%" passes the invention test whenever 21
+#               appears anywhere else in the script, and ships a false
+#               headline. A swap inside one field is the fabrication shape.
+#   dropped   — a field that only LOSES a claim ("Tesla Recalls 2M Cars" ->
+#               "The Recall Nobody Saw Coming") states nothing false, so it
+#               is allowed. This is where the field rules are deliberately
+#               looser than the script's: a title is a headline, not the
+#               record.
+#
+# Entity swaps are rejected on the same reasoning as numeric ones —
+# "Tesla Recalls 2M Cars" -> "Ford Recalls 2M Cars" is the harm — at the
+# known cost of refusing an honest reword that drops one name and adds
+# another. That trade is the module's standing one: a false reject costs a
+# missed punch-up, a false accept ships a fabricated fact.
+
+_CLAIM_FIELDS = ("title", "hook")
+
+
+def _field_text(pkg: dict, key: str) -> str:
+    v = pkg.get(key)
+    return str(v or "")
+
+
+def claim_pool(pkg: dict) -> tuple[Counter, set[str], set[str]]:
+    """Every claim the ORIGINAL package makes, anywhere in it.
+
+    Returned as (numeric counter, proper nouns, all words) so a rewrite can
+    be tested for inventing something the original never said, without
+    caring which field the original said it in."""
+    parts = [_field_text(pkg, "title"), _field_text(pkg, "hook"),
+             _field_text(pkg, "script"), _field_text(pkg, "text")]
+    for p in pkg.get("punches") or []:
+        parts.append(str((p or {}).get("text") or ""))
+        parts.append(str((p or {}).get("phrase") or ""))
+    for h in pkg.get("hashtags") or []:
+        parts.append(str(h or ""))
+    blob = "\n".join(parts)
+    return numeric_claims(blob), proper_nouns(blob), _all_words(blob)
+
+
+def _field_problems(label: str, o_text: str, r_text: str,
+                    pool_nums: Counter, pool_props: set[str],
+                    pool_words: set[str]) -> list[str]:
+    """Claim problems in one rewritten field. See the note above."""
+    if not r_text.strip() or r_text == o_text:
+        return []
+    out: list[str] = []
+
+    o_nums, r_nums = numeric_claims(o_text), numeric_claims(r_text)
+    invented = sorted(set(r_nums) - set(pool_nums))
+    if invented:
+        out.append(f"INVENTED numeric claim in {label}: "
+                   + ", ".join(invented[:4]))
+    # A swap is judged per KIND. "12% -> 21%" replaces a rate with a
+    # different rate and is the harm; "12% -> 21 towers" reframes the
+    # headline around a different quantity the package already states, which
+    # is a punch-up. Comparing across kinds refused the second along with
+    # the first, and refusing honest rewords is how a guard turns into an
+    # off switch.
+    for kind in ("percent", "money", "year", "plain"):
+        lost_n = sorted(t for t in set(o_nums) - set(r_nums)
+                        if _num_kind(t) == kind)
+        gained_n = sorted(t for t in set(r_nums) - set(o_nums)
+                          if _num_kind(t) == kind)
+        if lost_n and gained_n and not invented:
+            out.append(f"numeric claim SWAPPED in {label}: "
+                       f"{', '.join(lost_n[:3])} -> {', '.join(gained_n[:3])}")
+
+    o_props = _field_entities(o_text, pool_props)
+    r_props = _field_entities(r_text, pool_props)
+    o_words, r_words = _all_words(o_text), _all_words(r_text)
+    added = sorted(r_props - pool_props - pool_words)
+    if added:
+        out.append(f"INVENTED named entity in {label}: " + ", ".join(added[:4]))
+    lost_e = sorted(o_props - r_props - r_words)
+    gained_e = sorted(r_props - o_props - o_words)
+    if lost_e and gained_e and not added:
+        out.append(f"named entity SWAPPED in {label}: "
+                   f"{', '.join(lost_e[:3])} -> {', '.join(gained_e[:3])}")
+    return out
+
+
+def field_problems(original: dict, rewritten: dict) -> list[str]:
+    """Every claim problem in the non-script fields a punch-up may touch."""
+    pool_nums, pool_props, pool_words = claim_pool(original)
+    out: list[str] = []
+    for key in _CLAIM_FIELDS:
+        out += _field_problems(key, _field_text(original, key),
+                               _field_text(rewritten, key),
+                               pool_nums, pool_props, pool_words)
+
+    # Punch overlays are 1-3 ALL-CAPS words burned onto the frame — as
+    # claim-bearing as a title, and copied through by `apply` all the same.
+    o_p = original.get("punches") or []
+    r_p = rewritten.get("punches") or []
+    if r_p:
+        for i, rp in enumerate(r_p):
+            op = o_p[i] if i < len(o_p) else {}
+            out += _field_problems(
+                f"punch {i} overlay", str((op or {}).get("text") or ""),
+                str((rp or {}).get("text") or ""),
+                pool_nums, pool_props, pool_words)
+
+    # A hashtag is a word, not a sentence, so only invention applies — and
+    # only where there is a signal to read. `#Blackstone` is caught;
+    # `#blackstone` is not, because proper_nouns needs capitalization and
+    # requiring every hashtag word to appear in the package would refuse
+    # `#shorts` and `#fyp` on every single video. That limit is stated here
+    # rather than hidden: hashtag entity coverage is casing-dependent.
+    r_tags = " ".join(str(h or "") for h in (rewritten.get("hashtags") or []))
+    if r_tags.strip():
+        bad_n = sorted(set(numeric_claims(r_tags)) - set(pool_nums))
+        bad_e = sorted(proper_nouns(r_tags) - pool_props - pool_words)
+        if bad_n:
+            out.append("INVENTED numeric claim in hashtags: "
+                       + ", ".join(bad_n[:4]))
+        if bad_e:
+            out.append("INVENTED named entity in hashtags: "
+                       + ", ".join(bad_e[:4]))
+    return out
+
+
+# CamelCase / internal-capital brands (SpaceX, YouTube, iPhone) — the one
+# entity signal that survives a Title Case headline or an ALL CAPS overlay.
+_CAMEL = re.compile(r"\b(?:[A-Z][a-z0-9]+[A-Z]\w*|[a-z][A-Z]\w*)\b")
+
+
+def _informative_caps(text: str) -> bool:
+    """False when this field's capitalization says nothing about names.
+
+    A title is Title Case and an on-screen punch is ALL CAPS, so
+    `proper_nouns` reads every content word in them as an entity: "The
+    Austin Rent Drop Nobody Saw Coming" yields Saw and Coming. Run against a
+    headline that would refuse practically every reword, which is an off
+    switch with a guard's name on it."""
+    words = [w for w in re.findall(r"[A-Za-z][A-Za-z'\-]*", text or "")]
+    if len(words) < 2:
+        return True
+    upper = sum(1 for w in words if w[0].isupper())
+    return (upper / len(words)) < 0.6
+
+
+def _field_entities(text: str, pool_props: set[str]) -> set[str]:
+    """Named entities in a short field.
+
+    Where capitalization is informative this is exactly `proper_nouns`.
+    Where it is not (a headline, an overlay) a word counts as a name only if
+    the package's PROSE already treats it as one, or it is CamelCase — which
+    keeps "Tesla -> Ford" catchable in a title without flagging "Saw"."""
+    text = text or ""
+    if _informative_caps(text):
+        return proper_nouns(text)
+    words = _all_words(text)
+    out = {w for w in words if w in pool_props}
+    out |= {m.group(0).lower() for m in _CAMEL.finditer(text)}
+    return {w for w in out if w not in _COMMON_CAPS}
+
+
 def check(original: dict, rewritten: dict, *,
           allow_shot_text_edits: bool = True) -> tuple[bool, list[str]]:
     """Verify a rewritten package preserves claims and structure.
@@ -193,6 +379,11 @@ def check(original: dict, rewritten: dict, *,
             problems.append("dropped named entity(ies): " + ", ".join(lost[:6]))
         if added:
             problems.append("INVENTED named entity(ies): " + ", ".join(added[:6]))
+
+        # --- the fields that are NOT the script ---------------------------
+        # title, hook, punch overlays and hashtags all ride through `apply`;
+        # for a year nothing looked at any of them (0bf9780d6272).
+        problems += field_problems(original, rewritten)
 
         # --- beat structure (keeps media pairings valid) -------------------
         o_shots = original.get("shots") or []

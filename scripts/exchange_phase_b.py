@@ -59,7 +59,7 @@ FINALIZER_WINDOW_MINUTES = 90        # 07:00 -> 08:30 Central, both seasons
 # finalizer is mid-commit (it commits the response, reads it back, THEN commits
 # DONE). Starting on top of that reads a half-finished day.
 FINALIZER_ACTIVE_MINUTES = 20
-CENTRAL_TZ = "America/Chicago"
+from shared.centraltime import TZ as CENTRAL_TZ   # noqa: E402  (one definition)
 
 
 def backstop_status(date: str, now_utc=None) -> dict:

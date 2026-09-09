@@ -102,7 +102,7 @@ REPORT_JSON = REPO / "daily_report.json"
 # real posting time does NOT drift an hour every DST changeover, which a
 # hardcoded UTC list would. Override per-run with PUBLISH_SLOTS_CENTRAL
 # ("8:00,9:30,11:00" style) without a code change.
-PUBLISH_TZ = "America/Chicago"
+from shared.centraltime import TZ as PUBLISH_TZ   # noqa: E402  (one definition)
 DEFAULT_PUBLISH_SLOTS_CENTRAL = [
     (8, 0), (9, 30), (11, 0), (12, 30), (14, 0), (15, 30),
 ]

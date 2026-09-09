@@ -240,9 +240,38 @@ def validate_edl(edl: dict, durations: dict[str, float],
         elif len(_hw) < 3:
             rs.append(f"hook too short ({len(_hw)} words)")
             return None
+        # KEEP THE PAYOFF WHEN THE CAP BITES.
+        #
+        # The payoff check above runs over the FULL, unbounded input, and the
+        # cap ran after it: a six-beat plan whose only payoff was beat six
+        # satisfied the check, lost that beat to `[:MAX_BEATS]`, and could
+        # still pass because a terminal `reaction` is accepted as an ending
+        # (doctor finding 02da0ae2137f). The result is a "story" that stops
+        # before the thing it was about.
+        #
+        # Dropping the plan over that is the wrong repair — the arc is fine,
+        # it is one beat too long. So the cap keeps the first MAX_BEATS-1
+        # beats and the LAST payoff/climax, which loses a middle escalation
+        # step rather than the ending. Same spirit as the hook trim above,
+        # and recorded as a repair so the record says what happened.
+        raw_beats = list(edl.get("beats") or [])
+        if len(raw_beats) > MAX_BEATS:
+            tail = [i for i, b in enumerate(raw_beats)
+                    if str(b.get("role")) in ("payoff", "climax")
+                    and i >= MAX_BEATS]
+            if tail:
+                keep = raw_beats[:MAX_BEATS - 1] + [raw_beats[tail[-1]]]
+                rs.append(f"beats trimmed {len(raw_beats)}->{MAX_BEATS}, "
+                          f"keeping the payoff at beat {tail[-1] + 1} "
+                          "(repaired)")
+            else:
+                keep = raw_beats[:MAX_BEATS]
+        else:
+            keep = raw_beats
+
         beats = []
         n_punch = n_replay = n_overlay = 0
-        for b in (edl.get("beats") or [])[:MAX_BEATS]:
+        for b in keep:
             sid = str(b.get("source_id", ""))
             dur = durations.get(sid)
             if dur is None:
@@ -312,6 +341,14 @@ def validate_edl(edl: dict, durations: dict[str, float],
         # an irrelevant context beat")
         if beats[-1]["role"] not in ("payoff", "climax", "reaction"):
             rs.append(f"ends on a {beats[-1]['role']!r} beat, not the payoff")
+            return None
+        # The payoff must have SURVIVED, not merely been present in the
+        # input. A beat can also be dropped inside the loop above (unknown
+        # source, unusable window), so this is checked on what was built —
+        # the only list that describes the video that would actually be cut.
+        if not any(b["role"] in ("payoff", "climax") for b in beats):
+            rs.append("no payoff/climax beat survived validation — the plan "
+                      "had one, the cut would not")
             return None
         # first beat must fit the chosen structure: a cold_open / mystery
         # opens on the strong moment; the timeline structures open on setup

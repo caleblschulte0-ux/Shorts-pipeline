@@ -57,6 +57,7 @@ import hashlib
 import json
 import os
 import re
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -76,6 +77,11 @@ CLAIMS_DIRNAME = "claims"
 #: image generation and far shorter than the hour between the two workers, so
 #: a crashed media worker never blocks the finalizer.
 DEFAULT_LEASE_SECONDS = 900
+# How long a reclaim lock may sit before it is assumed to belong to a worker
+# that died holding it. Only ever an upper bound on how long a genuinely
+# crashed reclaim can block the next one — the correctness of a reclaim rests
+# on the re-read inside the lock, not on this number.
+RECLAIM_LOCK_SECONDS = 60
 
 REQUEST_KINDS = ("bundle_request", "authored_shot")
 STATUSES = ("in_progress", "verified", "failed", "skipped")
@@ -776,17 +782,66 @@ def create_claim(date, request_id, *, worker="media", worker_run_id=None,
                            f"{(existing or {}).get('expires_at')}"),
                 "reclaimed": False}
 
-    # Expired, unparseable, or ours. Take it — atomically, so a concurrent
-    # reader never sees a half-written lease.
+    # Expired, unparseable, or ours. Take it — but the FIRST claim is the
+    # only step `O_CREAT|O_EXCL` protected. Two workers that both observed
+    # the same expired lease each reached this line and each wrote, and both
+    # were told `granted=True` (doctor finding 0cc2e7f231ca): duplicate
+    # generation, and whichever finished last owned the checkpoint.
+    #
+    # So the reclaim is exclusive too. The lock makes the window small; the
+    # RE-READ inside it is what actually decides — if someone reclaimed while
+    # we waited, the claim we now read is active and not ours, and we lose
+    # exactly as we would have at the top of this function.
+    lock = path.with_name(path.name + ".reclaim")
     try:
-        atomic_write_json(path, claim)
+        os.close(os.open(str(lock), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644))
+    except FileExistsError:
+        try:
+            age = time.time() - lock.stat().st_mtime
+        except OSError:
+            age = RECLAIM_LOCK_SECONDS + 1      # vanished under us — take it
+        if age < RECLAIM_LOCK_SECONDS:
+            return {"granted": False, "claim": existing,
+                    "reason": "another worker is reclaiming this expired lease",
+                    "reclaimed": False}
+        # A worker died holding it. Steal the lock; the re-read below is the
+        # thing that stops two stealers from both winning.
+        try:
+            lock.unlink(missing_ok=True)
+            os.close(os.open(str(lock),
+                             os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o644))
+        except Exception as exc:                         # noqa: BLE001
+            return {"granted": False, "claim": existing,
+                    "reason": f"could not take reclaim lock: {exc}",
+                    "reclaimed": False}
     except Exception as exc:                             # noqa: BLE001
         return {"granted": False, "claim": existing,
-                "reason": f"could not reclaim: {exc}", "reclaimed": False}
-    return {"granted": True, "claim": claim,
-            "reason": ("re-entered our own claim" if mine
-                       else "previous lease had expired"),
-            "reclaimed": not mine}
+                "reason": f"could not take reclaim lock: {exc}",
+                "reclaimed": False}
+
+    try:
+        current = read_claim(date, request_id)
+        mine = (worker_run_id is not None and isinstance(current, dict)
+                and str(current.get("worker_run_id")) == str(worker_run_id))
+        if claim_active(current, now=now) and not mine:
+            return {"granted": False, "claim": current,
+                    "reason": (f"held by {(current or {}).get('worker')} until "
+                               f"{(current or {}).get('expires_at')}"),
+                    "reclaimed": False}
+        try:
+            atomic_write_json(path, claim)
+        except Exception as exc:                         # noqa: BLE001
+            return {"granted": False, "claim": current,
+                    "reason": f"could not reclaim: {exc}", "reclaimed": False}
+        return {"granted": True, "claim": claim,
+                "reason": ("re-entered our own claim" if mine
+                           else "previous lease had expired"),
+                "reclaimed": not mine}
+    finally:
+        try:
+            lock.unlink(missing_ok=True)
+        except Exception:                                # noqa: BLE001
+            pass
 
 
 def release_claim(date, request_id) -> bool:

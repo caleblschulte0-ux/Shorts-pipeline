@@ -62,15 +62,31 @@ jobs:
           # Judge against what is on MAIN, not the triggering commit: Phase A
           # commits the bundle, so a stale checkout is exactly how this would
           # report a false MISSING and dispatch a duplicate.
-          git fetch origin main --depth=1
-          git checkout origin/main -- exchange/bundles 2>/dev/null || true
+          #
+          # An unguarded `git fetch` here would kill the step on a transient
+          # network blip — leaving NO verdict recorded at all, which is the
+          # one outcome this workflow exists to prevent. Retry, then say so.
+          FETCHED=false
+          for i in 1 2 3; do
+            if git fetch origin main --depth=1; then FETCHED=true; break; fi
+            sleep 5
+          done
+          echo "fetched=$FETCHED" >> $GITHUB_OUTPUT
+          if [ "$FETCHED" = true ]; then
+            git checkout origin/main -- exchange/bundles 2>/dev/null || true
+          else
+            echo "::warning::could not read origin/main — judging against the checked-out commit, and NOT dispatching on the result"
+          fi
           set +e
           python3 scripts/phase_a_watchdog.py --date "$DATE"
           echo "rc=$?" >> $GITHUB_OUTPUT
 
       # Only when the bundle is genuinely absent past the deadline.
+      # NOT on an unconfirmed read: dispatching because we could not reach
+      # main is how a duplicate Phase A gets fired for a day that already
+      # has its bundle.
       - name: Dispatch Phase A
-        if: steps.first.outputs.rc != '0'
+        if: steps.first.outputs.rc != '0' && steps.first.outputs.fetched == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -86,11 +102,11 @@ jobs:
       # minutes of it. Polling main (not the run's status) means we assert the
       # thing that actually matters — the bundle is committed and readable.
       - name: Wait for the bundle
-        if: steps.first.outputs.rc != '0'
+        if: steps.first.outputs.rc != '0' && steps.first.outputs.fetched == 'true'
         run: |
           for i in $(seq 1 20); do
             sleep 60
-            git fetch origin main --depth=1 -q
+            git fetch origin main --depth=1 -q || true
             if git cat-file -e "origin/main:exchange/bundles/${{ steps.first.outputs.date }}/bundle.json" 2>/dev/null; then
               echo "bundle landed after ${i} minute(s)"; break
             fi

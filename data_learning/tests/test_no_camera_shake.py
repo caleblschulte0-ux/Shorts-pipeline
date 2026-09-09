@@ -306,19 +306,8 @@ def test_camera_float_module_stays_retired():
 
 
 def _main() -> int:
-    fns = [v for k, v in sorted(globals().items())
-           if k.startswith("test_") and callable(v)]
-    failed = 0
-    for fn in fns:
-        try:
-            fn()
-            print(f"  ok   {fn.__name__}")
-        except AssertionError as e:
-            failed += 1
-            print(f"  FAIL {fn.__name__}: {e}")
-    print("PASS — no camera shake in the data channel" if not failed
-          else f"{failed} FAILED")
-    return 1 if failed else 0
+    from data_learning.tests._runner import run
+    return run(globals(), "no camera shake")
 
 
 if __name__ == "__main__":

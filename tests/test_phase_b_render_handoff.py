@@ -62,23 +62,28 @@ class TestTheHandoffIsVerifiedNotAssumed(unittest.TestCase):
                       "must not fire on a --dry-run apply")
 
     def test_handoff_actually_dispatches_daily_yml(self):
-        body = HANDOFF["run"]
-        self.assertIn("workflows/daily.yml/dispatches", body,
-                      "the step must call the real workflow-dispatch "
-                      "endpoint, not just print that workflow_run will fire")
-        self.assertIn('"ref":"main"', body.replace(" ", ""))
+        """WIRING only — the behaviour is tested by running it.
 
-    def test_a_rejected_dispatch_fails_the_job(self):
+        This assertion, and the status check that used to sit below it,
+        searched this step's TEXT for `workflows/daily.yml/dispatches`, a
+        `HTTP.*!=.*204` regex and an `exit 1` within 400 characters. None of
+        that runs anything: a refactor could leave those tokens in a comment
+        or an unreachable branch while a rejected dispatch exited zero, and
+        every assertion still passed (doctor finding d486c2fbfdaf).
+
+        The dispatch-and-verify is `scripts/dispatch_render.py` now, and
+        `tests/test_dispatch_render.py` executes it against 204,
+        401/403/404/422, a 500, a timeout, a reset, a malformed response and
+        a missing token — asserting the process exit code, which is what
+        this workflow actually reads."""
         body = HANDOFF["run"]
-        # The step must branch on the HTTP status and exit non-zero when
-        # it is not 204 — a printed ::error with no exit is exactly the
-        # "every check green, nothing rendered" shape this pins against.
-        self.assertRegex(
-            body, r'HTTP.*!=.*204',
-            "must check the dispatch response status")
-        status_check = body[body.index("204"):]
-        self.assertIn("exit 1", status_check[:400],
-                      "a non-204 response must fail the job, not just log")
+        self.assertIn("scripts/dispatch_render.py", body,
+                      "the step must call the tested dispatcher, not just "
+                      "print that workflow_run will fire")
+        self.assertIn("--workflow daily.yml", body)
+        self.assertIn("--ref main", body)
+        self.assertIn("GH_TOKEN", str(HANDOFF.get("env", {})),
+                      "the dispatcher needs a token or it refuses to send")
 
     def test_workflow_run_fallback_is_still_wired(self):
         """Belt-and-suspenders: the explicit dispatch above is the fix, but
@@ -93,12 +98,14 @@ class TestTheHandoffIsVerifiedNotAssumed(unittest.TestCase):
         self.assertIn(
             "Exchange Phase B (consume ChatGPT, self-fill, ready to render)",
             names)
-        preflight = daily["jobs"]["daily"]["steps"][0]
-        # First step after checkout should still be the pre-flight that
-        # requires phase_b_report.json for a workflow_run trigger.
+        # The pre-flight that requires phase_b_report.json for a
+        # workflow_run trigger. Matched by its full name, not by position
+        # and not by the "Pre-flight" prefix: daily.yml grew a second
+        # pre-flight step (the judge-secret check) and a prefix match
+        # silently started asserting against that one instead.
         preflight_step = next(
             s for s in daily["jobs"]["daily"]["steps"]
-            if s.get("name", "").startswith("Pre-flight"))
+            if s.get("name", "") == "Pre-flight — kill switch + failure counter")
         self.assertIn("phase_b_report.json", preflight_step["run"])
 
 

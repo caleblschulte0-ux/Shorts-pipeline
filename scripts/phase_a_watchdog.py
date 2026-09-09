@@ -60,6 +60,25 @@ def _load(path: Path):
         return None
 
 
+def _identity(date: str) -> str:
+    """The day's bundle identity, via the one function that knows how it is
+    derived (a BUNDLE_ID sidecar, with a legacy hash fallback and a takeover
+    override). Best-effort: this is a diagnostic field, never a gate."""
+    try:
+        from shared import media_checkpoint as mc
+        old_root = getattr(mc, "ROOT", None)
+        if old_root is not None and ROOT != old_root:
+            # honour a relocated ROOT (the tests move it)
+            mc.ROOT = ROOT
+        try:
+            return str(mc.bundle_identity(date) or "")
+        finally:
+            if old_root is not None:
+                mc.ROOT = old_root
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def bundle_state(date: str) -> dict:
     """What actually exists for `date`, as facts rather than a verdict."""
     d = bundle_dir(date)
@@ -71,7 +90,13 @@ def bundle_state(date: str) -> dict:
         # A bundle that exists but carries no plan is not a usable handoff.
         # Phase A writing an empty shell is a different failure from Phase A
         # never running, and the fix differs, so keep them distinguishable.
-        "bundle_id": (bundle or {}).get("bundle_id") or "",
+        #
+        # The identity is the BUNDLE_ID sidecar, read through the canonical
+        # helper — NOT a top-level `bundle_id` key, which bundle.json does
+        # not have. Guessing the field made this report "" on every real
+        # bundle, which is the kind of always-empty diagnostic that teaches
+        # a reader to stop trusting the record.
+        "bundle_id": _identity(date),
         "n_requests": len((bundle or {}).get("requests") or []) if ok else 0,
         "has_contract": (d / "bundle.json.contract").exists(),
     }

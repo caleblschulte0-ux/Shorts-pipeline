@@ -3,6 +3,13 @@
 The operator mandate: NEVER show bare numbers, and no rotation — every segment
 depicts, videos vary, and each video has a stand-out. These tests lock that in.
 """
+import sys
+from pathlib import Path
+
+_REPO = Path(__file__).resolve().parents[2]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
 from data_learning import charts, viz_director
 from data_learning.insights import Insight
 
@@ -84,3 +91,12 @@ def test_place_data_always_maps():
                                ("Florida", 22), ("Ohio", 12)], topic="by state")]
     viz_director.assign(inss, seed=1)
     assert inss[0].kind == "geo_us"
+
+
+def _main() -> int:
+    from data_learning.tests._runner import run
+    return run(globals(), "viz director")
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
