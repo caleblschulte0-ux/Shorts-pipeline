@@ -1,40 +1,39 @@
-# Daily Trending Shorts — 2026-09-07
+# Daily Trending Shorts — 2026-09-10
 
-> **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **9**
-- succeeded: **3**
+- queued: **10**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **6**
+- failed: **8**
 
 ## Posted
-- **China's Exports Blew Past America's**
-  - topic: China's Exports Blew Past America's
-  - publishes: `2026-09-07T13:00:00Z`
-  - https://youtube.com/shorts/j2LqyUxwrro
-  - took: 129.5s
-- **Bottled Water Buried Soda In America**
-  - topic: Bottled Water Buried Soda In America
-  - publishes: `2026-09-07T14:30:00Z`
-  - https://youtube.com/shorts/x_dnDM1NHLE
-  - took: 118.3s
-- **She Ate The Cake, Then Demanded A Refund**
-  - topic: She Ate The Cake, Then Demanded A Refund
-  - publishes: `2026-09-07T16:00:00Z`
-  - https://youtube.com/shorts/OCBoVlNL3yw
-  - took: 263.0s
+- **He Cut My Lock. I Kept The Bolt Cutters.**
+  - topic: He Cut My Lock. I Kept The Bolt Cutters.
+  - publishes: `2026-09-10T13:00:00Z`
+  - https://youtube.com/shorts/UXCm-lY39Ic
+  - took: 334.4s
+- **She Blamed My Kid For The Broken Mailbox. I Had A Camera.**
+  - topic: She Blamed My Kid For The Broken Mailbox. I Had A Camera.
+  - publishes: `2026-09-10T14:30:00Z`
+  - https://youtube.com/shorts/A2YauQJiwzA
+  - took: 335.4s
 
 ## Failed
-- **Norway's EVs Buried Gas Cars On The Road**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good crossover race — 90 to 5 versus 6 to 88 with a real leaderboard flip — undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.`
-- **Solar Power Got Cheaper Than Coal**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) — too many held frames`
-- **He Made Me Notarize Everything. So I Did.**
-  - error: `showrunner_block: showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.`
-- **western**
-  - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **ap top 25**
-  - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **prince harry news**
-  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **Boeing Ruled The Skies. Two Crashes Ended That.**
+  - error: `showrunner_block: showrunner BLOCK: The 2019 cliff is a genuinely strong data story, but the hook opens as a title card over an empty black grid with its caption printed straight through the series labels.`
+- **The US Quietly Became The World's Top Oil Producer**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good two-line oil race with a real 2018 crossover, wrecked at the edges: the hook card overprints the chart, tip labels clip off the right edge, and the 0–5M half of the plot is dead black.`
+- **China Beat Hollywood At The Box Office In 2020**
+  - error: `showrunner_block: showrunner BLOCK: A real race with a genuine 2020 crossover, wrecked by colliding, edge-clipped labels — and it ends on '#1 North America', which flatly contradicts the title's claim.`
+- **Bitcoin Closed The Gap On Gold**
+  - error: `showrunner_block: showrunner BLOCK: A Belgian TV channel's 'vtm GOLD' logo is standing in for gold in every single frame, and the linear axis flattens Bitcoin onto the zero line so the video visually proves the opposite of its title.`
+- **solheim cup 2026**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
+- **celine dion**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
+- **steve feinberg**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
+- **king charles letter prince harry**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
 

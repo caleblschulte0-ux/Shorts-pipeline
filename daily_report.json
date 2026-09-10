@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Norway's EVs Buried Gas Cars On The Road",
-    "title": "Norway's EVs Buried Gas Cars On The Road",
+    "topic": "Boeing Ruled The Skies. Two Crashes Ended That.",
+    "title": "Boeing Ruled The Skies. Two Crashes Ended That.",
     "format": "graph_race",
-    "publish_at": "2026-09-07T13:00:00Z",
+    "publish_at": "2026-09-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good crossover race \u2014 90 to 5 versus 6 to 88 with a real leaderboard flip \u2014 undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.",
-    "elapsed_seconds": 124.7,
-    "package_path": "state/trending_packages/20260907/01_graph-norway-ev-buried-gas-cars.json",
+    "error": "showrunner_block: showrunner BLOCK: The 2019 cliff is a genuinely strong data story, but the hook opens as a title card over an empty black grid with its caption printed straight through the series labels.",
+    "elapsed_seconds": 117.8,
+    "package_path": "state/trending_packages/20260910/01_graph-boeing-airbus-crashes.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-124424_norway_s_evs_buried_gas_cars_on_the_road.mp4",
+    "video_path": "output/daily_20260910-114211_boeing_ruled_the_skies__two_crashes_ende.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +28,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good crossover race \u2014 90 to 5 versus 6 to 88 with a real leaderboard flip \u2014 undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.",
-      "score": 61
+      "reason": "showrunner BLOCK: The 2019 cliff is a genuinely strong data story, but the hook opens as a title card over an empty black grid with its caption printed straight through the series labels.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "China's Exports Blew Past America's",
-    "title": "China's Exports Blew Past America's",
+    "topic": "The US Quietly Became The World's Top Oil Producer",
+    "title": "The US Quietly Became The World's Top Oil Producer",
     "format": "graph_race",
-    "publish_at": "2026-09-07T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/j2LqyUxwrro",
-    "error": null,
-    "elapsed_seconds": 129.5,
-    "package_path": "state/trending_packages/20260907/02_graph-china-passed-us-exports.json",
+    "publish_at": "2026-09-10T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good two-line oil race with a real 2018 crossover, wrecked at the edges: the hook card overprints the chart, tip labels clip off the right edge, and the 0\u20135M half of the plot is dead black.",
+    "elapsed_seconds": 195.5,
+    "package_path": "state/trending_packages/20260910/02_graph-us-oil-passed-saudi.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-124629_china_s_exports_blew_past_america_s.mp4",
+    "video_path": "output/daily_20260910-114409_the_us_quietly_became_the_world_s_top_oi.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -61,58 +61,24 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good two-line oil race with a real 2018 crossover, wrecked at the edges: the hook card overprints the chart, tip labels clip off the right edge, and the 0\u20135M half of the plot is dead black.",
+      "score": 61
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "Bottled Water Buried Soda In America",
-    "title": "Bottled Water Buried Soda In America",
+    "topic": "China Beat Hollywood At The Box Office In 2020",
+    "title": "China Beat Hollywood At The Box Office In 2020",
     "format": "graph_race",
-    "publish_at": "2026-09-07T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/x_dnDM1NHLE",
-    "error": null,
-    "elapsed_seconds": 118.3,
-    "package_path": "state/trending_packages/20260907/03_graph-bottled-water-buried-soda.json",
-    "source": "brain",
-    "video_path": "output/daily_20260907-124838_bottled_water_buried_soda_in_america.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Solar Power Got Cheaper Than Coal",
-    "title": "Solar Power Got Cheaper Than Coal",
-    "format": "graph_race",
-    "publish_at": "2026-09-07T16:00:00Z",
+    "publish_at": "2026-09-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 65.8,
-    "package_path": "state/trending_packages/20260907/04_graph-solar-cheaper-than-coal.json",
+    "error": "showrunner_block: showrunner BLOCK: A real race with a genuine 2020 crossover, wrecked by colliding, edge-clipped labels \u2014 and it ends on '#1 North America', which flatly contradicts the title's claim.",
+    "elapsed_seconds": 122.0,
+    "package_path": "state/trending_packages/20260910/03_graph-china-beat-hollywood-2020.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-125036_solar_power_got_cheaper_than_coal.mp4",
+    "video_path": "output/daily_20260910-114725_china_beat_hollywood_at_the_box_office_i.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,26 +96,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: A real race with a genuine 2020 crossover, wrecked by colliding, edge-clipped labels \u2014 and it ends on '#1 North America', which flatly contradicts the title's claim.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "He Made Me Notarize Everything. So I Did.",
-    "title": "He Made Me Notarize Everything. So I Did.",
-    "format": "reddit",
-    "publish_at": "2026-09-07T16:00:00Z",
+    "topic": "Bitcoin Closed The Gap On Gold",
+    "title": "Bitcoin Closed The Gap On Gold",
+    "format": "graph_race",
+    "publish_at": "2026-09-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.",
-    "elapsed_seconds": 241.0,
-    "package_path": "state/trending_packages/20260907/05_reddit-landlord-notary-clause-backfire.json",
+    "error": "showrunner_block: showrunner BLOCK: A Belgian TV channel's 'vtm GOLD' logo is standing in for gold in every single frame, and the linear axis flattens Bitcoin onto the zero line so the video visually proves the opposite of its title.",
+    "elapsed_seconds": 261.1,
+    "package_path": "state/trending_packages/20260910/04_graph-bitcoin-closed-gap-gold.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-125152_he_made_me_notarize_everything__so_i_did.mp4",
+    "video_path": "output/daily_20260910-114927_bitcoin_closed_the_gap_on_gold.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.4,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +126,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "loudness_lufs": -25.0
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.",
-      "score": 70
+      "reason": "showrunner BLOCK: A Belgian TV channel's 'vtm GOLD' logo is standing in for gold in every single frame, and the linear axis flattens Bitcoin onto the zero line so the video visually proves the opposite of its title.",
+      "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "She Ate The Cake, Then Demanded A Refund",
-    "title": "She Ate The Cake, Then Demanded A Refund",
+    "topic": "He Cut My Lock. I Kept The Bolt Cutters.",
+    "title": "He Cut My Lock. I Kept The Bolt Cutters.",
     "format": "reddit",
-    "publish_at": "2026-09-07T16:00:00Z",
+    "publish_at": "2026-09-10T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/OCBoVlNL3yw",
+    "video_url": "https://youtube.com/shorts/UXCm-lY39Ic",
     "error": null,
-    "elapsed_seconds": 263.0,
-    "package_path": "state/trending_packages/20260907/06_reddit-bakery-empty-box-refund.json",
+    "elapsed_seconds": 334.4,
+    "package_path": "state/trending_packages/20260910/05_reddit-gym-locker-lock-cutter.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-125555_she_ate_the_cake__then_demanded_a_refund.mp4",
+    "video_path": "output/daily_20260910-115358_he_cut_my_lock__i_kept_the_bolt_cutters_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.133,
+      "duration": 56.3,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,48 +160,97 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -22.3
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 75
+      "score": 78
     },
     "channel": "default"
   },
   {
-    "topic": "western",
+    "topic": "She Blamed My Kid For The Broken Mailbox. I Had A Camera.",
+    "title": "She Blamed My Kid For The Broken Mailbox. I Had A Camera.",
+    "format": "reddit",
+    "publish_at": "2026-09-10T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/A2YauQJiwzA",
+    "error": null,
+    "elapsed_seconds": 335.4,
+    "package_path": "state/trending_packages/20260910/06_reddit-hoa-mailbox-camera.json",
+    "source": "brain",
+    "video_path": "output/daily_20260910-115932_she_blamed_my_kid_for_the_broken_mailbox.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 61.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 83
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "solheim cup 2026",
     "angle": null,
-    "publish_at": "2026-09-07T17:30:00Z",
+    "publish_at": "2026-09-10T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.4,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 1.0,
     "backfill": true
   },
   {
-    "topic": "ap top 25",
+    "topic": "celine dion",
     "angle": null,
-    "publish_at": "2026-09-07T19:00:00Z",
+    "publish_at": "2026-09-10T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 1.6,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 1.2,
     "backfill": true
   },
   {
-    "topic": "prince harry news",
+    "topic": "steve feinberg",
     "angle": null,
-    "publish_at": "2026-09-07T20:30:00Z",
+    "publish_at": "2026-09-10T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.3,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.9,
+    "backfill": true
+  },
+  {
+    "topic": "king charles letter prince harry",
+    "angle": null,
+    "publish_at": "2026-09-10T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.8,
     "backfill": true
   }
 ]
