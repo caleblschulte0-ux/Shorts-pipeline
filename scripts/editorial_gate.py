@@ -160,6 +160,74 @@ def data_is_a_finding(sc: dict) -> dict:
     return {"ok": not reasons, "reasons": reasons}
 
 
+#: How far a spoken headline may be from anything the picture can show before
+#: it stops being a rounding and becomes a number from another universe.
+#:
+#: `shared/beat_match` already answers "is this number derivable from this
+#: beat's data", generously — a difference, a percentage change, a share, a
+#: unit rescale all pass. Measured over the 957 configured beats that speak a
+#: quantity, 131 fail it. Refusing all of them would hold a third of the
+#: queue, and most are a writer's aside ("on a 50 thousand dollar car") rather
+#: than a lie.
+#:
+#: But the tail is not that. 33 beats are a THOUSAND times or more away from
+#: everything on screen — "About 117 billion people have ever been born" over
+#: a chart whose largest value is in the thousands. A viewer hearing that
+#: looks for it, finds nothing remotely like it, and stops trusting the
+#: picture. That is the class this refuses; 28 of 305 stories, and every one
+#: of them is genuinely broken.
+#:
+#: The rest are REPORTED, not refused — they are in `reasons` where the run
+#: log and the repair loop can see them, and they do not fail the story.
+WILD_NUMBER = 1000.0
+
+
+def beat_numbers_are_on_screen(sc: dict) -> dict:
+    """Does each beat SAY a number its own picture can show?
+
+    An authoring fault, and the standing rule it breaks is this repo's oldest:
+    the brain writes only the words, every number comes from the source. The
+    forge checks this inside its retry loop when IT writes a story — but the
+    forge is not the only author, it gives up after three attempts and ships
+    anyway, and 305 stories were written before the check existed. Nothing
+    downstream looked.
+
+    The showrunner reads the result off the screen:
+
+        "seg1 shows 2000-vs-2012 at 33% while the voice says 92% by 2023"
+        "the scale's numbers never reach the narrated 3.5M / 3.0M"
+                                self-checkout-cashier-jobs, 2026-09-09
+    """
+    from shared import beat_match as bm
+    reasons, notes = [], []
+    for i, seg in enumerate(sc.get("segments", [])):
+        p = _seg_data_path(seg)
+        say = str(seg.get("say") or "").strip()
+        if p is None or not say:
+            continue
+        try:
+            d = json.loads(p.read_text())
+            vals = [float(x["value"]) for x in (d.get("points") or [])
+                    if isinstance(x, dict) and x.get("value") is not None]
+        except Exception:  # noqa: BLE001 — data_provenance reports this
+            continue
+        if not vals:
+            continue
+        m = bm.check(say, vals, d.get("unit", ""))
+        if m["ok"]:
+            continue
+        head = abs(float(m.get("headline") or 0.0))
+        on = [abs(v) for v in bm.sayable(vals, d.get("unit", "")) if v]
+        if not on or head == 0.0:
+            continue
+        off = min(max(head / v, v / head) for v in on)
+        line = (f"seg{i}: the line's headline number ({head:,.6g}) is "
+                f"{off:,.0f}x away from anything this beat's picture can "
+                f"show — say a number the picture shows")
+        (reasons if off >= WILD_NUMBER else notes).append(line)
+    return {"ok": not reasons, "reasons": reasons, "notes": notes}
+
+
 # ---------------------------------------------------------------------------
 # Rule 3 — premise bar
 # ---------------------------------------------------------------------------
@@ -312,6 +380,8 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     prov = data_provenance(sc)
     # The numbers themselves, not just the citation over them.
     finding = data_is_a_finding(sc)
+    # And the numbers the VOICE says, against the picture it says them over.
+    spoken = beat_numbers_are_on_screen(sc)
     prem = premise_ok(sc, use_llm=use_llm)
     # A story that says one thing three times can never be a good video, and
     # finding that out costs one file read rather than a render.
@@ -319,11 +389,16 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     reasons = ([f"data: {r}" for r in prov["reasons"]]
                + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
-               + [f"beats: {r}" for r in dist["reasons"]])
-    return {"ok": prov["ok"] and finding["ok"] and prem["ok"] and dist["ok"],
+               + [f"beats: {r}" for r in dist["reasons"]]
+               + [f"beats: {r}" for r in spoken["reasons"]]
+               # Reported, not refused — see `WILD_NUMBER`.
+               + [f"beats (noted): {r}" for r in spoken["notes"]])
+    return {"ok": (prov["ok"] and finding["ok"] and prem["ok"]
+                   and dist["ok"] and spoken["ok"]),
             "reasons": reasons,
             "data_ok": prov["ok"] and finding["ok"],
-            "premise_ok": prem["ok"], "beats_ok": dist["ok"]}
+            "premise_ok": prem["ok"],
+            "beats_ok": dist["ok"] and spoken["ok"]}
 
 
 if __name__ == "__main__":

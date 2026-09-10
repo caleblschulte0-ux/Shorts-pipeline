@@ -38,21 +38,55 @@ _MULT = (("trillion", 1e12), ("billion", 1e9), ("million", 1e6),
 _TOL = 0.03
 
 
+#: A digit welded to a word is part of the WORD, not a quantity anybody
+#: hears as a number: "2-bedroom", "50-something", "9-to-5", "1st", "3x".
+#: `check` blames the loudest quantity in the line, so one of these hijacks
+#: the diagnosis entirely — `car-cost-explosion` seg2 reads "1,920 dollars a
+#: month, what a 2-bedroom rented for" over a chart of 1080..1920, and the
+#: beat was failed for saying "2".
+_GLUED = re.compile(r"[-‐-―]?[A-Za-z]")
+#: A thousands separator between digits — what a year never has.
+_GROUPED = re.compile(r"\d,\d")
+#: ...except the magnitude suffixes, which ARE the number: 50K, 2.6B.
+_SUFFIX = {"k": 1e3, "m": 1e6, "b": 1e9, "t": 1e12}
+
+
 def spoken_quantities(say: str) -> list:
     """Every quantity a LISTENER hears, scaled by any magnitude word after it.
 
     Years are skipped: "since 2007" is a date, not a quantity, and counting it
     would make every beat trivially match.
     """
+    say = say or ""
     out = []
-    for m in _NUM.finditer(say or ""):
+    for m in _NUM.finditer(say):
         try:
             v = float(m.group(0).replace(",", ""))
         except ValueError:
             continue
-        if 1900 <= v <= 2100 and float(v).is_integer():
+        # A YEAR IS WRITTEN WITHOUT A SEPARATOR. "1,920 dollars a month" is
+        # money and "since 2007" is a date, and the only thing that tells them
+        # apart is the comma — so the year skip stands down for a grouped
+        # number. `car-cost-explosion` seg2 is exactly this: its headline,
+        # 1,920, was being discarded as a year, which left the beat with no
+        # spoken quantity but the "2" in "2-bedroom".
+        if 1900 <= v <= 2100 and float(v).is_integer() \
+                and not _GROUPED.search(m.group(0)):
             continue
-        tail = (say[m.end():m.end() + 14] or "").lstrip().lower()
+        rest = say[m.end():]
+        # The tail of a hyphenated compound is no more a quantity than its
+        # head: "9-to-5" must not contribute a 5.
+        before = say[:m.start()]
+        if before[-1:] in "-‐‑‒–—" and before[-2:-1].isalnum():
+            continue
+        # "50K" is fifty thousand; "2-bedroom" is a kind of flat.
+        head = rest[:1].lower()
+        if head in _SUFFIX and not rest[1:2].isalpha():
+            out.append(v * _SUFFIX[head])
+            continue
+        if _GLUED.match(rest):
+            continue
+        tail = rest[:14].lstrip().lower()
         for word, mul in _MULT:
             if tail.startswith(word):
                 v *= mul
