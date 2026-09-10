@@ -1,0 +1,20 @@
+{
+  "key": "game_layoffs_trend",
+  "title": "Video game industry layoffs (jobs cut)",
+  "unit": "count",
+  "geography": "Global (mostly US/UK studios)",
+  "time_coverage": "2022-2024 (annual)",
+  "source": {
+    "name": "Video game industry layoff tracking (aggregated from company disclosures and layoffs.fyi/Game Developer reporting)",
+    "publisher": "Game Developer / layoffs.fyi tracker",
+    "url": "https://www.gamedeveloper.com",
+    "officiality": "estimate",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Real, widely reported industry-wide layoff totals compiled from company announcements each year; approximate.",
+  "points": [
+    {"label": "2022", "value": 8500, "period": "2022"},
+    {"label": "2023", "value": 10500, "period": "2023"},
+    {"label": "2024", "value": 14800, "period": "2024"}
+  ]
+}

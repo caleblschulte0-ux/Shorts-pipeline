@@ -1,0 +1,22 @@
+{
+  "key": "divorce_rate_trend",
+  "title": "US divorce rate (per 1,000 population)",
+  "unit": "rate per 1,000 population",
+  "geography": "United States",
+  "time_coverage": "1990-2022 (annual)",
+  "source": {
+    "name": "National Marriage and Divorce Rate Trends, National Vital Statistics System",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC/NCHS)",
+    "url": "https://www.cdc.gov/nchs/fastats/marriage-divorce.htm",
+    "officiality": "official",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Real CDC/NCHS crude divorce rate figures (divorces per 1,000 total population), not the often-confused 'per 1,000 married women' rate.",
+  "points": [
+    {"label": "1990", "value": 4.7, "period": "1990"},
+    {"label": "2000", "value": 4.0, "period": "2000"},
+    {"label": "2010", "value": 3.6, "period": "2010"},
+    {"label": "2019", "value": 2.7, "period": "2019"},
+    {"label": "2022", "value": 2.4, "period": "2022"}
+  ]
+}

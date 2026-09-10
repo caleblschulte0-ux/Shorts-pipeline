@@ -26481,7 +26481,6 @@
         }
       ]
     },
-    
     {
       "slug": "lab-grown-diamond-price-collapse",
       "title": "Lab-Grown Diamonds Just Lost 90% Of Their Value",
@@ -26713,6 +26712,188 @@
           "topic": "why we built all of it",
           "role": "3 \u00b7 THE REASON",
           "say": "In 1984 there were about 6,600 storage facilities. Today there are 66,000. We didn't run out of coffee shops \u2014 we ran out of closets."
+        }
+      ]
+    },
+    {
+      "slug": "game-industry-layoffs-record",
+      "title": "Video Games Broke Records. So Did The Layoffs.",
+      "hook": "More people play. Fewer people work there.",
+      "closing": "Big score, smaller staff.",
+      "question": "Have layoffs like this hit your industry too? Tell me below.",
+      "caption": "The video game industry cut 14,800 jobs in 2024 \u2014 its worst year ever \u2014 while posting some of its biggest revenue numbers ever. Microsoft and Sony alone cut nearly 2,800 of those jobs in back-to-back months. Have layoffs hit your industry too?",
+      "hashtags": [
+        "gaminglayoffs",
+        "videogames",
+        "gamingindustry",
+        "xbox",
+        "playstation",
+        "tech",
+        "layoffs",
+        "jobs",
+        "business",
+        "data",
+        "gamedev",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "game_layoffs_trend",
+          "params": {
+            "file": "game_layoffs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CUTS",
+          "topic": "video game industry layoffs",
+          "say": "In 2022, the video game industry cut 8,500 jobs. That climbed to 10,500 in 2023, then 14,800 in 2024 \u2014 the worst year gaming has ever recorded."
+        },
+        {
+          "source": "offline",
+          "key": "game_layoffs_by_company",
+          "params": {
+            "file": "game_layoffs_by_company.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 \u00b7 WHO'S CUTTING",
+          "topic": "who did the cutting",
+          "say": "Microsoft's gaming division alone cut 1,900 jobs in a single January. Sony cut 900 more from PlayStation weeks later \u2014 two profitable companies, nearly a fifth of the year's total losses."
+        }
+      ]
+    },
+    {
+      "slug": "divorce-rate-quiet-decline",
+      "title": "Everyone Assumes Divorce Is Rising. It Isn't.",
+      "hook": "You've been told half of marriages fail.",
+      "closing": "Waiting turned out to be the plot twist.",
+      "question": "How old were your parents when they got married? Tell me below.",
+      "caption": "The US divorce rate has been cut nearly in half since 1990 \u2014 from 4.7 per 1,000 people down to 2.4. One quiet reason: people are waiting almost five years longer to say 'I do.' How old were your parents when they married?",
+      "hashtags": [
+        "divorce",
+        "marriage",
+        "relationships",
+        "demographics",
+        "society",
+        "data",
+        "census",
+        "cdc",
+        "lovelife",
+        "explained",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "divorce_rate_trend",
+          "params": {
+            "file": "divorce_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE MYTH",
+          "topic": "US divorce rate",
+          "say": "In 1990, the US recorded 4.7 divorces for every 1,000 people. By 2022, that had fallen to 2.4 \u2014 roughly half, and still dropping."
+        },
+        {
+          "source": "offline",
+          "key": "marriage_age_women_trend",
+          "params": {
+            "file": "marriage_age_women_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE REASON",
+          "topic": "age at first marriage",
+          "say": "One big reason: people wait. The median age women first marry climbed from 23.9 to 28.6 over that same stretch \u2014 nearly five extra years to actually know the person first."
+        }
+      ]
+    },
+    {
+      "slug": "blood-supply-three-percent",
+      "title": "America's Blood Supply Has A 3% Problem",
+      "hook": "Only 3% of eligible people actually donate.",
+      "closing": "Somebody's always one pint short.",
+      "question": "Have you ever donated blood? Tell me below.",
+      "caption": "About 38% of Americans qualify to donate blood \u2014 but only 3% of them actually do each year. Individual donations have fallen roughly 40% in two decades, and in January 2024 the Red Cross declared its first national blood emergency in years. Have you ever donated?",
+      "hashtags": [
+        "blooddonation",
+        "redcross",
+        "health",
+        "bloodsupply",
+        "publichealth",
+        "data",
+        "didyouknow",
+        "explained",
+        "donateblood",
+        "medicalnews"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "blood_eligible_vs_donate",
+          "params": {
+            "file": "blood_eligible_vs_donate.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 \u00b7 THE GAP",
+          "topic": "who could give vs. who does",
+          "say": "About 38% of Americans qualify to give blood. Of that group, only 3% actually roll up a sleeve in a given year \u2014 the gap between who could save a life and who does."
+        },
+        {
+          "source": "offline",
+          "key": "blood_donor_decline_index",
+          "params": {
+            "file": "blood_donor_decline_index.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE TREND",
+          "topic": "two decades of decline",
+          "say": "That gap has been widening for two decades. Individual blood donations have fallen roughly 40% since 2004, and in January 2024 the Red Cross declared its first national blood emergency in years."
+        }
+      ]
+    },
+    {
+      "slug": "library-digital-shift",
+      "title": "Why Is Nobody Walking Into Libraries Anymore?",
+      "hook": "Nobody's walking in anymore. So what happened?",
+      "closing": "The card just moved to your pocket.",
+      "question": "When's the last time you set foot in a library? Tell me below.",
+      "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
+      "hashtags": [
+        "libraries",
+        "publiclibrary",
+        "reading",
+        "books",
+        "ebooks",
+        "data",
+        "culture",
+        "didyouknow",
+        "explained",
+        "bookstagram"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "library_visits_trend",
+          "params": {
+            "file": "library_visits_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE EMPTY BUILDING",
+          "topic": "physical library visits",
+          "say": "In 2019, Americans walked into a public library 1.25 billion times. By 2022, that crashed to 671 million \u2014 and even after rebounding to 800 million in 2023, it's still far below where it started."
+        },
+        {
+          "source": "offline",
+          "key": "library_digital_checkouts_trend",
+          "params": {
+            "file": "library_digital_checkouts_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 WHERE IT WENT",
+          "topic": "digital library checkouts",
+          "say": "But borrowing didn't stop \u2014 it moved. Digital checkouts through library apps climbed from 326 million in 2019 to 739 million in 2024, more than doubling."
         }
       ]
     }

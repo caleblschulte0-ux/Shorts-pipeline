@@ -1,0 +1,19 @@
+{
+  "key": "blood_donor_decline_index",
+  "title": "US individual blood donor volume (index, 2004=100)",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2004-2024",
+  "source": {
+    "name": "American Red Cross statements on a ~40% two-decade decline in individual blood donors, and a 20-year-low donor count declared as an emergency blood shortage in January 2024",
+    "publisher": "American Red Cross, as reported by CNN, NPR, and Forbes",
+    "url": "https://www.cnn.com/2024/01/08/health/american-red-cross-blood-shortage/index.html",
+    "officiality": "estimate",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Indexed to the real, widely reported ~40% decline in individual blood donors over two decades (2004=100, 2024=~60); not an officially published year-by-year series.",
+  "points": [
+    {"label": "2004", "value": 100, "period": "2004"},
+    {"label": "2024", "value": 60, "period": "2024"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "game_layoffs_by_company",
+  "title": "2024 gaming layoffs by source",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Microsoft gaming division layoffs (Jan 2024) and Sony PlayStation layoffs (Feb 2024), as reported by Reuters, CNBC, TechCrunch, and CNN",
+    "publisher": "Company announcements, reported by major news outlets",
+    "url": "https://www.cnbc.com/2024/02/27/sony-to-lay-off-900-workers-from-playstation-division-or-8percent-of-units-global-workforce.html",
+    "officiality": "estimate",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Real reported figures. 'Rest of industry' is the remainder of the 14,800 total 2024 gaming layoffs after subtracting the Microsoft and Sony cuts.",
+  "points": [
+    {"label": "Microsoft (Xbox/Activision Blizzard)", "value": 1900, "period": "2024"},
+    {"label": "Sony (PlayStation)", "value": 900, "period": "2024"},
+    {"label": "Rest of industry", "value": 12000, "period": "2024"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "library_visits_trend",
+  "title": "US public library physical visits",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2019-2023 (selected years)",
+  "source": {
+    "name": "Public Libraries Survey",
+    "publisher": "Institute of Museum and Library Services (IMLS)",
+    "url": "https://www.imls.gov/sites/default/files/2026-05/FY2023-Research-Brief-508_05132026.pdf",
+    "officiality": "official",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Real IMLS figures for in-person visits to US public libraries.",
+  "points": [
+    {"label": "2019", "value": 1250, "period": "2019"},
+    {"label": "2022", "value": 671, "period": "2022"},
+    {"label": "2023", "value": 800, "period": "2023"}
+  ]
+}

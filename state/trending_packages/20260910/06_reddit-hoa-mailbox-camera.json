@@ -1,0 +1,28 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "reddit-hoa-mailbox-camera",
+  "title": "She Blamed My Kid For The Broken Mailbox. I Had A Camera.",
+  "script": "A neighbor two houses down cornered me in the driveway insisting my ten-year-old had smashed her decorative mailbox post while riding his bike, demanding two hundred dollars for a replacement right there on the spot. My son was inside doing homework the entire afternoon, and I told her that, but she just got louder, saying she saw a kid on a bike matching his description and wasn't leaving until she got paid. I mentioned, calmly, that I'd installed a doorbell camera last spring that covers the whole street, including her mailbox post across the way. She said fine, prove it, so I pulled up the footage right there on my phone. It clearly showed HER own nephew, visiting for the week, clipping the post with her SUV while backing out of her driveway that morning. She stared at the screen for a long ten seconds, then claimed the footage was probably fake somehow. I forwarded the clip to the HOA group chat anyway, timestamped and all. Her nephew got grounded by his own mother. My kid got an extra hour of video games that night, and I got a very quiet apology text two days later.",
+  "shots": [
+    {"phrase": "cornered me in the driveway", "query": "suburban driveway confrontation"},
+    {"phrase": "smashed her decorative mailbox post", "query": "broken mailbox post"},
+    {"phrase": "riding his bike", "query": "kid riding bike"},
+    {"phrase": "doing homework the entire afternoon", "query": "kid homework desk"},
+    {"phrase": "a doorbell camera last spring", "query": "doorbell camera"},
+    {"phrase": "pulled up the footage right there on my phone", "query": "phone video playback"},
+    {"phrase": "clipping the post with her SUV", "query": "suv backing out driveway"},
+    {"phrase": "stared at the screen for a long ten seconds", "query": "person staring phone screen"},
+    {"phrase": "forwarded the clip to the HOA group chat", "query": "texting phone group chat"},
+    {"phrase": "a very quiet apology text two days later", "query": "phone text message notification"}
+  ],
+  "punches": [
+    {"phrase": "demanding two hundred dollars", "text": "$200 DEMAND", "color": "#ffaa30"},
+    {"phrase": "a doorbell camera last spring", "text": "CAMERA ROLLING", "color": "#50ff80"},
+    {"phrase": "clipping the post with her SUV", "text": "IT WAS HER", "color": "#ff3030"},
+    {"phrase": "the footage was probably fake somehow", "text": "DENIAL", "color": "#ffaa30"},
+    {"phrase": "Her nephew got grounded", "text": "BUSTED", "color": "#50ff80"}
+  ],
+  "hashtags": ["entitledparents", "reddit", "storytime", "karma", "doorbellcamera", "neighbors", "hoa", "caught", "viral", "shorts", "fyp"],
+  "music_vibe": "tense standoff into vindication",
+  "bottom_theme": "auto"
+}
