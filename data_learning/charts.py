@@ -3045,6 +3045,13 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     distances / counts / 'how far'. Pure shapes, zero network. Empty anchors."""
     from PIL import Image, ImageDraw
     import math as _m
+    from .viz_scene import orbit_is_honest as _orbit_ok
+    # An orbit says "these things sit at these distances FROM THAT THING". A
+    # ranking says no such thing, and this refuses rather than invent a centre
+    # for it — `FALLBACK["orbit"]` sends it to bubbles, where length and area
+    # still depict honestly. See `viz_scene.orbit_is_honest`.
+    if not _orbit_ok(insight):
+        return None
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
     items = _ordered_items(insight)[:5]
@@ -3069,6 +3076,12 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
                       outline=(90, 110, 140, 120), width=3)
         for rad, alpha in ((70, 60), (52, 130), (38, 255)):  # central sun
             d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=_rgba(WARN, alpha))
+        # The label belongs to the RING, not to the moving body — see the
+        # matching comment in `viz_scene.draw_orbit`. Trailing the body put
+        # two labels at the same y whenever two bodies were at the same
+        # height, which a rotation does nothing to prevent.
+        from .viz_scene import spread as _spread, fit_text as _fit_text
+        _lys = _spread([cy - rad - 20 for rad in radii], 46, 230, cy - 44)
         for i, (p, rad) in enumerate(zip(items, radii)):
             na = max(0.0, min(1.0, (r - i * 0.12) / 0.6))
             if na <= 0:
@@ -3077,10 +3090,9 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
             bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
             col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
             d.ellipse([bx - 28, by - 28, bx + 28, by + 28], fill=_rgba(col, int(255 * na)))
-            txt = f"{p.label} {_ulabel(p.value, insight.unit)}"
-            tw = d.textbbox((0, 0), txt, font=lab_font)
-            lx = min(max(bx + 36, 20), W - 20 - (tw[2] - tw[0]))
-            d.text((lx, by - 18), txt, font=lab_font,
+            txt = f"{p.label}  {_ulabel(p.value, insight.unit, group=True)}"
+            _of, _ot = _fit_text(d, txt, 38, W - 120, min_size=24)
+            d.text((cx, _lys[i]), _ot, font=_of, anchor="mm",
                    fill=(248, 250, 252, int(255 * na)),
                    stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")

@@ -4314,8 +4314,43 @@ def draw_bubble(d, box, value, label, color, reveal, vmax):
     return {"value": float(value), "cx": float(cx), "cy": float(cy), "w": 120.0, "h": 60.0}
 
 
+#: A claim that is really about DISTANCE FROM A COMMON CENTRE.
+_ORBITAL = re.compile(
+    r"\b(distance|distances|away|far|farther|furthest|orbit\w*|radius|"
+    r"radii|reach|from the sun|from the centre|from the center)\b", re.I)
+
+
+def orbit_is_honest(insight) -> bool:
+    """May this data be drawn as bodies orbiting a centre?
+
+    An orbit says "these things are at these distances FROM THAT THING". A
+    ranking says no such thing, and drawing one as a solar system invents a
+    centre for it — the reviewer put it exactly:
+
+        "seg1: an orbital-system picture asserts a relationship the data
+         doesn't have — arable hectares are a ranking, not bodies around a
+         sun; the rings say nothing"              algeria, 2026-09-09
+
+    It is the oldest rule in `docs/DATA_MACHINES.md`: a relationship is a
+    CLAIM, drawn at 200pt, and OTHER — fall back to something that can carry
+    it — is always an acceptable answer. So this refuses unless the numbers
+    really are distances, or the claim itself is about remoteness from a
+    centre. `charts.FALLBACK` sends a refused orbit to bubbles, where length
+    and area still depict honestly.
+    """
+    from . import relationships as _rel
+    unit = str(getattr(insight, "unit", "") or "").strip().lower()
+    if unit in _rel._UNIT_DIST:
+        return True
+    text = " ".join(str(getattr(insight, k, "") or "")
+                    for k in ("topic", "main_insight"))
+    return bool(_ORBITAL.search(text))
+
+
 def draw_orbit(d, box, insight, reveal):
     """Bodies orbit a centre at radii ∝ value (the loved solar-system look)."""
+    if not orbit_is_honest(insight):
+        return None
     import math as _m
     items = _ordered_items(insight)[:5]
     vals = [max(0.0001, p.value) for p in items]
@@ -4331,6 +4366,24 @@ def draw_orbit(d, box, insight, reveal):
                   outline=(90, 110, 140, 120), width=3)
     for rad, alpha in ((66, 60), (48, 130), (34, 255)):
         d.ellipse([cx - rad, cy - rad, cx + rad, cy + rad], fill=_rgba(WARN, alpha))
+    # THE LABEL BELONGS TO THE RING, NOT TO THE MOVING BODY.
+    #
+    # Trailing the body put two labels at the same y whenever two bodies
+    # happened to be at the same height, and it happened constantly — there
+    # is nothing in a rotation that keeps them apart:
+    #
+    #     "seg1:start/mid: 'Russian Federation 121649000' and
+    #      'India 153868700' overprint each other; the labels are unreadable
+    #      at the moment the whole point (India edges out the US) is supposed
+    #      to land"                                   algeria, 2026-09-09
+    #
+    # A ring's RADIUS is its value, so labelling the ring says the same thing
+    # and says it from a fixed place: above the ring's top, where the y is
+    # already separated by the radius difference, and `spread` guarantees a
+    # gutter when two values are close. `_vfmt` also printed the raw
+    # `121649000`; every other machine uses `_ulabel`.
+    _lys = spread([cy - rad - 18 for rad in radii], 44,
+                  box[1] + 34, cy - 40)
     for i, (p, rad) in enumerate(zip(items, radii)):
         na = max(0.0, min(1.0, (reveal - i * 0.12) / 0.6))
         if na <= 0:
@@ -4339,10 +4392,9 @@ def draw_orbit(d, box, insight, reveal):
         bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
         col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
         d.ellipse([bx - 26, by - 26, bx + 26, by + 26], fill=_rgba(col, int(255 * na)))
-        txt = f"{p.label} {_vfmt(p.value)}"
-        tw = d.textbbox((0, 0), txt, font=lab_font)
-        lx = min(max(bx + 34, box[0]), box[2] - (tw[2] - tw[0]))
-        d.text((lx, by - 18), txt, font=lab_font,
+        txt = f"{p.label}  {charts._ulabel(p.value, getattr(insight, 'unit', '') or '', group=True)}"
+        _of, _ot = fit_text(d, txt, 36, (box[2] - box[0]) - 60, min_size=22)
+        d.text((cx, _lys[i]), _ot, font=_of, anchor="mm",
                fill=(248, 250, 252, int(255 * na)), stroke_width=3,
                stroke_fill=(5, 8, 15, int(255 * na)))
 
@@ -5272,13 +5324,24 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     # black beat is worse than a crash: nothing raises, no gate reads it, and
     # it ships. Probing once at full reveal costs one draw per element and
     # turns that into an honest fallback to a chart.
-    if els and all(e.get("type") in _MACHINE_DRAW for e in els):
+    # `orbit_group` refuses too — it declines a ranking rather than invent a
+    # centre for it (`orbit_is_honest`) — and its return value is otherwise
+    # ignored by the dispatch below, so a lone refusing orbit would render a
+    # sequence of EMPTY frames. It joins the probe, which is the mechanism
+    # that turns a refusal into an honest fallback instead of a black beat.
+    _CAN_REFUSE = set(_MACHINE_DRAW) | {"orbit_group"}
+    if els and all(e.get("type") in _CAN_REFUSE for e in els):
         from PIL import Image as _PIm, ImageDraw as _PIDraw
         _probe = _PIm.new("RGBA", (W, H), (0, 0, 0, 0))
         _pd = _PIDraw.Draw(_probe)
         _live = False
         for i, el in enumerate(els):
             t = el.get("type")
+            if t == "orbit_group":
+                if orbit_is_honest(insight):
+                    _live = True
+                    break
+                continue
             if not machine_may_draw(t, insight):
                 continue
             if _guarded(t, _MACHINE_DRAW[t], _pd, _probe, boxes[i], insight,
