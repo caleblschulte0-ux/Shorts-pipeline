@@ -105,12 +105,58 @@ class TheWinningColumnCarriesTheHOST(unittest.TestCase):
     sorted by magnitude. They are not any more, and pinning the host to
     `items[0]` would hang him off the smaller bar."""
 
+    #: `_story_versus` draws its two columns at these axes x positions.
+    COLS = (0.28, 0.72)
+
+    def _grip(self, pairs):
+        """Where the host was actually attached, in axes x."""
+        ins = _ins(pairs)
+        fig, plt = charts._card_base()
+        try:
+            charts._ATTACH_FRAME.clear()
+            charts._story_versus(fig, plt, ins, "")
+            self.assertTrue(charts._ATTACH_FRAME, "the host was never baked")
+            return charts._ATTACH_FRAME[-1]["x"]
+        finally:
+            plt.close(fig)
+
     def test_the_host_is_baked_on_the_taller_column(self):
-        import inspect
-        src = inspect.getsource(charts._story_versus)
-        self.assertIn("win = 0 if left.value >= right.value else 1", src)
-        self.assertIn("_bake_host(ax, xs[win]", src)
-        self.assertIn("if j == win:", src)
+        """MEASURED, not read out of the source.
+
+        This asserted three substrings of `_story_versus`, one of which
+        (`if j == win:`) was a branch that only existed because the winner's
+        number used to be drawn INSIDE its column. Deleting that branch —
+        a fix, not a regression — failed a test whose name is about where
+        the host stands. Assert where the host stands.
+        """
+        # A dated pair is normalised CHRONOLOGICALLY (the winner is drawn
+        # second); two PLACES are normalised BY SIZE (the winner is drawn
+        # first). Both orders are real, and the host has to find the taller
+        # column in each — which is the whole reason `win` exists.
+        for pairs, winner in (([("1963", 417.0), ("2020", 71467.0)], 1),
+                              ([("Mississippi", 52.7),
+                                ("Massachusetts", 96.5)], 0)):
+            x = self._grip(pairs)
+            near = min(range(2), key=lambda i: abs(x - self.COLS[i]))
+            self.assertEqual(near, winner,
+                             f"host at {x:.3f}, expected the {winner} column")
+
+    def test_the_accent_is_on_the_taller_column_too(self):
+        """It followed the DRAW ORDER, so any comparison whose bigger side is
+        drawn second put the channel's one accent on the wrong side."""
+        for pairs in ([("1963", 417.0), ("2020", 71467.0)],
+                      [("Mississippi", 52.7), ("Massachusetts", 96.5)]):
+            ins = _ins(pairs)
+            fig, plt = charts._card_base()
+            try:
+                ax, _ = charts._story_versus(fig, plt, ins, "")
+                lines = [ln for ln in ax.lines
+                         if ln.get_linewidth() > 20]
+                self.assertTrue(lines)
+                tallest = max(lines, key=lambda ln: max(ln.get_ydata()))
+                self.assertEqual(tallest.get_color(), charts.HIGHLIGHT, pairs)
+            finally:
+                plt.close(fig)
 
 
 class TheFitterShrinksBeforeItCollides(unittest.TestCase):
@@ -184,44 +230,51 @@ class MEASUREDOnTheRenderedCard(unittest.TestCase):
     #: The card is inset from the frame; ink outside this is off the card.
     CARD = (0.03, 0.97)
 
-    def _label_ink(self, arr):
-        """First and last column of series-coloured ink in the x-label band,
-        and the widest gutter between the two blocks."""
-        import numpy as np
-        h = arr.shape[0]
-        lit = self._bar_mask(arr)
-        cols = lit[int(0.845 * h):int(0.885 * h), :].any(axis=0)
-        xs = np.nonzero(cols)[0]
-        if not len(xs):
-            return None
-        d = np.diff(xs)
-        return int(xs[0]), int(xs[-1]), int(d.max() - 1) if len(d) else 0
+    #: The two long labels the reviewer was reading when they reported
+    #: "axis labels truncated mid-word ('1963 (all', '2006 (yea')". Drawn at
+    #: their nominal 28pt these run from x=121 to x=1090 of a 1100px card —
+    #: ten pixels from the edge of the FRAME, through the card's own margin.
+    LONG = [("1963 (all-time low)", 417.0),
+            ("2006 (year before delisting)", 9789.0)]
+
+    def _label_boxes(self, pairs):
+        """The two column names, MEASURED as rendered, as (x0, x1) fractions.
+
+        This used to scan the pixels of a horizontal band for ink in one of
+        the two SERIES colours. Both halves of that stopped being true in the
+        same change: the labels wear INK now (`shared/palette` has always
+        said they must), and the band moved when the y limits did. It failed
+        as "no x labels were drawn at all" — a passing chart reported as a
+        missing one, which is the worst way for a test to be wrong. The Text
+        artists are right there and they measure exactly.
+        """
+        ins = _ins(pairs)
+        fig, plt = charts._card_base()
+        try:
+            ax, _ = charts._story_versus(fig, plt, ins, "")
+            fig.canvas.draw()
+            r = fig.canvas.get_renderer()
+            W = fig.get_size_inches()[0] * fig.dpi
+            names = {p.label for p in ins.items}
+            out = []
+            for t in ax.texts:
+                if t.get_text() in names:
+                    bb = t.get_window_extent(r)
+                    out.append((bb.x0 / W, bb.x1 / W))
+            return sorted(out)
+        finally:
+            plt.close(fig)
 
     def test_a_long_axis_label_stays_ON_the_card(self):
-        """The real eagle labels, which is what the reviewer was reading:
-
-            "axis labels truncated mid-word ('1963 (all', '2006 (yea')"
-
-        Drawn at their nominal 28pt these two run from x=121 to x=1090 of a
-        1100px card — ten pixels from the edge of the FRAME, straight through
-        the card's own margin. Fitted they land at 180..916.
-        """
-        arr = self._card([("1963 (all-time low)", 417.0),
-                          ("2006 (year before delisting)", 9789.0)])
-        w = arr.shape[1]
-        ink = self._label_ink(arr)
-        self.assertIsNotNone(ink, "no x labels were drawn at all")
-        lo, hi, _ = ink
-        self.assertGreaterEqual(lo, self.CARD[0] * w, "label off the left")
-        self.assertLessEqual(hi, self.CARD[1] * w, "label off the right")
+        boxes = self._label_boxes(self.LONG)
+        self.assertEqual(len(boxes), 2, "no x labels were drawn at all")
+        self.assertGreaterEqual(boxes[0][0], self.CARD[0], "label off the left")
+        self.assertLessEqual(boxes[-1][1], self.CARD[1], "label off the right")
 
     def test_the_two_axis_labels_do_not_touch(self):
-        arr = self._card([("1963 (all-time low)", 417.0),
-                          ("2006 (year before delisting)", 9789.0)])
-        w = arr.shape[1]
-        ink = self._label_ink(arr)
-        self.assertIsNotNone(ink)
-        self.assertGreater(ink[2], w * 0.02,
+        boxes = self._label_boxes(self.LONG)
+        self.assertEqual(len(boxes), 2)
+        self.assertGreater(boxes[1][0] - boxes[0][1], 0.02,
                            "the two axis labels run into each other")
 
 

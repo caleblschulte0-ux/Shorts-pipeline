@@ -121,11 +121,70 @@ class TextWearsINKNeverTheSeriesColour(unittest.TestCase):
             self.assertNotIn(ink, hues, name)
 
     def test_a_row_label_is_no_longer_tinted_the_accent(self):
+        """No composer paints its own text in the mark's colour.
+
+        This used to assert on the y-ticklabel tint loop that did the
+        recolouring; the row names are drawn inside the axes now and there is
+        no tick loop left, so it asserts the RULE instead of one expression
+        of it — `shared/palette` states it in its own module docstring, and
+        `_story_versus` and `_story_stack` were both breaking it (a column
+        name in the dim accent, a segment label in its own series hue).
+        """
+        import ast
         import inspect
         from data_learning import charts
-        src = inspect.getsource(charts._story_bars)
-        self.assertIn("lbl.set_color(TEXT)", src)
-        self.assertNotIn("lbl.set_color(HIGHLIGHT)", src)
+        #: The names a MARK is painted with. None of them may reach a `color=`
+        #: on a text call. (`facecolor=col` on the mark itself is the point.)
+        MARK = {"col", "gcol", "color", "HIGHLIGHT", "ACCENT", "REST",
+                "series_color", "accent"}
+        for fn in (charts._story_bars, charts._story_versus,
+                   charts._story_stack):
+            tree = ast.parse(inspect.getsource(fn).lstrip())
+            for node in ast.walk(tree):
+                if not (isinstance(node, ast.Call)
+                        and isinstance(node.func, ast.Attribute)
+                        and node.func.attr == "text"):
+                    continue
+                for kw in node.keywords:
+                    if kw.arg != "color":
+                        continue
+                    used = {n.id for n in ast.walk(kw.value)
+                            if isinstance(n, ast.Name)}
+                    self.assertFalse(
+                        used & MARK,
+                        f"{fn.__name__} line {node.lineno}: text coloured "
+                        f"with {sorted(used & MARK)} — the mark beside it "
+                        f"already carries the identity")
+
+    def test_a_stacked_column_does_not_hand_out_six_hues(self):
+        """One accent and a neutral ladder — not the categorical palette.
+
+        A six-source breakdown shipped as blue/orange/violet/pink/yellow/
+        green stacked into a tower: the loudest frame the channel made, and
+        the anti-pattern the house standard names outright.
+        """
+        import inspect
+        from data_learning import charts
+        src = _code_only(inspect.getsource(charts._story_stack))
+        self.assertNotIn("series_color", src)
+        self.assertIn("_stack_tint", src)
+        seen = {charts._stack_tint(i, 6, False) for i in range(6)}
+        self.assertNotIn(charts.HIGHLIGHT, seen)
+        self.assertEqual(charts._stack_tint(2, 6, True), charts.HIGHLIGHT)
+
+
+def _code_only(src: str) -> str:
+    """`src` with comments and docstrings stripped.
+
+    Source-reading tests in this repo have asserted on prose more than once
+    — a comment quoting the code it replaced is not the code.
+    """
+    import ast
+    tree = ast.parse(src.lstrip())
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            node.value = ""
+    return ast.unparse(tree)
 
 
 class TheGroundIsALIVE(unittest.TestCase):

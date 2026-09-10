@@ -140,6 +140,39 @@ A new machine goes through the checklist at the bottom of
 `docs/DATA_MACHINES.md`, which also records what is deliberately NOT built
 (a network map needs edge data no source returns) and why.
 
+## The LOOK is `shared/look.py`, and it is held by tests (docs/CHANNEL_LOOK.md)
+
+Operator ruling 2026-09-10: *"the whole look of the thing is cheap and shit
+... we need a large scale rehaul of how the channel looks"*, then *"closer
+but it can be even more sharp and clean and more professional YouTuber
+looking"*.
+
+`shared/look.py` is the ONE place a colour, a type weight or a mark
+thickness is decided; `data_learning/charts.py` derives every token from it
+(`TEXT`, `SUBTLE`, `HIGHLIGHT`, `REST`, `GRID`, `NAME_REST`). **Never name a
+hex in a composer.** The full rule list, each with the frame it came from,
+is `docs/CHANNEL_LOOK.md`; the four that get broken most often:
+
+- **ONE accent per story, and it goes on the SUBJECT** — decided by the
+  story, never by draw order. Supporting marks are `look.REST`, a NEUTRAL:
+  a desaturated accent reads as *disabled*, and a stacked column that hands
+  out six categorical hues is the loudest frame this channel has ever made.
+- **Text wears INK, never the mark's colour.** `shared/palette` has said so
+  in its own module docstring the whole time, and two composers were
+  breaking it.
+- **There is no card.** A bordered panel on a gradient is a UI widget, not
+  a shot (`repair_planner` calls it `UI_WIDGET`). The data sits on
+  `look.ground`, full bleed.
+- **Every extent is MEASURED.** Character counts are not widths; a value
+  column is as wide as its widest value; a `rounding_size` is in DATA units
+  and on a 0..1 axes `1.4` is wider than the whole frame.
+
+`tests/test_the_chart_is_a_shot_not_a_widget.py` and
+`tests/test_the_channel_has_a_look.py` hold all of it. Every one is a defect
+that was visible in a shipped frame — which is why they are tests and not a
+style guide, and why a source-reading test here asserts on CODE (AST, string
+constants blanked), never on the prose that explains it.
+
 ## `config/channel_registry.json` is the ONLY place channel policy lives
 
 How many videos a channel ships, in which formats, which formats are retired,

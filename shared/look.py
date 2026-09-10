@@ -82,6 +82,17 @@ ACCENTS = {
 }
 DEFAULT_ACCENT = "gold"
 
+#: THE SUPPORTING MARK IS NEUTRAL, NOT A DIMMED ACCENT.
+#:
+#: A rank chart drew its leader in gold and every other bar in the accent's
+#: dim partner — a muddy olive. Two problems, both visible in one frame: a
+#: desaturated version of the highlight reads as "this one is DISABLED /
+#: still loading" rather than "this one is context", and three tones of the
+#: same hue is exactly the "everything is coloured, so nothing is" that the
+#: house standard names as an anti-pattern. The supporting marks are ink.
+#: Colour means ONE thing on this channel: the thing being said.
+REST = (63, 72, 102)
+
 #: A bar may never be thicker than this fraction of the frame's short side.
 #: The dataviz standard caps a bar at ~24px on a ~900px chart — 2.7%. At 1080
 #: that is 29px. The channel was drawing 165.
