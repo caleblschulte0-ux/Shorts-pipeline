@@ -370,15 +370,15 @@
           "shot_index": 0,
           "phrase": "bolt-cut MY lock off my locker",
           "query": "gym locker room lockers",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "my gym bag just sitting on the bench",
           "query": "gym bag on bench",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -391,8 +391,8 @@
           "shot_index": 3,
           "phrase": "one of those hardened steel disc locks",
           "query": "heavy duty padlock",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
@@ -405,56 +405,56 @@
           "shot_index": 5,
           "phrase": "I stood right behind him",
           "query": "gym locker room hallway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "He spun around",
           "query": "man startled surprised",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "leaving his own broken bolt cutters wedged in the locker vents",
           "query": "broken tool metal",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 8,
           "phrase": "Front desk banned him the next day",
           "query": "gym reception desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 9,
           "phrase": "I mounted his bolt cutters on my garage wall",
           "query": "garage wall tools",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 2,
-        "missing": 8,
+        "weak": 10,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e",
         "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
+        "reddit-gym-locker-lock-cutter-s2-32c4e9c27480",
         "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+        "reddit-gym-locker-lock-cutter-s4-52c53ade2886",
         "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
         "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
         "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
         "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
-        "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
-        "reddit-gym-locker-lock-cutter-s2-32c4e9c27480",
-        "reddit-gym-locker-lock-cutter-s4-52c53ade2886"
+        "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04"
       ]
     },
     {
@@ -466,77 +466,77 @@
           "shot_index": 0,
           "phrase": "cornered me in the driveway",
           "query": "suburban driveway confrontation",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "smashed her decorative mailbox post",
           "query": "broken mailbox post",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "riding his bike",
           "query": "kid riding bike",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "doing homework the entire afternoon",
           "query": "kid homework desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "a doorbell camera last spring",
           "query": "doorbell camera",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "pulled up the footage right there on my phone",
           "query": "phone video playback",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "clipping the post with her SUV",
           "query": "suv backing out driveway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "stared at the screen for a long ten seconds",
           "query": "person staring phone screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 8,
           "phrase": "forwarded the clip to the HOA group chat",
           "query": "texting phone group chat",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 9,
           "phrase": "a very quiet apology text two days later",
           "query": "phone text message notification",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 10,
+        "weak": 10,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -577,9 +577,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
@@ -603,165 +605,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.png",
-      "prompt_sha256": "ea72001b20b70769cf8edc78f7026ee3cd129c91dd5c63fd8c2b969a4fbddf16",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: heavy duty padlock. It accompanies the narration: \"one of those hardened steel disc locks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s5-72c1ab934e13.png",
-      "prompt_sha256": "cdebe0aa59f77ef7181108e035436b465314fdfbbdb3382b6dec355cfbffd79e",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s5-72c1ab934e13.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: gym locker room hallway. It accompanies the narration: \"I stood right behind him\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.png",
-      "prompt_sha256": "00cc411bf4da227a04fd26c35b6f323934d028f722f2a4e09a5e092797cbe531",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: man startled surprised. It accompanies the narration: \"He spun around\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s7-23d4cdb83845.png",
-      "prompt_sha256": "48799974f36e027635cd854ed45cb5622e175fe676bd145f75ec1a10e22902a1",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s7-23d4cdb83845.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: broken tool metal. It accompanies the narration: \"leaving his own broken bolt cutters wedged in the locker vents\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s8-e6036ad7e438.png",
-      "prompt_sha256": "cbea797d2512b1fd70fbb3da80f40ef35aaccd31d9bb3619d4fbfcc4ea822cd7",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s8-e6036ad7e438.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 8,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: gym reception desk. It accompanies the narration: \"Front desk banned him the next day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
-      "safe_request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
-      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.png",
-      "prompt_sha256": "a597986223126b212539ff7d7ad8b1a98a5b3b8e6a73cf37e48a0559d06d0917",
-      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.json",
-      "slug": "reddit-gym-locker-lock-cutter",
-      "shot_index": 9,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: garage wall tools. It accompanies the narration: \"I mounted his bolt cutters on my garage wall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-gym-locker-lock-cutter-s2-32c4e9c27480",
@@ -785,7 +633,35 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (20% term overlap)",
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.png",
+      "prompt_sha256": "ea72001b20b70769cf8edc78f7026ee3cd129c91dd5c63fd8c2b969a4fbddf16",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: heavy duty padlock. It accompanies the narration: \"one of those hardened steel disc locks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
         "resolution unverified (no width/height reported)",
         "unverified provenance (unverified)"
       ],
@@ -813,6 +689,147 @@
       "width": 1080,
       "height": 1080,
       "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s5-72c1ab934e13.png",
+      "prompt_sha256": "cdebe0aa59f77ef7181108e035436b465314fdfbbdb3382b6dec355cfbffd79e",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s5-72c1ab934e13.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: gym locker room hallway. It accompanies the narration: \"I stood right behind him\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.png",
+      "prompt_sha256": "00cc411bf4da227a04fd26c35b6f323934d028f722f2a4e09a5e092797cbe531",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: man startled surprised. It accompanies the narration: \"He spun around\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s7-23d4cdb83845.png",
+      "prompt_sha256": "48799974f36e027635cd854ed45cb5622e175fe676bd145f75ec1a10e22902a1",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s7-23d4cdb83845.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: broken tool metal. It accompanies the narration: \"leaving his own broken bolt cutters wedged in the locker vents\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s8-e6036ad7e438.png",
+      "prompt_sha256": "cbea797d2512b1fd70fbb3da80f40ef35aaccd31d9bb3619d4fbfcc4ea822cd7",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s8-e6036ad7e438.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: gym reception desk. It accompanies the narration: \"Front desk banned him the next day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+      "safe_request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+      "drive_filename": "20260910__reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.png",
+      "prompt_sha256": "a597986223126b212539ff7d7ad8b1a98a5b3b8e6a73cf37e48a0559d06d0917",
+      "checkpoint_path": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.json",
+      "slug": "reddit-gym-locker-lock-cutter",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: garage wall tools. It accompanies the narration: \"I mounted his bolt cutters on my garage wall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
         "resolution unverified (no width/height reported)",
         "unverified provenance (unverified)"
       ],
@@ -840,9 +857,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s1-0df30e7e6a17",
@@ -866,9 +885,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s2-698542808241",
@@ -892,9 +913,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s3-60f148514f03",
@@ -918,9 +941,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s4-10a54143fa41",
@@ -944,9 +969,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b",
@@ -970,9 +997,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s6-e64b48863a68",
@@ -996,9 +1025,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s7-b3be9a3fead0",
@@ -1022,9 +1053,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s8-c9517d9b0a50",
@@ -1048,9 +1081,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-hoa-mailbox-camera-s9-ff87955289eb",
@@ -1074,9 +1109,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     }
   ],
   "media_protocol": {

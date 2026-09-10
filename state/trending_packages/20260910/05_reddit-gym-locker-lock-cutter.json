@@ -11,7 +11,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
       "media_sha256": "5f2b351354830410e74696c5c7fe49ad81db47ac37205d09c63c5e2b2d831bd6",
-      "media_bytes": 1926756
+      "media_bytes": 1926756,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:53Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "my gym bag just sitting on the bench",
@@ -20,7 +30,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
       "media_sha256": "468de24dc9130265bd753aa4fafc5f663e1e0a6b17eeb0cad31d938effa536a4",
-      "media_bytes": 2084571
+      "media_bytes": 2084571,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:55Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "Front desk shrugged and said it happens",
@@ -31,16 +51,14 @@
       "news_angle": "He Cut My Lock. I Kept The Bolt Cutters.",
       "image_url": "https://drive.google.com/uc?export=download&id=1kRxYBVN5a2AhHGTtArRV9C8Gyb00Slw1",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "He Cut My Lock. I Kept The Bolt Cutters.",
-        "resolved_by": "entity_media",
+        "url": "https://drive.google.com/uc?export=download&id=1kRxYBVN5a2AhHGTtArRV9C8Gyb00Slw1",
         "source_class": "unverified",
-        "title": "Front",
-        "url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
-        "verified_at": "2026-09-10T09:39:09Z",
-        "width": 0
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:56Z",
+        "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
       "media_file_id": "1kRxYBVN5a2AhHGTtArRV9C8Gyb00Slw1",
@@ -54,7 +72,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
       "media_sha256": "73dc7144849da277469b8ef0a24843686fb378118d698b69d370d35c29fc6213",
-      "media_bytes": 2256469
+      "media_bytes": 2256469,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:57Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "straining against my new lock with the same bolt cutters",
@@ -65,16 +93,14 @@
       "news_angle": "He Cut My Lock. I Kept The Bolt Cutters.",
       "image_url": "https://drive.google.com/uc?export=download&id=1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "He Cut My Lock. I Kept The Bolt Cutters.",
-        "resolved_by": "entity_media",
+        "url": "https://drive.google.com/uc?export=download&id=1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
         "source_class": "unverified",
-        "title": "SAME",
-        "url": "https://live.staticflickr.com/4062/5168740007_e44d0e6dd1_b.jpg",
-        "verified_at": "2026-09-10T09:39:23Z",
-        "width": 0
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:58Z",
+        "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
       "media_file_id": "1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
@@ -88,7 +114,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
       "media_sha256": "b10caf1fe3f95cc4ecb361d9319995c99739bf2588a1f2eccfe5daafe665e729",
-      "media_bytes": 1735344
+      "media_bytes": 1735344,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:47:59Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "He spun around",
@@ -97,7 +133,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
       "media_sha256": "c24c4a9c2c6a86ca3f7dd7eebdeba9fb8910f9e3048cad5eec68159ee4d28f4c",
-      "media_bytes": 1712535
+      "media_bytes": 1712535,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:48:00Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "leaving his own broken bolt cutters wedged in the locker vents",
@@ -106,7 +152,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
       "media_sha256": "ed7c2377dbea70b6fb081d38f401de5bada95c1c6a2535e0a6e768dc82b5a9a5",
-      "media_bytes": 1884323
+      "media_bytes": 1884323,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:48:02Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "Front desk banned him the next day",
@@ -115,7 +171,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
       "media_sha256": "9e2ec25afeb1b9589a1f7d141423f6c9d4ba13337753483c786dc15ee15d161d",
-      "media_bytes": 1845653
+      "media_bytes": 1845653,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:48:03Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "I mounted his bolt cutters on my garage wall",
@@ -124,7 +190,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
       "media_sha256": "b1df596fa8a903e2bf2d6e35d56fa8b228c23c2e12b181e7bb41c6997266ecdf",
-      "media_bytes": 2780437
+      "media_bytes": 2780437,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-10T13:48:04Z",
+        "resolved_by": "verify_shot_urls"
+      }
     }
   ],
   "punches": [
