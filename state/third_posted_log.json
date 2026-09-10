@@ -6491,14 +6491,27 @@
       "ts": "2026-09-10T15:10:40.805638+00:00"
     },
     "clip-20260910-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ironmouse/clip/AnnoyingGrossKathyYouWHY-Hp_Gx6QcEbn-muSP",
-      "story_key": null,
-      "streamer": "ironmouse",
+      "url": "https://youtube.com/shorts/rVQk-kcPyjo",
       "title": "Ironmouse Pulls Out The Screenshot Proof And Exposes Boon",
       "kind": "twitch_clip",
-      "ts": "2026-09-10T15:18:43.862978+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-10T15:18:50.436726+00:00",
+      "uploaded_at": "2026-09-10T15:18:50.436750+00:00",
+      "publish_at": "2026-09-11T00:30:00Z",
+      "source_url": "https://www.twitch.tv/ironmouse/clip/AnnoyingGrossKathyYouWHY-Hp_Gx6QcEbn-muSP",
+      "streamer": "ironmouse",
+      "series": "drama",
+      "hook": "SHE PULLS OUT SCREENSHOT PROOF ON BOON",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2118,
+      "banger": 0.55,
+      "cut": {
+        "start": 21.3,
+        "end": 53.7
+      },
+      "director_cut": true
     }
   }
 }

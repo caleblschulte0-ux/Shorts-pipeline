@@ -1,262 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260812",
-      "dry_run": false,
-      "ts": "2026-08-12T13:13:23+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 108,
-        "with_retention": 90,
-        "with_curve": 14,
-        "fetched_at": "2026-08-11T12:44:35.934680+00:00"
-      },
-      "brain": {
-        "ok": 30,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260812-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague laugh, no context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "boat blown up, streamer laughing",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.9,
-              "problems": []
-            }
-          },
-          "took_s": 158.9
-        },
-        {
-          "slug": "clip-20260812-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "possible controversy, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "genuine shocked reaction, but confusing",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Won't Stop Screaming 'Ferox I Love You'"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 246.8
-        },
-        {
-          "slug": "clip-20260812-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "kaicenat/kaicenat-damage-death-2026w33",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.65,
-              "why": "clear fun shopping event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "casual shopping chat, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 1202.6
-        },
-        {
-          "slug": "clip-20260812-4",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp band shows an empty chair with dangling headphones (no visible subject) from ~9.0s through ~15.6s while captions k",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no clear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "streamer screaming, visible panic reacti",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Caseoh Completely Loses It Screaming 'What Do You Want From Me?!'"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "Sharp band shows an empty chair with dangling headphones (no visible subject) from ~9.0s through ~15.6s while captions k"
-              ]
-            }
-          },
-          "took_s": 207.8
-        }
-      ]
-    },
-    {
       "date": "20260813",
       "dry_run": false,
       "ts": "2026-08-13T13:14:59+00:00",
@@ -7995,6 +7739,192 @@
             }
           },
           "took_s": 0.9
+        }
+      ]
+    },
+    {
+      "date": "20260910",
+      "dry_run": false,
+      "ts": "2026-09-10T15:18:50+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 7,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 98,
+        "with_retention": 77,
+        "with_curve": 15,
+        "fetched_at": "2026-09-10T13:15:30.766691+00:00"
+      },
+      "brain": {
+        "ok": 12,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260910-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260910-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260910-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260910-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260910-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague AI reaction, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "funny AI robbery, ends in death",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha Reacts To The Most Unhinged AI Song Ever"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "final 3 frames pull back to a wide shot where the subject is small and distant"
+              ]
+            }
+          },
+          "took_s": 344.6
+        },
+        {
+          "slug": "clip-20260910-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "vague exposure drama, unclear specifics",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague fragmented talk, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ironmouse Pulls Out The Screenshot Proof And Exposes Boon"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "sharp video strip fills only roughly a third of the vertical canvas (target ~three-quarters) \u2014 looks more letterboxed th"
+              ]
+            }
+          },
+          "took_s": 489.6
         }
       ]
     }
