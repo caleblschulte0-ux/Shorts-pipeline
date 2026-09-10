@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260909",
+  "updated": "20260910",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -566,10 +566,16 @@
       ]
     },
     "33ccbcdc479b": {
-      "verdict": "doing",
-      "date": "20260819",
-      "because": "Accepted as filed: hold the six-slot 4/2 mix, do not shift it off two weeks of thin/noisy data (trending's own retro brief marks n=2-3 at every maturity window as not-enough-to-judge). While investigating this I found the concrete blocker to 'repaired format attribution' the proposal calls for: scripts/format_scoreboard.py's title-to-format fallback bucketed every reddit_story package as the string 'reddit', which is not a registry format id (the real one is reddit_story), so build() raised KeyError on any real reddit_story video. It runs in daily.yml behind '|| exit 0', so it has been silently failing to produce the format-level report this exact strategy finding needs. Fixed in this same change (scripts/format_scoreboard.py, tests/test_format_scoreboard.py) alongside the fingerprint fix. The broader reliability-tracking (attempted/rendered/held/replaced counters by stage) is real work but larger than one session -- leaving that part open for a future pass; posting-cadence data already in doctor/evidence.json channel_performance shows trending trending upward (3, 4, 4 uploads on the last three days) which the next triage should factor in before deciding if more instrumentation is still needed.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260910",
+      "because": "Building the by-stage/by-format slice of the proposal this run: doctor/evidence.json's channel_performance trend cited in the prior ruling (3,4,4 upward as of 2026-08-19) has since reversed -- production_runs for 20260903-20260907 show trending uploading 2-3 of 6 expected on every day with 6-8 of 9-10 rendered attempts failing, and 20260908 shipped zero, triggering the auto-pause. compute_production_outcome() already discarded the per-attempt error string into a bare failed count; each result already carries format + a prefixed error (showrunner_block:/quarantined:/a raw exception), so this adds failed_by_stage and failed_by_format to the outcome record (scripts/run_trending_daily.py) with a regression test, so the next reader of doctor/evidence.json can tell a showrunner correctly holding weak videos apart from an infra crash apart from a format-specific problem instead of one opaque integer. Still open: the proposal's five-consecutive-6/6-days objective and the 15-mature-uploads-per-format gate before any mix change -- that needs the counters to accumulate real days first, so leaving it in_progress rather than done.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260819",
+          "because": "Accepted as filed: hold the six-slot 4/2 mix, do not shift it off two weeks of thin/noisy data (trending's own retro brief marks n=2-3 at every maturity window as not-enough-to-judge). While investigating this I found the concrete blocker to 'repaired format attribution' the proposal calls for: scripts/format_scoreboard.py's title-to-format fallback bucketed every reddit_story package as the string 'reddit', which is not a registry format id (the real one is reddit_story), so build() raised KeyError on any real reddit_story video. It runs in daily.yml behind '|| exit 0', so it has been silently failing to produce the format-level report this exact strategy finding needs. Fixed in this same change (scripts/format_scoreboard.py, tests/test_format_scoreboard.py) alongside the fingerprint fix. The broader reliability-tracking (attempted/rendered/held/replaced counters by stage) is real work but larger than one session -- leaving that part open for a future pass; posting-cadence data already in doctor/evidence.json channel_performance shows trending trending upward (3, 4, 4 uploads on the last three days) which the next triage should factor in before deciding if more instrumentation is still needed."
+        }
+      ]
     },
     "ee3bb63e4024": {
       "verdict": "done",
@@ -908,16 +914,27 @@
       "history": []
     },
     "4754c87f0f7e": {
-      "verdict": "in_progress",
-      "date": "20260827",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260910",
+      "because": "Already built and merged in PR #320 (2026-08-27); the ruling was left at in_progress and never updated. Verified the fix is live on main: shared/video_qa.py's _collect_spans() now closes a dangling start at the probed duration when no matching end token is found. Closing the bookkeeping gap found while triaging.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260827",
           "because": "Verified: _collect_spans in shared/video_qa.py never closes a start with no matching end, so a black/freeze/silence defect running through EOF is silently dropped from black_frac/freeze_frac/silence_frac and can pass a genuinely broken render. Fixing this in the same session (rule zero)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260827",
+          "because": "picked up"
+        },
+        {
+          "verdict": "done",
+          "date": "20260910",
+          "because": ""
         }
-      ]
+      ],
+      "commit": "9bbe2fa2"
     },
     "0bf9780d6272": {
       "verdict": "done",
@@ -1031,16 +1048,27 @@
       "commit": "29bf6d4"
     },
     "cc8333959d84": {
-      "verdict": "in_progress",
-      "date": "20260905",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260910",
+      "because": "Already built and merged in PR #330 (2026-09-05); the ruling was left at in_progress and never updated. Verified the fix is live on main: both ci_commit_state.sh call sites in .github/workflows/daily.yml now check the exit status and fail the job with a named infra error instead of swallowing a persist failure with the old trailing || true. Closing the bookkeeping gap found while triaging.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed at .github/workflows/daily.yml:153-174 (auto-resume) and 163-171 (first-paused-day): both call scripts/ci_commit_state.sh with a trailing || true, so a rejected/failed state push leaves the local failure_count.txt/auto_pause_day.txt writes uncommitted while the job still reports skip=auto or skip= and proceeds as if the durable state landed. Next run reads stale committed state from main. Real gap in the auto-pause backoff guarantee; needs a preflight that treats a failed state commit as a named infra failure rather than swallowing it. Queued, not this run's build (picking the earlier-filed judge_policy bug first per ranking)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260905",
+          "because": "picked up"
+        },
+        {
+          "verdict": "done",
+          "date": "20260910",
+          "because": ""
         }
-      ]
+      ],
+      "commit": "e9d4e008"
     },
     "5187e34e11f3": {
       "verdict": "done",

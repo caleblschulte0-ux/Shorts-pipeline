@@ -1150,6 +1150,22 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
           flush=True)
 
 
+def _failure_stage(error: str | None) -> str:
+    """Classify one failed attempt's `error` string into the stage that
+    held it. `failed` used to collapse a showrunner correctly blocking weak
+    content and a render/upload crash into the same opaque count — doctor
+    finding 33ccbcdc479b asked for reliability tracked by stage precisely
+    because a day with 6 failures could be one thing or six different
+    things and nothing on disk said which."""
+    if not error:
+        return "unknown"
+    if error.startswith("showrunner_block:"):
+        return "showrunner_block"
+    if error.startswith("quarantined:"):
+        return "quarantined"
+    return "infra_error"
+
+
 def compute_production_outcome(results: list, *, prior_uploaded: int,
                                 expected: int, dry_run: bool) -> tuple:
     """The real completion decision, isolated so it is executable in a test
@@ -1161,6 +1177,13 @@ def compute_production_outcome(results: list, *, prior_uploaded: int,
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     uploaded_total = prior_uploaded + len(posted)
     complete = (dry_run or uploaded_total == expected)
+    failed_by_stage: dict[str, int] = {}
+    failed_by_format: dict[str, int] = {}
+    for r in failed:
+        stage = _failure_stage(r.get("error"))
+        failed_by_stage[stage] = failed_by_stage.get(stage, 0) + 1
+        fmt = r.get("format") or "unknown"
+        failed_by_format[fmt] = failed_by_format.get(fmt, 0) + 1
     outcome = {
         "schema": "production-channel-outcome/v1",
         "expected": expected,
@@ -1169,6 +1192,8 @@ def compute_production_outcome(results: list, *, prior_uploaded: int,
         "uploaded": uploaded_total if not dry_run else 0,
         "quarantined": len(quarantined),
         "failed": len(failed),
+        "failed_by_stage": failed_by_stage,
+        "failed_by_format": failed_by_format,
         "status": ("dry_run" if dry_run else
                    "production_complete" if complete else "repair_required"),
         "video_urls": [r.get("video_url") for r in posted

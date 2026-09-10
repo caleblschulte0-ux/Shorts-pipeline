@@ -140,6 +140,38 @@ class TestRedVersusPaused(WorkflowShellCase):
         self.assertEqual(outcome["quarantined"], 1)
         self.assertEqual(outcome["failed"], 1)
 
+    def test_failures_are_broken_down_by_stage_and_format(self):
+        """doctor finding 33ccbcdc479b: a bare `failed` count cannot tell a
+        reader whether a bad day is the showrunner correctly holding weak
+        videos, a real crash, or a leaked quarantine — and cannot tell
+        which format is eating the failures. Each failed result's `error`
+        prefix (set by run_one_from_package) must sort into the matching
+        stage bucket, grouped by the result's `format`."""
+        results = [
+            {"ok": True, "video_url": "https://youtu.be/1",
+             "format": "reddit_story"},
+            {"ok": False, "quarantined": False, "format": "graph_race",
+             "error": "showrunner_block: decorative_mascot"},
+            {"ok": False, "quarantined": False, "format": "graph_race",
+             "error": "showrunner_block: empty_void"},
+            {"ok": False, "quarantined": False, "format": "reddit_story",
+             "error": "TimeoutError: youtube upload timed out"},
+            {"ok": False, "quarantined": False, "format": "reddit_story",
+             "error": None},
+        ]
+        outcome, _ = rtd.compute_production_outcome(
+            results, prior_uploaded=0, expected=6, dry_run=False)
+        self.assertEqual(outcome["failed"], 4)
+        self.assertEqual(outcome["failed_by_stage"], {
+            "showrunner_block": 2,
+            "infra_error": 1,
+            "unknown": 1,
+        })
+        self.assertEqual(outcome["failed_by_format"], {
+            "graph_race": 2,
+            "reddit_story": 2,
+        })
+
     def test_a_full_slate_reports_complete(self):
         """The same decision must say production_complete when uploaded
         actually meets expected — the test must not just always fail."""
