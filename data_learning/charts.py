@@ -26,12 +26,25 @@ from .insights import Insight
 
 # House palette (from the design spec).
 BG = "#0B1020"
-TEXT = "#F8FAFC"
-SUBTLE = "#A5B4C7"
-HIGHLIGHT = "#4FD1C5"
-ACCENT = "#60A5FA"
+# ---- THE CHANNEL'S TOKENS ------------------------------------------------
+# These used to be six hand-picked hexes. They are now the design system's
+# (`shared/look.py`), so the data channel, the curiosity channel and the
+# machines cannot drift apart — which is how the shorts ended up drawing
+# 165pt saturated capsules in matplotlib's default face while `flat2d` carried
+# the look the operator actually picked.
+#
+# The names stay: thirteen chart composers reference them.
+from shared import look as _look                                # noqa: E402
+
+def _hex(rgb):
+    return "#%02X%02X%02X" % tuple(int(c) for c in rgb)
+
+TEXT = _hex(_look.INK)             # primary ink — the thing being said
+SUBTLE = _hex(_look.INK_2)         # secondary ink — labels, axis names
+HIGHLIGHT = _hex(_look.accent()[0])   # the story's ONE accent
+ACCENT = _hex(_look.accent()[1])      # its dim partner, for supporting marks
 WARN = "#F59E0B"
-BAR_BASE = "#1F2937"
+BAR_BASE = "#161B2E"               # the track: one step off the ground
 
 # How many entries the waffle names below its grid. `series_color` reads it
 # so a slice is never coloured without a legend row to say what it is.
@@ -75,6 +88,38 @@ FALLBACK = {
 
 # Top-half canvas: 1080x960 at 100 dpi -> 10.8 x 9.6 inches.
 FIG_W, FIG_H, DPI = 10.8, 9.6, 100
+
+
+_TYPE_READY = False
+
+
+def _use_channel_type():
+    """Make matplotlib draw in the channel's face, not its own default.
+
+    DejaVu Sans Bold is matplotlib's default and it is the loudest single
+    signal that a frame was made by a script — the operator's word for the
+    result was "cheap". Inter is committed under `assets/fonts` (subset to
+    Latin, 38KB a weight) precisely so this never depends on a fetch: a font
+    resolved at render time is a font CI does not have, and that divergence
+    has already cost this repo one round of ten mascot-less machines.
+    """
+    global _TYPE_READY
+    if _TYPE_READY:
+        return
+    _TYPE_READY = True
+    try:
+        from matplotlib import font_manager
+        import matplotlib as _mpl
+        added = 0
+        for p in sorted(_look.FONT_DIR.glob("*.ttf")):
+            font_manager.fontManager.addfont(str(p))
+            added += 1
+        if added:
+            _mpl.rcParams["font.family"] = "sans-serif"
+            _mpl.rcParams["font.sans-serif"] = ["Inter", "Inter Display",
+                                                "DejaVu Sans"]
+    except Exception:  # noqa: BLE001 — type is a look, never a blocker
+        pass
 
 
 def _have_mpl() -> bool:
@@ -628,6 +673,7 @@ def _new_card():
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch
 
+    _use_channel_type()
     fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
     fig.patch.set_alpha(0.0)               # transparent outside the card
     # Background axes holds the rounded card so it draws *under* the data
@@ -706,6 +752,7 @@ def _card_base():
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch
 
+    _use_channel_type()
     fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
     fig.patch.set_alpha(0.0)
     bg = fig.add_axes([0, 0, 1, 1])
@@ -726,6 +773,25 @@ HEAD_X = 0.085
 HEAD_RIGHT = 0.915
 HEAD_Y = 0.91
 SUB_Y = 0.845
+
+
+def _title_clears_subtitle(fig, text: str, fp) -> bool:
+    """Would this title block, drawn at HEAD_Y, stay above SUB_Y?
+
+    Measured on the real renderer rather than computed from a font metric,
+    because the whole class of bug here is arithmetic that was right for one
+    typeface and silently wrong for the next.
+    """
+    try:
+        t = fig.text(HEAD_X, HEAD_Y, text, fontproperties=fp, ha="left",
+                     va="top", linespacing=1.08, alpha=0.0)
+        fig.canvas.draw()
+        bb = t.get_window_extent(fig.canvas.get_renderer())
+        bottom = bb.y0 / (fig.get_size_inches()[1] * fig.dpi)
+        t.remove()
+        return bottom > SUB_Y
+    except Exception:  # noqa: BLE001 — never fail a render over a measurement
+        return True
 
 
 def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
@@ -756,12 +822,30 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
     # a title that cannot fit even there is allowed to wrap.
     fitted, fp = fit_title(fig, title, None, band, max_lines=1, hi=42, lo=24)
     if "\n" in fitted or len(fitted.split()) < len(title.split()):
-        # 32pt is the largest two-line block that still fits ABOVE the
-        # subtitle: 2 * 32 * 1.08 linespacing = 105px against the 111px band
-        # between HEAD_Y and SUB_Y. Staying inside it means the subtitle
-        # never has to move, so it never lands on the plot.
-        fitted, fp = fit_title(fig, title, None, band,
-                               max_lines=2, hi=32, lo=20)
+        # A TWO-LINE TITLE IS CAPPED BY MEASUREMENT, NOT BY A CONSTANT.
+        #
+        # This was a hardcoded 32pt, derived in a comment from DejaVu's line
+        # box: "2 * 32 * 1.08 linespacing = 105px against the 111px band".
+        # True for that face. The channel's face is Inter now, whose line box
+        # is taller at the same nominal size, and the same 32pt overflowed the
+        # band by 16px and reached the subtitle — caught by
+        # `test_a_wrapped_title_never_reaches_the_subtitle`, which is the test
+        # that exists precisely so a title fix cannot become a title overlap.
+        #
+        # So the cap is computed from the band the title actually has, and
+        # then VERIFIED against the rendered extent: the constant is gone and
+        # the next face change cannot reintroduce this.
+        _band_px = (HEAD_Y - SUB_Y) * fig.get_size_inches()[1] * fig.dpi
+        _hi = int(max(20, min(32, (_band_px - 10) * 72.0 /
+                              (fig.dpi * 2 * 1.08))))
+        for _try in range(6):
+            fitted, fp = fit_title(fig, title, None, band,
+                                   max_lines=2, hi=_hi, lo=20)
+            if _title_clears_subtitle(fig, fitted, fp):
+                break
+            _hi -= 2
+            if _hi < 20:
+                break
     fig.text(HEAD_X, HEAD_Y, fitted, color=TEXT, fontproperties=fp,
              ha="left", va="top", linespacing=1.08)
     if subtitle:
@@ -785,10 +869,24 @@ def _round_barv(ax, x, value, lw, color, zorder=3):
 
 
 def _bar_lw(n: int, frac: float = 0.58) -> float:
-    """Bar thickness (points) so rounded bars fill the axes (``frac`` of card)."""
+    """Bar thickness in POINTS — capped, so the band's leftover is air.
+
+    This returned `max(40, row/2)` — on a three-row chart, 165 points of fully
+    saturated capsule. The house data-viz standard caps a bar at ~24px on a
+    ~900px chart and says why in the anti-pattern list:
+
+        "Thick saturated blocks, heavy gridlines, no breathing room. Reads
+         loud, even CHILDISH, at scale."
+
+    which is the operator's "cheap and shit", arrived at independently. The
+    cap is `shared/look.bar_thickness`: an absolute ceiling as a fraction of
+    the frame's short side, AND a ceiling relative to the row, so neither a
+    tall chart nor a two-row one can fatten the mark back up.
+    """
     plot_px = SERIES_H * frac * SERIES_DPI
     row_px = plot_px / max(1, n)
-    return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
+    px = _look.bar_thickness(int(SERIES_W * SERIES_DPI), row_px)
+    return max(8.0, px * 72.0 / SERIES_DPI)
 
 
 #: Average glyph advance as a fraction of font size, for a bold sans face.
@@ -851,7 +949,16 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     vmax = max(values) if values else 1.0
     n = len(items)
     lw = _bar_lw(n)
-    ax = fig.add_axes([0.32, 0.17, 0.60, 0.58])
+    # ROOM FOR THE NAME. The row labels are y-ticks drawn OUTSIDE the axes, so
+    # a long one just walks off the card — measured on the shipped Moon video,
+    # "1966 (Apollo buildup)" rendered as "5 (Apollo buildup)" and 2.27% of
+    # the outer eight pixels carried ink. The axes' left edge is derived from
+    # the longest label now, instead of a fixed 0.32.
+    _lblf = _fit_fontsize(max((str(p.label) for p in items), key=len),
+                          _axes_pts(0.30), 27)
+    _need = max(len(str(p.label)) * _lblf * _ADV for p in items) + 26
+    _left = min(0.46, max(0.20, _need / (SERIES_W * 72.0) + 0.045))
+    ax = fig.add_axes([_left, 0.17, 0.94 - _left, 0.58])
     ax.set_facecolor("none")
     arts = []
     for i, (p, v) in enumerate(zip(items, values)):
@@ -866,27 +973,31 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         _round_barh(ax, i, tip, lw, color, zorder=3)
         # Winner (i==0) carries the mascot on its tip, so its number lives INSIDE
         # the bar (white) — clear of the pushing host; the rest label outside.
-        if i == 0 and tip > vmax * 0.30:
-            t = ax.text(vmax * 0.03, i, _ulabel(v, insight.unit), va="center",
-                        ha="left", fontsize=30, color="white",
-                        fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
-        else:
-            t = ax.text(v + vmax * 0.02, i, _ulabel(v, insight.unit),
-                        va="center", fontsize=30, color=TEXT,
-                        fontweight="bold", zorder=4, alpha=_lblalpha(reveal))
+        # THE VALUE GOES OUTSIDE THE TIP, ALWAYS. It used to sit INSIDE the
+        # winning bar, which only worked because the bar was 165 points thick.
+        # Capped to the house spec a bar is 22pt and a 30pt number does not
+        # fit inside it — the standard says exactly that: only label inside a
+        # mark when the text fits with comfortable padding on both sides.
+        t = ax.text(v + vmax * 0.025, i, _ulabel(v, insight.unit),
+                    va="center", ha="left", fontsize=30, color=TEXT,
+                    fontweight="bold", zorder=9, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
-    ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
+    ax.set_yticklabels([p.label for p in items], fontsize=_lblf, color=SUBTLE)
     # Tint the winner's (and baseline's) label so the eye lands on it.
     for lbl, p in zip(ax.get_yticklabels(), items):
         if insight.baseline and p.label == insight.baseline.label:
             lbl.set_color(WARN)
         elif p.label == insight.highlight_label:
-            lbl.set_color(HIGHLIGHT)
+            # TEXT WEARS INK, NEVER THE SERIES COLOUR (`shared/look`). A light
+            # accent is illegible as type, and colouring the name burns the
+            # one channel that carries identity. The coloured MARK beside it
+            # already says which row matters; the name gets weight.
+            lbl.set_color(TEXT)
             lbl.set_fontweight("bold")
     ax.invert_yaxis()
     ax.set_xticks([])
-    ax.set_xlim(0, vmax * 1.28)
+    ax.set_xlim(0, vmax * 1.34)          # room for the outside tip label
     ax.set_ylim(n - 0.5, -0.5)
     for s in ax.spines.values():
         s.set_visible(False)
@@ -902,8 +1013,18 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     _wtip = max(_tour_tip(values, _row) * max(0.0, min(1.0, reveal)),
                 vmax * 0.02)
     _act_b = _perf_action(insight, "rank")
-    _bake_host(ax, _wtip, _row, _act_b, _beat(),
-               zoom=0.9, align=_perf_align(_act_b, (0.28, 0.5)))
+    # HE STANDS ON THE BAR, NOT ON ITS NUMBER.
+    #
+    # Two things changed under him at once: the mark is 22 points instead of
+    # 165, so at zoom 0.9 he dwarfed the data; and the value label moved from
+    # inside the bar to just past its tip — which is exactly where he stood.
+    # `_numbers_on_top` then drew the number straight through him.
+    #
+    # So the bar becomes his floor: anchored at its MIDDLE, feet on its top
+    # edge. He is still in contact with the datum he is touring — the whole
+    # point of the bake — and the tip label is clear to his right.
+    _bake_host(ax, _wtip * 0.55, _row - 0.42, _act_b, _beat(),
+               zoom=0.46, align=(0.5, 1.0))
     insight.host_baked = True
     return ax, arts
 
