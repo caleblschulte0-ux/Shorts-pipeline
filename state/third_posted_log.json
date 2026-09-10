@@ -6399,13 +6399,36 @@
       "director_cut": true
     },
     "clip-20260910-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/StrangeVibrantAsteriskPupper-BfjTQ7LaKdzeu0TA",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/TJzK3HVQPC8",
       "title": "Plaqueboymax Surprises Ray With A New G-Wagon And He Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-09-10T12:59:08.388459+00:00",
+      "ts": "2026-09-10T12:59:11.580265+00:00",
+      "uploaded_at": "2026-09-10T12:59:11.580282+00:00",
+      "publish_at": "2026-09-10T20:00:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/StrangeVibrantAsteriskPupper-BfjTQ7LaKdzeu0TA",
+      "streamer": "plaqueboymax",
+      "series": "wholesome",
+      "hook": "HE HAD NO IDEA THIS WAS COMING",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2447,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.3,
+        "end": 29.0
+      },
+      "director_cut": true
+    },
+    "clip-20260910-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Gets Pitched A New Nickname And Instantly Shuts It Down",
+      "kind": "twitch_clip",
+      "ts": "2026-09-10T13:08:54.806593+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
