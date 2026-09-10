@@ -6422,14 +6422,34 @@
       "director_cut": true
     },
     "clip-20260910-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/d3rceanKqQI",
       "title": "Xqc Gets Pitched A New Nickname And Instantly Shuts It Down",
       "kind": "twitch_clip",
-      "ts": "2026-09-10T13:08:54.806593+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-10T13:09:01.702695+00:00",
+      "uploaded_at": "2026-09-10T13:09:01.702709+00:00",
+      "publish_at": "2026-09-10T21:30:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "HE GETS PITCHED A NEW NICKNAME",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 4620,
+      "banger": 0.5,
+      "cut": {
+        "start": 12.9,
+        "end": 44.7
+      },
+      "director_cut": true
+    },
+    "rejected-averagecharmingpanraccattack-jqytudjhvj_l5iwk": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/AverageCharmingPanRaccAttack-jqyTuDjHvj_l5iWk",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Hypes Himself Up Then Spots Bobo Hiding In The Kitchen",
+      "qa_rejected": true,
+      "ts": "2026-09-10T13:15:20.871004+00:00"
     }
   }
 }
