@@ -2,27 +2,123 @@
   "subreddit": "pettyrevenge",
   "slug": "reddit-gym-locker-lock-cutter",
   "title": "He Cut My Lock. I Kept The Bolt Cutters.",
-  "script": "My gym has day lockers only — you bring your own lock, you clear it out when you leave. I stepped out for one fifteen-minute class and came back to find some guy had bolt-cut MY lock off my locker to take it for himself, my gym bag just sitting on the bench like garbage. Front desk shrugged and said it happens, lockers aren't guaranteed. Fine. I bought a much bigger lock, one of those hardened steel disc locks bolt cutters can't touch, and I started using the SAME locker every single day. Two weeks later I walked in during evening rush and there he was, straining against my new lock with the same bolt cutters, sweating, getting nowhere. I stood right behind him and asked if he needed a bigger pair. He spun around, saw me holding my gym bag and my receipt for the lock, and bolted — leaving his own broken bolt cutters wedged in the locker vents. Front desk banned him the next day once three other members recognized him from their own missing locks. I mounted his bolt cutters on my garage wall.",
+  "script": "My gym has day lockers only \u2014 you bring your own lock, you clear it out when you leave. I stepped out for one fifteen-minute class and came back to find some guy had bolt-cut MY lock off my locker to take it for himself, my gym bag just sitting on the bench like garbage. Front desk shrugged and said it happens, lockers aren't guaranteed. Fine. I bought a much bigger lock, one of those hardened steel disc locks bolt cutters can't touch, and I started using the SAME locker every single day. Two weeks later I walked in during evening rush and there he was, straining against my new lock with the same bolt cutters, sweating, getting nowhere. I stood right behind him and asked if he needed a bigger pair. He spun around, saw me holding my gym bag and my receipt for the lock, and bolted \u2014 leaving his own broken bolt cutters wedged in the locker vents. Front desk banned him the next day once three other members recognized him from their own missing locks. I mounted his bolt cutters on my garage wall.",
   "shots": [
-    {"phrase": "bolt-cut MY lock off my locker", "query": "gym locker room lockers"},
-    {"phrase": "my gym bag just sitting on the bench", "query": "gym bag on bench"},
-    {"phrase": "Front desk shrugged and said it happens", "query": "gym front desk"},
-    {"phrase": "one of those hardened steel disc locks", "query": "heavy duty padlock"},
-    {"phrase": "straining against my new lock with the same bolt cutters", "query": "bolt cutters tool"},
-    {"phrase": "I stood right behind him", "query": "gym locker room hallway"},
-    {"phrase": "He spun around", "query": "man startled surprised"},
-    {"phrase": "leaving his own broken bolt cutters wedged in the locker vents", "query": "broken tool metal"},
-    {"phrase": "Front desk banned him the next day", "query": "gym reception desk"},
-    {"phrase": "I mounted his bolt cutters on my garage wall", "query": "garage wall tools"}
+    {
+      "phrase": "bolt-cut MY lock off my locker",
+      "query": "gym locker room lockers"
+    },
+    {
+      "phrase": "my gym bag just sitting on the bench",
+      "query": "gym bag on bench"
+    },
+    {
+      "phrase": "Front desk shrugged and said it happens",
+      "query": "gym front desk",
+      "pin_query": "Front",
+      "pin_context": "He Cut My Lock. I Kept The Bolt Cutters.",
+      "news_query": "Front",
+      "news_angle": "He Cut My Lock. I Kept The Bolt Cutters.",
+      "image_url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "He Cut My Lock. I Kept The Bolt Cutters.",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Front",
+        "url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
+        "verified_at": "2026-09-10T09:39:09Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "one of those hardened steel disc locks",
+      "query": "heavy duty padlock"
+    },
+    {
+      "phrase": "straining against my new lock with the same bolt cutters",
+      "query": "bolt cutters tool",
+      "pin_query": "SAME",
+      "pin_context": "He Cut My Lock. I Kept The Bolt Cutters.",
+      "news_query": "SAME",
+      "news_angle": "He Cut My Lock. I Kept The Bolt Cutters.",
+      "image_url": "https://live.staticflickr.com/4062/5168740007_e44d0e6dd1_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "He Cut My Lock. I Kept The Bolt Cutters.",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "SAME",
+        "url": "https://live.staticflickr.com/4062/5168740007_e44d0e6dd1_b.jpg",
+        "verified_at": "2026-09-10T09:39:23Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "I stood right behind him",
+      "query": "gym locker room hallway"
+    },
+    {
+      "phrase": "He spun around",
+      "query": "man startled surprised"
+    },
+    {
+      "phrase": "leaving his own broken bolt cutters wedged in the locker vents",
+      "query": "broken tool metal"
+    },
+    {
+      "phrase": "Front desk banned him the next day",
+      "query": "gym reception desk"
+    },
+    {
+      "phrase": "I mounted his bolt cutters on my garage wall",
+      "query": "garage wall tools"
+    }
   ],
   "punches": [
-    {"phrase": "bolt-cut MY lock off my locker", "text": "LOCK STOLEN", "color": "#ff3030"},
-    {"phrase": "lockers aren't guaranteed", "text": "NOT MY PROBLEM", "color": "#ffaa30"},
-    {"phrase": "hardened steel disc locks bolt cutters can't touch", "text": "UPGRADE TIME", "color": "#50ff80"},
-    {"phrase": "there he was, straining against my new lock", "text": "CAUGHT", "color": "#ff3030"},
-    {"phrase": "Front desk banned him the next day", "text": "BANNED", "color": "#50ff80"}
+    {
+      "phrase": "bolt-cut MY lock off my locker",
+      "text": "LOCK STOLEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "lockers aren't guaranteed",
+      "text": "NOT MY PROBLEM",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "hardened steel disc locks bolt cutters can't touch",
+      "text": "UPGRADE TIME",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "there he was, straining against my new lock",
+      "text": "CAUGHT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Front desk banned him the next day",
+      "text": "BANNED",
+      "color": "#50ff80"
+    }
   ],
-  "hashtags": ["pettyrevenge", "gym", "reddit", "storytime", "karma", "caught", "fitness", "revenge", "viral", "shorts", "fyp"],
+  "hashtags": [
+    "pettyrevenge",
+    "gym",
+    "reddit",
+    "storytime",
+    "karma",
+    "caught",
+    "fitness",
+    "revenge",
+    "viral",
+    "shorts",
+    "fyp"
+  ],
   "music_vibe": "quiet setup into satisfying payoff",
   "bottom_theme": "auto"
 }

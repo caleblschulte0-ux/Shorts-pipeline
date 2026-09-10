@@ -6,18 +6,42 @@
   "y_label": "Box office revenue (billion dollars)",
   "duration": 13,
   "source": "Comscore and Motion Picture Association annual box office revenue reports for North America and China, 2015-2023, billions of US dollars.",
-  "years": [2015, 2017, 2019, 2020, 2021, 2022, 2023],
+  "years": [
+    2015,
+    2017,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
   "series": [
     {
       "name": "North America",
       "color": "#003057",
-      "values": [11.1, 11.1, 11.4, 2.2, 4.5, 7.5, 9.0]
+      "values": [
+        11.1,
+        11.1,
+        11.4,
+        2.2,
+        4.5,
+        7.5,
+        9.0
+      ]
     },
     {
       "name": "China",
       "color": "#DE2910",
       "icon": "CN",
-      "values": [6.8, 8.6, 9.3, 3.1, 7.3, 4.6, 7.7]
+      "values": [
+        6.8,
+        8.6,
+        9.3,
+        3.1,
+        7.3,
+        4.6,
+        7.7
+      ]
     }
   ],
   "hashtags": [

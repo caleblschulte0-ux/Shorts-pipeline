@@ -6,17 +6,41 @@
   "y_label": "Total market value (billion dollars)",
   "duration": 13,
   "source": "CoinMarketCap year-end Bitcoin market capitalization vs. World Gold Council estimates of total above-ground gold market value, 2015-2024, approximate.",
-  "years": [2015, 2017, 2018, 2020, 2021, 2022, 2024],
+  "years": [
+    2015,
+    2017,
+    2018,
+    2020,
+    2021,
+    2022,
+    2024
+  ],
   "series": [
     {
       "name": "Bitcoin",
       "color": "#F7931A",
-      "values": [6.4, 230, 67, 539, 960, 320, 1900]
+      "values": [
+        6.4,
+        230,
+        67,
+        539,
+        960,
+        320,
+        1900
+      ]
     },
     {
       "name": "Gold",
       "color": "#D4AF37",
-      "values": [6800, 7800, 7900, 10900, 11400, 11800, 18000]
+      "values": [
+        6800,
+        7800,
+        7900,
+        10900,
+        11400,
+        11800,
+        18000
+      ]
     }
   ],
   "hashtags": [
