@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "cdebe0aa59f77ef7181108e035436b465314fdfbbdb3382b6dec355cfbffd79e",
+  "prompt_used": "An editorial illustration for a short-form video: gym locker room hallway. It accompanies the narration: \"I stood right behind him\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s5-72c1ab934e13.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b10caf1fe3f95cc4ecb361d9319995c99739bf2588a1f2eccfe5daafe665e729",
+    "bytes": 1735344,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:50.301Z"
+}
