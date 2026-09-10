@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s8-c9517d9b0a50",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s8-c9517d9b0a50",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0abb0aa8c1815b465536faa1cba440bb54b45a03e7a11378c2c30ef6b4b431f3",
+  "prompt_used": "An editorial illustration for a short-form video: texting phone group chat. It accompanies the narration: \"forwarded the clip to the HOA group chat\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Gx6xsR8zq09H1bqVf1AbhjjHrBXxtZw2",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s8-c9517d9b0a50.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Gx6xsR8zq09H1bqVf1AbhjjHrBXxtZw2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3d398764872d0a90e8dff16a8f8a0482fc55c19400a666294821f32d2938f189",
+    "bytes": 2004694,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:35:07.846Z"
+}
