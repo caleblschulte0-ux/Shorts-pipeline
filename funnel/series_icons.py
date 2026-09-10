@@ -124,6 +124,78 @@ def _download(url: str, out: Path) -> Path | None:
     return out if out.exists() else None
 
 
+#: Words a MARK's filename carries that say nothing about whose mark it is.
+#: Stripped before the ownership check below, along with pure numbers (a
+#: year or a size in "Airbus logo 2017.svg" / "Boeing logo 200px.png").
+_MARK_WORDS = {
+    "logo", "logos", "wordmark", "icon", "emblem", "symbol", "brandmark",
+    "crest", "seal", "svg", "png", "jpg", "jpeg", "webp", "thumb", "file",
+    "the", "of", "a", "an", "and", "new", "old", "current", "official",
+    "vector", "colour", "color", "black", "white", "dark", "light", "flat",
+    "transparent", "background", "bg", "square", "circle", "horizontal",
+    "vertical", "rgb", "cmyk", "full", "text", "type", "mark", "sign",
+    # Corporate suffixes belong to the NAME, not to a different owner:
+    # "Visa Inc. logo.svg" is Visa's mark, and refusing it would trade the
+    # false positive this function exists to stop for a false negative.
+    "inc", "corp", "corporation", "co", "company", "ltd", "limited", "llc",
+    "plc", "sa", "ag", "gmbh", "nv", "ab", "as", "oy", "spa", "srl", "pty",
+    "group", "holdings", "international", "worldwide", "global",
+    # A country's flag or arms IS its mark. ("Flag of Mexico" is still
+    # refused for "United States" — it shares no token with the request and
+    # never reaches the leftover test.)
+    "flag", "flags", "ensign", "banner", "coat", "arms", "nation",
+    "national", "state", "republic", "kingdom",
+}
+
+
+def _tokens(text: str) -> list[str]:
+    return [t for t in re.split(r"[^a-z0-9]+", text.lower()) if t]
+
+
+def _is_about(url: str, name: str) -> bool:
+    """Does this file depict THE THING ASKED FOR, or something else whose
+    name merely contains it?
+
+    THIS IS THE `junk_imagery` BUG, AND IT WAS FATAL.
+
+    2026-09-10, "Bitcoin Closed The Gap On Gold" — showrunner BLOCK, the
+    one auto-fail that blocks at any score:
+
+        "The 'Gold' series icon is the VTM GOLD television-channel logo
+         (a Belgian broadcaster's brand mark), sitting in the legend and
+         riding the line tip in EVERY frame."
+
+    `_brand_logo_url("Gold")` full-text searches Commons for "Gold logo",
+    Commons returns `VTM GOLD logo.svg`, and `_looks_like_logo` approves it
+    because the filename contains "logo" and ".svg". Both of those are true
+    and neither is the question. The question is WHOSE logo, and nothing
+    asked it — a fuzzy search with no verification, which is the same shape
+    as the silent-default lookups CLAUDE.md already has a rule about.
+
+    A containment test does not fix it: "vtm gold logo.svg" does contain
+    "gold". What separates them is the LEFTOVER — a token that is neither
+    the thing asked for, nor a generic mark word, nor a number:
+
+        "Boeing logo.svg"        tokens {boeing, logo, svg}  leftover {}
+        "Airbus Logo 2017.png"   ... {airbus, logo, 2017}    leftover {}
+        "VTM GOLD logo.svg"      ... {vtm, gold, logo, svg}  leftover {vtm}
+
+    A leftover content word means the mark belongs to somebody else, so it
+    is refused and the caller draws its initials badge — which is exactly
+    what the docstring at the top of this module already promises.
+    """
+    want = {t for t in _tokens(name) if t not in _MARK_WORDS}
+    if not want:
+        return False
+    fname = urllib.parse.unquote(url.rsplit("/", 1)[-1])
+    got = _tokens(fname)
+    if not want & set(got):
+        return False                      # does not mention it at all
+    leftover = [t for t in got
+                if t not in want and t not in _MARK_WORDS and not t.isdigit()]
+    return not leftover
+
+
 def _looks_like_logo(url: str) -> bool:
     """Filename heuristic. An icon must READ as the brand at 30px, so a
     photograph never qualifies — a press shot of a company's founder is
@@ -143,13 +215,13 @@ def _brand_logo_url(name: str) -> str | None:
     from funnel import topic_media
     try:
         for u in topic_media._commons_files(f"{name} logo", limit=5):
-            if _looks_like_logo(u):
+            if _looks_like_logo(u) and _is_about(u, name):
                 return u
     except Exception as e:  # noqa: BLE001
         print(f"  [series_icons] commons logo search failed {name!r}: {e}")
     try:
         u = topic_media._wikipedia_image(name)
-        if u and _looks_like_logo(u):
+        if u and _looks_like_logo(u) and _is_about(u, name):
             return u
     except Exception as e:  # noqa: BLE001
         print(f"  [series_icons] wikipedia image failed {name!r}: {e}")

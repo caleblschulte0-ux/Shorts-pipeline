@@ -49,6 +49,7 @@ _REPO = Path(__file__).resolve().parent.parent
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
+from shared import look as _look                                    # noqa: E402
 from shared.fit_title import fit_title                              # noqa: E402
 
 FPS = 24
@@ -479,6 +480,59 @@ def _icon_width(arr, target_h: float, max_w: float | None = None) -> float:
     return float(shape[1]) * _icon_zoom(arr, target_h, max_w)
 
 
+_PX_CACHE: dict = {}
+
+
+def _text_px(fig, text: str, size: float) -> float:
+    """Rendered width of `text` in PIXELS, measured on this figure.
+
+    Cached per (text, size): a race draws every tip label on every one of
+    ~400 frames, and a canvas measurement per label per frame is real time.
+    """
+    key = (text, size)
+    hit = _PX_CACHE.get(key)
+    if hit is not None:
+        return hit
+    try:
+        r = fig.canvas.get_renderer()
+        probe = fig.text(0, 0, text, fontsize=size, fontweight="bold")
+        w = float(probe.get_window_extent(renderer=r).width)
+        probe.remove()
+    except Exception:  # noqa: BLE001 — fall back to the old estimate
+        w = len(text) * TIP_LABEL_PX_PER_CHAR
+    _PX_CACHE[key] = w
+    return w
+
+
+def _fit_axis_name(fig, text: str, band_px: float) -> str:
+    """The y-axis name, truncated to the band it is drawn in.
+
+    "Commercial aircraft delivered (count" — clipped mid-word by the frame
+    edge with no closing paren, in a video the showrunner blocked. A y
+    label is drawn ROTATED, so its band is the axes HEIGHT, and nothing
+    was comparing the two.
+    """
+    text = " ".join(str(text or "").split())
+    if not text or band_px <= 0:
+        return text
+    if _text_px(fig, text, 15) <= band_px:
+        return text
+    # Drop a trailing unit parenthetical first — "(count)", "($ billions)"
+    # — which is the part a reader can infer from the tick labels anyway.
+    short = re.sub(r"\s*\([^)]*\)\s*$", "", text).strip()
+    if short and _text_px(fig, short, 15) <= band_px:
+        return short
+    lo, hi = 0, len(short or text)
+    src = short or text
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if _text_px(fig, src[:mid].rstrip() + "\u2026", 15) <= band_px:
+            lo = mid
+        else:
+            hi = mid - 1
+    return (src[:lo].rstrip() + "\u2026") if lo else ""
+
+
 def _fit_title(fig, text: str, font_path: str | None, max_w_px: float,
                max_lines: int = 2, hi: int = 46, lo: int = 26):
     """Wrap + auto-shrink a title so it NEVER runs off frame.
@@ -613,6 +667,8 @@ def render(spec: dict, out: str | Path, *,
         # to the `add_axes` call alone did nothing for exactly that reason.
         ax.set_position([AX_LEFT, AX_BOTTOM, AX_WIDTH, ax_top - AX_BOTTOM])
         cam_top = 0.0            # dynamic y "camera": only ever zooms out
+        cam_bot = None           # ...and its FLOOR, which only ever drops
+        cam_x = None             # ...and the x camera, which only opens out
         extra: list = []         # per-frame figure-level artists to recycle
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
         for f in range(n_frames + hold):
@@ -646,6 +702,19 @@ def render(spec: dict, out: str | Path, *,
                 tips.append((cv, s, xs, ys))
             tips.sort(key=lambda t: -t[0])
 
+            # FILL UNDER THE LINES, so the space beneath them is part of
+            # the picture. Three of the four blocks on 2026-09-10 named the
+            # same thing in different words — "the entire middle ~60% of the
+            # frame unbroken black", "the bottom two-thirds and right
+            # two-thirds empty black with only gridlines". A line on a dark
+            # ground leaves that space empty by construction.
+            #
+            # Only up to three series: past that the fills overlap into mud
+            # and the chart is worse, not fuller.
+            if len(tips) <= 3:
+                for _r, (_cv, _s, _xs, _ys) in enumerate(reversed(tips)):
+                    _look.gradient_fill(ax, _xs, _ys, cam_bot, _s["color"],
+                                        zorder=1.5, top=0.26)
             for rank, (cv, s, xs, ys) in enumerate(tips):
                 lw = 9 if rank == 0 else 7
                 ax.plot(xs, ys, color=s["color"], linewidth=lw,
@@ -674,9 +743,49 @@ def render(spec: dict, out: str | Path, *,
 
             cam_top = max(cam_top, max(t[0] for t in tips) * 1.22,
                           global_max * 0.12)
-            ax.set_xlim(years[0], years[-1])
-            ax.set_ylim(0, cam_top)
-            ax.set_ylabel(y_label, color="#9aa4b2", fontsize=15)
+            # THE FLOOR IS FRAMED, NOT NAILED TO ZERO.
+            #
+            # `ax.set_ylim(0, cam_top)` is the `empty_void` auto-fail, and
+            # on 2026-09-10 it blocked three graph_races out of four in one
+            # slate. The oil race is the clearest: "the whole 0-5M band of
+            # the plot is pure black in every frame ... roughly the lower
+            # 40% of the picture is empty because the y-axis floors at 0
+            # while all data lives 5.5M-12.9M."
+            #
+            # `look.frame_the_data` keeps zero when the data reaches for it
+            # (417 -> 71,467 eagles is a growth story and must start at 0)
+            # and frames the band otherwise. Like `cam_top` it is a CAMERA:
+            # it only ever moves outward, so it cannot jitter frame to frame
+            # — and a jitter here is not cosmetic, the cadence gate measures
+            # motion on a downscale of the frame and would read a breathing
+            # axis as the story moving.
+            # THE X AXIS IS A CAMERA TOO.
+            #
+            # It was pinned to the full year range from frame one, so for
+            # the first third of every race the data sat in a sliver at the
+            # far left: "the x-axis is pre-scaled out to 2022+ ... leaving
+            # roughly the bottom two-thirds and RIGHT TWO-THIRDS of the plot
+            # as empty black with only gridlines" (`empty_void`, box-office
+            # race, 2026-09-10). Following `cur` with a lead margin keeps
+            # the line filling the width, and like the other two cameras it
+            # only ever opens out, so it cannot jitter.
+            _xspan = (years[-1] - years[0]) or 1.0
+            _want_hi = min(years[-1],
+                           max(years[0] + _xspan * 0.28, cur + _xspan * 0.07))
+            cam_x = _want_hi if cam_x is None else max(cam_x, _want_hi)
+            _seen_lo = min(min(t[3]) for t in tips)
+            _want_bot = _look.frame_the_data(_seen_lo, cam_top)
+            cam_bot = _want_bot if cam_bot is None else min(cam_bot, _want_bot)
+            ax.set_xlim(years[0], cam_x)
+            ax.set_ylim(cam_bot, cam_top)
+            # ...AND THE AXIS NAME HAS TO FIT. The Boeing race shipped
+            # "Commercial aircraft delivered (count" — clipped mid-word by
+            # the frame edge, with no closing paren, which the showrunner
+            # read under `unreadable`. The band is the axes height, because
+            # a y label is drawn rotated.
+            ax.set_ylabel(_fit_axis_name(fig, y_label,
+                                         ax.get_window_extent().height),
+                          color="#9aa4b2", fontsize=15)
             ax.yaxis.set_major_formatter(
                 FuncFormatter(lambda v, _: _fmt_compact(v)))
             ax.xaxis.set_major_locator(MaxNLocator(5, integer=True))
@@ -695,9 +804,21 @@ def render(spec: dict, out: str | Path, *,
             # value; the icon+label pair slides to a spread slot, keeping
             # rank order. Floored just above the axis so nothing lands on
             # the x tick labels.
+            # THE SEPARATION IS A LABEL HEIGHT, IN DATA UNITS.
+            #
+            # It was `cam_top * 0.058` — a fraction of the axis TOP, which
+            # is not the axis HEIGHT once the floor is framed, and was never
+            # the height of the thing being separated. On the box-office
+            # race "China 6.1B" and "North America 5.8B" printed on top of
+            # each other and over both marker icons (`unreadable`,
+            # 2026-09-10). A 15pt label with its plate is ~34px; convert
+            # that to data units through the axes actually on screen.
+            _ax_px = max(1.0, float(ax.get_window_extent().height))
+            _sep = (cam_top - cam_bot) * (38.0 / _ax_px)
             placed = _spread(pos=[t[0] for t in tips],
-                             min_sep=cam_top * 0.058,
-                             floor=cam_top * 0.045, ceil=cam_top * 0.98)
+                             min_sep=_sep,
+                             floor=cam_bot + _sep * 0.8,
+                             ceil=cam_top - _sep * 0.4)
             for rank, (cv, s, _xs, _ys) in enumerate(tips):
                 ly = placed[rank]
                 art = icons.get(s["name"])
@@ -712,9 +833,16 @@ def render(spec: dict, out: str | Path, *,
                 # once. A 30-character series name ran off the right edge for
                 # seconds before the flag tripped — visible in the 2016 frame
                 # of the disaster-costs chart as "Disaster cost that".
-                span = (years[-1] - years[0]) or 1.0
+                # ...against the CURRENT x window, now that it moves.
+                span = (cam_x - years[0]) or 1.0
                 avail = (1.0 - (cur - years[0]) / span) * ax_w_px
-                flip = (len(label) * TIP_LABEL_PX_PER_CHAR + off + 14) > avail
+                # MEASURED, NOT COUNTED. `len(label) * 9.4` is the same
+                # character-count-as-width guess `shared.fit_title` exists
+                # to replace, and it under-measures every wide glyph: the
+                # oil race shipped "United States  11.6" with the M clipped
+                # off by the frame edge, and the box-office race clipped its
+                # flag mid-glyph. Both were `unreadable` on 2026-09-10.
+                flip = (_text_px(fig, label, 15) + off + 14) > avail
                 if art is not None:
                     ax.add_artist(AnnotationBbox(
                         OffsetImage(art, zoom=_icon_zoom(art, TIP_ICON_PX,
@@ -806,8 +934,30 @@ def render(spec: dict, out: str | Path, *,
                 # "S&P 500 close". Put it INSIDE the plot area, where there
                 # is always empty space above the lines early in the race,
                 # with a panel behind it so it reads over gridlines.
+                # ...AND IT GOES WHERE THE DATA IS NOT.
+                #
+                # Centred at 0.5 it printed over the very labels it was
+                # introducing — "the 'Nobody saw this coming.' card is
+                # printed on top of the chart and covers the 'Saudi Arabia
+                # 8.5M' series label, which shows only as a smear behind
+                # it" (`unreadable`, oil race, 2026-09-10). During the hook
+                # window the drawn data is by definition at the LEFT of the
+                # plot, so the card is anchored to the right of the pen and
+                # only falls back to centre if it cannot fit there.
+                # ...AND IT SITS IN THE HEADROOM, NOT ON THE DATA.
+                #
+                # A dodge to the right of the pen is not enough: the card is
+                # most of the frame wide, so wherever it goes horizontally
+                # it can still land on a tip label at the same height. The
+                # reliable empty band is VERTICAL and it is guaranteed —
+                # `cam_top` is the top tip times 1.22, so the top ~18% of
+                # the plot has nothing in it by construction, every frame.
+                # Anchored just under the axes top, the card clears every
+                # label instead of hoping to miss them.
                 alpha = max(0.0, 1.0 - f / (HOOK_S * fps))
-                fig.text(0.5, 0.63, hook, color="#f5c518", ha="center",
+                _bb = ax.get_window_extent()
+                _hy = _bb.y1 / H - 0.030
+                fig.text(0.5, _hy, hook, color="#f5c518", ha="center",
                          va="center", fontproperties=hook_font, alpha=alpha,
                          bbox=dict(boxstyle="round,pad=0.45",
                                    facecolor="#000000",

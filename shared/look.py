@@ -103,6 +103,99 @@ BAR_BAND_FRAC = 0.42
 RULE_PX = 2
 
 
+def gradient_fill(ax, xs, ys, base: float, color: str, zorder: int = 2,
+                  top: float = 0.30):
+    """The area under a line, fading OUT downward instead of a flat wash.
+
+    Lives here because BOTH chart renderers need it and neither may own it:
+    `data_learning/charts` draws the explainer's fallback charts and
+    `engines/chart_race` draws trending's `graph_race`, and on 2026-09-10
+    the showrunner blocked three graph_races in one slate for `empty_void`
+    — "roughly the lower 40% of the picture is empty", "the entire middle
+    ~60% of the frame unbroken black". A line on a dark ground leaves the
+    space under it empty by construction; a fill is what makes that space
+    part of the picture.
+
+    A FLAT low-alpha fill is not the answer and was the previous bug: warm
+    ink at 10% over a cold ground composites to a grey-brown slab, and the
+    bigger the area the greyer it gets — the shape stops reading as "under
+    the line" and starts reading as a rectangle behind it. Fading from
+    `top` at the line to nothing at the baseline keeps the density where
+    the line is, which is where it means something.
+
+    One column of image data clipped to the fill polygon: no vectors, no
+    network, one draw. Never raises — a fill is a look, not a blocker.
+    """
+    try:
+        import numpy as np
+        from matplotlib.colors import to_rgb
+        from matplotlib.patches import Polygon
+        xs, ys = list(xs), list(ys)
+        if len(xs) < 2:
+            return
+        x0, x1, y1 = min(xs), max(xs), max(ys)
+        if not (y1 > base and x1 > x0):
+            # A FLAT SERIES HAS NO AREA. Every value identical makes
+            # `base == y1`, and imshow warns "identical low and high ylims
+            # makes transformation singular" and draws a degenerate strip.
+            return
+        r, g, b = to_rgb(color)
+        grad = np.empty((256, 1, 4))
+        grad[:, :, 0], grad[:, :, 1], grad[:, :, 2] = r, g, b
+        grad[:, :, 3] = np.linspace(0.0, top, 256)[:, None]
+        im = ax.imshow(grad, aspect="auto", origin="lower", zorder=zorder,
+                       extent=(x0, x1, base, y1))
+        poly = Polygon(list(zip(xs, ys)) + [(x1, base), (x0, base)],
+                       closed=True, facecolor="none", edgecolor="none")
+        ax.add_patch(poly)
+        im.set_clip_path(poly)
+    except Exception:  # noqa: BLE001 — a fill is a look, never a blocker
+        try:
+            ax.fill_between(xs, ys, base, color=color, alpha=0.10,
+                            zorder=zorder)
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def frame_the_data(lo: float, hi: float, zero_band: float = 0.15,
+                   pad: float = 0.12) -> float:
+    """The y-axis FLOOR for a chart of data spanning [lo, hi].
+
+    THIS IS THE `empty_void` AUTO-FAIL, MEASURED IN A SHIPPED FRAME.
+
+    2026-09-10, "The US Quietly Became The World's Top Oil Producer" —
+    showrunner BLOCK:
+
+        "The whole 0-5M band of the plot is pure black in every frame ...
+         roughly the lower 40% of the picture is empty because the y-axis
+         floors at 0 while all data lives 5.5M-12.9M; dark_fraction 1.0."
+
+    A hard zero floor is a rendering default pretending to be an editorial
+    choice. It is RIGHT when the data actually reaches for zero — a race
+    from 417 eagles to 71,467 is a growth story and starting anywhere else
+    would flatter it — and wrong when the whole series lives in a band far
+    above it, where it spends the frame on emptiness and squashes the very
+    change the video is about.
+
+    So: keep zero when the low end is within `zero_band` of the span of it,
+    otherwise frame the data with `pad` of the span underneath. The axis
+    carries tick labels either way, so a framed axis still says where it is.
+    """
+    span = float(hi) - float(lo)
+    if span <= 0:
+        return min(0.0, float(lo))
+    if float(lo) < 0:
+        # ZERO IS NOT A FLOOR FOR NEGATIVE DATA — it is a mid-line, and
+        # returning it would put every point BELOW the axis and off the
+        # frame entirely. Worse than the bug this function exists to fix,
+        # and caught by `test_negatives_are_not_clipped_away` rather than by
+        # a chart of a deficit shipping empty.
+        return float(lo) - span * pad
+    if float(lo) <= span * zero_band:
+        return 0.0
+    return float(lo) - span * pad
+
+
 def accent(name: str = DEFAULT_ACCENT):
     """`(bright, dim)` for a story's single accent."""
     return ACCENTS.get(name, ACCENTS[DEFAULT_ACCENT])
