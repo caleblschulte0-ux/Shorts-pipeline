@@ -1641,6 +1641,27 @@
       ],
       "words_first_10s": 14,
       "scene_changes_before_5s": 2
+    },
+    "fifty-years-since-moon-landing": {
+      "url": "https://youtube.com/shorts/8PuE7FFRM08",
+      "title": "Nobody Has Walked On The Moon In 52 Years (3 Charts)",
+      "at": "2026-09-10T11:23:24.879490+00:00",
+      "publish_at": "2026-09-10T11:11:45Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 39.0,
+      "hook": "question",
+      "topic_category": "space",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:budget-rocket-fuel-gauge",
+        "mechanic:footprint-trail-stops",
+        "mechanic:growing-gap-clock"
+      ],
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -1697,6 +1718,15 @@
       "state": "posted",
       "slug": "buybacks-beat-dividends",
       "at": "2026-09-10T00:57:45.410441+00:00"
+    },
+    {
+      "claimed_at": "2026-09-10T11:23:16.617520+00:00",
+      "title": "Nobody Has Walked On The Moon In 52 Years (3 Charts)",
+      "publish_at": "2026-09-10T11:11:45Z",
+      "url": "https://youtube.com/shorts/8PuE7FFRM08",
+      "state": "posted",
+      "slug": "fifty-years-since-moon-landing",
+      "at": "2026-09-10T11:23:24.879490+00:00"
     }
   ]
 }
