@@ -1475,6 +1475,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-08"
+    },
+    "jasontheween-around-camera-2026w33": {
+      "event_id": "jasontheween-around-camera-2026w33",
+      "people": [
+        "jasontheween"
+      ],
+      "actions": [
+        "around",
+        "camera",
+        "head",
+        "room"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-10",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/SuaveSnappyTildeWOOP-ARCDbsPzTDwaNJl3",
+        "https://www.twitch.tv/jasontheween/clip/CoyArtisticTrollRlyTho-TzzP6Ywqf4lf58aU"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-10"
+    },
+    "caseoh-beach-boardwalk-2026w33": {
+      "event_id": "caseoh-beach-boardwalk-2026w33",
+      "people": [
+        "caseoh"
+      ],
+      "actions": [
+        "beach",
+        "boardwalk",
+        "first",
+        "menu"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-10",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/caseoh_/clip/WiseConsiderateSoybeanSuperVinlin-SxarmzyaxZtiHfTa",
+        "https://www.twitch.tv/caseoh_/clip/PhilanthropicPlainHerbsUncleNox-QzSTEzjDaP8xmJu3"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-10"
     }
   }
 }
