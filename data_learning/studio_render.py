@@ -2295,7 +2295,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 kind = getattr(seg, "kind", "")
                 if _director and hasattr(_director, "data_action_spec"):
                     return _director.data_action_spec(kind, phase)
-                return "point"
+                # `point_at`, not `point` — the latter is not in `ANIMATORS`
+                # and resolves to the generic carry pose, which is the thing
+                # this whole chain exists to avoid.
+                return "point_at"
 
             # If the opening chart BAKES the host in (Data rides the drawing
             # line/bar), add NO overlay for the hook — he's already in the chart.

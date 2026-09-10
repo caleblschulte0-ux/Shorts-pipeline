@@ -96,6 +96,61 @@ class ANYIsAnAnswerNotAFallback(unittest.TestCase):
                         "there is nothing a ranking cannot already reach")
 
 
+class EveryACTIONNameResolvesToARealPose(unittest.TestCase):
+    """The same rule for the other table in this file. `DATA_ACTION` maps a
+    chart kind to the act Data performs on it, and `compose_anim` resolves it
+    with `ANIMATORS.get(action, _a_carry)` — so a name that is not in the
+    vocabulary is silently the generic carry pose.
+
+    `DATA_ACTION["scene"] = "point"` for a month. The vocabulary is
+    `point_at`. That entry was WRITTEN to escape the one-pose default — its
+    comment says so — and it resolved to the same generic carry pose that
+    default produced. `tests/test_edit_pacing.py` asserted only that it was
+    not `push_bar`, which it was not.
+    """
+
+    def _vocab(self):
+        return set(md.ANIMATORS) | set(md.ACTIONS) | {"pose"}
+
+    def test_every_data_action_is_a_real_pose(self):
+        bad = {k: v for k, v in md.DATA_ACTION.items()
+               if v not in self._vocab()}
+        self.assertEqual(bad, {}, f"kinds mapped to a non-existent act: {bad}")
+
+    def test_scene_reaches_an_animator(self):
+        act = md.data_action_spec("scene")["action"]
+        self.assertIn(act, md.ANIMATORS)
+
+    def test_the_payoff_act_is_real_too(self):
+        self.assertIn(md.data_action_spec("scene", "payoff")["action"],
+                      self._vocab())
+
+    def test_the_unknown_kind_default_is_a_real_pose(self):
+        self.assertIn(md.data_action_spec("no-such-kind")["action"],
+                      self._vocab())
+
+    def test_every_rule_in_choose_names_a_real_pose_and_prop(self):
+        """`choose()` is the other producer; both its columns are vocabularies
+        resolved with a silent default further down."""
+        bad_act = sorted({a for _p, (_prop, a, _e) in md._RULES
+                          if a not in self._vocab()})
+        bad_prop = sorted({prop for _p, (prop, _a, _e) in md._RULES
+                           if prop not in md.PROPS})
+        self.assertEqual(bad_act, [], f"rules naming no pose: {bad_act}")
+        self.assertEqual(bad_prop, [], f"rules naming no prop: {bad_prop}")
+
+    def test_the_renderers_last_resort_is_a_real_pose(self):
+        """`studio_render._act` ends with a bare string when nothing else
+        answered. It said `"point"` too."""
+        import re
+        src = (_REPO / "data_learning" / "studio_render.py").read_text()
+        i = src.index("def _act(seg, phase=")
+        block = src[i:i + 2200]
+        lits = re.findall(r'return "([a-z_]+)"', block)
+        bad = [x for x in lits if x not in self._vocab()]
+        self.assertEqual(bad, [], f"_act can return a non-existent act: {bad}")
+
+
 class TheSelectorStillWorksForEveryKind(unittest.TestCase):
     def test_every_kind_selects_a_real_verified_performance(self):
         bad = {}
