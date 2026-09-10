@@ -1,11 +1,11 @@
 {
  "checked_at": "2026-09-10T16:22:34+00:00",
- "date": "20260909",
+ "date": "20260910",
  "deadline_central": 8,
  "deadline_passed": true,
  "expected": [
-  "exchange/bundles/20260909/response.json",
-  "exchange/bundles/20260909/DONE"
+  "exchange/bundles/20260910/response.json",
+  "exchange/bundles/20260910/DONE"
  ],
  "found": [
   "response.json",
