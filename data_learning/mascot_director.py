@@ -1759,14 +1759,41 @@ ACTION_ALIGN = {
     "stack_tiles": (0.5, 0.04),
 }
 
+#: WHAT SHAPE OF CLAIM EACH DEPICTION IS, so `performance_for` can pick an act
+#: that supports it. `.get(kind, "ranking")` silently answered "ranking" for
+#: anything missing, and FIFTEEN of the twenty-five kinds `viz_director` can
+#: emit were missing — including every SCENE kind, which is what this channel
+#: actually renders. A two-value balance was choosing its act from the eleven
+#: that support a ranking, and the eight that support two_value were never
+#: candidates.
+#:
+#: `ANY` is not a fallback, it is an answer: `scene` and `mechanic` do not
+#: have a shape, because the picture is chosen from the DATA and can be any of
+#: them. Filtering those by a guessed shape throws away most of the catalogue
+#: for no reason, so they skip the filter and the CLAIM decides — which is the
+#: rule the rest of this file already runs on.
+#:
+#: `tests/test_every_kind_has_a_shape.py` holds the table against
+#: `viz_director.KINDS` in both directions, because a silent default is how it
+#: got fifteen entries out of date without anything saying so.
+ANY = "any"
 _SHAPE_OF_KIND = {
     "trend": "trend", "timeline": "trend",
-    "comparison": "two_value",
+    "comparison": "two_value", "balance_scene": "two_value",
     "stack": "part_to_whole", "share": "part_to_whole",
-    "waffle_grid": "part_to_whole",
+    "waffle_grid": "part_to_whole", "scale_stack": "part_to_whole",
+    "fill_scene": "part_to_whole", "fill_vessel": "part_to_whole",
+    "rate_scene": "part_to_whole",
     "pictorial_race": "ranking", "rank": "ranking", "bars": "ranking",
     "pictograph": "ranking", "bubbles": "ranking",
-    "geo_us": "ranking", "geo_world": "ranking",
+    "geo_us": "ranking", "geo_world": "ranking", "geo_city": "ranking",
+    "race": "ranking", "race_scene": "ranking", "rank_scene": "ranking",
+    "flow_race": "ranking", "orbit": "ranking", "diorama": "ranking",
+    # An isotype is a single counted quantity — a part of nothing and a rival
+    # of nothing — so the claim picks the act.
+    "units_scene": ANY,
+    # The picture is chosen from the data, not from the word "scene".
+    "scene": ANY, "mechanic": ANY,
 }
 
 _REL_WORDS = {
@@ -1836,7 +1863,7 @@ def performance_for(kind: str, claim: str = "", target: str = "",
     # overlap with the claim (2 pts) then by structural fit (1 pt baseline)
     scored = []
     for name, meta in VERIFIED_PERFORMANCES.items():
-        if shape not in meta.get("supported_shapes", ()):
+        if shape != ANY and shape not in meta.get("supported_shapes", ()):
             continue
         if require_contact and name not in ANCHOR_GRIP_ACTS:
             continue          # baked anchors demand a grip, not a perch
