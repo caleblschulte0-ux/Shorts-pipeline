@@ -1673,6 +1673,13 @@
       "story_structure": "scene+scene+scene",
       "narrative_score": 65,
       "duration_s": 49.5
+    },
+    "bald-eagle-population-rebound": {
+      "claimed_at": "2026-09-10T18:48:27.219319+00:00",
+      "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
+      "publish_at": "2026-09-11T00:22:48Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -1747,6 +1754,14 @@
       "state": "posted",
       "slug": "sea-level-rise-rate-doubled",
       "at": "2026-09-10T18:41:38.556075+00:00"
+    },
+    {
+      "claimed_at": "2026-09-10T18:48:27.219319+00:00",
+      "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
+      "publish_at": "2026-09-11T00:22:48Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "bald-eagle-population-rebound"
     }
   ]
 }
