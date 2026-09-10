@@ -6337,6 +6337,23 @@
       "self_healed": false,
       "source_views": 2507,
       "banger": 0.5
+    },
+    "rejected-splendidpeppyduriannerfredblaster-qa65uzehpfrolu8u": {
+      "source_url": "https://www.twitch.tv/buddha/clip/SplendidPeppyDurianNerfRedBlaster-QA65UzeHPFRolU8u",
+      "streamer": "buddha",
+      "title": "Buddha Just Obliterated All Of Paleto And Kept The Cash",
+      "qa_rejected": true,
+      "ts": "2026-09-10T12:16:52.020889+00:00"
+    },
+    "clip-20260910-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/LuckyPatientCardSeemsGood-_QDEMBts-NRgmIat",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Gets Promised His Coin Will Pump Beyond The Multiverse",
+      "kind": "twitch_clip",
+      "ts": "2026-09-10T12:21:57.134633+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
