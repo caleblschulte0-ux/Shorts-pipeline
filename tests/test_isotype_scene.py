@@ -259,13 +259,36 @@ class TheDotFieldOnlyDrawsRealShares(unittest.TestCase):
         for pct in (0.4, 0.05, 0.0):
             self.assertEqual(vs.one_in_n(pct), (0, 0))
 
-    def test_lit_and_unlit_are_different_shapes(self):
-        """They were the same icon at 20% alpha and the field read as a hundred
-        identical figures — the one thing the form exists to show was the thing
-        you could not see."""
+    def test_the_unlit_are_not_a_fainter_copy_of_the_lit(self):
+        """They were the same icon at 20% alpha and the field read as a
+        hundred identical figures — the one thing the form exists to show
+        was the thing you could not see.
+
+        This asserted `"ellipse" in src`, i.e. that the unlit were drawn as
+        a DISC. The disc was one way to be a different shape, not the
+        property: when "colored dots are not something we should be using"
+        (operator, 2026-09-10) turned the units into waffle tiles, a test
+        named for shapes failed on a change that kept the shapes distinct.
+        Assert the invariant — only the LIT branch may composite the icon.
+        """
+        import ast
         import inspect
-        src = inspect.getsource(vs.draw_dot_field)
-        self.assertIn("ellipse", src, "the unlit must not be a fainter copy")
+        tree = ast.parse(inspect.getsource(vs.draw_dot_field).lstrip())
+        composites = [n for n in ast.walk(tree)
+                      if isinstance(n, ast.Call)
+                      and isinstance(n.func, ast.Attribute)
+                      and n.func.attr == "alpha_composite"
+                      and any(isinstance(a, ast.Name) and a.id == "icon"
+                              for a in n.args)]
+        self.assertEqual(len(composites), 1,
+                         "the icon is drawn on more than the lit branch")
+        for node in ast.walk(tree):
+            if isinstance(node, ast.If) and composites[0] in ast.walk(node):
+                self.assertIn("lit", ast.unparse(node.test),
+                              "the icon is not gated on `lit`")
+                break
+        else:
+            self.fail("the icon composite is not inside a condition")
 
 
 class ThePoolOnlyOffersWhatCanBeBuilt(unittest.TestCase):

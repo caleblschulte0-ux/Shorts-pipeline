@@ -1151,14 +1151,25 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
         # a hundred identical houses — the one thing the form exists to show
         # (which ones) was the thing you could not see. The unlit are now a
         # flat dim disc: a different SHAPE, not a fainter copy.
+        # ...AND THE UNIT IS A TILE, NOT A DOT. Operator ruling 2026-09-10:
+        # "colored dots are not something we should be using." When a real
+        # cutout resolves this field is a hundred little PEOPLE, which is
+        # the whole idea; when it does not, a disc depicts nothing and the
+        # frame is a hundred coloured dots. A rounded tile is a waffle unit
+        # — a real chart form that says "one of these" without pretending
+        # to be a picture of anything.
+        _rad = max(2, int(side * 0.22))
         if lit and icon is not None:
             canvas.alpha_composite(icon, (x, y))
         elif lit:
-            d.ellipse([x, y, x + side, y + side], fill=_rgba(color, 240))
+            d.rounded_rectangle([x, y, x + side, y + side], radius=_rad,
+                                fill=_rgba(color, 240))
         else:
-            pad = int(side * 0.14)
-            d.ellipse([x + pad, y + pad, x + side - pad, y + side - pad],
-                      fill=_rgba(TEXT, 38))
+            pad = int(side * 0.12)
+            d.rounded_rectangle([x + pad, y + pad, x + side - pad,
+                                 y + side - pad],
+                                radius=max(2, int(_rad * 0.7)),
+                                fill=_rgba(TEXT, 38))
         if lit:
             cx_last, cy_last = x + side // 2, y + side // 2
     na = max(0.0, min(1.0, (reveal - 0.2) / 0.4))
@@ -1844,7 +1855,11 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
         if glyph is not None:
             canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
-            d.ellipse([x, y, x + sz, y + sz], fill=_rgba(ACCENT, 235))
+            # A tile, not a dot — same ruling as `draw_dot_field`. A queue
+            # of featureless discs is a queue of nothing.
+            d.rounded_rectangle([x, y, x + sz, y + sz],
+                                radius=max(2, int(sz * 0.22)),
+                                fill=_rgba(ACCENT, 235))
     _s = f"{lab}   {charts._ulabel(v, unit, group=True)} waiting"
     _f, _s = fit_text(d, _s, 62, (bx1 - bx0) - 60)
     d.text(((bx0 + bx1) // 2, by0 + 78), _s, font=_f,
