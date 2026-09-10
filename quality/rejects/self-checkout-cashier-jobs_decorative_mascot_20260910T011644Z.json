@@ -1,0 +1,16 @@
+{
+ "slug": "self-checkout-cashier-jobs",
+ "ts": "20260910T011644Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only ever perches on whatever the machine already draws \u2014 arms-up on the top block (hook@0.3\u2192seg0:end), parked inside the pink 2000 pill doing nothing (seg1:mid, seg1:end), straddling the 4% bubble and occluding its own label (seg3:start), standing on the scale pan for the fi",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "visual_contradicts_narration",
+  "visible_evidence": "At seg1:mid the caption reads 'was over 92%,' while the picture is titled '2000 VS 2012' and the purple pill is labelled 33%; at seg1:end the caption 'you to scan' still sits over a 2000-vs-2012 33% comparison. The scene never draws the 92%/2023 endpoint the line is about, and Data is parked motionless inside the pink 2000 pill.",
+  "root_cause": "The comparison machine was fed an intermediate year pair (2000 vs 2012) from the series instead of the endpoints the script asserts (2000 6% \u2192 2023 92%), so the drawn claim is a different claim from the spoken one; the mascot was then placed as filler inside the smaller pill with no act.",
+  "repair_goal": "Redraw seg1 as the endpoint comparison the narration makes \u2014 2000 at 6% against 2023 at 92%, labels matching the VO exactly \u2014 and give Data a bit tied to that swap (e.g. he rides the 2023 pill up as it overtakes the 2000 pill and reacts at the top) instead of sitting inside it."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

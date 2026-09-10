@@ -1,0 +1,21 @@
+{
+ "slug": "fifty-years-since-moon-landing",
+ "ts": "20260910T011644Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg2:start (t=16.86s) demonstrates 'Moon landings, Apollo era vs since' with a grid of RED CARS, 'each = 0.5' \u2014 a car icon has nothing to do with a crewed lunar landing, and half a car is a nonsense unit.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:start (t=16.86s): 'Moon landings, Apollo era vs since' is drawn as 12 red CAR icons with a legend reading 'each = 0.5'; seg2:mid/seg2:end then cut to VS columns whose category labels collide into '1969-1972 (Apollo e..1973-2024 (since)' across the bottom and whose row labels are clipped off the left edge ('5 (Apollo buildup)' at seg1:mid).",
+  "root_cause": "The pictogram icon is being resolved by a silent-default lookup \u2014 no glyph is registered for a Moon landing / crewed mission, so it falls through to the generic car icon, and the unit-per-icon is computed from the count rather than forced to 1 for an indivisible event. The adjacent column chart's labels are laid out without a width budget, so long category names overlap and left-hand labels overflow the plot box.",
+  "repair_goal": "Redraw seg2 with a unit that IS the claim: 6 lunar-module / bootprint / flag glyphs planted on a Moon surface at one icon = one landing, then an empty field of 0 for 1973-2024 that Data walks across and finds nothing in \u2014 and fit the era labels inside the frame so they never overlap. Any icon whose name does not resolve must refuse and fall back to a chart, never to a car."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

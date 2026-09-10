@@ -1,0 +1,21 @@
+{
+ "slug": "bald-eagle-population-rebound",
+ "ts": "20260910T011644Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data merely perches or stands in four of five beats \u2014 a tiny sticker on the 417 stub at seg1:mid, standing among the circles holding a BLANK yellow card at seg3:mid and seg3:end, and parked in front of the chart at seg4:mid through payoff@-0.4; only seg2:mid has a real bit (cleari",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "held_payoff_shrunken_and_obscured",
+  "visible_evidence": "seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 (46.6s\u219250.8s) are the same picture: a small inset card holding a 2020\u21921963 decline wedge, with Data standing directly on the plot so the line and the 417 dot are half-hidden, wide dead margins outside the card, and the whole closing line dumped as a static speech bubble that occupies the top third for the entire beat.",
+  "root_cause": "The closing template composites a shrunken card-in-frame chart plus a pre-baked text bubble and parks the mascot at the final data point with only idle motion, so the last beat has no demonstration left to animate \u2014 and the axis runs backwards (2020 on the left, 1963 on the right), turning the comeback into a visual collapse.",
+  "repair_goal": "Make the payoff a full-bleed, forward-in-time demonstration: drop the inset card and the static bubble, run 417 \u2192 71,467 growing across the whole frame in the last beat, move Data off the plot and give him a setup\u2192action\u2192payoff reaction to the growth, and keep visible motion through the final second."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

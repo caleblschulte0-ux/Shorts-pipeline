@@ -1,0 +1,16 @@
+{
+ "slug": "podcasts-passed-radio-spoken-word",
+ "ts": "20260910T011644Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=40.12) is a near-black frame holding only two thumbnail-sized mascots on hairline rules and a dashed strip at the right edge \u2014 the bottom 45% and the whole left half are dead; seg4:start/mid keep that emptiness under the closing card, and seg2:mid leaves the lower 60% of the ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:end through payoff@-0.4: the final visual is a slope/dumbbell chart of two hairline rules with a tiny mascot marker on each (Don't 65%, Listen to a podc 35%) plus a dashed vertical strip pinned to the right margin. Enormous black space fills the bottom half and left third; the series label is clipped mid-word ('Listen to a podc') and at seg3:end no values are drawn at all, so the closing beat of the video is the emptiest frame in it.",
+  "root_cause": "The final machine is drawn at chart scale, not claim scale \u2014 thin 1px rules, tiny glyph markers and no fill mean nothing occupies the 200pt reading distance the format demands; the label is clipped because the text is placed without a width budget against the plot's right edge, and the mascot is reused as a duplicated data marker rather than performing, so the frame has no focal element.",
+  "repair_goal": "Rebuild seg4's payoff at claim scale: two heavy, clearly proportional bodies (65% vs 35%) filling the vertical frame from the top rule to the bottom margin so the 2:1 gap reads instantly, values set large next to their bodies, the series label wrapped or shortened to fit inside the plot box instead of clipping, and ONE mascot doing a single setup\u2192action\u2192payoff bit against the 35% body (e.g. shoving/measuring it) rather than two static copies used as markers."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

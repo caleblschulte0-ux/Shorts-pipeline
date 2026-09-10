@@ -1,0 +1,21 @@
+{
+ "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
+ "ts": "20260910T011644Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start through payoff@-0.4 waste roughly the whole right half and lower third on flat gradient \u2014 one narrow tower at far left, four '0' stubs, nothing else moving; seg1:mid likewise leaves the bottom half of the frame completely empty below the orbit.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "wrong_machine_illegible_layout",
+  "visible_evidence": "seg1:mid and seg1:end draw an orbit/solar-system: concentric rings around a sun with country dots whose labels collide \u2014 at seg1:mid 'Russian Federation 121649000' overlaps the ring and 'India 15386(8)700' is cut by its own dot; at seg1:end 'India 153868700' and 'Brazil 55642000' overprint each other and 'China 108427100' is struck through by its marker. The bottom half of both frames is empty gradient, and the scene runs ~9s (9.9s-18.9s), the longest stretch in the video.",
+  "root_cause": "An orbit machine was selected for a plain size RANKING of arable land \u2014 orbital distance asserts a centre-and-satellites relationship the data never claims \u2014 and its label placer has no collision or in-bounds constraint, so six labels are laid at raw dot positions in the upper half while the lower half goes unused.",
+  "repair_goal": "Replace seg1's orbit with a machine that states the actual claim \u2014 India's 153,868,700 ha edging past the US's 151,563,525 ha, e.g. two land blocks butted against each other so the sliver of difference is the visible payoff \u2014 laid out to fill the full frame height with non-overlapping, on-screen labels, and give Data a real bit at the overlap (measuring or standing on the sliver) instead of gliding past."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
