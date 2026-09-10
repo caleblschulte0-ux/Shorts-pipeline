@@ -923,6 +923,27 @@ MAX_STILL_TAIL = 1.6       # seconds a finished chart may sit before the cut
 # it has to keep moving almost to the cut. It is also the cheapest place to buy
 # motion honestly: the chart is already there and already building.
 CLOSING_STILL_TAIL = 0.35
+# ...AND THE GAPS BETWEEN THE CLOSING'S REVEALS ARE BOUNDED IN SECONDS TOO.
+#
+# The tail was fixed and the gaps were left proportional. `qs`/`cs`/`ls` were
+# fixed FRACTIONS of the closing window (0.40 / 0.62 / 0.86), so every gap
+# between them grows with the window — the exact thing the comment above
+# already says about reading time, applied to one end of the closing and not
+# the other. `container-ships-floating-cities`, 2026-09-10, held at score 5:
+#
+#     "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) — a frozen
+#      stretch outside any intentional hold starting at t=46.0s of 49.08s"
+#
+# t=46.0 is exactly `cs` on that video. Its four gaps, in frames at the 24fps
+# the gate samples at: 78, 43, 47, 27 — against a ceiling of 45. Two over,
+# and the reveal schedule guaranteed it the moment the closing ran past ~7s.
+#
+# 1.45s is 35 frames, which leaves real margin under the 45 ceiling for a
+# beat that lands slightly late.
+CLOSING_MAX_GAP = 1.45
+#: How long one CTA pulse animates (`\t` up then back). A pulse ends and the
+#: base CTA underneath it keeps drawing, so pulses never stack.
+CLOSING_PULSE_S = 0.62
 # Where the recap goes during the closing. The card is a 900x320 bubble ending
 # at y=470; the foot band with the question and CTA starts at 1683. This sits
 # between them, centred, in space these frames were leaving empty.
@@ -1092,15 +1113,29 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # appearing (no long frozen 'read the card' hold — the dead-air the gate
     # measures). Bubble+quip land first, the question ~40% in, the CTA ~62% in
     # with a bounce, so nothing sits static for 4s.
-    qs = c0 + 0.40 * cd
-    cs = c0 + 0.62 * cd
+    # BOUNDED, NOT PROPORTIONAL — see `CLOSING_MAX_GAP`. On a short closing
+    # these are still the old fractions; on a long one they stop stretching.
+    qs = c0 + min(0.40 * cd, CLOSING_MAX_GAP)
+    cs = qs + min(0.22 * cd, CLOSING_MAX_GAP)
     # ...and one LAST reveal, so the card is not silent through its final
     # third. Everything used to land by 62%: on a 31s video that left ~1.5s of
     # nothing new, which the host and a still recap could just about carry, and
     # on a 43s one it left 3.3s — a 79-frame frozen stretch against a ceiling
     # of 45. The closing failed the gate on exactly the videos whose closing
     # was longest, which is the wrong way round for a payoff.
-    ls = c0 + 0.86 * cd
+    # ...and the last reveal REPEATS to the cut instead of firing once.
+    #
+    # One pulse at 0.86 bounded the tail after it and left the run BEFORE it
+    # unbounded — 47 frozen frames between the CTA landing and the pulse.
+    # The pulse is the cheapest honest motion in the frame (the CTA is
+    # already drawn; this is an emphasis on it), so it runs on a cadence and
+    # no stretch of the closing is ever longer than one gap.
+    _pulses = []
+    _t = cs + min(0.24 * cd, CLOSING_MAX_GAP)
+    while _t < c1 - 0.25:
+        _pulses.append(_t)
+        _t += CLOSING_MAX_GAP
+    ls = _pulses[0] if _pulses else cs
     bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
               + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
@@ -1149,8 +1184,10 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                  + "&\\b1\\bord5\\3c&H000000&\\shad0"
                  "\\fscx100\\fscy100\\t(0,260,\\fscx112\\fscy112)"
                  "\\t(260,560,\\fscx100\\fscy100)}COMMENT BELOW ▼")
-        lines.append(
-            f"Dialogue: 6,{_ass_time(ls)},{_ass_time(c1)},Cap,,0,0,0,,{pulse}")
+        for _pt in _pulses:
+            lines.append(f"Dialogue: 6,{_ass_time(_pt)},"
+                         f"{_ass_time(min(c1, _pt + CLOSING_PULSE_S))},"
+                         f"Cap,,0,0,0,,{pulse}")
     # Dedupe + strip the 'Source:' prefix each footer already carries, so the
     # line reads 'Sources: NOAA ...' ONCE — not 'Sources: Source: X · Source: X'
     # (the duplicate the gate flagged when both segments share a publisher).
