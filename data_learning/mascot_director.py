@@ -1909,10 +1909,17 @@ DATA_ACTION = {
     # A data MACHINE beat is kind "scene". Without an entry here every one of
     # them fell through to `push_bar` — and machines are now the primary
     # depiction for 77% of beats, so that default was most of the channel
-    # holding one pose. `point` is the honest generic: he is showing you the
-    # thing. The per-beat variety comes from `performance_for`, which the
-    # renderer now honours.
-    "scene": "point", "share": "lift", "pictograph": "lift",
+    # holding one pose. Showing you the thing is the honest generic; the
+    # per-beat variety comes from `performance_for`, which the renderer
+    # honours first.
+    #
+    # It said `"point"` for a month, and `point` IS NOT AN ANIMATOR — the
+    # vocabulary is `point_at`. `compose_anim` resolves an unknown name with
+    # `ANIMATORS.get(action, _a_carry)`, so the entry written to escape the
+    # one-pose default resolved to the SAME generic carry pose, under a
+    # comment explaining the fix. `tests/test_edit_pacing.py` asserted only
+    # that it was not `push_bar`, which it was not.
+    "scene": "point_at", "share": "lift", "pictograph": "lift",
     "bubbles": "climb", "geo_world": "climb", "geo_us": "climb",
     "geo_city": "climb",
 }
