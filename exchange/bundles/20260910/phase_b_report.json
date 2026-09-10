@@ -1,0 +1,149 @@
+{
+  "date": "20260910",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 20,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "required": true,
+    "checked": 20,
+    "ok": 20,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s1-eed2ec30bda3.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s5-72c1ab934e13.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s7-23d4cdb83845.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s8-e6036ad7e438.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s2-32c4e9c27480",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s2-32c4e9c27480.png"
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s4-52c53ade2886",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-locker-lock-cutter-s4-52c53ade2886.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s0-acf59af38d80",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s0-acf59af38d80.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s1-0df30e7e6a17",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s1-0df30e7e6a17.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s2-698542808241",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s2-698542808241.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s3-60f148514f03",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s3-60f148514f03.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s4-10a54143fa41",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s4-10a54143fa41.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s6-e64b48863a68",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s6-e64b48863a68.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s7-b3be9a3fead0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s7-b3be9a3fead0.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s8-c9517d9b0a50",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s8-c9517d9b0a50.png"
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s9-ff87955289eb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-mailbox-camera-s9-ff87955289eb.png"
+    },
+    {
+      "slug": "reddit-gym-locker-lock-cutter",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): cut, who"
+      ]
+    },
+    {
+      "slug": "reddit-hoa-mailbox-camera",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): does, he"
+      ]
+    }
+  ]
+}
