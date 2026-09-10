@@ -18812,8 +18812,11 @@
           "role": "2 \u00b7 THE JUMP",
           "topic": "dairy herds infected by state",
           "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined.",
-          "scene": null,
-          "viz": "geo_us"
+          "scene": {
+            "mechanic": "cattle-outbreak-map",
+            "concept": "cow photos bloom as glowing outbreak circles across an abstract US map, sized to each state's infected-herd count, California towering over the rest",
+            "code": "cow = subject_image('dairy cow')\npositions = {\n    'California': (0.08, 0.55),\n    'Colorado': (0.42, 0.42),\n    'Idaho': (0.24, 0.15),\n    'Michigan': (0.82, 0.25),\n    'Texas': (0.50, 0.82),\n}\ncx0 = RX0 + 60\ncy0 = RTOP + 70\nw = (RX1 - RX0) - 120\nh = 730\nd.rounded_rectangle([RX0, RTOP + 40, RX1, RTOP + 40 + h + 140], radius=40,\n                     outline=rgba(TEXT, 70), width=3)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    stage = clamp(reveal * n - i)\n    if stage <= 0:\n        continue\n    px, py = positions.get(lab, (0.5, 0.5))\n    cx = cx0 + int(px * w)\n    cy = cy0 + int(py * h)\n    frac = clamp(v / vmax)\n    size = int(70 + 190 * frac * stage)\n    col = WARN if i == 0 else ACCENT\n    d.ellipse([cx - size // 2 - 8, cy - size // 2 - 8, cx + size // 2 + 8, cy + size // 2 + 8],\n              fill=rgba(col, 70), outline=rgba(col, 200), width=4)\n    if cow is not None:\n        ch = int(size * cow.height / cow.width)\n        paste(cow, cx - size // 2, cy - ch // 2, size, ch)\n    text(lab, cx, cy + size // 2 + 26, size=22, color=TEXT, center=True)\n    if stage >= 1:\n        text(str(int(v)), cx, cy - size // 2 - 30, size=30, color=col, center=True)\nif reveal > 0.7:\n    others = int(sum(values[1:]))\n    text(f\"{int(values[0])} in CA -- more than {others} everywhere else\", (RX0 + RX1) // 2,\n         RTOP + 40 + h + 140 + 50, size=28, color=WARN, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -26834,11 +26837,12 @@
           "params": {
             "file": "blood_eligible_vs_donate.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "1 \u00b7 THE GAP",
           "topic": "who could give vs. who does",
-          "say": "About 38% of Americans qualify to give blood. Of that group, only 3% actually roll up a sleeve in a given year \u2014 the gap between who could save a life and who does."
+          "say": "About 38% of Americans qualify to give blood. Of that group, only 3% actually roll up a sleeve in a given year \u2014 the gap between who could save a life and who does.",
+          "ascending": false
         },
         {
           "source": "offline",

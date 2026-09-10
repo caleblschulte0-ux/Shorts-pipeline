@@ -613,12 +613,12 @@
       "scene_changes_before_5s": 3,
       "depictions": [
         "mechanic:feather-toll-climb",
-        "viz:geo_us",
+        "mechanic:cattle-outbreak-map",
         "mechanic:cross-species-bridge"
       ],
       "ending_type": "consequence",
       "franchise": "How A Virus Jumps Species",
-      "notes": "No prior analytics for this slug. Bet: feather-toll-climb -> geo_us -> cross-species-bridge, each beat escalating toward the numbers the hook promised.",
+      "notes": "2026-09-10: segment 2 had no scene (fell back to the geo_us named chart) -- replaced with cattle-outbreak-map, a procedural mechanic that blooms real cow photos as sized outbreak circles across an abstract US layout so California visibly dwarfs the other four states. Bet: feather-toll-climb -> cattle-outbreak-map -> cross-species-bridge, each beat escalating toward the numbers the hook promised.",
       "timeline": [
         {
           "t": 0,
@@ -633,7 +633,7 @@
         {
           "t": 14,
           "event": "visual_swap",
-          "detail": "viz:geo_us"
+          "detail": "mechanic:cattle-outbreak-map"
         },
         {
           "t": 24,
