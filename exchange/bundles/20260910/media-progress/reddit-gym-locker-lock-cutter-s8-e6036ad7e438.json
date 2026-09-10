@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "cbea797d2512b1fd70fbb3da80f40ef35aaccd31d9bb3619d4fbfcc4ea822cd7",
+  "prompt_used": "An editorial illustration for a short-form video: gym reception desk. It accompanies the narration: \"Front desk banned him the next day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s8-e6036ad7e438.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9e2ec25afeb1b9589a1f7d141423f6c9d4ba13337753483c786dc15ee15d161d",
+    "bytes": 1845653,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-10T11:34:53.552Z"
+}
