@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "853a9916724e19b0fafb28ff81596f4a5922b65e2d68ff5f9c74ddf91e601d7e",
+  "prompt_used": "An editorial illustration for a short-form video: phone video playback. It accompanies the narration: \"pulled up the footage right there on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1WK3vP767OWWChPMPBWr_GccY0awyCcAx",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1WK3vP767OWWChPMPBWr_GccY0awyCcAx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9a95615235d1fa75b02db2f8ed43cc43e1d3630a50cb19adfe026f069e82f473",
+    "bytes": 1829779,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:35:03.783Z"
+}
