@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a597986223126b212539ff7d7ad8b1a98a5b3b8e6a73cf37e48a0559d06d0917",
+  "prompt_used": "An editorial illustration for a short-form video: garage wall tools. It accompanies the narration: \"I mounted his bolt cutters on my garage wall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b1df596fa8a903e2bf2d6e35d56fa8b228c23c2e12b181e7bb41c6997266ecdf",
+    "bytes": 2780437,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:54.632Z"
+}
