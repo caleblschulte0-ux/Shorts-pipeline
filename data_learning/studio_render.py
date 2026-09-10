@@ -964,8 +964,15 @@ def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
 
 
 def build_story_ass(st: story.Story, windows, events, out: Path,
-                    accent: str = "&H4FD1F5&", hook_visual: bool = False,
-                    chart_hook: bool = False) -> None:
+                    accent: str = "&H4FD1F5&", hook_visual: bool = False) -> None:
+    """Burn the hook, the kinetic captions and the closing into one ASS file.
+
+    `chart_hook` used to be a parameter here. Its only reader was the hero
+    number removed below, and the caller derived it as the exact complement of
+    `hook_visual` — so it never selected anything. A parameter a caller
+    carefully computes and nobody reads is the same rot as a capability
+    nothing calls; it goes with the branch it served.
+    """
     acc = accent.strip("&H").rstrip("&")          # bare BBGGRR for inline tags
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -1009,24 +1016,27 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # seconds of an idle mascot before any substance — the payoff is on screen
     # at t=0, which is the only moment that decides whether they keep watching.
     h0, h1 = windows[0]
-    headline = _headline_number(st)
-    # A bare share % ("22%") slammed on frame 1 is meaningless without its whole
-    # and reads as the 'bare number card' the gate blocks — so when the OPENING
-    # beat is a part-of-whole depiction (waffle / pie / share), suppress the hero
-    # number and let the mascot + the share chart carry the hook. A striking
-    # standalone value (427 ppm, 1.4 billion) still leads.
-    _share_lead = (st.segments and getattr(st.segments[0], "kind", "") in
-                   ("share", "waffle_grid", "pie", "donut", "pictorial_pie"))
-    # When a full-frame HOOK VISUAL (the receipt) is on screen it IS the hero —
-    # the big number + claim would just collide with it, so they're suppressed
-    # and the receipt + VO captions carry the open. A chart-led hook (chart_hook)
-    # or a share-led open likewise drops the giant number (the chart carries it).
-    if headline and not hook_visual and not _share_lead and not chart_hook:
-        # Hero number: huge, accent-filled, punches in hard on the first frame.
-        num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
-               "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
-               "\\t(0,150,\\fscx100\\fscy100)\\blur1.2}" + headline)
-        lines.append(f"Dialogue: 1,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{num}")
+    # THE HERO NUMBER IS GONE, because it never once drew.
+    #
+    # It was guarded by `not hook_visual and not chart_hook`, and its caller
+    # derives BOTH from the same value — `hook_visual=bool(receipt)` and
+    # `chart_hook=(receipt is None)`. Those are exact complements, so the
+    # conjunction is a contradiction: with a receipt the first is False,
+    # without one the second is. A 240pt number at y=235, described in a
+    # comment that said when it "still leads", and it has led nothing.
+    #
+    # Composited by hand to see what it would have looked like if it fired:
+    # the chart's own title lands at screen y≈174 and its subtitle at 281,
+    # so 240pt centred at 235 is drawn straight through both — "NASA[  ]s[ ]re
+    # of t[ ]e [  ]ed[  ]l budget". That is the `unreadable` class the
+    # showrunner already blocks for, and it is why this cannot simply be
+    # switched back on where it stood.
+    #
+    # The design also moved past it. `lead_hook` exists so seg0's CHART
+    # carries the cold open — see the comment at its assignment: a hook with
+    # no data on screen is the `empty_void` / `decorative_mascot` the gate
+    # blocks, and the data demonstration should be the star from frame 1.
+    # `_headline_number` is still live for the thumbnail and for long-form.
     hchunks = _chunks(st.hook, 2) if not hook_visual else []
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
@@ -2148,12 +2158,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Full soundtrack: narration + ducked theme music + visual-synced SFX.
         soundtrack = _build_soundtrack(narration, windows, events, total,
                                        theme.get("vibe", "calm"), work, slug)
-        # A full-frame receipt suppresses BOTH the hero number and the hook text
-        # (it IS the open). A chart-led hook keeps the punchy hook TEXT but drops
-        # the giant hero number so it doesn't collide with the chart.
+        # A full-frame receipt suppresses the hook TEXT — it IS the open. With
+        # no receipt, seg0's chart leads and the hook text plays over it.
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass,
-                        hook_visual=bool(receipt), chart_hook=lead_hook)
+                        hook_visual=bool(receipt))
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
