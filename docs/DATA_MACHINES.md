@@ -400,6 +400,24 @@ then-and-now was drawn newest-first and the bald eagle's 417→71,467 comeback
 rendered as a collapse under the words "one of the biggest wildlife
 comebacks". Two PLACES may be ordered by size; two DATES may not.
 
+**A YEAR SERIES IS A TREND, and the router only knew it from a `period`
+field.** `draw_timeline` learned on 2026-09-07 that the label IS the period
+when it is a year, and said why in its own comment; `insights._auto_pick`
+never did. So a dated series with no `period` fell past the trend test and
+landed somewhere that is not a time series at all — 3 points became a
+`comparison`, which keeps only the FIRST and LAST of the sorted list, and 4+
+became a `rank`, which makes years competitors. `self-checkout-cashier-jobs`
+lost 2023, the year the narration was about, and shipped "2000 VS 2012 …
+33%" under the words "was over 92%". 20 of the 1,115 datasets were in that
+shape.
+
+Dated is not enough on its own: the series must also be IN TIME ORDER. A
+ranking whose items happen to be years is stored in VALUE order —
+`wildfire_worst_years` reads 2015, 2020, 2017, 2006, 2012 — and that is the
+one case where "years are not competitors" is false. And `_trend` itself now
+sorts by the calendar, because it kept the input order and a series stored
+newest-first drew the line backwards.
+
 **Measure with the FURNITURE.** The studio draws the title near the top and
 burns the caption near the bottom of every frame, so measuring a bare machine
 over-reports the void at both ends — the first sweep flagged ten machines that
