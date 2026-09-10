@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "48799974f36e027635cd854ed45cb5622e175fe676bd145f75ec1a10e22902a1",
+  "prompt_used": "An editorial illustration for a short-form video: broken tool metal. It accompanies the narration: \"leaving his own broken bolt cutters wedged in the locker vents\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s7-23d4cdb83845.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ed7c2377dbea70b6fb081d38f401de5bada95c1c6a2535e0a6e768dc82b5a9a5",
+    "bytes": 1884323,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:52.399Z"
+}
