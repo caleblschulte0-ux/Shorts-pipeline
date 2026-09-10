@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s4-10a54143fa41",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s4-10a54143fa41",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e35d47c946f9dfd7f996321f9aa014375f5a39f92d3d3a996160bb9c6fbbbd24",
+  "prompt_used": "An editorial illustration for a short-form video: doorbell camera. It accompanies the narration: \"a doorbell camera last spring\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1EJz9kIvKtEd-Vmk6Bn9j9fc8_laAqpb0",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s4-10a54143fa41.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1EJz9kIvKtEd-Vmk6Bn9j9fc8_laAqpb0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7205fb1ea4cca2aa2f96556c62d0c5633e0980c36f41c47bb65a5a5ee19fc3d7",
+    "bytes": 1677857,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-10T11:35:02.740Z"
+}
