@@ -1290,48 +1290,14 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
 
 def _gradient_fill(ax, xs, ys, base: float, color: str, zorder: int = 2,
                    top: float = 0.30):
-    """The area under a line, fading OUT downward instead of a flat wash.
+    """Delegates to `look.gradient_fill` — see there for why it fades.
 
-    A flat `fill_between` at 10% over a large area is the single cheapest
-    thing on a line chart: warm ink at low alpha over a cold ground
-    composites to a grey-brown slab, and the bigger the area the greyer it
-    gets — the shape stops reading as "under the line" and starts reading as
-    a filled rectangle behind it. Fading from `top` at the line to nothing at
-    the baseline keeps the density where the line is, which is where it means
-    something, and lets the ground show through everywhere else.
-
-    Implemented as a one-column image clipped to the fill polygon, so it
-    stays a vector-free, offline, single-draw operation.
+    It lived here until `engines/chart_race` needed the same thing for the
+    same reason (three `empty_void` blocks in one slate). Two copies of a
+    fill is how two renderers of the same channel drift apart, so the
+    implementation moved to the design system and this is the call.
     """
-    try:
-        import numpy as np
-        from matplotlib.colors import to_rgb
-        from matplotlib.patches import Polygon
-        if len(xs) < 2:
-            return
-        r, g, b = to_rgb(color)
-        grad = np.empty((256, 1, 4))
-        grad[:, :, 0], grad[:, :, 1], grad[:, :, 2] = r, g, b
-        grad[:, :, 3] = np.linspace(0.0, top, 256)[:, None]
-        x0, x1 = min(xs), max(xs)
-        y1 = max(ys)
-        if not (y1 > base and x1 > x0):
-            # A FLAT SERIES HAS NO AREA. Every value identical makes
-            # `base == y1`, and imshow warns "identical low and high ylims
-            # makes transformation singular" and draws a degenerate strip.
-            return
-        im = ax.imshow(grad, aspect="auto", origin="lower", zorder=zorder,
-                       extent=(x0, x1, base, y1))
-        poly = Polygon(list(zip(xs, ys)) + [(x1, base), (x0, base)],
-                       closed=True, facecolor="none", edgecolor="none")
-        ax.add_patch(poly)
-        im.set_clip_path(poly)
-    except Exception:  # noqa: BLE001 — a fill is a look, never a blocker
-        try:
-            ax.fill_between(xs, ys, base, color=color, alpha=0.10,
-                            zorder=zorder)
-        except Exception:  # noqa: BLE001
-            pass
+    _look.gradient_fill(ax, xs, ys, base, color, zorder=zorder, top=top)
 
 
 def _nice_ticks(lo: float, hi: float, n: int = 3):
