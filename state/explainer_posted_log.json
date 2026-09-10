@@ -1662,6 +1662,17 @@
       ],
       "words_first_10s": 19,
       "scene_changes_before_5s": 3
+    },
+    "sea-level-rise-rate-doubled": {
+      "url": "https://youtube.com/shorts/mJ6-4rv6eYQ",
+      "title": "The Ocean Is Rising Faster Than Scientists Predicted (3 Charts)",
+      "at": "2026-09-10T18:41:38.556075+00:00",
+      "publish_at": "2026-09-10T18:22:48Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 65,
+      "duration_s": 49.5
     }
   },
   "uploads": [
@@ -1727,6 +1738,15 @@
       "state": "posted",
       "slug": "fifty-years-since-moon-landing",
       "at": "2026-09-10T11:23:24.879490+00:00"
+    },
+    {
+      "claimed_at": "2026-09-10T18:41:31.611630+00:00",
+      "title": "The Ocean Is Rising Faster Than Scientists Predicted (3 Charts)",
+      "publish_at": "2026-09-10T18:22:48Z",
+      "url": "https://youtube.com/shorts/mJ6-4rv6eYQ",
+      "state": "posted",
+      "slug": "sea-level-rise-rate-doubled",
+      "at": "2026-09-10T18:41:38.556075+00:00"
     }
   ]
 }
