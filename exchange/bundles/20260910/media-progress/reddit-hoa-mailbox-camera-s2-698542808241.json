@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s2-698542808241",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s2-698542808241",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1b4b968845a9dd0405f1994590afcc02913b49a03463ad6c8cca00d0d3529535",
+  "prompt_used": "An editorial illustration for a short-form video: kid riding bike. It accompanies the narration: \"riding his bike\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qfMU2mksesnMcSe88_Fl2rCaQGc29-X9",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s2-698542808241.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qfMU2mksesnMcSe88_Fl2rCaQGc29-X9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "72d9d658572f5caf77512e7d80d51f04f94745df5a24619431f8d07f090d9bf8",
+    "bytes": 2043973,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:35:00.357Z"
+}
