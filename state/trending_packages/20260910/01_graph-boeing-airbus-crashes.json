@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-boeing-airbus-crashes",
+  "title": "Boeing Ruled The Skies. Two Crashes Ended That.",
+  "hook": "Two crashes changed everything.",
+  "y_label": "Commercial aircraft delivered (count)",
+  "duration": 13,
+  "source": "Boeing and Airbus annual commercial aircraft delivery totals, 2015-2024, as reported by both manufacturers and tracked by Cirium and Statista aviation data.",
+  "years": [2015, 2016, 2017, 2018, 2019, 2020, 2022, 2024],
+  "series": [
+    {
+      "name": "Boeing",
+      "color": "#0057B8",
+      "icon": "Boeing",
+      "values": [762, 748, 763, 806, 380, 157, 480, 348]
+    },
+    {
+      "name": "Airbus",
+      "color": "#E4002B",
+      "icon": "Airbus",
+      "values": [635, 688, 718, 800, 863, 566, 661, 766]
+    }
+  ],
+  "hashtags": [
+    "boeing",
+    "airbus",
+    "aviation",
+    "737max",
+    "aircraft",
+    "planes",
+    "aerospace",
+    "flying",
+    "data",
+    "manufacturing",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-us-oil-passed-saudi",
+  "title": "The US Quietly Became The World's Top Oil Producer",
+  "hook": "Nobody saw this coming.",
+  "y_label": "Crude oil production (million barrels per day)",
+  "duration": 13,
+  "source": "U.S. Energy Information Administration field production data for U.S. crude oil output vs. Saudi Arabia crude oil production from OPEC/EIA country statistics, annual averages, approximate.",
+  "years": [2010, 2013, 2016, 2018, 2019, 2021, 2023],
+  "series": [
+    {
+      "name": "United States",
+      "color": "#3C3B6E",
+      "icon": "US",
+      "values": [5.48, 7.45, 8.85, 10.95, 12.31, 11.26, 12.93]
+    },
+    {
+      "name": "Saudi Arabia",
+      "color": "#006C35",
+      "icon": "SA",
+      "values": [8.4, 9.6, 10.5, 10.3, 9.9, 9.1, 9.6]
+    }
+  ],
+  "hashtags": [
+    "oil",
+    "shaleboom",
+    "energy",
+    "saudiarabia",
+    "unitedstates",
+    "eia",
+    "crudeoil",
+    "geopolitics",
+    "opec",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

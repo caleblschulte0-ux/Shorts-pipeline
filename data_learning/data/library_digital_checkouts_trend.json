@@ -1,0 +1,21 @@
+{
+  "key": "library_digital_checkouts_trend",
+  "title": "US library digital checkouts (ebooks/audiobooks)",
+  "unit": "million",
+  "geography": "United States (and some international library systems)",
+  "time_coverage": "2019-2024 (annual)",
+  "source": {
+    "name": "Annual digital checkout totals across library systems using the OverDrive/Libby platform",
+    "publisher": "OverDrive",
+    "url": "https://company.overdrive.com/2025/01/27/libraries-break-digital-lending-records-in-2024-with-over-739-million-checkouts/",
+    "officiality": "estimate",
+    "access_date": "2026-09-10"
+  },
+  "notes": "Real, company-reported annual digital checkout totals (ebooks, audiobooks, and digital magazines) across library systems using OverDrive/Libby.",
+  "points": [
+    {"label": "2019", "value": 326, "period": "2019"},
+    {"label": "2021", "value": 506, "period": "2021"},
+    {"label": "2023", "value": 662, "period": "2023"},
+    {"label": "2024", "value": 739, "period": "2024"}
+  ]
+}
