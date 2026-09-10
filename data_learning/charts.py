@@ -38,6 +38,43 @@ from shared import look as _look                                # noqa: E402
 def _hex(rgb):
     return "#%02X%02X%02X" % tuple(int(c) for c in rgb)
 
+
+def _ink_on(bg: str) -> str:
+    """The ink a label must wear to sit INSIDE a mark of colour `bg`.
+
+    THIS BUG HAS NOW APPEARED THREE TIMES IN ONE DAY, always the same way:
+    a label drawn inside a mark, in a colour hardcoded for the mark that
+    used to be there, and then the mark's colour changed for a good reason
+    somewhere else.
+
+      - `_story_versus` wrote the winner's number in the ink chosen to sit
+        on the accent, while the accent moved to whichever column actually
+        won: "$942B" shipped in near-black on a slate column, invisible.
+      - `_story_bubbles` hardcoded `#0B1020` for every bubble's number,
+        which was right while every bubble was gold and wrong the moment
+        the supporting ones became neutral.
+
+    Luminance decides, so the pairing cannot go stale again. The house rule
+    is still that text OUTSIDE a mark wears INK and never the mark's colour
+    (`shared/palette`); this is only for the inside-the-mark case, where
+    there is no ground to read against.
+    """
+    try:
+        from matplotlib.colors import to_rgb
+        r, g, b = to_rgb(bg)
+    except Exception:  # noqa: BLE001 — a colour, never a blocker
+        return TEXT
+    # WCAG relative luminance, and the ink is whichever of the channel's two
+    # actually reads BETTER — not whichever side of a threshold the mark
+    # falls on. A threshold is another constant that can be wrong for the
+    # next colour; a comparison cannot be.
+    def _rl(c):
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+    lum = 0.2126 * _rl(r) + 0.7152 * _rl(g) + 0.0722 * _rl(b)
+    on_dark = (lum + 0.05) / 0.05                 # contrast against CARD
+    on_light = 1.05 / (lum + 0.05)                # ...and against TEXT
+    return CARD if on_dark > on_light else TEXT
+
 TEXT = _hex(_look.INK)             # primary ink — the thing being said
 SUBTLE = _hex(_look.INK_2)         # secondary ink — labels, axis names
 HIGHLIGHT = _hex(_look.accent()[0])   # the story's ONE accent
@@ -51,6 +88,21 @@ NAME_REST = "#6E7A99"              # a supporting row's name: readable, recessiv
 # ends up with rules that are subtly different shades of the same idea in
 # consecutive shots of the same video. Grid is chrome; chrome is a token.
 GRID = "#232D4A"
+# NO COLOURED DOTS. Operator ruling, 2026-09-10: "colored dots are not
+# something we should be using."
+#
+# A dot is a MARK only when its POSITION or its AREA is the datum — a city
+# on a map, a proportional bubble. Everywhere else it was decoration, and
+# decoration made of small coloured circles is the single most spreadsheet
+# thing a chart can do:
+#
+#   - a marker on EVERY vertex of a line (the Excel default)
+#   - a dot standing in for an icon that failed to resolve, which is a unit
+#     that depicts nothing pretending to be a pictograph
+#   - a white ring around all of the above, which is what turns a mark into
+#     a sticker
+#
+# The rule is held by `tests/test_no_coloured_dots.py`.
 
 # How many entries the waffle names below its grid. `series_color` reads it
 # so a slice is never coloured without a legend row to say what it is.
@@ -1373,8 +1425,10 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
             solid_capstyle="round", zorder=1)
     _gradient_fill(ax, xd, yd, lo - span * 0.15, HIGHLIGHT, zorder=2)
     ax.plot(xd, yd, color=HIGHLIGHT, lw=6, solid_capstyle="round", zorder=3)
-    ax.plot(x[:kf + 1], values[:kf + 1], "o", color=HIGHLIGHT,
-            markersize=9, zorder=4)
+    # NO MARKER ON EVERY VERTEX. It was `"o"` at markersize 9 on every
+    # revealed point — a row of gold dots down the line, which is the Excel
+    # default and reads as one. The line already says where the points are;
+    # the two that MATTER (peak and end) are directly labelled below.
     la = _lblalpha(reveal)
     pk = max(range(len(values)), key=lambda i: values[i])
     last = len(values) - 1
@@ -1388,8 +1442,9 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
                         fontweight="bold", zorder=5, alpha=la)
             arts.append((values[k], "art", t, None))
         elif k == last:
-            ax.plot(x[k], values[k], "o", color=TEXT, markersize=16,
-                    alpha=0.25 * la, zorder=4)
+            # ...and no halo behind the end value either. The number is
+            # right there at 30pt; a 16px ink blob under it adds nothing
+            # except another dot.
             t = ax.text(x[k] + 0.12, values[k], _ulabel(values[k], insight.unit),
                         va="center", ha="left", fontsize=30, color=TEXT,
                         fontweight="bold", zorder=5, alpha=la)
@@ -1641,7 +1696,12 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     vals = list(values.values()) or [0.0, 1.0]
     vmin, vmax = min(vals), max(vals)
     norm = Normalize(vmin, vmax if vmax > vmin else vmin + 1.0)
-    cmap = LinearSegmentedColormap.from_list("house", [ACCENT, HIGHLIGHT, WARN])
+    # ONE HUE, NEUTRAL -> ACCENT. It ramped ACCENT -> HIGHLIGHT -> WARN:
+    # three hues, ending on the ALARM colour, so the biggest city on the map
+    # was painted the same amber the baseline warning uses and meant nothing
+    # by it. A sequential quantity wants a sequential ramp in one hue —
+    # quiet where the value is low, the story's accent where it is high.
+    cmap = LinearSegmentedColormap.from_list("house", [REST, HIGHLIGHT])
     # Base fill lifted OFF near-black: #1F2937 at reveal 0 read as "a
     # near-black silhouette" (verbatim block); unmatched land now sits a
     # visible slate above the card so the map is a map from frame one.
@@ -1698,8 +1758,11 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     for i, (nm, v, (lon, lat)) in enumerate(pins):
         ri = max(0.0, min(1.0, (t - i * 0.07) / max(1e-6, 1.0 - i * 0.07)))
         col = cmap(norm(v))
+        # POSITION IS THE DATUM AND AREA IS THE MAGNITUDE, so this circle
+        # is a real mark. The white ring is what made it a sticker; a
+        # hairline in the grid tone still separates two overlapping pins.
         ax.scatter([lon], [lat], s=260 + 500 * float(norm(v)) * ri, color=col,
-                   edgecolors="white", linewidths=1.5, zorder=5,
+                   edgecolors=GRID, linewidths=1.5, zorder=5,
                    alpha=0.35 + 0.6 * ri)
         ax.text(lon, lat, str(i + 1), ha="center", va="center", fontsize=17,
                 color="white", fontweight="bold", zorder=6,
@@ -1821,7 +1884,12 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
                                     box_alignment=(0.5, 0.5))
                 ax.add_artist(ab)
             else:
-                ax.scatter(c, y, s=290, marker="o",
+                # A UNIT TILE, NOT A DOT. When the icon does not resolve
+                # this chart still has to show N of something, and a circle
+                # shows nothing — it is a coloured dot claiming to be a
+                # pictograph. A square is a waffle unit: a real chart form
+                # that says "one of these" without pretending to depict.
+                ax.scatter(c, y, s=250, marker="s",
                            color=color if on_a > 0 else BAR_BASE,
                            edgecolors="none", zorder=3,
                            alpha=on_a if on_a > 0 else 0.9)
@@ -1986,9 +2054,10 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
             _icon_px = float(getattr(img, "shape", (0, 72))[1]) * _zoom
             ax.add_artist(AnnotationBbox(oi, (tip, y), frameon=False, zorder=5,
                                          box_alignment=(0.5, 0.5)))
-        else:
-            ax.scatter([tip], [y], s=340, color=color, edgecolors="white",
-                       linewidths=1.5, zorder=5)
+        # ...and when no icon resolves, NOTHING rides the tip. It drew a
+        # 340pt white-ringed disc — a sticker where a picture should be. The
+        # bar already ends in a rounded cap at exactly that point, so the
+        # tip is marked; a disc on top of it only says "the icon failed".
         ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=lblfs,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
@@ -2250,11 +2319,17 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     for i, (p, r) in enumerate(zip(items, rad)):
         cx, cy = centres[i]
         cy += _bob(i)
+        # THE ONE PLACE A CIRCLE EARNS ITS KEEP: here the AREA is the value,
+        # so the mark cannot be anything else. What made it read as a field
+        # of coloured dots was the white ring around every one and a dim
+        # ACCENT for the rest of the field. A hairline in the grid tone still
+        # separates two overlapping bubbles without turning either into a
+        # sticker, and the supporting bubbles are neutral (`look.REST`).
         color = (HIGHLIGHT if p.label == insight.highlight_label
                  else WARN if (insight.baseline and p.label == insight.baseline.label)
-                 else ACCENT)
-        ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor="white",
-                            linewidth=1.5, alpha=0.92, zorder=3))
+                 else REST)
+        ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor=GRID,
+                            linewidth=1.5, alpha=0.96, zorder=3))
         fs = max(16, min(46, r * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
@@ -2267,8 +2342,9 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # "equal-size blobs that only reveal numbers at the very end".
         # Fade with the inflation instead, complete by a third of the way in.
         _balpha = max(0.0, min(1.0, (t - 0.05) / 0.28))
-        tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center", va="center",
-                     color="#0B1020", fontsize=fs, fontweight="bold",
+        tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center",
+                     va="center", color=_ink_on(color),
+                     fontproperties=_num_face(int(fs)),
                      zorder=4, alpha=_balpha)
         ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
                 fontsize=22, fontweight="bold", zorder=4, alpha=_balpha,
@@ -2279,8 +2355,13 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     # COUPLE THE HOST: Data grips the TOP of the star (biggest) bubble and is
     # pushed UP as it inflates — contact + cause + consequence on the bubble.
     _act_bb = _perf_action(insight, "trend")
+    # HE STANDS ON THE BUBBLE, NOT IN IT. At `(0.5, 0.80)` his box hangs
+    # DOWN from the bubble's top edge, so on the biggest bubble — the one
+    # whose number is the headline — he was drawn straight through it.
+    # `_trim_floor` crops the empty rows under the sprite, so bottom-anchored
+    # means his feet are on the top of the circle.
     _bake_host(ax, _star_top[0], _star_top[1], _act_bb,
-               _beat(), zoom=0.8, align=_perf_align(_act_bb, (0.5, 0.80)))
+               _beat(), zoom=0.62, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, specs
 
@@ -2389,7 +2470,12 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
     vals = [p.value for p, _ in pts] or [0.0, 1.0]
     vmin, vmax = min(vals), max(vals)
     norm = Normalize(vmin, vmax if vmax > vmin else vmin + 1.0)
-    cmap = LinearSegmentedColormap.from_list("house", [ACCENT, HIGHLIGHT, WARN])
+    # ONE HUE, NEUTRAL -> ACCENT. It ramped ACCENT -> HIGHLIGHT -> WARN:
+    # three hues, ending on the ALARM colour, so the biggest city on the map
+    # was painted the same amber the baseline warning uses and meant nothing
+    # by it. A sequential quantity wants a sequential ramp in one hue —
+    # quiet where the value is low, the story's accent where it is high.
+    cmap = LinearSegmentedColormap.from_list("house", [REST, HIGHLIGHT])
     t = max(0.0, min(1.0, reveal))
     ax = fig.add_axes([0.04, 0.13, 0.92, 0.64])
     ax.set_axis_off(); ax.set_xlim(-125, -66); ax.set_ylim(24, 50)
@@ -2436,7 +2522,7 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
         r = (260 + 520 * norm(p.value)) * pop
         if r <= 0:
             continue
-        ax.scatter([lon], [lat], s=r, color=col, edgecolors="white",
+        ax.scatter([lon], [lat], s=r, color=col, edgecolors=GRID,
                    linewidths=1.8, zorder=4, alpha=0.95)
         # KEEP THE LABEL ON THE CARD. Centred on the pin, a west-coast metro
         # ran off the left edge and rendered as "eattle  6.8". Anchor the text
