@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ea72001b20b70769cf8edc78f7026ee3cd129c91dd5c63fd8c2b969a4fbddf16",
+  "prompt_used": "An editorial illustration for a short-form video: heavy duty padlock. It accompanies the narration: \"one of those hardened steel disc locks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "73dc7144849da277469b8ef0a24843686fb378118d698b69d370d35c29fc6213",
+    "bytes": 2256469,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-10T11:34:49.439Z"
+}
