@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s7-b3be9a3fead0",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s7-b3be9a3fead0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c57c5dc5d45664a06b95694f9abff45e8c06fed169ad5a92adfcb6671863b2dd",
+  "prompt_used": "An editorial illustration for a short-form video: person staring phone screen. It accompanies the narration: \"stared at the screen for a long ten seconds\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1d5r7ieM4ZBkjgnt7bSiWjAnTRH1OAKeH",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s7-b3be9a3fead0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1d5r7ieM4ZBkjgnt7bSiWjAnTRH1OAKeH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "619bca1476c2c8f209b1c1fff1c180ea6b1f9de5bb6f984e578f76a6101463e7",
+    "bytes": 1764525,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:35:06.882Z"
+}
