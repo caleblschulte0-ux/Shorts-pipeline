@@ -1620,6 +1620,27 @@
       "story_structure": "scene+scene+scene",
       "narrative_score": 57,
       "duration_s": 34.1
+    },
+    "buybacks-beat-dividends": {
+      "url": "https://youtube.com/shorts/Neo-ahUWG-U",
+      "title": "How Buybacks Quietly Beat Dividends (3 Charts)",
+      "at": "2026-09-10T00:57:45.410441+00:00",
+      "publish_at": "2026-09-10T05:48:32Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+comparison+scene",
+      "narrative_score": 82,
+      "duration_s": 38.3,
+      "hook": "inversion",
+      "topic_category": "finance",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:cash-tower-climb",
+        "viz:comparison",
+        "mechanic:cash-vs-check-duel"
+      ],
+      "words_first_10s": 14,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -1667,6 +1688,15 @@
       "state": "posted",
       "slug": "container-losses-red-sea-reroute",
       "at": "2026-09-09T22:54:32.089976+00:00"
+    },
+    {
+      "claimed_at": "2026-09-10T00:57:36.642307+00:00",
+      "title": "How Buybacks Quietly Beat Dividends (3 Charts)",
+      "publish_at": "2026-09-10T05:48:32Z",
+      "url": "https://youtube.com/shorts/Neo-ahUWG-U",
+      "state": "posted",
+      "slug": "buybacks-beat-dividends",
+      "at": "2026-09-10T00:57:45.410441+00:00"
     }
   ]
 }
