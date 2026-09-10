@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s9-ff87955289eb",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s9-ff87955289eb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "83db75139b64f51adb5a1a22b25502402bee36e8784c02e7859d79dc4e81de1c",
+  "prompt_used": "An editorial illustration for a short-form video: phone text message notification. It accompanies the narration: \"a very quiet apology text two days later\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1T6GW8M035ZMS6re7yVUHDcVOaC6QD5Uj",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s9-ff87955289eb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1T6GW8M035ZMS6re7yVUHDcVOaC6QD5Uj",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bd66a5c35601b997f896451b3590ee534ef969c56b670885ad7ca7c99cbcdf01",
+    "bytes": 1587926,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:35:08.934Z"
+}
