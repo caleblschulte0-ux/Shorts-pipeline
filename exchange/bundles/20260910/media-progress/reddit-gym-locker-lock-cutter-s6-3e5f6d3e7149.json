@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "00cc411bf4da227a04fd26c35b6f323934d028f722f2a4e09a5e092797cbe531",
+  "prompt_used": "An editorial illustration for a short-form video: man startled surprised. It accompanies the narration: \"He spun around\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c24c4a9c2c6a86ca3f7dd7eebdeba9fb8910f9e3048cad5eec68159ee4d28f4c",
+    "bytes": 1712535,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:51.229Z"
+}
