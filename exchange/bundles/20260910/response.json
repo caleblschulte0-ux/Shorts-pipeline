@@ -1,0 +1,545 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260910",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "cbdad35b98b64c22686bb2b405607cd198ed4ed4",
+    "production_date": "20260910",
+    "bundle_sha256": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92"
+  },
+  "media": [
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
+        "file_id": "1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1926756,
+        "format": "png",
+        "height": 1672,
+        "sha256": "5f2b351354830410e74696c5c7fe49ad81db47ac37205d09c63c5e2b2d831bd6",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
+        "file_id": "1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s1-eed2ec30bda3.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2084571,
+        "format": "png",
+        "height": 1672,
+        "sha256": "468de24dc9130265bd753aa4fafc5f663e1e0a6b17eeb0cad31d938effa536a4",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s1-eed2ec30bda3.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s3-7bdffe961dbd",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
+        "file_id": "1u6mzaLtWxoxLm58wC3uVuA5e-4g8yHy_",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2256469,
+        "format": "png",
+        "height": 1374,
+        "sha256": "73dc7144849da277469b8ef0a24843686fb378118d698b69d370d35c29fc6213",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s3-7bdffe961dbd.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s5-72c1ab934e13",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
+        "file_id": "1sHiStV709iPiyl6DcmE7r3QfFgWR32KD",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s5-72c1ab934e13.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1735344,
+        "format": "png",
+        "height": 1672,
+        "sha256": "b10caf1fe3f95cc4ecb361d9319995c99739bf2588a1f2eccfe5daafe665e729",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s5-72c1ab934e13.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
+        "file_id": "1hvt71wD5n4MipyObuJwT9Mw3Fwh0yXgW",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1712535,
+        "format": "png",
+        "height": 1672,
+        "sha256": "c24c4a9c2c6a86ca3f7dd7eebdeba9fb8910f9e3048cad5eec68159ee4d28f4c",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s6-3e5f6d3e7149.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s7-23d4cdb83845",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
+        "file_id": "1qiWvvucNXTS9pdeb_lFYIhKTa5mib539",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s7-23d4cdb83845.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1884323,
+        "format": "png",
+        "height": 1672,
+        "sha256": "ed7c2377dbea70b6fb081d38f401de5bada95c1c6a2535e0a6e768dc82b5a9a5",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s7-23d4cdb83845.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s8-e6036ad7e438",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
+        "file_id": "14hwEMXyBY03Vc3_acQl8DQFmrZ2RjSV9",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s8-e6036ad7e438.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1845653,
+        "format": "png",
+        "height": 1536,
+        "sha256": "9e2ec25afeb1b9589a1f7d141423f6c9d4ba13337753483c786dc15ee15d161d",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s8-e6036ad7e438.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s9-bad82d4b8b04",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
+        "file_id": "1hq-nUdHEdSo4cGGVZHEhDdtEpl3O5U5u",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2780437,
+        "format": "png",
+        "height": 1672,
+        "sha256": "b1df596fa8a903e2bf2d6e35d56fa8b228c23c2e12b181e7bb41c6997266ecdf",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s9-bad82d4b8b04.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s2-32c4e9c27480",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1kRxYBVN5a2AhHGTtArRV9C8Gyb00Slw1",
+        "file_id": "1kRxYBVN5a2AhHGTtArRV9C8Gyb00Slw1",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s2-32c4e9c27480.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1612400,
+        "format": "png",
+        "height": 1672,
+        "sha256": "c7dbf64b6b2dc75c9dc7bc83cddd2cafe405ecab5ac1692d78c77bc57cd02d1c",
+        "width": 940
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s2-32c4e9c27480.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-locker-lock-cutter-s4-52c53ade2886",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
+        "file_id": "1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
+        "filename": "20260910__reddit-gym-locker-lock-cutter-s4-52c53ade2886.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1742965,
+        "format": "png",
+        "height": 1672,
+        "sha256": "4a5f12aae729f7dd7b4c8a88f4821a4c0d9a2047d2b2e75a26752f8b7febf03d",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-gym-locker-lock-cutter-s4-52c53ade2886.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s0-acf59af38d80",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1nCQdz8VSR6FzaZ29wpV_NNmw0pQhXYWv",
+        "file_id": "1nCQdz8VSR6FzaZ29wpV_NNmw0pQhXYWv",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s0-acf59af38d80.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1963928,
+        "format": "png",
+        "height": 1672,
+        "sha256": "7864b60e7a375f431b5914fac74417bcc0dbc616b19b95c12a9c2bb2e91118cb",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s0-acf59af38d80.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s1-0df30e7e6a17",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1PgkoOO18k_RkTXN7lbeQY2kytA19jY4Z",
+        "file_id": "1PgkoOO18k_RkTXN7lbeQY2kytA19jY4Z",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s1-0df30e7e6a17.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2322331,
+        "format": "png",
+        "height": 1672,
+        "sha256": "5ef9622429d0a810b8631275cb1f8a14d058d8559b10678aac1e4f9dbbed5e7a",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s1-0df30e7e6a17.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s2-698542808241",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1qfMU2mksesnMcSe88_Fl2rCaQGc29-X9",
+        "file_id": "1qfMU2mksesnMcSe88_Fl2rCaQGc29-X9",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s2-698542808241.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2043973,
+        "format": "png",
+        "height": 1672,
+        "sha256": "72d9d658572f5caf77512e7d80d51f04f94745df5a24619431f8d07f090d9bf8",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s2-698542808241.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s3-60f148514f03",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1EhGV8xeFfuAu2wU94KUP2GPOxyibPwvI",
+        "file_id": "1EhGV8xeFfuAu2wU94KUP2GPOxyibPwvI",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s3-60f148514f03.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1694381,
+        "format": "png",
+        "height": 1374,
+        "sha256": "b8a2f36891a7883aebe7cd73eb32a6639d329800e19674a3dd5e68d7cfa79b6f",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s3-60f148514f03.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s4-10a54143fa41",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1EJz9kIvKtEd-Vmk6Bn9j9fc8_laAqpb0",
+        "file_id": "1EJz9kIvKtEd-Vmk6Bn9j9fc8_laAqpb0",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s4-10a54143fa41.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1677857,
+        "format": "png",
+        "height": 1374,
+        "sha256": "7205fb1ea4cca2aa2f96556c62d0c5633e0980c36f41c47bb65a5a5ee19fc3d7",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s4-10a54143fa41.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1WK3vP767OWWChPMPBWr_GccY0awyCcAx",
+        "file_id": "1WK3vP767OWWChPMPBWr_GccY0awyCcAx",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1829779,
+        "format": "png",
+        "height": 1672,
+        "sha256": "9a95615235d1fa75b02db2f8ed43cc43e1d3630a50cb19adfe026f069e82f473",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s5-3b4fb1c0e51b.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s6-e64b48863a68",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1BXqj5ggNdZDLgO5uyAHpCqO1cPA7-1QJ",
+        "file_id": "1BXqj5ggNdZDLgO5uyAHpCqO1cPA7-1QJ",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s6-e64b48863a68.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2192022,
+        "format": "png",
+        "height": 1374,
+        "sha256": "1168093c7827a71801f7ed3d850f90857960db77b712dc3e23e820ab418c4624",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s6-e64b48863a68.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s7-b3be9a3fead0",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1d5r7ieM4ZBkjgnt7bSiWjAnTRH1OAKeH",
+        "file_id": "1d5r7ieM4ZBkjgnt7bSiWjAnTRH1OAKeH",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s7-b3be9a3fead0.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1764525,
+        "format": "png",
+        "height": 1672,
+        "sha256": "619bca1476c2c8f209b1c1fff1c180ea6b1f9de5bb6f984e578f76a6101463e7",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s7-b3be9a3fead0.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s8-c9517d9b0a50",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Gx6xsR8zq09H1bqVf1AbhjjHrBXxtZw2",
+        "file_id": "1Gx6xsR8zq09H1bqVf1AbhjjHrBXxtZw2",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s8-c9517d9b0a50.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2004694,
+        "format": "png",
+        "height": 1672,
+        "sha256": "3d398764872d0a90e8dff16a8f8a0482fc55c19400a666294821f32d2938f189",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s8-c9517d9b0a50.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-mailbox-camera-s9-ff87955289eb",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1T6GW8M035ZMS6re7yVUHDcVOaC6QD5Uj",
+        "file_id": "1T6GW8M035ZMS6re7yVUHDcVOaC6QD5Uj",
+        "filename": "20260910__reddit-hoa-mailbox-camera-s9-ff87955289eb.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1587926,
+        "format": "png",
+        "height": 1672,
+        "sha256": "bd66a5c35601b997f896451b3590ee534ef969c56b670885ad7ca7c99cbcdf01",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260910/media-progress/reddit-hoa-mailbox-camera-s9-ff87955289eb.json",
+        "verified_at": "2026-09-10T11:36:53.257Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-boeing-airbus-crashes",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames Boeing’s dominance and the two-crash reversal."
+    },
+    {
+      "slug": "graph-us-oil-passed-saudi",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly names the US overtaking Saudi Arabia in oil production."
+    },
+    {
+      "slug": "graph-china-beat-hollywood-2020",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title states the specific 2020 China-versus-Hollywood box-office crossover."
+    },
+    {
+      "slug": "graph-bitcoin-closed-gap-gold",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title gives the chart’s central Bitcoin-versus-gold convergence."
+    },
+    {
+      "slug": "reddit-gym-locker-lock-cutter",
+      "script": "Cut my lock for WHAT? My gym uses day lockers: bring your own lock, clear it when you leave. I stepped out for one fifteen-minute class. A guy bolt-cut MY lock, claimed the locker, and left my gym bag on the bench like garbage. Front desk shrugged: lockers aren't guaranteed. Fine. I bought a bigger hardened steel disc lock and used the SAME locker every day. Two weeks later, during evening rush, he was sweating over it with the same bolt cutters. I stood behind him: need a bigger pair? He saw me, my gym bag, and my receipt, then bolted—leaving his broken cutters wedged in the vents. Front desk banned him the next day after three other members recognized him. The cutters now hang in my garage. Who keeps the trophy after losing to a locker?",
+      "editor_note": "Cut to 133 words, opened with a four-word question, preserved every number and beat, added one dry reaction, and landed on the garage-wall trophy."
+    },
+    {
+      "slug": "reddit-hoa-mailbox-camera",
+      "script": "She blamed my kid? A neighbor two houses down cornered me in the driveway, demanding two hundred dollars because my ten-year-old supposedly smashed her decorative mailbox while riding his bike. He was inside doing homework the entire afternoon. She got louder anyway. I calmly mentioned the doorbell camera I installed last spring covers the whole street—including her mailbox. She said, prove it. So I pulled up the footage on my phone. It showed HER own nephew, visiting for the week, clipping the post with her SUV while backing out that morning. She stared for ten long seconds, then said the footage was probably fake somehow. I sent the timestamped clip to the HOA group chat. Her nephew got grounded, my kid got an extra hour of video games that night, and a quiet apology arrived two days later. Does “probably fake” survive the HOA group chat?",
+      "editor_note": "Tightened to 132 words, front-loaded the accusation and two-hundred-dollar demand, preserved every number and entity, and ended on the HOA proof."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
