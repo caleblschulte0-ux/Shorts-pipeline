@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s1-eed2ec30bda3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1950e1bced136c763041718a8229c0f0110a1546cdded17bfd6216abbd399e08",
+  "prompt_used": "An editorial illustration for a short-form video: gym bag on bench. It accompanies the narration: \"my gym bag just sitting on the bench\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s1-eed2ec30bda3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1AaWl_xlUBg-fivTVuKoSSO6JLYVh-4-J",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "468de24dc9130265bd753aa4fafc5f663e1e0a6b17eeb0cad31d938effa536a4",
+    "bytes": 2084571,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:48.413Z"
+}
