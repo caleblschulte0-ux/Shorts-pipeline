@@ -1675,11 +1675,25 @@
       "duration_s": 49.5
     },
     "bald-eagle-population-rebound": {
-      "claimed_at": "2026-09-10T18:48:27.219319+00:00",
+      "url": "https://youtube.com/shorts/Vu_ZQg8xcec",
       "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
+      "at": "2026-09-10T18:48:32.332876+00:00",
       "publish_at": "2026-09-11T00:22:48Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 49.8,
+      "hook": "shock_stat",
+      "topic_category": "nature",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:eagle-sky-swarm",
+        "scene:object-rows",
+        "mechanic:empty-sky-to-flock"
+      ],
+      "words_first_10s": 20,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -1759,9 +1773,10 @@
       "claimed_at": "2026-09-10T18:48:27.219319+00:00",
       "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
       "publish_at": "2026-09-11T00:22:48Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "bald-eagle-population-rebound"
+      "url": "https://youtube.com/shorts/Vu_ZQg8xcec",
+      "state": "posted",
+      "slug": "bald-eagle-population-rebound",
+      "at": "2026-09-10T18:48:32.332876+00:00"
     }
   ]
 }
