@@ -201,9 +201,13 @@ class TestNothingClipsTheCard(unittest.TestCase):
         out = {"right": tb.x1 / W, "bottom": tb.y0 / H,
                "lines": t.get_text().count("\n") + 1,
                "size": t.get_fontsize()}
+        out["top"] = tb.y1 / H
         if subtitle:
             sb = fig.texts[1].get_window_extent(r)
             out["sub_top"] = sb.y1 / H
+            out["kick_bottom"] = sb.y0 / H
+            out["kick_right"] = sb.x1 / W
+            out["kick_y"] = (sb.y0 + sb.y1) / 2.0 / H
         _plt.close(fig)
         return out
 
@@ -238,24 +242,48 @@ class TestNothingClipsTheCard(unittest.TestCase):
         self.assertEqual(m["lines"], 2)
         self.assertLessEqual(m["right"], C.HEAD_RIGHT + 0.005)
 
-    def test_a_wrapped_title_never_reaches_the_subtitle(self):
-        """The fix must not trade a clipped title for an overlapping one."""
+    def test_a_wrapped_title_never_reaches_the_chart(self):
+        """The fix must not trade a clipped title for an overlapping one.
+
+        `SUB_Y` is the ceiling every chart composer lays out under; the
+        subtitle used to sit ON it, and now that the subtitle is a kicker
+        ABOVE the headline the ceiling is still the thing that matters.
+        """
         for title in _titles():
             if not title.strip():
                 continue
             m = self.measure(title, "since 1990")
             self.assertGreater(
-                m["bottom"], m["sub_top"],
-                f"{title!r}: title bottom {m['bottom']:.3f} is below "
-                f"subtitle top {m['sub_top']:.3f}")
+                m["bottom"], C.SUB_Y,
+                f"{title!r}: title bottom {m['bottom']:.3f} is below the "
+                f"chart ceiling {C.SUB_Y}")
 
-    def test_the_subtitle_never_moves(self):
-        """It sits at SUB_Y whatever the title does — anything else walks it
-        down onto the chart axes, whose tallest variant tops out at 0.85."""
+    def test_the_kicker_sits_above_the_headline(self):
+        """The eyebrow leads the headline; it is not a second one under it.
+
+        It was a 22pt bold all-caps line in the story's full-saturation
+        accent, directly under the title at the same margin — two headlines
+        stacked, with the machine-written one carrying the visual weight.
+        """
+        for title in ("People per sq km",
+                      "Agricultural land area as a share of total land area"):
+            m = self.measure(title, "since 1990")
+            self.assertGreater(m["kick_bottom"], m["top"],
+                               f"{title!r}: the kicker overlaps the headline")
+
+    def test_the_kicker_never_moves(self):
+        """It sits at KICK_Y whatever the title does."""
         for title in ("People per sq km",
                       "Agricultural land area as a share of total land area"):
             self.assertAlmostEqual(
-                self.measure(title, "since 1990")["sub_top"], C.SUB_Y, 3)
+                self.measure(title, "since 1990")["kick_y"], C.KICK_Y, 2)
+
+    def test_a_long_kicker_is_truncated_not_run_off_frame(self):
+        """A kicker is derived from the data, so nothing bounds its length."""
+        m = self.measure("People per sq km",
+                         "a subtitle written by a machine that simply kept "
+                         "going and going well past any sensible width")
+        self.assertLessEqual(m["kick_right"], C.HEAD_RIGHT + 0.005)
 
     def test_an_empty_title_does_not_explode(self):
         for t in ("", "   "):

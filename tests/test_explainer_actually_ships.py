@@ -130,10 +130,33 @@ class TestATruncatedAxisSaysSo(TrendCase):
         labels = [t for t in self.frame(HYDRO)["yticklabels"] if t.strip()]
         self.assertGreaterEqual(len(labels), 2)
 
-    def test_the_labels_carry_the_real_values(self):
-        labels = " ".join(self.frame(HYDRO)["yticklabels"])
-        self.assertIn("16.1", labels)
-        self.assertIn("18.7", labels)
+    def test_the_labels_carry_the_real_magnitudes(self):
+        """A truncated axis has to say WHERE it is, in the data's own units.
+
+        This asserted that the exact endpoints "16.1" and "18.7" were
+        printed, because the ticks were `[lo, (lo + hi) / 2, hi]` taken
+        straight off the data — which on a container-count axis printed
+        "2072.5" as a quantity of containers. `_nice_ticks` rounds them, so
+        the assertion moves to the property that was always the point: every
+        tick is a real magnitude inside the plotted range, and the bottom of
+        the scale is nowhere near zero, which is what makes the truncation
+        visible instead of flattering.
+        """
+        labels = [t for t in self.frame(HYDRO)["yticklabels"] if t.strip()]
+        vals = []
+        for t in labels:
+            try:
+                vals.append(float(t.replace("%", "").replace(",", "")
+                                   .replace("$", "").strip()))
+            except ValueError:
+                self.fail(f"tick {t!r} is not a magnitude")
+        self.assertGreaterEqual(len(vals), 2, labels)
+        lo, hi = 16.1, 18.7
+        for v in vals:
+            self.assertGreaterEqual(v, lo - 1.0, labels)
+            self.assertLessEqual(v, hi + 1.0, labels)
+        self.assertGreater(min(vals), 1.0,
+                           "a truncated axis whose scale reads as zero-based")
 
     def test_the_empty_tick_list_is_gone(self):
         src = (ROOT / "data_learning" / "charts.py").read_text()

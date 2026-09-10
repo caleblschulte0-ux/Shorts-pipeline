@@ -25,7 +25,6 @@ from shared.palette import series_color
 from .insights import Insight
 
 # House palette (from the design spec).
-BG = "#0B1020"
 # ---- THE CHANNEL'S TOKENS ------------------------------------------------
 # These used to be six hand-picked hexes. They are now the design system's
 # (`shared/look.py`), so the data channel, the curiosity channel and the
@@ -45,6 +44,13 @@ HIGHLIGHT = _hex(_look.accent()[0])   # the story's ONE accent
 ACCENT = _hex(_look.accent()[1])      # its dim partner, for supporting marks
 WARN = "#F59E0B"
 BAR_BASE = "#161B2E"               # the track: one step off the ground
+REST = _hex(_look.REST)            # supporting marks: NEUTRAL ink, not dim gold
+NAME_REST = "#6E7A99"              # a supporting row's name: readable, recessive
+# ONE GRID COLOUR. There were three — `#1E2A44` in four composers, `#1b2540`
+# in two more, and a fresh `#232D4A` in a seventh — which is how a channel
+# ends up with rules that are subtly different shades of the same idea in
+# consecutive shots of the same video. Grid is chrome; chrome is a token.
+GRID = "#232D4A"
 
 # How many entries the waffle names below its grid. `series_color` reads it
 # so a slice is never coloured without a legend row to say what it is.
@@ -87,7 +93,6 @@ FALLBACK = {
 }
 
 # Top-half canvas: 1080x960 at 100 dpi -> 10.8 x 9.6 inches.
-FIG_W, FIG_H, DPI = 10.8, 9.6, 100
 
 
 _TYPE_READY = False
@@ -131,85 +136,25 @@ def _have_mpl() -> bool:
 
 
 def render_chart(insight: Insight, out_path: Path) -> Path | None:
-    """Render a chart PNG for the insight. Returns the path, or None when
-    matplotlib is unavailable."""
+    """The manual review renderer — the SAME picture the channel ships.
+
+    This had its own drawing code: a flat `#0B1020` figure facecolour, two
+    private `_draw_*` helpers, matplotlib's default face and a centred
+    footer. It is reachable only from `python -m data_learning.generate`,
+    which is how it survived every look change — a reviewer running it saw a
+    chart the pipeline had not produced in months, and a session reading it
+    saw a second, contradictory house style. It delegates now, so there is
+    one composer.
+    """
     if not _have_mpl():
         return None
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    fig, ax = plt.subplots(figsize=(FIG_W, FIG_H), dpi=DPI)
-    fig.patch.set_facecolor(BG)
-    ax.set_facecolor(BG)
-
-    if insight.kind == "trend":
-        _draw_trend(ax, insight)
-    else:
-        _draw_bars(ax, insight)
-
-    # Source footer.
-    fig.text(0.5, 0.03, insight.source.footer(), ha="center", va="bottom",
-             fontsize=11, color=SUBTLE)
-    for spine in ax.spines.values():
-        spine.set_visible(False)
-    ax.tick_params(colors=SUBTLE)
-    fig.subplots_adjust(left=0.30, right=0.95, top=0.86, bottom=0.10)
-    fig.savefig(out_path, facecolor=BG)
-    plt.close(fig)
-    return out_path
+    path, _anchors = render_story_chart(insight, out_path)
+    return Path(path) if path else None
 
 
 def _title(ax, insight: Insight):
     ax.set_title(insight.topic, color=TEXT, fontsize=30, fontweight="bold",
                  pad=24, loc="left")
-
-
-def _draw_bars(ax, insight: Insight):
-    items = list(insight.items)
-    if insight.baseline:
-        items = items + [insight.baseline]
-    labels = [p.label for p in items]
-    values = [p.value for p in items]
-    y = list(range(len(items)))
-    colors = []
-    for p in items:
-        if insight.baseline and p.label == insight.baseline.label:
-            colors.append(WARN)
-        elif p.label == insight.highlight_label:
-            colors.append(HIGHLIGHT)
-        else:
-            colors.append(ACCENT)
-    ax.barh(y, values, color=colors, height=0.62, zorder=3)
-    ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=22, color=TEXT)
-    ax.invert_yaxis()
-    ax.set_xticks([])
-    vmax = max(values) if values else 1
-    for yi, v in zip(y, values):
-        ax.text(v + vmax * 0.015, yi, _ulabel(v, insight.unit), va="center",
-                fontsize=22, color=TEXT, fontweight="bold")
-    ax.set_xlim(0, vmax * 1.18)
-    _title(ax, insight)
-
-
-def _draw_trend(ax, insight: Insight):
-    pts = insight.items
-    x = list(range(len(pts)))
-    values = [p.value for p in pts]
-    ax.plot(x, values, color=HIGHLIGHT, linewidth=4, marker="o",
-            markersize=8, zorder=3)
-    ax.set_xticks(x)
-    ax.set_xticklabels([p.label for p in pts], fontsize=18, color=SUBTLE)
-    ax.tick_params(axis="y", labelsize=18, colors=SUBTLE)
-    # Headroom on the right so the end label isn't clipped at the edge.
-    ax.set_xlim(-0.3, (len(pts) - 1) + 0.7)
-    # End-label the last value.
-    ax.text(x[-1], values[-1], f"  {values[-1]:.1f}", va="center",
-            fontsize=24, color=TEXT, fontweight="bold")
-    ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
-    _title(ax, insight)
 
 
 # ---------------------------------------------------------------------------
@@ -440,10 +385,36 @@ def _host_img(action: str, phase: float):
                                 "ground": _ground}, _t)
         png = _md._rasterise(svg, 300)
         val = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA")) / 255.0
+        val = _trim_floor(val)
     except Exception:  # noqa: BLE001 — a chart must never die over the host
         val = None
     _HOST_IMG_CACHE[key] = val
     return val
+
+
+def _trim_floor(img):
+    """Crop the EMPTY ROWS UNDER HIS FEET off a rasterised mascot frame.
+
+    `_bake_host(..., align=(0.5, 0.0))` says "his feet are at this point", and
+    that is only true if the bottom of the array is the bottom of the
+    character. The SVG canvas is a fixed box he does not fill, so on a rank
+    chart he stood a visible 35px ABOVE the bar he is supposed to be standing
+    on — the sprite was touching, the character was hovering.
+
+    ONLY the bottom is trimmed. Cropping to the full alpha bounding box would
+    re-centre him horizontally on every frame, and his arms move: a raised
+    arm would shift the whole character sideways for one frame and read as
+    jitter. His feet are the stable edge, so his feet are the one we cut to.
+    """
+    try:
+        a = img[:, :, 3]
+        rows = (a > 0.02).any(axis=1)
+        if not rows.any():
+            return img
+        last = int(rows.nonzero()[0][-1])
+        return img[: last + 1] if last + 1 < img.shape[0] else img
+    except Exception:  # noqa: BLE001 — never fail a render over a crop
+        return img
 
 
 def _perf_phase(phase: float) -> float:
@@ -660,39 +631,6 @@ def _ordered_items(insight: Insight) -> list:
     return items
 
 
-def series_length(insight: Insight) -> int:
-    items = _ordered_items(insight)
-    if insight.kind == "trend":
-        return max(1, len(items) - 1)      # states: 2 points .. all points
-    return len(items)
-
-
-def _new_card():
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch
-
-    _use_channel_type()
-    fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
-    fig.patch.set_alpha(0.0)               # transparent outside the card
-    # Background axes holds the rounded card so it draws *under* the data
-    # axes (figure-level patches would paint over everything).
-    bg = fig.add_axes([0, 0, 1, 1])
-    bg.set_axis_off()
-    bg.set_zorder(0)
-    card = FancyBboxPatch(
-        (0.02, 0.02), 0.96, 0.96,
-        boxstyle="round,pad=0.0,rounding_size=0.04",
-        transform=fig.transFigure, facecolor=CARD, edgecolor=CARD_EDGE,
-        linewidth=2, alpha=0.93)
-    bg.add_patch(card)
-    ax = fig.add_axes([0.30, 0.12, 0.62, 0.66])
-    ax.set_facecolor("none")
-    ax.set_zorder(1)
-    return fig, ax, plt
-
-
 def _color_for(p, insight: Insight, revealed: bool):
     if not revealed:
         return "#16203a"                   # ghosted (not yet revealed)
@@ -703,54 +641,10 @@ def _color_for(p, insight: Insight, revealed: bool):
     return ACCENT
 
 
-def _draw_bars_state(ax, insight: Insight, k: int):
-    """Reveal the first ``k`` items of a bar chart; rest are ghosted."""
-    items = _ordered_items(insight)
-    labels = [p.label for p in items]
-    values = [p.value for p in items]
-    y = list(range(len(items)))
-    vmax = max(values) if values else 1
-    for i, (yi, p, v) in enumerate(zip(y, items, values)):
-        revealed = i < k
-        shown = v if revealed else 0.0
-        ax.barh(yi, shown, color=_color_for(p, insight, revealed),
-                height=0.62, zorder=3)
-        if revealed:
-            ax.text(v + vmax * 0.015, yi, _ulabel(v, insight.unit),
-                    va="center", fontsize=24, color=TEXT, fontweight="bold")
-    ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=24, color=TEXT)
-    ax.invert_yaxis()
-    ax.set_xticks([])
-    ax.set_xlim(0, vmax * 1.18)
-
-
-def _draw_trend_state(ax, insight: Insight, k: int):
-    """Draw the line up to point index ``k`` (k>=1)."""
-    pts = insight.items
-    x = list(range(len(pts)))
-    values = [p.value for p in pts]
-    kk = min(len(pts), k + 1)
-    ax.plot(x[:kk], values[:kk], color=HIGHLIGHT, linewidth=5, marker="o",
-            markersize=10, zorder=3)
-    ax.set_xticks(x)
-    ax.set_xticklabels([p.label for p in pts], fontsize=20, color=SUBTLE)
-    ax.tick_params(axis="y", labelsize=20, colors=SUBTLE)
-    ax.set_xlim(-0.3, (len(pts) - 1) + 0.7)
-    ax.set_ylim(min(values) - (max(values) - min(values)) * 0.12 - 0.2,
-                max(values) * 1.12 + 0.2)
-    if kk >= 1:
-        ax.text(x[kk - 1], values[kk - 1],
-                "  " + _ulabel(values[kk - 1], insight.unit),
-                va="center", fontsize=26, color=TEXT, fontweight="bold")
-    ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
-
-
 def _card_base():
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch
 
     _use_channel_type()
     fig = plt.figure(figsize=(SERIES_W, SERIES_H), dpi=SERIES_DPI)
@@ -758,21 +652,61 @@ def _card_base():
     bg = fig.add_axes([0, 0, 1, 1])
     bg.set_axis_off()
     bg.set_zorder(0)
-    card = FancyBboxPatch(
-        (0.02, 0.02), 0.96, 0.96,
-        boxstyle="round,pad=0.0,rounding_size=0.045",
-        transform=fig.transFigure, facecolor=CARD, edgecolor=CARD_EDGE,
-        linewidth=2, alpha=0.95)
-    bg.add_patch(card)
+    # NO CARD.
+    #
+    # This drew a rounded rectangle with a 2px border across 96% of the frame,
+    # and it is the single strongest "this is a dashboard" signal the channel
+    # had: a bordered panel floating on a gradient is a UI widget, not a shot.
+    # `repair_planner` even has a defect code for it — `UI_WIDGET`.
+    #
+    # The data lives on the GROUND now (`shared/look.ground`, composited by
+    # the renderer beneath this transparent figure), full-bleed, the way every
+    # channel this one is measured against does it. Nothing is drawn here.
     return fig, plt
 
 
 # The title band: from the left text margin to a matching right margin
 # inside the card. `_heading` fits the title to THIS width, measured.
-HEAD_X = 0.085
-HEAD_RIGHT = 0.915
-HEAD_Y = 0.91
+# ONE MARGIN, and everything hangs off it. With the card gone the type no
+# longer needs to sit inside a panel's padding, so the block moves out to a
+# true page margin and the headline gets the width it wants.
+HEAD_X = 0.068
+HEAD_RIGHT = 0.932
+#: The KICKER sits above the headline, not below it (see `_heading`).
+KICK_Y = 0.952
+HEAD_Y = 0.918
 SUB_Y = 0.845
+
+
+#: Straight quotes are a typewriter artefact; a headline set in a display
+#: face and then punctuated with `'` reads as unfinished no matter how good
+#: the rest of the frame is. Titles arrive from a brain and from data
+#: sources, so the substitution happens at the one place they are drawn.
+_QUOTES = ((" - ", " \u2014 "), ("--", "\u2014"), ("'", "\u2019"),
+           ("...", "\u2026"))
+
+
+def _typeset(text: str) -> str:
+    """Real punctuation for the one line of type the viewer actually reads."""
+    out = " ".join(str(text).split())
+    for a, b in _QUOTES:
+        out = out.replace(a, b)
+    return out
+
+
+def _display_face():
+    """The headline face: Inter *Display*, the optical size cut for large type.
+
+    Inter ships two optical sizes and they are not interchangeable at 46pt:
+    the text cut keeps loose spacing and open apertures for body copy, which
+    at headline size reads soft. The Display cut tightens both. It is already
+    committed under `assets/fonts`; nothing here fetches.
+    """
+    try:
+        f = _look.FONT_DIR / "InterDisplay-Bold.ttf"
+        return str(f) if f.exists() else None
+    except Exception:  # noqa: BLE001
+        return None
 
 
 def _title_clears_subtitle(fig, text: str, fp) -> bool:
@@ -813,6 +747,7 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
     """
     # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)").
     title = re.sub(r"\s*\([^)]*\)\s*$", "", title).strip()
+    title = _typeset(title)
     W_px = fig.get_size_inches()[0] * fig.dpi
     band = (HEAD_RIGHT - HEAD_X) * W_px
     # SHRINK BEFORE WRAPPING. The tallest chart axes on this card top out at
@@ -820,7 +755,8 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
     # pushes the subtitle onto the plot. Trading a clipped title for one
     # printed over the chart is not a fix. One line down to 24pt first; only
     # a title that cannot fit even there is allowed to wrap.
-    fitted, fp = fit_title(fig, title, None, band, max_lines=1, hi=42, lo=24)
+    fitted, fp = fit_title(fig, title, _display_face(), band,
+                           max_lines=1, hi=46, lo=26)
     if "\n" in fitted or len(fitted.split()) < len(title.split()):
         # A TWO-LINE TITLE IS CAPPED BY MEASUREMENT, NOT BY A CONSTANT.
         #
@@ -839,7 +775,7 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
         _hi = int(max(20, min(32, (_band_px - 10) * 72.0 /
                               (fig.dpi * 2 * 1.08))))
         for _try in range(6):
-            fitted, fp = fit_title(fig, title, None, band,
+            fitted, fp = fit_title(fig, title, _display_face(), band,
                                    max_lines=2, hi=_hi, lo=20)
             if _title_clears_subtitle(fig, fitted, fp):
                 break
@@ -847,15 +783,131 @@ def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
             if _hi < 20:
                 break
     fig.text(HEAD_X, HEAD_Y, fitted, color=TEXT, fontproperties=fp,
-             ha="left", va="top", linespacing=1.08)
+             ha="left", va="top", linespacing=1.02)
     if subtitle:
-        fig.text(HEAD_X, SUB_Y, subtitle.upper(), color=accent,
-                 fontsize=22, fontweight="bold", ha="left", va="top")
+        _kicker(fig, subtitle, accent)
+
+
+def _kicker(fig, text: str, accent: str = HIGHLIGHT):
+    """The eyebrow ABOVE the headline: accent tick, then muted small caps.
+
+    It used to be a 22pt BOLD ALL-CAPS line in full-saturation gold, sitting
+    directly under the headline at the same left margin and very nearly the
+    same optical weight. Two headlines stacked is not a hierarchy — the eye
+    has nowhere to land first, and the second one is the WEAKER sentence,
+    because it is machine-written from the data ("1966 (APOLLO BUILDUP) TOPS
+    THE LIST") and simply restates what the chart is about to show.
+
+    Above the headline, small, letterspaced and in secondary ink with one
+    short accent tick in front of it, the same string does the job it is
+    actually good at: it says which slice of the world this is, and then
+    gets out of the way. That is the shape every editorial channel this one
+    is measured against uses, and it costs nothing but the ordering.
+    """
+    from matplotlib.patches import Rectangle
+    label = " ".join(str(text).split()).upper()
+    # LETTERSPACE BY MEASUREMENT-FREE INSERTION. matplotlib has no tracking
+    # property; a thin space between glyphs is the standard workaround and is
+    # what makes small caps read as deliberate rather than merely small.
+    spaced = "\u2009".join(label)
+    spaced = _fit_text_to(fig, spaced, HEAD_RIGHT - HEAD_X - 0.028, 17)
+    # the tick: 4px of the story's accent, cap height, hard left margin
+    _h = 0.020
+    fig.add_artist(Rectangle((HEAD_X, KICK_Y - _h * 0.5), 0.0045, _h,
+                             transform=fig.transFigure, facecolor=accent,
+                             edgecolor="none", zorder=6))
+    fig.text(HEAD_X + 0.018, KICK_Y, spaced, color=SUBTLE,
+             fontproperties=_ui_face(17), ha="left", va="center")
+
+
+def _fit_text_to(fig, text: str, frac_w: float, size: int) -> str:
+    """Truncate `text` to `frac_w` of the figure at `size` — by MEASUREMENT.
+
+    A kicker is derived from the data, so its length is not bounded by
+    anything; unmeasured, the long ones run off frame exactly as the
+    headline used to before `shared.fit_title` existed.
+    """
+    try:
+        r = fig.canvas.get_renderer()
+        W = fig.get_size_inches()[0] * fig.dpi
+        def _w(t):
+            probe = fig.text(0, 0, t, fontproperties=_ui_face(size))
+            out = probe.get_window_extent(renderer=r).width
+            probe.remove()
+            return out
+        if _w(text) <= frac_w * W:
+            return text
+        lo, hi = 0, len(text)
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if _w(text[:mid].rstrip() + "\u2026") <= frac_w * W:
+                lo = mid
+            else:
+                hi = mid - 1
+        return (text[:lo].rstrip() + "\u2026") if lo else ""
+    except Exception:  # noqa: BLE001 — a look, never a blocker
+        return text
 
 
 def _footer(fig, insight: Insight):
-    fig.text(0.5, 0.045, insight.source.footer(), ha="center", fontsize=12,
-             color=SUBTLE)
+    """The source line, on the page margin.
+
+    It was centred, which is the one alignment nothing else on the card uses
+    — headline, kicker, row names and bars all start at `HEAD_X`. A centred
+    footer under a left-aligned block is the small tell that the layout was
+    assembled rather than designed, and it is free to fix.
+    """
+    fig.text(HEAD_X, 0.042, insight.source.footer(), ha="left", fontsize=11,
+             color=_hex(_look.INK_3))
+
+
+def _measure_pts(fig, text: str, fp) -> float:
+    """Rendered width of `text` in POINTS, at the face it will be drawn in."""
+    try:
+        r = fig.canvas.get_renderer()
+        probe = fig.text(0, 0, text, fontproperties=fp)
+        w = probe.get_window_extent(renderer=r).width
+        probe.remove()
+        return w * 72.0 / fig.dpi
+    except Exception:  # noqa: BLE001 — fall back to the advance estimate
+        return _fit_width_pts(text, getattr(fp, "get_size", lambda: 30)())
+
+
+def _fit_width_pts(text: str, size: float) -> float:
+    return len(text) * float(size) * _ADV
+
+
+def _ui_face(size: int):
+    """Inter SemiBold, by FILE.
+
+    `fontweight="semibold"` is not a weight matplotlib resolves against a
+    static family — it warns `Failed to find font weight semibold, now using
+    700` and silently draws Bold. A kicker set in Bold is a second headline,
+    which is the exact thing the kicker exists to stop being.
+    """
+    import matplotlib.font_manager as fm
+    try:
+        f = _look.FONT_DIR / "Inter-SemiBold.ttf"
+        if f.exists():
+            return fm.FontProperties(fname=str(f), size=size)
+    except Exception:  # noqa: BLE001
+        pass
+    return fm.FontProperties(weight="bold", size=size)
+
+
+def _num_face(size: int):
+    """The face a VALUE is set in — the display cut, always.
+
+    Numbers are the loudest type on this channel and they were being set in
+    the same weight as a row name with `fontweight="bold"` bolted on, which
+    matplotlib resolves to whatever bold face it can find. Pinning them to
+    Inter Display Bold is what makes "4.4%" read as a headline number rather
+    than as emphasised body copy.
+    """
+    import matplotlib.font_manager as fm
+    f = _display_face()
+    return (fm.FontProperties(fname=f, size=size) if f
+            else fm.FontProperties(weight="bold", size=size))
 
 
 def _round_barh(ax, y, value, lw, color, zorder=3):
@@ -943,22 +995,66 @@ def _lblalpha(reveal: float) -> float:
 
 
 def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
-    """Rounded horizontal bars on a track — for rankings/outliers."""
+    """A ranking, set the way an editorial ranking is set.
+
+    Bar, then its name under it, then its value right-aligned in a column at
+    the far margin with the rail running out to meet it. Everything — kicker,
+    headline, bar origin, row name — hangs off the single page margin
+    `HEAD_X`, which is what makes the frame read as one composition instead
+    of a chart pasted onto a background.
+
+    What it replaced, and why each piece went:
+
+    - **Row names were y-TICKS**, drawn outside the axes into a right-aligned
+      gutter whose width was a guess. A long name walked off the card
+      ("1966 (Apollo buildup)" shipped as "5 (Apollo buildup)") and the
+      ragged gutter shoved the plot into whatever was left. A name drawn
+      INSIDE the axes at x=0 has the whole frame and no gutter to overflow.
+    - **The value hung off each bar's own tip**, so it landed at a different
+      x on every row and, on a short bar, sat in the middle of the rail —
+      a number with a rule struck through it.
+    - **The axes were a fixed 0.60 of the card** at any row count, so three
+      rows sat 300px apart around 110px of content and the bottom third of
+      the frame was empty. Row pitch is a constant of the look now.
+    - **Everything but the leader was the accent's dim partner**, a muddy
+      olive that reads as *disabled* rather than as context (`look.REST`).
+    """
     items = _ordered_items(insight)
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
-    lw = _bar_lw(n)
-    # ROOM FOR THE NAME. The row labels are y-ticks drawn OUTSIDE the axes, so
-    # a long one just walks off the card — measured on the shipped Moon video,
-    # "1966 (Apollo buildup)" rendered as "5 (Apollo buildup)" and 2.27% of
-    # the outer eight pixels carried ink. The axes' left edge is derived from
-    # the longest label now, instead of a fixed 0.32.
-    _lblf = _fit_fontsize(max((str(p.label) for p in items), key=len),
-                          _axes_pts(0.30), 27)
-    _need = max(len(str(p.label)) * _lblf * _ADV for p in items) + 26
-    _left = min(0.46, max(0.20, _need / (SERIES_W * 72.0) + 0.045))
-    ax = fig.add_axes([_left, 0.17, 0.94 - _left, 0.58])
+    # ---- the block: one pitch, optically centred in the band it may use ----
+    _top, _bot = SUB_Y - 0.045, 0.095
+    _pitch = min(0.19, (_top - _bot) / max(1, n))
+    _h = _pitch * n
+    _b = _bot + (_top - _bot - _h) * 0.55       # optical centre, not arithmetic
+    _rowpx = max(1.0, _pitch * SERIES_H * SERIES_DPI)
+    lw = _bar_lw(n, _h)
+    # ---- type sized FROM THE ROW, never from a constant --------------------
+    # Three rows in a 9:16 frame get a 260-point row; six get 130. A fixed
+    # 26pt name is lost in the first and collides in the second. This is a
+    # video watched at thumb size: the type has to grow into the space it is
+    # given.
+    _rowpt = _pitch * SERIES_H * 72.0
+    _name_pt = int(max(20, min(36, _rowpt * 0.132)))
+    _val_hi = int(max(30, min(60, _rowpt * 0.205)))
+    _val_lo = int(max(24, min(42, _rowpt * 0.150)))
+    # ---- the values column is as wide as the widest value, MEASURED --------
+    # The x limit was a flat `vmax * 1.34`: a guess that left the longest bar
+    # 4px from a right-aligned "4.4%" and would print one straight through
+    # "$1,240 billion".
+    _widest = max((_ulabel(v, insight.unit) for v in values), key=len,
+                  default="")
+    _colpt = _measure_pts(fig, _widest, _num_face(_val_hi))
+    _axpt = max(1.0, _axes_pts(HEAD_RIGHT - HEAD_X))
+    _colf = min(0.42, (_colpt + 44.0) / _axpt)
+    _gutter = 1.0 / max(0.30, 1.0 - _colf)
+    # ---- a name and its bar are ONE unit, so the gap is pixels -------------
+    # It was `i - 0.30` — 30% of a row, which on a three-row chart put the
+    # name almost exactly halfway between its own bar and the one above it.
+    # Proximity is the grouping cue; it has to be a constant distance.
+    _name_gap = min(0.34, (lw * SERIES_DPI / 72.0 * 0.5 + 18) / _rowpx)
+    ax = fig.add_axes([HEAD_X, _b, HEAD_RIGHT - HEAD_X, _h])
     ax.set_facecolor("none")
     arts = []
     for i, (p, v) in enumerate(zip(items, values)):
@@ -967,67 +1063,66 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         elif p.label == insight.highlight_label:
             color = HIGHLIGHT
         else:
-            color = ACCENT
-        _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
+            color = REST
+        _lead = color in (HIGHLIGHT, WARN)
+        # THE RAIL: recessive, but not absent. The dark filled track behind
+        # every bar was chrome carrying no data; the hairline that replaced
+        # it, at 1.4px and 55% alpha on this ground, measured as one row of
+        # near-black pixels and was invisible except where a short bar left
+        # it exposed — so it read as an artefact of the small bars rather
+        # than as the shared scale every bar is measured against.
+        ax.plot([0.0, vmax], [i, i], color=GRID, lw=2.0,
+                solid_capstyle="butt", zorder=1)
         tip = max(v * reveal, vmax * 0.012)
         _round_barh(ax, i, tip, lw, color, zorder=3)
-        # Winner (i==0) carries the mascot on its tip, so its number lives INSIDE
-        # the bar (white) — clear of the pushing host; the rest label outside.
-        # THE VALUE GOES OUTSIDE THE TIP, ALWAYS. It used to sit INSIDE the
-        # winning bar, which only worked because the bar was 165 points thick.
-        # Capped to the house spec a bar is 22pt and a 30pt number does not
-        # fit inside it — the standard says exactly that: only label inside a
-        # mark when the text fits with comfortable padding on both sides.
-        t = ax.text(v + vmax * 0.025, i, _ulabel(v, insight.unit),
-                    va="center", ha="left", fontsize=30, color=TEXT,
-                    fontweight="bold", zorder=9, alpha=_lblalpha(reveal))
+        # THE NAME GOES UNDER THE BAR, and the air goes above it: Data stands
+        # ON the bar he is touring (that attachment is the point of the bake)
+        # and he is 130px tall against a 33px name gap, so above the bar he
+        # printed through "1966 (Apollo buildup)". Underneath, the name is
+        # just as clearly grouped with its own bar — proximity does not care
+        # which side it is on — and the inter-row gap becomes his stage.
+        ax.text(0.0, i + _name_gap, str(p.label), va="top", ha="left",
+                fontsize=_name_pt, color=SUBTLE if _lead else NAME_REST,
+                zorder=4)
+        # The value, right-aligned in the one column. Text wears INK, never
+        # the series colour (see `shared/palette`): the coloured mark beside
+        # it already carries the identity.
+        t = ax.text(vmax * _gutter, i, _ulabel(v, insight.unit),
+                    va="center", ha="right",
+                    color=TEXT if _lead else SUBTLE,
+                    fontproperties=_num_face(_val_hi if _lead else _val_lo),
+                    zorder=9, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
-    ax.set_yticks(range(n))
-    ax.set_yticklabels([p.label for p in items], fontsize=_lblf, color=SUBTLE)
-    # Tint the winner's (and baseline's) label so the eye lands on it.
-    for lbl, p in zip(ax.get_yticklabels(), items):
-        if insight.baseline and p.label == insight.baseline.label:
-            lbl.set_color(WARN)
-        elif p.label == insight.highlight_label:
-            # TEXT WEARS INK, NEVER THE SERIES COLOUR (`shared/look`). A light
-            # accent is illegible as type, and colouring the name burns the
-            # one channel that carries identity. The coloured MARK beside it
-            # already says which row matters; the name gets weight.
-            lbl.set_color(TEXT)
-            lbl.set_fontweight("bold")
+    ax.set_yticks([])
     ax.invert_yaxis()
     ax.set_xticks([])
-    ax.set_xlim(0, vmax * 1.34)          # room for the outside tip label
+    ax.set_xlim(0, vmax * _gutter)
     ax.set_ylim(n - 0.5, -0.5)
-    for s in ax.spines.values():
-        s.set_visible(False)
+    for s_ in ax.spines.values():
+        s_.set_visible(False)
     ax.tick_params(length=0)
-    # BAKE THE HOST: Data shoves the WINNING bar (i==0, top row) out along its
-    # growing tip — a full setup->action->payoff arc across the beat. Without
-    # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
-    # would show NO mascot at all.
-    # THE TOUR (see `_tour_index`): he works his way UP the ranking as the
-    # beat runs and lands on the winner for the finale, instead of standing
-    # on the winner's tip from the moment the build finishes.
+    # BAKE THE HOST. `rank`/`bars` is in BAKED_CHART_KINDS (the overlay is
+    # suppressed), so without this the beat shows no mascot at all. THE TOUR
+    # (`_tour_index`) walks him UP the ranking as the beat runs and lands him
+    # on the winner for the finale, instead of parking him on the winner from
+    # the moment the build finishes.
     _row = _tour_index(len(values))
     _wtip = max(_tour_tip(values, _row) * max(0.0, min(1.0, reveal)),
                 vmax * 0.02)
     _act_b = _perf_action(insight, "rank")
-    # HE STANDS ON THE BAR, NOT ON ITS NUMBER.
-    #
-    # Two things changed under him at once: the mark is 22 points instead of
-    # 165, so at zoom 0.9 he dwarfed the data; and the value label moved from
-    # inside the bar to just past its tip — which is exactly where he stood.
-    # `_numbers_on_top` then drew the number straight through him.
-    #
-    # So the bar becomes his floor: anchored at its MIDDLE, feet on its top
-    # edge. He is still in contact with the datum he is touring — the whole
-    # point of the bake — and the tip label is clear to his right.
-    _bake_host(ax, _wtip * 0.55, _row - 0.42, _act_b, _beat(),
-               zoom=0.46, align=(0.5, 1.0))
+    # FEET ON THE BAR'S TOP EDGE, MEASURED FROM THE BAR. He used to hang from
+    # his HEAD at a flat 0.42 of a row above the datum, so where his feet
+    # landed depended on how tall the row happened to be — at this pitch they
+    # landed *inside* the bar. Anchoring his BOTTOM and offsetting by the
+    # bar's own half-thickness makes him stand on it at every row count,
+    # which is the contract `_ATTACH_FRAME` records. (`_trim_floor` is the
+    # other half of that: the sprite's empty rows are cropped, so "bottom"
+    # means his feet and not the edge of the SVG canvas.)
+    _stand = (lw * SERIES_DPI / 72.0 * 0.5) / max(1.0, _rowpx)
+    _bake_host(ax, _wtip * 0.55, _row - _stand, _act_b, _beat(),
+               zoom=0.44, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, arts
-
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Two tall rounded columns with big numbers — for comparisons."""
@@ -1037,8 +1132,24 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # arrived sorted by magnitude, and pinning the host and the inside-number
     # to `items[0]` now would hang them off the smaller bar.
     left, right = insight.items[0], insight.items[1]
-    pair = [(left, HIGHLIGHT), (right, ACCENT)]
+    # THE ACCENT FOLLOWS THE STORY, NOT THE DRAW ORDER.
+    #
+    # `pair` painted items[0] the accent and items[1] the supporting tone,
+    # while `win` was decided by value — so on any comparison whose bigger
+    # side is drawn second (every "then and now" that went UP, which is most
+    # of them) the channel's one accent landed on the side the video is not
+    # about, and the winner's number was then written in the colour picked
+    # to sit on the accent. Buybacks vs dividends rendered "$942B" in
+    # near-black on a slate column: the headline number of the video,
+    # invisible.
     win = 0 if left.value >= right.value else 1
+    if insight.highlight_label:
+        for _i, _p in enumerate((left, right)):
+            if _p.label == insight.highlight_label:
+                win = _i
+                break
+    pair = [(left, HIGHLIGHT if win == 0 else REST),
+            (right, HIGHLIGHT if win == 1 else REST)]
     hi = insight.items[win]
     vmax = max(left.value, right.value)
     # Tall axes + WIDE columns so two bars actually fill the 9:16 card (they used
@@ -1046,16 +1157,33 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     _AX = (0.08, 0.11, 0.84, 0.74)          # left, bottom, width, height
     ax = fig.add_axes(list(_AX))
     ax.set_facecolor("none")
-    lw = 165
+    # A COLUMN IS A MARK, NOT A WALL.
+    #
+    # This was a bare `lw = 165` — 252 pixels of fully saturated capsule,
+    # twice. `look.bar_thickness` exists exactly so no composer can pick its
+    # own number again; a comparison legitimately wants a wider mark than a
+    # ranking row, so it asks for a wider band, and still gets a cap.
+    lw = _look.bar_thickness(int(SERIES_W * SERIES_DPI),
+                             _AX[2] * SERIES_W * SERIES_DPI * 0.5) * 2.6
+    lw = max(48.0, lw * 72.0 / SERIES_DPI)
     xs = [0.28, 0.72]
-    colors = [HIGHLIGHT, ACCENT]
     # Faint horizontal reference lines so the space above the shorter column reads
     # as chart, not void.
     for _gf in (0.25, 0.5, 0.75, 1.0):
-        ax.axhline(vmax * _gf, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
+        ax.axhline(vmax * _gf, color=GRID, linewidth=1.6, zorder=0)
     arts = []
     for j, ((p, color), x) in enumerate(zip(pair, xs)):
-        _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
+        # NO TRACK BEHIND THE COLUMN.
+        #
+        # A full-height capsule was drawn behind both columns so the space
+        # above the shorter one would "read as chart, not void". It cost the
+        # comparison the comparison: two full-height slabs with one of them
+        # part-filled, and at a glance 588 and 942 looked the SAME HEIGHT —
+        # the shape the eye reads first was the track, not the data. (In
+        # `BAR_BASE`, darker than the ground, it also read as a hole punched
+        # in the frame, which is where the thermometer look came from.) The
+        # gridlines below do the anti-void job without lying about the
+        # magnitudes, because a gridline is not column-shaped.
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
         # Winner (j==0) carries the mascot gripping its TOP, so its big number
         # sits LOW inside the column (white) — clear of the top-gripping host.
@@ -1064,15 +1192,19 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         # _compose_story routes ANY two-item insight here, so a 2-row ranking in
         # metres/dollars/counts rendered "10211%". _ulabel is what every other
         # chart kind already uses.
-        if j == win:
-            t = ax.text(x, vmax * 0.16, _ulabel(p.value, insight.unit),
-                        ha="center",
-                        va="center", fontsize=42, color="white",
-                        fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
-        else:
-            t = ax.text(x, p.value + vmax * 0.06, _ulabel(p.value, insight.unit),
-                        ha="center", fontsize=46, color=TEXT, fontweight="bold",
-                        zorder=4, alpha=_lblalpha(reveal))
+        # BOTH NUMBERS SIT ABOVE THEIR OWN COLUMN.
+        #
+        # The winner's used to be printed INSIDE its column in a contrasting
+        # ink, which makes the label's legibility depend on which colour the
+        # column happened to get — a coupling that has already failed once
+        # (see `win` above). Outside, above the cap, every number is ink on
+        # ground and the pair reads as one comparison instead of one number
+        # in a box and one floating.
+        t = ax.text(x, p.value * reveal + vmax * 0.075,
+                    _ulabel(p.value, insight.unit), ha="center", va="bottom",
+                    color=TEXT if j == win else SUBTLE,
+                    fontproperties=_num_face(50 if j == win else 40),
+                    zorder=6, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
         # THE BUDGET IS THE GAP BETWEEN THE TWO CENTRES, not half the axes.
         # Both labels are centred, at 0.28 and 0.72, so each may occupy at
@@ -1080,11 +1212,16 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         # BELOW the bar's round cap (a 165pt cap overshoots y=0 by 0.13 vmax)
         # and INSIDE the ylim, because at -0.30 the labels were drawn outside
         # the axes box in the strip the source footer occupies.
+        # TEXT WEARS INK. `shared/palette` states the rule in its own module
+        # docstring — "values, labels and legends wear INK, never the series
+        # colour" — and this line painted each column's name in that column's
+        # hue, which on the dim partner was a muddy olive at 28pt on navy.
+        # The coloured column an inch above it already says which is which.
         ax.text(x, -vmax * 0.22, p.label, ha="center",
                 fontsize=_fit_fontsize(p.label, _axes_pts(0.84 * 0.40), 28),
-                color=color, fontweight="bold", zorder=4)
-    ax.text(0.5, vmax * 0.5, "vs", ha="center", va="center", fontsize=34,
-            color=SUBTLE, fontstyle="italic", zorder=4)
+                color=TEXT if j == win else SUBTLE, zorder=4)
+    ax.text(0.5, vmax * 0.5, "vs", ha="center", va="center", fontsize=26,
+            color=_hex(_look.INK_3), fontstyle="italic", zorder=4)
     # Baseline reference line if present (label kept inside the card).
     if insight.baseline:
         b = insight.baseline.value
@@ -1110,9 +1247,18 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # Derived rather than tuned, so it stays right if `lw` or the axes box
     # moves.
     _cap = (lw / 2.0) / (_AX[3] * SERIES_H * 72.0)      # cap, axes fraction
-    _room = (SUB_Y - _AX[1]) / _AX[3] - _cap - 0.022    # headroom for the value
+    # ...AND SO DOES THE VALUE, NOW THAT IT IS OUTSIDE THE COLUMN.
+    #
+    # The winner's number moved from inside its column to above the cap, and
+    # nothing widened the headroom to match: "942B" was drawn straight
+    # through the headline. The label's own height is a measurable fraction
+    # of the axes, so subtract it too and solve for the limit that puts the
+    # top of the LABEL — not the top of the bar — at the ceiling.
+    _lblf = (50.0 * 1.30) / (_AX[3] * SERIES_H * 72.0)
+    _room = (SUB_Y - _AX[1]) / _AX[3] - _cap - _lblf - 0.022
     _lo = -0.30
-    _hi = max(1.12, (1.0 - _lo) / max(0.05, _room) + _lo)
+    _need = 1.0 + 0.075                                  # the label's baseline
+    _hi = max(1.12, _lo + (_need - _lo) / max(0.05, _room))
     ax.set_ylim(vmax * _lo, vmax * _hi)
     ax.set_xticks([])
     ax.set_yticks([])
@@ -1126,10 +1272,100 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
     _act_c = _perf_action(insight, "comparison")
-    _bake_host(ax, xs[win], _htip, _act_c, _beat(),
-               zoom=0.8, align=_perf_align(_act_c, (0.5, 0.78)))
+    # HE GRIPS THE COLUMN'S EDGE, NOT ITS MIDDLE.
+    #
+    # The column is a mark now, not a wall — about as wide as he is — so
+    # centred on it he was drawn INSIDE it and read as swallowed, which is
+    # the `decorative_mascot` note in its most literal form. Offset by half
+    # the column plus a little, he hangs off the side of the thing hauling
+    # him up: the contact is visible, which is the entire reason the bake
+    # exists.
+    _halfcol = (lw * 0.5) / (_AX[2] * SERIES_W * 72.0)
+    _side = 1.0 if xs[win] < 0.5 else -1.0
+    _bake_host(ax, xs[win] + _side * (_halfcol + 0.045), _htip, _act_c,
+               _beat(), zoom=0.72, align=_perf_align(_act_c, (0.5, 0.78)))
     insight.host_baked = True
     return ax, arts
+
+
+def _gradient_fill(ax, xs, ys, base: float, color: str, zorder: int = 2,
+                   top: float = 0.30):
+    """The area under a line, fading OUT downward instead of a flat wash.
+
+    A flat `fill_between` at 10% over a large area is the single cheapest
+    thing on a line chart: warm ink at low alpha over a cold ground
+    composites to a grey-brown slab, and the bigger the area the greyer it
+    gets — the shape stops reading as "under the line" and starts reading as
+    a filled rectangle behind it. Fading from `top` at the line to nothing at
+    the baseline keeps the density where the line is, which is where it means
+    something, and lets the ground show through everywhere else.
+
+    Implemented as a one-column image clipped to the fill polygon, so it
+    stays a vector-free, offline, single-draw operation.
+    """
+    try:
+        import numpy as np
+        from matplotlib.colors import to_rgb
+        from matplotlib.patches import Polygon
+        if len(xs) < 2:
+            return
+        r, g, b = to_rgb(color)
+        grad = np.empty((256, 1, 4))
+        grad[:, :, 0], grad[:, :, 1], grad[:, :, 2] = r, g, b
+        grad[:, :, 3] = np.linspace(0.0, top, 256)[:, None]
+        x0, x1 = min(xs), max(xs)
+        y1 = max(ys)
+        if not (y1 > base and x1 > x0):
+            # A FLAT SERIES HAS NO AREA. Every value identical makes
+            # `base == y1`, and imshow warns "identical low and high ylims
+            # makes transformation singular" and draws a degenerate strip.
+            return
+        im = ax.imshow(grad, aspect="auto", origin="lower", zorder=zorder,
+                       extent=(x0, x1, base, y1))
+        poly = Polygon(list(zip(xs, ys)) + [(x1, base), (x0, base)],
+                       closed=True, facecolor="none", edgecolor="none")
+        ax.add_patch(poly)
+        im.set_clip_path(poly)
+    except Exception:  # noqa: BLE001 — a fill is a look, never a blocker
+        try:
+            ax.fill_between(xs, ys, base, color=color, alpha=0.10,
+                            zorder=zorder)
+        except Exception:  # noqa: BLE001
+            pass
+
+
+def _nice_ticks(lo: float, hi: float, n: int = 3):
+    """`n` ROUND numbers spanning [lo, hi] — a scale a person would write.
+
+    The trend's ticks were `[lo, (lo + hi) / 2, hi]` straight off the data,
+    which printed "2072.5" as the middle of a container-count axis. A scale
+    exists to be read at a glance; half a container is not a quantity, and a
+    number with a stray decimal is the tell that nobody looked at the frame.
+    """
+    span = float(hi) - float(lo)
+    if not (span > 0) or n < 2:
+        return [float(lo), float(hi)]
+    raw = span / (n - 1)
+    mag = 10.0 ** math.floor(math.log10(raw))
+    for mult in (1.0, 2.0, 2.5, 5.0, 10.0):
+        step = mult * mag
+        if step >= raw:
+            break
+    # HALVE UNTIL AT LEAST TWO LAND INSIDE. A step sized for `n-1` intervals
+    # over the span can still leave only one multiple between lo and hi once
+    # it is snapped to a round number (221..3924 picks 2000, and only 2000
+    # itself lands), and the old code then fell back to the raw endpoints —
+    # printing the very numbers this exists to round off.
+    for _ in range(5):
+        start = math.ceil(float(lo) / step) * step
+        out, v = [], start
+        while v <= float(hi) + step * 1e-6:
+            out.append(round(v, 10))
+            v += step
+        if len(out) >= 2:
+            return out
+        step /= 2.0
+    return [float(lo), float(hi)]
 
 
 def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
@@ -1159,12 +1395,17 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # one the frame carries the full chart SHAPE instead of a knee-high stub over
     # dead navy (the empty_void the gate flagged). The bright line sketches in
     # over this faint preview; the fill/line below draw on top at full strength.
-    ax.fill_between(x, values, lo - span * 0.15,
-                    color=HIGHLIGHT, alpha=0.05, zorder=1)
+    # ONE FILL, NOT TWO STACKED.
+    #
+    # The ghost preview filled the WHOLE trajectory at 5% and the revealed
+    # portion filled it again at 16%, so by the end of every beat the area
+    # under the line carried 21% of a warm gold over a cold navy — which
+    # composites to the muddy brown the frame actually shipped. The ghost
+    # LINE is what carries the shape from frame one; the ghost fill only
+    # ever doubled the ink. 10% is the house figure for an area fill.
     ax.plot(x, values, color=HIGHLIGHT, lw=3, alpha=0.16,
             solid_capstyle="round", zorder=1)
-    ax.fill_between(xd, yd, lo - span * 0.15,
-                    color=HIGHLIGHT, alpha=0.16, zorder=2)
+    _gradient_fill(ax, xd, yd, lo - span * 0.15, HIGHLIGHT, zorder=2)
     ax.plot(xd, yd, color=HIGHLIGHT, lw=6, solid_capstyle="round", zorder=3)
     ax.plot(x[:kf + 1], values[:kf + 1], "o", color=HIGHLIGHT,
             markersize=9, zorder=4)
@@ -1216,7 +1457,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # of overstating a change. `set_yticks([])` drew no scale at all — the
     # reader could not tell 16-19 from 0-19. Three labelled gridlines make the
     # framing legible instead of flattering.
-    _ticks = [lo, (lo + max(values)) / 2.0, max(values)]
+    _ticks = _nice_ticks(lo, max(values))
     ax.set_yticks(_ticks)
     ax.set_yticklabels([_ulabel(v, insight.unit) for v in _ticks],
                        fontsize=19, color=SUBTLE)
@@ -1225,7 +1466,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # set_yticks([]) meant matplotlib's own grid drew nothing — decorative
     # rules that described no value.
     for _t in _ticks:
-        ax.axhline(_t, color="#1E2A44", linewidth=1.3, zorder=0, alpha=0.8)
+        ax.axhline(_t, color=GRID, linewidth=1.3, zorder=0, alpha=0.8)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
@@ -1235,8 +1476,12 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
     # contact + cause + consequence, not a sprite surfing above the line.
     _act_t = _perf_action(insight, "trend")
+    # HE IS A HOST, NOT THE SUBJECT. At zoom 1.15 he stood two hundred
+    # pixels tall over a chart whose whole plot is nine hundred — he covered
+    # the last two x labels and a third of the line he is supposed to be
+    # hanging from, which is the "swallows the data" note in reverse.
     _bake_host(ax, xd[-1], yd[-1], _act_t, _beat(),
-               zoom=1.15, align=_perf_align(_act_t, (0.5, 0.80)))
+               zoom=0.62, align=_perf_align(_act_t, (0.5, 0.80)))
     insight.host_baked = True
     return ax, arts
 
@@ -1734,7 +1979,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # Faint vertical reference lines across the card so the space to the right of
     # short bars reads as chart, not void.
     for _gx in (0.25, 0.5, 0.75, 1.0):
-        ax.axvline(vmax * _gx, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
+        ax.axvline(vmax * _gx, color=GRID, linewidth=1.2, zorder=0, alpha=0.7)
     # Scale the row-label font to the longest label so a long name ("United
     # States") doesn't run off the left edge — fixed fs24 clipped them.
     _maxlbl = max((len(str(p.label)) for p in items), default=6)
@@ -1833,12 +2078,39 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     return ax, specs
 
 
+def _stack_tint(i: int, n: int, is_highlight: bool) -> str:
+    """One accent and a NEUTRAL LADDER — never six categorical hues.
+
+    A 100% stacked column was painted straight out of `series_color`, so a
+    six-source breakdown shipped as blue / orange / violet / pink / yellow /
+    green stacked into a tower: the single loudest frame the channel made,
+    and the exact anti-pattern the house standard names ("everything is
+    coloured, so nothing is"). A part-to-whole has ONE editorial subject and
+    an ORDER; a ladder of one neutral says the order, the accent says the
+    subject, and the direct label beside every segment — which this chart
+    already draws — carries identity, which colour never did well anyway.
+    """
+    if is_highlight:
+        return HIGHLIGHT
+    lo, hi = _look.REST, (132, 144, 176)
+    t = 0.0 if n < 2 else i / float(n - 1)
+    return _hex(tuple(lo[c] + (hi[c] - lo[c]) * t for c in range(3)))
+
+
 def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """A single 100% STACKED COLUMN that grows bottom->top, each source a coloured
     segment sized to its share. Fills the tall 9:16 card (a vertical tower), and
     Data grips the TOP of the growing stack and is hauled UP as it rises — a
     vertical, clearly data-driven bit (the part-to-whole answer to the waffle)."""
-    from matplotlib.patches import FancyBboxPatch
+    # PLAIN RECTANGLES. `FancyBboxPatch(boxstyle="round,rounding_size=1.4")`
+    # measures its corner radius in DATA units, and this axes is 0..1 across
+    # and 0..100 up — so 1.4 was a fifty-pixel radius vertically and more
+    # than the entire axis width horizontally. Every segment threw a pair of
+    # faint full-width horizontal streaks across the card, one above and one
+    # below, which is what the banding in the rendered frames actually was.
+    # A stacked column does not need round corners; it needs the gap between
+    # segments to be real, which `_gap` gives it.
+    from matplotlib.patches import Rectangle
     items = _ordered_items(insight)[:6]
     vals = [max(0.0, p.value) for p in items]
     tot = sum(max(0.0, p.value) for p in insight.items) or 1.0   # of the WHOLE
@@ -1849,48 +2121,61 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     t = max(0.0, min(1.0, reveal))
     filled = t * 100.0
 
-    cx0, cx1 = 0.20, 0.62                       # wider column (was a narrow strip)
+    cx0, cx1 = 0.30, 0.66
+    # THE SEGMENTS ARE SEPARATED BY GROUND, NOT BY A BORDER.
+    #
+    # Each block carried `edgecolor=CARD, linewidth=2` — a 2px rule in the
+    # OLD card colour, which since the card was removed is simply a dark line
+    # that does not match anything on the frame. A gap does the same job
+    # (these are distinct parts, not one continuous quantity) and reads as
+    # air rather than as a seam.
+    _gap = 0.8
     # Faint horizontal reference lines across the FULL card so the space beside
     # the tower reads as chart, not empty (empty_void).
     for _gy in (20, 40, 60, 80):
-        ax.axhline(_gy, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
+        ax.axhline(_gy, color=GRID, linewidth=1.2, zorder=0, alpha=0.7)
     # GHOST the WHOLE tower (every segment, dim) from frame 1 so the early frames
     # carry the full shape instead of a near-empty column over dead navy
     # (empty_void). The bright fill rises over this preview.
     _gy = 0.0
     for i, (p, sh) in enumerate(zip(items, shares)):
-        gcol = (HIGHLIGHT if p.label == insight.highlight_label
-                else series_color(i))
-        ax.add_patch(FancyBboxPatch((cx0, _gy), cx1 - cx0, sh,
-                     boxstyle="round,pad=0,rounding_size=1.4",
-                     facecolor=gcol, edgecolor="none", alpha=0.16, zorder=1))
-        gt = ax.text(cx1 + 0.03, _gy + sh / 2.0, _seg_label(insight, p, sh),
-                     ha="left", va="center", fontsize=23, color=gcol,
-                     fontweight="bold", zorder=2, alpha=0.22)
+        gcol = _stack_tint(i, len(items),
+                           p.label == insight.highlight_label)
+        ax.add_patch(Rectangle((cx0, _gy), cx1 - cx0, max(0.4, sh - _gap),
+                     facecolor=gcol, edgecolor="none", alpha=0.22, zorder=1))
+        ax.text(cx1 + 0.045, _gy + sh / 2.0, _seg_label(insight, p, sh),
+                ha="left", va="center", fontsize=23, color=SUBTLE,
+                zorder=2, alpha=0.22)
         _gy += sh
     specs, la = [], _lblalpha(reveal)
     y0, top_y = 0.0, 0.0
     for i, (p, sh) in enumerate(zip(items, shares)):
-        col = (HIGHLIGHT if p.label == insight.highlight_label
-               else series_color(i))
+        _is_hi = p.label == insight.highlight_label
+        col = _stack_tint(i, len(items), _is_hi)
         vis_top = min(y0 + sh, filled)
         if vis_top > y0 + 0.4:
-            ax.add_patch(FancyBboxPatch((cx0, y0), cx1 - cx0, vis_top - y0,
-                         boxstyle="round,pad=0,rounding_size=1.4",
-                         facecolor=col, edgecolor=CARD, linewidth=2, zorder=3))
+            ax.add_patch(Rectangle((cx0, y0), cx1 - cx0,
+                         max(0.4, min(vis_top, y0 + sh - _gap) - y0),
+                         facecolor=col, edgecolor="none", zorder=3))
             top_y = vis_top
             if vis_top >= y0 + sh * 0.55:       # label once the segment is mostly in
-                tt = ax.text(cx1 + 0.03, y0 + sh / 2.0,
+                tt = ax.text(cx1 + 0.045, y0 + sh / 2.0,
                              _seg_label(insight, p, sh), ha="left", va="center",
-                             fontsize=23, color=col, fontweight="bold",
+                             fontsize=25 if _is_hi else 23,
+                             color=TEXT if _is_hi else SUBTLE,
                              zorder=5, alpha=la, path_effects=_shadow())
                 specs.append((p.value, "art", tt, None))
         y0 += sh
     # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as
     # it stacks (vertical drag — a real bit, not a horizontal slide).
     _act_s = _perf_action(insight, "stack")
-    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _act_s,
-               _beat(), zoom=0.92, align=_perf_align(_act_s, (0.5, 0.80)))
+    # BESIDE THE TOWER, NOT INSIDE IT. Centred on a column as wide as he is,
+    # he was drawn over three segments at once and read as part of the
+    # picture rather than as someone reacting to it — the literal
+    # `decorative_mascot` note. The labels take the right side, so he takes
+    # the left, still gripping the growing top edge.
+    _bake_host(ax, cx0 - 0.085, top_y, _act_s,
+               _beat(), zoom=0.72, align=_perf_align(_act_s, (0.5, 0.80)))
     insight.host_baked = True
     return ax, specs
 
@@ -3340,28 +3625,3 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     return str(out_dir / f"{slug}_build%02d.png"), anchors
 
 
-def render_series(insight: Insight, out_dir: Path, slug: str) -> list[Path]:
-    """Render the full progressive series; returns ordered PNG paths."""
-    if not _have_mpl():
-        return []
-    out_dir.mkdir(parents=True, exist_ok=True)
-    n = series_length(insight)
-    paths: list[Path] = []
-    for s in range(1, n + 1):
-        fig, ax, plt = _new_card()
-        ax.set_title(insight.topic, color=TEXT, fontsize=34, fontweight="bold",
-                     pad=22, loc="left")
-        if insight.kind == "trend":
-            _draw_trend_state(ax, insight, s)
-        else:
-            _draw_bars_state(ax, insight, s)
-        for spine in ax.spines.values():
-            spine.set_visible(False)
-        ax.tick_params(colors=SUBTLE, length=0)
-        fig.text(0.5, 0.05, insight.source.footer(), ha="center",
-                 fontsize=12, color=SUBTLE)
-        p = out_dir / f"{slug}_state{s:02d}.png"
-        fig.savefig(p, transparent=True)
-        plt.close(fig)
-        paths.append(p)
-    return paths
