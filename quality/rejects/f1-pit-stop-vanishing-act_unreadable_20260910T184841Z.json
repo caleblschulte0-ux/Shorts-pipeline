@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260910T184841Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@1.5/seg0:end: the caption 'to take' / 'a minute.' is printed directly over the 1950s bar so its value reads '6(' instead of '60'; seg2:mid (f11) stacks 'how long it takes' on top of the lingering 'how fast that really is' title; payoff@-0.4 (f20) collides 'COMMENT BELOW \u25bc' with the ",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable_overlap",
+  "visible_evidence": "hook@0.8 through seg0:end (f02\u2013f06): the burned-in narration caption ('stop used', 'to take', 'a minute.') lands in the same horizontal band as the top bar, masking the '60' value label and the 'Refueling era' row; at hook@0.3 the mascot also sits across the 'Current record' label. The first 2s is additionally a slow bar-race build with three bars still at zero \u2014 no immediate event.",
+  "root_cause": "The caption layer is composited at a fixed vertical band that intersects the bar-race machine's top rows, with no collision test against the chart's label/value geometry; the hook beat also starts the bars from zero instead of opening mid-action.",
+  "repair_goal": "Move the hook caption band clear of the bar rows (below the last bar or into a reserved safe zone) so '60', 'Refueling era' and 'Current record' are never overprinted, and open the hook on the 1950s bar already slamming to full length so frame 1 is motion rather than an empty chart."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

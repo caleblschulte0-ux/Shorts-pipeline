@@ -1,0 +1,25 @@
+{
+ "slug": "colorado-wolves-return",
+ "ts": "20260910T184841Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands arms-at-side inside the left pill in seg0:end, seg2:mid and seg3:end \u2014 the same idle stance three scenes running, no setup/action/payoff tied to wolf counts; in seg4:mid he is a ~20px speck in the square's corner.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_air",
+  "visible_evidence": "seg4:start, seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 (35.06s\u201340.50s) are pixel-alike apart from the caption: a static gold square inside a gold outline, a colliding headline/subtitle pair, a 20px mascot in the corner, an empty lower third, and the label '2 times over' for 32 inside 50 \u2014 which is 1.6 times, not 2.",
+  "root_cause": "The fits-inside machine plays its nest animation once at scene entry and then holds for the remaining ~5s with no continuing motion; the mascot is placed at chart-annotation scale instead of stage scale, the machine headline is drawn in the same y-band as the scene subtitle so the two overlap, and the ratio label rounds 1.56 up to a whole '2'.",
+  "repair_goal": "Make the closing beat move for its full duration and use the frame: animate the inner square repeatedly stepping/filling into the outer to show the 32-of-50 gap closing, scale Data up to stage size performing a real bit against the remaining gap, separate the headline from the subtitle so neither overlaps, fill or crop the dead lower band, and label the true ratio (1.6x / 'two-thirds of the way') instead of '2 times over'."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

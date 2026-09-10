@@ -1,0 +1,21 @@
+{
+ "slug": "bald-eagle-population-rebound",
+ "ts": "20260910T184841Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3 clips the row labels at the left frame edge \u2014 '1963 (all-time low' loses its value and 'ar before delisting)' should read '2006 (year before delisting)'; seg1:start then parks Data on the 417 bar so its value reads '7', and seg2:mid's caption reads '1963 ___ional total'.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "hook@0.3 through seg1:start: the left-hand category labels run off the frame \u2014 '1963 (all-time low' is truncated mid-parenthesis and the middle row shows only 'ar before delisting)'; the mascot stands over the 417 bar so its value label is occluded down to '7'; the yellow kicker '2020 PULLS AHEAD' and the burned-in caption 'America's own' stack over the same upper band.",
+  "root_cause": "The bar-race rows draw their name labels right-aligned to the bar origin with no measured left gutter, so long names overflow the canvas instead of the origin being pushed in to fit the widest measured label; the mascot is placed on the bar track rather than in the free right-hand space, colliding with the value readout.",
+  "repair_goal": "Measure the widest row label and inset the bar origin so every label sits fully inside the frame with margin, and place Data clear of the bar track and value labels so 417, 9789 and 71467 are all readable at arm's length."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

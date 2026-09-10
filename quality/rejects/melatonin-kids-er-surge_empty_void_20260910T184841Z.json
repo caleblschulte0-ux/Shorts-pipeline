@@ -1,0 +1,25 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260910T184841Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:mid wastes the bottom ~45% of the 9:16 frame on flat empty gradient while Data is shrunk to a ~30px speck jammed in the pack's bottom-left corner; seg1:mid likewise leaves everything below 'each = 5000' empty.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start through payoff@-0.4: the square-pack sits in the upper third, the bottom ~45% of the frame is empty gradient, a large grey '5' floats behind the gold blocks with nothing pointing at it, the caption reads 'Hospitalized fits in Sent home' with no unit, and Data is rendered at speck scale (~30px) pinned in the pack's bottom-left corner doing nothing; the pack stops filling by 42.3s and frames at 44.2s / 44.8s / 45.6s are indistinguishable.",
+  "root_cause": "The packing machine lays out at a fixed small scale anchored top-left instead of composing to the 9:16 frame, and the mascot is placed by the container's internal coordinates rather than given a stage-scale performance slot, so both the block grid and Data collapse into the top-left quadrant while the '5' multiple label renders as an orphan watermark behind the blocks.",
+  "repair_goal": "Rescale the square-pack to fill the vertical frame (blocks roughly 2x current size, grid centred with the caption beneath it), restore Data to full performer scale doing a stacking bit on the last block (setup -> place -> react), replace the orphan grey '5' with an on-beat '5x' callout tied to the blocks, and keep at least one element animating through the final 3s so the tail is not a held frame."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

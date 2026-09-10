@@ -1,0 +1,21 @@
+{
+ "slug": "sea-level-rise-rate-doubled",
+ "ts": "20260910T184841Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start (t=34.76s) the bottom row label is clipped by the left frame edge, reading ') (NOAA projection)' instead of '2050 (NOAA projection)'; at seg3:mid the value '3' is printed on top of the mascot's lab coat, and at seg3:end the mascot covers the title so it reads 'US high-tide flo",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:start (t=34.76s): the third slider's label is cut off by the left frame edge \u2014 ') (NOAA projection)' where it should say '2050 (NOAA projection)' \u2014 and the burned-in caption 'cities now see' is half-swallowed behind the card's bottom edge. seg3:mid (t=38.13s): the 2000 row's value '3' is stamped directly on the mascot's white coat, and the mascot's legs sit across the '2000' row. seg3:end (t=41.51s): the mascot's body covers the middle of the headline 'US high-tide flooding days per year'.",
+  "root_cause": "The slider-row labels are laid out right-to-left from the track origin with no clamp to the safe area, so the longest label ('2050 (NOAA projection)') overflows the left edge; separately the mascot is placed on the row stack without any collision test against the label/value text or the headline, so he is drawn over them.",
+  "repair_goal": "Lay out the three row labels inside a left safe margin (shrink/wrap the longest so '2050 (NOAA projection)' reads in full), and place the mascot in a lane that clears the label column, the row value numbers, and the headline \u2014 every label, value and the title fully legible at arm's length in seg3."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
