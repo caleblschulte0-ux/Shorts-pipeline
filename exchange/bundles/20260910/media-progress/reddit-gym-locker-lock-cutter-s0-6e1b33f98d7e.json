@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b6e1e4d73fc4f7eaddc8aa590e77a36c89e9480f397850aa10db9973a070bb8a",
+  "prompt_used": "An editorial illustration for a short-form video: gym locker room lockers. It accompanies the narration: \"bolt-cut MY lock off my locker\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s0-6e1b33f98d7e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1mWaUyIfkkFJytbFYJJP43N-4SJc-7DLq",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5f2b351354830410e74696c5c7fe49ad81db47ac37205d09c63c5e2b2d831bd6",
+    "bytes": 1926756,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:47.429Z"
+}
