@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-gym-locker-lock-cutter-s4-52c53ade2886",
+  "safe_request_id": "reddit-gym-locker-lock-cutter-s4-52c53ade2886",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0009ca5f12d349f2503266eb320a4a7c59a08e555ac5e332c68efda91be01f54",
+  "prompt_used": "An editorial illustration for a short-form video: bolt cutters tool. It accompanies the narration: \"straining against my new lock with the same bolt cutters\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
+    "filename": "20260910__reddit-gym-locker-lock-cutter-s4-52c53ade2886.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1RFKh05y-0h89KoDk2W-0bSaLLLG79vUO",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4a5f12aae729f7dd7b4c8a88f4821a4c0d9a2047d2b2e75a26752f8b7febf03d",
+    "bytes": 1742965,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-10T11:34:56.873Z"
+}
