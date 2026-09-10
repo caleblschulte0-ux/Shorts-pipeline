@@ -6452,13 +6452,52 @@
       "ts": "2026-09-10T13:15:20.871004+00:00"
     },
     "clip-20260910-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/HonestGiftedLegRuleFive-BapMkNisEFzKU6OG",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/Hc8uwUat8-w",
       "title": "Buddha Reacts To The Most Unhinged AI Song Ever",
       "kind": "twitch_clip",
-      "ts": "2026-09-10T15:04:48.303799+00:00",
+      "ts": "2026-09-10T15:04:52.329087+00:00",
+      "uploaded_at": "2026-09-10T15:04:52.329111+00:00",
+      "publish_at": "2026-09-10T23:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/HonestGiftedLegRuleFive-BapMkNisEFzKU6OG",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "THIS AI SONG GOES OFF THE RAILS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7846,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 42.2
+      },
+      "director_cut": true
+    },
+    "rejected-crunchydarkledwholewheat-sdrzbb-9not-qxn8": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CrunchyDarkLEDWholeWheat-SdRZBB-9NOt-qXN8",
+      "streamer": "jynxzi",
+      "title": "Jynxzi selling radio",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (sales pitch talk, no real event)",
+      "ts": "2026-09-10T15:05:41.634234+00:00"
+    },
+    "rejected-sullentawdrywalletnomnom-qcurjq5pcsevocbh": {
+      "source_url": "https://www.twitch.tv/lacy/clip/SullenTawdryWalletNomNom-qcURJQ5pCseVocbh",
+      "streamer": "lacy",
+      "title": "Lacy: Marlon Grinds 12 Hours Then Jumps To His Death",
+      "qa_rejected": true,
+      "ts": "2026-09-10T15:10:40.805638+00:00"
+    },
+    "clip-20260910-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ironmouse/clip/AnnoyingGrossKathyYouWHY-Hp_Gx6QcEbn-muSP",
+      "story_key": null,
+      "streamer": "ironmouse",
+      "title": "Ironmouse Pulls Out The Screenshot Proof And Exposes Boon",
+      "kind": "twitch_clip",
+      "ts": "2026-09-10T15:18:43.862978+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
