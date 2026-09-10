@@ -1,0 +1,21 @@
+{
+ "slug": "fifty-years-since-moon-landing",
+ "ts": "20260910T112344Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the same arms-up pose while merely perching/sliding on whatever element grows \u2014 atop the 4.4% bar (seg1:end), standing on the 1980 bar (seg3:start/mid), riding the dot along the timeline (seg4:start through payoff@-0.4) \u2014 with no setup->action->payoff bit anywhere.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg1:mid and seg1:end the row chart's category labels overflow the left frame edge and render as '5 (Apollo buildup)' and '972 (Apollo ends)'; the citation line under the bars is clipped at both edges ('use Office of Management and Budget (OMB) ... acc'), and Data perches on the top bar with his arms up covering its right end.",
+  "root_cause": "The row-chart card is laid out wider than the 1080-wide safe area, so the left-hand category gutter and the full-width source line render outside the frame instead of being wrapped/shrunk to fit; the mascot is then parked on the bar without any label-collision offset.",
+  "repair_goal": "Fit the seg1 row chart inside the frame's safe margins so every category label ('1966 (Apollo buildup)', '1972 (Apollo ends)', '2024') and the source line are fully visible, and move Data off the bar's value/label so nothing he does occludes text."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

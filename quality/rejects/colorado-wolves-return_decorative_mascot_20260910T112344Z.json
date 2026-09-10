@@ -1,0 +1,25 @@
+{
+ "slug": "colorado-wolves-return",
+ "ts": "20260910T112344Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data merely perches on top of the teal bar in identical arms-up pose at seg0:end, seg2:start, seg3:start and seg3:end, and is a ~30px static sticker in the corner of the box at payoff@-0.4 \u2014 no setup->action->payoff tied to 32 vs 50.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "frozen_broken_payoff",
+  "visible_evidence": "From seg4:start (34.83s) to payoff@-0.4 (40.30s) the identical picture holds: two stacked, nearly overlapping titles ('Wolves so far fits in Program target' printed on top of 'wolves so far vs the program's target'), a blue square in a teal outline with a grey '2' half-hidden behind it, a caption '2 times over' that miscounts 32-in-50 as two, a mascot shrunk to a corner speck, and ~40% of the frame left empty.",
+  "root_cause": "The containment machine ran its fit calculation and stopped: the ratio was rounded up to a whole '2 times' instead of the true 0.64 fit, no beat-level animation follows the initial draw, and the machine's own title was rendered without suppressing the scene header, so both print in the same band.",
+  "repair_goal": "Rebuild the closing beat as a live fill: animate 32 wolves filling 64% of the 50-wolf target box with the remaining 18 visibly open, label it '32 of 50' rather than '2 times over', keep something moving through the full 6s, give Data a real closing act at readable scale inside the box, and print exactly one title line."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

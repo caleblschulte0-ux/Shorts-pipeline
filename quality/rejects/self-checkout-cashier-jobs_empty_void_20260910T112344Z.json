@@ -1,0 +1,16 @@
+{
+ "slug": "self-checkout-cashier-jobs",
+ "ts": "20260910T112344Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start through payoff@-0.4: the scale is shrunk into the upper-middle third and everything below the pedestal base (roughly the bottom 30% of the frame) is empty gradient \u2014 the entire payoff is composed in half a frame.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg4:start/seg4:mid/payoff@-1.8/seg4:end/payoff@-0.4 all show the right-pan label truncated to 'Staffed checkou' at the frame edge; the balance sits in the upper-middle with the bottom ~30% of the frame empty; the only motion for ~5s is a decimal ticking 3.4% -> 4.0%; the clipped source strip at the very bottom is unreadable at both ends.",
+  "root_cause": "The balance machine draws each pan's label left-anchored from the pan's x with no clamp to the safe area, so the right pan (pushed outward by the tilt) overflows past the frame; the closing scene also scales the machine down without re-centring it in the freed vertical space, and its only animation is a value count-up rather than a physical settle.",
+  "repair_goal": "Clamp/centre both pan labels inside the safe area so 'Staffed checkout' reads in full at arm's length, re-centre and enlarge the balance so the beam occupies the vertical middle of the frame with no dead lower third, keep the source strip fully inside the horizontal margins, and give the closing a real physical beat (the beam tipping and settling via viz_scene.settle) instead of a five-second decimal tick."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

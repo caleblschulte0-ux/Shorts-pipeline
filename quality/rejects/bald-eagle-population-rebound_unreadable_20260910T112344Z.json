@@ -1,0 +1,21 @@
+{
+ "slug": "bald-eagle-population-rebound",
+ "ts": "20260910T112344Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg0:start left row labels are sliced by the frame edge \u2014 '063 (all-time low' (should be '1963 (all-time low)') and 'before delisting)' with its year gone \u2014 and at seg0:end the mascot's body sits on top of '9789' so it reads '9?89'; seg2:start's source line is cut off at both edges ('s: ",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "At hook@0.3 / seg0:start / seg0:end the left-hand category labels run off the frame: '063 (all-time low' and 'before delisting)' are clipped mid-word, and the mascot straddles the middle bar so its 9789 value is partly hidden; at hook@1.5 the '417' value is also half-covered by the clock mark.",
+  "root_cause": "The bar-race layout allocates label width from the plot box rather than the safe area, so long category strings overflow the left frame edge, and the mascot is parked ON the bar row instead of beside it, colliding with the in-bar value text.",
+  "repair_goal": "Fit every category label inside the safe margin (shrink/wrap/right-align it against the bar start, shortening to '1963 (low)' / '2006 (pre-delisting)' if needed) and offset the mascot clear of the bar's value text so 417 / 9789 / 71467 are fully legible at arm's length."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
