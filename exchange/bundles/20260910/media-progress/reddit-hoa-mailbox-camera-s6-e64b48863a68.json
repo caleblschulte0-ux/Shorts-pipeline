@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260910",
+  "bundle": {
+    "identity": "637be7252ee0c5be6f3825da806ecb02c3e1c2e265eaf29c929156d2a77dec92",
+    "path": "exchange/bundles/20260910/bundle.json"
+  },
+  "request_id": "reddit-hoa-mailbox-camera-s6-e64b48863a68",
+  "safe_request_id": "reddit-hoa-mailbox-camera-s6-e64b48863a68",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2e7c627ef5175106b2328e0713fa5cc863f2eb34312e15921e54198234aa8588",
+  "prompt_used": "An editorial illustration for a short-form video: suv backing out driveway. It accompanies the narration: \"clipping the post with her SUV\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1BXqj5ggNdZDLgO5uyAHpCqO1cPA7-1QJ",
+    "filename": "20260910__reddit-hoa-mailbox-camera-s6-e64b48863a68.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1BXqj5ggNdZDLgO5uyAHpCqO1cPA7-1QJ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1168093c7827a71801f7ed3d850f90857960db77b712dc3e23e820ab418c4624",
+    "bytes": 2192022,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-10T11:35:05.957Z"
+}
