@@ -81,6 +81,44 @@ def build(dataset: Dataset, insight_type: str = "auto",
 def _auto_pick(pts: list[DataPoint], ds: Dataset) -> str:
     if pts and pts[0].period:          # has time keys -> trend
         return "trend"
+    # THE LABEL IS THE PERIOD WHEN IT IS A YEAR.
+    #
+    # `draw_timeline` learned this on 2026-09-07 and said why in its own
+    # comment: requiring a separate `period` field is an accident of the data
+    # shape, and the cost is the whole point of the picture. The ROUTER never
+    # learned it, so a year series with no `period` falls past this test and
+    # lands somewhere that is not a time series at all:
+    #
+    #   3 points  -> "comparison", and `_comparison` keeps only the first and
+    #                last of the sorted list. `self-checkout-cashier-jobs`
+    #                (2000: 6%, 2012: 33%, 2023: 92%) lost 2023 — the year the
+    #                narration is about — and the reviewer read the result off
+    #                the screen: "bars labeled '2000 VS 2012' with 33% on the
+    #                right ... directly contradicting the narration 'was over
+    #                92%' printed on the same frame" (2026-09-09).
+    #   4+ points -> "rank", which makes YEARS COMPETITORS. That is the
+    #                "2019 TOPS THE LIST" failure `_superlative` in charts.py
+    #                already documents; the subtitle was fixed there, the
+    #                routing that caused it was not.
+    #
+    # 20 of the 1,115 configured datasets are in this shape — 7 losing their
+    # middle, 13 ranked as if the years were rivals.
+    #
+    # Two dated points stay a COMPARISON on purpose: a before-and-after is
+    # exactly what `_story_versus` draws well, and `_comparison` orders that
+    # pair chronologically.
+    #
+    # And DATED IS NOT ENOUGH — the series has to be IN TIME ORDER. A ranking
+    # whose items happen to be years is stored in VALUE order, and there is
+    # one on disk: `wildfire_worst_years` reads 2015, 2020, 2017, 2006, 2012.
+    # Those years are the competitors, which is the one case where the thing
+    # `charts._superlative` warns about ("years are not competitors") is
+    # actually true. Requiring monotonic time separates the two without
+    # asking anybody to label their data differently.
+    _ys = [_leading_year(p.label) for p in pts]
+    if len(pts) >= 3 and all(y is not None for y in _ys) \
+            and (_ys == sorted(_ys) or _ys == sorted(_ys, reverse=True)):
+        return "trend"
     if len(pts) >= 4:
         vals = [p.value for p in pts]
         top = T.sort_desc(pts)[0]
@@ -201,6 +239,14 @@ def _outlier(ds: Dataset, pts: list[DataPoint], base: DataPoint | None,
 
 
 def _trend(ds: Dataset, pts: list[DataPoint]) -> Insight:
+    # TIME RUNS LEFT TO RIGHT. `_trend` kept the input order, so a series
+    # stored newest-first drew the line backwards — and a rise then reads as a
+    # collapse under narration about a rise. That is the bald-eagle punchline
+    # (`insights._comparison`) one shape up, and the fix is the same: when
+    # every label carries a year, the order is the CALENDAR's, not the file's.
+    _ys = [_leading_year(p.label) for p in pts]
+    if len(pts) >= 2 and all(y is not None for y in _ys):
+        pts = [p for _y, p in sorted(zip(_ys, pts), key=lambda t: t[0])]
     first, last = pts[0], pts[-1]
     delta = T.absolute_change(first.value, last.value)
     try:
