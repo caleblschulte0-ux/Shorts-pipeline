@@ -131,7 +131,9 @@ const App = {
     const bg = v.poster ? `background-image:url('${v.poster}')` : "";
     return `
       <div class="card ${!posted && this.current === v.id ? "sel" : ""}"
-           ${posted ? "" : `onclick="App.openPost('${v.id}')"`}>
+           ${posted ? "" : `role="button" tabindex="0" aria-label="${String(v.title).replace(/"/g, "&quot;")}"
+           onclick="App.openPost('${v.id}')"
+           onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); App.openPost('${v.id}'); }"`}>
         <div class="thumb" style="${bg}">
           ${v.poster ? "" : `<svg width="42" height="42" viewBox="0 0 24 24" fill="none"
               stroke="#3f4666" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/>
