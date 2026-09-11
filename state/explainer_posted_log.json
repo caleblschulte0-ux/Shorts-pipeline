@@ -1715,6 +1715,27 @@
       ],
       "words_first_10s": 8,
       "scene_changes_before_5s": 3
+    },
+    "melatonin-kids-er-surge": {
+      "url": "https://youtube.com/shorts/7XCc7pUsf3M",
+      "title": "Why Melatonin Gummies Are Sending Kids To The ER (3 Charts)",
+      "at": "2026-09-11T18:33:31.524642+00:00",
+      "publish_at": "2026-09-11T18:37:56Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 45.5,
+      "hook": "stake",
+      "topic_category": "body",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:gummy-jar-overflow-phone",
+        "mechanic:pharmacy-shelf-highlight-share",
+        "mechanic:triage-door-split"
+      ],
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -1807,6 +1828,15 @@
       "state": "posted",
       "slug": "colorado-wolves-return",
       "at": "2026-09-11T10:57:35.521007+00:00"
+    },
+    {
+      "claimed_at": "2026-09-11T18:33:24.593421+00:00",
+      "title": "Why Melatonin Gummies Are Sending Kids To The ER (3 Charts)",
+      "publish_at": "2026-09-11T18:37:56Z",
+      "url": "https://youtube.com/shorts/7XCc7pUsf3M",
+      "state": "posted",
+      "slug": "melatonin-kids-er-surge",
+      "at": "2026-09-11T18:33:31.524642+00:00"
     }
   ]
 }
