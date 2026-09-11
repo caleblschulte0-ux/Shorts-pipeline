@@ -69,6 +69,17 @@ BAKED_CHART_KINDS = frozenset({
     "geo_us", "geo_world", "geo_city"})
 
 
+def _kind_bakes(kind: str | None) -> bool:
+    """Does a visual of this kind draw Data INSIDE itself?
+
+    The charts do (`charts._bake_host`). The brain-authored `mechanic`, and
+    the `scene`/`diorama` it falls back to, draw exactly what their code says
+    and nothing else — so a beat showing one of those needs the travelling
+    overlay, or the mascot is absent from the frame entirely.
+    """
+    return bool(kind) and (kind in BAKED_CHART_KINDS or kind in HOST_BAKED_KINDS)
+
+
 def _seg_is_baked(seg) -> bool:
     return (getattr(seg, "kind", "") in BAKED_CHART_KINDS
             or getattr(seg, "kind", "") in HOST_BAKED_KINDS
@@ -2465,9 +2476,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # BAKED spans: time ranges where a chart already draws the host INSIDE it
         # (charts._bake_host). The gap-filler must NOT drop a second standing host
         # over these — that was the duplicate 'clipboard Data' welded to the frame.
+        # BAKED IS A PROPERTY OF THE SPAN, NOT OF THE SEGMENT.
+        #
+        # THIS IS WHY DATA WAS MISSING FROM THE BEST BEATS.
+        #
+        # A segment renders a SEQUENCE of visuals (`seg.spans` — the
+        # "[studio] seg2: mechanic(6.9s) -> bars(6.9s)" line), and only some of
+        # them draw him. Marking the whole segment baked from its INSIGHT kind
+        # says "a chart draws Data here" for the mechanic half too, where
+        # nothing does — so the gap-filler skipped it and he simply was not in
+        # the frame.
+        #
+        # On `ozone-hole-recovery` all three segments are trend/comparison/rank
+        # — all in BAKED_CHART_KINDS — and all three also carry a brain
+        # mechanic. So `all(_seg_is_baked(...))` was True, the overlay was
+        # switched off for the ENTIRE video, and Data appeared only where a
+        # chart happened to draw him. The opening eight seconds — the hook —
+        # had no mascot at all.
         baked_spans = []
         for _bi, _bseg in enumerate(st.segments):
-            if _seg_is_baked(_bseg) and _bi in disp_start:
+            _sp = getattr(_bseg, "spans", None) or []
+            if _sp:
+                baked_spans += [(x["t0"], x["t1"]) for x in _sp
+                                if _kind_bakes(x.get("kind"))]
+            elif _seg_is_baked(_bseg) and _bi in disp_start:
                 baked_spans.append((disp_start[_bi], disp_end[_bi]))
 
         def _baked_at(t):
@@ -2478,7 +2510,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # host parks at bottom-centre through the hook/payoff windows (when
         # lead_hook/lead_payoff are off those windows aren't in baked_spans),
         # which the gate reads as a SECOND, pixel-identical, decorative Data.
-        if st.segments and all(_seg_is_baked(s) for s in st.segments):
+        _all_spans = [x for s_ in st.segments
+                      for x in (getattr(s_, "spans", None) or [])]
+        _fully_baked = (
+            all(_kind_bakes(x.get("kind")) for x in _all_spans) if _all_spans
+            else all(_seg_is_baked(s_) for s_ in st.segments))
+        if st.segments and _fully_baked:
             gap_fill = {"hidden": True}
 
         seq.sort(key=lambda s: s[2])
