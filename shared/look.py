@@ -82,6 +82,19 @@ ACCENTS = {
 }
 DEFAULT_ACCENT = "gold"
 
+#: THE ALARM. A baseline, a threshold, "this is the line you are crossing" —
+#: the ONE colour that means something on its own, so it may never be
+#: confused with the story's accent.
+#:
+#: It was `#F59E0B`, an amber, and it sat ΔE 13.1 from the GOLD accent in
+#: ordinary vision — under the hard floor of 15 that `shared/palette` says
+#: no labelling excuses. Gold is the default accent and lands on 82 of the
+#: channel's 309 stories, so on a quarter of them the subject of the video
+#: and the alarm were the same colour to the eye. Measured, not guessed:
+#: this clears every one of the four accents at 16.2 normal / 15.6 CVD, with
+#: 5.5:1 contrast on the ground. `tests/test_palette.py` holds all of it.
+WARN = (242, 84, 45)
+
 #: THE SUPPORTING MARK IS NEUTRAL, NOT A DIMMED ACCENT.
 #:
 #: A rank chart drew its leader in gold and every other bar in the accent's

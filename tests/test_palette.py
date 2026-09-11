@@ -29,7 +29,13 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+from shared import look                   # noqa: E402
 from shared import palette as pal        # noqa: E402
+
+
+def _H(rgb) -> str:
+    """`look`'s tuples in the hex the validator takes."""
+    return "#%02X%02X%02X" % tuple(int(c) for c in rgb)
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -170,44 +176,88 @@ if __name__ == "__main__":
     unittest.main()
 
 
-class EveryThemeIsChecked(unittest.TestCase):
+class TheAccentsThatSHIPAreChecked(unittest.TestCase):
     """The palette work landed on `charts.py` first — and the charts are the
-    FALLBACK. The 42 machines, which lead most beats, take their colour from
-    `studio_render.THEMES`, so for a while the validated palette applied to
-    the pictures we draw least.
+    FALLBACK. For a while the validated palette applied to the pictures we
+    draw least, while the 42 machines that lead most beats took their colour
+    from `studio_render.THEMES`: six hardcoded triples picked by an MD5 of
+    the slug, two of which failed the moment they were measured (a rose and
+    a green ΔE 4.6 apart for a colourblind viewer; a green and a cyan 12.1
+    apart in ORDINARY vision).
 
-    Two of the six themes failed the moment they were measured: theme 2 had
-    a rose and a green ΔE 4.6 apart for a colourblind viewer (below even the
-    hard floor), theme 3 a green and a cyan 12.1 apart in ORDINARY vision.
-    One story in three shipped colours a viewer could not separate.
+    THEMES no longer carries colour at all. `render()` used to overwrite
+    `charts.HIGHLIGHT/ACCENT/WARN` from it, which is how the design system
+    got thrown away six lines into every render; the accent comes from
+    `look.accent_for(slug)` now and BOTH paths inherit it. So this checks
+    the colours that actually ship.
+
+    The pair that matters most is one the trio check never looked at: the
+    story's accent against `look.REST`, the neutral every supporting mark
+    wears. If those two do not separate, "one thing is highlighted" is not
+    true on screen.
     """
 
-    def _themes(self):
+    def _accents(self):
+        return [_H(look.accent(n)[0]) for n in sorted(look.ACCENTS)]
+
+    def test_the_theme_no_longer_decides_a_colour(self):
         from data_learning import studio_render as sr
-        return sr.THEMES
+        for i, t in enumerate(sr.THEMES):
+            for k in ("highlight", "accent", "warn"):
+                self.assertNotIn(k, t, f"THEMES[{i}] still carries {k!r}")
 
-    def test_every_theme_separates_all_three_of_its_colours(self):
-        bad = {}
-        for i, t in enumerate(self._themes()):
-            v = pal.audit_trio([t["highlight"], t["accent"], t["warn"]])
-            if not v["ok"]:
-                bad[i] = v["problems"]
-        self.assertEqual(bad, {}, f"themes a viewer cannot read: {bad}")
-
-    def test_the_two_themes_that_failed_are_actually_different_now(self):
-        """A guard against a revert that keeps the comment and drops the fix."""
-        themes = self._themes()
-        self.assertNotEqual(themes[2]["accent"], "#FB7185")
-        self.assertNotEqual(themes[3]["highlight"], "#34D399")
-
-    def test_the_pairs_that_failed_still_FAIL_the_check(self):
-        """If these ever pass, the floors were loosened rather than the
-        colours fixed."""
-        self.assertFalse(pal.audit_trio(["#FBBF24", "#FB7185", "#34D399"])["ok"])
-        self.assertFalse(pal.audit_trio(["#34D399", "#22D3EE", "#FBBF24"])["ok"])
-
-    def test_the_themes_are_judged_on_ALL_pairs(self):
-        """Three colours drawn at once: adjacency is meaningless here, and
-        `audit` (adjacent-only) would have cleared theme 3."""
+    def test_the_renderer_takes_its_accent_from_the_design_system(self):
+        import ast
         import inspect
-        self.assertIn("combinations", inspect.getsource(pal.audit_trio))
+        from data_learning import studio_render as sr
+        src = inspect.getsource(sr.render)
+        tree = ast.parse(src.lstrip())
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                node.value = ""
+        code = ast.unparse(tree)
+        self.assertIn("_look.accent_for(slug)", code)
+        self.assertNotIn("theme['highlight']", code)
+
+    def test_every_accent_separates_from_the_neutral(self):
+        """`look.REST` is what every supporting mark wears. The accent has
+        to be unmistakably not-that, or nothing is highlighted."""
+        rest = _H(look.REST)
+        for a in self._accents():
+            self.assertGreaterEqual(pal.delta_e(a, rest), pal.NORMAL_FLOOR, a)
+            self.assertGreaterEqual(pal.delta_e(a, rest, "deuteranopia"),
+                                    pal.CVD_FLOOR, a)
+
+    def test_every_accent_separates_from_the_ALARM(self):
+        """WARN means "this is the baseline you are crossing". It was an
+        amber sitting ΔE 13.1 from the GOLD accent — under the hard floor —
+        and gold is the default, on 82 of 309 stories. On a quarter of the
+        channel the subject and the alarm were the same colour."""
+        warn = _H(look.WARN)
+        for a in self._accents():
+            self.assertGreaterEqual(pal.delta_e(a, warn), pal.NORMAL_FLOOR, a)
+            self.assertGreaterEqual(pal.delta_e(a, warn, "deuteranopia"),
+                                    pal.CVD_FLOOR, a)
+
+    def test_the_amber_that_failed_still_FAILS_the_check(self):
+        """If this ever passes, the floors were loosened rather than the
+        colour fixed."""
+        self.assertLess(pal.delta_e(_H(look.accent("gold")[0]), "#F59E0B"),
+                        pal.NORMAL_FLOOR)
+
+    def test_everything_that_carries_ink_reads_on_the_ground(self):
+        for c in self._accents() + [_H(look.WARN), _H(look.INK),
+                                    _H(look.INK_2)]:
+            self.assertGreaterEqual(pal.contrast(c, pal.CARD),
+                                    pal.CONTRAST_FLOOR, c)
+
+    def test_the_channel_still_has_variety_across_videos(self):
+        """One accent per story, but not one accent for the channel — the
+        whole reason `accent_for` is seeded rather than constant."""
+        import json
+        from pathlib import Path
+        cfg = json.loads((Path(__file__).resolve().parents[1]
+                          / "data_learning" / "niche.config.json").read_text())
+        seen = {look.accent_for(s["slug"]) for s in cfg.get("stories", [])}
+        self.assertEqual(seen, set(look.ACCENTS),
+                         "some accents never get used")
