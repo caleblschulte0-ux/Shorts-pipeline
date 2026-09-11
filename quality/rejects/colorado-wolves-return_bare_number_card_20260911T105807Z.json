@@ -1,0 +1,25 @@
+{
+ "slug": "colorado-wolves-return",
+ "ts": "20260911T105807Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg0:mid, seg2:mid, seg3:mid, numbers are presented on simple growing bars, which are basic visualizations and lack a strong physical/visual metaphor.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "Data demonstration",
+  "visible_evidence": "The visual metaphor of a square labeled '2' inside a larger square, with text '2 times over', is confusing and doesn't clearly represent '32 vs 50' or 'more than halfway'.",
+  "root_cause": "Poor choice of visual metaphor that misrepresents or confuses the data relationship.",
+  "repair_goal": "Replace the confusing square metaphor with a clear and accurate visual representation of 32 wolves relative to a target of 50, avoiding misleading ratios."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260911T105807Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start through payoff@-0.4: the band from under 'By sea 80%' to the caption is entirely empty except a dashed hairline column, and the hook@0.3 frame is near-black with a single 130px grey rectangle.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_static_outro",
+  "visible_evidence": "seg4:start (41.62s) to payoff@-0.4 (48.43s) is one held frame: a speech bubble over a gutted 'world trade carried by sea' panel \u2014 two thin rules, two 20px mascots and a dashed column \u2014 with a dead band across the entire lower third and nothing moving between seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4.",
+  "root_cause": "The closing beat drops the seg2 part-of-whole stack it inherits and replaces it with a label-only skeleton, then holds ~7s (14% of the runtime) with no animation driving it \u2014 the outro composes a card, not a shot.",
+  "repair_goal": "Keep the 80/20 demonstration ALIVE under the closing line: carry the filled stack (or a continuing mark) through the outro at full bleed so the lower third is occupied, and give the mascot one measurable move across the final 7s so no two sampled beats are identical."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260911T105807Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid and seg2:end waste the bottom ~55% of the frame \u2014 the hourglass pair sits in the top third and everything below the floor line is flat dark with a thumbnail-sized mascot; seg3:end is worse, a single hairline pole on a near-black field.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end a leftover headline 'how long it takes' is drawn directly on top of the scene title 'how fast that really is', the two lines colliding at the top of the frame; below, the two hourglasses occupy only the upper third while the bottom half of the 1080x1920 frame is empty dark ground with the mascot shrunk to a corner figure standing on a bare line, and the sand is rendered in gold \u2014 an off-palette hue the rest of the video never uses.",
+  "root_cause": "The previous scene's title is not cleared before the machine draws its own header, so two text layers composite in the same band; and the hourglass machine lays out against the top of the frame instead of the full ground, leaving the mascot and the lower half unstaged.",
+  "repair_goal": "Draw exactly ONE title in that band, scale the hourglass pair to fill the frame's vertical space with the mascot staged against it at readable size, and recolour the falling sand to the story accent instead of gold."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
