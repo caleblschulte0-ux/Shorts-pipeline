@@ -1,0 +1,51 @@
+{
+  "mature_hours": 72.0,
+  "content_series": {
+    "chaos": {
+      "n": 47,
+      "median_vph": 0.03
+    },
+    "fail": {
+      "n": 9,
+      "median_vph": 0.06
+    },
+    "wholesome": {
+      "n": 9,
+      "median_vph": 0.01
+    },
+    "drama": {
+      "n": 6,
+      "median_vph": 0.14
+    },
+    "win": {
+      "n": 5,
+      "median_vph": 0.03
+    },
+    "jumpscare": {
+      "n": 4,
+      "median_vph": 0.015
+    },
+    "rage": {
+      "n": 4,
+      "median_vph": 0.01
+    },
+    "argument": {
+      "n": 2,
+      "median_vph": 0.04
+    },
+    "beef": {
+      "n": 1,
+      "median_vph": 0.04
+    },
+    "clutch": {
+      "n": 1,
+      "median_vph": 0.01
+    }
+  },
+  "excluded": {
+    "story": {
+      "n": 1,
+      "median_vph": 0.01
+    }
+  }
+}

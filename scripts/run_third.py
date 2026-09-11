@@ -664,8 +664,13 @@ def _hashtags(pkg: dict, led: dict) -> list[str]:
     # first for clip posts, then broad tags) so a thin/failed author never
     # drops us below the minimum.
     s = _n(led.get("streamer") or "")
+    # "unknown"/"story" are internal taxonomy labels, not real hashtags --
+    # never let an unclassified clip publish the literal tag "unknown".
+    series_tag = _n(led.get("series") or "")
+    if series_tag in ("unknown", "story"):
+        series_tag = ""
     pool = ([s, f"{s}clips", f"{s}clip"] if s else []) + [
-        _n(led.get("series") or ""), "streamerclips", "twitchclips",
+        series_tag, "streamerclips", "twitchclips",
         "clips", "gaming", "livestream", "shorts", "twitch"]
     for t in pool:
         if len(out) >= 5:
@@ -1711,7 +1716,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     words=words, clip_dur=clip_dur,
                     guidance=_opening_guidance())
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
-            series = (meta or {}).get("series", "chaos")
+            # "unknown", never "chaos" -- a failed/absent author call is not
+            # a confirmed chaos classification (doctor finding 2127c6395c2c).
+            series = (meta or {}).get("series", "unknown")
 
             # CONTENT-AWARE QUALITY GATE (reviewer rail #5, second stage):
             # the shortlist floor judged a TITLE; now the transcript exists,
@@ -1910,7 +1917,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                         meta.get("caption", ""))
                     led["authored_cta"] = author.scrub_text(
                         meta.get("cta", ""))
-                    led["series"] = meta.get("series", "chaos")
+                    led["series"] = meta.get("series", "unknown")
                 led["source_url"] = info["url"]
                 led["source_views"] = info["views"]
                 # The raw Twitch clip title is the fallback the public title,

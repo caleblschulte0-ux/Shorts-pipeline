@@ -213,6 +213,14 @@ jobs:
           python3 scripts/fetch_analytics.py --channel third --max-age-days 30 \
             || { echo "analytics fetch skipped"; exit 0; }
 
+      # Doctor finding 2127c6395c2c: keep the content-mix (series) audit
+      # current every time analytics refreshes, so a triage session reads
+      # a live median-VPH-by-series table instead of pulling it by hand.
+      - name: Third series audit
+        if: ${{ always() && inputs.dry_run != true }}
+        continue-on-error: true
+        run: python3 scripts/third_series_audit.py || exit 0
+
       - name: Commit analytics
         # analytics lands AFTER the log commit now, so it needs its own
         # persist. Same hardened path; nothing here is dedupe state, so a
@@ -221,4 +229,5 @@ jobs:
         continue-on-error: true
         run: |
           bash scripts/ci_commit_state.sh \
-            "third: analytics [skip ci]" state/analytics_third
+            "third: analytics [skip ci]" state/analytics_third \
+            state/third_series_audit.json state/third_series_audit.md
