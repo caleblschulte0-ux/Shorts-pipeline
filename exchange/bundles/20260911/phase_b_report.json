@@ -1,0 +1,114 @@
+{
+  "date": "20260911",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 16,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "a2280bd0c459bc8559171b1e288cd6fc07f940ce125c14d0e3da5fbc59e01952",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-email-everything-policy-s0-9ad52e40ad9b",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3253/2602415335_557c710294_b.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s1-969d674b87ef",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd6551b32e5e69b0da53ce360aeace5dae306cb48831bfe0ca0a4d216221eee4a159ad75ca41f32f0415091fe7b7961f8b08e28ed37aaae8f38edb1a4a808b58e_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s2-57ba8f1646b3",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g673b392a1dd27eef8d107389e093f06ac9d6ab6363f5fccaed1b3d2c5923d9f442d933ee2a1cf1ca5042ea199488c8a87255a2e496a929ef99c36d25da737da0_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s3-2ce1a4c60869",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g21fa5f1b1365dcceb2571e4bb29803529aa56282560239fc66ef1eaaf5798668b8e80fef82c9550bf8d6f387fe617246f7bb8a8fee32726e1f22e1a1f1f62746_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s4-4ac76720de61",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g23f97defbd9f1e31be5318937b868788762292808875d93cb5783d2af5572fd1b79da13c3b2e78d863222d9260770db5a256295dca52f29c785d39ec0d080a01_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s5-59a3240f4bf1",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ge6641b056b14c4b51d9ba8d921be84caf9cf7f445960b63cce0c0971db66c7a285eea64e32afc28cef3e69198cd5771c7d730ba51b954b1e570d85f26596a2e5_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s6-cf37c7b3c57f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gcbd0ea7272f2cb3e12672cc38bd02272c12e013e02a1382e583283ce1b18c68331bba1e1073311b2a019a615cbfa46ea297f2203e4283adb6f239253d9100b75_1280.jpg"
+    },
+    {
+      "request_id": "reddit-email-everything-policy-s7-84ecf0719e86",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g839d91392c64f31fb88ae8305c117ba379871f139012cd6500499cba5f8ee1e8816f5ec59541bf257aeab68a259c504b1d61d8c2340baae2eeb059c3bf12c33b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s0-bac354711a90",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g1821c8d9a967949a0c5e0b0bcc76055a40968fd7272a88eafc85477633fb24939fbfd72267f0575a431d8494c337c8639ce4ca8a51b6ea50fdca5b51e2024bf0_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s1-7f82c308455c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g1c5843327cb949d7eb2d004bde285ecc263df6c1c15b1d54ec4eafa83212fdf99811218da26d5acd8a5c6dfe96b4b84803a73789e619621e412b142ee6c64d09_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s2-848ee7a62865",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb6ae99fa1e573b3d235b1ba60cc8809bd1e7724eef5087751431cf31bdc8bb6077ca1b0d735a68e7f6eeb711590ea22505c51e77791098d72886872a14356cc1_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s3-6311cb290190",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g9144f95cc4f1db9b1aa797674f53b7044ec8acb2ee8cf33d30367806c4fd42d4bdf1b288ae0777ebbdfade004f2de600b8c3ddfffd7aae0721dcfa9ad02bdeed_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s4-b4588cbdde92",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g1da8593a879b4fab1d62e0389ac6b20e0096624ddcccce2cffefd2103ce612b950f108002608355edc35a27e370b635f7c39fe48a0386296fcb8e227dbcc6f44_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s5-464f9c48455e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ge9f4e5ed4700d31e581027d4d69451d3adfe843a0635d5f631bb52d7444530c5e2bd51b5daa85162e1592b059751d571beff2ac00d2c69b521501f130deec9aa_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s6-c92706c28eea",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g79e617608167def24d3d775c758cc7c0d2fc1b6508e827c3a782145d88547c4c2dec03c9da0ae56886249e8c722cc8e61882b37af599fb4c1cbbf550f4c50d44_1280.jpg"
+    },
+    {
+      "request_id": "reddit-store-owner-mistaken-employee-s7-f51b6cd7a883",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7827961e3da7861c596e581de404e71a3f0e1c12798581f19770921cab584e2607982d6656e97abde0c73e098a871333d5a2d654dc48289d439c39747f3b295c_1280.jpg"
+    }
+  ]
+}
