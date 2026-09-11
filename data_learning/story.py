@@ -24,8 +24,62 @@ from .sources.offline import OfflineSource
 # Connectors give the sequence a story rhythm instead of a list feel.
 CONNECTORS = ["", "Now look at this.", "But here's the twist.",
               "And it gets sharper.", "Then this."]
-GREEN, RED, ORANGE, WHITE = "#50ff80", "#ff3030", "#ffaa30", "#ffffff"
-FLASH = {GREEN: "#0d2818", RED: "#220404", ORANGE: "#2a1d05", WHITE: None}
+# THE SPOKEN NUMBER IS THE LOUDEST TEXT IN THE VIDEO, and it was painted
+# from a fourth source of colour truth:
+#
+#     GREEN, RED, ORANGE, WHITE = "#50ff80", "#ff3030", "#ffaa30", "#ffffff"
+#
+# Pure web-safe RGB, defined nowhere near the design system, landing on the
+# one word the viewer actually reads. `#50ff80` is a neon green that is in
+# no palette this channel owns — it is why the ozone render had a bright
+# green "99%" over a gold-and-slate frame.
+#
+# The SEMANTICS were right and are kept: a story has a lead number, a
+# counterpart, and sometimes an alarm. They just have to be said in the
+# channel's colours.
+#
+#   LEAD    the number the sentence is about  -> the STORY'S accent
+#   SECOND  its counterpart in the same beat  -> secondary ink, a neutral
+#   ALARM   a peak/threshold being crossed    -> `look.WARN`
+#   PLAIN   everything else                   -> ink
+#
+# LEAD is a function, not a constant, because the accent is chosen per story
+# (`look.accent_for`) and `charts.HIGHLIGHT` carries it by the time a story
+# is built. The others are fixed: a neutral that drifted per video would not
+# be a neutral, and an alarm that did would mean nothing by being any colour.
+def LEAD() -> str:
+    return charts.HIGHLIGHT
+
+
+def SECOND() -> str:
+    return charts.SUBTLE
+
+
+def ALARM() -> str:
+    return charts.WARN
+
+
+def PLAIN() -> str:
+    return charts.TEXT
+
+
+def _flash_bg(color: str) -> str | None:
+    """The dim plate behind a punched number — the same hue, 12% of the way
+    up from the ground, so it reads as a glow off the number rather than a
+    second colour. It was a hand-picked hex per constant, which is three
+    more values to keep in sync with the four above."""
+    if not color or color.upper() in (charts.TEXT.upper(),
+                                      charts.SUBTLE.upper()):
+        return None
+    try:
+        from matplotlib.colors import to_rgb
+        cr, cg, cb = to_rgb(color)
+        gr, gg, gb = to_rgb(charts.CARD)
+        mix = tuple(g + (c - g) * 0.12 for c, g in
+                    ((cr, gr), (cg, gg), (cb, gb)))
+        return "#%02X%02X%02X" % tuple(int(round(v * 255)) for v in mix)
+    except Exception:  # noqa: BLE001 — a plate is a look, never a blocker
+        return None
 
 
 @dataclass
@@ -124,8 +178,9 @@ def _punch(sentence: str, value: float, unit: str, color: str) -> dict | None:
         return None
     p = {"phrase": token, "text": token + ("%" if pct else ""),
          "color": color, "duration": 1.8}
-    if FLASH.get(color):
-        p["flash_bg"] = FLASH[color]
+    _bg = _flash_bg(color)
+    if _bg:
+        p["flash_bg"] = _bg
     return p
 
 
@@ -142,7 +197,7 @@ def _punches_from_anchors(say: str, anchors: list, unit: str) -> list[dict]:
         tok, _ = _tok(v, unit)
         if tok in seen:
             continue
-        pp = _punch(say, v, unit, GREEN)
+        pp = _punch(say, v, unit, LEAD())
         if pp:
             out.append(pp)
             seen.add(tok)
@@ -157,13 +212,13 @@ def _segment_text(ins: Insight, connector: str) -> tuple[str, list[tuple[str, st
         star = items[0]
         sup = "lowest" if "lowest" in ins.main_insight.lower() else "highest"
         clause = f"{star.label} has the {sup} {ins.topic}, at {_num(star.value, u)}."
-        return _join(connector, clause), [(star.value, u, GREEN)]
+        return _join(connector, clause), [(star.value, u, LEAD())]
     if ins.kind == "comparison":
         hi, lo = items[0], items[1]
         clause = (f"{hi.label} is up {_num(hi.value, u)}, while {lo.label} "
                   f"is only {_num(lo.value, u)}.")
-        return _join(connector, clause), [(hi.value, u, GREEN),
-                                          (lo.value, u, ORANGE)]
+        return _join(connector, clause), [(hi.value, u, LEAD()),
+                                          (lo.value, u, SECOND())]
     # trend — mention the peak so the spoken story matches the line shape.
     first, last = items[0], items[-1]
     peak = max(items, key=lambda p: p.value)
@@ -171,12 +226,12 @@ def _segment_text(ins: Insight, connector: str) -> tuple[str, list[tuple[str, st
         clause = (f"{_cap(ins.topic)} spiked from {_num(first.value, u)} to "
                   f"{_num(peak.value, u)} in {peak.label}, then fell to "
                   f"{_num(last.value, u)}.")
-        return _join(connector, clause), [(peak.value, u, RED),
-                                          (last.value, u, GREEN)]
+        return _join(connector, clause), [(peak.value, u, ALARM()),
+                                          (last.value, u, LEAD())]
     direction = "climbed" if last.value > first.value else "fell"
     clause = (f"{_cap(ins.topic)} {direction} from {_num(first.value, u)} in "
               f"{first.label} to {_num(last.value, u)} in {last.label}.")
-    return _join(connector, clause), [(last.value, u, GREEN)]
+    return _join(connector, clause), [(last.value, u, LEAD())]
 
 
 def _build_insight(seg_cfg: dict):

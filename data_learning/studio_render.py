@@ -30,6 +30,7 @@ REPO = PKG_DIR.parent
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
+from shared import look as _look                                  # noqa: E402
 from data_learning import ambient, charts, mascot, story           # noqa: E402
 from data_learning.demo_render import (                            # noqa: E402
     _ass_time, _chunks, _dur, _hex_to_ass, _run)
@@ -88,33 +89,46 @@ VOICE_PITCH = 1.0
 # bokeh layout, and narrator voice (picked deterministically from the slug), so
 # uploads don't look/sound like the same template stamped out over and over —
 # which is what trips TikTok's "unoriginal / spam" filter on faceless channels.
+# THE THEME NO LONGER CARRIES COLOUR.
+#
+# It used to, and that is where the design system died. `shared/look.py` is
+# the one place a colour is decided, `charts.py` derives every token from it
+# — and then `render()` did this, six lines in:
+#
+#     charts.HIGHLIGHT, charts.ACCENT, charts.WARN = (
+#         theme["highlight"], theme["accent"], theme["warn"])
+#
+# ...throwing the whole chain away and substituting one of six hardcoded
+# triples picked by an MD5 of the slug. Both paths inherit it: the charts
+# through those module globals, and the 42 machines through the same
+# globals, so ONE assignment decided the colour of every picture the channel
+# draws. Rendered on 2026-09-10, the ozone story came out in teal and blue
+# with a gold design system sitting unused one import away.
+#
+# Per-video variety was the right instinct and it is kept — `look.accent_for`
+# is deterministic per slug and exists for exactly this. What the theme keeps
+# is the variety that is NOT colour: the voice, the music bed, the bokeh
+# seed. (`grad` survives only for `LEGACY_LOOK=1`; the CLEAN ground is a
+# fixed editorial slate.)
 THEMES = [
-    dict(highlight="#4FD1C5", accent="#60A5FA", warn="#F59E0B",
-         grad=("0x080A14", "0x0e2444", "0x175852", "0x0a0e20"),
+    dict(grad=("0x080A14", "0x0e2444", "0x175852", "0x0a0e20"),
          seed=7, voice="am_fenrir", vibe="calm"),
-    dict(highlight="#A78BFA", accent="#F472B6", warn="#FBBF24",
-         grad=("0x0c0814", "0x241040", "0x3a1763", "0x120a20"),
+    dict(grad=("0x0c0814", "0x241040", "0x3a1763", "0x120a20"),
          seed=13, voice="am_michael", vibe="dark"),
-    # The rose and the green were ΔE 4.6 apart for a colourblind viewer —
-    # below even the hard floor — and both are on screen together. Nudged to
-    # the nearest pair that clears it with room to spare (9.9). See
-    # `shared/palette.py` and `tests/test_palette.py::EveryThemeIsChecked`.
-    dict(highlight="#FBBF24", accent="#F26D73", warn="#36D8B0",
-         grad=("0x141005", "0x3a2410", "0x4e3417", "0x1a1408"),
+    dict(grad=("0x141005", "0x3a2410", "0x4e3417", "0x1a1408"),
          seed=21, voice="bm_george", vibe="cinematic"),
-    # The green and the cyan were ΔE 12.1 apart in NORMAL vision, under the
-    # hard floor of 15 that no labelling excuses — a full-colour viewer could
-    # not tell this theme's two leading colours apart.
-    dict(highlight="#20D88F", accent="#3FC5FF", warn="#FFB326",
-         grad=("0x07140e", "0x0e3a2a", "0x175852", "0x0a201a"),
+    dict(grad=("0x07140e", "0x0e3a2a", "0x175852", "0x0a201a"),
          seed=29, voice="am_adam", vibe="pulse"),
-    dict(highlight="#FB7185", accent="#A78BFA", warn="#FBBF24",
-         grad=("0x140810", "0x40102a", "0x5a1740", "0x200a18"),
+    dict(grad=("0x140810", "0x40102a", "0x5a1740", "0x200a18"),
          seed=37, voice="bm_lewis", vibe="dark"),
-    dict(highlight="#60A5FA", accent="#34D399", warn="#FBBF24",
-         grad=("0x06101e", "0x102044", "0x174a72", "0x0a1428"),
+    dict(grad=("0x06101e", "0x102044", "0x174a72", "0x0a1428"),
          seed=43, voice="am_fenrir", vibe="cinematic"),
 ]
+
+
+def _hex(rgb) -> str:
+    """`look`'s tuples -> the hex strings `charts` and libass both want."""
+    return charts._hex(rgb)
 
 
 def _theme_for(slug: str) -> dict:
@@ -2043,9 +2057,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     # Per-video theme: chart palette, background gradient, bokeh, voice — so no
     # two uploads look or sound like the same stamped-out template.
     theme = _theme_for(slug)
-    charts.HIGHLIGHT, charts.ACCENT, charts.WARN = (
-        theme["highlight"], theme["accent"], theme["warn"])
-    accent_ass = _hex_to_ass(theme["highlight"])
+    # THE ACCENT COMES FROM THE DESIGN SYSTEM — see THEMES above for what
+    # this replaced. `accent_for` is deterministic per slug, so the channel
+    # still has variety ACROSS videos and none WITHIN one, which is the rule.
+    # WARN is NOT themed: it is the semantic alarm colour, and a baseline
+    # warning that is teal on one video and amber on the next says nothing
+    # by being either.
+    charts.HIGHLIGHT, charts.ACCENT = (
+        _hex(c) for c in _look.accent(_look.accent_for(slug)))
+    accent_ass = _hex_to_ass(charts.HIGHLIGHT)
     if voice is None:
         voice = theme["voice"]
 
@@ -2606,15 +2626,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         if CLEAN:
             # Flat dark editorial bg + a thin brand accent bar at the very top,
             # a soft vignette to settle the eye. No orbs, no blur haze.
-            _ac = (theme.get("accent") or "#4FD1C5").lstrip("#")
-            # LOWER-THIRD PANEL: the band below the chart card used to be bare
-            # gradient — the gate's 'dead navy strip / empty_void'. Fill it with a
-            # subtle raised panel + an accent divider so it reads as an
-            # intentional caption zone (a pro lower-third), not wasted space.
+            # CHROME IS INK, NOT COLOUR.
+            #
+            # There was an 8px full-width bar of the accent at FULL opacity
+            # across the top of every frame, and a 5px accent divider above
+            # the caption band. Two saturated rules on every single frame is
+            # the single most Twitch-overlay thing in the render — and it
+            # spent the channel's ONE colour on chrome, which is exactly
+            # what "colour means one thing here: the thing being said" is
+            # meant to prevent. The operator's word for the result was
+            # "cheap".
+            #
+            # (It also read `theme["accent"]`, a key that no longer exists,
+            # so it had already fallen through to a hardcoded teal — the
+            # green rule top and bottom of the 2026-09-10 ozone render.)
+            #
+            # The LOWER-THIRD PANEL stays: the band below the chart was bare
+            # gradient and the gate called it a 'dead navy strip'. It just
+            # doesn't need a coloured rule to say where it starts — a
+            # hairline in the grid tone is what every other divider on this
+            # channel wears.
+            _rule = charts.GRID.lstrip("#")
             fc = [f"[0:v]format=rgba,vignette=PI/6,"
-                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill,"
                   f"drawbox=x=0:y={FOOT_Y}:w={W}:h={FOOT_H}:color=0x161D2E@0.62:t=fill,"
-                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h=5:color=0x{_ac}@0.55:t=fill[bg]"]
+                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h=2:color=0x{_rule}@0.9:t=fill[bg]"]
         else:
             fc = ambient.bg_filter(1, fps=FPS)    # -> [bg]
         if CLEAN:
