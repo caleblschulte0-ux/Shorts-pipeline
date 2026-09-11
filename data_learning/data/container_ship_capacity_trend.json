@@ -1,0 +1,42 @@
+{
+  "key": "container_ship_capacity_trend",
+  "title": "Largest container ship in service, by capacity (TEU)",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1980-2024",
+  "source": {
+    "name": "Largest available containership history",
+    "publisher": "Port Economics, Management and Policy; industry trackers",
+    "url": "https://porteconomicsmanagement.org/pemp/contents/part6/ports-and-container-shipping/largest-available-containership-teus/",
+    "officiality": "reference",
+    "access_date": "2026-09-11"
+  },
+  "notes": "TEU = twenty-foot equivalent unit, the standard shipping-container measure. Approximate historical record holders.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 4000,
+      "period": "1980"
+    },
+    {
+      "label": "1996",
+      "value": 6000,
+      "period": "1996"
+    },
+    {
+      "label": "2006",
+      "value": 12500,
+      "period": "2006"
+    },
+    {
+      "label": "2013",
+      "value": 18000,
+      "period": "2013"
+    },
+    {
+      "label": "2024",
+      "value": 24327,
+      "period": "2024"
+    }
+  ]
+}

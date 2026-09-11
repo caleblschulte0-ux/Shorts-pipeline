@@ -1,0 +1,25 @@
+{
+  "key": "container_ship_crew_size",
+  "title": "Typical container ship crew size (people)",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1980s vs 2020s",
+  "source": {
+    "name": "Merchant marine crewing norms",
+    "publisher": "Maritime industry estimates",
+    "url": "https://porteconomicsmanagement.org/pemp/contents/part6/ports-and-container-shipping/largest-available-containership-teus/",
+    "officiality": "reference",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Illustrative but directionally well-documented: automation has kept merchant-vessel crew counts roughly flat even as cargo capacity multiplied several times over.",
+  "points": [
+    {
+      "label": "Crew in 1980",
+      "value": 34
+    },
+    {
+      "label": "Crew today",
+      "value": 20
+    }
+  ]
+}

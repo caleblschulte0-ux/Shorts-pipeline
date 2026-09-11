@@ -1,0 +1,25 @@
+{
+  "key": "ocean_floor_vs_mars_mapped",
+  "title": "Share mapped: Earth's ocean floor vs. the surface of Mars (percent)",
+  "unit": "percent",
+  "geography": "World / Mars",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Seabed 2030 progress update; NASA Context Camera Global Mosaic of Mars coverage",
+    "publisher": "Nippon Foundation-GEBCO Seabed 2030 Project; NASA/JPL",
+    "url": "https://seabed2030.org/",
+    "officiality": "official",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Mars: NASA's Context Camera has imaged 99%+ of the Martian surface. Ocean floor: Seabed 2030's 2026 progress figure.",
+  "points": [
+    {
+      "label": "Mars surface",
+      "value": 99.5
+    },
+    {
+      "label": "Ocean floor",
+      "value": 28.7
+    }
+  ]
+}

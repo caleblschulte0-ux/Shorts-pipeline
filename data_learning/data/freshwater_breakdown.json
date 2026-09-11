@@ -1,0 +1,29 @@
+{
+  "key": "freshwater_breakdown",
+  "title": "Where Earth's freshwater actually is (percent of all freshwater)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Present-day estimate",
+  "source": {
+    "name": "The World's Water distribution estimates",
+    "publisher": "U.S. Geological Survey (USGS)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water",
+    "officiality": "official",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Standard USGS breakdown of global freshwater by reservoir type.",
+  "points": [
+    {
+      "label": "Glaciers & ice caps",
+      "value": 68.7
+    },
+    {
+      "label": "Groundwater",
+      "value": 30.1
+    },
+    {
+      "label": "Surface water & other",
+      "value": 1.2
+    }
+  ]
+}

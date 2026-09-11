@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-suvs-buried-the-sedan",
+  "title": "SUVs And Trucks Buried The Sedan",
+  "hook": "Cars aren't cars anymore.",
+  "y_label": "Share of new U.S. vehicle sales (percent)",
+  "duration": 13,
+  "source": "WardsAuto / Motor Intelligence U.S. light-vehicle sales by body style: passenger cars vs. light trucks (SUVs, crossovers, pickups, vans), share of new sales, 1990-2024. Approximate.",
+  "years": [
+    1990,
+    1998,
+    2004,
+    2009,
+    2013,
+    2018,
+    2024
+  ],
+  "series": [
+    {
+      "name": "SUVs & trucks",
+      "color": "#616161",
+      "values": [
+        30,
+        45,
+        55,
+        48,
+        52.1,
+        67,
+        80
+      ]
+    },
+    {
+      "name": "Sedans & cars",
+      "color": "#C62828",
+      "values": [
+        70,
+        55,
+        45,
+        52,
+        47.9,
+        33,
+        20
+      ]
+    }
+  ],
+  "hashtags": [
+    "suv",
+    "trucks",
+    "sedan",
+    "cars",
+    "automotive",
+    "carsales",
+    "wardsauto",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

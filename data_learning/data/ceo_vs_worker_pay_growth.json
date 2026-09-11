@@ -1,0 +1,25 @@
+{
+  "key": "ceo_vs_worker_pay_growth",
+  "title": "Compensation growth since 1978: CEOs vs. typical workers (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1978-2023",
+  "source": {
+    "name": "CEO pay in 2023",
+    "publisher": "Economic Policy Institute (EPI)",
+    "url": "https://www.epi.org/publication/ceo-pay-in-2023/",
+    "officiality": "official",
+    "access_date": "2026-09-11"
+  },
+  "notes": "EPI: CEO realized compensation up 1,085% since 1978, vs. 24% for a typical worker over the same period.",
+  "points": [
+    {
+      "label": "CEO pay growth",
+      "value": 1085
+    },
+    {
+      "label": "Typical worker pay growth",
+      "value": 24
+    }
+  ]
+}
