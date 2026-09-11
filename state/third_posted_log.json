@@ -6523,13 +6523,54 @@
       "ts": "2026-09-11T15:01:52.187516+00:00"
     },
     "clip-20260911-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/gTKXXtDHMJM",
       "title": "Xqc Reacts To The Bean Dip Rug Pull Live",
       "kind": "twitch_clip",
-      "ts": "2026-09-11T15:07:48.844572+00:00",
+      "ts": "2026-09-11T15:07:53.783912+00:00",
+      "uploaded_at": "2026-09-11T15:07:53.783934+00:00",
+      "publish_at": "2026-09-11T17:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7",
+      "streamer": "xqc",
+      "series": "drama",
+      "hook": "THE BEAN DIP RUG PULL JUST HAPPENED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6622,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-freezingspeedyasparagusdansgame-ohiicslui9ktazbc": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/FreezingSpeedyAsparagusDansGame-ohiicSlUi9ktazbc",
+      "streamer": "extraemily",
+      "title": "self driving",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (talking about maybe buying self-driving )",
+      "ts": "2026-09-11T15:08:56.253749+00:00"
+    },
+    "rejected-fancydrabrhinocerospetezarolltie-0cam_9ogs6-rg0yz": {
+      "source_url": "https://www.twitch.tv/buddha/clip/FancyDrabRhinocerosPeteZarollTie-0cam_9ogs6-RG0yz",
+      "streamer": "buddha",
+      "title": "Mr C removes his hat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static talking avatars, no visible event)",
+      "ts": "2026-09-11T15:10:14.058766+00:00"
+    },
+    "clip-20260911-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/DistinctPatientWormWOOP-ugvV1kgUf40w2d4y",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Loses $800 After Tony Rugpulls Him Live",
+      "kind": "twitch_clip",
+      "ts": "2026-09-11T15:14:02.419168+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
