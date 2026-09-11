@@ -1694,6 +1694,27 @@
       ],
       "words_first_10s": 20,
       "scene_changes_before_5s": 3
+    },
+    "colorado-wolves-return": {
+      "url": "https://youtube.com/shorts/DZ1xlAUqP-M",
+      "title": "Colorado Just Brought Wolves Back After 80 Years (3 Charts)",
+      "at": "2026-09-11T10:57:35.521007+00:00",
+      "publish_at": "2026-09-11T11:12:13Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 60,
+      "duration_s": 40.5,
+      "hook": "inversion",
+      "topic_category": "nature",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:wolf-pack-multiply-ridge",
+        "mechanic:wolf-den-split-count",
+        "mechanic:paw-print-trail-progress"
+      ],
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -1777,6 +1798,15 @@
       "state": "posted",
       "slug": "bald-eagle-population-rebound",
       "at": "2026-09-10T18:48:32.332876+00:00"
+    },
+    {
+      "claimed_at": "2026-09-11T10:57:28.438661+00:00",
+      "title": "Colorado Just Brought Wolves Back After 80 Years (3 Charts)",
+      "publish_at": "2026-09-11T11:12:13Z",
+      "url": "https://youtube.com/shorts/DZ1xlAUqP-M",
+      "state": "posted",
+      "slug": "colorado-wolves-return",
+      "at": "2026-09-11T10:57:35.521007+00:00"
     }
   ]
 }
