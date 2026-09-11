@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11142e"/><stop offset="1" stop-color="#05060f"/></linearGradient></defs>
+  <rect width="1080" height="1920" fill="url(#g)"/>
+  <rect x="0" y="0" width="1080" height="6" fill="#8b7cf6"/>
+  <text x="72" y="300" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="76" font-weight="800" fill="#f2f5fa">Container ship size</text>
+  <text x="72" y="392" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#4fd1c5" letter-spacing="2">SIX TIMES BIGGER</text>
+  <rect x="110" y="1370" width="170" height="190" rx="18" fill="#3f4666"/>
+  <text x="195" y="1640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#f2f5fa" text-anchor="middle">1968</text>
+  <rect x="340" y="1160" width="170" height="400" rx="18" fill="#3f4666"/>
+  <text x="425" y="1640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#f2f5fa" text-anchor="middle">1988</text>
+  <rect x="570" y="840" width="170" height="720" rx="18" fill="#3f4666"/>
+  <text x="655" y="1640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#f2f5fa" text-anchor="middle">2006</text>
+  <rect x="800" y="500" width="170" height="1060" rx="18" fill="#a78bfa"/>
+  <text x="885" y="1640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="44" font-weight="700" fill="#f2f5fa" text-anchor="middle">2023</text>
+  <text x="195" y="1340" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#96a2b8" text-anchor="middle">1×</text>
+  <text x="885" y="470" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="54" font-weight="800" fill="#f2f5fa" text-anchor="middle">6×</text>
+  <text x="540" y="1800" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="34" fill="#6b7390" text-anchor="middle">Shorts Media</text>
+</svg>

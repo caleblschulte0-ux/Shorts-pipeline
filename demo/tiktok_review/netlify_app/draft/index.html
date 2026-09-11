@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Upload as a TikTok draft | Shorts Media</title>
+<meta name="description" content="Upload a video to the creator&#x27;s TikTok inbox as a draft (sandbox).">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/shorts-media-app-icon.png">
+<meta name="theme-color" content="#09090c">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body class="app">
+<!-- Sandbox demonstration of the Shorts Media TikTok integration. There is no
+     scripting: the site's CSP is script-src 'none', so every state is a page or pure CSS. -->
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="shell nav">
+    <a class="brand" href="/">
+      <img src="/assets/shorts-media-app-icon.png" alt="Shorts Media app icon" width="42" height="42">
+      <span>Shorts Media</span>
+    </a>
+    <nav class="navlinks" aria-label="Support and legal">
+      <a href="/support/">Support</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </nav>
+  </div>
+  <p class="sandbox-banner">Sandbox demonstration environment — simulated TikTok responses, no video is published to a live account.</p>
+</header>
+
+<main id="main">
+<div class="shell app-shell">
+  <div class="appbar">
+    <div class="appbar-label">Creator dashboard</div>
+    <div class="acct">
+      <div class="acct-pill">
+        <img src="/app/img/avatar-caleb-sandbox.svg" alt="TikTok profile photo" width="40" height="40">
+        <span><span class="acct-name">Caleb (sandbox)</span><span class="acct-handle">@caleb_sandbox</span></span>
+        <span class="acct-status"><span class="live-dot" aria-hidden="true"></span>TikTok connected</span>
+      </div>
+      <a class="btn btn-quiet" href="/app/disconnected/">Disconnect TikTok</a>
+    </div>
+  </div>
+  <div class="page-head">
+    <div class="eyebrow">Content Posting API · Upload as draft</div>
+    <h1 class="app-h1">Upload as a TikTok draft</h1>
+    <p class="muted page-lead">The video goes to your TikTok inbox as a draft. It is not posted until you finish it in the TikTok app.</p>
+  </div>
+  <div class="composer-cols">
+    <div class="composer-preview">
+      <div class="flabel">Preview</div>
+      <div class="preview-frame"><img src="/app/img/poster-cargo-ships.svg" alt="Preview of Cargo Ships Quietly Got Six Times Bigger" width="1080" height="1920"><span class="dur">0:58</span></div>
+      <p class="video-title">Cargo Ships Quietly Got Six Times Bigger</p>
+      <p class="check-line">Video length 0:58</p>
+    </div>
+    <div class="composer-form">
+      <div class="post-account">
+        <img src="/app/img/avatar-caleb-sandbox.svg" alt="TikTok profile photo" width="48" height="48">
+        <div>
+          <div class="post-account-label">Uploading to this account</div>
+          <span class="acct-name">Caleb (sandbox)</span>
+          <span class="acct-handle">@caleb_sandbox</span>
+        </div>
+      </div>
+      <div class="field">
+        <div class="flabel">Caption</div>
+        <p class="note-box">You'll add a caption and finish posting in the TikTok app</p>
+      </div>
+      <div class="field">
+        <div class="flabel">What happens next</div>
+        <ol class="next-steps">
+          <li>Shorts Media uploads this video to TikTok as a <b>draft</b>. It is not posted.</li>
+          <li>It appears in <b>your TikTok inbox</b> as a draft, and TikTok sends you an inbox notification.</li>
+          <li>Open the notification in the TikTok app to edit, add your caption, choose who can view it and post.</li>
+        </ol>
+      </div>
+      <form class="submit-area" action="/app/draft-sent/" method="get">
+        <input type="hidden" name="sandbox" value="draft">
+        <button type="submit" class="btn btn-tiktok btn-wide"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 0 1 0-5.18c.27 0 .52.04.76.12v-3.1a5.71 5.71 0 0 0-.76-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.29 4.29 0 0 1-3.24-1.48z"/></svg>Send to TikTok inbox</button>
+        <p class="post-note">Nothing is uploaded until you choose to send it.</p>
+        <div class="cancel-row"><a class="btn btn-quiet" href="/app/posted/">Cancel</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="shell app-footer">
+    <div>
+      <div class="footerbrand">
+        <img src="/assets/shorts-media-app-icon.png" alt="" width="40" height="40">
+        <span>Shorts Media</span>
+      </div>
+      <p class="small">TikTok is a third-party service. Shorts Media is not endorsed by, sponsored by, or affiliated with TikTok.</p>
+    </div>
+    <nav aria-label="More about Shorts Media">
+      <a href="/how-it-works/">How it works</a>
+      <a href="/data-and-privacy/">Data &amp; privacy controls</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

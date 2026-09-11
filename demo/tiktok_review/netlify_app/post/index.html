@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>New TikTok post | Shorts Media</title>
+<meta name="description" content="Direct Post composer for Shorts Media (sandbox).">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/shorts-media-app-icon.png">
+<meta name="theme-color" content="#09090c">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body class="app">
+<!-- Sandbox demonstration of the Shorts Media TikTok integration. There is no
+     scripting: the site's CSP is script-src 'none', so every state is a page or pure CSS. -->
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="shell nav">
+    <a class="brand" href="/">
+      <img src="/assets/shorts-media-app-icon.png" alt="Shorts Media app icon" width="42" height="42">
+      <span>Shorts Media</span>
+    </a>
+    <nav class="navlinks" aria-label="Support and legal">
+      <a href="/support/">Support</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </nav>
+  </div>
+  <p class="sandbox-banner">Sandbox demonstration environment — simulated TikTok responses, no video is published to a live account.</p>
+</header>
+
+<main id="main">
+<div class="shell app-shell">
+  <div class="appbar">
+    <div class="appbar-label">Creator dashboard</div>
+    <div class="acct">
+      <div class="acct-pill">
+        <img src="/app/img/avatar-caleb-sandbox.svg" alt="TikTok profile photo" width="40" height="40">
+        <span><span class="acct-name">Caleb (sandbox)</span><span class="acct-handle">@caleb_sandbox</span></span>
+        <span class="acct-status"><span class="live-dot" aria-hidden="true"></span>TikTok connected</span>
+      </div>
+      <a class="btn btn-quiet" href="/app/disconnected/">Disconnect TikTok</a>
+    </div>
+  </div>
+  <div class="page-head">
+    <div class="eyebrow">Content Posting API · Direct Post</div>
+    <h1 class="app-h1">New TikTok post</h1>
+    <p class="muted page-lead">Check the video, edit the caption and choose your settings. Nothing is pre-selected for you.</p>
+  </div>
+  <form class="composer" action="/app/posting/" method="get">
+    <div class="composer-cols">
+      <div class="composer-preview">
+        <div class="flabel" id="preview-label">Preview</div>
+        <video class="preview" src="/app/media/sample-short.mp4" poster="/app/media/sample-poster.png" controls preload="metadata" playsinline aria-labelledby="preview-label video-title"></video>
+        <p class="video-title" id="video-title">Urban Growth Just Hit A 50-Year Low Of 1.36%</p>
+        <p class="check-line">Video length 1:36 · within this account's 10:00 maximum</p>
+      </div>
+
+      <div class="composer-form">
+        <div class="post-account">
+          <img src="/app/img/avatar-caleb-sandbox.svg" alt="TikTok profile photo" width="48" height="48">
+          <div>
+            <div class="post-account-label">Posting to this account</div>
+            <span class="acct-name">Caleb (sandbox)</span>
+            <span class="acct-handle">@caleb_sandbox</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="flabel" for="caption">Caption</label>
+          <textarea id="caption" name="caption" rows="5" maxlength="2200" aria-describedby="caption-hint">Everyone assumes cities are exploding faster than ever — but the world&#x27;s urban growth rate just fell to its slowest pace in over 50 years.
+
+#data #cities #urbanization #explained</textarea>
+          <p class="hint" id="caption-hint">Edit the caption before posting. Up to 2,200 characters, hashtags included.</p>
+        </div>
+
+        <div class="field privacy-standard">
+          <label class="flabel" for="privacy">Who can view this video</label>
+          <select id="privacy" name="privacy_level" aria-describedby="privacy-hint">
+            <option value="" selected>Select who can view this video…</option>
+            <option value="SELF_ONLY">Only me (private)</option>
+            <option value="MUTUAL_FOLLOW_FRIENDS">Friends (mutual follows)</option>
+            <option value="FOLLOWER_OF_CREATOR">Followers</option>
+            <option value="PUBLIC_TO_EVERYONE">Everyone</option>
+          </select>
+          <p class="hint" id="privacy-hint">You must choose. These are the options TikTok allows for this account.</p>
+        </div>
+        <div class="field privacy-branded">
+          <label class="flabel" for="privacy-branded">Who can view this video</label>
+          <select id="privacy-branded" name="privacy_level_branded" aria-describedby="privacy-branded-hint">
+            <option value="" selected>Select who can view this video…</option>
+            <option value="SELF_ONLY" disabled>Only me (not available for branded content)</option>
+            <option value="MUTUAL_FOLLOW_FRIENDS">Friends (mutual follows)</option>
+            <option value="FOLLOWER_OF_CREATOR">Followers</option>
+            <option value="PUBLIC_TO_EVERYONE">Everyone</option>
+          </select>
+          <p class="hint" id="privacy-branded-hint">Branded content can't be private, so choose again from the options available.</p>
+        </div>
+
+        <fieldset class="field">
+          <legend>Allow users to</legend>
+          <div class="panel">
+            <div class="switch-row">
+              <label for="allow-comment">Comment</label>
+              <input class="switch" type="checkbox" id="allow-comment" name="allow_comment" value="1">
+            </div>
+            <div class="switch-row is-disabled">
+              <div class="switch-text">
+                <label for="allow-duet">Duet</label>
+                <p class="why" id="duet-why">The creator has turned off Duet for their account</p>
+              </div>
+              <input class="switch" type="checkbox" id="allow-duet" name="allow_duet" value="1" disabled aria-describedby="duet-why">
+            </div>
+            <div class="switch-row">
+              <label for="allow-stitch">Stitch</label>
+              <input class="switch" type="checkbox" id="allow-stitch" name="allow_stitch" value="1">
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <div class="panel">
+            <div class="switch-row">
+              <div class="switch-text">
+                <label for="disclose">Disclose video content</label>
+                <p class="why" id="disclose-why">Turn on to disclose that this video promotes goods or services in exchange for something of value. Your video could promote yourself, a third party, or both.</p>
+              </div>
+              <input class="switch" type="checkbox" id="disclose" name="disclose" value="1" aria-describedby="disclose-why">
+            </div>
+            <div class="disclose-panel">
+              <p class="disclose-notice">You need to indicate if your content promotes yourself, a third party, or both.</p>
+              <div class="check-row">
+                <input class="tick-box" type="checkbox" id="your-brand" name="brand_organic_toggle" value="1" aria-describedby="your-brand-why">
+                <div>
+                  <label for="your-brand">Your brand</label>
+                  <p class="why" id="your-brand-why">You are promoting yourself or your own business. This video will be classified as Brand Organic.</p>
+                </div>
+              </div>
+              <div class="check-row">
+                <input class="tick-box" type="checkbox" id="branded-content" name="brand_content_toggle" value="1" aria-describedby="branded-content-why">
+                <div>
+                  <label for="branded-content">Branded content</label>
+                  <p class="why" id="branded-content-why">You are promoting another brand or a third party. This video will be classified as Branded Content.</p>
+                </div>
+              </div>
+              <p class="label-line label-promo">Your photo/video will be labeled as 'Promotional content'</p>
+              <p class="label-line label-paid">Your photo/video will be labeled as 'Paid partnership'</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-area">
+          <p class="declaration decl-music">By posting, you agree to TikTok's <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener noreferrer">Music Usage Confirmation</a>.</p>
+          <p class="declaration decl-branded">By posting, you agree to TikTok's <a href="https://www.tiktok.com/legal/page/global/bc-policy/en" target="_blank" rel="noopener noreferrer">Branded Content Policy</a> and <a href="https://www.tiktok.com/legal/page/global/music-usage-confirmation/en" target="_blank" rel="noopener noreferrer">Music Usage Confirmation</a>.</p>
+          <div class="post-wrap">
+            <button type="submit" class="btn-post" aria-describedby="post-status post-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 0 1 0-5.18c.27 0 .52.04.76.12v-3.1a5.71 5.71 0 0 0-.76-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.29 4.29 0 0 1-3.24-1.48z"/></svg>Post to TikTok</button>
+          </div>
+          <div id="post-status">
+            <p class="reason reason-privacy">Pick a privacy setting to continue.</p>
+            <p class="reason reason-branded-privacy">Branded content can't be private. Pick a privacy setting again to continue.</p>
+            <p class="reason reason-disclosure">Choose at least one disclosure option to continue.</p>
+            <p class="reason-ready">Ready to post.</p>
+          </div>
+          <p class="post-note" id="post-note">Nothing is sent to TikTok until you press Post. Your video, caption and settings are only sent after that.</p>
+          <div class="cancel-row"><a class="btn btn-quiet" href="/app/library/">Cancel</a></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</main>
+
+<footer>
+  <div class="shell app-footer">
+    <div>
+      <div class="footerbrand">
+        <img src="/assets/shorts-media-app-icon.png" alt="" width="40" height="40">
+        <span>Shorts Media</span>
+      </div>
+      <p class="small">TikTok is a third-party service. Shorts Media is not endorsed by, sponsored by, or affiliated with TikTok.</p>
+    </div>
+    <nav aria-label="More about Shorts Media">
+      <a href="/how-it-works/">How it works</a>
+      <a href="/data-and-privacy/">Data &amp; privacy controls</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

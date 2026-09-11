@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Posting to TikTok | Shorts Media</title>
+<meta name="description" content="Direct Post status (sandbox simulation).">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="/assets/shorts-media-app-icon.png">
+<meta name="theme-color" content="#09090c">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/app/app.css">
+</head>
+<body class="app">
+<!-- Sandbox demonstration of the Shorts Media TikTok integration. There is no
+     scripting: the site's CSP is script-src 'none', so every state is a page or pure CSS. -->
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="shell nav">
+    <a class="brand" href="/">
+      <img src="/assets/shorts-media-app-icon.png" alt="Shorts Media app icon" width="42" height="42">
+      <span>Shorts Media</span>
+    </a>
+    <nav class="navlinks" aria-label="Support and legal">
+      <a href="/support/">Support</a>
+      <a href="/privacy-policy/">Privacy Policy</a>
+      <a href="/terms-of-service/">Terms of Service</a>
+    </nav>
+  </div>
+  <p class="sandbox-banner">Sandbox demonstration environment — simulated TikTok responses, no video is published to a live account.</p>
+</header>
+
+<main id="main">
+<div class="shell app-shell">
+  <div class="appbar">
+    <div class="appbar-label">Creator dashboard</div>
+    <div class="acct">
+      <div class="acct-pill">
+        <img src="/app/img/avatar-caleb-sandbox.svg" alt="TikTok profile photo" width="40" height="40">
+        <span><span class="acct-name">Caleb (sandbox)</span><span class="acct-handle">@caleb_sandbox</span></span>
+        <span class="acct-status"><span class="live-dot" aria-hidden="true"></span>TikTok connected</span>
+      </div>
+      <a class="btn btn-quiet" href="/app/disconnected/">Disconnect TikTok</a>
+    </div>
+  </div>
+  <section class="status-card posting" aria-labelledby="status-h1">
+    <div class="status-top">
+      <img class="status-thumb" src="/app/media/sample-poster.png" alt="Video thumbnail" width="1080" height="1920">
+      <div>
+        <div class="eyebrow">Content Posting API · Direct Post</div>
+        <h1 class="status-h1" id="status-h1"><span class="t-progress">Posting to TikTok</span><span class="t-done">Submitted to TikTok</span></h1>
+        <p class="status-title">Urban Growth Just Hit A 50-Year Low Of 1.36%</p>
+        <div class="mini-acct"><img src="/app/img/avatar-caleb-sandbox.svg" alt="" width="36" height="36"><span><span class="acct-name">Caleb (sandbox)</span><span class="acct-handle">@caleb_sandbox</span></span></div>
+      </div>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+    <ol class="steps">
+      <li class="step s1"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>Uploading to TikTok…</li>
+      <li class="step s2"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>TikTok is processing your video…</li>
+      <li class="step s3 step-done"><span class="dot" aria-hidden="true"><span class="tick"></span></span>Submitted successfully</li>
+    </ol>
+    <div class="status-note">
+      <p>Your post has been sent to TikTok. It may take a few minutes for TikTok to process it and for it to be visible on your profile.</p>
+      <p class="small">Sandbox demonstration — no video was published to a live account.</p>
+    </div>
+    <div class="status-actions"><a class="btn primary btn-wide done-link" href="/app/posted/">Done</a></div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="shell app-footer">
+    <div>
+      <div class="footerbrand">
+        <img src="/assets/shorts-media-app-icon.png" alt="" width="40" height="40">
+        <span>Shorts Media</span>
+      </div>
+      <p class="small">TikTok is a third-party service. Shorts Media is not endorsed by, sponsored by, or affiliated with TikTok.</p>
+    </div>
+    <nav aria-label="More about Shorts Media">
+      <a href="/how-it-works/">How it works</a>
+      <a href="/data-and-privacy/">Data &amp; privacy controls</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

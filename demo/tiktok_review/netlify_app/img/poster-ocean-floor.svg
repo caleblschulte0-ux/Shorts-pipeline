@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#11142e"/><stop offset="1" stop-color="#05060f"/></linearGradient></defs>
+  <rect width="1080" height="1920" fill="url(#g)"/>
+  <rect x="0" y="0" width="1080" height="6" fill="#8b7cf6"/>
+  <text x="72" y="300" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="76" font-weight="800" fill="#f2f5fa">Mapped in detail</text>
+  <text x="72" y="392" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#4fd1c5" letter-spacing="2">MARS BEATS OUR OCEAN</text>
+  <text x="72" y="640" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#f2f5fa">Mars</text>
+  <rect x="72" y="676" width="936" height="120" rx="24" fill="#1c2140"/>
+  <rect x="72" y="676" width="860" height="120" rx="24" fill="#3f4666"/>
+  <text x="72" y="970" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#f2f5fa">The Moon</text>
+  <rect x="72" y="1006" width="936" height="120" rx="24" fill="#1c2140"/>
+  <rect x="72" y="1006" width="860" height="120" rx="24" fill="#3f4666"/>
+  <text x="72" y="1300" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#f2f5fa">Ocean floor</text>
+  <rect x="72" y="1336" width="936" height="120" rx="24" fill="#1c2140"/>
+  <rect x="72" y="1336" width="230" height="120" rx="24" fill="#a78bfa"/>
+  <text x="330" y="1418" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="46" font-weight="800" fill="#f2f5fa">about a quarter</text>
+  <text x="540" y="1800" font-family="Segoe UI, Arial, Helvetica, sans-serif" font-size="34" fill="#6b7390" text-anchor="middle">Shorts Media</text>
+</svg>
