@@ -1,0 +1,25 @@
+{
+  "key": "days_to_earn_your_year",
+  "title": "Days for a CEO to earn a typical worker's full-year pay (days)",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Derived from EPI's 281-to-1 CEO-to-worker pay ratio for 2024",
+    "publisher": "Economic Policy Institute (EPI)",
+    "url": "https://www.epi.org/blog/ceo-pay-increased-in-2024-and-is-now-281-times-that-of-the-typical-worker-new-epi-landing-page-has-all-the-details/",
+    "officiality": "reference",
+    "access_date": "2026-09-11"
+  },
+  "notes": "365 days / 281 ratio is approximately 1.3 days.",
+  "points": [
+    {
+      "label": "Days in a year",
+      "value": 365
+    },
+    {
+      "label": "Days for a CEO to earn it",
+      "value": 1.3
+    }
+  ]
+}

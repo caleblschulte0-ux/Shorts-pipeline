@@ -1,0 +1,25 @@
+{
+  "key": "earth_water_saline_vs_fresh",
+  "title": "Earth's water: saline vs. fresh (percent of all water)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Present-day estimate",
+  "source": {
+    "name": "The World's Water distribution estimates",
+    "publisher": "U.S. Geological Survey (USGS)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water",
+    "officiality": "official",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Standard USGS breakdown of global water by salinity.",
+  "points": [
+    {
+      "label": "Saline (oceans)",
+      "value": 96.5
+    },
+    {
+      "label": "Freshwater",
+      "value": 3.5
+    }
+  ]
+}

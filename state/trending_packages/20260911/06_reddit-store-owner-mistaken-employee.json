@@ -1,0 +1,78 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "reddit-store-owner-mistaken-employee",
+  "title": "She Ordered Me To Restock Shelves. I Own The Store.",
+  "script": "I stopped by my own hardware store one quiet morning in old jeans and a faded work shirt to grab a rake before opening hours, planning to duck in and out. A woman cornered me in aisle six holding a broken hose nozzle, demanding I find her the exact replacement RIGHT NOW because she had a lawn appointment in twenty minutes, ignoring me twice when I said I didn't work there. She followed me to the paint counter, insisting my uniform matched the staff and I was clearly avoiding my job, then threatened to report me to the manager by name, a name she got wrong. I finally set down my rake, walked behind the register, and pulled up the store's ownership paperwork on the office monitor, still turned toward the counter. She went quiet reading my name on the deed. She apologized and asked, very politely this time, if I could maybe still help her find that nozzle. I did. I also comped it.",
+  "shots": [
+    {
+      "phrase": "old jeans and a faded work shirt",
+      "query": "hardware store work clothes"
+    },
+    {
+      "phrase": "cornered me in aisle six",
+      "query": "hardware store aisle shelves"
+    },
+    {
+      "phrase": "a broken hose nozzle",
+      "query": "garden hose nozzle"
+    },
+    {
+      "phrase": "followed me to the paint counter",
+      "query": "paint counter hardware store"
+    },
+    {
+      "phrase": "threatened to report me to the manager",
+      "query": "angry customer pointing"
+    },
+    {
+      "phrase": "pulled up the store's ownership paperwork",
+      "query": "computer monitor office desk"
+    },
+    {
+      "phrase": "reading my name on the deed",
+      "query": "property deed document"
+    },
+    {
+      "phrase": "I also comped it",
+      "query": "cash register receipt"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "find her the exact replacement RIGHT NOW",
+      "text": "DEMANDING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "threatened to report me to the manager",
+      "text": "WRONG GUY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "reading my name on the deed",
+      "text": "HE OWNS IT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "I also comped it",
+      "text": "FREE NOZZLE",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "idontworkherelady",
+    "hardwarestore",
+    "reddit",
+    "storytime",
+    "karma",
+    "customerservice",
+    "entitled",
+    "storeowner",
+    "caught",
+    "viral",
+    "shorts",
+    "fyp"
+  ],
+  "music_vibe": "entitled demands curdling into a quiet reveal",
+  "bottom_theme": "auto"
+}

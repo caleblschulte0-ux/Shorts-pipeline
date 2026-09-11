@@ -26900,6 +26900,247 @@
           "say": "But borrowing didn't stop \u2014 it moved. Digital checkouts through library apps climbed from 326 million in 2019 to 739 million in 2024, more than doubling."
         }
       ]
+    },
+    {
+      "slug": "ocean-floor-vs-mars-mapped",
+      "title": "We've Mapped More Of Mars Than Our Own Ocean Floor",
+      "hook": "We know Mars better than our own seafloor.",
+      "closing": "Earth: the only planet we haven't finished mapping.",
+      "question": "Would you explore the ocean floor or Mars first? Tell me below.",
+      "caption": "We've photographed 99.5% of an entire other planet, and only 28.7% of our own ocean floor. The unmapped part alone is bigger than all of Mars. Which frontier should we finish first? \ud83d\udc47",
+      "hashtags": [
+        "ocean",
+        "seafloor",
+        "mars",
+        "spacefacts",
+        "oceanfloor",
+        "mapping",
+        "noaa",
+        "seabed2030",
+        "geography",
+        "science",
+        "didyouknow",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ocean_floor_mapped_trend",
+          "params": {
+            "file": "ocean_floor_mapped_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "ocean floor mapped, 2017-2026",
+          "role": "1 \u00b7 THE CRAWL",
+          "say": "In 2017, only 6 percent of the ocean floor had ever been mapped in real detail. By 2026, a decade-long global project has pushed that to just 28.7 percent."
+        },
+        {
+          "source": "offline",
+          "key": "ocean_floor_vs_mars_mapped",
+          "params": {
+            "file": "ocean_floor_vs_mars_mapped.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "ascending": false,
+          "topic": "mapped: ocean floor vs. Mars",
+          "role": "2 \u00b7 THE COMPARISON",
+          "say": "Compare that to Mars, a completely different planet 140 million miles away, sitting at 99.5 percent mapped. We know a foreign world better than our own seafloor."
+        },
+        {
+          "source": "offline",
+          "key": "unmapped_ocean_vs_mars_area",
+          "params": {
+            "file": "unmapped_ocean_vs_mars_area.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "unmapped ocean vs. all of Mars",
+          "role": "3 \u00b7 THE SCALE",
+          "say": "That unmapped slice alone covers about 257 million square kilometers, bigger than the entire surface of Mars. We haven't just fallen behind, we haven't covered a planet's worth of ground."
+        }
+      ]
+    },
+    {
+      "slug": "freshwater-accessible",
+      "title": "How Much Of Earth's Water You Can Actually Drink",
+      "hook": "Almost none of Earth's water is drinkable.",
+      "closing": "Drink up. There's not much to go around.",
+      "question": "Did you know that number was this small? Tell me below.",
+      "caption": "96.5% of Earth's water is ocean. Almost all the rest is frozen or buried underground. What's left in every lake and river combined? A rounding error. \ud83d\udc47",
+      "hashtags": [
+        "water",
+        "freshwater",
+        "earth",
+        "science",
+        "geography",
+        "didyouknow",
+        "hydrology",
+        "usgs",
+        "nature",
+        "planetfacts",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "earth_water_saline_vs_fresh",
+          "params": {
+            "file": "earth_water_saline_vs_fresh.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "ascending": false,
+          "topic": "Earth's water: saline vs. fresh",
+          "role": "1 \u00b7 THE SPLIT",
+          "say": "Of every drop of water on this planet, roughly 96.5 percent is salty ocean water. Only 3.5 percent of it is freshwater at all."
+        },
+        {
+          "source": "offline",
+          "key": "freshwater_breakdown",
+          "params": {
+            "file": "freshwater_breakdown.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "where the freshwater actually is",
+          "role": "2 \u00b7 THE CATCH",
+          "say": "And almost all of that freshwater is locked away: 68.7 percent frozen in glaciers and ice caps, another 30.1 percent buried underground."
+        },
+        {
+          "source": "offline",
+          "key": "accessible_freshwater_of_all_water",
+          "params": {
+            "file": "accessible_freshwater_of_all_water.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "what's actually reachable",
+          "role": "3 \u00b7 THE LEFTOVER",
+          "say": "Add it all up and the water in every lake and river combined, the stuff you can actually reach, comes to about 0.007% of all the water on Earth."
+        }
+      ]
+    },
+    {
+      "slug": "cargo-ship-size-growth",
+      "title": "Cargo Ships Quietly Got Six Times Bigger",
+      "hook": "This ship is longer than the Titanic.",
+      "closing": "One captain. Twenty-four thousand boxes. No pressure.",
+      "question": "Did you know ships got that much bigger? Tell me below.",
+      "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. \ud83d\udc47",
+      "hashtags": [
+        "cargoships",
+        "shipping",
+        "containership",
+        "globaltrade",
+        "logistics",
+        "supplychain",
+        "maritime",
+        "engineering",
+        "didyouknow",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "container_ship_capacity_trend",
+          "params": {
+            "file": "container_ship_capacity_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "biggest container ship, 1980-2024",
+          "role": "1 \u00b7 THE CLIMB",
+          "say": "In 1980, the biggest container ship on Earth carried about 4,000 boxes. By 2024, the record holder carries 24,327, six times more, on one hull."
+        },
+        {
+          "source": "offline",
+          "key": "container_ship_vs_titanic",
+          "params": {
+            "file": "container_ship_vs_titanic.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "ascending": false,
+          "topic": "today's biggest ship vs. the Titanic",
+          "role": "2 \u00b7 THE SCALE",
+          "say": "That record holder, the MSC Irina, stretches about 400 meters, longer than the Titanic, just to move boxes across an ocean."
+        },
+        {
+          "source": "offline",
+          "key": "container_ship_crew_size",
+          "params": {
+            "file": "container_ship_crew_size.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "crew size, then vs. now",
+          "role": "3 \u00b7 THE CATCH",
+          "say": "Yet the crew barely changed. About 20 people run a ship six times the size, thanks to automation, same crew, six times the cargo."
+        }
+      ]
+    },
+    {
+      "slug": "ceo-executive-pay-gap",
+      "title": "The Gap Between CEO Pay And Your Pay Exploded",
+      "hook": "CEOs didn't always make this much.",
+      "closing": "Monday morning. Your whole year, gone.",
+      "question": "Does that ratio surprise you? Tell me below.",
+      "caption": "CEO pay is up 1,085% since 1978. Typical worker pay? 24%. At today's ratio, a CEO earns your yearly salary before their first coffee break clears. \ud83d\udc47",
+      "hashtags": [
+        "ceopay",
+        "executivepay",
+        "inequality",
+        "wages",
+        "corporate",
+        "economy",
+        "wallstreet",
+        "epi",
+        "didyouknow",
+        "moneytalk",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ceo_worker_pay_ratio_trend",
+          "params": {
+            "file": "ceo_worker_pay_ratio_trend.json"
+          },
+          "insight_type": "trend",
+          "topic": "CEO-to-worker pay ratio, 1965-2024",
+          "role": "1 \u00b7 THE CLIMB",
+          "say": "In 1965, a CEO made about 21 times what a typical worker earned. By 2000 that ratio hit 398 to 1. It's since cooled to 281 to 1, still enormous."
+        },
+        {
+          "source": "offline",
+          "key": "ceo_vs_worker_pay_growth",
+          "params": {
+            "file": "ceo_vs_worker_pay_growth.json"
+          },
+          "insight_type": "rank",
+          "use_baseline": true,
+          "ascending": false,
+          "topic": "pay growth since 1978: CEOs vs. workers",
+          "role": "2 \u00b7 THE GAP",
+          "say": "Since 1978, CEO pay has climbed 1,085 percent. Typical worker pay? Just 24 percent, barely enough to keep pace with inflation."
+        },
+        {
+          "source": "offline",
+          "key": "days_to_earn_your_year",
+          "params": {
+            "file": "days_to_earn_your_year.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "days to earn your whole year",
+          "role": "3 \u00b7 THE MATH",
+          "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk."
+        }
+      ]
     }
   ],
   "videos": [

@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-online-shopping-buried-department-stores",
+  "title": "Online Shopping Buried The Department Store",
+  "hook": "It never came back.",
+  "y_label": "U.S. retail sales per year (billion dollars)",
+  "duration": 13,
+  "source": "U.S. Census Bureau retail trade estimates: non-store (mostly online) retail sales vs. department store sales, annual totals, 2000-2024. Approximate.",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2013,
+    2015,
+    2019,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Online / non-store retail",
+      "color": "#1E88E5",
+      "values": [
+        27,
+        86,
+        169,
+        231,
+        340,
+        598,
+        870,
+        1193
+      ]
+    },
+    {
+      "name": "Department stores",
+      "color": "#B71C1C",
+      "values": [
+        140,
+        128,
+        120,
+        110,
+        100,
+        85,
+        52,
+        39.6
+      ]
+    }
+  ],
+  "hashtags": [
+    "ecommerce",
+    "onlineshopping",
+    "departmentstores",
+    "retail",
+    "mallcore",
+    "amazon",
+    "economy",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

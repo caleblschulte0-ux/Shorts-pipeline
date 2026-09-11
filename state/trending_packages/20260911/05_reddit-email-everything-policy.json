@@ -1,0 +1,78 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-email-everything-policy",
+  "title": "He Banned Verbal Approvals. I Emailed Everything.",
+  "script": "Our new regional manager got tired of people misquoting him, so he sent one email: no verbal approvals count anymore, every request needs a written reply with him cc'd, no exceptions, effective immediately. Fine by me. That week I emailed him for approval to restock printer paper. I emailed him for approval to use the last stapler. I emailed him for approval to swap my lunch break by ten minutes, cc'ing the whole regional distribution list like the policy said. Within a week his inbox had two hundred and eleven threads about paper clips and break schedules, and corporate started asking why a district manager was drowning in office-supply emails instead of running stores. He called me into his office to say I was taking it too literally. I read his original email back to him out loud, word for word, no exceptions. He rewrote the policy within the hour. I still have that first email saved, just in case he forgets again.",
+  "shots": [
+    {
+      "phrase": "no verbal approvals count anymore",
+      "query": "office email inbox"
+    },
+    {
+      "phrase": "approval to restock printer paper",
+      "query": "printer paper office supply"
+    },
+    {
+      "phrase": "use the last stapler",
+      "query": "stapler desk"
+    },
+    {
+      "phrase": "swap my lunch break by ten minutes",
+      "query": "office clock lunch break"
+    },
+    {
+      "phrase": "two hundred and eleven threads",
+      "query": "overflowing email inbox"
+    },
+    {
+      "phrase": "drowning in office-supply emails",
+      "query": "stressed office worker desk"
+    },
+    {
+      "phrase": "I read his original email back to him",
+      "query": "manager office meeting"
+    },
+    {
+      "phrase": "He rewrote the policy within the hour",
+      "query": "typing computer keyboard"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no verbal approvals count anymore",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "two hundred and eleven threads",
+      "text": "211 EMAILS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "drowning in office-supply emails",
+      "text": "CORPORATE NOTICED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "He rewrote the policy within the hour",
+      "text": "RULE REVERSED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "reddit",
+    "storytime",
+    "karma",
+    "office",
+    "corporate",
+    "management",
+    "workplace",
+    "caught",
+    "viral",
+    "shorts",
+    "fyp"
+  ],
+  "music_vibe": "petty compliance escalating into vindication",
+  "bottom_theme": "auto"
+}

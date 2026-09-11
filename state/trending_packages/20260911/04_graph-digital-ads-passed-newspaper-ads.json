@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-digital-ads-passed-newspaper-ads",
+  "title": "Digital Ads Buried Newspaper Ads In A Decade",
+  "hook": "Print never caught up.",
+  "y_label": "U.S. advertising revenue per year (billion dollars)",
+  "duration": 13,
+  "source": "Newspaper advertising revenue: Pew Research Center State of the News Media. Digital/internet advertising revenue: IAB/PwC Internet Advertising Revenue Report, U.S. totals. Approximate.",
+  "years": [
+    2000,
+    2005,
+    2008,
+    2010,
+    2013,
+    2016,
+    2019,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Newspaper ads",
+      "color": "#5D4037",
+      "values": [
+        46,
+        49.4,
+        34.7,
+        22.8,
+        17.3,
+        14.3,
+        13,
+        9.8
+      ]
+    },
+    {
+      "name": "Digital ads",
+      "color": "#0288D1",
+      "values": [
+        8.2,
+        12.5,
+        23.4,
+        26,
+        42.8,
+        72.5,
+        129.3,
+        209.7
+      ]
+    }
+  ],
+  "hashtags": [
+    "digitalads",
+    "advertising",
+    "newspapers",
+    "media",
+    "journalism",
+    "adrevenue",
+    "internet",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

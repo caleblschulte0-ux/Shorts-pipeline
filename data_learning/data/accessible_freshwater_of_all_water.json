@@ -1,0 +1,25 @@
+{
+  "key": "accessible_freshwater_of_all_water",
+  "title": "Freshwater in lakes and rivers as a share of all water on Earth (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Present-day estimate",
+  "source": {
+    "name": "The World's Water distribution estimates",
+    "publisher": "U.S. Geological Survey (USGS)",
+    "url": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water",
+    "officiality": "official",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Surface freshwater (lakes and rivers) is roughly 0.007% of all water on Earth, once oceans, ice caps and groundwater are counted.",
+  "points": [
+    {
+      "label": "Locked away (oceans, ice, deep groundwater)",
+      "value": 99.993
+    },
+    {
+      "label": "Rivers & lakes (accessible)",
+      "value": 0.007
+    }
+  ]
+}

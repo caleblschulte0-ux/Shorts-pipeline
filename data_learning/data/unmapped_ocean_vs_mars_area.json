@@ -1,0 +1,25 @@
+{
+  "key": "unmapped_ocean_vs_mars_area",
+  "title": "Unmapped ocean floor vs. total surface area of Mars (million square kilometers)",
+  "unit": "million",
+  "geography": "World / Mars",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Derived from Seabed 2030 mapped share (28.7% of ~361M km^2 ocean) vs. Mars total surface area (~144.8M km^2)",
+    "publisher": "Nippon Foundation-GEBCO Seabed 2030 Project; NASA/JPL planetary constants",
+    "url": "https://seabed2030.org/",
+    "officiality": "reference",
+    "access_date": "2026-09-11"
+  },
+  "notes": "Unmapped ocean floor = 71.3% of Earth's ~361 million sq km ocean area, approximately 257 million sq km. Mars total surface area is approximately 144.8 million sq km.",
+  "points": [
+    {
+      "label": "Unmapped ocean floor",
+      "value": 257
+    },
+    {
+      "label": "All of Mars' surface",
+      "value": 144.8
+    }
+  ]
+}

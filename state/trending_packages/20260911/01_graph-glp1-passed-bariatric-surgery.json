@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-glp1-passed-bariatric-surgery",
+  "title": "Ozempic Passed Weight-Loss Surgery In 5 Years",
+  "hook": "One shot beat the scalpel.",
+  "y_label": "Americans starting each treatment per year (thousands)",
+  "duration": 13,
+  "source": "GLP-1 weight-loss drug patient counts: Gallup, RAND Corporation and Forbes Health estimates of Americans on GLP-1 therapy for obesity/weight loss, 2019-2025. Bariatric surgery: American Society for Metabolic and Bariatric Surgery annual U.S. procedure estimates. Approximate.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "GLP-1 weight-loss drugs",
+      "color": "#2E7D32",
+      "values": [
+        290,
+        450,
+        900,
+        2000,
+        3800,
+        6000,
+        10000
+      ]
+    },
+    {
+      "name": "Bariatric surgery",
+      "color": "#8B5E3C",
+      "values": [
+        256,
+        198,
+        262,
+        280,
+        273,
+        198,
+        175
+      ]
+    }
+  ],
+  "hashtags": [
+    "ozempic",
+    "glp1",
+    "weightloss",
+    "bariatricsurgery",
+    "wegovy",
+    "obesity",
+    "health",
+    "medicine",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

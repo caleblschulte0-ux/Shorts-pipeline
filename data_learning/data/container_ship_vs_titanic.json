@@ -1,0 +1,25 @@
+{
+  "key": "container_ship_vs_titanic",
+  "title": "Ship length: today's largest container ship vs. the Titanic (meters)",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "MSC Irina vessel specifications; RMS Titanic specifications",
+    "publisher": "MSC; historical Titanic records",
+    "url": "https://porteconomicsmanagement.org/pemp/contents/part6/ports-and-container-shipping/largest-available-containership-teus/",
+    "officiality": "reference",
+    "access_date": "2026-09-11"
+  },
+  "notes": "MSC Irina, the 2024 record-holding container ship, is approximately 400 meters long; RMS Titanic was 269 meters long.",
+  "points": [
+    {
+      "label": "MSC Irina (2024)",
+      "value": 400
+    },
+    {
+      "label": "RMS Titanic",
+      "value": 269
+    }
+  ]
+}
