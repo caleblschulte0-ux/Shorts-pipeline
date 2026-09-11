@@ -1,4 +1,256 @@
-{
-  "skipped": true,
-  "recent_posts": 2
-}
+[
+  {
+    "topic": "Ozempic Passed Weight-Loss Surgery In 5 Years",
+    "title": "Ozempic Passed Weight-Loss Surgery In 5 Years",
+    "format": "graph_race",
+    "publish_at": "2026-09-11T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 67.0,
+    "package_path": "state/trending_packages/20260911/01_graph-glp1-passed-bariatric-surgery.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-170905_ozempic_passed_weight_loss_surgery_in_5_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Online Shopping Buried The Department Store",
+    "title": "Online Shopping Buried The Department Store",
+    "format": "graph_race",
+    "publish_at": "2026-09-11T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/gSP4iDZndOU",
+    "error": null,
+    "elapsed_seconds": 116.4,
+    "package_path": "state/trending_packages/20260911/02_graph-online-shopping-buried-department-stores.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-171012_online_shopping_buried_the_department_st.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 91
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "SUVs And Trucks Buried The Sedan",
+    "title": "SUVs And Trucks Buried The Sedan",
+    "format": "graph_race",
+    "publish_at": "2026-09-11T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+    "elapsed_seconds": 186.8,
+    "package_path": "state/trending_packages/20260911/03_graph-suvs-buried-the-sedan.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-171209_suvs_and_trucks_buried_the_sedan.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Digital Ads Buried Newspaper Ads In A Decade",
+    "title": "Digital Ads Buried Newspaper Ads In A Decade",
+    "format": "graph_race",
+    "publish_at": "2026-09-11T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+    "elapsed_seconds": 91.4,
+    "package_path": "state/trending_packages/20260911/04_graph-digital-ads-passed-newspaper-ads.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-171515_digital_ads_buried_newspaper_ads_in_a_de.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Banned Verbal Approvals. I Emailed Everything.",
+    "title": "He Banned Verbal Approvals. I Emailed Everything.",
+    "format": "reddit",
+    "publish_at": "2026-09-11T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/mN9ikzZBeNc",
+    "error": null,
+    "elapsed_seconds": 176.7,
+    "package_path": "state/trending_packages/20260911/05_reddit-email-everything-policy.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-171647_he_banned_verbal_approvals__i_emailed_ev.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 55.667,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 86
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Ordered Me To Restock Shelves. I Own The Store.",
+    "title": "She Ordered Me To Restock Shelves. I Own The Store.",
+    "format": "reddit",
+    "publish_at": "2026-09-11T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+    "elapsed_seconds": 135.0,
+    "package_path": "state/trending_packages/20260911/06_reddit-store-owner-mistaken-employee.json",
+    "source": "brain",
+    "video_path": "output/daily_20260911-171944_she_ordered_me_to_restock_shelves__i_own.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "falling man",
+    "angle": null,
+    "publish_at": "2026-09-11T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 25.6,
+    "backfill": true
+  },
+  {
+    "topic": "emergency landing",
+    "angle": null,
+    "publish_at": "2026-09-12T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.7,
+    "backfill": true
+  },
+  {
+    "topic": "corte suprema",
+    "angle": null,
+    "publish_at": "2026-09-12T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 1.0,
+    "backfill": true
+  },
+  {
+    "topic": "eric shawn",
+    "angle": null,
+    "publish_at": "2026-09-12T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 1.1,
+    "backfill": true
+  }
+]
