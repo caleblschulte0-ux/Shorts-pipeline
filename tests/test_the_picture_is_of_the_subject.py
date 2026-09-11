@@ -257,5 +257,68 @@ class TheFixRemovesOnlyWRONGAnswers(unittest.TestCase):
             self.assertEqual(icons.emoji_codepoint(label), cp, label)
 
 
+class TheChannelCanACTUALLYDrawWhatItAsksFor(unittest.TestCase):
+    """A scene whose subject resolves to nothing draws nothing, and the beat
+    falls back to a bar chart.
+
+    Operator, 2026-09-11: *"crank it up to 10."* Measured against every
+    `subject_image(...)` call in the config, only 169 of 384 distinct
+    subjects resolved — so more than half this channel's beats were charts
+    because the PICTURE DID NOT EXIST, not because a chart was the right way
+    to say it. That is the ceiling on how good the scene beats can look, and
+    it is the one that moves with plain table work.
+    """
+
+    #: Where coverage stood when the block was added. A floor, not a target:
+    #: it may go up, and it must never quietly fall back.
+    FLOOR_SUBJECTS = 355
+    FLOOR_CALLS = 405
+
+    def _resolved(self):
+        subs = _subjects()
+        hit = {n: c for n, c in subs.items() if icons.emoji_codepoint(n)}
+        return subs, hit
+
+    def test_most_of_what_the_channel_asks_for_can_be_drawn(self):
+        subs, hit = self._resolved()
+        self.assertGreaterEqual(
+            len(hit), self.FLOOR_SUBJECTS,
+            f"subject coverage fell to {len(hit)}/{len(subs)}")
+
+    def test_weighted_by_how_often_each_subject_is_used(self):
+        subs, hit = self._resolved()
+        self.assertGreaterEqual(
+            sum(hit.values()), self.FLOOR_CALLS,
+            f"call coverage fell to {sum(hit.values())}/{sum(subs.values())}")
+
+    def test_the_commonest_subjects_all_resolve(self):
+        """The long tail can miss. The things the channel reaches for over
+        and over may not."""
+        subs = _subjects()
+        for name, _n in subs.most_common(25):
+            self.assertIsNotNone(icons.emoji_codepoint(name),
+                                 f"{name!r} draws nothing")
+
+    def test_specific_beats_general_inside_the_new_block(self):
+        """Three rows got this wrong on the first pass and every one showed
+        up as a wrong picture."""
+        for label, wrong in (("elderly person silhouette", "1f9cd"),
+                             ("apartment door with number", "1f3e2"),
+                             ("lottery ball machine drum photo", "1f6e2")):
+            self.assertNotEqual(icons.emoji_codepoint(label), wrong, label)
+
+    def test_drum_is_not_a_key(self):
+        """An oil drum, a lottery drum and a snare are three different
+        pictures and the word picks none of them."""
+        for keys, _cp in icons._MAP:
+            self.assertNotIn("drum", keys)
+
+    def test_the_generic_money_row_still_closes_the_table(self):
+        """The file's own rule — "last resort so specific subjects win
+        first". The new block goes BEFORE it, not after."""
+        self.assertIn("dollar", icons._MAP[-1][0])
+        self.assertEqual(icons.emoji_codepoint("gold coin"), "1fa99")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -109,6 +109,136 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("bee", "pollinat", "honey"), "1f41d"),
     (("waste", "trash", "garbage", "landfill"), "1f5d1"),
     (("clock", "time", "hour", "duration"), "23f0"),
+    # ----------------------------------------------------------------
+    # SUBJECT COVERAGE, 2026-09-11. Operator: "crank it up to 10."
+    #
+    # A scene whose subject resolves to nothing draws nothing, and the beat
+    # falls back to a bar chart. Measured against every `subject_image(...)`
+    # call in `niche.config.json`, only 169 of 384 distinct subjects
+    # resolved — 242 of 435 calls. MORE THAN HALF this channel's beats were
+    # charts because the picture did not exist, not because a chart was the
+    # right way to say it.
+    #
+    # These rows go in as a BLOCK, after everything that already answers and
+    # before the generic money row that closes the table — the file's own
+    # rule, "last resort so specific subjects win first", one level down.
+    # Nothing already correct can be hijacked by construction, and
+    # `tests/test_the_picture_is_of_the_subject.py` asserts zero regressions
+    # across all 384 subjects rather than trusting that.
+    #
+    # Within the block, SPECIFIC precedes GENERAL. Three got it wrong on the
+    # first pass and every one showed up as a wrong picture: "elderly
+    # person" drew the generic standing figure, "apartment door" drew an
+    # office block, and a lottery ball machine drew an OIL DRUM because
+    # "drum" was a key on the barrel row. "drum" is gone — an oil drum, a
+    # lottery drum and a snare are three different pictures and the word
+    # picks none of them.
+    #
+    # Coverage after: 362/384 subjects, 412/435 calls.
+
+    # --- people -------------------------------------------------------
+    (("elderly", "senior", "retiree"), "1f9d3"),
+    (("silhouette", "person", "human body", "standing person",
+      "human man", "teenager", "young adult", "pedestrian"), "1f9cd"),
+    (("cashier", "clerk", "teller"), "1f9d1"),
+    (("astronaut", "spacesuit"), "1f468-200d-1f680"),
+    (("pit crew", "mechanic"), "1f527"),
+    # --- space & sky --------------------------------------------------
+    (("moon", "lunar"), "1f319"),
+    (("comet",), "2604"),
+    (("asteroid", "meteor", "nodule", "boulder"), "1faa8"),
+    (("supergiant", "star", "starry", "milky way"), "2b50"),
+    (("telescope", "observatory"), "1f52d"),
+    (("lightning", "thunder"), "26a1"),
+    (("storm", "turbulence"), "1f329"),
+    # --- earth & landscape --------------------------------------------
+    (("volcano", "volcanic", "lava", "molten", "magma", "crater",
+      "erupting"), "1f30b"),
+    (("desert", "dune", "arid"), "1f3dc"),
+    (("mountain", "ridge", "summit"), "26f0"),
+    (("island", "atoll"), "1f3dd"),
+    (("cave", "den", "burrow"), "1f573"),
+    (("rainforest", "jungle", "woodland"), "1f333"),
+    (("leaf", "foliage"), "1f343"),
+    (("seedling", "sprout", "sapling"), "1f331"),
+    (("cactus", "succulent"), "1f335"),
+    (("farmland", "paddy", "cropland", "soybean", "wheat field",
+      "tilled", "harvest"), "1f33e"),
+    # --- animals ------------------------------------------------------
+    (("wolf",), "1f43a"),
+    (("frog", "toad"), "1f438"),
+    (("horse", "stallion", "mare"), "1f434"),
+    (("bat",), "1f987"),
+    (("eagle", "hawk", "falcon"), "1f985"),
+    (("butterfly", "monarch"), "1f98b"),
+    (("beetle", "lanternfly", "insect", "bug", "specimen"), "1fab2"),
+    (("crocodile", "alligator"), "1f40a"),
+    (("paw print", "paw"), "1f43e"),
+    # --- food ---------------------------------------------------------
+    (("peanut", "legume"), "1f95c"),
+    (("pizza",), "1f355"),
+    (("cheeseburger", "burger", "patty"), "1f354"),
+    (("donut", "doughnut"), "1f369"),
+    (("banana",), "1f34c"),
+    (("apple",), "1f34e"),
+    (("soup", "broth", "stew"), "1f372"),
+    (("cake",), "1f382"),
+    (("spice", "saffron", "peppercorn", "seasoning"), "1f9c2"),
+    # --- money --------------------------------------------------------
+    (("gold bar", "gold coin", "bullion", "coin"), "1fa99"),
+    (("wallet", "purse"), "1f45b"),
+    (("cash register", "checkout", "kiosk"), "1f6d2"),
+    (("receipt",), "1f9fe"),
+    (("dividend", "check payment", "bank check"), "1f4b5"),
+    # --- buildings & places -------------------------------------------
+    (("vault", "bank"), "1f3e6"),
+    (("door", "doorway"), "1f6aa"),
+    (("office building", "apartment", "facade", "skyscraper"), "1f3e2"),
+    (("crane", "excavator", "construction", "concrete"), "1f3d7"),
+    (("desk", "chair", "stool"), "1fa91"),
+    (("mailbox", "mail slot"), "1f4eb"),
+    (("envelope", "letter"), "2709"),
+    # --- objects ------------------------------------------------------
+    (("padlock", "lock", "combination"), "1f512"),
+    (("shield",), "1f6e1"),
+    (("hammer",), "1f528"),
+    (("stopwatch", "timer"), "23f1"),
+    (("candle",), "1f56f"),
+    (("bonfire", "firewood", "flame"), "1f525"),
+    (("suitcase", "luggage"), "1f9f3"),
+    (("notebook", "notepad"), "1f4d3"),
+    (("pencil",), "270f"),
+    (("dice", "die"), "1f3b2"),
+    (("playing card", "card back"), "1f0cf"),
+    (("chess", "pawn"), "265f"),
+    (("microphone", "podcast"), "1f3a4"),
+    (("camera", "dslr"), "1f4f7"),
+    (("film reel", "reel"), "1f39e"),
+    (("balloon",), "1f388"),
+    (("lottery", "slot machine"), "1f3b0"),
+    (("barrel",), "1f6e2"),
+    (("brick", "lego", "minifigure"), "1f9f1"),
+    (("shoe", "sneaker", "footprint"), "1f45f"),
+    (("urn", "cremation"), "26b1"),
+    (("barbell", "dumbbell"), "1f3cb"),
+    (("recycling", "recycle"), "267b"),
+    (("airplane", "aircraft", "fuselage"), "2708"),
+    (("racecar", "f1", "race car"), "1f3ce"),
+    # --- science / tech -----------------------------------------------
+    (("dna", "helix", "genome"), "1f9ec"),
+    (("petri", "embryo", "culture dish"), "1f9eb"),
+    (("mask", "surgical mask"), "1f637"),
+    (("pill", "capsule", "melatonin", "gummy"), "1f48a"),
+    (("server", "data center", "supercomputer", "server rack"), "1f5a5"),
+    (("router", "wifi"), "1f4f6"),
+    (("radio tower", "antenna", "transmitter"), "1f4e1"),
+    (("graduation", "diploma"), "1f393"),
+    # --- signs & markers ----------------------------------------------
+    (("location pin", "map pin", "marker pin"), "1f4cd"),
+    (("outline map", "state map", "map of"), "1f5fa"),
+    (("flag",), "1f6a9"),
+    (("speech bubble", "comment bubble"), "1f4ac"),
+    (("license", "id card", "identification"), "1f194"),
     # generic money/value — last resort so specific subjects win first.
     (("cost", "price", "spend", "wage", "income", "savings", "debt",
       "dollar", "money", "pay", "salary"), "1f4b5"),
