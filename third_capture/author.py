@@ -22,6 +22,20 @@ import re
 
 MODEL = "llama-3.3-70b-versatile"
 
+# The exact enum the SYSTEM prompt hands the model (see "series:" rule
+# below). Anything the model returns outside this set — empty, cut off by
+# the [^a-z-] strip, or a value it invented — is an author that DIDN'T
+# classify the clip, not a confirmed "chaos" one. Collapsing both into
+# "chaos" silently inflated that bucket and made it look like the
+# channel's weakest-performing series was also its most-produced one
+# (doctor finding 2127c6395c2c) when part of that bucket was really
+# "unlabeled". Content-mix decisions must read "unknown" as its own
+# bucket, never folded into "chaos".
+_VALID_SERIES = {
+    "drama", "beef", "rage", "chat-betrayal", "jumpscare", "clutch",
+    "fail", "win", "wholesome", "argument", "chaos",
+}
+
 SYSTEM = """You package Twitch/Kick clips as YouTube Shorts for a clip channel.
 You are given the streamer name, the clip's original title, its view count on
 Twitch, and the transcript of what is said in the clip.
@@ -360,6 +374,8 @@ def _postprocess(out: dict, streamer: str, context: str,
             for t in out.get("hashtags", [])]
     tags = [t for t in tags if 2 <= len(t) <= 30][:7]
     series = re.sub(r"[^a-z-]", "", str(out.get("series", "")).lower())
+    if series not in _VALID_SERIES:
+        series = "unknown"
     if not title or len(title) > 100:
         print(f"::warning::[author] rejected — title missing or >100 chars "
               f"({title[:60]!r})", flush=True)
@@ -432,7 +448,7 @@ def _postprocess(out: dict, streamer: str, context: str,
         pass
 
     return {"title": title[:95], "hook": hook[:60], "caption": caption,
-            "cta": cta, "hashtags": tags, "series": series or "chaos",
+            "cta": cta, "hashtags": tags, "series": series,
             "edit": edit}
 
 

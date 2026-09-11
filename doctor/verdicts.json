@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260910",
+  "updated": "20260911",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -693,10 +693,16 @@
       ]
     },
     "2127c6395c2c": {
-      "verdict": "doing",
-      "date": "20260822",
-      "because": "Verified against a fresh pull of state/analytics_third/latest.json: chaos is by far the largest mature (72h+) series bucket (n=35) with a weak median VPH (~0.02) while fail/wholesome/jumpscare show better median VPH on much smaller samples -- exact numbers drift slightly as analytics refresh but the shape holds. Also confirmed third_capture/author.py folds every missing/invalid series label into chaos via 'series or \"chaos\"', which is exactly the mechanism the finding names. Legitimate strategy direction under the 2026-08-16 managing-editor mandate; the proposal (label unknown separately, audit, cap chaos at baseline, do not force weak fills) does not lower any bar. Queued to build as a registry/doctrine change in a future run -- the audit plus registry_acceptance.py validation deserves its own dedicated session rather than a rushed pass alongside four other rulings.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260911",
+      "because": "Landed the labeling-bug half of the proposal: third_capture/author.py now validates 'series' against the documented 11-value enum and returns 'unknown' (not 'chaos') for anything empty/invalid/invented; scripts/run_third.py's two remaining chaos-default fallbacks (a fully-failed author call, and the hashtag-padding pool) do the same, so an unclassified clip never contaminates the chaos bucket or leaks 'unknown' as a public hashtag. Added scripts/third_series_audit.py (wired into third.yml right after the analytics fetch) which reports median-VPH-by-series for mature (72h+) videos with unknown/story held out of the content comparison, so future triage reads the split instead of re-deriving it by hand each time -- state/third_series_audit.json/.md now exist and match the doctor finding's own numbers in shape (chaos n=47 median 0.03 vs fail 0.06 / drama 0.14 on this run's snapshot). Regression tests in tests/test_third_series_labels.py fail against the old code and pass against the new. NOT done: the actual mix shift (reserving discovery/ranking attention for fail/wholesome, capping chaos at baseline) -- that needs the audit run over clips actually authored under the new labeling, and the proposal itself calls for a predeclared minimum sample before adopting it, which does not exist yet on data produced under the fixed labeling. Next triage: once a few days of third.yml runs have refreshed state/third_series_audit.json under the fix, revisit with real unknown-vs-chaos separated numbers before proposing any registry/doctrine change.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Verified against a fresh pull of state/analytics_third/latest.json: chaos is by far the largest mature (72h+) series bucket (n=35) with a weak median VPH (~0.02) while fail/wholesome/jumpscare show better median VPH on much smaller samples -- exact numbers drift slightly as analytics refresh but the shape holds. Also confirmed third_capture/author.py folds every missing/invalid series label into chaos via 'series or \"chaos\"', which is exactly the mechanism the finding names. Legitimate strategy direction under the 2026-08-16 managing-editor mandate; the proposal (label unknown separately, audit, cap chaos at baseline, do not force weak fills) does not lower any bar. Queued to build as a registry/doctrine change in a future run -- the audit plus registry_acceptance.py validation deserves its own dedicated session rather than a rushed pass alongside four other rulings."
+        }
+      ]
     },
     "5171aa14cc8d": {
       "verdict": "done",
