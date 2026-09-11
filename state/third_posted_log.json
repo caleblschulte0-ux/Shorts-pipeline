@@ -6512,6 +6512,25 @@
         "end": 53.7
       },
       "director_cut": true
+    },
+    "rejected-thankfulsinglediscomgscoots-op4-z52czhaxpdaz": {
+      "source_url": "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ",
+      "streamer": "xqc",
+      "title": "RAT IN XQC'S FOOD",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just talk, no rat shown)",
+      "ts": "2026-09-11T15:01:52.187516+00:00"
+    },
+    "clip-20260911-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Reacts To The Bean Dip Rug Pull Live",
+      "kind": "twitch_clip",
+      "ts": "2026-09-11T15:07:48.844572+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
