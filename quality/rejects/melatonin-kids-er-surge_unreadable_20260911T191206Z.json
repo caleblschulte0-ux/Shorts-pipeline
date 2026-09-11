@@ -1,0 +1,25 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260911T191206Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start \u2014 'Every other medicati' is cut off by the right frame edge; seg2:mid/seg2:end \u2014 the same label is clipped at the LEFT edge as 'very other medica'; the 'Melatonin 7%' annotation at seg2:start is grey on the bar and nearly vanishes.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start prints 'Every other medicati' running off the right edge of the frame; by seg2:mid and seg2:end the same label reads 'very other medica', clipped at the left edge, and the pale 'Melatonin 7%' ellipse annotation sits low-contrast over the bar top.",
+  "root_cause": "The category label is placed from an unmeasured x-offset beside its mark rather than from a measured text extent clamped to the safe area, so as the scale/bar animates the label slides past the frame boundary; the annotation colour is a desaturated accent instead of ink.",
+  "repair_goal": "Measure each label's rendered width and clamp/wrap it inside the safe margins so the full string 'Every other medication' is legible at every frame of seg2, and set the '7% Melatonin' callout in look ink weight against the ground so it reads on a phone at arm's length."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

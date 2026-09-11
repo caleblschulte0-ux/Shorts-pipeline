@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260911T191206Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At hook@1.5 / seg0:end the burned caption 'a minute.' is printed straight over the chart's own value so the 1950s bar reads '6(' instead of '60', and Data's body covers the 'First sub-2s' value ('1.9' reads as '1'); at seg2:start two titles ('how long it takes' over 'how fast that really",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "hook@0.3 through seg0:end: the word-level caption ('A pit' / 'stop used' / 'to take' / 'a minute.') is burned at mid-frame directly across the bar rows, blotting out the 1950s bar and its value \u2014 at hook@1.5 the number reads '6(' instead of '60'. The mascot is simultaneously parked on the 'First sub-2s' row hiding '1.9'. The chart also builds slowly under it, so the first 2s is a covered-up chart build rather than an event.",
+  "root_cause": "The hook caption is composited in the vertical centre of the frame instead of the reserved lower caption band used from seg1 onward, and the mascot's scene placement is chosen without reserving the value-label boxes, so both the caption layer and the mascot occlude live data text.",
+  "repair_goal": "Move seg0's caption into the same lower safe band the later scenes use (or lift it above the plot area) so no caption ever overlaps a bar or its value, and reposition Data clear of the value labels \u2014 every one of 60 / 9 / 1.9 / 1.8 must be fully legible at arm's length for the whole scene, with the 60s bar landing as a fast slam rather than a slow build."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260911T191206Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only perches: stands on the bar top at hook@0.8 through seg0:end, sits on the 2019 bar at seg1:start, glides across rows at seg1:mid/seg1:end, and is a ~20px sticker on the dotted line at seg4:start-payoff@-0.4 \u2014 no setup->action->payoff tied to any number.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_air",
+  "visible_evidence": "From seg4:start (43.85s) to payoff@-0.4 (50.70s) the frame is a bordered blue-outlined speech card over a near-empty ground with a tiny 'world trade carried by sea' chart; seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 are visually indistinguishable apart from a couple of pixels of mascot travel, and a wide band from mid-frame to the caption bar is entirely dead.",
+  "root_cause": "The closing beat is composed as a static UI widget \u2014 a bordered card plus a shrunken restatement of the previous scene's chart \u2014 instead of an animated final demonstration, so the last 7 seconds carry no motion and no new information.",
+  "repair_goal": "Rebuild seg4 as a moving payoff at full bleed: drop the bordered card (the closing line belongs as type on look.ground, not in a panel), scale the 80/20 demonstration up to fill the frame, and give Data one real act that lands the '11,000 other people's order' punchline, so the final 7 seconds have continuous purposeful motion."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
