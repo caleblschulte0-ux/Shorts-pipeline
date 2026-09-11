@@ -18,6 +18,17 @@ _CDN = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/{cp}.png
 # (keyword substrings) -> twemoji codepoint. First match wins, so put the more
 # specific concepts before the generic money/category ones.
 _MAP: list[tuple[tuple[str, ...], str]] = [
+    # EARTH. A data channel names it constantly — six scene subjects in the
+    # config say "earth from space" or "planet in space" — and it was in no
+    # table at all, so the only word that DID resolve was "space" and every
+    # one of them opened on a cartoon ROCKET. An absent entry is not a
+    # neutral: it hands the picture to whatever else in the phrase happens
+    # to be listed. (`_SETTING` now stops the modifier deciding; this makes
+    # sure the subject itself has an answer.)
+    (("earth", "globe", "planet", "world map", "the world",
+      "continent", "continents"), "1f30d"),
+    (("antarctica", "antarctic", "arctic", "glacier", "iceberg",
+      "polar"), "1f9ca"),
     (("daycare", "infant", "toddler", "child", "children", "kid"), "1f9d2"),
     (("baby", "birth", "newborn", "maternity"), "1f476"),          # baby
     (("dog", "puppy"), "1f415"),
@@ -31,7 +42,13 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("cater", "grocery", "food", "meal"), "1f37d"),
     (("flower", "floral"), "1f490"),
     (("dress", "gown"), "1f457"),
-    (("photo",), "1f4f8"),
+    # THE CAMERA ROW IS GONE. Its only key was "photo", so it existed to say
+    # "if the label mentions a photograph, draw a camera" — and 35 of the 384
+    # scene subjects in the config end in "photo" as a STYLE note ("bank vault
+    # door photo", "erupting volcano lava photo", "cavendish banana photo").
+    # All thirty-five drew a camera emoji. A camera is never the subject of a
+    # data story; the word is stripped by `_MEDIUM` now, and there is no row
+    # left for it to win.
     (("band", "dj", "music", "concert", "ticket", "tour"), "1f3b5"),
     (("chocolate", "cocoa", "candy"), "1f36b"),
     (("coffee", "caffeine", "espresso"), "2615"),
@@ -62,7 +79,10 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("battery",), "1f50c"),
     (("internet", "broadband", "online", "web", "website"), "1f310"),
     (("computer", "laptop", "research", "science", "lab"), "1f52c"),
-    (("satellite", "space", "rocket", "launch"), "1f680"),
+    # A SATELLITE IS NOT A ROCKET. It shared the rocket's row, so every
+    # satellite, space station and satellite map in the config launched.
+    (("satellite", "space station", "orbiter"), "1f6f0"),
+    (("space", "rocket", "launch", "spacecraft"), "1f680"),
     (("toilet", "sanitation", "sewer"), "1f6bd"),
     (("rain", "precipitation"), "1f327"),
     (("city", "cities", "urban", "skyline"), "1f3d9"),
@@ -151,8 +171,59 @@ def _phrase_matches(tokens: list[str], key: str) -> bool:
     return False
 
 
+#: Words that name the MEDIUM, never the subject. Five scene subjects in the
+#: config end in "photo" — "stack of cash bills photo", "pile of sand mound
+#: photo" — and every one of them resolved to a CAMERA. The same shape as the
+#: `VTM GOLD logo.svg` bug in `funnel/series_icons`: a word that describes the
+#: FILE was allowed to decide the picture.
+_MEDIUM = {
+    "photo", "photos", "photograph", "image", "images", "picture", "pic",
+    "illustration", "render", "rendering", "shot", "closeup", "stock",
+    "footage", "graphic", "artwork", "art", "icon", "png", "jpg", "jpeg",
+    "view", "angle", "background", "backdrop", "scene", "styled", "style",
+}
+
+#: After one of these the phrase describes the SETTING, not the subject.
+#:
+#: "earth from space" resolved to a ROCKET — `earth` is in no table, `space`
+#: is, and nothing said the modifier may not decide the picture. It opened
+#: the ozone video: eight seconds of cartoon rocket, a quarter of the runtime,
+#: on the beat that decides whether anyone watches. Four more subjects in the
+#: config say "in space" or "from space" and all four got the same rocket.
+#:
+#: `of`, `and` and `with` are deliberately NOT here: those are partitive or
+#: compound, and the real subject usually FOLLOWS them — "stack of dollar
+#: bills" wants the dollars, "pile of coal" wants the coal.
+_SETTING = {
+    "from", "in", "on", "over", "under", "against", "behind", "above",
+    "below", "near", "beside", "across", "inside", "outside",
+    "around", "beneath", "atop", "amid", "between", "before", "after",
+    "during", "onto", "within", "beyond", "toward", "towards",
+}
+#: `at` and `through` were here and cost two GOOD matches — "staring at
+#: ringing phone" (the phone is exactly the subject) and "trail through
+#: forest" (a tree is a fair stand-in for a forest trail). Measured over the
+#: 384 scene subjects in the config, they were the only two words in the set
+#: that removed more signal than noise, so they are deliberately out.
+
+
+def _subject_tokens(label: str) -> list:
+    """The part of `label` that names WHAT IS BEING SHOWN.
+
+    A picture is chosen from the subject, not from the medium it is delivered
+    in and not from the place it happens to be. Both of those were deciding
+    pictures that shipped.
+    """
+    toks = [t for t in _WORD.findall((label or "").lower())
+            if t not in _MEDIUM]
+    for i, t in enumerate(toks):
+        if t in _SETTING:
+            return toks[:i]
+    return toks
+
+
 def emoji_codepoint(label: str) -> str | None:
-    tokens = _WORD.findall((label or "").lower())
+    tokens = _subject_tokens(label)
     if not tokens:
         return None
     for keys, cp in _MAP:
