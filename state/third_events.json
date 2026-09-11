@@ -1517,6 +1517,91 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-10"
+    },
+    "xqc-about-agency-2026w37": {
+      "event_id": "xqc-about-agency-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "agency",
+        "describ",
+        "trump"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/SneakyBlindingLadiesDancingBanana-qh45jnWRMJnXubYw",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-11"
+    },
+    "xqc-about-audience-2026w37": {
+      "event_id": "xqc-about-audience-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "audience",
+        "call",
+        "figure"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/DeliciousLitigiousHerbsTBTacoRight-DLl5etHQJhO-nL7J",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-11"
+    },
+    "xqc-about-anoth-2026w37": {
+      "event_id": "xqc-about-anoth-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "anoth",
+        "charact",
+        "door"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/TriumphantJoyousManateePanicBasket-9xel_S7amj4MxqHv",
+        "https://www.twitch.tv/xqc/clip/HomelyAbstemiousOysterOhMyDog-eFL17XCV9z_qZVBa",
+        "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-11"
+    },
+    "xqc-about-asks-2026w37": {
+      "event_id": "xqc-about-asks-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "asks",
+        "background",
+        "describ"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-11",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/SneakyBlindingLadiesDancingBanana-qh45jnWRMJnXubYw",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-11"
     }
   }
 }

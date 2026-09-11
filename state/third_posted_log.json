@@ -6564,13 +6564,59 @@
       "ts": "2026-09-11T15:10:14.058766+00:00"
     },
     "clip-20260911-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/DistinctPatientWormWOOP-ugvV1kgUf40w2d4y",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/Wcjoz5MdT7Q",
       "title": "Buddha Loses $800 After Tony Rugpulls Him Live",
       "kind": "twitch_clip",
-      "ts": "2026-09-11T15:14:02.419168+00:00",
+      "ts": "2026-09-11T15:14:05.647903+00:00",
+      "uploaded_at": "2026-09-11T15:14:05.647915+00:00",
+      "publish_at": "2026-09-11T18:30:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/DistinctPatientWormWOOP-ugvV1kgUf40w2d4y",
+      "streamer": "buddha",
+      "series": "drama",
+      "hook": "TONY RUGPULLED HIM LIVE ON STREAM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4063,
+      "banger": 0.7,
+      "cut": {
+        "start": 23.4,
+        "end": 59.6
+      },
+      "director_cut": true
+    },
+    "rejected-inquisitiveimpossiblechowderkappapride-wfemh9kaa8sq5qec": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/InquisitiveImpossibleChowderKappaPride-wfeMh9KAa8sq5QEC",
+      "streamer": "summit1g",
+      "title": "Summit1G Reacts After This Guy Gets PERMA BANNED For Cheating",
+      "qa_rejected": true,
+      "ts": "2026-09-11T15:42:24.488596+00:00"
+    },
+    "rejected-tsunderedignifiedpeafowlmcat-qirys0jbrpvyupz7": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/TsundereDignifiedPeafowlMcaT-QIryS0JbrPVYupZ7",
+      "streamer": "hasanabi",
+      "title": "Hasanabi Says None Of It Phases Him Anymore",
+      "qa_rejected": true,
+      "ts": "2026-09-11T16:18:13.545526+00:00"
+    },
+    "rejected-culturedviscousburritoosfrog-zuy6baleo9afkm2p": {
+      "source_url": "https://www.twitch.tv/shroud/clip/CulturedViscousBurritoOSfrog-zuY6Baleo9AFkM2P",
+      "streamer": "shroud",
+      "title": "DDOSED",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static gameplay, no visible reaction)",
+      "ts": "2026-09-11T16:20:12.442237+00:00"
+    },
+    "clip-20260911-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AgileAmorphousBeaverArgieB8--dsiG3-LzQ5jA6px",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Leaked His Card On Stream? Watch His Reaction",
+      "kind": "twitch_clip",
+      "ts": "2026-09-11T16:22:25.330601+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
