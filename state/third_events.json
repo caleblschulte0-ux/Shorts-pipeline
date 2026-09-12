@@ -1602,6 +1602,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-11"
+    },
+    "xqc-about-charact-2026w37": {
+      "event_id": "xqc-about-charact-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "charact",
+        "food",
+        "gameplay"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
+        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-12"
+    },
+    "jynxzi-about-aggressive-2026w37": {
+      "event_id": "jynxzi-about-aggressive-2026w37",
+      "people": [
+        "jynxzi"
+      ],
+      "actions": [
+        "about",
+        "aggressive",
+        "facecam",
+        "screen"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jynxzi/clip/CorrectAssiduousHorsePartyTime-bzzRXpqLPfLo11-s",
+        "https://www.twitch.tv/jynxzi/clip/MoistTrustworthyRedpandaRuleFive-mVgdMqiy4r1O505S"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-12"
     }
   }
 }

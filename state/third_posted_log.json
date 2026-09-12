@@ -6702,13 +6702,43 @@
       "ts": "2026-09-12T14:25:47.522336+00:00"
     },
     "clip-20260912-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/CourageousEagerKumquatOSkomodo-3F59X5QRydchWy4h",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/0nmR-TEnqWE",
       "title": "Jasontheween Won't Let Pudgie Dodge What He Just Said",
       "kind": "twitch_clip",
-      "ts": "2026-09-12T14:29:56.459024+00:00",
+      "ts": "2026-09-12T14:30:00.335473+00:00",
+      "uploaded_at": "2026-09-12T14:30:00.335488+00:00",
+      "publish_at": "2026-09-12T20:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CourageousEagerKumquatOSkomodo-3F59X5QRydchWy4h",
+      "streamer": "jasontheween",
+      "series": "argument",
+      "hook": "HE WON'T REPEAT WHAT HE SAID",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3008,
+      "banger": 0.5,
+      "cut": {
+        "start": 15.2,
+        "end": 39.4
+      },
+      "director_cut": true
+    },
+    "rejected-correctpeacefulwolfpoooound-25aq2js8oxpfqiyj": {
+      "source_url": "https://www.twitch.tv/buddha/clip/CorrectPeacefulWolfPoooound-25Aq2JS8OxPfQIYj",
+      "streamer": "buddha",
+      "title": "Buddha Squad Kills The WRONG Guy Then Finishes Him Anyway",
+      "qa_rejected": true,
+      "ts": "2026-09-12T15:07:46.110560+00:00"
+    },
+    "clip-20260912-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/NurturingTolerantScorpionDansGame-vnr_Llo7j7LBmK08",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe A Fan Wasted $300 Calling IShowSpeed",
+      "kind": "twitch_clip",
+      "ts": "2026-09-12T15:22:40.351303+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
