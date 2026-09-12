@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s5-6ab614cf556d",
+  "safe_request_id": "signed-return-policy-refund-s5-6ab614cf556d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "acc7ee80335a1ef292ff02e94434263059e0246a25af87d19091f0fa3d0c2f2b",
+  "prompt_used": "An editorial illustration for a short-form video: broken appliance counter. It accompanies the narration: \"tried it again with a different broken blender\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1wDJuXb6R_Ps5__ZsANuUG-qgcnNisTV8",
+    "filename": "20260912__signed-return-policy-refund-s5-6ab614cf556d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1wDJuXb6R_Ps5__ZsANuUG-qgcnNisTV8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "217bf79b1867ee349c49aa45cfad22099b072ed70ea2ae9e8195fe08deb954ea",
+    "bytes": 1965876,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:28.469Z"
+}
