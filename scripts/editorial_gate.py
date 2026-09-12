@@ -374,6 +374,156 @@ def beats_are_distinct(sc: dict) -> dict:
         f"only {len(kept)} distinct claim(s)"]}
 
 
+# ---------------------------------------------------------------------------
+# Rule 4 — story coherence: every segment advances the SAME thesis
+# ---------------------------------------------------------------------------
+_THESIS_STOP = frozenset("""
+the a an of in on at by for to from and or vs versus with per each every
+is are was were be been that this those these it its their our your his her
+than then all any some most more less least much many number total share
+percent percentage rate count average mean median world still only after
+two three four five six seven eight nine ten years ago barely took off had
+has have did does do you youd think would could should
+""".split())
+# Letters only, deliberately never digits: a shared YEAR or measurement
+# ("2023", "148") between a headline and an unrelated segment's narration is
+# the single biggest source of false bridges here — the land-area story's
+# health-spending segment shares no subject with "land" at all, but its
+# `say` field happens to hit 2023 too, the exact year the hook names.
+_THESIS_WORD = re.compile(r"[a-z]+")
+
+
+def _thesis_tokens(*texts: str) -> set:
+    out: set = set()
+    for t in texts:
+        out |= {w for w in _THESIS_WORD.findall(str(t or "").lower())
+                if len(w) >= 3 and w not in _THESIS_STOP}
+    return out
+
+
+def beats_support_one_thesis(sc: dict, *, use_llm: bool = True) -> dict:
+    """Does every segment actually advance the HEADLINE's claim?
+
+    Doctor finding 8d1b5d1e1f69 (2026-08-25): the gate proved each segment's
+    *source* and graded the title+hook, but nothing ever checked that the
+    segments themselves were about the same story. Three real examples sat
+    in the queue: `world-renewable-power-was-still-only-19-7-after-two-
+    decades` opened on agricultural irrigation and closed on broadband
+    subscriptions, with renewable electricity as one segment out of three;
+    `the-us-still-has-148-553-km-of-rail-more-than-china` opened on mobile
+    subscriptions and farm methane before ever reaching rail; `the-world-
+    has-less-land-than-it-did-in-2013` wandered into health spending and
+    crop production. Each is a real-data, real-premise anthology wearing a
+    single headline — exactly the class the August 24 showrunner reviews
+    blocked for "opening on the wrong subject" and "repeating unrelated
+    charts", at the cost of a full render each time.
+
+    Two-stage check, because a bare word match is far too blunt on its own:
+    a title's exact wording ("Grocery Bill") and a segment about "price jump
+    since 2020" are the SAME story in different words, and a literal-overlap
+    floor alone would hold hundreds of perfectly coherent stories.
+
+      1. DETERMINISTIC FLOOR — segments whose TOPIC (not narration: a
+         segment's `say` routinely names the other side of a comparison —
+         "China" in a mobile-subscriptions segment of a rail story — which
+         reads as a bridge to a headline that also names China and is not
+         one) shares a keyword with the title or hook need no further check;
+         they have a checkable bridge already.
+      2. Segments with NO keyword overlap are not rejected outright — they
+         are the AMBIGUOUS set the finding asks for a semantic judge on. An
+         adversarial brain, reachable, answers per segment whether it
+         genuinely supports the same claim; default is NO when unsure, and a
+         brain that returns anything but an exact boolean per index counts as
+         no answer at all (the ec1665fbf9fa mistake — garbage read as a
+         pass — must not repeat here).
+      3. No brain reachable, or its answer is unusable: the segment stays
+         unproven, and unproven fails closed, exactly like the other three
+         rules in this file.
+
+    Offline and deterministic when there is nothing ambiguous to ask about:
+    a story where every segment shares a keyword with its own headline never
+    touches the network.
+    """
+    title = (sc.get("title") or "").strip()
+    hook = (sc.get("hook") or "").strip()
+    segments = sc.get("segments") or []
+    subject = _thesis_tokens(title, hook)
+    if len(segments) < 2 or not subject:
+        return {"ok": True, "reasons": [], "judge": "deterministic"}
+
+    # `topic` only, deliberately not `say`: the narration is free prose that
+    # routinely names the OTHER side of a comparison (a rail story's mobile-
+    # subscriptions segment says "China" because it is comparing country
+    # totals, not because it is about rail) — that reads as a bridge to a
+    # headline that also names China, and is not one. `topic` is the
+    # deliberate short label of what the segment is actually about.
+    candidates = []
+    for i, seg in enumerate(segments):
+        topic = (seg.get("topic") or "").strip()
+        if not (_thesis_tokens(topic) & subject):
+            candidates.append((i, topic))
+
+    if not candidates:
+        return {"ok": True, "reasons": [], "judge": "deterministic"}
+
+    def _floor_reasons(extra: str) -> list:
+        return [
+            f"seg{i} ({topic!r}) shares no keyword with the headline "
+            f"({title!r}) — {extra}"
+            for i, topic in candidates]
+
+    if not use_llm:
+        return {"ok": False,
+                "reasons": _floor_reasons("no checkable bridge to the thesis"),
+                "judge": "deterministic"}
+
+    try:
+        import sys
+        if str(REPO) not in sys.path:
+            sys.path.insert(0, str(REPO))
+        from shared.script_generator import _call_llm  # type: ignore
+        sysmsg = (
+            "You are a ruthless YouTube Shorts editor checking whether every "
+            "segment of a data video genuinely supports ONE headline claim. "
+            "For each segment given by index, decide whether it has a real "
+            "semantic bridge to the headline -- not just a shared category, "
+            "but something that helps prove or contextualize the SAME claim. "
+            "Default to false when unsure.")
+        listing = "\n".join(f"{i}: {topic!r}" for i, topic in candidates)
+        user = (
+            f"HEADLINE TITLE: {title}\nHOOK: {hook}\n\n"
+            f"SEGMENTS TO CHECK (index: topic):\n{listing}\n\n"
+            "Return STRICT JSON: {\"bridges\": {\"<index>\": true|false}} "
+            "with one entry per segment index above.")
+        raw = _call_llm(sysmsg, user)
+        m = re.search(r"\{.*\}", raw, re.S)
+        data = json.loads(m.group(0)) if m else {}
+        bridges = data.get("bridges") if isinstance(data, dict) else None
+        if not isinstance(bridges, dict):
+            return {"ok": False,
+                    "reasons": _floor_reasons(
+                        "and the semantic judge returned no usable verdict"),
+                    "judge": f"deterministic (llm unusable: {str(data)[:60]!r})"}
+        reasons = []
+        for i, topic in candidates:
+            v = bridges.get(str(i))
+            # Only an exact bool counts as evidence -- a missing key, a
+            # string "true", or anything else is UNAVAILABLE, not a pass.
+            if v is True:
+                continue
+            why = ("brain: no genuine bridge to the headline" if v is False
+                   else "the judge gave no verdict for this segment")
+            reasons.append(
+                f"seg{i} ({topic!r}) has no bridge to the headline "
+                f"({title!r}) — {why}")
+        return {"ok": not reasons, "reasons": reasons, "judge": "llm"}
+    except Exception as e:  # noqa: BLE001 — brain optional; floor stands
+        return {"ok": False,
+                "reasons": _floor_reasons(
+                    f"and the semantic judge is unavailable ({str(e)[:60]})"),
+                "judge": "deterministic (llm unavailable)"}
+
+
 def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     """Real-data + premise checks, combined. Run BEFORE rendering so a story
     that can never publish doesn't burn a render."""
@@ -386,19 +536,30 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     # A story that says one thing three times can never be a good video, and
     # finding that out costs one file read rather than a render.
     dist = beats_are_distinct(sc)
+    # The thesis check is the one LLM call in this function that is not
+    # already required by `prem` above (when `prem` needed one at all), so it
+    # only runs once every other check has already cleared -- a story that is
+    # getting held on data or premise grounds regardless gets no extra call
+    # spent on it, protecting the same rate-limit budget post_stories.py
+    # documents at its own call site.
+    other_ok = (prov["ok"] and finding["ok"] and spoken["ok"] and prem["ok"]
+                and dist["ok"])
+    thesis = (beats_support_one_thesis(sc, use_llm=use_llm) if other_ok
+              else {"ok": True, "reasons": [], "judge": "skipped"})
     reasons = ([f"data: {r}" for r in prov["reasons"]]
                + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
                + [f"beats: {r}" for r in dist["reasons"]]
                + [f"beats: {r}" for r in spoken["reasons"]]
+               + [f"thesis: {r}" for r in thesis["reasons"]]
                # Reported, not refused — see `WILD_NUMBER`.
                + [f"beats (noted): {r}" for r in spoken["notes"]])
-    return {"ok": (prov["ok"] and finding["ok"] and prem["ok"]
-                   and dist["ok"] and spoken["ok"]),
+    return {"ok": other_ok and thesis["ok"],
             "reasons": reasons,
             "data_ok": prov["ok"] and finding["ok"],
             "premise_ok": prem["ok"],
-            "beats_ok": dist["ok"] and spoken["ok"]}
+            "beats_ok": dist["ok"] and spoken["ok"],
+            "thesis_ok": thesis["ok"]}
 
 
 if __name__ == "__main__":
@@ -418,4 +579,4 @@ if __name__ == "__main__":
         for r in v["reasons"][:6]:
             print(f"        - {r}")
     print(f"\n{npass}/{len(sel)} would pass the pre-render editorial gate "
-          f"(data + premise, deterministic only).")
+          f"(data + premise + thesis, deterministic only).")
