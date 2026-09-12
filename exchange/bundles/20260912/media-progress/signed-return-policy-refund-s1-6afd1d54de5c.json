@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s1-6afd1d54de5c",
+  "safe_request_id": "signed-return-policy-refund-s1-6afd1d54de5c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0c0a74efe12aa26b4bd9b30a79defcf9f4057a7b7e4b06dc682150c9410cd0fc",
+  "prompt_used": "An editorial illustration for a short-form video: old used blender kitchen. It accompanies the narration: \"a blender she'd clearly used for months\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1TLViF1oIlv-R6EDRlntlkIfqIpB6wXjF",
+    "filename": "20260912__signed-return-policy-refund-s1-6afd1d54de5c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1TLViF1oIlv-R6EDRlntlkIfqIpB6wXjF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9aa5f12f73a6b932a482e2f10aa4c9129cab705b1829563f9c01ea224dcf8940",
+    "bytes": 2334914,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-12T11:23:19.922Z"
+}
