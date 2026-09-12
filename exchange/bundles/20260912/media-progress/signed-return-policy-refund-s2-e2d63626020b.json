@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s2-e2d63626020b",
+  "safe_request_id": "signed-return-policy-refund-s2-e2d63626020b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "994857127cdb1d6cc9f0879e117b1ff2a195535c8099fb804624ce44aff6a23a",
+  "prompt_used": "An editorial illustration for a short-form video: retail store counter. It accompanies the narration: \"the customer is always right\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1UzsZ2t8fkV0G_wZc0fcSycQep90TfnxS",
+    "filename": "20260912__signed-return-policy-refund-s2-e2d63626020b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1UzsZ2t8fkV0G_wZc0fcSycQep90TfnxS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "59a72ed4e49dd7aa3dd349f30d96c1ec649ea0ef40a25c01920f6b5234ef2646",
+    "bytes": 1802439,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:21.032Z"
+}
