@@ -1,16 +1,94 @@
 [
   {
-    "topic": "Ozempic Passed Weight-Loss Surgery In 5 Years",
-    "title": "Ozempic Passed Weight-Loss Surgery In 5 Years",
-    "format": "graph_race",
-    "publish_at": "2026-09-11T17:30:00Z",
+    "topic": "My Manager Wrote Me Up. So I Got Literal.",
+    "title": "My Manager Wrote Me Up. So I Got Literal.",
+    "format": "reddit",
+    "publish_at": "2026-09-12T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 67.0,
-    "package_path": "state/trending_packages/20260911/01_graph-glp1-passed-bariatric-surgery.json",
+    "error": "showrunner_block: showrunner BLOCK: The story is well cast and the stills are genuinely on-topic, but one beat renders half the phone screen as solid black and the final third parks on a single motionless photo.",
+    "elapsed_seconds": 235.3,
+    "package_path": "state/trending_packages/20260912/01_dress-code.json",
     "source": "brain",
-    "video_path": "output/daily_20260911-170905_ozempic_passed_weight_loss_surgery_in_5_.mp4",
+    "video_path": "output/daily_20260912-112826_my_manager_wrote_me_up__so_i_got_literal.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is well cast and the stills are genuinely on-topic, but one beat renders half the phone screen as solid black and the final third parks on a single motionless photo.",
+      "score": 62
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Said The Customer Is Always Right. I Printed Proof.",
+    "title": "She Said The Customer Is Always Right. I Printed Proof.",
+    "format": "reddit",
+    "publish_at": "2026-09-12T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Solid relevant shot illustrations and clean captions, but the first 2.5 seconds are a motionless post card over a black void and the ending reuses one photo for the whole payoff.",
+    "elapsed_seconds": 177.0,
+    "package_path": "state/trending_packages/20260912/02_return-policy.json",
+    "source": "brain",
+    "video_path": "output/daily_20260912-113223_she_said_the_customer_is_always_right__i.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Solid relevant shot illustrations and clean captions, but the first 2.5 seconds are a motionless post card over a black void and the ending reuses one photo for the whole payoff.",
+      "score": 70
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Boeing Led Planemaking For Decades. Airbus Passed It.",
+    "title": "Boeing Led Planemaking For Decades. Airbus Passed It.",
+    "format": "graph_race",
+    "publish_at": "2026-09-12T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely dramatic race \u2014 the 2019 Boeing collapse lands \u2014 undercut by a hook card printed on top of the chart's axis and visible judder across the run.",
+    "elapsed_seconds": 217.9,
+    "package_path": "state/trending_packages/20260912/03_boeing-airbus.json",
+    "source": "brain",
+    "video_path": "output/daily_20260912-113500_boeing_led_planemaking_for_decades__airb.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +106,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: A genuinely dramatic race \u2014 the 2019 Boeing collapse lands \u2014 undercut by a hook card printed on top of the chart's axis and visible judder across the run.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "Online Shopping Buried The Department Store",
-    "title": "Online Shopping Buried The Department Store",
+    "topic": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
+    "title": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
     "format": "graph_race",
-    "publish_at": "2026-09-11T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/gSP4iDZndOU",
-    "error": null,
-    "elapsed_seconds": 116.4,
-    "package_path": "state/trending_packages/20260911/02_graph-online-shopping-buried-department-stores.json",
+    "publish_at": "2026-09-12T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 54.7,
+    "package_path": "state/trending_packages/20260912/04_vinyl-cd.json",
     "source": "brain",
-    "video_path": "output/daily_20260911-171012_online_shopping_buried_the_department_st.mp4",
+    "video_path": "output/daily_20260912-113838_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -61,24 +139,58 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "SUVs And Trucks Buried The Sedan",
-    "title": "SUVs And Trucks Buried The Sedan",
+    "topic": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
+    "title": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
     "format": "graph_race",
-    "publish_at": "2026-09-11T19:00:00Z",
+    "publish_at": "2026-09-12T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 186.8,
-    "package_path": "state/trending_packages/20260911/03_graph-suvs-buried-the-sedan.json",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 54.6,
+    "package_path": "state/trending_packages/20260912/05_solar-nuclear.json",
     "source": "brain",
-    "video_path": "output/daily_20260911-171209_suvs_and_trucks_buried_the_sedan.mp4",
+    "video_path": "output/daily_20260912-113933_solar_passed_nuclear_power__it_isn_t_clo.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Coal Powered America For A Century. Gas Ended It.",
+    "title": "Coal Powered America For A Century. Gas Ended It.",
+    "format": "graph_race",
+    "publish_at": "2026-09-12T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 54.9,
+    "package_path": "state/trending_packages/20260912/06_coal-gas.json",
+    "source": "brain",
+    "video_path": "output/daily_20260912-114027_coal_powered_america_for_a_century__gas_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,161 +208,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "Digital Ads Buried Newspaper Ads In A Decade",
-    "title": "Digital Ads Buried Newspaper Ads In A Decade",
-    "format": "graph_race",
-    "publish_at": "2026-09-11T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 91.4,
-    "package_path": "state/trending_packages/20260911/04_graph-digital-ads-passed-newspaper-ads.json",
-    "source": "brain",
-    "video_path": "output/daily_20260911-171515_digital_ads_buried_newspaper_ads_in_a_de.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
-    },
-    "blocked": true
-  },
-  {
-    "topic": "He Banned Verbal Approvals. I Emailed Everything.",
-    "title": "He Banned Verbal Approvals. I Emailed Everything.",
-    "format": "reddit",
-    "publish_at": "2026-09-11T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/mN9ikzZBeNc",
-    "error": null,
-    "elapsed_seconds": 176.7,
-    "package_path": "state/trending_packages/20260911/05_reddit-email-everything-policy.json",
-    "source": "brain",
-    "video_path": "output/daily_20260911-171647_he_banned_verbal_approvals__i_emailed_ev.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 55.667,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 86
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "She Ordered Me To Restock Shelves. I Own The Store.",
-    "title": "She Ordered Me To Restock Shelves. I Own The Store.",
-    "format": "reddit",
-    "publish_at": "2026-09-11T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 135.0,
-    "package_path": "state/trending_packages/20260911/06_reddit-store-owner-mistaken-employee.json",
-    "source": "brain",
-    "video_path": "output/daily_20260911-171944_she_ordered_me_to_restock_shelves__i_own.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 50.2,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
-    },
-    "blocked": true
-  },
-  {
-    "topic": "falling man",
-    "angle": null,
-    "publish_at": "2026-09-11T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 25.6,
-    "backfill": true
-  },
-  {
-    "topic": "emergency landing",
+    "topic": "cincinnati weather",
     "angle": null,
     "publish_at": "2026-09-12T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.7,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 73)",
+    "elapsed_seconds": 11.1,
     "backfill": true
   },
   {
-    "topic": "corte suprema",
+    "topic": "ted lasso - season 4",
     "angle": null,
     "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 1.0,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 81)",
+    "elapsed_seconds": 11.1,
     "backfill": true
   },
   {
-    "topic": "eric shawn",
+    "topic": "karoline leavitt convention speech",
     "angle": null,
     "publish_at": "2026-09-12T16:00:00Z",
     "ok": false,
     "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 62)",
+    "elapsed_seconds": 16.5,
+    "backfill": true
+  },
+  {
+    "topic": "erin napier",
+    "angle": null,
+    "publish_at": "2026-09-12T17:30:00Z",
+    "ok": false,
+    "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 1.1,
+    "elapsed_seconds": 0.7,
     "backfill": true
   }
 ]

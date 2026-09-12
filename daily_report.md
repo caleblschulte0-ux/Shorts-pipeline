@@ -1,39 +1,31 @@
-# Daily Trending Shorts — 2026-09-11
+# Daily Trending Shorts — 2026-09-12
 
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **10**
-- succeeded: **2**
+- succeeded: **0**
 - quarantined (off-topic imagery): **0**
-- failed: **8**
-
-## Posted
-- **Online Shopping Buried The Department Store**
-  - topic: Online Shopping Buried The Department Store
-  - publishes: `2026-09-11T17:30:00Z`
-  - https://youtube.com/shorts/gSP4iDZndOU
-  - took: 116.4s
-- **He Banned Verbal Approvals. I Emailed Everything.**
-  - topic: He Banned Verbal Approvals. I Emailed Everything.
-  - publishes: `2026-09-11T19:00:00Z`
-  - https://youtube.com/shorts/mN9ikzZBeNc
-  - took: 176.7s
+- failed: **10**
 
 ## Failed
-- **Ozempic Passed Weight-Loss Surgery In 5 Years**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) — too many held frames`
-- **SUVs And Trucks Buried The Sedan**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 5:40pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: `
-- **Digital Ads Buried Newspaper Ads In A Decade**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 5:40pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: `
-- **She Ordered Me To Restock Shelves. I Own The Store.**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 5:40pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: `
-- **falling man**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **emergency landing**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **corte suprema**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **eric shawn**
+- **My Manager Wrote Me Up. So I Got Literal.**
+  - error: `showrunner_block: showrunner BLOCK: The story is well cast and the stills are genuinely on-topic, but one beat renders half the phone screen as solid black and the final third parks on a single motionless photo.`
+- **She Said The Customer Is Always Right. I Printed Proof.**
+  - error: `showrunner_block: showrunner BLOCK: Solid relevant shot illustrations and clean captions, but the first 2.5 seconds are a motionless post card over a black void and the ending reuses one photo for the whole payoff.`
+- **Boeing Led Planemaking For Decades. Airbus Passed It.**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely dramatic race — the 2019 Boeing collapse lands — undercut by a hook card printed on top of the chart's axis and visible judder across the run.`
+- **Vinyl Just Beat CDs. It Hadn't Since 1986.**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **Solar Passed Nuclear Power. It Isn't Close Anymore.**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **Coal Powered America For A Century. Gas Ended It.**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **cincinnati weather**
+  - error: `JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 73)`
+- **ted lasso - season 4**
+  - error: `JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 81)`
+- **karoline leavitt convention speech**
+  - error: `JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 62)`
+- **erin napier**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
 

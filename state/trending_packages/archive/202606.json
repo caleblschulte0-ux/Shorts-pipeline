@@ -7045,5 +7045,785 @@
       "bottom_theme": "auto",
       "gameplay": "subway"
     }
+  },
+  "20260613": {
+    "01_violet-skunk-marshfield-zoo.json": {
+      "version": 8,
+      "slug": "violet-skunk-marshfield-zoo",
+      "title": "Wisconsin Zoo Lost Its Skunk. Her Name Is Violet.",
+      "hashtags": [
+        "violettheskunk",
+        "wildwoodzoo",
+        "marshfieldwi",
+        "skunkescaped",
+        "stripedskunk",
+        "animalescape",
+        "weirdnews",
+        "zooescape",
+        "wisconsin",
+        "animalnews",
+        "oddnews",
+        "skunks",
+        "localwildlife"
+      ],
+      "script": "Violet's gone missing! Wildwood Zoo in Marshfield, Wisconsin lost its resident striped skunk \u2014 and it's not a mystery how. Flash flooding this spring eroded the foundation of Violet's exhibit, opening a gap she apparently walked right through. She's been at the zoo for 2 years. Staff searched everywhere. Nothing. Now they're asking Marshfield residents: if you spot a striped skunk, call Marshfield Police dispatch at 715-387-4394 \u2014 but absolutely do NOT approach her. Because Violet is not declawed. Not defanged. Operating at full factory settings. Zoo officials say she poses no public safety risk \u2014 unless, of course, she disagrees. Humane traps are set. Cameras are out. Still nothing. If you're walking in Marshfield tonight and something smells off, is that a clue or a warning?",
+      "shots": [
+        {
+          "phrase": "Violet's gone missing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+          "query": "striped skunk outdoors grass escaped loose animal",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Wildwood Zoo in Marshfield, Wisconsin",
+          "query": "small city zoo midwestern exhibit enclosure outdoor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Flash flooding this spring eroded the foundation",
+          "query": "flash flood erosion foundation damage soil crumbling",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "opening a gap she apparently walked right through",
+          "query": "animal escape gap hole enclosure fence broken",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She's been at the zoo for 2 years",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+          "query": "skunk zoo habitat enclosure captive kept resident",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "call Marshfield Police dispatch at 715-387-4394",
+          "query": "police dispatch phone non-emergency call wildlife report",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "do NOT approach her",
+          "query": "warning sign do not approach danger wild animal",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Violet is not declawed. Not defanged.",
+          "query": "skunk claws defensive spray fully armed wild",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Operating at full factory settings",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mephitis_mephitis_-_NBII_Image_Gallery.jpg",
+          "query": "skunk raised tail defensive posture spray warning",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "she poses no public safety risk",
+          "query": "zoo official statement press release no risk public",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Humane traps are set. Cameras are out.",
+          "query": "humane animal trap cage set wildlife camera surveillance",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "something smells off, is that a clue or a warning",
+          "query": "night outdoors dark quiet street suspicious smell skunk",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Violet's gone missing",
+          "text": "VIOLET'S GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "resident striped skunk",
+          "text": "ESCAPED SKUNK",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Flash flooding this spring eroded the foundation",
+          "text": "FLOOD DAMAGE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "do NOT approach her",
+          "text": "DO NOT APPROACH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Violet is not declawed",
+          "text": "FULLY ARMED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "she poses no public safety risk",
+          "text": "\"NO RISK\"",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "is that a clue or a warning",
+          "text": "CLUE OR WARNING?",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "gameplay": "subway"
+    },
+    "02_skyler-rozell-whitaker-sweaters.json": {
+      "version": 8,
+      "slug": "skyler-rozell-whitaker-sweaters",
+      "title": "A 7-Year-Old Wore 50 Sweaters in a Library and Broke a World Record",
+      "hashtags": [
+        "skylerworldrecord",
+        "skylerrozellwhitaker",
+        "monroevillelibrary",
+        "guinnessworldrecord",
+        "50sweaters",
+        "worldrecord",
+        "kidsworldrecord",
+        "pennsylvania",
+        "guinnessnews",
+        "recordbreaker",
+        "mostsweaterswornatonce",
+        "weirdnews",
+        "monroevillepa"
+      ],
+      "script": "Fifty sweaters \u2014 at once? On June 1, 7-year-old Skyler Rozell-Whitaker walked into the Monroeville Public Library in Pennsylvania with one goal: break the Guinness World Record for most sweaters worn simultaneously. The previous record was 46. He started layering. By sweater 40, he was roughly marshmallow-shaped. At sweater 46, the crowd started chanting his name. At sweater 47, he officially broke the record. He kept going to 50, just to guarantee it. Guinness reviewed the footage, confirmed the count, and issued the certificate. All 50 sweaters were donated items \u2014 they go to the library's fall sweater drive. Skyler is 7 years old and now holds a world record nobody at his school can beat. Could you outlast Skyler at sweater 46?",
+      "shots": [
+        {
+          "phrase": "Fifty sweaters \u2014 at once",
+          "query": "sweaters pile layers stacked clothing colorful many",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Skyler Rozell-Whitaker walked into the Monroeville Public Library",
+          "query": "public library children's room Pennsylvania suburban community",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "break the Guinness World Record for most sweaters worn simultaneously",
+          "query": "Guinness world record attempt official book challenge",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The previous record was 46",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Punisher_guinness_certificate_scan_160mph.jpg",
+          "query": "previous record broken benchmark 46 comparison bar",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He started layering",
+          "query": "putting on sweaters layering multiple clothes one by one",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "By sweater 40, he was roughly marshmallow-shaped",
+          "query": "kid wearing very many sweaters round bulky fluffy funny",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "the crowd started chanting his name",
+          "query": "crowd library audience cheering chanting supportive celebration",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "At sweater 47, he officially broke the record",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Punisher_guinness_certificate_scan_160mph.jpg",
+          "query": "world record broken moment celebration milestone 47",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "He kept going to 50, just to guarantee it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Punisher_guinness_certificate_scan_160mph.jpg",
+          "query": "going above beyond record guarantee extra effort",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Guinness reviewed the footage, confirmed the count",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Punisher_guinness_certificate_scan_160mph.jpg",
+          "query": "Guinness World Records official review verification certificate",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "All 50 sweaters were donated items",
+          "query": "donated sweaters pile charity drive fall collection bins",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Could you outlast Skyler at sweater 46",
+          "query": "challenge record attempt sweaters beat world record 46",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Fifty sweaters \u2014 at once",
+          "text": "50 SWEATERS AT ONCE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "The previous record was 46",
+          "text": "PREV RECORD: 46",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "the crowd started chanting his name",
+          "text": "CROWD GOES WILD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "At sweater 47, he officially broke the record",
+          "text": "RECORD BROKEN AT #47",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "He kept going to 50",
+          "text": "WENT TO 50!",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Guinness reviewed the footage, confirmed the count",
+          "text": "GUINNESS CONFIRMED",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Skyler is 7 years old",
+          "text": "AGE 7. WORLD RECORD.",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "03_woodbridge-ct-two-pigs.json": {
+      "version": 8,
+      "slug": "woodbridge-ct-two-pigs",
+      "title": "Two Pigs, One Town, Same Morning \u2014 Connecticut Is Confused",
+      "hashtags": [
+        "woodbridgect",
+        "connecticutnews",
+        "loosepigs",
+        "pigsontheloose",
+        "twopigs",
+        "animalcontrol",
+        "weirdnews",
+        "connecticut",
+        "samemorning",
+        "localnews",
+        "animalnews",
+        "oddnews",
+        "newengland"
+      ],
+      "script": "Two loose pigs. Same morning? Woodbridge, Connecticut woke up to a problem with hooves. The first call came in at 5:45 a.m.: a pig was loose in someone's yard on Old Quarry Road. Cool, weird, whatever \u2014 until a SECOND call came in. Different street. Acorn Hill Road. Same tiny town. Same morning. That pig had apparently been living outdoors on its own for two full days. Animal control from Naugatuck and Prospect responded. A local vet came out. They caught one pig. The second one is still out there. Police are asking residents to report any sightings and NOT approach. Nobody has claimed either animal. Nobody has admitted to losing a pig. Two pigs, two streets, one town, same morning \u2014 so who loses a pig and just\u2026 doesn't notice?",
+      "shots": [
+        {
+          "phrase": "Two loose pigs. Same morning",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+          "query": "domestic pig loose backyard suburban neighborhood running",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Woodbridge, Connecticut woke up to a problem with hooves",
+          "query": "Connecticut suburban town street neighborhood quiet morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The first call came in at 5:45 a.m.",
+          "query": "early morning dark 5am neighborhood quiet street yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a pig was loose in someone's yard on Old Quarry Road",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+          "query": "pig trespassing residential yard suburban running loose",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "until a SECOND call came in",
+          "query": "second call police dispatch phone surprise again",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Acorn Hill Road. Same tiny town. Same morning.",
+          "query": "residential street road sign suburban Connecticut morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "had apparently been living outdoors on its own for two full days",
+          "query": "pig roaming free outdoors days alone grass field",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Animal control from Naugatuck and Prospect responded",
+          "query": "animal control van officers catching livestock suburban",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They caught one pig",
+          "query": "pig caught captured animal control success wrangled",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The second one is still out there",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pig_USDA01c0116.jpg",
+          "query": "pig still on the loose missing not found free",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Nobody has claimed either animal",
+          "query": "unclaimed animal police shelter owner unknown nobody",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "so who loses a pig and just\u2026 doesn't notice",
+          "query": "confused owner missing pig livestock backyard fence",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Two loose pigs. Same morning",
+          "text": "2 PIGS SAME MORNING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The first call came in at 5:45 a.m.",
+          "text": "FIRST PIG: 5:45 A.M.",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "until a SECOND call came in",
+          "text": "SECOND PIG!",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "for two full days",
+          "text": "WILD FOR 2 DAYS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "They caught one pig",
+          "text": "1 CAUGHT",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "The second one is still out there",
+          "text": "1 STILL LOOSE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Nobody has claimed either animal",
+          "text": "NO ONE CLAIMED THEM",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "gameplay": "subway"
+    },
+    "04_irwin-alligator-marks-ark.json": {
+      "version": 8,
+      "slug": "irwin-alligator-marks-ark",
+      "title": "Irwin the Alligator Escaped Mark's Ark in Indiana. Again.",
+      "hashtags": [
+        "irwinthealligator",
+        "marksark",
+        "auburnindiana",
+        "alligatorloose",
+        "indiananews",
+        "exoticanimalshow",
+        "animalescape",
+        "alligatorescape",
+        "weirdnews",
+        "thirdescape",
+        "dekalb",
+        "exoticanimals",
+        "animalnews",
+        "oddnews"
+      ],
+      "script": "Irwin the gator is loose! Mark Kohlhorst runs Mark's Ark \u2014 an exotic animal show he takes to schools across Indiana. On June 9, he came home from a show, put his animals away, and noticed one cooler was empty. Irwin, his 2-foot alligator, was gone. Here's the thing: neighbors say this is the THIRD alligator to escape from the property. Not the first. Not the second. The third. Previous escapees from Mark's Ark include a pony, a tortoise, a pig, and an emu. The county is searching. Kohlhorst says Irwin is small and harmless \u2014 a 2-foot gator poses no danger. His neighbor says a 2-foot alligator could take your fingers off. Irwin is still at large. If a 2-foot alligator showed up in your yard, would you trust the owner's word?",
+      "shots": [
+        {
+          "phrase": "Irwin the gator is loose",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "alligator loose outdoors grass escaped small gator",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Mark Kohlhorst runs Mark's Ark",
+          "query": "exotic animal show school presenter Indiana performer",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "an exotic animal show he takes to schools across Indiana",
+          "query": "school exotic animal show presenter students education",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "noticed one cooler was empty",
+          "query": "empty cooler transport box missing animal reptile",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Irwin, his 2-foot alligator, was gone",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "small young 2-foot alligator baby gator escaped",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "this is the THIRD alligator to escape from the property",
+          "query": "third escape same property serial animal problem",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Not the first. Not the second. The third.",
+          "query": "third strike three times same animal owner escape",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Previous escapees from Mark's Ark include a pony, a tortoise, a pig, and an emu",
+          "query": "exotic animals pony tortoise pig emu escaped farm assorted",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Kohlhorst says Irwin is small and harmless",
+          "query": "alligator owner claiming harmless small no danger permit",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a 2-foot gator poses no danger",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "small baby alligator hand size young harmless captive",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "His neighbor says a 2-foot alligator could take your fingers off",
+          "query": "alligator bite warning danger neighbor concerned worried",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Irwin is still at large",
+          "query": "alligator still missing on the loose Indiana neighborhood",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "would you trust the owner's word",
+          "query": "skeptical trust exotic animal owner escaped again",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Irwin the gator is loose",
+          "text": "IRWIN IS OUT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Mark's Ark",
+          "text": "MARK'S ARK",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "one cooler was empty",
+          "text": "EMPTY COOLER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "THIRD alligator to escape from the property",
+          "text": "THE THIRD TIME",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a pony, a tortoise, a pig, and an emu",
+          "text": "PONY \u2022 TORTOISE \u2022 PIG \u2022 EMU",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a 2-foot gator poses no danger",
+          "text": "\"NO DANGER\"",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "could take your fingers off",
+          "text": "COULD LOSE A FINGER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Irwin is still at large",
+          "text": "STILL AT LARGE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "gameplay": "subway"
+    },
+    "05_yoon-suk-yeol-30-years.json": {
+      "version": 8,
+      "slug": "yoon-suk-yeol-30-years",
+      "title": "He Flew Drones Over North Korea to Justify Martial Law. 30 Years.",
+      "hashtags": [
+        "yoonsukyeol",
+        "southkorea",
+        "northkorea",
+        "martiallaw",
+        "seoul",
+        "kimyonghyun",
+        "seoulcourt",
+        "koreanews",
+        "droneincursion",
+        "southkoreanews",
+        "30yearsprison",
+        "criminaljustice",
+        "internationalnews",
+        "breakingnews"
+      ],
+      "script": "A president ordered what? South Korea's Yoon Suk Yeol \u2014 who declared emergency martial law in December 2024 \u2014 just got 30 years in prison. And here's why: prosecutors proved Yoon secretly ordered the military to fly surveillance drones over Pyongyang, North Korea's capital, hoping to provoke a military reaction that would justify the martial law. His defense minister, Kim Yong Hyun, got 30 years alongside him. The Seoul Central District Court called it a deliberate abuse of authority for personal political gain. Yoon appealed immediately. The whole scheme depended on North Korea reacting to a military provocation it never actually knew about. If those surveillance drones had caused an incident \u2014 would anyone have questioned the martial law?",
+      "shots": [
+        {
+          "phrase": "A president ordered what",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/South_Korea_President_Yoon_Suk_Yeol_portrait.jpg",
+          "query": "South Korea president official portrait government formal",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Yoon Suk Yeol \u2014 who declared emergency martial law in December 2024",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/South_Korea_President_Yoon_Suk_Yeol_portrait.jpg",
+          "query": "South Korea emergency martial law announcement TV broadcast",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "just got 30 years in prison",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/South_Korea_President_Yoon_Suk_Yeol_portrait.jpg",
+          "query": "South Korean court sentencing prison judge gavel guilty",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "prosecutors proved Yoon secretly ordered the military to fly surveillance drones",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pyongyang_city_view_as_seen_from_Juche_tower_20150501.jpg",
+          "query": "military surveillance drone spy flight operation classified",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "over Pyongyang, North Korea's capital",
+          "query": "Pyongyang North Korea capital city skyline aerial view",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "hoping to provoke a military reaction that would justify the martial law",
+          "query": "military provocation border tension escalation North Korea response",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "His defense minister, Kim Yong Hyun, got 30 years alongside him",
+          "query": "South Korea defense minister court sentencing alongside president",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The Seoul Central District Court called it a deliberate abuse of authority",
+          "query": "Seoul court building South Korea district court judgment ruling",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "for personal political gain",
+          "query": "politician abuse power personal political gain corrupt",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Yoon appealed immediately",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/South_Korea_President_Yoon_Suk_Yeol_portrait.jpg",
+          "query": "appeal court ruling South Korea legal defense lawyers",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "North Korea reacting to a military provocation it never actually knew about",
+          "query": "North Korea military border undetected covert operation",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "would anyone have questioned the martial law",
+          "query": "martial law authority question legitimacy doubt political power",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A president ordered what",
+          "text": "A PRESIDENT DID WHAT?!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "just got 30 years in prison",
+          "text": "30 YEARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "fly surveillance drones over Pyongyang",
+          "text": "DRONES OVER PYONGYANG",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "provoke a military reaction",
+          "text": "TRIGGER A REACTION",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Kim Yong Hyun, got 30 years alongside him",
+          "text": "DEFENSE MINISTER: 30 YRS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "deliberate abuse of authority",
+          "text": "DELIBERATE ABUSE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "it never actually knew about",
+          "text": "NORTH KOREA NEVER KNEW",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "06_charlevoix-michigan-lottery.json": {
+      "version": 8,
+      "slug": "charlevoix-michigan-lottery",
+      "title": "She Thought the Lottery Scanner Was Broken. It Wasn't.",
+      "hashtags": [
+        "michiganlottery",
+        "millionaireforlife",
+        "charlevoixcounty",
+        "lotterywin",
+        "lottoscanner",
+        "lotterywinner",
+        "michigan",
+        "oddnews",
+        "lotteryluck",
+        "scratchticket",
+        "mancelona",
+        "weirdnews",
+        "lotterylife"
+      ],
+      "script": "Broken scanner. Or $2.2 million? A 66-year-old woman from Charlevoix County, Michigan had an urge to buy a lottery ticket \u2014 Millionaire for Life from the Michigan Lottery. She scanned it at a store. A message came up: contact the lottery office. She figured the machine was broken. Walked to her car. Looked up the Michigan Lottery website. Her 5 numbers \u2014 03, 15, 16, 24, 28 \u2014 matched the May 21 drawing. Not broken. She won $100,000 a year for life. She chose the lump sum: $2.2 million. The winning ticket was from the Mancelona North EZ Mart. She stayed anonymous. She's buying a house, a car, and a boat. If your lottery scanner said contact the lottery office, would you assume it was broken?",
+      "shots": [
+        {
+          "phrase": "Broken scanner. Or $2.2 million",
+          "query": "lottery scanner kiosk machine convenience store screen result",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "A 66-year-old woman from Charlevoix County, Michigan",
+          "query": "Michigan small town northern rural Charlevoix county woman",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "had an urge to buy a lottery ticket",
+          "query": "buying lottery ticket convenience store impulse purchase",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Millionaire for Life from the Michigan Lottery",
+          "query": "Michigan Lottery Millionaire for Life game ticket draw",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A message came up: contact the lottery office",
+          "query": "lottery scanner message screen contact office alert result",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She figured the machine was broken",
+          "query": "broken machine error screen frustrated assume wrong dismiss",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Looked up the Michigan Lottery website",
+          "query": "phone checking lottery numbers website result online Michigan",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Her 5 numbers \u2014 03, 15, 16, 24, 28 \u2014 matched the May 21 drawing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/New_israeli_lottery_ticket.JPG",
+          "query": "lottery numbers matching winning ticket five balls draw",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "She won $100,000 a year for life",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Worldbiggest_Scratchcard.jpg",
+          "query": "$100000 a year for life lottery annuity winning prize",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She chose the lump sum: $2.2 million",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Worldbiggest_Scratchcard.jpg",
+          "query": "lump sum payout $2 million lottery winner check",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The winning ticket was from the Mancelona North EZ Mart",
+          "query": "convenience store gas station lottery retailer Michigan small town",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She's buying a house, a car, and a boat",
+          "query": "buying house car boat lottery winner spending plans",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "would you assume it was broken",
+          "query": "lottery scanner broken assume walk away dismiss miss win",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Broken scanner. Or $2.2 million",
+          "text": "SCANNER \"BROKEN\"?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "had an urge to buy a lottery ticket",
+          "text": "JUST AN URGE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "A message came up: contact the lottery office",
+          "text": "CONTACT LOTTERY OFFICE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "She figured the machine was broken",
+          "text": "\"MACHINE BROKEN\"",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "matched the May 21 drawing",
+          "text": "ALL 5 MATCHED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "She won $100,000 a year for life",
+          "text": "$100K/YEAR FOR LIFE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "She chose the lump sum: $2.2 million",
+          "text": "$2.2M LUMP SUM",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "She's buying a house, a car, and a boat",
+          "text": "HOUSE \u2022 CAR \u2022 BOAT",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    }
   }
 }
