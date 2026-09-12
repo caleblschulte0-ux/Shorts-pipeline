@@ -85,6 +85,43 @@ on:
     # post_stories' per-day cap makes this a free no-op (budget 0, exit);
     # if it didn't, this run IS the day.
     - cron: '10 17 * * *'   # 12:10 Central summer — late enough to be sure
+  # ...AND THE DAY RENDERS WHEN THE DAY'S STORIES LAND.
+  #
+  # THIS IS WHY A HUMAN HAD TO PUSH THE BUTTON EVERY MORNING FOR A WEEK.
+  #
+  # The Routine authors the day's stories into `niche.config.json` and they
+  # land on main at about 09:30 UTC. The only automatic trigger was the
+  # 13:40 cron — and GitHub does not run a cron at 13:40. Measured off this
+  # workflow's own run history, the "13:40" entry actually fired at
+  #
+  #     09-09 17:14   09-10 17:07   09-11 17:08   09-12 16:27
+  #
+  # two and a half to three and a half hours late, every day (GitHub
+  # deprioritises schedules, and this repo runs a lot of Actions). So the
+  # finished stories sat unrendered for SEVEN HOURS, and the operator
+  # dispatched this workflow by hand at 09:31, 09:23, 09:52, 09:35, 09:38,
+  # 09:40 and 09:37 on seven consecutive days to get the day out.
+  #
+  # A cron is a FLOOR, not a schedule. The thing that should start the day
+  # is the day's content existing.
+  #
+  # WHY THIS IS NOT THE DOUBLE-POST THE COMMENT ABOVE WARNS ABOUT: that
+  # warning is about chaining off "Daily Shorts" — ANOTHER CHANNEL's
+  # completion, which is both a coupling that already killed this channel
+  # once and a second daily budget nobody counted. This fires on THIS
+  # channel's own content landing, and it is the same budget: `post_stories`
+  # counts what today already posted and shrinks this run to the remainder
+  # (budget 0 -> exit), which is the exact mechanism the comment above cites
+  # for why two crons are safe. The `explainer-stories` concurrency group
+  # (cancel-in-progress: false) keeps two triggers from overlapping, and the
+  # posted log dedupes slugs regardless.
+  push:
+    branches: [main]
+    paths:
+      # ONLY the file the day's stories land in. Not `state/**` — CI writes
+      # posted logs and analytics there on every run, and pointing this at
+      # them would make the workflow trigger itself in a loop.
+      - 'data_learning/niche.config.json'
   # workflow_dispatch below is how a Routine (and the daily.yml chain) fires
   # this on demand; the crons above are what guarantee it runs at all.
 
@@ -130,7 +167,8 @@ jobs:
     # the channel keeps inventing new topics instead of going dry).
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'schedule'
+      github.event_name == 'schedule' ||
+      github.event_name == 'push'
     runs-on: ubuntu-latest
     # Raised from 60: each video now renders a 3D opener+closer, so a batch
     # needs more headroom. Paired with post_stories --max-per-run so a run
