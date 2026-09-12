@@ -1,0 +1,430 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260912",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "d8fddc375cd1af70aba41909842343f20a1a2de7",
+    "production_date": "20260912",
+    "bundle_sha256": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1"
+  },
+  "media": [
+    {
+      "request_id": "literal-dress-code-compliance-s0-77e587b259cc",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+        "file_id": "14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+        "filename": "20260912__literal-dress-code-compliance-s0-77e587b259cc.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1945674,
+        "format": "png",
+        "height": 1672,
+        "sha256": "6770eb4cb7de2e97de02a4429d31292dc6409b4b8273d55d9c2b04c419fc2b28",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s0-77e587b259cc.json",
+        "verified_at": "2026-09-12T11:24:37.771Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s2-90f6ac909f7d",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+        "file_id": "1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+        "filename": "20260912__literal-dress-code-compliance-s2-90f6ac909f7d.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2227459,
+        "format": "png",
+        "height": 1672,
+        "sha256": "5f686b2557cebf3be627b5b5864731195e82f36702b31035c18a71c3abb4169b",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s2-90f6ac909f7d.json",
+        "verified_at": "2026-09-12T11:24:37.771Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s3-94661ae88278",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+        "file_id": "1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+        "filename": "20260912__literal-dress-code-compliance-s3-94661ae88278.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1603625,
+        "format": "png",
+        "height": 1672,
+        "sha256": "5de893e4d49178b385b0bc4374609a66dfb2e602aa56aaef16c5bc1477206d0d",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s3-94661ae88278.json",
+        "verified_at": "2026-09-12T11:24:37.771Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s4-9efaf96360a7",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1s4FiIiTA4atcAZNBww13SCKU3YKQwLie",
+        "file_id": "1s4FiIiTA4atcAZNBww13SCKU3YKQwLie",
+        "filename": "20260912__literal-dress-code-compliance-s4-9efaf96360a7.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2108500,
+        "format": "png",
+        "height": 1672,
+        "sha256": "14d5e9faacdd86b117dd9f73e31d2f23c7ffb048891810cf2d799e34ff51ad85",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s4-9efaf96360a7.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+        "file_id": "1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+        "filename": "20260912__literal-dress-code-compliance-s5-c0747c5ea6d9.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1675963,
+        "format": "png",
+        "height": 1672,
+        "sha256": "ee78ba8cb11acf416e0c7859ae2e54c455bb0aef7a2b579bbf6ff815b81ca14e",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s5-c0747c5ea6d9.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s6-4ac7ce65eb2e",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+        "file_id": "1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+        "filename": "20260912__literal-dress-code-compliance-s6-4ac7ce65eb2e.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1937398,
+        "format": "png",
+        "height": 1536,
+        "sha256": "3fe1489d6232813de41866dba040218f20231d9efa11b327a0cde1fbe4760c9b",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s6-4ac7ce65eb2e.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s1-fb6ffdc350ab",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
+        "file_id": "1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
+        "filename": "20260912__literal-dress-code-compliance-s1-fb6ffdc350ab.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1927281,
+        "format": "png",
+        "height": 1672,
+        "sha256": "069990ae4e127cd54f6fe189e8f28e50f194e7c9ea50fbe951d903c9d88aa539",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/literal-dress-code-compliance-s1-fb6ffdc350ab.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s0-883603d2d628",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1OljlbC8SrUOGQVSc5jvnJefjuxPK1YCw",
+        "file_id": "1OljlbC8SrUOGQVSc5jvnJefjuxPK1YCw",
+        "filename": "20260912__signed-return-policy-refund-s0-883603d2d628.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1896230,
+        "format": "png",
+        "height": 1536,
+        "sha256": "a808a7d4696b84f9bed4d429f1c22cd9cce5c4953a6c5d5df27d37214c8a47eb",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s0-883603d2d628.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s1-6afd1d54de5c",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1TLViF1oIlv-R6EDRlntlkIfqIpB6wXjF",
+        "file_id": "1TLViF1oIlv-R6EDRlntlkIfqIpB6wXjF",
+        "filename": "20260912__signed-return-policy-refund-s1-6afd1d54de5c.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2334914,
+        "format": "png",
+        "height": 1536,
+        "sha256": "9aa5f12f73a6b932a482e2f10aa4c9129cab705b1829563f9c01ea224dcf8940",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s1-6afd1d54de5c.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s2-e2d63626020b",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1UzsZ2t8fkV0G_wZc0fcSycQep90TfnxS",
+        "file_id": "1UzsZ2t8fkV0G_wZc0fcSycQep90TfnxS",
+        "filename": "20260912__signed-return-policy-refund-s2-e2d63626020b.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1802439,
+        "format": "png",
+        "height": 1672,
+        "sha256": "59a72ed4e49dd7aa3dd349f30d96c1ec649ea0ef40a25c01920f6b5234ef2646",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s2-e2d63626020b.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s3-98d1693a8a8a",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ww54AZaXqGGAcsdYh72vUhVNETEj9Hl4",
+        "file_id": "1Ww54AZaXqGGAcsdYh72vUhVNETEj9Hl4",
+        "filename": "20260912__signed-return-policy-refund-s3-98d1693a8a8a.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1541349,
+        "format": "png",
+        "height": 1672,
+        "sha256": "4c0f591774edfa2c9f01d387f37e816b5ce5c8beb1e31936936fe3fd8728d4f0",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s3-98d1693a8a8a.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s4-77a3fe37e1b0",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1JdHrRgpLwT5qa0For7tXRwbLBlsA05s_",
+        "file_id": "1JdHrRgpLwT5qa0For7tXRwbLBlsA05s_",
+        "filename": "20260912__signed-return-policy-refund-s4-77a3fe37e1b0.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1635915,
+        "format": "png",
+        "height": 1672,
+        "sha256": "8890cef02b45b9051b531fede4b27360592cdeac20feef971469a936819a71d4",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s4-77a3fe37e1b0.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s5-6ab614cf556d",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1wDJuXb6R_Ps5__ZsANuUG-qgcnNisTV8",
+        "file_id": "1wDJuXb6R_Ps5__ZsANuUG-qgcnNisTV8",
+        "filename": "20260912__signed-return-policy-refund-s5-6ab614cf556d.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1965876,
+        "format": "png",
+        "height": 1672,
+        "sha256": "217bf79b1867ee349c49aa45cfad22099b072ed70ea2ae9e8195fe08deb954ea",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s5-6ab614cf556d.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s6-4a0f102075e4",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1_ABSBqAUST5MJPpD_k6gEqP_81Y_DyQZ",
+        "file_id": "1_ABSBqAUST5MJPpD_k6gEqP_81Y_DyQZ",
+        "filename": "20260912__signed-return-policy-refund-s6-4a0f102075e4.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1997301,
+        "format": "png",
+        "height": 1536,
+        "sha256": "19ef2171e98eff05050652603b4df4b86f79f0b5f7f1826ce5db39770b935f8b",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s6-4a0f102075e4.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    },
+    {
+      "request_id": "signed-return-policy-refund-s7-78a14b46dd20",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1O3GC8nThXLMrbE4HRRv9MKia41FW_AXx",
+        "file_id": "1O3GC8nThXLMrbE4HRRv9MKia41FW_AXx",
+        "filename": "20260912__signed-return-policy-refund-s7-78a14b46dd20.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1911584,
+        "format": "png",
+        "height": 1672,
+        "sha256": "474a9ae0397bad68b750e3211064171ecb4dad73ad0bb8b7710b4bf6ed372703",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260912/media-progress/signed-return-policy-refund-s7-78a14b46dd20.json",
+        "verified_at": "2026-09-12T11:24:37.772Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "literal-dress-code-compliance",
+      "script": "Sneakers earned a write-up? My new manager loved rules more than results, so I followed every line after her business casual violation. Page fourteen said visible tattoos must be covered. Nobody told the warehouse crew; within a day, half looked recruited by a long sleeve cult. Page twenty two allowed personal calls only on the break room landline. At lunch, the whole floor queued for one beige phone like the last parking spot before a blizzard. Page thirty required safety vests at all times on the production floor—which technically includes the bathroom. I wore mine there. By the third day, corporate called: productivity had dropped nineteen percent. By the end of the week, the handbook quietly changed. My sneakers stayed on my feet, unwritten up, for good. Which rule broke first: Page fourteen, Page twenty two, or Page thirty?",
+      "editor_note": "Rewritten to 139 words with a four-word question hook, every handbook number and outcome preserved, and the kicker tied to Pages fourteen, twenty two, and thirty."
+    },
+    {
+      "slug": "signed-return-policy-refund",
+      "script": "She returned WHAT? A woman visits our store every few weeks convinced the sign by the register is a legal document. This time: a blender used for months, no receipt, no box, chipped blade, full refund. I explained the actual policy required a receipt within thirty days. “The customer is always right,” she said louder, as if volume were evidence. So I printed the policy, highlighted the thirty day line in yellow, and asked her to sign that she'd read it. She signed without reading. Six weeks later, she returned with a different broken blender. I pulled her signed page from the file and slid it across the counter. She read her own signature beneath the policy she claimed didn't apply. Then she left—no refund, no word. Does “always right” survive a signed thirty day policy?",
+      "editor_note": "Rewritten to 136 words with a three-word question hook, every timing detail preserved, and the signed thirty day policy used as the specific kicker."
+    },
+    {
+      "slug": "boeing-airbus-deliveries",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames Airbus passing Boeing after decades of Boeing leadership."
+    },
+    {
+      "slug": "vinyl-vs-cd-revenue",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names vinyl’s first revenue win over CDs since 1986."
+    },
+    {
+      "slug": "solar-vs-nuclear-capacity",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title states both the solar crossover and the widening gap."
+    },
+    {
+      "slug": "coal-vs-gas-us-power",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames gas ending coal’s century-long US power lead."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
