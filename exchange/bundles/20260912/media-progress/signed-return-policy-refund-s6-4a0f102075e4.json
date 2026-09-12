@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s6-4a0f102075e4",
+  "safe_request_id": "signed-return-policy-refund-s6-4a0f102075e4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "45e7fade9c02042d878393402d90c685687931bb950ffb8beba407a25ae38c36",
+  "prompt_used": "An editorial illustration for a short-form video: file folder paperwork. It accompanies the narration: \"pulled the signed page from the file\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_ABSBqAUST5MJPpD_k6gEqP_81Y_DyQZ",
+    "filename": "20260912__signed-return-policy-refund-s6-4a0f102075e4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_ABSBqAUST5MJPpD_k6gEqP_81Y_DyQZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "19ef2171e98eff05050652603b4df4b86f79f0b5f7f1826ce5db39770b935f8b",
+    "bytes": 1997301,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-12T11:23:29.317Z"
+}
