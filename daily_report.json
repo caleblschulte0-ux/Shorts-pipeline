@@ -6,14 +6,14 @@
     "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Strong Reddit-card hook and clean captions, but an off-topic AI prayer-circle photo breaks the story and the same binder photo is held for the entire final third, so the payoff lands with a frozen picture.",
-    "elapsed_seconds": 202.6,
+    "error": "showrunner_block: showrunner BLOCK: The picture stops telling the story: one binder photo holds through five straight beats and the last 26 seconds, so the back half is gameplay wallpaper with captions.",
+    "elapsed_seconds": 239.1,
     "package_path": "state/trending_packages/20260912/01_dress-code.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-212714_my_manager_wrote_me_up__so_i_got_literal.mp4",
+    "video_path": "output/daily_20260912-225927_my_manager_wrote_me_up__so_i_got_literal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.733,
+      "duration": 44.867,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,16 +24,16 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -25.3
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Strong Reddit-card hook and clean captions, but an off-topic AI prayer-circle photo breaks the story and the same binder photo is held for the entire final third, so the payoff lands with a frozen picture.",
+      "reason": "showrunner BLOCK: The picture stops telling the story: one binder photo holds through five straight beats and the last 26 seconds, so the back half is gameplay wallpaper with captions.",
       "score": 62
     },
     "blocked": true
@@ -45,11 +45,11 @@
     "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race itself is good \u2014 the 2019 crossover and leaderboard flip genuinely land \u2014 but the first two seconds are a title-plus-quote card over an empty axis, and the card is printed on top of the chart's own labels.",
-    "elapsed_seconds": 139.9,
+    "error": "showrunner_block: showrunner BLOCK: The race itself is genuinely good \u2014 the 2019 Boeing collapse and the leaderboard flip land \u2014 but text keeps colliding with the chart it sits on, from the hook card over the '900' tick to the final value labels clipped by the right edge.",
+    "elapsed_seconds": 149.2,
     "package_path": "state/trending_packages/20260912/03_boeing-airbus.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-213026_boeing_led_planemaking_for_decades__airb.mp4",
+    "video_path": "output/daily_20260912-230322_boeing_led_planemaking_for_decades__airb.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -67,8 +67,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The race itself is good \u2014 the 2019 crossover and leaderboard flip genuinely land \u2014 but the first two seconds are a title-plus-quote card over an empty axis, and the card is printed on top of the chart's own labels.",
-      "score": 65
+      "reason": "showrunner BLOCK: The race itself is genuinely good \u2014 the 2019 Boeing collapse and the leaderboard flip land \u2014 but text keeps colliding with the chart it sits on, from the hook card over the '900' tick to the final value labels clipped by the right edge.",
+      "score": 61
     },
     "blocked": true
   },
@@ -79,11 +79,11 @@
     "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 60.2,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 75.5,
     "package_path": "state/trending_packages/20260912/04_vinyl-cd.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-213246_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
+    "video_path": "output/daily_20260912-230551_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -101,7 +101,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 0
     },
     "blocked": true
@@ -114,10 +114,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 60.2,
+    "elapsed_seconds": 77.1,
     "package_path": "state/trending_packages/20260912/05_solar-nuclear.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-213346_solar_passed_nuclear_power__it_isn_t_clo.mp4",
+    "video_path": "output/daily_20260912-230707_solar_passed_nuclear_power__it_isn_t_clo.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -147,11 +147,11 @@
     "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 60.0,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.2 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 76.5,
     "package_path": "state/trending_packages/20260912/06_coal-gas.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-213447_coal_powered_america_for_a_century__gas_.mp4",
+    "video_path": "output/daily_20260912-230824_coal_powered_america_for_a_century__gas_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -169,49 +169,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.2 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "judd nelson",
+    "topic": "nashville vs inter miami",
     "angle": null,
     "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 70)",
-    "elapsed_seconds": 11.3,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 1.0,
     "backfill": true
   },
   {
-    "topic": "chris kreider",
+    "topic": "atlanta united vs d.c. united",
     "angle": null,
     "publish_at": "2026-09-13T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.6,
+    "elapsed_seconds": 1.6,
     "backfill": true
   },
   {
-    "topic": "jerome bettis",
+    "topic": "ga southern vs clemson",
     "angle": null,
     "publish_at": "2026-09-13T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.6,
+    "elapsed_seconds": 0.8,
     "backfill": true
   },
   {
-    "topic": "peso mexicano",
+    "topic": "southern miss vs auburn",
     "angle": null,
     "publish_at": "2026-09-13T17:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.3,
+    "elapsed_seconds": 0.8,
     "backfill": true
   }
 ]
