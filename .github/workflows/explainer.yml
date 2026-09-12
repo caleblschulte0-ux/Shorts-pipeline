@@ -723,6 +723,18 @@ jobs:
                     f"channel on {today}. Either every story was held by the "
                     f"review gate, or this run never got far enough to try — "
                     f"check the run summary above to tell which.")
+              # ...AND FAIL. `::error` is an ANNOTATION: it colours a line in
+              # a log and changes nothing. This step is named "Did the channel
+              # actually post today?" and for five days it answered NO and
+              # reported SUCCESS — 2026-09-12 posted zero videos across two
+              # green runs, and 09-11 posted two of four.
+              #
+              # A red run is the correct signal for "this channel published
+              # nothing today", whether the cause was the gate or a crash.
+              # It is not crying wolf: a day that ships nothing IS the wolf,
+              # and `deadman.yml` chains off this run finishing to re-fire the
+              # channel — so red here is what summons the repair.
+              raise SystemExit(1)
           PY
 
       - name: Fetch explainer analytics

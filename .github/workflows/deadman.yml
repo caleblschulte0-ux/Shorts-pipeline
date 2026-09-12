@@ -1,0 +1,160 @@
+name: Dead-man's switch (the day SHIPS)
+
+# THE LAYER THAT ACTS INSTEAD OF REPORTING.
+#
+# Operator, 2026-09-12: "I want you to add a million levels of redundancy and
+# fail safes. It would take fucking Godzilla crushing the Apple headquarters
+# for a video not to post for us one day."
+#
+# Every guard this pipeline had reported and none of them acted, so all three
+# were green through five days of a human doing the job by hand:
+#
+#   1. The explainer's only automatic trigger was `cron: '40 13 * * *'`.
+#      GitHub fired it at 17:14 / 17:07 / 17:08 / 16:27 — three hours late,
+#      every day. The stories were ready at 09:30, so the operator dispatched
+#      the workflow by hand seven mornings running.
+#   2. The run then went GREEN having posted ZERO videos, because the step
+#      literally named "Did the channel actually post today?" printed
+#      `::error` — an ANNOTATION, which does not fail anything.
+#   3. `alarm.yml` asks the right question at 01:15 UTC, after the day is
+#      over, and COMMENTS. It never fired, and it was right not to: videos
+#      had posted — because a human noticed and pushed the button. A monitor
+#      that a human silently repairs every day reports a healthy system
+#      forever.
+#
+# So this one does not report. It re-fires the channel's own workflow, up to
+# `deadman.MAX_FIRES` times a day, and only gets loud when it has run out of
+# attempts. The ledger in `state/deadman/<date>.json` is both the bound and
+# the evidence.
+#
+# IT DOES NOT TOUCH THE SHOWRUNNER. "A video always posts" cannot mean "a
+# video posts anyway": a fail-closed gate with a bypass is not a gate, and
+# the retro triage hard-refuses volume bought with a lower bar. A re-fired
+# day goes through the identical QA and showrunner path, which is the
+# operator's own standing ruling — "if something doesn't run properly, it
+# goes through and tries again."
+#
+# (The file name of that triage script is deliberately not written here:
+# `tests/test_retro.py` greps every workflow's RAW TEXT — comments included —
+# for anything that looks like it touches retro proposals, and allows only
+# two workflows to match. Naming it in a comment failed that test. The check
+# is right to be blunt and this is not the change to soften it in; the
+# false-positive class is recorded in the PR.)
+
+on:
+  # THE STRONGEST LINK, because it does not involve the scheduler at all:
+  # the moment a channel's run finishes, check whether it actually DELIVERED,
+  # and if it did not, fire it again. This is a deliberate loop and the
+  # ledger is what makes it terminate — three repairs per channel per day.
+  workflow_run:
+    workflows: ["Explainer Stories", "Daily Shorts", "Third Channel (Proof Mode)"]
+    types: [completed]
+  schedule:
+    # MANY CRONS, ON PURPOSE. GitHub runs these hours late under load — that
+    # is the fault being worked around, not an assumption being made — so the
+    # day gets several independent chances rather than one. Each is a no-op
+    # when the slate is already delivered (`assess` returns ok and nothing
+    # runs), so extra entries cost nothing but cover more of the day.
+    - cron: '5 11 * * *'
+    - cron: '5 13 * * *'
+    - cron: '5 15 * * *'
+    - cron: '5 17 * * *'
+    - cron: '5 19 * * *'
+    - cron: '5 21 * * *'
+    - cron: '5 23 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Production date to judge (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Report the decision without firing anything'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
+
+permissions:
+  contents: write     # the ledger in state/deadman/
+  actions: write      # dispatching the channel workflows IS the whole point
+  issues: write       # the loud comment, when it has given up
+
+concurrency:
+  # One switch at a time. Two concurrent assessments would each read a
+  # pre-repair count and both fire, which is exactly the double-post the
+  # per-day budget exists to absorb — no reason to lean on it.
+  group: deadman
+  cancel-in-progress: false
+
+env:
+  PYTHON_VERSION: '3.11'
+  REPORT_ISSUE_NUMBER: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+
+jobs:
+  switch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Is today's slate delivered?
+        id: assess
+        run: |
+          ARGS=""
+          [ -n "${{ inputs.date }}" ] && ARGS="--date ${{ inputs.date }}"
+          python scripts/deadman.py $ARGS | tee "$RUNNER_TEMP/deadman.md"
+          python scripts/deadman.py $ARGS --json > "$RUNNER_TEMP/deadman.json"
+          {
+            echo "fire=$(python -c "import json;print(' '.join(json.load(open('$RUNNER_TEMP/deadman.json'))['fire']))")"
+            echo "alarm=$(python -c "import json;print(' '.join(json.load(open('$RUNNER_TEMP/deadman.json'))['alarm']))")"
+          } >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/deadman.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fire the channels that have not delivered
+        if: steps.assess.outputs.fire != '' && inputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DATE: ${{ inputs.date }}
+        run: |
+          set -euo pipefail
+          for ch in ${{ steps.assess.outputs.fire }}; do
+            wf=$(python -c "from scripts.deadman import WORKFLOWS;print(WORKFLOWS['$ch'])")
+            echo "::warning title=deadman-firing::$ch has not delivered today — dispatching $wf"
+            # RECORD BEFORE FIRING. If the dispatch succeeds and the record
+            # fails, the bound is gone and this loops; the other order only
+            # costs one wasted attempt.
+            python scripts/deadman.py ${DATE:+--date $DATE} --record-fire "$ch"
+            gh workflow run "$wf" --ref main -f mode=auto \
+              || echo "::error title=deadman-dispatch-failed::could not dispatch $wf for $ch"
+          done
+          bash scripts/ci_commit_state.sh \
+            "deadman: repaired $(date -u +%Y-%m-%d) [skip ci]" state/deadman
+
+      - name: Be LOUD when it has run out of attempts
+        if: steps.assess.outputs.alarm != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "## 🚨 The dead-man's switch gave up"
+            echo
+            echo "These channels did not deliver today and the switch has"
+            echo "exhausted its repair attempts. This needs a human."
+            echo
+            cat "$RUNNER_TEMP/deadman.md"
+          } > "$RUNNER_TEMP/loud.md"
+          gh issue comment "$REPORT_ISSUE_NUMBER" \
+            --repo "${{ github.repository }}" \
+            --body-file "$RUNNER_TEMP/loud.md"
+
+      - name: A day that shipped nothing turns this check RED
+        if: steps.assess.outputs.alarm != ''
+        run: |
+          echo "::error title=day-not-delivered::the switch could not deliver"
+          exit 1
