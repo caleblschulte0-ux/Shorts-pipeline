@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s2-90f6ac909f7d",
+  "safe_request_id": "literal-dress-code-compliance-s2-90f6ac909f7d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7eea4b22e93441e3ce87c9a378f13d20912b320ca06d8f7efe8b2a205ec82efd",
+  "prompt_used": "An editorial illustration for a short-form video: long sleeve shirts workers. It accompanies the narration: \"half of them looked like they had joined a long sleeve cult within a day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+    "filename": "20260912__literal-dress-code-compliance-s2-90f6ac909f7d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5f686b2557cebf3be627b5b5864731195e82f36702b31035c18a71c3abb4169b",
+    "bytes": 2227459,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:13.595Z"
+}
