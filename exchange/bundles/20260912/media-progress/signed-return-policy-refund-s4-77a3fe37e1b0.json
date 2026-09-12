@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s4-77a3fe37e1b0",
+  "safe_request_id": "signed-return-policy-refund-s4-77a3fe37e1b0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d21da0addfc715e10667d2bcf0cb83b4aa15cabb0155fa7db4f75b7666e81f33",
+  "prompt_used": "An editorial illustration for a short-form video: yellow highlighter paper. It accompanies the narration: \"highlighted the thirty day line in yellow\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JdHrRgpLwT5qa0For7tXRwbLBlsA05s_",
+    "filename": "20260912__signed-return-policy-refund-s4-77a3fe37e1b0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JdHrRgpLwT5qa0For7tXRwbLBlsA05s_",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8890cef02b45b9051b531fede4b27360592cdeac20feef971469a936819a71d4",
+    "bytes": 1635915,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:22.651Z"
+}
