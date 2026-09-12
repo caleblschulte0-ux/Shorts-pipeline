@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s0-77e587b259cc",
+  "safe_request_id": "literal-dress-code-compliance-s0-77e587b259cc",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d7f13dfaf6135c985525005f2e0e65b7ccfc8d3797bc2a0d86e6eea13aaa9e62",
+  "prompt_used": "An editorial illustration for a short-form video: sneakers office floor. It accompanies the narration: \"wrote me up for a business casual violation over sneakers\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+    "filename": "20260912__literal-dress-code-compliance-s0-77e587b259cc.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6770eb4cb7de2e97de02a4429d31292dc6409b4b8273d55d9c2b04c419fc2b28",
+    "bytes": 1945674,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:12.514Z"
+}
