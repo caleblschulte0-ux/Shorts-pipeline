@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1"
+  },
+  "request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+  "safe_request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+  "worker": "media",
+  "worker_run_id": "daily-producer-20260912-0614",
+  "created_at": "2026-09-12T11:15:01.876Z",
+  "expires_at": "2026-09-12T11:30:01.876Z",
+  "lease_seconds": 900
+}
