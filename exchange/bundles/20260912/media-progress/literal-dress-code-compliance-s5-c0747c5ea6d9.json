@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+  "safe_request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a304953f21ab664c244927a08bd5289815507ad87820db00c5218f2ab084e2fa",
+  "prompt_used": "An editorial illustration for a short-form video: corporate office phone call. It accompanies the narration: \"corporate called her asking why productivity had dropped nineteen percent\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+    "filename": "20260912__literal-dress-code-compliance-s5-c0747c5ea6d9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ee78ba8cb11acf416e0c7859ae2e54c455bb0aef7a2b579bbf6ff815b81ca14e",
+    "bytes": 1675963,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:16.305Z"
+}
