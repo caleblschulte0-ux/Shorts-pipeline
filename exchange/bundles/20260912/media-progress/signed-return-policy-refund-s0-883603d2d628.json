@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s0-883603d2d628",
+  "safe_request_id": "signed-return-policy-refund-s0-883603d2d628",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "dfb03ae6f0df169859d09f39a3cd4e0474bfbe14378db8048fcb589214e5513c",
+  "prompt_used": "An editorial illustration for a short-form video: store return policy sign. It accompanies the narration: \"convinced the sign by the register is a legal document\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1OljlbC8SrUOGQVSc5jvnJefjuxPK1YCw",
+    "filename": "20260912__signed-return-policy-refund-s0-883603d2d628.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1OljlbC8SrUOGQVSc5jvnJefjuxPK1YCw",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a808a7d4696b84f9bed4d429f1c22cd9cce5c4953a6c5d5df27d37214c8a47eb",
+    "bytes": 1896230,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-12T11:23:19.107Z"
+}
