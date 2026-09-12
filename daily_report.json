@@ -3,17 +3,17 @@
     "topic": "My Manager Wrote Me Up. So I Got Literal.",
     "title": "My Manager Wrote Me Up. So I Got Literal.",
     "format": "reddit",
-    "publish_at": "2026-09-12T13:00:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The last 27 seconds are one frozen stock binder photo over unrelated dark gameplay \u2014 the story stops being illustrated exactly when it should be escalating.",
-    "elapsed_seconds": 220.9,
+    "error": "showrunner_block: showrunner BLOCK: Strong Reddit-card hook and clean captions, but an off-topic AI prayer-circle photo breaks the story and the same binder photo is held for the entire final third, so the payoff lands with a frozen picture.",
+    "elapsed_seconds": 202.6,
     "package_path": "state/trending_packages/20260912/01_dress-code.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-114520_my_manager_wrote_me_up__so_i_got_literal.mp4",
+    "video_path": "output/daily_20260912-212714_my_manager_wrote_me_up__so_i_got_literal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.333,
+      "duration": 46.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -24.7
     },
     "qa": {
       "ok": true,
@@ -33,62 +33,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The last 27 seconds are one frozen stock binder photo over unrelated dark gameplay \u2014 the story stops being illustrated exactly when it should be escalating.",
-      "score": 53
+      "reason": "showrunner BLOCK: Strong Reddit-card hook and clean captions, but an off-topic AI prayer-circle photo breaks the story and the same binder photo is held for the entire final third, so the payoff lands with a frozen picture.",
+      "score": 62
     },
     "blocked": true
-  },
-  {
-    "topic": "She Said The Customer Is Always Right. I Printed Proof.",
-    "title": "She Said The Customer Is Always Right. I Printed Proof.",
-    "format": "reddit",
-    "publish_at": "2026-09-12T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/zGhSyLM_qBM",
-    "error": null,
-    "elapsed_seconds": 258.4,
-    "package_path": "state/trending_packages/20260912/02_return-policy.json",
-    "source": "brain",
-    "video_path": "output/daily_20260912-114901_she_said_the_customer_is_always_right__i.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 53.767,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
-    },
-    "channel": "default"
   },
   {
     "topic": "Boeing Led Planemaking For Decades. Airbus Passed It.",
     "title": "Boeing Led Planemaking For Decades. Airbus Passed It.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T14:30:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 81.3,
+    "error": "showrunner_block: showrunner BLOCK: The race itself is good \u2014 the 2019 crossover and leaderboard flip genuinely land \u2014 but the first two seconds are a title-plus-quote card over an empty axis, and the card is printed on top of the chart's own labels.",
+    "elapsed_seconds": 139.9,
     "package_path": "state/trending_packages/20260912/03_boeing-airbus.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-115310_boeing_led_planemaking_for_decades__airb.mp4",
+    "video_path": "output/daily_20260912-213026_boeing_led_planemaking_for_decades__airb.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -106,8 +67,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: The race itself is good \u2014 the 2019 crossover and leaderboard flip genuinely land \u2014 but the first two seconds are a title-plus-quote card over an empty axis, and the card is printed on top of the chart's own labels.",
+      "score": 65
     },
     "blocked": true
   },
@@ -115,14 +76,14 @@
     "topic": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
     "title": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T14:30:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 77.6,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 60.2,
     "package_path": "state/trending_packages/20260912/04_vinyl-cd.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-115431_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
+    "video_path": "output/daily_20260912-213246_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -140,8 +101,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
     "blocked": true
   },
@@ -149,14 +110,14 @@
     "topic": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
     "title": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T14:30:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 77.2,
+    "elapsed_seconds": 60.2,
     "package_path": "state/trending_packages/20260912/05_solar-nuclear.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-115549_solar_passed_nuclear_power__it_isn_t_clo.mp4",
+    "video_path": "output/daily_20260912-213346_solar_passed_nuclear_power__it_isn_t_clo.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -183,14 +144,14 @@
     "topic": "Coal Powered America For A Century. Gas Ended It.",
     "title": "Coal Powered America For A Century. Gas Ended It.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T14:30:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 77.4,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 60.0,
     "package_path": "state/trending_packages/20260912/06_coal-gas.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-115706_coal_powered_america_for_a_century__gas_.mp4",
+    "video_path": "output/daily_20260912-213447_coal_powered_america_for_a_century__gas_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -208,49 +169,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "dp world tour",
+    "topic": "judd nelson",
     "angle": null,
-    "publish_at": "2026-09-12T14:30:00Z",
+    "publish_at": "2026-09-13T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.4,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 70)",
+    "elapsed_seconds": 11.3,
     "backfill": true
   },
   {
-    "topic": "celine dion",
+    "topic": "chris kreider",
     "angle": null,
-    "publish_at": "2026-09-12T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.8,
-    "backfill": true
-  },
-  {
-    "topic": "jon hamm american hostage series",
-    "angle": null,
-    "publish_at": "2026-09-12T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 503: Service Unavailable",
-    "elapsed_seconds": 1.8,
-    "backfill": true
-  },
-  {
-    "topic": "cincinnati weather",
-    "angle": null,
-    "publish_at": "2026-09-12T19:00:00Z",
+    "publish_at": "2026-09-13T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
     "elapsed_seconds": 0.6,
+    "backfill": true
+  },
+  {
+    "topic": "jerome bettis",
+    "angle": null,
+    "publish_at": "2026-09-13T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.6,
+    "backfill": true
+  },
+  {
+    "topic": "peso mexicano",
+    "angle": null,
+    "publish_at": "2026-09-13T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.3,
     "backfill": true
   }
 ]

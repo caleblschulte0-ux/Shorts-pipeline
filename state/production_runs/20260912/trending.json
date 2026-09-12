@@ -3,8 +3,8 @@
   "channel": "trending",
   "schema": "production-channel-outcome/v1",
   "expected": 6,
-  "previously_uploaded": 0,
-  "rendered_or_attempted": 10,
+  "previously_uploaded": 1,
+  "rendered_or_attempted": 9,
   "uploaded": 1,
   "quarantined": 0,
   "failed": 9,
@@ -18,7 +18,5 @@
     "unknown": 4
   },
   "status": "repair_required",
-  "video_urls": [
-    "https://youtube.com/shorts/zGhSyLM_qBM"
-  ]
+  "video_urls": []
 }
