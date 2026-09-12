@@ -1,0 +1,15 @@
+{
+ "bundle_id": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+ "bundle_path": "exchange/bundles/20260912/bundle.json",
+ "bundle_present": true,
+ "checked_at": "2026-09-12T13:28:43+00:00",
+ "date": "20260912",
+ "deadline_central": 5,
+ "deadline_passed": true,
+ "has_contract": false,
+ "headline": "bundle present for 20260912 (15 media request(s))",
+ "n_requests": 15,
+ "ok": true,
+ "schema": "phase-a-readiness/v1",
+ "status": "ready"
+}
