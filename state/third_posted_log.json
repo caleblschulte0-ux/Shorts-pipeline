@@ -6732,13 +6732,70 @@
       "ts": "2026-09-12T15:07:46.110560+00:00"
     },
     "clip-20260912-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/NurturingTolerantScorpionDansGame-vnr_Llo7j7LBmK08",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/ZMThf4ZFDuQ",
       "title": "Kaicenat: Kai Cenat Can't Believe A Fan Wasted $300 Calling IShowSpeed",
       "kind": "twitch_clip",
-      "ts": "2026-09-12T15:22:40.351303+00:00",
+      "ts": "2026-09-12T15:22:43.423032+00:00",
+      "uploaded_at": "2026-09-12T15:22:43.423053+00:00",
+      "publish_at": "2026-09-12T21:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/NurturingTolerantScorpionDansGame-vnr_Llo7j7LBmK08",
+      "streamer": "kaicenat",
+      "series": "fail",
+      "hook": "FAN PAID $300 FOR THIS CALL",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2230,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 23.0
+      },
+      "director_cut": true
+    },
+    "rejected-belovedwealthyprariedogtheringer-mcmjhoz_gfsbpg9o": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BelovedWealthyPrariedogTheRinger-MCMJHOZ_gfsbPG9O",
+      "streamer": "caseoh_",
+      "title": "OH.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay, rambling unrelated tal)",
+      "ts": "2026-09-12T15:23:40.368713+00:00"
+    },
+    "rejected-lightopenpizzaaliens-z2fhsqgmzcnpysn7": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/LightOpenPizzaAliens-Z2fhSQGmzCNpYSN7",
+      "streamer": "northernlion",
+      "title": "NL gets a +2 by hitting the -2",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine trivia guessing, no reaction sho)",
+      "ts": "2026-09-12T15:24:42.674244+00:00"
+    },
+    "rejected-placidanimatedgoosetakenrg-ngvsrmj39jyrqsef": {
+      "source_url": "https://www.twitch.tv/forsen/clip/PlacidAnimatedGooseTakeNRG-NgVsrmj39jyrqSef",
+      "streamer": "forsen",
+      "title": "No Sven for NP5",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (just talking about games, no event)",
+      "ts": "2026-09-12T15:25:58.084902+00:00"
+    },
+    "rejected-reliablehandsomecasetteripepperonis-hcn-b5fyy_ardwtc": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ReliableHandsomeCasetteRiPepperonis-HCN-B5Fyy_aRDWtC",
+      "streamer": "ohnepixel",
+      "title": "Bro \ud83d\ude2d\ud83d\ude2d",
+      "qa_rejected": true,
+      "ts": "2026-09-12T15:26:10.268329+00:00"
+    },
+    "clip-20260912-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RelentlessLitigiousPotatoWow-XTbM4Z4GJPwUvD4i",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Wins With A Deck He's Never Played Before",
+      "kind": "twitch_clip",
+      "ts": "2026-09-12T15:29:16.769692+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
