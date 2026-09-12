@@ -24,7 +24,24 @@
     },
     {
       "phrase": "Page fourteen said all visible tattoos must be covered.",
-      "query": "warehouse workers uniforms"
+      "query": "warehouse workers uniforms",
+      "pin_query": "Page",
+      "pin_context": "My Manager Wrote Me Up. So I Got Literal.",
+      "news_query": "Page",
+      "news_angle": "My Manager Wrote Me Up. So I Got Literal.",
+      "image_url": "https://live.staticflickr.com/4061/4268897748_8154e2625c_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "My Manager Wrote Me Up. So I Got Literal.",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Page",
+        "url": "https://live.staticflickr.com/4061/4268897748_8154e2625c_b.jpg",
+        "verified_at": "2026-09-12T09:38:07Z",
+        "width": 0
+      }
     },
     {
       "phrase": "half of them looked like they had joined a long sleeve cult within a day",
