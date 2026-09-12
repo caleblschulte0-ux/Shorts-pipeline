@@ -16,11 +16,16 @@
     "jobstory",
     "storytime"
   ],
-  "script": "My new manager loved rules more than results, so when she wrote me up for a business casual violation over sneakers, I decided to follow every line of the handbook instead of just my sneakers. Page fourteen said all visible tattoos must be covered. Nobody told the warehouse crew, so half of them looked like they had joined a long sleeve cult within a day. Page twenty two capped personal calls to the break room landline only, so the whole floor spent lunch taking turns on one beige phone like it was the last parking spot before a blizzard. Page thirty required safety vests at all times on the production floor, which technically includes the bathroom, so I wore mine in there too. By the third day corporate called her asking why productivity had dropped nineteen percent. By the end of the week the handbook quietly got updated. My sneakers stayed exactly where they were, on my feet, unwritten up, for good.",
+  "script": "Sneakers earned a write-up? My new manager loved rules more than results, so I followed every line after her business casual violation. Page fourteen said visible tattoos must be covered. Nobody told the warehouse crew; within a day, half looked recruited by a long sleeve cult. Page twenty two allowed personal calls only on the break room landline. At lunch, the whole floor queued for one beige phone like the last parking spot before a blizzard. Page thirty required safety vests at all times on the production floor\u2014which technically includes the bathroom. I wore mine there. By the third day, corporate called: productivity had dropped nineteen percent. By the end of the week, the handbook quietly changed. My sneakers stayed on my feet, unwritten up, for good. Which rule broke first: Page fourteen, Page twenty two, or Page thirty?",
   "shots": [
     {
       "phrase": "wrote me up for a business casual violation over sneakers",
-      "query": "sneakers office floor"
+      "query": "sneakers office floor",
+      "image_url": "https://drive.google.com/uc?export=download&id=14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+      "media_origin": "chatgpt",
+      "media_file_id": "14ht0S4bCN3900wYtUjM5qkfQgDmUv5Gu",
+      "media_sha256": "6770eb4cb7de2e97de02a4429d31292dc6409b4b8273d55d9c2b04c419fc2b28",
+      "media_bytes": 1945674
     },
     {
       "phrase": "Page fourteen said all visible tattoos must be covered.",
@@ -29,7 +34,7 @@
       "pin_context": "My Manager Wrote Me Up. So I Got Literal.",
       "news_query": "Page",
       "news_angle": "My Manager Wrote Me Up. So I Got Literal.",
-      "image_url": "https://live.staticflickr.com/4061/4268897748_8154e2625c_b.jpg",
+      "image_url": "https://drive.google.com/uc?export=download&id=1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
       "media_evidence": {
         "content_type": "image/jpeg",
         "height": 0,
@@ -41,27 +46,56 @@
         "url": "https://live.staticflickr.com/4061/4268897748_8154e2625c_b.jpg",
         "verified_at": "2026-09-12T09:38:07Z",
         "width": 0
-      }
+      },
+      "media_origin": "chatgpt",
+      "media_file_id": "1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
+      "media_sha256": "069990ae4e127cd54f6fe189e8f28e50f194e7c9ea50fbe951d903c9d88aa539",
+      "media_bytes": 1927281
     },
     {
       "phrase": "half of them looked like they had joined a long sleeve cult within a day",
-      "query": "long sleeve shirts workers"
+      "query": "long sleeve shirts workers",
+      "image_url": "https://drive.google.com/uc?export=download&id=1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+      "media_origin": "chatgpt",
+      "media_file_id": "1_eq7-fXy4wd4SvkTK6uSMVd-rUb42KLT",
+      "media_sha256": "5f686b2557cebf3be627b5b5864731195e82f36702b31035c18a71c3abb4169b",
+      "media_bytes": 2227459
     },
     {
       "phrase": "the whole floor spent lunch taking turns on one beige phone",
-      "query": "old beige office phone"
+      "query": "old beige office phone",
+      "image_url": "https://drive.google.com/uc?export=download&id=1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+      "media_origin": "chatgpt",
+      "media_file_id": "1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+      "media_sha256": "5de893e4d49178b385b0bc4374609a66dfb2e602aa56aaef16c5bc1477206d0d",
+      "media_bytes": 1603625
     },
     {
       "phrase": "safety vests at all times on the production floor",
-      "query": "safety vest warehouse"
+      "query": "safety vest warehouse",
+      "image_url": "https://drive.google.com/uc?export=download&id=1s4FiIiTA4atcAZNBww13SCKU3YKQwLie",
+      "media_origin": "chatgpt",
+      "media_file_id": "1s4FiIiTA4atcAZNBww13SCKU3YKQwLie",
+      "media_sha256": "14d5e9faacdd86b117dd9f73e31d2f23c7ffb048891810cf2d799e34ff51ad85",
+      "media_bytes": 2108500
     },
     {
       "phrase": "corporate called her asking why productivity had dropped nineteen percent",
-      "query": "corporate office phone call"
+      "query": "corporate office phone call",
+      "image_url": "https://drive.google.com/uc?export=download&id=1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+      "media_origin": "chatgpt",
+      "media_file_id": "1CGoTv-DS-optKPzMDdywRKwcLN3JgCO9",
+      "media_sha256": "ee78ba8cb11acf416e0c7859ae2e54c455bb0aef7a2b579bbf6ff815b81ca14e",
+      "media_bytes": 1675963
     },
     {
       "phrase": "the handbook quietly got updated",
-      "query": "employee handbook binder"
+      "query": "employee handbook binder",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+      "media_sha256": "3fe1489d6232813de41866dba040218f20231d9efa11b327a0cde1fbe4760c9b",
+      "media_bytes": 1937398
     }
   ],
   "punches": [
@@ -86,5 +120,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "hiphop"
+  "music_vibe": "hiphop",
+  "punched_up": true
 }

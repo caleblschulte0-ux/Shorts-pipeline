@@ -1,0 +1,117 @@
+{
+  "date": "20260912",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 15,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "required": true,
+    "checked": 15,
+    "ok": 15,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 1,
+    "kept": 4,
+    "rejected": 1,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "literal-dress-code-compliance-s0-77e587b259cc",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s0-77e587b259cc.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s2-90f6ac909f7d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s2-90f6ac909f7d.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s3-94661ae88278",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s3-94661ae88278.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s4-9efaf96360a7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s4-9efaf96360a7.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s5-c0747c5ea6d9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s5-c0747c5ea6d9.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s6-4ac7ce65eb2e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s6-4ac7ce65eb2e.png"
+    },
+    {
+      "request_id": "literal-dress-code-compliance-s1-fb6ffdc350ab",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/literal-dress-code-compliance-s1-fb6ffdc350ab.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s0-883603d2d628",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s0-883603d2d628.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s1-6afd1d54de5c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s1-6afd1d54de5c.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s2-e2d63626020b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s2-e2d63626020b.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s3-98d1693a8a8a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s3-98d1693a8a8a.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s4-77a3fe37e1b0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s4-77a3fe37e1b0.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s5-6ab614cf556d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s5-6ab614cf556d.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s6-4a0f102075e4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s6-4a0f102075e4.png"
+    },
+    {
+      "request_id": "signed-return-policy-refund-s7-78a14b46dd20",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/signed-return-policy-refund-s7-78a14b46dd20.png"
+    },
+    {
+      "slug": "signed-return-policy-refund",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): does"
+      ]
+    }
+  ]
+}
