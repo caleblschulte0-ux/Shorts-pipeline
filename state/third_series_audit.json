@@ -6,8 +6,8 @@
       "median_vph": 0.025
     },
     "fail": {
-      "n": 10,
-      "median_vph": 0.06
+      "n": 9,
+      "median_vph": 0.05
     },
     "wholesome": {
       "n": 8,
@@ -15,27 +15,27 @@
     },
     "drama": {
       "n": 6,
-      "median_vph": 0.13
+      "median_vph": 0.12
     },
     "win": {
-      "n": 5,
-      "median_vph": 0.03
+      "n": 6,
+      "median_vph": 0.045
+    },
+    "jumpscare": {
+      "n": 4,
+      "median_vph": 0.015
     },
     "rage": {
       "n": 4,
       "median_vph": 0.005
     },
-    "jumpscare": {
-      "n": 3,
-      "median_vph": 0.01
-    },
     "argument": {
       "n": 2,
-      "median_vph": 0.035
+      "median_vph": 0.03
     },
     "beef": {
-      "n": 1,
-      "median_vph": 0.04
+      "n": 2,
+      "median_vph": 0.03
     },
     "clutch": {
       "n": 1,
