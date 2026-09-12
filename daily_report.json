@@ -6,14 +6,14 @@
     "publish_at": "2026-09-12T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is well cast and the stills are genuinely on-topic, but one beat renders half the phone screen as solid black and the final third parks on a single motionless photo.",
-    "elapsed_seconds": 235.3,
+    "error": "showrunner_block: showrunner BLOCK: The last 27 seconds are one frozen stock binder photo over unrelated dark gameplay \u2014 the story stops being illustrated exactly when it should be escalating.",
+    "elapsed_seconds": 220.9,
     "package_path": "state/trending_packages/20260912/01_dress-code.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-112826_my_manager_wrote_me_up__so_i_got_literal.mp4",
+    "video_path": "output/daily_20260912-114520_my_manager_wrote_me_up__so_i_got_literal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.633,
+      "duration": 46.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
@@ -33,8 +33,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story is well cast and the stills are genuinely on-topic, but one beat renders half the phone screen as solid black and the final third parks on a single motionless photo.",
-      "score": 62
+      "reason": "showrunner BLOCK: The last 27 seconds are one frozen stock binder photo over unrelated dark gameplay \u2014 the story stops being illustrated exactly when it should be escalating.",
+      "score": 53
     },
     "blocked": true
   },
@@ -43,16 +43,16 @@
     "title": "She Said The Customer Is Always Right. I Printed Proof.",
     "format": "reddit",
     "publish_at": "2026-09-12T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid relevant shot illustrations and clean captions, but the first 2.5 seconds are a motionless post card over a black void and the ending reuses one photo for the whole payoff.",
-    "elapsed_seconds": 177.0,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/zGhSyLM_qBM",
+    "error": null,
+    "elapsed_seconds": 258.4,
     "package_path": "state/trending_packages/20260912/02_return-policy.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-113223_she_said_the_customer_is_always_right__i.mp4",
+    "video_path": "output/daily_20260912-114901_she_said_the_customer_is_always_right__i.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.1,
+      "duration": 53.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,32 +63,32 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.6
+      "loudness_lufs": -23.5
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Solid relevant shot illustrations and clean captions, but the first 2.5 seconds are a motionless post card over a black void and the ending reuses one photo for the whole payoff.",
-      "score": 70
+      "blocked": false,
+      "reason": "",
+      "score": 87
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Boeing Led Planemaking For Decades. Airbus Passed It.",
     "title": "Boeing Led Planemaking For Decades. Airbus Passed It.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T13:00:00Z",
+    "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely dramatic race \u2014 the 2019 Boeing collapse lands \u2014 undercut by a hook card printed on top of the chart's axis and visible judder across the run.",
-    "elapsed_seconds": 217.9,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 81.3,
     "package_path": "state/trending_packages/20260912/03_boeing-airbus.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-113500_boeing_led_planemaking_for_decades__airb.mp4",
+    "video_path": "output/daily_20260912-115310_boeing_led_planemaking_for_decades__airb.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -106,8 +106,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely dramatic race \u2014 the 2019 Boeing collapse lands \u2014 undercut by a hook card printed on top of the chart's axis and visible judder across the run.",
-      "score": 65
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
     },
     "blocked": true
   },
@@ -115,14 +115,14 @@
     "topic": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
     "title": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T13:00:00Z",
+    "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 54.7,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 77.6,
     "package_path": "state/trending_packages/20260912/04_vinyl-cd.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-113838_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
+    "video_path": "output/daily_20260912-115431_vinyl_just_beat_cds__it_hadn_t_since_198.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -140,8 +140,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
     },
     "blocked": true
   },
@@ -149,14 +149,14 @@
     "topic": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
     "title": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T13:00:00Z",
+    "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 54.6,
+    "elapsed_seconds": 77.2,
     "package_path": "state/trending_packages/20260912/05_solar-nuclear.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-113933_solar_passed_nuclear_power__it_isn_t_clo.mp4",
+    "video_path": "output/daily_20260912-115549_solar_passed_nuclear_power__it_isn_t_clo.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -183,14 +183,14 @@
     "topic": "Coal Powered America For A Century. Gas Ended It.",
     "title": "Coal Powered America For A Century. Gas Ended It.",
     "format": "graph_race",
-    "publish_at": "2026-09-12T13:00:00Z",
+    "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 54.9,
+    "elapsed_seconds": 77.4,
     "package_path": "state/trending_packages/20260912/06_coal-gas.json",
     "source": "brain",
-    "video_path": "output/daily_20260912-114027_coal_powered_america_for_a_century__gas_.mp4",
+    "video_path": "output/daily_20260912-115706_coal_powered_america_for_a_century__gas_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -214,43 +214,43 @@
     "blocked": true
   },
   {
-    "topic": "cincinnati weather",
-    "angle": null,
-    "publish_at": "2026-09-12T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 73)",
-    "elapsed_seconds": 11.1,
-    "backfill": true
-  },
-  {
-    "topic": "ted lasso - season 4",
+    "topic": "dp world tour",
     "angle": null,
     "publish_at": "2026-09-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 81)",
-    "elapsed_seconds": 11.1,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.4,
     "backfill": true
   },
   {
-    "topic": "karoline leavitt convention speech",
+    "topic": "celine dion",
     "angle": null,
     "publish_at": "2026-09-12T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 62)",
-    "elapsed_seconds": 16.5,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 0.8,
     "backfill": true
   },
   {
-    "topic": "erin napier",
+    "topic": "jon hamm american hostage series",
     "angle": null,
     "publish_at": "2026-09-12T17:30:00Z",
     "ok": false,
     "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 503: Service Unavailable",
+    "elapsed_seconds": 1.8,
+    "backfill": true
+  },
+  {
+    "topic": "cincinnati weather",
+    "angle": null,
+    "publish_at": "2026-09-12T19:00:00Z",
+    "ok": false,
+    "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 0.7,
+    "elapsed_seconds": 0.6,
     "backfill": true
   }
 ]
