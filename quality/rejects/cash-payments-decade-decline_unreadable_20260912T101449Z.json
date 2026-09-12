@@ -1,0 +1,16 @@
+{
+ "slug": "cash-payments-decade-decline",
+ "ts": "20260912T101449Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start prints 'the gap: 18' and the kicker '18%' in a dark grey that all but vanishes into the navy ground; the highlight ellipse also cuts straight through '9.9%'. On seg2:start Data's body sits on top of the 2018 bar, and at seg2:end he covers the right half of the 2015 bar.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start through payoff@-0.4 are one near-frozen composition: a large question bubble filling the top quarter, the title at y\u2248255, then a wide band of empty gradient, two thin left-aligned bars (2016 grey stub, 2024 gold) with their values '18%' and '35%' stranded far right, another empty band, and a caption stack overlapping the tiny source line ('COMMENT BELOW \u25bc' collides with the arrow at seg4:end). Only a ~30px mascot changes between the last four frames.",
+  "root_cause": "The closing beat hands the whole frame to a speech bubble and lays the payoff comparison out as two thin, small, left-anchored bars at default scale instead of composing the final stat to fill the shot \u2014 so the climax is rendered smaller and emptier than every scene before it, and the bars finish animating well before the beat ends.",
+  "repair_goal": "Rebuild seg4 as the loudest shot in the video: drop or shrink the bubble, scale the 18%\u219235% comparison to fill the vacant mid-frame band with values set adjacent to their bars, put Data on the 2024 bar doing a payoff act, and keep a purposeful motion (bar overshoot/settle, mascot beat) running through the final second so the tail is not a held frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
