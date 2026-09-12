@@ -1,0 +1,32 @@
+{
+  "key": "cash_share_of_payments",
+  "title": "Cash's share of all U.S. consumer payments",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "Diary of Consumer Payment Choice",
+    "publisher": "Federal Reserve Bank of San Francisco",
+    "url": "https://www.frbsf.org/cash/publications/fed-notes/2023/may/2023-findings-from-the-diary-of-consumer-payment-choice/",
+    "officiality": "official",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Cash's share of the number of all consumer payments, from the Federal Reserve's annual Diary of Consumer Payment Choice.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 30,
+      "period": "2016"
+    },
+    {
+      "label": "2023",
+      "value": 16,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 14,
+      "period": "2024"
+    }
+  ]
+}

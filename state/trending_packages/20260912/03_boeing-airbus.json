@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "boeing-airbus-deliveries",
+  "title": "Boeing Led Planemaking For Decades. Airbus Passed It.",
+  "y_label": "Commercial jets delivered per year",
+  "source": "Sources: Boeing and Airbus annual delivery reports, 2015-2023",
+  "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Boeing",
+      "color": "#1f6fb2",
+      "icon": "Boeing",
+      "values": [
+        762,
+        748,
+        763,
+        806,
+        380,
+        157,
+        340,
+        528
+      ]
+    },
+    {
+      "name": "Airbus",
+      "color": "#d94f3d",
+      "icon": "Airbus",
+      "values": [
+        635,
+        688,
+        718,
+        800,
+        863,
+        566,
+        611,
+        735
+      ]
+    }
+  ],
+  "duration": 13,
+  "music_vibe": "cinematic",
+  "hook": "Boeing's best year was its last.",
+  "hashtags": [
+    "boeing",
+    "airbus",
+    "aviation",
+    "aircraft",
+    "planes",
+    "dataviz",
+    "manufacturing",
+    "economy",
+    "business",
+    "charts",
+    "737max",
+    "shorts"
+  ]
+}

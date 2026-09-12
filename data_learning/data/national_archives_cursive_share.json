@@ -1,0 +1,25 @@
+{
+  "key": "national_archives_cursive_share",
+  "title": "Share of National Archives holdings written in cursive",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "current holdings",
+  "source": {
+    "name": "National Archives Citizen Archivist program reporting",
+    "publisher": "Reported via The Washington Post / National Archives",
+    "url": "https://www.washingtonpost.com/lifestyle/magazine/the-national-archives-has-billions-of-handwritten-documents-with-cursive-skills-declining-how-will-we-read-them/2019/06/14/cbc44028-5c92-11e9-9625-01d48d50ef75_story.html",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Of the National Archives' roughly 15 billion pages and pieces of paper/parchment, about 80 percent is reported to be written in cursive.",
+  "points": [
+    {
+      "label": "In cursive",
+      "value": 80
+    },
+    {
+      "label": "Not in cursive",
+      "value": 20
+    }
+  ]
+}

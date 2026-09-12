@@ -1,0 +1,73 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "literal-dress-code-compliance",
+  "title": "My Manager Wrote Me Up. So I Got Literal.",
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "corporatelife",
+    "retailstory",
+    "pettyrevenge",
+    "officepolitics",
+    "karma",
+    "9to5",
+    "workplacestory",
+    "reddit",
+    "jobstory",
+    "storytime"
+  ],
+  "script": "My new manager loved rules more than results, so when she wrote me up for a business casual violation over sneakers, I decided to follow every line of the handbook instead of just my sneakers. Page fourteen said all visible tattoos must be covered. Nobody told the warehouse crew, so half of them looked like they had joined a long sleeve cult within a day. Page twenty two capped personal calls to the break room landline only, so the whole floor spent lunch taking turns on one beige phone like it was the last parking spot before a blizzard. Page thirty required safety vests at all times on the production floor, which technically includes the bathroom, so I wore mine in there too. By the third day corporate called her asking why productivity had dropped nineteen percent. By the end of the week the handbook quietly got updated. My sneakers stayed exactly where they were, on my feet, unwritten up, for good.",
+  "shots": [
+    {
+      "phrase": "wrote me up for a business casual violation over sneakers",
+      "query": "sneakers office floor"
+    },
+    {
+      "phrase": "Page fourteen said all visible tattoos must be covered.",
+      "query": "warehouse workers uniforms"
+    },
+    {
+      "phrase": "half of them looked like they had joined a long sleeve cult within a day",
+      "query": "long sleeve shirts workers"
+    },
+    {
+      "phrase": "the whole floor spent lunch taking turns on one beige phone",
+      "query": "old beige office phone"
+    },
+    {
+      "phrase": "safety vests at all times on the production floor",
+      "query": "safety vest warehouse"
+    },
+    {
+      "phrase": "corporate called her asking why productivity had dropped nineteen percent",
+      "query": "corporate office phone call"
+    },
+    {
+      "phrase": "the handbook quietly got updated",
+      "query": "employee handbook binder"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "wrote me up",
+      "text": "WRITE-UP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "productivity had dropped nineteen percent",
+      "text": "-19%",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "quietly got updated",
+      "text": "POLICY CHANGED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "unwritten up, for good",
+      "text": "CASE CLOSED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop"
+}

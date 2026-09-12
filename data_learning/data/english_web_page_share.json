@@ -1,0 +1,27 @@
+{
+  "key": "english_web_page_share",
+  "title": "English-language share of web pages",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "1998-2005",
+  "source": {
+    "name": "Languages of the web monitoring",
+    "publisher": "UNESCO-affiliated web language monitoring report",
+    "url": "https://en.wikipedia.org/wiki/Languages_used_on_the_Internet",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "A long-running study monitoring the language of web pages found English's share fell steadily from 1998 to 2005 as other languages came online.",
+  "points": [
+    {
+      "label": "1998",
+      "value": 75,
+      "period": "1998"
+    },
+    {
+      "label": "2005",
+      "value": 45,
+      "period": "2005"
+    }
+  ]
+}

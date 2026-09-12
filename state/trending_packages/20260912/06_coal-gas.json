@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "coal-vs-gas-us-power",
+  "title": "Coal Powered America For A Century. Gas Ended It.",
+  "y_label": "Share of U.S. electricity generation (%)",
+  "source": "Source: U.S. Energy Information Administration, 2007-2025",
+  "years": [
+    2007,
+    2010,
+    2013,
+    2016,
+    2019,
+    2022,
+    2023,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Coal",
+      "color": "#4a4a4a",
+      "values": [
+        49,
+        45,
+        39,
+        30,
+        24,
+        20,
+        16,
+        17
+      ]
+    },
+    {
+      "name": "Natural gas",
+      "color": "#3d84a8",
+      "values": [
+        21,
+        22,
+        27,
+        34,
+        38,
+        39,
+        42,
+        40
+      ]
+    }
+  ],
+  "duration": 13,
+  "music_vibe": "hiphop",
+  "hook": "One line never looked back.",
+  "hashtags": [
+    "energy",
+    "coal",
+    "naturalgas",
+    "electricity",
+    "climate",
+    "dataviz",
+    "economy",
+    "usenergy",
+    "charts",
+    "powerplants",
+    "science",
+    "shorts"
+  ]
+}

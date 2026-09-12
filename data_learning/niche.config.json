@@ -27141,6 +27141,241 @@
           "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk."
         }
       ]
+    },
+    {
+      "slug": "flying-safer-than-ever",
+      "title": "Flying Got This Much Safer In 20 Years",
+      "hook": "You're safer flying than driving to the airport.",
+      "closing": "The scary part was never the plane.",
+      "question": "Does flying make you nervous? Tell me why below.",
+      "caption": "Airline accidents per million flights fell from 3.72 in 2005 to 1.32 in 2025. The stat that actually matters: flying is roughly 190 times safer per mile than driving. Does flying make you nervous? Tell me why below. \ud83d\udc47",
+      "hashtags": [
+        "aviation",
+        "flying",
+        "airlinesafety",
+        "dataviz",
+        "travel",
+        "didyouknow",
+        "planes",
+        "statistics",
+        "science",
+        "airtravel",
+        "flightfacts",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "aviation_accident_rate",
+          "params": {
+            "file": "aviation_accident_rate.json"
+          },
+          "insight_type": "trend",
+          "topic": "the airline accident rate",
+          "role": "1 \u00b7 THE TREND",
+          "say": "Airlines averaged 3.72 accidents per million flights in 2005. By 2025 that fell to 1.32 \u2014 a third of what it was."
+        },
+        {
+          "source": "offline",
+          "key": "aviation_fatal_rate_window",
+          "params": {
+            "file": "aviation_fatal_rate_window.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "the fatal accident frequency",
+          "role": "2 \u00b7 THE FATAL RATE",
+          "say": "Fatal accidents dropped too: 1 in 3.5 million flights from 2012 to 2016, now 1 in 5.6 million \u2014 better systems catching failures first."
+        },
+        {
+          "source": "offline",
+          "key": "flying_vs_driving_death_rate",
+          "params": {
+            "file": "flying_vs_driving_death_rate.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "flying vs driving risk",
+          "role": "3 \u00b7 THE REAL RISK",
+          "say": "Per 100 million miles traveled, flying is roughly 190 times safer than driving. Per mile, your car is by far the riskier ride."
+        }
+      ]
+    },
+    {
+      "slug": "cursive-handwriting-comeback",
+      "title": "Cursive Nearly Died. Schools Brought It Back.",
+      "hook": "Your kid's school killed cursive. Then un-killed it.",
+      "closing": "Soon nobody will read their own grandparents' letters.",
+      "question": "Did you learn cursive in school? Tell me below.",
+      "caption": "14 states required cursive in 2016. 25 do now. Meanwhile about 2 in 3 young Americans can't read it \u2014 and 80% of the National Archives is written in it. Did you learn cursive? Tell me below. \ud83d\udc47",
+      "hashtags": [
+        "cursive",
+        "handwriting",
+        "education",
+        "schools",
+        "commoncore",
+        "dataviz",
+        "genx",
+        "genz",
+        "history",
+        "didyouknow",
+        "literacy",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "states_requiring_cursive",
+          "params": {
+            "file": "states_requiring_cursive.json"
+          },
+          "insight_type": "trend",
+          "topic": "states requiring cursive",
+          "role": "1 \u00b7 THE COMEBACK",
+          "say": "In 2016, only 14 states required cursive by law. By 2024, 25 states did \u2014 nearly double in under a decade."
+        },
+        {
+          "source": "offline",
+          "key": "cursive_literacy_young_adults",
+          "params": {
+            "file": "cursive_literacy_young_adults.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "cursive literacy among young Americans",
+          "role": "2 \u00b7 THE GAP",
+          "say": "That gap costs something: about 2 in 3 young Americans can't actually read cursive anymore. The skill skipped a whole generation."
+        },
+        {
+          "source": "offline",
+          "key": "national_archives_cursive_share",
+          "params": {
+            "file": "national_archives_cursive_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "the National Archives' cursive documents",
+          "role": "3 \u00b7 THE STAKES",
+          "say": "It's not just old letters \u2014 about 80 percent of the National Archives' 15 billion documents are written in cursive."
+        }
+      ]
+    },
+    {
+      "slug": "english-internet-share-decline",
+      "title": "English Used To Be Most Of The Internet",
+      "hook": "You think the internet speaks English. Barely.",
+      "closing": "Half the internet still doesn't speak your language.",
+      "question": "What language do you think dominates the internet? Guess below.",
+      "caption": "English was 75% of web pages in 1998. It's down to about 55% of websites today, while other languages grew 10x faster online. What language do you think runs the internet? Guess below. \ud83d\udc47",
+      "hashtags": [
+        "internet",
+        "languages",
+        "englishlanguage",
+        "dataviz",
+        "technology",
+        "didyouknow",
+        "webhistory",
+        "globalization",
+        "linguistics",
+        "onlineculture",
+        "statistics",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "english_web_page_share",
+          "params": {
+            "file": "english_web_page_share.json"
+          },
+          "insight_type": "trend",
+          "topic": "English's share of web pages",
+          "role": "1 \u00b7 THE OLD WEB",
+          "say": "In 1998, 75 percent of web pages were in English. By 2005 that fell to 45 \u2014 the internet was going global."
+        },
+        {
+          "source": "offline",
+          "key": "online_language_growth_2001_2011",
+          "params": {
+            "file": "online_language_growth_2001_2011.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "topic": "online content growth by language",
+          "role": "2 \u00b7 THE CATCH-UP",
+          "say": "Here's why: from 2001 to 2011, English content grew 281 percent. Spanish grew 743. Arabic, 2,501 \u2014 everyone else caught up fast."
+        },
+        {
+          "source": "offline",
+          "key": "english_website_share_today",
+          "params": {
+            "file": "english_website_share_today.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "English's share of websites today",
+          "role": "3 \u00b7 THE LEAD TODAY",
+          "say": "Today English leads at 55 percent of websites \u2014 but everything else combined makes up the other 45."
+        }
+      ]
+    },
+    {
+      "slug": "cash-payments-decade-decline",
+      "title": "14% Of Payments Are Still Cash. Barely.",
+      "hook": "Your wallet has less cash than you think.",
+      "closing": "So when does cash actually disappear for good?",
+      "question": "When's the last time you paid with actual cash? Tell me below.",
+      "caption": "Cash was 30% of all payments in 2016. Today it's 14%, while credit cards nearly doubled their share. When's the last time you paid with cash? Tell me below. \ud83d\udc47",
+      "hashtags": [
+        "cash",
+        "creditcards",
+        "payments",
+        "money",
+        "personalfinance",
+        "dataviz",
+        "economy",
+        "digitalpayments",
+        "banking",
+        "didyouknow",
+        "finance",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cash_share_of_payments",
+          "params": {
+            "file": "cash_share_of_payments.json"
+          },
+          "insight_type": "trend",
+          "topic": "cash's share of all payments",
+          "role": "1 \u00b7 THE SHARE",
+          "say": "Cash was 30 percent of payments in 2016. By 2024, just 14 \u2014 and still falling."
+        },
+        {
+          "source": "offline",
+          "key": "cash_free_week_adults",
+          "params": {
+            "file": "cash_free_week_adults.json"
+          },
+          "insight_type": "trend",
+          "topic": "adults who go cash-free weekly",
+          "role": "2 \u00b7 THE HABIT",
+          "say": "In 2015, 24 percent of adults spent zero cash weekly. By 2022, that hit 41 \u2014 two in five people."
+        },
+        {
+          "source": "offline",
+          "key": "credit_card_share_2016_2024",
+          "params": {
+            "file": "credit_card_share_2016_2024.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "topic": "credit card's share of payments",
+          "role": "3 \u00b7 WHAT REPLACED IT",
+          "say": "Credit cards filled the gap: 18 percent of payments in 2016, 35 by 2024 \u2014 now America's biggest payment method."
+        }
+      ]
     }
   ],
   "videos": [

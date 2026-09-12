@@ -1,0 +1,32 @@
+{
+  "key": "cash_free_week_adults",
+  "title": "U.S. adults who spend zero cash in a typical week",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2015-2022",
+  "source": {
+    "name": "Cash usage habit survey",
+    "publisher": "Pew Research Center",
+    "url": "https://money.com/people-never-use-cash-survey/",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Share of U.S. adults reporting they make no cash purchases in a typical week, a separate habit measure from overall payment-count share.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 24,
+      "period": "2015"
+    },
+    {
+      "label": "2018",
+      "value": 29,
+      "period": "2018"
+    },
+    {
+      "label": "2022",
+      "value": 41,
+      "period": "2022"
+    }
+  ]
+}

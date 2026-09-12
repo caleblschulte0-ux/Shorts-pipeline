@@ -1,0 +1,25 @@
+{
+  "key": "flying_vs_driving_death_rate",
+  "title": "Passenger deaths per 100 million miles traveled",
+  "unit": "deaths per 100 million passenger-miles",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Transportation fatality rate comparison",
+    "publisher": "NTSB / USAFacts analysis",
+    "url": "https://usafacts.org/articles/is-flying-safer-than-driving/",
+    "officiality": "official",
+    "access_date": "2026-09-12"
+  },
+  "notes": "2023 passenger death rate per 100 million miles traveled, scheduled commercial air vs car/truck occupants.",
+  "points": [
+    {
+      "label": "Flying",
+      "value": 0.003
+    },
+    {
+      "label": "Driving",
+      "value": 0.53
+    }
+  ]
+}

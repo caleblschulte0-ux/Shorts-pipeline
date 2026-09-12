@@ -1,0 +1,37 @@
+{
+  "key": "online_language_growth_2001_2011",
+  "title": "Growth in online content by language, 2001-2011",
+  "unit": "percent growth",
+  "geography": "Global",
+  "time_coverage": "2001-2011",
+  "source": {
+    "name": "Internet language growth comparison",
+    "publisher": "Internet World Stats, cited in UNESCO multilingualism research",
+    "url": "https://en.wikipedia.org/wiki/Languages_used_on_the_Internet",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Ten-year growth in internet users/content by language, 2001-2011, showing English's growth far outpaced by other major languages as they came online.",
+  "points": [
+    {
+      "label": "Arabic",
+      "value": 2501
+    },
+    {
+      "label": "Russian",
+      "value": 1826
+    },
+    {
+      "label": "Chinese",
+      "value": 1277
+    },
+    {
+      "label": "Spanish",
+      "value": 743
+    },
+    {
+      "label": "English",
+      "value": 281
+    }
+  ]
+}

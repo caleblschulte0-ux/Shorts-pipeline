@@ -1,0 +1,25 @@
+{
+  "key": "english_website_share_today",
+  "title": "English's share of websites today vs every other language combined",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Usage statistics of content languages for websites",
+    "publisher": "W3Techs",
+    "url": "https://w3techs.com/technologies/overview/content_language",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "W3Techs tracks the declared content language of websites; English remains the single largest language but is no longer the overwhelming majority it once was.",
+  "points": [
+    {
+      "label": "English",
+      "value": 55
+    },
+    {
+      "label": "Every other language combined",
+      "value": 45
+    }
+  ]
+}

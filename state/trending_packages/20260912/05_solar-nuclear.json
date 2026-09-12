@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "solar-vs-nuclear-capacity",
+  "title": "Solar Passed Nuclear Power. It Isn't Close Anymore.",
+  "y_label": "Global installed capacity (GW)",
+  "source": "Sources: IRENA renewable capacity statistics; World Nuclear Association, 2015-2024",
+  "years": [
+    2015,
+    2016,
+    2017,
+    2019,
+    2021,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Solar",
+      "color": "#e8b339",
+      "values": [
+        228,
+        303,
+        398,
+        586,
+        849,
+        1419,
+        2247
+      ]
+    },
+    {
+      "name": "Nuclear",
+      "color": "#4a7c59",
+      "values": [
+        383,
+        388,
+        392,
+        396,
+        393,
+        392,
+        398
+      ]
+    }
+  ],
+  "duration": 13,
+  "music_vibe": "cinematic",
+  "hook": "One of these barely moved.",
+  "hashtags": [
+    "solarenergy",
+    "nuclearpower",
+    "renewableenergy",
+    "climate",
+    "energy",
+    "dataviz",
+    "cleanenergy",
+    "science",
+    "charts",
+    "future",
+    "electricity",
+    "shorts"
+  ]
+}
