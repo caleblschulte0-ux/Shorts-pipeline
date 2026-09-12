@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s1-fb6ffdc350ab",
+  "safe_request_id": "literal-dress-code-compliance-s1-fb6ffdc350ab",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a8145e0efe031b93a246bb40e844b7564f3c145223995607291d020cc071f19a",
+  "prompt_used": "An editorial illustration for a short-form video: warehouse workers uniforms. It accompanies the narration: \"Page fourteen said all visible tattoos must be covered.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
+    "filename": "20260912__literal-dress-code-compliance-s1-fb6ffdc350ab.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1yfbVCm9j7SKtuQanB4yrM_SMeeY7zQbE",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "069990ae4e127cd54f6fe189e8f28e50f194e7c9ea50fbe951d903c9d88aa539",
+    "bytes": 1927281,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:18.046Z"
+}
