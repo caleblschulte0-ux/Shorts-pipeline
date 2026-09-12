@@ -76,6 +76,29 @@ WORKFLOWS = {
     "third": "third.yml",
 }
 
+#: The inputs each channel's workflow needs to actually POST.
+#:
+#: Not cosmetic, and not uniform — the first live run of this switch proved
+#: both halves. It passed `-f mode=auto` to all three and GitHub answered
+#:
+#:     HTTP 422: Unexpected inputs provided: ["mode"]
+#:
+#: for `daily.yml` and `third.yml`, which have no such input. And `mode`
+#: cannot simply be dropped for all of them either: `explainer.yml` declares
+#: `mode` with `default: 'verify'`, so a dispatch that omits it runs in
+#: VERIFY and posts nothing — a repair that looks like it worked and
+#: delivers zero videos, which is the exact failure this whole switch
+#: exists to end.
+#:
+#: `tests/test_the_day_ships_or_someone_is_told.py` parses each workflow's
+#: declared `workflow_dispatch.inputs` and asserts these are a subset, so
+#: the next wrong key fails a test instead of a production repair.
+DISPATCH_INPUTS = {
+    "explainer": {"mode": "auto"},
+    "trending": {},
+    "third": {},
+}
+
 STATE_DIR = ROOT / "state" / "deadman"
 
 
@@ -194,7 +217,13 @@ def main() -> int:
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--record-fire", metavar="CHANNEL", default="",
                     help="append an intervention for CHANNEL to the ledger")
+    ap.add_argument("--dispatch-args", metavar="CHANNEL", default="",
+                    help="print the `gh workflow run` -f flags for CHANNEL")
     args = ap.parse_args()
+    if args.dispatch_args:
+        print(" ".join(f"-f {k}={v}" for k, v in
+                       DISPATCH_INPUTS.get(args.dispatch_args, {}).items()))
+        return 0
     date = args.date or _today_utc()
     if args.record_fire:
         record_fire(date, args.record_fire, "dispatched by deadman.yml")

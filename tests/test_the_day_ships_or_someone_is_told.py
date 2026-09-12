@@ -143,9 +143,15 @@ class TheLoopTERMINATES(unittest.TestCase):
         """The whole failure mode being fixed is a guard that reports
         success. An exhausted switch must turn the check red."""
         steps = _wf()["jobs"]["switch"]["steps"]
-        loud = [s for s in steps if "exit 1" in str(s.get("run", ""))]
-        self.assertTrue(loud, "running out of attempts does not fail the run")
-        self.assertIn("alarm", loud[0]["if"])
+        # BY NAME, not "the first step with an exit 1". It used to be the
+        # latter and started passing for the wrong reason the moment a
+        # FAILED DISPATCH also learned to exit 1 — a test that keeps passing
+        # while measuring something else is the same class of fault as the
+        # guards this file is about.
+        red = [s for s in steps if "RED" in s.get("name", "")]
+        self.assertEqual(len(red), 1, "the red-on-give-up step is gone")
+        self.assertIn("exit 1", red[0]["run"])
+        self.assertIn("alarm", red[0]["if"])
 
     def test_the_ledger_records_each_fire(self):
         import json
@@ -252,6 +258,77 @@ class ItNeverREACHESForTheGate(unittest.TestCase):
         for cid, wf in dm.WORKFLOWS.items():
             self.assertTrue((ROOT / ".github" / "workflows" / wf).exists(),
                             f"{cid} -> {wf} does not exist")
+
+
+class TheDispatCHActuallyREACHESTheWorkflow(unittest.TestCase):
+    """Caught by RUNNING the switch, not by reading it.
+
+    The first live repair passed `-f mode=auto` to all three channels and
+    GitHub answered
+
+        HTTP 422: Unexpected inputs provided: ["mode"]
+
+    for `daily.yml` and `third.yml`, which declare no such input. Two of the
+    three channels were never dispatched — and the step went GREEN, because
+    the failure was written with `|| echo "::error ..."`, an ANNOTATION.
+    That is the identical annotation-instead-of-failure bug this whole switch
+    was built to end, reproduced inside the fix for it.
+
+    `mode` cannot simply be dropped either: `explainer.yml` declares it with
+    `default: 'verify'`, so a dispatch that omits it runs in VERIFY and posts
+    nothing — a repair that reports success and delivers zero videos.
+
+    So: per-channel inputs, and this test parses what each workflow actually
+    ACCEPTS so the next wrong key fails here instead of in production.
+    """
+
+    def _declared_inputs(self, wf_name):
+        import yaml
+        d = yaml.safe_load(
+            (ROOT / ".github" / "workflows" / wf_name).read_text())
+        on = d[True] if True in d else d["on"]
+        wd = on.get("workflow_dispatch") or {}
+        return set((wd.get("inputs") or {}))
+
+    def test_every_input_it_sends_is_one_the_workflow_declares(self):
+        for cid, wf in dm.WORKFLOWS.items():
+            sent = set(dm.DISPATCH_INPUTS.get(cid, {}))
+            declared = self._declared_inputs(wf)
+            self.assertTrue(
+                sent <= declared,
+                f"{cid} -> {wf}: sends {sorted(sent - declared)} which the "
+                f"workflow does not accept (this is a 422 in production)")
+
+    def test_every_channel_has_an_entry_even_if_empty(self):
+        """A missing entry and an empty one must not be the same thing by
+        accident — the empty ones are a decision."""
+        self.assertEqual(set(dm.DISPATCH_INPUTS), set(dm.WORKFLOWS))
+
+    def test_the_explainer_is_not_dispatched_into_VERIFY(self):
+        """Its `mode` defaults to 'verify', which posts nothing. A repair
+        that runs in verify mode is a repair that reports success and
+        delivers zero videos."""
+        import yaml
+        d = yaml.safe_load(
+            (ROOT / ".github" / "workflows" / "explainer.yml").read_text())
+        on = d[True] if True in d else d["on"]
+        default = on["workflow_dispatch"]["inputs"]["mode"]["default"]
+        self.assertEqual(default, "verify", "the premise changed — recheck")
+        self.assertEqual(dm.DISPATCH_INPUTS["explainer"]["mode"], "auto")
+
+    def test_a_failed_dispatch_FAILS_the_step(self):
+        run = next(s["run"] for s in _wf()["jobs"]["switch"]["steps"]
+                   if s.get("name", "").startswith("Fire the channels"))
+        self.assertIn("exit 1", run,
+                      "a dispatch that did not happen still goes green")
+        self.assertNotIn('|| echo "::error title=deadman-dispatch-failed', run)
+
+    def test_it_still_commits_the_ledger_before_failing(self):
+        """Bailing out before the commit would lose the record of the
+        attempts that DID fire, and the bound with it."""
+        run = next(s["run"] for s in _wf()["jobs"]["switch"]["steps"]
+                   if s.get("name", "").startswith("Fire the channels"))
+        self.assertLess(run.index("ci_commit_state"), run.index("exit 1"))
 
 
 if __name__ == "__main__":
