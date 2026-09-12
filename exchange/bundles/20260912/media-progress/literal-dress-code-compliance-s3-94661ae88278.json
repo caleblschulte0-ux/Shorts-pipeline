@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s3-94661ae88278",
+  "safe_request_id": "literal-dress-code-compliance-s3-94661ae88278",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "bdfeab0e528768623452e16b12cf5f7cf5d1ca1627cd8c02c6b7fddece23274c",
+  "prompt_used": "An editorial illustration for a short-form video: old beige office phone. It accompanies the narration: \"the whole floor spent lunch taking turns on one beige phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+    "filename": "20260912__literal-dress-code-compliance-s3-94661ae88278.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1IWFyLnZkjo4En9QP_jFOPQz_z5wP4Yp8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5de893e4d49178b385b0bc4374609a66dfb2e602aa56aaef16c5bc1477206d0d",
+    "bytes": 1603625,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:14.686Z"
+}
