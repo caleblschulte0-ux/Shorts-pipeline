@@ -1,0 +1,32 @@
+{
+  "key": "aviation_accident_rate",
+  "title": "Global airline accident rate (accidents per million flights)",
+  "unit": "accidents per million flights",
+  "geography": "Global",
+  "time_coverage": "2005-2025",
+  "source": {
+    "name": "IATA Annual Safety Report",
+    "publisher": "International Air Transport Association (IATA)",
+    "url": "https://www.iata.org/en/publications/safety-report/",
+    "officiality": "official",
+    "access_date": "2026-09-12"
+  },
+  "notes": "All-accident rate (all aircraft types, scheduled and non-scheduled commercial operations) per IATA's annual safety reports.",
+  "points": [
+    {
+      "label": "2005",
+      "value": 3.72,
+      "period": "2005"
+    },
+    {
+      "label": "2024",
+      "value": 1.13,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 1.32,
+      "period": "2025"
+    }
+  ]
+}

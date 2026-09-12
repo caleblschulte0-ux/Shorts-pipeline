@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "vinyl-vs-cd-revenue",
+  "title": "Vinyl Just Beat CDs. It Hadn't Since 1986.",
+  "y_label": "U.S. music format revenue ($ millions)",
+  "source": "Source: RIAA year-end U.S. recorded music revenue reports, 2017-2024",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Vinyl",
+      "color": "#c9932a",
+      "values": [
+        395,
+        419,
+        504,
+        596,
+        1040,
+        1220,
+        1350,
+        1400
+      ]
+    },
+    {
+      "name": "CDs",
+      "color": "#5a5a6e",
+      "values": [
+        1100,
+        698,
+        615,
+        531,
+        427,
+        483,
+        537,
+        500
+      ]
+    }
+  ],
+  "duration": 13,
+  "music_vibe": "dark",
+  "hook": "Nobody saw this comeback coming.",
+  "hashtags": [
+    "vinyl",
+    "cds",
+    "music",
+    "musicindustry",
+    "nostalgia",
+    "dataviz",
+    "records",
+    "90smusic",
+    "charts",
+    "retro",
+    "streaming",
+    "shorts"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "aviation_fatal_rate_window",
+  "title": "Fatal accident rate by 5-year window (per million flights)",
+  "unit": "fatal accidents per million flights",
+  "geography": "Global",
+  "time_coverage": "2012-2025",
+  "source": {
+    "name": "IATA Annual Safety Report",
+    "publisher": "International Air Transport Association (IATA)",
+    "url": "https://www.iata.org/en/publications/safety-report/",
+    "officiality": "official",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Derived from IATA's reported fatal-accident frequency: 1 fatal accident per 3.5 million flights (2012-2016) vs 1 per 5.6 million flights (2021-2025).",
+  "points": [
+    {
+      "label": "2012-2016",
+      "value": 0.286
+    },
+    {
+      "label": "2021-2025",
+      "value": 0.179
+    }
+  ]
+}

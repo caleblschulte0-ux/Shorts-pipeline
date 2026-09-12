@@ -1,0 +1,32 @@
+{
+  "key": "states_requiring_cursive",
+  "title": "U.S. states requiring cursive handwriting instruction by law",
+  "unit": "states",
+  "geography": "United States",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "State cursive handwriting legislation tracking",
+    "publisher": "Zaner-Bloser / EdWeek state policy tracking",
+    "url": "https://www.zaner-bloser.com/blog/ela/which-states-have-cursive-handwriting-laws-and-why",
+    "officiality": "secondary",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Count of U.S. states with a state law or standard requiring cursive instruction in public schools, tracked by education press.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 14,
+      "period": "2016"
+    },
+    {
+      "label": "2019",
+      "value": 20,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 25,
+      "period": "2024"
+    }
+  ]
+}

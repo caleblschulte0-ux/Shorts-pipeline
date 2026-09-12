@@ -1,0 +1,25 @@
+{
+  "key": "cursive_literacy_young_adults",
+  "title": "Young Americans who can read cursive (estimated)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "circa 2020s",
+  "source": {
+    "name": "Cursive literacy commentary",
+    "publisher": "Aggregated press reporting (genealogy / handwriting advocacy press)",
+    "url": "https://www.genealogyexplained.com/blog/the-decline-in-cursive-why-most-kids-today-cant-read-it/",
+    "officiality": "estimate",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Widely-cited estimate that roughly two-thirds of young Americans (mostly those born after 1985) cannot read cursive; a rough, press-reported figure rather than a single peer-reviewed survey.",
+  "points": [
+    {
+      "label": "Can read cursive",
+      "value": 33
+    },
+    {
+      "label": "Cannot read cursive",
+      "value": 67
+    }
+  ]
+}

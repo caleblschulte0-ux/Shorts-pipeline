@@ -1,0 +1,25 @@
+{
+  "key": "credit_card_share_2016_2024",
+  "title": "Credit card's share of all U.S. consumer payments",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "Diary of Consumer Payment Choice",
+    "publisher": "Federal Reserve Bank of San Francisco",
+    "url": "https://www.frbservices.org/news/research/2024-findings-from-the-diary-of-consumer-payment-choice",
+    "officiality": "official",
+    "access_date": "2026-09-12"
+  },
+  "notes": "Credit card's share of the number of all consumer payments; the Fed reports a 17-point rise from 2016 to 2024, implying an 18 percent starting share.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 18
+    },
+    {
+      "label": "2024",
+      "value": 35
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "signed-return-policy-refund",
+  "title": "She Said The Customer Is Always Right. I Printed Proof.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "retailstory",
+    "customerservice",
+    "pettyrevenge",
+    "entitled",
+    "karma",
+    "reddit",
+    "storytime",
+    "retaillife",
+    "workplace",
+    "returnpolicy",
+    "proconsumer"
+  ],
+  "script": "There's a woman who comes into our store every few weeks convinced the sign by the register is a legal document. This time she wanted a full refund on a blender she'd clearly used for months, no receipt, no box, just a chipped blade and an attitude. I told her store policy required a receipt within thirty days. She said the customer is always right, louder, like volume was evidence. So I printed the actual return policy, highlighted the thirty day line in yellow, and asked her to sign it acknowledging she'd read it, just so we were clear going forward. She signed without reading, eager to move the line along. Six weeks later she tried it again with a different broken blender. I pulled the signed page from the file, slid it across the counter, and watched her read her own signature under a policy she swore didn't apply to her. She left without the refund, and without a word.",
+  "shots": [
+    {
+      "phrase": "convinced the sign by the register is a legal document",
+      "query": "store return policy sign"
+    },
+    {
+      "phrase": "a blender she'd clearly used for months",
+      "query": "old used blender kitchen"
+    },
+    {
+      "phrase": "the customer is always right",
+      "query": "retail store counter"
+    },
+    {
+      "phrase": "printed the actual return policy",
+      "query": "printer paper office"
+    },
+    {
+      "phrase": "highlighted the thirty day line in yellow",
+      "query": "yellow highlighter paper"
+    },
+    {
+      "phrase": "tried it again with a different broken blender",
+      "query": "broken appliance counter"
+    },
+    {
+      "phrase": "pulled the signed page from the file",
+      "query": "file folder paperwork"
+    },
+    {
+      "phrase": "without the refund, and without a word",
+      "query": "store exit door"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "a legal document",
+      "text": "NOT A LAW",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "customer is always right",
+      "text": "DEBATABLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "signed without reading",
+      "text": "BIG MISTAKE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "without the refund, and without a word",
+      "text": "DENIED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}
