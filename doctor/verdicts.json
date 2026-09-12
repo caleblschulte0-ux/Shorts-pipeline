@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260911",
+  "updated": "20260912",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -853,10 +853,16 @@
       ]
     },
     "8d1b5d1e1f69": {
-      "verdict": "doing",
-      "date": "20260825",
-      "because": "Verified in scripts/editorial_gate.py: pre_render_verdict() (lines 189-197) combines only data_provenance() (per-segment source check) and premise_ok() (title+hook only) -- there genuinely is no check that segments cohere with the headline or with each other, confirming the gap. This is a real feature (a coherence gate + intake-side rejection), not a quick fix, and is queued rather than built this run since 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds one item. Whoever picks this up next should design it as an addition ON TOP of the existing two checks, never replacing them, and keep the refusal-list rule that a weak/incoherent story goes back through authoring rather than spending renders on repair.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260912",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260825",
+          "because": "Verified in scripts/editorial_gate.py: pre_render_verdict() (lines 189-197) combines only data_provenance() (per-segment source check) and premise_ok() (title+hook only) -- there genuinely is no check that segments cohere with the headline or with each other, confirming the gap. This is a real feature (a coherence gate + intake-side rejection), not a quick fix, and is queued rather than built this run since 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds one item. Whoever picks this up next should design it as an addition ON TOP of the existing two checks, never replacing them, and keep the refusal-list rule that a weak/incoherent story goes back through authoring rather than spending renders on repair."
+        }
+      ]
     },
     "9d5a03472328": {
       "verdict": "doing",
