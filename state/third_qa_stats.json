@@ -1,263 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260814",
-      "dry_run": false,
-      "ts": "2026-08-14T12:41:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 112,
-        "with_retention": 92,
-        "with_curve": 12,
-        "fetched_at": "2026-08-13T13:25:02.925157+00:00"
-      },
-      "brain": {
-        "ok": 29,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260814-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague reaction, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "streamer reacts, playful banter, no real",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Reads The Most Savage Roast Text Out Loud"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.93,
-              "problems": []
-            }
-          },
-          "took_s": 175.6
-        },
-        {
-          "slug": "clip-20260814-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "kaicenat/kaicenat-death-minecraft-2026w33",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague money/scheme talk",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "accidental reveal, panicked reaction",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Panics After Accidentally Showing His Revenue"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.9,
-              "problems": []
-            }
-          },
-          "took_s": 933.6
-        },
-        {
-          "slug": "clip-20260814-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague reaction, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "tense confrontation, visible distress",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Loses It And Says"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.78,
-              "problems": []
-            }
-          },
-          "took_s": 253.2
-        },
-        {
-          "slug": "clip-20260814-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "closeup",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.6,
-              "why": "visible food reaction moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.68,
-              "why": "genuine shocked reaction, unclear cause",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Can't Believe What's Inside This Burger"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "reaction captions like \"WHAT THE FUCK\" and \"CANCER\" play over an empty table shot with no person visible in any frame, w"
-              ]
-            }
-          },
-          "took_s": 175.3
-        }
-      ]
-    },
-    {
       "date": "20260815",
       "dry_run": false,
       "ts": "2026-08-15T12:29:07+00:00",
@@ -8156,6 +7899,170 @@
             }
           },
           "took_s": 190.0
+        }
+      ]
+    },
+    {
+      "date": "20260912",
+      "dry_run": false,
+      "ts": "2026-09-12T21:35:17+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 77,
+        "with_curve": 15,
+        "fetched_at": "2026-09-12T15:29:28.555059+00:00"
+      },
+      "brain": {
+        "ok": 16,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260912-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260912-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "traitor reveal, emote reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "reviving enemy by mistake, chaotic",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Forsen Revives The ENEMY Team By Mistake"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "frames at 13.8s/15.2s are nearly all-black (likely the deadair effect), and combined with the 16.7s white flashbang flas"
+              ]
+            }
+          },
+          "took_s": 175.8
+        },
+        {
+          "slug": "clip-20260912-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260912-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260912-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (just driving, shooting only mentioned of)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title gives nothing",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "just driving, shooting only mentioned of",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 66.0
+        },
+        {
+          "slug": "clip-20260912-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
