@@ -1,0 +1,16 @@
+{
+ "slug": "cash-payments-decade-decline",
+ "ts": "20260912T195233Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start \u2014 the caption 'the gap: 18' is printed directly on top of a gold '18%' readout which is itself sliced off by the bottom frame edge; two texts occupy the same pixels and neither resolves at arm's length.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg3:start the scene's gold value readout ('18%') is rendered in the same lower-third strip as the subtitle 'the gap: 18', overprinting it, and the digits are clipped by the bottom edge of the frame; by seg3:mid the readout has vanished behind the caption entirely.",
+  "root_cause": "The scale scene places its animated gap/value readout at a fixed low-frame y that overlaps the subtitle band's reserved zone and extends past the bottom safe area, so caption and readout collide instead of being stacked.",
+  "repair_goal": "Move seg3's animated value readout out of the caption band: place the gap number above the fulcrum (between the two pans, around mid-frame) and keep the bottom ~18% of the frame reserved for the subtitle alone, so no number is ever printed under text or clipped by the frame edge."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
