@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "literal-dress-code-compliance-s6-4ac7ce65eb2e",
+  "safe_request_id": "literal-dress-code-compliance-s6-4ac7ce65eb2e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e0463c7d96ee96cd5781fcb3d5f56641efca61e2188bfa75c42df69ed46b1735",
+  "prompt_used": "An editorial illustration for a short-form video: employee handbook binder. It accompanies the narration: \"the handbook quietly got updated\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+    "filename": "20260912__literal-dress-code-compliance-s6-4ac7ce65eb2e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Sesa0FY_CsldZ8DWSnWDewV1PJIuxTst",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3fe1489d6232813de41866dba040218f20231d9efa11b327a0cde1fbe4760c9b",
+    "bytes": 1937398,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-12T11:23:17.224Z"
+}
