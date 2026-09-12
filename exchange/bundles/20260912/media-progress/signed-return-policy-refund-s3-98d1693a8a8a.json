@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260912",
+  "bundle": {
+    "identity": "69eae96bf7660d53f4881f30c648924be7712ab76ba20e5d6adfcd83f55802c1",
+    "path": "exchange/bundles/20260912/bundle.json"
+  },
+  "request_id": "signed-return-policy-refund-s3-98d1693a8a8a",
+  "safe_request_id": "signed-return-policy-refund-s3-98d1693a8a8a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1abda90259c0f162059fe4640ce46e39faf2c538212b83540a51f28916935060",
+  "prompt_used": "An editorial illustration for a short-form video: printer paper office. It accompanies the narration: \"printed the actual return policy\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ww54AZaXqGGAcsdYh72vUhVNETEj9Hl4",
+    "filename": "20260912__signed-return-policy-refund-s3-98d1693a8a8a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ww54AZaXqGGAcsdYh72vUhVNETEj9Hl4",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4c0f591774edfa2c9f01d387f37e816b5ce5c8beb1e31936936fe3fd8728d4f0",
+    "bytes": 1541349,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-12T11:23:21.777Z"
+}
