@@ -123,18 +123,36 @@ jobs:
           DATE: ${{ inputs.date }}
         run: |
           set -euo pipefail
+          failed=""
           for ch in ${{ steps.assess.outputs.fire }}; do
             wf=$(python -c "from scripts.deadman import WORKFLOWS;print(WORKFLOWS['$ch'])")
-            echo "::warning title=deadman-firing::$ch has not delivered today — dispatching $wf"
+            # PER-CHANNEL INPUTS. A uniform `-f mode=auto` 422'd on daily.yml
+            # and third.yml (no such input) while being REQUIRED by
+            # explainer.yml, whose `mode` defaults to 'verify' and would post
+            # nothing. See `deadman.DISPATCH_INPUTS`.
+            flags=$(python scripts/deadman.py --dispatch-args "$ch")
+            echo "::warning title=deadman-firing::$ch has not delivered today — dispatching $wf $flags"
             # RECORD BEFORE FIRING. If the dispatch succeeds and the record
             # fails, the bound is gone and this loops; the other order only
             # costs one wasted attempt.
             python scripts/deadman.py ${DATE:+--date $DATE} --record-fire "$ch"
-            gh workflow run "$wf" --ref main -f mode=auto \
-              || echo "::error title=deadman-dispatch-failed::could not dispatch $wf for $ch"
+            if ! gh workflow run "$wf" --ref main $flags; then
+              echo "::error title=deadman-dispatch-failed::could not dispatch $wf for $ch"
+              failed="$failed $ch"
+            fi
           done
           bash scripts/ci_commit_state.sh \
             "deadman: repaired $(date -u +%Y-%m-%d) [skip ci]" state/deadman
+          # A DISPATCH THAT DID NOT HAPPEN MUST FAIL THIS STEP.
+          #
+          # The first live run wrote `::error` and went GREEN having
+          # dispatched nothing — the identical annotation-instead-of-failure
+          # bug this switch was built to fix, reproduced inside the fix. An
+          # unreachable channel is the loudest thing that can go wrong here.
+          if [ -n "$failed" ]; then
+            echo "::error title=deadman-could-not-repair::failed to dispatch:$failed"
+            exit 1
+          fi
 
       - name: Be LOUD when it has run out of attempts
         if: steps.assess.outputs.alarm != ''
