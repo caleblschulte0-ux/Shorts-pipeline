@@ -1,45 +1,95 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260911",
-  "judged_date": "20260910",
+  "date": "20260912",
+  "judged_date": "20260911",
   "alarm": {
-    "date": "20260910",
+    "date": "20260911",
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_finalizer",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260911 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260911/response.json, exchange/bundles/20260911/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
+        "code": "chatgpt_task_failed_media",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260911 (the bundle asks for 16 image(s)).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260911/media-progress/STARTED.json, \u2026/<safe_request_id>.json, \u2026/FAILED-<id>.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 3/4 posted for 20260910.",
+        "detail": "explainer: 3/4 posted for 20260911.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 5/6 posted for 20260911.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/6 posted for 20260910.",
+        "detail": "trending: 2/6 posted for 20260911.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260910: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
+        "detail": "trending 20260911: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
-        "code": "doctor_reviewer_silent",
+        "code": "chatgpt_exchange_silent",
+        "severity": "note",
+        "detail": "ChatGPT answered NOTHING for 20260911 \u2014 16 image request(s) published, zero checkpoints, no response, no DONE (day 1 of silence).",
+        "fix": "The days still ship via self-fill (Policy A), but weak stock is what the showrunner keeps blocking. Check the 6:00/7:00 ChatGPT scheduled tasks in the ChatGPT app \u2014 the repo side is verified and waiting."
+      },
+      {
+        "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "No doctor findings filed since 20260908 (2 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "trending shipped 2/6; 1 re-authored replacement(s) also failed to fill it.",
+        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
+      },
+      {
+        "code": "doctor_reviewer_silent",
+        "severity": "critical",
+        "detail": "No doctor findings filed since 20260908 (3 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
-    "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "third: 6/6 posted",
-      "exchange: 20/20 ChatGPT images pinned"
-    ],
+    "notes": [],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260911",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 2,
+      "quarantined": 0,
+      "failed": 8,
+      "failed_by_stage": {
+        "showrunner_block": 4,
+        "infra_error": 4
+      },
+      "failed_by_format": {
+        "graph_race": 3,
+        "reddit": 1,
+        "unknown": 4
+      },
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/gSP4iDZndOU",
+        "https://youtube.com/shorts/mN9ikzZBeNc"
+      ]
+    },
     {
       "date": "20260910",
       "channel": "trending",
@@ -146,287 +196,9 @@
         "https://youtube.com/shorts/NTuKjFWe6bg",
         "https://youtube.com/shorts/yd3e0EMjwro"
       ]
-    },
-    {
-      "date": "20260829",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 3,
-      "rendered_or_attempted": 7,
-      "uploaded": 5,
-      "quarantined": 0,
-      "failed": 5,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/-0N5BfVD-UQ",
-        "https://youtube.com/shorts/P844xpGQxq0"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-06T20:01:06+00:00",
-      "slug": "f1-pit-stop-vanishing-act",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "Two of the five beats collapse into a lone counter ring on empty navy and the seven-reaction-times beat is an abstract dot scatter, so the strongest idea in the script is never actually shown.",
-      "auto_fails": [
-        "decorative_mascot: Data is parked as a sticker beside the number in every beat \u2014 standing inside the yellow column at seg2:start(f10) and seg3:start(f13), and hanging in the identical pose on the ring at seg4:start/mid/end and payoff@-0.4 with no setup->action->payoff tied to 1.8s.",
-        "bare_number_card: seg1:mid(f08) and seg1:end(f09) are just a counter '36.6/59.2 1950s' inside a ring on empty navy, and seg3:end(f15) repeats it with '1.6 Modern crew' \u2014 no demonstration, no scale reference.",
-        "empty_void: seg2:start(f11) is two faint circle outlines and one tiny green dot with the entire lower half of the frame blank; seg4:start(f16) through payoff@-0.4(f20) leave everything below the gauge empty."
-      ],
-      "problems": [
-        "seg2 (f11/f12) demonstrates nothing: two labelled dots on faint rings, mascot absent, over half the frame empty for ~6s.",
-        "seg1:mid/end (f08/f09) and seg3:end (f15) are bare-number cards \u2014 a ring counter on a void with no comparison object.",
-        "The video ends on a gauge reading '20.0 Modern crew' (f19/f20) while the closing line is 'Blink. You'll miss the whole pit stop' \u2014 the payoff frame shows the crew count, not the 1.8s record.",
-        "Text collisions throughout: caption 'stop used' sits on top of the 60 value (f01/f02), the mascot occludes 'Current record' (f00-f02) and the 'MODERN CREW VS 1950S CREW' subtitle (f14), and the source line overlaps 'COMMENT BELOW' (f19/f20).",
-        "Hook subtitle reads '1950S PULLS AHEAD' on a pit-stop-TIME chart, where the slowest era 'winning' is nonsense; the hook is also a slow bar build rather than an immediate event.",
-        "Data never performs a bit \u2014 he stands inside a column or hangs on the ring in the same pose from seg4:start to the last frame."
-      ],
-      "fixes": [
-        "Rebuild seg2 as a stacking/overflow demonstration: 6-7 discrete 0.27s reaction blocks snapping into one 1.8s pit-stop track across the full frame width, with Data reacting to each block.",
-        "Give every counter beat a physical referent \u2014 put the 1950s 60s ring next to a 1.8s ring at true relative scale, or drain the 60s ring into the 1.8s one, instead of a number alone on navy.",
-        "Make the final beat the 1.8s record: end on the pit-stop timer snapping to 1.80 with Data blinking and missing it, matching the closing line.",
-        "Add collision avoidance between captions, bar value labels, axis labels and the mascot anchor so nothing overlaps (f01, f10, f14, f19).",
-        "Fix the hook subtitle to state the comparison honestly (e.g. 'A MINUTE, THEN 1.8 SECONDS') and open on a snap/whip event before the bars build.",
-        "Author a real per-beat performance for Data (setup->action->payoff, e.g. changing a wheel and being outrun by the crew) rather than a static perch reused across seg4."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-06T20:08:43+00:00",
-      "slug": "cesarean-rate-surge",
-      "score": 62,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Strong mascot performance and a good opening bar-climb, undercut by two scenes composed for the wrong aspect (huge empty lower halves) and sloppy typography \u2014 clipped titles running off both edges and colliding labels.",
-      "auto_fails": [
-        "empty_void: seg1:mid and seg1:end park a hairline timeline and a small mascot in the top third and leave the entire bottom ~60% of the frame empty dark gradient with a stray teal ellipse; seg2:mid/end repeat it below the arc gauge."
-      ],
-      "problems": [
-        "seg1:mid/end \u2014 lower 60% of the frame is empty dark gradient with a detached teal shadow ellipse; the whole scene is one hairline axis and a floating percentage.",
-        "seg2:mid/end \u2014 the section title is clipped off BOTH edges of the frame ('HAPPENS AFTER YOUR FIRST C-SE'), and the bottom half is again empty.",
-        "seg2:start \u2014 the two bar captions overlap into unreadable mush ('Have a repeat cesarean' printed on top of 'Deliver vaginally (VBAC)'), and the subhead is cut off at '(V'.",
-        "seg2:end \u2014 the arc gauge still reads 82.4% at the end of the beat while the caption already says 84.5%; the count-up never lands on its own number.",
-        "seg3:mid \u2014 bar value labels ('36.2%', '36.1%', '24.4%') sit on top of the bar ends instead of beside them, and the mascot occludes the Mississippi bar at seg3:start.",
-        "payoff@-1.8 / seg4:end \u2014 orbiting state labels collide with each other and with the sun ('South Dakota 24.4%' printed across the centre), and a stray '1%' fragment hangs clipped at the right edge."
-      ],
-      "fixes": [
-        "Recompose seg1 for 9:16: move the year axis to the vertical middle and grow era columns beneath it as the puck advances, so the frame's lower two-thirds carries data instead of gradient.",
-        "Parent the mascot's ground shadow to the mascot transform so it can never render alone (seg1:mid, seg2:mid/end).",
-        "Auto-fit scene titles to the safe width (shrink or wrap) \u2014 'what happens after your first C-section' must never render clipped at both edges as in seg2:mid.",
-        "Lay the seg2 bar captions out with collision detection: stack them under their own bar with distinct baselines, and let the subhead wrap instead of running past the right margin.",
-        "End every count-up on its final value before the beat cuts \u2014 the seg2 arc must read 84.5% at seg2:end.",
-        "Place seg3 bar values outside the bar end (or inside with a solid pill) and keep the mascot clear of the #1 bar."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 133
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-06T20:17:27+00:00",
-      "slug": "melatonin-kids-er-surge",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three real charts and honest sourcing, but the middle beat degrades into an orbit diagram that encodes nothing, two beats are big counters over empty half-frames, and the closing gauge ends on 71.6% 'Sent home' that contradicts the scripted 82%.",
-      "auto_fails": [
-        "decorative_mascot: Data merely stands on top of a bar (hook@0.8, seg0:end), perches on the gauge arc (seg1:mid, seg1:end), and hovers beside the closing gauge (seg4:mid, payoff@-0.4) \u2014 no setup-action-payoff bit, and he is absent entirely from seg2:mid/seg2:end.",
-        "bare_number_card: seg1:mid and seg1:end are a giant '32,002'/'51,847' counter on a plain purple arc over an empty dark field \u2014 a number readout, not a demonstration.",
-        "empty_void: seg1:mid/seg1:end and seg2:mid/seg2:end leave the bottom ~45% of the 9:16 frame completely empty dark gradient with only a small arc or a tiny orange dot and two label dots occupying the top half."
-      ],
-      "problems": [
-        "seg2 (seg2:mid, seg2:end): the 7% vs 93% split is drawn as orbit rings with two equal-sized dots \u2014 no magnitude is shown, and the mascot is missing from the beat entirely.",
-        "Headline text is cropped at both frame edges in three scenes: 'IIN POISON CONTROL CALLS, 2012' (seg1:mid/end), 'helatonin's share of pediatric ER visit' (seg2:mid/end), and 'CO ... CA' flanking the closing card (seg4:start through payoff@-0.4).",
-        "seg1 (seg1:mid, seg1:end) is a bare counter: '32,002' then '51,847' on a plain arc with the bottom half of the frame empty.",
-        "Empty lower frame in seg1 and seg2 \u2014 roughly 45% of a vertical composition holds nothing while the content crowds the top third.",
-        "Payoff does not land: the final gauge reads '71.4%' / '71.6% Sent home' (payoff@-1.8, payoff@-0.4) \u2014 a mid-count value that neither matches the scripted 82% sent home nor illustrates the closing line about child-proof caps.",
-        "Data-consistency mismatch on screen: seg3 labels 'Hospitalized 17%' (seg3:start, seg3:mid) while the script segment says 14.7% get admitted."
-      ],
-      "fixes": [
-        "Replace seg2's orbit layout with a part-of-whole demonstration sized to the stat \u2014 a 100-bottle shelf/grid with 7 melatonin bottles lighting up, or a 93/7 block where the melatonin sliver visibly breaks off \u2014 and stage Data walking the shelf, pulling the 7 bottles, and holding them up.",
-        "Constrain every scene headline to the safe area (wrap to two lines or auto-shrink) so seg1, seg2 and the closing card stop clipping at both edges.",
-        "Give seg1 a physical build instead of a counter: stack or pour call-volume units so 8,337 becomes 52,563 on screen, and let Data climb/get buried by the growing pile rather than perch on the arc.",
-        "Extend the final gauge count to its true terminal value and label it to the closing line \u2014 end on the child-proof-cap beat with Data capping a bottle, not on a 71.6% partial readout.",
-        "Reconcile seg3's on-screen 'Hospitalized 17%' with the scripted 14.7% admitted so the chart and narration state the same number.",
-        "Fill the lower half of seg1 and seg2 \u2014 move the mascot's action, the source strip, or a secondary visual element down so the vertical frame is composed, not top-loaded."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 5.67,
-        "dark_fraction": 0.0,
-        "sampled": 140
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-06T20:25:02+00:00",
-      "slug": "melatonin-kids-er-surge",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "Real charts and a moving mascot, but the closer is a broken, half-empty orbit graphic whose percentages contradict the scene right before it.",
-      "auto_fails": [
-        "decorative_mascot: Data perches on whatever element is animating in every beat (rides the purple bar hook@0.8, sits on the arc seg1:mid, stands atop the column seg2:mid, braces on the pink band seg3:mid) with no setup->action->payoff, and he is entirely ABSENT from the closing scene seg4:start/mid and payoff@-0.4.",
-        "bare_number_card: seg1:mid is a giant '51,963' numeral over a dark field with a decorative ring and nothing else \u2014 the number is the beat, not a demonstration of it.",
-        "empty_void: seg4:start/mid and payoff@-0.4 waste the bottom ~45% of the frame on empty dark gradient with the orbit chart crammed into the top third; seg1:mid likewise leaves the lower half black below the arc."
-      ],
-      "problems": [
-        "seg4 restates seg3's outcomes with different numbers (14.7%/71.6% vs 17%/82%) \u2014 the video contradicts itself on screen.",
-        "seg4 wastes the bottom ~45% of the frame and hides its own title behind the speech bubble; orbit labels overlap each other and the bubble tail.",
-        "seg1 title is clipped at BOTH edges ('JIN POISON CONTROL CALLS, 2012'), and seg2's 'Every other medicati...' runs off the right edge; source footnotes are cut off at the left in hook, seg2 and seg3.",
-        "seg1 is effectively a big-number card \u2014 a giant numeral plus a decorative ring over an empty lower half.",
-        "Data never performs a bit: he rides or perches on the animating element in all four chart beats and disappears for the entire payoff.",
-        "At hook@2.2/seg0:end the caption ('be so', 'harmless.') lands directly on top of the mascot's face."
-      ],
-      "fixes": [
-        "Reconcile the outcome numbers: use one source for hospitalized/ICU/sent-home and render the same values in seg3 and seg4.",
-        "Redesign seg4 to fill the 9:16 frame \u2014 drop the orbit layout, extend the outcome column or a physical 'bottle of 100 gummies' split down the full height, and reposition the closing bubble so the title is readable.",
-        "Add a safe-area/auto-shrink pass to scene titles and category labels so no text is clipped at the frame edges (seg1, seg2) and no two labels overlap (seg4).",
-        "Give seg1 a demonstration instead of a numeral: fill the arc with 52,563 accumulating call-dots or stack the 2012 pile against it, and let Data struggle to hold the growing arc.",
-        "Raise caption baseline or lower the mascot in the hook so lyrics never sit across his face.",
-        "Give Data one real bit per scene with a setup->action->payoff (e.g. seg2: he tries to lift the 7% sliver off the 93% column and it doesn't budge) and keep him on screen for the closer."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 5.67,
-        "dark_fraction": 0.0,
-        "sampled": 131
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-06T20:35:26+00:00",
-      "slug": "melatonin-kids-er-surge",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "Clean charts and honest sourcing, but the mascot is scenery in every beat and the payoff scene is a half-empty, mislabeled orbit card whose percentages contradict the scene right before it.",
-      "auto_fails": [
-        "decorative_mascot: Data only stands inside or perches on top of whatever bar is already there \u2014 parked in the purple column at seg0:mid, perched on the arc at seg1:mid, standing in the column at seg2:mid \u2014 and he is entirely ABSENT from seg4/payoff; no setup-action-payoff bit anywhere.",
-        "bare_number_card: seg1:mid and seg1:end are a giant '51,863' on an empty dark field with a decorative unlabeled arc and a clipped title ('IIN POISON CONTROL CALLS, 2012' running off both edges) \u2014 a number card, not a demonstration.",
-        "empty_void: seg4:start through payoff@-0.4: the bottom ~45% of the frame is empty gradient with nothing in it while the orbit dots and labels crowd into the top third under the speech bubble."
-      ],
-      "problems": [
-        "seg4: bottom ~45% of frame is empty gradient with all content crammed under the speech bubble (seg4:start, payoff@-0.4).",
-        "seg4: percentages contradict seg3 \u2014 71.6%/14.7% here vs 82%/17% on seg3:end \u2014 a factual break the viewer can see.",
-        "seg4: title clipped to 'ou...es' behind the bubble; orbit labels overlap each other at seg4:mid.",
-        "Mascot never performs: stands inside the bar (seg0:mid, seg2:mid), perches on the arc (seg1:mid), absent from seg4 entirely.",
-        "seg1 is a bare number card \u2014 '33,065'/'51,863' huge on a dark field with a decorative unlabeled arc.",
-        "seg1 title clipped on both edges ('IIN POISON CONTROL CALLS, 2012'); seg2/seg3 label 'Every other medicatio\u2026' runs off the right edge; source footnote clipped at left in seg0/seg2/seg3."
-      ],
-      "fixes": [
-        "Rebuild seg4 per the repair goal: same normalization as seg3, full-frame vertical composition, unoccluded title, separated labels, and Data physically snapping a child-proof cap on a bottle as the closing action.",
-        "Reconcile the outcome percentages so seg3 and seg4 state one identical set of numbers.",
-        "Give Data one real bit per beat instead of a perch: have him haul the 2012 bar up to 2021 height in seg0, get buried by the 93% column in seg2, and slip off the 82/17 boundary in seg3.",
-        "Replace seg1's number-on-a-field with a demonstration \u2014 e.g. 8,300 call-dots pouring in and multiplying to 52,563 \u2014 and fit the scene title inside the safe area.",
-        "Fix horizontal overflow: wrap or truncate 'Every other medication' and the source footnote so nothing bleeds off either edge.",
-        "Add continuing motion through the back half of seg2 and seg3 (label reveal, boundary wobble, counter tick) so mid and end frames are not duplicates."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 38.33,
-        "dark_fraction": 0.0,
-        "sampled": 137
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-07T10:29:35+00:00",
-      "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
-      "score": 5,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 1
-      },
-      "one_line": "blocked before vision review: max_dup_run 59 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.75s of 38.96s (~2.5s frozen)",
-      "auto_fails": [
-        "temporal_gate: max_dup_run 59 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.75s of 38.96s (~2.5s frozen)"
-      ],
-      "problems": [
-        "max_dup_run 59 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.75s of 38.96s (~2.5s frozen)"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-09-07T10:37:12+00:00",
       "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
@@ -2586,31 +2358,266 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T17:10:12+00:00",
+      "slug": "ozempic_passed_weight_loss_surgery_in_5_",
+      "score": 5,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 1
+      },
+      "one_line": "blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "auto_fails": [
+        "temporal_gate: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "problems": [
+        "duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T17:12:05+00:00",
+      "slug": "online_shopping_buried_the_department_st",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "An exemplary graph race clearly demonstrating the decline of department stores and the rise of online retail.",
+      "auto_fails": [],
+      "problems": [
+        "The hook's key text 'It never came back.' could benefit from a more dynamic visual introduction."
+      ],
+      "fixes": [
+        "Add an animation (e.g., fade-in, scale-up, or wipe) to the text 'It never came back.' in the hook scene."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T17:19:38+00:00",
+      "slug": "he_banned_verbal_approvals__i_emailed_ev",
+      "score": 86,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A well-paced Reddit story with relevant visuals and clear captions, effectively demonstrating the narrative.",
+      "auto_fails": [],
+      "problems": [
+        "The Reddit post in the hook appears statically, reducing initial dynamic engagement."
+      ],
+      "fixes": [
+        "Introduce the Reddit post with a subtle animation (e.g., slide-in, fade-in, or highlight effect) to make the hook more dynamic."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 167
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T18:41:28+00:00",
+      "slug": "container-ships-floating-cities",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Solid data spine and one genuinely good seesaw beat, but the mascot is wallpaper and he keeps sitting on top of the labels \u2014 several numbers and a title word are unreadable on a phone.",
+      "auto_fails": [
+        "decorative_mascot: He perches on a bar top in hook@0.8/seg0:mid/seg0:end, straddles rows in seg1:end, leans on the column edge in seg3:mid/seg3:end and is duplicated as two motionless stickers in seg4:start\u2013payoff@-0.4 \u2014 only the seesaw pan in seg2:mid is tied to the stat, and even there it is a ride, not a setup\u2192action\u2192payoff bit.",
+        "empty_void: seg4:start/seg4:end/payoff@-0.4 leave the bottom ~45% of the 9:16 frame completely empty gradient with two ~40px mascots and a dotted rule as the only content; hook@0.3 is likewise a title over an empty lower two-thirds.",
+        "unreadable: seg0:end \u2014 the 2006 bar's value label is covered by the mascot's legs and reads '1..0' instead of '12500'; seg1:start \u2014 his head blots out the word 'by' in 'largest container ship capacity by year'; seg1:end \u2014 '6600' is printed straight across his head/antennae; every source credit (seg1:mid, seg2:start, seg3:end) runs off the right frame edge at '...accessed 2026-08-2'."
+      ],
+      "problems": [
+        "seg0:end \u2014 the mascot stands on the 2006 bar and his legs erase its '12500' value label, which reads as '1..0'.",
+        "seg1:start \u2014 his head covers the word 'by' in the chart title, and a cyan highlight ellipse hovers in empty space to the right of the 24000 bar pointing at nothing.",
+        "seg1:end \u2014 '6600' is drawn on top of the mascot's head and his body lies across the 2006 row.",
+        "Every source credit line (seg1:mid, seg2:start, seg3:end, outro) is cut off by the right frame edge and set far too small to read on a phone.",
+        "The mascot never performs: he perches on bars (hook@0.8, seg0:mid), rides a pan (seg2:mid), leans on a column (seg3:mid) and appears twice as a frozen sticker in the outro \u2014 no setup\u2192action\u2192payoff anywhere.",
+        "seg4 (45s\u201352s) is a near-frozen closing card: the lower ~45% of the frame is empty, the two mascots are tiny, and seg4:mid/payoff@-1.8/seg4:end/payoff@-0.4 are effectively the same image."
+      ],
+      "fixes": [
+        "Move the mascot out of the label band in seg0 and seg1: keep him in the chart's left/lower gutter and collision-test his bounding box against every measured value-label and the title before placing him.",
+        "Anchor the highlight ellipse to the row it annotates (2019) and drop it entirely when no row is highlighted, instead of leaving it floating in seg1:start.",
+        "Inset the source credit to the safe area and wrap or truncate it with an ellipsis so it never crosses the right frame edge; raise its size/contrast or remove it from the frame.",
+        "Give him one real bit per beat tied to the number \u2014 heaving the 2019 bar out to 24,000, being lifted off his feet as the 2022 pan drops, being buried as the 80% fills \u2014 rather than standing on top of the result.",
+        "Rebuild the outro as a moving beat: bring the frame's lower half into use, scale the two figures up, and animate the 80/20 split settling under the closing line instead of holding one card for 7s.",
+        "Replace at least one of the three bar charts with a machine that says the claim physically (e.g. 1996's 6,600 boxes stacking into 2019's 24,000 as a single towering stack next to the mascot for scale)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 157
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T18:52:04+00:00",
+      "slug": "container-ships-floating-cities",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Decent metaphors \u2014 growing bars, a tipping balance, a filling column \u2014 undone by text that collides with the mascot, the bars and itself, and an outro that abandons a third of the frame.",
+      "auto_fails": [
+        "empty_void: seg4:start through payoff@-0.4 waste the frame: a bubble up top, two hairline rows with ~20px mascot tokens, and the entire lower 35% of the frame is empty ground.",
+        "unreadable: seg1:start \u2014 the mascot's head covers 'by' in the title 'largest container ship capacity by year'; seg3:start \u2014 'Everything else 20%' is near-black grey on the dark ground; seg4:end \u2014 'COMMENT BELOW \u25bc' is printed on top of the caption word 'below.'"
+      ],
+      "problems": [
+        "seg1:start \u2014 the mascot stands over the title and blanks out the word 'by'; a cyan lasso ellipse floats to the right of the 2019 bar circling empty background.",
+        "seg1:mid / seg1:end \u2014 value labels (6600, 12500) are printed on top of the bars themselves and the mascot straddles the 1996/2006 rows, covering '6600'.",
+        "seg1 captions are out of sync with the picture: the chart shows all four bars up to 24000 while the caption reads 'held 6,600 boxes.'",
+        "seg3:start / seg3:mid \u2014 'Everything else 20%' and 'By sea 80%' are low-contrast grey on a dark ground; the 20% label all but disappears.",
+        "seg4 \u2014 the closing card wastes the lower third of the frame and shrinks Data to two unreadable ~20px tokens; 'COMMENT BELOW \u25bc' overprints the caption 'below.'",
+        "hook@0.3 \u2014 the first frame is a glowing 'One ship' title over an almost empty ground with a single grey stub bar; it reads as a title card, not an event."
+      ],
+      "fixes": [
+        "Give the mascot a placement rule that keeps him out of the title band and off value labels \u2014 anchor him to the bar's outer edge, or push labels to the opposite side when he occupies that column.",
+        "Remove the annotation ellipse when it has no target, or bind it to the 2019 bar it is supposed to be circling.",
+        "Move bar value labels off the bar fill (end-of-bar, outside) so nothing is printed over a mark.",
+        "Re-time the seg1 captions to the bar they describe, or hold the chart at 6,600 until the caption catches up.",
+        "Raise the stacked-chart label contrast to the standard ink token so 'Everything else 20%' reads at arm's length.",
+        "Rebuild seg4 to fill the frame \u2014 large countable pictogram units for 80/20 \u2014 and lift the CTA out of the caption band."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 151
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-11T19:02:00+00:00",
+      "slug": "container-ships-floating-cities",
+      "score": 34,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "The charts are competent but Data stands on top of the labels all the way through and the last 7 seconds are a static bordered card over an empty frame.",
+      "auto_fails": [
+        "decorative_mascot: Data only perches: stands on the bar top at hook@0.8 through seg0:end, sits on the 2019 bar at seg1:start, glides across rows at seg1:mid/seg1:end, and is a ~20px sticker on the dotted line at seg4:start-payoff@-0.4 \u2014 no setup->action->payoff tied to any number.",
+        "dead_air: seg4:start (43.85s) through payoff@-0.4 (50.70s) is the same speech card plus the same faint two-row chart; seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 differ only by a few pixels of mascot drift over ~4s.",
+        "empty_void: seg4:start-payoff@-0.4 waste the whole middle-to-lower third on flat dark ground with two ~20px mascots and a hairline rule; hook@0.3 is likewise an empty frame under the title with one 80px grey stub.",
+        "unreadable: seg0:mid and seg0:end print the 2006 value as '1..0' with the mascot's body straddling the digits; seg1:end stamps '6600' across the mascot's head; seg1:start has the mascot covering 'by year' in the title; seg3:start renders 'Everything else 20%' and 'By sea 80%' in grey that all but vanishes into the panel."
+      ],
+      "problems": [
+        "seg0:mid/seg0:end \u2014 the mascot is parked on the 2006 bar directly over its value label, which reads as '1..0' instead of 12500.",
+        "seg1:end \u2014 '6600' is stamped across the mascot's head and '12500' sits half-behind his legs; seg1:start has him covering the word 'year' in the title.",
+        "seg1:start \u2014 the chart is already fully built to 24000 while the caption reads 'held 6,600 boxes', so the visual has outrun the narration.",
+        "seg1:start/seg1:mid/seg3:start \u2014 a cyan ellipse floats over empty background circling nothing.",
+        "seg3:start \u2014 'Everything else 20%' and 'By sea 80%' are grey-on-dark and effectively disappear at arm's length.",
+        "seg4:start through payoff@-0.4 \u2014 a bordered UI card over a near-empty frame with a miniature chart; nothing meaningful moves for the final ~7 seconds."
+      ],
+      "fixes": [
+        "Place the mascot OUTSIDE the label band: reserve the label rectangle for each bar and offset his anchor so no value or year is ever occluded (seg0, seg1, seg2).",
+        "Hold seg1's chart at the 1996 state until the narration reaches it, then animate the growth in step with the spoken years.",
+        "Remove the stray cyan ellipse or bind it to the mark it is supposed to annotate.",
+        "Raise 'Everything else 20%' / 'By sea 80%' to look.TEXT ink weight so both read on a phone.",
+        "Rebuild seg4: kill the bordered card, put the closing line as full-bleed type, scale the 80/20 visual up, and animate through the last 7 seconds.",
+        "Give Data one setup->action->payoff per scene \u2014 e.g. push the 2022 pan of the seesaw down himself, or be carried up as the bar grows and react at the top."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 153
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "5b693e6 2026-09-11 doctor: fix Third's chaos-mislabeling bug, add series audit tool (2127c6395c2c) (#372)",
-    "eb81d77 2026-09-11 exchange: phase A bundle for 20260911 [skip ci]"
+    "cd0c580 2026-09-12 doctor: mark 8d1b5d1e1f69 done (merged in #377, d8fddc3)",
+    "93e4ee6 2026-09-12 exchange: phase A bundle for 20260912 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-28": 9,
         "2026-08-29": 4,
         "2026-09-03": 3,
         "2026-09-04": 3,
         "2026-09-05": 2,
         "2026-09-06": 2,
         "2026-09-07": 6,
-        "2026-09-10": 2
+        "2026-09-10": 2,
+        "2026-09-11": 2
       },
-      "total_posted": 318,
-      "attempted": 318,
+      "total_posted": 320,
+      "attempted": 320,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-08-28": 3,
         "2026-08-29": 2,
         "2026-08-30": 1,
         "2026-08-31": 5,
@@ -2624,15 +2631,14 @@
         "2026-09-08": 2,
         "2026-09-09": 3,
         "2026-09-10": 3,
-        "2026-09-11": 1
+        "2026-09-11": 3
       },
-      "total_posted": 244,
-      "attempted": 244,
+      "total_posted": 246,
+      "attempted": 246,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-28": 1,
         "2026-08-29": 3,
         "2026-09-02": 4,
         "2026-09-03": 5,
@@ -2643,11 +2649,11 @@
         "2026-09-08": 4,
         "2026-09-09": 3,
         "2026-09-10": 6,
-        "2026-09-11": 1
+        "2026-09-11": 5
       },
-      "total_posted": 259,
-      "attempted": 470,
-      "rejected_or_pending": 211
+      "total_posted": 263,
+      "attempted": 480,
+      "rejected_or_pending": 217
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2661,63 +2667,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 108,
+      "videos": 109,
       "top_by_vph": [
         {
           "title": "The Lake That Basically Disappeared (3 Charts)",
-          "vph": 6.45,
+          "vph": 5.54,
           "views": 901
         },
         {
+          "title": "Colorado Just Brought Wolves Back After 80 Years (3 Charts)",
+          "vph": 5.51,
+          "views": 44
+        },
+        {
           "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-          "vph": 6.17,
+          "vph": 5.24,
           "views": 798
         },
         {
-          "title": "Every American Is Now $116,480 In Debt",
-          "vph": 4.96,
-          "views": 215
-        },
-        {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 3.91,
+          "vph": 3.64,
           "views": 1220
         },
         {
-          "title": "Nobody Has Walked On The Moon In 52 Years (3 Charts)",
-          "vph": 3.17,
-          "views": 28
+          "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
+          "vph": 3.45,
+          "views": 65
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 98,
+      "videos": 101,
       "top_by_vph": [
         {
           "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
-          "vph": 3.19,
-          "views": 301
+          "vph": 2.45,
+          "views": 292
         },
         {
           "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
-          "vph": 1.51,
-          "views": 172
+          "vph": 1.36,
+          "views": 189
         },
         {
           "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna",
-          "vph": 1.16,
-          "views": 45
+          "vph": 0.88,
+          "views": 56
         },
         {
           "title": "Lirik Wild Way Of Making Quick Cash In Wardogs",
-          "vph": 0.95,
-          "views": 131
+          "vph": 0.85,
+          "views": 138
         },
         {
-          "title": "Nmplol Did Not See That Coming",
-          "vph": 0.68,
-          "views": 10
+          "title": "Jynxzi \"What Does He Even Do?\" \u2014 Then This Happens",
+          "vph": 0.67,
+          "views": 47
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2809,13 +2815,6 @@
       "horizon": "strategy",
       "severity": "high",
       "ruling": "in_progress"
-    },
-    {
-      "signature": "8d1b5d1e1f69",
-      "title": "Explainer gate proves facts but not a coherent story",
-      "horizon": "short_term",
-      "severity": "high",
-      "ruling": "doing"
     },
     {
       "signature": "f08a10274ea9",
@@ -3405,6 +3404,13 @@
       "verdict": "done",
       "date": "20260909",
       "because": "Resolved by the 2026-08-25 camera-float retirement, one day after this was filed. The clipping cause was the moving crop (scale 1080->1168, crop travelling x=0..88); shared/camera_float.py is now a headstone whose public surface raises, nothing in the repo imports it, and engines/chart_race.py applies no full-frame transform at all \u2014 grep confirms zero importers and no scale/crop/zoompan in the renderer. With no transform the title's W*0.92 fit leaves a real 4% margin per side, so the safe-area arithmetic the finding disputed is no longer being spent. The stale 20px/1.9% comments it cites went with the code. tests/test_camera_float.py holds the retirement shut, so the transform cannot come back and re-open this.",
+      "revisit_after": null
+    },
+    {
+      "signature": "8d1b5d1e1f69",
+      "verdict": "done",
+      "date": "20260912",
+      "because": "",
       "revisit_after": null
     },
     {
