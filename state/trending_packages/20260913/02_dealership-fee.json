@@ -18,21 +18,65 @@
   ],
   "script": "The finance manager told me the eight hundred dollar dealer prep fee was non-negotiable and required by the manufacturer, so I said fine, but I forgot to mention I'd been recording the whole negotiation on my phone since we started, which is legal in my state. Two days later I called to cancel the sale after finding the exact same fee waived for a friend at the same dealership that same week. The manager on the phone insisted the fee was mandatory for every customer, no exceptions, so I drove back in and asked to speak to the general manager directly. I played eleven seconds of audio, his own finance guy, on the record, calling the fee basically just extra profit, don't worry about it. The general manager's face changed instantly. He refunded the full eight hundred dollars on the spot, comped an oil change package, and the finance manager was gone from the floor within a week.",
   "shots": [
-    {"phrase": "dealer prep fee was non-negotiable", "query": "car dealership showroom"},
-    {"phrase": "recording the whole negotiation on my phone", "query": "phone recording screen"},
-    {"phrase": "waived for a friend at the same dealership", "query": "car sales paperwork signing"},
-    {"phrase": "speak to the general manager directly", "query": "office manager desk conversation"},
-    {"phrase": "played eleven seconds of audio", "query": "phone speaker audio playback"},
-    {"phrase": "basically just extra profit, don't worry about it", "query": "salesman talking to customer"},
-    {"phrase": "refunded the full eight hundred dollars", "query": "credit card refund receipt"},
-    {"phrase": "gone from the floor within a week", "query": "empty office desk"}
+    {
+      "phrase": "dealer prep fee was non-negotiable",
+      "query": "car dealership showroom"
+    },
+    {
+      "phrase": "recording the whole negotiation on my phone",
+      "query": "phone recording screen"
+    },
+    {
+      "phrase": "waived for a friend at the same dealership",
+      "query": "car sales paperwork signing"
+    },
+    {
+      "phrase": "speak to the general manager directly",
+      "query": "office manager desk conversation"
+    },
+    {
+      "phrase": "played eleven seconds of audio",
+      "query": "phone speaker audio playback"
+    },
+    {
+      "phrase": "basically just extra profit, don't worry about it",
+      "query": "salesman talking to customer"
+    },
+    {
+      "phrase": "refunded the full eight hundred dollars",
+      "query": "credit card refund receipt"
+    },
+    {
+      "phrase": "gone from the floor within a week",
+      "query": "empty office desk"
+    }
   ],
   "punches": [
-    {"phrase": "eight hundred dollar dealer prep fee", "text": "$800 FEE", "color": "#ffaa30"},
-    {"phrase": "recording the whole negotiation", "text": "IT'S ON TAPE", "color": "#ffaa30"},
-    {"phrase": "basically just extra profit", "text": "CAUGHT", "color": "#ff3030"},
-    {"phrase": "refunded the full eight hundred dollars", "text": "REFUNDED", "color": "#50ff80"},
-    {"phrase": "gone from the floor within a week", "text": "FIRED", "color": "#50ff80"}
+    {
+      "phrase": "eight hundred dollar dealer prep fee",
+      "text": "$800 FEE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "recording the whole negotiation",
+      "text": "IT'S ON TAPE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "basically just extra profit",
+      "text": "CAUGHT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "refunded the full eight hundred dollars",
+      "text": "REFUNDED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "gone from the floor within a week",
+      "text": "FIRED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }

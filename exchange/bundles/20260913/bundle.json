@@ -298,14 +298,650 @@
   "response_path": "exchange/bundles/20260913/response.json",
   "done_marker": "exchange/bundles/20260913/DONE",
   "counts": {
-    "packages": 0,
-    "requests": 0,
+    "packages": 6,
+    "requests": 16,
     "animations": 0,
-    "to_author": 6,
-    "channels_needing_a_brain": 2
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
-  "packages": [],
-  "requests": [],
+  "packages": [
+    {
+      "slug": "office-fridge-lunch-thief",
+      "title": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
+      "script": "Someone's been eating my lunch from the office fridge for three weeks straight, and nobody would admit it. HR shrugged, my manager shrugged, so I stopped complaining and started planning. I bought an identical container and labeled it in bold red marker: HR SAMPLE, DO NOT EAT, UNDER REVIEW, then packed it with my actual leftovers, extra spicy this time. I left it in the fridge at nine and waited. By eleven, one of the accounting interns was sprinting toward the break room, face pale, asking whoever would listen if the sample thing meant a drug test. She'd eaten half of it before checking the label twice. I never said a word. She confessed to HR that afternoon, terrified of a review that never existed, and admitted to the fridge thefts going back to January just to explain why she'd been so hungry. The fridge has had a padlock on it ever since, and it isn't mine.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "eating my lunch from the office fridge",
+          "query": "office fridge kitchen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "HR shrugged, my manager shrugged",
+          "query": "office worker shrug",
+          "has_media": true,
+          "verdict": "weak"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "labeled it in bold red marker",
+          "query": "red marker writing label",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "packed it with my actual leftovers",
+          "query": "packed lunch container food",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "sprinting toward the break room",
+          "query": "person running office hallway",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "eaten half of it before checking the label twice",
+          "query": "eating food break room",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "confessed to HR that afternoon",
+          "query": "hr office meeting",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "padlock on it ever since",
+          "query": "padlock lock metal",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 0,
+        "weak": 1,
+        "missing": 7,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": [
+        "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+        "office-fridge-lunch-thief-s2-47a1c0334e56",
+        "office-fridge-lunch-thief-s3-82df14d62616",
+        "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+        "office-fridge-lunch-thief-s5-8da0ce2c2b84",
+        "office-fridge-lunch-thief-s6-029d6d07d8f6",
+        "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+        "office-fridge-lunch-thief-s1-d9de9ff496fb"
+      ]
+    },
+    {
+      "slug": "car-dealership-hidden-fee-recording",
+      "title": "The Finance Guy Lied About A Fee. I Had It On Tape.",
+      "script": "The finance manager told me the eight hundred dollar dealer prep fee was non-negotiable and required by the manufacturer, so I said fine, but I forgot to mention I'd been recording the whole negotiation on my phone since we started, which is legal in my state. Two days later I called to cancel the sale after finding the exact same fee waived for a friend at the same dealership that same week. The manager on the phone insisted the fee was mandatory for every customer, no exceptions, so I drove back in and asked to speak to the general manager directly. I played eleven seconds of audio, his own finance guy, on the record, calling the fee basically just extra profit, don't worry about it. The general manager's face changed instantly. He refunded the full eight hundred dollars on the spot, comped an oil change package, and the finance manager was gone from the floor within a week.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "dealer prep fee was non-negotiable",
+          "query": "car dealership showroom",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "recording the whole negotiation on my phone",
+          "query": "phone recording screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "waived for a friend at the same dealership",
+          "query": "car sales paperwork signing",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "speak to the general manager directly",
+          "query": "office manager desk conversation",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "played eleven seconds of audio",
+          "query": "phone speaker audio playback",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "basically just extra profit, don't worry about it",
+          "query": "salesman talking to customer",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "refunded the full eight hundred dollars",
+          "query": "credit card refund receipt",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "gone from the floor within a week",
+          "query": "empty office desk",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": [
+        "car-dealership-hidden-fee-recording-s0-2bb80fbd6062",
+        "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
+        "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+        "car-dealership-hidden-fee-recording-s3-b1196d036386",
+        "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+        "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
+        "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+        "car-dealership-hidden-fee-recording-s7-0cf05900fa94"
+      ]
+    },
+    {
+      "slug": "india-passed-china-population",
+      "title": "India Just Passed China In Population",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "airbnb-passed-marriott-rooms",
+      "title": "Airbnb Passed The World's Biggest Hotel Chain",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "mobile-games-passed-box-office",
+      "title": "Mobile Games Passed Every Movie Theater Combined",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "china-passed-japan-robots",
+      "title": "China Passed Japan In Factory Robots. Then Kept Going.",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+      "safe_request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s0-ae3a39ae6f68.png",
+      "prompt_sha256": "baf0dd03868135d58a280832039d6e2720bdee57974e4943bbbf9d14f0999ec2",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s0-ae3a39ae6f68.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office fridge kitchen. It accompanies the narration: \"eating my lunch from the office fridge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+      "safe_request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s2-47a1c0334e56.png",
+      "prompt_sha256": "6ae84079fa46788792499ccc225450027ed5bca80ae3413cee71fc219346a5a8",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s2-47a1c0334e56.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: red marker writing label. It accompanies the narration: \"labeled it in bold red marker\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+      "safe_request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s3-82df14d62616.png",
+      "prompt_sha256": "daaf947441041b7343ddaff8a9159ae500c2e8541ba18973168b50d0be8560a3",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s3-82df14d62616.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: packed lunch container food. It accompanies the narration: \"packed it with my actual leftovers\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+      "safe_request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s4-7a0aa55e9ed9.png",
+      "prompt_sha256": "8543d893fd02e6ea311d9c54ab96710113f6312e20744ade110cf20bb301a5fe",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s4-7a0aa55e9ed9.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: person running office hallway. It accompanies the narration: \"sprinting toward the break room\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s5-8da0ce2c2b84",
+      "safe_request_id": "office-fridge-lunch-thief-s5-8da0ce2c2b84",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s5-8da0ce2c2b84.png",
+      "prompt_sha256": "143e31be5fae6e0cdbb6410d7740037208391252b83cdc5ce218aedc888ea8e0",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s5-8da0ce2c2b84.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: eating food break room. It accompanies the narration: \"eaten half of it before checking the label twice\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+      "safe_request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s6-029d6d07d8f6.png",
+      "prompt_sha256": "a86c6ae9b83bb70080c3518b7dfcbe71fe50bb3cedbb201c4d29b67e41a38d0b",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s6-029d6d07d8f6.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: hr office meeting. It accompanies the narration: \"confessed to HR that afternoon\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+      "safe_request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s7-0ca1dd7b909f.png",
+      "prompt_sha256": "9570312035670737fa202facf3523a52988fa792900e36f739fd3c4a39f0ec75",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s7-0ca1dd7b909f.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: padlock lock metal. It accompanies the narration: \"padlock on it ever since\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "safe_request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s1-d9de9ff496fb.png",
+      "prompt_sha256": "c8449bdd117cbabac931466680e94ff6ed6475c34a356173ded2ae883c507f82",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s1-d9de9ff496fb.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office worker shrug. It accompanies the narration: \"HR shrugged, my manager shrugged\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s0-2bb80fbd6062",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s0-2bb80fbd6062",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s0-2bb80fbd6062.png",
+      "prompt_sha256": "ce8ad948a0befd581a50c68bbe63de6b918c374ff7cf99c26de479f7a003c3c2",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s0-2bb80fbd6062.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car dealership showroom. It accompanies the narration: \"dealer prep fee was non-negotiable\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s1-46c29c4caba0.png",
+      "prompt_sha256": "6e1d5a4681a15acd08a843594c1cbd4f23f4cca6751b80aaa00356c12125a95d",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s1-46c29c4caba0.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone recording screen. It accompanies the narration: \"recording the whole negotiation on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.png",
+      "prompt_sha256": "c3d716687af0abd5ee9dee5b96457e0e31ec764cd4867abea515f278b707381e",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car sales paperwork signing. It accompanies the narration: \"waived for a friend at the same dealership\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s3-b1196d036386",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s3-b1196d036386",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s3-b1196d036386.png",
+      "prompt_sha256": "5b815f49a2ddf806fc1a5558d5f29b9b47069e308266d9cae1bd1ca04799154c",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s3-b1196d036386.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office manager desk conversation. It accompanies the narration: \"speak to the general manager directly\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s4-c81734b8f8a2.png",
+      "prompt_sha256": "f6f9c5c4be3e70b05ddac0d43675c0ea05305d32b3b36fc6550ff525d32963b5",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s4-c81734b8f8a2.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone speaker audio playback. It accompanies the narration: \"played eleven seconds of audio\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s5-2356a44cf87f.png",
+      "prompt_sha256": "57a94a2c3ea29fc8ff16fd14569a5b89df1b70708106d09a0632eeb92d14c7b1",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s5-2356a44cf87f.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: salesman talking to customer. It accompanies the narration: \"basically just extra profit, don't worry about it\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s6-64e40d22467f.png",
+      "prompt_sha256": "f1fd3fe88614e17f3f1ddf6b21f9aac9b9cafa4fdc5e0029d2094ec59d78180b",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s6-64e40d22467f.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: credit card refund receipt. It accompanies the narration: \"refunded the full eight hundred dollars\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+      "safe_request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+      "drive_filename": "20260913__car-dealership-hidden-fee-recording-s7-0cf05900fa94.png",
+      "prompt_sha256": "6a92910db24cb3f346bd63b0760ceba4f4c5915655b7259b8db9d2347f0014a4",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s7-0cf05900fa94.json",
+      "slug": "car-dealership-hidden-fee-recording",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: empty office desk. It accompanies the narration: \"gone from the floor within a week\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
@@ -431,7 +1067,7 @@
       "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
     },
     "two_jobs": [
-      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but explainer do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -474,236 +1110,6 @@
     "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
   },
   "authoring_requests": {
-    "trending": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260913",
-      "channel": "trending",
-      "reason": "only 0 of 6 packages exist for 20260913: the Claude authoring Routine did not run",
-      "authored_already": 0,
-      "target": 6,
-      "registry_target": 6,
-      "write": 6,
-      "mix": {
-        "graph_race": 4,
-        "reddit_story": 2
-      },
-      "retired_formats": [
-        "text_card"
-      ],
-      "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-      "where": {
-        "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-        "alternative": "Or commit one file per package to exchange/bundles/20260913/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-        "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-      },
-      "formats": {
-        "graph_race": {
-          "how_to_signal": "set \"format\": \"graph_race\"",
-          "renderer": "make_graph_race.py",
-          "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "y_label",
-            "duration",
-            "source",
-            "years",
-            "series",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-            "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-            "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-            "Prefer a dramatic crossover or collapse mid-video.",
-            "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-            "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-          ],
-          "media": {
-            "shots": false,
-            "chatgpt_supplies_images": false,
-            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-          },
-          "target_today": 4
-        },
-        "reddit_story": {
-          "how_to_signal": "omit the `format` field, set `subreddit`",
-          "renderer": "make_reddit_story.py",
-          "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-          "required": [
-            "subreddit",
-            "slug",
-            "title",
-            "hashtags",
-            "script",
-            "shots",
-            "punches",
-            "music_vibe"
-          ],
-          "subreddit_options": [
-            "pettyrevenge",
-            "MaliciousCompliance",
-            "ProRevenge",
-            "entitledparents",
-            "TalesFromTheCustomer",
-            "IDontWorkHereLady"
-          ],
-          "rules": [
-            "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-            "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-            "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-            "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-            "Do not add the Data/Explainer mascot; Trending is a separate channel."
-          ],
-          "media": {
-            "shots": true,
-            "chatgpt_supplies_images": true,
-            "shots_min": 6,
-            "shots_max": 8,
-            "per_shot": [
-              "phrase",
-              "query"
-            ],
-            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-          },
-          "target_today": 2
-        }
-      },
-      "hard_rules": [
-        "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-        "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-        "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-        "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-        "TOS-safe: no slurs, no explicit content, no gore.",
-        "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-        "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-        "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-      ],
-      "do_not_repeat": [
-        "My Manager Wrote Me Up. So I Got Literal.",
-        "She Said The Customer Is Always Right. I Printed Proof.",
-        "Boeing Led Planemaking For Decades. Airbus Passed It.",
-        "Vinyl Just Beat CDs. It Hadn't Since 1986.",
-        "Solar Passed Nuclear Power. It Isn't Close Anymore.",
-        "Coal Powered America For A Century. Gas Ended It.",
-        "Ozempic Passed Weight-Loss Surgery In 5 Years",
-        "Online Shopping Buried The Department Store",
-        "SUVs And Trucks Buried The Sedan",
-        "Digital Ads Buried Newspaper Ads In A Decade",
-        "He Banned Verbal Approvals. I Emailed Everything.",
-        "She Ordered Me To Restock Shelves. I Own The Store.",
-        "Boeing Ruled The Skies. Two Crashes Ended That.",
-        "The US Quietly Became The World's Top Oil Producer",
-        "China Beat Hollywood At The Box Office In 2020",
-        "Bitcoin Closed The Gap On Gold",
-        "He Cut My Lock. I Kept The Bolt Cutters.",
-        "She Blamed My Kid For The Broken Mailbox. I Had A Camera.",
-        "Mobile Gaming Just Passed Console And PC Combined",
-        "Streaming Buried Every Other Way We Buy Music",
-        "China's EV Chargers Just Passed Its Gas Stations",
-        "NYC's Yellow Cabs Got Buried By Uber And Lyft",
-        "They Lost My Grandmother's Clock. I Had Video.",
-        "He Ghosted My Invoice. So I Filed A Lien.",
-        "A 2-Year-Old App Just Passed Etsy",
-        "We've Now Found 40,000 Asteroids Near Earth",
-        "Esports' Biggest Prize Ever Just Collapsed",
-        "Nokia Ruled Smartphones. Then Apple Ended It",
-        "Norway's EVs Buried Gas Cars On The Road",
-        "China's Exports Blew Past America's",
-        "Bottled Water Buried Soda In America",
-        "Solar Power Got Cheaper Than Coal",
-        "He Made Me Notarize Everything. So I Did.",
-        "She Ate The Cake, Then Demanded A Refund"
-      ],
-      "levity": {
-        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-        "moves": [
-          {
-            "name": "the flat undercut",
-            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-            "example": "The chase lasted two hours. Top speed: twelve."
-          },
-          {
-            "name": "the mundane detail",
-            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-            "example": "He fled on foot, still holding the salad."
-          },
-          {
-            "name": "the understatement",
-            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-            "example": "This did not go well for the bees."
-          },
-          {
-            "name": "the callback kicker",
-            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-          },
-          {
-            "name": "the deadpan attribution",
-            "how": "Quote officialese straight and let it sit. Do not mock it.",
-            "example": "The report calls this 'an unplanned pond entry'."
-          }
-        ],
-        "never": [
-          "puns and wordplay",
-          "setup-then-punchline structure",
-          "'wait for it', 'plot twist', 'you won't believe'",
-          "exclamation marks",
-          "telling the viewer it was funny ('hilariously', 'comedy gold')",
-          "emoji, 'lol', 'lmao'",
-          "sarcasm aimed at a person rather than a situation",
-          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-        ],
-        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-      },
-      "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-      "read_first": [
-        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-        "docs/FALLBACKS.md"
-      ],
-      "media_contract": {
-        "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-        "shape": {
-          "shots": [
-            {
-              "phrase": "...exact substring of your script...",
-              "query": "...what the shot shows...",
-              "media": {
-                "status": "fulfilled",
-                "drive": {
-                  "file_id": "1AbC...",
-                  "folder_id": "1FolderXyz...",
-                  "filename": "<date>__authored-<slug>-s0.png",
-                  "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                  "sharing": "anyone_with_link"
-                },
-                "image": {
-                  "sha256": "...64 hex of the exact bytes...",
-                  "bytes": 1554380,
-                  "format": "png",
-                  "width": 1080,
-                  "height": 1080
-                }
-              }
-            }
-          ]
-        },
-        "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-        "verified_on_arrival": [
-          "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-          "Full pixel decode \u2014 an undecodable file is refused.",
-          "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-          "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-        ],
-        "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-        "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-        "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-      }
-    },
     "explainer": {
       "schema": "chatgpt-authoring-request/v1",
       "date": "20260913",
@@ -760,234 +1166,5 @@
       }
     }
   },
-  "authoring_request": {
-    "schema": "chatgpt-authoring-request/v1",
-    "date": "20260913",
-    "channel": "trending",
-    "reason": "only 0 of 6 packages exist for 20260913: the Claude authoring Routine did not run",
-    "authored_already": 0,
-    "target": 6,
-    "registry_target": 6,
-    "write": 6,
-    "mix": {
-      "graph_race": 4,
-      "reddit_story": 2
-    },
-    "retired_formats": [
-      "text_card"
-    ],
-    "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-    "where": {
-      "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-      "alternative": "Or commit one file per package to exchange/bundles/20260913/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-      "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-    },
-    "formats": {
-      "graph_race": {
-        "how_to_signal": "set \"format\": \"graph_race\"",
-        "renderer": "make_graph_race.py",
-        "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "y_label",
-          "duration",
-          "source",
-          "years",
-          "series",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-          "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-          "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-          "Prefer a dramatic crossover or collapse mid-video.",
-          "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-          "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-        ],
-        "media": {
-          "shots": false,
-          "chatgpt_supplies_images": false,
-          "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-        },
-        "target_today": 4
-      },
-      "reddit_story": {
-        "how_to_signal": "omit the `format` field, set `subreddit`",
-        "renderer": "make_reddit_story.py",
-        "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-        "required": [
-          "subreddit",
-          "slug",
-          "title",
-          "hashtags",
-          "script",
-          "shots",
-          "punches",
-          "music_vibe"
-        ],
-        "subreddit_options": [
-          "pettyrevenge",
-          "MaliciousCompliance",
-          "ProRevenge",
-          "entitledparents",
-          "TalesFromTheCustomer",
-          "IDontWorkHereLady"
-        ],
-        "rules": [
-          "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-          "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-          "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-          "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-          "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-          "Do not add the Data/Explainer mascot; Trending is a separate channel."
-        ],
-        "media": {
-          "shots": true,
-          "chatgpt_supplies_images": true,
-          "shots_min": 6,
-          "shots_max": 8,
-          "per_shot": [
-            "phrase",
-            "query"
-          ],
-          "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-        },
-        "target_today": 2
-      }
-    },
-    "hard_rules": [
-      "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-      "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-      "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-      "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-      "TOS-safe: no slurs, no explicit content, no gore.",
-      "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-      "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-      "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-    ],
-    "do_not_repeat": [
-      "My Manager Wrote Me Up. So I Got Literal.",
-      "She Said The Customer Is Always Right. I Printed Proof.",
-      "Boeing Led Planemaking For Decades. Airbus Passed It.",
-      "Vinyl Just Beat CDs. It Hadn't Since 1986.",
-      "Solar Passed Nuclear Power. It Isn't Close Anymore.",
-      "Coal Powered America For A Century. Gas Ended It.",
-      "Ozempic Passed Weight-Loss Surgery In 5 Years",
-      "Online Shopping Buried The Department Store",
-      "SUVs And Trucks Buried The Sedan",
-      "Digital Ads Buried Newspaper Ads In A Decade",
-      "He Banned Verbal Approvals. I Emailed Everything.",
-      "She Ordered Me To Restock Shelves. I Own The Store.",
-      "Boeing Ruled The Skies. Two Crashes Ended That.",
-      "The US Quietly Became The World's Top Oil Producer",
-      "China Beat Hollywood At The Box Office In 2020",
-      "Bitcoin Closed The Gap On Gold",
-      "He Cut My Lock. I Kept The Bolt Cutters.",
-      "She Blamed My Kid For The Broken Mailbox. I Had A Camera.",
-      "Mobile Gaming Just Passed Console And PC Combined",
-      "Streaming Buried Every Other Way We Buy Music",
-      "China's EV Chargers Just Passed Its Gas Stations",
-      "NYC's Yellow Cabs Got Buried By Uber And Lyft",
-      "They Lost My Grandmother's Clock. I Had Video.",
-      "He Ghosted My Invoice. So I Filed A Lien.",
-      "A 2-Year-Old App Just Passed Etsy",
-      "We've Now Found 40,000 Asteroids Near Earth",
-      "Esports' Biggest Prize Ever Just Collapsed",
-      "Nokia Ruled Smartphones. Then Apple Ended It",
-      "Norway's EVs Buried Gas Cars On The Road",
-      "China's Exports Blew Past America's",
-      "Bottled Water Buried Soda In America",
-      "Solar Power Got Cheaper Than Coal",
-      "He Made Me Notarize Everything. So I Did.",
-      "She Ate The Cake, Then Demanded A Refund"
-    ],
-    "levity": {
-      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-      "moves": [
-        {
-          "name": "the flat undercut",
-          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-          "example": "The chase lasted two hours. Top speed: twelve."
-        },
-        {
-          "name": "the mundane detail",
-          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-          "example": "He fled on foot, still holding the salad."
-        },
-        {
-          "name": "the understatement",
-          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-          "example": "This did not go well for the bees."
-        },
-        {
-          "name": "the callback kicker",
-          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-        },
-        {
-          "name": "the deadpan attribution",
-          "how": "Quote officialese straight and let it sit. Do not mock it.",
-          "example": "The report calls this 'an unplanned pond entry'."
-        }
-      ],
-      "never": [
-        "puns and wordplay",
-        "setup-then-punchline structure",
-        "'wait for it', 'plot twist', 'you won't believe'",
-        "exclamation marks",
-        "telling the viewer it was funny ('hilariously', 'comedy gold')",
-        "emoji, 'lol', 'lmao'",
-        "sarcasm aimed at a person rather than a situation",
-        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-      ],
-      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-    },
-    "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-    "read_first": [
-      "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-      "data_learning/SCHULTE_MEDIA_BRAIN.md",
-      "docs/FALLBACKS.md"
-    ],
-    "media_contract": {
-      "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-      "shape": {
-        "shots": [
-          {
-            "phrase": "...exact substring of your script...",
-            "query": "...what the shot shows...",
-            "media": {
-              "status": "fulfilled",
-              "drive": {
-                "file_id": "1AbC...",
-                "folder_id": "1FolderXyz...",
-                "filename": "<date>__authored-<slug>-s0.png",
-                "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                "sharing": "anyone_with_link"
-              },
-              "image": {
-                "sha256": "...64 hex of the exact bytes...",
-                "bytes": 1554380,
-                "format": "png",
-                "width": 1080,
-                "height": 1080
-              }
-            }
-          }
-        ]
-      },
-      "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-      "verified_on_arrival": [
-        "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-        "Full pixel decode \u2014 an undecodable file is refused.",
-        "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-        "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-      ],
-      "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-      "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-      "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-    }
-  }
+  "authoring_request": null
 }
