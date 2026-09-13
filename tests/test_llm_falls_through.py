@@ -134,13 +134,61 @@ def urllib_429():
 
 
 class TestTheRealChainIsStillWiredFreeFirst(unittest.TestCase):
-    def test_order_is_groq_then_gemini_then_anthropic(self):
-        self.assertEqual([n for n, _e, _c in sg._LLM_CHAIN],
-                         ["groq", "gemini", "anthropic"])
+    """The ORDER is the contract: free before paid, cheap before slow.
 
-    def test_each_entry_names_its_own_env_var(self):
+    This used to assert the exact list ["groq", "gemini", "anthropic"], which
+    made it a test of the chain's LENGTH as much as its order — so adding the
+    subscription brain on 2026-09-13 failed it twice for no defect. The
+    ordering rule is what matters and it is what is asserted now; a fourth
+    backend that broke the rule would still fail, and one that honours it
+    does not have to edit this file to be allowed.
+    """
+
+    #: The two free HTTP backends, in the order they are tried.
+    FREE = ("groq", "gemini")
+    #: Costs money per call.
+    PAID = ("anthropic",)
+    #: The CLAUDE_CODE_OAUTH_TOKEN subscription — free, but it spawns a
+    #: process and the SHOWRUNNER spends the same budget, so it goes last.
+    SUBSCRIPTION = ("claude_cli",)
+
+    def test_every_backend_is_accounted_for_here(self):
+        """A new backend has to declare which kind it is, so the ordering
+        rules below actually cover it instead of silently skipping it."""
+        known = set(self.FREE) | set(self.PAID) | set(self.SUBSCRIPTION)
+        names = {n for n, _e, _c in sg._LLM_CHAIN}
+        self.assertEqual(names - known, set(),
+                         "an unclassified backend — add it to FREE, PAID or "
+                         "SUBSCRIPTION so its position is governed")
+
+    def test_free_http_backends_come_first_and_in_order(self):
+        names = [n for n, _e, _c in sg._LLM_CHAIN]
+        self.assertEqual([n for n in names if n in self.FREE],
+                         list(self.FREE))
+        for free in self.FREE:
+            for paid in self.PAID:
+                if paid in names:
+                    self.assertLess(names.index(free), names.index(paid),
+                                    f"{paid} is tried before {free}")
+
+    def test_the_subscription_brain_is_the_last_resort(self):
+        names = [n for n, _e, _c in sg._LLM_CHAIN]
+        for sub in self.SUBSCRIPTION:
+            if sub not in names:
+                continue
+            self.assertEqual(names[-1], sub,
+                             "the showrunner shares this subscription — it "
+                             "must only be reached once everything else has "
+                             "failed")
+
+    def test_each_entry_names_the_env_var_that_enables_it(self):
+        """`_call_llm` SKIPS a backend whose env var is unset, so a wrong name
+        here means the backend is silently never tried — which is exactly how
+        a judge can be present and unreachable at the same time."""
+        expected = {"claude_cli": "CLAUDE_CODE_OAUTH_TOKEN"}
         for name, env, _call in sg._LLM_CHAIN:
-            self.assertEqual(env, f"{name.upper()}_API_KEY")
+            self.assertEqual(env, expected.get(name, f"{name.upper()}_API_KEY"),
+                             name)
 
 
 if __name__ == "__main__":

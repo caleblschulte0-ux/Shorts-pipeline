@@ -34,6 +34,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -269,6 +271,103 @@ def _call_anthropic(system: str, user: str, model: str = DEFAULT_ANTHROPIC_MODEL
     return resp["content"][0]["text"]
 
 
+#: The headless brain's model and how long one judgment may take. A gate
+#: asks this once per story, so a generous per-call timeout becomes a very
+#: long run over a full catalogue; 90s is comfortably above a normal answer
+#: and far below "the run is hung".
+DEFAULT_CLAUDE_CLI_MODEL = "sonnet"
+CLAUDE_CLI_TIMEOUT = int(os.environ.get("CLAUDE_CLI_TIMEOUT", "90"))
+
+#: THE SHOWRUNNER SHARES THIS SUBSCRIPTION AND FAILS CLOSED.
+#:
+#: `scripts/showrunner_review.py` judges every rendered video on the same
+#: CLAUDE_CODE_OAUTH_TOKEN, and CLAUDE.md is explicit that it holds
+#: everything when it has no verdict: "a fail-closed gate with no judge holds
+#: everything". A PRE-render gate asks this brain once per story and there
+#: are 85 un-posted stories, so an unbounded judge would cheerfully spend the
+#: whole subscription before the first render — and then the showrunner,
+#: which is the load-bearing one, would get nothing and block the day. That
+#: is a WORSE outage than the one this backend exists to fix, arrived at by
+#: fixing it.
+#:
+#: So the gate gets a bounded allowance. When it runs out the backend raises
+#: like any other unavailable one, the chain falls through, and the
+#: deterministic floor stands — exactly the behaviour of the day before this
+#: change, for the stories past the bound only. The showrunner never calls
+#: `_call_llm`; it shells the CLI itself, so this counter cannot touch it.
+CLAUDE_CLI_MAX_CALLS = int(os.environ.get("CLAUDE_CLI_MAX_CALLS", "40"))
+_CLAUDE_CLI_CALLS = 0
+
+
+def _call_claude_cli(system: str, user: str,
+                     model: str | None = None) -> str:
+    """The Claude HEADLESS BRAIN — the `claude` CLI on the
+    CLAUDE_CODE_OAUTH_TOKEN subscription, NOT the paid API.
+
+    WHY THIS EXISTS. On 2026-09-13 the explainer published nothing: its own
+    log said `0 posted, 85 held by the gate, 0 faults`, every un-posted story
+    held PRE-RENDER. The cause was not the gate being wrong — it was the gate
+    being RIGHT and having nobody to ask. Both configured backends were down
+    at once:
+
+        [llm] groq unavailable (HTTP Error 404)
+        [llm] gemini unavailable (HTTP Error 429: Too Many Requests)
+
+    The `thesis` check is a crude keyword-overlap test with a SEMANTIC JUDGE
+    as its designed escape hatch, so with no judge it fails closed on stories
+    that are plainly on-topic — the headline "Americans Stopped Moving.
+    Here's Why." against a segment called "mortgage lock-in", which IS the
+    why. A fail-closed gate whose adjudicator is unreachable holds
+    everything, and that is what an empty day looks like.
+
+    And the whole time, a working Claude was sitting in the same job. Every
+    publishing workflow already carries `CLAUDE_CODE_OAUTH_TOKEN` because the
+    SHOWRUNNER refuses to run without it (CLAUDE.md: "any workflow that
+    publishes MUST carry CLAUDE_CODE_OAUTH_TOKEN"). The judge simply never
+    asked it.
+
+    THIS ADDS A JUDGE, IT DOES NOT REMOVE ONE. No threshold moves, no rule
+    relaxes, nothing gains a bypass. A story that this brain says has no
+    bridge to its headline is still held — `_thesis_supports_headline` only
+    accepts an exact `true`, and everything else is still UNAVAILABLE rather
+    than a pass. The change is that "unavailable" stops being the answer on a
+    day when two third-party APIs happen to be down together.
+
+    LAST in the chain on purpose: it is the slowest of the four and spawns a
+    process, so the two free HTTP backends and the paid API all get their
+    turn first. It only ever runs when they have all failed — which is
+    exactly the situation it was added for.
+    """
+    global _CLAUDE_CLI_CALLS
+    # THE BUDGET IS CHECKED FIRST, before we even look for the binary: a
+    # spent allowance is a decision, not a consequence of the environment,
+    # and it should read the same on a runner with the CLI and one without.
+    # (It also stopped the bound being untestable in CI, where the `tests`
+    # job has no `claude` on PATH and the "not installed" error fired first.)
+    if _CLAUDE_CLI_CALLS >= CLAUDE_CLI_MAX_CALLS:
+        raise RuntimeError(
+            f"headless-brain budget spent ({CLAUDE_CLI_MAX_CALLS} calls) — "
+            f"the rest of this run's subscription belongs to the showrunner")
+    if not shutil.which("claude"):
+        raise RuntimeError(
+            "claude CLI not installed (npm i -g @anthropic-ai/claude-code)")
+    _CLAUDE_CLI_CALLS += 1
+    prompt = f"{system}\n\n{user}"
+    proc = subprocess.run(
+        ["claude", "-p", prompt,
+         "--model", model or DEFAULT_CLAUDE_CLI_MODEL,
+         "--output-format", "text"],
+        capture_output=True, text=True, timeout=CLAUDE_CLI_TIMEOUT)
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"claude CLI rc={proc.returncode}: "
+            f"{(proc.stderr or proc.stdout)[:200]}")
+    out = (proc.stdout or "").strip()
+    if not out:
+        raise RuntimeError("claude CLI returned nothing")
+    return out
+
+
 _LLM_CHAIN = (
     ("groq", "GROQ_API_KEY", lambda s, u, m: _call_groq(
         s, u, model=m or DEFAULT_GROQ_MODEL)),
@@ -276,6 +375,11 @@ _LLM_CHAIN = (
         s, u, model=m or DEFAULT_GEMINI_MODEL)),
     ("anthropic", "ANTHROPIC_API_KEY", lambda s, u, m: _call_anthropic(
         s, u, model=m or DEFAULT_ANTHROPIC_MODEL)),
+    # The subscription brain, last: free, already present in every publishing
+    # workflow, and the difference between "the judge is unavailable" and a
+    # judgment. See `_call_claude_cli` for the day this cost.
+    ("claude_cli", "CLAUDE_CODE_OAUTH_TOKEN", lambda s, u, m: _call_claude_cli(
+        s, u, model=m)),
 )
 
 
