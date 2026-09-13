@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+  "safe_request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9570312035670737fa202facf3523a52988fa792900e36f739fd3c4a39f0ec75",
+  "prompt_used": "An editorial illustration for a short-form video: padlock lock metal. It accompanies the narration: \"padlock on it ever since\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
+    "filename": "20260913__office-fridge-lunch-thief-s7-0ca1dd7b909f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4ca5ad4f921e1da1fee373db150fd53d2f6cdd1bfa9636d44b5d85edc2d05181",
+    "bytes": 1938541,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:40.964Z"
+}
