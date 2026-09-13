@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+  "safe_request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8543d893fd02e6ea311d9c54ab96710113f6312e20744ade110cf20bb301a5fe",
+  "prompt_used": "An editorial illustration for a short-form video: person running office hallway. It accompanies the narration: \"sprinting toward the break room\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
+    "filename": "20260913__office-fridge-lunch-thief-s4-7a0aa55e9ed9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "05cd8d85179944c4c2d3545febff7c9f9132f7951e6259ca0a3fc22c268959cb",
+    "bytes": 1785386,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:37.328Z"
+}
