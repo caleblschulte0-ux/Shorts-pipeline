@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+  "safe_request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6ae84079fa46788792499ccc225450027ed5bca80ae3413cee71fc219346a5a8",
+  "prompt_used": "An editorial illustration for a short-form video: red marker writing label. It accompanies the narration: \"labeled it in bold red marker\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
+    "filename": "20260913__office-fridge-lunch-thief-s2-47a1c0334e56.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a3d41ec2f8e3a13eccbded47a99bb605f8c72d075f11e9ebc11baf72ae192706",
+    "bytes": 1799054,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:34.608Z"
+}
