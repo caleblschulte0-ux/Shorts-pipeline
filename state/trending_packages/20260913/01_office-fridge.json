@@ -25,7 +25,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
       "media_sha256": "bde14d93f2c13206c98713314dee8f5167f0454e9cee97fa6e03c633a79801f9",
-      "media_bytes": 1795751
+      "media_bytes": 1795751,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:05Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "HR shrugged, my manager shrugged",
@@ -36,16 +46,14 @@
       "news_angle": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
       "image_url": "https://drive.google.com/uc?export=download&id=1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
-        "resolved_by": "entity_media",
+        "url": "https://drive.google.com/uc?export=download&id=1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
         "source_class": "unverified",
-        "title": "HR",
-        "url": "https://live.staticflickr.com/3244/2909813837_6375a89997_b.jpg",
-        "verified_at": "2026-09-13T09:56:29Z",
-        "width": 0
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:06Z",
+        "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
       "media_file_id": "1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
@@ -59,7 +67,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
       "media_sha256": "a3d41ec2f8e3a13eccbded47a99bb605f8c72d075f11e9ebc11baf72ae192706",
-      "media_bytes": 1799054
+      "media_bytes": 1799054,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:07Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "packed it with my actual leftovers",
@@ -68,7 +86,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
       "media_sha256": "eca38cad8a65a52762fa6ce166572e65706ccbb5aeae8b2ba09887b90e4d074a",
-      "media_bytes": 2096380
+      "media_bytes": 2096380,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:09Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "sprinting toward the break room",
@@ -77,7 +105,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
       "media_sha256": "05cd8d85179944c4c2d3545febff7c9f9132f7951e6259ca0a3fc22c268959cb",
-      "media_bytes": 1785386
+      "media_bytes": 1785386,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:10Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "eaten half of it before checking the label twice",
@@ -86,7 +124,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1mqC0z7lQ1bYl6bV0QaRaL-m6I-8uejI9",
       "media_sha256": "7e4efa81ba1fe41bdaa266eb0bcff9a92aebbd431c33f6fb6dbe70e840d47115",
-      "media_bytes": 1899111
+      "media_bytes": 1899111,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1mqC0z7lQ1bYl6bV0QaRaL-m6I-8uejI9",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:11Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "confessed to HR that afternoon",
@@ -95,7 +143,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
       "media_sha256": "88a20c4b64d761e3e1381e1d6f882e3856ef8edc8156a8bd5cef8607b80601b4",
-      "media_bytes": 1482680
+      "media_bytes": 1482680,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:13Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "padlock on it ever since",
@@ -104,7 +162,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
       "media_sha256": "4ca5ad4f921e1da1fee373db150fd53d2f6cdd1bfa9636d44b5d85edc2d05181",
-      "media_bytes": 1938541
+      "media_bytes": 1938541,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-13T13:51:15Z",
+        "resolved_by": "verify_shot_urls"
+      }
     }
   ],
   "punches": [

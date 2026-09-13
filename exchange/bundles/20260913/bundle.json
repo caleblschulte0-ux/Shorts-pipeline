@@ -314,8 +314,8 @@
           "shot_index": 0,
           "phrase": "eating my lunch from the office fridge",
           "query": "office fridge kitchen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
@@ -328,61 +328,61 @@
           "shot_index": 2,
           "phrase": "labeled it in bold red marker",
           "query": "red marker writing label",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "packed it with my actual leftovers",
           "query": "packed lunch container food",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "sprinting toward the break room",
           "query": "person running office hallway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "eaten half of it before checking the label twice",
           "query": "eating food break room",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "confessed to HR that afternoon",
           "query": "hr office meeting",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "padlock on it ever since",
           "query": "padlock lock metal",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+        "office-fridge-lunch-thief-s1-d9de9ff496fb",
         "office-fridge-lunch-thief-s2-47a1c0334e56",
         "office-fridge-lunch-thief-s3-82df14d62616",
         "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
         "office-fridge-lunch-thief-s5-8da0ce2c2b84",
         "office-fridge-lunch-thief-s6-029d6d07d8f6",
-        "office-fridge-lunch-thief-s7-0ca1dd7b909f",
-        "office-fridge-lunch-thief-s1-d9de9ff496fb"
+        "office-fridge-lunch-thief-s7-0ca1dd7b909f"
       ]
     },
     {
@@ -394,63 +394,63 @@
           "shot_index": 0,
           "phrase": "dealer prep fee was non-negotiable",
           "query": "car dealership showroom",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "recording the whole negotiation on my phone",
           "query": "phone recording screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "waived for a friend at the same dealership",
           "query": "car sales paperwork signing",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "speak to the general manager directly",
           "query": "office manager desk conversation",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "played eleven seconds of audio",
           "query": "phone speaker audio playback",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "basically just extra profit, don't worry about it",
           "query": "salesman talking to customer",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "refunded the full eight hundred dollars",
           "query": "credit card refund receipt",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "gone from the floor within a week",
           "query": "empty office desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -545,9 +545,39 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "safe_request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "drive_filename": "20260913__office-fridge-lunch-thief-s1-d9de9ff496fb.png",
+      "prompt_sha256": "c8449bdd117cbabac931466680e94ff6ed6475c34a356173ded2ae883c507f82",
+      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s1-d9de9ff496fb.json",
+      "slug": "office-fridge-lunch-thief",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office worker shrug. It accompanies the narration: \"HR shrugged, my manager shrugged\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
@@ -571,9 +601,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s3-82df14d62616",
@@ -597,9 +629,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
@@ -623,9 +657,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s5-8da0ce2c2b84",
@@ -649,9 +685,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
@@ -675,9 +713,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
@@ -689,32 +729,6 @@
       "shot_index": 7,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: padlock lock metal. It accompanies the narration: \"padlock on it ever since\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
-      "safe_request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
-      "drive_filename": "20260913__office-fridge-lunch-thief-s1-d9de9ff496fb.png",
-      "prompt_sha256": "c8449bdd117cbabac931466680e94ff6ed6475c34a356173ded2ae883c507f82",
-      "checkpoint_path": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s1-d9de9ff496fb.json",
-      "slug": "office-fridge-lunch-thief",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office worker shrug. It accompanies the narration: \"HR shrugged, my manager shrugged\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -755,9 +769,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
@@ -781,9 +797,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
@@ -807,9 +825,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s3-b1196d036386",
@@ -833,9 +853,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
@@ -859,9 +881,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
@@ -885,9 +909,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
@@ -911,9 +937,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
@@ -937,9 +965,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
