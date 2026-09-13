@@ -314,7 +314,63 @@ class TheDispatCHActuallyREACHESTheWorkflow(unittest.TestCase):
         on = d[True] if True in d else d["on"]
         default = on["workflow_dispatch"]["inputs"]["mode"]["default"]
         self.assertEqual(default, "verify", "the premise changed — recheck")
-        self.assertEqual(dm.DISPATCH_INPUTS["explainer"]["mode"], "auto")
+        self.assertNotEqual(dm.DISPATCH_INPUTS["explainer"].get("mode"),
+                            "verify")
+
+    def test_every_dispatch_VALUE_is_one_the_workflow_allows(self):
+        """THE HALF THAT WAS MISSING, and it cost a whole day of the channel.
+
+        `test_the_switch_only_sends_inputs_each_workflow_declares` checks the
+        KEYS. `mode` is a declared key, so it passed — while `explainer.yml`
+        declares it `type: choice` and GitHub validates the VALUE against the
+        option list:
+
+            HTTP 422: Provided value 'auto' for input 'mode' not in the list
+            of allowed values
+
+        On 2026-09-13 the switch fired correctly for third (2 -> 4 posted)
+        and trending (0 -> 1) and could not dispatch the explainer AT ALL.
+        It sat at 0/4 until the operator asked where the videos were — the
+        exact failure this switch exists to prevent, for the third time in
+        two days, and every time the test was checking something ADJACENT to
+        the thing that breaks.
+
+        `auto` was not imaginary: it is what an EMPTY `inputs.mode` falls
+        back to on a cron. It is deliberately not in the hand-pickable list,
+        which is precisely the kind of fact a key-level check cannot see.
+        """
+        import yaml
+        for cid, wf in dm.WORKFLOWS.items():
+            d = yaml.safe_load((ROOT / ".github" / "workflows" / wf).read_text())
+            on = d[True] if True in d else d["on"]
+            declared = ((on.get("workflow_dispatch") or {}).get("inputs")
+                        or {})
+            for key, value in dm.DISPATCH_INPUTS.get(cid, {}).items():
+                spec = declared.get(key) or {}
+                if spec.get("type") != "choice":
+                    continue
+                options = list(spec.get("options") or [])
+                self.assertIn(
+                    value, options,
+                    f"{cid} -> {wf}: sends {key}={value!r}, which is not one "
+                    f"of {options} — GitHub answers 422 and the channel is "
+                    f"never dispatched")
+
+    def test_the_explainer_repair_mode_actually_PUBLISHES(self):
+        """A legal value is not enough: `preview` and `unpublish` are both in
+        the choice list and neither posts a video. The repair mode has to be
+        one whose branch in the run step calls `post_stories.py` in a way
+        that uploads."""
+        mode = dm.DISPATCH_INPUTS["explainer"]["mode"]
+        self.assertIn(mode, ("schedule", "all", "auto"),
+                      f"{mode!r} is a mode that renders or checks but does "
+                      f"not publish the day")
+        body = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
+        branch = body.split(f"\n            {mode})", 1)
+        self.assertEqual(len(branch), 2,
+                         f"no `{mode})` branch in the run step's case")
+        self.assertIn("post_stories.py", branch[1].split("            ;;")[0]
+                      if "            ;;" in branch[1] else branch[1][:800])
 
     def test_a_failed_dispatch_FAILS_the_step(self):
         run = next(s["run"] for s in _wf()["jobs"]["switch"]["steps"]
