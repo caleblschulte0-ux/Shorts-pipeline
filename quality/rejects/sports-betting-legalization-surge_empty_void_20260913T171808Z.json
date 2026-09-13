@@ -1,0 +1,21 @@
+{
+ "slug": "sports-betting-legalization-surge",
+ "ts": "20260913T171808Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start/seg4:end waste the whole middle third \u2014 the 76% vs 2% comparison is rendered tiny and low in the frame with a large empty band between the title and the bars; seg3:start likewise has an empty right half below the tiles.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg3:start, seg3:mid and seg3:end a SECOND copy of Data is parked at frame-bottom centre, standing directly on the legend 'each block = 5%' so only 'eac' and '5%' survive \u2014 the key that makes the tile grid mean anything is covered for the entire scene. A duplicate mascot is also visible simultaneously up in the tile grid, and the caption 'level off. It' at seg3:end is near-invisible dark grey on the dark ground.",
+  "root_cause": "The lower presenter mascot is composited at a fixed bottom-centre anchor with no collision check against the machine's legend text, and a second mascot instance is drawn inside the machine at the same time \u2014 two copies of the character on screen, one of them purely occluding.",
+  "repair_goal": "Render exactly ONE mascot in this scene (the one inside the tile grid), drop the fixed bottom-centre duplicate, and reserve a clear band for the 'each block = 5%' legend so no element overlaps it; raise the caption to full-contrast ink."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
