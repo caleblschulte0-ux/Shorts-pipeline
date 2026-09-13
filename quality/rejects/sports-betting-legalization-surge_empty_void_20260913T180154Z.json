@@ -1,0 +1,21 @@
+{
+ "slug": "sports-betting-legalization-surge",
+ "ts": "20260913T180154Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 and hook@0.8 waste the middle two-thirds of the frame on flat dark ground with only a title line and one tiny mascot; seg4:start repeats it with a huge empty band between the 76% bar and the tiny 2% dot.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "occlusion_unreadable",
+  "visible_evidence": "seg3:start/mid/end: the unit-grid legend that explains the whole demonstration ('each \u25ae = 5%') is bisected by a static foreground mascot so it reads 'eac\u25ae 5%', the caption 'before the ruling.' sits on the same mascot, and a SECOND identical mascot stands inside the grid at the same time \u2014 two copies of Data in one frame.",
+  "root_cause": "A persistent bottom-centre mascot layer is composited above the scene's legend and caption band and is never cleared when the scene spawns its own in-scene performer, so the duplicate overlaps both text zones.",
+  "repair_goal": "Render exactly one mascot in seg3 \u2014 the in-grid performer that fills squares \u2014 and reserve the legend/caption band so no mascot or mark is drawn over 'each \u25ae = 5%' or the caption line."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
