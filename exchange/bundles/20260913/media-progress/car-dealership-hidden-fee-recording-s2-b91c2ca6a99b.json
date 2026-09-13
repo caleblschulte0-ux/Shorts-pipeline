@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+  "safe_request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c3d716687af0abd5ee9dee5b96457e0e31ec764cd4867abea515f278b707381e",
+  "prompt_used": "An editorial illustration for a short-form video: car sales paperwork signing. It accompanies the narration: \"waived for a friend at the same dealership\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1BUOEVJzY81Tr1Kcm1Ezh_vagXPcYLygY",
+    "filename": "20260913__car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1BUOEVJzY81Tr1Kcm1Ezh_vagXPcYLygY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e30e77a3b8258a74a54d1383f6837cf351698085c9eb0bb4dfd17e7b51b374be",
+    "bytes": 2034915,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-13T11:26:45.614Z"
+}
