@@ -6901,13 +6901,45 @@
       "ts": "2026-09-13T12:17:42.444503+00:00"
     },
     "clip-20260913-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/NaiveEphemeralDaikonPJSalt-zxowVsJ1CAX2obKp",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/DNOybqKRazo",
       "title": "Xqc Reacts As A Random Guy Strips Down Mid-Conversation",
       "kind": "twitch_clip",
-      "ts": "2026-09-13T12:21:10.289956+00:00",
+      "ts": "2026-09-13T12:21:13.858734+00:00",
+      "uploaded_at": "2026-09-13T12:21:13.858751+00:00",
+      "publish_at": "2026-09-13T18:30:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/NaiveEphemeralDaikonPJSalt-zxowVsJ1CAX2obKp",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "HE JUST STARTED TAKING HIS CLOTHES OFF",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7043,
+      "banger": 0.85,
+      "cut": {
+        "start": 0.0,
+        "end": 11.28
+      },
+      "director_cut": true
+    },
+    "rejected-vastplacidswallowbleedpurple-1kq24ytrhb17r4mc": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/VastPlacidSwallowBleedPurple-1kQ24YtrHb17r4MC",
+      "streamer": "stableronaldo",
+      "title": "the guy in the back \ud83d\ude02\ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just walking, crude banter, no event)",
+      "ts": "2026-09-13T12:24:11.940953+00:00"
+    },
+    "clip-20260913-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/ClumsyHonorableTubersRaccAttack-1ZQohPJECicKB7cR",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Lang's Audition Scene Leaves Buddha Speechless",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T12:28:46.644306+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
