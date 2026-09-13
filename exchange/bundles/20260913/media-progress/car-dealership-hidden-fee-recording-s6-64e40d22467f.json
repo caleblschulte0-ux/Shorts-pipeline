@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+  "safe_request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f1fd3fe88614e17f3f1ddf6b21f9aac9b9cafa4fdc5e0029d2094ec59d78180b",
+  "prompt_used": "An editorial illustration for a short-form video: credit card refund receipt. It accompanies the narration: \"refunded the full eight hundred dollars\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1kX0ebQ3tCU7ZWy_gbdBpQm8q9felLzfJ",
+    "filename": "20260913__car-dealership-hidden-fee-recording-s6-64e40d22467f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1kX0ebQ3tCU7ZWy_gbdBpQm8q9felLzfJ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "046ce34d6c9beb054c75635c91a0eb019fa6edb9c48c801a1d69e4f2074f4f08",
+    "bytes": 1814167,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:49.688Z"
+}
