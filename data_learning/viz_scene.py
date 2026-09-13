@@ -5720,9 +5720,118 @@ def render_procedural(insight, out_dir: Path, slug: str, frames: int = 16):
     return pattern, []
 
 
+#: The reviewer samples at 24fps, downscales to 192px wide, and calls a frame
+#: a DUPLICATE when no block moved. So "moving" has a floor: a change smaller
+#: than about a pixel at 192px — roughly 6px at 1080 — is not motion as far as
+#: the gate is concerned, however correct the geometry.
+_DETECTOR_W = 192
+#: Where across the reveal to test. A scene can move at one end and stall at
+#: the other (an ease-out that asymptotes is the classic), so test several.
+_MOTION_AT = (0.15, 0.35, 0.55, 0.75, 0.95)
+#: A representative beat, in seconds. The probe has to compare frames the
+#: same distance apart IN TIME as the reviewer does, and the reviewer samples
+#: the finished master at 24fps — so one step is 1/24s of a beat, not a
+#: fraction of the whole reveal.
+#:
+#: THE FIRST VERSION OF THIS PROBE GOT THAT WRONG and the error is worth
+#: keeping written down: it sampled six points spread across the ENTIRE
+#: reveal, where of course everything moves. It passed `banned-barrel-drain`,
+#: which had just measured 88-90% duplicate frames in a real render. A probe
+#: that measures a different interval than the gate is not a probe, it is a
+#: second opinion about a different question.
+_MOTION_BEAT_S = 7.0
+_MOTION_SAMPLE_FPS = 24.0
+#: How many of the tested points must show motion between ADJACENT frames.
+#:
+#: ONE. Not a majority — that was the first threshold and it is an
+#: over-correction, because the gate's budget is a ratio over the WHOLE
+#: video, not per beat. The ceiling is 0.45 duplicate frames; a scene that is
+#: one of three beats and totally frozen contributes about 0.33 and the video
+#: still passes, since the chart beats measure at a clean 24fps. Refusing
+#: every smooth animation would trade a blocked video for an all-chart video
+#: and throw away the scenes this channel is actually liked for.
+#:
+#: So the line is the honest one: does it move ANYWHERE in the beat, or is it
+#: a still with a caption over it? A mechanic that never moves cannot be
+#: rescued by the rest of the video; one that moves somewhere can.
+_MOTION_MIN_POINTS = 1
+
+
+def mechanic_motion_ok(spec, insight) -> bool:
+    """Does this mechanic actually MOVE, measured the way the gate measures?
+
+    THE BIGGEST SINGLE BLOCKER ON THE CHANNEL, and it was invisible here.
+
+    2026-09-12: 16 of 17 videos held, and `temporal_gate` was 10 of the 16 —
+    eight of those for `effective_fps` under the 11.0 floor, five of them
+    clustered at 10.7-10.9, missing by under 3%. Measured on a real render,
+    the fault localises exactly:
+
+        window   dup%   eff_fps   on screen
+         8-12s     0%      24.0   a CHART
+         2- 6s    85-92%    2-3   a brain-authored SCENE
+        16-20s    88-90%  2.5-3   a brain-authored SCENE
+
+    The ozone scene shrinks its circle about 0.34px per frame at 1080. At the
+    detector's 192px that is 0.06px — geometrically perfect, and frozen as far
+    as anything measuring is concerned.
+
+    CLAUDE.md already records this exact lesson ("a slow glide across a whole
+    visual is a sub-pixel change per frame ... five machines were
+    geometrically perfect and measured as frozen") and `MotionMustBeVISIBLE`
+    holds the 42 machines to it. Brain-authored mechanics are not in
+    `_MACHINE_DRAW`, so the test never covered them — the same blind spot that
+    let `_draw_flat_timeline` go unmeasured.
+
+    So measure them, here, before committing: render a handful of frames
+    across the reveal, diff them with the REVIEWER'S OWN detector, and refuse
+    a mechanic that does not move. Refusing is cheap and safe — the caller
+    degrades to a machine or a chart, which is the sanctioned fallback and, on
+    the evidence above, the thing that measures at 24fps anyway.
+    """
+    from PIL import Image
+    try:
+        from scripts.showrunner_review import (BLOCK_MOTION_THRESH,
+                                               _max_block_diff)
+    except Exception:  # noqa: BLE001 — no reviewer, no opinion
+        return True
+    try:
+        code_obj = compile(spec["code"], "<mechanic>", "exec")
+        base = _mechanic_env(insight, getattr(insight, "slug", "dry"))
+        def _shot(r):
+            canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            _run_mechanic_frame(code_obj, canvas, base, max(0.0, min(1.0, r)))
+            small = canvas.convert("L").resize(
+                (_DETECTOR_W, int(H * _DETECTOR_W / W)))
+            # `get_flattened_data` where available: `getdata` is deprecated
+            # in Pillow 14, and this runs on every mechanic in every render.
+            return list(getattr(small, "get_flattened_data", small.getdata)())
+
+        step = 1.0 / (_MOTION_SAMPLE_FPS * _MOTION_BEAT_S)
+        moved = 0
+        for r in _MOTION_AT:
+            # ADJACENT frames, exactly as the reviewer compares them.
+            if _max_block_diff(_shot(r), _shot(r + step),
+                               _DETECTOR_W) >= BLOCK_MOTION_THRESH:
+                moved += 1
+        total = len(_MOTION_AT)
+        if moved < _MOTION_MIN_POINTS:
+            print(f"[mechanic] {spec.get('mechanic','?')!r} refused: moves "
+                  f"between adjacent frames at only {moved}/{total} points in "
+                  f"the beat — the reviewer measures this as frozen",
+                  flush=True)
+            return False
+        return True
+    except Exception as e:  # noqa: BLE001 — a probe must never kill a render
+        print(f"[mechanic] motion probe skipped: {type(e).__name__}: {e}",
+              flush=True)
+        return True
+
+
 def mechanic_dry_ok(spec, insight) -> bool:
-    """Validate a mechanic by actually rendering ONE frame to a throwaway canvas.
-    Cheap, catches runtime errors before we commit the mechanic to a full render."""
+    """Validate a mechanic by actually rendering frames to a throwaway canvas.
+    Cheap, catches runtime errors — and now a scene that does not MOVE —
+    before we commit the mechanic to a full render."""
     if not validate_mechanic(spec):
         return False
     from PIL import Image
@@ -5731,7 +5840,9 @@ def mechanic_dry_ok(spec, insight) -> bool:
         base = _mechanic_env(insight, getattr(insight, "slug", "dry"))
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         _run_mechanic_frame(code_obj, canvas, base, 1.0)
-        return canvas.getbbox() is not None      # it drew SOMETHING
+        if canvas.getbbox() is None:             # it drew SOMETHING
+            return False
     except Exception as e:  # noqa: BLE001
         print(f"[mechanic] dry-run rejected: {type(e).__name__}: {e}", flush=True)
         return False
+    return mechanic_motion_ok(spec, insight)
