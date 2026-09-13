@@ -898,8 +898,37 @@ def _footer(fig, insight: Insight):
     — headline, kicker, row names and bars all start at `HEAD_X`. A centred
     footer under a left-aligned block is the small tell that the layout was
     assembled rather than designed, and it is free to fix.
+
+    AND IT IS MEASURED, because a source string has no bounded length. Drawn
+    at a fixed 11pt with no width limit it simply ran off the card, and the
+    showrunner has been reporting it by name for weeks:
+
+        "every source credit (seg1:mid, seg2:start, seg3:end) runs off the
+         right frame edge at '...accessed 2026-08-2'"
+                              container-ships-floating-cities, 2026-09-11
+
+    It is the identical defect `fit_title` exists for, one text object down,
+    and it was the last unmeasured extent on the card — every other string
+    here goes through a fitter (`_fit_text_to` for the kicker, `fit_title`
+    for the headline, `_measure_pts` for the value column).
+
+    SHRINK BEFORE TRUNCATING. A credit is an attribution: losing the end of
+    it is a real cost, not just an ugly one, so the type gives up three
+    points before any characters are dropped. Only a string that cannot fit
+    even at the floor gets an ellipsis, and it keeps its head — the
+    publisher, which is the part that identifies the source.
     """
-    fig.text(HEAD_X, 0.042, insight.source.footer(), ha="left", fontsize=11,
+    import matplotlib.font_manager as _fm
+    _band = (1.0 - 2 * HEAD_X)
+    _txt = insight.source.footer()
+    _size = 11
+    for _size in range(11, 7, -1):
+        if _measure_pts(fig, _txt, _fm.FontProperties(size=_size)) \
+                <= _band * fig.get_size_inches()[0] * 72.0:
+            break
+    else:
+        _txt = _fit_text_to(fig, _txt, _band, _size)
+    fig.text(HEAD_X, 0.042, _txt, ha="left", fontsize=_size,
              color=_hex(_look.INK_3))
 
 
