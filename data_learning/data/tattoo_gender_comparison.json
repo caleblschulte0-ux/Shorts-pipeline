@@ -13,8 +13,13 @@
   },
   "notes": "2023 Pew Research Center survey of US adults.",
   "points": [
-    {"label": "Women", "value": 37},
-    {"label": "Men", "value": 27}
-  ],
-  "baseline": {"label": "All US adults", "value": 32}
+    {
+      "label": "Women",
+      "value": 37
+    },
+    {
+      "label": "All US adults",
+      "value": 32
+    }
+  ]
 }

@@ -13,8 +13,13 @@
   },
   "notes": "Share of the 50 states (plus D.C. counted in the denominator) offering legal sports betting, before vs after the 2018 PASPA repeal.",
   "points": [
-    {"label": "2024", "value": 76},
-    {"label": "2017", "value": 2}
-  ],
-  "baseline": {"label": "2017 (pre-PASPA repeal)", "value": 2}
+    {
+      "label": "2024",
+      "value": 76
+    },
+    {
+      "label": "2017 (pre-PASPA repeal)",
+      "value": 2
+    }
+  ]
 }
