@@ -1,0 +1,129 @@
+{
+  "date": "20260913",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s0-ae3a39ae6f68.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s2-47a1c0334e56.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s3-82df14d62616.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s4-7a0aa55e9ed9.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s5-8da0ce2c2b84",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s5-8da0ce2c2b84.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s6-029d6d07d8f6.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s7-0ca1dd7b909f.png"
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/office-fridge-lunch-thief-s1-d9de9ff496fb.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s0-2bb80fbd6062",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s0-2bb80fbd6062.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s1-46c29c4caba0.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s3-b1196d036386",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s3-b1196d036386.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s4-c81734b8f8a2.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s5-2356a44cf87f.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s6-64e40d22467f.png"
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/car-dealership-hidden-fee-recording-s7-0cf05900fa94.png"
+    },
+    {
+      "slug": "office-fridge-lunch-thief",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): who"
+      ]
+    },
+    {
+      "slug": "car-dealership-hidden-fee-recording",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): would"
+      ]
+    }
+  ]
+}
