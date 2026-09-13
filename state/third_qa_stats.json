@@ -1,238 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260815",
-      "dry_run": false,
-      "ts": "2026-08-15T12:29:07+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 16,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 114,
-        "with_retention": 93,
-        "with_curve": 15,
-        "fetched_at": "2026-08-15T08:55:40.482196+00:00"
-      },
-      "brain": {
-        "ok": 28,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fanum": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260815-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "no context, vague title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "DNA test reveal, genuine surprised react",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Finds Out He's '102% African' And Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.88,
-              "problems": []
-            }
-          },
-          "took_s": 215.2
-        },
-        {
-          "slug": "clip-20260815-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (rambling talk, no visible event)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "plaqueboymax/plaqueboymax-about-camera-2026w33",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                },
-                {
-                  "cluster": "plaqueboymax/plaqueboymax-caption-couch-2026w33",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "blank title, no info",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "rambling talk, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 877.3
-        },
-        {
-          "slug": "clip-20260815-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "live event, no clear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.85,
-              "why": "shocked reaction to eclipse event",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ohnepixel Can't Believe What He Just Saw During This Solar Eclipse"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "frames at 16.2s and 18.1s show a blurry indistinct close-up (likely a fast punch/zoom transition) rather than clear subj"
-              ]
-            }
-          },
-          "took_s": 177.4
-        },
-        {
-          "slug": "clip-20260815-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (just talking about tournament bracket, n)",
-          "judges": {
-            "banger": {
-              "score": 0.85,
-              "why": "streamer caught saying slur, controversy",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "just talking about tournament bracket, n",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 62.9
-        }
-      ]
-    },
-    {
       "date": "20260816",
       "dry_run": false,
       "ts": "2026-08-16T12:46:42+00:00",
@@ -8191,6 +7959,131 @@
           "slug": "clip-20260913-6",
           "ok": false,
           "skipped": "run budget reached"
+        }
+      ]
+    },
+    {
+      "date": "20260913",
+      "dry_run": false,
+      "ts": "2026-09-13T13:41:54+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 77,
+        "with_curve": 15,
+        "fetched_at": "2026-09-12T15:29:28.555059+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260913-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-6",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague garbled title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 39.1
         }
       ]
     }
