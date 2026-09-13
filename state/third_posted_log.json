@@ -6933,13 +6933,45 @@
       "ts": "2026-09-13T12:24:11.940953+00:00"
     },
     "clip-20260913-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/ClumsyHonorableTubersRaccAttack-1ZQohPJECicKB7cR",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/13n9ozu7caM",
       "title": "Lang's Audition Scene Leaves Buddha Speechless",
       "kind": "twitch_clip",
-      "ts": "2026-09-13T12:28:46.644306+00:00",
+      "ts": "2026-09-13T12:28:49.358750+00:00",
+      "uploaded_at": "2026-09-13T12:28:49.358773+00:00",
+      "publish_at": "2026-09-13T20:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/ClumsyHonorableTubersRaccAttack-1ZQohPJECicKB7cR",
+      "streamer": "buddha",
+      "series": "win",
+      "hook": "LANG PERFORMS A FULL DRAMATIC AUDITION",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1687,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-populardifferentgalagobrainslug-hncuhdbbha2qefmk": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/PopularDifferentGalagoBrainSlug-HNCuhDBBha2qefMK",
+      "streamer": "sodapoppin",
+      "title": "Classic preset",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (menu/settings talk, no event)",
+      "ts": "2026-09-13T12:47:05.601723+00:00"
+    },
+    "clip-20260913-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/SeductiveHumbleBubbleteaArgieB8-UIQok58m4of3K7KT",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Is Changing His Number After This Leak",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T13:30:51.001282+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
