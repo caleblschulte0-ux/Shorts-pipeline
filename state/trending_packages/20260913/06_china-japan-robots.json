@@ -1,0 +1,29 @@
+{
+  "format": "graph_race",
+  "slug": "china-passed-japan-robots",
+  "title": "China Passed Japan In Factory Robots. Then Kept Going.",
+  "y_label": "Industrial robots installed per year",
+  "source": "Source: International Federation of Robotics, World Robotics report (annual installations), approximate",
+  "years": [2011, 2013, 2016, 2019, 2021, 2023],
+  "series": [
+    {"name": "China", "color": "#d94f3d", "icon": "CN", "values": [23000, 36560, 87000, 140500, 268195, 276000]},
+    {"name": "Japan", "color": "#4a7c59", "icon": "JP", "values": [22000, 25110, 38586, 49908, 47182, 46106]}
+  ],
+  "duration": 13,
+  "music_vibe": "cinematic",
+  "hook": "One line never really moved.",
+  "hashtags": [
+    "robots",
+    "china",
+    "japan",
+    "manufacturing",
+    "automation",
+    "dataviz",
+    "technology",
+    "factories",
+    "charts",
+    "industry",
+    "futuretech",
+    "shorts"
+  ]
+}

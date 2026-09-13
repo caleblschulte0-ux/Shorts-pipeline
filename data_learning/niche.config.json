@@ -27376,6 +27376,239 @@
           "say": "Credit cards filled the gap: 18 percent of payments in 2016, 35 by 2024 \u2014 now America's biggest payment method."
         }
       ]
+    },
+    {
+      "slug": "oceanic-shark-collapse",
+      "title": "The Ocean Lost 71% Of Its Sharks Since 1970",
+      "hook": "Nobody saw the ocean's sharks disappearing.",
+      "closing": "Apex predator. Zero say in its own survival.",
+      "question": "Did you know sharks were disappearing this fast? Tell me below.",
+      "caption": "Oceanic sharks and rays are down 71% since 1970 -- some species like the oceanic whitetip are down 98%. Three out of four of these species are now threatened with extinction. What's the scariest wildlife stat you know? 👋",
+      "hashtags": [
+        "sharks",
+        "ocean",
+        "wildlife",
+        "marine",
+        "overfishing",
+        "conservation",
+        "extinction",
+        "biodiversity",
+        "nature",
+        "dataviz",
+        "science",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "oceanic_shark_abundance_index",
+          "params": {
+            "file": "oceanic_shark_abundance_index.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DROP",
+          "topic": "shark and ray abundance",
+          "say": "In 1970, oceanic sharks and rays were near their historic numbers. Fifty years later, 71% of them are gone -- wiped out mostly where nobody was watching."
+        },
+        {
+          "source": "offline",
+          "key": "oceanic_shark_species_decline",
+          "params": {
+            "file": "oceanic_shark_species_decline.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · NOT EQUAL",
+          "topic": "decline by species",
+          "say": "The worst hit was the oceanic whitetip: down 98%, from one of the most common sharks in the ocean to a rare sighting. Hammerheads dropped 80% right behind it."
+        },
+        {
+          "source": "offline",
+          "key": "oceanic_shark_extinction_risk_share",
+          "params": {
+            "file": "oceanic_shark_extinction_risk_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE RISK",
+          "topic": "extinction risk today",
+          "say": "So today, three out of every four of these species are threatened with extinction. Not because sharks are fragile -- because for fifty years, almost nothing limited how many boats could catch them."
+        }
+      ]
+    },
+    {
+      "slug": "sports-betting-legalization-surge",
+      "title": "Sports Betting Was Banned In 46 States. Not Anymore.",
+      "hook": "One 2018 ruling made this legal everywhere.",
+      "closing": "One court case turned every couch into a sportsbook.",
+      "question": "Have you ever placed a legal sports bet? Tell me below.",
+      "caption": "One Supreme Court ruling in 2018 struck down the law banning sports betting outside Nevada. Six years later it's legal in 38 states, and Americans wagered $150 billion on it in 2024 alone. What's the wildest bet you've ever made? 🏈",
+      "hashtags": [
+        "sportsbetting",
+        "gambling",
+        "supremecourt",
+        "sports",
+        "money",
+        "finance",
+        "dataviz",
+        "business",
+        "usa",
+        "didyouknow",
+        "sportsnews",
+        "economy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sports_betting_states_count",
+          "params": {
+            "file": "sports_betting_states_count.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RULING",
+          "topic": "states with legal sports betting",
+          "say": "In 2017, only Nevada could legally take a sports bet. Then the Supreme Court struck down the law banning it everywhere else, and by 2024, 38 states had followed."
+        },
+        {
+          "source": "offline",
+          "key": "sports_betting_handle_growth",
+          "params": {
+            "file": "sports_betting_handle_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE MONEY",
+          "topic": "money legally wagered",
+          "say": "By 2024, Americans legally wagered $150 billion on sports in a single year -- up from just $13 billion the first full year after the ban fell."
+        },
+        {
+          "source": "offline",
+          "key": "sports_betting_legal_share",
+          "params": {
+            "file": "sports_betting_legal_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE SPREAD",
+          "topic": "share of states now legal",
+          "say": "That's 76% of the country, up from just 2% before the ruling. The line didn't level off. It just kept climbing."
+        }
+      ]
+    },
+    {
+      "slug": "tattoo-mainstream-shift",
+      "title": "A Third Of Americans Are Now Tattooed",
+      "hook": "Getting inked stopped being a rebellion.",
+      "closing": "Ink used to mean rebel. Now it just means human.",
+      "question": "How many tattoos do you have? Drop the number below.",
+      "caption": "Tattoos have gone from rebellious to mainstream -- a third of Americans now have at least one, more women than men, and most who start don't stop at just one. How many do you have? 💀",
+      "hashtags": [
+        "tattoos",
+        "bodyart",
+        "culture",
+        "trend",
+        "society",
+        "generations",
+        "dataviz",
+        "didyouknow",
+        "tattooculture",
+        "inked",
+        "usa",
+        "pewresearch"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tattoo_prevalence_trend",
+          "params": {
+            "file": "tattoo_prevalence_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THEN",
+          "topic": "tattoo prevalence",
+          "say": "In 2006, 16% of Americans had a tattoo, mostly seen as rebellious or fringe. By 2023 that number hit 32%, doubling in under two decades."
+        },
+        {
+          "source": "offline",
+          "key": "tattoo_gender_comparison",
+          "params": {
+            "file": "tattoo_gender_comparison.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · WHO",
+          "topic": "tattoos by gender",
+          "say": "It's not spread evenly either. 37% of women now have at least one tattoo, compared to 27% of men. The gap that used to run the other way has flipped."
+        },
+        {
+          "source": "offline",
+          "key": "tattoo_multiple_ink_share",
+          "params": {
+            "file": "tattoo_multiple_ink_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE HABIT",
+          "topic": "how many people have",
+          "say": "And once people start, they don't stop. Of the 32% with ink, most already have more than one. A single symbol turned into a habit."
+        }
+      ]
+    },
+    {
+      "slug": "dating-app-user-exodus",
+      "title": "Dating Apps Just Lost Millions Of Users",
+      "hook": "The dating apps are quietly emptying out.",
+      "closing": "Swipe fatigue is real, and it's winning.",
+      "question": "Have you deleted a dating app this year? Tell me below.",
+      "caption": "Tinder's US users dropped from 18 million to 11 million in two years, and it's not alone -- usage across the top 10 dating apps fell industry-wide. 78% of users say the apps leave them drained. Have you quit one? 👥",
+      "hashtags": [
+        "datingapps",
+        "tinder",
+        "swipefatigue",
+        "dating",
+        "relationships",
+        "tech",
+        "genz",
+        "dataviz",
+        "didyouknow",
+        "socialmedia",
+        "onlinedating",
+        "culture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "dating_app_tinder_mau",
+          "params": {
+            "file": "dating_app_tinder_mau.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DROP",
+          "topic": "Tinder's US users",
+          "say": "Tinder's US user base went from 18 million in early 2022 to about 11 million now, a drop of nearly 40% in two years, on what used to be the biggest dating app on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "dating_app_industry_usage_comparison",
+          "params": {
+            "file": "dating_app_industry_usage_comparison.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · NOT JUST ONE",
+          "topic": "the whole industry",
+          "say": "It's not just Tinder. Usage across the ten biggest dating apps combined dropped 16% in a single year. This is an industry-wide retreat."
+        },
+        {
+          "source": "offline",
+          "key": "dating_app_fatigue_share",
+          "params": {
+            "file": "dating_app_fatigue_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE WHY",
+          "topic": "why people are leaving",
+          "say": "The reason isn't a mystery. 78% of dating app users now say the experience leaves them mentally or emotionally drained. People stopped feeling it was worth it."
+        }
+      ]
     }
   ],
   "videos": [

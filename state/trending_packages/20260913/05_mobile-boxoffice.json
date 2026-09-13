@@ -1,0 +1,29 @@
+{
+  "format": "graph_race",
+  "slug": "mobile-games-passed-box-office",
+  "title": "Mobile Games Passed Every Movie Theater Combined",
+  "y_label": "Global revenue ($ billions)",
+  "source": "Sources: Newzoo Global Games Market Report (mobile game revenue); MPAA/Comscore global box office totals",
+  "years": [2013, 2015, 2017, 2019, 2021, 2023],
+  "series": [
+    {"name": "Mobile games", "color": "#2ecc71", "values": [13.2, 30, 46, 68.5, 90.7, 92.6]},
+    {"name": "Global box office", "color": "#9b59b6", "values": [35.9, 38.3, 40.6, 42.3, 21.3, 33.9]}
+  ],
+  "duration": 13,
+  "music_vibe": "dark",
+  "hook": "One of these crashed in 2020.",
+  "hashtags": [
+    "mobilegaming",
+    "boxoffice",
+    "movies",
+    "gaming",
+    "entertainment",
+    "dataviz",
+    "hollywood",
+    "gamingindustry",
+    "charts",
+    "streaming",
+    "videogames",
+    "shorts"
+  ]
+}

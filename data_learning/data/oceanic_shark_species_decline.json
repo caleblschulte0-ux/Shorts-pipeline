@@ -1,0 +1,22 @@
+{
+  "key": "oceanic_shark_species_decline",
+  "title": "Population decline by species since 1970 (percent)",
+  "unit": "percent",
+  "geography": "Global (open ocean)",
+  "time_coverage": "1970-2018",
+  "source": {
+    "name": "Half a century of global decline in oceanic sharks and rays",
+    "publisher": "Pacoureau et al., Nature (2021); IUCN Shark Specialist Group",
+    "url": "https://www.nature.com/articles/s41586-020-03173-9",
+    "officiality": "reference",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Approximate species-level declines cited from the study and related IUCN Red List assessments; shortfin mako and blue shark figures are approximate.",
+  "points": [
+    {"label": "Oceanic whitetip shark", "value": 98},
+    {"label": "Scalloped hammerhead", "value": 80},
+    {"label": "Shortfin mako shark", "value": 60},
+    {"label": "Blue shark", "value": 40}
+  ],
+  "baseline": {"label": "All oceanic sharks & rays (avg)", "value": 71}
+}

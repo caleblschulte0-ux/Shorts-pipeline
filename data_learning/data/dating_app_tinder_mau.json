@@ -1,0 +1,20 @@
+{
+  "key": "dating_app_tinder_mau",
+  "title": "Tinder US monthly active users (millions)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2022-2024",
+  "source": {
+    "name": "Tinder / Match Group user statistics",
+    "publisher": "Match Group earnings reports / industry trackers",
+    "url": "https://www.demandsage.com/tinder-statistics/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "US monthly active users; 2023 figure is an approximate interpolation between reported 2022 and 2024/2025 figures.",
+  "points": [
+    {"label": "2022", "value": 18, "period": "2022"},
+    {"label": "2023", "value": 14, "period": "2023"},
+    {"label": "2024", "value": 11, "period": "2024"}
+  ]
+}

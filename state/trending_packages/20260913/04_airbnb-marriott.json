@@ -1,0 +1,29 @@
+{
+  "format": "graph_race",
+  "slug": "airbnb-passed-marriott-rooms",
+  "title": "Airbnb Passed The World's Biggest Hotel Chain",
+  "y_label": "Listings / rooms available",
+  "source": "Sources: Airbnb Newsroom listings figures; Marriott International investor reports and SEC filings, approximate",
+  "years": [2011, 2013, 2015, 2017, 2019, 2023],
+  "series": [
+    {"name": "Airbnb listings", "color": "#ff5a5f", "icon": "Airbnb", "values": [200000, 550000, 1500000, 4000000, 7000000, 7700000]},
+    {"name": "Marriott rooms", "color": "#5a5a6e", "icon": "Marriott", "values": [600000, 660000, 720000, 1270000, 1400000, 1597000]}
+  ],
+  "duration": 13,
+  "music_vibe": "hiphop",
+  "hook": "One of these owns zero hotels.",
+  "hashtags": [
+    "airbnb",
+    "marriott",
+    "hotels",
+    "travel",
+    "hospitality",
+    "dataviz",
+    "startups",
+    "business",
+    "charts",
+    "sharingeconomy",
+    "traveltok",
+    "shorts"
+  ]
+}

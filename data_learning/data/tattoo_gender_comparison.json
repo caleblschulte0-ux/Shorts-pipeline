@@ -1,0 +1,20 @@
+{
+  "key": "tattoo_gender_comparison",
+  "title": "Share with at least one tattoo, by gender",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "32% of Americans have a tattoo",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/short-reads/2023/08/15/32-of-americans-have-a-tattoo-including-22-who-have-more-than-one/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "2023 Pew Research Center survey of US adults.",
+  "points": [
+    {"label": "Women", "value": 37},
+    {"label": "Men", "value": 27}
+  ],
+  "baseline": {"label": "All US adults", "value": 32}
+}

@@ -1,0 +1,21 @@
+{
+  "key": "tattoo_prevalence_trend",
+  "title": "Share of US adults with at least one tattoo",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2006-2023",
+  "source": {
+    "name": "Tattoo prevalence surveys",
+    "publisher": "Pew Research Center / Ipsos / Harris Poll",
+    "url": "https://www.pewresearch.org/short-reads/2023/08/15/32-of-americans-have-a-tattoo-including-22-who-have-more-than-one/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Combines Harris Poll/Ipsos figures for 2006-2019 with Pew Research's 2023 survey; methodologies differ slightly across pollsters but the upward trend is consistent.",
+  "points": [
+    {"label": "2006", "value": 16, "period": "2006"},
+    {"label": "2012", "value": 21, "period": "2012"},
+    {"label": "2019", "value": 30, "period": "2019"},
+    {"label": "2023", "value": 32, "period": "2023"}
+  ]
+}

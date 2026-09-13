@@ -1,0 +1,20 @@
+{
+  "key": "sports_betting_legal_share",
+  "title": "Share of US states with legal sports betting",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2017 vs 2024",
+  "source": {
+    "name": "State sports betting legalization tracker",
+    "publisher": "American Gaming Association / Legal Sports Report",
+    "url": "https://www.americangaming.org/resources/commercial-gaming-revenue-tracker/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Share of the 50 states (plus D.C. counted in the denominator) offering legal sports betting, before vs after the 2018 PASPA repeal.",
+  "points": [
+    {"label": "2024", "value": 76},
+    {"label": "2017", "value": 2}
+  ],
+  "baseline": {"label": "2017 (pre-PASPA repeal)", "value": 2}
+}

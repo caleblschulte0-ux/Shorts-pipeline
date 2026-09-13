@@ -1,0 +1,19 @@
+{
+  "key": "oceanic_shark_extinction_risk_share",
+  "title": "Share of oceanic shark & ray species threatened with extinction",
+  "unit": "percent",
+  "geography": "Global (open ocean)",
+  "time_coverage": "2021",
+  "source": {
+    "name": "Half a century of global decline in oceanic sharks and rays",
+    "publisher": "Pacoureau et al., Nature (2021); IUCN Red List",
+    "url": "https://www.nature.com/articles/s41586-020-03173-9",
+    "officiality": "reference",
+    "access_date": "2026-09-13"
+  },
+  "notes": "The study found three-quarters of the oceanic shark and ray species it assessed are now threatened with extinction under IUCN Red List criteria. This is specific to the 31 open-ocean (pelagic) species studied, not all sharks and rays worldwide.",
+  "points": [
+    {"label": "Threatened with extinction", "value": 75},
+    {"label": "Not currently threatened", "value": 25}
+  ]
+}

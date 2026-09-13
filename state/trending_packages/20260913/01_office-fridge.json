@@ -1,0 +1,38 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "office-fridge-lunch-thief",
+  "title": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
+  "hashtags": [
+    "pettyrevenge",
+    "officefridge",
+    "workplace",
+    "corporatelife",
+    "lunchthief",
+    "karma",
+    "reddit",
+    "storytime",
+    "9to5",
+    "officeproblems",
+    "hrstory",
+    "workplacekarma"
+  ],
+  "script": "Someone's been eating my lunch from the office fridge for three weeks straight, and nobody would admit it. HR shrugged, my manager shrugged, so I stopped complaining and started planning. I bought an identical container and labeled it in bold red marker: HR SAMPLE, DO NOT EAT, UNDER REVIEW, then packed it with my actual leftovers, extra spicy this time. I left it in the fridge at nine and waited. By eleven, one of the accounting interns was sprinting toward the break room, face pale, asking whoever would listen if the sample thing meant a drug test. She'd eaten half of it before checking the label twice. I never said a word. She confessed to HR that afternoon, terrified of a review that never existed, and admitted to the fridge thefts going back to January just to explain why she'd been so hungry. The fridge has had a padlock on it ever since, and it isn't mine.",
+  "shots": [
+    {"phrase": "eating my lunch from the office fridge", "query": "office fridge kitchen"},
+    {"phrase": "HR shrugged, my manager shrugged", "query": "office worker shrug"},
+    {"phrase": "labeled it in bold red marker", "query": "red marker writing label"},
+    {"phrase": "packed it with my actual leftovers", "query": "packed lunch container food"},
+    {"phrase": "sprinting toward the break room", "query": "person running office hallway"},
+    {"phrase": "eaten half of it before checking the label twice", "query": "eating food break room"},
+    {"phrase": "confessed to HR that afternoon", "query": "hr office meeting"},
+    {"phrase": "padlock on it ever since", "query": "padlock lock metal"}
+  ],
+  "punches": [
+    {"phrase": "three weeks straight", "text": "3 WEEKS", "color": "#ffaa30"},
+    {"phrase": "extra spicy this time", "text": "TRAP SET", "color": "#ffaa30"},
+    {"phrase": "sprinting toward the break room", "text": "PANIC", "color": "#ff3030"},
+    {"phrase": "confessed to HR that afternoon", "text": "BUSTED", "color": "#ff3030"},
+    {"phrase": "padlock on it ever since", "text": "CASE CLOSED", "color": "#50ff80"}
+  ],
+  "music_vibe": "hiphop"
+}

@@ -1,0 +1,20 @@
+{
+  "key": "tattoo_multiple_ink_share",
+  "title": "US adults, by number of tattoos",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "32% of Americans have a tattoo, including 22% who have more than one",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/short-reads/2023/08/15/32-of-americans-have-a-tattoo-including-22-who-have-more-than-one/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Of all US adults, 32% have at least one tattoo; of those, 22 percentage points (of all adults) have more than one, and 10 percentage points have exactly one.",
+  "points": [
+    {"label": "No tattoo", "value": 68},
+    {"label": "Exactly one", "value": 10},
+    {"label": "More than one", "value": 22}
+  ]
+}

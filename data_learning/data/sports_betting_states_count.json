@@ -1,0 +1,22 @@
+{
+  "key": "sports_betting_states_count",
+  "title": "US states with legal sports betting",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2017-2024",
+  "source": {
+    "name": "State sports betting legalization tracker",
+    "publisher": "American Gaming Association / Legal Sports Report",
+    "url": "https://www.americangaming.org/resources/commercial-gaming-revenue-tracker/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Nevada was the only state offering full single-game sports betting before the Supreme Court's May 2018 Murphy v. NCAA ruling struck down PASPA. State counts include Washington, D.C. Approximate for intermediate years.",
+  "points": [
+    {"label": "2017", "value": 1, "period": "2017"},
+    {"label": "2019", "value": 13, "period": "2019"},
+    {"label": "2021", "value": 25, "period": "2021"},
+    {"label": "2023", "value": 35, "period": "2023"},
+    {"label": "2024", "value": 38, "period": "2024"}
+  ]
+}
