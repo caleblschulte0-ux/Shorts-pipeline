@@ -198,6 +198,21 @@ class ALabelInsideAMarkIsLegibleOnIt(unittest.TestCase):
     def test_no_composer_hardcodes_an_ink_for_a_mark(self):
         src = Path(ROOT / "data_learning" / "charts.py").read_text()
         self.assertNotIn('color="#0B1020"', src)
+        self.assertNotIn('color="white"', src,
+                         "a label hardcoded for a mark that used to be bright")
+
+    def test_nothing_fills_a_mark_with_the_mid_tone_accent(self):
+        """`_story_pictorial_race` was the last one filling with `ACCENT` —
+        a mid-tone (luminance 0.19) that NEITHER ink clears 4.5:1 on, and
+        which reads as *disabled* rather than as context."""
+        import ast
+        src = Path(ROOT / "data_learning" / "charts.py").read_text()
+        for node in ast.walk(ast.parse(src)):
+            if not isinstance(node, ast.Assign):
+                continue
+            if any(getattr(t, "id", "") == "color" for t in node.targets):
+                self.assertNotIn("ACCENT", ast.unparse(node.value),
+                                 f"charts.py:{node.lineno} fills with ACCENT")
 
 
 if __name__ == "__main__":

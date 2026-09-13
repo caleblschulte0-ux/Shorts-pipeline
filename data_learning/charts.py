@@ -683,16 +683,6 @@ def _ordered_items(insight: Insight) -> list:
     return items
 
 
-def _color_for(p, insight: Insight, revealed: bool):
-    if not revealed:
-        return "#16203a"                   # ghosted (not yet revealed)
-    if insight.baseline and p.label == insight.baseline.label:
-        return WARN
-    if p.label == insight.highlight_label:
-        return HIGHLIGHT
-    return ACCENT
-
-
 def _card_base():
     import matplotlib
     matplotlib.use("Agg")
@@ -1764,8 +1754,11 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
         ax.scatter([lon], [lat], s=260 + 500 * float(norm(v)) * ri, color=col,
                    edgecolors=GRID, linewidths=1.5, zorder=5,
                    alpha=0.35 + 0.6 * ri)
+        # The rank number sits INSIDE the pin, and the pin's colour now
+        # ramps REST -> HIGHLIGHT, so white is right at one end of that ramp
+        # and wrong at the other. `_ink_on` decides by luminance.
         ax.text(lon, lat, str(i + 1), ha="center", va="center", fontsize=17,
-                color="white", fontweight="bold", zorder=6,
+                color=_ink_on(col), fontweight="bold", zorder=6,
                 alpha=0.35 + 0.65 * ri, path_effects=_shadow())
     if pins:
         nm0, v0, (lon0, lat0) = pins[0]
@@ -1801,14 +1794,22 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
         if i == 0:
             # The host performs AT this tip — the value rides INSIDE the
             # bar so his body never covers the number.
-            t2 = bax.text(tip - span * 0.015, i, _ulabel(v, insight.unit), ha="right",
-                          va="center", fontsize=26, color="white",
-                          fontweight="bold", zorder=4, alpha=la,
-                          path_effects=_shadow())
+            t2 = bax.text(tip - span * 0.015, i, _ulabel(v, insight.unit),
+                          ha="right", va="center", fontsize=26,
+                          color=_ink_on(col), fontweight="bold", zorder=4,
+                          alpha=la, path_effects=_shadow())
         else:
-            t2 = bax.text(tip, i, " " + _ulabel(v, insight.unit), ha="left", va="center",
-                          fontsize=26, color=col, fontweight="bold", zorder=4,
-                          alpha=la)
+            # TEXT WEARS INK — and here that is not a style preference, it is
+            # the difference between a number and no number. These sit on the
+            # GROUND, past the tip, and `col` walks the `[REST, HIGHLIGHT]`
+            # ramp: at the bottom of it the fill is `look.REST`, which is
+            # 2.05:1 on the ground. The showrunner read the result exactly as
+            # it is — "'Everything else 20%' is near-black grey on the dark
+            # ground", container-ships-floating-cities, 2026-09-11.
+            t2 = bax.text(tip, i, " " + _ulabel(v, insight.unit), ha="left",
+                          va="center", fontsize=26, fontweight="bold",
+                          zorder=4, alpha=la,
+                          color=TEXT if i == 0 else SUBTLE)
         specs.append((v, "art", t2, None))
     # THE HOST performs on the winning bar's tip — the contact the judge
     # praised — with the clamp keeping him off the map's markers above.
@@ -1863,7 +1864,10 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         elif p.label == insight.highlight_label:
             color = HIGHLIGHT
         else:
-            color = ACCENT
+            # NEUTRAL. `ACCENT` is a mid-tone neither ink reads on; the
+            # existing guard only looked at call KEYWORDS, so this plain
+            # assignment slipped past it. `look.REST` like everything else.
+            color = REST
         full = max(1, int(round((v / vmax) * cols)))
         # CONTINUOUS reveal: the frontier icon FADES in (no cell-by-cell stepping
         # that judders / reads as dead air on the cadence metric).
@@ -2018,6 +2022,14 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # States") doesn't run off the left edge — fixed fs24 clipped them.
     _maxlbl = max((len(str(p.label)) for p in items), default=6)
     lblfs = 24 if _maxlbl <= 9 else 20 if _maxlbl <= 12 else 17
+    # ...and the column is as wide as the widest value, measured at the face
+    # it will be drawn in. A flat multiplier is a guess that prints "$1,240
+    # billion" through the bar it belongs to.
+    _widest = max((_ulabel(x, insight.unit) for x in values), key=len,
+                  default="")
+    _colf = min(0.42, (_measure_pts(fig, _widest, _num_face(30)) + 30.0)
+                / max(1.0, _axes_pts(0.62)))
+    _gutter = 1.0 / max(0.30, 1.0 - _colf)
     t = max(0.0, min(1.0, reveal))
     _cache: dict = {}
 
@@ -2037,61 +2049,66 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     specs = []
     for i, (p, v) in enumerate(zip(items, values)):
         y = n - 1 - i
+        # NEUTRAL, NOT DIM-GOLD — the last composer still filling with
+        # `ACCENT`. It is a mid-tone (luminance 0.19) that NEITHER ink reads
+        # on at 4.5:1, and a desaturated highlight reads as *disabled* rather
+        # than as context. `look.REST` is what every other mark wears.
         color = (WARN if (insight.baseline and p.label == insight.baseline.label)
-                 else HIGHLIGHT if p.label == insight.highlight_label else ACCENT)
+                 else HIGHLIGHT if p.label == insight.highlight_label else REST)
         tip = max(v * t, vmax * 0.02)
         _round_barh(ax, y, vmax, lw, BAR_BASE, zorder=2)          # track
         _round_barh(ax, y, tip, lw, color, zorder=3)              # grown bar
         img = _icon(p.label)
         cap_w = vmax * 0.055                    # visual width of the tip cap
-        _icon_px = 0.0
         if img is not None:
-            _zoom = 0.9
-            oi = OffsetImage(img, zoom=_zoom)
-            # Its width in DISPLAY pixels — `OffsetImage` draws the array at
-            # `zoom` x its pixel size, so this is exact and dpi-independent.
-            # The short-bar value label is offset past it below.
-            _icon_px = float(getattr(img, "shape", (0, 72))[1]) * _zoom
+            oi = OffsetImage(img, zoom=0.9)
             ax.add_artist(AnnotationBbox(oi, (tip, y), frameon=False, zorder=5,
                                          box_alignment=(0.5, 0.5)))
         # ...and when no icon resolves, NOTHING rides the tip. It drew a
         # 340pt white-ringed disc — a sticker where a picture should be. The
         # bar already ends in a rounded cap at exactly that point, so the
         # tip is marked; a disc on top of it only says "the icon failed".
-        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=lblfs,
-                color=(color if p.label == insight.highlight_label else TEXT),
-                fontweight="bold", zorder=4)
+        # TEXT WEARS INK. `shared/palette` states it in its own module
+        # docstring; the coloured bar an inch to the right already says which
+        # row is the subject, and on a dim row this painted the name in the
+        # mark's tone on navy.
+        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center",
+                fontsize=lblfs, zorder=4,
+                color=TEXT if p.label == insight.highlight_label else SUBTLE)
         # Value label WITH its unit (%/$/…). It sits INSIDE the coloured bar
         # (white, left-aligned on the fill) so the TIP stays clear for the mascot
         # pushing it — no tip collision (his shove-arm used to cover the leading
         # digit), and it can never be clipped by xlim ('59.1%' -> '9.1%'). A bar
         # too short to hold the number gets it just past the tip instead.
+        # THE VALUES ARE A COLUMN AT THE MARGIN — nothing at the tip can
+        # cover them, because nothing is there.
+        #
+        # This had TWO placements and both collided with something that rides
+        # the tip. Inside the fill (hardcoded "white") it was covered by Data
+        # the moment the bar was short: measured on the moon render, the 1980
+        # row's "8 yrs" was entirely behind the mascot. Just past the tip it
+        # was covered by the ICON — the showrunner's words on
+        # `melatonin-kids-er-surge`, "a red CAR clip-art sits on the
+        # 'Intensive care' row ... it fully covers the 1% value it is meant to
+        # annotate" — and `junk_imagery` is FATAL, so that beat cost the whole
+        # story.
+        #
+        # A tip carries an icon AND the host, so the tip is the one place a
+        # number must not be. Right-aligned in one column, as wide as the
+        # widest value MEASURED, the collision class cannot recur and the
+        # numbers become comparable down the page — the same fix, and the same
+        # reasoning, as `_story_bars`.
         _lab = _ulabel(v, insight.unit)
-        if tip > vmax * 0.30:            # bar long enough -> number INSIDE the fill
-            tt = ax.text(vmax * 0.035, y, _lab, va="center", ha="left",
-                         fontsize=30, color="white", fontweight="bold", zorder=7,
-                         alpha=_lblalpha(reveal))
-        else:                            # short bar -> value just past the tip
-            # PAST THE ICON, not past the tip. A 1% bar's cap-plus-3% offset is
-            # a few data units and the icon centred on that tip is ~65 display
-            # pixels wide, so the graphic sat squarely on the number it was
-            # annotating. The showrunner said so in as many words on
-            # `melatonin-kids-er-surge` (2026-09-09): "a red CAR clip-art sits
-            # on the 'Intensive care' row ... it fully covers the 1% value it
-            # is meant to annotate" — and `junk_imagery` is FATAL, so that beat
-            # cost the whole story. Offsetting in display pixels is the only
-            # unit in which the icon's own size is actually known here.
-            tt = ax.annotate(_lab, xy=(tip + cap_w, y),
-                             xytext=(_icon_px / 2.0 + 10, 0),
-                             textcoords="offset pixels",
-                             va="center", ha="left", fontsize=30, color=color,
-                             fontweight="bold", zorder=7,
-                             alpha=_lblalpha(reveal))
+        tt = ax.text(vmax * _gutter, y, _lab, va="center", ha="right",
+                     color=TEXT if p.label == insight.highlight_label
+                     else SUBTLE,
+                     fontproperties=_num_face(30), zorder=7,
+                     alpha=_lblalpha(reveal))
         specs.append((p.value, "art", tt, None))
-    # Tighter xlim (was 1.5) now the value lives inside the bar: the bars fill
-    # more of the card width (less dead navy on the right), leaving just enough
-    # room for the mascot riding the winning tip.
-    ax.set_xlim(0, vmax * 1.28); ax.set_ylim(-0.6, n - 0.4)
+    # The x limit is whatever leaves the measured values column its room —
+    # see `_gutter` above. A constant here was what made the number either
+    # sit inside the bar or get clipped.
+    ax.set_xlim(0, vmax * _gutter); ax.set_ylim(-0.6, n - 0.4)
     ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
@@ -2639,7 +2656,9 @@ def _story_callouts(fig, plt, insight: Insight, subtitle: str, reveal: float):
         elif p.label == insight.highlight_label:
             color = HIGHLIGHT
         else:
-            color = ACCENT
+            # NEUTRAL — see `look.REST`. Last of the four sites
+            # the call-keyword guard could not see.
+            color = REST
         ax.text(0.04, y + 0.045, p.label, ha="left", va="center",
                 fontsize=30 if i == 0 else 26, color=TEXT, fontweight="bold",
                 path_effects=_shadow(), zorder=4)
