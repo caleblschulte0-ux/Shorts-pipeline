@@ -23,6 +23,7 @@ these tests are what keep them true:
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -249,3 +250,92 @@ class TestTheDoctorCanSeeLongForm(unittest.TestCase):
         seg = p.split("LONG-FORM IS A STANDING ASSIGNMENT", 1)[1][:2200]
         self.assertIn("loosening the long-form gate", seg)
         self.assertIn("unjudged", seg)
+
+
+class TestTheStillFallbackHasRealMotion(unittest.TestCase):
+    """Doctor finding f08a10274ea9: the Sept 6 production run degraded all
+    three beats to the still fallback and the 47s master measured 8.4
+    effective fps against the phase-1 floor of 11.0. The gate was right to
+    block it — the fix belongs in the renderer, not the gate.
+
+    `data_learning/story.py`'s `Segment.insight` is kept ON PURPOSE so a
+    renderer can re-render the chart at frames = beat_seconds * 30 once the
+    real beat length is known (its own docstring says so) — exactly the
+    technique `data_learning/studio_render.py` uses for the primary
+    channel. `longform_render.py` carried that field on every Segment and
+    never spent it: `_still_beat` only ever grabbed the LAST frame of
+    `story.build()`'s cheap 6-frame preview and froze it, then (until this
+    change) papered over the freeze with a Ken Burns push — the exact
+    "camera movement" `data_learning/tests/test_no_camera_shake.py` retires
+    on every other render path.
+
+    These are source checks, not a rendered measurement: this sandbox has
+    neither Pillow, matplotlib nor ffmpeg (`import data_learning.
+    longform_render` itself fails here on a missing PIL, transitively,
+    through story -> viz_director -> viz_scene), so a real frame-diffing
+    test can only run where the full render stack is installed — the
+    auto-merge gate's CI, which does. What IS checkable everywhere is that
+    the capability is actually wired: the real re-render call is present,
+    scaled to the beat's own duration, and the old camera-push path is
+    gone.
+    """
+
+    SRC = (ROOT / "data_learning" / "longform_render.py").read_text()
+
+    def test_the_fallback_rerenders_the_segments_own_insight(self):
+        """Not a silent default: `seg.insight` (or `ins`, its local alias)
+        must actually reach `charts.render_story_build`, or the capability
+        is carried on every Segment and spent by nobody — the exact shape
+        CLAUDE.md calls out ("a capability nothing calls is not a
+        capability")."""
+        self.assertIn("seg.insight", self.SRC)
+        call = self.SRC[self.SRC.index("charts.render_story_build("):][:400]
+        self.assertIn("ins", call)
+
+    def test_the_frame_count_scales_with_the_real_beat_duration(self):
+        """The old story.build() preview is a fixed `frames=6` — that
+        constant must never be what reaches the renderer's own build call,
+        or every beat still only ever gets 6 frames no matter how long it
+        plays."""
+        call = self.SRC[self.SRC.index("charts.render_story_build("):][:400]
+        self.assertIn("frames=nfr", call)
+        self.assertNotIn("frames=6", call)
+        self.assertIn("dur * FPS", self.SRC)
+
+    def test_the_finished_chart_tail_is_bounded(self):
+        """Reuses studio_render's own `_full_by` rather than re-deriving
+        it — that function exists specifically because an unbounded tail on
+        a long span is what tripped the cadence ceiling there first."""
+        self.assertIn("_full_by(dur)", self.SRC)
+
+    def test_frames_are_read_back_in_numeric_not_lexicographic_order(self):
+        """A 3+ digit build (frame 100+) sorts wrong as text
+        ('build100.png' < 'build2.png') — a plain glob+sort would play the
+        animation out of order without ever raising."""
+        self.assertIn("_BUILD_NUM", self.SRC)
+        self.assertIn("int(_BUILD_NUM.search(fp.name).group(1))", self.SRC)
+
+    def test_the_camera_push_helper_is_actually_gone(self):
+        for gone in ("_kenburns_clip", "_title_card(", "zoompan"):
+            self.assertNotIn(gone, self.SRC, gone)
+
+    def test_a_beat_with_no_insight_degrades_to_a_static_hold_not_a_crash(self):
+        self.assertIn("segment carries no insight to re-render", self.SRC)
+        still = self.SRC[self.SRC.index("def _still_beat("):]
+        self.assertIn("_static_hold_clip", still[:900])
+
+    def test_title_and_closing_cards_reveal_instead_of_holding_static(self):
+        """The intro/outro cards used to sit under the same camera push —
+        their replacement must still guarantee a fresh visible change often
+        enough to clear the cadence gate's frozen-run ceiling regardless of
+        how short the card's own text is relative to its narrated window."""
+        self.assertIn("_reveal_card_clip(", self.SRC)
+        self.assertIn("SAFE_GAP_S", self.SRC)
+        self.assertLess(float(re.search(r"SAFE_GAP_S = ([\d.]+)",
+                                        self.SRC).group(1)), 1.875,
+                        "must stay under the phase-1 max_dup_run ceiling "
+                        "(45 frames @ 24fps)")
+
+
+if __name__ == "__main__":
+    unittest.main()

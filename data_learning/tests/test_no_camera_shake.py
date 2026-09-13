@@ -236,6 +236,7 @@ _RENDER_PATHS = [
     "shared/themed_bottom.py",         # trending: bottom strip
     "data_learning/footage_hybrid.py", # stock-footage compositor
     "data_learning/studio_render.py",  # data channel master
+    "data_learning/longform_render.py", # curiosity's 16:9 watch-page renderer
 ]
 
 
