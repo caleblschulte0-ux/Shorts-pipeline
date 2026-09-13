@@ -93,8 +93,30 @@ WORKFLOWS = {
 #: `tests/test_the_day_ships_or_someone_is_told.py` parses each workflow's
 #: declared `workflow_dispatch.inputs` and asserts these are a subset, so
 #: the next wrong key fails a test instead of a production repair.
+#:
+#: ...AND THE VALUE HAS TO BE A LEGAL ONE, WHICH IS THE PART THAT WAS
+#: MISSING. The 2026-09-12 fix checked the KEYS and stopped there, so
+#: `mode` was a declared input and the test passed — while `explainer.yml`
+#: declares it `type: choice` and GitHub refused the VALUE:
+#:
+#:     HTTP 422: Provided value 'auto' for input 'mode' not in the list of
+#:     allowed values
+#:
+#: On 2026-09-13 the switch therefore fired correctly for third (2 -> 4) and
+#: trending (0 -> 1) and could not dispatch the explainer AT ALL. The
+#: channel sat at 0/4 until a human asked where the videos were, which is
+#: the precise thing this switch exists to prevent — for the THIRD time in
+#: two days, and each time the test that should have caught it was checking
+#: something adjacent to the thing that breaks.
+#:
+#: `auto` is real, but it is the mode an EMPTY `inputs.mode` falls back to
+#: on a cron ("[ -z "$MODE" ] && MODE=auto"); it is deliberately absent from
+#: the hand-pickable choice list. `schedule` is the listed option that
+#: renders, reviews and uploads, and it carries `--repair 1`, which is what
+#: a repair dispatch wants. It reaches the identical editorial + showrunner
+#: path — this lifts no gate and skips no judgment.
 DISPATCH_INPUTS = {
-    "explainer": {"mode": "auto"},
+    "explainer": {"mode": "schedule"},
     "trending": {},
     "third": {},
 }
