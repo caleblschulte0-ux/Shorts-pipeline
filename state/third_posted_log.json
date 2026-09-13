@@ -7034,6 +7034,25 @@
       "title": "what drew say",
       "qa_rejected": true,
       "ts": "2026-09-13T13:41:54.689407+00:00"
+    },
+    "rejected-nurturingawkwardmilkkappaross-mpdmup3_fw0y7nas": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/NurturingAwkwardMilkKappaRoss-mpdmuP3_fW0Y7NAs",
+      "streamer": "hasanabi",
+      "title": "Corbyn reacts to Hasan's Meat pic",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (insider banter, no clear event)",
+      "ts": "2026-09-13T14:57:32.998717+00:00"
+    },
+    "clip-20260913-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/GenerousModernAubergineM4xHeh-SBRgTiMh5NLq43Yf",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween And His Friends Try To Figure Out Who Slumped Him Out",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T15:00:51.384202+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
