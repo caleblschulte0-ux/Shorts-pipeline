@@ -6965,13 +6965,45 @@
       "ts": "2026-09-13T12:47:05.601723+00:00"
     },
     "clip-20260913-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/SeductiveHumbleBubbleteaArgieB8-UIQok58m4of3K7KT",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/a2hAijAc9es",
       "title": "Plaqueboymax Is Changing His Number After This Leak",
       "kind": "twitch_clip",
-      "ts": "2026-09-13T13:30:51.001282+00:00",
+      "ts": "2026-09-13T13:30:57.268617+00:00",
+      "uploaded_at": "2026-09-13T13:30:57.268633+00:00",
+      "publish_at": "2026-09-13T21:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/SeductiveHumbleBubbleteaArgieB8-UIQok58m4of3K7KT",
+      "streamer": "plaqueboymax",
+      "series": "drama",
+      "hook": "HE'S CHANGING HIS NUMBER OVER THIS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2082,
+      "banger": 0.5,
+      "cut": {
+        "start": 23.7,
+        "end": 44.1
+      },
+      "director_cut": true
+    },
+    "rejected-incredulousfreezingwoodcockleeroyjenkins-bz2tjif50unuy8ij": {
+      "source_url": "https://www.twitch.tv/disguisedtoast/clip/IncredulousFreezingWoodcockLeeroyJenkins-bZ2TJIf50unuy8iJ",
+      "streamer": "disguisedtoast",
+      "title": "strategy session",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (lobby setup talk, nothing happens)",
+      "ts": "2026-09-13T13:33:34.077740+00:00"
+    },
+    "clip-20260913-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lospollostv/clip/DelightfulGiantReubenBigBrother-n1zbD3cs6m9HwDpP",
+      "story_key": null,
+      "streamer": "lospollostv",
+      "title": "Lospollostv Finds Out The Sauna Isn't As Soundproof As He Thought",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T13:36:51.200187+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
