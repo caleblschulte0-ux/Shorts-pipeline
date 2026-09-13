@@ -155,22 +155,85 @@ class ItStillMatchesWhatItIsFOR(unittest.TestCase):
 
 
 class TheIconDoesNotCoverTheNumber(unittest.TestCase):
-    """`melatonin-kids-er-surge`: "it fully covers the 1% value it is meant to
-    annotate". A short bar's value was placed a few DATA units past the tip
-    while the icon centred on that tip is ~65 DISPLAY pixels wide."""
+    """`melatonin-kids-er-surge`: "a red CAR clip-art sits on the 'Intensive
+    care' row ... it fully covers the 1% value it is meant to annotate" — and
+    `junk_imagery` is FATAL, so that one collision cost the whole story.
 
-    def test_the_short_bar_value_is_offset_past_the_icon(self):
-        import inspect
-        from data_learning import charts
-        src = inspect.getsource(charts._story_pictorial_race)
-        self.assertIn("_icon_px", src)
-        self.assertIn('textcoords="offset pixels"', src)
+    THIS ASSERTS THE PROPERTY, NOT THE MECHANISM. It used to read the source
+    for `textcoords="offset pixels"`, which was the *first* fix: push the
+    value a measured icon-width past the tip. That fix was real and it is
+    gone, because a tip carries an icon AND the mascot, and pushing the
+    number along the tip only moved which of the two covered it — on the moon
+    render the 1980 row's "8 yrs" ended up entirely behind Data. The value
+    lives in a measured right-aligned column at the margin now, where nothing
+    rides. Asserting on the old mechanism's spelling would have failed that
+    strictly better fix, and passed a future one that put the number back
+    under the icon in some new way. So: RENDER IT AND MEASURE THE BOXES.
+    """
 
-    def test_the_offset_is_derived_from_the_image_not_guessed(self):
-        import inspect
-        from data_learning import charts
-        src = inspect.getsource(charts._story_pictorial_race)
-        self.assertIn('getattr(img, "shape"', src)
+    @staticmethod
+    def _render(values):
+        import matplotlib
+        matplotlib.use("Agg")
+        from data_learning import charts as C
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        ins = Insight(kind="pictorial_race", topic="T", main_insight="m",
+                      items=[DataPoint(label=l, value=v) for l, v in values],
+                      source=Source(name="X", publisher="P", url="https://x",
+                                    access_date="2026-09-13"),
+                      unit="percent", highlight_label=values[0][0])
+        fig, plt = C._card_base()
+        ax, specs = C._story_pictorial_race(fig, plt, ins, "", 1.0)
+        fig.canvas.draw()
+        return fig, plt, ax, specs
+
+    @staticmethod
+    def _boxes(ax):
+        """Every IMAGE riding the frame — the tip icons AND the mascot."""
+        from matplotlib.offsetbox import AnnotationBbox
+        out = []
+        for a in ax.artists:
+            if isinstance(a, AnnotationBbox):
+                try:
+                    out.append(a.get_window_extent())
+                except Exception:               # noqa: BLE001
+                    continue
+        return out
+
+    def test_no_value_label_is_covered_by_an_icon_or_the_mascot(self):
+        """A short bar is the hard case: its tip is deep inside the frame, so
+        the icon and the host sit right where a tip-hung number would be."""
+        fig, plt, ax, specs = self._render(
+            [("Intensive care", 1.0), ("Emergency room", 62.0),
+             ("Urgent care", 31.0), ("Clinic", 6.0)])
+        try:
+            imgs = self._boxes(ax)
+            self.assertTrue(imgs, "nothing rides the tips — test is vacuous")
+            for value, kind, art, _ in specs:
+                bb = art.get_window_extent()
+                for ib in imgs:
+                    ov = (max(0.0, min(bb.x1, ib.x1) - max(bb.x0, ib.x0))
+                          * max(0.0, min(bb.y1, ib.y1) - max(bb.y0, ib.y0)))
+                    self.assertEqual(
+                        ov, 0.0,
+                        f"{art.get_text()!r} is under an image "
+                        f"({ov:.0f}px^2 of overlap)")
+        finally:
+            plt.close(fig)
+
+    def test_the_values_line_up_in_one_column(self):
+        """Which is WHY nothing can cover them: they are not at the tips at
+        all. A column also makes the numbers comparable down the page, which
+        a ragged right edge never was."""
+        fig, plt, ax, specs = self._render(
+            [("Alpha", 3.0), ("Beta", 58.0), ("Gamma", 91.0)])
+        try:
+            rights = {round(a.get_window_extent().x1) for _, _, a, _ in specs}
+            self.assertEqual(len(rights), 1,
+                             f"values do not share a right edge: {rights}")
+        finally:
+            plt.close(fig)
 
 
 class NoLabelEverGetsAnIconFromANUMBER(unittest.TestCase):

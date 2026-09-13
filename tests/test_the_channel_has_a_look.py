@@ -138,7 +138,7 @@ class TextWearsINKNeverTheSeriesColour(unittest.TestCase):
         MARK = {"col", "gcol", "color", "HIGHLIGHT", "ACCENT", "REST",
                 "series_color", "accent"}
         for fn in (charts._story_bars, charts._story_versus,
-                   charts._story_stack):
+                   charts._story_stack, charts._story_pictorial_race):
             tree = ast.parse(inspect.getsource(fn).lstrip())
             for node in ast.walk(tree):
                 if not (isinstance(node, ast.Call)

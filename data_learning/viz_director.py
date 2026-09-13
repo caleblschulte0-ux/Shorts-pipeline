@@ -446,7 +446,9 @@ while-loops, NO names with underscores):
                         - reveal a subject filled to `frac` (gauges/'X% of a thing')
   text(s, x, y, size=48, color=TEXT, center=False)   - labelled numbers
   font(size), rgba(color, alpha), clamp(v,lo,hi), lerp(a,b,t), math
-  Colors: ACCENT, HIGHLIGHT, WARN, TEXT (RGB tuples)
+  Colors: HIGHLIGHT (the ONE accent - put it on the SUBJECT and nothing
+          else), REST (every supporting mark), WARN (a baseline/alarm only),
+          TEXT / SUBTLE (type - text NEVER wears a mark's colour)
   Safe drawing area: x in [RX0=40, RX1=1040], y in [RTOP=80, RBOT=1180].
 
 HARD RULES:

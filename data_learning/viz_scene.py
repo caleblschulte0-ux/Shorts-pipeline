@@ -33,8 +33,29 @@ from pathlib import Path
 from PIL import Image as _PImg
 
 from . import charts
-from .charts import (ACCENT, HIGHLIGHT, TEXT, WARN, _fullframe, _ordered_items,
-                     _pil_font, _rgba, _sci, _vfmt)
+# THE TWO TOKENS THE STUDIO REBINDS PER STORY ARE NOT IMPORTED.
+#
+# `studio_render.render` does `charts.HIGHLIGHT, charts.ACCENT = look.accent(
+# look.accent_for(slug))` so the channel has one accent per video and variety
+# ACROSS videos. `from .charts import HIGHLIGHT` is a SNAPSHOT taken at import,
+# so every machine in this file kept drawing in the module-load gold while the
+# charts beside them wore the story's real accent — two accents in one video,
+# which `shared/look` forbids in its first rule, on three of the four
+# palettes. Read them off the module (`charts.HIGHLIGHT`) and the rebind
+# lands. The rest are true constants and are safe to bind.
+from . import charts as _c
+from .charts import (REST, SUBTLE, TEXT, WARN, _fullframe,
+                     _ordered_items, _pil_font, _rgba, _sci, _vfmt)
+
+
+def __getattr__(name):
+    """Module-level fallback so `viz_scene.HIGHLIGHT` still answers — for
+    tests and for any caller that reads the token off this module. Function
+    bodies use `HIGHLIGHT` directly; a bare global would not reach here
+    (CPython looks in globals then builtins, never a module __getattr__)."""
+    if name in ("HIGHLIGHT", "ACCENT"):
+        return getattr(_c, name)
+    raise AttributeError(name)
 
 W, H = 1080, 1920
 # THE SCENE KIT OWNS THE 9:16 FRAME.
@@ -144,12 +165,59 @@ def _resolve(sel, insight):
     return None
 
 
+def _lead_color(insight):
+    """THE STORY'S ONE ACCENT, AND IT BELONGS TO THE SUBJECT.
+
+    A machine — a globe, a tower, a pair of scales, an hourglass — is ONE
+    picture of ONE claim, so it wears the story's accent. It used to be told
+    `_color_for(insight.items[0].label, insight)`: the colour of whatever
+    happened to be item ZERO. That is DRAW ORDER choosing the colour of the
+    picture, which `shared/look` forbids in as many words ("ONE accent per
+    story, and it goes on the SUBJECT — decided by the story, never by draw
+    order"), and on a trend item zero is the EARLIEST year while the subject
+    is almost always the latest.
+
+    Measured over the un-posted queue on 2026-09-13: **71 of 176 beats — 40%
+    — drew their entire machine in `ACCENT`**, a luminance-0.19 mid-tone that
+    NEITHER ink clears 4.5:1 on and that reads as *disabled* rather than as
+    context. Forty percent of the pictures this channel is proudest of were
+    coming out dim gold because of a subscript.
+    """
+    b = getattr(insight, "baseline", None)
+    if b is not None and getattr(insight, "highlight_label", None) == b.label:
+        return WARN
+    return _c.HIGHLIGHT
+
+
 def _color_for(label, insight):
+    """The FILL for ONE item's mark, among several.
+
+    `REST` is the neutral, not `ACCENT`. A desaturated accent reads as
+    *disabled*; `look.REST` reads as context, which is what a supporting mark
+    is. See `tests/test_no_coloured_dots.py` for the luminance arithmetic and
+    `_ink_for` below for the same item's TEXT, which is a different question.
+    """
     if insight.baseline and label == insight.baseline.label:
         return WARN
     if label == insight.highlight_label:
-        return HIGHLIGHT
-    return ACCENT
+        return _c.HIGHLIGHT
+    return REST
+
+
+def _ink_for(label, insight):
+    """The colour of TEXT about one item — which is never a mark's fill.
+
+    `draw_number` prints the beat's number at 118pt in whatever colour it is
+    handed. Handed `REST` (2.05:1 on the ground) that number is invisible;
+    handed `REST` (4.22:1) it is a smudge. Text wears INK unless it is the
+    subject, where the accent is the deliberate emphasis — the rule
+    `shared/palette` has stated in its own module docstring the whole time.
+    """
+    if insight.baseline and label == insight.baseline.label:
+        return WARN
+    if label == insight.highlight_label:
+        return _c.HIGHLIGHT
+    return TEXT
 
 
 # --------------------------------------------------------------------------- #
@@ -881,8 +949,104 @@ def unit_plan(value: float, per_value: float, cap: int = 60) -> tuple:
     return max(1, min(cap, k)), per
 
 
+def legible(color):
+    """`color` if TYPE set in it can be READ on the ground — else plain ink.
+
+    A drawer is handed ONE colour and uses it for its mark and, at a couple of
+    sites, for the number above that mark. That is fine while the colour is an
+    accent (`HIGHLIGHT` is 13.1:1 on the ground) and silently catastrophic the
+    moment it is the supporting neutral: `look.REST` is 2.05:1, so a 60pt
+    number drawn in it is a number nobody can see. The showrunner wrote it
+    down in those words — "'Everything else 20%' is near-black grey on the
+    dark ground", container-ships-floating-cities, 2026-09-11.
+
+    A MEASUREMENT, not a list of which colours are allowed. A list is one more
+    thing to forget to update when a token moves; the arithmetic cannot go
+    stale. 4.5:1 is the text floor, the same one `charts._ink_on` uses for
+    type sitting inside a mark — this is its outdoor sibling, for type sitting
+    on the ground.
+    """
+    try:
+        return color if _contrast_on_ground(color) >= 4.5 else TEXT
+    except Exception:  # noqa: BLE001 — never break a render over a colour
+        return TEXT
+
+
+def _contrast_on_ground(color) -> float:
+    """WCAG contrast of `color` against the TOP of the studio ground (the
+    lighter end, so the answer is the pessimistic one)."""
+    from shared import look as _look
+    def _rgb(c):
+        if isinstance(c, str):
+            c = c.lstrip("#")
+            return tuple(int(c[i:i + 2], 16) / 255.0 for i in (0, 2, 4))
+        return tuple(float(v) / 255.0 for v in tuple(c)[:3])
+    def _lum(c):
+        def _ch(x):
+            return x / 12.92 if x <= 0.04045 else ((x + 0.055) / 1.055) ** 2.4
+        r, g, b = (_ch(v) for v in _rgb(c))
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b
+    a, b = sorted((_lum(color), _lum(_look.GROUND_TOP)))
+    return (b + 0.05) / (a + 0.05)
+
+
+_UNIT_ICON_CACHE: dict = {}
+
+
+def unit_glyph(cutout, label, side: int, topic: str = ""):
+    """The picture ONE unit of an isotype is made of, at `side` px — or None.
+
+    An isotype is N copies of ONE THING, and counting them IS the number. When
+    that thing fails to resolve the form does not degrade gracefully: it
+    becomes N identical featureless blobs, which depict nothing while looking
+    exactly like a picture that means something.
+
+    Measured on 2026-09-13, `units_scene` is the MOST-USED machine in the
+    whole queue — 32 of 176 beats, 18% of everything this channel draws — and
+    offline it had a cutout on none of them. Every one of those rendered as
+    thirty grey discs: "colored dots are not something we should be using"
+    (operator, 2026-09-10), thirty at a time, in the machine that gets the
+    most screen time.
+
+    A real photo cut-out stays first choice and is what the caller passes when
+    the media funnel found one. The gap this closes is that THERE WAS NO
+    SECOND CHOICE. `icons.icon_for` is right there — cached, offline after the
+    first fetch, already what `_story_pictorial_race` caps its bars with — and
+    thirty little banknotes is an isotype in a way thirty discs never were.
+
+    Returns None only when neither resolves, and the caller then draws a
+    WAFFLE TILE: a real chart form that says "one of these" without
+    pretending to be a picture of anything.
+    """
+    if cutout is not None:
+        return _fit(cutout, side, side)
+    # THE ITEM LABEL, THEN WHAT THE UNITS ARE *OF*. On a trend the item label
+    # is a YEAR, and a year is deliberately unmatchable (see
+    # `NoLabelEverGetsAnIconFromANUMBER`) — so asking only the label meant the
+    # most common shape of data on this channel could never resolve a unit.
+    # The topic is what the count is actually of, which is the thing an
+    # isotype is N copies of in the first place.
+    key = (str(label or ""), str(topic or ""))
+    if key not in _UNIT_ICON_CACHE:
+        img = None
+        for term in (k for k in key if k):
+            try:
+                from . import icons as _icons
+                path = _icons.icon_for(term)
+                if not path:
+                    continue
+                from PIL import Image
+                img = Image.open(str(path)).convert("RGBA")
+                break
+            except Exception:  # noqa: BLE001 — a missing icon is a tile
+                continue
+        _UNIT_ICON_CACHE[key] = img
+    img = _UNIT_ICON_CACHE[key]
+    return _fit(img, side, side) if img is not None else None
+
+
 def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
-                      reveal, unit=""):
+                      reveal, unit="", topic=""):
     """AN ISOTYPE: N copies of one thing, where counting them IS the number.
 
     This is the oldest non-chart way to show a quantity and the channel had no
@@ -916,7 +1080,7 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     side = int(min(cell_w, cell_h) * 0.84)
     if side < 12:
         return None
-    icon = _fit(cutout, side, side) if cutout is not None else None
+    icon = unit_glyph(cutout, label, side, topic)
     gx = bx0 + (bw - cols * cell_w) / 2.0
     gy = top + (bh - rows * cell_h) / 2.0
     # A CASCADE, NOT A METRONOME.
@@ -955,8 +1119,12 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
                     lambda v, _a=a: int(v * _a)))
             canvas.alpha_composite(im, (x, y))
         else:
-            d.ellipse([x, y, x + side, y + side],
-                      fill=_rgba(color, int(235 * a)))
+            # A UNIT IS A TILE, NOT A DOT — the ruling `draw_dot_field` below
+            # already carries and this sibling never inherited. A disc depicts
+            # nothing while occupying the slot a picture goes in.
+            d.rounded_rectangle([x, y, x + side, y + side],
+                                radius=max(2, int(side * 0.22)),
+                                fill=_rgba(color, int(235 * a)))
         if a > 0.5:
             cx_last, cy_last = x + side // 2, y + side // 2
     # THE LEGEND IS THE HONESTY. Without "each = 50" the picture is a pile of
@@ -967,7 +1135,8 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
            fill=_rgba(TEXT, int(255 * min(1.0, reveal * 2))), anchor="mm")
     total = charts._ulabel(value, unit, group=True)
     d.text((_cx(box), by0 + 58), f"{label}   {total}", font=_pil_font(60),
-           fill=_rgba(color, int(255 * min(1.0, max(0.0, reveal - 0.25) * 2))),
+           fill=_rgba(legible(color),
+                      int(255 * min(1.0, max(0.0, reveal - 0.25) * 2))),
            anchor="mm")
     if cx_last is None:
         return None
@@ -1046,7 +1215,7 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     hi = value >= other
     for (px, py, val, lab, heavy) in ((lx, ly, value, label, hi),
                                       (rx, ry, other, other_label, not hi)):
-        col = color if heavy else ACCENT
+        col = color if heavy else REST
         d.line([(px, py), (px, py + 78)], fill=_rgba(TEXT, 150), width=6)
         pan_w = 210
         d.rounded_rectangle([px - pan_w // 2, py + 78, px + pan_w // 2, py + 118],
@@ -1114,7 +1283,7 @@ def one_in_n(pct: float, cap: int = 100) -> tuple:
 
 
 def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
-                   unit="", denom=None):
+                   unit="", denom=None, topic=""):
     """"k IN n": a field of figures with k of them lit.
 
     The form a rate WANTS. A percentage on a bar asks the viewer to hold an
@@ -1136,7 +1305,7 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
     side = int(min(cell_w, cell_h) * 0.78)
     if side < 8:
         return None
-    icon = _fit(cutout, side, side) if cutout is not None else None
+    icon = unit_glyph(cutout, label, side, topic)
     gx = bx0 + (bw - cols * cell_w) / 2.0
     gy = top + (bh - rows * cell_h) / 2.0
     lit_now = max(0.0, min(1.0, reveal * 1.35)) * k    # the lit ones fill in
@@ -1174,7 +1343,7 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
             cx_last, cy_last = x + side // 2, y + side // 2
     na = max(0.0, min(1.0, (reveal - 0.2) / 0.4))
     d.text((_cx(box), by0 + 58), f"{k} in {n}", font=_pil_font(78),
-           fill=_rgba(color, int(255 * na)), anchor="mm")
+           fill=_rgba(legible(color), int(255 * na)), anchor="mm")
     d.text((_cx(box), bot + 40), f"{label}   {charts._ulabel(value, unit)}",
            font=_pil_font(44), fill=_rgba(TEXT, int(235 * na)), anchor="mm")
     host = scene_host("point", reveal, label, "dot_field")
@@ -1544,7 +1713,7 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
         sx = int(bx0 + 60 + i * w)
         d.rounded_rectangle([sx + 8, int(bot - h), int(sx + w - 8), bot],
                             radius=8,
-                            fill=_rgba(color if i == mid_i else ACCENT,
+                            fill=_rgba(color if i == mid_i else REST,
                                        int(235 * a)))
         _cf, _ct = fit_text(d, str(getattr(p, "label", "")), 26,
                             max(40, int(w) - 6), min_size=16)
@@ -1699,7 +1868,7 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
         d.line([(cx, cy), (px, py)], fill=_rgba(TEXT, 55), width=3)
         big = 16 + 22 * ((v - lo) / span)
         d.ellipse([px - big, py - big, px + big, py + big],
-                  fill=_rgba(color if v >= hi - 1e-9 else ACCENT, 235))
+                  fill=_rgba(color if v >= hi - 1e-9 else REST, 235))
     host = scene_host("cheer", reveal, insight, "wheel")
     if host is not None:
         a = turn - _math.pi / 2
@@ -1768,7 +1937,7 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         fy = ty - (ty - (by0 + 150)) * (1.0 - t_)
         r_ = 17 + 16 * (1.0 - t_)
         d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
-                  fill=_rgba(HIGHLIGHT, 235))
+                  fill=_rgba(_c.HIGHLIGHT, 235))
     host = scene_host("think", reveal, insight, "darts")
     if host is not None:
         mh = 200
@@ -1859,7 +2028,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
             # of featureless discs is a queue of nothing.
             d.rounded_rectangle([x, y, x + sz, y + sz],
                                 radius=max(2, int(sz * 0.22)),
-                                fill=_rgba(ACCENT, 235))
+                                fill=_rgba(REST, 235))
     _s = f"{lab}   {charts._ulabel(v, unit, group=True)} waiting"
     _f, _s = fit_text(d, _s, 62, (bx1 - bx0) - 60)
     d.text(((bx0 + bx1) // 2, by0 + 78), _s, font=_f,
@@ -1919,7 +2088,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
         w0 = full * (v / vmax)
         w1 = full * ((vals[i + 1] / vmax) if i + 1 < n else (v / vmax))
         y0, y1 = int(top + i * seg), int(top + (i + 1) * seg)
-        col = WARN if i == worst else (color if i == 0 else ACCENT)
+        col = WARN if i == worst else (color if i == 0 else REST)
         d.polygon([(cx - w0 / 2, y0), (cx + w0 / 2, y0),
                    (cx + w1 / 2, y1), (cx - w1 / 2, y1)],
                   fill=_rgba(col, int(235 * a)))
@@ -2006,7 +2175,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
         t_ = (reveal * 2.6 + k * 0.09) % 1.0
         px = int(hx + 20 + t_ * 150)
         py = int(hy + 12 + t_ * t_ * (by1 - 130 - hy))
-        particle(d, _st["particle"], px, py, 10, _rgba(ACCENT, 205))
+        particle(d, _st["particle"], px, py, 10, _rgba(REST, 205))
     cur = top_v - (top_v - kept_v) * e
     d.text((cx, by0 + 66),
            f"{charts._ulabel(cur, unit, group=True)} left of "
@@ -2090,7 +2259,7 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
         d.text((tx, y - th // 2 - 34), txt, font=lab_f,
                fill=_rgba(col, 245), anchor="lm" if not right else "rm")
 
-    _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, ACCENT, in_lab, inflow, False)
+    _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, REST, in_lab, inflow, False)
     _pipe(bot - 46, bx1 - 30, 46 * outflow / vmax, WARN, out_lab, outflow, True)
     d.text((cx, by0 + 66),
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
@@ -2150,20 +2319,20 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
         if fh > 2:
             d.rounded_rectangle([bxc - bw // 2 + 8, bin_bot - 7 - fh,
                                  bxc + bw // 2 - 8, bin_bot - 7], radius=9,
-                                fill=_rgba(color if i == 0 else ACCENT, 240))
+                                fill=_rgba(color if i == 0 else REST, 240))
         _binf, _bint = fit_text(d, _label_of(p), 32, max(70, int(bw) - 10),
                                 min_size=20)
         d.text((bxc, bin_bot + 44), _bint, font=_binf,
                fill=_rgba(TEXT, 230), anchor="mm")
         d.text((bxc, bin_bot + 92), f"{share * 100:.0f}%", font=_pil_font(42),
-               fill=_rgba(color if i == 0 else ACCENT, int(255 * a)),
+               fill=_rgba(color if i == 0 else REST, int(255 * a)),
                anchor="mm")
     for k in range(10):
         t_ = (reveal * 1.9 + k * 0.1) % 1.0
         tgt = centres[k % n]
         px = int(cx + (tgt - cx) * t_)
         py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
-        particle(d, _st["particle"], px, py, 14, _rgba(HIGHLIGHT, 225))
+        particle(d, _st["particle"], px, py, 14, _rgba(_c.HIGHLIGHT, 225))
     host = scene_host("point", reveal, insight, "sorter")
     if host is not None:
         mh = 210
@@ -2207,7 +2376,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
             continue
         th = int(20 + 74 * (v / vmax))
         lx = int(x0 + i * slot)
-        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        col = WARN if i == weak else (color if i == 0 else REST)
         # A loaded chain does not hang still. The sway is small and slow — it
         # is tension, not the jitter the mascot was pulled back from — but it
         # is the whole width of the picture, which is what the cadence
@@ -2221,7 +2390,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
         if a <= 0.0:
             break
         mx = int(x0 + i * slot + lw / 2)
-        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        col = WARN if i == weak else (color if i == 0 else REST)
         # Fitted to its OWN SLOT, so four links cannot run their names into
         # one line. `[:11]` cut mid-word and still collided, because the
         # collision was never about the string length — it was that each
@@ -2374,7 +2543,7 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
             d.rounded_rectangle(rect, radius=8, fill=_rgba(charts.CARD, 255),
                                 outline=_rgba(TEXT, 90), width=4)
         else:
-            d.rounded_rectangle(rect, radius=8, fill=_rgba(ACCENT, 210))
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(REST, 210))
             d.ellipse([int(x + cw - 30), int(y + ch / 2 - 6),
                        int(x + cw - 18), int(y + ch / 2 + 6)],
                       fill=_rgba(charts.CARD, 220))
@@ -2522,10 +2691,10 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
                        tx + r_ * 0.15, ty + r_ * 0.15], fill=_rgba(col, 235))
 
     _gear(ax, ra, 10, 0.0, color, ang)
-    _gear(bxx, rb, 10, 18.0, ACCENT, -ang * ra / max(1, rb))
+    _gear(bxx, rb, 10, 18.0, REST, -ang * ra / max(1, rb))
     lab_f = _pil_font(34)
     for cx_, r_, p_, col in ((ax, ra, items[0], color),
-                             (bxx, rb, items[-1], ACCENT)):
+                             (bxx, rb, items[-1], REST)):
         _f, _t = fit_text(d, _label_of(p_), 34,
                           max(120, (bx1 - bx0) // 2 - 40), min_size=20)
         d.text((cx_, cy + r_ + 52), _t, font=_f,
@@ -2660,14 +2829,14 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
             cyp = top + step * (gy + 0.5) + jy
             r_ = step * 0.32
             d.ellipse([cxp - r_, cyp - r_, cxp + r_, cyp + r_],
-                      fill=_rgba(color if i == 0 else ACCENT, 235))
+                      fill=_rgba(color if i == 0 else REST, 235))
         _df, _dt = fit_text(d, _label_of(p), 34, max(80, int(side) - 8),
                             min_size=20)
         d.text((x + side // 2, top + side + 44), _dt,
                font=_df, fill=_rgba(TEXT, 230), anchor="mm")
         d.text((x + side // 2, top + side + 96),
                charts._ulabel(v, unit, group=True), font=_pil_font(44),
-               fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
+               fill=_rgba(color if i == 0 else REST, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
     host = scene_host("point", reveal, insight, "density")
@@ -2774,7 +2943,7 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
         y = top + gy * cell
         d.rounded_rectangle([x + 2, y + 2, x + cell - 2, y + cell - 2],
                             radius=max(2, int(cell * 0.16)),
-                            fill=_rgba(ACCENT, 225))
+                            fill=_rgba(REST, 225))
     # The container is drawn LAST. Under the tiles it vanished at full
     # reveal, and the thing they are supposed to fit inside is half the claim.
     d.rounded_rectangle([cx - side // 2, top, cx + side // 2, top + side],
@@ -2855,7 +3024,7 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
         x = px0 + gx * pw + jx
         y = top + gy * rh
         got = k < chairs
-        col = color if got else ACCENT
+        col = color if got else REST
         hr = pw * 0.17
         d.ellipse([x + pw * 0.5 - hr, y, x + pw * 0.5 + hr, y + hr * 2],
                   fill=_rgba(col, 240))
@@ -2873,7 +3042,7 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
         wx = cx - 300 + (bx1 - 40 - (cx - 300)) * t_
         wy = walk_y0 + (seat_y - 30 - walk_y0) * min(1.0, t_ * 1.8)
         hr = 22
-        col = ACCENT if t_ > 0.55 else color
+        col = REST if t_ > 0.55 else color
         d.ellipse([wx - hr, wy - hr * 2.4, wx + hr, wy - hr * 0.4],
                   fill=_rgba(col, 235))
         d.rounded_rectangle([wx - hr * 1.2, wy - hr * 0.2, wx + hr * 1.2,
@@ -2930,7 +3099,7 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
     for i, (p, v) in enumerate(zip(items, vals)):
         x = bx0 + gap * (i + 1) + gw * i
         mx, my = x + gw / 2, top + gh / 2
-        col = color if i == 0 else ACCENT
+        col = color if i == 0 else REST
         d.polygon([(x, top), (x + gw, top), (mx, my)],
                   outline=_rgba(TEXT, 130), width=7)
         d.polygon([(x, top + gh), (x + gw, top + gh), (mx, my)],
@@ -3059,7 +3228,7 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
     e = settle(reveal)
     for i, (p, v) in enumerate(zip(items, vals)):
         y = top + i * rowh
-        col = color if i == 0 else ACCENT
+        col = color if i == 0 else REST
         _f, _t = fit_text(d, _label_of(p), 34, 300 - 48, min_size=18)
         d.text((bx0 + 24, y + rowh * 0.42), _t,
                font=_f, fill=_rgba(TEXT, 230), anchor="lm")
@@ -3120,7 +3289,7 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     cap = 24
     for i, (p, v) in enumerate(zip(items, vals)):
         x = int(bx0 + gap * (i + 1) + bw * i)
-        col = color if i == 0 else ACCENT
+        col = color if i == 0 else REST
         d.polygon([(x, top), (x + bw, top), (x + bw - 30, top + bh),
                    (x + 30, top + bh)], outline=_rgba(TEXT, 130), width=8)
         goods = max(1, int(round(cap * v / vmax)))
@@ -3208,7 +3377,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         by = int(rest - (1.0 - a) * (bh + 6) * 3.5)
         d.rounded_rectangle([cx - bw // 2, by, cx + bw // 2, by + bh],
                             radius=9,
-                            fill=_rgba(color if k == n - 1 else ACCENT,
+                            fill=_rgba(color if k == n - 1 else REST,
                                        int(240 * min(1.0, a * 2.2))),
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
@@ -3410,7 +3579,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         y1 = int(top + (i + 1) * sh - 8)
         d.polygon([(cx - w0 / 2, y0), (cx + w0 / 2, y0),
                    (cx + w1 / 2, y1), (cx - w1 / 2, y1)],
-                  fill=_rgba(color if i == 0 else ACCENT, int(235 * a)))
+                  fill=_rgba(color if i == 0 else REST, int(235 * a)))
         # OUTSIDE the shape. Drawn inside, a narrow stage is narrower than its
         # own label — "Interviewed 380" rendered as "rviewed" — and the stages
         # that get clipped are precisely the ones the funnel is about.
@@ -3497,7 +3666,7 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         if py < belt_y + 100:
             break
         d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
-                            fill=_rgba(ACCENT, 225),
+                            fill=_rgba(REST, 225),
                             outline=_rgba(charts.CARD, 255), width=3)
     host = scene_host("strain", reveal, insight, "conveyor")
     if host is not None:
@@ -3552,9 +3721,9 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
         tx = cx - trunk_w // 2 + int(trunk_w * (sum(vals[:i]) / tot)) + tw // 2
         d.polygon([(tx - tw / 2, split_y - 2), (tx + tw / 2, split_y - 2),
                    (x + w, split_y + 70), (x, split_y + 70)],
-                  fill=_rgba(ACCENT if i else color, int(150 * a)))
+                  fill=_rgba(REST if i else color, int(150 * a)))
         d.rounded_rectangle([x, split_y + 70, x + w, bot], radius=10,
-                            fill=_rgba(color if i == 0 else ACCENT,
+                            fill=_rgba(color if i == 0 else REST,
                                        int(235 * a)))
         d.text((bxm, bot + 30), f"{share * 100:.0f}%", font=_pil_font(34),
                fill=_rgba(TEXT, int(235 * a)), anchor="mm")
@@ -3746,7 +3915,7 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
         sy = int(bot - h)
         lead = (i == 0)
         d.rounded_rectangle([sx + 10, sy, int(sx + w - 10), bot], radius=8,
-                            fill=_rgba(color if lead else ACCENT, 240))
+                            fill=_rgba(color if lead else REST, 240))
         # windows, so it reads as a BUILDING and not a bar
         rows = int(h // 46)
         for r_ in range(rows):
@@ -3821,7 +3990,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
         sx = int(x0 + i * w)
         sy = int(bot - h)
         d.rounded_rectangle([sx + 6, sy, int(sx + w - 6), bot], radius=10,
-                            fill=_rgba(color if i == n - 1 else ACCENT,
+                            fill=_rgba(color if i == n - 1 else REST,
                                        int(235 * a)))
         if a > 0.6:
             # The last step carries the host, so its value moves to the side
@@ -4027,7 +4196,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
         sy = hands_y - sh - k * (sh + gap)
         d.rounded_rectangle([int(cx - sw // 2), sy, int(cx + sw // 2), sy + sh],
                             radius=9,
-                            fill=_rgba(color if k == n_slabs - 1 else ACCENT, 240),
+                            fill=_rgba(color if k == n_slabs - 1 else REST, 240),
                             outline=_rgba(charts.CARD, 255), width=3)
     _s = f"{lab}   {charts._ulabel(v, unit, group=True)}"
     _f, _s = fit_text(d, _s, 76, (bx1 - bx0) - 60)
@@ -4221,7 +4390,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(TEXT, 40), width=4)
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
         lead = (i == 0)
-        col = color if lead else ACCENT
+        col = color if lead else REST
         d.text((x0 - 22, cy), _names[i],
                font=name_f, fill=_rgba(col, 240), anchor="rm")
         if runner is not None:
@@ -4280,7 +4449,7 @@ def draw_stack(d, canvas, box, cutout, value, per_value, label, color, reveal, u
     vf = _pil_font(60)
     vb = d.textbbox((0, 0), val, font=vf)
     d.text((cx - (vb[2] - vb[0]) // 2, by0 + 60), val, font=vf,
-           fill=_rgba(HIGHLIGHT, 255), stroke_width=5, stroke_fill=(5, 8, 15, 255))
+           fill=_rgba(_c.HIGHLIGHT, 255), stroke_width=5, stroke_fill=(5, 8, 15, 255))
     cap_txt = f"= {n:,} × {label}"
     cf = _pil_font(40)
     cb = d.textbbox((0, 0), cap_txt, font=cf)
@@ -4405,7 +4574,7 @@ def draw_orbit(d, box, insight, reveal):
             continue
         ang = _m.radians(ang0[i] + reveal * 300.0)
         bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
-        col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
+        col = _c.HIGHLIGHT if p.label == insight.highlight_label else REST
         d.ellipse([bx - 26, by - 26, bx + 26, by + 26], fill=_rgba(col, int(255 * na)))
         txt = f"{p.label}  {charts._ulabel(p.value, getattr(insight, 'unit', '') or '', group=True)}"
         _of, _ot = fit_text(d, txt, 36, (box[2] - box[0]) - 60, min_size=22)
@@ -4492,7 +4661,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
             top = pb - (vals[i] / vmax) * (pb - pt) * grow
             cx = X(yrs[i])
             d.rounded_rectangle([cx - bw / 2, top, cx + bw / 2, pb],
-                                radius=10, fill=_rgba(HIGHLIGHT, 220))
+                                radius=10, fill=_rgba(_c.HIGHLIGHT, 220))
             hx, hy = cx, top
         if hx is None:
             hx, hy = X(yrs[0]), pb
@@ -4504,7 +4673,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
             pts.append((hx, hy))
         hx, hy = pts[-1]
         if len(pts) >= 2:
-            d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(HIGHLIGHT, 66))
+            d.polygon(pts + [(hx, pb), (pts[0][0], pb)], fill=_rgba(_c.HIGHLIGHT, 66))
     d.line([(px0, pb), (px1, pb)], fill=(90, 105, 130, 255), width=5)  # baseline
     tick_font = _pil_font(30)
     for i in range(n):
@@ -4515,9 +4684,9 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         d.text((tx - (lb[2] - lb[0]) // 2, pb + 18), lbl, font=tick_font,
                fill=(165, 180, 199, 255))
     if not bars and len(pts) >= 2:
-        d.line(pts, fill=_rgba(HIGHLIGHT, 255), width=11, joint="curve")
+        d.line(pts, fill=_rgba(_c.HIGHLIGHT, 255), width=11, joint="curve")
     for rad, a in ((40, 55), (28, 120), (18, 255)):
-        d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
+        d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(_c.HIGHLIGHT, a))
     # Data's act varies with the demonstration: he POINTS OUT the stacking bill
     # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
     host = scene_host("point" if bars else "cheer", r, insight, "closing")
@@ -4539,7 +4708,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     # clips off the right edge.
     vx = int((W - (vb[2] - vb[0])) / 2)
     vy = 352
-    d.text((vx, vy), val, font=nf, fill=_rgba(HIGHLIGHT, int(255 * na)),
+    d.text((vx, vy), val, font=nf, fill=_rgba(_c.HIGHLIGHT, int(255 * na)),
            stroke_width=6, stroke_fill=(5, 8, 15, 255))
     # start value + the delta gap (physical +$X since the first year)
     sf = _pil_font(34)
@@ -4551,7 +4720,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
             + f" since {int(yrs[0])}"
         db = d.textbbox((0, 0), dtxt, font=sf)
         d.text(((W - (db[2] - db[0])) // 2, pt - 6), dtxt, font=sf,
-               fill=_rgba(HIGHLIGHT, int(255 * na)), stroke_width=3,
+               fill=_rgba(_c.HIGHLIGHT, int(255 * na)), stroke_width=3,
                stroke_fill=(5, 8, 15, 255))
 
 
@@ -4597,9 +4766,9 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
         d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl, font=tick_font,
                fill=(165, 180, 199, 255))
     mx = x0 + reveal * frac * (x1 - x0)
-    d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
+    d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(_c.HIGHLIGHT, 255), width=12)
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
-        d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
+        d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(_c.HIGHLIGHT, alpha))
     # Data rides the dot along the axis (composited straight into the beat).
     host = scene_host("cheer", reveal, insight, "timeline")
     if host is not None:
@@ -4615,7 +4784,7 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     vx = min(max(mx - (vb[2] - vb[0]) / 2, box[0]), box[2] - (vb[2] - vb[0]))
     # Value floats above Data's head (clear of the host so both read cleanly).
     vy = max(box[1] + 6, axis_y - 320)
-    d.text((vx, vy), val, font=num_font, fill=_rgba(HIGHLIGHT, int(255 * na)),
+    d.text((vx, vy), val, font=num_font, fill=_rgba(_c.HIGHLIGHT, int(255 * na)),
            stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
     sb = d.textbbox((0, 0), foot, font=lab_font)
     sx = min(max(mx - (sb[2] - sb[0]) / 2, box[0]), box[2] - (sb[2] - sb[0]))
@@ -5360,8 +5529,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             if not machine_may_draw(t, insight):
                 continue
             if _guarded(t, _MACHINE_DRAW[t], _pd, _probe, boxes[i], insight,
-                        _color_for(insight.items[0].label, insight)
-                        if insight.items else HIGHLIGHT, 1.0,
+                        _lead_color(insight), 1.0,
                         insight.unit) is not None:
                 _live = True
                 break
@@ -5393,14 +5561,12 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     continue                # a size cannot be negative
                 _fn = _MACHINE_DRAW[t]
                 an = _guarded(t, _fn, d, canvas, box, insight,
-                              _color_for(insight.items[0].label, insight)
-                              if insight.items else HIGHLIGHT, lr, insight.unit)
+                              _lead_color(insight), lr, insight.unit)
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "race_track":
                 an = draw_race(d, canvas, box, insight,
-                               _color_for(insight.items[0].label, insight)
-                               if insight.items else HIGHLIGHT, lr, insight.unit)
+                               _lead_color(insight), lr, insight.unit)
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "orbit_group":
@@ -5412,14 +5578,15 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             elif t == "number":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if lv:
-                    draw_number(d, box, lv[1], lv[0], _color_for(lv[0], insight),
+                    draw_number(d, box, lv[1], lv[0], _ink_for(lv[0], insight),
                                 lr, insight.unit)
             elif t == "dot_field":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
                     continue
                 an = draw_dot_field(d, canvas, box, cuts.get(i), lv[1], lv[0],
-                                    _color_for(lv[0], insight), lr, insight.unit)
+                                    _color_for(lv[0], insight), lr, insight.unit,
+                                    topic=getattr(insight, "topic", ""))
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "balance":
@@ -5428,7 +5595,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 if not (lv and rv):
                     continue
                 an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
-                                  _color_for(lv[0], insight), lr, insight.unit)
+                                  _lead_color(insight), lr, insight.unit)
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "unit_figures":
@@ -5438,7 +5605,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 per = charts._num_or_none((el.get("data") or {}).get("per_value"))
                 an = draw_unit_figures(d, canvas, box, cuts.get(i), lv[1], per,
                                        lv[0], _color_for(lv[0], insight), lr,
-                                       insight.unit)
+                                       insight.unit,
+                                       topic=getattr(insight, "topic", ""))
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t in ("object", "fill_object", "stack", "bar", "bubble"):
@@ -5588,7 +5756,7 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
         if isinstance(c, (tuple, list)):
             r, g, b = int(c[0]), int(c[1]), int(c[2])
             return (r, g, b, int(c[3]) if len(c) > 3 else int(a))
-        return _rgba(ACCENT, int(a))
+        return _rgba(REST, int(a))
 
     def font(size=48):
         return _pil_font(int(size))
@@ -5637,7 +5805,7 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
             im.putalpha(ImageChops.multiply(a, mask))
             canvas.alpha_composite(im, (int(x), int(y)))
         else:                                           # no image -> rounded fill
-            col = color or ACCENT
+            col = color or REST
             fp = int(h * frac)
             d.rounded_rectangle([int(x), int(y + h - fp), int(x + w), int(y + h)],
                                 radius=18, fill=rgba(col))
@@ -5645,7 +5813,15 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
     ns = {"__builtins__": _SAFE_BUILTINS,
           "d": d, "canvas": canvas, "reveal": reveal,
           "W": W, "H": H, "RX0": RX0, "RX1": RX1, "RTOP": RTOP, "RBOT": RBOT,
-          "ACCENT": ACCENT, "HIGHLIGHT": HIGHLIGHT, "WARN": WARN, "TEXT": TEXT,
+          # REST is the SUPPORTING colour and ACCENT is a legacy name kept so
+          # already-authored mechanics still run. They are not interchangeable:
+          # `ACCENT` is a mid-tone that separates from `HIGHLIGHT` by only
+          # 3.11:1, so a mechanic using it for its supporting marks paints a
+          # picture whose subject barely stands out — the whole reason the 35
+          # drawer sites above moved to `REST` (6.37:1). The kit prompt names
+          # REST; nothing here should reach for ACCENT again.
+          "ACCENT": _c.ACCENT, "REST": REST, "SUBTLE": SUBTLE,
+          "HIGHLIGHT": _c.HIGHLIGHT, "WARN": WARN, "TEXT": TEXT,
           "clamp": clamp, "lerp": lerp, "rgba": rgba, "font": font, "text": text,
           "paste": paste, "fill_image": fill_image,
           "values": base["values"], "labels": base["labels"],
