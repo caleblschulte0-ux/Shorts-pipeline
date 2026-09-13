@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-09-13T16:14:49+00:00",
+ "date": "20260913",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260913/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "car-dealership-hidden-fee-recording-s0-2bb80fbd6062.json",
+  "car-dealership-hidden-fee-recording-s1-46c29c4caba0.json",
+  "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.json",
+  "car-dealership-hidden-fee-recording-s3-b1196d036386.json",
+  "car-dealership-hidden-fee-recording-s4-c81734b8f8a2.json",
+  "car-dealership-hidden-fee-recording-s5-2356a44cf87f.json",
+  "car-dealership-hidden-fee-recording-s6-64e40d22467f.json",
+  "car-dealership-hidden-fee-recording-s7-0cf05900fa94.json",
+  "office-fridge-lunch-thief-s0-ae3a39ae6f68.json",
+  "office-fridge-lunch-thief-s1-d9de9ff496fb.json",
+  "office-fridge-lunch-thief-s2-47a1c0334e56.json",
+  "office-fridge-lunch-thief-s3-82df14d62616.json",
+  "office-fridge-lunch-thief-s4-7a0aa55e9ed9.json",
+  "office-fridge-lunch-thief-s5-8da0ce2c2b84.json",
+  "office-fridge-lunch-thief-s6-029d6d07d8f6.json",
+  "office-fridge-lunch-thief-s7-0ca1dd7b909f.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
