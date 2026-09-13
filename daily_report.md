@@ -1,29 +1,31 @@
-# Daily Trending Shorts — 2026-09-12
+# Daily Trending Shorts — 2026-09-13
 
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **9**
+- queued: **10**
 - succeeded: **0**
 - quarantined (off-topic imagery): **0**
-- failed: **9**
+- failed: **10**
 
 ## Failed
-- **My Manager Wrote Me Up. So I Got Literal.**
-  - error: `showrunner_block: showrunner BLOCK: The picture stops telling the story: one binder photo holds through five straight beats and the last 26 seconds, so the back half is gameplay wallpaper with captions.`
-- **Boeing Led Planemaking For Decades. Airbus Passed It.**
-  - error: `showrunner_block: showrunner BLOCK: The race itself is genuinely good — the 2019 Boeing collapse and the leaderboard flip land — but text keeps colliding with the chart it sits on, from the hook card over the '900' tick to the final value labels clipped by the right edge.`
-- **Vinyl Just Beat CDs. It Hadn't Since 1986.**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **Solar Passed Nuclear Power. It Isn't Close Anymore.**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **Coal Powered America For A Century. Gas Ended It.**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.2 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **nashville vs inter miami**
+- **Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'**
+  - error: `showrunner_block: showrunner BLOCK: Solid, on-topic story illustration all the way through, but the punchline caption is printed on top of itself and is literally unreadable at the one moment that matters.`
+- **The Finance Guy Lied About A Fee. I Had It On Tape.**
+  - error: `showrunner_block: showrunner BLOCK: Relevant, well-cut story illustrations and clean captions, but the hook opens on a black frame with one static card and the void recurs mid-video.`
+- **India Just Passed China In Population**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good, honest race that fumbles its own climax — the two labels collide exactly when India overtakes China.`
+- **Airbnb Passed The World's Biggest Hotel Chain**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) — too many held frames`
+- **Mobile Games Passed Every Movie Theater Combined**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good graph race — the 2016 crossover and the 2020 box-office collapse land — but the hook card dies illegibly on top of the axis labels and tip labels keep colliding with their own markers.`
+- **China Passed Japan In Factory Robots. Then Kept Going.**
+  - error: `showrunner_block: showrunner BLOCK: A clean, legible race once it gets going — but the hook panel is parked on top of the y-axis labels, and the title's promised overtake never happens on screen because China already leads at frame one.`
+- **spanish grand prix**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **atlanta united vs d.c. united**
+- **f1 schedule**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **ga southern vs clemson**
+- **celta de vigo - málaga**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
-- **southern miss vs auburn**
+- **big brother spoilers**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests`
 

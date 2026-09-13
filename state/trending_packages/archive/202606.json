@@ -7825,5 +7825,770 @@
       "music_vibe": "hiphop",
       "gameplay": "subway"
     }
+  },
+  "20260614": {
+    "01_us-iran-peace-deal.json": {
+      "version": 8,
+      "slug": "us-iran-peace-deal",
+      "title": "Iran's War Ends Today \u2014 If Iran Signs the Paper",
+      "hashtags": [
+        "IranDeal",
+        "StraitOfHormuz",
+        "IranWar",
+        "TrumpIran",
+        "HormuzReopens",
+        "MiddleEast",
+        "WorldNews",
+        "PeaceDeal",
+        "Iran",
+        "OilCrisis",
+        "breakingnews",
+        "geopolitics",
+        "worldaffairs"
+      ],
+      "script": "Iran's war just ended? In February, the US and Israel struck Iran \u2014 killing the Supreme Leader \u2014 and Iran fought back by closing the Strait of Hormuz. That's 20% of the world's oil, cut off overnight. Prices spiked. Economies tightened. The world held its breath for 16 weeks. Then Pakistan stepped in to mediate. Both sides traded drafts. Yesterday Trump posted: the deal gets signed TODAY, and the moment it's done, the Hormuz Strait is open to all traffic. Iran's state media is still hedging. Saudi Arabia's celebrating. Pakistan's PM says it's hours away. This was the fastest oil crisis in modern history \u2014 closed to almost-peace in under 16 weeks. Could the Strait of Hormuz really reopen because Trump posted on Truth Social?",
+      "shots": [
+        {
+          "phrase": "Iran's war just ended",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+          "query": "Strait of Hormuz aerial satellite map",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "the US and Israel struck Iran",
+          "query": "military airstrike explosion night city",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "killing the Supreme Leader",
+          "query": "breaking news alert red graphic announcement",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "closing the Strait of Hormuz",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+          "query": "oil tanker ship sea strait passage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "20% of the world's oil, cut off overnight",
+          "query": "oil price spike chart gas station",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "The world held its breath for 16 weeks",
+          "query": "world map diplomatic tension standoff",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Pakistan stepped in to mediate",
+          "query": "diplomatic negotiations meeting table officials",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the deal gets signed TODAY",
+          "query": "peace deal signing ceremony document pen",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "the Hormuz Strait is open to all traffic",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+          "query": "shipping lane tanker traffic open sea",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Iran's state media is still hedging",
+          "query": "Iran state media broadcast news anchor",
+          "mascot_pose": "dismiss"
+        },
+        {
+          "phrase": "Saudi Arabia's celebrating",
+          "query": "Saudi Arabia Riyadh city skyline Middle East",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Could the Strait of Hormuz really reopen because Trump posted on Truth Social?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_hormuz_full.jpg",
+          "query": "Strait of Hormuz tanker ship open channel",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "killing the Supreme Leader",
+          "text": "SUPREME LEADER KILLED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "closing the Strait of Hormuz",
+          "text": "HORMUZ CLOSED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "20% of the world's oil",
+          "text": "20% OF WORLD OIL",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "the deal gets signed TODAY",
+          "text": "SIGNED TODAY",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "the Hormuz Strait is open to all traffic",
+          "text": "HORMUZ REOPENS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Iran's state media is still hedging",
+          "text": "IRAN STILL HEDGING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fastest oil crisis in modern history",
+          "text": "16 WEEKS",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "02_ayi-solehudin-indonesia-forest.json": {
+      "version": 8,
+      "slug": "ayi-solehudin-indonesia-forest",
+      "title": "He Was Missing for 3 Years. They Found Him in the Forest.",
+      "hashtags": [
+        "AyiSolehudin",
+        "GunungHalimunSalak",
+        "Indonesia",
+        "survivalnews",
+        "foundAlive",
+        "wildernesssurvival",
+        "missingperson",
+        "Cianjur",
+        "weirdnews",
+        "truecrime",
+        "survival",
+        "missingpersons",
+        "forestsurvival"
+      ],
+      "script": "He vanished for 3 years? Ayi Solehudin, 45, walked into the Gunung Halimun Salak forest in Cianjur, Indonesia \u2014 and disappeared. His family searched everywhere. Filed reports. Ran out of hope. Then on May 25th, local villagers went out to inspect a water channel near the forest. That's when they found him \u2014 sitting on a mossy rock near a river at 1 kilometer altitude. Emaciated. Weak. Barely able to communicate. He'd survived alone in one of Indonesia's most remote mountain forests for nearly 3 years. Rescuers built a stretcher from wood and a sarong to carry him down. His family says he's recovering. And nobody \u2014 not his family, not the rescuers, not even Ayi \u2014 can fully explain how he survived the Gunung Halimun Salak for that long?",
+      "shots": [
+        {
+          "phrase": "He vanished for 3 years",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sore_Di_Bukit_Alas_Gunung_Halimun_Salak.jpg",
+          "query": "dense jungle tropical forest Indonesia mountain dusk",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Ayi Solehudin, 45",
+          "query": "missing person silhouette jungle forest path Indonesia",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Gunung Halimun Salak forest in Cianjur, Indonesia",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sore_Di_Bukit_Alas_Gunung_Halimun_Salak.jpg",
+          "query": "tropical rainforest Indonesia remote mountain dense",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "His family searched everywhere. Filed reports.",
+          "query": "family search missing person worried searching",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Ran out of hope",
+          "query": "grief despair exhausted search failure hopeless",
+          "mascot_pose": "dismiss"
+        },
+        {
+          "phrase": "local villagers went out to inspect a water channel",
+          "query": "Indonesian villagers forest water channel inspection trail",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "sitting on a mossy rock near a river",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Curug_pangeran_gunung_salak_endah.jpg",
+          "query": "mossy rock river stream mountain Indonesia waterfall",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "at 1 kilometer altitude",
+          "query": "high altitude mountain forest foggy Indonesia terrain",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Emaciated. Weak. Barely able to communicate.",
+          "query": "emaciated survivor rescue weak dehydrated exhausted",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "survived alone in one of Indonesia's most remote mountain forests",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Volcanic_activity_of_Kawah_Ratu_Gunung_Salak,_Halimun_Salak_National_Park.jpg",
+          "query": "remote mountain forest wilderness Indonesia volcanic",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "stretcher from wood and a sarong to carry him down",
+          "query": "improvised stretcher rescue carry injured forest trail",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "His family says he's recovering",
+          "query": "hospital recovery family reunion survivor relief",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how he survived the Gunung Halimun Salak for that long?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sore_Di_Bukit_Alas_Gunung_Halimun_Salak.jpg",
+          "query": "mysterious forest survival Indonesia mountain alone",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "He vanished for 3 years",
+          "text": "3 YEARS GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Ran out of hope",
+          "text": "ZERO HOPE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "sitting on a mossy rock near a river",
+          "text": "FOUND ALIVE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Emaciated. Weak.",
+          "text": "EMACIATED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "stretcher from wood and a sarong",
+          "text": "WOOD & SARONG STRETCHER",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "His family says he's recovering",
+          "text": "NOW RECOVERING",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "how he survived the Gunung Halimun Salak",
+          "text": "HOW?",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "03_midwest-derecho-june-2026.json": {
+      "version": 8,
+      "slug": "midwest-derecho-june-2026",
+      "title": "One Storm Hit 8 States and Killed a Man. It Wasn't a Tornado.",
+      "hashtags": [
+        "midwestderecho",
+        "derecho",
+        "severestorm",
+        "Oshkosh",
+        "Illinois",
+        "Chicago",
+        "OHare",
+        "poweroutage",
+        "tornadowarning",
+        "stormchaser",
+        "extremeweather",
+        "Midwest",
+        "weathernews"
+      ],
+      "script": "8 states. One storm? On June 10th, a derecho \u2014 a rare, sustained line of thunderstorms \u2014 swept from Iowa through Illinois, Wisconsin, Michigan, and Indiana. Gusts hit 94 mph in Oshkosh, Wisconsin. In Des Moines, a tree fell on a man and killed him. The storm hit Chicago in two waves, forcing ground stops at O'Hare and Midway. Over 1,000 flights were delayed or canceled. Neighborhoods in Streator, Joliet, and Elgin were shredded. Two confirmed tornadoes near Chicago. Baseball-sized hail in Nebraska. 650,000 customers across 8 states lost power. As of Friday, 175,000 in Illinois still had none. A derecho is less dramatic than a tornado \u2014 no funnel cloud, no warning sirens \u2014 but could 94 mph in Oshkosh convince you otherwise?",
+      "shots": [
+        {
+          "phrase": "8 states. One storm?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+          "query": "storm Midwest United States severe weather system map",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "a derecho \u2014 a rare, sustained line of thunderstorms",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+          "query": "derecho bow echo storm line supercell radar severe",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "swept from Iowa through Illinois, Wisconsin, Michigan, and Indiana",
+          "query": "severe storm path Midwest states map swath damage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Gusts hit 94 mph in Oshkosh, Wisconsin",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+          "query": "storm wind damage trees down 90 mph gusts debris",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "a tree fell on a man and killed him",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+          "query": "fallen tree storm damage crushed debris Des Moines Iowa",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "forcing ground stops at O'Hare and Midway",
+          "query": "O'Hare airport tarmac planes grounded storm delay",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Over 1,000 flights were delayed or canceled",
+          "query": "flight departure board delays canceled hundreds airport",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Neighborhoods in Streator, Joliet, and Elgin were shredded",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado_Damage,_Illinois_2.JPG",
+          "query": "Illinois suburb storm destruction tornado damage neighborhood",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Two confirmed tornadoes near Chicago",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greensburg_kansas_tornado.jpg",
+          "query": "tornado funnel cloud Illinois Chicago suburb storm",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Baseball-sized hail in Nebraska",
+          "query": "baseball sized hail storm damage car dented hailstorm",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "650,000 customers across 8 states lost power",
+          "query": "power outage dark neighborhood street lights off Illinois",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "175,000 in Illinois still had none",
+          "query": "utility crew power line repair trucks outage restoration",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "could 94 mph in Oshkosh convince you otherwise?",
+          "query": "storm damage aftermath Oshkosh Wisconsin wind destruction",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "8 states",
+          "text": "8 STATES HIT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Gusts hit 94 mph in Oshkosh",
+          "text": "94 MPH GUSTS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a tree fell on a man and killed him",
+          "text": "1 KILLED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Over 1,000 flights were delayed or canceled",
+          "text": "1,000+ FLIGHTS GROUNDED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Two confirmed tornadoes near Chicago",
+          "text": "2 TORNADOES CONFIRMED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "650,000 customers across 8 states lost power",
+          "text": "650K WITHOUT POWER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "175,000 in Illinois still had none",
+          "text": "175K STILL DARK",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_david-rush-torch-juggling.json": {
+      "version": 8,
+      "slug": "david-rush-torch-juggling",
+      "title": "He Holds 129 World Records. He Just Set His 130th \u2014 on Fire.",
+      "hashtags": [
+        "DavidRush",
+        "GuinnessWorldRecord",
+        "juggling",
+        "fireperformance",
+        "Boise",
+        "Idaho",
+        "worldrecord",
+        "flamingTorches",
+        "stuntman",
+        "STEMeducation",
+        "guinness",
+        "recordbreaker",
+        "torchJuggling"
+      ],
+      "script": "6 minutes. On literal fire? David Rush of Boise, Idaho \u2014 the man who holds the most concurrent Guinness World Records in existence, 129 at last count \u2014 just added another one. On June 12th, he picked up 3 flaming torches and kept them in the air for 6 minutes and 25.49 seconds straight. A new world record: longest duration juggling flaming torches. Rush is a STEM educator who breaks records to inspire students to study math and science. He's juggled axes. Balanced bikes on his chin. Caught flaming machetes. But 6 minutes of open flame, constantly in motion \u2014 he said one missed catch and it's over. The man holds the record for the most world records ever. Could David Rush actually run out of records to break?",
+      "shots": [
+        {
+          "phrase": "6 minutes. On literal fire?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "juggling fire torches night performance flames dark",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "David Rush of Boise, Idaho",
+          "query": "David Rush Boise Idaho juggler performer Guinness",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "the most concurrent Guinness World Records in existence, 129 at last count",
+          "query": "Guinness World Records certificates wall most records",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "he picked up 3 flaming torches",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "three fire torches juggling flaming lit night outdoor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "kept them in the air for 6 minutes and 25.49 seconds straight",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "torch juggling long duration timed stopwatch performance",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "A new world record: longest duration juggling flaming torches",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "Guinness world record certificate fire juggling achievement",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Rush is a STEM educator who breaks records to inspire students",
+          "query": "STEM educator classroom students science math inspire teach",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He's juggled axes. Balanced bikes on his chin. Caught flaming machetes.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "extreme juggling dangerous objects axes unusual performer",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "6 minutes of open flame, constantly in motion",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "fire juggling performer open flame active movement stage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "he said one missed catch and it's over",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Torchjuggling.jpg",
+          "query": "dropped torch fire danger missed catch performer",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "the record for the most world records ever",
+          "query": "most Guinness world records holder 129 certificates display",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Could David Rush actually run out of records to break?",
+          "query": "David Rush Guinness record attempt next challenge Idaho",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "129 at last count",
+          "text": "129 RECORDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "3 flaming torches",
+          "text": "3 FLAMING TORCHES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "6 minutes and 25.49 seconds straight",
+          "text": "6 MIN 25 SEC",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "A new world record",
+          "text": "NEW WORLD RECORD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "one missed catch and it's over",
+          "text": "ONE MISS = OVER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the record for the most world records ever",
+          "text": "RECORD FOR RECORDS",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop"
+    },
+    "05_indian-airforce-an32-crash-assam.json": {
+      "version": 8,
+      "slug": "indian-airforce-an32-crash-assam",
+      "title": "5 Indian Air Force Pilots Are Dead. It Was a Training Flight.",
+      "hashtags": [
+        "IndianAirForce",
+        "AN32",
+        "Assam",
+        "Jorhat",
+        "planecrash",
+        "IAF",
+        "PrashantSingh",
+        "trainingaccident",
+        "India",
+        "airforcecrash",
+        "worldnews",
+        "militarynews",
+        "breakingnews"
+      ],
+      "script": "5 dead. A training flight? Yesterday morning at Jorhat Air Force Station in Assam, India, an AN-32 transport aircraft took off on a routine training sortie. Standard conditions. Ten a.m. departure. It never came back. The aircraft crashed at the station, and when rescuers reached the wreckage \u2014 visible as a plume of thick black smoke \u2014 5 personnel were dead: Squadron Leader Prashant Singh, Flight Lieutenant Shubham Kumar, Sergeant Jitendra Sharma, Agniveervayu Khemaram Kumawat, and Agniveervayu Danish Alam. The co-pilot survived with injuries and is under treatment at an IAF facility. The Indian Air Force has flown AN-32s since 1984. A probe is underway. Could a 40-year-old aircraft on a routine morning flight be carrying this much risk?",
+      "shots": [
+        {
+          "phrase": "5 dead. A training flight?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+          "query": "military aircraft crash training flight smoke wreckage",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Jorhat Air Force Station in Assam, India",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+          "query": "Indian Air Force base Jorhat Assam airstrip military",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "an AN-32 transport aircraft",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+          "query": "Antonov AN-32 Indian Air Force transport turboprop aircraft",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "routine training sortie",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+          "query": "military aircraft training flight sortie morning takeoff",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "It never came back.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+          "query": "plane crash military training accident aviation emergency",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "a plume of thick black smoke",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+          "query": "aircraft crash fire smoke plume thick black emergency",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Squadron Leader Prashant Singh, Flight Lieutenant Shubham Kumar",
+          "query": "Indian Air Force officers military insignia rank uniform",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Sergeant Jitendra Sharma, Agniveervayu Khemaram Kumawat",
+          "query": "Indian Air Force crew personnel military training uniform",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The co-pilot survived with injuries",
+          "query": "crash survivor rescue hospital injured co-pilot",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The Indian Air Force has flown AN-32s since 1984",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+          "query": "AN-32 Indian Air Force fleet aging transport aircraft",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A probe is underway.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Antonov_An-32RE,_India_-_Air_Force_AN1983739.jpg",
+          "query": "aviation crash investigation evidence scene inquiry probe",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Could a 40-year-old aircraft on a routine morning flight be carrying this much risk?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/An_Antonov_An-32_of_the_Indian_Air_Force.jpg",
+          "query": "aging military aircraft risk assessment old plane fleet India",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "5 dead.",
+          "text": "5 KILLED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "routine training sortie",
+          "text": "ROUTINE SORTIE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "It never came back.",
+          "text": "NEVER CAME BACK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Squadron Leader Prashant Singh",
+          "text": "SQN LDR PRASHANT SINGH",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "The co-pilot survived with injuries",
+          "text": "CO-PILOT SURVIVED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "flown AN-32s since 1984",
+          "text": "IN SERVICE 40 YEARS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "A probe is underway.",
+          "text": "INVESTIGATION OPEN",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_hari-chandra-giri-stairs.json": {
+      "version": 8,
+      "slug": "hari-chandra-giri-stairs",
+      "title": "He Ran Down 100 Stairs on His Hands. 44 Seconds. New Record.",
+      "hashtags": [
+        "HariChandraGiri",
+        "GuinnessWorldRecord",
+        "Nepal",
+        "handwalk",
+        "worldrecord",
+        "stairs",
+        "gymfitness",
+        "Yunyang",
+        "Kathmandu",
+        "athleticachievement",
+        "guinness",
+        "handstand",
+        "recordbreaker"
+      ],
+      "script": "Down 100 stairs. On hands? Hari Chandra Giri from Nepal just pulled off what Guinness called his 'most dangerous stunt yet.' On June 9th, he descended 100 stairs \u2014 entirely on his hands \u2014 in 44.71 seconds. New world record. And that sounds terrifying until you realize this is all he does. He already holds Guinness records for the fastest 50-stair handwalk, the fastest 75-stair handwalk, and variations involving footballs and distances. He started in 2021. He gets faster every time. At Yunyang, China, he balanced on his hands at the top of a 100-step staircase and just \u2014 went. 44 seconds later, record broken. Giri said one wrong placement and it's head-first all the way down. So when does Hari Chandra Giri run out of stairs to conquer?",
+      "shots": [
+        {
+          "phrase": "Down 100 stairs. On hands?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stairs_with_365_steps_to_climb_to_Swayambhunath_(17209517714).jpg",
+          "query": "long staircase stairs descent steep steps outdoor",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Hari Chandra Giri from Nepal",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyatapola_Temple_Stairs_with_Guardian_Statues,_Taumadhi_Tole_(5241412167).jpg",
+          "query": "Nepal athlete Kathmandu handstand gymnast mountain",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "his 'most dangerous stunt yet'",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stairs_with_365_steps_to_climb_to_Swayambhunath_(17209517714).jpg",
+          "query": "Guinness World Records dangerous stunt athlete Nepal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "descended 100 stairs \u2014 entirely on his hands \u2014 in 44.71 seconds",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyatapola_Temple_Stairs_with_Guardian_Statues,_Taumadhi_Tole_(5241412167).jpg",
+          "query": "hand walk stairs descent fast record attempt timed",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "New world record.",
+          "query": "Guinness World Record certificate holder achievement Nepal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "fastest 50-stair handwalk, the fastest 75-stair handwalk",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stairs_with_365_steps_to_climb_to_Swayambhunath_(17209517714).jpg",
+          "query": "stair handwalk athletic records progression 50 75 stairs",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He started in 2021. He gets faster every time.",
+          "query": "athlete training progression practice faster record",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "At Yunyang, China, he balanced on his hands at the top of a 100-step staircase",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyatapola_Temple_Stairs_with_Guardian_Statues,_Taumadhi_Tole_(5241412167).jpg",
+          "query": "Yunyang Chongqing China staircase outdoor Buddhist temple steps",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "44 seconds later, record broken",
+          "query": "record broken achievement stopwatch timer 44 seconds celebration",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "one wrong placement and it's head-first all the way down",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stairs_with_365_steps_to_climb_to_Swayambhunath_(17209517714).jpg",
+          "query": "dangerous fall risk stairs head-first crash potential hazard",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "when does Hari Chandra Giri run out of stairs to conquer?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nyatapola_Temple_Stairs_with_Guardian_Statues,_Taumadhi_Tole_(5241412167).jpg",
+          "query": "Hari Chandra Giri Nepal record athlete stairs next challenge",
+          "mascot_pose": "laugh"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "most dangerous stunt yet",
+          "text": "MOST DANGEROUS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "100 stairs \u2014 entirely on his hands",
+          "text": "100 STAIRS ON HANDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "44.71 seconds",
+          "text": "44.71 SECONDS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "New world record.",
+          "text": "WORLD RECORD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "He gets faster every time.",
+          "text": "FASTER EVERY TIME",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "one wrong placement and it's head-first all the way down",
+          "text": "HEAD-FIRST",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "hiphop"
+    }
   }
 }
