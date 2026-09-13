@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+  "safe_request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "daaf947441041b7343ddaff8a9159ae500c2e8541ba18973168b50d0be8560a3",
+  "prompt_used": "An editorial illustration for a short-form video: packed lunch container food. It accompanies the narration: \"packed it with my actual leftovers\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
+    "filename": "20260913__office-fridge-lunch-thief-s3-82df14d62616.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "eca38cad8a65a52762fa6ce166572e65706ccbb5aeae8b2ba09887b90e4d074a",
+    "bytes": 2096380,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-13T11:26:35.800Z"
+}
