@@ -18,6 +18,25 @@ _CDN = "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/{cp}.png
 # (keyword substrings) -> twemoji codepoint. First match wins, so put the more
 # specific concepts before the generic money/category ones.
 _MAP: list[tuple[tuple[str, ...], str]] = [
+    # --- PHRASES THAT MUST BEAT A WORD INSIDE THEM ---------------------
+    #
+    # First match wins, and a two-word subject usually contains a one-word
+    # subject that already has a row somewhere below. Adding the phrase down
+    # THERE does nothing — the single word is reached first and answers — so
+    # the phrase has to sit at the very top or not at all. Caught on
+    # 2026-09-13 by the test that asserts every newly added key RESOLVES:
+    # six of them silently did not, because a row further up had already
+    # answered for one word of the pair.
+    #
+    # Only phrases whose word-level answer is WRONG belong here. Three of
+    # those six were fine as they were and were simply dropped instead:
+    # "storm surge" is a storm cloud, "working hours" is a clock, and a
+    # "retiree" is an older person — all better than the row that would have
+    # claimed them. A phrase whose shorter match is already right does not
+    # need to be anywhere.
+    (("solar eclipse", "lunar eclipse"), "1f311"),   # not the SUN ("solar")
+    (("milky way",), "1f30c"),                       # not a star
+    (("post office",), "2709"),                      # not an office block
     # EARTH. A data channel names it constantly — six scene subjects in the
     # config say "earth from space" or "planet in space" — and it was in no
     # table at all, so the only word that DID resolve was "space" and every
@@ -81,7 +100,13 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("computer", "laptop", "research", "science", "lab"), "1f52c"),
     # A SATELLITE IS NOT A ROCKET. It shared the rocket's row, so every
     # satellite, space station and satellite map in the config launched.
-    (("satellite", "space station", "orbiter"), "1f6f0"),
+    # ...AND SPACE DEBRIS IS NOT A LAUNCH EITHER. `debris` on a row of its
+    # own further down did nothing, because "space" is on the rocket row
+    # RIGHT BELOW THIS ONE and the first match wins — so every orbital-debris
+    # topic in the config still launched. The fix has to be ABOVE the rocket,
+    # which is here, next to the satellite it is made of.
+    (("satellite", "space station", "orbiter",
+      "space debris", "orbital debris", "debris"), "1f6f0"),
     (("space", "rocket", "launch", "spacecraft"), "1f680"),
     (("toilet", "sanitation", "sewer"), "1f6bd"),
     (("rain", "precipitation"), "1f327"),
@@ -239,6 +264,63 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("flag",), "1f6a9"),
     (("speech bubble", "comment bubble"), "1f4ac"),
     (("license", "id card", "identification"), "1f194"),
+    # --- SECOND COVERAGE BLOCK, 2026-09-13 ----------------------------
+    #
+    # Measured over the whole story config: 499 of 989 segment TOPICS — half
+    # of every beat this channel has queued — resolved no picture at all. The
+    # top words in the misses are mostly abstractions ("rate", "share",
+    # "average") which SHOULD stay unmatched: a rate is not a picture of
+    # anything, and forcing one is how `junk_imagery` happens. But under them
+    # sat three dozen ordinary subjects with no row, and an absent row is not
+    # neutral — it hands the picture to whatever else in the phrase is
+    # listed, which is how "earth from space" once opened on a ROCKET.
+    #
+    # Same placement rule as the block above: after everything that already
+    # answers, before the generic money row. Same internal rule: SPECIFIC
+    # before GENERAL, because the first match wins and the general key is
+    # always the one that swallows its neighbours.
+    #
+    # Deliberately NOT added, each for a reason:
+    #   "life"       — shelf life, battery life, life expectancy: three
+    #                  different pictures, so the bare word is a coin flip.
+    #   "stock"      — the honest emoji is a CHART, which is the one thing
+    #                  this channel is trying to draw less of.
+    #   "americans"  — "Americans aged 100 and older" is about old age, not
+    #                  about a flag.
+    #   "obesity"    — the scales emoji is the balance MACHINE's own mark;
+    #                  the same picture would mean two things in one frame.
+    #   "migration"  — human and bird migration want opposite pictures and
+    #                  the word does not say which.
+
+    # A BOX OFFICE IS A CINEMA, and it has to precede the office building.
+    (("box office",), "1f3ac"),
+    (("office", "offices", "workplace", "cubicle"), "1f3e2"),
+    # More globes: a COUNTRY is the earth, and "countries" is the single
+    # commonest concrete noun in the unresolved set.
+    (("country", "countries", "nation", "nations", "worldwide",
+      "the world"), "1f30d"),
+    (("language", "languages", "linguistic", "spoken"), "1f5e3"),
+    (("species", "animal", "animals", "mammal", "mammals",
+      "wildlife"), "1f43e"),
+    (("death", "deaths", "fatalities", "mortality"), "26b0"),
+    (("lake", "lakes", "reservoir"), "1f3de"),
+    (("mail", "postal", "letters"), "2709"),
+    (("transplant", "transplants", "organ donor", "donor organ"), "1fac0"),
+    (("wolves",), "1f43a"),
+    (("nebula", "galaxy"), "1f30c"),
+    (("eclipse", "totality"), "1f311"),
+    (("cash", "banknote", "paper money"), "1f4b5"),
+    (("vote", "votes", "voter", "voters", "ballot", "election"), "1f5f3"),
+    (("refugee", "refugees", "asylum", "displaced"), "1f9f3"),
+    (("airport", "airports", "terminal", "runway"), "1f6eb"),
+    (("antibiotic", "antibiotics", "prescription"), "1f48a"),
+    (("surgery", "surgeries", "surgical", "operating room"), "1f3e5"),
+    (("prison", "prisons", "incarcerat", "inmate"), "26d3"),
+    (("flood", "flooding", "high tide"), "1f30a"),
+    (("workweek", "work week", "four-day week"), "1f4c5"),
+    (("pension", "retirement"), "1f3e6"),
+    (("earthquake", "seismic", "aftershock"), "1f3da"),
+
     # generic money/value — last resort so specific subjects win first.
     (("cost", "price", "spend", "wage", "income", "savings", "debt",
       "dollar", "money", "pay", "salary"), "1f4b5"),
