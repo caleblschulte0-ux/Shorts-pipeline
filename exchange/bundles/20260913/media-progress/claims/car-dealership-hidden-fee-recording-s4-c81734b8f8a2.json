@@ -1,0 +1,16 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+  "safe_request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+  "worker": "media",
+  "worker_run_id": "daily-producer-20260913-0612",
+  "created_at": "2026-09-13T11:14:59.165Z",
+  "expires_at": "2026-09-13T11:29:59.165Z",
+  "lease_seconds": 900
+}
