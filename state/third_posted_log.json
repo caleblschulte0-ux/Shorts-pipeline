@@ -6860,6 +6860,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (ranked grind talk, no clear event)",
       "ts": "2026-09-12T23:02:51.158328+00:00"
+    },
+    "clip-20260913-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/SuaveGrossEggNononoCat-dcLm-xZsDgJ_pI6_",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Says 'I'm Walking Away' After Charli's Insane Noise",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T12:16:39.004258+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
