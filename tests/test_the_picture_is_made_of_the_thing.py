@@ -280,5 +280,70 @@ class OneAccentREACHESTheWholeFrame(unittest.TestCase):
                             "different story accents")
 
 
+class TheLeaderIsWhoeverIsInFRONT(unittest.TestCase):
+    """`draw_race` had `lead = (i == 0)`, so the accent, the un-ghosted
+    runner and the host's anchor all went to item ZERO.
+
+    On a RANK insight item zero is the winner and the bug is invisible. On a
+    TREND item zero is the EARLIEST year — so a rising series put the badge
+    on the runner in LAST PLACE, and the picture contradicted itself at 40pt.
+    A race is the one machine where "lead" has a meaning in the world, and
+    that meaning is not an index.
+    """
+
+    RISING = [("2015", 12.0), ("2018", 19.0), ("2021", 26.0), ("2024", 41.0)]
+    FALLING = [("2015", 30.0), ("2018", 24.0), ("2021", 18.0), ("2024", 14.0)]
+
+    def _anchor(self, pairs, hi):
+        from PIL import Image, ImageDraw
+        ins = _ins("solar share of electricity", pairs, hi, unit="percent")
+        canvas = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        return VS.draw_race(d, canvas, (40, 300, 1040, 1500), ins,
+                            C.HIGHLIGHT, 1.0, "percent")
+
+    def test_the_anchor_reports_the_SUBJECTS_value(self):
+        """`return (vals[0], ...)` was the same index-0 assumption one line
+        down: it handed the mascot rigger a number belonging to a different
+        runner."""
+        for pairs in (self.RISING, self.FALLING):
+            got = self._anchor(pairs, "2024")
+            self.assertIsNotNone(got, "the race drew nothing")
+            want = dict(pairs)["2024"]
+            self.assertEqual(got[0], want,
+                             f"anchored on {got[0]} instead of the subject's "
+                             f"{want}")
+
+    def test_it_falls_back_to_whoever_is_actually_ahead(self):
+        """No subject named — then the leader is the runner nearest the
+        finish line, which is a fact about the data, not about the list."""
+        got = self._anchor(self.RISING, "not-in-this-data")
+        self.assertEqual(got[0], 41.0)
+        got = self._anchor(self.FALLING, "not-in-this-data")
+        self.assertEqual(got[0], 30.0)
+
+    def test_index_zero_is_not_the_lead_anymore(self):
+        import ast
+        import inspect
+        src = inspect.getsource(VS.draw_race)
+        tree = ast.parse(src.lstrip())
+        for node in ast.walk(tree):
+            if not (isinstance(node, ast.Assign)
+                    and any(getattr(t, "id", "") == "lead" for t in node.targets)):
+                continue
+            self.assertNotIn("i == 0", ast.unparse(node.value),
+                             "the race is picking its leader by draw order "
+                             "again")
+
+    def test_every_runners_name_is_readable(self):
+        """A name is TYPE, and type wears ink. Drawn in the mark's colour the
+        non-leaders' names were `look.REST` — 2.05:1 on the ground — so every
+        name but one was a smudge, which is half of what a ranking is for."""
+        import inspect
+        src = inspect.getsource(VS.draw_race)
+        self.assertNotIn("fill=_rgba(col, 240)", src,
+                         "a runner's NAME is still drawn in the mark's colour")
+
+
 if __name__ == "__main__":
     unittest.main()

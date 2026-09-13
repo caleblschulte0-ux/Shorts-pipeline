@@ -4383,16 +4383,38 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     for k in range(0, int(bot - top), 26):
         d.rectangle([x1, top + k, x1 + 14, top + min(k + 13, int(bot - top))],
                     fill=_rgba(TEXT, 190 if (k // 26) % 2 == 0 else 60))
+    # WHO IS IN FRONT, NOT WHO IS FIRST IN THE LIST.
+    #
+    # `lead = (i == 0)` — so the accent, the un-ghosted runner and the host's
+    # anchor all went to item ZERO. On a RANK insight that is the winner and
+    # the bug is invisible; on a TREND item zero is the EARLIEST year, so a
+    # rising series put the badge on the runner in LAST PLACE and the picture
+    # contradicted itself at 40pt. A race is the one machine where "lead" has
+    # a meaning in the world — it is the runner nearest the finish line — and
+    # that meaning is not an index.
+    #
+    # The story's subject wins when it has one, because a beat about 2019
+    # should mark 2019 even if 2019 is losing; otherwise it is simply whoever
+    # is in front.
+    _hl = getattr(insight, "highlight_label", None)
+    _lead_i = next((j for j, q in enumerate(items)
+                    if str(getattr(q, "label", "")) == str(_hl)), None)
+    if _lead_i is None:
+        _lead_i = max(range(n), key=lambda j: vals[j])
     lead_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
         cy = int(top + lane_h * (_order[i] + 0.5))
         d.line([(x0, cy + rh // 2 - 2), (x1, cy + rh // 2 - 2)],
                fill=_rgba(TEXT, 40), width=4)
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
-        lead = (i == 0)
+        lead = (i == _lead_i)
         col = color if lead else REST
-        d.text((x0 - 22, cy), _names[i],
-               font=name_f, fill=_rgba(col, 240), anchor="rm")
+        # A NAME IS TYPE, AND TYPE WEARS INK. Drawn in `col` it inherited the
+        # MARK's colour, and the mark for a non-leader is `look.REST` —
+        # 2.05:1 on the ground. So every runner's name except the leader's was
+        # a smudge, which is half of what a ranking is for.
+        d.text((x0 - 22, cy), _names[i], font=name_f, anchor="rm",
+               fill=_rgba(legible(col) if lead else SUBTLE, 240))
         if runner is not None:
             im = runner
             if not lead:
@@ -4411,15 +4433,20 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         # Ahead of the runner, unless that would cross the finish line — then
         # it rides behind them instead. A runner near the line is exactly the
         # one whose number the viewer most wants to read.
+        _vcol = legible(col) if lead else SUBTLE
         if px + rw // 2 + 16 + vw < x1:
             d.text((px + rw // 2 + 16, cy), vtxt, font=vf,
-                   fill=_rgba(col, int(255 * na)), anchor="lm")
+                   fill=_rgba(_vcol, int(255 * na)), anchor="lm")
         else:
             d.text((px - rw // 2 - 16, cy), vtxt, font=vf,
-                   fill=_rgba(col, int(255 * na)), anchor="rm")
+                   fill=_rgba(_vcol, int(255 * na)), anchor="rm")
         if lead:
             lead_xy = (px, cy)
-    return (vals[0], "art", lead_xy[0], lead_xy[1]) if lead_xy else None
+    # The anchor reports the LEADER's value, not `vals[0]` — the same index-0
+    # assumption one line further down, which would have handed the mascot
+    # rigger a number belonging to a different runner.
+    return ((vals[_lead_i], "art", lead_xy[0], lead_xy[1])
+            if lead_xy else None)
 
 
 def draw_stack(d, canvas, box, cutout, value, per_value, label, color, reveal, unit=""):
