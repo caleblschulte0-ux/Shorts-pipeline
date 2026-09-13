@@ -693,6 +693,79 @@ available it's the stronger signal for whether a hook/format change worked.
 If the retention block is absent, the token predates the scope — re-auth via
 `setup_youtube.py` to enable it.
 
+## THE TWO RULES THAT SILENTLY KILL A STORY — read before you write one
+
+A story that breaks either of these is REFUSED before it is ever rendered.
+It does not warn, it does not degrade, it does not show up as a bad video:
+it shows up as a quiet day with nothing posted. On 2026-09-13 the channel
+published NOTHING and the log said
+
+    done: 0 posted, 85 held by the gate, 0 faults
+
+Eighty-five real, sourced, finished stories, every one refused pre-render.
+Neither rule was written down anywhere the author could read it — which is
+the actual bug, and this section is the fix.
+
+### 1. A NUMBER GOES IN THE TITLE OR THE HOOK. Literally a digit.
+
+`editorial_gate.premise_ok` requires a digit in `title` or `hook`. Not "a
+sense of scale", not "a number in the narration" — a DIGIT, in one of those
+two fields. 62 of those 85 stories failed on this alone.
+
+    BAD   hook: "Remember the ozone hole? It's actually healing."
+    GOOD  hook: "The ozone hole hit 29.9 million square kilometers. It's shrinking."
+
+    BAD   hook: "Nobody's moving anymore. Here's the data."
+    GOOD  hook: "1 in 5 Americans used to move every year. Now it's under 1 in 10."
+
+The number must be one your own data supports — you are writing the hook
+FROM the story, not decorating it. This is also just a better hook: the
+channel's own attribution report has `shock_stat` as its best-performing
+hook type.
+
+### 2. EVERY SEGMENT `topic` MUST SHARE A WORD WITH THE HEADLINE.
+
+`editorial_gate.beats_support_one_thesis` checks that each segment's `topic`
+overlaps the title/hook, and sends anything that does not to a semantic
+judge. The judge is real and it is usually right — but it is a NETWORK CALL,
+and on a day when the LLM backends are down the keyword test is all that is
+left and it fails closed. Do not make the judge necessary:
+
+    TITLE "Americans Stopped Moving. Here's Why."
+    BAD   topic: "mortgage lock-in"                 (no shared word)
+    GOOD  topic: "why Americans stay: mortgage lock-in"
+
+    TITLE "The Ozone Hole Is Quietly Healing. Here's Proof."
+    BAD   topic: "years until full recovery"
+    GOOD  topic: "years until the ozone hole heals"
+
+Both are cheap to satisfy while writing and expensive to discover later.
+
+### Check it yourself before you push — it takes one command
+
+```bash
+python3 -c "
+import json, sys; sys.path.insert(0,'.')
+from scripts import editorial_gate as g
+cfg = json.load(open('data_learning/niche.config.json'))
+posted = set(json.load(open('state/explainer_posted_log.json')).get('posted', {}))
+for s in cfg['stories']:
+    if s['slug'] in posted: continue
+    v = g.pre_render_verdict(s)
+    if not v['ok']:
+        print('HELD', s['slug'], v['reasons'][:3])
+"
+```
+
+It prints nothing when every un-posted story can ship. Each line it DOES
+print is a story that will never post until someone edits it — so the ones
+you just wrote had better not be in that list.
+
+(Run offline it will also flag `thesis` on stories a live judge would pass,
+because the semantic judge is a network call. That is the point of rule 2:
+a story that needs the judge is a story that dies on the day the judge is
+unreachable, and that day has already happened.)
+
 ## Data integrity — numbers must be REAL, not "Illustrative"
 Accuracy IS this channel's brand. A fabricated figure attributed to a real
 agency (the bundled `data_learning/data/*.json` files marked
