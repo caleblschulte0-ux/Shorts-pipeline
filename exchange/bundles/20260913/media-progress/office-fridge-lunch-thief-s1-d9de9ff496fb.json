@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+  "safe_request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c8449bdd117cbabac931466680e94ff6ed6475c34a356173ded2ae883c507f82",
+  "prompt_used": "An editorial illustration for a short-form video: office worker shrug. It accompanies the narration: \"HR shrugged, my manager shrugged\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
+    "filename": "20260913__office-fridge-lunch-thief-s1-d9de9ff496fb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "479d2ad61249dc6c521f82d9eddfdaf305ea48dcbf08f9d613392959431fa796",
+    "bytes": 1706539,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-13T11:26:41.984Z"
+}
