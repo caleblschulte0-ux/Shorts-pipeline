@@ -245,5 +245,96 @@ class TheFITTERLivesWithTheType(unittest.TestCase):
         self.assertTrue(out.endswith("…"))
 
 
+class EveryStringOnTheCardIsMEASURED(unittest.TestCase):
+    """The headline goes through `fit_title`, the kicker through
+    `_fit_text_to`, the value column through `_measure_pts` — and the SOURCE
+    CREDIT went through nothing at all, drawn at a fixed 11pt with no width
+    limit. A source string has no bounded length, so it simply ran off the
+    card, and the showrunner reported it by name for weeks:
+
+        "every source credit (seg1:mid, seg2:start, seg3:end) runs off the
+         right frame edge at '...accessed 2026-08-2'"
+                              container-ships-floating-cities, 2026-09-11
+
+    Seen again unfixed in a full render on 2026-09-13, clipped mid-word at
+    "...(Scientific Assessment of Ozone Depl".
+    """
+
+    LONG = ("World Meteorological Organization (WMO) / UN Environment "
+            "Programme (UNEP)")
+
+    def _card(self, publisher, name="Scientific Assessment of Ozone "
+                                    "Depletion 2022 Executive Summary"):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        ins = Insight(kind="rank", topic="t", main_insight="m",
+                      items=[DataPoint(label="a", value=1.0),
+                             DataPoint(label="b", value=2.0)],
+                      source=Source(name=name, publisher=publisher,
+                                    url="https://x",
+                                    access_date="2026-09-13"),
+                      unit="count", highlight_label="b")
+        from data_learning import charts as C
+        fig, plt = C._card_base()
+        C._compose_story(fig, plt, ins, 1.0)
+        fig.canvas.draw()
+        return fig, plt
+
+    def _footer_text(self, fig):
+        return [t for t in fig.texts if t.get_position()[1] < 0.06]
+
+    def test_no_text_on_the_card_crosses_the_right_edge(self):
+        fig, plt = self._card(self.LONG)
+        try:
+            w = fig.get_size_inches()[0] * fig.dpi
+            over = [(t.get_text()[:50], t.get_window_extent().x1)
+                    for t in fig.texts if t.get_window_extent().x1 > w]
+            self.assertEqual(over, [], f"runs off the frame: {over}")
+        finally:
+            plt.close(fig)
+
+    def test_it_SHRINKS_before_it_truncates(self):
+        """A credit is an ATTRIBUTION. Losing the end of it is a real cost,
+        not merely an ugly one, so the type gives up three points before any
+        character is dropped — a credit that fits at 8pt is never cut."""
+        fig, plt = self._card(self.LONG, name="ozone hole")
+        try:
+            ft = self._footer_text(fig)
+            self.assertTrue(ft, "the source line vanished entirely")
+            self.assertLess(ft[0].get_fontsize(), 11,
+                            "it did not shrink, so it must be clipping")
+            self.assertNotIn("\u2026", ft[0].get_text(),
+                             "truncated when shrinking would have fitted it")
+            self.assertIn("UNEP", ft[0].get_text(),
+                          "the end of the attribution was dropped")
+        finally:
+            plt.close(fig)
+
+    def test_what_cannot_fit_at_the_floor_keeps_its_HEAD(self):
+        """Some credits genuinely do not fit at 8pt — this one is 148
+        characters. Then the ellipsis is the honest answer, and WHICH END
+        survives is the whole question: the publisher identifies the source,
+        so the cut takes the study title off the tail and never the
+        organisation off the front."""
+        fig, plt = self._card(self.LONG)
+        try:
+            got = self._footer_text(fig)[0].get_text()
+            self.assertIn("\u2026", got, "a 148-char credit fitted?")
+            self.assertIn("World Meteorological Organization", got,
+                          "the cut took the publisher instead of the tail")
+        finally:
+            plt.close(fig)
+
+    def test_a_short_credit_is_left_at_full_size(self):
+        """The fitter must not tax every card for the worst case."""
+        fig, plt = self._card("NASA", name="ozone hole")
+        try:
+            ft = self._footer_text(fig)
+            self.assertTrue(ft)
+            self.assertEqual(ft[0].get_fontsize(), 11)
+        finally:
+            plt.close(fig)
+
+
 if __name__ == "__main__":
     unittest.main()
