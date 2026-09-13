@@ -6862,13 +6862,52 @@
       "ts": "2026-09-12T23:02:51.158328+00:00"
     },
     "clip-20260913-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/SuaveGrossEggNononoCat-dcLm-xZsDgJ_pI6_",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/NUY4v2qnsUQ",
       "title": "Buddha Says 'I'm Walking Away' After Charli's Insane Noise",
       "kind": "twitch_clip",
-      "ts": "2026-09-13T12:16:39.004258+00:00",
+      "ts": "2026-09-13T12:16:46.107624+00:00",
+      "uploaded_at": "2026-09-13T12:16:46.107644+00:00",
+      "publish_at": "2026-09-13T17:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/SuaveGrossEggNononoCat-dcLm-xZsDgJ_pI6_",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "BUDDHA SAYS HE'S WALKING AWAY",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1916,
+      "banger": 0.7,
+      "cut": {
+        "start": 0.0,
+        "end": 40.87
+      },
+      "director_cut": true
+    },
+    "rejected-venomousgorgeousmonkeyohmydog-to4z0aupsc8bupcy": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/VenomousGorgeousMonkeyOhMyDog-TO4Z0aupSC8BupCY",
+      "streamer": "sodapoppin",
+      "title": "META",
+      "qa_rejected": true,
+      "ts": "2026-09-13T12:16:54.283171+00:00"
+    },
+    "rejected-concernedlazydaikontinyface-1ng6n6ok52aj3m9k": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ConcernedLazyDaikonTinyFace-1NG6n6Ok52AJ3M9k",
+      "streamer": "kaicenat",
+      "title": "debut",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (runway walk, nothing happens)",
+      "ts": "2026-09-13T12:17:42.444503+00:00"
+    },
+    "clip-20260913-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/NaiveEphemeralDaikonPJSalt-zxowVsJ1CAX2obKp",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Reacts As A Random Guy Strips Down Mid-Conversation",
+      "kind": "twitch_clip",
+      "ts": "2026-09-13T12:21:10.289956+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
