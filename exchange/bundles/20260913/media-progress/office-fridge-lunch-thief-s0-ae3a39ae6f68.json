@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+  "safe_request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "baf0dd03868135d58a280832039d6e2720bdee57974e4943bbbf9d14f0999ec2",
+  "prompt_used": "An editorial illustration for a short-form video: office fridge kitchen. It accompanies the narration: \"eating my lunch from the office fridge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
+    "filename": "20260913__office-fridge-lunch-thief-s0-ae3a39ae6f68.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bde14d93f2c13206c98713314dee8f5167f0454e9cee97fa6e03c633a79801f9",
+    "bytes": 1795751,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:33.503Z"
+}
