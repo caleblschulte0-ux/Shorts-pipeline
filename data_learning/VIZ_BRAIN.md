@@ -190,6 +190,57 @@ other motion heuristic — when in doubt, apply it.
 Animate everything off `reveal` — a mechanic whose frame at 50% looks like its
 frame at 100% is coasting; stagger events across the build instead.
 
+### MOTION IS MEASURED BETWEEN ADJACENT FRAMES, NOT ACROSS THE BEAT
+
+The line above ("frame at 50% vs frame at 100%") is necessary and nowhere
+near sufficient, and taking it as the whole test is the single biggest
+reason videos get held. On 2026-09-12 the channel shipped ONE video of
+seventeen; `temporal_gate` was 10 of the 16 holds.
+
+The reviewer samples the finished master at **24fps**, downscales to **192px
+wide**, and calls a frame a duplicate when no block changed. So:
+
+> **Anything that moves less than about 6px at 1080 between one sampled
+> frame and the next does not exist as motion**, however correct the
+> geometry and however different 50% looks from 100%.
+
+Measured, on the ozone scene — a circle shrinking as the hole closes, which
+is a good idea and reads beautifully as a still:
+
+    asked for 207 frames  ->  207 PNGs written  ->  26 DISTINCT frames
+    the radius travels 47px across the whole beat = 0.23px per frame
+    windowed in the finished video: 85-92% duplicate, 2.0-3.5 effective fps
+
+And the chart beat in the same video measured **0% duplicate, 24.0 fps** —
+because a bar's tip sweeps hundreds of pixels across the beat. That is the
+whole difference. Charts are not livelier by nature; their marks simply
+travel far enough to be seen moving.
+
+**The working rule.** Some element must traverse roughly a screen dimension
+during the beat, or cycle. Two shapes that reliably pass:
+
+- **A SWEEP.** Something crosses the frame once — a scan line, a filling
+  front, a rising level, a wipe revealing the subject.
+- **A LOOP.** Something repeats several times during the beat. This is what
+  the pipes machine does: nine flow particles at `(reveal * 2.2 + k/9) % 1`,
+  so each one runs the pipe more than twice and every frame differs. A loop
+  is the cheapest way to keep a scene alive while its DATA moves slowly,
+  and it is honest as long as the thing looping is part of the picture
+  (flow in a pipe, orbit around a centre, a rotating globe) rather than
+  decoration sprinkled on top to satisfy a metric.
+
+A slow camera push will NOT do it and never has: 4% of zoom spread across
+200 frames is a fifth of a pixel per frame. Neither will a counter that
+re-renders the same digits — a value going 28.0 -> 22.9 at one decimal
+changes its text about 50 times in 200 frames.
+
+**This is enforced, not advised.** `viz_scene.mechanic_dry_ok` renders
+frames across the beat, diffs ADJACENT ones with the reviewer's own
+detector, and refuses a mechanic that never moves — the beat then degrades
+to a chart. So a coasting scene does not get held at the end of the day; it
+costs you the scene, and the video ships as the thing you were trying not to
+make. Design the motion first.
+
 **Visual energy vs the game strip.** The doctrine is NOT "always use the game
 strip"; it is "the frame always has continuous visual energy" — the strip is
 ONE way to supply it, not the only way. It earns its place when the explainer
