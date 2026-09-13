@@ -1,259 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260816",
-      "dry_run": false,
-      "ts": "2026-08-16T12:46:42+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 16,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 112,
-        "with_retention": 91,
-        "with_curve": 15,
-        "fetched_at": "2026-08-16T08:56:49.593425+00:00"
-      },
-      "brain": {
-        "ok": 23,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:shroud": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260816-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "plaqueboymax/plaqueboymax-about-camera-2026w33",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "confused rant, unclear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Summit1G Can't Believe His Teammate Thought 'Hut' Meant Give Me A Gun"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 1065.3
-        },
-        {
-          "slug": "clip-20260816-2",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "leak drama, but vague",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "accidentally leaks secret live, visible ",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.9,
-              "problems": []
-            }
-          },
-          "took_s": 256.6
-        },
-        {
-          "slug": "clip-20260816-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "visible prank/stunt payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "opening mail, no visible glitter payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Gets Glitter Bombed And The Reaction Is Wild"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 295.2
-        },
-        {
-          "slug": "clip-20260816-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "flirty red carpet almost-kiss tease",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Rayasianboy Swears He Never Said He Wants To Kiss Her"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.87,
-              "problems": []
-            }
-          },
-          "took_s": 316.6
-        }
-      ]
-    },
-    {
       "date": "20260817",
       "dry_run": false,
       "ts": "2026-08-17T12:32:55+00:00",
@@ -8084,6 +7831,150 @@
             }
           },
           "took_s": 39.1
+        }
+      ]
+    },
+    {
+      "date": "20260913",
+      "dry_run": false,
+      "ts": "2026-09-13T15:00:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 80,
+        "with_curve": 14,
+        "fetched_at": "2026-09-13T13:42:05.709857+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260913-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260913-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "single word, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "reacting to cheating-exposed story, visi",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween And His Friends Try To Figure Out Who Slumped Him Out"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Sharp region is a completely static screenshot (identical content) for the full 26.4s \u2014 no scroll, pan, or motion at all",
+                "No person/face/action visible as the subject \u2014 just a text screenshot with a small skin-toned arm sliver at the very top",
+                "The underlying tweet text is too small to read on a phone; captions restate only fragments of it rather than making the "
+              ]
+            }
+          },
+          "took_s": 148.1
         }
       ]
     }
