@@ -3,17 +3,17 @@
     "topic": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
     "title": "Someone Kept Eating My Lunch. So I Labeled It 'HR Sample.'",
     "format": "reddit",
-    "publish_at": "2026-09-13T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 183.0,
+    "publish_at": "2026-09-14T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xqBzOIPNXaw",
+    "error": null,
+    "elapsed_seconds": 248.8,
     "package_path": "state/trending_packages/20260913/01_office-fridge.json",
     "source": "brain",
-    "video_path": "output/daily_20260913-192628_someone_kept_eating_my_lunch__so_i_label.mp4",
+    "video_path": "output/daily_20260913-212719_someone_kept_eating_my_lunch__so_i_label.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.4,
+      "duration": 47.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.7
+      "loudness_lufs": -23.7
     },
     "qa": {
       "ok": true,
@@ -32,24 +32,24 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
+      "blocked": false,
+      "reason": "",
+      "score": 87
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "India Just Passed China In Population",
     "title": "India Just Passed China In Population",
     "format": "graph_race",
-    "publish_at": "2026-09-13T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 103.6,
+    "publish_at": "2026-09-14T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/nZ3RZw441lU",
+    "error": null,
+    "elapsed_seconds": 359.9,
     "package_path": "state/trending_packages/20260913/03_india-china-population.json",
     "source": "brain",
-    "video_path": "output/daily_20260913-192928_india_just_passed_china_in_population.mp4",
+    "video_path": "output/daily_20260913-213049_india_just_passed_china_in_population.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -66,24 +66,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
+      "blocked": false,
+      "reason": "",
+      "score": 82
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Airbnb Passed The World's Biggest Hotel Chain",
     "title": "Airbnb Passed The World's Biggest Hotel Chain",
     "format": "graph_race",
-    "publish_at": "2026-09-13T20:30:00Z",
+    "publish_at": "2026-09-14T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 78.5,
+    "elapsed_seconds": 75.4,
     "package_path": "state/trending_packages/20260913/04_airbnb-marriott.json",
     "source": "brain",
-    "video_path": "output/daily_20260913-193112_airbnb_passed_the_world_s_biggest_hotel_.mp4",
+    "video_path": "output/daily_20260913-213649_airbnb_passed_the_world_s_biggest_hotel_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -110,14 +110,14 @@
     "topic": "Mobile Games Passed Every Movie Theater Combined",
     "title": "Mobile Games Passed Every Movie Theater Combined",
     "format": "graph_race",
-    "publish_at": "2026-09-13T20:30:00Z",
+    "publish_at": "2026-09-14T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 102.2,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 the 2016 crossover and the 2020 box-office collapse land exactly as the hook promised \u2014 but the hook card is drawn over the chart and dissolves into illegible text on gridlines.",
+    "elapsed_seconds": 162.7,
     "package_path": "state/trending_packages/20260913/05_mobile-boxoffice.json",
     "source": "brain",
-    "video_path": "output/daily_20260913-193230_mobile_games_passed_every_movie_theater_.mp4",
+    "video_path": "output/daily_20260913-213805_mobile_games_passed_every_movie_theater_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -135,8 +135,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
+      "reason": "showrunner BLOCK: A genuinely good race \u2014 the 2016 crossover and the 2020 box-office collapse land exactly as the hook promised \u2014 but the hook card is drawn over the chart and dissolves into illegible text on gridlines.",
+      "score": 82
     },
     "blocked": true
   },
@@ -144,14 +144,14 @@
     "topic": "China Passed Japan In Factory Robots. Then Kept Going.",
     "title": "China Passed Japan In Factory Robots. Then Kept Going.",
     "format": "graph_race",
-    "publish_at": "2026-09-13T20:30:00Z",
+    "publish_at": "2026-09-14T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-    "elapsed_seconds": 100.5,
+    "error": "showrunner_block: showrunner BLOCK: A clean, genuinely dramatic 6x divergence, but labels run off the right edge at exactly the moment it lands and the hook caption dissolves illegibly into the chart.",
+    "elapsed_seconds": 148.7,
     "package_path": "state/trending_packages/20260913/06_china-japan-robots.json",
     "source": "brain",
-    "video_path": "output/daily_20260913-193412_china_passed_japan_in_factory_robots__th.mp4",
+    "video_path": "output/daily_20260913-214047_china_passed_japan_in_factory_robots__th.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -169,49 +169,165 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: ",
-      "score": null
+      "reason": "showrunner BLOCK: A clean, genuinely dramatic 6x divergence, but labels run off the right edge at exactly the moment it lands and the hook caption dissolves illegibly into the chart.",
+      "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "david sandlin",
-    "angle": null,
-    "publish_at": "2026-09-13T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\n",
-    "elapsed_seconds": 1.6,
-    "backfill": true
-  },
-  {
-    "topic": "what did meghan share in her video of the family's uk return",
-    "angle": null,
-    "publish_at": "2026-09-14T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\n",
-    "elapsed_seconds": 1.7,
-    "backfill": true
-  },
-  {
-    "topic": "turkish airlines",
-    "angle": null,
-    "publish_at": "2026-09-14T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\n",
-    "elapsed_seconds": 1.4,
-    "backfill": true
-  },
-  {
-    "topic": "calais campbell",
+    "topic": "ben shelton sister",
     "angle": null,
     "publish_at": "2026-09-14T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 7:40pm (UTC)\n",
-    "elapsed_seconds": 1.6,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 2082 (char 4771)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+    "elapsed_seconds": 857.0,
+    "title": "She Called Me Worthless \u2014 I Paid For Everything",
+    "package_path": "state/trending_packages/20260913-214558_auto_ben_shelton_sister.json",
+    "video_path": "output/daily_20260913-214558_ben_shelton_sister.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -14.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 2082 (char 4771)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "nascar race",
+    "angle": null,
+    "publish_at": "2026-09-14T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 6 column 1274 (char 5478)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+    "elapsed_seconds": 868.3,
+    "title": "He Pawned My Ring To Bet On A Race",
+    "package_path": "state/trending_packages/20260913-220001_auto_nascar_race.json",
+    "video_path": "output/daily_20260913-220001_nascar_race.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 6 column 1274 (char 5478)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "caleb douglas",
+    "angle": null,
+    "publish_at": "2026-09-14T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story is legible and the pace never stalls, but the top panel is filled with auto-grabbed stock that contradicts the script \u2014 a chairlift and a truck lot over a story about a sold car.",
+    "elapsed_seconds": 528.0,
+    "title": "My Parents Sold My Car For My Brother's Draft Party",
+    "package_path": "state/trending_packages/20260913-221425_auto_caleb_douglas.json",
+    "video_path": "output/daily_20260913-221425_caleb_douglas.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.8,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is legible and the pace never stalls, but the top panel is filled with auto-grabbed stock that contradicts the script \u2014 a chairlift and a truck lot over a story about a sold car.",
+      "score": 34
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "jeff goldblum",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story's visuals have stopped matching the story \u2014 a tall ship's rigging sits over the last eleven seconds of a wedding-paperwork payoff, and the cut ends mid-sentence with no punchline landed.",
+    "elapsed_seconds": 562.4,
+    "title": "My Fianc\u00e9's Uncle Exposed His Secret Marriage",
+    "package_path": "state/trending_packages/20260913-222325_auto_jeff_goldblum.json",
+    "video_path": "output/daily_20260913-222325_jeff_goldblum.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.9,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story's visuals have stopped matching the story \u2014 a tall ship's rigging sits over the last eleven seconds of a wedding-paperwork payoff, and the cut ends mid-sentence with no punchline landed.",
+      "score": 26
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
