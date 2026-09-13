@@ -249,5 +249,115 @@ class NoLabelEverGetsAnIconFromANUMBER(unittest.TestCase):
             self.assertIsNone(E(label))
 
 
+class TheSecondCoverageBlock(unittest.TestCase):
+    """2026-09-13. Measured over the whole story config, 499 of 989 segment
+    TOPICS — half of every queued beat — resolved no picture at all.
+
+    Most of the commonest words in that miss list SHOULD stay unmatched: a
+    "rate", a "share", an "average" is not a picture of anything and forcing
+    one is how `junk_imagery` happens. Under them sat three dozen ordinary
+    subjects with no row, and an absent row is not neutral — it hands the
+    picture to whatever else in the phrase IS listed, which is how "earth
+    from space" once opened on a rocket.
+
+    Every key added that day is named here, because `CLAUDE.md` says so and
+    because it was earned: "A NAME LOOKED UP WITH A SILENT DEFAULT IS A
+    CAPABILITY THAT DOES NOT EXIST."
+    """
+
+    ADDED = (
+        ("space debris", "1f6f0"), ("orbital debris", "1f6f0"),
+        ("debris", "1f6f0"),
+        ("box office", "1f3ac"),
+        ("office", "1f3e2"), ("workplace", "1f3e2"), ("cubicle", "1f3e2"),
+        ("country", "1f30d"), ("countries", "1f30d"), ("nation", "1f30d"),
+        ("nations", "1f30d"), ("worldwide", "1f30d"),
+        ("language", "1f5e3"), ("languages", "1f5e3"),
+        ("linguistic", "1f5e3"), ("spoken", "1f5e3"),
+        ("species", "1f43e"), ("animal", "1f43e"), ("animals", "1f43e"),
+        ("mammal", "1f43e"), ("mammals", "1f43e"), ("wildlife", "1f43e"),
+        ("death", "26b0"), ("deaths", "26b0"), ("fatalities", "26b0"),
+        ("mortality", "26b0"),
+        ("lake", "1f3de"), ("lakes", "1f3de"), ("reservoir", "1f3de"),
+        ("mail", "2709"), ("postal", "2709"), ("post office", "2709"),
+        ("letters", "2709"),
+        ("transplant", "1fac0"), ("transplants", "1fac0"),
+        ("organ donor", "1fac0"),
+        ("wolves", "1f43a"),
+        ("nebula", "1f30c"), ("galaxy", "1f30c"), ("milky way", "1f30c"),
+        ("eclipse", "1f311"), ("solar eclipse", "1f311"),
+        ("totality", "1f311"),
+        ("cash", "1f4b5"), ("banknote", "1f4b5"), ("paper money", "1f4b5"),
+        ("vote", "1f5f3"), ("votes", "1f5f3"), ("voter", "1f5f3"),
+        ("voters", "1f5f3"), ("ballot", "1f5f3"), ("election", "1f5f3"),
+        ("refugee", "1f9f3"), ("refugees", "1f9f3"), ("asylum", "1f9f3"),
+        ("displaced", "1f9f3"),
+        ("airport", "1f6eb"), ("airports", "1f6eb"), ("runway", "1f6eb"),
+        ("antibiotic", "1f48a"), ("antibiotics", "1f48a"),
+        ("prescription", "1f48a"),
+        ("surgery", "1f3e5"), ("surgeries", "1f3e5"), ("surgical", "1f3e5"),
+        ("operating room", "1f3e5"),
+        ("prison", "26d3"), ("prisons", "26d3"), ("inmate", "26d3"),
+        ("flood", "1f30a"), ("flooding", "1f30a"),
+        ("workweek", "1f4c5"), ("work week", "1f4c5"),
+        ("four-day week", "1f4c5"),
+        ("pension", "1f3e6"), ("retirement", "1f3e6"),
+        ("earthquake", "1f3da"), ("seismic", "1f3da"),
+        ("aftershock", "1f3da"),
+    )
+
+    def test_every_key_added_that_day_resolves(self):
+        bad = {w: (E(w) or "MISS") for w, want in self.ADDED if E(w) != want}
+        self.assertEqual(bad, {}, f"keys that do not resolve: {bad}")
+
+    def test_space_debris_is_a_SATELLITE_not_a_launch(self):
+        """The whole reason the row moved. `debris` on a row of its own at the
+        bottom of the table did NOTHING, because "space" is on the rocket row
+        far above it and the first match wins — so every orbital-debris topic
+        in the config still launched, and the test that would have caught it
+        is this one."""
+        for w in ("Space Debris", "orbiting debris", "debris removal cost",
+                  "space_debris_removal_debris_growth"):
+            self.assertEqual(E(w), "1f6f0", w)
+        self.assertEqual(E("rocket launch"), "1f680",
+                         "a real launch stopped launching")
+
+    def test_a_box_office_is_a_CINEMA(self):
+        """"box office" has to precede "office" or a film-revenue story opens
+        on an office block."""
+        self.assertEqual(E("box office"), "1f3ac")
+        self.assertEqual(E("box office revenue"), "1f3ac")
+        self.assertEqual(E("office vacancy rate"), "1f3e2")
+
+    def test_the_subject_beats_the_generic_money_row(self):
+        """Every one of these used to come back a banknote because the only
+        word in them with a row was an economic one. The table's own stated
+        rule — "last resort so specific subjects win first" — now holds one
+        level further down."""
+        self.assertEqual(E("treatment coverage by country income"), "1f30d")
+        self.assertEqual(E("who hosts the displaced, by income level"),
+                         "1f9f3")
+        self.assertEqual(E("median retirement savings by age"), "1f3e6")
+
+    DELIBERATELY_ABSENT = ("life", "stock", "americans", "obesity",
+                           "migration", "rate", "share", "average")
+
+    def test_the_words_left_out_are_still_left_out(self):
+        """An abstraction with a picture is worse than an abstraction
+        without one: "rate" resolving to ANYTHING puts an unrelated object in
+        a frame, and `junk_imagery` is the one FATAL showrunner check.
+
+        The five judgement calls are recorded next to the block in
+        `icons.py`, each with its reason — "life" is shelf/battery/expectancy
+        and the bare word is a coin flip; "stock" 's honest emoji is a CHART;
+        "americans" in "Americans aged 100 and older" is about old age, not a
+        flag; "obesity" would take the balance machine's own mark; human and
+        bird "migration" want opposite pictures."""
+        for w in self.DELIBERATELY_ABSENT:
+            self.assertIsNone(E(w), f"{w!r} acquired a picture — if that was "
+                                    f"deliberate, move it out of this list "
+                                    f"and say why in icons.py")
+
+
 if __name__ == "__main__":
     unittest.main()
