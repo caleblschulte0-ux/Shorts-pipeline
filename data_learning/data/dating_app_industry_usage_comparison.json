@@ -1,0 +1,19 @@
+{
+  "key": "dating_app_industry_usage_comparison",
+  "title": "Combined usage across the 10 biggest dating apps (index)",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2023 vs 2024",
+  "source": {
+    "name": "Dating app usage decline analysis",
+    "publisher": "Industry app-usage trackers (e.g. Sensor Tower-style analytics), as reported by dating-industry press",
+    "url": "https://www.globaldatinginsights.com/featured/uk-dating-site-users-report-fatigue-as-engagement-declines/",
+    "officiality": "illustrative",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Reported as a 16% year-over-year drop in combined usage across the ten largest dating platforms between 2023 and 2024; index normalized to 2023=100.",
+  "points": [
+    {"label": "2023", "value": 100},
+    {"label": "2024", "value": 84}
+  ]
+}

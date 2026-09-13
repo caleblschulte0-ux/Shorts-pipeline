@@ -1,0 +1,19 @@
+{
+  "key": "dating_app_fatigue_share",
+  "title": "Dating app users reporting burnout",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Dating app fatigue survey",
+    "publisher": "Forbes Health survey",
+    "url": "https://www.forbes.com/health/dating/dating-app-fatigue/",
+    "officiality": "official",
+    "access_date": "2026-09-13"
+  },
+  "notes": "Share of dating app users who report feeling mentally, emotionally, or physically drained by the experience.",
+  "points": [
+    {"label": "Report feeling drained", "value": 78},
+    {"label": "Do not", "value": 22}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "format": "graph_race",
+  "slug": "india-passed-china-population",
+  "title": "India Just Passed China In Population",
+  "y_label": "Population (millions)",
+  "source": "Sources: UN World Population Prospects (2022 revision); UNFPA State of World Population 2023",
+  "years": [1950, 1980, 2000, 2010, 2020, 2023],
+  "series": [
+    {"name": "China", "color": "#1f6fb2", "icon": "CN", "values": [554, 981, 1264, 1338, 1411, 1426]},
+    {"name": "India", "color": "#e8734a", "icon": "IN", "values": [376, 696, 1059, 1234, 1380, 1429]}
+  ],
+  "duration": 13,
+  "music_vibe": "cinematic",
+  "hook": "The lead just changed hands.",
+  "hashtags": [
+    "india",
+    "china",
+    "population",
+    "demographics",
+    "worldpopulation",
+    "dataviz",
+    "geopolitics",
+    "unitednations",
+    "charts",
+    "globalstats",
+    "worldnews",
+    "shorts"
+  ]
+}
