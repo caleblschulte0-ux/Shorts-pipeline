@@ -2,10 +2,12 @@
 """Long-form 16:9 renderer — the curiosity channel's production renderer.
 
 Renders a STORY as a 4-5 minute 1920x1080 watch-page video (NOT a Short):
-a title card, then one documentary-style "exhibit" frame per beat (the
-segment's chart/viz-scene PNG composed with a heading column), each with a
-slow Ken Burns push, calm narration, a ducked music bed, and a closing card.
-Alongside the mp4 it writes:
+a title card, then one documentary-style "exhibit" beat per segment (the
+segment's chart re-rendered and building for the beat's whole duration,
+composed with a heading column), calm narration, a ducked music bed, and a
+closing card. No camera ever moves (operator ruling, every channel) — the
+chart, and the cards' own text reveal, carry the motion instead. Alongside
+the mp4 it writes:
 
     <out>.jpg          1920x1080 custom thumbnail
     <out>.meta.json    chapters (>=3, first at 00:00, each >=10s) + duration
@@ -29,7 +31,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -44,8 +48,8 @@ if str(REPO) not in sys.path:
 from data_learning import charts, story                          # noqa: E402
 from data_learning.demo_render import _dur, _run                 # noqa: E402
 from data_learning.studio_render import (                        # noqa: E402
-    KOKORO_MODEL, KOKORO_VOICES, _font, _headline_number, _music_track,
-    _theme_for, _tts_text)
+    KOKORO_MODEL, KOKORO_VOICES, _font, _full_by, _headline_number,
+    _music_track, _theme_for, _tts_text)
 
 W, H, FPS = 1920, 1080, 30
 EDGE_VOICE = "en-US-GuyNeural"       # fallback narrator (calm US male)
@@ -56,7 +60,8 @@ DATA_DIR = PKG_DIR / "data"
 # Beat treatments, best first (CURIOSITY_BRAIN.md §13 tools rule):
 #   hero  -> Blender Cycles monolith lineup (blender_hero.py), one per video
 #   manim -> animated data scene (curiosity_scenes.py)
-#   still -> Pillow exhibit frame + Ken Burns (always available)
+#   still -> the segment's own chart, re-rendered and building for the
+#            whole beat (always available)
 HERO_SECONDS, HERO_FPS = 7.0, 10     # Cycles frames are the CI cost centre
 
 
@@ -199,31 +204,85 @@ def _fit_text(draw, text: str, size: int, maxw: int, max_lines: int):
     return f, lines
 
 
-def _title_card(theme: dict, kicker: str, title: str, sub: str,
-                out: Path) -> Path:
+# Title/closing cards used to hold under a Ken Burns push. That is exactly
+# the "camera movement" the operator ruling retired everywhere (2026-08-25,
+# restated 2026-09-03 for every channel — data_learning/tests/
+# test_no_camera_shake.py holds every render path to it). The replacement is
+# real content motion: the card's own text/accent bar reveal progressively
+# across the WHOLE window, then a brief bar pulse repeats at <=1s intervals
+# for whatever time is left — so no stretch is ever frozen longer than the
+# cadence gate's ceiling (45 frames / 1.875s at phase-1), regardless of how
+# short the title text is relative to the narrated window.
+SAFE_GAP_S = 1.0        # a fresh visible change at least this often
+PULSE_FLASH_S = 0.15    # how long the bar brightens on a pulse tick
+
+
+def _card_frame(theme: dict, kicker: str, kf, tf, tlines: list[str], sf,
+                slines: list[str], n_shown: int, pulse: bool):
     from PIL import ImageDraw
     img = _gradient(theme)
     d = ImageDraw.Draw(img)
     M = 140
-    kf = _font(40)
-    d.text((M, 200), kicker.upper(), font=kf,
-           fill=_rgb(theme.get("accent", "#60A5FA")))
-    tf, tlines = _fit_text(d, title, 118, W - 2 * M, 3)
+    shown = 0
+    if n_shown > shown:
+        d.text((M, 200), kicker.upper(), font=kf,
+               fill=_rgb(theme.get("accent", "#60A5FA")))
+    shown += 1
     y = 280
     for ln in tlines:
-        d.text((M + 5, y + 5), ln, font=tf, fill=(0, 0, 0))
-        d.text((M, y), ln, font=tf, fill=(255, 255, 255))
+        if n_shown > shown:
+            d.text((M + 5, y + 5), ln, font=tf, fill=(0, 0, 0))
+            d.text((M, y), ln, font=tf, fill=(255, 255, 255))
         y += int(tf.size * 1.15)
-    d.rectangle([M, y + 30, M + 220, y + 44],
-                fill=_rgb(theme.get("highlight", "#4FD1C5")))
+        shown += 1
+    if n_shown > shown:
+        col = _rgb(theme.get("highlight", "#4FD1C5"))
+        if pulse:
+            col = tuple(min(255, c + 60) for c in col)
+        d.rectangle([M, y + 30, M + 220, y + 44], fill=col)
+    shown += 1
+    if slines:
+        y2 = y + 110
+        for ln in slines:
+            if n_shown > shown:
+                d.text((M, y2), ln, font=sf, fill=(200, 208, 220))
+            y2 += int(sf.size * 1.3)
+            shown += 1
+    return img
+
+
+def _reveal_card_clip(theme: dict, kicker: str, title: str, sub: str,
+                      dur: float, work: Path, tag: str) -> Path:
+    """Title/closing card as a kinetic reveal instead of a static graphic
+    under a moving camera. Real motion, never a camera move."""
+    from PIL import ImageDraw
+    dur = max(dur, 0.1)
+    meas = _gradient(theme)
+    d = ImageDraw.Draw(meas)
+    M = 140
+    kf = _font(40)
+    tf, tlines = _fit_text(d, title, 118, W - 2 * M, 3)
+    sf, slines = _font(52), []
     if sub:
         sf, slines = _fit_text(d, sub, 52, W - 2 * M, 4)
-        y += 110
-        for ln in slines:
-            d.text((M, y), ln, font=sf, fill=(200, 208, 220))
-            y += int(sf.size * 1.3)
-    img.save(out)
-    return out
+    n_events = 1 + len(tlines) + 1 + len(slines)
+    frames_dir = work / f"card_{tag}"
+    frames_dir.mkdir(exist_ok=True)
+    nfr = int(max(2, min(1200, round(dur * FPS))))
+    for f in range(nfr):
+        t = f / FPS
+        tick = int(t // SAFE_GAP_S)
+        shown = min(n_events, tick + 1)
+        pulse = shown >= n_events and (t % SAFE_GAP_S) < PULSE_FLASH_S
+        img = _card_frame(theme, kicker, kf, tf, tlines, sf, slines, shown,
+                          pulse)
+        img.save(frames_dir / f"f{f:05d}.png")
+    raw = work / f"{tag}_raw.mp4"
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+          "-i", str(frames_dir / "f%05d.png"), "-c:v", "libx264",
+          "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
+          "-an", str(raw)])
+    return _fit_clip(raw, dur, work / f"{tag}.mp4")
 
 
 def _chart_still(chart_path: str | None) -> Path | None:
@@ -239,17 +298,19 @@ def _chart_still(chart_path: str | None) -> Path | None:
     return frames[-1] if frames else None
 
 
-def _beat_frame(seg, theme: dict, idx: int, n: int, out: Path) -> Path:
-    from PIL import Image, ImageDraw
+def _compose_exhibit(art, seg, theme: dict, idx: int, n: int):
+    """The beat's fully-composed frame: gradient bg, exhibit `art` (or None)
+    fit into the box on the right, heading column on the left. Split out of
+    `_beat_frame` so an animated chart build can call it once per source
+    frame without duplicating the layout (`_built_beat_clip`)."""
+    from PIL import ImageDraw
     img = _gradient(theme)
     d = ImageDraw.Draw(img)
     M = 90
     col_w = 640
 
     # Exhibit image (chart or viz scene), right side, fit inside its box.
-    still = _chart_still(seg.chart_path)
-    if still:
-        art = Image.open(still).convert("RGB")
+    if art is not None:
         box_w, box_h = W - col_w - 2 * M - 40, H - 2 * M
         sc = min(box_w / art.width, box_h / art.height)
         art = art.resize((max(1, int(art.width * sc)),
@@ -280,7 +341,14 @@ def _beat_frame(seg, theme: dict, idx: int, n: int, out: Path) -> Path:
         sf = _font(26)
         d.text((M, H - 70), seg.source_footer[:110], font=sf,
                fill=(150, 158, 172))
-    img.save(out)
+    return img
+
+
+def _beat_frame(seg, theme: dict, idx: int, n: int, out: Path) -> Path:
+    from PIL import Image
+    still = _chart_still(seg.chart_path)
+    art = Image.open(still).convert("RGB") if still else None
+    _compose_exhibit(art, seg, theme, idx, n).save(out)
     return out
 
 
@@ -453,11 +521,93 @@ def _hero_beat(seg_cfg: dict, seg, theme: dict, work: Path,
     return out
 
 
+_BUILD_NUM = re.compile(r"(\d+)\.png$")
+
+
+def _sorted_build_frames(pattern: str) -> list[Path]:
+    """Numeric order, not lexicographic — a 3+ digit build (frame 100+)
+    sorts wrong as text ('build100.png' < 'build2.png')."""
+    p = Path(pattern)
+    frames = list(p.parent.glob(p.name.replace("%02d", "*")))
+    return sorted(frames,
+                  key=lambda fp: int(_BUILD_NUM.search(fp.name).group(1)))
+
+
+def _built_beat_clip(seg, theme: dict, idx: int, n: int, dur: float,
+                     work: Path) -> Path:
+    """Real content motion for the always-available fallback: re-render the
+    segment's own chart build at true FPS across the WHOLE beat — the exact
+    technique data_learning/studio_render.py uses for the primary channel
+    (frames = beat_seconds * 30, `_full_by` bounds the finished-chart tail
+    so it never sits held past the cadence ceiling) — composited into the
+    same exhibit layout `_beat_frame` draws for a single still.
+
+    `seg.insight` is kept on the Segment specifically so a renderer can
+    RE-RENDER the chart once the beat's real duration is known (see
+    data_learning/story.py's Segment.insight docstring) — this was the
+    unwired half of that capability: `story.build()` only ever spent it on
+    a cheap 6-frame preview, and this file discarded everything but that
+    preview's last frame before bolting on a (now-retired) Ken Burns push.
+
+    The CHART moves; the camera never does (operator ruling: no camera
+    movement ships, on any channel — data_learning/tests/
+    test_no_camera_shake.py). Raises on any failure so the caller can
+    degrade to a plain static hold instead.
+    """
+    from PIL import Image
+    ins = seg.insight
+    if ins is None:
+        raise RuntimeError("segment carries no insight to re-render")
+    nfr = int(max(30, min(1200, math.ceil(dur * FPS))))
+    chart_dir = work / f"lfbuild{idx}"
+    cpath, _anchors = charts.render_story_build(
+        ins, chart_dir, f"lf{idx}", frames=nfr, full_by=_full_by(dur))
+    if not cpath:
+        raise RuntimeError("chart build produced no frames")
+    frames = _sorted_build_frames(cpath)
+    if len(frames) < 2:
+        raise RuntimeError(f"only {len(frames)} build frame(s) to animate")
+    out_dir = work / f"lfcomposed{idx}"
+    out_dir.mkdir(exist_ok=True)
+    for i, fp in enumerate(frames):
+        art = Image.open(fp).convert("RGB")
+        _compose_exhibit(art, seg, theme, idx, n).save(
+            out_dir / f"f{i:05d}.png")
+    raw = work / f"sbeat{idx}_raw.mp4"
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+          "-i", str(out_dir / "f%05d.png"), "-c:v", "libx264",
+          "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p",
+          "-an", str(raw)])
+    return _fit_clip(raw, dur, work / f"sbeat{idx}.mp4")
+
+
+def _static_hold_clip(frame: Path, dur: float, out: Path) -> Path:
+    """Last resort ONLY, for a beat that genuinely has nothing to
+    re-render (e.g. matplotlib unavailable) — a plain static hold. No
+    camera move: a Ken Burns push is exactly the retired effect
+    (data_learning/tests/test_no_camera_shake.py holds every render path to
+    that), so this ships without clearing the temporal floor, loudly,
+    rather than fake motion that would not clear it either."""
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
+          "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", str(frame),
+          "-vf", "fade=t=in:st=0:d=0.4,format=yuv420p",
+          "-t", f"{dur:.3f}", "-r", str(FPS), "-an",
+          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", str(out)])
+    return out
+
+
 def _still_beat(seg, theme: dict, idx: int, n: int, dur: float,
                 work: Path) -> Path:
-    """Fallback: composed exhibit still + Ken Burns (always available)."""
+    """Fallback: the segment's own chart re-rendered at true FPS across the
+    whole beat when it has one; a static hold (never a moving camera) only
+    when it genuinely does not."""
+    try:
+        return _built_beat_clip(seg, theme, idx, n, dur, work)
+    except Exception as e:  # noqa: BLE001
+        print(f"[longform] beat {idx}: chart re-render FAILED ({e}) — "
+              "static hold, no motion source available", file=sys.stderr)
     frame = _beat_frame(seg, theme, idx, n, work / f"sframe{idx}.png")
-    return _kenburns_clip(frame, dur, idx, work / f"sbeat{idx}.mp4")
+    return _static_hold_clip(frame, dur, work / f"sbeat{idx}.mp4")
 
 
 # --------------------------------------------------------------------------
@@ -523,26 +673,6 @@ def _broll_parts(seg_cfg: dict, seg, theme: dict, dur: float, work: Path,
 # --------------------------------------------------------------------------
 # Assembly.
 # --------------------------------------------------------------------------
-def _kenburns_clip(frame: Path, dur: float, idx: int, out: Path) -> Path:
-    """A slow push (alternating in/out) over a still — upscale first so
-    zoompan doesn't jitter at small zoom factors."""
-    frames = max(2, int(round(dur * FPS)))
-    zmax = 1.07
-    if idx % 2 == 0:
-        z = f"min(1.0+{(zmax - 1.0) / frames:.7f}*on,{zmax})"
-    else:
-        z = f"max({zmax}-{(zmax - 1.0) / frames:.7f}*on,1.0)"
-    vf = (f"scale={W * 2}:{H * 2},"
-          f"zoompan=z='{z}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-          f"d=1:s={W}x{H}:fps={FPS},fade=t=in:st=0:d=0.4,format=yuv420p")
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
-          "-framerate", str(FPS), "-t", f"{dur:.3f}", "-i", str(frame),
-          "-vf", vf, "-t", f"{dur:.3f}", "-r", str(FPS),
-          "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
-          "-an", str(out)])
-    return out
-
-
 def _chapter_name(role: str, topic: str) -> str:
     name = (role or "").split("·", 1)[-1].strip() or (topic or "").strip()
     return name.title() if name else "Chapter"
@@ -605,13 +735,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         total = windows[-1][1]
         write_srt(sentences, windows, out_path.with_suffix(".srt"))
 
-        # Title + closing cards (Pillow + Ken Burns).
-        title_frame = _title_card(theme, cfg.get("channel_name", "Visualized"),
-                                  st.title, st.hook, work / "f_title.png")
-        close_frame = _title_card(theme, "one more thing", st.closing,
-                                  st.question, work / "f_close.png")
-        clips = [_kenburns_clip(title_frame, windows[0][1] - windows[0][0],
-                                0, work / "c_title.mp4")]
+        # Title + closing cards: a kinetic text reveal, never a moving
+        # camera (operator ruling, every channel).
+        clips = [_reveal_card_clip(
+            theme, cfg.get("channel_name", "Visualized"), st.title, st.hook,
+            windows[0][1] - windows[0][0], work, "title")]
 
         # One MOTION beat per segment: Blender hero for the story's marked
         # reveal, Manim for the data beats, Pillow still as the loud
@@ -656,9 +784,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             clips.extend(broll)
             clips.append(clip)
 
-        clips.append(_kenburns_clip(close_frame,
-                                    windows[-1][1] - windows[-1][0],
-                                    len(clips), work / "c_close.mp4"))
+        clips.append(_reveal_card_clip(
+            theme, "one more thing", st.closing, st.question,
+            windows[-1][1] - windows[-1][0], work, "close"))
         listf = work / "clips.txt"
         listf.write_text("\n".join(f"file '{c}'" for c in clips) + "\n")
         video = work / "video.mp4"

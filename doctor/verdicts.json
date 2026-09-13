@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260912",
+  "updated": "20260913",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1222,10 +1222,16 @@
       ]
     },
     "f08a10274ea9": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified against the run 34052953808 evidence: longform_render.py routes every beat to _still_beat() when hero/manim are unavailable or fail, and the Sept 6 candidate measured 8.4 effective FPS against the shared 11.0 floor. The gate did its job (correctly blocked); the fix belongs in the renderer's motion floor, not the gate. Real short_term engineering work, queued behind the two live bugs above.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260913",
+      "because": "picked up: real chart re-render replaces the still fallback's frozen-frame+Ken-Burns hack, and title/close cards get a bounded kinetic reveal instead of the same camera push \u2014 building this run",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified against the run 34052953808 evidence: longform_render.py routes every beat to _still_beat() when hero/manim are unavailable or fail, and the Sept 6 candidate measured 8.4 effective FPS against the shared 11.0 floor. The gate did its job (correctly blocked); the fix belongs in the renderer's motion floor, not the gate. Real short_term engineering work, queued behind the two live bugs above."
+        }
+      ]
     },
     "0cc2e7f231ca": {
       "verdict": "done",
