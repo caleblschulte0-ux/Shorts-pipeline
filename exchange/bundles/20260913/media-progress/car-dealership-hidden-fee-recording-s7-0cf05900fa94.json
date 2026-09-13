@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+  "safe_request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6a92910db24cb3f346bd63b0760ceba4f4c5915655b7259b8db9d2347f0014a4",
+  "prompt_used": "An editorial illustration for a short-form video: empty office desk. It accompanies the narration: \"gone from the floor within a week\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ChedGBkGPOwMQMnPS7ufwn6ie2B9X5Gq",
+    "filename": "20260913__car-dealership-hidden-fee-recording-s7-0cf05900fa94.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ChedGBkGPOwMQMnPS7ufwn6ie2B9X5Gq",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "53a90cced3520031825aede0653aae66d16dcf9b97dbc747c9375bea93e30e71",
+    "bytes": 1697439,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:50.676Z"
+}
