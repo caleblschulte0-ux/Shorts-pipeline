@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260913",
+  "bundle": {
+    "identity": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a",
+    "path": "exchange/bundles/20260913/bundle.json"
+  },
+  "request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+  "safe_request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a86c6ae9b83bb70080c3518b7dfcbe71fe50bb3cedbb201c4d29b67e41a38d0b",
+  "prompt_used": "An editorial illustration for a short-form video: hr office meeting. It accompanies the narration: \"confessed to HR that afternoon\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
+    "filename": "20260913__office-fridge-lunch-thief-s6-029d6d07d8f6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "88a20c4b64d761e3e1381e1d6f882e3856ef8edc8156a8bd5cef8607b80601b4",
+    "bytes": 1482680,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-13T11:26:39.828Z"
+}
