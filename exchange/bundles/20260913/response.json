@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260913",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "3bac9a9ffd7e531bf10526c02236c525649d1aeb",
+    "production_date": "20260913",
+    "bundle_sha256": "342ac1735f45cfffdf7079cb3a63f1a7f946598bf25d59362486d655890ad60a"
+  },
+  "media": [
+    {
+      "request_id": "office-fridge-lunch-thief-s0-ae3a39ae6f68",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
+        "file_id": "1kPhd4oeDnzSoBqWYR5Ed8WqC2q-Jyzrd",
+        "filename": "20260913__office-fridge-lunch-thief-s0-ae3a39ae6f68.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1795751,
+        "format": "png",
+        "height": 1672,
+        "sha256": "bde14d93f2c13206c98713314dee8f5167f0454e9cee97fa6e03c633a79801f9",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s0-ae3a39ae6f68.json",
+        "verified_at": "2026-09-13T11:26:33.503Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s2-47a1c0334e56",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
+        "file_id": "15JkKtpgPypK4GgWi5CBy2casUXTK2pRH",
+        "filename": "20260913__office-fridge-lunch-thief-s2-47a1c0334e56.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1799054,
+        "format": "png",
+        "height": 1672,
+        "sha256": "a3d41ec2f8e3a13eccbded47a99bb605f8c72d075f11e9ebc11baf72ae192706",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s2-47a1c0334e56.json",
+        "verified_at": "2026-09-13T11:26:34.608Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s3-82df14d62616",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
+        "file_id": "1YG9Ml6QFDHvfyWXepKmjeIQHv6LHULpZ",
+        "filename": "20260913__office-fridge-lunch-thief-s3-82df14d62616.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2096380,
+        "format": "png",
+        "height": 1374,
+        "sha256": "eca38cad8a65a52762fa6ce166572e65706ccbb5aeae8b2ba09887b90e4d074a",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s3-82df14d62616.json",
+        "verified_at": "2026-09-13T11:26:35.800Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s4-7a0aa55e9ed9",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
+        "file_id": "1eOVkvkbUUAk5MuErtK7iaO8IeFzbUGgf",
+        "filename": "20260913__office-fridge-lunch-thief-s4-7a0aa55e9ed9.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1785386,
+        "format": "png",
+        "height": 1672,
+        "sha256": "05cd8d85179944c4c2d3545febff7c9f9132f7951e6259ca0a3fc22c268959cb",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s4-7a0aa55e9ed9.json",
+        "verified_at": "2026-09-13T11:26:37.328Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s5-8da0ce2c2b84",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1mqC0z7lQ1bYl6bV0QaRaL-m6I-8uejI9",
+        "file_id": "1mqC0z7lQ1bYl6bV0QaRaL-m6I-8uejI9",
+        "filename": "20260913__office-fridge-lunch-thief-s5-8da0ce2c2b84.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1899111,
+        "format": "png",
+        "height": 1672,
+        "sha256": "7e4efa81ba1fe41bdaa266eb0bcff9a92aebbd431c33f6fb6dbe70e840d47115",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s5-8da0ce2c2b84.json",
+        "verified_at": "2026-09-13T11:26:38.696Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s6-029d6d07d8f6",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
+        "file_id": "1GifiN97I5OwUIftiyMJtXz_IXDtsOIYv",
+        "filename": "20260913__office-fridge-lunch-thief-s6-029d6d07d8f6.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1482680,
+        "format": "png",
+        "height": 1672,
+        "sha256": "88a20c4b64d761e3e1381e1d6f882e3856ef8edc8156a8bd5cef8607b80601b4",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s6-029d6d07d8f6.json",
+        "verified_at": "2026-09-13T11:26:39.828Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s7-0ca1dd7b909f",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
+        "file_id": "1q8uOax2TsZ3RUtiWaYe-SGg8JAMk4K4i",
+        "filename": "20260913__office-fridge-lunch-thief-s7-0ca1dd7b909f.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1938541,
+        "format": "png",
+        "height": 1672,
+        "sha256": "4ca5ad4f921e1da1fee373db150fd53d2f6cdd1bfa9636d44b5d85edc2d05181",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s7-0ca1dd7b909f.json",
+        "verified_at": "2026-09-13T11:26:40.964Z"
+      }
+    },
+    {
+      "request_id": "office-fridge-lunch-thief-s1-d9de9ff496fb",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
+        "file_id": "1PeKtdRXGx1xb97ro7u0T9Y4nE2Wh5aIR",
+        "filename": "20260913__office-fridge-lunch-thief-s1-d9de9ff496fb.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1706539,
+        "format": "png",
+        "height": 1374,
+        "sha256": "479d2ad61249dc6c521f82d9eddfdaf305ea48dcbf08f9d613392959431fa796",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/office-fridge-lunch-thief-s1-d9de9ff496fb.json",
+        "verified_at": "2026-09-13T11:26:41.984Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s0-2bb80fbd6062",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Atz_wJHhGuoo10xC0Md4XqghLLp5j6le",
+        "file_id": "1Atz_wJHhGuoo10xC0Md4XqghLLp5j6le",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s0-2bb80fbd6062.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1908659,
+        "format": "png",
+        "height": 1672,
+        "sha256": "65de6f85c0144db948f07d66b31c746bc59b18d0db86b24909c07fadc8e08262",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s0-2bb80fbd6062.json",
+        "verified_at": "2026-09-13T11:26:43.122Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s1-46c29c4caba0",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1d_tpZ7WowXOyVFBToiCY442NG_7hJQcD",
+        "file_id": "1d_tpZ7WowXOyVFBToiCY442NG_7hJQcD",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s1-46c29c4caba0.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1505238,
+        "format": "png",
+        "height": 1672,
+        "sha256": "b078e54d788a01dc515b70f23159e6203acb46be5c9dec092beec8331877f1ff",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s1-46c29c4caba0.json",
+        "verified_at": "2026-09-13T11:26:44.340Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s2-b91c2ca6a99b",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1BUOEVJzY81Tr1Kcm1Ezh_vagXPcYLygY",
+        "file_id": "1BUOEVJzY81Tr1Kcm1Ezh_vagXPcYLygY",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2034915,
+        "format": "png",
+        "height": 1374,
+        "sha256": "e30e77a3b8258a74a54d1383f6837cf351698085c9eb0bb4dfd17e7b51b374be",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s2-b91c2ca6a99b.json",
+        "verified_at": "2026-09-13T11:26:45.614Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s3-b1196d036386",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1jLiFcnFZaj_dpj8DPXMG4L_UbLVZ_GXq",
+        "file_id": "1jLiFcnFZaj_dpj8DPXMG4L_UbLVZ_GXq",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s3-b1196d036386.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1606452,
+        "format": "png",
+        "height": 1374,
+        "sha256": "a099b078df5d0884dbc06c84354720cee22929184459aa1d1414de7c8fef33c7",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s3-b1196d036386.json",
+        "verified_at": "2026-09-13T11:26:46.585Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s4-c81734b8f8a2",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Os9ZeX2AOjNL9a50J8ouq5zlEfN_0D0R",
+        "file_id": "1Os9ZeX2AOjNL9a50J8ouq5zlEfN_0D0R",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s4-c81734b8f8a2.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1551629,
+        "format": "png",
+        "height": 1374,
+        "sha256": "73598bae2f003277efc379723f2ae75238600014dbac87dc71e043eb76a018bc",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s4-c81734b8f8a2.json",
+        "verified_at": "2026-09-13T11:26:47.564Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s5-2356a44cf87f",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1QpnK6vF4o6PHgLRvHnzJvwczhFgf0_8H",
+        "file_id": "1QpnK6vF4o6PHgLRvHnzJvwczhFgf0_8H",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s5-2356a44cf87f.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1935236,
+        "format": "png",
+        "height": 1536,
+        "sha256": "04597e368452625d3ad15955c955fd7516f2d328eadecfd99f54360e1e9ae7b3",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s5-2356a44cf87f.json",
+        "verified_at": "2026-09-13T11:26:48.557Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s6-64e40d22467f",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1kX0ebQ3tCU7ZWy_gbdBpQm8q9felLzfJ",
+        "file_id": "1kX0ebQ3tCU7ZWy_gbdBpQm8q9felLzfJ",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s6-64e40d22467f.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1814167,
+        "format": "png",
+        "height": 1672,
+        "sha256": "046ce34d6c9beb054c75635c91a0eb019fa6edb9c48c801a1d69e4f2074f4f08",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s6-64e40d22467f.json",
+        "verified_at": "2026-09-13T11:26:49.688Z"
+      }
+    },
+    {
+      "request_id": "car-dealership-hidden-fee-recording-s7-0cf05900fa94",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1ChedGBkGPOwMQMnPS7ufwn6ie2B9X5Gq",
+        "file_id": "1ChedGBkGPOwMQMnPS7ufwn6ie2B9X5Gq",
+        "filename": "20260913__car-dealership-hidden-fee-recording-s7-0cf05900fa94.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1697439,
+        "format": "png",
+        "height": 1672,
+        "sha256": "53a90cced3520031825aede0653aae66d16dcf9b97dbc747c9375bea93e30e71",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260913/media-progress/car-dealership-hidden-fee-recording-s7-0cf05900fa94.json",
+        "verified_at": "2026-09-13T11:26:50.676Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "office-fridge-lunch-thief",
+      "script": "Who stole my lunch? For three weeks straight, someone ate it from the office fridge. HR shrugged; my manager shrugged. I bought an identical container, wrote HR SAMPLE, DO NOT EAT, UNDER REVIEW in bold red marker, packed my actual leftovers extra spicy, and left it at nine. By eleven, one accounting intern sprinted toward the break room, pale and asking whether sample meant a drug test. She had eaten half before checking the label twice. I said nothing. That afternoon, she confessed to HR and admitted the thefts went back to January, all to explain why she was hungry. The office fridge has had a padlock ever since—and it is not mine. Would you trust that fridge?",
+      "editor_note": "Rewritten to 118 words with a short question hook, all protected numbers and entities preserved, and a specific closing question."
+    },
+    {
+      "slug": "car-dealership-hidden-fee-recording",
+      "script": "Mandatory—or pure profit? The finance manager called the eight hundred dollar dealer prep fee non-negotiable and required by the manufacturer. I agreed, without mentioning I had recorded the negotiation on my phone, which is legal in my state. Two days later, I found the exact same fee waived for a friend at the same dealership that same week and called to cancel. The manager insisted it was mandatory for every customer, no exceptions. I drove back and asked for the general manager directly. Then I played eleven seconds: his finance guy calling the fee basically just extra profit, don't worry about it. The general manager's face changed. He refunded the full eight hundred dollars on the spot, comped an oil change package, and the finance manager was gone from the floor within a week. Would you have played the tape?",
+      "editor_note": "Rewritten to 140 words with a short question hook, all protected numbers and entities preserved, and a specific closing question."
+    },
+    {
+      "slug": "india-passed-china-population",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames India passing China in population."
+    },
+    {
+      "slug": "airbnb-passed-marriott-rooms",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames Airbnb passing the world's biggest hotel chain by rooms."
+    },
+    {
+      "slug": "mobile-games-passed-box-office",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames mobile games passing combined movie-theater revenue."
+    },
+    {
+      "slug": "china-passed-japan-robots",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames China passing Japan in factory robots and extending the lead."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
