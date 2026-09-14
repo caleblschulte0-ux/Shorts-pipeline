@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:42.607Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-neighbor-street-parking-cones-s0",
+  "safe_request_id": "authored-neighbor-street-parking-cones-s0",
+  "prompt_sha256": "96c57b2e29de348f4d28c113f87ac23282999179af72daaab06bc43b1fa36c0c",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: orange traffic cones residential curb. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1lAboQZpcPrMr62WM4F6IOucYdkPbdy6K",
+    "filename": "20260914__authored-neighbor-street-parking-cones-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1lAboQZpcPrMr62WM4F6IOucYdkPbdy6K",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b9d5d6bcb47d19994a3b7344da42eaec89a65982b3767e0207332724f09d0f78",
+    "bytes": 2594084,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "neighbor-street-parking-cones",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
