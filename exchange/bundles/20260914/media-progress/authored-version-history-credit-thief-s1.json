@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:37.611Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-version-history-credit-thief-s1",
+  "safe_request_id": "authored-version-history-credit-thief-s1",
+  "prompt_sha256": "d3080ba9bb3e8592c676a3bf475cee6d795b6bee5b3cf8b1b00eb24e4d06b8fc",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: office laptop project files. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11LR-ZSO89-Cd2rm-O-PgTrD5ofpphm4-",
+    "filename": "20260914__authored-version-history-credit-thief-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11LR-ZSO89-Cd2rm-O-PgTrD5ofpphm4-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "27f30a94627782028132dd10ec09ac03bf2e78ec3dda38abe1c481a55531ce24",
+    "bytes": 1765382,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "version-history-credit-thief",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
