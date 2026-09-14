@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:41.598Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-version-history-credit-thief-s5",
+  "safe_request_id": "authored-version-history-credit-thief-s5",
+  "prompt_sha256": "aa9d010651e5859cfc4f177e7cb84b0625b993b8c980d309370f22d17e360b2f",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: office promotion handshake. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19BA3LoFps5TeIuYDlonLj48iuJcPvohJ",
+    "filename": "20260914__authored-version-history-credit-thief-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19BA3LoFps5TeIuYDlonLj48iuJcPvohJ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f6715635b507824ad331ff4be2abea23007e48ce7884cbf828ecd70b19e70c86",
+    "bytes": 1808265,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "version-history-credit-thief",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
