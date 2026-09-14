@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:40.669Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-version-history-credit-thief-s4",
+  "safe_request_id": "authored-version-history-credit-thief-s4",
+  "prompt_sha256": "ee977ac254643e99d599e1e0ac955aa9cc449a04eafce8b330cb8244001d979c",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: projector showing document history. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1lemVW-RgARz1iWgYMxgHy7ls27pJgQJQ",
+    "filename": "20260914__authored-version-history-credit-thief-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1lemVW-RgARz1iWgYMxgHy7ls27pJgQJQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "cc001ae1aded0a108e23a8cb924d7672c7e65e118fc026d734d9bd575dcbb641",
+    "bytes": 1943960,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "version-history-credit-thief",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
