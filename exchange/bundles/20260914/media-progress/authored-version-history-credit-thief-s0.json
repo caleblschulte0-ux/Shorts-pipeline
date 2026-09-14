@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:36.656Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-version-history-credit-thief-s0",
+  "safe_request_id": "authored-version-history-credit-thief-s0",
+  "prompt_sha256": "ff65648b3c92cfe46fe613605552e98e20f0d6eac3d44ef3497d1dcfa0d197db",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: confident coworker office presentation. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1LxosRTExSbKUOwGwZIuAf_YxS2ixISJX",
+    "filename": "20260914__authored-version-history-credit-thief-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1LxosRTExSbKUOwGwZIuAf_YxS2ixISJX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "77fec4a06124dfcd54b3b8f1c33d323df89b2140c5e21d7a729b84d139f00045",
+    "bytes": 1802696,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "version-history-credit-thief",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
