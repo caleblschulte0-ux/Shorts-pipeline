@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:47.433Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-neighbor-street-parking-cones-s5",
+  "safe_request_id": "authored-neighbor-street-parking-cones-s5",
+  "prompt_sha256": "1f5f79f21726382c2d69c95b0c30698437457067919ea02db0560c57fcc3eb28",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: parking officer issuing citation. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1iitT4C2arLtVl_6MmtJxtyqHuTSZmY7R",
+    "filename": "20260914__authored-neighbor-street-parking-cones-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1iitT4C2arLtVl_6MmtJxtyqHuTSZmY7R",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "67e2b2e5a8c352ab67793529619c15803012aad4e021d401b9a8ec14cbfbbe72",
+    "bytes": 1992079,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "neighbor-street-parking-cones",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
