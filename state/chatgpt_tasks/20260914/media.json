@@ -1,0 +1,33 @@
+{
+ "checked_at": "2026-09-14T18:04:07+00:00",
+ "date": "20260914",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260914/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "authored-neighbor-street-parking-cones-s0.json",
+  "authored-neighbor-street-parking-cones-s1.json",
+  "authored-neighbor-street-parking-cones-s2.json",
+  "authored-neighbor-street-parking-cones-s3.json",
+  "authored-neighbor-street-parking-cones-s4.json",
+  "authored-neighbor-street-parking-cones-s5.json",
+  "authored-version-history-credit-thief-s0.json",
+  "authored-version-history-credit-thief-s1.json",
+  "authored-version-history-credit-thief-s2.json",
+  "authored-version-history-credit-thief-s3.json",
+  "authored-version-history-credit-thief-s4.json",
+  "authored-version-history-credit-thief-s5.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "no bundle.json \u2014 PHASE A NEVER RAN for this date (see state/phase_a_readiness/20260914.json)"
+}
