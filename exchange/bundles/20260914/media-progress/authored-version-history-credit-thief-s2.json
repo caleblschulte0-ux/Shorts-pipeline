@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:38.594Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-version-history-credit-thief-s2",
+  "safe_request_id": "authored-version-history-credit-thief-s2",
+  "prompt_sha256": "c868c235bc97d0cdedd460461ba8878cb2a532ae5996321975742b7e663118e9",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: coworkers congratulating wrong person. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1pTZlq9s6nm2lP9ZIu0qCMKrQ7_cygWCk",
+    "filename": "20260914__authored-version-history-credit-thief-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1pTZlq9s6nm2lP9ZIu0qCMKrQ7_cygWCk",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c891258cc81c2d0b6fb5bd5823a35407d197e074309f0119208db0011cb30e08",
+    "bytes": 1898575,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "version-history-credit-thief",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
