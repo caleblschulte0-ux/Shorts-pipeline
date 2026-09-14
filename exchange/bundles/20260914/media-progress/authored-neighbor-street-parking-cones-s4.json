@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:46.585Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-neighbor-street-parking-cones-s4",
+  "safe_request_id": "authored-neighbor-street-parking-cones-s4",
+  "prompt_sha256": "eb894ada637165b95f08b61b2a2f88edfb8962cdadcda4fa4e86d2951e893e2d",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: city utility truck residential street. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1h_tWfBCC19GI6s-TlWtHNHIG_Fpi-aaS",
+    "filename": "20260914__authored-neighbor-street-parking-cones-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1h_tWfBCC19GI6s-TlWtHNHIG_Fpi-aaS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "38ba74e6ceb41d8dc8078acedb7dcb4242149d01ce40fdbf3c0c7180d35d0f79",
+    "bytes": 2405442,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "neighbor-street-parking-cones",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
