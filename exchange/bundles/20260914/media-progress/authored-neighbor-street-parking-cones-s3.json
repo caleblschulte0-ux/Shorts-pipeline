@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:45.672Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-neighbor-street-parking-cones-s3",
+  "safe_request_id": "authored-neighbor-street-parking-cones-s3",
+  "prompt_sha256": "393bf687a0ce2b028cbbfcebfba717e413e15b14a1c6b8a1f9e1d16473449c6f",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: phone photo traffic cones porch. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1txiREHOXa2pJkJbCXl0QqFUr2SUtBiR0",
+    "filename": "20260914__authored-neighbor-street-parking-cones-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1txiREHOXa2pJkJbCXl0QqFUr2SUtBiR0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c910c512271a817accc5524b3e87cf7e133349493425f082f045d5bede01db52",
+    "bytes": 2045077,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "neighbor-street-parking-cones",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
