@@ -1,0 +1,37 @@
+{
+  "date": "20260914",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "required": true,
+    "checked": 12,
+    "ok": 12,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 0,
+    "contract_refused": 1
+  },
+  "contract_refused": [
+    "response answers contract source_commit='4584531039a6d8bf' but this bundle froze 'c9c53653fc536c0e' \u2014 the worker read a different plan than the one this day was built on"
+  ],
+  "details": []
+}
