@@ -1,334 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260818",
-      "dry_run": false,
-      "ts": "2026-08-18T12:03:23+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 107,
-        "with_retention": 83,
-        "with_curve": 14,
-        "fetched_at": "2026-08-18T09:03:03.598208+00:00"
-      },
-      "brain": {
-        "ok": 8,
-        "fail": 16
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260818-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague confrontation title, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "streamer stares blankly, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ohnepixel Gets Told 'What You Looking At Bud' In The Crowd"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.93,
-              "problems": []
-            }
-          },
-          "took_s": 119.7
-        },
-        {
-          "slug": "clip-20260818-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "jasontheween",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "stableronaldo",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "funny name, unclear event",
-              "blind": false
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Chat Could Not Handle This Northernlion Moment",
-              "raw": "Alexander Shittleton",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 826.5
-        },
-        {
-          "slug": "clip-20260818-3",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Lacy Has The Whole Stream Reacting",
-              "raw": "bcb",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 137.6
-        },
-        {
-          "slug": "clip-20260818-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Lacy Has The Whole Stream Reacting",
-              "raw": "bcb",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 123.0
-        },
-        {
-          "slug": "clip-20260818-5",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Lacy Has The Whole Stream Reacting",
-              "raw": "bcb",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 123.7
-        },
-        {
-          "slug": "clip-20260818-6",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Lacy Has The Whole Stream Reacting",
-              "raw": "bcb",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 124.0
-        }
-      ]
-    },
-    {
       "date": "20260820",
       "dry_run": false,
       "ts": "2026-08-20T12:52:51+00:00",
@@ -7897,6 +7569,193 @@
             }
           },
           "took_s": 599.4
+        },
+        {
+          "slug": "clip-20260914-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260914-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260914-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260914-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260914-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260914",
+      "dry_run": false,
+      "ts": "2026-09-14T12:32:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 80,
+        "with_curve": 14,
+        "fetched_at": "2026-09-13T15:01:05.694439+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:timthetatman": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nickmercs": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260914-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "jynxzi",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "xqc",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "lacy",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "JP tried to test the marksman pistol he stole from Clayton",
+              "raw": "JP tried to test the marksman pistol he stole from Clayton",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 593.2
         },
         {
           "slug": "clip-20260914-2",
