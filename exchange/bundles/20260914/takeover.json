@@ -1,0 +1,37 @@
+{
+  "schema": "chatgpt-takeover-state/v1",
+  "production_date": "20260914",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "checkpoint_identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+  "status": "authoring_media_in_progress",
+  "claimed_at": "2026-09-14T11:51:24.125Z",
+  "trigger": {
+    "bundle_missing": true,
+    "path": "exchange/bundles/20260914/bundle.json",
+    "reason": "No READY or bundle.json appeared during the required 45-minute wait window."
+  },
+  "source_commit": "4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+  "registry": {
+    "revision": 5,
+    "sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f"
+  },
+  "ownership_rule": "ChatGPT owns the no-bundle takeover response for 20260914; a late bundle must not replace this claim.",
+  "channels": {
+    "trending": {
+      "expected": 6,
+      "formats": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": 0,
+      "missing": 6,
+      "state": "authoring"
+    }
+  },
+  "media": {
+    "completed": 0,
+    "failed": 0,
+    "drive_byte_verified": 0
+  }
+}
