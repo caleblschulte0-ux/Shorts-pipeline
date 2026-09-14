@@ -1,0 +1,646 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260914",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "no_bundle_takeover",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "production_date": "20260914",
+    "bundle_sha256": null
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-tiktok-shop-passed-etsy",
+      "title": "A 2-Year-Old App Just Passed Etsy",
+      "hook": "Etsy took 19 years. TikTok took 2.",
+      "y_label": "Global GMV ($ billions)",
+      "duration": 13,
+      "source": "Etsy Inc. annual reports for marketplace GMS (2019-2025); TikTok Shop global GMV estimates reported by Reuters, Momentum Works, and Retail TouchPoints (2022-2025).",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Etsy",
+          "color": "#f45800",
+          "icon": "Etsy",
+          "values": [
+            4.97,
+            10.28,
+            13.51,
+            13.31,
+            13.2,
+            12.6,
+            11.9
+          ]
+        },
+        {
+          "name": "TikTok Shop",
+          "color": "#25f4ee",
+          "icon": "TikTok",
+          "values": [
+            0,
+            0,
+            0,
+            4.4,
+            11,
+            33.2,
+            66
+          ]
+        }
+      ],
+      "hashtags": [
+        "tiktokshop",
+        "etsy",
+        "ecommerce",
+        "onlineshopping",
+        "smallbusiness",
+        "retail",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260914"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-asteroids-catalogued",
+      "title": "We've Now Found 40,000 Asteroids Near Earth",
+      "hook": "Space just got a lot less empty.",
+      "y_label": "Cumulative near-Earth asteroids catalogued",
+      "duration": 13,
+      "source": "NASA Center for Near-Earth Object Studies and ESA Planetary Defence Office milestone announcements; intermediate values are conservative catalogue-rate estimates.",
+      "years": [
+        2000,
+        2010,
+        2013,
+        2018,
+        2022,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Near-Earth Asteroids",
+          "color": "#f5c518",
+          "icon": "NASA",
+          "values": [
+            900,
+            7000,
+            10000,
+            19000,
+            30000,
+            40000
+          ]
+        },
+        {
+          "name": "Potentially Hazardous",
+          "color": "#e74c3c",
+          "icon": "PHA",
+          "values": [
+            150,
+            1000,
+            1400,
+            1900,
+            2300,
+            2500
+          ]
+        }
+      ],
+      "hashtags": [
+        "asteroid",
+        "nasa",
+        "space",
+        "planetarydefense",
+        "astronomy",
+        "science",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260914"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-dota-prize-pool-collapse",
+      "title": "Esports' Biggest Prize Ever Just Collapsed",
+      "hook": "It was $40 million. Then Valve changed one thing.",
+      "y_label": "Tournament prize pool ($ millions)",
+      "duration": 13,
+      "source": "Valve Compendium/Battle Pass disclosures and tournament reporting for Dota 2 The International; Riot Games and tournament reporting for League of Legends Worlds.",
+      "years": [
+        2015,
+        2018,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Dota 2: The International",
+          "color": "#e74c3c",
+          "icon": "Dota 2",
+          "values": [
+            18.4,
+            25.5,
+            34.3,
+            40,
+            18.9,
+            3,
+            2.8
+          ]
+        },
+        {
+          "name": "LoL Worlds",
+          "color": "#1abc9c",
+          "icon": "League of Legends",
+          "values": [
+            2.13,
+            6.45,
+            2.25,
+            2.225,
+            2.25,
+            2.3,
+            2.23
+          ]
+        }
+      ],
+      "hashtags": [
+        "dota2",
+        "theinternational",
+        "esports",
+        "leagueoflegends",
+        "gaming",
+        "prizepool",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260914"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-nokia-vs-iphone",
+      "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+      "hook": "100 million, then nearly zero",
+      "y_label": "Smartphones shipped per year (millions)",
+      "duration": 13,
+      "source": "Nokia smartphone shipment estimates compiled from IDC, Gartner, and Strategy Analytics; Apple fiscal iPhone unit sales from Apple annual reports. Figures rounded to millions.",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "series": [
+        {
+          "name": "Nokia",
+          "color": "#124191",
+          "icon": "Nokia",
+          "values": [
+            61,
+            68,
+            100,
+            78,
+            35,
+            30
+          ]
+        },
+        {
+          "name": "iPhone",
+          "color": "#a3a3a3",
+          "icon": "Apple",
+          "values": [
+            11.63,
+            20.73,
+            39.99,
+            72.29,
+            125.05,
+            150.26
+          ]
+        }
+      ],
+      "hashtags": [
+        "nokia",
+        "iphone",
+        "apple",
+        "smartphones",
+        "techhistory",
+        "mobilephones",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260914"
+    },
+    {
+      "hashtags": [
+        "workplace",
+        "pettyrevenge",
+        "coworker",
+        "office",
+        "karma",
+        "receipts",
+        "storytime",
+        "shorts"
+      ],
+      "music_vibe": "tense",
+      "punches": [
+        {
+          "color": "#ff3030",
+          "phrase": "presented my work as his own",
+          "text": "STOLE THE CREDIT"
+        },
+        {
+          "color": "#ffaa30",
+          "phrase": "one edit: deleting my name",
+          "text": "ONE EDIT"
+        },
+        {
+          "color": "#50ff80",
+          "phrase": "I opened version history on the projector",
+          "text": "VERSION HISTORY"
+        },
+        {
+          "color": "#ffaa30",
+          "phrase": "His document was one sentence long",
+          "text": "ONE SENTENCE"
+        }
+      ],
+      "script": "My coworker presented my work as his own while I was out sick. He copied the deck from our shared project folder, removed my name, and told our director he had built the entire strategy over the weekend. I came back Monday to congratulations directed at the wrong desk. I did not argue. I asked to join the follow-up meeting because I had “a few implementation notes.” In the conference room, he stumbled through questions about the numbers, so the director asked me to explain. I opened version history on the projector. Every slide showed my account creating it, plus his account making one edit: deleting my name. Nobody spoke for a few seconds. The director ended the meeting, reassigned the project to me, and asked him to document his contribution. His document was one sentence long. By Friday, I was promoted to lead, and he was assigned to take meeting notes.",
+      "shots": [
+        {
+          "phrase": "presented my work as his own",
+          "query": "confident coworker office presentation",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1LxosRTExSbKUOwGwZIuAf_YxS2ixISJX",
+              "file_id": "1LxosRTExSbKUOwGwZIuAf_YxS2ixISJX",
+              "filename": "20260914__authored-version-history-credit-thief-s0.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1802696,
+              "format": "png",
+              "height": 1536,
+              "sha256": "77fec4a06124dfcd54b3b8f1c33d323df89b2140c5e21d7a729b84d139f00045",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "shared project folder",
+          "query": "office laptop project files",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=11LR-ZSO89-Cd2rm-O-PgTrD5ofpphm4-",
+              "file_id": "11LR-ZSO89-Cd2rm-O-PgTrD5ofpphm4-",
+              "filename": "20260914__authored-version-history-credit-thief-s1.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1765382,
+              "format": "png",
+              "height": 1536,
+              "sha256": "27f30a94627782028132dd10ec09ac03bf2e78ec3dda38abe1c481a55531ce24",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "congratulations directed at the wrong desk",
+          "query": "coworkers congratulating wrong person",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1pTZlq9s6nm2lP9ZIu0qCMKrQ7_cygWCk",
+              "file_id": "1pTZlq9s6nm2lP9ZIu0qCMKrQ7_cygWCk",
+              "filename": "20260914__authored-version-history-credit-thief-s2.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1898575,
+              "format": "png",
+              "height": 1536,
+              "sha256": "c891258cc81c2d0b6fb5bd5823a35407d197e074309f0119208db0011cb30e08",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "In the conference room",
+          "query": "tense corporate conference room",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=18gtwjoM2e-kLKyf1LblB3_x3GpmFwq_x",
+              "file_id": "18gtwjoM2e-kLKyf1LblB3_x3GpmFwq_x",
+              "filename": "20260914__authored-version-history-credit-thief-s3.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1789673,
+              "format": "png",
+              "height": 1536,
+              "sha256": "111dd2833d2e715eac4005838f0c0545ceb1cb2440e211387a4d394396fb672d",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "I opened version history on the projector",
+          "query": "projector showing document history",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1lemVW-RgARz1iWgYMxgHy7ls27pJgQJQ",
+              "file_id": "1lemVW-RgARz1iWgYMxgHy7ls27pJgQJQ",
+              "filename": "20260914__authored-version-history-credit-thief-s4.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1943960,
+              "format": "png",
+              "height": 1536,
+              "sha256": "cc001ae1aded0a108e23a8cb924d7672c7e65e118fc026d734d9bd575dcbb641",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "I was promoted to lead",
+          "query": "office promotion handshake",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=19BA3LoFps5TeIuYDlonLj48iuJcPvohJ",
+              "file_id": "19BA3LoFps5TeIuYDlonLj48iuJcPvohJ",
+              "filename": "20260914__authored-version-history-credit-thief-s5.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1808265,
+              "format": "png",
+              "height": 1536,
+              "sha256": "f6715635b507824ad331ff4be2abea23007e48ce7884cbf828ecd70b19e70c86",
+              "width": 1024
+            }
+          }
+        }
+      ],
+      "slug": "version-history-credit-thief",
+      "subreddit": "pettyrevenge",
+      "title": "My Coworker Took Credit. Version History Took It Back.",
+      "_authored_by": "chatgpt-takeover-20260914"
+    },
+    {
+      "hashtags": [
+        "neighbor",
+        "maliciouscompliance",
+        "parking",
+        "pettyrevenge",
+        "karma",
+        "neighborhood",
+        "storytime",
+        "shorts"
+      ],
+      "music_vibe": "deadpan",
+      "punches": [
+        {
+          "color": "#ffaa30",
+          "phrase": "public curb",
+          "text": "PUBLIC CURB"
+        },
+        {
+          "color": "#50ff80",
+          "phrase": "call the city if you care so much",
+          "text": "SO I DID"
+        },
+        {
+          "color": "#ffaa30",
+          "phrase": "The truck took those too",
+          "text": "TOOK THOSE TOO"
+        },
+        {
+          "color": "#ff3030",
+          "phrase": "citation for obstructing the roadway",
+          "text": "CITATION"
+        }
+      ],
+      "script": "My neighbor decided the public curb in front of his house belonged to him. Every morning, he placed two orange cones there before leaving for work, then shouted at anyone who moved them. After he blocked my visiting nurse from parking, I asked him once to stop. He told me to “call the city if you care so much.” So I did. Parking enforcement explained that abandoned objects in the roadway could be collected, but they needed a complaint each time. For one week, I photographed the cones from my porch and filed the same short report before breakfast. A city truck arrived every afternoon and removed them. He kept buying replacements: first cheap cones, then weighted cones, then cones with his address painted underneath. The truck took those too. On Friday, an officer handed him a citation for obstructing the roadway. He finally stopped reserving the curb. The city storage yard now owns his entire cone collection.",
+      "shots": [
+        {
+          "phrase": "two orange cones",
+          "query": "orange traffic cones residential curb",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1lAboQZpcPrMr62WM4F6IOucYdkPbdy6K",
+              "file_id": "1lAboQZpcPrMr62WM4F6IOucYdkPbdy6K",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s0.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 2594084,
+              "format": "png",
+              "height": 1536,
+              "sha256": "b9d5d6bcb47d19994a3b7344da42eaec89a65982b3767e0207332724f09d0f78",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "blocked my visiting nurse from parking",
+          "query": "nurse car searching street parking",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1c7DVfbGsxC0pP5e_zDWVB-6GyokC8rYW",
+              "file_id": "1c7DVfbGsxC0pP5e_zDWVB-6GyokC8rYW",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s1.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1985334,
+              "format": "png",
+              "height": 1536,
+              "sha256": "2775606628809a9a83b63f324296c55e539e37492565becac65b1019080141d3",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "call the city if you care so much",
+          "query": "angry neighbor pointing at phone",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1PYLlfUhYjoApxbXICOnZNnH-qiwcF_Ix",
+              "file_id": "1PYLlfUhYjoApxbXICOnZNnH-qiwcF_Ix",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s2.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 2552548,
+              "format": "png",
+              "height": 1536,
+              "sha256": "19b82e60837a34feff1471d4c295656cfe1e60363d0ada112f7047acd680d4e2",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "photographed the cones from my porch",
+          "query": "phone photo traffic cones porch",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1txiREHOXa2pJkJbCXl0QqFUr2SUtBiR0",
+              "file_id": "1txiREHOXa2pJkJbCXl0QqFUr2SUtBiR0",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s3.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 2045077,
+              "format": "png",
+              "height": 1536,
+              "sha256": "c910c512271a817accc5524b3e87cf7e133349493425f082f045d5bede01db52",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "A city truck arrived every afternoon",
+          "query": "city utility truck residential street",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1h_tWfBCC19GI6s-TlWtHNHIG_Fpi-aaS",
+              "file_id": "1h_tWfBCC19GI6s-TlWtHNHIG_Fpi-aaS",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s4.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 2405442,
+              "format": "png",
+              "height": 1536,
+              "sha256": "38ba74e6ceb41d8dc8078acedb7dcb4242149d01ce40fdbf3c0c7180d35d0f79",
+              "width": 1024
+            }
+          }
+        },
+        {
+          "phrase": "handed him a citation",
+          "query": "parking officer issuing citation",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "download_url": "https://drive.google.com/uc?export=download&id=1iitT4C2arLtVl_6MmtJxtyqHuTSZmY7R",
+              "file_id": "1iitT4C2arLtVl_6MmtJxtyqHuTSZmY7R",
+              "filename": "20260914__authored-neighbor-street-parking-cones-s5.png",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "bytes": 1992079,
+              "format": "png",
+              "height": 1536,
+              "sha256": "67e2b2e5a8c352ab67793529619c15803012aad4e021d401b9a8ec14cbfbbe72",
+              "width": 1024
+            }
+          }
+        }
+      ],
+      "slug": "neighbor-street-parking-cones",
+      "subreddit": "MaliciousCompliance",
+      "title": "My Neighbor Reserved The Street. The City Took His Cones.",
+      "_authored_by": "chatgpt-takeover-20260914"
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "No READY or bundle.json appeared during the required 45-minute wait. Full registry takeover authored 4 graph_race + 2 reddit_story; every Reddit shot has verified Drive media."
+  ],
+  "completion": {
+    "target_mix": {
+      "graph_race": 4,
+      "reddit_story": 2
+    },
+    "authored_mix": {
+      "graph_race": 4,
+      "reddit_story": 2
+    },
+    "authored_shots": 12,
+    "verified_shots": 12,
+    "closed": true
+  }
+}
