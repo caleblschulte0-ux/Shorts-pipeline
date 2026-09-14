@@ -1,0 +1,19 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_id": "authored-version-history-credit-thief-s2",
+  "safe_request_id": "authored-version-history-credit-thief-s2",
+  "request_kind": "authored_shot",
+  "package_id": "version-history-credit-thief",
+  "shot_index": 2,
+  "worker": "daily_producer",
+  "worker_run_id": "daily-producer-20260914-takeover",
+  "created_at": "2026-09-14T11:51:49.537Z",
+  "expires_at": "2026-09-14T12:21:49.537Z",
+  "lease_seconds": 1800
+}
