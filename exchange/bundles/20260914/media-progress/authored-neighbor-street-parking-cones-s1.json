@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260914",
+  "bundle": {
+    "identity": "takeover-4584531039a6d8bf8b463ff8e4cc4ffcc7e7f31c",
+    "path": "exchange/bundles/20260914/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-14T11:59:43.469Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-neighbor-street-parking-cones-s1",
+  "safe_request_id": "authored-neighbor-street-parking-cones-s1",
+  "prompt_sha256": "aefa8456f9bb0bfce834259b683b21751ede3d14e30d236090403bc52babc61f",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: nurse car searching street parking. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1c7DVfbGsxC0pP5e_zDWVB-6GyokC8rYW",
+    "filename": "20260914__authored-neighbor-street-parking-cones-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1c7DVfbGsxC0pP5e_zDWVB-6GyokC8rYW",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2775606628809a9a83b63f324296c55e539e37492565becac65b1019080141d3",
+    "bytes": 1985334,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "neighbor-street-parking-cones",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
