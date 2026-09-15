@@ -1,41 +1,56 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260914",
-  "judged_date": "20260913",
+  "date": "20260915",
+  "judged_date": "20260914",
   "alarm": {
-    "date": "20260913",
+    "date": "20260914",
     "ok": false,
     "alarms": [
       {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20260913.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "short_slate_trending",
-        "severity": "warning",
-        "detail": "trending: 3/6 posted for 20260913.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "production_repair_trending",
+        "code": "phase_a_never_ran",
         "severity": "critical",
-        "detail": "trending 20260913: production outcome says 3/6 uploaded and repair never completed (0 quarantined, 7 failed).",
-        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+        "detail": "PHASE A HAS NOT RUN FOR 20260914 \u2014 no bundle exists and the 05:00 Central deadline has passed. The 06:00 media worker is about to start with nothing to work from.",
+        "fix": "Phase A's only trigger independent of upstream authoring is one cron whose drift is measured in hours. With no bundle the 06:00 Central media worker has nothing to work from and the day renders without the exchange. Dispatch exchange_phase_a.yml for this date."
+      },
+      {
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20260914 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260914. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 1/6 posted for 20260914.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "no_posts_trending",
+        "severity": "critical",
+        "detail": "trending: ZERO videos posted for 20260914 (registry wants 6).",
+        "fix": "Check the trending workflow run for 20260914. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "channel_auto_paused",
+        "severity": "critical",
+        "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
+        "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
+      },
+      {
+        "code": "no_bundle",
+        "severity": "warning",
+        "detail": "no exchange/bundles/20260914/bundle.json \u2014 Phase A never wrote one.",
+        "fix": "A Phase A that finds no packages exits 0, so this is invisible in the Actions tab. Check exchange_phase_a.yml."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (5 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (6 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "third: 7/6 posted",
-      "exchange: 16/16 ChatGPT images pinned"
+      "chatgpt media: artifact present"
     ],
     "deferred": false
   },
@@ -2583,8 +2598,8 @@
     }
   ],
   "recent_commits": [
-    "ab1c6b4 2026-09-13 explainer: update posted log + analytics [skip ci]",
-    "341ffd7 2026-09-13 daily: 2026-09-13 report + state [skip ci]"
+    "583e128 2026-09-14 explainer: update posted log + analytics [skip ci]",
+    "3b3593c 2026-09-14 watchdog: chatgpt task verdicts 20260914 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2605,7 +2620,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-08-31": 5,
         "2026-09-01": 4,
         "2026-09-02": 2,
         "2026-09-03": 4,
@@ -2656,63 +2670,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 105,
+      "videos": 103,
       "top_by_vph": [
         {
           "title": "The Lake That Basically Disappeared (3 Charts)",
-          "vph": 4.19,
+          "vph": 3.8,
           "views": 901
         },
         {
           "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-          "vph": 3.9,
+          "vph": 3.52,
           "views": 798
         },
         {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 3.15,
+          "vph": 2.98,
           "views": 1220
         },
         {
           "title": "The World Learned To Read. Not Everyone Did.",
-          "vph": 2.18,
+          "vph": 2.06,
           "views": 829
         },
         {
           "title": "One Country's Median Age Is 15. Another's Is 50.",
-          "vph": 1.87,
+          "vph": 1.73,
           "views": 492
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 104,
+      "videos": 105,
       "top_by_vph": [
         {
           "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
-          "vph": 1.81,
-          "views": 300
-        },
-        {
-          "title": "Jasontheween Won't Let Pudgie Dodge What He Just Said",
-          "vph": 1.79,
-          "views": 34
+          "vph": 1.6,
+          "views": 309
         },
         {
           "title": "Xqc Reacts To The Bean Dip Rug Pull Live",
-          "vph": 1.74,
-          "views": 80
+          "vph": 1.21,
+          "views": 89
         },
         {
           "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
-          "vph": 1.05,
-          "views": 194
+          "vph": 0.92,
+          "views": 196
         },
         {
-          "title": "Kaicenat: Kai Cenat Can't Believe A Fan Wasted $300 Calling IShowSpeed",
-          "vph": 1.03,
-          "views": 18
+          "title": "Jasontheween Won't Let Pudgie Dodge What He Just Said",
+          "vph": 0.92,
+          "views": 43
+        },
+        {
+          "title": "Lospollostv Finds Out The Sauna Isn't As Soundproof As He Thought",
+          "vph": 0.82,
+          "views": 16
         }
       ],
       "full_data": "state/analytics_third/latest.json"
