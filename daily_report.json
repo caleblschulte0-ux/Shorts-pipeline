@@ -7,13 +7,13 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 168.9,
+    "elapsed_seconds": 163.2,
     "package_path": "state/trending_packages/20260916/01_expense-report-template.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-174724_she_said_follow_the_template_exactly__so.mp4",
+    "video_path": "output/daily_20260916-185318_she_said_follow_the_template_exactly__so.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.933,
+      "duration": 52.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.6
+      "loudness_lufs": -25.9
     },
     "qa": {
       "ok": true,
@@ -46,13 +46,13 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 151.1,
+    "elapsed_seconds": 135.7,
     "package_path": "state/trending_packages/20260916/02_birthday-headcount-lie.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-175016_she_paid_for_10_kids_and_brought_22__we_.mp4",
+    "video_path": "output/daily_20260916-185603_she_paid_for_10_kids_and_brought_22__we_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.567,
+      "duration": 50.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -85,10 +85,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 105.1,
+    "elapsed_seconds": 105.0,
     "package_path": "state/trending_packages/20260916/04_cannabis-vs-craftbeer.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-175241_legal_weed_sales_just_passed_craft_beer_.mp4",
+    "video_path": "output/daily_20260916-185814_legal_weed_sales_just_passed_craft_beer_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -119,10 +119,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 103.3,
+    "elapsed_seconds": 104.0,
     "package_path": "state/trending_packages/20260916/05_ransomware-payments.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-175426_ransomware_payments_just_broke_their_own.mp4",
+    "video_path": "output/daily_20260916-185959_ransomware_payments_just_broke_their_own.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -153,10 +153,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 100.8,
+    "elapsed_seconds": 101.2,
     "package_path": "state/trending_packages/20260916/06_zipline-vs-wing-drones.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-175610_drone_delivery_quietly_passed_1_million_.mp4",
+    "video_path": "output/daily_20260916-190143_drone_delivery_quietly_passed_1_million_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -180,43 +180,43 @@
     "blocked": true
   },
   {
-    "topic": "noah woods",
+    "topic": "djia",
     "angle": null,
     "publish_at": "2026-09-16T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 1.9,
+    "elapsed_seconds": 2.5,
     "backfill": true
   },
   {
-    "topic": "nintendo zelda ocarina",
+    "topic": "s and p 500",
     "angle": null,
     "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 3.0,
+    "elapsed_seconds": 1.7,
     "backfill": true
   },
   {
-    "topic": "department of government efficiency",
+    "topic": "mortgage rates",
     "angle": null,
     "publish_at": "2026-09-17T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 1.9,
+    "elapsed_seconds": 1.8,
     "backfill": true
   },
   {
-    "topic": "ohio lottery",
+    "topic": "wsj",
     "angle": null,
     "publish_at": "2026-09-17T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 1.5,
+    "elapsed_seconds": 2.3,
     "backfill": true
   }
 ]

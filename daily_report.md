@@ -18,16 +18,16 @@
   - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: You`
 - **Drone Delivery Quietly Passed 1 Million Flights**
   - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: You`
-- **noah woods**
+- **djia**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)
 `
-- **nintendo zelda ocarina**
+- **s and p 500**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)
 `
-- **department of government efficiency**
+- **mortgage rates**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)
 `
-- **ohio lottery**
+- **wsj**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 8pm (UTC)
 `
 
