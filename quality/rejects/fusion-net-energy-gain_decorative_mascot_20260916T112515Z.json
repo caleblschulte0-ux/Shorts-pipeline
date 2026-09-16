@@ -1,0 +1,21 @@
+{
+ "slug": "fusion-net-energy-gain",
+ "ts": "20260916T112515Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: TWO copies of Data are on screen simultaneously from hook@0.3 through seg1:start \u2014 one parked motionless at the bottom holding a clipboard for the entire opening, a second drifting over the bolts; at seg2:start and seg2:mid he is again duplicated, and at seg4:mid he is a thumbnail",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "hook@0.3 through seg0:end stack three text layers in the same band \u2014 the standing title 'the fusion energy input vs output', the burned-in caption ('One laser' / 'shot finally' / 'changed the' / 'math.'), and the scene header 'Fusion energy out 3.1' \u2014 while a mascot sits inside the title crossing out letters. A second, entirely static mascot is parked at centre-bottom over the unit key, which reads 'eac  0.2' instead of 'each bolt = 0.2 megajoules'. Below that the lower 60% of the frame is empty gradient until the bolt grid finally fills at seg1:start.",
+  "root_cause": "The hook composes title, caption and scene header into overlapping y-bands with no measured reservation between them, and the mascot is placed twice (a scene-level instance plus a persistent bottom instance) with no collision test against the title or the unit-key label; the bolt grid also does not reach the lower two-thirds until several seconds in, so the type collides in the top third while the bottom is dead.",
+  "repair_goal": "One mascot only, placed outside the title and unit-key bounding boxes. Reserve exclusive vertical bands so the title, the caption and the scene header never share pixels, and render the unit key 'each bolt = 0.2 MJ' fully legible and unoccluded. Start the bolt grid filling from frame 1 so it occupies the whole frame rather than the top third."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

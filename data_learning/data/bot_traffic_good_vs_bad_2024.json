@@ -12,9 +12,14 @@
     "access_date": "2026-09-16"
   },
   "notes": "Of the 51% of 2024 web traffic that was automated, Imperva classified 37% as 'bad bots' (scrapers, fraud, credential stuffing) and roughly 14% as 'good bots' (search crawlers, monitoring). Human traffic made up the remaining 49%, shown as the baseline.",
-  "baseline": {"label": "Human traffic", "value": 49},
   "points": [
-    {"label": "Bad bots", "value": 37},
-    {"label": "Good bots", "value": 14}
+    {
+      "label": "Human traffic",
+      "value": 49
+    },
+    {
+      "label": "Bad bots",
+      "value": 37
+    }
   ]
 }

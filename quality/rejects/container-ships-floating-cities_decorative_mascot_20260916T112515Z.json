@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260916T112515Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A SECOND Data is parked dead-centre in the lower third in an identical arms-out clipboard pose, unchanged and untouched by any stat, in hook@0.3, hook@0.8, seg0:start, hook@1.5, hook@2.2, seg0:mid, seg0:end, seg1:start, seg2:mid, seg2:end, seg4:start, seg4:mid, payoff@-1.8, seg4:e",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg4:start through payoff@-0.4: the closing line sits in a bordered rounded-rect panel (a UI widget, not a shot); below it a near-empty diagram of two hairlines and two ~25px mascots leaves the middle and right of the frame blank; the burned caption 'Ever tracked a package riding a container ship live? Tell me below.' is printed straight across the parked mascot's head and clipboard, and at seg4:mid/payoff@-0.4 'COMMENT BELOW' overprints the caption's last line.",
+  "root_cause": "The outro composites three layers at fixed positions with no collision awareness \u2014 caption band, CTA line and the static lower-third mascot all claim the same ~200px strip \u2014 and the closing visual is a sparse two-row rail rather than a final demonstration, so the frame has neither content nor legible text.",
+  "repair_goal": "Rebuild seg4 as a readable payoff: drop the parked lower-third mascot and the bordered panel, sit the closing line on the ground full-bleed, move the CTA clear of the caption band so no two text layers overlap, and fill the frame with a final mark that restates 80% at scale instead of two tiny figures on hairlines."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

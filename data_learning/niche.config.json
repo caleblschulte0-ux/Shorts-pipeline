@@ -27763,11 +27763,12 @@
           "params": {
             "file": "bot_traffic_good_vs_bad_2024.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 GOOD VS BAD",
           "topic": "bad bots vs good bots online",
-          "say": "Not all of it is harmless. 37 percent of all web traffic is now flagged as bad \u2014 scrapers, fake accounts, fraud \u2014 while only 14 percent are the good kind, like search crawlers."
+          "say": "Not all of it is harmless. 37 percent of all web traffic is now flagged as bad \u2014 scrapers, fake accounts, fraud \u2014 while only 14 percent are the good kind, like search crawlers.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -27820,11 +27821,12 @@
           "params": {
             "file": "weekly_microplastic_ingestion_vs_creditcard.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 WHERE IT COMES FROM",
           "topic": "where all that brain plastic comes from",
-          "say": "It's not mysterious. The average person swallows about 5 grams of microplastic a week \u2014 roughly a credit card's worth \u2014 through food, water, and indoor air."
+          "say": "It's not mysterious. The average person swallows about 5 grams of microplastic a week \u2014 roughly a credit card's worth \u2014 through food, water, and indoor air.",
+          "ascending": false
         },
         {
           "source": "offline",

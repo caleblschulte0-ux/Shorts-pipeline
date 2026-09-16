@@ -1,0 +1,16 @@
+{
+ "slug": "brain-microplastics-rising",
+ "ts": "20260916T112515Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start prints 'verage credit car' and 'Weekly microplas' \u2014 both category labels are sliced off by the frame edges; seg3:start/seg3:mid run 'Without dementia diagnosis' off the right edge; seg3:end sets both labels in dark grey on dark navy at ~10px; seg1:end stacks the caption 'from ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:end (t=35.79s) is a near-black frame: two ~20px mascots standing on 1px tracks, label 'Without dementia diagnosis' in low-contrast grey at ~10px, no values shown at all, a dotted finish column clipped by the right edge, and the whole top third plus the area between the tracks completely empty. seg4 inherits the identical layout under the closing bubble.",
+  "root_cause": "The race/progress machine is drawn at a fraction of the frame \u2014 runner glyphs and track weights scaled for a thumbnail, labels sized and coloured as chart chrome rather than as 200pt claim type, and the track extent runs past the right safe area so the finish marker and the 'Without dementia diagnosis' label are both cut off.",
+  "repair_goal": "Rebuild seg3 so the 3-5x claim fills the frame: scale the two runners and their tracks to use the full width inside the safe area, put the values (1 vs 4) on-track in large accent/ink type, set both row labels in look.TEXT at headline weight measured to fit inside the frame, and fill the vertical dead space so the gap between the two runners IS the picture."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

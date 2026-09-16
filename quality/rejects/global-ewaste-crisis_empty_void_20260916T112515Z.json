@@ -1,0 +1,16 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260916T112515Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end is almost entirely empty \u2014 two bins tucked under the title top-left, a tiny grey 'each = 5%' at mid-frame, and the whole lower two-thirds is bare gradient; the hook frames (hook@0.8, hook@1.5) likewise hold one thin diagonal line in the lower-left of an otherwise vacant frame.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg3:start and seg3:mid the two stacked-bar labels are cut by the right frame edge \u2014 'Met by e-waste recycl' and 'Met by new mining  9' (the 99% and 1% values are outside the frame); by seg3:end the scene has emptied to two bins wedged under the title with the mascot covering the words 'the real cost' and the bottom two-thirds of the frame blank.",
+  "root_cause": "The stacked-bar category labels are drawn at a fixed x to the right of the mark with no measured text width against the 1080px safe area, so long labels plus their value overflow; the outgoing state of the scene releases the mark before the bin grid populates, leaving no composition and pushing the mascot up into the title band.",
+  "repair_goal": "Measure each label (name + value) and place it fully inside the safe area \u2014 left-align inside the bar, or wrap/shrink so no glyph is clipped \u2014 and keep the 99%/1% marks filling the frame through the end of the beat with the mascot clear of the title band."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

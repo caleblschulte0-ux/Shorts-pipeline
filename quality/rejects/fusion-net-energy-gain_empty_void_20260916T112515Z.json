@@ -1,0 +1,21 @@
+{
+ "slug": "fusion-net-energy-gain",
+ "ts": "20260916T112515Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.8 and hook@1.5 leave the bottom ~60% of the frame completely empty apart from one stray mascot; seg2:start is a near-blank field with a single small ellipse and a thin line, most of the frame unused.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable",
+  "visible_evidence": "hook@0.3 through seg0:end stack three text layers in the same band \u2014 the standing title 'the fusion energy input vs output', the burned-in caption ('One laser' / 'shot finally' / 'changed the' / 'math.'), and the scene header 'Fusion energy out 3.1' \u2014 while a mascot sits inside the title crossing out letters. A second, entirely static mascot is parked at centre-bottom over the unit key, which reads 'eac  0.2' instead of 'each bolt = 0.2 megajoules'. Below that the lower 60% of the frame is empty gradient until the bolt grid finally fills at seg1:start.",
+  "root_cause": "The hook composes title, caption and scene header into overlapping y-bands with no measured reservation between them, and the mascot is placed twice (a scene-level instance plus a persistent bottom instance) with no collision test against the title or the unit-key label; the bolt grid also does not reach the lower two-thirds until several seconds in, so the type collides in the top third while the bottom is dead.",
+  "repair_goal": "One mascot only, placed outside the title and unit-key bounding boxes. Reserve exclusive vertical bands so the title, the caption and the scene header never share pixels, and render the unit key 'each bolt = 0.2 MJ' fully legible and unoccluded. Start the bolt grid filling from frame 1 so it occupies the whole frame rather than the top third."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
