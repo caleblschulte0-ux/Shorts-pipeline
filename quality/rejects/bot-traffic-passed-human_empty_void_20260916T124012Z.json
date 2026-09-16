@@ -1,0 +1,21 @@
+{
+ "slug": "bot-traffic-passed-human",
+ "ts": "20260916T124012Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end is almost entirely empty dark frame \u2014 one tiny grey rectangle at mid-left and the mascot; seg1:mid/seg1:end likewise leave the bottom half of the frame blank below the timeline.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg4:start\u2013payoff@-0.4: the mascot perched on the 2024 bar sits across the title, breaking it into 'why ai bots keep multi_ying'; the '37%' label collides with that same title line at payoff@-0.4; a second identical mascot stands motionless centre-frame below the chart while the closing speech bubble covers the top third.",
+  "root_cause": "The payoff scene stacks four layers \u2014 speech bubble, title band, chart with value labels, and a host mascot overlay plus an in-scene mascot \u2014 in the same vertical space with no measured collision avoidance or layout reservation, so the tallest bar and its label land exactly where the title is drawn.",
+  "repair_goal": "Lay seg4 out so nothing overlaps: reserve a clear band for the title, push the bar chart and its value labels below it, drop the duplicate static host mascot so only the one performing on the bar remains, and keep the closing card from covering the chart."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

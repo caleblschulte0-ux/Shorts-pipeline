@@ -1,0 +1,16 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260916T124012Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end \u2014 the bottom two-thirds of the frame is empty ground with only two small bins clinging to the top edge and the parked mascot; the whole midframe is wasted.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:start and seg2:mid the right-hand annotations run off the frame: 'Properly recycled  22'' loses its percent sign and 'Not properly recycled' reads 'Not properly recycle'. These two labels ARE the scene's claim (only 22% recycled) and a phone viewer cannot read either. The section kicker 'NOT PROPERLY RECYCLED IS 78% OF THE WHOLE' also runs to the very edge.",
+  "root_cause": "Label text is placed at a fixed x offset to the right of the bar with no measured width check against the frame's safe area, so long series names ('Not properly recycled', 'Met by e-waste recycling') overflow the 1080px width instead of wrapping, shrinking, or moving inside the column.",
+  "repair_goal": "Measure each annotation's rendered width and keep it fully inside the safe area \u2014 right-align the label stack to a margin, wrap or abbreviate long series names, and place the value ('22%', '78%') adjacent to its own segment so both the name and the number are legible at arm's length."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
