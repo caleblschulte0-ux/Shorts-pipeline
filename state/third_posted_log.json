@@ -7077,13 +7077,66 @@
       "ts": "2026-09-16T11:29:57.280062+00:00"
     },
     "clip-20260916-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/DependableNaiveOryxHeyGirl-_LBpczzAHBNgBs7e",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/5uz7gocrYfI",
       "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27",
       "kind": "twitch_clip",
-      "ts": "2026-09-16T11:34:59.881661+00:00",
+      "ts": "2026-09-16T11:35:07.610050+00:00",
+      "uploaded_at": "2026-09-16T11:35:07.610068+00:00",
+      "publish_at": "2026-09-16T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/DependableNaiveOryxHeyGirl-_LBpczzAHBNgBs7e",
+      "streamer": "jasontheween",
+      "series": "win",
+      "hook": "SOMEONE SAID THEY'RE REFUNDING THE GAME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2216,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 24.6
+      },
+      "director_cut": true
+    },
+    "rejected-moisttrustworthyredpandarulefive-mvgdmqiy4r1o505s": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/MoistTrustworthyRedpandaRuleFive-mVgdMqiy4r1O505S",
+      "streamer": "jynxzi",
+      "title": "jynxi saying n word live",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (title inflames, transcript is mundane ch)",
+      "ts": "2026-09-16T11:36:31.919182+00:00"
+    },
+    "rejected-unsightlytacitsalmoncharlietheunicorn-y36ublxiudravhn7": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/UnsightlyTacitSalmonCharlietheUnicorn-Y36uBlxiUDraVhN7",
+      "streamer": "summit1g",
+      "title": "Summit1G Gets Naded Out Of Nowhere",
+      "qa_rejected": true,
+      "ts": "2026-09-16T11:43:14.585559+00:00"
+    },
+    "rejected-cleancooperativetomatocmonbruh-0x6so3ndz23hh3ma": {
+      "source_url": "https://www.twitch.tv/lacy/clip/CleanCooperativeTomatoCmonBruh-0x6so3Ndz23Hh3ma",
+      "streamer": "lacy",
+      "title": "lacy said n word",
+      "qa_rejected": true,
+      "ts": "2026-09-16T11:43:23.957203+00:00"
+    },
+    "rejected-cloudyfriendlysharkseemsgood-vpdtl3jarer8andd": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CloudyFriendlySharkSeemsGood-VpdtL3JaReR8aNDd",
+      "streamer": "jasontheween",
+      "title": "what did he say???",
+      "qa_rejected": true,
+      "ts": "2026-09-16T11:44:44.989275+00:00"
+    },
+    "clip-20260916-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/timthetatman/clip/RockyElegantSharkPoooound-2G_37JIJ_WsiYnzT",
+      "story_key": null,
+      "streamer": "timthetatman",
+      "title": "Timthetatman Finds Out His New Puppy Could Grow To 200 Pounds",
+      "kind": "twitch_clip",
+      "ts": "2026-09-16T11:48:21.512246+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
