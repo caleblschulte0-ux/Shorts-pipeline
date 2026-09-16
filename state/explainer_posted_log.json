@@ -1791,6 +1791,17 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 46.0
+    },
+    "bot-traffic-passed-human": {
+      "url": "https://youtube.com/shorts/UOCeZGSs-GA",
+      "title": "51% Of The Internet Is Now Bots",
+      "at": "2026-09-16T22:43:21.684591+00:00",
+      "publish_at": "2026-09-16T23:32:12Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 45.4
     }
   },
   "uploads": [
@@ -1946,6 +1957,15 @@
       "state": "posted",
       "slug": "fusion-net-energy-gain",
       "at": "2026-09-16T20:10:29.530760+00:00"
+    },
+    {
+      "claimed_at": "2026-09-16T22:43:14.727376+00:00",
+      "title": "51% Of The Internet Is Now Bots",
+      "publish_at": "2026-09-16T23:32:12Z",
+      "url": "https://youtube.com/shorts/UOCeZGSs-GA",
+      "state": "posted",
+      "slug": "bot-traffic-passed-human",
+      "at": "2026-09-16T22:43:21.684591+00:00"
     }
   ]
 }
