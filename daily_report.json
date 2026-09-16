@@ -1,4 +1,222 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "She Said Follow The Template Exactly. So I Did.",
+    "title": "She Said Follow The Template Exactly. So I Did.",
+    "format": "reddit",
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 168.9,
+    "package_path": "state/trending_packages/20260916/01_expense-report-template.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-174724_she_said_follow_the_template_exactly__so.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 52.933,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Paid For 10 Kids And Brought 22. We Counted.",
+    "title": "She Paid For 10 Kids And Brought 22. We Counted.",
+    "format": "reddit",
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 151.1,
+    "package_path": "state/trending_packages/20260916/02_birthday-headcount-lie.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-175016_she_paid_for_10_kids_and_brought_22__we_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Legal Weed Sales Just Passed Craft Beer In America",
+    "title": "Legal Weed Sales Just Passed Craft Beer In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 105.1,
+    "package_path": "state/trending_packages/20260916/04_cannabis-vs-craftbeer.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-175241_legal_weed_sales_just_passed_craft_beer_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Ransomware Payments Just Broke Their Own Record",
+    "title": "Ransomware Payments Just Broke Their Own Record",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 103.3,
+    "package_path": "state/trending_packages/20260916/05_ransomware-payments.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-175426_ransomware_payments_just_broke_their_own.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Drone Delivery Quietly Passed 1 Million Flights",
+    "title": "Drone Delivery Quietly Passed 1 Million Flights",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 100.8,
+    "package_path": "state/trending_packages/20260916/06_zipline-vs-wing-drones.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-175610_drone_delivery_quietly_passed_1_million_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "noah woods",
+    "angle": null,
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
+    "elapsed_seconds": 1.9,
+    "backfill": true
+  },
+  {
+    "topic": "nintendo zelda ocarina",
+    "angle": null,
+    "publish_at": "2026-09-16T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
+    "elapsed_seconds": 3.0,
+    "backfill": true
+  },
+  {
+    "topic": "department of government efficiency",
+    "angle": null,
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
+    "elapsed_seconds": 1.9,
+    "backfill": true
+  },
+  {
+    "topic": "ohio lottery",
+    "angle": null,
+    "publish_at": "2026-09-17T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
+    "elapsed_seconds": 1.5,
+    "backfill": true
+  }
+]
