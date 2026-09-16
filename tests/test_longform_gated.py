@@ -182,6 +182,115 @@ class TestTheGateIsNotOptional(unittest.TestCase):
         self.assertIn("thumbnail=thumb", self.SRC)
         self.assertIn("_description(story_cfg, meta)", self.SRC)
 
+    def test_a_missing_thumbnail_stops_a_publish_run_before_upload(self):
+        """Doctor finding f87f60f38feb: make_thumbnail()'s failure is caught
+        broadly inside the renderer (a dry run must still preview the rest
+        of the video), so the ONLY place left to refuse a publish without
+        the promised custom thumbnail is here, before the uploader ever
+        sees the video."""
+        self.assertIn("thumbnail_ok", self.SRC)
+        check = self.SRC[self.SRC.index("if will_upload and not thumbnail_ok"):]
+        self.assertIn("NOT POSTING", check[:400])
+        self.assertIn("return", check[:400])
+        self.assertLess(
+            self.SRC.index("if will_upload and not thumbnail_ok"),
+            self.SRC.index("up.upload("))
+        self.assertLess(
+            self.SRC.index("if will_upload and not thumbnail_ok"),
+            self.SRC.index("gate = showrunner_gate.run("),
+            "no reason to spend a review call on a cut that cannot publish")
+
+
+class TestTheThumbnailFloorActuallyRuns(unittest.TestCase):
+    """Behavioral proof, not just source position: inject a renderer that
+    reports a bad thumbnail and prove `main()` never reaches the uploader,
+    then inject one that reports a good thumbnail and prove it does."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lf-thumb-"))
+        self._saved = (BL.EXPLAINER_LOG, BL.LONGFORM_LOG, BL.CONFIG, BL.OUT)
+        BL.EXPLAINER_LOG = self.tmp / "explainer_posted_log.json"
+        BL.LONGFORM_LOG = self.tmp / "longform_log.json"
+        BL.CONFIG = self.tmp / "niche.config.json"
+        BL.OUT = self.tmp / "output"
+        BL.EXPLAINER_LOG.write_text(json.dumps({"posted": {
+            "z": {"url": "u", "at": "2026-08-01T00:00:00+00:00"}}}))
+        BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
+        BL.CONFIG.write_text(json.dumps(
+            {"stories": [{"slug": "z", "title": "Z", "hook": "hook z"}]}))
+
+        import data_learning
+        self._real_module = sys.modules.get("data_learning.longform_render")
+        self._real_attr = getattr(data_learning, "longform_render", None)
+        self._data_learning = data_learning
+
+    def tearDown(self):
+        (BL.EXPLAINER_LOG, BL.LONGFORM_LOG,
+         BL.CONFIG, BL.OUT) = self._saved
+        if self._real_module is not None:
+            sys.modules["data_learning.longform_render"] = self._real_module
+        else:
+            sys.modules.pop("data_learning.longform_render", None)
+        if self._real_attr is not None:
+            self._data_learning.longform_render = self._real_attr
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _install_fake_renderer(self, thumbnail_ok: bool):
+        """A stand-in for data_learning.longform_render — the real module
+        transitively imports PIL/matplotlib, which this test does not need
+        and may not have installed."""
+        import types
+        fake = types.ModuleType("data_learning.longform_render")
+
+        def render(slug, out_path, voice=None, config_path=None):
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            out_path.write_bytes(b"not a real mp4")
+            if thumbnail_ok:
+                out_path.with_suffix(".jpg").write_bytes(b"not a real jpg")
+            out_path.with_suffix(".meta.json").write_text(json.dumps({
+                "slug": slug, "duration": 300.0,
+                "chapters": [{"t": 0.0, "label": "Intro"}],
+                "sources": [], "thumbnail_ok": thumbnail_ok}))
+            return out_path
+
+        fake.render = render
+        sys.modules["data_learning.longform_render"] = fake
+        self._data_learning.longform_render = fake
+
+    def test_a_bad_thumbnail_never_reaches_the_gate_or_the_uploader(self):
+        self._install_fake_renderer(thumbnail_ok=False)
+        from unittest import mock
+        from shared import showrunner_gate
+        from shared import uploaders
+        with mock.patch.object(showrunner_gate, "run") as gate_run, \
+             mock.patch.object(uploaders, "YouTubeUploader") as uploader_cls, \
+             mock.patch.object(sys, "argv", ["build_longform.py"]):
+            rc = BL.main()
+        self.assertEqual(rc, 4)
+        gate_run.assert_not_called()
+        uploader_cls.assert_not_called()
+
+    def test_a_good_thumbnail_reaches_the_uploader(self):
+        self._install_fake_renderer(thumbnail_ok=True)
+        from unittest import mock
+        from shared import showrunner_gate
+        from shared import uploaders
+
+        class _FakeResult:
+            url = "https://youtu.be/fake"
+
+        with mock.patch.object(showrunner_gate, "run",
+                                return_value={"blocked": False,
+                                              "verdict": {"score": 9}}), \
+             mock.patch.object(uploaders, "YouTubeUploader") as uploader_cls, \
+             mock.patch.object(sys, "argv", ["build_longform.py"]):
+            uploader_cls.return_value.upload.return_value = _FakeResult()
+            rc = BL.main()
+        self.assertEqual(rc, 0)
+        uploader_cls.return_value.upload.assert_called_once()
+        _, kwargs = uploader_cls.return_value.upload.call_args
+        self.assertIsNotNone(kwargs.get("thumbnail"))
+
 
 if __name__ == "__main__":
     unittest.main()

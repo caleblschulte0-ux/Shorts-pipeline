@@ -178,10 +178,24 @@ def main() -> int:
     meta_p = final.with_suffix(".meta.json")
     meta = json.loads(meta_p.read_text()) if meta_p.exists() else {}
     thumb = final.with_suffix(".jpg")
+    thumbnail_ok = bool(meta.get("thumbnail_ok")) and thumb.exists()
     dur = float(meta.get("duration") or 0.0)
     print(f"[longform] {final} ({dur:.0f}s, "
           f"{len(meta.get('chapters') or [])} chapters, "
-          f"thumbnail={'yes' if thumb.exists() else 'no'})", flush=True)
+          f"thumbnail={'yes' if thumbnail_ok else 'no'})", flush=True)
+
+    # ---- THE PACKAGING FLOOR (publish only) -----------------------------
+    # make_thumbnail() catches its own exceptions so a bad thumbnail never
+    # kills the render (a dry run still wants to preview the rest of the
+    # video) — but a PUBLISH run promises a custom 1920x1080 thumbnail on
+    # the channel and must not silently ship `thumbnail=None` instead.
+    # Checked before the showrunner gate: no reason to spend a review call
+    # on a cut that cannot legally publish anyway.
+    if will_upload and not thumbnail_ok:
+        print("[longform] NOT POSTING — required 1920x1080 thumbnail is "
+              f"missing or invalid (thumbnail_ok={meta.get('thumbnail_ok')!r} "
+              f"in {meta_p.name}, exists={thumb.exists()}).", flush=True)
+        return 4
 
     # ---- THE GATE (fail-closed on a publish run) -----------------------
     from shared import showrunner_gate
