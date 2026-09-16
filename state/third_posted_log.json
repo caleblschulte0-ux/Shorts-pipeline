@@ -7066,6 +7066,25 @@
         "end": 26.37
       },
       "director_cut": true
+    },
+    "rejected-fragilespeedyspindledatboi-rogzczk2kvhvvfpi": {
+      "source_url": "https://www.twitch.tv/xqc/clip/FragileSpeedySpindleDatBoi-RoGzcZk2KVhvVFPI",
+      "streamer": "xqc",
+      "title": "Jean Paul having fun in the city",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just walking, nothing happens)",
+      "ts": "2026-09-16T11:29:57.280062+00:00"
+    },
+    "clip-20260916-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/DependableNaiveOryxHeyGirl-_LBpczzAHBNgBs7e",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27",
+      "kind": "twitch_clip",
+      "ts": "2026-09-16T11:34:59.881661+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
