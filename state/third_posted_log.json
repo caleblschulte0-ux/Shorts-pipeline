@@ -7217,14 +7217,27 @@
       "ts": "2026-09-16T12:36:55.698793+00:00"
     },
     "clip-20260916-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/GentleBlushingStarlingSoBayed-BsYNKJ7tCOgo1lx6",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/7gP-qyWIpN8",
       "title": "Caseoh Finds The Most DISGUSTING Thing He's Ever Seen",
       "kind": "twitch_clip",
-      "ts": "2026-09-16T12:42:24.809925+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-16T12:42:32.981936+00:00",
+      "uploaded_at": "2026-09-16T12:42:32.981957+00:00",
+      "publish_at": "2026-09-17T00:30:00Z",
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GentleBlushingStarlingSoBayed-BsYNKJ7tCOgo1lx6",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "THIS IS ABSOLUTELY RANCID",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3300,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 49.6
+      },
+      "director_cut": true
     }
   }
 }
