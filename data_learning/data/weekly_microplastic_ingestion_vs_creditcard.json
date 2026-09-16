@@ -1,0 +1,19 @@
+{
+  "key": "weekly_microplastic_ingestion_vs_creditcard",
+  "title": "Estimated weekly human microplastic intake vs a credit card's weight",
+  "unit": "grams",
+  "geography": "World",
+  "time_coverage": "2019",
+  "source": {
+    "name": "No Plastic in Nature: Assessing Plastic Ingestion From Nature to People",
+    "publisher": "University of Newcastle, commissioned by WWF",
+    "url": "https://www.newcastle.edu.au/newsroom/featured/plastic-ingestion",
+    "officiality": "primary",
+    "access_date": "2026-09-16"
+  },
+  "notes": "A widely-cited 2019 estimate put average human microplastic ingestion (from food, water, and air) at approximately 5 grams per week, comparable to the weight of a standard credit card (about 5 grams), shown here as the baseline reference.",
+  "baseline": {"label": "Average credit card", "value": 5},
+  "points": [
+    {"label": "Weekly microplastic intake", "value": 5}
+  ]
+}

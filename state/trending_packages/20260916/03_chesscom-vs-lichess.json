@@ -1,0 +1,31 @@
+{
+  "format": "graph_race",
+  "slug": "chesscom-vs-lichess-members",
+  "title": "Chess.com Just Hit 200 Million Players",
+  "y_label": "Registered members (millions)",
+  "source": "Sources: Chess.com company milestone announcements (TechCrunch, Chess.com blog); Lichess community/forum account estimates, approximate",
+  "years": [2016, 2019, 2020, 2022, 2023, 2025],
+  "series": [
+    {"name": "Chess.com", "color": "#7fa650", "icon": "Chess.com",
+     "values": [10, 30, 50, 100, 150, 200]},
+    {"name": "Lichess", "color": "#5a5a6e", "icon": "Lichess",
+     "values": [2, 5, 7, 10, 12, 16]}
+  ],
+  "duration": 13,
+  "music_vibe": "cinematic",
+  "hook": "One of these barely moved.",
+  "hashtags": [
+    "chess",
+    "chesscom",
+    "lichess",
+    "chessboom",
+    "dataviz",
+    "onlinechess",
+    "charts",
+    "gaming",
+    "queensgambit",
+    "growth",
+    "internetculture",
+    "shorts"
+  ]
+}

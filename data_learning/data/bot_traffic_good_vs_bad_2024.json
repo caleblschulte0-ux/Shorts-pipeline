@@ -1,0 +1,20 @@
+{
+  "key": "bot_traffic_good_vs_bad_2024",
+  "title": "Bad bots vs good bots, share of 2024 web traffic",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "2025 Bad Bot Report",
+    "publisher": "Imperva (Thales)",
+    "url": "https://www.imperva.com/resources/resource-library/reports/2025-bad-bot-report/",
+    "officiality": "primary",
+    "access_date": "2026-09-16"
+  },
+  "notes": "Of the 51% of 2024 web traffic that was automated, Imperva classified 37% as 'bad bots' (scrapers, fraud, credential stuffing) and roughly 14% as 'good bots' (search crawlers, monitoring). Human traffic made up the remaining 49%, shown as the baseline.",
+  "baseline": {"label": "Human traffic", "value": 49},
+  "points": [
+    {"label": "Bad bots", "value": 37},
+    {"label": "Good bots", "value": 14}
+  ]
+}

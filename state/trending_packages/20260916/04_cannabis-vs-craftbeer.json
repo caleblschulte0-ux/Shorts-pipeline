@@ -1,0 +1,31 @@
+{
+  "format": "graph_race",
+  "slug": "legal-weed-passed-craft-beer",
+  "title": "Legal Weed Sales Just Passed Craft Beer In America",
+  "y_label": "US retail sales ($ billions)",
+  "source": "Sources: MJBizDaily / New Frontier Data annual US cannabis retail sales estimates; Brewers Association craft beer retail dollar value, approximate",
+  "years": [2014, 2016, 2018, 2020, 2022, 2023],
+  "series": [
+    {"name": "Legal cannabis sales", "color": "#4a9c3e", "icon": "Cannabis",
+     "values": [2.7, 6.7, 10.4, 17.5, 30, 33.5]},
+    {"name": "Craft beer sales", "color": "#d9a441", "icon": "Beer",
+     "values": [19.6, 23.5, 27.6, 22.2, 28.4, 28.9]}
+  ],
+  "duration": 13,
+  "music_vibe": "hiphop",
+  "hook": "One of these needs a license.",
+  "hashtags": [
+    "cannabis",
+    "craftbeer",
+    "legalweed",
+    "dataviz",
+    "business",
+    "charts",
+    "beerindustry",
+    "marijuana",
+    "economy",
+    "consumerspending",
+    "growthstory",
+    "shorts"
+  ]
+}

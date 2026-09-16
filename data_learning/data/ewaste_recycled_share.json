@@ -1,0 +1,19 @@
+{
+  "key": "ewaste_recycled_share",
+  "title": "Share of 2022 global e-waste properly recycled",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Global E-waste Monitor 2024",
+    "publisher": "United Nations Institute for Training and Research (UNITAR) / International Telecommunication Union (ITU)",
+    "url": "https://ewastemonitor.info/the-global-e-waste-monitor-2024/",
+    "officiality": "official",
+    "access_date": "2026-09-16"
+  },
+  "notes": "Only 22.3% of the 62 million tonnes of e-waste generated in 2022 was documented as properly collected and recycled; the remainder was dumped, burned, or handled with no formal tracking.",
+  "points": [
+    {"label": "Properly recycled", "value": 22.3},
+    {"label": "Not properly recycled", "value": 77.7}
+  ]
+}

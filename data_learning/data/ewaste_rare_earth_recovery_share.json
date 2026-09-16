@@ -1,0 +1,19 @@
+{
+  "key": "ewaste_rare_earth_recovery_share",
+  "title": "Share of global rare earth element demand met by e-waste recycling",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Global E-waste Monitor 2024",
+    "publisher": "United Nations Institute for Training and Research (UNITAR) / International Telecommunication Union (ITU)",
+    "url": "https://ewastemonitor.info/the-global-e-waste-monitor-2024/",
+    "officiality": "official",
+    "access_date": "2026-09-16"
+  },
+  "notes": "The Global E-waste Monitor 2024 found that recycled e-waste meets only about 1% of global rare earth element demand, with the remaining 99% coming from newly mined material, even though e-waste contains recoverable gold, copper, and rare earths.",
+  "points": [
+    {"label": "Met by e-waste recycling", "value": 1},
+    {"label": "Met by new mining", "value": 99}
+  ]
+}

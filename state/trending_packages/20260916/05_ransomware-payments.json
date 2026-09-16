@@ -1,0 +1,31 @@
+{
+  "format": "graph_race",
+  "slug": "ransomware-payments-record-2023",
+  "title": "Ransomware Payments Just Broke Their Own Record",
+  "y_label": "Ransomware payments ($ millions)",
+  "source": "Sources: Chainalysis Crypto Crime Report (tracked ransomware cryptocurrency payments); FBI IC3 Annual Report (ransomware complaints, count x100 for scale), approximate",
+  "years": [2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {"name": "Ransom payments ($M)", "color": "#d94f3d", "icon": "Ransomware",
+     "values": [150, 400, 983, 567, 1100]},
+    {"name": "FBI complaints (x100)", "color": "#5a5a6e", "icon": "FBI",
+     "values": [205, 247, 373, 239, 283]}
+  ],
+  "duration": 13,
+  "music_vibe": "dark",
+  "hook": "Then it crashed. Then it didn't.",
+  "hashtags": [
+    "ransomware",
+    "cybersecurity",
+    "hackers",
+    "cybercrime",
+    "dataviz",
+    "charts",
+    "cyberattack",
+    "infosec",
+    "tech",
+    "dataprivacy",
+    "cryptocurrency",
+    "shorts"
+  ]
+}

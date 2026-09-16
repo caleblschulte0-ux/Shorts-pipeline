@@ -1,0 +1,19 @@
+{
+  "key": "brain_microplastic_dementia_comparison",
+  "title": "Relative brain microplastic concentration, dementia-diagnosed vs not",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Bioaccumulation of microplastics in decedent human brains (autopsy study)",
+    "publisher": "University of New Mexico Health Sciences (Campen et al.), Nature Medicine",
+    "url": "https://www.nature.com/articles/s41591-024-03453-1",
+    "officiality": "primary",
+    "access_date": "2026-09-16"
+  },
+  "notes": "The same study found brain tissue from decedents with a documented dementia diagnosis carried roughly 3 to 5 times the microplastic concentration of brains without such a diagnosis (shown here as an illustrative index, midpoint ~4x). The authors are explicit this shows an association, not proof that microplastics cause dementia — impaired blood-brain-barrier filtering in dementia is a likely factor.",
+  "points": [
+    {"label": "Without dementia diagnosis", "value": 1},
+    {"label": "With dementia diagnosis", "value": 4}
+  ]
+}
