@@ -1,0 +1,19 @@
+{
+  "key": "fusion_energy_gain_2022",
+  "title": "Laser energy in vs fusion energy out, Dec 2022 shot",
+  "unit": "megajoules",
+  "geography": "United States",
+  "time_coverage": "December 2022",
+  "source": {
+    "name": "NIF achieves fusion ignition",
+    "publisher": "Lawrence Livermore National Laboratory / National Ignition Facility",
+    "url": "https://lasers.llnl.gov/science/achieving-fusion-ignition",
+    "officiality": "official",
+    "access_date": "2026-09-16"
+  },
+  "notes": "On December 5, 2022, NIF delivered 2.05 megajoules of laser energy to a fuel capsule and measured 3.15 megajoules of fusion energy released, the first laboratory fusion reaction to produce more energy than was used to start it.",
+  "points": [
+    {"label": "Laser energy in", "value": 2.05},
+    {"label": "Fusion energy out", "value": 3.15}
+  ]
+}

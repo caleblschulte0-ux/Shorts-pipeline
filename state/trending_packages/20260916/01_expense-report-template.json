@@ -1,0 +1,37 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "expense-report-template-flood",
+  "title": "She Said Follow The Template Exactly. So I Did.",
+  "hashtags": [
+    "maliciouscompliance",
+    "corporatelife",
+    "expensereport",
+    "workplace",
+    "9to5",
+    "officepolitics",
+    "reddit",
+    "storytime",
+    "karma",
+    "corporate",
+    "hrstory",
+    "workplacekarma"
+  ],
+  "script": "My new manager announced in a team meeting that every expense report had to follow the company template exactly, no exceptions, no blank fields, after she caught me leaving the tax-exempt box empty on a hotel stay in a state with no hotel tax. Fine. The template had forty two fields. Every single one, mandatory, exactly as written. So for the next report I filled every field, including the ones meant only for international travel, only for fleet vehicles, only for relocation expenses, all marked not applicable in full sentences because leaving it blank was against her new rule. My twelve dollar parking receipt turned into a four page document. Then the whole team did the same thing, because she'd said it in a meeting, in writing, applies to everyone. Accounting received two hundred and eighteen four page reports that week instead of one page each. She rescinded the rule by the end of the week, in writing, applies to everyone.",
+  "shots": [
+    {"phrase": "every expense report had to follow the company template exactly", "query": "office desk paperwork"},
+    {"phrase": "leaving the tax-exempt box empty on a hotel stay", "query": "hotel receipt paperwork"},
+    {"phrase": "The template had forty two fields", "query": "printed form closeup"},
+    {"phrase": "My twelve dollar parking receipt turned into a four page document", "query": "stack of printed pages"},
+    {"phrase": "the whole team did the same thing", "query": "office cubicles workers"},
+    {"phrase": "Accounting received two hundred and eighteen four page reports", "query": "overflowing office inbox"},
+    {"phrase": "She rescinded the rule by the end of the week", "query": "manager office door"}
+  ],
+  "punches": [
+    {"phrase": "no exceptions, no blank fields", "text": "NO EXCEPTIONS", "color": "#ffaa30"},
+    {"phrase": "forty two fields", "text": "42 FIELDS", "color": "#ffffff"},
+    {"phrase": "four page document", "text": "4 PAGES", "color": "#ffaa30"},
+    {"phrase": "two hundred and eighteen four page reports", "text": "218 REPORTS", "color": "#ff3030"},
+    {"phrase": "She rescinded the rule by the end of the week", "text": "RULE DEAD", "color": "#50ff80"}
+  ],
+  "music_vibe": "hiphop"
+}

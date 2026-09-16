@@ -1,0 +1,20 @@
+{
+  "key": "fusion_yield_trend",
+  "title": "NIF fusion energy yield by shot, 2022-2024",
+  "unit": "megajoules",
+  "geography": "United States",
+  "time_coverage": "2022-2024",
+  "source": {
+    "name": "NIF Sets Power and Energy Records",
+    "publisher": "Lawrence Livermore National Laboratory / National Ignition Facility",
+    "url": "https://lasers.llnl.gov/about/keys-to-success/nif-sets-power-energy-records",
+    "officiality": "official",
+    "access_date": "2026-09-16"
+  },
+  "notes": "Fusion energy yield from NIF's repeated ignition shots: 3.15 MJ (Dec 2022, the first net-gain shot), 3.88 MJ (Jul 2023, the highest yield to date), 3.4 MJ (early FY2024 shot) — all from a similar ~2 MJ laser input, approximate per published LLNL figures.",
+  "points": [
+    {"label": "2022", "value": 3.15, "period": "2022"},
+    {"label": "2023", "value": 3.88, "period": "2023"},
+    {"label": "2024", "value": 3.4, "period": "2024"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "brain_microplastic_concentration_trend",
+  "title": "Micro/nanoplastic concentration in human brain tissue",
+  "unit": "micrograms per gram",
+  "geography": "United States",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "Bulk-phase nanoplastics in human tissues (autopsy study)",
+    "publisher": "University of New Mexico Health Sciences (Campen et al.), Nature Medicine",
+    "url": "https://www.nature.com/articles/s41591-024-03453-1",
+    "officiality": "primary",
+    "access_date": "2026-09-16"
+  },
+  "notes": "Analysis of post-mortem brain tissue samples found average micro/nanoplastic concentration rose from about 3,345 micrograms per gram in 2016 samples to about 4,917 in 2024 samples, a roughly 50% increase; scaled up, that is described as a plastic spoon's worth per brain.",
+  "points": [
+    {"label": "2016", "value": 3345, "period": "2016"},
+    {"label": "2024", "value": 4917, "period": "2024"}
+  ]
+}

@@ -27611,6 +27611,233 @@
           "say": "The reason isn't a mystery. 78% of dating app users now say the experience leaves them mentally or emotionally drained. People stopped feeling it was worth it."
         }
       ]
+    },
+    {
+      "slug": "fusion-net-energy-gain",
+      "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
+      "hook": "One laser shot finally changed the math.",
+      "closing": "The hardest part of fusion just got easier. The rest is just engineering.",
+      "question": "Do you think fusion power arrives in your lifetime? Tell me below.",
+      "hashtags": [
+        "fusion",
+        "energy",
+        "science",
+        "nuclearfusion",
+        "physics",
+        "cleanenergy",
+        "technology",
+        "innovation",
+        "climatetech",
+        "futuretech",
+        "nif",
+        "data"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "fusion_energy_gain_2022",
+          "params": {
+            "file": "fusion_energy_gain_2022.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 \u00b7 THE SHOT",
+          "topic": "the fusion energy input vs output",
+          "say": "In 2022, a lab fired 2.05 megajoules of laser energy into a fuel pellet and got 3.15 back. For the first time ever, fusion produced more energy than it consumed."
+        },
+        {
+          "source": "offline",
+          "key": "fusion_yield_trend",
+          "params": {
+            "file": "fusion_yield_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 NOT A FLUKE",
+          "topic": "how fusion energy output kept climbing",
+          "say": "It wasn't a one-off. By 2023 the same lab pushed the yield to 3.88 megajoules from a similar energy input, and repeated a net gain again in 2024."
+        },
+        {
+          "source": "offline",
+          "key": "fusion_yield_trend",
+          "params": {
+            "file": "fusion_yield_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 STILL FAR OFF",
+          "topic": "the future of fusion energy power",
+          "say": "That energy only ran the lab's own lasers for a fraction of a second \u2014 a real power plant is still decades away. But the physics finally works, and that's the hard part."
+        }
+      ]
+    },
+    {
+      "slug": "global-ewaste-crisis",
+      "title": "The World Made 62 Million Tons Of E-Waste",
+      "hook": "Only 1 in 5 of those tons get recycled.",
+      "closing": "One recycling bin at a time isn't going to cut it.",
+      "question": "How many old phones do you have sitting in a drawer right now? Tell me below.",
+      "hashtags": [
+        "ewaste",
+        "recycling",
+        "sustainability",
+        "environment",
+        "electronics",
+        "climate",
+        "wastemanagement",
+        "circulareconomy",
+        "tech",
+        "greentech",
+        "data",
+        "unitar"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ewaste_generated_trend",
+          "params": {
+            "file": "ewaste_generated_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PILE",
+          "topic": "the world's growing e-waste pile",
+          "say": "In 2022 the world produced 62 million tons of electronic waste, up 82 percent since 2010. That's enough to fill over a million and a half garbage trucks."
+        },
+        {
+          "source": "offline",
+          "key": "ewaste_recycled_share",
+          "params": {
+            "file": "ewaste_recycled_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 WHERE IT GOES",
+          "topic": "how much e-waste actually gets recycled",
+          "say": "Only 22 percent of it was properly collected and recycled. The other 78 percent got dumped, burned, or shipped off with no tracking at all."
+        },
+        {
+          "source": "offline",
+          "key": "ewaste_rare_earth_recovery_share",
+          "params": {
+            "file": "ewaste_rare_earth_recovery_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 THE REAL COST",
+          "topic": "the real cost of wasted e-waste materials",
+          "say": "That waste stream carries gold, copper, and rare earths, but recycling meets just 1 percent of global rare earth demand. We're throwing away a mine and digging a new one instead."
+        }
+      ]
+    },
+    {
+      "slug": "bot-traffic-passed-human",
+      "title": "51% Of The Internet Is Now Bots",
+      "hook": "More than half the web is bots now.",
+      "closing": "Half the internet you're scrolling might not even be watching itself.",
+      "question": "Does knowing that change how you use the internet? Tell me below.",
+      "hashtags": [
+        "internet",
+        "bots",
+        "cybersecurity",
+        "ai",
+        "technology",
+        "webtraffic",
+        "data",
+        "tech",
+        "artificialintelligence",
+        "onlinesafety",
+        "digitallife",
+        "imperva"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "bot_traffic_share_trend",
+          "params": {
+            "file": "bot_traffic_share_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE CROSSOVER",
+          "topic": "how much internet traffic is bots",
+          "say": "In 2024, automated bot traffic hit 51 percent of all web traffic, finally passing humans for the first time in a decade."
+        },
+        {
+          "source": "offline",
+          "key": "bot_traffic_good_vs_bad_2024",
+          "params": {
+            "file": "bot_traffic_good_vs_bad_2024.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 \u00b7 GOOD VS BAD",
+          "topic": "bad bots vs good bots online",
+          "say": "Not all of it is harmless. 37 percent of all web traffic is now flagged as bad \u2014 scrapers, fake accounts, fraud \u2014 while only 14 percent are the good kind, like search crawlers."
+        },
+        {
+          "source": "offline",
+          "key": "bad_bot_share_trend",
+          "params": {
+            "file": "bad_bot_share_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 WHY NOW",
+          "topic": "why ai bots keep multiplying",
+          "say": "And the malicious kind is growing faster than the rest \u2014 bad-bot traffic alone climbed from 30 percent in 2022 to 37 percent in 2024, as AI makes bots cheaper to build than ever."
+        }
+      ]
+    },
+    {
+      "slug": "brain-microplastics-rising",
+      "title": "Brain Plastic Levels Rose 50% Since 2016",
+      "hook": "Your brain may hold a spoon's worth of plastic.",
+      "closing": "And that number's still climbing.",
+      "question": "Does that change how you think about plastic packaging? Tell me below.",
+      "hashtags": [
+        "microplastics",
+        "health",
+        "science",
+        "plastic",
+        "environment",
+        "publichealth",
+        "braincancer",
+        "wellness",
+        "research",
+        "data",
+        "biology",
+        "medicine"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "brain_microplastic_concentration_trend",
+          "params": {
+            "file": "brain_microplastic_concentration_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE NUMBER",
+          "topic": "how much plastic is in the brain",
+          "say": "A 2024 study found human brain tissue holds about 4,900 micrograms of micro and nanoplastics per gram, up nearly 50 percent from 3,345 in 2016 samples."
+        },
+        {
+          "source": "offline",
+          "key": "weekly_microplastic_ingestion_vs_creditcard",
+          "params": {
+            "file": "weekly_microplastic_ingestion_vs_creditcard.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 \u00b7 WHERE IT COMES FROM",
+          "topic": "where all that brain plastic comes from",
+          "say": "It's not mysterious. The average person swallows about 5 grams of microplastic a week \u2014 roughly a credit card's worth \u2014 through food, water, and indoor air."
+        },
+        {
+          "source": "offline",
+          "key": "brain_microplastic_dementia_comparison",
+          "params": {
+            "file": "brain_microplastic_dementia_comparison.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 WHAT WE DON'T KNOW",
+          "topic": "what plastic in the brain actually does",
+          "say": "Scientists don't know if plastic causes dementia, but brains with a dementia diagnosis carry three to five times more of it than brains without one \u2014 a link worth watching, not yet an answer."
+        }
+      ]
     }
   ],
   "videos": [

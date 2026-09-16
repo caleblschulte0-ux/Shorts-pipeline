@@ -1,0 +1,23 @@
+{
+  "key": "bot_traffic_share_trend",
+  "title": "Automated (bot) share of global website traffic",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2019-2024",
+  "source": {
+    "name": "Bad Bot Report (annual editions)",
+    "publisher": "Imperva (Thales)",
+    "url": "https://www.imperva.com/resources/resource-library/reports/2025-bad-bot-report/",
+    "officiality": "primary",
+    "access_date": "2026-09-16"
+  },
+  "notes": "Total automated traffic reached 51% of all web traffic in 2024, surpassing human traffic for the first time in a decade, per Imperva's 2025 Bad Bot Report. Earlier years are approximate, drawn from that year's Imperva Bad Bot Report edition.",
+  "points": [
+    {"label": "2019", "value": 37.9, "period": "2019"},
+    {"label": "2020", "value": 40.8, "period": "2020"},
+    {"label": "2021", "value": 42.3, "period": "2021"},
+    {"label": "2022", "value": 47.4, "period": "2022"},
+    {"label": "2023", "value": 49.6, "period": "2023"},
+    {"label": "2024", "value": 51.0, "period": "2024"}
+  ]
+}
