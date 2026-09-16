@@ -3,17 +3,17 @@
     "topic": "She Said Follow The Template Exactly. So I Did.",
     "title": "She Said Follow The Template Exactly. So I Did.",
     "format": "reddit",
-    "publish_at": "2026-09-16T20:30:00Z",
+    "publish_at": "2026-09-17T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story and captions land, but three of the five shot illustrations are unrelated stock (paintbrush-in-a-tub, a German book in beach sand used twice) so the visuals never demonstrate the beat they sit over.",
-    "elapsed_seconds": 235.0,
+    "error": "showrunner_block: showrunner BLOCK: The reddit story is told over stock photos that have nothing to do with it \u2014 a book in sand, a paint tray, a Greek door held for the entire ending \u2014 and half of every late frame is a blown-out yellow blur.",
+    "elapsed_seconds": 211.4,
     "package_path": "state/trending_packages/20260916/01_expense-report-template.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-200644_she_said_follow_the_template_exactly__so.mp4",
+    "video_path": "output/daily_20260916-220830_she_said_follow_the_template_exactly__so.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.033,
+      "duration": 53.2,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -24.1
     },
     "qa": {
       "ok": true,
@@ -33,8 +33,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story and captions land, but three of the five shot illustrations are unrelated stock (paintbrush-in-a-tub, a German book in beach sand used twice) so the visuals never demonstrate the beat they sit over.",
-      "score": 66
+      "reason": "showrunner BLOCK: The reddit story is told over stock photos that have nothing to do with it \u2014 a book in sand, a paint tray, a Greek door held for the entire ending \u2014 and half of every late frame is a blown-out yellow blur.",
+      "score": 49
     },
     "blocked": true
   },
@@ -42,17 +42,17 @@
     "topic": "She Paid For 10 Kids And Brought 22. We Counted.",
     "title": "She Paid For 10 Kids And Brought 22. We Counted.",
     "format": "reddit",
-    "publish_at": "2026-09-16T20:30:00Z",
+    "publish_at": "2026-09-17T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The last third of the video plays a frozen, totally irrelevant photo of a website wireframe sketched in a notebook, so the story's punchline lands on junk imagery over a black void.",
-    "elapsed_seconds": 208.3,
+    "error": "showrunner_block: showrunner BLOCK: The back third of the story \u2014 including the payoff \u2014 plays over a stock photo of a website wireframe in a notebook, an image with nothing to do with the topic, and it ends on a black void.",
+    "elapsed_seconds": 215.5,
     "package_path": "state/trending_packages/20260916/02_birthday-headcount-lie.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-201051_she_paid_for_10_kids_and_brought_22__we_.mp4",
+    "video_path": "output/daily_20260916-221228_she_paid_for_10_kids_and_brought_22__we_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.233,
+      "duration": 52.867,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,7 +63,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.6
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
@@ -72,7 +72,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The last third of the video plays a frozen, totally irrelevant photo of a website wireframe sketched in a notebook, so the story's punchline lands on junk imagery over a black void.",
+      "reason": "showrunner BLOCK: The back third of the story \u2014 including the payoff \u2014 plays over a stock photo of a website wireframe in a notebook, an image with nothing to do with the topic, and it ends on a black void.",
       "score": 49
     },
     "blocked": true
@@ -81,14 +81,14 @@
     "topic": "Legal Weed Sales Just Passed Craft Beer In America",
     "title": "Legal Weed Sales Just Passed Craft Beer In America",
     "format": "graph_race",
-    "publish_at": "2026-09-16T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A properly built, honest two-line race with a real crossover payoff, let down by a static title-card hook over an empty plot and tip labels that collide exactly where the story happens.",
-    "elapsed_seconds": 164.2,
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/XDoOW4lDtg4",
+    "error": null,
+    "elapsed_seconds": 156.0,
     "package_path": "state/trending_packages/20260916/04_cannabis-vs-craftbeer.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-201351_legal_weed_sales_just_passed_craft_beer_.mp4",
+    "video_path": "output/daily_20260916-221518_legal_weed_sales_just_passed_craft_beer_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -105,24 +105,24 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A properly built, honest two-line race with a real crossover payoff, let down by a static title-card hook over an empty plot and tip labels that collide exactly where the story happens.",
-      "score": 78
+      "blocked": false,
+      "reason": "",
+      "score": 82
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Ransomware Payments Just Broke Their Own Record",
     "title": "Ransomware Payments Just Broke Their Own Record",
     "format": "graph_race",
-    "publish_at": "2026-09-16T20:30:00Z",
+    "publish_at": "2026-09-17T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, correctly-separated graph race whose own hook card sits on top of the chart and shreds the axis labels for the first two seconds.",
-    "elapsed_seconds": 185.8,
+    "error": "showrunner_block: showrunner BLOCK: The race itself lands the 'crashed then didn't' V, but the hook card is stamped over the axis and the tip labels run into the right frame edge \u2014 readability, not concept, is what fails here.",
+    "elapsed_seconds": 131.6,
     "package_path": "state/trending_packages/20260916/05_ransomware-payments.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-201635_ransomware_payments_just_broke_their_own.mp4",
+    "video_path": "output/daily_20260916-221754_ransomware_payments_just_broke_their_own.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -140,8 +140,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, correctly-separated graph race whose own hook card sits on top of the chart and shreds the axis labels for the first two seconds.",
-      "score": 57
+      "reason": "showrunner BLOCK: The race itself lands the 'crashed then didn't' V, but the hook card is stamped over the axis and the tip labels run into the right frame edge \u2014 readability, not concept, is what fails here.",
+      "score": 66
     },
     "blocked": true
   },
@@ -149,14 +149,14 @@
     "topic": "Drone Delivery Quietly Passed 1 Million Flights",
     "title": "Drone Delivery Quietly Passed 1 Million Flights",
     "format": "graph_race",
-    "publish_at": "2026-09-16T20:30:00Z",
+    "publish_at": "2026-09-17T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, genuinely well-built race with a real 1M payoff, let down by a hook card that covers the chart and truncates an axis label.",
-    "elapsed_seconds": 157.8,
+    "error": "showrunner_block: showrunner BLOCK: A clean, competently executed graph race whose only real defect is the hook caption card sitting on and ghosting over the chart's axis labels.",
+    "elapsed_seconds": 136.5,
     "package_path": "state/trending_packages/20260916/06_zipline-vs-wing-drones.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-201941_drone_delivery_quietly_passed_1_million_.mp4",
+    "video_path": "output/daily_20260916-222006_drone_delivery_quietly_passed_1_million_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -174,64 +174,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, genuinely well-built race with a real 1M payoff, let down by a hook card that covers the chart and truncates an axis label.",
-      "score": 73
+      "reason": "showrunner BLOCK: A clean, competently executed graph race whose only real defect is the hook caption card sitting on and ghosting over the chart's axis labels.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "fbi",
+    "topic": "lamine yamal",
     "angle": null,
-    "publish_at": "2026-09-16T20:30:00Z",
+    "publish_at": "2026-09-17T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The hook opens on a black text card and then an irrelevant stock handshake photo labelled 'FBI', and every image after it is keyword-matched junk rather than illustration.",
-    "elapsed_seconds": 662.2,
-    "title": "My Roommate Stole My Identity For Her FBI Job",
-    "package_path": "state/trending_packages/20260916-202520_auto_fbi.json",
-    "video_path": "output/daily_20260916-202520_fbi.mp4",
+    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 a black title card, mismatched stock (a pickup truck under 'sat in every meeting'), and filler gameplay carrying 50 seconds of narration.",
+    "elapsed_seconds": 566.7,
+    "title": "My Stepdad Forged My Brother's $2M Contract",
+    "package_path": "state/trending_packages/20260916-222514_auto_lamine_yamal.json",
+    "video_path": "output/daily_20260916-222514_lamine_yamal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.167,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The hook opens on a black text card and then an irrelevant stock handshake photo labelled 'FBI', and every image after it is keyword-matched junk rather than illustration.",
-      "score": 34
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "fiji hiv crisis",
-    "angle": null,
-    "publish_at": "2026-09-17T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 1128 (char 5546)\", \"headless-claude[1]: Expecting ',' delimiter: line 6",
-    "elapsed_seconds": 731.2,
-    "title": "My Sister's Fianc\u00e9 Gave Her HIV Weeks Before Their Wedding",
-    "package_path": "state/trending_packages/20260916-203611_auto_fiji_hiv_crisis.json",
-    "video_path": "output/daily_20260916-203611_fiji_hiv_crisis.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 43.367,
+      "duration": 50.533,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -251,26 +212,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 1128 (char 5546)\", \"headless-claude[1]: Expecting ',' delimiter: line 6",
-      "score": null
+      "reason": "showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 a black title card, mismatched stock (a pickup truck under 'sat in every meeting'), and filler gameplay carrying 50 seconds of narration.",
+      "score": 26
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "queen camilla",
+    "topic": "doordash",
     "angle": null,
-    "publish_at": "2026-09-17T14:30:00Z",
+    "publish_at": "2026-09-17T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: An off-topic depression-clinic poster is the hero image of one beat, the captions are struck through by the gameplay HUD, and two beats are half black \u2014 this is auto-grabbed stock over a story it does not illustrate.",
-    "elapsed_seconds": 717.3,
-    "title": "My Husband's Stepmother Set Our House On Fire",
-    "package_path": "state/trending_packages/20260916-204759_auto_queen_camilla.json",
-    "video_path": "output/daily_20260916-204759_queen_camilla.mp4",
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 1828 (char 4282)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+    "elapsed_seconds": 704.4,
+    "title": "He Shot At Me And Filmed The Crime",
+    "package_path": "state/trending_packages/20260916-223424_auto_doordash.json",
+    "video_path": "output/daily_20260916-223424_doordash.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.435,
+      "duration": 41.3,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -281,7 +242,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.5
+      "loudness_lufs": -12.9
     },
     "qa": {
       "ok": true,
@@ -290,26 +251,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: An off-topic depression-clinic poster is the hero image of one beat, the captions are struck through by the gameplay HUD, and two beats are half black \u2014 this is auto-grabbed stock over a story it does not illustrate.",
-      "score": 30
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 1828 (char 4282)\", \"headless-claude[1]: Expecting ',' delimiter: line 6 ",
+      "score": null
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "joe burrow injury",
+    "topic": "atl\u00e9tico-mg x santos",
     "angle": null,
-    "publish_at": "2026-09-17T16:00:00Z",
+    "publish_at": "2026-09-17T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A garbled AI/figurine 'doctor' carries both the mid-point and the entire payoff, and half the frame is dead black gameplay for most of the run.",
-    "elapsed_seconds": 903.6,
-    "title": "Coach Hid My Brother's Spine Injury For A Scout",
-    "package_path": "state/trending_packages/20260916-210001_auto_joe_burrow_injury.json",
-    "video_path": "output/daily_20260916-210001_joe_burrow_injury.mp4",
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 1am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 423.1,
+    "title": "My Fianc\u00e9 Lost Our Wedding Fund On A Bet",
+    "package_path": "state/trending_packages/20260916-224605_auto_atl\u00e9tico_mg_x_santos.json",
+    "video_path": "output/daily_20260916-224605_atl\u00e9tico_mg_x_santos.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.533,
+      "duration": 42.5,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -329,10 +290,20 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A garbled AI/figurine 'doctor' carries both the mid-point and the entire payoff, and half the frame is dead black gameplay for most of the run.",
-      "score": 30
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 1am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
     },
     "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "ldu quito - palmeiras",
+    "angle": null,
+    "publish_at": "2026-09-17T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 1am (UTC)\n",
+    "elapsed_seconds": 5.9,
     "backfill": true
   }
 ]

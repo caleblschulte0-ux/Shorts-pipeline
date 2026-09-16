@@ -5,17 +5,20 @@
   "expected": 6,
   "previously_uploaded": 1,
   "rendered_or_attempted": 9,
-  "uploaded": 1,
+  "uploaded": 2,
   "quarantined": 0,
-  "failed": 9,
+  "failed": 8,
   "failed_by_stage": {
-    "showrunner_block": 9
+    "showrunner_block": 7,
+    "infra_error": 1
   },
   "failed_by_format": {
     "reddit": 2,
-    "graph_race": 3,
+    "graph_race": 2,
     "unknown": 4
   },
   "status": "repair_required",
-  "video_urls": []
+  "video_urls": [
+    "https://youtube.com/shorts/XDoOW4lDtg4"
+  ]
 }
