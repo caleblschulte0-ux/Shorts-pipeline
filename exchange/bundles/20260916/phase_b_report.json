@@ -1,0 +1,98 @@
+{
+  "date": "20260916",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 12,
+    "unfilled": 1,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "bbd05eb8f4ff1a6b2cf564fdc2ef550c19c83028e29e207e58d6e1b9a971f531",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "expense-report-template-flood-s0-b6e79f91a70c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0dd738f92abfc2dc9fe7f0ba5066f9103625cb118fe1c6f9a3b683285692c9c7a580ef2ae003bf71b3b493323698789f37cc93afe1d67461a050ee4339f073e3_1280.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s1-eba2eb12467b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gac6802db844ade0047d0e59bc7bb5d8f4ea56a4ca798e2e29d375330b339b3c5711a20b032e01c10b773fc3f80a7009348ee4bf75e8fbdca795583043439f82d_1280.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s2-20c20bc6cdcb",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3624/5726083239_87ce027036_b.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s3-890a22413fb7",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gbbf59df2754db0e47389ac2daa60dbb2929f75cc90252c490fdb37a24e4dc78b98caefc6a0b48e0b833ecfe964834294c78abc0c8b53debdb1ea64a8e02a41b1_1280.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s4-54ef5d39f1de",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g58e4981a2a53d4c1245ef20d4aad24b9c84a6e7a4752165989e51b4ea8f689d015096b3ebbb4994b197ba8294e4d0e84_1280.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s5-9959834b79e0",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3253/2602415335_557c710294_b.jpg"
+    },
+    {
+      "request_id": "expense-report-template-flood-s6-c95e05114972",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf9ff9b02667b65b7d040665770d960b23e36ee9f797e44c496a6d8c477e4bd78302cd1c0b6102c4c63af97ac0fc74251d392670b9b02131ed62cfb776c976f86_1280.jpg"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s0-0607380dab27",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g77c5d62d9d5071271c71ac3574b27bad899786093492fe7fa75b445325af0f82aea4a02da56bee257c5b4ee4e4d6d7eed81406644641997f254de6f8659de71d_1280.jpg"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s1-40108ca580b8",
+      "outcome": "self_fill",
+      "url": "https://collections.museumsvictoria.com.au/content/media/28/585828-large.jpg"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s2-357266f5016c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfd71a9853387cbbb809fde9c408adfe769180971cbb17c59aa8559b89118a665427041560cf1e3ee0273ff05e0811a26ae2221dc35cf4c0ce51e8ea76a523703_1280.jpg"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s3-e93e76aeaae2",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga80733214795466975489a6c5e8379f1dd4ec471448842d100085886081bf038af44ccd4bda16b065471aba20f9c32e177025f098d81220f7d88736ef47829fb_1280.jpg"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s4-d3ffdc9ba2e3",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "birthday-party-headcount-lie-s5-a12a1df0a60c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gabd3ae571e79dde5f34f31ca4f53717683462772d1d5c0abb0b418a9db1e6066928e90f1b20c8f59b54dbd449cb9fb63b99974dbaf4b7eab5484b80df652cd72_1280.jpg"
+    }
+  ]
+}

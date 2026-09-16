@@ -20,31 +20,45 @@
   "shots": [
     {
       "phrase": "every expense report had to follow the company template exactly",
-      "query": "office desk paperwork"
+      "query": "office desk paperwork",
+      "image_url": "https://pixabay.com/get/g0dd738f92abfc2dc9fe7f0ba5066f9103625cb118fe1c6f9a3b683285692c9c7a580ef2ae003bf71b3b493323698789f37cc93afe1d67461a050ee4339f073e3_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "leaving the tax-exempt box empty on a hotel stay",
-      "query": "hotel receipt paperwork"
+      "query": "hotel receipt paperwork",
+      "image_url": "https://pixabay.com/get/gac6802db844ade0047d0e59bc7bb5d8f4ea56a4ca798e2e29d375330b339b3c5711a20b032e01c10b773fc3f80a7009348ee4bf75e8fbdca795583043439f82d_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "The template had forty two fields",
-      "query": "printed form closeup"
+      "query": "printed form closeup",
+      "image_url": "https://live.staticflickr.com/3624/5726083239_87ce027036_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "My twelve dollar parking receipt turned into a four page document",
-      "query": "stack of printed pages"
+      "query": "stack of printed pages",
+      "image_url": "https://pixabay.com/get/gbbf59df2754db0e47389ac2daa60dbb2929f75cc90252c490fdb37a24e4dc78b98caefc6a0b48e0b833ecfe964834294c78abc0c8b53debdb1ea64a8e02a41b1_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the whole team did the same thing",
-      "query": "office cubicles workers"
+      "query": "office cubicles workers",
+      "image_url": "https://pixabay.com/get/g58e4981a2a53d4c1245ef20d4aad24b9c84a6e7a4752165989e51b4ea8f689d015096b3ebbb4994b197ba8294e4d0e84_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Accounting received two hundred and eighteen four page reports",
-      "query": "overflowing office inbox"
+      "query": "overflowing office inbox",
+      "image_url": "https://live.staticflickr.com/3253/2602415335_557c710294_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "She rescinded the rule by the end of the week",
-      "query": "manager office door"
+      "query": "manager office door",
+      "image_url": "https://pixabay.com/get/gf9ff9b02667b65b7d040665770d960b23e36ee9f797e44c496a6d8c477e4bd78302cd1c0b6102c4c63af97ac0fc74251d392670b9b02131ed62cfb776c976f86_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

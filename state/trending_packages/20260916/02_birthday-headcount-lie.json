@@ -20,19 +20,27 @@
   "shots": [
     {
       "phrase": "our package is priced strictly per child",
-      "query": "kids party venue"
+      "query": "kids party venue",
+      "image_url": "https://pixabay.com/get/g77c5d62d9d5071271c71ac3574b27bad899786093492fe7fa75b445325af0f82aea4a02da56bee257c5b4ee4e4d6d7eed81406644641997f254de6f8659de71d_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "showed up with twenty two",
-      "query": "children birthday party"
+      "query": "children birthday party",
+      "image_url": "https://collections.museumsvictoria.com.au/content/media/28/585828-large.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I counted anyway, out loud",
-      "query": "person counting clipboard"
+      "query": "person counting clipboard",
+      "image_url": "https://pixabay.com/get/gfd71a9853387cbbb809fde9c408adfe769180971cbb17c59aa8559b89118a665427041560cf1e3ee0273ff05e0811a26ae2221dc35cf4c0ce51e8ea76a523703_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "At kid seventeen she stopped arguing",
-      "query": "bounce house inflatable"
+      "query": "bounce house inflatable",
+      "image_url": "https://pixabay.com/get/ga80733214795466975489a6c5e8379f1dd4ec471448842d100085886081bf038af44ccd4bda16b065471aba20f9c32e177025f098d81220f7d88736ef47829fb_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I paused the party entirely until she paid",
@@ -40,7 +48,9 @@
     },
     {
       "phrase": "She wrote the check right there, red-faced",
-      "query": "writing check pen"
+      "query": "writing check pen",
+      "image_url": "https://pixabay.com/get/gabd3ae571e79dde5f34f31ca4f53717683462772d1d5c0abb0b418a9db1e6066928e90f1b20c8f59b54dbd449cb9fb63b99974dbaf4b7eab5484b80df652cd72_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
