@@ -921,3 +921,49 @@ the new formats yet. This pass only removed doctrine that contradicted the
 code; it did not invent a replacement editorial policy.
 
 Suite: 938 → **962 tests**.
+
+## Finding, 2026-09-16 (morning routine): most of the explainer queue is stuck behind the two-rules gate, and nobody is clearing it
+
+Not a fix — a plain flag, per rule zero, because it is not something a
+daily authoring pass can safely clear in the same change.
+
+While authoring today's 4 explainer stories, the pre-flight check
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` tells every session to run
+(`editorial_gate.pre_render_verdict` over every un-posted story) showed:
+
+    83 of 321 stories un-posted, and ALL 83 held by the gate — 0 clear
+
+Breakdown of why: 63 fail `premise` (no digit in title/hook — this is
+exactly the failure class the 2026-09-13 incident this file's routine
+doc now documents added the rule for, but the 63 pre-existing stories
+that predate the rule were never revisited); 73 fail `data` (source
+`officiality: "illustrative"` on a figure attributed to a real
+publisher — `chatgpt-fastest-adoption-ever` is one, citing OpenAI/app
+data but marked illustrative); a smaller number fail `beats`/`thesis`.
+Categories overlap (a story can fail more than one gate).
+
+**Why not fixed here**: this is 83 stories' worth of individual editorial
+judgment — inserting a digit into a title/hook only counts if the digit is
+one that story's own data actually supports (rule zero is "fix it," not
+"make the gate pass"), and re-sourcing 73 "illustrative" datasets to a real
+`official`/`primary`/`secondary` source means finding and verifying an
+actual citation per file. That is a dedicated remediation pass, not
+something to rush inside a routine whose job today was 4 NEW stories on a
+fixed clock (auto-merge → Phase A → ChatGPT → Phase B all wait on this PR).
+Doing it carelessly here would either quietly launder illustrative numbers
+into "real" ones without a real source, or bolt on unsupported digits just
+to clear the gate — both are exactly the "lowering the bar to post more"
+move `scripts/review_proposals.py` is written to refuse.
+
+**What would actually fix it**: a session with the time budget to (a) list
+the 83 with `python3 -c "..."` (the snippet already in
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` Part 2), (b) for each `premise` failure,
+either find a real supporting digit in that story's own data files and
+patch the title/hook, or retire the story if none exists, and (c) for each
+`data` failure, replace the `illustrative` source with a verified
+`official`/`primary`/`secondary` citation (`scripts/refresh_data.py --check`
+is the existing tool for exactly this) or retire the story. Until that
+happens, `explainer.yml mode=schedule` will keep posting only whatever
+that day's fresh batch contributes — the backlog does not clear itself,
+and a green `done: N posted, 0 faults` log with N equal to the day's fresh
+count is currently indistinguishable from a healthy queue.
