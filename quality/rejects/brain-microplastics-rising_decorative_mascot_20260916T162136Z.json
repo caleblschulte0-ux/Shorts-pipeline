@@ -1,0 +1,21 @@
+{
+ "slug": "brain-microplastics-rising",
+ "ts": "20260916T162136Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The large foreground mascot is in an IDENTICAL static pose (clipboard, arm out) in every single frame from hook@0.3 through payoff@-0.4 \u2014 43s of unchanging sticker; the in-scene copy only perches on pans/bars.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "meaningless_comparison_and_cropped_labels",
+  "visible_evidence": "seg2:start shows a balance with 4.1 on BOTH pans and labels chopped by both frame edges ('verage credit car', 'Weekly microplas'); seg2:mid then seg2:end resolve to two bubbles both reading 5, identically sized, so the 'comparison' says nothing \u2014 and the mascot's body covers the start of 'Weekly microplastic intake' while the caption 'a week \u2014' prints behind him.",
+  "root_cause": "The relationship chosen compares a quantity to its own restatement (5g weekly intake vs 'a credit card' = the same 5g), so the machine draws two equal magnitudes; the layout was also sized by character count rather than measured text extent, pushing both category labels past the safe area.",
+  "repair_goal": "Re-pick the relationship for this beat so the credit card is an EQUIVALENCE/scale reference (one card per week accumulating over a year), not a two-value comparison of identical numbers, and measure label extents so both category names sit fully inside the frame with no mascot or caption overlapping them."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

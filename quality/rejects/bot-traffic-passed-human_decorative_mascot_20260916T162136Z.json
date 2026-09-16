@@ -1,0 +1,21 @@
+{
+ "slug": "bot-traffic-passed-human",
+ "ts": "20260916T162136Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A SECOND Data is parked dead-centre at the bottom of the frame in the identical clipboard-out pose in seg2:mid, seg2:end, seg3:end, seg4:start, seg4:mid, payoff@-1.8 and payoff@-0.4 \u2014 roughly 30 of 45 seconds of a static sticker, on top of the performing mascot.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start and seg3:mid build a clean bad-bot trend line to 37% with the mascot climbing it, then by seg3:end (t=35.73) the entire chart \u2014 line, 32.5%/35% gridlines, 2022/2023/2024 axis, the 37% callout \u2014 is gone, leaving a black frame with the title, one small grey rectangle floating at mid-left, and the static bottom mascot.",
+  "root_cause": "The scene's exit/reset clears the drawn line-chart geometry before the beat's audio ends, so the last ~2s of seg3 plays as an empty ground with a single orphaned element; the same layout also leaves the lower half of the frame unused for the whole scene.",
+  "repair_goal": "Hold the completed 2022\u21922024 trend line, its axis labels and the 37% callout on screen for the full duration of seg3 (no clear-out before the beat ends), and lift the plot to fill the frame's vertical extent so no large dead band remains below it."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
