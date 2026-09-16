@@ -4,12 +4,41 @@
   "title": "Drone Delivery Quietly Passed 1 Million Flights",
   "y_label": "Cumulative deliveries (thousands)",
   "source": "Sources: Zipline company milestone announcements (CNBC, The Drone Girl); Wing/Alphabet delivery milestone announcements (TechCrunch, DroneLife), approximate",
-  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
-    {"name": "Zipline", "color": "#e8734a", "icon": "Zipline",
-     "values": [100, 150, 300, 500, 700, 1000]},
-    {"name": "Wing (Alphabet)", "color": "#4a90e2", "icon": "Wing",
-     "values": [30, 70, 100, 200, 300, 400]}
+    {
+      "name": "Zipline",
+      "color": "#e8734a",
+      "icon": "Zipline",
+      "values": [
+        100,
+        150,
+        300,
+        500,
+        700,
+        1000
+      ]
+    },
+    {
+      "name": "Wing (Alphabet)",
+      "color": "#4a90e2",
+      "icon": "Wing",
+      "values": [
+        30,
+        70,
+        100,
+        200,
+        300,
+        400
+      ]
+    }
   ],
   "duration": 13,
   "music_vibe": "cinematic",

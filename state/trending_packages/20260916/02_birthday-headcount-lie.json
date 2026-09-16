@@ -18,18 +18,52 @@
   ],
   "script": "I run a small party venue, and our package is priced strictly per child because of insurance caps on the play equipment, ten kids for the base rate, five dollars for every kid after that, paid at booking. A mom booked for ten and showed up with twenty two, waving off my clipboard and saying kids don't count if they're siblings, that's just how parties work. I counted anyway, out loud, pointing at each one while she argued I was being dramatic in front of the other parents. At kid seventeen she stopped arguing. Our contract has a hard cap on the bounce house at twelve kids for safety, so I paused the party entirely until she paid for the extra twelve, in front of every parent who'd already paid correctly. She wrote the check right there, red-faced, muttering about how ridiculous the rule was. The bounce house insurance company sent me a thank you card. I'm only slightly kidding about that last part.",
   "shots": [
-    {"phrase": "our package is priced strictly per child", "query": "kids party venue"},
-    {"phrase": "showed up with twenty two", "query": "children birthday party"},
-    {"phrase": "I counted anyway, out loud", "query": "person counting clipboard"},
-    {"phrase": "At kid seventeen she stopped arguing", "query": "bounce house inflatable"},
-    {"phrase": "I paused the party entirely until she paid", "query": "party host standing firm"},
-    {"phrase": "She wrote the check right there, red-faced", "query": "writing check pen"}
+    {
+      "phrase": "our package is priced strictly per child",
+      "query": "kids party venue"
+    },
+    {
+      "phrase": "showed up with twenty two",
+      "query": "children birthday party"
+    },
+    {
+      "phrase": "I counted anyway, out loud",
+      "query": "person counting clipboard"
+    },
+    {
+      "phrase": "At kid seventeen she stopped arguing",
+      "query": "bounce house inflatable"
+    },
+    {
+      "phrase": "I paused the party entirely until she paid",
+      "query": "party host standing firm"
+    },
+    {
+      "phrase": "She wrote the check right there, red-faced",
+      "query": "writing check pen"
+    }
   ],
   "punches": [
-    {"phrase": "ten kids for the base rate", "text": "10 KIDS", "color": "#ffffff"},
-    {"phrase": "showed up with twenty two", "text": "22 SHOWED UP", "color": "#ff3030"},
-    {"phrase": "hard cap on the bounce house at twelve kids", "text": "CAP: 12", "color": "#ffaa30"},
-    {"phrase": "She wrote the check right there", "text": "PAID IN FULL", "color": "#50ff80"}
+    {
+      "phrase": "ten kids for the base rate",
+      "text": "10 KIDS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "showed up with twenty two",
+      "text": "22 SHOWED UP",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hard cap on the bounce house at twelve kids",
+      "text": "CAP: 12",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She wrote the check right there",
+      "text": "PAID IN FULL",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop"
 }
