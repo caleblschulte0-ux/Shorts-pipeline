@@ -7263,14 +7263,27 @@
       "ts": "2026-09-16T15:31:21.181406+00:00"
     },
     "clip-20260916-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/clix/clip/DreamyLongLadiesPJSugar-Hc8z068fWjbSZthp",
-      "story_key": null,
-      "streamer": "clix",
+      "url": "https://youtube.com/shorts/jxhvBPLXPws",
       "title": "Clix Slips Up And Says Way Too Much On A Work Call",
       "kind": "twitch_clip",
-      "ts": "2026-09-16T15:40:23.154086+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-16T15:40:29.573311+00:00",
+      "uploaded_at": "2026-09-16T15:40:29.573331+00:00",
+      "publish_at": "2026-09-17T02:00:00Z",
+      "source_url": "https://www.twitch.tv/clix/clip/DreamyLongLadiesPJSugar-Hc8z068fWjbSZthp",
+      "streamer": "clix",
+      "series": "fail",
+      "hook": "HE SAID THAT ON A WORK CALL",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 3783,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 18.37
+      },
+      "director_cut": true
     }
   }
 }
