@@ -9,8 +9,7 @@
   "quarantined": 0,
   "failed": 9,
   "failed_by_stage": {
-    "showrunner_block": 5,
-    "infra_error": 4
+    "showrunner_block": 9
   },
   "failed_by_format": {
     "reddit": 2,

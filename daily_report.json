@@ -3,17 +3,17 @@
     "topic": "She Said Follow The Template Exactly. So I Did.",
     "title": "She Said Follow The Template Exactly. So I Did.",
     "format": "reddit",
-    "publish_at": "2026-09-16T19:00:00Z",
+    "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 163.2,
+    "error": "showrunner_block: showrunner BLOCK: The story and captions land, but three of the five shot illustrations are unrelated stock (paintbrush-in-a-tub, a German book in beach sand used twice) so the visuals never demonstrate the beat they sit over.",
+    "elapsed_seconds": 235.0,
     "package_path": "state/trending_packages/20260916/01_expense-report-template.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-185318_she_said_follow_the_template_exactly__so.mp4",
+    "video_path": "output/daily_20260916-200644_she_said_follow_the_template_exactly__so.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.033,
+      "duration": 53.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.9
+      "loudness_lufs": -24.2
     },
     "qa": {
       "ok": true,
@@ -33,8 +33,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: The story and captions land, but three of the five shot illustrations are unrelated stock (paintbrush-in-a-tub, a German book in beach sand used twice) so the visuals never demonstrate the beat they sit over.",
+      "score": 66
     },
     "blocked": true
   },
@@ -42,17 +42,17 @@
     "topic": "She Paid For 10 Kids And Brought 22. We Counted.",
     "title": "She Paid For 10 Kids And Brought 22. We Counted.",
     "format": "reddit",
-    "publish_at": "2026-09-16T19:00:00Z",
+    "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 135.7,
+    "error": "showrunner_block: showrunner BLOCK: The last third of the video plays a frozen, totally irrelevant photo of a website wireframe sketched in a notebook, so the story's punchline lands on junk imagery over a black void.",
+    "elapsed_seconds": 208.3,
     "package_path": "state/trending_packages/20260916/02_birthday-headcount-lie.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-185603_she_paid_for_10_kids_and_brought_22__we_.mp4",
+    "video_path": "output/daily_20260916-201051_she_paid_for_10_kids_and_brought_22__we_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.767,
+      "duration": 50.233,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,7 +63,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.0
+      "loudness_lufs": -25.6
     },
     "qa": {
       "ok": true,
@@ -72,8 +72,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: The last third of the video plays a frozen, totally irrelevant photo of a website wireframe sketched in a notebook, so the story's punchline lands on junk imagery over a black void.",
+      "score": 49
     },
     "blocked": true
   },
@@ -81,14 +81,14 @@
     "topic": "Legal Weed Sales Just Passed Craft Beer In America",
     "title": "Legal Weed Sales Just Passed Craft Beer In America",
     "format": "graph_race",
-    "publish_at": "2026-09-16T19:00:00Z",
+    "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 105.0,
+    "error": "showrunner_block: showrunner BLOCK: A properly built, honest two-line race with a real crossover payoff, let down by a static title-card hook over an empty plot and tip labels that collide exactly where the story happens.",
+    "elapsed_seconds": 164.2,
     "package_path": "state/trending_packages/20260916/04_cannabis-vs-craftbeer.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-185814_legal_weed_sales_just_passed_craft_beer_.mp4",
+    "video_path": "output/daily_20260916-201351_legal_weed_sales_just_passed_craft_beer_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -106,8 +106,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: A properly built, honest two-line race with a real crossover payoff, let down by a static title-card hook over an empty plot and tip labels that collide exactly where the story happens.",
+      "score": 78
     },
     "blocked": true
   },
@@ -115,14 +115,14 @@
     "topic": "Ransomware Payments Just Broke Their Own Record",
     "title": "Ransomware Payments Just Broke Their Own Record",
     "format": "graph_race",
-    "publish_at": "2026-09-16T19:00:00Z",
+    "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 104.0,
+    "error": "showrunner_block: showrunner BLOCK: A clean, correctly-separated graph race whose own hook card sits on top of the chart and shreds the axis labels for the first two seconds.",
+    "elapsed_seconds": 185.8,
     "package_path": "state/trending_packages/20260916/05_ransomware-payments.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-185959_ransomware_payments_just_broke_their_own.mp4",
+    "video_path": "output/daily_20260916-201635_ransomware_payments_just_broke_their_own.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -140,8 +140,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: A clean, correctly-separated graph race whose own hook card sits on top of the chart and shreds the axis labels for the first two seconds.",
+      "score": 57
     },
     "blocked": true
   },
@@ -149,14 +149,14 @@
     "topic": "Drone Delivery Quietly Passed 1 Million Flights",
     "title": "Drone Delivery Quietly Passed 1 Million Flights",
     "format": "graph_race",
-    "publish_at": "2026-09-16T19:00:00Z",
+    "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 101.2,
+    "error": "showrunner_block: showrunner BLOCK: A clean, genuinely well-built race with a real 1M payoff, let down by a hook card that covers the chart and truncates an axis label.",
+    "elapsed_seconds": 157.8,
     "package_path": "state/trending_packages/20260916/06_zipline-vs-wing-drones.json",
     "source": "brain",
-    "video_path": "output/daily_20260916-190143_drone_delivery_quietly_passed_1_million_.mp4",
+    "video_path": "output/daily_20260916-201941_drone_delivery_quietly_passed_1_million_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -174,49 +174,165 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: A clean, genuinely well-built race with a real 1M payoff, let down by a hook card that covers the chart and truncates an axis label.",
+      "score": 73
     },
     "blocked": true
   },
   {
-    "topic": "djia",
-    "angle": null,
-    "publish_at": "2026-09-16T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 2.5,
-    "backfill": true
-  },
-  {
-    "topic": "s and p 500",
+    "topic": "fbi",
     "angle": null,
     "publish_at": "2026-09-16T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 1.7,
+    "error": "showrunner_block: showrunner BLOCK: The hook opens on a black text card and then an irrelevant stock handshake photo labelled 'FBI', and every image after it is keyword-matched junk rather than illustration.",
+    "elapsed_seconds": 662.2,
+    "title": "My Roommate Stole My Identity For Her FBI Job",
+    "package_path": "state/trending_packages/20260916-202520_auto_fbi.json",
+    "video_path": "output/daily_20260916-202520_fbi.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.167,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The hook opens on a black text card and then an irrelevant stock handshake photo labelled 'FBI', and every image after it is keyword-matched junk rather than illustration.",
+      "score": 34
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "mortgage rates",
+    "topic": "fiji hiv crisis",
     "angle": null,
     "publish_at": "2026-09-17T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 1.8,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 1128 (char 5546)\", \"headless-claude[1]: Expecting ',' delimiter: line 6",
+    "elapsed_seconds": 731.2,
+    "title": "My Sister's Fianc\u00e9 Gave Her HIV Weeks Before Their Wedding",
+    "package_path": "state/trending_packages/20260916-203611_auto_fiji_hiv_crisis.json",
+    "video_path": "output/daily_20260916-203611_fiji_hiv_crisis.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.367,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 1128 (char 5546)\", \"headless-claude[1]: Expecting ',' delimiter: line 6",
+      "score": null
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "wsj",
+    "topic": "queen camilla",
     "angle": null,
     "publish_at": "2026-09-17T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 8pm (UTC)\n",
-    "elapsed_seconds": 2.3,
+    "error": "showrunner_block: showrunner BLOCK: An off-topic depression-clinic poster is the hero image of one beat, the captions are struck through by the gameplay HUD, and two beats are half black \u2014 this is auto-grabbed stock over a story it does not illustrate.",
+    "elapsed_seconds": 717.3,
+    "title": "My Husband's Stepmother Set Our House On Fire",
+    "package_path": "state/trending_packages/20260916-204759_auto_queen_camilla.json",
+    "video_path": "output/daily_20260916-204759_queen_camilla.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.435,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: An off-topic depression-clinic poster is the hero image of one beat, the captions are struck through by the gameplay HUD, and two beats are half black \u2014 this is auto-grabbed stock over a story it does not illustrate.",
+      "score": 30
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "joe burrow injury",
+    "angle": null,
+    "publish_at": "2026-09-17T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A garbled AI/figurine 'doctor' carries both the mid-point and the entire payoff, and half the frame is dead black gameplay for most of the run.",
+    "elapsed_seconds": 903.6,
+    "title": "Coach Hid My Brother's Spine Injury For A Scout",
+    "package_path": "state/trending_packages/20260916-210001_auto_joe_burrow_injury.json",
+    "video_path": "output/daily_20260916-210001_joe_burrow_injury.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A garbled AI/figurine 'doctor' carries both the mid-point and the entire payoff, and half the frame is dead black gameplay for most of the run.",
+      "score": 30
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
