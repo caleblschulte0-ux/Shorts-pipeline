@@ -7185,13 +7185,45 @@
       "director_cut": true
     },
     "clip-20260916-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/AstuteSnappySquidJonCarnage-WnRueYYuz9d8Y-rm",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/8nRUsXUWJKA",
       "title": "Stableronaldo Gets Ran Over Then Snaps Over A NOSE Joke",
       "kind": "twitch_clip",
-      "ts": "2026-09-16T12:35:53.291920+00:00",
+      "ts": "2026-09-16T12:36:02.228533+00:00",
+      "uploaded_at": "2026-09-16T12:36:02.228550+00:00",
+      "publish_at": "2026-09-16T23:00:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/AstuteSnappySquidJonCarnage-WnRueYYuz9d8Y-rm",
+      "streamer": "stableronaldo",
+      "series": "argument",
+      "hook": "RAN OVER THEN THE NOSE ARGUMENT STARTS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2806,
+      "banger": 0.5,
+      "cut": {
+        "start": 9.0,
+        "end": 37.0
+      },
+      "director_cut": true
+    },
+    "rejected-grossmanlyopossumtakenrg-fxyfpxyxpqqm7vnj": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/GrossManlyOpossumTakeNRG-FXYfpXyXPqQM7vnJ",
+      "streamer": "jynxzi",
+      "title": "la fairs",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (casual chat, no visible event)",
+      "ts": "2026-09-16T12:36:55.698793+00:00"
+    },
+    "clip-20260916-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GentleBlushingStarlingSoBayed-BsYNKJ7tCOgo1lx6",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Finds The Most DISGUSTING Thing He's Ever Seen",
+      "kind": "twitch_clip",
+      "ts": "2026-09-16T12:42:24.809925+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
