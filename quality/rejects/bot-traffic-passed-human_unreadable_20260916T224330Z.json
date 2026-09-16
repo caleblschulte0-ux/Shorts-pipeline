@@ -1,0 +1,21 @@
+{
+ "slug": "bot-traffic-passed-human",
+ "ts": "20260916T224330Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At payoff@-1.8 and payoff@-0.4 the scene title reads 'why ai bots keep multi\u25aeying' \u2014 the 37% column and the mascot are printed straight through it, and the 37% value label collides with the same line; at seg4:mid 'COMMENT BELOW \u25bc' is stacked directly onto the caption 'Tell me below.'",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "layout_collision_and_empty_frame",
+  "visible_evidence": "seg4:start is a near-blank gradient (closing bubble, a title, a 2-pixel bar stub, two mascots, nothing else); by payoff@-1.8 the 2024 column and the standing mascot are drawn on top of the scene title, which now reads 'why ai bots keep multi\u25aeying', the 37% label lands on that same text line, and at the bottom 'COMMENT BELOW \u25bc' overprints the caption block \u2014 while a duplicate static clipboard mascot sits between them doing nothing.",
+  "root_cause": "The closing card, the scene title, the column machine, the persistent clipboard mascot and the CTA are each composited at fixed coordinates with no reserved vertical bands and no z-order/occlusion check, so the chart grows upward into the title band and the CTA is placed into the caption band; the columns also animate from zero height, leaving the scene's first seconds with nothing on screen.",
+  "repair_goal": "Lay seg4 out in exclusive bands \u2014 closing bubble top, columns in the free mid-band sized so their tallest bar and value label clear the title (or drop the title once the closing card is up), CTA above the caption not on it \u2014 remove the duplicate idle mascot, and start the columns partially built (or pull the closing bubble in later) so seg4:start is not an empty frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
