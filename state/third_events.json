@@ -1644,6 +1644,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-12"
+    },
+    "xqc-charact-down-2026w37": {
+      "event_id": "xqc-charact-down-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "charact",
+        "down",
+        "nickname",
+        "pitch"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-16",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-16"
+    },
+    "lacy-call-down-2026w37": {
+      "event_id": "lacy-call-down-2026w37",
+      "people": [
+        "lacy"
+      ],
+      "actions": [
+        "call",
+        "down",
+        "free",
+        "street"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-16",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/lacy/clip/WiseFilthyPorpoisePoooound-EvTsE7qgZSQeSByS",
+        "https://www.twitch.tv/lacy/clip/NurturingToughBulgogiMVGame-l0O3j-WlLkHfFq1x"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-16"
     }
   }
 }
