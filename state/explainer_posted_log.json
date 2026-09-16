@@ -1780,6 +1780,17 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 43.0
+    },
+    "fusion-net-energy-gain": {
+      "url": "https://youtube.com/shorts/Uh0Wl_9LN5Q",
+      "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
+      "at": "2026-09-16T20:10:29.530760+00:00",
+      "publish_at": "2026-09-16T20:54:42Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 46.0
     }
   },
   "uploads": [
@@ -1926,6 +1937,15 @@
       "state": "posted",
       "slug": "brain-microplastics-rising",
       "at": "2026-09-16T16:21:27.082425+00:00"
+    },
+    {
+      "claimed_at": "2026-09-16T20:10:21.860631+00:00",
+      "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
+      "publish_at": "2026-09-16T20:54:42Z",
+      "url": "https://youtube.com/shorts/Uh0Wl_9LN5Q",
+      "state": "posted",
+      "slug": "fusion-net-energy-gain",
+      "at": "2026-09-16T20:10:29.530760+00:00"
     }
   ]
 }
