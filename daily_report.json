@@ -1,4 +1,346 @@
-{
-  "skipped": true,
-  "recent_posts": 2
-}
+[
+  {
+    "topic": "She Said Follow The Template Exactly. So I Did.",
+    "title": "She Said Follow The Template Exactly. So I Did.",
+    "format": "reddit",
+    "publish_at": "2026-09-16T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['leaving the tax-exempt box empty on a hotel stay', 'The template had forty two fields', 'My twelve dollar parking receipt turned into a fou', 'the whole team did the same thing', 'Accounting received two hundred and eighteen four ', 'She rescinded the rule by the end of the week']",
+    "elapsed_seconds": 47.4,
+    "package_path": "state/trending_packages/20260916/01_expense-report-template.json",
+    "source": "brain",
+    "quarantined": true
+  },
+  {
+    "topic": "She Paid For 10 Kids And Brought 22. We Counted.",
+    "title": "She Paid For 10 Kids And Brought 22. We Counted.",
+    "format": "reddit",
+    "publish_at": "2026-09-16T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Fifty seconds of raw gameplay and captions with no story illustrations at all \u2014 and the captions collide on top of each other at t=40.4.",
+    "elapsed_seconds": 209.1,
+    "package_path": "state/trending_packages/20260916/02_birthday-headcount-lie.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-112946_she_paid_for_10_kids_and_brought_22__we_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.9,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Fifty seconds of raw gameplay and captions with no story illustrations at all \u2014 and the captions collide on top of each other at t=40.4.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Chess.com Just Hit 200 Million Players",
+    "title": "Chess.com Just Hit 200 Million Players",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/IQDtzb1ccUc",
+    "error": null,
+    "elapsed_seconds": 149.5,
+    "package_path": "state/trending_packages/20260916/03_chesscom-vs-lichess.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-113240_chess_com_just_hit_200_million_players.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Legal Weed Sales Just Passed Craft Beer In America",
+    "title": "Legal Weed Sales Just Passed Craft Beer In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good graph race with a real crossover payoff, undone by the hook caption being printed over the chart and its axis labels during the opening.",
+    "elapsed_seconds": 147.1,
+    "package_path": "state/trending_packages/20260916/04_cannabis-vs-craftbeer.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-113509_legal_weed_sales_just_passed_craft_beer_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good graph race with a real crossover payoff, undone by the hook caption being printed over the chart and its axis labels during the opening.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Ransomware Payments Just Broke Their Own Record",
+    "title": "Ransomware Payments Just Broke Their Own Record",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The race genuinely reads \u2014 crossover, leaderboard swap, the 2022 crash and the new 1.1B record land the hook's promise \u2014 but the hook is a bordered UI card sitting on top of the axis and every tip label collides with its own marker.",
+    "elapsed_seconds": 182.0,
+    "package_path": "state/trending_packages/20260916/05_ransomware-payments.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-113736_ransomware_payments_just_broke_their_own.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The race genuinely reads \u2014 crossover, leaderboard swap, the 2022 crash and the new 1.1B record land the hook's promise \u2014 but the hook is a bordered UI card sitting on top of the axis and every tip label collides with its own marker.",
+      "score": 62
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Drone Delivery Quietly Passed 1 Million Flights",
+    "title": "Drone Delivery Quietly Passed 1 Million Flights",
+    "format": "graph_race",
+    "publish_at": "2026-09-16T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A competent, honest line race that lands on 1M \u2014 but it opens as a title card behind a bordered caption widget and ends with a value label jammed into the right frame edge.",
+    "elapsed_seconds": 151.3,
+    "package_path": "state/trending_packages/20260916/06_zipline-vs-wing-drones.json",
+    "source": "brain",
+    "video_path": "output/daily_20260916-114038_drone_delivery_quietly_passed_1_million_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A competent, honest line race that lands on 1M \u2014 but it opens as a title card behind a bordered caption widget and ends with a value label jammed into the right frame edge.",
+      "score": 57
+    },
+    "blocked": true
+  },
+  {
+    "topic": "taraji p. henson",
+    "angle": null,
+    "publish_at": "2026-09-16T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 14 column 849 (char 4958)\", \"headless-claude[1]: Expecting ',' delimiter: line 14",
+    "elapsed_seconds": 616.3,
+    "title": "My Fianc\u00e9's Mom Brought My Ex To The Wedding",
+    "package_path": "state/trending_packages/20260916-114608_auto_taraji_p__henson.json",
+    "video_path": "output/daily_20260916-114608_taraji_p__henson.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 14 column 849 (char 4958)\", \"headless-claude[1]: Expecting ',' delimiter: line 14",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "salesforce outage",
+    "angle": null,
+    "publish_at": "2026-09-16T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 2471 (char 5380)\", \"headless-claude[1]: Expecting ',' delimiter: line 4 ",
+    "elapsed_seconds": 648.5,
+    "title": "CRM Outage Exposed My Boss's Secret Plan",
+    "package_path": "state/trending_packages/20260916-115605_auto_salesforce_outage.json",
+    "video_path": "output/daily_20260916-115605_salesforce_outage.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 4 column 2471 (char 5380)\", \"headless-claude[1]: Expecting ',' delimiter: line 4 ",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "ron baron",
+    "angle": null,
+    "publish_at": "2026-09-16T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Clean, readable, always-moving reddit-story cut, but two beats are illustrated with completely unrelated rocket and tram images and it ends mid-sentence with no payoff.",
+    "elapsed_seconds": 617.2,
+    "title": "Dad Gambled My College Fund on a Secret Stock",
+    "package_path": "state/trending_packages/20260916-120659_auto_ron_baron.json",
+    "video_path": "output/daily_20260916-120659_ron_baron.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.246,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Clean, readable, always-moving reddit-story cut, but two beats are illustrated with completely unrelated rocket and tram images and it ends mid-sentence with no payoff.",
+      "score": 39
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "armenia",
+    "angle": null,
+    "publish_at": "2026-09-16T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story is decent but the top panel is a slideshow of unrelated stock \u2014 a woodpecker, fireworks and a Halloween face-paint portrait \u2014 which is exactly the junk imagery this channel bans.",
+    "elapsed_seconds": 691.8,
+    "title": "My Uncle Forged Her Gas Bills For Years",
+    "package_path": "state/trending_packages/20260916-121727_auto_armenia.json",
+    "video_path": "output/daily_20260916-121727_armenia.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.433,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is decent but the top panel is a slideshow of unrelated stock \u2014 a woodpecker, fireworks and a Halloween face-paint portrait \u2014 which is exactly the junk imagery this channel bans.",
+      "score": 34
+    },
+    "blocked": true,
+    "backfill": true
+  }
+]
