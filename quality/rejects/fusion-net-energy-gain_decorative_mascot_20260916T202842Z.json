@@ -1,0 +1,21 @@
+{
+ "slug": "fusion-net-energy-gain",
+ "ts": "20260916T202842Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A second mascot stands dead-centre in an identical clipboard-and-point pose across seg1:mid, seg1:end, seg2:start and seg2:end with no bit tied to the stat \u2014 a parked sticker, while the upper copy only points.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:start and seg2:end the headline 'it never settled' is stamped on top of the kicker line 'the future of fusion energy power' so the two strings interleave; below, '3.1' and '3.9' collide with the caption 'anywhere between 3.1 and 3.9', a second idle mascot sits mid-frame, and the top two-thirds of the shot is an empty void holding only a hairline zigzag and a small circle.",
+  "root_cause": "The range/uncertainty machine draws its own title at a y-position that the standing kicker header already occupies, and its axis end-labels are placed at the same baseline band as the explanatory caption; the layout is not measuring the existing header block or reserving the upper frame, so nothing is laid out against real extents.",
+  "repair_goal": "Lay seg2 out against measured extents: drop the machine's own headline or move it clear of the kicker block, separate the 3.1/3.9 end-labels from the caption baseline, raise the range bar to fill the empty upper frame, and keep exactly one mascot in the shot performing the 'it lands anywhere in here' bit on the bar."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

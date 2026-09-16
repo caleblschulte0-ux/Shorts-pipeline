@@ -1,0 +1,21 @@
+{
+ "slug": "bot-traffic-passed-human",
+ "ts": "20260916T202842Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid/seg4:end \u2014 the mascot stands on the 2024 bar directly on top of the section title, which reads 'why ai bots keep multi..ying'; hook@0.8 prints the caption 'half the' across the 37.9% value column, and seg1:end stacks a '2024' callout on the axis's own '2024' tick.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start (27.36s) shows a barely-visible dark-blue line hugging the lower third with the entire upper half of the frame empty and the 35%/32.5% gridlines almost invisible; by seg3:end (35.73s) the whole chart is gone and the frame is black except a tiny grey rectangle and the stranded clipboard mascot.",
+  "root_cause": "The line machine draws at a fraction of the available canvas (leaving a huge dead band above it) and then tears its geometry down before the scene's out-point, so the last beat of the scene renders as bare background instead of holding the finished 30%->37% line.",
+  "repair_goal": "Hold the completed 2022->2024 line, its 37% end label and axis through the end of seg3, scale the plot to fill the frame so the rise reads at arm's length, and raise the line's contrast against the ground so it is visible at seg3:start."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
