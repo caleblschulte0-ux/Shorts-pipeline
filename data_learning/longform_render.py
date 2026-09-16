@@ -725,10 +725,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         st = story.build(story_cfg, cfg, work, REPO)
+        thumb_path = out_path.with_suffix(".jpg")
+        thumbnail_ok = False
         try:
-            make_thumbnail(st, theme, out_path.with_suffix(".jpg"))
+            make_thumbnail(st, theme, thumb_path)
+            from PIL import Image as _ThumbImg
+            with _ThumbImg.open(thumb_path) as _im:
+                size = _im.size
+            if size == (W, H):
+                thumbnail_ok = True
+            else:
+                print(f"[longform] thumbnail wrong size {size}, "
+                      f"expected {(W, H)}", file=sys.stderr)
         except Exception as e:  # noqa: BLE001 — never fail a render on a thumb
-            print(f"[longform] thumbnail skipped: {e}", file=sys.stderr)
+            # LOUD, not silent: build_longform.py reads thumbnail_ok back out
+            # of the meta sidecar and refuses to publish without one — this
+            # print is what a human sees in the run log while that happens.
+            print(f"[longform] thumbnail FAILED: {e}", file=sys.stderr)
 
         sentences = st.sentences()
         narration, windows = synth_narration(sentences, work, voice)
@@ -825,7 +838,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                              "label": _chapter_name(seg.role, seg.topic)})
         chapters.append({"t": round(windows[-1][0], 2), "label": "Takeaway"})
         meta = {"slug": slug, "duration": round(total, 2),
-                "chapters": chapters, "sources": st.sources}
+                "chapters": chapters, "sources": st.sources,
+                "thumbnail_ok": thumbnail_ok}
         out_path.with_suffix(".meta.json").write_text(
             json.dumps(meta, indent=2) + "\n")
 

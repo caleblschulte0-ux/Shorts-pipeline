@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260913",
+  "updated": "20260916",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -717,10 +717,17 @@
       ]
     },
     "347e2440278c": {
-      "verdict": "doing",
-      "date": "20260822",
-      "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run.",
-      "history": []
+      "verdict": "later",
+      "date": "20260916",
+      "because": "Still the right call (append-only typed events -> derived posted projection) but this session confirmed the size again: scripts/run_third.py is 2498 lines with the overloaded posted map read from 9 different files, and state/third_posted_log.json holds 334 live entries (139 rejected/qa_rejected, one pending, 194 uploaded) that a migration must preserve byte-for-byte. CLAUDE.md calls this file sacred append-only dedupe state -- a rushed pass here risks the exact duplicate-upload failure the finding is trying to prevent. Needs its own session: write the typed event schema, migrate the 334 existing entries with a script + diff review, add invariant tests (only uploaded events count as posts, terminal keys blocked from reuse) BEFORE touching any reader, then cut over readers one at a time. Parking 30 days rather than doing it alongside other rulings this run.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run."
+        }
+      ],
+      "revisit_after": "20261016"
     },
     "e524811347c4": {
       "verdict": "done",
@@ -1252,16 +1259,29 @@
       ]
     },
     "b6648006da7e": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck.",
-      "history": []
+      "verdict": "later",
+      "date": "20260916",
+      "because": "Real gap, but a proper fix needs a capability the repo does not have yet: shared/uploaders.py's YouTubeUploader has no list/search method, so there is no way to reconcile a pending claim against YouTube after a crash between upload acceptance and the local ledger write -- the proposal's own text calls for 'reconcile pending claims against YouTube before any retry', which means adding YouTube Data API search/list support first. Building that blind (no reconciliation, just a pending-claim marker nobody ever checks) would not close the gap, only add a file nobody reads -- exactly the unwired-capability failure mode CLAUDE.md's rule zero warns about. The finding's own text already notes the practical blast radius is small (weekly cadence), so parking this to design the reconciliation call properly beats a half fix. Needs: add channel-scoped list/search to YouTubeUploader, then the pending-claim + reconcile-before-retry protocol, then the crash-injection tests the proposal names.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck."
+        }
+      ],
+      "revisit_after": "20261016"
     },
     "f87f60f38feb": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: longform_render.py's make_thumbnail() failure is caught broadly and printed as 'thumbnail skipped'; build_longform.py then passes thumbnail=None to the uploader and publishes anyway. tests/test_longform_gated.py only source-greps for 'thumbnail=thumb', so it can't catch this fail-open branch. Small, concrete fix; queued.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260916",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: longform_render.py's make_thumbnail() failure is caught broadly and printed as 'thumbnail skipped'; build_longform.py then passes thumbnail=None to the uploader and publishes anyway. tests/test_longform_gated.py only source-greps for 'thumbnail=thumb', so it can't catch this fail-open branch. Small, concrete fix; queued."
+        }
+      ]
     },
     "ad9061de9638": {
       "verdict": "doing",
