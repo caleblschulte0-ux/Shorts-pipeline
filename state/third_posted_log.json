@@ -7130,13 +7130,45 @@
       "ts": "2026-09-16T11:44:44.989275+00:00"
     },
     "clip-20260916-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/timthetatman/clip/RockyElegantSharkPoooound-2G_37JIJ_WsiYnzT",
-      "story_key": null,
-      "streamer": "timthetatman",
+      "url": "https://youtube.com/shorts/dAb120ZFutQ",
       "title": "Timthetatman Finds Out His New Puppy Could Grow To 200 Pounds",
       "kind": "twitch_clip",
-      "ts": "2026-09-16T11:48:21.512246+00:00",
+      "ts": "2026-09-16T11:48:25.794712+00:00",
+      "uploaded_at": "2026-09-16T11:48:25.794730+00:00",
+      "publish_at": "2026-09-16T20:00:00Z",
+      "source_url": "https://www.twitch.tv/timthetatman/clip/RockyElegantSharkPoooound-2G_37JIJ_WsiYnzT",
+      "streamer": "timthetatman",
+      "series": "wholesome",
+      "hook": "VET SAYS HIS PUPPY COULD HIT 200 POUNDS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4591,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-modernabnegateanteatergrammarking-ooxqhjrsvktnlcd-": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/ModernAbnegateAnteaterGrammarKing-oOxqHjrSvkTNLcd-",
+      "streamer": "erobb221",
+      "title": "???",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just gameplay, begging teammate, no payo)",
+      "ts": "2026-09-16T11:50:28.900091+00:00"
+    },
+    "clip-20260916-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BloodyRelievedDonutKAPOW-luSlMiP9_2YpFpTv",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
+      "kind": "twitch_clip",
+      "ts": "2026-09-16T11:54:32.850576+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
