@@ -1,0 +1,21 @@
+{
+ "slug": "bot-traffic-passed-human",
+ "ts": "20260916T212603Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end is a near-black frame with nothing but the title and ONE small grey rectangle floating at mid-left \u2014 the chart has vanished; seg1:mid and seg1:end leave the bottom ~60% of the frame completely empty below a thin timeline.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_overlap_and_clutter",
+  "visible_evidence": "seg4:mid onward stacks five competing layers in one frame: a bordered speech-balloon card at the top ('Half the internet you're scrolling...'), the scene title 'why ai bots keep multiplying' at mid-frame with the mascot standing ON it so it reads 'multi\u2b1bying', a bar chart, a SECOND mascot parked below the chart, and the caption 'Does knowing that change how you use the internet? Tell me below.' printed across that mascot's torso with 'COMMENT BELOW \u25bc' colliding into it and the source line.",
+  "root_cause": "The outro composes the closing card, the scene title, the bar machine, a performing mascot, a persistent presenter mascot and the caption band on independent layout tracks with no collision or occupancy check, so the mascot's y-position lands on the title band and the caption band lands on the presenter; the bordered balloon is also a UI widget on a gradient rather than a shot.",
+  "repair_goal": "Lay seg4 out as one shot: drop the duplicate presenter mascot, drop the bordered panel and set the closing line as full-bleed type on look.ground, reserve exclusive vertical bands for title / chart / caption so the performing mascot rides the 2024 bar without crossing the title, and hold the caption clear of any figure."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
