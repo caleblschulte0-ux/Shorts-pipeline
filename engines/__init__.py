@@ -150,7 +150,19 @@ REGISTRY: dict[str, dict] = {
         # has run the named trial and adopted it, or it demotes to
         # experimental/deferred — the honesty test fails the suite the day
         # after, so the decision cannot be skipped quietly.
-        "decision_date": "2026-09-15",
+        #
+        # RE-DATED 2026-09-16 (with reason, same clock test_engine_registry
+        # _honesty.py names — "adopt, demote, or re-date with a reason"; see
+        # svg_motion below for the identical precedent from 2026-09-02): the
+        # 2026-09-15 deadline passed with no session having actually run the
+        # trial. It expired as an unrelated CI-red blocker on that day's
+        # trending+explainer content PR (auto-merge.yml's own `tests` job
+        # runs this suite), which is not the right context to rush the real
+        # showrunner-scored A/B render this decision needs — and a fake
+        # trial to clear the gate would be worse than an honest extension.
+        # Extending 30 days for a session with the bandwidth to actually run
+        # `python -m engines.benchmarks.parallax_bench` and the named trial.
+        "decision_date": "2026-10-16",
         "trial": "preview render of one explainer story with parallax on "
                  "its photo beats (kenburns as the A side); adopt on a "
                  "showrunner score no worse than the A cut, else demote.",
@@ -261,7 +273,12 @@ REGISTRY: dict[str, dict] = {
         # so out loud, because a missing key reads as "nobody checked".
         "consumers": [],
         # Same waiting-room rule as parallax (doctor finding 1207ec562569).
-        "decision_date": "2026-09-15",
+        # RE-DATED 2026-09-16 (with reason — same "adopt, demote, or
+        # re-date with a reason" clock as parallax above, and the same
+        # 2026-09-15 deadline expired the same way, unresolved): a daily
+        # content-authoring PR is not the right context to run a real
+        # third-channel clip-slate trial. Extending 30 days.
+        "decision_date": "2026-10-16",
         "trial": "harmonize one third-channel clip slate's mixed-source "
                  "media before assembly; adopt if the blind look judge "
                  "stops flagging 'never settles into one look', else demote.",
