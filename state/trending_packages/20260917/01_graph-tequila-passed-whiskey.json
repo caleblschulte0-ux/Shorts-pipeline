@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tequila-passed-whiskey",
+  "title": "Tequila Just Passed Whiskey In America",
+  "hook": "It happened in 2022.",
+  "y_label": "US retail sales (billion dollars)",
+  "duration": 13,
+  "source": "IWSR Drinks Market Analysis / Distilled Spirits Council (DISCUS) US spirits retail sales by category, tequila & mezcal vs. American whiskey, 2017-2024, approximate.",
+  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Tequila & Mezcal",
+      "color": "#D4A017",
+      "icon": "Tequila",
+      "values": [2.6, 3.0, 3.4, 3.8, 4.6, 6.0, 6.5, 6.8]
+    },
+    {
+      "name": "American Whiskey",
+      "color": "#8B4513",
+      "icon": "Whiskey",
+      "values": [3.4, 3.8, 4.2, 4.4, 4.8, 5.1, 5.3, 5.4]
+    }
+  ],
+  "hashtags": [
+    "tequila",
+    "whiskey",
+    "spirits",
+    "alcohol",
+    "drinks",
+    "cocktails",
+    "mexico",
+    "bourbon",
+    "markets",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

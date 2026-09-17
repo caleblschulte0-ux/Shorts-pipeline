@@ -1,0 +1,37 @@
+{
+  "format": "graph_race",
+  "slug": "graph-labgrown-diamonds-passed-natural",
+  "title": "Lab-Grown Diamonds Just Passed Natural Ones",
+  "hook": "It flipped in about 5 years.",
+  "y_label": "Share of US engagement-ring center stones (percent)",
+  "duration": 13,
+  "source": "Industry estimates of US engagement-ring center-stone material (lab-grown vs. natural mined diamonds), compiled from trade-press surveys (JCK, Loose Lips Diamonds), 2019-2024, approximate.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Lab-Grown",
+      "color": "#7FDBFF",
+      "values": [12, 19, 29, 39, 47, 52]
+    },
+    {
+      "name": "Natural Mined",
+      "color": "#B497D6",
+      "values": [88, 81, 71, 61, 53, 48]
+    }
+  ],
+  "hashtags": [
+    "diamonds",
+    "labgrowndiamonds",
+    "engagementring",
+    "jewelry",
+    "wedding",
+    "diamond",
+    "luxury",
+    "retail",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

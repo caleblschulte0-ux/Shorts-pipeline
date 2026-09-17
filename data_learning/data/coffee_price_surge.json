@@ -1,0 +1,24 @@
+{
+  "key": "coffee_price_surge",
+  "title": "Arabica coffee futures, annual peak (dollars per pound)",
+  "unit": "dollars",
+  "geography": "World (ICE Coffee C futures)",
+  "time_coverage": "2019-2025",
+  "source": {
+    "name": "Coffee C arabica futures, annual peak settlement price",
+    "publisher": "ICE Futures U.S.",
+    "url": "https://www.ice.com",
+    "officiality": "primary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "Annual peak of the front-month Coffee C (arabica) futures price; 2025 figure is the record $4.41/lb reached in February 2025 amid Brazil drought.",
+  "points": [
+    {"label": "2019", "value": 1.05, "period": "2019"},
+    {"label": "2020", "value": 1.20, "period": "2020"},
+    {"label": "2021", "value": 2.55, "period": "2021"},
+    {"label": "2022", "value": 2.40, "period": "2022"},
+    {"label": "2023", "value": 1.95, "period": "2023"},
+    {"label": "2024", "value": 3.30, "period": "2024"},
+    {"label": "2025", "value": 4.41, "period": "2025"}
+  ]
+}

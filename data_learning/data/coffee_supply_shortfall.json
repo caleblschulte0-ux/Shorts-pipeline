@@ -1,0 +1,19 @@
+{
+  "key": "coffee_supply_shortfall",
+  "title": "Brazil arabica coffee production forecast (million 60kg bags)",
+  "unit": "million",
+  "geography": "Brazil",
+  "time_coverage": "2025/26 season",
+  "source": {
+    "name": "Brazil 2025/26 arabica production estimate revision",
+    "publisher": "Volcafe (via Reuters)",
+    "url": "https://www.reuters.com",
+    "officiality": "secondary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "Trade house Volcafe cut its Brazil 2025/26 arabica production estimate from a September forecast to a lower revised figure, citing drought damage, as reported by Reuters.",
+  "points": [
+    {"label": "September Estimate", "value": 45.4},
+    {"label": "Revised Estimate", "value": 34.4}
+  ]
+}

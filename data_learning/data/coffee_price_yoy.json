@@ -1,0 +1,19 @@
+{
+  "key": "coffee_price_yoy",
+  "title": "Arabica coffee futures, February year-over-year (dollars per pound)",
+  "unit": "dollars",
+  "geography": "World (ICE Coffee C futures)",
+  "time_coverage": "February 2024 vs. February 2025",
+  "source": {
+    "name": "Coffee C arabica futures, February price year-over-year",
+    "publisher": "ICE Futures U.S.",
+    "url": "https://www.ice.com",
+    "officiality": "primary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "February spot-month futures price compared year over year; 2025 is the all-time record.",
+  "points": [
+    {"label": "February 2024", "value": 2.00},
+    {"label": "February 2025", "value": 4.41}
+  ]
+}

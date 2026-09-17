@@ -1,0 +1,21 @@
+{
+  "key": "car_color_2023_breakdown",
+  "title": "New US car sales by color, 2023 (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "New-vehicle color popularity, 2023 model year",
+    "publisher": "iSeeCars.com",
+    "url": "https://www.iseecars.com/most-popular-car-colors-study",
+    "officiality": "secondary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "The four grayscale shades summed to 80% of 2023 new-car sales; remaining colors (blue, red, green, etc.) make up the rest.",
+  "points": [
+    {"label": "White", "value": 27.6},
+    {"label": "Black", "value": 22},
+    {"label": "Gray", "value": 21.3},
+    {"label": "Silver", "value": 9.1}
+  ]
+}
