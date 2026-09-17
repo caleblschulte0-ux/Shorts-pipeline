@@ -1802,6 +1802,17 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 45.4
+    },
+    "car-colors-going-gray": {
+      "url": "https://youtube.com/shorts/_66AR1RVJcM",
+      "title": "Why New Cars All Look The Same Color Now",
+      "at": "2026-09-17T10:44:06.320363+00:00",
+      "publish_at": "2026-09-17T11:15:23Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 50.6
     }
   },
   "uploads": [
@@ -1966,6 +1977,15 @@
       "state": "posted",
       "slug": "bot-traffic-passed-human",
       "at": "2026-09-16T22:43:21.684591+00:00"
+    },
+    {
+      "claimed_at": "2026-09-17T10:43:57.906949+00:00",
+      "title": "Why New Cars All Look The Same Color Now",
+      "publish_at": "2026-09-17T11:15:23Z",
+      "url": "https://youtube.com/shorts/_66AR1RVJcM",
+      "state": "posted",
+      "slug": "car-colors-going-gray",
+      "at": "2026-09-17T10:44:06.320363+00:00"
     }
   ]
 }
