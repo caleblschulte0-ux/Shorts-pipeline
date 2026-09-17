@@ -7327,13 +7327,43 @@
       "ts": "2026-09-17T11:35:51.139892+00:00"
     },
     "clip-20260917-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/SmellyFaintDurianThisIsSparta-JaEpXyLSShipXJRD",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/CQviGuEdsYw",
       "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
       "kind": "twitch_clip",
-      "ts": "2026-09-17T11:38:16.279266+00:00",
+      "ts": "2026-09-17T11:38:19.660833+00:00",
+      "uploaded_at": "2026-09-17T11:38:19.660848+00:00",
+      "publish_at": "2026-09-17T18:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SmellyFaintDurianThisIsSparta-JaEpXyLSShipXJRD",
+      "streamer": "jynxzi",
+      "series": "jumpscare",
+      "hook": "STOP DON'T DO IT WAIT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4548,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 19.4
+      },
+      "director_cut": true
+    },
+    "rejected-tastyastutemonkeytinyface-y2mt8qjz_jrhiam9": {
+      "source_url": "https://www.twitch.tv/xqc/clip/TastyAstuteMonkeyTinyFace-y2Mt8QJZ_JRHiam9",
+      "streamer": "xqc",
+      "title": "Sum sum",
+      "qa_rejected": true,
+      "ts": "2026-09-17T11:38:30.415282+00:00"
+    },
+    "clip-20260917-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/BoldFriendlyUdonSmoocherZ-901TwqU9hvqoUYAb",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Joe Caine Returns And Buddha Immediately Has A Job For Him",
+      "kind": "twitch_clip",
+      "ts": "2026-09-17T11:42:33.845347+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
