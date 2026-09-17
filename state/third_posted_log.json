@@ -7295,13 +7295,45 @@
       "ts": "2026-09-17T11:30:01.392046+00:00"
     },
     "clip-20260917-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/KkJDBqcP82s",
       "title": "Buddha Casino Security Shuts Down Clowns Trying To Shoot The Place Up",
       "kind": "twitch_clip",
-      "ts": "2026-09-17T11:33:48.578064+00:00",
+      "ts": "2026-09-17T11:33:55.959785+00:00",
+      "uploaded_at": "2026-09-17T11:33:55.959802+00:00",
+      "publish_at": "2026-09-17T17:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "CLOWNS TRY TO SHOOT UP THE CASINO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3716,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 22.6
+      },
+      "director_cut": true
+    },
+    "rejected-impartialastuteclamfailfish-dysk-agrk9jkthd6": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/ImpartialAstuteClamFailFish-DYSK-AGRk9JkThd6",
+      "streamer": "sodapoppin",
+      "title": "Kevin and mollyon brickbois",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just talk, no clear event)",
+      "ts": "2026-09-17T11:35:51.139892+00:00"
+    },
+    "clip-20260917-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SmellyFaintDurianThisIsSparta-JaEpXyLSShipXJRD",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
+      "kind": "twitch_clip",
+      "ts": "2026-09-17T11:38:16.279266+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
