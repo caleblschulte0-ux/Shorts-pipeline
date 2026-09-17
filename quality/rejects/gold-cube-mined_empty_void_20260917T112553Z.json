@@ -1,0 +1,21 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260917T112553Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start is ~70% bare gradient with two small pills; seg3:end drops to two hairline rules, two tiny mascots and a dotted rail with the entire top third and right half dead.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start is a near-empty frame with two small rounded pills and the caption 'it's only 22.3' almost invisible against the gradient; seg3:mid labels them 50 and 22.3; by seg3:end the visual has collapsed to two hairline rules, two tiny mascots and a dotted rail with most of the frame dead \u2014 and no cube is ever drawn in a video titled 'fits in a 22-meter cube'.",
+  "root_cause": "The hero claim (melt it all into one 22.3m cube, less than half an Olympic pool) was routed to a generic two-value comparison machine that draws pills/lines, so the scene shows two abstract bars instead of the physical object the whole script builds to, and the machine's marks occupy a small fraction of the frame.",
+  "repair_goal": "Draw the actual cube: a solid 22.3m gold cube rendered at 200pt filling the frame with the 50m Olympic pool laid alongside it at true relative scale, the mascot standing at the cube's base for human scale, and the 22.3m / 50m labels set in readable ink on the ground \u2014 no hairline rails, no empty upper third."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

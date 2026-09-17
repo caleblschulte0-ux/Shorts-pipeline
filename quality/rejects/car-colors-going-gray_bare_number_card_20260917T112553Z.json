@@ -1,0 +1,16 @@
+{
+ "slug": "car-colors-going-gray",
+ "ts": "20260917T112553Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:mid and seg2:end are a giant '8.5%' / '26.9%' with the word 'White' on an empty gradient \u2014 the ghost arc behind it is nearly invisible, so there is no demonstration, just a number.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:mid (t=24.61s) and seg2:end (t=28.08s): the scene title overflows both left and right edges, reading 'OLORS NEW CARS ACTUALLY COME'; the mascot is drawn on top of the big value so its leading digit is hidden ('8.5%'), a stray hollow ellipse floats top-right, and the bottom 45% of the frame is empty.",
+  "root_cause": "The headline is set at a fixed oversized cap-height with no measured fit to the safe width, and the mascot is staged at the value's own anchor point instead of beside it \u2014 so text and mascot are both placed without measuring the extents they collide with.",
+  "repair_goal": "Wrap/autofit the seg2 headline so every character sits inside the safe margins, stage the mascot clear of the numerals (beside the value, not on it), remove the orphan ellipse, and replace the giant-percent card with an actual share demonstration that uses the lower half of the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

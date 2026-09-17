@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260917T112553Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A second, identical Data stands clipboard-in-hand in the exact same centre-bottom spot, same pose, from seg1:mid (t=12.44) through seg4:end (t=49.20) \u2014 ~37s of parked sticker alongside the performing copy.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "text_collision_and_empty_void",
+  "visible_evidence": "seg1:mid (t=12.44) \u2014 'it never settled' is printed over the standing subtitle 'how many couples are sleeping apart'; the top third is empty dark with one thin polyline; the caption 'anywhere between 29% and 35%' is covered on its right by a duplicate small mascot and a stray cyan ellipse; by seg1:end the same collision persists with 'This isn't a' / '33%' stacked at the bottom.",
+  "root_cause": "The relationship machine's headline is drawn at the same y as the persistent scene subtitle instead of replacing/offsetting it, the machine art occupies only the middle band leaving the top unused, and a second mascot instance is composited over the axis labels with no reserved bounds.",
+  "repair_goal": "Give seg1 one headline only (drop or reposition the scene subtitle so nothing overlaps), scale the dial/range machine up to fill the frame from ~15% to ~70% height, keep the 29%/35%/'anywhere between' labels in a clear reserved band, and remove the duplicate mascot so only one Data performs the range bit."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

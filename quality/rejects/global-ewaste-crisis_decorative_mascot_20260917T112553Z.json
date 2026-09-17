@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260917T112553Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A second Data is parked bottom-center in the identical clipboard/arm-out pose from seg1:start (t=5.78) through payoff@-0.4 (t=41.60) \u2014 ~36s of a static sticker \u2014 while the upper copy only slides along the bars in hook@0.8\u2192seg0:end.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:start and seg3:mid print 'Met by e-waste recycl\u2026' and 'Met by new mining  9\u2026' running off the right edge so neither share can be read; seg3:end then drops to a near-empty frame with the scene title 'the real co[st] of wasted e-waste materials' struck through the mascot's body and only two bins placed.",
+  "root_cause": "Stacked-column category labels are laid out inline to the right of the mark with no measured width against the safe area, so they overflow the 1080px frame; the pictogram's title is anchored to the mascot layer instead of the header slot, and the bin grid has not populated at the scene's own end.",
+  "repair_goal": "Measure each label and place it inside the right safe margin (wrap or move it above/inside the segment), move the pictogram title to the header slot clear of the mascot, and have the bin grid finish building before the scene ends so no frame is mostly empty."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

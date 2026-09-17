@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260917T112553Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=32.86) is ~60% dead: two lone bins crammed top-left, a barely-visible 'each = 5%' in mid-frame grey, and nothing at all between y=200 and y=500.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:start and seg3:mid print 'Met by e-waste recycl\u2026' and 'Met by new mining  9\u2026' running off the right edge so neither share can be read; seg3:end then drops to a near-empty frame with the scene title 'the real co[st] of wasted e-waste materials' struck through the mascot's body and only two bins placed.",
+  "root_cause": "Stacked-column category labels are laid out inline to the right of the mark with no measured width against the safe area, so they overflow the 1080px frame; the pictogram's title is anchored to the mascot layer instead of the header slot, and the bin grid has not populated at the scene's own end.",
+  "repair_goal": "Measure each label and place it inside the right safe margin (wrap or move it above/inside the segment), move the pictogram title to the header slot clear of the mascot, and have the bin grid finish building before the scene ends so no frame is mostly empty."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
