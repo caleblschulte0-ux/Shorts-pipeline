@@ -1,0 +1,21 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260917T214351Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The large foreground mascot at bottom-centre is pixel-identical in every frame from seg1:mid (11.22s) through payoff@-0.4 (47.07s) \u2014 parked, clipboard out, arm extended, no setup\u2192action\u2192payoff; worse, a SECOND mascot occupies the scene simultaneously (seg1:end, seg2:mid, seg3:end)",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_air",
+  "visible_evidence": "seg4:start (42.46s), seg4:mid (44.51s), payoff@-1.8 (45.67s), seg4:end (46.55s) and payoff@-0.4 (47.07s) are the same frame: identical speech bubble, identical 'The Gold Cube 22.3' / 'An Olympic Pool 50' rules, identical parked foreground mascot, with vast empty ground between the two rules and a dotted ruler pinned to the right edge.",
+  "root_cause": "The closing beat holds the seg3 comparison layout as a frozen backdrop and only overlays a static bubble + CTA; the sole animated element is a ~30px mascot creeping along a rule, so nothing at story scale moves for the final ~5 seconds and the frame's centre is never filled.",
+  "repair_goal": "Make the last beat DO the punchline: land the 22.3m cube as an actual cube filling the empty centre with a recognisable human/lobby reference beside it, animate it arriving (drop, settle, or the pool bar collapsing into it) through the closing line, and drop the duplicate parked mascot so one mascot delivers the 'hotel lobby' beat as a real action."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
