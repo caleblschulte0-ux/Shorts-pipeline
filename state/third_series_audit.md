@@ -7,7 +7,7 @@
 | fail | 10 | 0.035 |
 | wholesome | 8 | 0.035 |
 | win | 8 | 0.05 |
-| argument | 3 | 0.03 |
+| argument | 3 | 0.04 |
 | beef | 3 | 0.03 |
 | rage | 3 | 0.0 |
 | jumpscare | 3 | 0.0 |
