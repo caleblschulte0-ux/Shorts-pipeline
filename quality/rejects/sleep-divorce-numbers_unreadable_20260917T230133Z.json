@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260917T230133Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid: the '52%' inside the big circle is printed over the mascot's shadow and reads as a smear; seg1:mid: 'anywhere between 29% and 35%' is printed straight across the '29%' and '35%' end labels AND has the second mascot sitting on its right end; payoff@-1.8: 'COMMENT BELOW' is print",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:mid and seg1:end: four text layers land in the same band \u2014 the range caption 'anywhere between 29% and 35%' is overprinted on the '29%' and '35%' axis end labels, the parked clipboard mascot overlaps the caption's right end, a second mascot is ringed by a stray cyan ellipse, the zig-zag connector line runs through the deck line 'how many couples are sleeping apart', and the headline 'it never settled' sits on that deck line. The burned caption 'third: 35 percent' is printed across the host mascot's arm.",
+  "root_cause": "This machine places its caption, its axis end labels, its mascot and the title block by fixed offsets instead of measuring occupied extents, so the label band, the caption band and the mascot band all resolve to the same y; the scene also instantiates a mascot while the persistent host figure is already on screen.",
+  "repair_goal": "Lay out seg1 so no two text runs overlap: move the range caption below the track and clear of the 29%/35% end labels (or drop it \u2014 the end labels already say it), pull the headline off the deck line, keep the connector line out of the title block, and leave exactly ONE mascot in the scene with a clear zone around every label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
