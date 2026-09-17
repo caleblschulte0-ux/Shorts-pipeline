@@ -1,307 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260902",
-      "dry_run": false,
-      "ts": "2026-09-02T16:19:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 92,
-        "with_retention": 77,
-        "with_curve": 15,
-        "fetched_at": "2026-09-02T12:53:40.607042+00:00"
-      },
-      "brain": {
-        "ok": 36,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260902-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "vague reaction, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "narrated gameplay, no real payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Jokes He's Learning Spanish From This Game"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.82,
-              "problems": []
-            }
-          },
-          "took_s": 166.4
-        },
-        {
-          "slug": "clip-20260902-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "visible fall, clear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "tangled fall, real reaction",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": []
-            }
-          },
-          "took_s": 263.2
-        },
-        {
-          "slug": "clip-20260902-3",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (confusing beef talk, no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague reaction, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "confusing beef talk, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 46.5
-        },
-        {
-          "slug": "clip-20260902-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "visible emotional confrontation, real re",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "genuine flustered reaction, visible mome",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Junko Cracks Stableronaldo Up With This WILD Line"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 154.8
-        },
-        {
-          "slug": "clip-20260902-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "sells/dies, visible in-game event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "wild physics launch, genuine shocked rea",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Can't Believe He Sold For The Third Time"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.82,
-              "problems": [
-                "7.4s: 'THE FUCK' text + beer-mug emojis overlay sits over the lower half of the streamer's face, partially obscuring it"
-              ]
-            }
-          },
-          "took_s": 288.4
-        },
-        {
-          "slug": "clip-20260902-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "xqc/xqc-about-brows-2026w35",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "milestone hit, no visible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "gift reveal, unclear payoff visually",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Hits 100K Subs And Opens His Surprise Gift Live"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 1361.5
-        }
-      ]
-    },
-    {
       "date": "20260903",
       "dry_run": false,
       "ts": "2026-09-03T16:12:46+00:00",
@@ -7008,6 +6707,162 @@
           "slug": "clip-20260917-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260917",
+      "dry_run": false,
+      "ts": "2026-09-17T17:46:16+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 103,
+        "with_retention": 86,
+        "with_curve": 14,
+        "fetched_at": "2026-09-17T15:45:32.986135+00:00"
+      },
+      "brain": {
+        "ok": 15,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260917-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260917-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260917-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260917-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp in-focus region is a thin horizontal strip (roughly 1/4-1/3 of the canvas height), not the ~3/4 the house style ca; vision: Sharp region shows a screen-recording of a desktop (visible ta",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague salute, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.6,
+              "why": "reacts to fumble clip, genuine",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Sodapoppin Watches Pika's INSANE Fumble And Just Says Brutal"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "Sharp in-focus region is a thin horizontal strip (roughly 1/4-1/3 of the canvas height), not the ~3/4 the house style ca",
+                "Sharp region shows a screen-recording of a desktop (visible taskbar/icons) with a tiny embedded webcam and game view, so"
+              ]
+            }
+          },
+          "took_s": 207.5
+        },
+        {
+          "slug": "clip-20260917-5",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit",
+          "judges": {
+            "banger": {
+              "score": 0.8,
+              "why": "caught saying slur, exposure",
+              "blind": false
+            }
+          },
+          "took_s": 9.3
+        },
+        {
+          "slug": "clip-20260917-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
