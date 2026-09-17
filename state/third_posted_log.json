@@ -7489,14 +7489,52 @@
       "ts": "2026-09-17T17:46:16.476815+00:00"
     },
     "clip-20260917-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/PopularGeniusLlamaTBTacoRight-bIQommGr3NSprkQ_",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/xHX-LWZMMHU",
       "title": "Jynxzi Loses It After A Fan Offers Him $100,000",
       "kind": "twitch_clip",
-      "ts": "2026-09-17T22:13:21.362748+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-17T22:13:27.817518+00:00",
+      "uploaded_at": "2026-09-17T22:13:27.817540+00:00",
+      "publish_at": "2026-09-18T02:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PopularGeniusLlamaTBTacoRight-bIQommGr3NSprkQ_",
+      "streamer": "jynxzi",
+      "series": "wholesome",
+      "hook": "FAN TRIES TO DONATE $100,000",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 21352,
+      "banger": 0.5,
+      "cut": {
+        "start": 6.6,
+        "end": 50.7
+      },
+      "director_cut": true
+    },
+    "rejected-relievedastutecheesesupervinlin-bddkfxchgdghnwdw": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/RelievedAstuteCheeseSuperVinlin-bDDKFxCHGDghnWdW",
+      "streamer": "sodapoppin",
+      "title": "Soda cancels his 30 min queue",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling chat, no visible event)",
+      "ts": "2026-09-17T22:15:21.545186+00:00"
+    },
+    "rejected-yummybetterrutabagaphilosoraptor-nffgzhip8zvb8fbq": {
+      "source_url": "https://www.twitch.tv/forsen/clip/YummyBetterRutabagaPhilosoraptor-nfFgZHIP8zvb8FbQ",
+      "streamer": "forsen",
+      "title": "Forsen Annuel win of 2026",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (insider meme, slurs, no clear event)",
+      "ts": "2026-09-17T22:16:26.190034+00:00"
+    },
+    "rejected-americangentlehedgehogimglitch-f4nbroj29jnlntqa": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AmericanGentleHedgehogImGlitch-F4NBRoJ29jNLNtQa",
+      "streamer": "xqc",
+      "title": "Xqc Breaks Down Why The Cops Are Making This Server Miserable",
+      "qa_rejected": true,
+      "ts": "2026-09-17T22:22:26.279941+00:00"
     }
   }
 }
