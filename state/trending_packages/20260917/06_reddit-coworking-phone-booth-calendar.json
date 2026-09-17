@@ -10,7 +10,24 @@
     },
     {
       "phrase": "a recurring invite titled 'Client Call,'",
-      "query": "calendar invite screen"
+      "query": "calendar invite screen",
+      "pin_query": "Client Call",
+      "pin_context": "She Booked A Phone Booth For Calls She Never Made",
+      "news_query": "Client Call",
+      "news_angle": "She Booked A Phone Booth For Calls She Never Made",
+      "image_url": "https://live.staticflickr.com/5186/5635875489_bf3d5438dd_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "She Booked A Phone Booth For Calls She Never Made",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Client Call",
+        "url": "https://live.staticflickr.com/5186/5635875489_bf3d5438dd_b.jpg",
+        "verified_at": "2026-09-17T14:26:31Z",
+        "width": 0
+      }
     },
     {
       "phrase": "locked out for eight hours a day",
@@ -18,7 +35,24 @@
     },
     {
       "phrase": "Front desk wouldn't touch it without proof",
-      "query": "front desk reception"
+      "query": "front desk reception",
+      "pin_query": "Front",
+      "pin_context": "She Booked A Phone Booth For Calls She Never Made",
+      "news_query": "Front",
+      "news_angle": "She Booked A Phone Booth For Calls She Never Made",
+      "image_url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "She Booked A Phone Booth For Calls She Never Made",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Front",
+        "url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
+        "verified_at": "2026-09-17T14:26:44Z",
+        "width": 0
+      }
     },
     {
       "phrase": "in real fifteen-minute slots under my actual client names",
@@ -34,7 +68,24 @@
     },
     {
       "phrase": "Membership revoked, booth's been open ever since",
-      "query": "empty phone booth"
+      "query": "empty phone booth",
+      "pin_query": "Membership",
+      "pin_context": "She Booked A Phone Booth For Calls She Never Made",
+      "news_query": "Membership",
+      "news_angle": "She Booked A Phone Booth For Calls She Never Made",
+      "image_url": "https://live.staticflickr.com/6193/6210141232_635f44b302_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "She Booked A Phone Booth For Calls She Never Made",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Membership",
+        "url": "https://live.staticflickr.com/6193/6210141232_635f44b302_b.jpg",
+        "verified_at": "2026-09-17T14:26:56Z",
+        "width": 0
+      }
     }
   ],
   "punches": [

@@ -457,8 +457,8 @@
           "shot_index": 1,
           "phrase": "a recurring invite titled 'Client Call,'",
           "query": "calendar invite screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -471,8 +471,8 @@
           "shot_index": 3,
           "phrase": "Front desk wouldn't touch it without proof",
           "query": "front desk reception",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
@@ -499,26 +499,26 @@
           "shot_index": 7,
           "phrase": "Membership revoked, booth's been open ever since",
           "query": "empty phone booth",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 3,
+        "missing": 5,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-coworking-phone-booth-calendar-s0-3fb72b095ad9",
-        "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
         "reddit-coworking-phone-booth-calendar-s2-b62a6c81e914",
-        "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
         "reddit-coworking-phone-booth-calendar-s4-38441558d9d0",
         "reddit-coworking-phone-booth-calendar-s5-84563212bae6",
         "reddit-coworking-phone-booth-calendar-s6-566d3bf1b60a",
-        "reddit-coworking-phone-booth-calendar-s7-8576703700de"
+        "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
+        "reddit-coworking-phone-booth-calendar-s7-8576703700de",
+        "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d"
       ]
     }
   ],
@@ -701,7 +701,7 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (17% term overlap)",
+        "weak relation to the line (0% term overlap)",
         "resolution unverified (no width/height reported)",
         "unverified provenance (unverified)"
       ],
@@ -729,7 +729,7 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (14% term overlap)",
+        "weak relation to the line (0% term overlap)",
         "resolution unverified (no width/height reported)"
       ],
       "verdict": "weak"
@@ -761,32 +761,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
-      "safe_request_id": "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
-      "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d.png",
-      "prompt_sha256": "83024d4ac13a08031708929b9877afa45abed80936b7bb99eba003895805e4cc",
-      "checkpoint_path": "exchange/bundles/20260917/media-progress/reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d.json",
-      "slug": "reddit-coworking-phone-booth-calendar",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: calendar invite screen. It accompanies the narration: \"a recurring invite titled 'Client Call,'\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-coworking-phone-booth-calendar-s2-b62a6c81e914",
       "safe_request_id": "reddit-coworking-phone-booth-calendar-s2-b62a6c81e914",
       "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s2-b62a6c81e914.png",
@@ -796,32 +770,6 @@
       "shot_index": 2,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: coworking space desks. It accompanies the narration: \"locked out for eight hours a day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
-      "safe_request_id": "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
-      "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s3-e98a76c6be19.png",
-      "prompt_sha256": "d55d3641a83c57b46388b3aa47b3bc690c17031de48fa193d96d2b664082a898",
-      "checkpoint_path": "exchange/bundles/20260917/media-progress/reddit-coworking-phone-booth-calendar-s3-e98a76c6be19.json",
-      "slug": "reddit-coworking-phone-booth-calendar",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: front desk reception. It accompanies the narration: \"Front desk wouldn't touch it without proof\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -917,6 +865,34 @@
       "verdict": "missing"
     },
     {
+      "request_id": "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
+      "safe_request_id": "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
+      "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s3-e98a76c6be19.png",
+      "prompt_sha256": "d55d3641a83c57b46388b3aa47b3bc690c17031de48fa193d96d2b664082a898",
+      "checkpoint_path": "exchange/bundles/20260917/media-progress/reddit-coworking-phone-booth-calendar-s3-e98a76c6be19.json",
+      "slug": "reddit-coworking-phone-booth-calendar",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: front desk reception. It accompanies the narration: \"Front desk wouldn't touch it without proof\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (17% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "reddit-coworking-phone-booth-calendar-s7-8576703700de",
       "safe_request_id": "reddit-coworking-phone-booth-calendar-s7-8576703700de",
       "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s7-8576703700de.png",
@@ -938,9 +914,38 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (17% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
+      "safe_request_id": "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
+      "drive_filename": "20260917__reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d.png",
+      "prompt_sha256": "83024d4ac13a08031708929b9877afa45abed80936b7bb99eba003895805e4cc",
+      "checkpoint_path": "exchange/bundles/20260917/media-progress/reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d.json",
+      "slug": "reddit-coworking-phone-booth-calendar",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: calendar invite screen. It accompanies the narration: \"a recurring invite titled 'Client Call,'\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     }
   ],
   "media_protocol": {

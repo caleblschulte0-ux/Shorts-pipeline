@@ -21,16 +21,14 @@
       "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "Corporate",
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-09-17T09:43:04Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-17T14:26:16Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -46,16 +44,14 @@
       "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
       "image_url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
-        "resolved_by": "entity_media",
-        "source_class": "unverified",
-        "title": "Next",
         "url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
-        "verified_at": "2026-09-17T09:43:15Z",
-        "width": 0
+        "source_class": "unverified",
+        "provider": "live.staticflickr.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-17T14:26:16Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
