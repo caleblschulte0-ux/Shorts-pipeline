@@ -7284,6 +7284,25 @@
         "end": 18.37
       },
       "director_cut": true
+    },
+    "rejected-cuteinexpensivemousederp-1ar3nlsp3phunxzu": {
+      "source_url": "https://www.twitch.tv/buddha/clip/CuteInexpensiveMouseDerp-1AR3NlSp3PhUNxzu",
+      "streamer": "buddha",
+      "title": "ratJAM",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (exciting talk, frames show only menus/wa)",
+      "ts": "2026-09-17T11:30:01.392046+00:00"
+    },
+    "clip-20260917-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Casino Security Shuts Down Clowns Trying To Shoot The Place Up",
+      "kind": "twitch_clip",
+      "ts": "2026-09-17T11:33:48.578064+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
