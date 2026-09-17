@@ -7425,14 +7425,27 @@
       "ts": "2026-09-17T11:48:30.743938+00:00"
     },
     "clip-20260917-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/SweetCleanClipsmomPeoplesChamp-xUAZDc28WRBtBq-b",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/csGo-5L9Iv0",
       "title": "Kaicenat: Kai Cenat Walks In His First Ever Fashion Show",
       "kind": "twitch_clip",
-      "ts": "2026-09-17T12:58:04.030591+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-17T12:58:11.449567+00:00",
+      "uploaded_at": "2026-09-17T12:58:11.449587+00:00",
+      "publish_at": "2026-09-18T00:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SweetCleanClipsmomPeoplesChamp-xUAZDc28WRBtBq-b",
+      "streamer": "kaicenat",
+      "series": "win",
+      "hook": "HIS FIRST EVER FASHION SHOW",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 10811,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 12.85
+      },
+      "director_cut": true
     }
   }
 }
