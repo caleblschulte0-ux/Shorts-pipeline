@@ -1,4 +1,268 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "Tequila Just Passed Whiskey In America",
+    "title": "Tequila Just Passed Whiskey In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 85.8,
+    "package_path": "state/trending_packages/20260917/01_graph-tequila-passed-whiskey.json",
+    "source": "brain",
+    "video_path": "output/daily_20260917-112821_tequila_just_passed_whiskey_in_america.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Mexico Just Passed China In US Imports",
+    "title": "Mexico Just Passed China In US Imports",
+    "format": "graph_race",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The race itself is well told \u2014 the lead flip lands and the ending '#1 Mexico' pays it off \u2014 but the labels collide and run off the right edge at exactly the moment that matters.",
+    "elapsed_seconds": 150.0,
+    "package_path": "state/trending_packages/20260917/02_graph-mexico-passed-china-imports.json",
+    "source": "brain",
+    "video_path": "output/daily_20260917-112947_mexico_just_passed_china_in_us_imports.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The race itself is well told \u2014 the lead flip lands and the ending '#1 Mexico' pays it off \u2014 but the labels collide and run off the right edge at exactly the moment that matters.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Lab-Grown Diamonds Just Passed Natural Ones",
+    "title": "Lab-Grown Diamonds Just Passed Natural Ones",
+    "format": "graph_race",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 9.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 78.8,
+    "package_path": "state/trending_packages/20260917/03_graph-labgrown-diamonds-passed-natural.json",
+    "source": "brain",
+    "video_path": "output/daily_20260917-113217_lab_grown_diamonds_just_passed_natural_o.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 9.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "E-Bikes Just Passed Road Bikes In Sales",
+    "title": "E-Bikes Just Passed Road Bikes In Sales",
+    "format": "graph_race",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Genuinely good graph race with a real lead change \u2014 but the payoff's value labels are clipped and marker-covered at the right frame edge, which is exactly the frame a viewer is asked to read.",
+    "elapsed_seconds": 173.2,
+    "package_path": "state/trending_packages/20260917/04_graph-ebikes-passed-road-bikes.json",
+    "source": "brain",
+    "video_path": "output/daily_20260917-113336_e_bikes_just_passed_road_bikes_in_sales.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Genuinely good graph race with a real lead change \u2014 but the payoff's value labels are clipped and marker-covered at the right frame edge, which is exactly the frame a viewer is asked to read.",
+      "score": 73
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+    "title": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+    "format": "reddit",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: 46 seconds of bare gameplay and captions with a single illustration \u2014 and that one is an irrelevant photo of a retro computer desk sitting over a black void.",
+    "elapsed_seconds": 221.8,
+    "package_path": "state/trending_packages/20260917/05_reddit-carwash-free-rewash-loophole.json",
+    "source": "brain",
+    "video_path": "output/daily_20260917-113729_the__free_rewash__guy_didn_t_know_about_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: 46 seconds of bare gameplay and captions with a single illustration \u2014 and that one is an irrelevant photo of a retro computer desk sitting over a black void.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Booked A Phone Booth For Calls She Never Made",
+    "title": "She Booked A Phone Booth For Calls She Never Made",
+    "format": "reddit",
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: [\"a recurring invite titled 'Client Call,'\", 'locked out for eight hours a day', \"Front desk wouldn't touch it without proof\", 'in real fifteen-minute slots under my actual clien', 'She marched up front desk furious', 'Front desk pulled the log', \"Membership revoked, booth's been open ever since\"]",
+    "elapsed_seconds": 34.6,
+    "package_path": "state/trending_packages/20260917/06_reddit-coworking-phone-booth-calendar.json",
+    "source": "brain",
+    "quarantined": true
+  },
+  {
+    "topic": "doxxing",
+    "angle": null,
+    "publish_at": "2026-09-17T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Three of the story's key beats \u2014 the hook, the legal turn, and the 'BUSTED' payoff \u2014 are carried by images that have nothing to do with the story (an Egyptian protest placard, lake bodycam footage, a helicopter), which is the auto-fail junk-imagery class outright.",
+    "elapsed_seconds": 707.6,
+    "title": "My Neighbor Doxxed Me Then Doxxed Her Ex",
+    "package_path": "state/trending_packages/20260917-114318_auto_doxxing.json",
+    "video_path": "output/daily_20260917-114318_doxxing.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.033,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -11.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Three of the story's key beats \u2014 the hook, the legal turn, and the 'BUSTED' payoff \u2014 are carried by images that have nothing to do with the story (an Egyptian protest placard, lake bodycam footage, a helicopter), which is the auto-fail junk-imagery class outright.",
+      "score": 26
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "tom sturridge",
+    "angle": null,
+    "publish_at": "2026-09-17T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['production company', 'filming wrapped in April', 'sat on our bed for 2 hours', 'drove 40 minutes', 'apartment building', 'woman in his hoodie opened the door', 'had no idea I existed']",
+    "elapsed_seconds": 115.2,
+    "title": "My Boyfriend Faked A Film Shoot For 4 Months",
+    "package_path": "state/trending_packages/20260917-115507_auto_tom_sturridge.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "constitution day 2026",
+    "angle": null,
+    "publish_at": "2026-09-17T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['12-page Family Constitution', 'quit my job', 'crying in the kitchen', 'signed it in 2019', 'read every page', 'stood up', 'annulment papers']",
+    "elapsed_seconds": 114.7,
+    "title": "MIL Made Me Sign a Family Constitution",
+    "package_path": "state/trending_packages/20260917-115711_auto_constitution_day_2026.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "caleb flynn",
+    "angle": null,
+    "publish_at": "2026-09-17T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['security footage', 'loading a gun into his gym bag', 'choir director texted me', 'confronted him in the hospital hallway', 'Nobody will believe you over me', 'found the gun receipt', 'denied bail 3 times']",
+    "elapsed_seconds": 131.2,
+    "title": "He Staged Our Break-In, Our Daughters Caught Him",
+    "package_path": "state/trending_packages/20260917-115902_auto_caleb_flynn.json",
+    "quarantined": true,
+    "backfill": true
+  }
+]
