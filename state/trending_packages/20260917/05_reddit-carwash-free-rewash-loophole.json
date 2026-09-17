@@ -6,11 +6,15 @@
   "shots": [
     {
       "phrase": "any customer complaint gets an automatic free rewash",
-      "query": "car wash tunnel"
+      "query": "car wash tunnel",
+      "image_url": "https://live.staticflickr.com/65535/54048421241_2a5a401e93_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "he'd walk up dripping wet car and claim we missed spots",
-      "query": "wet car exterior"
+      "query": "wet car exterior",
+      "image_url": "https://inaturalist-open-data.s3.amazonaws.com/photos/27744644/large.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Corporate wouldn't let us push back without proof",
@@ -19,7 +23,7 @@
       "pin_context": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
       "news_query": "Corporate",
       "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "image_url": "https://pixabay.com/get/g7db4f06e3d93e68b3d5075de0edec31b164f5c2af91c8210b7e16c6c57949858fc652f800b7a85940369aad73a60e5e708c47279a4a91a3ba36c2b99b66f921d_1280.jpg",
       "media_evidence": {
         "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
         "source_class": "open_or_licensed",
@@ -29,11 +33,14 @@
         "content_type": "image/jpeg",
         "verified_at": "2026-09-17T14:26:16Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the dash cam we already had pointed at the exit bay",
-      "query": "security camera lens"
+      "query": "security camera lens",
+      "image_url": "https://pixabay.com/get/g30b7b3d194d360e45d250c5f24184ddc0ded34361810ee476336db379ccf61b853ff25237cc4a5bd17cf52cdf62ce3902ca34b7b8a817d3b56ab38dc832a9e19_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Next time he pulled up complaining about 'missed spots,'",
@@ -42,7 +49,7 @@
       "pin_context": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
       "news_query": "Next",
       "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
-      "image_url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
+      "image_url": "https://live.staticflickr.com/5086/5340462340_de7181d650_b.jpg",
       "media_evidence": {
         "url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
         "source_class": "unverified",
@@ -52,19 +59,26 @@
         "content_type": "image/jpeg",
         "verified_at": "2026-09-17T14:26:16Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I just pulled the clip from four minutes earlier",
-      "query": "laptop video playback"
+      "query": "laptop video playback",
+      "image_url": "https://pixabay.com/get/gd597b32adfbeac0902eb04da0644f3bd4751680f3367108aa5f5400ac970a44e528f7ec8c45f9a885caac6e5dcf2c51ba807beb77866374fa895acab2d4e5def_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Corporate reviewed the footage, closed the free-rewash loophole",
-      "query": "manager reviewing paperwork"
+      "query": "manager reviewing paperwork",
+      "image_url": "https://pixabay.com/get/g0d49de2d018d12386daf8a7014c56497493a9edfe67d810a05d08b6035831bcf00d2d22a021e1994ebcbe80b375066f1dbc882608257cbeefc1834ac84e4d274_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "The line's moved twice as fast ever since",
-      "query": "cars lined up carwash"
+      "query": "cars lined up carwash",
+      "image_url": "https://pixabay.com/get/gd7494a982dbf8c525ec701f3ced1cca6f57c6763ba63676a02a9d93e6718e864713306d59917cb6f816228cccec0bb0e636036bae4dbac9945b28ccfd94fce49_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

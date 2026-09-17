@@ -1,0 +1,114 @@
+{
+  "date": "20260917",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 16,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "589a353263f8f899a4c06f76ffd9256cdea0088fa9ee333cf7aaaf4f107f7ff4",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s0-97a9d65bf676",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/65535/54048421241_2a5a401e93_b.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s1-914dbfa66d56",
+      "outcome": "self_fill",
+      "url": "https://inaturalist-open-data.s3.amazonaws.com/photos/27744644/large.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s3-0c951ed0d035",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g30b7b3d194d360e45d250c5f24184ddc0ded34361810ee476336db379ccf61b853ff25237cc4a5bd17cf52cdf62ce3902ca34b7b8a817d3b56ab38dc832a9e19_1280.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s5-74cd099f8848",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd597b32adfbeac0902eb04da0644f3bd4751680f3367108aa5f5400ac970a44e528f7ec8c45f9a885caac6e5dcf2c51ba807beb77866374fa895acab2d4e5def_1280.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s6-324203b6c318",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0d49de2d018d12386daf8a7014c56497493a9edfe67d810a05d08b6035831bcf00d2d22a021e1994ebcbe80b375066f1dbc882608257cbeefc1834ac84e4d274_1280.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s7-49cc14a6e63e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd7494a982dbf8c525ec701f3ced1cca6f57c6763ba63676a02a9d93e6718e864713306d59917cb6f816228cccec0bb0e636036bae4dbac9945b28ccfd94fce49_1280.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s4-60e446529252",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/5086/5340462340_de7181d650_b.jpg"
+    },
+    {
+      "request_id": "reddit-carwash-free-rewash-loophole-s2-d9c6ce15f8f9",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7db4f06e3d93e68b3d5075de0edec31b164f5c2af91c8210b7e16c6c57949858fc652f800b7a85940369aad73a60e5e708c47279a4a91a3ba36c2b99b66f921d_1280.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s0-3fb72b095ad9",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g9e3fefad6c29bfba5636027d23d0e1f4ac6ece47f571e6cf84f23dc8e70f3e0c4193f59422ffec4b087a335342061bce1ab5d87ba26543f6d9ff0c79ac1b796b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s2-b62a6c81e914",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/7071/space-desk-office-workspace.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s4-38441558d9d0",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/4099/4827013488_60953318d3_b.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s5-84563212bae6",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga63d3e1e16af65caa24c3fd15c857177430580131cb86374dd3f303c407f770960b9fad878036036b474e4ef7b0454a96facbfdf7db1c9d0ad158caf09f3c174_1280.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s6-566d3bf1b60a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf859dd3a5f458516ed24d84f1fbf806b1c66bb432f047e75a305d741abcd730b1face7f97f2f3a79a4dc707247eaed67bc398337e3006e34bcab52442cc41c70_1280.png"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s3-e98a76c6be19",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g943162bde01a0490b30dda90f7a41161ba5760074082acf2fa8b99b06b1d5fffa0f38f5cae3ebc1a8d8efdd9a8615c432ff9ab48b2d664b1a65f0f7d4d720408_1280.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s7-8576703700de",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g92c5494aa989a587f33cef9a2079309ea4dc3061b958646c551bd46c0506a234e11f84caa65e5d432191254a74d7c105ef00f2f3412ccfb7ca5ced9df2c644a6_1280.jpg"
+    },
+    {
+      "request_id": "reddit-coworking-phone-booth-calendar-s1-7b8ed09ee76d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc8643292fba32b50697e8dc520275307085dd92ac0e9f5f1aa710f3e7abab07b4931a13a3ffe77f5a8894c8cf44f0ac1ccfa8b439965d96c8f879e50be9cf0db_1280.jpg"
+    }
+  ]
+}

@@ -6,7 +6,9 @@
   "shots": [
     {
       "phrase": "one soundproof phone booth",
-      "query": "office phone booth"
+      "query": "office phone booth",
+      "image_url": "https://pixabay.com/get/g9e3fefad6c29bfba5636027d23d0e1f4ac6ece47f571e6cf84f23dc8e70f3e0c4193f59422ffec4b087a335342061bce1ab5d87ba26543f6d9ff0c79ac1b796b_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a recurring invite titled 'Client Call,'",
@@ -15,7 +17,7 @@
       "pin_context": "She Booked A Phone Booth For Calls She Never Made",
       "news_query": "Client Call",
       "news_angle": "She Booked A Phone Booth For Calls She Never Made",
-      "image_url": "https://live.staticflickr.com/5186/5635875489_bf3d5438dd_b.jpg",
+      "image_url": "https://pixabay.com/get/gc8643292fba32b50697e8dc520275307085dd92ac0e9f5f1aa710f3e7abab07b4931a13a3ffe77f5a8894c8cf44f0ac1ccfa8b439965d96c8f879e50be9cf0db_1280.jpg",
       "media_evidence": {
         "content_type": "image/jpeg",
         "height": 0,
@@ -27,11 +29,14 @@
         "url": "https://live.staticflickr.com/5186/5635875489_bf3d5438dd_b.jpg",
         "verified_at": "2026-09-17T14:26:31Z",
         "width": 0
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "locked out for eight hours a day",
-      "query": "coworking space desks"
+      "query": "coworking space desks",
+      "image_url": "https://images.pexels.com/photos/7071/space-desk-office-workspace.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Front desk wouldn't touch it without proof",
@@ -40,7 +45,7 @@
       "pin_context": "She Booked A Phone Booth For Calls She Never Made",
       "news_query": "Front",
       "news_angle": "She Booked A Phone Booth For Calls She Never Made",
-      "image_url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
+      "image_url": "https://pixabay.com/get/g943162bde01a0490b30dda90f7a41161ba5760074082acf2fa8b99b06b1d5fffa0f38f5cae3ebc1a8d8efdd9a8615c432ff9ab48b2d664b1a65f0f7d4d720408_1280.jpg",
       "media_evidence": {
         "content_type": "image/jpeg",
         "height": 0,
@@ -52,19 +57,26 @@
         "url": "https://live.staticflickr.com/182/366892415_1f52008c62_b.jpg",
         "verified_at": "2026-09-17T14:26:44Z",
         "width": 0
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "in real fifteen-minute slots under my actual client names",
-      "query": "laptop calendar booking"
+      "query": "laptop calendar booking",
+      "image_url": "https://live.staticflickr.com/4099/4827013488_60953318d3_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "She marched up front desk furious",
-      "query": "annoyed woman office"
+      "query": "annoyed woman office",
+      "image_url": "https://pixabay.com/get/ga63d3e1e16af65caa24c3fd15c857177430580131cb86374dd3f303c407f770960b9fad878036036b474e4ef7b0454a96facbfdf7db1c9d0ad158caf09f3c174_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Front desk pulled the log",
-      "query": "reception staff computer"
+      "query": "reception staff computer",
+      "image_url": "https://pixabay.com/get/gf859dd3a5f458516ed24d84f1fbf806b1c66bb432f047e75a305d741abcd730b1face7f97f2f3a79a4dc707247eaed67bc398337e3006e34bcab52442cc41c70_1280.png",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Membership revoked, booth's been open ever since",
@@ -73,7 +85,7 @@
       "pin_context": "She Booked A Phone Booth For Calls She Never Made",
       "news_query": "Membership",
       "news_angle": "She Booked A Phone Booth For Calls She Never Made",
-      "image_url": "https://live.staticflickr.com/6193/6210141232_635f44b302_b.jpg",
+      "image_url": "https://pixabay.com/get/g92c5494aa989a587f33cef9a2079309ea4dc3061b958646c551bd46c0506a234e11f84caa65e5d432191254a74d7c105ef00f2f3412ccfb7ca5ced9df2c644a6_1280.jpg",
       "media_evidence": {
         "content_type": "image/jpeg",
         "height": 0,
@@ -85,7 +97,8 @@
         "url": "https://live.staticflickr.com/6193/6210141232_635f44b302_b.jpg",
         "verified_at": "2026-09-17T14:26:56Z",
         "width": 0
-      }
+      },
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
