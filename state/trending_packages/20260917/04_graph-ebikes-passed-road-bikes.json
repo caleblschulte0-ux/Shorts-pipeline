@@ -6,17 +6,44 @@
   "y_label": "US bicycle retail sales (million dollars)",
   "duration": 13,
   "source": "The NPD Group / Cycling Industry News, US bicycle retail dollar sales by category, e-bikes vs. road bikes, 2017-2024, approximate.",
-  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "E-Bikes",
       "color": "#39FF14",
-      "values": [80, 120, 230, 520, 880, 990, 1050, 1150]
+      "values": [
+        80,
+        120,
+        230,
+        520,
+        880,
+        990,
+        1050,
+        1150
+      ]
     },
     {
       "name": "Road Bikes",
       "color": "#4169E1",
-      "values": [600, 620, 590, 750, 820, 700, 650, 630]
+      "values": [
+        600,
+        620,
+        590,
+        750,
+        820,
+        700,
+        650,
+        630
+      ]
     }
   ],
   "hashtags": [

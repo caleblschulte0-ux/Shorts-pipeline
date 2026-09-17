@@ -6,19 +6,46 @@
   "y_label": "US goods imports (billion dollars)",
   "duration": 13,
   "source": "U.S. Census Bureau international trade statistics, goods imports by country of origin, 2017-2024, approximate.",
-  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "China",
       "color": "#DE2910",
       "icon": "CN",
-      "values": [522, 540, 452, 435, 506, 536, 427, 439]
+      "values": [
+        522,
+        540,
+        452,
+        435,
+        506,
+        536,
+        427,
+        439
+      ]
     },
     {
       "name": "Mexico",
       "color": "#006847",
       "icon": "MX",
-      "values": [314, 346, 358, 325, 385, 455, 476, 509]
+      "values": [
+        314,
+        346,
+        358,
+        325,
+        385,
+        455,
+        476,
+        509
+      ]
     }
   ],
   "hashtags": [

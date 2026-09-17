@@ -4,20 +4,94 @@
   "title": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
   "script": "Our car wash manager rolled out a new rule: any customer complaint gets an automatic free rewash, no questions, no manager review, just to speed up the line. One regular figured that out fast. Every single visit, he'd walk up dripping wet car and claim we missed spots, streaks, whatever, free rewash, every time, for weeks. Corporate wouldn't let us push back without proof. So I started running the dash cam we already had pointed at the exit bay, timestamping every finished wash before the car even left the building. Next time he pulled up complaining about 'missed spots,' I didn't argue. I just pulled the clip from four minutes earlier, spotless car, same angle, same paint. He tried a different complaint. I had that angle too. Corporate reviewed the footage, closed the free-rewash loophole same week, and banned him from the location. The line's moved twice as fast ever since.",
   "shots": [
-    {"phrase": "any customer complaint gets an automatic free rewash", "query": "car wash tunnel"},
-    {"phrase": "he'd walk up dripping wet car and claim we missed spots", "query": "wet car exterior"},
-    {"phrase": "Corporate wouldn't let us push back without proof", "query": "corporate office hallway"},
-    {"phrase": "the dash cam we already had pointed at the exit bay", "query": "security camera lens"},
-    {"phrase": "Next time he pulled up complaining about 'missed spots,'", "query": "car wash exit bay"},
-    {"phrase": "I just pulled the clip from four minutes earlier", "query": "laptop video playback"},
-    {"phrase": "Corporate reviewed the footage, closed the free-rewash loophole", "query": "manager reviewing paperwork"},
-    {"phrase": "The line's moved twice as fast ever since", "query": "cars lined up carwash"}
+    {
+      "phrase": "any customer complaint gets an automatic free rewash",
+      "query": "car wash tunnel"
+    },
+    {
+      "phrase": "he'd walk up dripping wet car and claim we missed spots",
+      "query": "wet car exterior"
+    },
+    {
+      "phrase": "Corporate wouldn't let us push back without proof",
+      "query": "corporate office hallway",
+      "pin_query": "Corporate",
+      "pin_context": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+      "news_query": "Corporate",
+      "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "Corporate",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-17T09:43:04Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "the dash cam we already had pointed at the exit bay",
+      "query": "security camera lens"
+    },
+    {
+      "phrase": "Next time he pulled up complaining about 'missed spots,'",
+      "query": "car wash exit bay",
+      "pin_query": "Next",
+      "pin_context": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+      "news_query": "Next",
+      "news_angle": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+      "image_url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Next",
+        "url": "https://live.staticflickr.com/65535/52464119917_d8ab3e6f3d_b.jpg",
+        "verified_at": "2026-09-17T09:43:15Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "I just pulled the clip from four minutes earlier",
+      "query": "laptop video playback"
+    },
+    {
+      "phrase": "Corporate reviewed the footage, closed the free-rewash loophole",
+      "query": "manager reviewing paperwork"
+    },
+    {
+      "phrase": "The line's moved twice as fast ever since",
+      "query": "cars lined up carwash"
+    }
   ],
   "punches": [
-    {"phrase": "automatic free rewash", "text": "FREE LOOPHOLE", "color": "#ffaa30"},
-    {"phrase": "dripping wet car and claim we missed spots", "text": "SAME GUY AGAIN", "color": "#ff3030"},
-    {"phrase": "timestamping every finished wash", "text": "CAUGHT ON TAPE", "color": "#50ff80"},
-    {"phrase": "banned him from the location", "text": "BANNED", "color": "#50ff80"}
+    {
+      "phrase": "automatic free rewash",
+      "text": "FREE LOOPHOLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "dripping wet car and claim we missed spots",
+      "text": "SAME GUY AGAIN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "timestamping every finished wash",
+      "text": "CAUGHT ON TAPE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "banned him from the location",
+      "text": "BANNED",
+      "color": "#50ff80"
+    }
   ],
   "hashtags": [
     "talesfromthecustomer",
