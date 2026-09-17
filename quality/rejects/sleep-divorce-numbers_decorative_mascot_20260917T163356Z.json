@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260917T163356Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A second presenter mascot (clipboard, arm out) is parked in the identical pose in the lower third of EVERY frame from seg1:mid (t=12.4s) to payoff@-0.4 (t=49.7s) \u2014 ~37s of static sticker that also sits on top of the captions.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_text_collision",
+  "visible_evidence": "At seg1:mid and seg1:end the scene title 'it never settled' is overprinted on the subject title 'how many couples are sleeping apart' so both are illegible; the blue connector line crosses the word 'apart'; an empty unfilled ellipse floats at upper right with no meaning; 'anywhere between 29% and 35%' runs underneath the second mascot's head; and the top ~45% of the frame is dead gradient.",
+  "root_cause": "Overlay layers in this machine are drawn at fixed y-positions with no measured extents and no reserved bands \u2014 scene title, persistent subject title, the dial annotation, the caption and the presenter mascot are each composited independently, so they land on each other; the ellipse is an artifact the draw leaves behind when its element has no value to fill.",
+  "repair_goal": "Reserve non-overlapping vertical bands: one title only (drop or move the scene title clear of the subject title), keep the connector line out of any text box, delete the empty ellipse, lift the dial and its 29%/35%/annotation into the empty upper half so the frame is used, and move the presenter mascot off the annotation and the caption."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

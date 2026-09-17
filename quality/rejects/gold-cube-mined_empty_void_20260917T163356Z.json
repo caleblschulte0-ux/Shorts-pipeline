@@ -1,0 +1,21 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260917T163356Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=39.06s) is almost entirely dark: the two comparison bars have vanished to hairlines, leaving two 20px mascots, two thin rules and a dotted strip clinging to the right edge \u2014 the middle 60% of the frame is empty, and seg4:start/mid/payoff hold that same void under the quote ca",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "broken_visual_empty_void",
+  "visible_evidence": "seg3:start (t=32.26s) shows two short rounded bars where 'An Olympic Pool' is TALLER than 'The Gold Cube' but both are unlabelled and the 'vs' is hidden behind the mascot; by seg3:end (t=39.06s) both bars have collapsed entirely \u2014 only two hairlines remain, with 'The Gold Cube' drawn ABOVE 'An Olympic Pool' (22.3 sitting higher than 50, the comparison inverted) and a meaningless dotted ruler jammed against the right edge. The 22.3m cube \u2014 the whole premise of the video \u2014 is never drawn as a cube or as any volume.",
+  "root_cause": "The comparison machine's value->geometry mapping degenerates over the scene: bar heights animate to zero while the label rows keep their layout order, so the taller quantity ends up plotted lower, the axis ruler is left orphaned at the frame edge, and nothing fills the frame.",
+  "repair_goal": "Hold both quantities as persistent, proportionally-sized objects for the whole scene \u2014 the 22.3 m gold cube drawn as an actual cube next to a 50 m pool at true relative scale, both labelled with units and centred to fill the frame, with the smaller object clearly the SMALLER one on screen."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
