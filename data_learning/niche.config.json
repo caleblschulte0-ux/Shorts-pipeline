@@ -27840,6 +27840,277 @@
           "say": "Scientists don't know if plastic causes dementia, but brains with a dementia diagnosis carry three to five times more of it than brains without one \u2014 a link worth watching, not yet an answer."
         }
       ]
+    },
+    {
+      "slug": "car-colors-going-gray",
+      "title": "Why New Cars All Look The Same Color Now",
+      "hook": "80% of new cars are white, black, or gray.",
+      "closing": "Somewhere, a bright yellow car is very lonely.",
+      "question": "What color is your car? Tell me it isn't gray.",
+      "caption": "80% of new cars sold today are white, black, gray, or silver, up from 60% in 2004. Red and green combined? Down to just 9.2%. What color is your car? \ud83d\udc47",
+      "hashtags": [
+        "carcolors",
+        "automotive",
+        "cars",
+        "cardesign",
+        "colorpopularity",
+        "axalta",
+        "carbuying",
+        "didyouknow",
+        "mindblown",
+        "facts",
+        "design",
+        "cartrends"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "car_color_grayscale_share",
+          "params": {
+            "file": "car_color_grayscale_share.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SHIFT",
+          "topic": "why new cars all look the same color",
+          "say": "By 2023, 80 percent of new cars sold in America were white, black, gray, or silver. Back in 2004, grayscale colors were only 60 percent of the market. Color is quietly disappearing from the road.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "car_color_2023_breakdown",
+          "params": {
+            "file": "car_color_2023_breakdown.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE BREAKDOWN",
+          "topic": "which colors new cars actually come in now",
+          "say": "White leads at 27.6 percent, black at 22, gray at 21.3, and silver at 9.1. Add them up and grayscale is basically the entire market."
+        },
+        {
+          "source": "offline",
+          "key": "car_color_red_green_decline",
+          "params": {
+            "file": "car_color_red_green_decline.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE FADE",
+          "topic": "why colorful cars basically disappeared",
+          "say": "Red and green used to be real choices. In 1996 they made up 33.5 percent of new cars combined. By 2025, that's down to 9.2 percent. Color didn't fade, buyers just stopped choosing it."
+        }
+      ]
+    },
+    {
+      "slug": "gold-cube-mined",
+      "title": "All The Gold Ever Mined Fits In A 22-Meter Cube",
+      "hook": "216,000 tons of gold. One tiny cube.",
+      "closing": "Turns out humanity's greed fits in a hotel lobby.",
+      "question": "Would you even recognize that much gold if you saw it? Guess below.",
+      "caption": "By 2024, humanity had mined 216,000 tonnes of gold, enough to melt into a cube just 22.3 meters wide. Nearly half of it became jewelry. Would you recognize that much gold if you saw it? \ud83d\udc47",
+      "hashtags": [
+        "gold",
+        "goldmining",
+        "preciousmetals",
+        "finance",
+        "commodities",
+        "didyouknow",
+        "mindblown",
+        "wealth",
+        "investing",
+        "facts",
+        "worldgoldcouncil",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gold_stock_growth",
+          "params": {
+            "file": "gold_stock_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE STOCKPILE",
+          "topic": "how much gold humanity has ever mined",
+          "say": "Every ounce of gold ever mined is still sitting somewhere. By 2024 the stockpile hit 216 thousand tonnes, and most came out of the ground in just the last 70 years.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "gold_stock_distribution",
+          "params": {
+            "file": "gold_stock_distribution.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 WHERE IT SITS",
+          "topic": "where all that mined gold actually sits",
+          "say": "So where did it go? 45 percent became jewelry. Another 22 percent sits in bars, coins, and ETFs. And 17 percent is locked in central bank vaults, doing nothing but existing."
+        },
+        {
+          "source": "offline",
+          "key": "gold_cube_size_compare",
+          "params": {
+            "file": "gold_cube_size_compare.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE CUBE",
+          "topic": "how big the melted gold cube really is",
+          "say": "Melt every bit of it into one cube and it's only 22.3 meters a side, less than half the length of an Olympic pool. All that mining, and it barely fills a hotel lobby."
+        }
+      ]
+    },
+    {
+      "slug": "sleep-divorce-numbers",
+      "title": "1 In 3 Couples Now Sleep In Separate Rooms",
+      "hook": "Sleeping apart isn't the red flag you think.",
+      "closing": "Turns out the honeymoon phase has quiet hours.",
+      "question": "Do you and your partner still sleep in the same room? Tell me below.",
+      "caption": "1 in 3 couples now sleep in separate rooms, and Millennials do it twice as often as Boomers. The #1 reason, by far: snoring. Do you and your partner still share a bed? \ud83d\udc47",
+      "hashtags": [
+        "sleepdivorce",
+        "relationships",
+        "sleep",
+        "couples",
+        "marriage",
+        "millennials",
+        "sleephealth",
+        "snoring",
+        "psychology",
+        "didyouknow",
+        "mentalhealth",
+        "datingtips"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sleep_apart_by_year",
+          "params": {
+            "file": "sleep_apart_by_year.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE NUMBERS",
+          "topic": "how many couples are sleeping apart",
+          "say": "Every year since 2023, the American Academy of Sleep Medicine has asked. The answer keeps landing around a third: 35 percent in 2023, 29 in 2024, 33 again in 2025. This isn't a phase.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sleep_apart_by_generation",
+          "params": {
+            "file": "sleep_apart_by_generation.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE GENERATIONS",
+          "topic": "which couples sleep apart the most",
+          "say": "It's not evenly spread. 43 percent of Millennial couples say they sleep separately. Only 22 percent of Boomers do. The generation raised on personal space is applying it to marriage."
+        },
+        {
+          "source": "offline",
+          "key": "sleep_apart_reasons",
+          "params": {
+            "file": "sleep_apart_reasons.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 \u00b7 THE REASONS",
+          "topic": "why couples actually end up in separate rooms",
+          "say": "The number one reason, by far: snoring, 52 percent blame it. Phone scrolling and nighttime bathroom trips tie for second, 33 percent each. Love doesn't fix bad sleep hygiene."
+        }
+      ]
+    },
+    {
+      "slug": "coffee-price-record",
+      "title": "Coffee Just Hit $4.41 A Pound \u2014 A Record",
+      "hook": "Your coffee habit is about to get pricier.",
+      "closing": "Drink it slow. It earned that price.",
+      "question": "Have you noticed your coffee getting more expensive? Tell me below.",
+      "caption": "Arabica coffee futures hit a record $4.41 a pound in February 2025, more than double what it cost a year earlier. Brazil's drought is the reason. Have you noticed your coffee bill creeping up? \ud83d\udc47",
+      "hashtags": [
+        "coffee",
+        "coffeeprices",
+        "arabica",
+        "commodities",
+        "brazil",
+        "inflation",
+        "costofliving",
+        "coffeelovers",
+        "didyouknow",
+        "economics",
+        "markets",
+        "facts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "coffee_price_surge",
+          "params": {
+            "file": "coffee_price_surge.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE RECORD",
+          "topic": "how high coffee prices have climbed",
+          "say": "Arabica coffee futures hit $4.41 a pound in February 2025, the highest price ever recorded. Back in 2019 it was around $1.05. The climb wasn't steady, it was a series of shocks.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "coffee_supply_shortfall",
+          "params": {
+            "file": "coffee_supply_shortfall.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE SHORTAGE",
+          "topic": "why coffee supply keeps shrinking",
+          "say": "The shock is Brazil's drought. One trade house cut its Brazil arabica forecast from 45.4 million bags to just 34.4 million, an 11-million-bag hole in the world's biggest coffee supply overnight."
+        },
+        {
+          "source": "offline",
+          "key": "coffee_price_yoy",
+          "params": {
+            "file": "coffee_price_yoy.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE DOUBLING",
+          "topic": "how much coffee prices have doubled",
+          "say": "That's why your cup costs more than it did a year ago. $2.00 a pound in February 2024. $4.41 by February 2025. More than double, in twelve months."
+        }
+      ]
     }
   ],
   "videos": [

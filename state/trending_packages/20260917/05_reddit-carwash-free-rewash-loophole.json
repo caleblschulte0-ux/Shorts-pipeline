@@ -1,0 +1,37 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-carwash-free-rewash-loophole",
+  "title": "The 'Free Rewash' Guy Didn't Know About The Dash Cam",
+  "script": "Our car wash manager rolled out a new rule: any customer complaint gets an automatic free rewash, no questions, no manager review, just to speed up the line. One regular figured that out fast. Every single visit, he'd walk up dripping wet car and claim we missed spots, streaks, whatever, free rewash, every time, for weeks. Corporate wouldn't let us push back without proof. So I started running the dash cam we already had pointed at the exit bay, timestamping every finished wash before the car even left the building. Next time he pulled up complaining about 'missed spots,' I didn't argue. I just pulled the clip from four minutes earlier, spotless car, same angle, same paint. He tried a different complaint. I had that angle too. Corporate reviewed the footage, closed the free-rewash loophole same week, and banned him from the location. The line's moved twice as fast ever since.",
+  "shots": [
+    {"phrase": "any customer complaint gets an automatic free rewash", "query": "car wash tunnel"},
+    {"phrase": "he'd walk up dripping wet car and claim we missed spots", "query": "wet car exterior"},
+    {"phrase": "Corporate wouldn't let us push back without proof", "query": "corporate office hallway"},
+    {"phrase": "the dash cam we already had pointed at the exit bay", "query": "security camera lens"},
+    {"phrase": "Next time he pulled up complaining about 'missed spots,'", "query": "car wash exit bay"},
+    {"phrase": "I just pulled the clip from four minutes earlier", "query": "laptop video playback"},
+    {"phrase": "Corporate reviewed the footage, closed the free-rewash loophole", "query": "manager reviewing paperwork"},
+    {"phrase": "The line's moved twice as fast ever since", "query": "cars lined up carwash"}
+  ],
+  "punches": [
+    {"phrase": "automatic free rewash", "text": "FREE LOOPHOLE", "color": "#ffaa30"},
+    {"phrase": "dripping wet car and claim we missed spots", "text": "SAME GUY AGAIN", "color": "#ff3030"},
+    {"phrase": "timestamping every finished wash", "text": "CAUGHT ON TAPE", "color": "#50ff80"},
+    {"phrase": "banned him from the location", "text": "BANNED", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "talesfromthecustomer",
+    "carwash",
+    "customerservice",
+    "reddit",
+    "storytime",
+    "karma",
+    "caught",
+    "smallbusiness",
+    "viral",
+    "shorts",
+    "fyp"
+  ],
+  "music_vibe": "quiet setup into satisfying payoff",
+  "bottom_theme": "auto"
+}

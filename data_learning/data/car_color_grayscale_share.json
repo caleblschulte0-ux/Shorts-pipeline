@@ -1,0 +1,23 @@
+{
+  "key": "car_color_grayscale_share",
+  "title": "Grayscale (white/black/gray/silver) share of new US car sales (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2004-2023",
+  "source": {
+    "name": "New-vehicle color popularity by year",
+    "publisher": "iSeeCars.com",
+    "url": "https://www.iseecars.com/most-popular-car-colors-study",
+    "officiality": "secondary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "2004 (60.3%) and 2023 (80%) are the reported figures; intervening years are a smooth interpolation between them, not independently sourced.",
+  "points": [
+    {"label": "2004", "value": 60, "period": "2004"},
+    {"label": "2008", "value": 65, "period": "2008"},
+    {"label": "2012", "value": 70, "period": "2012"},
+    {"label": "2016", "value": 74, "period": "2016"},
+    {"label": "2020", "value": 77, "period": "2020"},
+    {"label": "2023", "value": 80, "period": "2023"}
+  ]
+}

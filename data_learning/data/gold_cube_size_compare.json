@@ -1,0 +1,19 @@
+{
+  "key": "gold_cube_size_compare",
+  "title": "The world's gold, melted into a cube, vs. an Olympic pool (meters)",
+  "unit": "meters",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "How Much Gold Has Been Mined (gold cube calculation)",
+    "publisher": "World Gold Council",
+    "url": "https://www.gold.org/goldhub/data/how-much-gold",
+    "officiality": "secondary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "The 22.3-meter side length is the widely cited calculation of melting the ~216,265-tonne above-ground gold stock (density 19.32 g/cm^3) into a single cube; Olympic pool length (50m) is the standard FINA competition length, used only as a familiar scale reference.",
+  "points": [
+    {"label": "The Gold Cube", "value": 22.3},
+    {"label": "An Olympic Pool", "value": 50}
+  ]
+}

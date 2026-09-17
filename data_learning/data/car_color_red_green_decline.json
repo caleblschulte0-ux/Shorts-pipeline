@@ -1,0 +1,19 @@
+{
+  "key": "car_color_red_green_decline",
+  "title": "Red + green combined share of new US car sales (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1996 vs. 2025",
+  "source": {
+    "name": "Historical car color popularity, red and green combined share",
+    "publisher": "Car colour popularity industry data (Axalta/iSeeCars-compiled)",
+    "url": "https://en.wikipedia.org/wiki/Car_colour_popularity",
+    "officiality": "secondary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "Combined market share of red and green new-car paint, 1996 vs. 2025.",
+  "points": [
+    {"label": "1996", "value": 33.5},
+    {"label": "2025", "value": 9.2}
+  ]
+}

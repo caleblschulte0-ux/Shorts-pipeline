@@ -1,0 +1,19 @@
+{
+  "key": "sleep_apart_by_generation",
+  "title": "Couples who sleep apart, by generation (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "AASM annual 'sleep divorce' survey",
+    "publisher": "American Academy of Sleep Medicine",
+    "url": "https://aasm.org/new-survey-data-sleep-divorce/",
+    "officiality": "primary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "AASM survey breakdown of the sleeping-apart question by generation.",
+  "points": [
+    {"label": "Millennials", "value": 43},
+    {"label": "Baby Boomers", "value": 22}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "sleep_apart_by_year",
+  "title": "Americans who sleep apart from their partner (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023-2025",
+  "source": {
+    "name": "AASM annual 'sleep divorce' survey",
+    "publisher": "American Academy of Sleep Medicine",
+    "url": "https://aasm.org/new-survey-data-sleep-divorce/",
+    "officiality": "primary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "American Academy of Sleep Medicine survey question asked annually; year-to-year methodology varies slightly, hence the non-monotonic figures.",
+  "points": [
+    {"label": "2023", "value": 35, "period": "2023"},
+    {"label": "2024", "value": 29, "period": "2024"},
+    {"label": "2025", "value": 33, "period": "2025"}
+  ]
+}

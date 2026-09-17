@@ -1,0 +1,20 @@
+{
+  "key": "sleep_apart_reasons",
+  "title": "Top reasons couples sleep apart (percent citing each)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "AASM annual 'sleep divorce' survey",
+    "publisher": "American Academy of Sleep Medicine",
+    "url": "https://aasm.org/new-survey-data-sleep-divorce/",
+    "officiality": "primary",
+    "access_date": "2026-09-17"
+  },
+  "notes": "Respondents could cite more than one reason, so figures do not sum to 100.",
+  "points": [
+    {"label": "Partner Snoring", "value": 52},
+    {"label": "Phone Scrolling", "value": 33},
+    {"label": "Bathroom Trips", "value": 33}
+  ]
+}

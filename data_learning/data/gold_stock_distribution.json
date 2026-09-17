@@ -1,0 +1,21 @@
+{
+  "key": "gold_stock_distribution",
+  "title": "Where the world's above-ground gold sits (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "How Much Gold Has Been Mined",
+    "publisher": "World Gold Council",
+    "url": "https://www.gold.org/goldhub/data/how-much-gold",
+    "officiality": "official",
+    "access_date": "2026-09-17"
+  },
+  "notes": "World Gold Council breakdown of the ~216,265-tonne above-ground gold stock by end use, rounded to whole percent.",
+  "points": [
+    {"label": "Jewellery", "value": 45},
+    {"label": "Bars, Coins & ETFs", "value": 22},
+    {"label": "Central Banks", "value": 17},
+    {"label": "Industrial & Other", "value": 15}
+  ]
+}

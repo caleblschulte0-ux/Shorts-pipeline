@@ -1,0 +1,37 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-coworking-phone-booth-calendar",
+  "title": "She Booked A Phone Booth For Calls She Never Made",
+  "script": "Our co-working space had one soundproof phone booth, and the booking calendar was sacred, front desk said whatever the calendar says goes, no questions asked, no exceptions. One member figured out the loophole immediately. She'd block the booth all day with a recurring invite titled 'Client Call,' then never actually use it, just wanted it empty so she could hover in and out whenever she felt like it. The rest of us got locked out for eight hours a day over a booth nobody was using. Front desk wouldn't touch it without proof, calendar says go. So I started booking it myself in real fifteen-minute slots under my actual client names, back to back, all day, every day, completely within the rules. She couldn't book around a fully packed calendar. She marched up front desk furious that the booth was 'stolen.' Front desk pulled the log: every slot of mine had a real call attached. Hers had zero. Membership revoked, booth's been open ever since.",
+  "shots": [
+    {"phrase": "one soundproof phone booth", "query": "office phone booth"},
+    {"phrase": "a recurring invite titled 'Client Call,'", "query": "calendar invite screen"},
+    {"phrase": "locked out for eight hours a day", "query": "coworking space desks"},
+    {"phrase": "Front desk wouldn't touch it without proof", "query": "front desk reception"},
+    {"phrase": "in real fifteen-minute slots under my actual client names", "query": "laptop calendar booking"},
+    {"phrase": "She marched up front desk furious", "query": "annoyed woman office"},
+    {"phrase": "Front desk pulled the log", "query": "reception staff computer"},
+    {"phrase": "Membership revoked, booth's been open ever since", "query": "empty phone booth"}
+  ],
+  "punches": [
+    {"phrase": "the booking calendar was sacred", "text": "CALENDAR RULES", "color": "#ffaa30"},
+    {"phrase": "never actually use it", "text": "FAKE CALLS", "color": "#ff3030"},
+    {"phrase": "completely within the rules", "text": "TECHNICALLY LEGAL", "color": "#50ff80"},
+    {"phrase": "Membership revoked", "text": "REVOKED", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "coworking",
+    "officelife",
+    "reddit",
+    "storytime",
+    "karma",
+    "caught",
+    "worklife",
+    "viral",
+    "shorts",
+    "fyp"
+  ],
+  "music_vibe": "quiet setup into satisfying payoff",
+  "bottom_theme": "auto"
+}
