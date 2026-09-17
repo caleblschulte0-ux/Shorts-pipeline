@@ -1619,10 +1619,12 @@
       "known_claims": [],
       "candidate_sources": [
         "https://www.twitch.tv/xqc/clip/PluckyPoorGerbilKappaWealth-UI6cT_jVCX_UcYpw",
-        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ"
+        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP",
+        "https://www.twitch.tv/xqc/clip/SaltyBetterCrocodileAMPEnergyCherry-hK5RXhmHi8_dozZo"
       ],
       "published_versions": [],
-      "last_updated": "2026-09-12"
+      "last_updated": "2026-09-17"
     },
     "jynxzi-about-aggressive-2026w37": {
       "event_id": "jynxzi-about-aggressive-2026w37",
@@ -1686,6 +1688,70 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-16"
+    },
+    "xqc-city-driv-2026w37": {
+      "event_id": "xqc-city-driv-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "city",
+        "driv",
+        "facecam",
+        "pull"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-17",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ",
+        "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-17"
+    },
+    "xqc-about-atms-2026w37": {
+      "event_id": "xqc-about-atms-2026w37",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "atms",
+        "charact",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-17",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ",
+        "https://www.twitch.tv/xqc/clip/HilariousLivelyCarrotNotLikeThis-OsdwAfaxCwMRZzhP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-17"
+    },
+    "lirik-charact-dark-2026w37": {
+      "event_id": "lirik-charact-dark-2026w37",
+      "people": [
+        "lirik"
+      ],
+      "actions": [
+        "charact",
+        "dark",
+        "figure",
+        "lirik"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-17",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/lirik/clip/SmokyDeadCroquetteResidentSleeper-3rJXkTkOqLD8pzxO",
+        "https://www.twitch.tv/lirik/clip/ObservantDependableYakinikuUWot-b5ISyx7BIq-wTpDJ",
+        "https://www.twitch.tv/lirik/clip/AuspiciousStormyButterflyUnSane-btVOchId-6DOhDq6"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-17"
     }
   }
 }

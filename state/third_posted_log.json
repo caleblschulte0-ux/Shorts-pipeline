@@ -7357,13 +7357,81 @@
       "ts": "2026-09-17T11:38:30.415282+00:00"
     },
     "clip-20260917-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/BoldFriendlyUdonSmoocherZ-901TwqU9hvqoUYAb",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/h_5ng8qTzAs",
       "title": "Joe Caine Returns And Buddha Immediately Has A Job For Him",
       "kind": "twitch_clip",
-      "ts": "2026-09-17T11:42:33.845347+00:00",
+      "ts": "2026-09-17T11:42:38.143427+00:00",
+      "uploaded_at": "2026-09-17T11:42:38.143443+00:00",
+      "publish_at": "2026-09-17T20:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/BoldFriendlyUdonSmoocherZ-901TwqU9hvqoUYAb",
+      "streamer": "buddha",
+      "series": "wholesome",
+      "hook": "HE'S BACK AND BUDDHA NEEDS A FAVOR",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2092,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 25.8
+      },
+      "director_cut": true
+    },
+    "rejected-wimpydignifiedsandstormpicomause-qfmyen5yarf20ycc": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/WimpyDignifiedSandstormPicoMause-QFMYEn5YaRF20yCC",
+      "streamer": "jynxzi",
+      "title": "balright",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine deck talk, no event)",
+      "ts": "2026-09-17T11:43:29.604839+00:00"
+    },
+    "rejected-tallinexpensivesmoothiedansgame-t9_wenvf65hfg-se": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/TallInexpensiveSmoothieDansGame-T9_WEnvF65hFg-se",
+      "streamer": "stableronaldo",
+      "title": "HUH",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (explicit crude line, no real event)",
+      "ts": "2026-09-17T11:44:20.526139+00:00"
+    },
+    "rejected-increduloussmellymangofrankerz-qrsdtgitoruqz7o0": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/IncredulousSmellyMangoFrankerZ-qRSDTgiTORuQz7O0",
+      "streamer": "zackrawrr",
+      "title": "Jury hold out was a black guy",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (commentary talk, no visible event)",
+      "ts": "2026-09-17T11:45:31.165766+00:00"
+    },
+    "rejected-zealousknottybaguettechocolaterain-wloeyg9-hyssgex8": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ZealousKnottyBaguetteChocolateRain-wloEYg9-HYSSgEx8",
+      "streamer": "jynxzi",
+      "title": "SON",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (LoL gameplay reaction, insider game know)",
+      "ts": "2026-09-17T11:46:22.143707+00:00"
+    },
+    "rejected-bloodyplayfulantdansgame-bmbogf-g9lsyxyke": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/BloodyPlayfulAntDansGame-bmbogF-g9LSyXyke",
+      "streamer": "stableronaldo",
+      "title": "sob",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague gossip chat, no visible event)",
+      "ts": "2026-09-17T11:48:30.743938+00:00"
+    },
+    "clip-20260917-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SweetCleanClipsmomPeoplesChamp-xUAZDc28WRBtBq-b",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Walks In His First Ever Fashion Show",
+      "kind": "twitch_clip",
+      "ts": "2026-09-17T12:58:04.030591+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
