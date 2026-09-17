@@ -7,10 +7,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 85.7,
+    "elapsed_seconds": 65.2,
     "package_path": "state/trending_packages/20260917/01_graph-tequila-passed-whiskey.json",
     "source": "brain",
-    "video_path": "output/daily_20260917-220829_tequila_just_passed_whiskey_in_america.mp4",
+    "video_path": "output/daily_20260917-233231_tequila_just_passed_whiskey_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -41,10 +41,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 9.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 81.2,
+    "elapsed_seconds": 63.1,
     "package_path": "state/trending_packages/20260917/03_graph-labgrown-diamonds-passed-natural.json",
     "source": "brain",
-    "video_path": "output/daily_20260917-220955_lab_grown_diamonds_just_passed_natural_o.mp4",
+    "video_path": "output/daily_20260917-233336_lab_grown_diamonds_just_passed_natural_o.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -74,14 +74,14 @@
     "publish_at": "2026-09-18T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, well-captioned reddit-story cut wrecked by a giant irrelevant insect photo held across two mid beats.",
-    "elapsed_seconds": 204.3,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 234.7,
     "package_path": "state/trending_packages/20260917/05_reddit-carwash-free-rewash-loophole.json",
     "source": "brain",
-    "video_path": "output/daily_20260917-221132_the__free_rewash__guy_didn_t_know_about_.mp4",
+    "video_path": "output/daily_20260917-233443_the__free_rewash__guy_didn_t_know_about_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.967,
+      "duration": 51.433,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -92,7 +92,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -101,8 +101,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, well-captioned reddit-story cut wrecked by a giant irrelevant insect photo held across two mid beats.",
-      "score": 66
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
     },
     "blocked": true
   },
@@ -113,14 +113,14 @@
     "publish_at": "2026-09-18T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Relevant illustrations and clean cadence, but the gameplay layer is blown out to near-white yellow, one photo is reused across two beats, and captions run to the frame edge.",
-    "elapsed_seconds": 228.3,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+    "elapsed_seconds": 155.6,
     "package_path": "state/trending_packages/20260917/06_reddit-coworking-phone-booth-calendar.json",
     "source": "brain",
-    "video_path": "output/daily_20260917-221451_she_booked_a_phone_booth_for_calls_she_n.mp4",
+    "video_path": "output/daily_20260917-233837_she_booked_a_phone_booth_for_calls_she_n.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 57.5,
+      "duration": 49.7,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -131,7 +131,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.1
+      "loudness_lufs": -23.6
     },
     "qa": {
       "ok": true,
@@ -140,139 +140,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Relevant illustrations and clean cadence, but the gameplay layer is blown out to near-white yellow, one photo is reused across two beats, and captions run to the frame edge.",
-      "score": 70
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
+      "score": null
     },
     "blocked": true
   },
   {
-    "topic": "senate blocks data center bill",
+    "topic": "ree drummond",
     "angle": null,
     "publish_at": "2026-09-18T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Irrelevant stock birds stand in for a crypto-mining debt story, and the $80\u2192$640 jump is only ever typed on a black card, never shown.",
-    "elapsed_seconds": 756.9,
-    "title": "Roommate's Secret Mining Rigs Left Me $9,400 In Debt",
-    "package_path": "state/trending_packages/20260917-222116_auto_senate_blocks_data_center_bill.json",
-    "video_path": "output/daily_20260917-222116_senate_blocks_data_center_bill.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Irrelevant stock birds stand in for a crypto-mining debt story, and the $80\u2192$640 jump is only ever typed on a black card, never shown.",
-      "score": 34
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\n",
+    "elapsed_seconds": 2.0,
     "backfill": true
   },
   {
-    "topic": "trump kennedy center demolition",
+    "topic": "chase sapphire reserve 10th anniversary",
     "angle": null,
     "publish_at": "2026-09-18T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every image in the top pane is unrelated auto-grabbed stock \u2014 a mosh pit, a stranger's photography promo portrait, a helicopter gunner, a blacksmith \u2014 under a story about a demolished theater.",
-    "elapsed_seconds": 1445.9,
-    "title": "He Demolished Grandpa's Theater With No Warning",
-    "package_path": "state/trending_packages/20260917-223330_auto_trump_kennedy_center_demolition.json",
-    "video_path": "output/daily_20260917-223330_trump_kennedy_center_demolition.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.767,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every image in the top pane is unrelated auto-grabbed stock \u2014 a mosh pit, a stranger's photography promo portrait, a helicopter gunner, a blacksmith \u2014 under a story about a demolished theater.",
-      "score": 30
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\n",
+    "elapsed_seconds": 2.0,
     "backfill": true
   },
   {
-    "topic": "taylor frankie paul",
+    "topic": "selena quintanilla estate lawsuit ab suzette",
     "angle": null,
     "publish_at": "2026-09-18T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['court ordered 2 surprise drug tests', 'she failed both', 'Her ex got the kids', 'showed up at my apartment', 'mascara down her face', 'medicine cabinet open', 'passed out on my couch']",
-    "elapsed_seconds": 81.1,
-    "title": "I Found Pills In My Sister's Diaper Bag",
-    "package_path": "state/trending_packages/20260917-225732_auto_taylor_frankie_paul.json",
-    "quarantined": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\n",
+    "elapsed_seconds": 1.9,
     "backfill": true
   },
   {
-    "topic": "lance schroyer ice nomination withdrawn",
+    "topic": "jenna dewan dancing with the stars",
     "angle": null,
     "publish_at": "2026-09-18T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 14 column 763 (char 4299)\", \"headless-claude[1]: Expecting ',' delimiter: line 5 ",
-    "elapsed_seconds": 773.3,
-    "title": "Her Text Exposed My Husband's Fake Promotion",
-    "package_path": "state/trending_packages/20260917-225904_auto_lance_schroyer_ice_nomination_withdrawn.json",
-    "video_path": "output/daily_20260917-225904_lance_schroyer_ice_nomination_withdrawn.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 47.233,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 14 column 763 (char 4299)\", \"headless-claude[1]: Expecting ',' delimiter: line 5 ",
-      "score": null
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 2am (UTC)\n",
+    "elapsed_seconds": 1.7,
     "backfill": true
   }
 ]
