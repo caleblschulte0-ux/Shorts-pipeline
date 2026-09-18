@@ -6,17 +6,38 @@
   "y_label": "Share of US dispositions (percent)",
   "duration": 13,
   "source": "National Funeral Directors Association (NFDA) Cremation and Burial Report, US disposition method share, 2000-2024, approximate.",
-  "years": [2000, 2005, 2010, 2015, 2020, 2024],
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2020,
+    2024
+  ],
   "series": [
     {
       "name": "Cremation",
       "color": "#7FDBFF",
-      "values": [26, 32, 40.6, 48.6, 56, 61.6]
+      "values": [
+        26,
+        32,
+        40.6,
+        48.6,
+        56,
+        61.6
+      ]
     },
     {
       "name": "Burial",
       "color": "#8B4513",
-      "values": [73, 67, 58, 50.5, 43, 37]
+      "values": [
+        73,
+        67,
+        58,
+        50.5,
+        43,
+        37
+      ]
     }
   ],
   "hashtags": [
