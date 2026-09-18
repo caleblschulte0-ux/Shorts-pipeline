@@ -1,0 +1,25 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260918T123425Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg1:start through payoff@-0.4 a second foreground Data stands dead-centre at the bottom in the identical clipboard/arm-out pose for ~40s \u2014 same position, same pose, no setup->action->payoff, while a duplicate copy of him perches on the marks above.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "weak_demonstration",
+  "visible_evidence": "seg3:start and seg3:mid draw the video's headline claim \u2014 a 22.3 m gold cube versus a 50 m Olympic pool \u2014 as two thin rounded pills with numbers above them, occupying the lower-middle third of the frame while the top two-thirds sit empty; no cube is ever shown in a video titled 'fits in a 22-meter cube'.",
+  "root_cause": "The scene fell back to a generic two-bar comparison machine instead of a volumetric/size machine, so a length-vs-volume story is rendered as abstract bars with a tiny mascot parked between them.",
+  "repair_goal": "Draw the actual object: a 22.3 m cube rendered as a solid volume next to a to-scale 50 m pool (or human/lobby silhouette), filling the frame top to bottom, with Data physically climbing or measuring the cube so the size claim is demonstrated rather than asserted."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

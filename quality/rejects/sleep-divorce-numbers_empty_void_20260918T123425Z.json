@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260918T123425Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=41.69s) is two rows of icons at the top and roughly 60% of the frame dead navy below; seg2:mid (t=26.07s) has its entire upper half empty with one thin bar.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:mid (t=12.44s) and seg1:end (t=17.51s): the caption 'anywhere between 29% and 35%' is drawn at the same baseline as the '35%' endpoint label so the two strings overprint, and the right mascot sits on top of both; the header stacks 'it never settled' directly onto 'how many couples are sleeping apart'; the zigzag connector line crosses through the header text; the caption 'third: 35 percent' lands across the second mascot's legs.",
+  "root_cause": "The range/interval machine lays its explanatory caption and its endpoint value labels in the same horizontal band with no measured extent or collision reserve, and the scene composites a second mascot into that band while the eyebrow title is drawn over the standing header instead of replacing it.",
+  "repair_goal": "Re-lay seg1 so nothing overlaps: drop the redundant 'anywhere between 29% and 35%' caption (the endpoint labels already say it) or move it below the pill with a measured clear band, keep ONE mascot in the scene, give the eyebrow title its own row above the header, and fill the empty upper third so the pill reads as the subject at 200pt."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

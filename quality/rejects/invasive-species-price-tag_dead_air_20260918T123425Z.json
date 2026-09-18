@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260918T123425Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg4:start (30.58s) through payoff@-0.4 (35.87s) is the same outro frame \u2014 speech bubble, two tiny rows, static mascot \u2014 with only a few-pixel mascot creep; the cadence detector corroborates with max_dup_at_s 35.0.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:start/mid/end \u2014 the right-hand bubble label reads 'Classified as harmful invas' with the rest amputated by the frame edge; 'Alien species established' is overprinted by the static mascot's head; the caption 'taken hold worldwide.' at seg3:start is dark grey on dark gradient and unreadable; the '3.5' number pop is chopped by the bottom edge at seg3:mid.",
+  "root_cause": "Bubble labels are placed at the mark's right without measuring the text extent against the frame's safe area, so the longer of the two runs off-canvas; the caption/number-pop layer and the host-baked mascot are composited without a reserved lower band, so they collide with each other and with the bottom edge.",
+  "repair_goal": "Measure every label's rendered width and place/wrap it inside the safe area so 'Classified as harmful invasive species' is fully visible; reserve a clear lower band for the caption and number pop so neither is clipped by the frame nor printed over the mascot, and lift the caption to full ink contrast."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "glp1-weight-loss-surge",
+ "ts": "20260918T123425Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start (t=14.48) every category label is cut off by the left frame edge \u2014 'repatide (Zepbound)', 'maglutide (Wegovy)', 'glutide (early GLP-1)', ')rlistat' \u2014 and at seg3:start the caption reads 'each___1%' with the word covered by the mascot.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start (t=14.48s): the five drug labels are clipped by the left frame edge \u2014 'repatide (Zepbound)' for Tirzepatide, 'maglutide (Wegovy)', 'glutide (early GLP-1)', ')rlistat (older pill)'. seg2:mid (t=17.47s): the funnel fills only the top third, the lower half is empty ground, and the annotation '14% make it to the end' is printed across the middle of the funnel while the caption 'weight. The newest' sits in near-invisible grey over the mascot.",
+  "root_cause": "The horizontal bar/funnel layout is laid out from an unmeasured label column \u2014 text is right-aligned into x<0 instead of the widest label being measured and the plot area inset to fit it \u2014 and the funnel's vertical extent is not scaled to the safe area, leaving the bottom half unused while an annotation is placed over the mark rather than beside it.",
+  "repair_goal": "Measure the widest category label and inset the funnel/bar plot so every label is fully inside the frame with margin; scale the funnel to fill the vertical safe area so no half-frame of empty ground remains; move the '14% make it to the end' annotation off the mark and onto its own line, and drop the second static mascot out of this scene."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

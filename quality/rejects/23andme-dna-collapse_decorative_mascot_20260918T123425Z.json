@@ -1,0 +1,16 @@
+{
+ "slug": "23andme-dna-collapse",
+ "ts": "20260918T123425Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The primary Data figure sits at the identical bottom-centre spot in the identical pose \u2014 right arm extended, clipboard in left hand \u2014 in EVERY frame from hook@0.3 through payoff@-0.4 (f00 and f20 are pixel-alike); he never once acts on a stat.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_label_collision",
+  "visible_evidence": "At seg4:start (t=35.63s) through payoff@-0.4 (t=41.00s) two series labels are drawn at the same baseline and overlap into unreadable glyphs; '5M apart' is printed over the teal bar; the shrunken carry-over visual sits under a giant quote bubble with the outro CTA and the source line all competing in the lower third, and the bottom mascot covers part of the source strip.",
+  "root_cause": "The outro composites the previous scene's residual chart labels at fixed positions without measuring their extents or clearing the prior scene's text layer, so two labels claim the same band; nothing checks label bounding boxes for collision before drawing.",
+  "repair_goal": "Rebuild seg4 as a clean single-focus closing shot: drop or fully clear the residual seg3 labels, measure every remaining label's extent and place them so no two boxes intersect (and none sits over a mark), and give the host mascot one real closing action tied to the 'your DNA outlived the company' line instead of the same parked pose."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
