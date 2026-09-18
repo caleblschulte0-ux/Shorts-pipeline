@@ -6,14 +6,16 @@
   "previously_uploaded": 1,
   "rendered_or_attempted": 9,
   "uploaded": 1,
-  "quarantined": 4,
-  "failed": 5,
+  "quarantined": 0,
+  "failed": 9,
   "failed_by_stage": {
-    "showrunner_block": 5
+    "showrunner_block": 5,
+    "infra_error": 4
   },
   "failed_by_format": {
     "graph_race": 3,
-    "reddit": 2
+    "reddit": 2,
+    "unknown": 4
   },
   "status": "repair_required",
   "video_urls": []

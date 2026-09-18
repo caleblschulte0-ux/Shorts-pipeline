@@ -4,28 +4,30 @@
 
 - queued: **9**
 - succeeded: **0**
-- quarantined (off-topic imagery): **4**
-- failed: **5**
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **hudson williams heated rivalry season 2**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['phone lit up on the nightstand', "weren't rivals at all", 'been together for 3 years', 'girlfriend his agent hired', 'confronted him at 2 a.m.', "Cole didn't even deny it", 'non-disclosure agreement']
-- **costco food court**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mother-in-law screamed', 'grabbed the microphone', 'Security walked over fast', 'husband just stood there', 'gift card', 'daughter, all of 8', "we're done"]
-- **warren buffett**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['in front of 12 relatives', 'worked there for 9 years', 'squeezed my hand under the table', 'Mark has the name, you have the numbers', 'my mother texted me', 'drove over shaking', 'worth 12 million dollars']
-- **jenna ortega**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['sold out every single weekend', 'refused one scene', "won't commit", 'watched a stranger wear my costume', 'grabbed the microphone', "director's face went white", '12 million views later']
+- quarantined (off-topic imagery): **0**
+- failed: **9**
 
 ## Failed
 - **Nvidia's Data Center Chips Just Passed All Of Intel**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely strong overtake — real crossover, rescaling axis, leaderboard flip — let down by a hook that is a title-plus-caption card over a chart that has not started, and a source credit truncated mid-sentence in every frame.`
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — real crossover, rescaling axis, leaderboard flip — undercut by a source credit that is cut off mid-sentence in every single frame.`
 - **Waymo Just Passed Lyft In San Francisco**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
 - **Oat Milk Just Passed Soy Milk In America**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — the 2021 crossover and the leaderboard flip land — but the hook caption dissolves into unreadable text stacked on the axis label, and the bright accent is on Soy Milk instead of the subject, Oat Milk.`
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — the 2021 crossover and the 530M/325M reversal land — but the hook card is parked on top of the axis and truncates the 500M tick.`
 - **Corporate Said 'Follow The Return Policy Exactly.' I Did.**
-  - error: `showrunner_block: showrunner BLOCK: The payoff punchline is destroyed by two captions printed on top of each other at t=57.57s, and one AI store-clerk shot at 46s is the only illustration in 59 seconds of otherwise undifferentiated parkour gameplay.`
+  - error: `showrunner_block: showrunner BLOCK: For the first ~45 seconds the top half of the split is just more gameplay instead of story illustrations — two relevant shots finally arrive at 47s and 58s, so the cause/effect beats are narrated but never shown.`
 - **She Kept Taking My Reserved Spot. So I Reserved Hers.**
-  - error: `showrunner_block: showrunner BLOCK: An unrelated Victorian ice-skating engraving is the video's one illustration, and every other beat is bare gameplay — including a near-black frame at 30s — so the story is never shown, only narrated.`
+  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your session limit · resets 5pm (UTC)\n", "headless-claude[1]: claude CLI rc=1: You`
+- **san antonio weather**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 5pm (UTC)
+`
+- **riot fest**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 5pm (UTC)
+`
+- **btc price**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 5pm (UTC)
+`
+- **bitcoin**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit · resets 5pm (UTC)
+`
 
