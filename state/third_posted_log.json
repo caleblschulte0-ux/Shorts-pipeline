@@ -7716,14 +7716,27 @@
       "ts": "2026-09-18T15:09:29.497763+00:00"
     },
     "clip-20260918-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/VictoriousBraveMelonEleGiggle-xwSi21yzgXxML9mw",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/GCkPjB5zVLE",
       "title": "Lacy Finally Shows Everyone The Mall Concert Space Nobody's Seen",
       "kind": "twitch_clip",
-      "ts": "2026-09-18T15:14:27.298940+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-18T15:14:31.242641+00:00",
+      "uploaded_at": "2026-09-18T15:14:31.242661+00:00",
+      "publish_at": "2026-09-19T05:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/VictoriousBraveMelonEleGiggle-xwSi21yzgXxML9mw",
+      "streamer": "lacy",
+      "series": "wholesome",
+      "hook": "NOBODY HAS SEEN THIS YET",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2274,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 11.1
+      },
+      "director_cut": true
     }
   }
 }
