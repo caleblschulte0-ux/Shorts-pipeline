@@ -182,6 +182,103 @@ class TestTheGateIsNotOptional(unittest.TestCase):
         self.assertIn("thumbnail=thumb", self.SRC)
         self.assertIn("_description(story_cfg, meta)", self.SRC)
 
+    def test_a_claim_is_written_before_the_upload_call(self):
+        """Doctor finding b6648006da7e: without a pre-call claim there is
+        no way to tell 'nothing was attempted' from 'a crash killed the
+        upload mid-flight' on the next run."""
+        self.assertLess(self.SRC.index('"phase": "uploading"'),
+                        self.SRC.index("up.upload("))
+
+    def test_the_receipt_is_written_before_the_ledger_touches_disk(self):
+        """The whole point of the receipt is to survive a crash in the
+        ledger's own load-then-append-then-write — it must exist before
+        that starts, not alongside or after it."""
+        self.assertLess(self.SRC.index('"phase": "uploaded"'),
+                        self.SRC.rindex("_append_ledger_entry("))
+
+    def test_the_run_reconciles_before_picking_a_slug(self):
+        self.assertLess(self.SRC.index("_reconcile_pending()"),
+                        self.SRC.index("pick_slug(cfg"))
+
+
+class TestPendingUploadReconciliation(unittest.TestCase):
+    """doctor finding b6648006da7e — 'accepted-upload-before-local-write'
+    and 'crash-before-upload' are the two failure windows the proposal
+    named; these prove both resolve without a duplicate publish."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lf-pending-"))
+        self._saved = (BL.LONGFORM_LOG, BL.PENDING_LOG, BL.EXPLAINER_LOG)
+        BL.LONGFORM_LOG = self.tmp / "longform_log.json"
+        BL.PENDING_LOG = self.tmp / "longform_pending.json"
+        BL.EXPLAINER_LOG = self.tmp / "explainer_posted_log.json"
+        BL.EXPLAINER_LOG.write_text(json.dumps({"posted": {
+            "a": {"url": "u", "at": "2026-08-20T00:00:00+00:00"},
+            "b": {"url": "u", "at": "2026-08-10T00:00:00+00:00"},
+            "c": {"url": "u", "at": "2026-08-01T00:00:00+00:00"},
+        }}))
+
+    def tearDown(self):
+        BL.LONGFORM_LOG, BL.PENDING_LOG, BL.EXPLAINER_LOG = self._saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_no_pending_claim_is_a_clean_no_op(self):
+        self.assertEqual(BL._reconcile_pending(), 0)
+
+    def test_crash_before_upload_blocks_instead_of_guessing(self):
+        """A claim with no confirmed acceptance must never be silently
+        treated as either 'safe to retry' or 'already posted' — either
+        guess can be wrong in a way that costs a duplicate or an orphan."""
+        BL._write_pending({"slug": "a", "phase": "uploading",
+                            "title": "A", "at": "2026-09-18T00:00:00+00:00"})
+        self.assertNotEqual(BL._reconcile_pending(), 0)
+        # and it must not have touched the ledger or cleared the claim
+        self.assertEqual(BL._load_pending().get("phase"), "uploading")
+        BL.LONGFORM_LOG.write_text(json.dumps({"posted": []})) \
+            if not BL.LONGFORM_LOG.exists() else None
+        self.assertEqual(BL._already_longformed(), set())
+
+    def test_accepted_upload_with_no_ledger_entry_is_repaired(self):
+        """The core bug: YouTube accepted the video, the ledger write
+        never landed. Reconciling must add the video to the ledger from
+        the receipt so the next pick_slug() call cannot choose it again."""
+        BL._write_pending({
+            "slug": "a", "phase": "uploaded", "url": "https://y/1",
+            "title": "A", "duration_s": 300.0, "showrunner_score": 80,
+            "uploaded_at": "2026-09-18T00:05:00+00:00"})
+        self.assertEqual(BL._reconcile_pending(), 0)
+        self.assertEqual(BL._load_pending(), {})
+        self.assertIn("a", BL._already_longformed())
+        log = json.loads(BL.LONGFORM_LOG.read_text())
+        self.assertEqual(len(log["posted"]), 1)
+        self.assertEqual(log["posted"][0]["url"], "https://y/1")
+        self.assertTrue(log["posted"][0]["recovered"])
+
+    def test_safe_retry_never_publishes_a_recovered_slug_again(self):
+        BL._write_pending({
+            "slug": "a", "phase": "uploaded", "url": "https://y/1",
+            "title": "A", "duration_s": 300.0, "showrunner_score": 80,
+            "uploaded_at": "2026-09-18T00:05:00+00:00"})
+        BL._reconcile_pending()
+        # "a" is the newest published explainer story, so an un-reconciled
+        # automatic pick would choose it again and re-upload. Reconciling
+        # must make pick_slug() skip straight past it to "b".
+        self.assertIn("a", BL._already_longformed())
+        self.assertEqual(BL.pick_slug(CFG), "b")
+
+    def test_a_claim_already_reflected_in_the_ledger_is_just_cleared(self):
+        """If the ledger write actually succeeded and only clearing the
+        claim was interrupted, reconciling must not double-append."""
+        BL.LONGFORM_LOG.write_text(json.dumps({"posted": [
+            {"url": "https://y/1", "title": "A", "slug": "a",
+             "slugs": ["a"], "format": "long_form_16x9"}]}))
+        BL._write_pending({"slug": "a", "phase": "uploaded",
+                           "url": "https://y/1", "title": "A"})
+        self.assertEqual(BL._reconcile_pending(), 0)
+        self.assertEqual(BL._load_pending(), {})
+        log = json.loads(BL.LONGFORM_LOG.read_text())
+        self.assertEqual(len(log["posted"]), 1, "must not duplicate")
+
 
 if __name__ == "__main__":
     unittest.main()

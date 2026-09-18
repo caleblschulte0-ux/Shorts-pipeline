@@ -61,6 +61,14 @@ OUT = REPO / "output"
 STATE = REPO / "state"
 EXPLAINER_LOG = STATE / "explainer_posted_log.json"
 LONGFORM_LOG = STATE / "longform_log.json"
+# The durable receipt for an in-flight upload (doctor finding b6648006da7e):
+# upload() and the ledger write it feeds are two separate steps, so a crash
+# between "YouTube accepted the video" and "the ledger says so" used to be
+# invisible — the next run would just pick the same slug again and post it
+# twice. This file is written BEFORE the upload call (claim) and again the
+# moment it is accepted (receipt), so a crash anywhere in between leaves
+# something on disk to reconcile from instead of a blank slate.
+PENDING_LOG = STATE / "longform_pending.json"
 
 # The channel long-form posts to. It is the EXPLAINER channel's watch page —
 # long-form is a second format on an existing channel, not a channel of its
@@ -100,6 +108,82 @@ def _already_longformed() -> set[str]:
         if e.get("slug"):
             done.add(e["slug"])
     return done
+
+
+def _load_pending() -> dict:
+    from shared.fsutil import load_state_json
+    return load_state_json(PENDING_LOG, default={}, expect_type=dict) or {}
+
+
+def _write_pending(data: dict) -> None:
+    from shared.fsutil import atomic_write_json
+    atomic_write_json(PENDING_LOG, data)
+
+
+def _clear_pending() -> None:
+    _write_pending({})
+
+
+def _append_ledger_entry(entry: dict) -> None:
+    # Strict read (CorruptStateError on corruption): see the comment at the
+    # original call site this was extracted from — a corrupt ledger must
+    # never be silently replaced by a one-entry log.
+    from shared.fsutil import atomic_write_json, load_state_json
+    log = load_state_json(LONGFORM_LOG, {"posted": []}, expect_type=dict)
+    log.setdefault("posted", []).append(entry)
+    atomic_write_json(LONGFORM_LOG, log)
+
+
+def _reconcile_pending() -> int:
+    """Resolve a claim left behind by a run that did not finish cleanly.
+
+    Returns 0 when it is safe to proceed (nothing pending, or the pending
+    claim was resolved), non-zero when the previous run's outcome is
+    genuinely unknown and picking a slug now could either duplicate a
+    publish or silently orphan one.
+    """
+    pending = _load_pending()
+    if not pending:
+        return 0
+    slug, phase = pending.get("slug"), pending.get("phase")
+    if phase == "uploaded":
+        if slug in _already_longformed():
+            print(f"[longform] pending claim for {slug!r} is already in "
+                  f"the ledger — clearing the stale receipt.", flush=True)
+            _clear_pending()
+            return 0
+        # YouTube accepted this upload (we have its URL) but the ledger
+        # write never landed. Repair the ledger from the receipt instead of
+        # letting pick_slug() choose this slug again and post it twice.
+        print(f"::warning::[longform] recovering an accepted upload that "
+              f"never reached the ledger: {slug!r} -> {pending.get('url')}",
+              flush=True)
+        _append_ledger_entry({
+            "url": pending.get("url"), "title": pending.get("title"),
+            "slug": slug, "slugs": [slug], "format": "long_form_16x9",
+            "duration_s": pending.get("duration_s"),
+            "showrunner_score": pending.get("showrunner_score"),
+            "at": pending.get("uploaded_at") or pending.get("at"),
+            "recovered": True})
+        _clear_pending()
+        return 0
+    # phase == "uploading": the claim was written BEFORE the upload call and
+    # nothing confirms whether YouTube ever accepted it. This script has no
+    # way to ask YouTube directly (no video-lookup capability exists), and
+    # guessing wrong in either direction is a real mistake — a duplicate
+    # publish, or a real upload the ledger would never credit. Fail closed
+    # and say exactly what to check (CLAUDE.md rule zero).
+    print(f"::error::[longform] an upload for {slug!r} started in a "
+          f"previous run and never confirmed acceptance or failure "
+          f"({PENDING_LOG}, started {pending.get('at')}). This needs a "
+          f"human to check the explainer channel for a video titled "
+          f"{pending.get('title')!r} uploaded around that time:\n"
+          f"  - if it EXISTS: add it to state/longform_log.json as a "
+          f"'posted' entry for slug {slug!r} (url, title, slug, slugs, "
+          f"format=long_form_16x9), then delete {PENDING_LOG} and re-run;\n"
+          f"  - if it does NOT exist: delete {PENDING_LOG} and re-run — "
+          f"nothing was published.", flush=True)
+    return 3
 
 
 def pick_slug(cfg: dict, explicit: str | None = None) -> str | None:
@@ -156,6 +240,10 @@ def main() -> int:
                     help="RFC3339 timestamp to schedule (else public now)")
     args = ap.parse_args()
 
+    rc = _reconcile_pending()
+    if rc:
+        return rc
+
     cfg = json.loads(CONFIG.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     slug = pick_slug(cfg, args.slug)
@@ -207,6 +295,12 @@ def main() -> int:
     # ---- publish -------------------------------------------------------
     title = (args.title or story_cfg.get("title") or slug)[:100]
     desc = _description(story_cfg, meta)
+    score = (gate.get("verdict") or {}).get("score")
+    # The claim: written BEFORE the external call, so a crash that kills the
+    # upload itself (nothing accepted) still leaves a trace distinguishable
+    # from an accepted-but-unrecorded one — see _reconcile_pending().
+    _write_pending({"slug": slug, "phase": "uploading", "title": title,
+                    "at": datetime.now(timezone.utc).isoformat()})
     from shared.uploaders import YouTubeUploader
     up = YouTubeUploader(channel=CHANNEL)
     res = up.upload(file_path=final, title=title, description=desc,
@@ -215,19 +309,19 @@ def main() -> int:
                     thumbnail=thumb if thumb.exists() else None)
     url = getattr(res, "url", None) or str(res)
     print(f"[longform] uploaded -> {url}", flush=True)
-    # Strict read (CorruptStateError on corruption): this append + write-back
-    # is exactly where a corrupt-read-as-empty ledger gets REPLACED by a
-    # one-entry log, and the longform dedupe history is gone on the next
-    # push. Missing file = first longform ever = honest empty default.
-    # Atomic write for the same reason — a torn ledger IS a corrupt one.
-    from shared.fsutil import atomic_write_json, load_state_json
-    log = load_state_json(LONGFORM_LOG, {"posted": []}, expect_type=dict)
-    log.setdefault("posted", []).append({
+    # The receipt: written the MOMENT the upload is accepted, before touching
+    # the (larger, load-then-append) ledger file at all. This is the durable
+    # record a crash during the ledger write recovers from.
+    _write_pending({"slug": slug, "phase": "uploaded", "url": url,
+                    "title": title, "duration_s": round(dur, 1),
+                    "showrunner_score": score,
+                    "uploaded_at": datetime.now(timezone.utc).isoformat()})
+    _append_ledger_entry({
         "url": url, "title": title, "slug": slug, "slugs": [slug],
         "format": "long_form_16x9", "duration_s": round(dur, 1),
-        "showrunner_score": (gate.get("verdict") or {}).get("score"),
+        "showrunner_score": score,
         "at": datetime.now(timezone.utc).isoformat()})
-    atomic_write_json(LONGFORM_LOG, log)
+    _clear_pending()
     return 0
 
 

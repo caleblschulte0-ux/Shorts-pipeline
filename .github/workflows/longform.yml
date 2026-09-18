@@ -181,6 +181,10 @@ jobs:
         if: always()
         run: |
           # Shared hardened persist (audit Ticket 1): retry + union-merge.
+          # longform_pending.json rides along so an in-flight upload claim
+          # (doctor finding b6648006da7e) survives a crash in this same job
+          # and can be reconciled by the very next run instead of being lost
+          # along with the crash.
           bash scripts/ci_commit_state.sh \
             "explainer: long-form log [skip ci]" \
-            state/longform_log.json
+            state/longform_log.json state/longform_pending.json

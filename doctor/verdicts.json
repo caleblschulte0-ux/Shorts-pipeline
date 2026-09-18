@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260913",
+  "updated": "20260918",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -717,10 +717,17 @@
       ]
     },
     "347e2440278c": {
-      "verdict": "doing",
-      "date": "20260822",
-      "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run.",
-      "history": []
+      "verdict": "later",
+      "date": "20260918",
+      "because": "Confirmed still correct and worth doing, but it's a live-data migration of the sacred append-only Third posted log (334 real entries, 2498-line run_third.py with dozens of read/write sites folding uploaded/rejected/pending-claim state into one dict) -- exactly the kind of change this repo's own ruling on it said needs its own dedicated session with invariant tests written and green BEFORE any real migration, not a pass alongside other work. Parking it rather than rushing a migration of live dedupe state in the same run as an unrelated fix; picking b6648006da7e (long-form upload/dedupe transaction, single file, weekly cadence, low blast radius) instead this run.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run."
+        }
+      ],
+      "revisit_after": "20261018"
     },
     "e524811347c4": {
       "verdict": "done",
@@ -1252,10 +1259,16 @@
       ]
     },
     "b6648006da7e": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260918",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck."
+        }
+      ]
     },
     "f87f60f38feb": {
       "verdict": "doing",
