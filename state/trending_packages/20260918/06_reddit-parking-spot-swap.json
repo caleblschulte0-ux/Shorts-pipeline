@@ -6,9 +6,7 @@
   "shots": [
     {
       "phrase": "assigns numbered parking spots",
-      "query": "apartment parking lot numbers",
-      "image_url": "https://pixabay.com/get/g6560de7d7ab4cf98ebbac5e8e345948ae72840f14403e796bebdfe47ec85528d727600956baebfe4b9384d50bc2b682596435b211b8fdeaa8fab6fc8db9cee0b_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "apartment parking lot numbers"
     },
     {
       "phrase": "decided spot fourteen was basically a suggestion",
@@ -17,7 +15,7 @@
       "pin_context": "apartment complex numbered parking space",
       "news_query": "Parking Spot Fourteen",
       "news_angle": "Parking Spot Fourteen was the reserved space that the neighbor repeatedly occupied without authorization.",
-      "image_url": "https://pixabay.com/get/g055bc0c41a7f782660275bbcaaa18f6988c2d1d54e19c3f8faa16b61ab6566d0013775a2fff341d8591e8e228d409eceb720380c5ea1aad688683a465a9ac090_1280.jpg",
+      "image_url": "https://live.staticflickr.com/7251/7076049163_344558669e.jpg",
       "media_evidence": {
         "url": "https://live.staticflickr.com/7251/7076049163_344558669e.jpg",
         "source_class": "unverified",
@@ -27,14 +25,11 @@
         "content_type": "image/jpeg",
         "verified_at": "2026-09-18T13:48:39Z",
         "resolved_by": "verify_shot_urls"
-      },
-      "media_origin": "self_fill"
+      }
     },
     {
       "phrase": "a sticky note",
-      "query": "sticky note car windshield",
-      "image_url": "https://pixabay.com/get/gafa900e0d8c41c5c033018fa6f6a3f84b8e8aac01d3b73d52ad2f7472d89072c4bd34fd3a4d61a36aa34439173009cbf8c38e725fdc3dde2322d65a3e9a0e411_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "sticky note car windshield"
     },
     {
       "phrase": "paid the five dollar transfer fee",
@@ -42,27 +37,19 @@
       "pin_query": "Five Dollar Transfer Fee",
       "pin_context": "apartment complex parking administrative cost",
       "news_query": "Five Dollar Transfer Fee",
-      "news_angle": "The Five Dollar Transfer Fee was paid to the leasing office to officially change the assigned parking space.",
-      "image_url": "https://pixabay.com/get/gcf9694e4d6dc817aa69679b4add93068df731d43cdbc5cc799bb76376d2e4fdf24fd66f7a62b93f4c3050ed6f1a3479fdd750184026896e7d8b59a2a549bbf46_1280.jpg",
-      "media_origin": "self_fill"
+      "news_angle": "The Five Dollar Transfer Fee was paid to the leasing office to officially change the assigned parking space."
     },
     {
       "phrase": "the exact width she needed to back out",
-      "query": "car bumper parking space",
-      "image_url": "https://pixabay.com/get/g031b8f69876851906f8278310d18038ee2638912c42b570d8c662f5426ac3bb3f05b88c10094ad655fcf9aacc0fbc144fd06deac7311e8861864edba0af549c7_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "car bumper parking space"
     },
     {
       "phrase": "blocked herself in for forty minutes",
-      "query": "car stuck parking lot",
-      "image_url": "https://pixabay.com/get/g65c8f4531a41d5d14bcaed5ecf2cfd1c5686295c85fd26f544bfe28606bde9726bed19698d63810b7d0cfe9813ea9184f04311290235afa6a28c41408039c112_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "car stuck parking lot"
     },
     {
       "phrase": "calling a tow company on her own car",
-      "query": "tow truck flatbed",
-      "image_url": "https://pixabay.com/get/g878749d958db157f3761c9b9f409cef5a59afdae33110eece683979625ced0e4dc353412d69891a7e3e1d573656d5aca3b1d91277d925bace2d890659233f96d_1280.png",
-      "media_origin": "self_fill"
+      "query": "tow truck flatbed"
     }
   ],
   "punches": [

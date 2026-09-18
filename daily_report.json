@@ -3,14 +3,14 @@
     "topic": "Nvidia's Data Center Chips Just Passed All Of Intel",
     "title": "Nvidia's Data Center Chips Just Passed All Of Intel",
     "format": "graph_race",
-    "publish_at": "2026-09-18T16:00:00Z",
+    "publish_at": "2026-09-18T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 real crossover, rescaling axis, leaderboard flip \u2014 undercut by a source credit that is cut off mid-sentence in every single frame.",
-    "elapsed_seconds": 147.8,
+    "error": "showrunner_block: showrunner BLOCK: A clean, correctly-built graph race with a real crossover payoff, held back by a talky title-card hook, visible judder (~15fps effective), and clipped/ghosted text.",
+    "elapsed_seconds": 219.4,
     "package_path": "state/trending_packages/20260918/01_graph-nvidia-passed-intel.json",
     "source": "brain",
-    "video_path": "output/daily_20260918-145751_nvidia_s_data_center_chips_just_passed_a.mp4",
+    "video_path": "output/daily_20260918-170518_nvidia_s_data_center_chips_just_passed_a.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,7 +28,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good race \u2014 real crossover, rescaling axis, leaderboard flip \u2014 undercut by a source credit that is cut off mid-sentence in every single frame.",
+      "reason": "showrunner BLOCK: A clean, correctly-built graph race with a real crossover payoff, held back by a talky title-card hook, visible judder (~15fps effective), and clipped/ghosted text.",
       "score": 69
     },
     "blocked": true
@@ -37,14 +37,14 @@
     "topic": "Waymo Just Passed Lyft In San Francisco",
     "title": "Waymo Just Passed Lyft In San Francisco",
     "format": "graph_race",
-    "publish_at": "2026-09-18T16:00:00Z",
+    "publish_at": "2026-09-18T17:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 73.8,
+    "elapsed_seconds": 75.0,
     "package_path": "state/trending_packages/20260918/02_graph-waymo-passed-lyft-sf.json",
     "source": "brain",
-    "video_path": "output/daily_20260918-150019_waymo_just_passed_lyft_in_san_francisco.mp4",
+    "video_path": "output/daily_20260918-170857_waymo_just_passed_lyft_in_san_francisco.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -71,14 +71,14 @@
     "topic": "Oat Milk Just Passed Soy Milk In America",
     "title": "Oat Milk Just Passed Soy Milk In America",
     "format": "graph_race",
-    "publish_at": "2026-09-18T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 the 2021 crossover and the 530M/325M reversal land \u2014 but the hook card is parked on top of the axis and truncates the 500M tick.",
-    "elapsed_seconds": 174.1,
+    "publish_at": "2026-09-18T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/D8vZ8k8omlY",
+    "error": null,
+    "elapsed_seconds": 248.2,
     "package_path": "state/trending_packages/20260918/04_graph-oatmilk-passed-soymilk.json",
     "source": "brain",
-    "video_path": "output/daily_20260918-150133_oat_milk_just_passed_soy_milk_in_america.mp4",
+    "video_path": "output/daily_20260918-171012_oat_milk_just_passed_soy_milk_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,27 +95,27 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good race \u2014 the 2021 crossover and the 530M/325M reversal land \u2014 but the hook card is parked on top of the axis and truncates the 500M tick.",
+      "blocked": false,
+      "reason": "",
       "score": 78
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Corporate Said 'Follow The Return Policy Exactly.' I Did.",
     "title": "Corporate Said 'Follow The Return Policy Exactly.' I Did.",
     "format": "reddit",
-    "publish_at": "2026-09-18T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: For the first ~45 seconds the top half of the split is just more gameplay instead of story illustrations \u2014 two relevant shots finally arrive at 47s and 58s, so the cause/effect beats are narrated but never shown.",
-    "elapsed_seconds": 383.5,
+    "publish_at": "2026-09-18T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/9sB6Ph0SsQY",
+    "error": null,
+    "elapsed_seconds": 374.6,
     "package_path": "state/trending_packages/20260918/05_reddit-return-policy-literal.json",
     "source": "brain",
-    "video_path": "output/daily_20260918-150612_corporate_said__follow_the_return_policy.mp4",
+    "video_path": "output/daily_20260918-171446_corporate_said__follow_the_return_policy.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 60.167,
+      "duration": 59.933,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -126,7 +126,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.2
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -134,27 +134,27 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: For the first ~45 seconds the top half of the split is just more gameplay instead of story illustrations \u2014 two relevant shots finally arrive at 47s and 58s, so the cause/effect beats are narrated but never shown.",
-      "score": 57
+      "blocked": false,
+      "reason": "",
+      "score": 75
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "She Kept Taking My Reserved Spot. So I Reserved Hers.",
     "title": "She Kept Taking My Reserved Spot. So I Reserved Hers.",
     "format": "reddit",
-    "publish_at": "2026-09-18T16:00:00Z",
+    "publish_at": "2026-09-18T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-    "elapsed_seconds": 265.5,
+    "error": "showrunner_block: showrunner BLOCK: An irrelevant Victorian PUNCH ice-skating engraving is the hero image at 12s, and the same reception-desk still is held across two later beats over a near-black void \u2014 the story's cause/effect is barely illustrated at all.",
+    "elapsed_seconds": 321.5,
     "package_path": "state/trending_packages/20260918/06_reddit-parking-spot-swap.json",
     "source": "brain",
-    "video_path": "output/daily_20260918-151149_she_kept_taking_my_reserved_spot__so_i_r.mp4",
+    "video_path": "output/daily_20260918-172118_she_kept_taking_my_reserved_spot__so_i_r.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.633,
+      "duration": 52.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -165,7 +165,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.5
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
@@ -174,49 +174,61 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\\n\", \"headless-claude[1]: claude CLI rc=1: You",
-      "score": null
+      "reason": "showrunner BLOCK: An irrelevant Victorian PUNCH ice-skating engraving is the hero image at 12s, and the same reception-desk still is held across two later beats over a near-black void \u2014 the story's cause/effect is barely illustrated at all.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "san antonio weather",
-    "angle": null,
-    "publish_at": "2026-09-18T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\n",
-    "elapsed_seconds": 2.2,
-    "backfill": true
-  },
-  {
-    "topic": "riot fest",
-    "angle": null,
-    "publish_at": "2026-09-18T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\n",
-    "elapsed_seconds": 2.5,
-    "backfill": true
-  },
-  {
-    "topic": "btc price",
-    "angle": null,
-    "publish_at": "2026-09-18T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\n",
-    "elapsed_seconds": 2.2,
-    "backfill": true
-  },
-  {
-    "topic": "bitcoin",
+    "topic": "iranians rally",
     "angle": null,
     "publish_at": "2026-09-18T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your session limit \u00b7 resets 5pm (UTC)\n",
-    "elapsed_seconds": 2.3,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 8 shot(s) have no real image and would fall to off-topic keyword stock: ['her backyard', '6 months to live', 'pledge their loyalty', 'My husband cried', 'something felt off', 'never happened', 'filmed the entire rally', 'rewrote her will']",
+    "elapsed_seconds": 137.8,
+    "title": "She Faked Her Death To Test Our Loyalty",
+    "package_path": "state/trending_packages/20260918-172841_auto_iranians_rally.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "karandeep anand",
+    "angle": null,
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['built an AI chatbot startup', 'sold it to a media giant', 'chief technology officer', \"Where's my name in this?\", 'never a cofounder', 'contractor bonus', 'admin password to the production servers']",
+    "elapsed_seconds": 117.8,
+    "title": "My Best Friend Sold Our Startup Without Me",
+    "package_path": "state/trending_packages/20260918-173058_auto_karandeep_anand.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "traitors cast",
+    "angle": null,
+    "publish_at": "2026-09-19T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 8 shot(s) have no real image and would fall to off-topic keyword stock: ['audition for a reality competition', 'voted me out live on stage', \"fiance's phone unlocked\", '200 messages', 'out of the house for 6 weeks', 'wearing my robe', 'felt off about our alliance', 'engagement ring is sitting in a mailbox']",
+    "elapsed_seconds": 107.4,
+    "title": "My Best Friend Voted Me Out Then Stole My Fiance",
+    "package_path": "state/trending_packages/20260918-173251_auto_traitors_cast.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "frankie muniz",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['texted me at 2 AM', 'door unlocked, lights off', \"wife's closet completely empty\", 'studio dropped him', 'sat with him on the kitchen floor', 'found the real leaked video', 'business partner, wearing his hoodie']",
+    "elapsed_seconds": 89.5,
+    "title": "His Six-Week Nightmare Wasn't What It Looked Like",
+    "package_path": "state/trending_packages/20260918-173423_auto_frankie_muniz.json",
+    "quarantined": true,
     "backfill": true
   }
 ]
