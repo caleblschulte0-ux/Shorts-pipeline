@@ -7677,13 +7677,52 @@
       "ts": "2026-09-18T14:57:33.532927+00:00"
     },
     "clip-20260918-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/ObliviousBenevolentMangetoutBudBlast-zDyad7IKQdruNFVj",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/AG1NOrd5kA4",
       "title": "Kaicenat: Kai Cenat's Chat Goes Wild Over This 'Aw' Moment",
       "kind": "twitch_clip",
-      "ts": "2026-09-18T15:01:51.937407+00:00",
+      "ts": "2026-09-18T15:01:59.997060+00:00",
+      "uploaded_at": "2026-09-18T15:01:59.997079+00:00",
+      "publish_at": "2026-09-19T02:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ObliviousBenevolentMangetoutBudBlast-zDyad7IKQdruNFVj",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "CHAT COULDN'T HANDLE THIS ONE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2321,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 12.0
+      },
+      "director_cut": true
+    },
+    "rejected-mildinterestingbasenjinononocat-tgqt96x2hdlbvlo_": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/MildInterestingBasenjiNononoCat-TGqt96x2hDlBvlo_",
+      "streamer": "caseoh_",
+      "title": "645r6",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static shot, no event, garbage title)",
+      "ts": "2026-09-18T15:02:53.416005+00:00"
+    },
+    "rejected-renownedsillybanananomnom-o7rq-bkyfr1ecm-l": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/RenownedSillyBananaNomNom-o7RQ-BKyfr1EcM-l",
+      "streamer": "summit1g",
+      "title": "Summit1G Was About To Teabag This Guy When The Bus Showed Up",
+      "qa_rejected": true,
+      "ts": "2026-09-18T15:09:29.497763+00:00"
+    },
+    "clip-20260918-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/VictoriousBraveMelonEleGiggle-xwSi21yzgXxML9mw",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Finally Shows Everyone The Mall Concert Space Nobody's Seen",
+      "kind": "twitch_clip",
+      "ts": "2026-09-18T15:14:27.298940+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
