@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260918T195056Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The bottom-centre Data is frozen in the identical clipboard-and-outstretched-arm pose in seg1:mid, seg1:end, seg3:end, seg4:start, seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 \u2014 a parked sticker with no setup\u2192action\u2192payoff; the second copy merely perches on a bar (seg2:end) or ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end three text layers collide in the top band: the scene title 'the world's growing e-waste pile', the annotation 'the data stops here', and the carried-over value labels '2030 (projected) 82M' are stacked on the same lines, so none can be read; a second miniature Data is drawn on top of the title's first word, an unexplained cyan ellipse floats in empty space at seg1:start/mid circling nothing, and the whole right half and mid-frame are blank.",
+  "root_cause": "The projection machine draws its own annotations and the previous bar-race scene's chrome (title, value column, perched mascot, highlight ellipse) into the same title band instead of owning an exclusive layout with a reserved header zone and measured, collision-tested label placement.",
+  "repair_goal": "Give seg1 a single exclusive layout: clear all carried-over bar-race chrome and the duplicate mascot, reserve the top band for one title only, place 'the data stops here' and the 82M callout in the empty right/mid space with measured non-overlapping boxes, drop the unanchored ellipse, and scale the line + projection cone to fill the frame."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
