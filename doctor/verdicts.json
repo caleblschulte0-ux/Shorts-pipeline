@@ -1259,16 +1259,22 @@
       ]
     },
     "b6648006da7e": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260918",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260909",
           "because": "Verified: build_longform.py calls YouTubeUploader.upload() and only appends to state/longform_log.json afterward, and longform.yml persists that file under if: always() with no receipt/pending-claim step before the upload call. A crash or push failure between accept and local write leaves an accepted upload invisible to pick_slug()'s dedupe. Real long-term correctness gap for the format; the weekly cadence keeps the practical blast radius small, but the design is queued to fix properly rather than left to luck."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260918",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "96ed483"
     },
     "f87f60f38feb": {
       "verdict": "doing",
