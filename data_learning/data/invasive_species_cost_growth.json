@@ -1,0 +1,22 @@
+{
+  "key": "invasive_species_cost_growth",
+  "title": "Global economic cost of invasive species (billion dollars/year)",
+  "unit": "billion dollars",
+  "geography": "Global",
+  "time_coverage": "1970-2019",
+  "source": {
+    "name": "Invasive Alien Species Assessment",
+    "publisher": "IPBES (Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services)",
+    "url": "https://www.ipbes.net/",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "IPBES's 2023 assessment (86 researchers, 49 countries) found the global cost of invasive species exceeded $423 billion in 2019 and has at least quadrupled every decade since 1970. Intermediate decade points are a reconstruction of that quadrupling claim anchored on the real 2019 total.",
+  "points": [
+    {"label": "1970", "value": 1.6, "period": "1970"},
+    {"label": "1980", "value": 6.5, "period": "1980"},
+    {"label": "1990", "value": 26, "period": "1990"},
+    {"label": "2000", "value": 105, "period": "2000"},
+    {"label": "2019", "value": 423, "period": "2019"}
+  ]
+}

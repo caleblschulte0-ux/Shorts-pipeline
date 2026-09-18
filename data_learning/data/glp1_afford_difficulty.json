@@ -1,0 +1,19 @@
+{
+  "key": "glp1_afford_difficulty",
+  "title": "US GLP-1 users: how hard is it to afford? (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "KFF Health Tracking Poll on GLP-1 drugs",
+    "publisher": "KFF (Kaiser Family Foundation)",
+    "url": "https://www.kff.org/public-opinion/poll-1-in-8-adults-say-they-are-currently-taking-a-glp-1-drug-for-weight-loss-diabetes-or-another-condition-even-as-half-say-the-drugs-are-difficult-to-afford/",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "KFF reports about half of GLP-1 users say the drugs are difficult to afford, even with list prices over $1,000/month without insurance.",
+  "points": [
+    {"label": "Say it's difficult to afford", "value": 50},
+    {"label": "Say it's not difficult", "value": 50}
+  ]
+}

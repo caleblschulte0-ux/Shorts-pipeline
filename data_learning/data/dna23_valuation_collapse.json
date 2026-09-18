@@ -1,0 +1,19 @@
+{
+  "key": "dna23_valuation_collapse",
+  "title": "23andMe company valuation: 2021 public listing vs. 2025 bankruptcy sale (million dollars)",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2021 and 2025",
+  "source": {
+    "name": "23andMe SPAC listing valuation and bankruptcy asset sale reporting",
+    "publisher": "SEC filings / financial press (Reuters, Yahoo Finance)",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001804591",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "23andMe went public via SPAC merger in 2021 at a roughly $3.5 billion valuation. It filed for bankruptcy in March 2025 and its assets sold to Regeneron Pharmaceuticals for $256 million in a bankruptcy auction.",
+  "points": [
+    {"label": "2021 public listing", "value": 3500},
+    {"label": "2025 bankruptcy sale", "value": 256}
+  ]
+}

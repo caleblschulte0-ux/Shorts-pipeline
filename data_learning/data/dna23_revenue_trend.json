@@ -1,0 +1,21 @@
+{
+  "key": "dna23_revenue_trend",
+  "title": "23andMe annual revenue, by fiscal year (million dollars)",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "FY2021-FY2024",
+  "source": {
+    "name": "23andMe Holding Co. annual results (10-K / earnings releases)",
+    "publisher": "23andMe Holding Co. (SEC filings)",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001804591",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "Fiscal years ended March 31. Revenue climbed from FY2021 through FY2023, then fell sharply in FY2024 as the GSK research collaboration wound down and genetic-testing kit volumes declined.",
+  "points": [
+    {"label": "FY2021", "value": 243.9, "period": "2021"},
+    {"label": "FY2022", "value": 271.9, "period": "2022"},
+    {"label": "FY2023", "value": 299.5, "period": "2023"},
+    {"label": "FY2024", "value": 219.6, "period": "2024"}
+  ]
+}

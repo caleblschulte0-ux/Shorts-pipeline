@@ -1,0 +1,22 @@
+{
+  "key": "glp1_ever_used_trend",
+  "title": "Share of US adults who have ever taken a GLP-1 drug (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2021-2025",
+  "source": {
+    "name": "KFF Health Tracking Poll on GLP-1 drugs",
+    "publisher": "KFF (Kaiser Family Foundation)",
+    "url": "https://www.kff.org/health-costs/poll-1-in-8-adults-say-theyve-taken-a-glp-1-drug-including-4-in-10-of-those-with-diabetes-and-1-in-4-of-those-with-heart-disease/",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "The 2024 (12%) and 2025 (18%) points are the exact figures from KFF's May 2024 and 2025 Health Tracking Polls. Earlier years are an approximate reconstruction of the adoption curve before GLP-1 polling began, anchored to those two measured points.",
+  "points": [
+    {"label": "2021", "value": 3, "period": "2021"},
+    {"label": "2022", "value": 6, "period": "2022"},
+    {"label": "2023", "value": 9, "period": "2023"},
+    {"label": "2024", "value": 12, "period": "2024"},
+    {"label": "2025", "value": 18, "period": "2025"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "glp1_weight_loss_by_method",
+  "title": "Average body weight lost, by weight-loss method (%)",
+  "unit": "percent",
+  "geography": "United States (clinical trial averages)",
+  "time_coverage": "current",
+  "source": {
+    "name": "Published clinical trial results (lifestyle intervention studies, orlistat trials, SCALE/liraglutide, STEP/semaglutide, SURMOUNT/tirzepatide)",
+    "publisher": "Peer-reviewed clinical trial literature",
+    "url": "https://www.nejm.org/",
+    "officiality": "secondary",
+    "access_date": "2026-09-18"
+  },
+  "notes": "Approximate average body-weight-loss figures reported across major published trials for each method; individual trial results vary by dose and population.",
+  "points": [
+    {"label": "Diet & exercise alone", "value": 3},
+    {"label": "Orlistat (older pill)", "value": 5},
+    {"label": "Liraglutide (early GLP-1)", "value": 8},
+    {"label": "Semaglutide (Wegovy)", "value": 15},
+    {"label": "Tirzepatide (Zepbound)", "value": 21}
+  ]
+}

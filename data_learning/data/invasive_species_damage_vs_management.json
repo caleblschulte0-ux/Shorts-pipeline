@@ -1,0 +1,19 @@
+{
+  "key": "invasive_species_damage_vs_management",
+  "title": "Where the $423B/year invasive species bill goes (%)",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2019",
+  "source": {
+    "name": "Invasive Alien Species Assessment",
+    "publisher": "IPBES (Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services)",
+    "url": "https://www.ipbes.net/",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "The IPBES assessment found the large majority of invasive-species costs come from damages and losses already incurred, with only a small share spent on prevention and management -- a rounded characterization of that finding.",
+  "points": [
+    {"label": "Damage & losses", "value": 90},
+    {"label": "Prevention & management", "value": 10}
+  ]
+}

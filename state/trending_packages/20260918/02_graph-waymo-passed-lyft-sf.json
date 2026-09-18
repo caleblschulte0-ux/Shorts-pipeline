@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-waymo-passed-lyft-sf",
+  "title": "Waymo Just Passed Lyft In San Francisco",
+  "hook": "No driver. Still winning.",
+  "y_label": "Share of SF rideshare trips (percent)",
+  "duration": 13,
+  "source": "YipitData / Bond Capital gross-bookings market-share estimates of San Francisco rideshare trips (Waymo vs. Lyft), reported by CleanTechnica, TechCrunch and Underscore SF, 2020-2025, approximate.",
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "Waymo",
+      "color": "#4285F4",
+      "icon": "Waymo",
+      "values": [0, 0, 1, 4, 12, 27]
+    },
+    {
+      "name": "Lyft",
+      "color": "#FF00BF",
+      "icon": "Lyft",
+      "values": [38, 36, 35, 33, 29, 24]
+    }
+  ],
+  "hashtags": [
+    "waymo",
+    "lyft",
+    "selfdriving",
+    "robotaxi",
+    "sanfrancisco",
+    "autonomousvehicles",
+    "tech",
+    "ai",
+    "rideshare",
+    "google",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

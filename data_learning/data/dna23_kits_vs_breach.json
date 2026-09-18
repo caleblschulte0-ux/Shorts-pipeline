@@ -1,0 +1,19 @@
+{
+  "key": "dna23_kits_vs_breach",
+  "title": "23andMe DNA kits sold vs. users hit by the 2023 data breach (million people)",
+  "unit": "million people",
+  "geography": "United States / global customers",
+  "time_coverage": "2006-2023",
+  "source": {
+    "name": "23andMe customer totals and 2023 credential-stuffing breach disclosure",
+    "publisher": "23andMe company disclosures / financial press (Good Morning America, Wikipedia summary of SEC/press reporting)",
+    "url": "https://www.goodmorningamerica.com/wellness/story/23andme-dna-data-security-115818849",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "23andMe has sold more than 12 million DNA kits since its 2006 founding. A 2023 credential-stuffing breach exposed genetic and personal data from nearly 7 million users.",
+  "points": [
+    {"label": "DNA kits sold", "value": 12},
+    {"label": "Users hit by 2023 breach", "value": 7}
+  ]
+}

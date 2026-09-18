@@ -1,0 +1,19 @@
+{
+  "key": "ivf_share_of_births",
+  "title": "Share of all US births conceived via IVF (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2013 and 2022",
+  "source": {
+    "name": "Assisted Reproductive Technology (ART) Surveillance data",
+    "publisher": "CDC / Society for Assisted Reproductive Technology (SART)",
+    "url": "https://www.cdc.gov/art/php/publications/index.html",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "2022: 91,771 IVF births out of roughly 3.67 million total US births, about 2.5% (1 in 37), per CDC/ASRM reporting. 2013 baseline is an approximate reconstruction consistent with CDC's finding that ART cycles more than doubled between 2013 and 2022.",
+  "points": [
+    {"label": "2013", "value": 1.5},
+    {"label": "2022", "value": 2.5}
+  ]
+}

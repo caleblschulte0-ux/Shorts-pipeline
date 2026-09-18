@@ -1,0 +1,37 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "reddit-parking-spot-swap",
+  "title": "She Kept Taking My Reserved Spot. So I Reserved Hers.",
+  "script": "My apartment complex assigns numbered parking spots, and my neighbor upstairs decided spot fourteen was basically a suggestion whenever hers was full. First time, I let it go and parked in a guest spot. Second time, a sticky note. Third time, she left a note back saying I was being dramatic over a parking space. Over a rectangle of asphalt. So I called the leasing office, paid the five dollar transfer fee, and officially swapped my assigned spot for the one directly behind her car, the exact width she needed to back out. Next morning she blocked herself in for forty minutes trying to inch around my bumper before giving up and calling a tow company on her own car. Leasing office reviewed the cameras, confirmed both spots were correctly assigned, and closed the ticket as resident parking dispute, no violation found. She has used her own spot every single day since.",
+  "shots": [
+    {"phrase": "assigns numbered parking spots", "query": "apartment parking lot numbers"},
+    {"phrase": "decided spot fourteen was basically a suggestion", "query": "parking spot sign"},
+    {"phrase": "a sticky note", "query": "sticky note car windshield"},
+    {"phrase": "paid the five dollar transfer fee", "query": "leasing office front desk"},
+    {"phrase": "the exact width she needed to back out", "query": "car bumper parking space"},
+    {"phrase": "blocked herself in for forty minutes", "query": "car stuck parking lot"},
+    {"phrase": "calling a tow company on her own car", "query": "tow truck flatbed"}
+  ],
+  "punches": [
+    {"phrase": "being dramatic over a parking space", "text": "DRAMATIC?", "color": "#ffaa30"},
+    {"phrase": "five dollar transfer fee", "text": "$5", "color": "#50ff80"},
+    {"phrase": "forty minutes", "text": "40 MINUTES", "color": "#ff3030"},
+    {"phrase": "no violation found", "text": "NO VIOLATION", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "pettyrevenge",
+    "apartmentlife",
+    "neighbors",
+    "storymode",
+    "reddit",
+    "redditstories",
+    "karma",
+    "parking",
+    "justice",
+    "satisfying",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
