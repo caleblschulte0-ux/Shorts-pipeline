@@ -1,0 +1,25 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260918T110436Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start (f13) prints 'it's only 22.3' in near-black grey on the dark ground \u2014 invisible at arm's length; seg2:start (f10) clips 'Bars, Coins & ETFs 22' at the right frame edge (should read 22%); seg1:mid (f08) cuts '216' off at the bottom edge under the caption; and from seg4:start (f",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start (f13) opens with two small grey lozenges floating in an otherwise blank upper half and a caption ('it's only 22.3') so dark it disappears; seg3:mid (f14) is a plain two-bar chart labelled 50 vs 22.3; seg3:end (f15) collapses to two hairline rules, two tiny labels and a dashed column clipped by the right frame edge, with the middle of the frame empty and a static mascot printed over 'fills a hotel'.",
+  "root_cause": "The title's whole premise \u2014 216,000 tonnes melted into ONE 22.3m cube \u2014 is rendered as a length-comparison bar chart instead of the cube itself; the machine picked a generic two-bar comparison, then its end-state drops the bars entirely and leaves labels hanging in space with the value column running off-frame, while the caption layer draws low-contrast ink on the dark ground.",
+  "repair_goal": "Draw the actual object: build a 22.3m gold cube in-frame against a to-scale Olympic pool (or a hotel lobby), sized so the cube reads as shockingly small, filling the centre of the frame; keep the comparison mark on screen through the end of the beat, pull the value column inside the safe margin, and put the caption in full-contrast ink above the ground."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

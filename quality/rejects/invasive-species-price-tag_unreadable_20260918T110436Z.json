@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260918T110436Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:mid 'Prevention & mana\u2026' and seg3:mid 'Classified as harmful invas\u2026' are both sliced off by the right frame edge, 'Damage & losses' is clipped at the left edge, hook@1.5 prints 'countries make.' directly on top of the '$1.6B' value, and seg3:start's grey 'taken hold worldwide.' sits",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid and seg1:end: the pink trend line hugs the bottom ~15% of the frame, leaving the entire upper two-thirds as empty gradient; the climbing mascot is rendered tiny, a stray teal ellipse artifact floats at right in seg1:end, and a second host mascot with its own caption ('and back again') is composited over the same frame so two mascots and two text lines fight in the lower third.",
+  "root_cause": "The line-machine's plot area is not laid out to the full ground \u2014 its y-extent is squeezed to the bottom band instead of being measured against the frame, and the host/narrator layer is stacked on top of the chart layer rather than composited beside it, duplicating the mascot and the caption.",
+  "repair_goal": "Rebuild seg1 so the climbing line fills the vertical frame (baseline low, $423B endpoint in the upper third) with the mascot scaled up on the curve, remove the stray ellipse, and show exactly ONE mascot and ONE caption line so the empty upper region carries the growth instead of nothing."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

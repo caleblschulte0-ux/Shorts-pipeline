@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260918T110436Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid prints 'anywhere between 29% and 35%' directly into the '35%' axis label AND over the second mascot; seg3:mid stamps a dark '52%' on the blue circle at near-zero contrast; every payoff frame has the bubble tail cutting through 'Partner Snoring 52%' and 'COMMENT BELOW' sitting on",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "layout_collision_and_void",
+  "visible_evidence": "At seg1:start and seg1:mid the range-slider beat is a pile-up: a thin polyline runs diagonally across the kicker 'how many couples are sleeping apart' and out the top-right edge, an unexplained empty ellipse floats at right with no label, the caption 'anywhere between 29% and 35%' overprints both the '35%' endpoint label and a second mascot (who is ringed by that same stray ellipse at seg1:mid), and the whole upper half is empty dark space while two separate Data mascots stand in the lower half at once.",
+  "root_cause": "The scene composites a leftover line-chart/decoration layer and a duplicate narrator mascot on top of the range-dot machine without any measured layout \u2014 the caption is placed at a fixed y that lands on the endpoint labels, and the polyline/ellipse are drawn in frame coordinates that ignore the title safe area.",
+  "repair_goal": "Render seg1 as ONE machine: the 29\u201335% range track with the dot settling, centered in the frame with the endpoint labels measured clear of the caption band; drop the stray polyline and ellipse entirely, drop the second mascot so only one Data is on screen, and pull the track up to fill the empty upper half."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
