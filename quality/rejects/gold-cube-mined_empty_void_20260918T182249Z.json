@@ -1,0 +1,25 @@
+{
+ "slug": "gold-cube-mined",
+ "ts": "20260918T182249Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=39.08s) is over half empty \u2014 two hairline rules, two thumbnail-sized mascots and a dotted ruler pinned to the right edge; seg4:start\u2192payoff@-0.4 (42.49\u201347.07s) keeps that same vacant mid-frame under the closing panel.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "From seg4:start (42.49s) to payoff@-0.4 (47.07s) the frame is a bordered blue panel at the top, a full-width band of vacant gradient through the middle, the human-scale diagram shrunk to two ~40px mascots on hairlines, and CTA text overprinting the foreground mascot's face; nothing but a tiny mascot step changes across those 4.6 seconds.",
+  "root_cause": "The closing beat reuses the seg3 scale diagram at its shrunken end-state scale while stacking a bordered text panel above it, so the payoff has no subject of its own \u2014 the 22.3m cube the whole script builds to is never actually drawn as a cube, and the leftover diagram cannot fill the frame it was scaled out of.",
+  "repair_goal": "Make seg4 a real payoff shot: draw the 22.3m gold cube full-bleed as the subject (mascot at its base for scale so the '22.3m' reads physically), drop the bordered panel for full-bleed closing type on look.ground, and move the CTA line clear of the mascot so no text overprints a figure."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

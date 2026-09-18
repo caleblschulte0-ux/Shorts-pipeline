@@ -1,0 +1,16 @@
+{
+ "slug": "ivf-births-surge",
+ "ts": "20260918T182249Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A large Data is parked dead-centre in the lower third in the IDENTICAL pose and position in all 21 frames from hook@0.3 to payoff@-0.4 \u2014 he never moves, never acts, and covers the source line and captions; the small in-scene Data only perches on whatever is tallest (seg1:end scale",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_text_collision",
+  "visible_evidence": "At seg4:start/mid/end and both payoff frames the gold header is clipped to 'cal total (multiple cycles)  $50' \u2014 the leading 'Typi' runs off the left edge and the value loses its digits \u2014 and the speech-bubble tail points straight into it while the white title 'the cost of IVF' sits immediately under it, three text layers in one band; the parked mascot then overlaps 'COMMENT BELOW' at payoff@-1.8.",
+  "root_cause": "The carried-over 'Typical total (multiple cycles) $50,000' label keeps the previous scene's layout position instead of being re-measured against the closing composition, so its extent exceeds the frame and it is never cleared from the band the speech bubble and title occupy.",
+  "repair_goal": "Re-measure and re-place the closing text so nothing crosses the frame edge and no two text layers share a band: drop the carried-over label (or shorten and fully inset it), keep the speech bubble clear of the title, and move the standing mascot out of the caption/CTA band so 'COMMENT BELOW' and the source line read cleanly."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

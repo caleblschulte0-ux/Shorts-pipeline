@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260918T182249Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Right-hand labels are sliced by the frame edge in two segments \u2014 'Prevention & mana' (seg2:start/mid/end) and 'Classified as harmful invas' (seg3:start/mid/end) \u2014 plus 'Damage & losses' is clipped to '0amage & losses' at seg2:start, the caption 'countries make.' is printed on top of the ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg1:start and seg1:mid roughly two-thirds of the 9:16 frame is empty dark background: the title sits at the very top, then nothing until a thin pink line hugging the bottom quarter with Data perched on its end. seg1:end adds a stray teal ellipse hanging in the empty right side, an orphan sub-caption 'and back again' that matches no narration, a duplicate second mascot directly below it, and the '423' number sliced off by the bottom frame edge.",
+  "root_cause": "The rising-line machine is laid out in the lower band only (its y-extent is not scaled to the free frame area left by the title), so the scene's composition never fills the space; the duplicate host and the leftover ellipse/sub-caption are stale overlay elements from the previous scene that were not cleared, and the big-number overlay is anchored below the safe-area bottom.",
+  "repair_goal": "Rebuild seg1 so the line climbs across the full free height of the frame (title -> caption band) with the $1.6B and $423B endpoints labelled in place, render exactly ONE mascot riding the crest, drop the orphan 'and back again' sub-caption and the stray ellipse, and pull the '423' number overlay inside the bottom safe area."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
