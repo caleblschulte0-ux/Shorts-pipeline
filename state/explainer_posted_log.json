@@ -1824,6 +1824,17 @@
       "story_structure": "scene+auto+auto",
       "narrative_score": 60,
       "duration_s": 41.4
+    },
+    "sleep-divorce-numbers": {
+      "url": "https://youtube.com/shorts/fj-AO9xa1Jk",
+      "title": "1 In 3 Couples Now Sleep In Separate Rooms",
+      "at": "2026-09-18T22:33:31.305091+00:00",
+      "publish_at": "2026-09-18T23:08:52Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 49.9
     }
   },
   "uploads": [
@@ -2006,6 +2017,15 @@
       "state": "posted",
       "slug": "23andme-dna-collapse",
       "at": "2026-09-18T16:10:08.250355+00:00"
+    },
+    {
+      "claimed_at": "2026-09-18T22:33:21.720073+00:00",
+      "title": "1 In 3 Couples Now Sleep In Separate Rooms",
+      "publish_at": "2026-09-18T23:08:52Z",
+      "url": "https://youtube.com/shorts/fj-AO9xa1Jk",
+      "state": "posted",
+      "slug": "sleep-divorce-numbers",
+      "at": "2026-09-18T22:33:31.305091+00:00"
     }
   ]
 }
