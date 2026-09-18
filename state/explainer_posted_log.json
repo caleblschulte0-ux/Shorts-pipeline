@@ -1846,6 +1846,13 @@
       "story_structure": "scene+auto+auto",
       "narrative_score": 57,
       "duration_s": 34.9
+    },
+    "ivf-births-surge": {
+      "claimed_at": "2026-09-18T22:51:35.759828+00:00",
+      "title": "Why Are 1 In 37 US Babies Now Born Via IVF?",
+      "publish_at": "2026-09-19T11:08:52Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -2046,6 +2053,14 @@
       "state": "posted",
       "slug": "glp1-weight-loss-surge",
       "at": "2026-09-18T22:41:50.933014+00:00"
+    },
+    {
+      "claimed_at": "2026-09-18T22:51:35.759828+00:00",
+      "title": "Why Are 1 In 37 US Babies Now Born Via IVF?",
+      "publish_at": "2026-09-19T11:08:52Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "ivf-births-surge"
     }
   ]
 }
