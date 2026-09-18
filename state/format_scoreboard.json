@@ -7,14 +7,14 @@
       "views_per_video": 3.2,
       "avg_views_per_hour": 0.01,
       "engaged_views": 50,
-      "avg_view_pct": 52.7,
+      "avg_view_pct": 51.4,
       "likes": 1,
       "shares": 0,
       "subs_gained": 0
     },
     {
       "format": "reddit_story",
-      "videos": 17,
+      "videos": 18,
       "views": 11,
       "views_per_video": 0.6,
       "avg_views_per_hour": 0.0,
@@ -25,6 +25,6 @@
       "subs_gained": 0
     }
   ],
-  "matched": 64,
+  "matched": 65,
   "unmatched": 0
 }
