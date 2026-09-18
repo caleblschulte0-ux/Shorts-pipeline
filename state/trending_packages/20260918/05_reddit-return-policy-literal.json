@@ -1,0 +1,36 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-return-policy-literal",
+  "title": "Corporate Said 'Follow The Return Policy Exactly.' I Did.",
+  "script": "Our new store manager rolled out a strict rule: employees must follow the printed return policy to the letter, no exceptions, no manager overrides, because he was sick of people being too generous. Fine by me. A regular came in trying to return a mattress topper, no receipt, visibly used, four months old. Four months of full use, and he still wanted a refund. Store policy says thirty days, receipt required, unused only. I followed it exactly. Then his own sister called demanding a refund on a blender bought at a different location. Policy says our store only. I followed it exactly. Then the manager himself tried returning his personal laptop bag past the ninety day window. I smiled, pulled up the policy on the screen, and followed it exactly. Within days he had personally overridden three of my by the book rejections just to stop customers from screaming at corporate, then quietly reinstated manager discretion company wide. Turns out the policy was never supposed to be followed that literally.",
+  "shots": [
+    {"phrase": "employees must follow the printed return policy to the letter", "query": "store manager clipboard"},
+    {"phrase": "trying to return a mattress topper", "query": "mattress topper bedroom"},
+    {"phrase": "his own sister called demanding a refund on a blender", "query": "kitchen blender counter"},
+    {"phrase": "tried returning his personal laptop bag past the ninety day window", "query": "laptop bag office desk"},
+    {"phrase": "I smiled, pulled up the policy on the screen", "query": "cashier register screen"},
+    {"phrase": "quietly reinstated manager discretion company wide", "query": "retail store aisle"}
+  ],
+  "punches": [
+    {"phrase": "no exceptions, no manager overrides", "text": "NO EXCEPTIONS", "color": "#ffaa30"},
+    {"phrase": "I followed it exactly", "text": "BY THE BOOK", "color": "#50ff80"},
+    {"phrase": "personally overridden three", "text": "3 OVERRIDES", "color": "#ff3030"},
+    {"phrase": "the policy was never supposed to be followed that literally", "text": "OOPS", "color": "#ff3030"}
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "storymode",
+    "workstory",
+    "corporate",
+    "customerservice",
+    "reddit",
+    "redditstories",
+    "karma",
+    "justice",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

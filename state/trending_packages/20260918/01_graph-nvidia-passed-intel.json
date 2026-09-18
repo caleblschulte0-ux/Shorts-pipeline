@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-nvidia-passed-intel",
+  "title": "Nvidia's Data Center Chips Just Passed All Of Intel",
+  "hook": "It now outsells all of Intel.",
+  "y_label": "Annual revenue (billion dollars)",
+  "duration": 13,
+  "source": "NVIDIA quarterly earnings releases (Data Center segment, fiscal-year totals) vs. Intel Corporation 10-K annual total company revenue, FY2020-FY2025, approximate.",
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "Nvidia Data Center",
+      "color": "#76B900",
+      "icon": "Nvidia",
+      "values": [2.98, 6.70, 10.61, 15.01, 47.53, 115.19]
+    },
+    {
+      "name": "Intel (Whole Company)",
+      "color": "#0071C5",
+      "icon": "Intel",
+      "values": [77.9, 79.0, 63.05, 54.23, 53.10, 52.85]
+    }
+  ],
+  "hashtags": [
+    "nvidia",
+    "intel",
+    "ai",
+    "semiconductors",
+    "chips",
+    "datacenter",
+    "tech",
+    "stockmarket",
+    "markets",
+    "gpu",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

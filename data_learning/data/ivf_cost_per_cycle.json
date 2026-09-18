@@ -1,0 +1,19 @@
+{
+  "key": "ivf_cost_per_cycle",
+  "title": "Typical out-of-pocket IVF cost: one cycle vs. a full attempt (dollars)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "current",
+  "source": {
+    "name": "Fertility clinic cost surveys (widely reported range from FertilityIQ, Mayo Clinic and clinic price transparency data)",
+    "publisher": "Industry cost surveys",
+    "url": "https://www.fertilityiq.com/",
+    "officiality": "secondary",
+    "access_date": "2026-09-18"
+  },
+  "notes": "A single IVF cycle (with medications) typically runs about $20,000 out of pocket; most patients need more than one cycle, putting a typical full attempt closer to $50,000.",
+  "points": [
+    {"label": "One cycle", "value": 20000},
+    {"label": "Typical total (multiple cycles)", "value": 50000}
+  ]
+}

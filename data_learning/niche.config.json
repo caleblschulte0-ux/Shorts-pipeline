@@ -28111,6 +28111,273 @@
           "say": "That's why your cup costs more than it did a year ago. $2.00 a pound in February 2024. $4.41 by February 2025. More than double, in twelve months."
         }
       ]
+    },
+    {
+      "slug": "glp1-weight-loss-surge",
+      "title": "1 In 5 Americans Has Now Taken A Weight-Loss Shot",
+      "hook": "One drug rewired how America eats.",
+      "closing": "Ozempic didn't fix willpower. It just changed the math.",
+      "caption": "GLP-1 drug use in the US nearly doubled in a single year. These shots work far better than anything before them -- but half the people taking them say they can barely keep affording it. Here's the data behind the fastest-adopted drug class in a generation. What's your take?",
+      "hashtags": [
+        "glp1",
+        "ozempic",
+        "wegovy",
+        "weightloss",
+        "semaglutide",
+        "pharma",
+        "health",
+        "healthcare",
+        "medicine",
+        "publichealth",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "glp1_ever_used_trend",
+          "params": {
+            "file": "glp1_ever_used_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SURGE",
+          "topic": "how many Americans have taken the weight-loss shot",
+          "say": "By 2024, 12 percent of US adults had tried a weight-loss shot. One year later, 18 percent -- nearly 1 in 5.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "glp1_weight_loss_by_method",
+          "params": {
+            "file": "glp1_weight_loss_by_method.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 \u00b7 WHY IT WORKS",
+          "topic": "why the weight-loss shot actually works",
+          "say": "Here's why: old diet pills took off maybe 5 percent of body weight. The newest weight-loss shot averages 21. That gap is the whole story."
+        },
+        {
+          "source": "offline",
+          "key": "glp1_afford_difficulty",
+          "params": {
+            "file": "glp1_afford_difficulty.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE CATCH",
+          "topic": "affording the weight-loss shot",
+          "say": "But half of everyone taking the weight-loss shot says it's hard to keep affording it, even with insurance."
+        }
+      ],
+      "question": "Have you or anyone close to you tried one? Tell me below."
+    },
+    {
+      "slug": "ivf-births-surge",
+      "title": "Why Are 1 In 37 US Babies Now Born Via IVF?",
+      "hook": "It used to be almost unthinkable.",
+      "closing": "Science got better. The bill didn't get any smaller.",
+      "caption": "IVF's share of US births has grown fast, and success rates for younger patients are now near 50%. But one cycle still costs about as much as a used car -- and most people need more than one. Here's how fertility science outran affordability. Ever priced this out yourself?",
+      "hashtags": [
+        "ivf",
+        "fertility",
+        "infertility",
+        "reproductivehealth",
+        "pregnancy",
+        "babies",
+        "healthcare",
+        "familyplanning",
+        "womenshealth",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ivf_share_of_births",
+          "params": {
+            "file": "ivf_share_of_births.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 \u00b7 THE SHARE",
+          "topic": "how many US babies are born via IVF",
+          "say": "In 2013, IVF was behind about 1.5 percent of US babies. By 2022, it was 2.5 percent -- 1 in 37 births."
+        },
+        {
+          "source": "offline",
+          "key": "ivf_success_by_age",
+          "params": {
+            "file": "ivf_success_by_age.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 \u00b7 WHY NOW",
+          "topic": "why IVF births are climbing",
+          "say": "Here's why: live-birth success per cycle for women under 35 is now near 50 percent. Past 42, it drops to just 4."
+        },
+        {
+          "source": "offline",
+          "key": "ivf_cost_per_cycle",
+          "params": {
+            "file": "ivf_cost_per_cycle.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE BILL",
+          "topic": "the cost of IVF",
+          "say": "One cycle runs about 20,000 dollars. Most patients need more than one -- so the real total is closer to 50,000."
+        }
+      ],
+      "question": "Would you consider IVF if you needed it? Say why below."
+    },
+    {
+      "slug": "invasive-species-price-tag",
+      "title": "Invasive Species Now Cost The World $423 Billion A Year",
+      "hook": "That's more than most countries make.",
+      "closing": "Nature sent the world a bill nobody budgeted for.",
+      "caption": "The global bill for invasive species has quadrupled every decade since 1970 -- it's now bigger than the economy of Norway. Most of that money isn't even spent stopping them; it's just cleaning up the damage. Here's where $423 billion a year actually goes. What's invaded your area?",
+      "hashtags": [
+        "invasivespecies",
+        "ecology",
+        "biodiversity",
+        "conservation",
+        "nature",
+        "environment",
+        "wildlife",
+        "climate",
+        "science",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "invasive_species_cost_growth",
+          "params": {
+            "file": "invasive_species_cost_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PRICE TAG",
+          "topic": "the cost of invasive species",
+          "say": "The global bill for invasive species has roughly quadrupled every decade since 1970 -- reaching 423 billion dollars a year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "invasive_species_damage_vs_management",
+          "params": {
+            "file": "invasive_species_damage_vs_management.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 WHERE IT GOES",
+          "topic": "where invasive species money goes",
+          "say": "Almost all of it, over 90 percent, pays for damage already done. Barely 10 percent goes to stopping the next invasion."
+        },
+        {
+          "source": "offline",
+          "key": "invasive_species_established_vs_harmful",
+          "params": {
+            "file": "invasive_species_established_vs_harmful.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE SCALE",
+          "topic": "how many invasive species there really are",
+          "say": "Over 37 thousand alien species have taken hold worldwide. Only about 3.5 thousand of them are the ones actually causing the damage."
+        }
+      ],
+      "question": "Ever seen an invasive species mess up your own backyard? Tell me below."
+    },
+    {
+      "slug": "23andme-dna-collapse",
+      "title": "23andMe Sold 12 Million DNA Kits. Then It Collapsed.",
+      "hook": "It was supposed to keep your secrets forever.",
+      "closing": "Your DNA outlived the company that promised to protect it.",
+      "caption": "23andMe sold over 12 million DNA kits and was once valued at $3.5 billion. In 2025 it sold in bankruptcy for a fraction of that -- two years after a breach had already exposed millions of users' genetic data. Here's how a genetic-data empire fell apart. Did you ever spit in one of these tubes?",
+      "hashtags": [
+        "23andme",
+        "dna",
+        "genetictesting",
+        "privacy",
+        "databreach",
+        "biotech",
+        "tech",
+        "genetics",
+        "cybersecurity",
+        "data",
+        "shorts",
+        "explained"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "dna23_revenue_trend",
+          "params": {
+            "file": "dna23_revenue_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SLIDE",
+          "topic": "23andMe's business collapsing",
+          "say": "23andMe made 299 million dollars in fiscal 2023. The next year, just 220 million -- a 27 percent drop in a single year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "dna23_valuation_collapse",
+          "params": {
+            "file": "dna23_valuation_collapse.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE CRASH",
+          "topic": "23andMe's valuation crashing",
+          "say": "In 2021, 23andMe went public worth 3,500 million dollars, 3.5 billion. In 2025, it sold out of bankruptcy for just 256 million."
+        },
+        {
+          "source": "offline",
+          "key": "dna23_kits_vs_breach",
+          "params": {
+            "file": "dna23_kits_vs_breach.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE RISK",
+          "topic": "23andMe's DNA data risk",
+          "say": "23andMe sold over 12 million DNA kits. A 2023 breach had already exposed genetic data from nearly 7 million of those customers."
+        }
+      ],
+      "question": "Would you ever trust a company with your DNA again? Tell me below."
     }
   ],
   "videos": [

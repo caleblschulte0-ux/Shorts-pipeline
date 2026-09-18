@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-oatmilk-passed-soymilk",
+  "title": "Oat Milk Just Passed Soy Milk In America",
+  "hook": "It happened in about 4 years.",
+  "y_label": "US retail sales (million dollars)",
+  "duration": 13,
+  "source": "SPINS / Nielsen US retail sales data for plant-based milk categories, oat milk vs. soy milk, compiled via trade press (Good Food Institute, Food Dive, The Vegan Review), 2017-2023, approximate.",
+  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {
+      "name": "Oat Milk",
+      "color": "#E8C39E",
+      "values": [5, 45, 120, 230, 380, 480, 530]
+    },
+    {
+      "name": "Soy Milk",
+      "color": "#FFD700",
+      "values": [420, 400, 385, 365, 345, 335, 325]
+    }
+  ],
+  "hashtags": [
+    "oatmilk",
+    "soymilk",
+    "plantbased",
+    "dairyfree",
+    "groceries",
+    "foodtrends",
+    "veganfood",
+    "didyouknow",
+    "consumerdata",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

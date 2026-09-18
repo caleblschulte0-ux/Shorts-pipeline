@@ -1,0 +1,22 @@
+{
+  "key": "ivf_success_by_age",
+  "title": "IVF live-birth rate per cycle, by patient age (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "recent CDC ART reporting years",
+  "source": {
+    "name": "Assisted Reproductive Technology (ART) Surveillance national summary",
+    "publisher": "CDC (Centers for Disease Control and Prevention)",
+    "url": "https://www.cdc.gov/art/php/surveillance/index.html",
+    "officiality": "official",
+    "access_date": "2026-09-18"
+  },
+  "notes": "Approximate live-birth-per-cycle rates by age band, consistent with the pattern in CDC's national ART summary reports.",
+  "points": [
+    {"label": "Under 35", "value": 50},
+    {"label": "35-37", "value": 39},
+    {"label": "38-40", "value": 27},
+    {"label": "41-42", "value": 13},
+    {"label": "Over 42", "value": 4}
+  ]
+}
