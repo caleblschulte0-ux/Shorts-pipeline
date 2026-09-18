@@ -17,16 +17,14 @@
       "news_angle": "Parking Spot Fourteen was the reserved space that the neighbor repeatedly occupied without authorization.",
       "image_url": "https://live.staticflickr.com/7251/7076049163_344558669e.jpg",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "apartment complex numbered parking space",
-        "resolved_by": "entity_media",
-        "source_class": "unverified",
-        "title": "Parking Spot Fourteen",
         "url": "https://live.staticflickr.com/7251/7076049163_344558669e.jpg",
-        "verified_at": "2026-09-18T09:37:04Z",
-        "width": 0
+        "source_class": "unverified",
+        "provider": "live.staticflickr.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-18T13:48:39Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
