@@ -1,0 +1,16 @@
+{
+ "slug": "23andme-dna-collapse",
+ "ts": "20260918T161019Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0:mid (t=1.24s), the mascot stands at the bottom holding a clipboard and pointing, not interacting with the data points above. In seg3:mid (t=29.33s), the mascot is merely perched on the '12M' circle.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "Data demonstration",
+  "visible_evidence": "In seg0:mid (t=1.24s), numbers appear next to small, static mascots, and the main mascot at the bottom is just pointing, lacking a dynamic visual metaphor for 'collapsing'.",
+  "root_cause": "The initial data presentation is too literal and lacks an engaging visual metaphor or active mascot performance.",
+  "repair_goal": "Introduce a dynamic visual metaphor for the 'collapsing business' in seg0, with the mascot actively demonstrating the decline, rather than just presenting numbers."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
