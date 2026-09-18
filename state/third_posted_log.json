@@ -7647,14 +7647,27 @@
       "ts": "2026-09-18T12:22:43.022238+00:00"
     },
     "clip-20260918-6": {
-      "pending": true,
-      "source_url": "https://kick.com/adinross/clips/clip_01M2KMWBMN0GCQYZQJBTFFDPTP",
-      "story_key": null,
-      "streamer": "adinross",
+      "url": "https://youtube.com/shorts/qQvODtk-RQ0",
       "title": "Adinross: Adin Ross Plans A Debate vs Sneeko \u2014 Then Someone Says It's Not Happening",
       "kind": "twitch_clip",
-      "ts": "2026-09-18T12:26:48.067504+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-18T12:26:55.771841+00:00",
+      "uploaded_at": "2026-09-18T12:26:55.771859+00:00",
+      "publish_at": "2026-09-19T00:30:00Z",
+      "source_url": "https://kick.com/adinross/clips/clip_01M2KMWBMN0GCQYZQJBTFFDPTP",
+      "streamer": "adinross",
+      "series": "drama",
+      "hook": "WHY IS THIS DEBATE NOT HAPPENING",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3127,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.6,
+        "end": 45.8
+      },
+      "director_cut": true
     }
   }
 }
