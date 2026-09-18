@@ -1,0 +1,16 @@
+{
+ "slug": "glp1-weight-loss-surge",
+ "ts": "20260918T225149Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A SECOND Data is pasted at bottom-centre in the identical arm-out clipboard pose in hook@0.3, seg0:mid, seg0:end, seg1:start, seg2:mid, seg2:end, seg3:start, seg3:mid and seg3:end \u2014 same pixels every time, no setup\u2192action\u2192payoff, and it sits on top of the caption text.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start: all five ranked bars carry labels that run off the left edge of the 9:16 frame \u2014 'repatide (Zepbound)', 'maglutide (Wegovy)', 'glutide (early GLP-1)', ')iet & exercise alone' \u2014 so the viewer cannot name the drug the 21% belongs to; seg2:mid then drops the caption 'weight. The newest' in low-contrast grey directly over the standing mascot, and the funnel's own headline '14% make it to the end' is stranded in a large empty void.",
+  "root_cause": "The ranked-bar layout places right-aligned row labels at a negative x with no measured left inset for the longest string, so text is laid out beyond the frame; separately the scene is drawn as a FUNNEL (stages that shrink, '14% make it to the end') over five independent drugs' average body-weight loss \u2014 a shrinking-stage claim that the data does not make \u2014 and the caption layer renders under/behind the mascot overlay instead of above it.",
+  "repair_goal": "Re-lay seg2 so every category label is fully inside the safe area (measure the widest label and inset the bar origin, or set labels above their bars), replace the funnel with a plain ranked-bar comparison that claims only 'these five options, ranked by % body weight lost' with 21% as the single accent, and lift the caption above the mascot in full-contrast ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "sleep-divorce-numbers",
+ "ts": "20260918T225149Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (f15) is a thin strip of 13 icons at the very top and then roughly 60% of the frame is empty gradient with only a faint 'each = 1%'; seg2:start (f10) also leaves the entire upper half blank above the slope.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the scene stacks four unrelated layers in the same pixels: the kicker 'it never settled' overlaps the standing title 'how many couples are sleeping apart', a bright blue zig-zag polyline is drawn straight across that title, a capsule with a red dot floats mid-frame beside a stray empty ellipse, the label 'anywhere between 29% and 35%' collides with a mascot on the right edge, and a second mascot plus the caption 'third: 35 percent' occupy the lower third \u2014 nothing in the frame can be read cleanly.",
+  "root_cause": "The range/dial machine is composited without a layout pass: its line, its capsule and its annotation are placed in absolute coordinates that ignore the reserved title band and the caption band, and a second mascot instance is drawn on top of the first scene's mascot instead of replacing it.",
+  "repair_goal": "Rebuild seg1 so the range reads as one claim: keep ONE mascot, drop the stray polyline and the empty ellipse, move the 29%-35% capsule into the clear middle band with its endpoint labels outside any other element, and reserve the top band for the title alone so no text overlaps text."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

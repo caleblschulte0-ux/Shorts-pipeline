@@ -1,0 +1,16 @@
+{
+ "slug": "ivf-births-surge",
+ "ts": "20260918T225149Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:start\u2013seg4:end \u2014 the headline is clipped by BOTH frame edges, reading 'cal total (multiple cycles)  $50,' where it should read 'Typical total (multiple cycles) $50,000'; also seg2:mid, the '$2000'-equivalent legend reads 'eac[h]   1%' with its middle hidden behind the standing masco",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg4:start/mid/end and payoff@-1.8 the machine's value headline is cut off at both margins \u2014 it renders as 'cal total (multiple cycles)  $50' / '$50,' instead of 'Typical total (multiple cycles) $50,000' \u2014 and the scene title 'the cost of IVF' is stacked directly beneath it, so the one number the payoff depends on is the one a phone viewer cannot read.",
+  "root_cause": "The label+value headline is laid out at an assumed width instead of a MEASURED one: the composed string is wider than the frame's safe area, so it is centred and clipped on both sides rather than shrunk, wrapped or abbreviated, and its box is not checked against the scene title placed under it.",
+  "repair_goal": "Measure the composed headline and fit it inside the safe area \u2014 shrink/wrap or abbreviate to something like 'Typical total \u00b7 $50,000' \u2014 so the full label and the full value are visible with margin on both sides, and reserve vertical space so it never collides with the scene title."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
