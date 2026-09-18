@@ -7544,13 +7544,86 @@
       "ts": "2026-09-17T23:35:20.350955+00:00"
     },
     "clip-20260918-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/erobb221/clip/LightGloriousCheddarRaccAttack-NoLsq50JWlfk6how",
-      "story_key": null,
-      "streamer": "erobb221",
+      "url": "https://youtube.com/shorts/P80d1o2RiIM",
       "title": "Erobb221 Denies Breaking The Window Until His Friend Exposes Him",
       "kind": "twitch_clip",
-      "ts": "2026-09-18T11:13:38.802758+00:00",
+      "ts": "2026-09-18T11:13:47.966338+00:00",
+      "uploaded_at": "2026-09-18T11:13:47.966356+00:00",
+      "publish_at": "2026-09-18T17:00:00Z",
+      "source_url": "https://www.twitch.tv/erobb221/clip/LightGloriousCheddarRaccAttack-NoLsq50JWlfk6how",
+      "streamer": "erobb221",
+      "series": "fail",
+      "hook": "HE SWEARS HE DIDN'T DO IT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3259,
+      "banger": 0.55,
+      "cut": {
+        "start": 23.4,
+        "end": 48.0
+      },
+      "director_cut": true
+    },
+    "rejected-transparentelatedeaglevotenay-1x5gup4fw2etdven": {
+      "source_url": "https://www.twitch.tv/cinna/clip/TransparentElatedEagleVoteNay-1x5GUp4FW2ETdVEn",
+      "streamer": "cinna",
+      "title": "Cinna: Kalita Dub Almost Died Then Showed Up Covered In Blood",
+      "qa_rejected": true,
+      "ts": "2026-09-18T11:24:20.522261+00:00"
+    },
+    "rejected-alluringanimatedgoldfishfailfish-dqndfme068lqmxo3": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/AlluringAnimatedGoldfishFailFish-dqNdfme068lqmXO3",
+      "streamer": "extraemily",
+      "title": "toodaloo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (mundane small talk, no real event)",
+      "ts": "2026-09-18T11:25:38.303052+00:00"
+    },
+    "rejected-enthusiasticdepressedbibimbappermasmug-ki1wwwy3-hmvvk2d": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/EnthusiasticDepressedBibimbapPermaSmug-kI1WWwY3-Hmvvk2d",
+      "streamer": "kaicenat",
+      "title": "kai cenat wiring a Wolverine costume",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static skin preview, chat hype talk only)",
+      "ts": "2026-09-18T11:27:44.212542+00:00"
+    },
+    "rejected-laconicmagnificentskirretjoncarnage-9ekgncwy8ptau0js": {
+      "source_url": "https://www.twitch.tv/buddha/clip/LaconicMagnificentSkirretJonCarnage-9EKgncWy8pTAU0Js",
+      "streamer": "buddha",
+      "title": "Buddha confirms lang owns The Raven",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (rambling talk, no visible event)",
+      "ts": "2026-09-18T11:29:12.506894+00:00"
+    },
+    "rejected-zealousadorablejellyfishwoop-wittqgztgqxnqph_": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ZealousAdorableJellyfishWOOP-WITtQGzTgQxnqPh_",
+      "streamer": "kaicenat",
+      "title": "are u hacked",
+      "qa_rejected": true,
+      "ts": "2026-09-18T11:32:22.687009+00:00"
+    },
+    "rejected-goldencrowdedgoatfutureman-qklmi1e_67b_3e79": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/GoldenCrowdedGoatFutureMan-QklMi1e_67b_3e79",
+      "streamer": "jynxzi",
+      "title": "Jynxzi picks Drdonut for best minecraft streamer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just praising another streamer, no event)",
+      "ts": "2026-09-18T12:06:23.084009+00:00"
+    },
+    "clip-20260918-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/HelplessGleamingWolverineOSfrog-Z25-pIigKS41LOHr",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Loses His Mind Defending His Teammate's Tachanka Pick",
+      "kind": "twitch_clip",
+      "ts": "2026-09-18T12:21:13.584393+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
