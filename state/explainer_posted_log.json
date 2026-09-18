@@ -1837,11 +1837,15 @@
       "duration_s": 49.9
     },
     "glp1-weight-loss-surge": {
-      "claimed_at": "2026-09-18T22:41:44.866531+00:00",
+      "url": "https://youtube.com/shorts/GJERcoNVJ-Y",
       "title": "1 In 5 Americans Has Now Taken A Weight-Loss Shot",
+      "at": "2026-09-18T22:41:50.933014+00:00",
       "publish_at": "2026-09-19T05:08:52Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 34.9
     }
   },
   "uploads": [
@@ -2038,9 +2042,10 @@
       "claimed_at": "2026-09-18T22:41:44.866531+00:00",
       "title": "1 In 5 Americans Has Now Taken A Weight-Loss Shot",
       "publish_at": "2026-09-19T05:08:52Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "glp1-weight-loss-surge"
+      "url": "https://youtube.com/shorts/GJERcoNVJ-Y",
+      "state": "posted",
+      "slug": "glp1-weight-loss-surge",
+      "at": "2026-09-18T22:41:50.933014+00:00"
     }
   ]
 }
