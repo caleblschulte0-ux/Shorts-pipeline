@@ -15,7 +15,7 @@
     },
     "wholesome": {
       "n": 8,
-      "median_vph": 0.035
+      "median_vph": 0.03
     },
     "win": {
       "n": 8,
@@ -29,13 +29,13 @@
       "n": 3,
       "median_vph": 0.03
     },
-    "rage": {
-      "n": 3,
-      "median_vph": 0.0
-    },
     "jumpscare": {
       "n": 3,
       "median_vph": 0.0
+    },
+    "rage": {
+      "n": 2,
+      "median_vph": 0.005
     }
   },
   "excluded": {
