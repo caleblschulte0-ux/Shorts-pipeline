@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s0-d196914f9ff7",
+  "safe_request_id": "reddit-clock-in-exact-second-s0-d196914f9ff7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f2cf82addfa61b00d9a42b384e4de7989a7ddd10767c379a113478b7498d8ca5",
+  "prompt_used": "An editorial illustration for a short-form video: time clock punch card. It accompanies the narration: \"no clocking in before your exact scheduled shift time\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "17lDAAtjCO3qmM_KUkMtFO1acziyf34Xx",
+    "filename": "20260919__reddit-clock-in-exact-second-s0-d196914f9ff7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=17lDAAtjCO3qmM_KUkMtFO1acziyf34Xx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "96f0cd850924779d92fee26eb3ba12ecfe7fabc36689fe049cd08ec1b30a9c41",
+    "bytes": 1880316,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:08.080Z"
+}
