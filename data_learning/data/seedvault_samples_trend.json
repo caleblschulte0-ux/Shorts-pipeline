@@ -1,0 +1,37 @@
+{
+  "title": "Seed samples stored in the Svalbard Global Seed Vault",
+  "unit": "seed samples",
+  "geography": "Svalbard, Norway",
+  "time_coverage": "2008-2024",
+  "source": {
+    "name": "Svalbard Global Seed Vault milestones",
+    "publisher": "Crop Trust / NordGen",
+    "url": "https://www.croptrust.org/what-we-do/programs/svalbard-global-seed-vault/",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "278,000 samples at the vault's 2008 opening; 860,000 by 2015; 1.05 million by February 2020; surpassed 1.4 million by 2024.",
+  "points": [
+    {
+      "label": "2008",
+      "value": 278000,
+      "period": "2008"
+    },
+    {
+      "label": "2015",
+      "value": 860000,
+      "period": "2015"
+    },
+    {
+      "label": "2020",
+      "value": 1050000,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 1401285,
+      "period": "2024"
+    }
+  ],
+  "key": "seedvault_samples_trend"
+}

@@ -1,0 +1,83 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-clock-in-exact-second",
+  "title": "She Said No Early Clock-Ins. So I Stopped Coming Early.",
+  "script": "My new supervisor sent out a memo: no clocking in before your exact scheduled shift time, not even one minute early, per corporate policy \u2014 fine, I used to show up ten minutes early to prep the register and be ready for customers right at nine sharp, not anymore. From that day on I stood outside the door until 8:59, badge in hand, and clocked in the literal second my shift started. That meant nothing was counted, nothing was stocked, and the customers who showed up right at opening waited while I did the setup I used to finish for free. Within a week corporate was fielding complaints about the nine a.m. line stretching out the door. My supervisor asked why I stopped coming in early. I told her I was just following her memo, word for word. She tried to walk it back out loud. I told her I'd need that in writing too, per policy. The memo got officially rescinded, with my setup time now paid.",
+  "shots": [
+    {
+      "phrase": "no clocking in before your exact scheduled shift time",
+      "query": "time clock punch card"
+    },
+    {
+      "phrase": "prep the register and be ready for customers right at nine sharp",
+      "query": "cash register store opening"
+    },
+    {
+      "phrase": "stood outside the door until 8:59",
+      "query": "employee waiting outside store"
+    },
+    {
+      "phrase": "clocked in the literal second my shift started",
+      "query": "digital time clock"
+    },
+    {
+      "phrase": "the customers who showed up right at opening waited",
+      "query": "customers waiting in line"
+    },
+    {
+      "phrase": "corporate was fielding complaints about the nine a.m. line",
+      "query": "office phone complaints"
+    },
+    {
+      "phrase": "just following her memo, word for word",
+      "query": "printed office memo"
+    },
+    {
+      "phrase": "The memo got officially rescinded",
+      "query": "shredded paper memo"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "not even one minute early",
+      "text": "NOT ONE MINUTE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "8:59",
+      "text": "8:59 SHARP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "fielding complaints about the nine a.m. line",
+      "text": "COMPLAINTS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "officially rescinded",
+      "text": "RESCINDED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "setup time now paid",
+      "text": "NOW PAID",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "reddit",
+    "redditstories",
+    "storymode",
+    "karma",
+    "corporatelife",
+    "9to5",
+    "retailworker",
+    "satisfying",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

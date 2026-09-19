@@ -1,0 +1,25 @@
+{
+  "title": "Seed samples Syria's genebank deposited vs. withdrew after its Aleppo facility became unreachable",
+  "unit": "seed samples",
+  "geography": "Syria (ICARDA genebank)",
+  "time_coverage": "2008-2019",
+  "source": {
+    "name": "Syrian War Prompts First Withdrawal From Arctic Seed Vault",
+    "publisher": "Crop Trust / NPR",
+    "url": "https://www.croptrust.org/news-events/in-the-media/article/syrian-war-causes-the-global-doomsday-seed-vaults-first-withdrawal/",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "ICARDA (based near Aleppo, Syria) deposited 116,484 seed samples 2008-2014. When war made its own genebank unreachable, it withdrew a matching set across three withdrawals (2015, 2017, 2019) -- the vault's first-ever withdrawals -- to rebuild its collection elsewhere.",
+  "points": [
+    {
+      "label": "Deposited By Syria (2008-2014)",
+      "value": 116484
+    },
+    {
+      "label": "Withdrawn After War Cut Off Access",
+      "value": 116484
+    }
+  ],
+  "key": "seedvault_syria_withdrawal"
+}

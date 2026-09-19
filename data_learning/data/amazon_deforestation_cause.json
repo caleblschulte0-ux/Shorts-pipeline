@@ -1,0 +1,25 @@
+{
+  "title": "What cleared Amazon land becomes",
+  "unit": "percent",
+  "geography": "Brazilian Amazon",
+  "time_coverage": "recent years, approximate",
+  "source": {
+    "name": "Drivers of Amazon deforestation",
+    "publisher": "Yale School of the Environment / Yale Environment 360",
+    "url": "https://e360.yale.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Cattle ranching is widely cited as the largest single driver of Brazilian Amazon deforestation, commonly estimated at 65-80% of cleared land; remainder split among soy farming, mining, logging and infrastructure. Approximate.",
+  "points": [
+    {
+      "label": "Cattle Pasture",
+      "value": 80
+    },
+    {
+      "label": "Soy, Mining, Logging & Other",
+      "value": 20
+    }
+  ],
+  "key": "amazon_deforestation_cause"
+}

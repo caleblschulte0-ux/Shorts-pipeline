@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-vinyl-passed-cds",
+  "title": "Vinyl Just Passed CDs In Music Revenue",
+  "hook": "The comeback nobody saw coming.",
+  "y_label": "US revenue (million dollars)",
+  "duration": 13,
+  "source": "RIAA (Recording Industry Association of America) year-end music revenue reports, vinyl vs CD US revenue, 2017-2024, approximate.",
+  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Vinyl",
+      "color": "#E8B4B8",
+      "values": [220, 260, 310, 626, 1000, 1200, 1400, 1400]
+    },
+    {
+      "name": "CDs",
+      "color": "#C0C0C0",
+      "values": [1160, 700, 615, 531, 420, 480, 400, 350]
+    }
+  ],
+  "hashtags": [
+    "vinyl",
+    "vinylrecords",
+    "cds",
+    "musicindustry",
+    "recordstore",
+    "nostalgia",
+    "musicdata",
+    "didyouknow",
+    "data",
+    "shorts",
+    "trending",
+    "music"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

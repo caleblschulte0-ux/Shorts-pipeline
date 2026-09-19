@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-ev-passed-diesel-europe",
+  "title": "Electric Cars Just Passed Diesel In Europe",
+  "hook": "Diesel just lost its own continent.",
+  "y_label": "share of EU new car registrations (%)",
+  "duration": 13,
+  "source": "ACEA (European Automobile Manufacturers' Association) new car registrations by fuel type, battery-electric vs diesel share of EU registrations, 2017-2024, compiled from year-end press releases, approximate.",
+  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Battery Electric",
+      "color": "#4FC3F7",
+      "values": [1.2, 1.5, 1.9, 5.4, 9.1, 12.1, 14.6, 13.6]
+    },
+    {
+      "name": "Diesel",
+      "color": "#6B4F3A",
+      "values": [44.0, 35.9, 30.5, 28.0, 19.6, 16.0, 13.6, 11.9]
+    }
+  ],
+  "hashtags": [
+    "electriccars",
+    "ev",
+    "diesel",
+    "europe",
+    "cars",
+    "automotive",
+    "cleanenergy",
+    "energydata",
+    "didyouknow",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

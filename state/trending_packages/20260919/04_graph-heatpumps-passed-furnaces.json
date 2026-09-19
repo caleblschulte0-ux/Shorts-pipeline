@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-heatpumps-passed-furnaces",
+  "title": "Heat Pumps Just Passed Gas Furnaces In America",
+  "hook": "And the gap keeps growing.",
+  "y_label": "share of US heating equipment shipments (%)",
+  "duration": 13,
+  "source": "AHRI (Air-Conditioning, Heating & Refrigeration Institute) US heating equipment shipment data, heat pumps' share of combined heat-pump-plus-gas-furnace shipments, compiled via trade press (Canary Media, ACHR News, Utility Dive), 2012-2024, approximate.",
+  "years": [2012, 2014, 2016, 2018, 2020, 2022, 2024],
+  "series": [
+    {
+      "name": "Heat Pumps",
+      "color": "#FF8C42",
+      "values": [25, 30, 35, 40, 46, 52, 58]
+    },
+    {
+      "name": "Gas Furnaces",
+      "color": "#5B7C99",
+      "values": [75, 70, 65, 60, 54, 48, 42]
+    }
+  ],
+  "hashtags": [
+    "heatpump",
+    "hvac",
+    "gasfurnace",
+    "energyefficiency",
+    "cleanenergy",
+    "homeheating",
+    "climatetech",
+    "didyouknow",
+    "data",
+    "shorts",
+    "trending",
+    "energydata"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

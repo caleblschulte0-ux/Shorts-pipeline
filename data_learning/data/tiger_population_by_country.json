@@ -1,0 +1,33 @@
+{
+  "title": "Wild tiger population by country, 2022",
+  "unit": "tigers",
+  "geography": "India, Russia, Indonesia, rest of world",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Tiger range country population estimates",
+    "publisher": "Global Tiger Forum / WWF",
+    "url": "https://www.worldwildlife.org/",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "India: 3,682 (2022 national tiger estimate). Russia: ~750 Amur tigers. Indonesia: 371 (IUCN). Rest of world derived as the remainder of the 5,574 global 2022 total across the other tiger-range countries (Nepal, Bangladesh, Malaysia, Thailand, etc.). Approximate.",
+  "points": [
+    {
+      "label": "India",
+      "value": 3682
+    },
+    {
+      "label": "Russia",
+      "value": 750
+    },
+    {
+      "label": "Indonesia",
+      "value": 371
+    },
+    {
+      "label": "Rest Of World",
+      "value": 771
+    }
+  ],
+  "key": "tiger_population_by_country"
+}
