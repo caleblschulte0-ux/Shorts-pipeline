@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s5-e5976cd8364c",
+  "safe_request_id": "reddit-clock-in-exact-second-s5-e5976cd8364c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "cef3b50e038df9ab94db95d729cb31b7387f9efa60c28ad2dd1e870955bd4d24",
+  "prompt_used": "An editorial illustration for a short-form video: office phone complaints. It accompanies the narration: \"corporate was fielding complaints about the nine a.m. line\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZlotO-EAtbziW8o8Bijy3dLh8aBaNogQ",
+    "filename": "20260919__reddit-clock-in-exact-second-s5-e5976cd8364c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZlotO-EAtbziW8o8Bijy3dLh8aBaNogQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1153f6ddc7ebe2debf8d0af09010e4ad4770afe285ca38dc54329aa3d1c5cb0a",
+    "bytes": 1883572,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-19T11:28:12.594Z"
+}
