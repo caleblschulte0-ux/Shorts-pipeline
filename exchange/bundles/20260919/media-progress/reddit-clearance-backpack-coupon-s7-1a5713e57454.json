@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s7-1a5713e57454",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s7-1a5713e57454",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e1745f587aa1efb24af2962267a1c56265c9b13f2100a5e9c411c705c0fba48a",
+  "prompt_used": "An editorial illustration for a short-form video: store doors closing. It accompanies the narration: \"the doors closed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1onAnx8y0KHFHSlvlGpEUYetUM35PA81f",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s7-1a5713e57454.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1onAnx8y0KHFHSlvlGpEUYetUM35PA81f",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a6a263bd0364ce6f45b60ec15bbc2a540fc61283037bdad790cf3413b2a6d49e",
+    "bytes": 1743630,
+    "format": "png",
+    "width": 1370,
+    "height": 1148
+  },
+  "verified_at": "2026-09-19T11:28:21.500Z"
+}
