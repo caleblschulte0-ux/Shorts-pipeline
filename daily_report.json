@@ -1,4 +1,343 @@
-{
-  "skipped": true,
-  "recent_posts": 2
-}
+[
+  {
+    "topic": "Wind And Solar Just Passed Coal In US Power",
+    "title": "Wind And Solar Just Passed Coal In US Power",
+    "format": "graph_race",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 75.7,
+    "package_path": "state/trending_packages/20260919/01_graph-windsolar-passed-coal.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-113336_wind_and_solar_just_passed_coal_in_us_po.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Electric Cars Just Passed Diesel In Europe",
+    "title": "Electric Cars Just Passed Diesel In Europe",
+    "format": "graph_race",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 2.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 74.5,
+    "package_path": "state/trending_packages/20260919/02_graph-ev-passed-diesel-europe.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-113452_electric_cars_just_passed_diesel_in_euro.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 2.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Vinyl Just Passed CDs In Music Revenue",
+    "title": "Vinyl Just Passed CDs In Music Revenue",
+    "format": "graph_race",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, genuinely well-built graph race with a real overtake moment \u2014 held back by a hook caption stamped over the chart's top axis label and tip labels running off the right edge.",
+    "elapsed_seconds": 142.0,
+    "package_path": "state/trending_packages/20260919/03_graph-vinyl-passed-cds.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-113606_vinyl_just_passed_cds_in_music_revenue.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, genuinely well-built graph race with a real overtake moment \u2014 held back by a hook caption stamped over the chart's top axis label and tip labels running off the right edge.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Heat Pumps Just Passed Gas Furnaces In America",
+    "title": "Heat Pumps Just Passed Gas Furnaces In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 78.6,
+    "package_path": "state/trending_packages/20260919/04_graph-heatpumps-passed-furnaces.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-113828_heat_pumps_just_passed_gas_furnaces_in_a.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Said No Early Clock-Ins. So I Stopped Coming Early.",
+    "title": "She Said No Early Clock-Ins. So I Stopped Coming Early.",
+    "format": "reddit",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Strong, well-illustrated malicious-compliance story with a real payoff, undermined by a mid-section where the gameplay half goes black, blurry and caption-free.",
+    "elapsed_seconds": 212.8,
+    "package_path": "state/trending_packages/20260919/05_reddit-clock-in-exact-second.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-114002_she_said_no_early_clock_ins__so_i_stoppe.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.867,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Strong, well-illustrated malicious-compliance story with a real payoff, undermined by a mid-section where the gameplay half goes black, blurry and caption-free.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Wanted 6 Free Backpacks Off One Coupon.",
+    "title": "She Wanted 6 Free Backpacks Off One Coupon.",
+    "format": "reddit",
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Strong, well-illustrated Reddit story that garbles its own punchline \u2014 two captions print on top of each other at t=53.7s.",
+    "elapsed_seconds": 228.1,
+    "package_path": "state/trending_packages/20260919/06_reddit-clearance-backpack-coupon.json",
+    "source": "brain",
+    "video_path": "output/daily_20260919-114352_she_wanted_6_free_backpacks_off_one_coup.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 55.467,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Strong, well-illustrated Reddit story that garbles its own punchline \u2014 two captions print on top of each other at t=53.7s.",
+      "score": 79
+    },
+    "blocked": true
+  },
+  {
+    "topic": "dp world tour",
+    "angle": null,
+    "publish_at": "2026-09-19T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 35 column 6 (char 1857)",
+    "elapsed_seconds": 11.0,
+    "backfill": true
+  },
+  {
+    "topic": "national weather service",
+    "angle": null,
+    "publish_at": "2026-09-19T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 6 column 817 (char 4283)\", \"headless-claude[1]: Expecting ',' delimiter: line 5 c",
+    "elapsed_seconds": 800.4,
+    "title": "Tornado Sirens Blared As I Read His Texts",
+    "package_path": "state/trending_packages/20260919-114946_auto_national_weather_service.json",
+    "video_path": "output/daily_20260919-114946_national_weather_service.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.8,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 6 column 817 (char 4283)\", \"headless-claude[1]: Expecting ',' delimiter: line 5 c",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "al east standings",
+    "angle": null,
+    "publish_at": "2026-09-19T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A blurred standings screenshot and a caption printed over its own rows open the video; there is no data demonstration and no mascot anywhere.",
+    "elapsed_seconds": 580.3,
+    "title": "He Bet My Dead Dad's Watch On The Yankees",
+    "package_path": "state/trending_packages/20260919-120307_auto_al_east_standings.json",
+    "video_path": "output/daily_20260919-120307_al_east_standings.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.3,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A blurred standings screenshot and a caption printed over its own rows open the video; there is no data demonstration and no mascot anywhere.",
+      "score": 30
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "chicago weather",
+    "angle": null,
+    "publish_at": "2026-09-19T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story is watchable but the top panel is auto-grabbed stock that actively contradicts the narration \u2014 a 1918 hotel letter and a 'gr8 2 c u 2nite' Nokia screen standing in for a flooded basement.",
+    "elapsed_seconds": 707.4,
+    "title": "My Mother-In-Law Flooded My Wedding Dress On Purpose",
+    "package_path": "state/trending_packages/20260919-121313_auto_chicago_weather.json",
+    "video_path": "output/daily_20260919-121313_chicago_weather.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.667,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is watchable but the top panel is auto-grabbed stock that actively contradicts the narration \u2014 a 1918 hotel letter and a 'gr8 2 c u 2nite' Nokia screen standing in for a flooded basement.",
+      "score": 26
+    },
+    "blocked": true,
+    "backfill": true
+  }
+]

@@ -11783,5 +11783,840 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260620": {
+    "01_mary-tasmanian-devil-paradise-country.json": {
+      "version": 8,
+      "slug": "mary-tasmanian-devil-paradise-country",
+      "title": "An Endangered Devil Named Mary Escaped. For 15 Days.",
+      "script": "An endangered devil went missing! Mary \u2014 a 2-year-old Tasmanian devil at Paradise Country wildlife park on the Queensland Gold Coast \u2014 slipped out of her enclosure on June 2. Keepers had no idea how. They theorized she made an abnormally large leap. A thermal-imaging drone swept the bush for 3 straight nights. A sniffer dog joined the search. Wildlife experts combed the area. Nothing. For 15 days, Mary was gone. Then they found her \u2014 less than 2 kilometres from the park, but in critical condition. After 15 days in the wild, this shy, endangered marsupial needed emergency veterinary care to stabilize her. She survived. Mary is now at a specialist hospital recovering. So: how does a scared Tasmanian devil hide from a thermal drone for 2 weeks?",
+      "shots": [
+        {
+          "phrase": "An endangered devil went missing!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Tasmanian devil wildlife",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Mary \u2014 a 2-year-old Tasmanian devil",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young_tasmanian_devil.jpg",
+          "query": "young Tasmanian devil marsupial",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Paradise Country wildlife park on the Queensland Gold Coast",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Queensland Gold Coast wildlife park",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "slipped out of her enclosure on June 2",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young_tasmanian_devil.jpg",
+          "query": "animal enclosure fence wildlife park",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Keepers had no idea how.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "zookeeper wildlife park confused search",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "she made an abnormally large leap",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young_tasmanian_devil.jpg",
+          "query": "marsupial jumping animal escape bush",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "A thermal-imaging drone swept the bush for 3 straight nights",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "thermal drone search night bush",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A sniffer dog joined the search",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devils.jpg",
+          "query": "sniffer dog search handler woodland",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Nothing. For 15 days, Mary was gone",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Australian bush forest dark empty",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Then they found her \u2014 less than 2 kilometres from the park",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young_tasmanian_devil.jpg",
+          "query": "wildlife rescue animal found bush",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "in critical condition",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "animal veterinary care critical wildlife",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "emergency veterinary care to stabilize her",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Young_tasmanian_devil.jpg",
+          "query": "exotic animal veterinary hospital treatment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Mary is now at a specialist hospital recovering",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devils.jpg",
+          "query": "Tasmanian devil recovering wildlife hospital",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how does a scared Tasmanian devil hide from a thermal drone for 2 weeks",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Tasmanian devil hiding bush night",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "An endangered devil went missing!",
+          "text": "ENDANGERED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "she made an abnormally large leap",
+          "text": "ABNORMAL LEAP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "A thermal-imaging drone swept the bush for 3 straight nights",
+          "text": "3 NIGHTS: NO MARY",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "For 15 days, Mary was gone",
+          "text": "15 DAYS GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "in critical condition",
+          "text": "CRITICAL CONDITION",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Mary is now at a specialist hospital recovering",
+          "text": "SHE SURVIVED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "marythedevil",
+        "tasmaniandevil",
+        "paradisecountry",
+        "queensland",
+        "goldcoast",
+        "animalrescue",
+        "wildlifepark",
+        "tasmaniandevilescape",
+        "australiawildlife",
+        "endangeredspecies",
+        "animalnews",
+        "weirdnews",
+        "marsupial",
+        "animalescape",
+        "australia"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "02_christopher-white-arkansas-snake-house.json": {
+      "version": 8,
+      "slug": "christopher-white-arkansas-snake-house",
+      "title": "A Realtor Pulled Up to List a House. It Was Full of Snakes.",
+      "script": "Who put snakes in here? Realtor Christopher White from Century 21 pulled up to a vacant house in rural central Arkansas to show it to a potential buyer. Routine showing. Except when he looked at the porch \u2014 snakes. Black rat snakes draped over the electrical conduit. Snakes trying to squeeze through the closed front door. Snakes in the old electric panel. Dozens of them, non-venomous but EVERYWHERE. White filmed the whole thing. Then he texted his buyer: I am absolutely not going to show this house. No one knows how they got in. Power's disconnected. The house sits empty. Turns out black rat snakes love abandoned buildings \u2014 they're basically free pest control for farms. So: who's making an offer on the snake house?",
+      "shots": [
+        {
+          "phrase": "Who put snakes in here?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "snake house porch shocking",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Realtor Christopher White from Century 21",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "realtor real estate agent arriving house",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "a vacant house in rural central Arkansas",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "rural Arkansas abandoned house exterior",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Except when he looked at the porch \u2014 snakes.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "snake porch house entrance",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Black rat snakes draped over the electrical conduit.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "black rat snake draped pipe conduit",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Snakes trying to squeeze through the closed front door.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "snake front door gap squeezing",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Snakes in the old electric panel.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "snake electrical panel dark hiding",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Dozens of them, non-venomous but EVERYWHERE.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "multiple snakes cluster mass infestation",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "White filmed the whole thing.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "person filming snake phone video",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "I am absolutely not going to show this house",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "realtor walking away refusing house",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "No one knows how they got in.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "mystery hole gap house foundation",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "black rat snakes love abandoned buildings",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Black_Rat_Snake_-_Elaphe_obsoleta_3.jpg",
+          "query": "black rat snake coiled building wall",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who's making an offer on the snake house?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elaphe_obsoleta_obsoleta_004.jpg",
+          "query": "house for sale sign real estate",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Except when he looked at the porch \u2014 snakes.",
+          "text": "SNAKES.",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Black rat snakes draped over the electrical conduit.",
+          "text": "ON THE CONDUIT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Dozens of them, non-venomous but EVERYWHERE.",
+          "text": "DOZENS. EVERYWHERE.",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "I am absolutely not going to show this house",
+          "text": "NOT SHOWING THIS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "black rat snakes love abandoned buildings",
+          "text": "FREE PEST CONTROL",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "who's making an offer on the snake house?",
+          "text": "SNAKE HOUSE: FOR SALE",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "snakehouse",
+        "arkansas",
+        "blackratsnake",
+        "christopherwhite",
+        "century21",
+        "realtor",
+        "snakes",
+        "weirdnews",
+        "houseforsale",
+        "realestate",
+        "viral",
+        "animalnews",
+        "snakesoftiktok",
+        "oddnews",
+        "herpetology"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "03_france-paris-heatwave-record-june-2026.json": {
+      "version": 8,
+      "slug": "france-paris-heatwave-record-june-2026",
+      "title": "Paris Could Hit 41\u00b0C Monday. France Has Never Seen This.",
+      "script": "Paris: 40 degrees Monday? That's not a typo. France is in its second heatwave of 2026, and meteorologists say Monday could be the hottest June day ever recorded \u2014 hitting 41\u00b0C in Paris, possibly 42\u00b0C in Nevers. 60 French departments are under orange alert. France's biggest summer music festival got cancelled in several cities. Schools are scrambling. Trains are slowing down to stop tracks from warping. The town of Montmorillon hit 40.2\u00b0C on Thursday. Saint-Florent-sur-Cher hit 40.4\u00b0C. And this is only June. France's all-time heat record is 45.9\u00b0C \u2014 set in 2019 during a week that killed hundreds. Forecasters aren't ruling out another run at it. So: which French city breaks the June record first?",
+      "shots": [
+        {
+          "phrase": "Paris: 40 degrees Monday?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "Paris summer heat heatwave sky",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "That's not a typo.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "thermometer extreme heat red high",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "France is in its second heatwave of 2026",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "France heatwave summer 2026 map",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "hitting 41\u00b0C in Paris, possibly 42\u00b0C in Nevers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "thermometer 40 degrees extreme heat record",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "60 French departments are under orange alert",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "France weather alert orange map departments",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "France's biggest summer music festival got cancelled in several cities",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "outdoor music festival cancelled empty stage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Trains are slowing down to stop tracks from warping.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "train tracks heat warping bent rail",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The town of Montmorillon hit 40.2\u00b0C on Thursday.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "Montmorillon France town street heat",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Saint-Florent-sur-Cher hit 40.4\u00b0C.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "France countryside river summer scorching",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "And this is only June.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "calendar June summer sun heat warning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "France's all-time heat record is 45.9\u00b0C \u2014 set in 2019 during a week that killed hundreds.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "heat record 2019 France disaster deaths",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Forecasters aren't ruling out another run at it.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "weather forecast meteorologist extreme heat",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "which French city breaks the June record first?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tour_Eiffel_Wikimedia_Commons.jpg",
+          "query": "Paris aerial cityscape extreme summer heat",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "hitting 41\u00b0C in Paris, possibly 42\u00b0C in Nevers",
+          "text": "41\u00b0C PARIS. 42\u00b0C NEVERS.",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "60 French departments are under orange alert",
+          "text": "60 DEPARTMENTS: ORANGE ALERT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "France's biggest summer music festival got cancelled in several cities",
+          "text": "FESTIVAL: CANCELLED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The town of Montmorillon hit 40.2\u00b0C on Thursday.",
+          "text": "40.2\u00b0C THURSDAY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "France's all-time heat record is 45.9\u00b0C \u2014 set in 2019 during a week that killed hundreds.",
+          "text": "RECORD: 45.9\u00b0C IN 2019",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Forecasters aren't ruling out another run at it.",
+          "text": "RECORD IN REACH",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "which French city breaks the June record first?",
+          "text": "HOTTEST JUNE EVER?",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "franceheatwave",
+        "paris40degrees",
+        "europeanheatwave",
+        "montmorillon",
+        "heatrecord",
+        "climatecrisis",
+        "france2026",
+        "extremeheat",
+        "heatwave",
+        "paris",
+        "weathernews",
+        "climate",
+        "recordtemperature",
+        "europe",
+        "meteorology"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_jonathan-tortoise-194-years-guinness.json": {
+      "version": 8,
+      "slug": "jonathan-tortoise-194-years-guinness",
+      "title": "Jonathan the Tortoise Just Extended His Record to 194 Years",
+      "script": "How old is Jonathan? The Seychelles giant tortoise on Saint Helena island was named a Guinness World Records Icon this week \u2014 at 194 years old. Born around 1832. Abraham Lincoln was 23 when Jonathan was a hatchling. When the Titanic sank, Jonathan was 80. He has outlasted 8 British monarchs, 2 world wars, the moon landing, and 5 generations of the same island's keepers. Researchers are studying his cells \u2014 he barely ages at a cellular level, which scientists say could hold clues for human longevity. His keeper says Jonathan spends his days grazing and basking in the sun, same as always. 194 years on 1 island. No complaints. So: what does Jonathan know about staying alive that the rest of us don't?",
+      "shots": [
+        {
+          "phrase": "How old is Jonathan?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "old tortoise giant ancient slow",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "The Seychelles giant tortoise on Saint Helena island",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "Saint Helena island South Atlantic remote",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "named a Guinness World Records Icon this week \u2014 at 194 years old",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "Guinness World Records certificate oldest",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Born around 1832.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "1832 historical era vintage old photo",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Abraham Lincoln was 23 when Jonathan was a hatchling.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "Abraham Lincoln portrait historical",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "When the Titanic sank, Jonathan was 80.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "RMS Titanic ship ocean historical",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He has outlasted 8 British monarchs, 2 world wars, the moon landing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "British monarchy crown world war moon landing",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Researchers are studying his cells \u2014 he barely ages at a cellular level",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "scientists studying cells microscope longevity",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Jonathan spends his days grazing and basking in the sun, same as always",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "giant tortoise grazing grass outdoors island",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "194 years on 1 island.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "island Saint Helena remote aerial ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "No complaints.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "giant tortoise contentedly grazing peaceful",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "what does Jonathan know about staying alive that the rest of us don't?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jonathan-the-tortoise-1900.jpeg",
+          "query": "oldest tortoise closeup ancient wise",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "named a Guinness World Records Icon this week \u2014 at 194 years old",
+          "text": "194 YEARS OLD",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Abraham Lincoln was 23 when Jonathan was a hatchling.",
+          "text": "ABE LINCOLN: 23 THEN",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "When the Titanic sank, Jonathan was 80.",
+          "text": "TITANIC SANK: AGE 80",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "He has outlasted 8 British monarchs, 2 world wars, the moon landing",
+          "text": "8 MONARCHS. 2 WARS.",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "he barely ages at a cellular level",
+          "text": "BARELY AGING",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "194 years on 1 island.",
+          "text": "194. 1 ISLAND.",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "No complaints.",
+          "text": "NO COMPLAINTS.",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "jonathanthetortoise",
+        "guinnessworldrecords",
+        "sainthelenapotrebleba",
+        "seychellestortoise",
+        "oldest",
+        "tortoiseoftheday",
+        "194yearsold",
+        "worldrecord",
+        "longevity",
+        "gianttoirtoise",
+        "sainthelenatortoise",
+        "animals",
+        "ancientanimal",
+        "guinnessiconized",
+        "wildlife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "05_us-measles-2104-cases-2026.json": {
+      "version": 8,
+      "slug": "us-measles-2104-cases-2026",
+      "title": "The U.S. Hit 2,104 Measles Cases. Second Year in a Row.",
+      "script": "Didn't we already fix this? The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026 \u2014 the second straight year the country has surpassed 2,000. Cases spread across 38 states. 93% are outbreak-associated. 92% of those infected were unvaccinated or had unknown vaccination status. Health officials are now openly questioning whether the U.S. can hold onto its measles-eliminated status, a title it earned in 2000 after decades of vaccination campaigns. That status is under formal review. The MMR vaccine is 97% effective against measles. But as vaccine hesitancy grows, so do the outbreaks. The CDC is warning that summer travel will make things worse. So: how many years in a row before the U.S. loses eliminated status?",
+      "shots": [
+        {
+          "phrase": "Didn't we already fix this?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "measles rash skin illness outbreak",
+          "mascot_pose": "dismiss"
+        },
+        {
+          "phrase": "The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "CDC public health announcement measles 2026",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "the second straight year the country has surpassed 2,000",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "measles cases rising bar chart graph",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Cases spread across 38 states.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "US map states outbreak spread disease",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "93% are outbreak-associated.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "disease outbreak cluster community spread",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "92% of those infected were unvaccinated or had unknown vaccination status.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "unvaccinated child family vaccine refusal",
+          "mascot_pose": "dismiss"
+        },
+        {
+          "phrase": "Health officials are now openly questioning whether the U.S. can hold onto its measles-eliminated status",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "health official press conference announcement serious",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a title it earned in 2000 after decades of vaccination campaigns.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "measles vaccine campaign public health 2000",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "That status is under formal review.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "CDC WHO health review formal document",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The MMR vaccine is 97% effective against measles.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "MMR vaccine syringe injection pediatric",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "as vaccine hesitancy grows, so do the outbreaks.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "anti-vaccine protest movement hesitancy",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "summer travel will make things worse.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_virus.JPG",
+          "query": "airport summer travel crowded terminal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how many years in a row before the U.S. loses eliminated status?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Measles_in_African_Child_3.JPG",
+          "query": "measles outbreak US public health crisis",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "The CDC confirmed this week that the United States has recorded 2,104 measles cases in 2026",
+          "text": "2,104 CASES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the second straight year the country has surpassed 2,000",
+          "text": "YEAR 2 IN A ROW",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Cases spread across 38 states.",
+          "text": "38 STATES AFFECTED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "92% of those infected were unvaccinated or had unknown vaccination status.",
+          "text": "92%: UNVACCINATED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The MMR vaccine is 97% effective against measles.",
+          "text": "MMR: 97% EFFECTIVE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "summer travel will make things worse.",
+          "text": "SUMMER TRAVEL: RISK",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "how many years in a row before the U.S. loses eliminated status?",
+          "text": "ELIMINATION: AT RISK",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "measles2026",
+        "measlesoutbreak",
+        "CDC",
+        "publichealth",
+        "MMRvaccine",
+        "vaccinepreventable",
+        "measleseliminated",
+        "outbreaks",
+        "vaccinehesitancy",
+        "healthnews",
+        "measles",
+        "vaccines",
+        "UShealth",
+        "disease",
+        "sciencenews"
+      ],
+      "music_vibe": "dark"
+    },
+    "06_ridglan-farms-beagles-wisconsin-research.json": {
+      "version": 8,
+      "slug": "ridglan-farms-beagles-wisconsin-research",
+      "title": "A Wisconsin Farm Bred 1,635 Beagles for Drug Testing. It's Shutting Down.",
+      "script": "Who breeds 1,635 beagles? Ridglan Farms in Blue Mounds, Wisconsin did \u2014 not as pets, but as research inventory for pharmaceutical companies. Beagles are used in drug testing because of their size, docility, and predictable genetics. This Wisconsin farm bred and supplied thousands of them to labs across the country. Then inspectors found 311 violations: unsanitary conditions, inadequate veterinary care, animals suffering without intervention. Animal rights groups sued. Ridglan eventually agreed to give up its breeding license by July 1, 2026 and hand over all remaining dogs. 1,635 beagles \u2014 each one bred to become a test subject \u2014 are now being transferred through rescue groups. Most have never lived outside a kennel. Most have never seen a yard. So: how many other Ridglan Farms are still operating right now?",
+      "shots": [
+        {
+          "phrase": "Who breeds 1,635 beagles?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "beagles kennels rows research facility",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Ridglan Farms in Blue Mounds, Wisconsin did",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "Wisconsin farm rural Blue Mounds industrial",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "not as pets, but as research inventory for pharmaceutical companies.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "pharmaceutical research laboratory animal testing",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Beagles are used in drug testing because of their size, docility, and predictable genetics.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "beagle dog lab testing docile small",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "This Wisconsin farm bred and supplied thousands of them to labs across the country.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "dog breeding farm facility large scale",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Then inspectors found 311 violations: unsanitary conditions, inadequate veterinary care, animals suffering without intervention.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "animal welfare inspector violation unsanitary",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Animal rights groups sued.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "animal rights protest signs activists",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Ridglan eventually agreed to give up its breeding license by July 1, 2026 and hand over all remaining dogs.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "legal settlement agreement document signed",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "1,635 beagles \u2014 each one bred to become a test subject \u2014 are now being transferred through rescue groups.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "beagles rescue transport van adoption",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Most have never lived outside a kennel.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "dog kennel cage row confined dark",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Most have never seen a yard.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Face.JPG",
+          "query": "beagle first time outside grass yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how many other Ridglan Farms are still operating right now?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beagle_Cachorro.JPG",
+          "query": "anonymous rural farm industrial secretive",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "not as pets, but as research inventory for pharmaceutical companies.",
+          "text": "RESEARCH INVENTORY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Then inspectors found 311 violations: unsanitary conditions, inadequate veterinary care, animals suffering without intervention.",
+          "text": "311 VIOLATIONS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Animal rights groups sued.",
+          "text": "THEY SUED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "1,635 beagles \u2014 each one bred to become a test subject \u2014 are now being transferred through rescue groups.",
+          "text": "1,635 TEST SUBJECTS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Most have never lived outside a kennel.",
+          "text": "NEVER LEFT A KENNEL",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Most have never seen a yard.",
+          "text": "NEVER SAW A YARD",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "how many other Ridglan Farms are still operating right now?",
+          "text": "HOW MANY MORE?",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "ridglanfarms",
+        "beagles",
+        "bluemounds",
+        "wisconsin",
+        "animaltesting",
+        "beaglerescue",
+        "animalrights",
+        "beaglefarm",
+        "drugtesting",
+        "animalwelfare",
+        "labanimals",
+        "beaglefreedom",
+        "researchbeagles",
+        "animalnews",
+        "beaglesoftiktok"
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
