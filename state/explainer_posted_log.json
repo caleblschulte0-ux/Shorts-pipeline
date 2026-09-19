@@ -1857,6 +1857,17 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 60,
       "duration_s": 38.2
+    },
+    "gold-cube-mined": {
+      "url": "https://youtube.com/shorts/2q9hFj4EvAg",
+      "title": "All The Gold Ever Mined Fits In A 22-Meter Cube",
+      "at": "2026-09-19T10:23:39.242078+00:00",
+      "publish_at": "2026-09-19T10:55:10Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 82,
+      "duration_s": 47.5
     }
   },
   "uploads": [
@@ -2066,6 +2077,15 @@
       "state": "posted",
       "slug": "ivf-births-surge",
       "at": "2026-09-18T22:51:41.421627+00:00"
+    },
+    {
+      "claimed_at": "2026-09-19T10:23:29.515363+00:00",
+      "title": "All The Gold Ever Mined Fits In A 22-Meter Cube",
+      "publish_at": "2026-09-19T10:55:10Z",
+      "url": "https://youtube.com/shorts/2q9hFj4EvAg",
+      "state": "posted",
+      "slug": "gold-cube-mined",
+      "at": "2026-09-19T10:23:39.242078+00:00"
     }
   ]
 }
