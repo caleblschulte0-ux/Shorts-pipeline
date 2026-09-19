@@ -7904,6 +7904,34 @@
       "title": "jh",
       "qa_rejected": true,
       "ts": "2026-09-19T14:32:58.927342+00:00"
+    },
+    "rejected-relateddaintyclipzeagleeye-cvfka9njssxy5ai4": {
+      "source_url": "https://www.twitch.tv/lacy/clip/RelatedDaintyClipzEagleEye-CvFkA9njssxY5ai4",
+      "streamer": "lacy",
+      "title": "Lacy taking care of his fans WW",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (sponsor pizza shoutout, no real event)",
+      "ts": "2026-09-19T14:37:13.226414+00:00"
+    },
+    "rejected-excitedgorgeoussoymilkfutureman-bdiw94kly5i1fbhf": {
+      "source_url": "https://www.twitch.tv/lacy/clip/ExcitedGorgeousSoymilkFutureMan-BdIW94KLy5I1FBhF",
+      "streamer": "lacy",
+      "title": "MILO STROKING LACY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (guy holds dog, nothing happens)",
+      "ts": "2026-09-19T14:39:00.508604+00:00"
+    },
+    "clip-20260919-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/FamousDeliciousMomWow-kjYKFLCO4EISk95Q",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Chat Could Not Handle This Caseoh Moment",
+      "kind": "twitch_clip",
+      "ts": "2026-09-19T14:56:51.784797+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
