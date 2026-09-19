@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s7-d3c008c62bae",
+  "safe_request_id": "reddit-clock-in-exact-second-s7-d3c008c62bae",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4a35957fa210f264a7d67341612936b5363741b226440dc2015ca8b0c208b130",
+  "prompt_used": "An editorial illustration for a short-form video: shredded paper memo. It accompanies the narration: \"The memo got officially rescinded\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1tZUwmJSVNGzEd_qMDX6J0kUi7BGRPnZn",
+    "filename": "20260919__reddit-clock-in-exact-second-s7-d3c008c62bae.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1tZUwmJSVNGzEd_qMDX6J0kUi7BGRPnZn",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "aaf3106f701ff4ceae3be985a35bd2137ed5b968b74a5cfa509285b5bd798663",
+    "bytes": 2077646,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:14.449Z"
+}
