@@ -1,0 +1,21 @@
+{
+ "slug": "digital-nomad-visa-boom",
+ "ts": "20260919T182144Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:end \u2014 the gauge and its label occupy only the upper third and the lower ~55% of the frame is bare background; seg2:mid is the same void with a stray unfilled arc.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end the scene headline overflows the phone frame on both sides \u2014 a viewer sees 'AL NOMAD VISA COUNTRIES ARE CO' with no way to recover 'where digital nomad visa countries are concentrated'. The mascot is drawn on top of the '12.3%' digits at seg2:mid, and below the gauge the bottom half of the frame is empty ground.",
+  "root_cause": "The gauge machine renders its headline as a single unwrapped, unmeasured line scaled to the value instead of being fitted to the safe width, and the mascot is placed at the numeral's anchor with no collision offset; the machine also lays out only in the top third, leaving the lower half unused.",
+  "repair_goal": "Fit the seg2 headline inside the safe margins (wrap to two lines, measured width, not character count), move the mascot clear of the numeral so no glyph is overlapped, and enlarge/recentre the gauge so the composition fills the frame instead of floating above an empty half."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}
