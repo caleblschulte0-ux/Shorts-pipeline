@@ -1,69 +1,57 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260918",
-  "judged_date": "20260917",
+  "date": "20260919",
+  "judged_date": "20260918",
   "alarm": {
-    "date": "20260917",
+    "date": "20260918",
     "ok": false,
     "alarms": [
       {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260917 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260917/response.json, exchange/bundles/20260917/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260918 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260918/response.json, exchange/bundles/20260918/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "chatgpt_task_failed_media",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260917 (the bundle asks for 16 image(s)).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260917/media-progress/STARTED.json, \u2026/<safe_request_id>.json, \u2026/FAILED-<id>.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260918 (the bundle asks for 13 image(s)).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260918/media-progress/STARTED.json, \u2026/<safe_request_id>.json, \u2026/FAILED-<id>.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20260917.",
+        "detail": "explainer: 2/4 posted for 20260918.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 5/6 posted for 20260917.",
+        "detail": "third: 4/6 posted for 20260918.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/6 posted for 20260917.",
+        "detail": "trending: 2/6 posted for 20260918.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "showrunner_starving_the_slate",
-        "severity": "critical",
-        "detail": "the showrunner judged 15 renders on 20260917 and shipped NONE \u2014 repeat offenders: gold-cube-mined x6, sleep-divorce-numbers x3.",
-        "fix": "This is a render-quality crisis, not a gate problem: the runs complete and every video fails the bar. Read the ledger's auto_fails/problems for the pattern and fix the RENDER. Weakening the gate is not on the table."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260917: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
+        "detail": "trending 20260918: production outcome says 3/6 uploaded and repair never completed (4 quarantined, 3 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
         "code": "chatgpt_exchange_silent",
         "severity": "note",
-        "detail": "ChatGPT answered NOTHING for 20260917 \u2014 16 image request(s) published, zero checkpoints, no response, no DONE (day 3 of silence).",
+        "detail": "ChatGPT answered NOTHING for 20260918 \u2014 13 image request(s) published, zero checkpoints, no response, no DONE (day 4 of silence).",
         "fix": "The days still ship via self-fill (Policy A), but weak stock is what the showrunner keeps blocking. Check the 6:00/7:00 ChatGPT scheduled tasks in the ChatGPT app \u2014 the repo side is verified and waiting."
-      },
-      {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 0/6; 0 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (9 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (10 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
@@ -71,6 +59,29 @@
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260918",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 1,
+      "rendered_or_attempted": 9,
+      "uploaded": 3,
+      "quarantined": 4,
+      "failed": 3,
+      "failed_by_stage": {
+        "showrunner_block": 3
+      },
+      "failed_by_format": {
+        "graph_race": 2,
+        "reddit": 1
+      },
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/D8vZ8k8omlY",
+        "https://youtube.com/shorts/9sB6Ph0SsQY"
+      ]
+    },
     {
       "date": "20260917",
       "channel": "trending",
@@ -210,903 +221,9 @@
         "https://youtube.com/shorts/UXCm-lY39Ic",
         "https://youtube.com/shorts/A2YauQJiwzA"
       ]
-    },
-    {
-      "date": "20260907",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 9,
-      "uploaded": 3,
-      "quarantined": 0,
-      "failed": 6,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/j2LqyUxwrro",
-        "https://youtube.com/shorts/x_dnDM1NHLE",
-        "https://youtube.com/shorts/OCBoVlNL3yw"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-12T11:55:49+00:00",
-      "slug": "vinyl_just_beat_cds__it_hadn_t_since_198",
-      "score": 5,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 1
-      },
-      "one_line": "blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "auto_fails": [
-        "temporal_gate: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "problems": [
-        "duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T11:57:06+00:00",
-      "slug": "solar_passed_nuclear_power__it_isn_t_clo",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T11:58:23+00:00",
-      "slug": "coal_powered_america_for_a_century__gas_",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 5.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T21:30:26+00:00",
-      "slug": "my_manager_wrote_me_up__so_i_got_literal",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Strong Reddit-card hook and clean captions, but an off-topic AI prayer-circle photo breaks the story and the same binder photo is held for the entire final third, so the payoff lands with a frozen picture.",
-      "auto_fails": [
-        "junk_imagery: mid1 (t=10.95s) is an AI-generated sunset shot of a construction crew with hands pressed in prayer around a messiah-posed figure \u2014 off-topic for an office write-up story, with garbled repeated faces and a distorted arm on the right-hand worker.",
-        "dead_air: The top illustration panel is the identical binder photo, pixel-for-pixel same framing, across mid4 (36.29s), mid5 (44.73s), payoff@-1.8 (44.93s) and payoff@-0.4 (46.33s) \u2014 four consecutive beats share one frozen image for the final ~10s."
-      ],
-      "problems": [
-        "mid1: AI-generated praying construction crowd is irrelevant to the write-up story and is visibly garbled (duplicated background faces, distorted right arm).",
-        "mid1: bottom gameplay is a featureless orange blur with no caption \u2014 a full beat with no information in either half.",
-        "mid4 through payoff@-0.4: the identical black binder photo occupies the top half unchanged for ~10s across four beats, so the illustration track dies before the punchline.",
-        "payoff@-0.4: 'OR PAGE 30.' is the punchline but nothing visually happens \u2014 no reveal, no page turn, no change of shot to land it.",
-        "Pace: the shot rhythm is front-loaded \u2014 phone (mid2) and vest (mid3) change per beat, then the cut rate drops to zero for the last third."
-      ],
-      "fixes": [
-        "Swap mid1's image for a literal write-up artifact (signed warning form, HR email on a monitor) and re-crop its gameplay to a section with visible geometry and motion.",
-        "Give each of the final three beats its own illustration \u2014 an open handbook, a highlighted clause on page 14, then page 30 \u2014 instead of reusing one closed-binder still.",
-        "Animate the payoff shot: push in on the binder or cut to the highlighted page as 'OR PAGE 30.' lands, so the punchline has a visual button.",
-        "Add a caption to the mid1 beat so no beat plays silent-on-screen.",
-        "Enforce a max shot-hold (~3s) on the illustration track so a single image can never span four consecutive beats."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 140
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T21:32:46+00:00",
-      "slug": "boeing_led_planemaking_for_decades__airb",
-      "score": 65,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 2,
-        "temporal_craft": 1
-      },
-      "one_line": "The race itself is good \u2014 the 2019 crossover and leaderboard flip genuinely land \u2014 but the first two seconds are a title-plus-quote card over an empty axis, and the card is printed on top of the chart's own labels.",
-      "auto_fails": [
-        "unreadable: At hook@0.8 the hook card's bottom border is printed straight over the y-axis label '900', and at hook@1.5 the half-faded hook text lies as low-contrast ghost type across the plot; at payoff@-0.4 the 'Airbus 735' / 'Boeing 528' value pills are clipped by the right frame edge."
-      ],
-      "problems": [
-        "hook@0.3-2.2: opening is a plain title + quote card over a chart with no data yet; no motion reason to stay.",
-        "hook@0.8: the hook card's bottom border overprints the y-axis label '900'; at hook@1.5 the fading hook text ghosts across the plot at low contrast.",
-        "hook@2.2 and mid0: the right ~40% of the plot is untouched black while the data occupies only the left third \u2014 the y-axis also rescales (900 -> 950 -> 1K) making the early years read as flat.",
-        "payoff@-1.8 and payoff@-0.4: near-identical to mid5; the last ~1.6s barely changes and the '#1 Airbus' card is the only new element.",
-        "payoff@-0.4: the 'Airbus 735' and 'Boeing 528' value pills are clipped by the right frame edge.",
-        "Cadence: effective unique-frame rate measured at 13.4fps with a 0.442 duplicate ratio \u2014 the line motion will read as judder on a phone."
-      ],
-      "fixes": [
-        "Start the race in motion: pre-roll the chart to ~2018 (or flash the full 2015-2023 shape then rewind) so frame 1 has movement instead of an empty axis.",
-        "Offset the hook card above the plot region, or suppress the top y-axis label while the card is on screen, so no text is printed over text; cut the ghost-fade so the hook either reads fully or is gone.",
-        "Fix the x-domain to the full 2015-2023 span from frame 1 instead of growing it, and pin the y-domain to the final max so the early years are not squashed and the right half is not dead space.",
-        "Inset the right plot margin so the value pills and their marker dots render fully inside the frame.",
-        "Hold the final leaderboard flip for the last 1.5s with a real accent move (the '#1 Airbus' card rising, Boeing's line dimming) rather than repeating the 2023 frame.",
-        "Raise the render/interpolation rate so unique-frame cadence approaches the export fps \u2014 the tip motion is currently duplicated into the timeline."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T21:33:46+00:00",
-      "slug": "vinyl_just_beat_cds__it_hadn_t_since_198",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T21:34:47+00:00",
-      "slug": "solar_passed_nuclear_power__it_isn_t_clo",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T21:35:47+00:00",
-      "slug": "coal_powered_america_for_a_century__gas_",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 5.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T23:03:22+00:00",
-      "slug": "my_manager_wrote_me_up__so_i_got_literal",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The picture stops telling the story: one binder photo holds through five straight beats and the last 26 seconds, so the back half is gameplay wallpaper with captions.",
-      "auto_fails": [
-        "dead_air: The illustration track \u2014 the only story-carrying visual \u2014 is the IDENTICAL binder photo, same framing, same light, at mid2 (18.65s), mid3 (26.72s), mid4 (34.79s), mid5 (42.87s), payoff@-1.8 and payoff@-0.4: five consecutive beats visually identical for ~26s while only wallpaper gameplay moves beneath."
-      ],
-      "problems": [
-        "The top illustration panel is identical from mid2 (18.65s) to the final frame at 44.47s \u2014 five beats, one photo, no visual progression.",
-        "Only two illustrations appear in the whole video (AI construction crew at mid1, binder at mid2 onward), so distinct story beats are visually indistinguishable.",
-        "mid1's illustration is conspicuous AI melodrama \u2014 a praying crew and a messiah-posed foreman in golden-hour light \u2014 which reads as generated slop rather than a chosen shot.",
-        "The hook (hook@0.3 to mid0) stacks two mismatched gameplay crops with a visible hairline seam across the middle of the frame \u2014 at hook@0.3 the copper cave above does not continue below, which looks like a layout fault rather than a split-screen.",
-        "The payoff lands nothing visually: 'OR PAGE 30.' at payoff@-0.4 plays over the same unchanged binder, so the punchline has no visual button."
-      ],
-      "fixes": [
-        "Re-cut the illustration track per beat: bind each segment to its own shot so mid2, mid3, mid4, mid5 and the payoff never repeat an asset.",
-        "For seg2 specifically, replace the held binder with a shot of the line's subject (an open handbook page, a phone on a desk), and let the subsequent beats escalate \u2014 vest, sticky-tabbed pages, a stack of write-ups.",
-        "Replace the mid1 AI construction image with a plain, real workplace photo, or with a close shot of the write-up document itself.",
-        "In the hook, fill the top panel with the post card on a single clean background or a real illustration instead of a second offset gameplay crop, and remove the visible divider seam.",
-        "Land the payoff with a change on screen \u2014 a final shot that snaps in on the last line so the last 2 seconds are not identical to the previous 25."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 135
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T23:05:51+00:00",
-      "slug": "boeing_led_planemaking_for_decades__airb",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "The race itself is genuinely good \u2014 the 2019 Boeing collapse and the leaderboard flip land \u2014 but text keeps colliding with the chart it sits on, from the hook card over the '900' tick to the final value labels clipped by the right edge.",
-      "auto_fails": [
-        "unreadable: hook@0.8: the hook card prints 'Boeing's best year was its last.' directly on top of the y-axis label '900'; hook@1.5 the same line fades to a dark grey ghost over black; payoff@-0.4 the tip labels 'Airbus  735' and 'Boeing  528' are jammed into the right plot edge with the marker dot clipping the last digit."
-      ],
-      "problems": [
-        "hook@0.8: hook sentence overprints the y-axis label '900' \u2014 text on text.",
-        "hook@1.5: hook sentence fades through a dark grey that is invisible against the black ground; for ~0.7s it is neither readable nor gone.",
-        "mid1 (t=4.47s) and mid2: the tip value 'Boeing  796' / 'Airbus  862' runs into its own marker dot, the dot covering the final digit.",
-        "payoff@-1.8 to payoff@-0.4: ~1.6s where only three digits tick over \u2014 the chart, the year and the leaderboard are all frozen; measured duplicate_ratio 0.448, effective 13.3fps.",
-        "mid0 (t=2.50s): the plot's entire 800-900 band and right third are empty black while both series are squeezed into a thin band at the lower left \u2014 the axis is scaled for data that has not arrived yet.",
-        "payoff@-0.4: tip labels are pushed flush against the right plot edge, the marker clipping the value; the '#1 Airbus' card arrives only in the final half-second, on top of an already-static frame."
-      ],
-      "fixes": [
-        "Reserve a text band for the hook above the plot area and never composite it over tick labels; hold it opaque for its full dwell and hard-cut it off.",
-        "Offset tip value labels left of the marker (or extend the right plot margin by the measured label width) so no dot or frame edge ever covers a digit.",
-        "Ease the y-axis maximum in with the data instead of pre-scaling to the series' all-time high, so the first two seconds are not mostly empty headroom.",
-        "Extend the final ranking beat: bring '#1 Airbus' in ~1.2s earlier and give the closing frame a live move \u2014 the gap bar widening, or the winning line pulsing \u2014 so the last 1.6s is not a held frame.",
-        "Raise the export cadence so unique frames are not duplicated ~45% of the time; the current 13.3 effective fps reads as judder across every line sweep."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T23:07:07+00:00",
-      "slug": "vinyl_just_beat_cds__it_hadn_t_since_198",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T23:08:24+00:00",
-      "slug": "solar_passed_nuclear_power__it_isn_t_clo",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-12T23:09:41+00:00",
-      "slug": "coal_powered_america_for_a_century__gas_",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 5.2 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 5.2 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 5.2 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T11:56:06+00:00",
-      "slug": "someone_kept_eating_my_lunch__so_i_label",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The story beats are illustrated well enough, but the punchline caption renders as overlapping text and half the gameplay is a camera jammed into a blurred block \u2014 the payoff is unreadable exactly where it needs to land.",
-      "auto_fails": [
-        "unreadable: payoff@-0.4 prints 'ON', 'SINCE' and 'ER' stacked on top of each other into an illegible smear ('ONSINCE?ER'), and the in-world sign at mid5/payoff@-1.8 is a colour-scrambled blur no viewer can read."
-      ],
-      "problems": [
-        "payoff@-0.4: caption groups composite over each other ('ON'/'SINCE'/'ER') \u2014 the closing line is illegible on a phone.",
-        "mid5 and payoff@-1.8: the in-world sign is a scrambled unreadable texture, drawing the eye to nothing.",
-        "mid1, mid2, mid3, mid4: the bottom gameplay panel is an extreme-close blur of a wall/floor \u2014 mushy, unreadable filler with no legible action.",
-        "mid3: the running figure is cropped headless by the top frame edge, reading as a botched cutout.",
-        "mid5 through payoff@-0.4: the padlock still is held unchanged across the entire closing beat while only the blurred gameplay moves.",
-        "hook@0.3-2.2: the post card sits over generic parkour footage with no event in the first two seconds beyond the card appearing."
-      ],
-      "fixes": [
-        "Clear the previous caption group before drawing the next one; enforce one group per timeslot so the final line reads cleanly.",
-        "Reframe or reseed the gameplay capture so the camera holds a mid-distance running view \u2014 reject any segment whose bottom panel is below a minimum edge-detail threshold (the current close-up blurs are near-featureless).",
-        "Crop the mid3 illustration to include the subject's head or swap for a shot framed for 9:16 top-half.",
-        "Add a slow push-in on the padlock for the closing beat, or cut to a second shot (the labelled container) so the payoff moves as it lands.",
-        "Open on an action beat \u2014 start the gameplay mid-jump and animate the post card in over it rather than presenting it static."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 149
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T11:59:03+00:00",
-      "slug": "the_finance_guy_lied_about_a_fee__i_had_",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "Solid, on-topic story illustration and clean readable captions throughout, but the first 2.5 seconds are a motionless post card with an empty illustration slot.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3 through hook@2.2: the post card is pixel-identical for the whole opening; only the gameplay behind it changes, so the hook reads as a static title card.",
-        "hook: the top illustration slot is blank for the first ~2.5s even though every body beat (mid1-mid5) has a strong shot, wasting the highest-retention window.",
-        "mid4 (t=38.77): no caption is on screen while the salesman shot plays, breaking the caption rhythm that carries the narration everywhere else.",
-        "mid3 (t=29.70): the gameplay half is a bright blue high-contrast column pattern that competes with the caption 'BACK IN AND' far more than the darker backgrounds used elsewhere."
-      ],
-      "fixes": [
-        "Fill the hook's top slot from t=0 with a story shot (salesman's raised hand, or the phone recording) and push in on it so frame 1 is motion, not a held card.",
-        "Animate the post card entrance \u2014 scale/slide up over ~0.4s and hold \u2014 so the opening is not four identical samples.",
-        "Extend caption coverage across mid4 so no body beat plays silent-looking.",
-        "Dim or blur the gameplay half under bright levels like mid3 so captions always sit on a quiet field."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 150
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T12:01:35+00:00",
-      "slug": "india_just_passed_china_in_population",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, honest graph race that lands its overtake \u2014 but the hook caption is stamped over the axis and fades into an illegible grey smear across the chart.",
-      "auto_fails": [
-        "unreadable: hook@0.3 and hook@0.8: the hook panel sits on top of the y-axis and clips its labels to '75' / '70'; at hook@1.5 the caption 'The lead just changed hands.' is mid-fade as dark grey ghost text printed over the 800M gridline and its label \u2014 unreadable on a phone."
-      ],
-      "problems": [
-        "hook@0.3/0.8: caption panel covers the y-axis, clipping '750M'/'700M' to '75'/'70'.",
-        "hook@1.5: the caption fades out ON TOP of the chart as low-contrast grey text over the 800M gridline \u2014 unreadable at arm's length.",
-        "payoff@-0.4: at the moment of the flip both series read '1.4B', so the overtake is invisible in the numbers; the India flag chip also overlaps the 'China 1.4B' label.",
-        "mid4/mid5: ~25% of the plot is empty black headroom above the lines; the axis rescales past the data.",
-        "Pace is one constant diagonal for 10s \u2014 effective 19.4fps with a 27-frame duplicate run at 13.25s; no tempo change, no beat before the crossover."
-      ],
-      "fixes": [
-        "Move the hook caption out of the plot's axis gutter (full-bleed band above the chart) and complete its fade before the chart is exposed \u2014 never paint text over gridlines.",
-        "Offset converging tip labels vertically so a flag chip never lands on another series' value.",
-        "Show one extra decimal (1.428B vs 1.417B) or a live gap counter in the final 2s so the pass is numerically visible, not just a leaderboard reorder.",
-        "Tighten the y-axis to the data max plus ~8% so the top quarter of the frame isn't empty.",
-        "Slow the years into the 2020s crossover and snap the rest \u2014 give the race a tempo change instead of one constant slope."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T12:02:54+00:00",
-      "slug": "airbnb_passed_the_world_s_biggest_hotel_",
-      "score": 5,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 1
-      },
-      "one_line": "blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "auto_fails": [
-        "temporal_gate: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "problems": [
-        "duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T12:05:36+00:00",
-      "slug": "mobile_games_passed_every_movie_theater_",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, genuinely readable race with a real crossover and a visible 2020 crater, let down by a static text-card hook over an empty plot and tip labels clipped at the right frame edge.",
-      "auto_fails": [
-        "unreadable: payoff@-1.8 and payoff@-0.4: the mobile-games tip marker and the trailing character of '92.3B'/'92.6B' are clipped by the right frame edge; at mid1 the 'Mobile games 41.8B' and 'Global box office 40B' tip labels collide into one another."
-      ],
-      "problems": [
-        "hook@0.3-0.8: opening 2.2s is a title plus bordered hook card over a chart that has barely started \u2014 a slow build, not an event.",
-        "hook@1.5: the hook line crossfades directly over the chart, printing low-contrast text on top of the y-axis labels and gridlines.",
-        "payoff@-1.8 / payoff@-0.4: the leading series' tip dot and the final digit of its value label are cut off by the right edge of the frame.",
-        "mid1: 'Mobile games 41.8B' and 'Global box office 40B' tip labels overlap at the crossover \u2014 the single most important moment in the video is its most crowded frame.",
-        "Cadence: measured effective_fps 17.4 with duplicate_ratio 0.276 and a 0.75s repeated run at 12.33s \u2014 the line growth judders rather than glides.",
-        "payoff@-0.4 understates the landing: '#1 Mobile games' is small green type under the year, and the title's promise ('every movie theater combined') is never demonstrated as a scale comparison."
-      ],
-      "fixes": [
-        "Give the hook a real event: pre-advance the race or fast-scrub 2013-2016 inside the first 1.5s so the lines are visibly converging while the hook line is on screen.",
-        "Reserve a padding band on the right of the plot (or right-align tip labels inside the axes) so no tip marker or value digit can reach the frame edge.",
-        "Push apart colliding tip labels at the crossover \u2014 offset the trailing series' label vertically when the two tips come within ~1.5 line-heights.",
-        "Cut the hook line rather than dissolving it through the plot, or place it in the header band above the axes so it never overlaps axis text.",
-        "Render the line interpolation at the export frame rate \u2014 the current build repeats over a quarter of its frames and holds 0.75s at 12.33s.",
-        "Land the payoff harder: hold on the final gap with the ratio or the box-office crater called out, so the last 1.5s states the scale claim the title makes."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T12:08:32+00:00",
-      "slug": "china_passed_japan_in_factory_robots__th",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 1
-      },
-      "one_line": "A clean, genuinely dramatic graph race that demonstrates its claim well, then stops rather than lands \u2014 and its smallest type is unreadable on a phone.",
-      "auto_fails": [
-        "unreadable: The source credit at the bottom of every frame (payoff@-0.4) is tiny low-contrast grey cut mid-word \u2014 'annual installat...' \u2014 and at hook@1.5 the fading hook line 'One line never really moved.' is ghosted directly on top of the 37.5K/35K axis labels."
-      ],
-      "problems": [
-        "The finish is a hold: mid5 through payoff@-0.4 are effectively one frame with a small '#1 China' line appended; no emphasis beat on the 276K vs 46.1K gap.",
-        "Measured cadence is laggy \u2014 duplicate_ratio 0.392, effective 14.6fps against a 24fps sample, so the line growth judders rather than glides.",
-        "Source credit is truncated mid-word and printed in low-contrast grey at a size no phone viewer can read (every frame).",
-        "The hook line is set in a bordered rounded panel laid over the plot, and it fades out across the y-axis labels at hook@1.5 instead of over empty ground.",
-        "Tip flag chips and their marker dots are clipped by the right frame edge from mid1 onward (mid5, payoff@-1.8).",
-        "Continuous y-axis rescaling pins China's line near the top of the plot the whole way, muting the acceleration the story is about."
-      ],
-      "fixes": [
-        "Add a real final beat: after the year counter lands on 2023, animate a gap callout (e.g. '6x Japan' or a vertical measuring bar between the two tips) so the last 1.5s moves.",
-        "Reserve ~12% right margin in the plot area so tip flag chips and markers never cross the frame edge.",
-        "Shorten the source string to fit on one line and raise its size/contrast, or drop it to a two-line wrap \u2014 never truncate mid-word.",
-        "Move the hook card off the plot (place it over the empty upper ground) and drop the border \u2014 full-bleed type on look.ground, per the channel look rules.",
-        "Render the race at the export frame rate so the tween is unique-per-frame; the current 14.6 effective fps is a duplicated low-fps source.",
-        "Ease the axis rescale less aggressively (or step it) so China's climb visibly outruns the frame instead of being renormalized every year."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T21:30:45+00:00",
-      "slug": "someone_kept_eating_my_lunch__so_i_label",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A well-illustrated, briskly paced petty-revenge story that lands its 'MINE.' button \u2014 but the first 2.5 seconds are just duplicated gameplay with a visible seam under a static card.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3\u2013mid0: top panel is a second crop of the same gameplay with a hard grey seam across the frame \u2014 no illustration, no escalation for the whole opening.",
-        "mid5 \u2192 payoff@-0.4 (t\u224846\u201348s): the padlock still is held across the entire closing 3 seconds; only the gameplay bed changes, so the payoff image itself never develops.",
-        "payoff@-1.8: the lower half is a near-uniform brown blur with no readable geometry \u2014 half the frame contributes nothing behind the 'ON IT EVER' caption.",
-        "The 50/50 split is an unblended butt-join; the seam is visible as a bright line in hook@0.3, hook@1.5 and mid0 and reads as a render artifact rather than a designed layout."
-      ],
-      "fixes": [
-        "Supply a hook-beat illustration for the top panel (fridge door / lunch box being taken) that pushes in or cuts on the post-card reveal, so something happens in frame 1.",
-        "Feather or mask the split seam (soft gradient or a deliberate divider bar) so it stops reading as two mismatched crops jammed together.",
-        "Give the closing beat two images instead of one \u2014 e.g. the label going on, then the padlock \u2014 so the last 3 seconds escalates into 'MINE.' rather than holding a single still.",
-        "Reject or re-crop gameplay segments where the camera is inside terrain (payoff@-1.8's brown blur); prefer a shot with visible structure so the lower half stays legible."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 144
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T21:36:46+00:00",
-      "slug": "india_just_passed_china_in_population",
-      "score": 82,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, correct graph race that lands its flip to '#1 India' \u2014 but the crossover itself, the whole point, is the most crowded frame in the video.",
-      "auto_fails": [],
-      "problems": [
-        "mid5 / payoff: China and India tip labels and flag chips overlap at the exact convergence, muddying the pass.",
-        "hook@0.3-0.8: the hook card sits over the plot and clips the top y-axis tick labels ('750M' reads as '50M').",
-        "mid3/mid4: y-axis scaled to 1.6B while data tops at 1.4B leaves a wide empty black band above the curves.",
-        "x-axis tick sequence jumps schemes mid-run (1952/1960/1968/1976 at mid1, then 1950/1965/1980/1995 at mid3), which reads as a glitch.",
-        "Measured effective 19.4fps against a 24fps sample (duplicate ratio 0.192) \u2014 slight judder rather than a fully smooth glide."
-      ],
-      "fixes": [
-        "Add collision resolution to tip labels: when two series come within a chip height, offset them vertically with short leader lines and never let flag chips overlap.",
-        "Move the hook card clear of the y-axis tick column (or inset the plot while it is on screen) so no axis label is covered.",
-        "Tighten the y-axis top padding as the race resolves so the final gap and the crossing occupy more vertical pixels.",
-        "Lock one x-axis tick interval scheme for the whole run so ticks slide rather than re-derive.",
-        "Raise unique-frame output on the interpolated growth so the export is smooth at the full rate."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T21:38:05+00:00",
-      "slug": "airbnb_passed_the_world_s_biggest_hotel_",
-      "score": 5,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 1
-      },
-      "one_line": "blocked before vision review: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "auto_fails": [
-        "temporal_gate: duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "problems": [
-        "duplicate_ratio 0.477 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-13T21:40:47+00:00",
-      "slug": "mobile_games_passed_every_movie_theater_",
-      "score": 82,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A genuinely good race \u2014 the 2016 crossover and the 2020 box-office collapse land exactly as the hook promised \u2014 but the hook card is drawn over the chart and dissolves into illegible text on gridlines.",
-      "auto_fails": [
-        "unreadable: hook@1.5: the hook line 'One of these crashed in 2020.' is printed in dark gold directly over the top gridlines and the '45B' axis tick while the card ground has already vanished \u2014 you have to decode it; at hook@0.3 the same card covers the top axis labels, and at payoff@-1.8 the tip marker sits on the final 'B' of '32.1B'."
-      ],
-      "problems": [
-        "hook@0.3\u20131.5: the hook panel overlays the plot, covering the top axis ticks, then its ground fades before its text so the line ends up printed on gridlines and the '45B' label.",
-        "mid1 (t=4.47s): 'Mobile games 41.8B' and 'Global box office 40B' collide at the crossover \u2014 the two tip labels and their dots stack within ~15px, the moment the video most needs to be clear.",
-        "Tip markers are drawn over the value text: '41.8B' (mid1), '92.2B' (mid5), '32.1B' (payoff@-1.8), and at payoff@-0.4 the green tip dot is clipped by the right frame edge.",
-        "hook@0.3\u2013mid0: the y-axis keeps rescaling (35B\u219245B\u219250B\u219290B\u2192100B), so the widening gap is continuously flattened back \u2014 the '3x' scale payoff is muted by the time it arrives.",
-        "The first ~2.5s spend most of the plot area on empty right-hand space with only a stub of each line at the far left."
-      ],
-      "fixes": [
-        "Reserve a band for the hook above the axes (offset the plot for its duration) and cross-fade the panel ground and text on the same curve so no copy is ever drawn on gridlines or ticks.",
-        "Add tip-label collision avoidance: when two labels are within ~2 line-heights, push one above and one below its tip, and offset label text past the marker radius so the dot never covers the trailing character.",
-        "Pad the axis right edge by ~6% so the leading tip and its label sit fully inside the frame at payoff@-0.4.",
-        "Fix the y-axis to the final domain (0\u2013100B) from the start, or rescale in at most two steps, so the closing gap reads as growth rather than a re-zoom.",
-        "Start the race pre-advanced a year or two, or sweep the plot in from the left, so the opening 2s uses the whole frame instead of a stub at the axis."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-09-13T21:43:16+00:00",
       "slug": "china_passed_japan_in_factory_robots__th",
@@ -2743,16 +1860,1017 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T10:16:07+00:00",
+      "slug": "gold-cube-mined",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The payoff throws away the one good comparison and lands on a near-empty frame that says the opposite of the script, while captions are stamped over axis labels from the first second.",
+      "auto_fails": [
+        "decorative_mascot: A clipboard-holding Data is parked in the identical pose at the bottom of seg1:mid, seg1:end, seg2:mid, seg2:end, seg3:end, seg4:start, seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 \u2014 no setup->action->payoff, while the in-scene Data only perches on rows (seg3:end).",
+        "empty_void: seg3:end is almost entirely empty dark frame \u2014 two hairline rules, two thumbnail-sized mascots and a dotted ruler jammed against the right edge; the same void fills the whole payoff at seg4:mid.",
+        "unreadable: seg2:start prints 'Bars, Coins & ETFs  22' with the % sign cut off by the frame edge; hook@0.3 stamps '216,000 tons' directly over the '1950' axis label and seg0:start prints 'of gold.' over the 1950/40K row."
+      ],
+      "problems": [
+        "hook@0.3/hook@0.8: '216,000 tons' is printed straight over the '1950' row label and the bar behind it \u2014 text on text in the first half second, and the hook is a slow chart build with no event.",
+        "seg0:start: 'of gold.' sits over the 1950/40K row; the chart is still assembling underneath the caption.",
+        "seg2:start: 'Bars, Coins & ETFs  22' loses its % to the frame edge; 'Industrial & Other  15%' and 'Central Banks  17%' are grey-on-dark and near-invisible at arm's length.",
+        "seg2:mid: a ghost '22%' label is left half-drawn behind the 45% block, and the exploded blocks carry stray dark squares that read as render artefacts.",
+        "Two and sometimes three copies of Data are on screen at once (seg1:mid, seg1:end, seg2:mid, seg4:start) \u2014 the bottom clipboard copy never changes pose for ~40 seconds.",
+        "seg3:start: both comparison marks are unlabelled stubs and 'it's only 22.3' is a faint grey burn-in at the bottom, unreadable."
+      ],
+      "fixes": [
+        "Move the burned-in caption out of the plot area \u2014 captions belong in the bottom band (as in seg1:start), never over an axis label or a mark.",
+        "Measure every label extent: give the category column the width of its widest string ('Bars, Coins & ETFs  22%') inside the safe area, and raise the non-accent labels to look.SUBTLE ink so 15%/17% survive a phone screen.",
+        "Open on an event, not a build: have the 216,000-ton mass arrive as one physical drop with Data reacting, then let the bars resolve under it.",
+        "Render exactly ONE mascot per frame; retire the parked clipboard narrator and give Data a setup->action->payoff tied to the stat in each beat.",
+        "Rebuild seg4 on the seg3:mid paired-column form with measured heights in true 50:22.3 ratio, cube clearly under half the pool, one accent on the cube (the subject), ruler inside the safe area.",
+        "Clear the ghost '22%' and the stray square artefacts from the exploded-block machine in seg2:mid/seg2:end."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 142
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T10:28:43+00:00",
+      "slug": "gold-cube-mined",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A video titled 'fits in a 22-meter cube' never shows the cube \u2014 it shows bar charts with clipped labels, an invisible caption, and a static duplicate mascot pasted over the subtitles for 36 seconds.",
+      "auto_fails": [
+        "decorative_mascot: A second, identical clipboard-Data is pasted at bottom-centre in the SAME arm-out pose from seg1:mid (t=11.2s) through payoff@-0.4 (t=47.1s) \u2014 he never moves, never reacts, and is not tied to any stat; the in-chart Data only perches on a bar (seg1:mid/end) or glides down the rows (hook@0.3\u2192seg0:end) with no setup\u2192action\u2192payoff anywhere.",
+        "empty_void: seg3:end (f15) wastes the frame: two hairline rules, two small labels and a dashed column jammed against the right edge, with the entire centre and upper third empty; seg3:start (f13) is two small lozenges in a blank upper half, and the outro (f16\u2013f20) leaves the bottom 40% as bare gradient.",
+        "unreadable: seg3:start (f13) prints 'it's only 22.3' in near-black grey on the dark ground \u2014 invisible at arm's length; seg2:start (f10) clips 'Bars, Coins & ETFs 22' at the right frame edge (should read 22%); seg1:mid (f08) cuts '216' off at the bottom edge under the caption; and from seg4:start (f16) on, 'Would you even recognize that much gold if you saw it? Guess below.' is printed straight through the standing mascot."
+      ],
+      "problems": [
+        "seg3 (f13\u2013f15): the cube \u2014 the entire premise and title \u2014 is never drawn; it is reduced to two lozenges labelled 50 and 22.3, then to an almost empty frame with a dashed column clipped at the right edge.",
+        "A second, identical clipboard-Data is pinned at bottom-centre in the same pose from t=11.2s to the end (f08, f09, f11, f12, f15, f16\u2013f20), never moving and never tied to a stat \u2014 pure decoration, and he sits on top of the caption text.",
+        "seg4 (f16\u2013f20): the closing CTA 'Would you even recognize that much gold if you saw it? Guess below.' is printed straight through the mascot's head and torso, unreadable on a phone.",
+        "seg3:start (f13): 'it's only 22.3' is drawn in near-black grey on the dark ground and effectively invisible.",
+        "seg2:start (f10): the stacked-bar label 'Bars, Coins & ETFs  22' is cut off by the right frame edge \u2014 the % is gone.",
+        "seg1:mid (f08): the emphasis number '216' is clipped by the bottom frame edge and collides with the caption 'and most came'; a stray teal ellipse floats in empty space at right belonging to nothing; two mascots are on screen at once."
+      ],
+      "fixes": [
+        "Replace seg3's two-bar comparison with the object itself: render the 22.3m gold cube in perspective next to a to-scale Olympic pool or hotel lobby, centred and large, so the smallness is SEEN rather than read off two bars.",
+        "Delete the persistent bottom-centre mascot overlay, or give him a real bit per beat (setup \u2192 action \u2192 payoff) and move him clear of the caption band \u2014 never let him occupy the subtitle zone.",
+        "Move the closing CTA above the mascot (or the mascot below the CTA) so no caption line is drawn over artwork in seg4.",
+        "Force every caption onto full-contrast ink with its own ground/scrim \u2014 fix the dark-on-dark 'it's only 22.3' at seg3:start.",
+        "Measure label extents and clamp the stacked-bar value column inside the safe margin so 'Bars, Coins & ETFs 22%' renders complete at seg2:start.",
+        "Keep the emphasis number '216' inside the safe area at seg1:mid and suppress it while a caption line occupies the same band; remove the stray ellipse and the duplicate mascot instance."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 142
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T10:36:06+00:00",
+      "slug": "sleep-divorce-numbers",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Good machine variety and a mascot who actually performs, but the layout is uncontrolled \u2014 text lands on text in nearly every scene and seg1 is a collision of three unrelated layers.",
+      "auto_fails": [
+        "empty_void: seg1:start/seg1:mid waste the entire upper third on a stray ellipse and a thin polyline over near-black, and seg3:end holds two rows of icons at the top with roughly 60% of the frame empty dark blue below them.",
+        "unreadable: seg1:mid prints 'anywhere between 29% and 35%' directly into the '35%' axis label AND over the second mascot; seg3:mid stamps a dark '52%' on the blue circle at near-zero contrast; every payoff frame has the bubble tail cutting through 'Partner Snoring 52%' and 'COMMENT BELOW' sitting on the source credit."
+      ],
+      "problems": [
+        "seg1:start/seg1:mid \u2014 stray polyline crosses the kicker and exits the frame, an unlabeled ellipse floats at right, and the caption overprints the '35%' endpoint label and a mascot.",
+        "Two Data mascots are on screen simultaneously from seg1 onward; the bottom-center one holds an identical clipboard pose for ~42 seconds and never acts.",
+        "seg3:mid \u2014 the '52%' value is printed in dark ink on the blue circle and is effectively invisible on a phone; at seg3:start that same circle is an unfilled dark blob with no value at all while the 33% circles are already drawn.",
+        "seg3:end \u2014 two icon rows at the top, ~60% of the frame empty below, and the 'each = 1%' key stranded in the middle of the void.",
+        "Payoff (seg4:start through payoff@-0.4) \u2014 the speech-bubble tail cuts through 'Partner Snoring 52%', the mascot's arm crosses 'Do you and your partner still sleep in the same room?', and 'COMMENT BELOW' overlaps the source credit line.",
+        "seg2:start \u2014 the 'each = 1%' key is obscured by the narrator mascot and a stray cyan ellipse sits in the lower-left corner."
+      ],
+      "fixes": [
+        "Rebuild seg1 around the single range-dot machine: remove the polyline and ellipse decoration layers, center the track vertically, and measure the caption band so it cannot overlap the 29%/35% endpoint labels.",
+        "Allow exactly ONE mascot on screen per beat \u2014 delete the persistent bottom-center narrator instance and keep only the in-scene performer.",
+        "Place circle values OUTSIDE or below their circle in look.TEXT ink, never inside in a dark fill, and ensure the 52% circle is filled and labeled at seg3:start rather than appearing as an empty blob.",
+        "Reflow seg3:end so the icon grid and its key occupy the frame \u2014 either grow the icons or keep all 52 rows visible instead of clearing to two rows over empty ground.",
+        "Offset the payoff speech bubble so its tail clears the 'Partner Snoring 52%' header, and raise the CTA line off the source credit; move the mascot out from under the question text.",
+        "Raise the render's unique-frame rate \u2014 the 0.35 duplicate ratio means roughly a third of exported frames are repeats and the motion will read as lag on the feed."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 150
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T10:51:13+00:00",
+      "slug": "invasive-species-price-tag",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Good machines underneath, but the foreground mascot is a frozen sticker for all 36 seconds and three of four scenes run their labels off the frame edge.",
+      "auto_fails": [
+        "decorative_mascot: The large foreground host is in the IDENTICAL pose and position \u2014 clipboard in left hand, right arm extended \u2014 in all 21 frames from hook@0.3 to payoff@-0.4; he never moves, gestures or reacts to a single stat.",
+        "empty_void: hook@0.3 through hook@2.2: the top two-thirds below the title is pure dark ground with only a hairline pink stub at the far left and a thumbnail-sized mascot; seg4:start repeats it with a whole empty band between the 3.5K and 37K rows.",
+        "unreadable: 'Prevention & mana' is sliced by the right frame edge at seg2:start/mid/end, 'Classified as harmful invas' is sliced the same way at seg3:start/mid/end, 'Damage & losses' is flush-clipped at the left edge, and a stale grey caption 'and back again' sits burned over the scene from hook@0.3 to seg1:start while 'taken hold worldwide.' at seg3:start prints in low-contrast grey across the mascot and the source line."
+      ],
+      "problems": [
+        "hook@0.3-2.2 is a near-empty dark frame with a hairline chart stub \u2014 a slow chart build, which the rubric names as the thing a hook must not be.",
+        "The large foreground host is bit-identical in pose and position in every one of the 21 frames from 0.30s to 36.13s; he is decoration, not a performer.",
+        "A stale caption 'and back again' is baked over the frame from hook@0.3 through seg1:start, colliding with the scene and with the live caption.",
+        "seg2:start/mid/end run 'Prevention & mana' off the right frame edge and clip 'Damage & losses' at the left edge.",
+        "seg3:start/mid/end run 'Classified as harmful invas' off the right frame edge.",
+        "seg3:start prints 'taken hold worldwide.' in low-contrast grey directly across the mascot and the source line \u2014 unreadable on a phone."
+      ],
+      "fixes": [
+        "Rebuild the hook as a full-frame moment at t=0 \u2014 the $423B magnitude already on screen or slamming in within 0.3s \u2014 instead of the first frames of the seg0 line build.",
+        "Give the foreground host a per-beat performance tied to each stat (setup -> action -> payoff) and change his position between scenes; a repeated static pose is an auto-fail.",
+        "Clear the caption layer between beats so no previous line ('and back again') survives into the next scene.",
+        "Measure every label's rendered width and inset it inside the safe area \u2014 wrap or shorten 'Prevention & management' and 'Classified as harmful invasive' so no glyph touches a frame edge.",
+        "Move captions off the mascot and put them on INK at full contrast; never render caption text in the low-contrast subtle grey.",
+        "Raise the source credit above the mascot's silhouette so it is neither covered nor under the caption band."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 110
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T10:56:52+00:00",
+      "slug": "invasive-species-price-tag",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Good metaphors are undone by broken layout \u2014 a half-empty void in seg1 and value labels sliced off the frame edge in seg2 and seg3.",
+      "auto_fails": [
+        "empty_void: seg1:mid \u2014 the top two-thirds of the frame is bare navy gradient while the pink trend line is pinned to the very bottom edge with a thumbnail-sized mascot on it; seg1:end adds a stray unexplained teal ellipse floating in the dead right-hand space.",
+        "unreadable: seg2:mid 'Prevention & mana\u2026' and seg3:mid 'Classified as harmful invas\u2026' are both sliced off by the right frame edge, 'Damage & losses' is clipped at the left edge, hook@1.5 prints 'countries make.' directly on top of the '$1.6B' value, and seg3:start's grey 'taken hold worldwide.' sits over the mascot at near-background contrast."
+      ],
+      "problems": [
+        "seg1:mid/seg1:end waste the top two-thirds of the frame on empty gradient while the trend line hides along the bottom edge.",
+        "seg1:end contains an unexplained teal ellipse artifact in the empty right-hand space.",
+        "Two mascots are on screen simultaneously from seg1:mid onward (chart performer + narrator host), with two competing caption lines ('and back again' mid-frame over 'every decade since' at the bottom).",
+        "seg2 'Prevention & mana\u2026' and seg3 'Classified as harmful invas\u2026' are cut off by the right frame edge; 'Damage & losses' is clipped at the left edge.",
+        "hook@1.5 prints the caption 'countries make.' on top of the '$1.6B' value, and hook@0.3 prints 'That's more' over the 1970 row.",
+        "seg3:start's 'taken hold worldwide.' is grey-on-dark, overlapping the mascot, and effectively invisible on a phone."
+      ],
+      "fixes": [
+        "Lay seg1's line chart out over the full frame height: baseline in the lower quarter, the $423B endpoint in the upper third, mascot scaled to match, and delete the stray ellipse.",
+        "Composite one mascot per beat \u2014 suppress the narrator host layer whenever the scene's own performer is on screen, and render a single caption line.",
+        "Measure every label's rendered width and lay it INSIDE the safe area: right-align 'Prevention & management' / 'Classified as harmful invasive' inward from the edge, or wrap them onto two lines.",
+        "Offset captions vertically away from the chart's value column so hook captions never land on '$1.6B' or a row label.",
+        "Give seg3:start's caption the same ink + shadow treatment as the other captions instead of low-contrast grey.",
+        "Scale the payoff's supporting chart up (or drop it) so the closing frame shows one legible number rather than 8px labels under the speech bubble."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 110
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T11:04:28+00:00",
+      "slug": "23andme-dna-collapse",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The closing scene's labels overprint into unreadable mush and the host mascot holds one identical pose for the entire 41 seconds.",
+      "auto_fails": [
+        "decorative_mascot: The foreground host holds one identical pose \u2014 clipboard in left hand, right arm extended, feet planted \u2014 in all 21 frames from hook@0.3 to payoff@-0.4 (41s), and the in-scene copies only perch: riding a bar tip at seg1:mid, standing on the balance pan at seg2:start, standing on the 12M circle at seg3:mid, hanging on the stick at seg4:mid. No setup->action->payoff anywhere.",
+        "unreadable: seg4:start/mid/end/payoff print 'Users hit by 2023 breach' directly on top of 'DNA kits sold: 12M' \u2014 the overlap renders as unreadable mush, and '5M apart' sits over the stick; earlier, seg2:start clips '2021 public listin' off the left edge and '2025 bankruptcy s' off the right; hook@1.5 prints 'keep your' across the FY2021 row and its $243.9M value."
+      ],
+      "problems": [
+        "seg4 (36.0-41.4s): 'Users hit by 2023 breach' and 'DNA kits sold: 12M' are drawn on top of each other and '5M apart' overlaps the stick \u2014 the payoff shot's data is illegible.",
+        "Foreground mascot is a static sticker: same clipboard-and-outstretched-arm pose in every one of the 21 sampled frames, so he is decoration rather than a performer.",
+        "seg2:start: balance-beam labels are cut off by both frame edges \u2014 '2021 public listin' and '2025 bankruptcy s' \u2014 and its values ($2,848M / $208M) do not match the values the scene settles on ($3500M / $256M).",
+        "Hook (0.3-2.2s): burned-in captions sit across the FY2021 row and its $243.9M value instead of in clear space; the hook is a chart build, not an event.",
+        "Source credit lines at seg3 and seg4 are rendered at a size no phone viewer can read, and at seg3:start the credit runs underneath the mascot.",
+        "Cadence is soft \u2014 duplicate_ratio 0.29, effective 17fps against the export rate \u2014 so the bar moves read slightly juddery."
+      ],
+      "fixes": [
+        "In seg4, measure each label's width/height and place the two endpoint labels on separate baselines (or opposite sides of the stick) with a minimum gap, and clear the prior scene's labels before drawing.",
+        "Give the mascot a distinct authored act per beat tied to the stat \u2014 e.g. push the FY2024 bar down in seg1, get lifted by the heavy side of the balance in seg2, be dwarfed stepping between the 12M and 7M circles in seg3 \u2014 instead of perching on top of each mark.",
+        "Constrain seg2's balance-beam labels to the safe area (shorten to '2021 listing' / '2025 sale' and clamp x so the text box stays inside the frame), and hold one consistent pair of values across the whole scene.",
+        "Move the hook captions to a clear band below the last row so they never overprint a value, and open on a motion event (the FY2024 bar collapsing) rather than a row-by-row build.",
+        "Raise the source-credit type to a readable weight/size and place it clear of the mascot, or drop it to the description.",
+        "Add a real final move on the closing beat \u2014 the gap between the two marks widening, or the 5M figure landing \u2014 so the last five seconds are not a held pose."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 125
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T11:35:44+00:00",
+      "slug": "gold-cube-mined",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The first half builds a real picture of the stockpile, then the payoff scene \u2014 the cube itself, the whole reason for the video \u2014 evaporates into an empty frame with two thumbnail mascots and a clipped ruler.",
+      "auto_fails": [
+        "decorative_mascot: A second presenter mascot stands at the bottom in the IDENTICAL clipboard-and-outstretched-arm pose in every frame from seg1:mid (t=11.22s) through payoff@-0.4 (t=47.07s) \u2014 ~36s of a static sticker, with the scene mascot above him merely perching on bar tops (seg1:end, seg2:start).",
+        "empty_void: seg3:start (t=32.26s) is ~60% empty dark frame above two thin pills, and seg3:end (t=39.06s) is a near-black field holding two 30px mascots, two labels and a dotted ruler pinned to the right edge \u2014 the whole centre and top are dead.",
+        "unreadable: seg2:start (t=19.73s) label 'Bars, Coins & ETFs  22' is sliced off by the right frame edge (should read 22%); seg3:start caption 'it's only 22.3' is grey-on-dark and near invisible; hook@0.3 prints '216,000 tons' straight over the '1950' row label; seg4:start onward the CTA 'Would you even recognize that much gold...' is printed across the standing mascot's arm and clipboard."
+      ],
+      "problems": [
+        "seg3/seg4: the cube is never actually drawn. The title promises a 22-meter cube and the viewer is shown two pills, then two tiny mascot figurines on hairlines in a mostly-black frame.",
+        "A duplicate presenter mascot is parked at the bottom of the frame from t=11.2s to the end in one unchanging pose \u2014 decoration, not performance, and he sits under the captions so text prints across him.",
+        "seg2:start: the 'Bars, Coins & ETFs  22' label runs off the right frame edge and loses its % \u2014 the second-largest category is unreadable on a phone.",
+        "hook@0.3\u20130.8: '216,000 tons' is stamped on top of the '1950' axis label, and the hook itself is a slow bar-race build rather than something happening immediately.",
+        "seg3:start: 'it's only 22.3' is rendered in low-contrast grey on the dark ground and disappears.",
+        "seg1:mid: an orphaned cyan ground-shadow ellipse floats at right with no mascot on it."
+      ],
+      "fixes": [
+        "Draw the gold cube as a real volume: a single large cube occupying most of the frame height, the Olympic pool (50m) laid alongside at true relative scale, accent reserved for the cube, and animate the melt-into-cube rather than cross-fading between pill charts.",
+        "Delete the second static presenter mascot entirely; keep ONE mascot and give him a setup\u2192action\u2192payoff tied to the stat (e.g. shoving the 216K bar into the cube and being dwarfed by how small it lands).",
+        "Measure the category label column and inset it so the longest string ('Bars, Coins & ETFs 22%') fits inside the safe area, or move the labels inside/above their blocks.",
+        "Offset the hook caption below the axis-label column so '216,000 tons' never overlaps '1950', and open on motion (bars already flying) instead of a build from zero.",
+        "Set all captions in look ink with the standard caption treatment \u2014 no grey-on-dark body text \u2014 and raise the caption band clear of the mascot so nothing prints over him.",
+        "Clear the orphan shadow ellipse when its mascot is not on stage, and inset the dotted ruler from the right margin so no tick is clipped."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 142
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T11:46:16+00:00",
+      "slug": "gold-cube-mined",
+      "score": 44,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A cube video that never draws a cube \u2014 and a second, motionless clipboard mascot squats in the bottom of the frame for forty seconds.",
+      "auto_fails": [
+        "decorative_mascot: From seg1:start through payoff@-0.4 a second foreground Data stands dead-centre at the bottom in the identical clipboard/arm-out pose for ~40s \u2014 same position, same pose, no setup->action->payoff, while a duplicate copy of him perches on the marks above.",
+        "empty_void: seg3:start wastes the whole top two-thirds of the frame on empty gradient for two small pills, and seg4:start/seg4:end leave a huge dead band between 'The Gold Cube' and 'An Olympic Pool' hairlines.",
+        "unreadable: seg2:start clips the value off the right edge \u2014 'Bars, Coins & ETFs  22' should read '22%'; and at hook@0.3 the caption '216,000 tons' is printed straight over the 1950 axis label and its bar."
+      ],
+      "problems": [
+        "seg3/seg4: the central claim (all mined gold = a 22.3 m cube) is rendered as two rounded pills and a dotted ruler; the cube itself never appears.",
+        "seg1:start onward: two mascots on screen at once \u2014 a duplicate foreground Data in the identical clipboard pose, unmoving, from seg1 to the payoff.",
+        "seg2:start: the 'Bars, Coins & ETFs  22' value is clipped by the right frame edge, losing the % sign.",
+        "hook@0.3-hook@2.2: the caption '216,000 tons' / 'of gold.' is printed on top of the 1950 row label and its bar; at seg0:start the caption is a near-invisible grey ghost against the chart.",
+        "seg1:mid: an empty cyan ellipse floats at mid-right holding nothing \u2014 an unresolved prop.",
+        "seg3:start and seg4:*: composition wastes the top and middle of the frame; two hairlines and a label in a dark field."
+      ],
+      "fixes": [
+        "Replace the seg3 pool-vs-cube bar pair with a real volumetric shot: a solid 22.3 m cube beside a to-scale Olympic pool or lobby, filling the frame, with Data scaling it for reference.",
+        "Delete the persistent foreground clipboard mascot, or give him one bit per beat (hauling a bar, stacking blocks, pacing out 22.3 m) so he is a performer, not a sticker.",
+        "Measure label extents against the safe area at seg2 so 'Bars, Coins & ETFs 22%' fits inside the frame; truncate the category name, not the value.",
+        "Move the hook caption off the chart body (below the last row or above the title) so it never overlaps an axis label, and drop the low-contrast fade-in state.",
+        "Resolve or remove the empty ellipse prop at seg1:mid \u2014 a blank prop means the prop table lookup silently defaulted.",
+        "Fill the frame at seg3/seg4: raise the marks, widen the comparison, or add scale reference so the empty top third carries content."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 142
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T11:57:55+00:00",
+      "slug": "sleep-divorce-numbers",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Real data machines are in here, but seg1 is a pile-up of text printed on text and a duplicated mascot stands frozen at the bottom of the whole video \u2014 it reads as broken layout, not a designed shot.",
+      "auto_fails": [
+        "decorative_mascot: A SECOND, duplicate mascot is parked bottom-centre in the identical clipboard/arm-out pose from seg1:mid (t=12.44s) through payoff@-0.4 (t=49.67s) \u2014 ~37s of a static sticker that does no bit and occludes the 'each = 1%' key in seg2:start.",
+        "empty_void: seg3:end (t=41.69s) is two rows of icons at the top and roughly 60% of the frame dead navy below; seg2:mid (t=26.07s) has its entire upper half empty with one thin bar.",
+        "unreadable: seg3:mid (t=37.92s) prints '52%' in near-black on the blue circle, doubled over itself; seg1:end (t=17.51s) prints 'anywhere between 29% and 35%' straight through the '35%' endpoint label and the mascot; seg2:start (t=22.78s) has 'each = 1%' cut in half by the mascot; seg4:mid (t=47.22s) overprints 'COMMENT BELOW' on 'me below.'"
+      ],
+      "problems": [
+        "seg1:mid/seg1:end \u2014 'anywhere between 29% and 35%' overprints the '35%' endpoint label and is further covered by a mascot; unreadable on a phone.",
+        "seg1 \u2014 two titles stacked ('it never settled' over 'how many couples are sleeping apart') and the connector line drawn through them.",
+        "A duplicate mascot is parked bottom-centre in the same pose from t=12.4s to the end (seg1:mid through payoff@-0.4) while a second mascot performs above it.",
+        "seg3:mid \u2014 '52%' is printed in near-black ink on the blue circle and doubled over itself; the mark's colour is carrying text.",
+        "seg3:start/seg3:mid \u2014 the mascot covers the source line, leaving 'AAS\u2026 p divorce' survey' half visible.",
+        "seg3:end and seg2:mid \u2014 large dead navy areas, over half the frame with nothing in it."
+      ],
+      "fixes": [
+        "In seg1, delete the duplicate range caption (or reposition it below the pill with a measured clear band) and reserve vertical space so endpoint labels, caption and mascot never share a row.",
+        "Render exactly ONE mascot per frame \u2014 remove the persistent bottom-centre host, or make it the only mascot and give it a per-beat act.",
+        "Give the eyebrow/kicker title its own row so it never draws on top of the standing header, and keep connector geometry out of the header band.",
+        "Set the circle value labels to look.TEXT ink on the ground, not on the fill, and size the circle so the label clears it \u2014 text wears ink, never the mark's colour.",
+        "Move the mascot off the source/footer strip in seg3 so the attribution stays fully legible.",
+        "Compose seg3:end and seg2:mid to fill the frame \u2014 scale the isotype grid and slope to full bleed instead of leaving the lower/upper half dead."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 150
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T12:07:51+00:00",
+      "slug": "glp1-weight-loss-surge",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Good demonstration ideas \u2014 bar race, funnel, waffle, paired bars \u2014 sunk by labels running off the left edge in seg2 and a static duplicate mascot parked over the captions for the whole video.",
+      "auto_fails": [
+        "decorative_mascot: A second identical mascot stands dead-center at the bottom in the exact same clipboard-and-pointing pose in hook@0.3, seg0:end, seg1:start, seg2:mid and seg3:start \u2014 never moves, never tied to a stat, and it sits on top of the caption text.",
+        "empty_void: seg2:mid (t=17.47) \u2014 the funnel occupies only the top third and the entire lower half is empty dark ground with one stray mascot at the right margin; hook@0.3 is likewise one text line over an otherwise empty frame.",
+        "unreadable: seg2:start (t=14.48) every category label is cut off by the left frame edge \u2014 'repatide (Zepbound)', 'maglutide (Wegovy)', 'glutide (early GLP-1)', ')rlistat' \u2014 and at seg3:start the caption reads 'each___1%' with the word covered by the mascot."
+      ],
+      "problems": [
+        "seg2:start: all five funnel/bar category labels are cut off by the left frame edge and unreadable on a phone.",
+        "A second mascot stands motionless bottom-center in the identical pose from hook@0.3 through seg3:end \u2014 pure decoration, and it covers the caption text ('adults had tried' at seg1:start, 'each___1%' at seg3:start/mid/end).",
+        "seg2:mid: funnel occupies only the top third; the lower half of the frame is empty ground.",
+        "seg2:mid/end: the '14% make it to the end' annotation is printed over the funnel body and duplicates nothing in the script \u2014 it reads as an unrelated stat.",
+        "payoff (seg4): the closing speech bubble covers the top of the left bar and blanks out both '50%' value labels at payoff@-0.4, and the section kicker is truncated to 'SAY IT'S NOT D...'.",
+        "seg4:start\u2192payoff: the frame barely changes for ~5s apart from slow bar growth; duplicate ratio 0.25 gives an effective 18fps and the ending feels held."
+      ],
+      "fixes": [
+        "Inset the seg2 plot area by the MEASURED width of the widest category label so 'Tirzepatide (Zepbound)' and every sibling is fully on-frame.",
+        "Delete the persistent bottom-center mascot instance; keep only the performing mascot that climbs/rides the mark, and keep the caption band clear of it.",
+        "Scale the seg2 funnel to the full vertical safe area so the lower half of the frame is not empty.",
+        "Move or remove the '14% make it to the end' annotation \u2014 place it on its own baseline beside the funnel, not across the mark.",
+        "Reposition the closing speech bubble above or below the bars so the '50%' value labels stay visible, and let the kicker wrap instead of truncating with an ellipsis.",
+        "Give the payoff an actual beat \u2014 a final move on the highlighted bar or a mascot action landing on 'changed the math' \u2014 instead of a slow asymptotic grow into a still frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 106
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T12:17:20+00:00",
+      "slug": "invasive-species-price-tag",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 0,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Good machines \u2014 a bar race, a seesaw, proportional bubbles \u2014 wrecked by labels amputated at both frame edges, a duplicate mascot frozen center-frame for 30 seconds, and a 5-second dead outro.",
+      "auto_fails": [
+        "decorative_mascot: A SECOND large mascot is parked dead-center-bottom in the identical clipboard-and-point pose in every frame from seg1:start through payoff@-0.4 \u2014 it never moves, never changes, and covers the caption at seg3:start.",
+        "dead_air: seg4:start (30.58s) through payoff@-0.4 (35.87s) is the same outro frame \u2014 speech bubble, two tiny rows, static mascot \u2014 with only a few-pixel mascot creep; the cadence detector corroborates with max_dup_at_s 35.0.",
+        "empty_void: seg1:start and seg1:mid waste the entire upper ~55% of the frame on bare gradient above a low-sitting line; seg4:start leaves a large blank gap between the 3.5K and 37K rows.",
+        "unreadable: 'Prevention & mana' is sliced by the right frame edge at seg2:start/mid/end, 'Classified as harmful invas' is sliced at seg3:start/mid/end, the '3.5' pop is cut off by the bottom edge at seg3:mid, and 'taken hold worldwide.' at seg3:start is near-black-on-black behind the mascot."
+      ],
+      "problems": [
+        "seg2:start/mid/end \u2014 'Prevention & mana' is cut off by the right frame edge; a viewer never learns what the light pan is.",
+        "seg3:start/mid/end \u2014 'Classified as harmful invas' is cut off by the right frame edge.",
+        "A second, static mascot stands center-bottom in the identical pose from seg1:start to payoff@-0.4, covering 'Alien species established' at seg3:mid and the caption at seg3:start \u2014 it is pure decoration and duplicates the performer riding the visual.",
+        "seg1:start/mid \u2014 the top ~55% of the frame is empty gradient while the line chart hugs the bottom third.",
+        "hook@1.5 / seg0:end \u2014 the caption 'countries make.' is printed on top of the '$1.6B' value, leaving a legible '\u20266B' fragment.",
+        "seg1:end \u2014 the '423' pop is chopped by the bottom frame edge and the caption '423 billion dollars' is printed directly on it."
+      ],
+      "fixes": [
+        "Measure every mark label's rendered width and place it inside the safe area \u2014 wrap or left-place 'Prevention & management' and 'Classified as harmful invasive species' rather than letting them run off-canvas.",
+        "Remove the duplicated static host mascot; keep only the performing mascot that is tied to the visual (riding the bar, standing on the seesaw pan, atop the 37K bubble).",
+        "Reserve a caption band at the bottom that no number pop, mascot, or scene label may enter, and raise the pop baseline so '423', '90%' and '3.5' sit fully inside the frame.",
+        "Never overprint a caption on a value label \u2014 suppress or reposition the '$1.6B' column while the hook caption is on screen.",
+        "seg1: fill the frame \u2014 scale the line chart to use the full height and let the value pop sit in the upper dead space instead of under the axis.",
+        "Give the outro real motion: build the two bars in, or cut it short \u2014 5 seconds of a held card with 8px labels is the last thing the viewer sees."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 109
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T12:34:13+00:00",
+      "slug": "23andme-dna-collapse",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "The host mascot is a frozen sticker in the same pose for all 41 seconds and the outro is a pile of labels printed on top of each other \u2014 both are hard fails regardless of the decent seesaw and bubble machines.",
+      "auto_fails": [
+        "decorative_mascot: The primary Data figure sits at the identical bottom-centre spot in the identical pose \u2014 right arm extended, clipboard in left hand \u2014 in EVERY frame from hook@0.3 through payoff@-0.4 (f00 and f20 are pixel-alike); he never once acts on a stat.",
+        "unreadable: seg4:start/mid/end print 'Users hit by 2023 breach' and 'DNA kits sold: 12M' on top of each other into an illegible garble ('Users hit DNA2Kits solb:12M'), '5M apart' overlaps the teal bar, and back at hook@1.5 the caption 'keep your' is stamped across the $243.9M row value."
+      ],
+      "problems": [
+        "Data never performs: identical bottom-centre pose, arm out, clipboard held, in all 21 sampled frames from hook@0.3 to payoff@-0.4 \u2014 decoration, not a performer.",
+        "seg4 (t=35.63\u201341.00s): 'Users hit by 2023 breach' and 'DNA kits sold: 12M' overprint each other into illegible text; '5M apart' lies across the bar.",
+        "hook@1.5 / seg0:end: burned-in captions 'keep your' and 'secrets forever.' are stamped over the $243.9M and $271.9M row values, making both unreadable.",
+        "hook@0.3\u2013hook@2.2: four cloned mini-mascots stand in for bars at identical heights while the values differ ($243.9M / $271.9M / $299.5M / $219.6M) \u2014 the picture contradicts the numbers.",
+        "seg1 kicker reads 'FY2023 TOPS THE LIST' while the accent colour is on FY2024 (seg1:end) \u2014 the highlight is not on the subject the label names.",
+        "seg3:start/seg4: the source credit line is partly hidden behind the standing mascot."
+      ],
+      "fixes": [
+        "Give the host a per-beat bit: at seg0 have him pull the FY2024 bar down, at seg2:start ride the falling end of the seesaw, at seg4 close on a reaction tied to the line \u2014 setup, action, payoff, a different act per scene.",
+        "In seg4, clear the carried-over seg3 label layer entirely and re-place the remaining labels by measured bounding box so no two intersect and none sits on a mark.",
+        "Move burned-in captions to a reserved lower band that no chart row occupies, or push the caption when it would intersect a value's measured extent.",
+        "Replace the clone-mascot bars in the hook with real proportional marks (or scale the figures to the values) so the picture states the claim.",
+        "Put the accent on whichever row the kicker names, and derive the kicker from the highlighted row rather than from draw order.",
+        "Raise the source line above the mascot's footprint so it is never occluded."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 124
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T15:00:19+00:00",
+      "slug": "nvidia_s_data_center_chips_just_passed_a",
+      "score": 69,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "A genuinely good race \u2014 real crossover, rescaling axis, leaderboard flip \u2014 undercut by a source credit that is cut off mid-sentence in every single frame.",
+      "auto_fails": [
+        "unreadable: The source strap is cut off mid-phrase in EVERY frame \u2014 hook@0.3 and payoff@-0.4 both read 'Source: NVIDIA quarterly earnings releases (Data Center segment' with no closing paren, in small grey type on black."
+      ],
+      "problems": [
+        "hook@0.3\u20130.8: the opening 1.5s is a title card plus a caption box over an almost empty plot; the lines have barely left 2020, which is the slow chart build the rubric warns against.",
+        "Every frame: the source strap is truncated to '(Data Center segment' with no closing paren, small and low-contrast at the bottom of the frame.",
+        "hook@1.5: the caption fades out ON TOP of the plot in dark olive, briefly illegible over the Intel line and its tip label.",
+        "mid0\u2013mid2: the top ~35% of the plot and the area right of the animation front are dead black while only two thin lines move in the lower half.",
+        "Measured cadence is soft \u2014 duplicate_ratio 0.366, effective 15.2fps, and a 25-frame duplicate run at 13.33s right as the payoff should land."
+      ],
+      "fixes": [
+        "Wrap or shorten the source credit so it is a complete string, and lift its size/contrast to phone-legible.",
+        "Open on the 2024\u21922025 crossover moment or a hard green surge, then rewind to 2020, so frame 1 is the event rather than a flat baseline.",
+        "Clear the hook caption completely before the lines enter its band, or hold it in a solid strap outside the plot.",
+        "Keep the y-axis tight to the leader through mid0\u2013mid2 so the plot isn't 35% empty headroom, letting it rescale only when Nvidia breaks 80B.",
+        "Kill the ~1s held run at 13.33s \u2014 carry the green tip and the '#1 Nvidia Data Center' reveal in continuous motion through the final beat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T15:01:33+00:00",
+      "slug": "waymo_just_passed_lyft_in_san_francisco",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T15:04:27+00:00",
+      "slug": "oat_milk_just_passed_soy_milk_in_america",
+      "score": 78,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A genuinely good race \u2014 the 2021 crossover and the 530M/325M reversal land \u2014 but the hook card is parked on top of the axis and truncates the 500M tick.",
+      "auto_fails": [
+        "unreadable: hook@0.3 and hook@0.8: the hook caption card is laid over the plot's top-left and clips the y-axis tick to a bare '50' where it should read '500M'; at hook@1.5 the same caption sits mid-fade directly on top of that tick, dark-yellow on black, and has to be worked out rather than read."
+      ],
+      "problems": [
+        "hook@0.3/hook@0.8: caption card overlays the plot and clips the top y-axis tick to '50' instead of '500M'.",
+        "hook@1.5: the caption dissolves through a dark-yellow low-contrast state printed over the 500M tick and gridline.",
+        "hook@0.3 to mid0 (t=2.50s): the plot's right ~70% is empty black because the x-domain is wider than the drawn data.",
+        "mid3 (t=8.43s): at the crossover the 'Oat Milk 367.5M' and 'Soy Milk 346.7M' pills stack and touch \u2014 the moment the whole video is about is the moment the labels collide.",
+        "The crossover itself gets no emphasis: the lines simply pass, with no marker, flash or hold on the swap.",
+        "payoff@-0.4: 'Oat Milk 530M' and 'Soy Milk 325M' sit flush against the right frame edge with their tip markers pushed off-frame."
+      ],
+      "fixes": [
+        "Lay the hook caption in reserved space above the plot rectangle, or drop the plot top below the card, so no tick or gridline label is ever occluded; verify the top tick reads '500M' in full at t=0.3s.",
+        "Shorten the caption's fade or fade it to full transparency faster so it never renders as low-contrast glyphs over the chart.",
+        "Fit the x-domain to the drawn extent at every frame so the race fills the plot from the first frame instead of building into empty black.",
+        "Add vertical collision resolution to the series labels so the two pills separate as they converge at the 2021 crossover.",
+        "Mark the crossover: flash the intersection point and hold the leaderboard swap for a beat when Oat Milk takes #1.",
+        "Inset the right plot margin so the final tip markers and value labels clear the frame edge by at least one label height."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T15:10:50+00:00",
+      "slug": "corporate_said__follow_the_return_policy",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "For the first ~45 seconds the top half of the split is just more gameplay instead of story illustrations \u2014 two relevant shots finally arrive at 47s and 58s, so the cause/effect beats are narrated but never shown.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3-mid0 (t=0.30-2.50s): static post card over an unlit gray corridor; the illustration slot is filled with duplicate gameplay, so nothing establishes the story and there is no bright motion to stop a scroll.",
+        "mid1 (t=13.63s), mid2 (t=24.77s), mid3 (t=35.90s): all three mid beats show gameplay in BOTH halves \u2014 orange honeycomb, nether fences, then a brown roof \u2014 none of which illustrates 'sick of people', 'store only' or any story beat. Three of six segments demonstrate nothing.",
+        "mid2 (t=24.77s) carries no caption at all, so that beat has neither an illustration nor readable words \u2014 pure filler.",
+        "mid4 (t=47.03s): the employee image has garbled AI anatomy (hands fused into the keyboard, a dark smear where her right shoulder should be) \u2014 relevant but visibly cheap at phone size.",
+        "mid5 (t=58.17s), payoff@-1.8 (t=58.37s), payoff@-0.4 (t=59.77s): the identical blurred store-aisle photo is held across all three, and the caption ends mid-sentence on 'POLICY WAS NEVER / SUPPOSED TO BE' \u2014 the punchline never lands on screen.",
+        "Gameplay palette swings incoherently between beats (gray dungeon -> orange honeycomb -> red nether -> pink/purple), reading as random clip selection rather than escalation."
+      ],
+      "fixes": [
+        "Assign a distinct on-story illustration to EVERY segment's top slot (returns desk, corporate email, shelf of returned goods, receipt pile, manager) and never backfill that slot with the gameplay feed \u2014 an unassigned slot should fail the render, not duplicate the bottom half.",
+        "Replace the opening gameplay with a bright, fast exterior clip and animate the post card in (slide/scale) over the first 0.5s so hook@0.3 has motion plus a legible premise.",
+        "Give mid2 (t=24.77s) a caption and an illustration, or cut the beat and redistribute its time to the payoff.",
+        "Re-source the mid4 employee shot from real stock rather than AI generation, or crop to the register/hands-free framing so the mangled anatomy is out of frame.",
+        "Extend the final beat so the last line completes on screen and end on a distinct payoff image (the emptied shelves / the corporate reply) instead of holding the same aisle photo for the last two seconds.",
+        "Sequence gameplay clips so the palette escalates with the story instead of jumping dungeon-to-honeycomb-to-nether between adjacent beats."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 181
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T17:08:57+00:00",
+      "slug": "nvidia_s_data_center_chips_just_passed_a",
+      "score": 69,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "A clean, correctly-built graph race with a real crossover payoff, held back by a talky title-card hook, visible judder (~15fps effective), and clipped/ghosted text.",
+      "auto_fails": [
+        "unreadable: Source credit at the bottom of every frame is clipped mid-sentence \u2014 'Source: NVIDIA quarterly earnings releases (Data Center segment' with no closing paren (payoff@-0.4); and at hook@1.5 the hook line 'It now outsells all of Intel.' fades to near-black grey printed over the plot area, illegible at arm's length."
+      ],
+      "problems": [
+        "Hook is a title card plus a bordered caption panel over a chart that is still flat \u2014 the first 2s assert the claim instead of showing it (hook@0.3, hook@0.8).",
+        "The hook caption cross-fades through a near-black grey while sitting on top of the plot area, unreadable on a phone (hook@1.5).",
+        "Source credit line is cut off mid-sentence on every frame: '(Data Center segment' with no closing paren (hook@0.3 .. payoff@-0.4).",
+        "Cadence: measured effective_fps 15.2 with duplicate_ratio 0.37 and a ~1.0s duplicate run at 13.33s \u2014 the climb and the final hold visibly judder.",
+        "The bordered rounded panel behind the hook text is a UI widget on the ground, not a shot (hook@0.3, hook@0.8).",
+        "Upper third of the plot is empty black from mid0 to mid3 while Intel sits flat at ~78B and Nvidia is a sliver at the baseline \u2014 the headroom does no work until the axis rescales at mid5."
+      ],
+      "fixes": [
+        "Re-time the hook so the green line is already racing in frame 1 \u2014 pre-roll the crossover or accelerate 2020-2023 into the first second, then let it settle.",
+        "Remove the bordered caption card: set the hook line full-bleed in ink weight in the empty upper band above the Intel line, and hold it at full contrast until it cuts (no low-contrast fade over the plot).",
+        "Fit or wrap the source credit to the frame width so it is never clipped mid-string.",
+        "Raise the export cadence: render at the timeline fps rather than duplicating a ~15fps source, and remove the ~1s frozen tail at 13.3s by animating the final value ticking to 115.2B.",
+        "Compress the flat 2020-2022 stretch (mid0-mid3) so the empty headroom is not held \u2014 or rescale the y-axis earlier so the frame's space is used from the start."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T17:10:12+00:00",
+      "slug": "waymo_just_passed_lyft_in_san_francisco",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T17:14:16+00:00",
+      "slug": "oat_milk_just_passed_soy_milk_in_america",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honestly-sourced graph race whose crossover genuinely lands \u2014 held back by a text-card opening over an empty axis and labels crowding the right frame edge.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3: the race begins from a bare axis, so the first second is a title plus a caption card with no picture doing work.",
+        "hook@1.5: the fading hook caption overprints the '500M' axis tick \u2014 text on top of text during the transition.",
+        "mid3 (2021 crossover): the 'Oat Milk 367.5M' and 'Soy Milk 346.7M' pills stack and touch at the exact moment the swap happens, the one beat that most needs to read clean.",
+        "mid5 / payoff: the leading tip marker and its pill run into the right frame edge ('Soy Milk 325M' is flush to the border), so the most important moment sits in the margin.",
+        "The rotated y-axis title 'US retail sales (dollars)' is set far smaller than any other type and is effectively decorative on a phone."
+      ],
+      "fixes": [
+        "Give the hook a picture: pre-roll a 0.5s sped-through preview of the whole race ending on the crossover, then rewind to 2017 \u2014 motion first, caption second.",
+        "Hold the hook caption inside a band that excludes the axis-tick column, and fade it out over the ground rather than across the '500M' label.",
+        "Add vertical collision resolution to the tip pills so that when the two series are within ~5% they offset above/below instead of overlapping.",
+        "Reserve a right-hand gutter (~8% of frame width) that the plot never draws into, so the leading tip and its label always sit fully inside the frame.",
+        "Raise the y-axis title to the same weight/size family as the tick labels, or drop it and fold the unit into the value pills."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T17:20:26+00:00",
+      "slug": "corporate_said__follow_the_return_policy",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The story and captions land, but the picture track is thin \u2014 three illustrations across 60s, the last one held frozen through the punchline, with a stray horizontal seam line printed across the full-bleed frames.",
+      "auto_fails": [],
+      "problems": [
+        "seg5/payoff: the same store-aisle still is held across mid5, payoff@-1.8 and payoff@-0.4 \u2014 the punchline gets no visual change.",
+        "A faint horizontal divider line is drawn across the frame at the split boundary even when the shot is full-bleed gameplay (visible in hook@0.3, hook@1.5, mid0, mid2, mid3) \u2014 an artifact with nothing on either side of it.",
+        "seg1 (mid1): the bottom gameplay is an over-zoomed blur of brown blocks with no readable geography, and the beat carries no caption at all.",
+        "seg2/seg3 (mid2, mid3): no shot illustration at all \u2014 cause/effect beats ('30 DAYS RECEIPT', 'EXACTLY.') are carried by gameplay alone.",
+        "seg4 (mid4): the cashier image has melted arm/torso geometry and a smeared name badge; it reads AI at a glance."
+      ],
+      "fixes": [
+        "Cut a fresh closing shot for seg5 (the overridden-policy reveal or the corporate reply) and land it on the punchline word instead of holding the aisle photo.",
+        "Suppress the divider rule whenever a segment has no top illustration so full-bleed gameplay is genuinely full-bleed.",
+        "Give seg2 and seg3 their own illustrations \u2014 a receipt/30-day calendar and the policy page \u2014 so every story beat changes picture.",
+        "Re-frame seg1's gameplay to a wider, legible clip and make sure its caption line renders.",
+        "Replace the seg4 cashier image with a cleaner shot (or crop past the distorted arm/badge)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 180
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T17:25:57+00:00",
+      "slug": "she_kept_taking_my_reserved_spot__so_i_r",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "An irrelevant Victorian PUNCH ice-skating engraving is the hero image at 12s, and the same reception-desk still is held across two later beats over a near-black void \u2014 the story's cause/effect is barely illustrated at all.",
+      "auto_fails": [
+        "junk_imagery: mid1 (t=12.16s) fills the whole top half with a Victorian PUNCH cartoon captioned 'CLEARING THE SERPENTINE. (MONDAY, JANUARY 17.)' \u2014 19th-century ice skaters, nothing to do with a parking-spot revenge story.",
+        "dead_air: mid2 (t=21.82s) and mid3 (t=31.48s) are the identical masked-receptionist still \u2014 the same unchanging photo occupies the top half for ~10s across two beats, and mid3 carries no caption either.",
+        "empty_void: mid3 (t=31.48s) lower half is near-black with a single small blue L-shape; mid2's lower half is likewise a dark void with only a caption line on it."
+      ],
+      "problems": [
+        "mid1 (t=12.16s): unrelated 19th-century PUNCH cartoon 'CLEARING THE SERPENTINE' used as the beat's illustration \u2014 fatal junk imagery, and it even carries its own printed masthead and caption competing with the burned-in captions.",
+        "mid2 (t=21.82s) and mid3 (t=31.48s): identical masked-receptionist still held ~10 seconds across two beats; the story advances, the picture does not.",
+        "mid3 (t=31.48s): no caption on screen and the bottom half is an almost entirely black gameplay frame with one tiny L-shape \u2014 the frame's space is wasted.",
+        "hook@0.3-2.2: the post card is a static overlay for the full opening, so the only motion in the first 2s is background gameplay \u2014 nothing happens that is tied to the story.",
+        "payoff@-0.4 (t=52.40s): the ending is a lone word 'SINCE.' over dark chevron gameplay with no illustration to land the revenge punchline."
+      ],
+      "fixes": [
+        "Swap mid1's image for an on-topic modern shot (car occupying a numbered/reserved space, a RESERVED sign, a note on a windshield) and blacklist archival engravings or any image containing its own printed caption/masthead from the illustration lane.",
+        "Give mid2 and mid3 different shots \u2014 e.g. leasing-office exterior/desk for one, the parking lot or a towing truck for the other \u2014 so no still spans more than one beat.",
+        "Ensure every beat carries a caption, including mid3, and lift the gameplay brightness or crop so the lower panel never reads as an empty black field.",
+        "Open on a moving story image behind the post card (the contested spot) or animate the card in over the first 0.5s so the hook has purposeful motion, not just scrolling gameplay.",
+        "Land the payoff on a visual \u2014 her car boxed out / the reserved sign with the narrator's name \u2014 under the final caption instead of ending on bare gameplay."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.133,
+        "sampled": 158
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T22:41:43+00:00",
+      "slug": "glp1-weight-loss-surge",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Good machines are wrecked by a compositing layer that clips labels off the frame, parks a duplicate frozen mascot over the captions, and lets a funnel make a claim the drug data never made.",
+      "auto_fails": [
+        "decorative_mascot: A SECOND Data is pasted at bottom-centre in the identical arm-out clipboard pose in hook@0.3, seg0:mid, seg0:end, seg1:start, seg2:mid, seg2:end, seg3:start, seg3:mid and seg3:end \u2014 same pixels every time, no setup\u2192action\u2192payoff, and it sits on top of the caption text.",
+        "empty_void: seg2:mid is roughly two-thirds dead navy \u2014 the funnel occupies only the upper-left, with a thumbnail-sized mascot alone in the void at mid-right; hook@0.3 likewise leaves the top 60% of frame empty above a single line of text.",
+        "unreadable: seg2:start clips every category label off the left frame edge \u2014 'repatide (Zepbound)' for Tirzepatide, 'maglutide (Wegovy)', 'glutide (early GLP-1)', ')iet & exercise alone'; at seg3:mid the caption reads 'eac\u25ae 1%' because the standing mascot covers it, and at seg2:mid 'weight. The newest' is grey-on-navy over the mascot."
+      ],
+      "problems": [
+        "seg2:start \u2014 every drug label is cut off by the left frame edge ('repatide (Zepbound)' instead of 'Tirzepatide (Zepbound)'), so the 21% headline number is unattributable.",
+        "A second, identical Data stands motionless bottom-centre in hook through seg3 (hook@0.3, seg0:mid, seg1:start, seg2:end, seg3:mid) \u2014 pure decoration, and it covers the burned-in caption ('eac\u25ae 1%' at seg3:mid, 'everyone taking the' at seg3:start).",
+        "seg2 draws a FUNNEL with '14% make it to the end' over five unrelated drugs' average weight loss \u2014 the picture asserts a shrinking-stage progression the data does not contain.",
+        "seg2:mid is a large empty void: two-thirds of the frame is bare navy with a tiny mascot floating in it.",
+        "seg1:start \u2014 the header 'how many Americans have taken the weight-loss shot' collides with the 18% bar label and the mascot, and 'adults had tried' is printed at near-zero contrast behind the burned-in '12%'.",
+        "seg4 \u2014 the closing speech bubble sits on top of the 50% value labels (payoff@-0.4 shows them clipped to '5\u25ae%'), the kicker is truncated to 'SAY IT'S NOT D...', a stray '2' glyph pokes out at the left edge, and 'COMMENT BELOW' overprints the source line."
+      ],
+      "fixes": [
+        "Measure the widest category label in the ranked-bar machine and inset the plot origin by that width (or move labels above their bars); assert every text extent lies inside the 9:16 safe area before render.",
+        "Remove the persistent bottom-centre mascot instance \u2014 one Data per frame, and he must be doing the beat's bit (climbing the bar, tipping the grid), never a second static copy.",
+        "Redraw seg2 as a ranked comparison, not a funnel: drop '14% make it to the end', keep one accent on the 21% bar and neutral REST on the other four, and fill the lower frame with the ranking instead of void.",
+        "Raise the caption layer above the mascot and all marks, and render it in full-contrast ink (look.TEXT) \u2014 no grey-on-navy captions, no caption under a figure.",
+        "Reflow seg1's header so it does not collide with the top bar's value label, and give the burned-in stat its own clear band.",
+        "In seg4, move the closing bubble above the value labels (or drop the values to the bar tops) so '50%' is never overprinted, un-truncate the kicker, and keep 'COMMENT BELOW' clear of the source line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 105
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-18T22:51:34+00:00",
+      "slug": "ivf-births-surge",
+      "score": 60,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "Genuinely good demonstrations \u2014 a seesaw, a 100-baby grid, cash bundles \u2014 undercut by text that is clipped, stacked and covered, including the $50,000 payoff number itself.",
+      "auto_fails": [
+        "unreadable: seg4:start\u2013seg4:end \u2014 the headline is clipped by BOTH frame edges, reading 'cal total (multiple cycles)  $50,' where it should read 'Typical total (multiple cycles) $50,000'; also seg2:mid, the '$2000'-equivalent legend reads 'eac[h]   1%' with its middle hidden behind the standing mascot's head, and seg3:start prints black '$50000' overflowing the yellow circle onto near-black background."
+      ],
+      "problems": [
+        "seg4: headline clipped at both frame edges \u2014 'cal total (multiple cycles) $50' instead of 'Typical total (multiple cycles) $50,000'; the payoff's key number is unreadable.",
+        "seg4: the scene title 'the cost of IVF' is printed immediately under that clipped headline, reading as stacked text rather than a hierarchy.",
+        "seg2: the unit-grid legend ('each = 1%') is split in half by the standing mascot's head in every frame of the scene; the scene title 'why IVF births are climbing' also sits on top of the grid's first row at seg2:start.",
+        "seg3:start: '$50000' is drawn in black wider than the yellow circle behind it, so the leading '$5' and trailing '00' fall onto the near-black ground and disappear.",
+        "seg1: the resting 2013 plate labels ('0.8%', '1.4%') are grey-on-dark and half-hidden behind the plate itself \u2014 low contrast to the point of vanishing at arm's length.",
+        "A second, permanently static mascot stands centre-bottom in all 21 frames in an identical pose, adding nothing and occluding the caption/legend band."
+      ],
+      "fixes": [
+        "Measure the seg4 headline against the safe area and shrink/wrap/abbreviate it ('Typical total \u00b7 $50,000') so both the label and the full value fit with margin; reserve the row below it for the scene title.",
+        "Make every value label's box a measured extent, not a character count \u2014 apply the same fit to seg3's '$50000', clamping the text to the circle's inner width or moving it beside the ball when it cannot fit.",
+        "Give the standing bottom mascot a z-order below text, or drop him entirely on scenes that carry a legend/caption in that band, so seg2's 'each = 1%' reads whole.",
+        "Lay the seg2 title above the grid's top row with a real gutter instead of overlapping row one.",
+        "Raise the resting-plate labels in seg1 to look.TEXT ink above the plate rather than desaturated grey behind it.",
+        "Open on an event rather than a build \u2014 tip the seesaw or drop the first bubble in hard on frame one so the hook is motion with a reason to stay."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "dae59a4 2026-09-18 exchange: phase A bundle for 20260918 [skip ci]",
-    "e2098d4 2026-09-18 daily packages 2026-09-18 (#399)"
+    "0f68637 2026-09-19 doctor: rule f87f60f38feb done (merged in PR #400) (#401)",
+    "04c62b6 2026-09-19 exchange: phase A bundle for 20260919 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-04": 3,
         "2026-09-05": 2,
         "2026-09-06": 2,
         "2026-09-07": 6,
@@ -2761,15 +2879,15 @@
         "2026-09-12": 1,
         "2026-09-13": 3,
         "2026-09-16": 2,
-        "2026-09-17": 2
+        "2026-09-17": 2,
+        "2026-09-18": 2
       },
-      "total_posted": 328,
-      "attempted": 328,
+      "total_posted": 330,
+      "attempted": 330,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-09-04": 2,
         "2026-09-05": 5,
         "2026-09-06": 2,
         "2026-09-07": 1,
@@ -2781,15 +2899,16 @@
         "2026-09-13": 1,
         "2026-09-15": 1,
         "2026-09-16": 3,
-        "2026-09-17": 1
+        "2026-09-17": 1,
+        "2026-09-18": 2,
+        "2026-09-19": 2
       },
-      "total_posted": 253,
-      "attempted": 253,
+      "total_posted": 257,
+      "attempted": 257,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-09-04": 6,
         "2026-09-05": 5,
         "2026-09-06": 4,
         "2026-09-07": 2,
@@ -2802,11 +2921,12 @@
         "2026-09-14": 1,
         "2026-09-16": 4,
         "2026-09-17": 5,
-        "2026-09-18": 2
+        "2026-09-18": 4,
+        "2026-09-19": 4
       },
-      "total_posted": 285,
-      "attempted": 548,
-      "rejected_or_pending": 263
+      "total_posted": 291,
+      "attempted": 564,
+      "rejected_or_pending": 273
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2820,32 +2940,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 93,
+      "videos": 91,
       "top_by_vph": [
         {
           "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
-          "vph": 37.99,
-          "views": 1049
+          "vph": 20.75,
+          "views": 1050
+        },
+        {
+          "title": "1 In 3 Couples Now Sleep In Separate Rooms",
+          "vph": 11.07,
+          "views": 4
         },
         {
           "title": "51% Of The Internet Is Now Bots",
-          "vph": 6.32,
-          "views": 158
-        },
-        {
-          "title": "The Lake That Basically Disappeared (3 Charts)",
-          "vph": 2.89,
-          "views": 901
-        },
-        {
-          "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-          "vph": 2.65,
-          "views": 798
+          "vph": 5.94,
+          "views": 285
         },
         {
           "title": "Brain Plastic Levels Rose 50% Since 2016",
-          "vph": 2.55,
-          "views": 81
+          "vph": 3.47,
+          "views": 190
+        },
+        {
+          "title": "The Lake That Basically Disappeared (3 Charts)",
+          "vph": 2.69,
+          "views": 901
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -2855,28 +2975,28 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 28.51,
-          "views": 53
+          "vph": 31.52,
+          "views": 906
         },
         {
           "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-          "vph": 6.56,
-          "views": 150
+          "vph": 4.1,
+          "views": 204
+        },
+        {
+          "title": "Jynxzi Loses His Mind Defending His Teammate's Tachanka Pick",
+          "vph": 4.1,
+          "views": 1
         },
         {
           "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
-          "vph": 1.17,
+          "vph": 1.06,
           "views": 312
         },
         {
           "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27",
-          "vph": 0.91,
-          "views": 25
-        },
-        {
-          "title": "Timthetatman Finds Out His New Puppy Could Grow To 200 Pounds",
-          "vph": 0.78,
-          "views": 19
+          "vph": 0.68,
+          "views": 37
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2968,13 +3088,6 @@
       "horizon": "strategy",
       "severity": "high",
       "ruling": "in_progress"
-    },
-    {
-      "signature": "f87f60f38feb",
-      "title": "Long-form silently publishes without its promised custom thumbnail",
-      "horizon": "small_fix",
-      "severity": "medium",
-      "ruling": "doing"
     },
     {
       "signature": "ad9061de9638",
@@ -3732,6 +3845,13 @@
       "verdict": "done",
       "date": "20260918",
       "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "f87f60f38feb",
+      "verdict": "done",
+      "date": "20260919",
+      "because": "Merged in PR #400 (e913ed1): build_longform.py now validates the rendered thumbnail is a readable 1920x1080 image via _valid_thumbnail() and returns non-zero before reaching YouTubeUploader.upload when it is missing or corrupt; a dry run keeps the loud fallback log unaffected. tests/test_longform_gated.py's TestThePublishThumbnailIsRequired covers missing, corrupt and valid thumbnails plus the dry-run exemption.",
       "revisit_after": null
     },
     {
