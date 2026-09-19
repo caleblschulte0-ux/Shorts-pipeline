@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s1-a3ff5793d4d6",
+  "safe_request_id": "reddit-clock-in-exact-second-s1-a3ff5793d4d6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2fcfe91c818c7401e92a2691fd5c0f49c9aa6ef7b4b170e00fa61d151107c158",
+  "prompt_used": "An editorial illustration for a short-form video: cash register store opening. It accompanies the narration: \"prep the register and be ready for customers right at nine sharp\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QE3K0NepFB-V28gcOuyFx4AO9B0khZj-",
+    "filename": "20260919__reddit-clock-in-exact-second-s1-a3ff5793d4d6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QE3K0NepFB-V28gcOuyFx4AO9B0khZj-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "20137e253ee15a9ee50755746e6044cceb7f2788b2d9838f1dfefb87f1b162e3",
+    "bytes": 1609718,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-19T11:28:08.991Z"
+}
