@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s5-69a8eab5c355",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s5-69a8eab5c355",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fa11e1e805f8095fbf6d024d92456869c771585ab6e8cc6b9505e2c478858e53",
+  "prompt_used": "An editorial illustration for a short-form video: fine print magnifying glass. It accompanies the narration: \"pointed at the fine print excluding clearance items entirely\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1sgsxS0F3lzKtTPTf-7CM6U9jjJkA_Kik",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s5-69a8eab5c355.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1sgsxS0F3lzKtTPTf-7CM6U9jjJkA_Kik",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "54c0df8f7b2a0c130579dc20ae45d632189f694eb09c4d299a7fb7eb3ecc3fcb",
+    "bytes": 1875659,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:19.595Z"
+}
