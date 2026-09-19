@@ -29,6 +29,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -36,6 +37,9 @@ sys.path.append(str(ROOT / "scripts"))
 
 import build_longform as BL          # noqa: E402
 from scripts import showrunner_review as SR   # noqa: E402
+import data_learning.longform_render  # noqa: E402,F401 - importable for mock.patch
+import shared.showrunner_gate         # noqa: E402,F401
+import shared.uploaders               # noqa: E402,F401
 
 CFG = {"stories": [{"slug": "a", "title": "A", "hook": "hook a"},
                    {"slug": "b", "title": "B", "hook": "hook b"},
@@ -278,6 +282,108 @@ class TestPendingUploadReconciliation(unittest.TestCase):
         self.assertEqual(BL._load_pending(), {})
         log = json.loads(BL.LONGFORM_LOG.read_text())
         self.assertEqual(len(log["posted"]), 1, "must not duplicate")
+
+
+class TestThePublishThumbnailIsRequired(unittest.TestCase):
+    """Doctor finding f87f60f38feb: make_thumbnail() catches its own
+    exceptions broadly and build_longform used to publish anyway with
+    `thumbnail=None` — the log said 'thumbnail=no' but nothing stopped
+    the upload. A publish run must now refuse to reach the uploader
+    without a readable 1920x1080 thumbnail; a genuinely valid one must
+    still reach it."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="lf-thumb-"))
+        self._saved = (BL.CONFIG, BL.OUT, BL.EXPLAINER_LOG, BL.LONGFORM_LOG,
+                       BL.PENDING_LOG, sys.argv)
+        BL.CONFIG = self.tmp / "niche.config.json"
+        BL.CONFIG.write_text(json.dumps(CFG))
+        BL.OUT = self.tmp / "output"
+        BL.EXPLAINER_LOG = self.tmp / "explainer_posted_log.json"
+        BL.LONGFORM_LOG = self.tmp / "longform_log.json"
+        BL.PENDING_LOG = self.tmp / "longform_pending.json"
+        BL.EXPLAINER_LOG.write_text(json.dumps({"posted": {
+            "a": {"url": "u", "at": "2026-08-01T00:00:00+00:00"}}}))
+        BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
+        sys.argv = ["build_longform.py", "--slug", "a"]
+
+    def tearDown(self):
+        (BL.CONFIG, BL.OUT, BL.EXPLAINER_LOG, BL.LONGFORM_LOG,
+         BL.PENDING_LOG, sys.argv) = self._saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    @staticmethod
+    def _fake_render_no_thumb(slug, out_path, config_path=None, voice=None):
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(b"fake video")
+        out_path.with_suffix(".meta.json").write_text(
+            json.dumps({"duration": 300.0, "chapters": []}))
+        # no .jpg written — the exact failure mode this finding names.
+        return out_path
+
+    @staticmethod
+    def _fake_render_valid_thumb(slug, out_path, config_path=None, voice=None):
+        from PIL import Image
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(b"fake video")
+        out_path.with_suffix(".meta.json").write_text(
+            json.dumps({"duration": 300.0, "chapters": []}))
+        Image.new("RGB", (1920, 1080)).save(out_path.with_suffix(".jpg"))
+        return out_path
+
+    def test_a_missing_thumbnail_stops_before_the_uploader(self):
+        with mock.patch("data_learning.longform_render.render",
+                        side_effect=self._fake_render_no_thumb), \
+             mock.patch("shared.showrunner_gate.run",
+                        return_value={"blocked": False,
+                                      "verdict": {"score": 9}}), \
+             mock.patch("shared.uploaders.YouTubeUploader") as up_cls:
+            rc = BL.main()
+        self.assertNotEqual(rc, 0)
+        up_cls.return_value.upload.assert_not_called()
+
+    def test_a_corrupt_thumbnail_stops_before_the_uploader(self):
+        def fake_render(slug, out_path, config_path=None, voice=None):
+            self._fake_render_no_thumb(slug, out_path, config_path, voice)
+            out_path.with_suffix(".jpg").write_bytes(b"not an image")
+            return out_path
+        with mock.patch("data_learning.longform_render.render",
+                        side_effect=fake_render), \
+             mock.patch("shared.showrunner_gate.run",
+                        return_value={"blocked": False,
+                                      "verdict": {"score": 9}}), \
+             mock.patch("shared.uploaders.YouTubeUploader") as up_cls:
+            rc = BL.main()
+        self.assertNotEqual(rc, 0)
+        up_cls.return_value.upload.assert_not_called()
+
+    def test_a_valid_thumbnail_reaches_the_uploader(self):
+        with mock.patch("data_learning.longform_render.render",
+                        side_effect=self._fake_render_valid_thumb), \
+             mock.patch("shared.showrunner_gate.run",
+                        return_value={"blocked": False,
+                                      "verdict": {"score": 9}}), \
+             mock.patch("shared.uploaders.YouTubeUploader") as up_cls:
+            up_cls.return_value.upload.return_value = mock.Mock(
+                url="https://y/1")
+            rc = BL.main()
+        self.assertEqual(rc, 0)
+        up_cls.return_value.upload.assert_called_once()
+
+    def test_a_dry_run_is_not_blocked_by_a_missing_thumbnail(self):
+        """The preview-only path keeps its loud fallback log and still
+        renders for the preview branch — only an actual upload is
+        stopped by a missing thumbnail."""
+        sys.argv = ["build_longform.py", "--slug", "a", "--dry-run"]
+        with mock.patch("data_learning.longform_render.render",
+                        side_effect=self._fake_render_no_thumb), \
+             mock.patch("shared.showrunner_gate.run",
+                        return_value={"blocked": False,
+                                      "verdict": {"score": 9}}), \
+             mock.patch("shared.uploaders.YouTubeUploader") as up_cls:
+            rc = BL.main()
+        self.assertEqual(rc, 0)
+        up_cls.return_value.upload.assert_not_called()
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260918",
+  "updated": "20260919",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1277,10 +1277,16 @@
       "commit": "96ed483"
     },
     "f87f60f38feb": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: longform_render.py's make_thumbnail() failure is caught broadly and printed as 'thumbnail skipped'; build_longform.py then passes thumbnail=None to the uploader and publishes anyway. tests/test_longform_gated.py only source-greps for 'thumbnail=thumb', so it can't catch this fail-open branch. Small, concrete fix; queued.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260919",
+      "because": "Building the fix: build_longform.py now validates the rendered thumbnail is a readable 1920x1080 image and refuses to reach the uploader without one on a publish run (dry-run keeps the loud fallback log). Tests added in tests/test_longform_gated.py cover missing/corrupt/valid thumbnail and the dry-run exemption.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: longform_render.py's make_thumbnail() failure is caught broadly and printed as 'thumbnail skipped'; build_longform.py then passes thumbnail=None to the uploader and publishes anyway. tests/test_longform_gated.py only source-greps for 'thumbnail=thumb', so it can't catch this fail-open branch. Small, concrete fix; queued."
+        }
+      ]
     },
     "ad9061de9638": {
       "verdict": "doing",
