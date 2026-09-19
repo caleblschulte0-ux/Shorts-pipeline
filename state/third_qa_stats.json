@@ -1,307 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260908",
-      "dry_run": false,
-      "ts": "2026-09-08T16:11:05+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 97,
-        "with_retention": 76,
-        "with_curve": 14,
-        "fetched_at": "2026-09-08T12:59:32.876821+00:00"
-      },
-      "brain": {
-        "ok": 37,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260908-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "unclear clip, vague title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.85,
-              "why": "murder confession, shocking reveal",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Calls Out Hasan's Fans And It Gets Brutal"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": []
-            }
-          },
-          "took_s": 177.6
-        },
-        {
-          "slug": "clip-20260908-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "confusing gameplay, unclear moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "routine gameplay callouts, mild reaction",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi \"What Does He Even Do?\" \u2014 Then This Happens"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 155.7
-        },
-        {
-          "slug": "clip-20260908-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.6,
-              "why": "chase/scare visible, no clear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "friend curses, mishap, real reaction",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lirik Michael Myers Catches The Teen Talking Trash And It Actually Hurts"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": []
-            }
-          },
-          "took_s": 196.0
-        },
-        {
-          "slug": "clip-20260908-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (singing chat, no event)",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "singing reaction, mildly fun",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "singing chat, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 29.6
-        },
-        {
-          "slug": "clip-20260908-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "generic first-game narration",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "genuine shock reaction to visible scare",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lirik Can't Believe What Just Showed Up In This Game"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "final three timestamps (24.5s-29.6s) have a very dark sharp band, subject only barely visible as silhouette against a di"
-              ]
-            }
-          },
-          "took_s": 359.8
-        },
-        {
-          "slug": "clip-20260908-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "generic dance moment, mildly amusing",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "vague chatter, unclear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.9,
-              "problems": []
-            }
-          },
-          "took_s": 1053.8
-        }
-      ]
-    },
-    {
       "date": "20260909",
       "dry_run": false,
       "ts": "2026-09-09T15:43:20+00:00",
@@ -6222,6 +5921,286 @@
           "slug": "clip-20260918-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260919",
+      "dry_run": false,
+      "ts": "2026-09-19T14:32:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 85,
+        "with_curve": 14,
+        "fetched_at": "2026-09-18T23:15:14.251674+00:00"
+      },
+      "brain": {
+        "ok": 45,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260919-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "reaction to newcomer, vague what happens",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine chaotic reaction, first shift mi",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha: Lang Reacts To 404 And BrickBabies Losing Cameras On Shift One"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Final two frames (20.5s-22.4s) show a static pawn-shop inventory/menu screen with no visible people \u2014 a flatter ending t"
+              ]
+            }
+          },
+          "took_s": 282.3
+        },
+        {
+          "slug": "clip-20260919-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (static talk, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "surprising visible reaction moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "static talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 59.1
+        },
+        {
+          "slug": "clip-20260919-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague excited callout, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": [
+                "Caption text 'JOE AND ONLY' likely mistranscribes the name 'Oney' (small caption below reads 'Joe and Oney') \u2014 minor wor"
+              ]
+            }
+          },
+          "took_s": 211.0
+        },
+        {
+          "slug": "clip-20260919-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "reaction implied, no context given",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague title, disjointed setup chatter",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Plaqueboymax Gets Made To Do Push-Ups Over His Wardrobe"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "opening frame (1.0s) and 18.1s frame show empty gym equipment with no visible subject"
+              ]
+            }
+          },
+          "took_s": 330.4
+        },
+        {
+          "slug": "clip-20260919-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (routine GTA RP walk-and-talk, no event)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "buddha/buddha-about-buddha-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "xqc/xqc-city-from-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "lacy/lacy-fans-film-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "funny title, unclear event, likely bit",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "routine GTA RP walk-and-talk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 772.7
+        },
+        {
+          "slug": "clip-20260919-6",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title gibberish, no info",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague fashion chat, garbled title",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 72.6
         }
       ]
     }

@@ -7833,14 +7833,77 @@
       "ts": "2026-09-19T13:32:24.175707+00:00"
     },
     "clip-20260919-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/GentleDepressedSoybeanKappaWealth-2JaDwezHZtA-DXz7",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/XF0wdpMcTZ0",
       "title": "Plaqueboymax Gets Made To Do Push-Ups Over His Wardrobe",
       "kind": "twitch_clip",
-      "ts": "2026-09-19T13:37:50.508963+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-19T13:37:54.563527+00:00",
+      "uploaded_at": "2026-09-19T13:37:54.563543+00:00",
+      "publish_at": "2026-09-19T21:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/GentleDepressedSoybeanKappaWealth-2JaDwezHZtA-DXz7",
+      "streamer": "plaqueboymax",
+      "series": "chaos",
+      "hook": "WARDROBE CHECK TURNS INTO PUSH-UPS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2854,
+      "banger": 0.5,
+      "cut": {
+        "start": 7.4,
+        "end": 37.0
+      },
+      "director_cut": true
+    },
+    "rejected-scaryfreezingnikudonkapow-wevkkz3juxmg3z_l": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/ScaryFreezingNikudonKAPOW-wEVkKz3juXMg3Z_L",
+      "streamer": "ludwig",
+      "title": "Hes coming for Big A",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (insider banter, no visible event)",
+      "ts": "2026-09-19T13:59:25.972366+00:00"
+    },
+    "rejected-crispycovertkangarooderp-98uy9s1bupxpnqch": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CrispyCovertKangarooDerp-98uy9s1BupXpnQch",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Screams 'Baggy' Over And Over In This Wild Moment",
+      "qa_rejected": true,
+      "ts": "2026-09-19T14:15:34.093629+00:00"
+    },
+    "rejected-savagerefinedtarsiergowskull-8urheal2ndukacrw": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SavageRefinedTarsierGOWSkull-8URHeal2nDUkACrW",
+      "streamer": "xqc",
+      "title": "PP kills a man",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine GTA RP walk-and-talk, no event)",
+      "ts": "2026-09-19T14:28:26.767245+00:00"
+    },
+    "rejected-kindspeedyponyrickroll-bjfn2ku1fml9h_hp": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/KindSpeedyPonyRickroll-bJFn2Ku1fML9h_Hp",
+      "streamer": "sodapoppin",
+      "title": "Straightest Soda Viewer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine sub perks talk, no event)",
+      "ts": "2026-09-19T14:30:03.601366+00:00"
+    },
+    "rejected-betterminiaturehamsterpogchamp-ksermdhbfvdalu4r": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/BetterMiniatureHamsterPogChamp-KsermDHbfVDALU4r",
+      "streamer": "extraemily",
+      "title": "How not to get killed in London",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (idle chat about safety, no event)",
+      "ts": "2026-09-19T14:31:46.319950+00:00"
+    },
+    "rejected-fitcloudystarbiblethump-usffntclc1mwuusm": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/FitCloudyStarBibleThump-UsFFNtCLc1MwUusm",
+      "streamer": "pokimane",
+      "title": "jh",
+      "qa_rejected": true,
+      "ts": "2026-09-19T14:32:58.927342+00:00"
     }
   }
 }
