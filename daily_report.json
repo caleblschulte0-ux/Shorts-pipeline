@@ -3,14 +3,14 @@
     "topic": "Wind And Solar Just Passed Coal In US Power",
     "title": "Wind And Solar Just Passed Coal In US Power",
     "format": "graph_race",
-    "publish_at": "2026-09-19T20:30:00Z",
+    "publish_at": "2026-09-20T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 78.4,
+    "elapsed_seconds": 79.8,
     "package_path": "state/trending_packages/20260919/01_graph-windsolar-passed-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260919-192049_wind_and_solar_just_passed_coal_in_us_po.mp4",
+    "video_path": "output/daily_20260919-212925_wind_and_solar_just_passed_coal_in_us_po.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -37,14 +37,14 @@
     "topic": "Electric Cars Just Passed Diesel In Europe",
     "title": "Electric Cars Just Passed Diesel In Europe",
     "format": "graph_race",
-    "publish_at": "2026-09-19T20:30:00Z",
+    "publish_at": "2026-09-20T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 2.6 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 77.8,
+    "elapsed_seconds": 80.1,
     "package_path": "state/trending_packages/20260919/02_graph-ev-passed-diesel-europe.json",
     "source": "brain",
-    "video_path": "output/daily_20260919-192207_electric_cars_just_passed_diesel_in_euro.mp4",
+    "video_path": "output/daily_20260919-213045_electric_cars_just_passed_diesel_in_euro.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -71,14 +71,14 @@
     "topic": "Vinyl Just Passed CDs In Music Revenue",
     "title": "Vinyl Just Passed CDs In Music Revenue",
     "format": "graph_race",
-    "publish_at": "2026-09-19T20:30:00Z",
+    "publish_at": "2026-09-20T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely strong crossover race \u2014 the 2020 flip and the '#1 Vinyl' landing both work \u2014 undercut by a hook caption printed over the axis label and fading to invisible, plus tip labels clipping the right frame edge.",
-    "elapsed_seconds": 290.3,
+    "error": "showrunner_block: showrunner BLOCK: The race itself is genuinely good \u2014 a real crossover with the leaderboard flipping \u2014 but the hook caption is stamped over the chart's top axis label and fades through an unreadable dark-gold state.",
+    "elapsed_seconds": 288.3,
     "package_path": "state/trending_packages/20260919/03_graph-vinyl-passed-cds.json",
     "source": "brain",
-    "video_path": "output/daily_20260919-192325_vinyl_just_passed_cds_in_music_revenue.mp4",
+    "video_path": "output/daily_20260919-213205_vinyl_just_passed_cds_in_music_revenue.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,7 +96,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely strong crossover race \u2014 the 2020 flip and the '#1 Vinyl' landing both work \u2014 undercut by a hook caption printed over the axis label and fading to invisible, plus tip labels clipping the right frame edge.",
+      "reason": "showrunner BLOCK: The race itself is genuinely good \u2014 a real crossover with the leaderboard flipping \u2014 but the hook caption is stamped over the chart's top axis label and fades through an unreadable dark-gold state.",
       "score": 70
     },
     "blocked": true
@@ -105,14 +105,14 @@
     "topic": "Heat Pumps Just Passed Gas Furnaces In America",
     "title": "Heat Pumps Just Passed Gas Furnaces In America",
     "format": "graph_race",
-    "publish_at": "2026-09-19T20:30:00Z",
+    "publish_at": "2026-09-20T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.6 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 80.5,
+    "elapsed_seconds": 79.5,
     "package_path": "state/trending_packages/20260919/04_graph-heatpumps-passed-furnaces.json",
     "source": "brain",
-    "video_path": "output/daily_20260919-192815_heat_pumps_just_passed_gas_furnaces_in_a.mp4",
+    "video_path": "output/daily_20260919-213653_heat_pumps_just_passed_gas_furnaces_in_a.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -139,17 +139,17 @@
     "topic": "She Said No Early Clock-Ins. So I Stopped Coming Early.",
     "title": "She Said No Early Clock-Ins. So I Stopped Coming Early.",
     "format": "reddit",
-    "publish_at": "2026-09-19T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid story beats and a real punchline, but the lower gameplay panel goes dead black for long stretches (mid2, mid3, payoff) and one illustration is held across two beats, so half the frame is wasted through the middle of the video.",
-    "elapsed_seconds": 201.7,
+    "publish_at": "2026-09-20T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/a39a0Vdjm5w",
+    "error": null,
+    "elapsed_seconds": 269.5,
     "package_path": "state/trending_packages/20260919/05_reddit-clock-in-exact-second.json",
     "source": "brain",
-    "video_path": "output/daily_20260919-192949_she_said_no_early_clock_ins__so_i_stoppe.mp4",
+    "video_path": "output/daily_20260919-213823_she_said_no_early_clock_ins__so_i_stoppe.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.667,
+      "duration": 51.9,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,44 +160,34 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Solid story beats and a real punchline, but the lower gameplay panel goes dead black for long stretches (mid2, mid3, payoff) and one illustration is held across two beats, so half the frame is wasted through the middle of the video.",
-      "score": 66
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "galatasaray",
+    "topic": "carson benge",
     "angle": null,
-    "publish_at": "2026-09-19T20:30:00Z",
+    "publish_at": "2026-09-20T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 79)",
-    "elapsed_seconds": 11.6,
-    "backfill": true
-  },
-  {
-    "topic": "lehigh football",
-    "angle": null,
-    "publish_at": "2026-09-20T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every photo in this cut is auto-grabbed stock that has nothing to do with the story \u2014 a BBQ tray, a breakdancer, and a Ford Falcon race-car advert are standing in for a family confrontation.",
-    "elapsed_seconds": 660.9,
-    "title": "She Called Her Daughter Dad's Real Daughter",
-    "package_path": "state/trending_packages/20260919-193542_auto_lehigh_football.json",
-    "video_path": "output/daily_20260919-193542_lehigh_football.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The narration is a decent story but the entire top track is unrelated stock \u2014 a Peter Thiel interview, an antique theater, a pinball machine and a rugby-coaching PDF \u2014 so the video demonstrates nothing it is saying.",
+    "elapsed_seconds": 482.4,
+    "title": "My Stepdad Bet Against My Own Home Run",
+    "package_path": "state/trending_packages/20260919-214513_auto_carson_benge.json",
+    "video_path": "output/daily_20260919-214513_carson_benge.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 41.331,
+      "duration": 41.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -208,7 +198,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.0
+      "loudness_lufs": -13.7
     },
     "qa": {
       "ok": true,
@@ -217,39 +207,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Every photo in this cut is auto-grabbed stock that has nothing to do with the story \u2014 a BBQ tray, a breakdancer, and a Ford Falcon race-car advert are standing in for a family confrontation.",
-      "score": 18
+      "reason": "showrunner BLOCK: The narration is a decent story but the entire top track is unrelated stock \u2014 a Peter Thiel interview, an antique theater, a pinball machine and a rugby-coaching PDF \u2014 so the video demonstrates nothing it is saying.",
+      "score": 34
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "unc football score",
-    "angle": null,
-    "publish_at": "2026-09-20T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 8 shot(s) have no real image and would fall to off-topic keyword stock: ['older brother was the defensive coordinator', 'resigned without warning', 'phone buzzed with a text', 'scrolled back through 14 months of messages', 'A voicemail begging her to stay silent', \"drove to his parents' house at midnight\", 'mother answered the door already crying', 'paid the assistant $40,000 to disappear quietly']",
-    "elapsed_seconds": 95.8,
-    "title": "My Husband's Brother Resigned And I Know Why",
-    "package_path": "state/trending_packages/20260919-194633_auto_unc_football_score.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "villanova football",
+    "topic": "sean sharaf",
     "angle": null,
     "publish_at": "2026-09-20T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every top-slot image is unrelated stock \u2014 a Vatican basilica, a Chinese temple and an Athens library illustrating a Villanova tailgate story \u2014 which is the exact auto-grabbed junk this channel bans.",
-    "elapsed_seconds": 590.7,
-    "title": "He Tore My Ticket In Front Of 40 People",
-    "package_path": "state/trending_packages/20260919-194836_auto_villanova_football.json",
-    "video_path": "output/daily_20260919-194836_villanova_football.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The top panel is filled with stock photos that contradict the narration \u2014 parked tricycles for \"hotel confirmations,\" a woman in bed for a dropped champagne glass \u2014 which is exactly the auto-grabbed junk imagery this channel bans.",
+    "elapsed_seconds": 768.7,
+    "title": "My Maid Of Honor Exposed My Fianc\u00e9 At My Wedding",
+    "package_path": "state/trending_packages/20260919-215325_auto_sean_sharaf.json",
+    "video_path": "output/daily_20260919-215325_sean_sharaf.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.667,
+      "duration": 42.433,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -260,7 +237,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.5
+      "loudness_lufs": -12.5
     },
     "qa": {
       "ok": true,
@@ -269,7 +246,85 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Every top-slot image is unrelated stock \u2014 a Vatican basilica, a Chinese temple and an Athens library illustrating a Villanova tailgate story \u2014 which is the exact auto-grabbed junk this channel bans.",
+      "reason": "showrunner BLOCK: The top panel is filled with stock photos that contradict the narration \u2014 parked tricycles for \"hotel confirmations,\" a woman in bed for a dropped champagne glass \u2014 which is exactly the auto-grabbed junk imagery this channel bans.",
+      "score": 34
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "trey mancini",
+    "angle": null,
+    "publish_at": "2026-09-20T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Off-topic scraped imagery \u2014 an army wellness newsletter, an ashtray, a stock anatomy render \u2014 plus a truncated hook headline and a black void beat make this read as auto-grabbed slop rather than a told story.",
+    "elapsed_seconds": 687.2,
+    "title": "I Quit On Him, He Paid My Cancer Bills",
+    "package_path": "state/trending_packages/20260919-220622_auto_trey_mancini.json",
+    "video_path": "output/daily_20260919-220622_trey_mancini.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Off-topic scraped imagery \u2014 an army wellness newsletter, an ashtray, a stock anatomy render \u2014 plus a truncated hook headline and a black void beat make this read as auto-grabbed slop rather than a told story.",
+      "score": 30
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "presidents cup",
+    "angle": null,
+    "publish_at": "2026-09-20T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The top panel is filled with auto-grabbed stock that contradicts the narration \u2014 a bird over 'chemistry' and a blue airbrushed portrait standing in for Uncle Gary \u2014 and the video opens on a static black text card.",
+    "elapsed_seconds": 494.4,
+    "title": "My Uncle's Golf Team Hid A 22-Year Secret",
+    "package_path": "state/trending_packages/20260919-221731_auto_presidents_cup.json",
+    "video_path": "output/daily_20260919-221731_presidents_cup.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The top panel is filled with auto-grabbed stock that contradicts the narration \u2014 a bird over 'chemistry' and a blue airbrushed portrait standing in for Uncle Gary \u2014 and the video opens on a static black text card.",
       "score": 30
     },
     "blocked": true,

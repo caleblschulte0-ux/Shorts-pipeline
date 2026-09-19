@@ -3,13 +3,16 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **9**
-- succeeded: **0**
-- quarantined (off-topic imagery): **1**
+- succeeded: **1**
+- quarantined (off-topic imagery): **0**
 - failed: **8**
 
-## Quarantined (off-topic imagery — fix & re-author)
-- **unc football score**
-  - quarantined: illustration coverage 0.0% < 20.0% — 8 shot(s) have no real image and would fall to off-topic keyword stock: ['older brother was the defensive coordinator', 'resigned without warning', 'phone buzzed with a text', 'scrolled back through 14 months of messages', 'A voicemail begging her to stay silent', "drove to his parents' house at midnight", 'mother answered the door already crying', 'paid the assistant $40,000 to disappear quietly']
+## Posted
+- **She Said No Early Clock-Ins. So I Stopped Coming Early.**
+  - topic: She Said No Early Clock-Ins. So I Stopped Coming Early.
+  - publishes: `2026-09-20T13:00:00Z`
+  - https://youtube.com/shorts/a39a0Vdjm5w
+  - took: 269.5s
 
 ## Failed
 - **Wind And Solar Just Passed Coal In US Power**
@@ -17,15 +20,15 @@
 - **Electric Cars Just Passed Diesel In Europe**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 2.6 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
 - **Vinyl Just Passed CDs In Music Revenue**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely strong crossover race — the 2020 flip and the '#1 Vinyl' landing both work — undercut by a hook caption printed over the axis label and fading to invisible, plus tip labels clipping the right frame edge.`
+  - error: `showrunner_block: showrunner BLOCK: The race itself is genuinely good — a real crossover with the leaderboard flipping — but the hook caption is stamped over the chart's top axis label and fades through an unreadable dark-gold state.`
 - **Heat Pumps Just Passed Gas Furnaces In America**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.6 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **She Said No Early Clock-Ins. So I Stopped Coming Early.**
-  - error: `showrunner_block: showrunner BLOCK: Solid story beats and a real punchline, but the lower gameplay panel goes dead black for long stretches (mid2, mid3, payoff) and one illustration is held across two beats, so half the frame is wasted through the middle of the video.`
-- **galatasaray**
-  - error: `JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 79)`
-- **lehigh football**
-  - error: `showrunner_block: showrunner BLOCK: Every photo in this cut is auto-grabbed stock that has nothing to do with the story — a BBQ tray, a breakdancer, and a Ford Falcon race-car advert are standing in for a family confrontation.`
-- **villanova football**
-  - error: `showrunner_block: showrunner BLOCK: Every top-slot image is unrelated stock — a Vatican basilica, a Chinese temple and an Athens library illustrating a Villanova tailgate story — which is the exact auto-grabbed junk this channel bans.`
+- **carson benge**
+  - error: `showrunner_block: showrunner BLOCK: The narration is a decent story but the entire top track is unrelated stock — a Peter Thiel interview, an antique theater, a pinball machine and a rugby-coaching PDF — so the video demonstrates nothing it is saying.`
+- **sean sharaf**
+  - error: `showrunner_block: showrunner BLOCK: The top panel is filled with stock photos that contradict the narration — parked tricycles for "hotel confirmations," a woman in bed for a dropped champagne glass — which is exactly the auto-grabbed junk imagery this channel bans.`
+- **trey mancini**
+  - error: `showrunner_block: showrunner BLOCK: Off-topic scraped imagery — an army wellness newsletter, an ashtray, a stock anatomy render — plus a truncated hook headline and a black void beat make this read as auto-grabbed slop rather than a told story.`
+- **presidents cup**
+  - error: `showrunner_block: showrunner BLOCK: The top panel is filled with auto-grabbed stock that contradicts the narration — a bird over 'chemistry' and a blue airbrushed portrait standing in for Uncle Gary — and the video opens on a static black text card.`
 
