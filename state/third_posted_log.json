@@ -7803,13 +7803,43 @@
       "ts": "2026-09-19T13:23:56.591825+00:00"
     },
     "clip-20260919-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/GlutenFreeIncredulousWaterDancingBaby-cWQbIozAfBCfht48",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/n-JY_6InrgA",
       "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
       "kind": "twitch_clip",
-      "ts": "2026-09-19T13:30:09.766067+00:00",
+      "ts": "2026-09-19T13:30:15.956826+00:00",
+      "uploaded_at": "2026-09-19T13:30:15.956844+00:00",
+      "publish_at": "2026-09-19T20:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/GlutenFreeIncredulousWaterDancingBaby-cWQbIozAfBCfht48",
+      "streamer": "jynxzi",
+      "series": "wholesome",
+      "hook": "HE CAN'T STOP HYPING THIS UP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3436,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.2,
+        "end": 18.9
+      },
+      "director_cut": true
+    },
+    "rejected-hardpeppypotatofailfish-_w_kufeeyazwamgb": {
+      "source_url": "https://www.twitch.tv/shylily/clip/HardPeppyPotatoFailFish-_W_KUFeEYAzwAmGB",
+      "streamer": "shylily",
+      "title": "Leets play!",
+      "qa_rejected": true,
+      "ts": "2026-09-19T13:32:24.175707+00:00"
+    },
+    "clip-20260919-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/GentleDepressedSoybeanKappaWealth-2JaDwezHZtA-DXz7",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Gets Made To Do Push-Ups Over His Wardrobe",
+      "kind": "twitch_clip",
+      "ts": "2026-09-19T13:37:50.508963+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
