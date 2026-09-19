@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s6-3d8af513cd87",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s6-3d8af513cd87",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6eca221a281bffeda7a6ee2803b85eb70b9defb0a7d93252c2bac2660fb0d295",
+  "prompt_used": "An editorial illustration for a short-form video: office filing cabinet paperwork. It accompanies the narration: \"pulled up the same coupon from three months earlier\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1G_ikglGXRh9J6bLeXHIIR_Kb2hXxz_wm",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s6-3d8af513cd87.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1G_ikglGXRh9J6bLeXHIIR_Kb2hXxz_wm",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "19b21e1dfe4100065d932a8a5c145d123dced26f36f977479d64f48dd7744450",
+    "bytes": 1571701,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-19T11:28:20.687Z"
+}
