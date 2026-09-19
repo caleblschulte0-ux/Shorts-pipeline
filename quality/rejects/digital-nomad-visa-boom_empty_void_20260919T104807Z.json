@@ -1,0 +1,21 @@
+{
+ "slug": "digital-nomad-visa-boom",
+ "ts": "20260919T104807Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid and seg2:end waste roughly half the frame \u2014 nothing at all between the gauge bottom (~y420) and the caption (~y660), and the top band above the cut-off title is bare; seg3:end likewise has a dead ~250px gap between the '2024 35M' title and the first block.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:mid (t=20.72) and seg2:end (t=23.70): the scene title is scaled far past the frame width and bleeds off both left and right edges, reading 'AL NOMAD VISA COUNTRIES ARE CO'; the mascot sits on top of the leading digit of '12.2%'; the bottom ~40% of the frame is empty gradient; and the gauge settles on '39.0% Europe' after seg2:start already stated 'Europe 40%'.",
+  "root_cause": "The gauge composer draws the kicker headline at an unmeasured type size (no fit-to-frame measurement, unlike the seg2:start stacked-share card which wraps correctly), and places the mascot by a fixed anchor that is not tested against the number's bounding box; the value also animates to a rounded-differently figure than the share card that precedes it.",
+  "repair_goal": "Re-lay out seg2's gauge beat so the headline is MEASURED to fit inside the safe area and wraps like seg2:start's title, move Data clear of the '39.0%' glyph box, fill or crop the dead lower half so the gauge uses the frame, and make the gauge terminate on the same 40% figure the preceding share beat states."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

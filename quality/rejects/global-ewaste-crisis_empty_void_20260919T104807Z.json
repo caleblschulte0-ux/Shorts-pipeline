@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260919T104807Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=33.16s) is ~70% empty gradient \u2014 two lone bins top-left, a near-invisible 'each = 5%' mid-frame and nothing else; seg1:mid (t=9.55s) has the whole lower-left and right thirds blank around one thin line.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the projection scene stacks four text layers in the same 120px band: the kicker 'the data stops here', the title 'the world's growing e-waste pile', the annotation '62M (projected)  82M' printed straight across that title, and a duplicate mascot sitting on the title's first word. Below, the caption '2010. That's enough' / 'a half garbage' overlaps the big '82' readout, and the left and lower thirds of the frame are empty.",
+  "root_cause": "The projection machine draws its kicker, annotation and endpoint labels in absolute positions that assume no title block, so they land in the header band instead of near the line; the mascot is also placed twice (a header perch plus the stage instance) with no collision reservation for the title, and the line itself is scaled to a fraction of the frame leaving the rest void.",
+  "repair_goal": "Lay seg1 out so nothing overlaps: reserve the header band for the title alone, anchor the '62M (projected)' / '82M' annotations beside their own points on the line (not in the header), drop the duplicate mascot so a single Data performs at the projection fan, and scale the measured/projected line to fill the frame so the empty left and lower thirds carry the shot."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

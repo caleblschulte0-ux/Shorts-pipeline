@@ -1,0 +1,16 @@
+{
+ "slug": "svalbard-seed-vault",
+ "ts": "20260919T104807Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid \u2014 the lower ~60% of the frame is bare dark gradient holding only 'each = 5000' and the frozen sticker mascot; seg3:end is an almost entirely black frame with ghost-faint pills.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start shows TWO circles both labelled '116484' at different sizes, with two captions overprinted into one illegible line 'Deposited By Syria (2008-2Withdrawn After War Cut Off Access'; seg2:mid's headline is truncated to 'been us' and sits behind the mascot with the bottom 60% of the frame empty; seg2:end's top label runs off both frame edges as 'sited By Syria (2008-2014)  110'.",
+  "root_cause": "Labels are laid out from unmeasured extents \u2014 the two category captions are placed at fixed x with no width measurement or collision test, the top strap is centred on a string longer than the frame, and the mascot is composited over the title layer instead of under it. The same unmeasured value pair is also emitted twice, producing two different-sized marks carrying an identical number.",
+  "repair_goal": "Rebuild seg2 so every label is MEASURED and fits inside the safe area: one mark per distinct value (drop the duplicate 116,484 circle or give the second mark its own real quantity), category captions stacked or wrapped so they never overprint, the top strap truncated/wrapped to frame width, and the mascot drawn BENEATH the title so 'why the vault has already been used' reads in full; fill the empty lower two-thirds with the icon grid rather than dark ground."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
