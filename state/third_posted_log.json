@@ -7924,14 +7924,22 @@
       "ts": "2026-09-19T14:39:00.508604+00:00"
     },
     "clip-20260919-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/FamousDeliciousMomWow-kjYKFLCO4EISk95Q",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/0Wj67T5tMqU",
       "title": "Chat Could Not Handle This Caseoh Moment",
       "kind": "twitch_clip",
-      "ts": "2026-09-19T14:56:51.784797+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-19T14:56:58.513759+00:00",
+      "uploaded_at": "2026-09-19T14:56:58.513778+00:00",
+      "publish_at": "2026-09-20T00:30:00Z",
+      "source_url": "https://www.twitch.tv/caseoh_/clip/FamousDeliciousMomWow-kjYKFLCO4EISk95Q",
+      "streamer": "caseoh_",
+      "series": "unknown",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2519,
+      "banger": 0.7
     }
   }
 }
