@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s3-7f061980ac2b",
+  "safe_request_id": "reddit-clock-in-exact-second-s3-7f061980ac2b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b1065f0a17a87ec161bf179d6bca9295a9cb332e11e155e34781a5e0f79c320a",
+  "prompt_used": "An editorial illustration for a short-form video: digital time clock. It accompanies the narration: \"clocked in the literal second my shift started\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Y9PmtTctC9iK24wAuyVvGc7Ikb_gnHul",
+    "filename": "20260919__reddit-clock-in-exact-second-s3-7f061980ac2b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Y9PmtTctC9iK24wAuyVvGc7Ikb_gnHul",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5e54214c076b7e29c4ae012f48f23e87295fe05454910c5fd0a78567a11b51f1",
+    "bytes": 1544104,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-19T11:28:10.747Z"
+}
