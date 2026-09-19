@@ -1870,11 +1870,15 @@
       "duration_s": 47.5
     },
     "svalbard-seed-vault": {
-      "claimed_at": "2026-09-19T10:31:57.534545+00:00",
+      "url": "https://youtube.com/shorts/kkODTt8nWuQ",
       "title": "Why Is There A Vault Built For The End Of The World?",
+      "at": "2026-09-19T10:32:03.344570+00:00",
       "publish_at": "2026-09-19T16:55:10Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 51.4
     }
   },
   "uploads": [
@@ -2098,9 +2102,10 @@
       "claimed_at": "2026-09-19T10:31:57.534545+00:00",
       "title": "Why Is There A Vault Built For The End Of The World?",
       "publish_at": "2026-09-19T16:55:10Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "svalbard-seed-vault"
+      "url": "https://youtube.com/shorts/kkODTt8nWuQ",
+      "state": "posted",
+      "slug": "svalbard-seed-vault",
+      "at": "2026-09-19T10:32:03.344570+00:00"
     }
   ]
 }
