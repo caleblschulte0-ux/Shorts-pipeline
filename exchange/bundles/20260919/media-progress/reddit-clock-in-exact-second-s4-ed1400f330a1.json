@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s4-ed1400f330a1",
+  "safe_request_id": "reddit-clock-in-exact-second-s4-ed1400f330a1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a7e7e1179a413a3b8d2bb4db6bd19f6f7d4cf2415fb7d83bd0a43cf4259bc411",
+  "prompt_used": "An editorial illustration for a short-form video: customers waiting in line. It accompanies the narration: \"the customers who showed up right at opening waited\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1dcWTkAUmmaGNUQwHdzbxS42wix7cH0QD",
+    "filename": "20260919__reddit-clock-in-exact-second-s4-ed1400f330a1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1dcWTkAUmmaGNUQwHdzbxS42wix7cH0QD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "600a9b45002c6b1654f6110875d0142636563061734f7f93aa333d4ec4da805e",
+    "bytes": 1979167,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:11.635Z"
+}
