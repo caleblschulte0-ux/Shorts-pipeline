@@ -7760,6 +7760,25 @@
         "end": 58.8
       },
       "director_cut": true
+    },
+    "rejected-sincerealluringgoosetbcheesepull-qfchkonjlczhfexr": {
+      "source_url": "https://www.twitch.tv/buddha/clip/SincereAlluringGooseTBCheesePull-QfChkonjlczHfEXR",
+      "streamer": "buddha",
+      "title": "Speedy does a money spread on Lang.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay, no visible event)",
+      "ts": "2026-09-19T13:15:29.528468+00:00"
+    },
+    "clip-20260919-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/VivaciousTriangularLatteTwitchRPG-FUC_NQZ79N7VfLPo",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha: Lang Reacts To 404 And BrickBabies Losing Cameras On Shift One",
+      "kind": "twitch_clip",
+      "ts": "2026-09-19T13:20:04.859846+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
