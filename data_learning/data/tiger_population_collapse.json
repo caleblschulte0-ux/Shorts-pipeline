@@ -1,0 +1,25 @@
+{
+  "title": "Wild tiger population: a century ago vs. the 2010 all-time low",
+  "unit": "tigers",
+  "geography": "Global",
+  "time_coverage": "circa 1900 vs. 2010",
+  "source": {
+    "name": "Tiger population history",
+    "publisher": "WWF / Global Tiger Forum",
+    "url": "https://www.worldwildlife.org/",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "The 'circa 1900' figure of roughly 100,000 wild tigers is a widely cited order-of-magnitude historical estimate; 2010's 3,159 is WWF/Global Tiger Forum's documented all-time-low count.",
+  "points": [
+    {
+      "label": "A Century Ago",
+      "value": 100000
+    },
+    {
+      "label": "2010 (All-Time Low)",
+      "value": 3159
+    }
+  ],
+  "key": "tiger_population_collapse"
+}

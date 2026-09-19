@@ -1,0 +1,32 @@
+{
+  "title": "Global wild tiger population, 2010-2022",
+  "unit": "tigers",
+  "geography": "Global",
+  "time_coverage": "2010-2022",
+  "source": {
+    "name": "New tiger population estimate announced",
+    "publisher": "WWF / Global Tiger Forum",
+    "url": "https://www.worldwildlife.org/news/stories/new-tiger-population-estimate-of-5574-wild-tigers-announced-by-global-tiger-forum",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Documented global wild tiger population estimates: 3,159 (2010, all-time low), 3,890 (2016, first recorded rise in over a century), 5,574 (2022).",
+  "points": [
+    {
+      "label": "2010",
+      "value": 3159,
+      "period": "2010"
+    },
+    {
+      "label": "2016",
+      "value": 3890,
+      "period": "2016"
+    },
+    {
+      "label": "2022",
+      "value": 5574,
+      "period": "2022"
+    }
+  ],
+  "key": "tiger_population_rebound_trend"
+}

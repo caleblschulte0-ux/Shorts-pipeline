@@ -28378,6 +28378,252 @@
         }
       ],
       "question": "Would you ever trust a company with your DNA again? Tell me below."
+    },
+    {
+      "slug": "amazon-still-shrinking",
+      "title": "The Amazon Has Lost 750,000 Square Kilometers Since 1970",
+      "hook": "The clearing is dropping. The damage isn't.",
+      "closing": "Fewer trees fall each year. The bill still grows.",
+      "question": "Would you give up beef to save the rainforest? Tell me below.",
+      "caption": "Brazil cleared 27,772 square kilometers of Amazon rainforest in a single year at the peak. Even though that number has since dropped to 6,288, the total lost since 1970 already tops 750,000 square kilometers -- bigger than France. Nearly 80% of it becomes cattle pasture. Would you give up beef to save the rainforest? \ud83d\udc47",
+      "hashtags": [
+        "amazon",
+        "rainforest",
+        "deforestation",
+        "climatechange",
+        "brazil",
+        "environment",
+        "nature",
+        "climatedata",
+        "conservation",
+        "cattleranching",
+        "climate",
+        "earth",
+        "didyouknow",
+        "data",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "amazon_deforestation_trend",
+          "params": {
+            "file": "amazon_deforestation_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PEAK",
+          "topic": "Amazon deforestation by year",
+          "say": "In 2004 Brazil cleared 27,772 square kilometers of Amazon rainforest in one year. By 2024 that had fallen all the way to 6,288 -- the lowest in almost a decade."
+        },
+        {
+          "source": "offline",
+          "key": "amazon_total_lost_vs_france",
+          "params": {
+            "file": "amazon_total_lost_vs_france.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 \u00b7 THE TOTAL",
+          "topic": "total Amazon rainforest lost since 1970",
+          "say": "But add up every year since 1970, and the Amazon has lost about 750,000 square kilometers total -- an area bigger than the whole country of France."
+        },
+        {
+          "source": "offline",
+          "key": "amazon_deforestation_cause",
+          "params": {
+            "file": "amazon_deforestation_cause.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 THE WHY",
+          "topic": "why the Amazon keeps disappearing",
+          "say": "So where does all that cleared land go? Close to 80 percent becomes cattle pasture. Almost every acre lost boils down to the world's demand for beef."
+        }
+      ]
+    },
+    {
+      "slug": "wild-tiger-comeback",
+      "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
+      "hook": "Tiger numbers are climbing for the first time.",
+      "closing": "A species everyone had given up on. Still here.",
+      "question": "Did you know tigers were actually making a comeback? Tell me below.",
+      "caption": "A century ago about 100,000 tigers roamed Asia. By 2010 that had crashed to just 3,159 -- an all-time low. Then, for the first time in over 100 years, the number climbed back: 3,890 by 2016, 5,574 by 2022. India alone now holds two-thirds of them. Did you know tigers were making a comeback? \ud83d\udc47",
+      "hashtags": [
+        "tigers",
+        "wildlife",
+        "conservation",
+        "endangeredspecies",
+        "india",
+        "nature",
+        "wwf",
+        "wildlifeconservation",
+        "biodiversity",
+        "animals",
+        "didyouknow",
+        "science",
+        "data",
+        "earth",
+        "comeback"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "tiger_population_collapse",
+          "params": {
+            "file": "tiger_population_collapse.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 \u00b7 THE COLLAPSE",
+          "topic": "how many tigers roamed a century ago vs 2010",
+          "say": "A century ago, around 100,000 tigers roamed across Asia. By 2010, hunting and habitat loss had crushed that number down to just 3,159 left in the wild."
+        },
+        {
+          "source": "offline",
+          "key": "tiger_population_rebound_trend",
+          "params": {
+            "file": "tiger_population_rebound_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE TURN",
+          "topic": "how wild tiger numbers turned around",
+          "say": "Then something changed. By 2016 the count climbed back to 3,890 -- the first rise in over a century. By 2022 it reached 5,574, a 76 percent jump since 2010."
+        },
+        {
+          "source": "offline",
+          "key": "tiger_population_by_country",
+          "params": {
+            "file": "tiger_population_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 \u00b7 WHERE",
+          "topic": "where the wild tiger comeback happened",
+          "say": "So where did the comeback happen? India alone now holds 3,682 wild tigers, about two-thirds of the entire global population, thanks to decades of protected reserves."
+        }
+      ]
+    },
+    {
+      "slug": "svalbard-seed-vault",
+      "title": "Why Is There A Vault Built For The End Of The World?",
+      "hook": "It already holds 1.4 million seeds.",
+      "closing": "One vault, every crop, just in case.",
+      "question": "If you could save one plant for the future, what would it be? Tell me below.",
+      "caption": "Built into an Arctic mountain in 2008, the Svalbard seed vault has grown from 278,000 seed samples to over 1.4 million today. It's not just theoretical -- in 2015, Syria's own seed bank became unreachable because of war, and had to withdraw over 116,000 samples stored there. It's still only a third full. If you could save one plant for the future, what would it be? \ud83d\udc47",
+      "hashtags": [
+        "seedvault",
+        "svalbard",
+        "agriculture",
+        "foodsecurity",
+        "seeds",
+        "biodiversity",
+        "climatechange",
+        "science",
+        "conservation",
+        "didyouknow",
+        "sustainability",
+        "food",
+        "nature",
+        "globalwarming",
+        "preparedness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "seedvault_samples_trend",
+          "params": {
+            "file": "seedvault_samples_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE VAULT",
+          "topic": "how many seeds the vault holds",
+          "say": "Built into an Arctic mountainside in 2008 with 278,000 seed samples, the Svalbard vault has kept growing every year since: 860,000 by 2015, over 1.4 million today."
+        },
+        {
+          "source": "offline",
+          "key": "seedvault_syria_withdrawal",
+          "params": {
+            "file": "seedvault_syria_withdrawal.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE PURPOSE",
+          "topic": "why the vault has already been used",
+          "say": "It's meant as a backup, not a museum. In 2015, Syria's own seed bank in Aleppo became unreachable because of the war, and had to withdraw 116,484 samples it had stored there."
+        },
+        {
+          "source": "offline",
+          "key": "seedvault_capacity_used",
+          "params": {
+            "file": "seedvault_capacity_used.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 \u00b7 HOW FULL",
+          "topic": "how full the vault actually is",
+          "say": "Even with 1.4 million samples inside, the vault is only about a third full -- built with room for 4.5 million, enough backup seed for nearly every crop humanity depends on."
+        }
+      ]
+    },
+    {
+      "slug": "digital-nomad-visa-boom",
+      "title": "54 Countries Will Now Give You A Visa To Work From Anywhere",
+      "hook": "It used to be illegal to just... not go home.",
+      "closing": "Home is now wherever the wifi holds.",
+      "question": "Would you actually move abroad to work remotely? Tell me below.",
+      "caption": "Estonia launched the world's first digital nomad visa in 2020. Within three years, 54 countries had copied it, and the number of people using them jumped from 10.9 million to 35 million. Most of the programs are in Europe and the Americas. Would you actually move abroad to work remotely? \ud83d\udc47",
+      "hashtags": [
+        "digitalnomad",
+        "remotework",
+        "travel",
+        "workfromanywhere",
+        "expat",
+        "relocation",
+        "futureofwork",
+        "lifestyle",
+        "globalization",
+        "didyouknow",
+        "data",
+        "traveltips",
+        "wanderlust",
+        "worklifebalance",
+        "visa"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "nomad_visa_countries_trend",
+          "params": {
+            "file": "nomad_visa_countries_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SURGE",
+          "topic": "how many countries now offer a visa for remote work",
+          "say": "Estonia launched the world's first dedicated remote-work visa in 2020. Within three years, 54 destinations had copied it, most of that growth landing in just the last two years."
+        },
+        {
+          "source": "offline",
+          "key": "nomad_worker_population_trend",
+          "params": {
+            "file": "nomad_worker_population_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 THE WORKERS",
+          "topic": "how many people actually use a visa to work remotely",
+          "say": "So who's using them? The number of self-identified digital nomads worldwide jumped from about 10.9 million in 2020 to 35 million by 2024 -- more than triple in four years."
+        },
+        {
+          "source": "offline",
+          "key": "nomad_visa_by_region",
+          "params": {
+            "file": "nomad_visa_by_region.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 WHERE",
+          "topic": "where digital nomad visa countries are concentrated",
+          "say": "Most of those visa programs cluster in Europe and the Americas, chasing the same remote paycheck -- proof that a laptop and a wifi password now count as an economy."
+        }
+      ]
     }
   ],
   "videos": [

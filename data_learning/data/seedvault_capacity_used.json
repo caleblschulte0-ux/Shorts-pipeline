@@ -1,0 +1,25 @@
+{
+  "title": "Svalbard Global Seed Vault: samples stored vs. total capacity",
+  "unit": "seed samples",
+  "geography": "Svalbard, Norway",
+  "time_coverage": "2024",
+  "source": {
+    "name": "The Facility",
+    "publisher": "Svalbard Global Seed Vault / NordGen",
+    "url": "https://www.seedvault.no/about/the-facility/",
+    "officiality": "official",
+    "access_date": "2026-09-19"
+  },
+  "notes": "The vault holds over 1.4 million seed samples against a designed maximum capacity of 4.5 million samples across its three storage halls.",
+  "points": [
+    {
+      "label": "Currently Stored",
+      "value": 1401285
+    },
+    {
+      "label": "Total Capacity",
+      "value": 4500000
+    }
+  ],
+  "key": "seedvault_capacity_used"
+}

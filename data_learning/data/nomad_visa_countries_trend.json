@@ -1,0 +1,37 @@
+{
+  "title": "Countries offering a digital nomad visa",
+  "unit": "countries",
+  "geography": "Global",
+  "time_coverage": "2020-2023",
+  "source": {
+    "name": "Global Digital Nomad Report",
+    "publisher": "Global Citizen Solutions",
+    "url": "https://www.globalcitizensolutions.com/report/global-digital-nomad-report-2025-full-report/",
+    "officiality": "primary",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Estonia launched the first dedicated digital nomad visa in July 2020; cumulative destinations offering one grew through 16 new programs in 2020, 13 in 2021 and 16 in 2022, reaching 54 destinations by February 2023. Approximate cumulative count.",
+  "points": [
+    {
+      "label": "2020",
+      "value": 16,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 29,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 45,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 54,
+      "period": "2023"
+    }
+  ],
+  "key": "nomad_visa_countries_trend"
+}

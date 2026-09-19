@@ -1,0 +1,25 @@
+{
+  "title": "Cumulative Amazon rainforest lost since 1970 vs. the area of France",
+  "unit": "square kilometers",
+  "geography": "Amazon basin / France",
+  "time_coverage": "1970-2024",
+  "source": {
+    "name": "Historical Amazon deforestation estimates",
+    "publisher": "Mongabay / compiled from INPE and academic land-cover studies",
+    "url": "https://www.mongabay.com",
+    "officiality": "secondary",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Cumulative Amazon forest loss since 1970 is commonly cited in the 700,000-800,000 sq km range (roughly 20% of 1970 forest cover); France's land area is 551,695 sq km. Approximate.",
+  "points": [
+    {
+      "label": "Amazon Lost Since 1970",
+      "value": 750000
+    },
+    {
+      "label": "Entire Country Of France",
+      "value": 551695
+    }
+  ],
+  "key": "amazon_total_lost_vs_france"
+}

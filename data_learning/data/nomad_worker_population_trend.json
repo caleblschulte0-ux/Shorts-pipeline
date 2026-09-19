@@ -1,0 +1,27 @@
+{
+  "title": "Self-identified digital nomads worldwide",
+  "unit": "million people",
+  "geography": "Global",
+  "time_coverage": "2020-2024",
+  "source": {
+    "name": "Global Digital Nomad Report",
+    "publisher": "Global Citizen Solutions",
+    "url": "https://www.globalcitizensolutions.com/report/global-digital-nomad-report-2025-full-report/",
+    "officiality": "primary",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Estimated global digital nomad population rose from about 10.9 million in 2020 to about 35 million in 2024, roughly 224% growth. Approximate, survey-based estimate.",
+  "points": [
+    {
+      "label": "2020",
+      "value": 10.9,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 35,
+      "period": "2024"
+    }
+  ],
+  "key": "nomad_worker_population_trend"
+}

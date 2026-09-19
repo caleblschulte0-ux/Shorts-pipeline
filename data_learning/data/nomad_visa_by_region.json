@@ -1,0 +1,33 @@
+{
+  "title": "Where digital nomad visa programs are concentrated",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2023, approximate",
+  "source": {
+    "name": "Digital nomad visa destinations by region",
+    "publisher": "Global Citizen Solutions / ETIAS",
+    "url": "https://etias.com/articles/digital-nomad-visas-global-impact",
+    "officiality": "secondary",
+    "access_date": "2026-09-19"
+  },
+  "notes": "Approximate regional share of digital-nomad-visa-offering destinations; Europe and the Americas together host the large majority of programs, with Asia and other regions a smaller but growing share.",
+  "points": [
+    {
+      "label": "Europe",
+      "value": 40
+    },
+    {
+      "label": "Americas",
+      "value": 35
+    },
+    {
+      "label": "Asia",
+      "value": 15
+    },
+    {
+      "label": "Rest Of World",
+      "value": 10
+    }
+  ],
+  "key": "nomad_visa_by_region"
+}
