@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s2-8fb54d15a44e",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s2-8fb54d15a44e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e8cf4d0b1d5d0488a165d243b1a5c5420c52b1c09dcf164d460862bfa6a939c5",
+  "prompt_used": "An editorial illustration for a short-form video: stack of backpacks cart. It accompanies the narration: \"six backpacks stacked up\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Gsw3cm-RxiLmiLsAeez7v54VbGKE11fl",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s2-8fb54d15a44e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Gsw3cm-RxiLmiLsAeez7v54VbGKE11fl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4d694bca4196c421afbfee318c09e12b46047e16b6ee777f8cf381400a56f9d4",
+    "bytes": 1973252,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:16.965Z"
+}
