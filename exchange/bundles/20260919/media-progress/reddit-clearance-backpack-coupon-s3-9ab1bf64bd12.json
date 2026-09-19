@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s3-9ab1bf64bd12",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s3-9ab1bf64bd12",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6133c22093048a881173a1048a6733a14d5cccda2f2f549784e89294eb6270d4",
+  "prompt_used": "An editorial illustration for a short-form video: customer arguing at register. It accompanies the narration: \"she demanded my manager, loudly\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1rZcY4xrW_j2QmIpuaUEcNrgiBKqVhoK7",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s3-9ab1bf64bd12.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1rZcY4xrW_j2QmIpuaUEcNrgiBKqVhoK7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2b611c5874d641e02298f295fe52009c2def96e64f36799f0d021657bf020949",
+    "bytes": 1910575,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:17.944Z"
+}
