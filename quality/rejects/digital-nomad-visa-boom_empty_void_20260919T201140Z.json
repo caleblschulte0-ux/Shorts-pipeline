@@ -1,0 +1,21 @@
+{
+ "slug": "digital-nomad-visa-boom",
+ "ts": "20260919T201140Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end wastes the top ~40% of the frame entirely while three thin blocks float mid-screen; seg2:mid/seg2:end leave the whole bottom half of the frame empty under the dial.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:mid (t=20.66) and seg2:end (t=23.60) show the title as 'AL NOMAD VISA COUNTRIES ARE CO', cut off at the left and right frame edges; the mascot overlaps the '12.3%' glyphs at seg2:mid, and the lower half of both frames is empty.",
+  "root_cause": "The gauge/dial machine sets its headline at a fixed point size and letter-spaces it in caps without measuring against frame width, so the string overflows both margins; the mascot is placed at the dial centre, i.e. the same z-region as the value text, and the dial occupies only the upper half of the composition.",
+  "repair_goal": "Fit the seg2 headline inside the safe width by measuring the rendered extent (wrap or shrink to fit, as the seg0/seg1 titles already do), move the mascot clear of the numeral bounding box, and let the share read across the full frame \u2014 the stacked share column at seg2:start already does this correctly and is the shape to keep."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}
