@@ -204,6 +204,27 @@ def pick_slug(cfg: dict, explicit: str | None = None) -> str | None:
     return None
 
 
+def _valid_thumbnail(path: Path) -> bool:
+    """A readable 1920x1080 image — the packaging artifact this format
+    promises, not just a file that happens to exist at the expected path.
+
+    `longform_render.make_thumbnail()` catches its own exceptions broadly
+    (a Pillow/font/write failure never kills the render), which means the
+    only thing left to prove the thumbnail is real is checking it here,
+    on the publish side, before it reaches the uploader.
+    """
+    if not path.exists():
+        return False
+    try:
+        from PIL import Image
+        with Image.open(path) as im:
+            im.verify()
+        with Image.open(path) as im:
+            return im.size == (1920, 1080)
+    except Exception:
+        return False
+
+
 def _description(story_cfg: dict, meta: dict) -> str:
     """Watch-page description: the hook, YouTube chapters, then sources.
 
@@ -291,6 +312,17 @@ def main() -> int:
     if args.dry_run:
         print("[longform] DRY RUN — judged, not uploading.", flush=True)
         return 0
+
+    # A publish run requires the packaging thumbnail this format promises
+    # (longform_render.render's module docstring: "1920x1080 custom
+    # thumbnail"). A preview/dry-run keeps the loud fallback log above and
+    # ships anyway — only an actual upload is stopped.
+    if not _valid_thumbnail(thumb):
+        print(f"::error::[longform] NOT POSTING — {slug!r} has no readable "
+              f"1920x1080 thumbnail at {thumb}; a long-form video does not "
+              f"ship without the custom thumbnail this format promises.",
+              flush=True)
+        return 3
 
     # ---- publish -------------------------------------------------------
     title = (args.title or story_cfg.get("title") or slug)[:100]
