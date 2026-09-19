@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s0-477d881fcf04",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s0-477d881fcf04",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e8f5074f31714b3ef8d24030fd88f436a6e4eb2c25e2bdecbe41519dc7f00293",
+  "prompt_used": "An editorial illustration for a short-form video: clearance rack backpacks store. It accompanies the narration: \"a cart full of clearance-tagged backpacks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "159p3cAXXu8uH6bBnTIU1dO-_61hi4oiR",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s0-477d881fcf04.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=159p3cAXXu8uH6bBnTIU1dO-_61hi4oiR",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b8bdf762a22276d47af1169d028fe3f0d3eac3eca44b326489377dcdcd253d1f",
+    "bytes": 2248709,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-19T11:28:15.234Z"
+}
