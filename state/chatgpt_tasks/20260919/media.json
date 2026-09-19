@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-09-19T15:51:24+00:00",
+ "date": "20260919",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260919/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-clearance-backpack-coupon-s0-477d881fcf04.json",
+  "reddit-clearance-backpack-coupon-s1-ef92d8419c0b.json",
+  "reddit-clearance-backpack-coupon-s2-8fb54d15a44e.json",
+  "reddit-clearance-backpack-coupon-s3-9ab1bf64bd12.json",
+  "reddit-clearance-backpack-coupon-s4-360560863f8e.json",
+  "reddit-clearance-backpack-coupon-s5-69a8eab5c355.json",
+  "reddit-clearance-backpack-coupon-s6-3d8af513cd87.json",
+  "reddit-clearance-backpack-coupon-s7-1a5713e57454.json",
+  "reddit-clock-in-exact-second-s0-d196914f9ff7.json",
+  "reddit-clock-in-exact-second-s1-a3ff5793d4d6.json",
+  "reddit-clock-in-exact-second-s2-9ef652215c9f.json",
+  "reddit-clock-in-exact-second-s3-7f061980ac2b.json",
+  "reddit-clock-in-exact-second-s4-ed1400f330a1.json",
+  "reddit-clock-in-exact-second-s5-e5976cd8364c.json",
+  "reddit-clock-in-exact-second-s6-4d265ba23323.json",
+  "reddit-clock-in-exact-second-s7-d3c008c62bae.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
