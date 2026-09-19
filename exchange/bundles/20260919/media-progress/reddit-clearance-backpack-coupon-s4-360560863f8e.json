@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s4-360560863f8e",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s4-360560863f8e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1d19ecb152bdc2a00139a97fedbc5422df4cf474feddc953ebc8aba7e3d5202e",
+  "prompt_used": "An editorial illustration for a short-form video: manager reading paper. It accompanies the narration: \"read the coupon out loud\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DYvyfu7I4ffS2jkL_8XStKp5k9xovSgb",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s4-360560863f8e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DYvyfu7I4ffS2jkL_8XStKp5k9xovSgb",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b39f08cb418a56d4290ae70d430b219e14bc70f0fb29422c8cdb8ae6266ce68f",
+    "bytes": 1833945,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:18.685Z"
+}
