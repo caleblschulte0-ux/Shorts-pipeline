@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3a887736129f0baa29a9bcb418c6ee49a5a0f54443f26367971f0ee89a3acd28",
+  "prompt_used": "An editorial illustration for a short-form video: paper coupon closeup. It accompanies the narration: \"one expired coupon for buy one backpack, get one free\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1fKxtYVWkOVRCUVJ-dW1O21L-3o3aVpp7",
+    "filename": "20260919__reddit-clearance-backpack-coupon-s1-ef92d8419c0b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1fKxtYVWkOVRCUVJ-dW1O21L-3o3aVpp7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "511c6eb6c2e48cea812eb05d9b09c0ae80e0dda064b0601116785cdb1a5017fe",
+    "bytes": 2394360,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-19T11:28:16.095Z"
+}
