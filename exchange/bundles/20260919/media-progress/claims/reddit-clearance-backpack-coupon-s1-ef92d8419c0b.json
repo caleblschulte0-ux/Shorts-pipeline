@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496"
+  },
+  "request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+  "safe_request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+  "worker": "media",
+  "worker_run_id": "daily-producer-20260919-0614",
+  "created_at": "2026-09-19T11:17:12.343Z",
+  "expires_at": "2026-09-19T11:32:12.343Z",
+  "lease_seconds": 900
+}
