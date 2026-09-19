@@ -1,0 +1,129 @@
+{
+  "date": "20260919",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-clock-in-exact-second-s0-d196914f9ff7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s0-d196914f9ff7.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s1-a3ff5793d4d6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s1-a3ff5793d4d6.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s2-9ef652215c9f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s2-9ef652215c9f.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s3-7f061980ac2b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s3-7f061980ac2b.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s4-ed1400f330a1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s4-ed1400f330a1.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s5-e5976cd8364c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s5-e5976cd8364c.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s6-4d265ba23323",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s6-4d265ba23323.png"
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s7-d3c008c62bae",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clock-in-exact-second-s7-d3c008c62bae.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s0-477d881fcf04",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s0-477d881fcf04.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s1-ef92d8419c0b.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s2-8fb54d15a44e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s2-8fb54d15a44e.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s3-9ab1bf64bd12",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s3-9ab1bf64bd12.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s4-360560863f8e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s4-360560863f8e.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s5-69a8eab5c355",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s5-69a8eab5c355.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s6-3d8af513cd87",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s6-3d8af513cd87.png"
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s7-1a5713e57454",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-clearance-backpack-coupon-s7-1a5713e57454.png"
+    },
+    {
+      "slug": "reddit-clock-in-exact-second",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): clock, would"
+      ]
+    },
+    {
+      "slug": "reddit-clearance-backpack-coupon",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): quiet, would"
+      ]
+    }
+  ]
+}
