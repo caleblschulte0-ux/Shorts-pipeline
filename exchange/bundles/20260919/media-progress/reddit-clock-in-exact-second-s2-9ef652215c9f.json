@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260919",
+  "bundle": {
+    "identity": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496",
+    "path": "exchange/bundles/20260919/bundle.json"
+  },
+  "request_id": "reddit-clock-in-exact-second-s2-9ef652215c9f",
+  "safe_request_id": "reddit-clock-in-exact-second-s2-9ef652215c9f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9b830f7d11651860778ca9919530527d2a17b6117e800109b0b98653bd5566a8",
+  "prompt_used": "An editorial illustration for a short-form video: employee waiting outside store. It accompanies the narration: \"stood outside the door until 8:59\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_fUnimkYa1wpTPoaFTN01ytV4atchuOM",
+    "filename": "20260919__reddit-clock-in-exact-second-s2-9ef652215c9f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_fUnimkYa1wpTPoaFTN01ytV4atchuOM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ae77ca8fc85db1d5691b88e0d1c859d504f19c70bedd5a2058a5bebc7aa42551",
+    "bytes": 2111678,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-19T11:28:09.847Z"
+}
