@@ -1,0 +1,456 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260919",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "e913ed1d9fecb343ab90d32a52a9ec1a1d9a41a3",
+    "production_date": "20260919",
+    "bundle_sha256": "2a4b4e32d8fd95a073bc8ac0e70c01c5e316007b947410693410759a79c76496"
+  },
+  "media": [
+    {
+      "request_id": "reddit-clock-in-exact-second-s0-d196914f9ff7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "17lDAAtjCO3qmM_KUkMtFO1acziyf34Xx",
+        "filename": "20260919__reddit-clock-in-exact-second-s0-d196914f9ff7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=17lDAAtjCO3qmM_KUkMtFO1acziyf34Xx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "96f0cd850924779d92fee26eb3ba12ecfe7fabc36689fe049cd08ec1b30a9c41",
+        "bytes": 1880316,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s0-d196914f9ff7.json",
+        "verified_at": "2026-09-19T11:28:08.080Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s1-a3ff5793d4d6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QE3K0NepFB-V28gcOuyFx4AO9B0khZj-",
+        "filename": "20260919__reddit-clock-in-exact-second-s1-a3ff5793d4d6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QE3K0NepFB-V28gcOuyFx4AO9B0khZj-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "20137e253ee15a9ee50755746e6044cceb7f2788b2d9838f1dfefb87f1b162e3",
+        "bytes": 1609718,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s1-a3ff5793d4d6.json",
+        "verified_at": "2026-09-19T11:28:08.991Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s2-9ef652215c9f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1_fUnimkYa1wpTPoaFTN01ytV4atchuOM",
+        "filename": "20260919__reddit-clock-in-exact-second-s2-9ef652215c9f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1_fUnimkYa1wpTPoaFTN01ytV4atchuOM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ae77ca8fc85db1d5691b88e0d1c859d504f19c70bedd5a2058a5bebc7aa42551",
+        "bytes": 2111678,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s2-9ef652215c9f.json",
+        "verified_at": "2026-09-19T11:28:09.847Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s3-7f061980ac2b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Y9PmtTctC9iK24wAuyVvGc7Ikb_gnHul",
+        "filename": "20260919__reddit-clock-in-exact-second-s3-7f061980ac2b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Y9PmtTctC9iK24wAuyVvGc7Ikb_gnHul",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5e54214c076b7e29c4ae012f48f23e87295fe05454910c5fd0a78567a11b51f1",
+        "bytes": 1544104,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s3-7f061980ac2b.json",
+        "verified_at": "2026-09-19T11:28:10.747Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s4-ed1400f330a1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1dcWTkAUmmaGNUQwHdzbxS42wix7cH0QD",
+        "filename": "20260919__reddit-clock-in-exact-second-s4-ed1400f330a1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1dcWTkAUmmaGNUQwHdzbxS42wix7cH0QD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "600a9b45002c6b1654f6110875d0142636563061734f7f93aa333d4ec4da805e",
+        "bytes": 1979167,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s4-ed1400f330a1.json",
+        "verified_at": "2026-09-19T11:28:11.635Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s5-e5976cd8364c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ZlotO-EAtbziW8o8Bijy3dLh8aBaNogQ",
+        "filename": "20260919__reddit-clock-in-exact-second-s5-e5976cd8364c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ZlotO-EAtbziW8o8Bijy3dLh8aBaNogQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1153f6ddc7ebe2debf8d0af09010e4ad4770afe285ca38dc54329aa3d1c5cb0a",
+        "bytes": 1883572,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s5-e5976cd8364c.json",
+        "verified_at": "2026-09-19T11:28:12.594Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s6-4d265ba23323",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-VLpO0ufmS5iElR4Q368m2GfrUB5_n6d",
+        "filename": "20260919__reddit-clock-in-exact-second-s6-4d265ba23323.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-VLpO0ufmS5iElR4Q368m2GfrUB5_n6d",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d430e526bece86edb1511417b4d63515185a6117f91c36d099fe250bcbdda178",
+        "bytes": 2259438,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s6-4d265ba23323.json",
+        "verified_at": "2026-09-19T11:28:13.627Z"
+      }
+    },
+    {
+      "request_id": "reddit-clock-in-exact-second-s7-d3c008c62bae",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1tZUwmJSVNGzEd_qMDX6J0kUi7BGRPnZn",
+        "filename": "20260919__reddit-clock-in-exact-second-s7-d3c008c62bae.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1tZUwmJSVNGzEd_qMDX6J0kUi7BGRPnZn",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "aaf3106f701ff4ceae3be985a35bd2137ed5b968b74a5cfa509285b5bd798663",
+        "bytes": 2077646,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clock-in-exact-second-s7-d3c008c62bae.json",
+        "verified_at": "2026-09-19T11:28:14.449Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s0-477d881fcf04",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "159p3cAXXu8uH6bBnTIU1dO-_61hi4oiR",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s0-477d881fcf04.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=159p3cAXXu8uH6bBnTIU1dO-_61hi4oiR",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b8bdf762a22276d47af1169d028fe3f0d3eac3eca44b326489377dcdcd253d1f",
+        "bytes": 2248709,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s0-477d881fcf04.json",
+        "verified_at": "2026-09-19T11:28:15.234Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s1-ef92d8419c0b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1fKxtYVWkOVRCUVJ-dW1O21L-3o3aVpp7",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s1-ef92d8419c0b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1fKxtYVWkOVRCUVJ-dW1O21L-3o3aVpp7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "511c6eb6c2e48cea812eb05d9b09c0ae80e0dda064b0601116785cdb1a5017fe",
+        "bytes": 2394360,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s1-ef92d8419c0b.json",
+        "verified_at": "2026-09-19T11:28:16.095Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s2-8fb54d15a44e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Gsw3cm-RxiLmiLsAeez7v54VbGKE11fl",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s2-8fb54d15a44e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Gsw3cm-RxiLmiLsAeez7v54VbGKE11fl",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4d694bca4196c421afbfee318c09e12b46047e16b6ee777f8cf381400a56f9d4",
+        "bytes": 1973252,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s2-8fb54d15a44e.json",
+        "verified_at": "2026-09-19T11:28:16.965Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s3-9ab1bf64bd12",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rZcY4xrW_j2QmIpuaUEcNrgiBKqVhoK7",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s3-9ab1bf64bd12.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rZcY4xrW_j2QmIpuaUEcNrgiBKqVhoK7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2b611c5874d641e02298f295fe52009c2def96e64f36799f0d021657bf020949",
+        "bytes": 1910575,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s3-9ab1bf64bd12.json",
+        "verified_at": "2026-09-19T11:28:17.944Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s4-360560863f8e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DYvyfu7I4ffS2jkL_8XStKp5k9xovSgb",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s4-360560863f8e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DYvyfu7I4ffS2jkL_8XStKp5k9xovSgb",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b39f08cb418a56d4290ae70d430b219e14bc70f0fb29422c8cdb8ae6266ce68f",
+        "bytes": 1833945,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s4-360560863f8e.json",
+        "verified_at": "2026-09-19T11:28:18.685Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s5-69a8eab5c355",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1sgsxS0F3lzKtTPTf-7CM6U9jjJkA_Kik",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s5-69a8eab5c355.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1sgsxS0F3lzKtTPTf-7CM6U9jjJkA_Kik",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "54c0df8f7b2a0c130579dc20ae45d632189f694eb09c4d299a7fb7eb3ecc3fcb",
+        "bytes": 1875659,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s5-69a8eab5c355.json",
+        "verified_at": "2026-09-19T11:28:19.595Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s6-3d8af513cd87",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1G_ikglGXRh9J6bLeXHIIR_Kb2hXxz_wm",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s6-3d8af513cd87.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1G_ikglGXRh9J6bLeXHIIR_Kb2hXxz_wm",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "19b21e1dfe4100065d932a8a5c145d123dced26f36f977479d64f48dd7744450",
+        "bytes": 1571701,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s6-3d8af513cd87.json",
+        "verified_at": "2026-09-19T11:28:20.687Z"
+      }
+    },
+    {
+      "request_id": "reddit-clearance-backpack-coupon-s7-1a5713e57454",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1onAnx8y0KHFHSlvlGpEUYetUM35PA81f",
+        "filename": "20260919__reddit-clearance-backpack-coupon-s7-1a5713e57454.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1onAnx8y0KHFHSlvlGpEUYetUM35PA81f",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a6a263bd0364ce6f45b60ec15bbc2a540fc61283037bdad790cf3413b2a6d49e",
+        "bytes": 1743630,
+        "format": "png",
+        "width": 1370,
+        "height": 1148
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260919/media-progress/reddit-clearance-backpack-coupon-s7-1a5713e57454.json",
+        "verified_at": "2026-09-19T11:28:21.500Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "reddit-clock-in-exact-second",
+      "script": "Clock in exactly when? My new supervisor sent a memo: no clocking in before your exact scheduled shift time, not even one minute early, per corporate policy. I used to arrive ten minutes early to prep the register and be ready for customers right at nine sharp. Not anymore. I stood outside the door until 8:59, then clocked in the literal second my shift started. That meant the customers who showed up right at opening waited while I did setup on the clock. Within a week, corporate was fielding complaints about the nine a.m. line. My supervisor asked why. I said I was just following her memo, word for word. She tried to reverse it verbally. I asked for that in writing. The memo got officially rescinded, and my setup time became paid. Would you obey that memo?",
+      "editor_note": "Rewritten to 138 words with a four-word question hook, every protected detail and shot phrase preserved, and a memo-specific closing question."
+    },
+    {
+      "slug": "reddit-clearance-backpack-coupon",
+      "script": "Six free backpacks—seriously? A woman reached my register with a cart full of clearance-tagged backpacks and one expired coupon for buy one backpack, get one free. She had six backpacks stacked up and expected the coupon to repeat through the pile. When I said it covered exactly one pair, she demanded my manager, loudly, and announced she had shopped here for fifteen years. My manager read the coupon out loud, then pointed at the fine print excluding clearance items entirely. Every backpack was clearance. So the coupon covered none of them. She called that rule new. My manager pulled up the same coupon from three months earlier—with identical fine print. Quiet paperwork, undefeated. She bought one backpack at full price and left. The line clapped once the doors closed. Would you have read the coupon first?",
+      "editor_note": "Rewritten to 136 words with a four-word question hook, one dry aside, every protected quantity and shot phrase preserved, and a coupon-specific closing question."
+    },
+    {
+      "slug": "graph-windsolar-passed-coal",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly names wind and solar passing coal in U.S. power."
+    },
+    {
+      "slug": "graph-ev-passed-diesel-europe",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly names electric cars passing diesel in Europe."
+    },
+    {
+      "slug": "graph-vinyl-passed-cds",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly names vinyl passing CDs in music revenue."
+    },
+    {
+      "slug": "graph-heatpumps-passed-furnaces",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly names heat pumps passing gas furnaces in America."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "Normal bundle path completed. All 16 requested images were generated, uploaded to the configured Drive folder, downloaded, SHA-256 and byte-count verified, decoded, checked for non-placeholder color depth, publicly shared, and individually checkpointed."
+  ]
+}
