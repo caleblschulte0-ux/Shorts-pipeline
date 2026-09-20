@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:24.126Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-wrong-hotel-reservation-name-s1",
+  "safe_request_id": "authored-wrong-hotel-reservation-name-s1",
+  "prompt_sha256": "cafc5b808bc0b8e08602b8807d505c07a36e75a1e775d1aa33b6f8d4d1f9d42a",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: hotel desk identification check. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1614-7uHrWQRCm9l-m4VuuaZIgq1WysTx",
+    "filename": "20260920__authored-wrong-hotel-reservation-name-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1614-7uHrWQRCm9l-m4VuuaZIgq1WysTx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "96061f4208cd249c307dcaff2ba919b639c9df7a76c156ade443fe6b22c910c5",
+    "bytes": 1868363,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "wrong-hotel-reservation-name",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
