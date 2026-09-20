@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:23.277Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-wrong-hotel-reservation-name-s0",
+  "safe_request_id": "authored-wrong-hotel-reservation-name-s0",
+  "prompt_sha256": "6b323b03b21c742d0aebabb6d422ccbdc1e5bb1d28647e6e89bacfb5ad18ca32",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: hotel reservation paperwork. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1oSy6NRkZx9QXOSMgLsesdHhHt38FjUQH",
+    "filename": "20260920__authored-wrong-hotel-reservation-name-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1oSy6NRkZx9QXOSMgLsesdHhHt38FjUQH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "302549ee85ce20d55ed6e1cbec8a5bb6e36f9c484e514a466df784a75e03a316",
+    "bytes": 1861197,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "wrong-hotel-reservation-name",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
