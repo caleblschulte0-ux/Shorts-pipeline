@@ -1890,6 +1890,17 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 44.4
+    },
+    "wild-tiger-comeback": {
+      "url": "https://youtube.com/shorts/RCTKuZ_v8Rc",
+      "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
+      "at": "2026-09-20T22:38:25.562535+00:00",
+      "publish_at": "2026-09-20T23:00:56Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 95,
+      "duration_s": 49.9
     }
   },
   "uploads": [
@@ -2126,6 +2137,15 @@
       "state": "posted",
       "slug": "digital-nomad-visa-boom",
       "at": "2026-09-19T20:11:32.535800+00:00"
+    },
+    {
+      "claimed_at": "2026-09-20T22:38:20.359626+00:00",
+      "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
+      "publish_at": "2026-09-20T23:00:56Z",
+      "url": "https://youtube.com/shorts/RCTKuZ_v8Rc",
+      "state": "posted",
+      "slug": "wild-tiger-comeback",
+      "at": "2026-09-20T22:38:25.562535+00:00"
     }
   ]
 }
