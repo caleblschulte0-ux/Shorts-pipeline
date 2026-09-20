@@ -1,313 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260911",
-      "dry_run": false,
-      "ts": "2026-09-11T16:25:33+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 101,
-        "with_retention": 76,
-        "with_curve": 14,
-        "fetched_at": "2026-09-11T12:56:29.400452+00:00"
-      },
-      "brain": {
-        "ok": 34,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260911-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "surprise betrayal, visible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "excited reaction, but just driving/phone",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Reacts To The Bean Dip Rug Pull Live"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Sharp region is noticeably smaller than the ~3/4-canvas target \u2014 facecam + gameplay strip together look like well under ",
-                "Gameplay footage strip beneath the facecam is quite small, making on-screen text (phone/chat UI) hard to read on a phone"
-              ]
-            }
-          },
-          "took_s": 361.6
-        },
-        {
-          "slug": "clip-20260911-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "betrayal/rugpull, visible conflict",
-              "blind": false
-            },
-            "content": {
-              "score": 0.85,
-              "why": "rugpull betrayal, real shock reactions",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Loses $800 After Tony Rugpulls Him Live"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "camera is static for most of the 23.8s (only a background NPC and UI shift slightly) \u2014 footage is low-motion, though thi"
-              ]
-            }
-          },
-          "took_s": 231.6
-        },
-        {
-          "slug": "clip-20260911-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Frame at 32.6s shows a corrupted/garbled render with color distortion and pixelation on the right side of the sharp regi",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "xqc/xqc-about-anoth-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story"
-                },
-                {
-                  "cluster": "xqc/xqc-about-asks-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story"
-                },
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "no_shared_event",
-                  "why": "5 analysed -> subclusters [1, 1, 1, 1, 1] over 3 date(s) \u2014 no two sources share an event, so no director call was made"
-                },
-                {
-                  "cluster": "jasontheween",
-                  "outcome": "no_shared_event",
-                  "why": "6 analysed -> subclusters [1, 1, 1, 1, 1, 1] over 5 date(s) \u2014 no two sources share an event, so no director call was made"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "generic rant, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Hasanabi Says None Of It Phases Him Anymore"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.75,
-              "problems": [
-                "Frame at 32.6s shows a corrupted/garbled render with color distortion and pixelation on the right side of the sharp regi"
-              ]
-            }
-          },
-          "took_s": 1092.0
-        },
-        {
-          "slug": "clip-20260911-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague leak claim, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "panicked reaction to leak, no visual con",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Leaked His Card On Stream? Watch His Reaction"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": []
-            }
-          },
-          "took_s": 135.8
-        },
-        {
-          "slug": "clip-20260911-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "rat in hot tub, visible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "genuine disgust reacting to dead rat",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Finds A Dead Rat In The Hot Tub And Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "several frames (2.2s, 3.6s, 5.1s, 16.7s) show only the empty hot tub/deck with no person visible \u2014 the subject briefly d",
-                "footage is very dark/underexposed in the back half of the clip (9.4s-16.7s), making the subject hard to read on a phone"
-              ]
-            }
-          },
-          "took_s": 185.3
-        },
-        {
-          "slug": "clip-20260911-6",
-          "ok": false,
-          "skipped": "run budget reached"
-        }
-      ]
-    },
-    {
       "date": "20260912",
       "dry_run": false,
       "ts": "2026-09-12T15:29:20+00:00",
@@ -5811,6 +5504,144 @@
             }
           },
           "took_s": 297.8
+        },
+        {
+          "slug": "clip-20260920-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260920",
+      "dry_run": false,
+      "ts": "2026-09-20T14:46:46+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 107,
+        "with_retention": 85,
+        "with_curve": 14,
+        "fetched_at": "2026-09-20T13:09:52.270348+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260920-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "bro dissing the game",
+              "raw": "bro dissing the game",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 300.8
         },
         {
           "slug": "clip-20260920-2",
