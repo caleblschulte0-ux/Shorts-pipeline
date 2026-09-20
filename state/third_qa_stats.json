@@ -3,193 +3,6 @@
     {
       "date": "20260914",
       "dry_run": false,
-      "ts": "2026-09-14T12:19:51+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 80,
-        "with_curve": 14,
-        "fetched_at": "2026-09-13T15:01:05.694439+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:timthetatman": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nickmercs": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260914-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "JP tried to test the marksman pistol he stole from Clayton",
-              "raw": "JP tried to test the marksman pistol he stole from Clayton",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 599.4
-        },
-        {
-          "slug": "clip-20260914-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260914",
-      "dry_run": false,
       "ts": "2026-09-14T12:32:03+00:00",
       "feedback": {
         "snapshot": true,
@@ -5310,6 +5123,139 @@
             }
           },
           "took_s": 350.8
+        },
+        {
+          "slug": "clip-20260920-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260920",
+      "dry_run": false,
+      "ts": "2026-09-20T21:39:06+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 105,
+        "with_retention": 92,
+        "with_curve": 13,
+        "fetched_at": "2026-09-20T19:32:45.327202+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260920-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "olympic level hatewatching",
+              "raw": "olympic level hatewatching",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 438.3
         },
         {
           "slug": "clip-20260920-2",
