@@ -3,27 +3,27 @@
   "content_series": {
     "chaos": {
       "n": 45,
-      "median_vph": 0.02
-    },
-    "drama": {
-      "n": 10,
-      "median_vph": 0.075
+      "median_vph": 0.01
     },
     "fail": {
-      "n": 10,
+      "n": 11,
       "median_vph": 0.03
     },
     "wholesome": {
+      "n": 9,
+      "median_vph": 0.04
+    },
+    "drama": {
       "n": 8,
-      "median_vph": 0.03
+      "median_vph": 0.06
     },
     "win": {
-      "n": 6,
-      "median_vph": 0.045
+      "n": 7,
+      "median_vph": 0.04
     },
     "argument": {
-      "n": 3,
-      "median_vph": 0.03
+      "n": 4,
+      "median_vph": 0.025
     },
     "beef": {
       "n": 3,
@@ -38,10 +38,5 @@
       "median_vph": 0.005
     }
   },
-  "excluded": {
-    "story": {
-      "n": 1,
-      "median_vph": 0.01
-    }
-  }
+  "excluded": {}
 }
