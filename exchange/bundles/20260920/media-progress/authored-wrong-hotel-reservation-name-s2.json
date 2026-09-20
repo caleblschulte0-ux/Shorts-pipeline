@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:25.012Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-wrong-hotel-reservation-name-s2",
+  "safe_request_id": "authored-wrong-hotel-reservation-name-s2",
+  "prompt_sha256": "58b557455a6b85490708654ff4363d3afaad1454f7e8bc31c6fc159530ee08c1",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: angry hotel guest at front desk. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1oQzvXmaJbPCYYPZuT4l6uk30C0jXVOAG",
+    "filename": "20260920__authored-wrong-hotel-reservation-name-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1oQzvXmaJbPCYYPZuT4l6uk30C0jXVOAG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6d4feea95c3e53322a49985e8244784a419d08bc2fe1e4053b19fe8a3091127f",
+    "bytes": 2169013,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "wrong-hotel-reservation-name",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
