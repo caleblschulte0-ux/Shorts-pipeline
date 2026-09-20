@@ -1,329 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260912",
-      "dry_run": false,
-      "ts": "2026-09-12T15:29:20+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 102,
-        "with_retention": 77,
-        "with_curve": 15,
-        "fetched_at": "2026-09-12T12:18:12.545199+00:00"
-      },
-      "brain": {
-        "ok": 39,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260912-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "cops arrive at photoshoot, visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.8,
-              "why": "cops interrupt staged photo shoot",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Photo Shoot Gets Stopped By Cops Over A 'Prop'"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.68,
-              "problems": [
-                "At 6.3s and 13.9s the actual cop/prop-confrontation action (the clip's hook) is shown as a wide, distant shot with the c",
-                "Caption at 6.3s reads 'SHOOT OVER ARE', a scrambled/garbled word order rather than a clean phrase"
-              ]
-            }
-          },
-          "took_s": 394.8
-        },
-        {
-          "slug": "clip-20260912-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp in-focus band is only about a third of the canvas height (roughly equal top/middle/bottom thirds), not the ~3/4 fi; vision: Subject is small and distant within that already-thin sharp ba",
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "cop chase, visible dramatic event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "GTA RP cop chase, generic incapacitated ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Erobb221 'Make A Wish' Cop Chase Ends With Ricky Tased And Begging"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.68,
-              "problems": [
-                "Sharp in-focus band is only about a third of the canvas height (roughly equal top/middle/bottom thirds), not the ~3/4 fi",
-                "Subject is small and distant within that already-thin sharp band in multiple frames (12.2s aerial cars, 22.0s and 26.9s ",
-                "31.8s and 56.3s (the actual tased/begging beats) are reasonably framed, but the surrounding filler frames undercut the o"
-              ]
-            }
-          },
-          "took_s": 657.1
-        },
-        {
-          "slug": "clip-20260912-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague reaction title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Crowded goofy bit, genuine laughs, no st",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Won't Let Pudgie Dodge What He Just Said"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "motion blur in sharp region during camera pans (4.7s, 6.6s, 10.4s) makes the subject briefly hard to make out",
-                "caption at 8.5s reads garbled (\"DIDI NO! SAY.\") rather than clean dialogue"
-              ]
-            }
-          },
-          "took_s": 252.8
-        },
-        {
-          "slug": "clip-20260912-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "xqc",
-                  "outcome": "no_shared_event",
-                  "why": "6 analysed -> subclusters [1, 1, 1, 1, 1, 1] over 3 date(s) \u2014 no two sources share an event, so no director call was made"
-                },
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "no_shared_event",
-                  "why": "6 analysed -> subclusters [1, 1, 1, 1, 1, 1] over 3 date(s) \u2014 no two sources share an event, so no director call was made"
-                },
-                {
-                  "cluster": "stableronaldo",
-                  "outcome": "no_shared_event",
-                  "why": "5 analysed -> subclusters [1, 1, 1, 1, 1] over 3 date(s) \u2014 no two sources share an event, so no director call was made"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "wholesome gift, no reaction shown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.78,
-              "why": "fan wastes $300 call fails",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Can't Believe A Fan Wasted $300 Calling IShowSpeed"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 897.3
-        },
-        {
-          "slug": "clip-20260912-5",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (just talking about games, no event)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "insider roster note, nothing observable",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "just talking about games, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 75.4
-        },
-        {
-          "slug": "clip-20260912-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague leak claim, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "hype trash talk, unclear vague title",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Wins With A Deck He's Never Played Before"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.82,
-              "problems": []
-            }
-          },
-          "took_s": 190.0
-        }
-      ]
-    },
-    {
       "date": "20260913",
       "dry_run": false,
       "ts": "2026-09-13T13:36:55+00:00",
@@ -5642,6 +5319,144 @@
             }
           },
           "took_s": 300.8
+        },
+        {
+          "slug": "clip-20260920-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260920-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260920",
+      "dry_run": false,
+      "ts": "2026-09-20T14:53:30+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 107,
+        "with_retention": 85,
+        "with_curve": 14,
+        "fetched_at": "2026-09-20T13:09:52.270348+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260920-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "bro dissing the game",
+              "raw": "bro dissing the game",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 243.5
         },
         {
           "slug": "clip-20260920-2",
