@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:22.296Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-meeting-minutes-boss-denial-s5",
+  "safe_request_id": "authored-meeting-minutes-boss-denial-s5",
+  "prompt_sha256": "1560edb226c59958f85683dcef3520175a204e90fc1ad025efc5648a027647ef",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: signed workplace policy memo. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1uVA7qYwR5jJrDQ_3ebmpn8PZYn4yl3H0",
+    "filename": "20260920__authored-meeting-minutes-boss-denial-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1uVA7qYwR5jJrDQ_3ebmpn8PZYn4yl3H0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5e095d99c75fadf2533a36d79156e4bf4a8663c1226153046c9d88f73c6e8cff",
+    "bytes": 1932541,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "meeting-minutes-boss-denial",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
