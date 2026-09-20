@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:19.633Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-meeting-minutes-boss-denial-s2",
+  "safe_request_id": "authored-meeting-minutes-boss-denial-s2",
+  "prompt_sha256": "251faf47c6a97480b80a57aba2864cca9257ae95c1279ad203d9bf9c52ee41bd",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: stack of rejected office documents. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1dohuDzmIgBkSuUFJ08sAkmfBkbufgE_J",
+    "filename": "20260920__authored-meeting-minutes-boss-denial-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1dohuDzmIgBkSuUFJ08sAkmfBkbufgE_J",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "53e676883f96f396e7a1df7acb65798b857bab2e3e3e216b70a9b4f2a78bce7e",
+    "bytes": 1883012,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "meeting-minutes-boss-denial",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
