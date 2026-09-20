@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:27.724Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-wrong-hotel-reservation-name-s5",
+  "safe_request_id": "authored-wrong-hotel-reservation-name-s5",
+  "prompt_sha256": "3f29b92f487427f3ea12bd61e43d5634aeed67a0779b3a2a602686616264110a",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: hotel guest paying at front desk. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1tCjE4U4YtVDemmxtTKGCBv6aLkXB7MSg",
+    "filename": "20260920__authored-wrong-hotel-reservation-name-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1tCjE4U4YtVDemmxtTKGCBv6aLkXB7MSg",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "298e3335be6871ee58938863cd8b19a9e03b5af84adbd92ad39872597382469d",
+    "bytes": 1987001,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "wrong-hotel-reservation-name",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
