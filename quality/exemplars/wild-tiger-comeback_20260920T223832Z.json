@@ -1,0 +1,27 @@
+{
+ "slug": "wild-tiger-comeback",
+ "ts": "20260920T223832Z",
+ "score": 95,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.149,
+  "effective_fps": 20.4,
+  "max_dup_run": 22,
+  "measured": true,
+  "max_dup_at_s": 48.75,
+  "duration_s": 49.88
+ },
+ "scene_plan": {},
+ "scenes": [],
+ "why_it_worked": "An engaging and well-crafted video with dynamic data demonstrations and an integrated mascot, effectively telling the story of tiger conservation.",
+ "render_ref": "preview-renders branch @ 20260920T223832Z"
+}
