@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:26.834Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-wrong-hotel-reservation-name-s4",
+  "safe_request_id": "authored-wrong-hotel-reservation-name-s4",
+  "prompt_sha256": "1882862136d232160480e3d5c295eabf892c6703c5f3549e434beb7bf14678ce",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: phone call in hotel lobby. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1A_oDDTKgkW7JSTe7Lhxc6rhEQjaXxTWD",
+    "filename": "20260920__authored-wrong-hotel-reservation-name-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1A_oDDTKgkW7JSTe7Lhxc6rhEQjaXxTWD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4b8192d4307b3e572bcbef30065f0390af1a68115098460d4a64594da06e8f93",
+    "bytes": 2045662,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "wrong-hotel-reservation-name",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
