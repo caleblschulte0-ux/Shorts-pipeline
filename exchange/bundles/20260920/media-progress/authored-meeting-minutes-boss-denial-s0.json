@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:17.874Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-meeting-minutes-boss-denial-s0",
+  "safe_request_id": "authored-meeting-minutes-boss-denial-s0",
+  "prompt_sha256": "d206e77ec49699686b0bbf659f2ed77299eb19ec21f423522f7292be902f0a08",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: manager speaking in office meeting. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1SgtIZcL5U7FWWMiotV-JyBi2tQsZF34N",
+    "filename": "20260920__authored-meeting-minutes-boss-denial-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1SgtIZcL5U7FWWMiotV-JyBi2tQsZF34N",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ef0dc52c517e583f56f3b3f74019f5637a3fadf61564341d64d7ce9a2a045936",
+    "bytes": 1736663,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "meeting-minutes-boss-denial",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
