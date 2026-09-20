@@ -4,25 +4,30 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **6**
-- succeeded: **0**
+- succeeded: **1**
 - quarantined (off-topic imagery): **0**
-- failed: **6**
+- failed: **5**
+
+## Posted
+- **She Demanded Someone Else's Suite. The Address Ended It.**
+  - topic: She Demanded Someone Else's Suite. The Address Ended It.
+  - publishes: `2026-09-21T13:00:00Z`
+  - https://youtube.com/shorts/gMOgljY4tH0
+  - took: 245.0s
 
 ## Failed
 - **Weight-Loss Drugs Left Surgery Behind**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.462 > 0.45 (phase-1 ceiling) — too many held frames`
-- **She Demanded Someone Else's Suite. The Address Ended It.**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets Sep 23, 12am (UTC)\n", "headless-claude[1]: claude CLI r`
-- **bryce young**
+- **stefon diggs**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 23, 12am (UTC)
 `
-- **deejay dallas**
+- **tyreek hill**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 23, 12am (UTC)
 `
-- **alex bregman**
+- **tom brady**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 23, 12am (UTC)
 `
-- **garrett wilson**
+- **greg papa**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 404: Not Found | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 23, 12am (UTC)
 `
 
