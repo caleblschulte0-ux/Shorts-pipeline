@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-20T18:18:25.940839+00:00",
+  "fetched_at": "2026-09-20T19:32:45.327202+00:00",
   "videos": [
     {
       "video_id": "CQviGuEdsYw",
@@ -25,522 +25,522 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
       "published_at": "2026-09-17T18:30:30Z",
-      "age_hours": 71.8,
+      "age_hours": 73.0,
       "views": 1406,
-      "engaged_views": 167,
+      "engaged_views": 518,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 19.58,
-      "average_view_percentage": 103.8,
+      "views_per_hour": 19.25,
+      "average_view_percentage": 102.1,
       "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 48.0,
-      "shares": 0,
+      "estimated_minutes_watched": 148.0,
+      "shares": 1,
       "subscribers_gained": 0,
       "retention_curve": [
         [
           0.01,
-          1.879,
+          1.841,
           0.828
         ],
         [
           0.02,
-          1.867,
-          0.837
+          1.841,
+          0.836
         ],
         [
           0.03,
-          1.861,
-          0.845
+          1.827,
+          0.843
         ],
         [
           0.04,
-          1.837,
-          0.852
+          1.814,
+          0.851
         ],
         [
           0.05,
-          1.795,
-          0.86
+          1.79,
+          0.858
         ],
         [
           0.06,
-          1.765,
-          0.866
+          1.755,
+          0.865
         ],
         [
           0.07,
-          1.729,
-          0.873
+          1.693,
+          0.871
         ],
         [
           0.08,
-          1.657,
-          0.879
-        ],
-        [
-          0.09,
-          1.596,
-          0.884
-        ],
-        [
-          0.1,
-          1.56,
-          0.888
-        ],
-        [
-          0.11,
-          1.512,
-          0.892
-        ],
-        [
-          0.12,
-          1.488,
-          0.895
-        ],
-        [
-          0.13,
-          1.464,
-          0.897
-        ],
-        [
-          0.14,
-          1.428,
-          0.899
-        ],
-        [
-          0.15,
-          1.41,
-          0.899
-        ],
-        [
-          0.16,
-          1.379,
-          0.9
-        ],
-        [
-          0.17,
-          1.349,
-          0.899
-        ],
-        [
-          0.18,
-          1.319,
-          0.898
-        ],
-        [
-          0.19,
-          1.295,
-          0.896
-        ],
-        [
-          0.2,
-          1.277,
-          0.894
-        ],
-        [
-          0.21,
-          1.259,
-          0.891
-        ],
-        [
-          0.22,
-          1.247,
-          0.888
-        ],
-        [
-          0.23,
-          1.211,
-          0.885
-        ],
-        [
-          0.24,
-          1.205,
-          0.881
-        ],
-        [
-          0.25,
-          1.193,
+          1.639,
           0.877
         ],
         [
+          0.09,
+          1.577,
+          0.882
+        ],
+        [
+          0.1,
+          1.534,
+          0.886
+        ],
+        [
+          0.11,
+          1.491,
+          0.89
+        ],
+        [
+          0.12,
+          1.462,
+          0.893
+        ],
+        [
+          0.13,
+          1.439,
+          0.895
+        ],
+        [
+          0.14,
+          1.408,
+          0.897
+        ],
+        [
+          0.15,
+          1.373,
+          0.897
+        ],
+        [
+          0.16,
+          1.352,
+          0.898
+        ],
+        [
+          0.17,
+          1.33,
+          0.897
+        ],
+        [
+          0.18,
+          1.311,
+          0.896
+        ],
+        [
+          0.19,
+          1.285,
+          0.894
+        ],
+        [
+          0.2,
+          1.266,
+          0.892
+        ],
+        [
+          0.21,
+          1.239,
+          0.889
+        ],
+        [
+          0.22,
+          1.223,
+          0.886
+        ],
+        [
+          0.23,
+          1.198,
+          0.883
+        ],
+        [
+          0.24,
+          1.19,
+          0.879
+        ],
+        [
+          0.25,
+          1.177,
+          0.875
+        ],
+        [
           0.26,
-          1.181,
-          0.872
+          1.161,
+          0.87
         ],
         [
           0.27,
-          1.151,
-          0.867
+          1.142,
+          0.866
         ],
         [
           0.28,
-          1.145,
-          0.863
+          1.14,
+          0.861
         ],
         [
           0.29,
-          1.121,
-          0.857
+          1.128,
+          0.856
         ],
         [
           0.3,
-          1.108,
-          0.852
+          1.113,
+          0.851
         ],
         [
           0.31,
-          1.108,
-          0.847
+          1.105,
+          0.846
         ],
         [
           0.32,
-          1.096,
-          0.842
+          1.093,
+          0.841
         ],
         [
           0.33,
-          1.078,
+          1.076,
           0.836
         ],
         [
           0.34,
-          1.066,
-          0.831
+          1.062,
+          0.83
         ],
         [
           0.35,
-          1.06,
+          1.058,
           0.825
         ],
         [
           0.36,
-          1.048,
+          1.047,
           0.82
         ],
         [
           0.37,
-          1.03,
+          1.033,
           0.815
         ],
         [
           0.38,
-          1.03,
+          1.023,
           0.809
         ],
         [
           0.39,
-          1.024,
+          1.021,
           0.804
         ],
         [
           0.4,
-          1.012,
+          1.014,
           0.799
         ],
         [
           0.41,
-          1.012,
+          1.006,
           0.794
         ],
         [
           0.42,
-          1.006,
+          0.994,
           0.789
         ],
         [
           0.43,
-          0.994,
+          0.988,
           0.784
         ],
         [
           0.44,
-          0.988,
-          0.779
+          0.986,
+          0.78
         ],
         [
           0.45,
-          0.976,
+          0.975,
           0.775
         ],
         [
           0.46,
-          0.976,
-          0.77
+          0.963,
+          0.771
         ],
         [
           0.47,
-          0.976,
+          0.959,
           0.766
         ],
         [
           0.48,
-          0.964,
+          0.953,
           0.762
         ],
         [
           0.49,
-          0.964,
+          0.948,
           0.758
         ],
         [
           0.5,
-          0.964,
-          0.754
+          0.946,
+          0.755
         ],
         [
           0.51,
-          0.964,
+          0.938,
           0.751
         ],
         [
           0.52,
-          0.964,
+          0.936,
           0.748
         ],
         [
           0.53,
-          0.964,
-          0.745
+          0.934,
+          0.744
         ],
         [
           0.54,
-          0.958,
-          0.742
+          0.928,
+          0.741
         ],
         [
           0.55,
-          0.958,
-          0.739
+          0.922,
+          0.738
         ],
         [
           0.56,
-          0.952,
-          0.737
-        ],
-        [
-          0.57,
-          0.952,
-          0.734
-        ],
-        [
-          0.58,
-          0.952,
-          0.732
-        ],
-        [
-          0.59,
-          0.958,
-          0.731
-        ],
-        [
-          0.6,
-          0.946,
-          0.729
-        ],
-        [
-          0.61,
-          0.94,
-          0.728
-        ],
-        [
-          0.62,
-          0.94,
-          0.727
-        ],
-        [
-          0.63,
-          0.94,
-          0.726
-        ],
-        [
-          0.64,
-          0.934,
-          0.726
-        ],
-        [
-          0.65,
-          0.928,
-          0.725
-        ],
-        [
-          0.66,
-          0.922,
-          0.725
-        ],
-        [
-          0.67,
-          0.928,
-          0.725
-        ],
-        [
-          0.68,
-          0.928,
-          0.726
-        ],
-        [
-          0.69,
-          0.928,
-          0.727
-        ],
-        [
-          0.7,
-          0.928,
-          0.728
-        ],
-        [
-          0.71,
-          0.922,
-          0.729
-        ],
-        [
-          0.72,
-          0.922,
-          0.731
-        ],
-        [
-          0.73,
-          0.922,
-          0.732
-        ],
-        [
-          0.74,
-          0.916,
-          0.734
-        ],
-        [
-          0.75,
-          0.916,
+          0.918,
           0.736
         ],
         [
+          0.57,
+          0.913,
+          0.733
+        ],
+        [
+          0.58,
+          0.917,
+          0.731
+        ],
+        [
+          0.59,
+          0.918,
+          0.729
+        ],
+        [
+          0.6,
+          0.911,
+          0.727
+        ],
+        [
+          0.61,
+          0.909,
+          0.726
+        ],
+        [
+          0.62,
+          0.903,
+          0.725
+        ],
+        [
+          0.63,
+          0.903,
+          0.724
+        ],
+        [
+          0.64,
+          0.901,
+          0.723
+        ],
+        [
+          0.65,
+          0.897,
+          0.722
+        ],
+        [
+          0.66,
+          0.895,
+          0.722
+        ],
+        [
+          0.67,
+          0.897,
+          0.722
+        ],
+        [
+          0.68,
+          0.893,
+          0.722
+        ],
+        [
+          0.69,
+          0.891,
+          0.723
+        ],
+        [
+          0.7,
+          0.895,
+          0.723
+        ],
+        [
+          0.71,
+          0.891,
+          0.724
+        ],
+        [
+          0.72,
+          0.893,
+          0.725
+        ],
+        [
+          0.73,
+          0.883,
+          0.727
+        ],
+        [
+          0.74,
+          0.883,
+          0.729
+        ],
+        [
+          0.75,
+          0.885,
+          0.731
+        ],
+        [
           0.76,
-          0.91,
-          0.739
+          0.883,
+          0.733
         ],
         [
           0.77,
-          0.91,
-          0.742
+          0.882,
+          0.735
         ],
         [
           0.78,
-          0.922,
-          0.745
+          0.885,
+          0.738
         ],
         [
           0.79,
-          0.922,
-          0.748
+          0.883,
+          0.741
         ],
         [
           0.8,
-          0.916,
-          0.751
+          0.883,
+          0.744
         ],
         [
           0.81,
-          0.91,
-          0.754
+          0.88,
+          0.747
         ],
         [
           0.82,
-          0.904,
-          0.758
+          0.878,
+          0.75
         ],
         [
           0.83,
-          0.904,
-          0.762
+          0.88,
+          0.754
         ],
         [
           0.84,
-          0.904,
-          0.766
+          0.878,
+          0.758
         ],
         [
           0.85,
-          0.91,
-          0.77
+          0.876,
+          0.762
         ],
         [
           0.86,
-          0.904,
-          0.774
+          0.874,
+          0.765
         ],
         [
           0.87,
-          0.916,
-          0.778
+          0.88,
+          0.769
         ],
         [
           0.88,
-          0.916,
-          0.782
+          0.882,
+          0.773
         ],
         [
           0.89,
-          0.916,
-          0.786
+          0.882,
+          0.777
         ],
         [
           0.9,
-          0.916,
-          0.79
+          0.882,
+          0.781
         ],
         [
           0.91,
-          0.916,
-          0.794
+          0.878,
+          0.785
         ],
         [
           0.92,
-          0.916,
-          0.798
+          0.878,
+          0.789
         ],
         [
           0.93,
-          0.916,
-          0.802
+          0.88,
+          0.793
         ],
         [
           0.94,
-          0.922,
-          0.806
+          0.882,
+          0.796
         ],
         [
           0.95,
-          0.928,
-          0.81
+          0.882,
+          0.8
         ],
         [
           0.96,
-          0.928,
-          0.814
+          0.882,
+          0.803
         ],
         [
           0.97,
-          0.922,
-          0.817
+          0.88,
+          0.807
         ],
         [
           0.98,
-          0.916,
-          0.82
+          0.876,
+          0.81
         ],
         [
           0.99,
-          0.916,
-          0.823
+          0.876,
+          0.813
         ],
         [
           1.0,
-          0.91,
-          0.826
+          0.87,
+          0.816
         ]
       ],
-      "early_retention": 0.792
+      "early_retention": 0.794
     },
     {
       "video_id": "0Wj67T5tMqU",
@@ -566,555 +566,14 @@
       "scene_changes_before_5s": null,
       "title": "Chat Could Not Handle This Caseoh Moment",
       "published_at": "2026-09-20T00:30:13Z",
-      "age_hours": 17.8,
+      "age_hours": 19.0,
       "views": 94,
       "engaged_views": 94,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 5.28
-    },
-    {
-      "video_id": "IMA_S8p7kLM",
-      "url": "https://youtube.com/shorts/IMA_S8p7kLM",
-      "catalog_id": "clip-20260916-4",
-      "streamer": "jynxzi",
-      "series": "win",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "BANNED THREE YEARS... NOW HE'S BACK",
-      "source_views": 5174,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-      "published_at": "2026-09-16T21:30:31Z",
-      "age_hours": 92.8,
-      "views": 233,
-      "engaged_views": 42,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 2.51,
-      "average_view_percentage": 61.7,
-      "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 15.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.342,
-          0.613
-        ],
-        [
-          0.02,
-          1.342,
-          0.587
-        ],
-        [
-          0.03,
-          1.317,
-          0.559
-        ],
-        [
-          0.04,
-          1.293,
-          0.529
-        ],
-        [
-          0.05,
-          1.244,
-          0.499
-        ],
-        [
-          0.06,
-          1.122,
-          0.468
-        ],
-        [
-          0.07,
-          1.0,
-          0.437
-        ],
-        [
-          0.08,
-          1.0,
-          0.405
-        ],
-        [
-          0.09,
-          1.0,
-          0.373
-        ],
-        [
-          0.1,
-          0.951,
-          0.342
-        ],
-        [
-          0.11,
-          0.902,
-          0.313
-        ],
-        [
-          0.12,
-          0.902,
-          0.286
-        ],
-        [
-          0.13,
-          0.902,
-          0.261
-        ],
-        [
-          0.14,
-          0.878,
-          0.241
-        ],
-        [
-          0.15,
-          0.878,
-          0.224
-        ],
-        [
-          0.16,
-          0.854,
-          0.21
-        ],
-        [
-          0.17,
-          0.854,
-          0.2
-        ],
-        [
-          0.18,
-          0.829,
-          0.192
-        ],
-        [
-          0.19,
-          0.829,
-          0.186
-        ],
-        [
-          0.2,
-          0.805,
-          0.181
-        ],
-        [
-          0.21,
-          0.805,
-          0.178
-        ],
-        [
-          0.22,
-          0.805,
-          0.175
-        ],
-        [
-          0.23,
-          0.805,
-          0.173
-        ],
-        [
-          0.24,
-          0.732,
-          0.172
-        ],
-        [
-          0.25,
-          0.732,
-          0.171
-        ],
-        [
-          0.26,
-          0.732,
-          0.17
-        ],
-        [
-          0.27,
-          0.732,
-          0.169
-        ],
-        [
-          0.28,
-          0.707,
-          0.169
-        ],
-        [
-          0.29,
-          0.683,
-          0.168
-        ],
-        [
-          0.3,
-          0.683,
-          0.167
-        ],
-        [
-          0.31,
-          0.683,
-          0.166
-        ],
-        [
-          0.32,
-          0.683,
-          0.164
-        ],
-        [
-          0.33,
-          0.707,
-          0.162
-        ],
-        [
-          0.34,
-          0.707,
-          0.16
-        ],
-        [
-          0.35,
-          0.707,
-          0.157
-        ],
-        [
-          0.36,
-          0.707,
-          0.155
-        ],
-        [
-          0.37,
-          0.707,
-          0.153
-        ],
-        [
-          0.38,
-          0.683,
-          0.151
-        ],
-        [
-          0.39,
-          0.683,
-          0.149
-        ],
-        [
-          0.4,
-          0.683,
-          0.148
-        ],
-        [
-          0.41,
-          0.683,
-          0.148
-        ],
-        [
-          0.42,
-          0.683,
-          0.147
-        ],
-        [
-          0.43,
-          0.683,
-          0.147
-        ],
-        [
-          0.44,
-          0.683,
-          0.147
-        ],
-        [
-          0.45,
-          0.683,
-          0.147
-        ],
-        [
-          0.46,
-          0.683,
-          0.147
-        ],
-        [
-          0.47,
-          0.683,
-          0.146
-        ],
-        [
-          0.48,
-          0.658,
-          0.146
-        ],
-        [
-          0.49,
-          0.634,
-          0.147
-        ],
-        [
-          0.5,
-          0.634,
-          0.148
-        ],
-        [
-          0.51,
-          0.61,
-          0.151
-        ],
-        [
-          0.52,
-          0.61,
-          0.154
-        ],
-        [
-          0.53,
-          0.61,
-          0.159
-        ],
-        [
-          0.54,
-          0.561,
-          0.165
-        ],
-        [
-          0.55,
-          0.561,
-          0.173
-        ],
-        [
-          0.56,
-          0.561,
-          0.181
-        ],
-        [
-          0.57,
-          0.512,
-          0.19
-        ],
-        [
-          0.58,
-          0.512,
-          0.201
-        ],
-        [
-          0.59,
-          0.488,
-          0.213
-        ],
-        [
-          0.6,
-          0.488,
-          0.225
-        ],
-        [
-          0.61,
-          0.488,
-          0.239
-        ],
-        [
-          0.62,
-          0.488,
-          0.253
-        ],
-        [
-          0.63,
-          0.463,
-          0.268
-        ],
-        [
-          0.64,
-          0.463,
-          0.282
-        ],
-        [
-          0.65,
-          0.463,
-          0.297
-        ],
-        [
-          0.66,
-          0.463,
-          0.311
-        ],
-        [
-          0.67,
-          0.463,
-          0.325
-        ],
-        [
-          0.68,
-          0.463,
-          0.338
-        ],
-        [
-          0.69,
-          0.463,
-          0.35
-        ],
-        [
-          0.7,
-          0.463,
-          0.36
-        ],
-        [
-          0.71,
-          0.463,
-          0.37
-        ],
-        [
-          0.72,
-          0.463,
-          0.379
-        ],
-        [
-          0.73,
-          0.463,
-          0.387
-        ],
-        [
-          0.74,
-          0.463,
-          0.395
-        ],
-        [
-          0.75,
-          0.488,
-          0.401
-        ],
-        [
-          0.76,
-          0.488,
-          0.408
-        ],
-        [
-          0.77,
-          0.512,
-          0.413
-        ],
-        [
-          0.78,
-          0.512,
-          0.418
-        ],
-        [
-          0.79,
-          0.512,
-          0.423
-        ],
-        [
-          0.8,
-          0.512,
-          0.427
-        ],
-        [
-          0.81,
-          0.512,
-          0.431
-        ],
-        [
-          0.82,
-          0.512,
-          0.435
-        ],
-        [
-          0.83,
-          0.488,
-          0.438
-        ],
-        [
-          0.84,
-          0.488,
-          0.441
-        ],
-        [
-          0.85,
-          0.463,
-          0.444
-        ],
-        [
-          0.86,
-          0.463,
-          0.446
-        ],
-        [
-          0.87,
-          0.439,
-          0.448
-        ],
-        [
-          0.88,
-          0.415,
-          0.45
-        ],
-        [
-          0.89,
-          0.415,
-          0.452
-        ],
-        [
-          0.9,
-          0.415,
-          0.453
-        ],
-        [
-          0.91,
-          0.415,
-          0.454
-        ],
-        [
-          0.92,
-          0.415,
-          0.456
-        ],
-        [
-          0.93,
-          0.415,
-          0.457
-        ],
-        [
-          0.94,
-          0.39,
-          0.457
-        ],
-        [
-          0.95,
-          0.366,
-          0.458
-        ],
-        [
-          0.96,
-          0.366,
-          0.459
-        ],
-        [
-          0.97,
-          0.366,
-          0.459
-        ],
-        [
-          0.98,
-          0.366,
-          0.46
-        ],
-        [
-          0.99,
-          0.366,
-          0.46
-        ],
-        [
-          1.0,
-          0.366,
-          0.46
-        ]
-      ],
-      "early_retention": 0.672
+      "views_per_hour": 4.94
     },
     {
       "video_id": "n-JY_6InrgA",
@@ -1140,14 +599,555 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
       "published_at": "2026-09-19T20:00:25Z",
-      "age_hours": 22.3,
-      "views": 52,
-      "engaged_views": 52,
+      "age_hours": 23.5,
+      "views": 62,
+      "engaged_views": 62,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.33
+      "views_per_hour": 2.63
+    },
+    {
+      "video_id": "IMA_S8p7kLM",
+      "url": "https://youtube.com/shorts/IMA_S8p7kLM",
+      "catalog_id": "clip-20260916-4",
+      "streamer": "jynxzi",
+      "series": "win",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "BANNED THREE YEARS... NOW HE'S BACK",
+      "source_views": 5174,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
+      "published_at": "2026-09-16T21:30:31Z",
+      "age_hours": 94.0,
+      "views": 233,
+      "engaged_views": 53,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 2.48,
+      "average_view_percentage": 63.3,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 19.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_curve": [
+        [
+          0.01,
+          1.385,
+          0.613
+        ],
+        [
+          0.02,
+          1.346,
+          0.586
+        ],
+        [
+          0.03,
+          1.308,
+          0.557
+        ],
+        [
+          0.04,
+          1.231,
+          0.525
+        ],
+        [
+          0.05,
+          1.173,
+          0.493
+        ],
+        [
+          0.06,
+          1.077,
+          0.461
+        ],
+        [
+          0.07,
+          0.981,
+          0.427
+        ],
+        [
+          0.08,
+          0.981,
+          0.394
+        ],
+        [
+          0.09,
+          0.981,
+          0.362
+        ],
+        [
+          0.1,
+          0.942,
+          0.331
+        ],
+        [
+          0.11,
+          0.904,
+          0.302
+        ],
+        [
+          0.12,
+          0.904,
+          0.276
+        ],
+        [
+          0.13,
+          0.904,
+          0.254
+        ],
+        [
+          0.14,
+          0.885,
+          0.236
+        ],
+        [
+          0.15,
+          0.885,
+          0.221
+        ],
+        [
+          0.16,
+          0.865,
+          0.209
+        ],
+        [
+          0.17,
+          0.865,
+          0.2
+        ],
+        [
+          0.18,
+          0.846,
+          0.194
+        ],
+        [
+          0.19,
+          0.827,
+          0.189
+        ],
+        [
+          0.2,
+          0.808,
+          0.185
+        ],
+        [
+          0.21,
+          0.808,
+          0.183
+        ],
+        [
+          0.22,
+          0.808,
+          0.181
+        ],
+        [
+          0.23,
+          0.808,
+          0.179
+        ],
+        [
+          0.24,
+          0.75,
+          0.178
+        ],
+        [
+          0.25,
+          0.75,
+          0.178
+        ],
+        [
+          0.26,
+          0.75,
+          0.177
+        ],
+        [
+          0.27,
+          0.75,
+          0.177
+        ],
+        [
+          0.28,
+          0.712,
+          0.177
+        ],
+        [
+          0.29,
+          0.692,
+          0.176
+        ],
+        [
+          0.3,
+          0.692,
+          0.176
+        ],
+        [
+          0.31,
+          0.692,
+          0.175
+        ],
+        [
+          0.32,
+          0.692,
+          0.174
+        ],
+        [
+          0.33,
+          0.712,
+          0.172
+        ],
+        [
+          0.34,
+          0.712,
+          0.17
+        ],
+        [
+          0.35,
+          0.712,
+          0.168
+        ],
+        [
+          0.36,
+          0.712,
+          0.166
+        ],
+        [
+          0.37,
+          0.712,
+          0.165
+        ],
+        [
+          0.38,
+          0.673,
+          0.164
+        ],
+        [
+          0.39,
+          0.673,
+          0.164
+        ],
+        [
+          0.4,
+          0.673,
+          0.164
+        ],
+        [
+          0.41,
+          0.673,
+          0.164
+        ],
+        [
+          0.42,
+          0.673,
+          0.165
+        ],
+        [
+          0.43,
+          0.673,
+          0.166
+        ],
+        [
+          0.44,
+          0.673,
+          0.167
+        ],
+        [
+          0.45,
+          0.673,
+          0.168
+        ],
+        [
+          0.46,
+          0.673,
+          0.169
+        ],
+        [
+          0.47,
+          0.673,
+          0.17
+        ],
+        [
+          0.48,
+          0.654,
+          0.171
+        ],
+        [
+          0.49,
+          0.635,
+          0.174
+        ],
+        [
+          0.5,
+          0.635,
+          0.177
+        ],
+        [
+          0.51,
+          0.615,
+          0.181
+        ],
+        [
+          0.52,
+          0.615,
+          0.187
+        ],
+        [
+          0.53,
+          0.615,
+          0.194
+        ],
+        [
+          0.54,
+          0.577,
+          0.202
+        ],
+        [
+          0.55,
+          0.577,
+          0.212
+        ],
+        [
+          0.56,
+          0.577,
+          0.222
+        ],
+        [
+          0.57,
+          0.538,
+          0.234
+        ],
+        [
+          0.58,
+          0.538,
+          0.246
+        ],
+        [
+          0.59,
+          0.519,
+          0.26
+        ],
+        [
+          0.6,
+          0.519,
+          0.274
+        ],
+        [
+          0.61,
+          0.519,
+          0.289
+        ],
+        [
+          0.62,
+          0.519,
+          0.303
+        ],
+        [
+          0.63,
+          0.5,
+          0.318
+        ],
+        [
+          0.64,
+          0.5,
+          0.332
+        ],
+        [
+          0.65,
+          0.5,
+          0.345
+        ],
+        [
+          0.66,
+          0.5,
+          0.358
+        ],
+        [
+          0.67,
+          0.5,
+          0.37
+        ],
+        [
+          0.68,
+          0.5,
+          0.38
+        ],
+        [
+          0.69,
+          0.5,
+          0.39
+        ],
+        [
+          0.7,
+          0.5,
+          0.399
+        ],
+        [
+          0.71,
+          0.5,
+          0.407
+        ],
+        [
+          0.72,
+          0.5,
+          0.414
+        ],
+        [
+          0.73,
+          0.5,
+          0.421
+        ],
+        [
+          0.74,
+          0.5,
+          0.427
+        ],
+        [
+          0.75,
+          0.519,
+          0.432
+        ],
+        [
+          0.76,
+          0.519,
+          0.437
+        ],
+        [
+          0.77,
+          0.538,
+          0.442
+        ],
+        [
+          0.78,
+          0.519,
+          0.446
+        ],
+        [
+          0.79,
+          0.519,
+          0.449
+        ],
+        [
+          0.8,
+          0.519,
+          0.453
+        ],
+        [
+          0.81,
+          0.519,
+          0.456
+        ],
+        [
+          0.82,
+          0.519,
+          0.459
+        ],
+        [
+          0.83,
+          0.5,
+          0.461
+        ],
+        [
+          0.84,
+          0.5,
+          0.463
+        ],
+        [
+          0.85,
+          0.481,
+          0.465
+        ],
+        [
+          0.86,
+          0.481,
+          0.467
+        ],
+        [
+          0.87,
+          0.461,
+          0.469
+        ],
+        [
+          0.88,
+          0.442,
+          0.47
+        ],
+        [
+          0.89,
+          0.442,
+          0.472
+        ],
+        [
+          0.9,
+          0.442,
+          0.473
+        ],
+        [
+          0.91,
+          0.442,
+          0.474
+        ],
+        [
+          0.92,
+          0.442,
+          0.475
+        ],
+        [
+          0.93,
+          0.442,
+          0.476
+        ],
+        [
+          0.94,
+          0.423,
+          0.476
+        ],
+        [
+          0.95,
+          0.404,
+          0.477
+        ],
+        [
+          0.96,
+          0.404,
+          0.477
+        ],
+        [
+          0.97,
+          0.404,
+          0.478
+        ],
+        [
+          0.98,
+          0.404,
+          0.478
+        ],
+        [
+          0.99,
+          0.404,
+          0.478
+        ],
+        [
+          1.0,
+          0.404,
+          0.478
+        ]
+      ],
+      "early_retention": 0.653
     },
     {
       "video_id": "iW3Y3MTFqog",
@@ -1173,7 +1173,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
       "published_at": "2026-09-06T17:00:27Z",
-      "age_hours": 337.3,
+      "age_hours": 338.5,
       "views": 315,
       "engaged_views": 146,
       "likes": 0,
@@ -1714,14 +1714,20 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Loses His Mind Defending His Teammate's Tachanka Pick",
       "published_at": "2026-09-18T23:00:37Z",
-      "age_hours": 43.3,
+      "age_hours": 44.5,
       "views": 39,
-      "engaged_views": 39,
+      "engaged_views": 7,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.9
+      "views_per_hour": 0.88,
+      "average_view_percentage": 75.6,
+      "average_view_duration_s": 12.0,
+      "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "xHX-LWZMMHU",
@@ -1747,17 +1753,17 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Loses It After A Fan Offers Him $100,000",
       "published_at": "2026-09-18T02:00:33Z",
-      "age_hours": 64.3,
+      "age_hours": 65.5,
       "views": 38,
-      "engaged_views": 0,
+      "engaged_views": 12,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.59,
-      "average_view_percentage": 0.0,
-      "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
+      "views_per_hour": 0.58,
+      "average_view_percentage": 39.4,
+      "average_view_duration_s": 15.0,
+      "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -1786,7 +1792,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
       "published_at": "2026-09-05T21:30:31Z",
-      "age_hours": 356.8,
+      "age_hours": 358.0,
       "views": 200,
       "engaged_views": 81,
       "likes": 1,
@@ -2327,17 +2333,17 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27",
       "published_at": "2026-09-16T17:00:24Z",
-      "age_hours": 97.3,
+      "age_hours": 98.5,
       "views": 49,
-      "engaged_views": 20,
+      "engaged_views": 24,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
       "views_per_hour": 0.5,
-      "average_view_percentage": 38.6,
+      "average_view_percentage": 40.2,
       "average_view_duration_s": 9.0,
-      "estimated_minutes_watched": 3.0,
+      "estimated_minutes_watched": 4.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -2366,7 +2372,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Reacts To The Bean Dip Rug Pull Live",
       "published_at": "2026-09-11T17:00:36Z",
-      "age_hours": 217.3,
+      "age_hours": 218.5,
       "views": 105,
       "engaged_views": 49,
       "likes": 0,
@@ -2907,14 +2913,14 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Finally Shows Everyone The Mall Concert Space Nobody's Seen",
       "published_at": "2026-09-19T05:00:31Z",
-      "age_hours": 37.3,
+      "age_hours": 38.5,
       "views": 17,
       "engaged_views": 17,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.46
+      "views_per_hour": 0.44
     },
     {
       "video_id": "eo08Y9qnLTE",
@@ -2940,7 +2946,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Wild Way Of Making Quick Cash In Wardogs",
       "published_at": "2026-09-04T21:30:02Z",
-      "age_hours": 380.8,
+      "age_hours": 382.0,
       "views": 148,
       "engaged_views": 74,
       "likes": 0,
@@ -3481,14 +3487,14 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Is Changing His Number After This Leak",
       "published_at": "2026-09-13T21:30:33Z",
-      "age_hours": 164.8,
+      "age_hours": 166.0,
       "views": 62,
       "engaged_views": 29,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.38,
+      "views_per_hour": 0.37,
       "average_view_percentage": 52.5,
       "average_view_duration_s": 10.0,
       "estimated_minutes_watched": 5.0,
@@ -4022,50 +4028,17 @@
       "scene_changes_before_5s": null,
       "title": "Erobb221 Denies Breaking The Window Until His Friend Exposes Him",
       "published_at": "2026-09-18T17:00:32Z",
-      "age_hours": 49.3,
+      "age_hours": 50.5,
       "views": 18,
-      "engaged_views": 18,
+      "engaged_views": 2,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.37
-    },
-    {
-      "video_id": "h_5ng8qTzAs",
-      "url": "https://youtube.com/shorts/h_5ng8qTzAs",
-      "catalog_id": "clip-20260917-3",
-      "streamer": "buddha",
-      "series": "wholesome",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "HE'S BACK AND BUDDHA NEEDS A FAVOR",
-      "source_views": 2092,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Joe Caine Returns And Buddha Immediately Has A Job For Him",
-      "published_at": "2026-09-17T20:00:04Z",
-      "age_hours": 70.3,
-      "views": 21,
-      "engaged_views": 3,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.3,
-      "average_view_percentage": 96.1,
-      "average_view_duration_s": 24.0,
-      "estimated_minutes_watched": 1.0,
+      "views_per_hour": 0.36,
+      "average_view_percentage": 88.3,
+      "average_view_duration_s": 19.0,
+      "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -4094,16 +4067,16 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Walks In His First Ever Fashion Show",
       "published_at": "2026-09-18T00:30:08Z",
-      "age_hours": 65.8,
+      "age_hours": 67.0,
       "views": 20,
-      "engaged_views": 0,
+      "engaged_views": 5,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
       "views_per_hour": 0.3,
-      "average_view_percentage": 0.0,
-      "average_view_duration_s": 0.0,
+      "average_view_percentage": 48.0,
+      "average_view_duration_s": 6.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -4133,522 +4106,461 @@
       "scene_changes_before_5s": null,
       "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna",
       "published_at": "2026-09-09T00:30:22Z",
-      "age_hours": 281.8,
+      "age_hours": 283.0,
       "views": 81,
-      "engaged_views": 33,
+      "engaged_views": 35,
       "likes": 3,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
       "views_per_hour": 0.29,
-      "average_view_percentage": 98.3,
+      "average_view_percentage": 96.4,
       "average_view_duration_s": 12.0,
-      "estimated_minutes_watched": 7.0,
+      "estimated_minutes_watched": 8.0,
       "shares": 0,
       "subscribers_gained": 1,
       "retention_curve": [
         [
           0.01,
-          1.758,
-          0.734
+          1.743
         ],
         [
           0.02,
-          1.818,
-          0.735
+          1.8
         ],
         [
           0.03,
-          1.758,
-          0.735
+          1.743
         ],
         [
           0.04,
-          1.727,
-          0.736
+          1.714
         ],
         [
           0.05,
-          1.697,
-          0.736
+          1.657
         ],
         [
           0.06,
-          1.606,
-          0.736
+          1.571
         ],
         [
           0.07,
-          1.576,
-          0.736
+          1.543
         ],
         [
           0.08,
-          1.485,
-          0.737
+          1.457
         ],
         [
           0.09,
-          1.485,
-          0.737
+          1.457
         ],
         [
           0.1,
-          1.424,
-          0.737
+          1.4
         ],
         [
           0.11,
-          1.364,
-          0.736
+          1.343
         ],
         [
           0.12,
-          1.364,
-          0.736
+          1.343
         ],
         [
           0.13,
-          1.303,
-          0.736
+          1.286
         ],
         [
           0.14,
-          1.303,
-          0.735
+          1.286
         ],
         [
           0.15,
-          1.303,
-          0.735
+          1.286
         ],
         [
           0.16,
-          1.242,
-          0.734
+          1.229
         ],
         [
           0.17,
-          1.242,
-          0.734
+          1.229
         ],
         [
           0.18,
-          1.212,
-          0.733
+          1.2
         ],
         [
           0.19,
-          1.212,
-          0.732
+          1.2
         ],
         [
           0.2,
-          1.212,
-          0.732
+          1.2
         ],
         [
           0.21,
-          1.212,
-          0.731
+          1.2
         ],
         [
           0.22,
-          1.212,
-          0.73
+          1.2
         ],
         [
           0.23,
-          1.212,
-          0.73
+          1.2
         ],
         [
           0.24,
-          1.182,
-          0.729
+          1.171
         ],
         [
           0.25,
-          1.182,
-          0.728
+          1.171
         ],
         [
           0.26,
-          1.182,
-          0.728
+          1.171
         ],
         [
           0.27,
-          1.182,
-          0.727
+          1.171
         ],
         [
           0.28,
-          1.182,
-          0.726
+          1.171
         ],
         [
           0.29,
-          1.182,
-          0.726
+          1.171
         ],
         [
           0.3,
-          1.182,
-          0.725
+          1.171
         ],
         [
           0.31,
-          1.182,
-          0.725
+          1.171
         ],
         [
           0.32,
-          1.182,
-          0.724
+          1.171
         ],
         [
           0.33,
-          1.151,
-          0.724
+          1.143
         ],
         [
           0.34,
-          1.121,
-          0.724
+          1.086
         ],
         [
           0.35,
-          1.121,
-          0.723
+          1.086
         ],
         [
           0.36,
-          1.121,
-          0.723
+          1.086
         ],
         [
           0.37,
-          1.121,
-          0.723
+          1.086
         ],
         [
           0.38,
-          1.091,
-          0.723
+          1.057
         ],
         [
           0.39,
-          1.03,
-          0.723
+          1.0
         ],
         [
           0.4,
-          1.03,
-          0.723
+          1.0
         ],
         [
           0.41,
-          1.03,
-          0.723
+          1.0
         ],
         [
           0.42,
-          1.03,
-          0.723
+          1.0
         ],
         [
           0.43,
-          1.03,
-          0.724
+          1.0
         ],
         [
           0.44,
-          1.0,
-          0.724
+          0.971
         ],
         [
           0.45,
-          1.0,
-          0.724
+          0.971
         ],
         [
           0.46,
-          0.97,
-          0.725
+          0.943
         ],
         [
           0.47,
-          0.97,
-          0.725
+          0.943
         ],
         [
           0.48,
-          0.97,
-          0.726
+          0.943
         ],
         [
           0.49,
-          0.97,
-          0.726
+          0.943
         ],
         [
           0.5,
-          0.97,
-          0.727
+          0.943
         ],
         [
           0.51,
-          0.97,
-          0.727
+          0.943
         ],
         [
           0.52,
-          0.97,
-          0.728
+          0.943
         ],
         [
           0.53,
-          0.97,
-          0.729
+          0.943
         ],
         [
           0.54,
-          0.97,
-          0.73
+          0.943
         ],
         [
           0.55,
-          0.97,
-          0.731
+          0.943
         ],
         [
           0.56,
-          0.909,
-          0.732
+          0.886
         ],
         [
           0.57,
-          0.909,
-          0.733
+          0.886
         ],
         [
           0.58,
-          0.909,
-          0.734
+          0.886
         ],
         [
           0.59,
-          0.909,
-          0.735
+          0.886
         ],
         [
           0.6,
-          0.909,
-          0.736
+          0.886
         ],
         [
           0.61,
-          0.909,
-          0.737
+          0.886
         ],
         [
           0.62,
-          0.879,
-          0.738
+          0.857
         ],
         [
           0.63,
-          0.879,
-          0.739
+          0.857
         ],
         [
           0.64,
-          0.879,
-          0.741
+          0.857
         ],
         [
           0.65,
-          0.879,
-          0.742
+          0.857
         ],
         [
           0.66,
-          0.848,
-          0.744
+          0.829
         ],
         [
           0.67,
-          0.879,
-          0.745
+          0.857
         ],
         [
           0.68,
-          0.879,
-          0.746
+          0.857
         ],
         [
           0.69,
-          0.879,
-          0.748
+          0.857
         ],
         [
           0.7,
-          0.879,
-          0.75
+          0.857
         ],
         [
           0.71,
-          0.848,
-          0.751
+          0.829
         ],
         [
           0.72,
-          0.848,
-          0.753
+          0.829
         ],
         [
           0.73,
-          0.848,
-          0.754
+          0.829
         ],
         [
           0.74,
-          0.848,
-          0.756
+          0.829
         ],
         [
           0.75,
-          0.818,
-          0.758
+          0.8
         ],
         [
           0.76,
-          0.818,
-          0.759
+          0.8
         ],
         [
           0.77,
-          0.818,
-          0.761
+          0.8
         ],
         [
           0.78,
-          0.818,
-          0.763
+          0.8
         ],
         [
           0.79,
-          0.818,
-          0.764
+          0.8
         ],
         [
           0.8,
-          0.818,
-          0.766
+          0.8
         ],
         [
           0.81,
-          0.788,
-          0.768
+          0.771
         ],
         [
           0.82,
-          0.788,
-          0.769
+          0.771
         ],
         [
           0.83,
-          0.788,
           0.771
         ],
         [
           0.84,
-          0.788,
-          0.773
+          0.771
         ],
         [
           0.85,
-          0.758,
-          0.774
+          0.743
         ],
         [
           0.86,
-          0.758,
-          0.776
+          0.743
         ],
         [
           0.87,
-          0.758,
-          0.777
+          0.743
         ],
         [
           0.88,
-          0.727,
-          0.779
+          0.714
         ],
         [
           0.89,
-          0.727,
-          0.78
+          0.714
         ],
         [
           0.9,
-          0.727,
-          0.781
+          0.714
         ],
         [
           0.91,
-          0.697,
-          0.782
+          0.686
         ],
         [
           0.92,
-          0.697,
-          0.784
+          0.686
         ],
         [
           0.93,
-          0.697,
-          0.785
+          0.686
         ],
         [
           0.94,
-          0.697,
-          0.786
+          0.686
         ],
         [
           0.95,
-          0.697,
-          0.786
+          0.686
         ],
         [
           0.96,
-          0.697,
-          0.787
+          0.686
         ],
         [
           0.97,
-          0.697,
-          0.788
+          0.686
         ],
         [
           0.98,
-          0.697,
-          0.789
+          0.686
         ],
         [
           0.99,
-          0.697,
-          0.789
+          0.686
         ],
         [
           1.0,
-          0.697,
-          0.79
+          0.686
         ]
       ],
-      "early_retention": 0.776
+      "early_retention": 0.771
+    },
+    {
+      "video_id": "h_5ng8qTzAs",
+      "url": "https://youtube.com/shorts/h_5ng8qTzAs",
+      "catalog_id": "clip-20260917-3",
+      "streamer": "buddha",
+      "series": "wholesome",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "HE'S BACK AND BUDDHA NEEDS A FAVOR",
+      "source_views": 2092,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Joe Caine Returns And Buddha Immediately Has A Job For Him",
+      "published_at": "2026-09-17T20:00:04Z",
+      "age_hours": 71.5,
+      "views": 21,
+      "engaged_views": 7,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.29,
+      "average_view_percentage": 67.7,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 2.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "dAb120ZFutQ",
@@ -4674,17 +4586,17 @@
       "scene_changes_before_5s": null,
       "title": "Timthetatman Finds Out His New Puppy Could Grow To 200 Pounds",
       "published_at": "2026-09-16T20:00:31Z",
-      "age_hours": 94.3,
+      "age_hours": 95.5,
       "views": 27,
-      "engaged_views": 8,
+      "engaged_views": 9,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.29,
-      "average_view_percentage": 82.3,
-      "average_view_duration_s": 24.0,
-      "estimated_minutes_watched": 3.0,
+      "views_per_hour": 0.28,
+      "average_view_percentage": 87.0,
+      "average_view_duration_s": 26.0,
+      "estimated_minutes_watched": 4.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -4713,7 +4625,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Won't Let Pudgie Dodge What He Just Said",
       "published_at": "2026-09-12T20:00:17Z",
-      "age_hours": 190.3,
+      "age_hours": 191.5,
       "views": 44,
       "engaged_views": 19,
       "likes": 0,
@@ -4752,7 +4664,7 @@
       "scene_changes_before_5s": null,
       "title": "Extraemily Tries Mushy Peas For The First Time And Instantly Regrets It",
       "published_at": "2026-09-19T06:30:04Z",
-      "age_hours": 35.8,
+      "age_hours": 37.0,
       "views": 8,
       "engaged_views": 8,
       "likes": 0,
@@ -4785,7 +4697,7 @@
       "scene_changes_before_5s": null,
       "title": "Nickmercs Can't Believe How BAD This Guy Was \ud83d\udc80",
       "published_at": "2026-09-03T23:00:19Z",
-      "age_hours": 403.3,
+      "age_hours": 404.5,
       "views": 79,
       "engaged_views": 27,
       "likes": 0,
@@ -5303,39 +5215,6 @@
       "early_retention": 0.833
     },
     {
-      "video_id": "Iy3Rf9fH46E",
-      "url": "https://youtube.com/shorts/Iy3Rf9fH46E",
-      "catalog_id": "clip-20260919-1",
-      "streamer": "buddha",
-      "series": "chaos",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "CAMERAS MISSING ON THEIR FIRST SHIFT",
-      "source_views": 3714,
-      "banger": 0.55,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Buddha: Lang Reacts To 404 And BrickBabies Losing Cameras On Shift One",
-      "published_at": "2026-09-19T17:00:04Z",
-      "age_hours": 25.3,
-      "views": 5,
-      "engaged_views": 5,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.2
-    },
-    {
       "video_id": "dTNSBHCCRYY",
       "url": "https://youtube.com/shorts/dTNSBHCCRYY",
       "catalog_id": "clip-20260908-2",
@@ -5359,7 +5238,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi \"What Does He Even Do?\" \u2014 Then This Happens",
       "published_at": "2026-09-08T18:30:32Z",
-      "age_hours": 287.8,
+      "age_hours": 289.0,
       "views": 56,
       "engaged_views": 21,
       "likes": 0,
@@ -5877,6 +5756,39 @@
       "early_retention": 0.759
     },
     {
+      "video_id": "Iy3Rf9fH46E",
+      "url": "https://youtube.com/shorts/Iy3Rf9fH46E",
+      "catalog_id": "clip-20260919-1",
+      "streamer": "buddha",
+      "series": "chaos",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "CAMERAS MISSING ON THEIR FIRST SHIFT",
+      "source_views": 3714,
+      "banger": 0.55,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Buddha: Lang Reacts To 404 And BrickBabies Losing Cameras On Shift One",
+      "published_at": "2026-09-19T17:00:04Z",
+      "age_hours": 26.5,
+      "views": 5,
+      "engaged_views": 5,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.19
+    },
+    {
       "video_id": "LE6wci9PvD8",
       "url": "https://youtube.com/shorts/LE6wci9PvD8",
       "catalog_id": "clip-20260903-4",
@@ -5900,7 +5812,7 @@
       "scene_changes_before_5s": null,
       "title": "Sodapoppin Can't Stop Laughing At This Shirt Design",
       "published_at": "2026-09-03T21:30:23Z",
-      "age_hours": 404.8,
+      "age_hours": 406.0,
       "views": 68,
       "engaged_views": 22,
       "likes": 0,
@@ -6441,7 +6353,7 @@
       "scene_changes_before_5s": null,
       "title": "Lang's Audition Scene Leaves Buddha Speechless",
       "published_at": "2026-09-13T20:00:11Z",
-      "age_hours": 166.3,
+      "age_hours": 167.5,
       "views": 28,
       "engaged_views": 9,
       "likes": 0,
@@ -6480,7 +6392,7 @@
       "scene_changes_before_5s": null,
       "title": "Lospollostv Finds Out The Sauna Isn't As Soundproof As He Thought",
       "published_at": "2026-09-13T23:00:27Z",
-      "age_hours": 163.3,
+      "age_hours": 164.5,
       "views": 26,
       "engaged_views": 9,
       "likes": 0,
@@ -6519,7 +6431,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe A Fan Wasted $300 Calling IShowSpeed",
       "published_at": "2026-09-12T21:30:36Z",
-      "age_hours": 188.8,
+      "age_hours": 190.0,
       "views": 26,
       "engaged_views": 14,
       "likes": 0,
@@ -6558,7 +6470,7 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Gets Made To Do Push-Ups Over His Wardrobe",
       "published_at": "2026-09-19T21:30:39Z",
-      "age_hours": 20.8,
+      "age_hours": 22.0,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -6591,7 +6503,7 @@
       "scene_changes_before_5s": null,
       "title": "Silky Guapo Moment Turns Into Total Chaos",
       "published_at": "2026-08-21T23:00:15Z",
-      "age_hours": 715.3,
+      "age_hours": 716.5,
       "views": 85,
       "engaged_views": 48,
       "likes": 1,
@@ -7132,14 +7044,20 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat's Chat Goes Wild Over This 'Aw' Moment",
       "published_at": "2026-09-19T02:00:32Z",
-      "age_hours": 40.3,
+      "age_hours": 41.5,
       "views": 5,
-      "engaged_views": 5,
+      "engaged_views": 1,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.12
+      "views_per_hour": 0.12,
+      "average_view_percentage": 47.3,
+      "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "NUY4v2qnsUQ",
@@ -7165,17 +7083,17 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Says 'I'm Walking Away' After Charli's Insane Noise",
       "published_at": "2026-09-13T17:00:06Z",
-      "age_hours": 169.3,
-      "views": 17,
-      "engaged_views": 10,
+      "age_hours": 170.5,
+      "views": 18,
+      "engaged_views": 11,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.1,
-      "average_view_percentage": 57.8,
+      "views_per_hour": 0.11,
+      "average_view_percentage": 57.1,
       "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 2.0,
+      "estimated_minutes_watched": 3.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -7204,7 +7122,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
       "published_at": "2026-08-25T18:30:11Z",
-      "age_hours": 623.8,
+      "age_hours": 625.0,
       "views": 52,
       "engaged_views": 24,
       "likes": 0,
@@ -7745,7 +7663,7 @@
       "scene_changes_before_5s": null,
       "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
       "published_at": "2026-08-26T17:00:07Z",
-      "age_hours": 601.3,
+      "age_hours": 602.5,
       "views": 50,
       "engaged_views": 19,
       "likes": 0,
@@ -7755,44 +7673,6 @@
       "views_per_hour": 0.08,
       "average_view_percentage": 83.4,
       "average_view_duration_s": 12.0,
-      "estimated_minutes_watched": 4.0,
-      "shares": 0,
-      "subscribers_gained": 0
-    },
-    {
-      "video_id": "h2uvq_jKBZg",
-      "url": "https://youtube.com/shorts/h2uvq_jKBZg",
-      "catalog_id": "clip-20260821-2",
-      "streamer": "lacy",
-      "series": "chaos",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "RUS GETS CAUGHT PICKING HIS NOSE",
-      "source_views": 3102,
-      "banger": 0.6,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22",
-      "published_at": "2026-08-21T18:30:24Z",
-      "age_hours": 719.8,
-      "views": 51,
-      "engaged_views": 22,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 0.07,
-      "average_view_percentage": 104.9,
-      "average_view_duration_s": 11.0,
       "estimated_minutes_watched": 4.0,
       "shares": 0,
       "subscribers_gained": 0
@@ -7821,7 +7701,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Gets Arrested Live On Stream And Can't Believe It",
       "published_at": "2026-08-23T00:30:22Z",
-      "age_hours": 689.8,
+      "age_hours": 691.0,
       "views": 47,
       "engaged_views": 24,
       "likes": 0,
@@ -7860,14 +7740,20 @@
       "scene_changes_before_5s": null,
       "title": "Adinross: Adin Ross Plans A Debate vs Sneeko \u2014 Then Someone Says It's Not Happening",
       "published_at": "2026-09-19T00:30:02Z",
-      "age_hours": 41.8,
+      "age_hours": 43.0,
       "views": 3,
-      "engaged_views": 3,
+      "engaged_views": 0,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.07
+      "views_per_hour": 0.07,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "_Q7SSGp_WgI",
@@ -7893,7 +7779,7 @@
       "scene_changes_before_5s": null,
       "title": "Agent00 Can't Believe What Happened To His Chair",
       "published_at": "2026-08-24T21:30:36Z",
-      "age_hours": 644.8,
+      "age_hours": 646.0,
       "views": 39,
       "engaged_views": 33,
       "likes": 1,
@@ -7932,7 +7818,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Watches Joel Get Killed In This Scene",
       "published_at": "2026-08-25T00:30:09Z",
-      "age_hours": 641.8,
+      "age_hours": 643.0,
       "views": 40,
       "engaged_views": 26,
       "likes": 1,
@@ -7971,7 +7857,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Photo Shoot Gets Stopped By Cops Over A 'Prop'",
       "published_at": "2026-09-12T17:00:29Z",
-      "age_hours": 193.3,
+      "age_hours": 194.5,
       "views": 11,
       "engaged_views": 3,
       "likes": 0,
@@ -8010,7 +7896,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween And His Friends Try To Figure Out Who Slumped Him Out",
       "published_at": "2026-09-14T00:30:02Z",
-      "age_hours": 161.8,
+      "age_hours": 163.0,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -8049,7 +7935,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Can't Stop Saying NO After This",
       "published_at": "2026-08-23T20:00:01Z",
-      "age_hours": 670.3,
+      "age_hours": 671.5,
       "views": 34,
       "engaged_views": 9,
       "likes": 0,
@@ -8088,7 +7974,7 @@
       "scene_changes_before_5s": null,
       "title": "Sodapoppin Elevator Plan Goes Completely Wrong",
       "published_at": "2026-09-07T17:00:28Z",
-      "age_hours": 313.3,
+      "age_hours": 314.5,
       "views": 15,
       "engaged_views": 5,
       "likes": 0,
@@ -8127,7 +8013,7 @@
       "scene_changes_before_5s": null,
       "title": "Ironmouse Pulls Out The Screenshot Proof And Exposes Boon",
       "published_at": "2026-09-11T00:30:22Z",
-      "age_hours": 233.8,
+      "age_hours": 235.0,
       "views": 12,
       "engaged_views": 5,
       "likes": 0,
@@ -8166,7 +8052,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Reacts To The Weirdest Double Kill Ever",
       "published_at": "2026-08-23T17:00:31Z",
-      "age_hours": 673.3,
+      "age_hours": 674.5,
       "views": 24,
       "engaged_views": 12,
       "likes": 0,
@@ -8205,7 +8091,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Hits 100K Subs And Opens His Surprise Gift Live",
       "published_at": "2026-09-03T00:30:16Z",
-      "age_hours": 425.8,
+      "age_hours": 427.0,
       "views": 17,
       "engaged_views": 7,
       "likes": 0,
@@ -8244,7 +8130,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Punched On Stream And Chat Loses It",
       "published_at": "2026-09-03T17:00:14Z",
-      "age_hours": 409.3,
+      "age_hours": 410.5,
       "views": 17,
       "engaged_views": 8,
       "likes": 0,
@@ -8283,7 +8169,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Michael Myers Catches The Teen Talking Trash And It Actually Hurts",
       "published_at": "2026-09-08T20:00:26Z",
-      "age_hours": 286.3,
+      "age_hours": 287.5,
       "views": 12,
       "engaged_views": 4,
       "likes": 0,
@@ -8322,7 +8208,7 @@
       "scene_changes_before_5s": null,
       "title": "Nmplol Did Not See That Coming",
       "published_at": "2026-09-10T00:30:11Z",
-      "age_hours": 257.8,
+      "age_hours": 259.0,
       "views": 11,
       "engaged_views": 4,
       "likes": 0,
@@ -8361,7 +8247,7 @@
       "scene_changes_before_5s": null,
       "title": "Plaqueboymax Surprises Ray With A New G-Wagon And He Can't Believe It",
       "published_at": "2026-09-10T20:00:37Z",
-      "age_hours": 238.3,
+      "age_hours": 239.5,
       "views": 10,
       "engaged_views": 5,
       "likes": 0,
@@ -8400,7 +8286,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Wins With A Deck He's Never Played Before",
       "published_at": "2026-09-13T00:30:10Z",
-      "age_hours": 185.8,
+      "age_hours": 187.0,
       "views": 7,
       "engaged_views": 1,
       "likes": 0,
@@ -8439,7 +8325,7 @@
       "scene_changes_before_5s": null,
       "title": "Ludwig Gets Shot Practicing CS Peeks IRL And Instantly Regrets It",
       "published_at": "2026-08-21T21:30:18Z",
-      "age_hours": 716.8,
+      "age_hours": 718.0,
       "views": 25,
       "engaged_views": 12,
       "likes": 0,
@@ -8478,7 +8364,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Says He's Smacking Duke Dennis Next Time He Sees Him",
       "published_at": "2026-08-22T18:30:39Z",
-      "age_hours": 695.8,
+      "age_hours": 697.0,
       "views": 19,
       "engaged_views": 7,
       "likes": 1,
@@ -8517,7 +8403,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los",
       "published_at": "2026-09-02T18:30:11Z",
-      "age_hours": 431.8,
+      "age_hours": 433.0,
       "views": 12,
       "engaged_views": 5,
       "likes": 0,
@@ -8556,7 +8442,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Can't Believe He Sold For The Third Time",
       "published_at": "2026-09-02T23:00:11Z",
-      "age_hours": 427.3,
+      "age_hours": 428.5,
       "views": 12,
       "engaged_views": 4,
       "likes": 0,
@@ -8595,7 +8481,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Lays Out The Difference Everyone's Arguing About",
       "published_at": "2026-09-05T17:00:21Z",
-      "age_hours": 361.3,
+      "age_hours": 362.5,
       "views": 10,
       "engaged_views": 4,
       "likes": 0,
@@ -8634,7 +8520,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Reacts To This Win With 'Oh My God'",
       "published_at": "2026-09-05T18:30:31Z",
-      "age_hours": 359.8,
+      "age_hours": 361.0,
       "views": 10,
       "engaged_views": 6,
       "likes": 0,
@@ -8673,7 +8559,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha: Lang Mocks The Guy Threatening To 'Post' Him Over Vaping",
       "published_at": "2026-09-09T17:00:06Z",
-      "age_hours": 265.3,
+      "age_hours": 266.5,
       "views": 9,
       "engaged_views": 2,
       "likes": 0,
@@ -8712,7 +8598,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Reacts To The Most Unhinged AI Song Ever",
       "published_at": "2026-09-10T23:00:11Z",
-      "age_hours": 235.3,
+      "age_hours": 236.5,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -8751,7 +8637,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Loses $800 After Tony Rugpulls Him Live",
       "published_at": "2026-09-11T18:30:15Z",
-      "age_hours": 215.8,
+      "age_hours": 217.0,
       "views": 7,
       "engaged_views": 1,
       "likes": 0,
@@ -8790,7 +8676,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Leaked His Card On Stream? Watch His Reaction",
       "published_at": "2026-09-11T21:30:01Z",
-      "age_hours": 212.8,
+      "age_hours": 214.0,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -8829,7 +8715,7 @@
       "scene_changes_before_5s": null,
       "title": "Forsen Revives The ENEMY Team By Mistake",
       "published_at": "2026-09-13T02:00:13Z",
-      "age_hours": 184.3,
+      "age_hours": 185.5,
       "views": 6,
       "engaged_views": 1,
       "likes": 0,
@@ -8868,7 +8754,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Reacts To This INSANE Standoff Scene",
       "published_at": "2026-08-24T17:00:38Z",
-      "age_hours": 649.3,
+      "age_hours": 650.5,
       "views": 13,
       "engaged_views": 6,
       "likes": 0,
@@ -8907,7 +8793,7 @@
       "scene_changes_before_5s": null,
       "title": "Ludwig Grinds 100 Hours Just To Gain Two Elo",
       "published_at": "2026-08-24T18:30:36Z",
-      "age_hours": 647.8,
+      "age_hours": 649.0,
       "views": 10,
       "engaged_views": 3,
       "likes": 0,
@@ -8946,7 +8832,7 @@
       "scene_changes_before_5s": null,
       "title": "Sypherpk 'Me Rolling Out Of Bed' Bit Has Chat Losing It",
       "published_at": "2026-08-25T20:00:01Z",
-      "age_hours": 622.3,
+      "age_hours": 623.5,
       "views": 11,
       "engaged_views": 4,
       "likes": 0,
@@ -8985,7 +8871,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy Sets A Rule For wrap \u2014 He Breaks It Instantly",
       "published_at": "2026-08-26T00:30:36Z",
-      "age_hours": 617.8,
+      "age_hours": 619.0,
       "views": 15,
       "engaged_views": 9,
       "likes": 0,
@@ -9024,7 +8910,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Reacts To A Moment That Syncs Up Perfectly",
       "published_at": "2026-09-04T18:30:35Z",
-      "age_hours": 383.8,
+      "age_hours": 385.0,
       "views": 8,
       "engaged_views": 1,
       "likes": 0,
@@ -9063,14 +8949,20 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Gets Ran Over Then Snaps Over A NOSE Joke",
       "published_at": "2026-09-16T23:00:06Z",
-      "age_hours": 91.3,
+      "age_hours": 92.5,
       "views": 2,
-      "engaged_views": 2,
+      "engaged_views": 1,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.02
+      "views_per_hour": 0.02,
+      "average_view_percentage": 11.0,
+      "average_view_duration_s": 2.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "-Js6FmmA-g0",
@@ -9096,7 +8988,7 @@
       "scene_changes_before_5s": null,
       "title": "Forsen Picture Gets Rated An A",
       "published_at": "2026-08-23T21:30:20Z",
-      "age_hours": 668.8,
+      "age_hours": 670.0,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -9135,7 +9027,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Confession Has Chat Losing It",
       "published_at": "2026-08-25T21:30:36Z",
-      "age_hours": 620.8,
+      "age_hours": 622.0,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -9174,7 +9066,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Can't Believe This Knockout Just Happened",
       "published_at": "2026-08-27T00:30:03Z",
-      "age_hours": 593.8,
+      "age_hours": 595.0,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -9213,7 +9105,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Broke The #2 All-Time Sub Record And Got The Sweetest Surprise",
       "published_at": "2026-08-29T02:00:12Z",
-      "age_hours": 544.3,
+      "age_hours": 545.5,
       "views": 4,
       "engaged_views": 3,
       "likes": 0,
@@ -9252,7 +9144,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Randomly Shows Everyone A Buffalo On Stream",
       "published_at": "2026-09-04T00:30:34Z",
-      "age_hours": 401.8,
+      "age_hours": 403.0,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -9291,7 +9183,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Bet Green By Accident And Walked Away With $8,000",
       "published_at": "2026-09-04T17:00:37Z",
-      "age_hours": 385.3,
+      "age_hours": 386.5,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9330,7 +9222,7 @@
       "scene_changes_before_5s": null,
       "title": "The Lirik Clip Everyone's Talking About",
       "published_at": "2026-09-05T00:30:05Z",
-      "age_hours": 377.8,
+      "age_hours": 379.0,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9369,7 +9261,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Goes Off After Controller Player Gets Banned",
       "published_at": "2026-09-05T23:00:13Z",
-      "age_hours": 355.3,
+      "age_hours": 356.5,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -9408,7 +9300,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Gets Called Out For Having Three Wives In Chat",
       "published_at": "2026-09-06T18:30:21Z",
-      "age_hours": 335.8,
+      "age_hours": 337.0,
       "views": 5,
       "engaged_views": 1,
       "likes": 0,
@@ -9447,7 +9339,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Can't Believe He Broke 1.0 In Seconds",
       "published_at": "2026-09-07T00:30:13Z",
-      "age_hours": 329.8,
+      "age_hours": 331.0,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9486,7 +9378,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Calls Out Hasan's Fans And It Gets Brutal",
       "published_at": "2026-09-08T17:00:39Z",
-      "age_hours": 289.3,
+      "age_hours": 290.5,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9525,7 +9417,7 @@
       "scene_changes_before_5s": null,
       "title": "Lirik Can't Believe What Just Showed Up In This Game",
       "published_at": "2026-09-08T23:00:00Z",
-      "age_hours": 283.3,
+      "age_hours": 284.5,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -9564,7 +9456,7 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Gets Promised His Coin Will Pump Beyond The Multiverse",
       "published_at": "2026-09-10T17:00:06Z",
-      "age_hours": 241.3,
+      "age_hours": 242.5,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -9603,7 +9495,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Completely Loses It Over A Locked Door",
       "published_at": "2026-09-10T18:30:13Z",
-      "age_hours": 239.8,
+      "age_hours": 241.0,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -9642,14 +9534,20 @@
       "scene_changes_before_5s": null,
       "title": "Caseoh Finds The Most DISGUSTING Thing He's Ever Seen",
       "published_at": "2026-09-17T00:30:16Z",
-      "age_hours": 89.8,
+      "age_hours": 91.0,
       "views": 1,
-      "engaged_views": 1,
+      "engaged_views": 0,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "jxhvBPLXPws",
@@ -9675,14 +9573,20 @@
       "scene_changes_before_5s": null,
       "title": "Clix Slips Up And Says Way Too Much On A Work Call",
       "published_at": "2026-09-17T02:00:25Z",
-      "age_hours": 88.3,
+      "age_hours": 89.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 96.8,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "KkJDBqcP82s",
@@ -9708,14 +9612,20 @@
       "scene_changes_before_5s": null,
       "title": "Buddha Casino Security Shuts Down Clowns Trying To Shoot The Place Up",
       "published_at": "2026-09-17T17:00:31Z",
-      "age_hours": 73.3,
+      "age_hours": 74.5,
       "views": 1,
-      "engaged_views": 1,
+      "engaged_views": 0,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.01
+      "views_per_hour": 0.01,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
     },
     {
       "video_id": "ErJPD3s3ybg",
@@ -9741,7 +9651,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Can't Believe The Eye Gap Of Doom",
       "published_at": "2026-08-21T20:00:21Z",
-      "age_hours": 718.3,
+      "age_hours": 719.5,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9780,7 +9690,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Accidentally Kisses Chat And Instantly Regrets It",
       "published_at": "2026-08-22T00:30:34Z",
-      "age_hours": 713.8,
+      "age_hours": 715.0,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -9819,7 +9729,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Has A Close Call And Loses It",
       "published_at": "2026-08-22T20:00:12Z",
-      "age_hours": 694.3,
+      "age_hours": 695.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9852,7 +9762,7 @@
       "scene_changes_before_5s": null,
       "title": "Cinna Can't Believe What Sara Just Did",
       "published_at": "2026-08-22T21:30:17Z",
-      "age_hours": 692.8,
+      "age_hours": 694.0,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9891,7 +9801,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Gets Called Out For Wearing A Fake Chain",
       "published_at": "2026-08-22T23:00:25Z",
-      "age_hours": 691.3,
+      "age_hours": 692.5,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -9930,7 +9840,7 @@
       "scene_changes_before_5s": null,
       "title": "Adinross: Adin Ross Loses It When This Pro Gets Folded AGAIN",
       "published_at": "2026-08-23T18:30:13Z",
-      "age_hours": 671.8,
+      "age_hours": 673.0,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -9969,7 +9879,7 @@
       "scene_changes_before_5s": null,
       "title": "Rayasianboy Loses It Then Cancels The Whole Meetup",
       "published_at": "2026-08-24T23:00:07Z",
-      "age_hours": 643.3,
+      "age_hours": 644.5,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10008,7 +9918,7 @@
       "scene_changes_before_5s": null,
       "title": "Deshaefrost Reveals Her Wild Backup Plan If Streaming Fails \ud83d\ude33",
       "published_at": "2026-08-26T21:30:09Z",
-      "age_hours": 596.8,
+      "age_hours": 598.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10041,7 +9951,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Loses It When The GTA 6 Reveal Crashes On Him",
       "published_at": "2026-08-28T23:00:18Z",
-      "age_hours": 547.3,
+      "age_hours": 548.5,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10080,7 +9990,7 @@
       "scene_changes_before_5s": null,
       "title": "Stableronaldo Randomly Confesses His Love For Poppy",
       "published_at": "2026-08-29T00:30:29Z",
-      "age_hours": 545.8,
+      "age_hours": 547.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10113,7 +10023,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Can't Believe What Emily Just Did",
       "published_at": "2026-08-29T05:00:05Z",
-      "age_hours": 541.3,
+      "age_hours": 542.5,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10152,7 +10062,7 @@
       "scene_changes_before_5s": null,
       "title": "Jynxzi Jokes He's Learning Spanish From This Game",
       "published_at": "2026-09-02T17:00:21Z",
-      "age_hours": 433.3,
+      "age_hours": 434.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10185,7 +10095,7 @@
       "scene_changes_before_5s": null,
       "title": "Junko Cracks Stableronaldo Up With This WILD Line",
       "published_at": "2026-09-02T21:30:18Z",
-      "age_hours": 428.8,
+      "age_hours": 430.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10218,7 +10128,7 @@
       "scene_changes_before_5s": null,
       "title": "Jinnytty Says She's A Strong Independent Woman... Then This Happens \ud83d\ude33",
       "published_at": "2026-09-03T20:00:07Z",
-      "age_hours": 406.3,
+      "age_hours": 407.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10257,7 +10167,7 @@
       "scene_changes_before_5s": null,
       "title": "Kaicenat: Kai Cenat Reacts With A Wild 'GYAAAT' Out Of Nowhere",
       "published_at": "2026-09-04T20:00:19Z",
-      "age_hours": 382.3,
+      "age_hours": 383.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10296,7 +10206,7 @@
       "scene_changes_before_5s": null,
       "title": "you sleep you drown",
       "published_at": "2026-09-04T23:00:20Z",
-      "age_hours": 379.3,
+      "age_hours": 380.5,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10335,7 +10245,7 @@
       "scene_changes_before_5s": null,
       "title": "Lacy EXPOSES Ron For What He Did While She Was Asleep",
       "published_at": "2026-09-06T21:30:03Z",
-      "age_hours": 332.8,
+      "age_hours": 334.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10368,7 +10278,7 @@
       "scene_changes_before_5s": null,
       "title": "Ohnepixel Reacts And The Crowd Goes Wild",
       "published_at": "2026-09-06T23:00:21Z",
-      "age_hours": 331.3,
+      "age_hours": 332.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10407,7 +10317,7 @@
       "scene_changes_before_5s": null,
       "title": "THAT'S NOT MICHAEL THAT'S A CAR",
       "published_at": "2026-09-09T18:30:12Z",
-      "age_hours": 263.8,
+      "age_hours": 265.0,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10446,7 +10356,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Gets Pitched A New Nickname And Instantly Shuts It Down",
       "published_at": "2026-09-10T21:30:29Z",
-      "age_hours": 236.8,
+      "age_hours": 238.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10479,7 +10389,7 @@
       "scene_changes_before_5s": null,
       "title": "Jasontheween Finds A Dead Rat In The Hot Tub And Loses It",
       "published_at": "2026-09-11T23:00:28Z",
-      "age_hours": 211.3,
+      "age_hours": 212.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -10518,7 +10428,7 @@
       "scene_changes_before_5s": null,
       "title": "Xqc Reacts As A Random Guy Strips Down Mid-Conversation",
       "published_at": "2026-09-13T18:30:28Z",
-      "age_hours": 167.8,
+      "age_hours": 169.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10536,44 +10446,44 @@
   ],
   "pending_videos": [],
   "summary": {
-    "total_videos": 106,
-    "total_views": 4087,
-    "avg_views_per_video": 38.6,
+    "total_videos": 105,
+    "total_views": 4047,
+    "avg_views_per_video": 38.5,
     "median_views_per_hour": 0.03,
     "top_5_by_vph": [
       {
         "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-        "views_per_hour": 19.58,
+        "views_per_hour": 19.25,
         "views": 1406,
-        "age_hours": 71.8,
+        "age_hours": 73.0,
         "url": "https://youtube.com/shorts/CQviGuEdsYw"
       },
       {
         "title": "Chat Could Not Handle This Caseoh Moment",
-        "views_per_hour": 5.28,
+        "views_per_hour": 4.94,
         "views": 94,
-        "age_hours": 17.8,
+        "age_hours": 19.0,
         "url": "https://youtube.com/shorts/0Wj67T5tMqU"
       },
       {
-        "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-        "views_per_hour": 2.51,
-        "views": 233,
-        "age_hours": 92.8,
-        "url": "https://youtube.com/shorts/IMA_S8p7kLM"
+        "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
+        "views_per_hour": 2.63,
+        "views": 62,
+        "age_hours": 23.5,
+        "url": "https://youtube.com/shorts/n-JY_6InrgA"
       },
       {
-        "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
-        "views_per_hour": 2.33,
-        "views": 52,
-        "age_hours": 22.3,
-        "url": "https://youtube.com/shorts/n-JY_6InrgA"
+        "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
+        "views_per_hour": 2.48,
+        "views": 233,
+        "age_hours": 94.0,
+        "url": "https://youtube.com/shorts/IMA_S8p7kLM"
       },
       {
         "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
         "views_per_hour": 0.93,
         "views": 315,
-        "age_hours": 337.3,
+        "age_hours": 338.5,
         "url": "https://youtube.com/shorts/iW3Y3MTFqog"
       }
     ],
@@ -10582,46 +10492,46 @@
         "title": "Xqc Reacts As A Random Guy Strips Down Mid-Conversation",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 167.8,
+        "age_hours": 169.0,
         "url": "https://youtube.com/shorts/DNOybqKRazo"
       },
       {
         "title": "Jasontheween Finds A Dead Rat In The Hot Tub And Loses It",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 211.3,
+        "age_hours": 212.5,
         "url": "https://youtube.com/shorts/ZNHI3hYzfXk"
       },
       {
         "title": "Xqc Gets Pitched A New Nickname And Instantly Shuts It Down",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 236.8,
+        "age_hours": 238.0,
         "url": "https://youtube.com/shorts/d3rceanKqQI"
       },
       {
         "title": "THAT'S NOT MICHAEL THAT'S A CAR",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 263.8,
+        "age_hours": 265.0,
         "url": "https://youtube.com/shorts/apv_JyJO7f8"
       },
       {
         "title": "Ohnepixel Reacts And The Crowd Goes Wild",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 331.3,
+        "age_hours": 332.5,
         "url": "https://youtube.com/shorts/Zk2nFOTN26M"
       }
     ],
     "opening": {
-      "median_early_retention": 0.776,
+      "median_early_retention": 0.773,
       "videos_with_curve": 13,
-      "worst": 0.672,
+      "worst": 0.653,
       "best": 0.96
     },
-    "videos_with_retention": 15,
-    "avg_view_percentage": 87.1,
+    "videos_with_retention": 14,
+    "avg_view_percentage": 85.6,
     "top_5_by_retention": [
       {
         "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
@@ -10631,20 +10541,6 @@
         "url": "https://youtube.com/shorts/iW3Y3MTFqog"
       },
       {
-        "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22",
-        "average_view_percentage": 104.9,
-        "average_view_duration_s": 11.0,
-        "views": 51,
-        "url": "https://youtube.com/shorts/h2uvq_jKBZg"
-      },
-      {
-        "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-        "average_view_percentage": 103.8,
-        "average_view_duration_s": 16.0,
-        "views": 1406,
-        "url": "https://youtube.com/shorts/CQviGuEdsYw"
-      },
-      {
         "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
         "average_view_percentage": 103.2,
         "average_view_duration_s": 13.0,
@@ -10652,8 +10548,22 @@
         "url": "https://youtube.com/shorts/QPu2OSZUqIo"
       },
       {
+        "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
+        "average_view_percentage": 102.1,
+        "average_view_duration_s": 16.0,
+        "views": 1406,
+        "url": "https://youtube.com/shorts/CQviGuEdsYw"
+      },
+      {
+        "title": "Nickmercs Can't Believe How BAD This Guy Was \ud83d\udc80",
+        "average_view_percentage": 97.6,
+        "average_view_duration_s": 15.0,
+        "views": 79,
+        "url": "https://youtube.com/shorts/yQS9_UowYk8"
+      },
+      {
         "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna",
-        "average_view_percentage": 98.3,
+        "average_view_percentage": 96.4,
         "average_view_duration_s": 12.0,
         "views": 81,
         "url": "https://youtube.com/shorts/BUBzXxA8zDE"
@@ -10682,18 +10592,18 @@
         "url": "https://youtube.com/shorts/dTNSBHCCRYY"
       },
       {
-        "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-        "average_view_percentage": 61.7,
-        "average_view_duration_s": 18.0,
-        "views": 233,
-        "url": "https://youtube.com/shorts/IMA_S8p7kLM"
-      },
-      {
         "title": "Sodapoppin Can't Stop Laughing At This Shirt Design",
         "average_view_percentage": 62.0,
         "average_view_duration_s": 9.0,
         "views": 68,
         "url": "https://youtube.com/shorts/LE6wci9PvD8"
+      },
+      {
+        "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
+        "average_view_percentage": 63.3,
+        "average_view_duration_s": 18.0,
+        "views": 233,
+        "url": "https://youtube.com/shorts/IMA_S8p7kLM"
       }
     ],
     "ab_experiment": {
@@ -10701,8 +10611,8 @@
         "n": 0
       },
       "clip": {
-        "n": 100,
-        "n_mature_24h": 97,
+        "n": 99,
+        "n_mature_24h": 96,
         "median_vph": 0.03,
         "avg_views": 40.5,
         "enough_data": true
@@ -10727,11 +10637,11 @@
     "pending_scheduled": 0
   },
   "traffic_sources": {
-    "YT_SEARCH": 3147,
-    "SHORTS": 213,
-    "YT_OTHER_PAGE": 81,
-    "SUBSCRIBER": 66,
-    "YT_CHANNEL": 18,
+    "YT_SEARCH": 4016,
+    "SHORTS": 285,
+    "YT_OTHER_PAGE": 99,
+    "SUBSCRIBER": 70,
+    "YT_CHANNEL": 39,
     "EXT_URL": 8,
     "PLAYLIST": 4,
     "NO_LINK_OTHER": 3,
@@ -10740,7 +10650,7 @@
   "search_terms": [
     {
       "term": "jynxzi",
-      "views": 189
+      "views": 476
     },
     {
       "term": "caternado",
@@ -10752,7 +10662,7 @@
     },
     {
       "term": "nopixel",
-      "views": 42
+      "views": 43
     },
     {
       "term": "jasontheween live stream no ads",
@@ -10779,6 +10689,10 @@
       "views": 11
     },
     {
+      "term": "jynxzi nopixel",
+      "views": 10
+    },
+    {
       "term": "lirik",
       "views": 10
     },
@@ -10792,10 +10706,6 @@
     },
     {
       "term": "bad bitch boat",
-      "views": 8
-    },
-    {
-      "term": "jynxzi nopixel",
       "views": 8
     },
     {
