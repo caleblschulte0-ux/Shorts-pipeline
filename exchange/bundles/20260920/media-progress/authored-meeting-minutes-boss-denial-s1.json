@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260920",
+  "bundle": {
+    "identity": "takeover-60c757118657b3159e23d459bd7e20982415e81a",
+    "path": "exchange/bundles/20260920/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-20T12:19:18.754Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-meeting-minutes-boss-denial-s1",
+  "safe_request_id": "authored-meeting-minutes-boss-denial-s1",
+  "prompt_sha256": "bd3f1c025fad1de6a0d2906db14b8c264053b9441b1452cb6eb99c7fe6578939",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: professional written meeting recap. Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Yi_d2Perc1x-cJI_zjoP76iQWy_qw0Xx",
+    "filename": "20260920__authored-meeting-minutes-boss-denial-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Yi_d2Perc1x-cJI_zjoP76iQWy_qw0Xx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e944cbae310c4ad0dc541311b1a5d1332e40ab3ef66be21afe9a548fe86c8483",
+    "bytes": 1721920,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "meeting-minutes-boss-denial",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
