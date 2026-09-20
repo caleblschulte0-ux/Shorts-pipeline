@@ -1,0 +1,624 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260920",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "no_bundle_takeover",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "60c757118657b3159e23d459bd7e20982415e81a",
+    "production_date": "20260920",
+    "bundle_sha256": null
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-weight-loss-drugs-left-surgery",
+      "title": "Weight-Loss Drugs Left Surgery Behind",
+      "hook": "Medicine outran the operating room.",
+      "y_label": "Americans starting each treatment per year (thousands)",
+      "duration": 13,
+      "source": "GLP-1 weight-loss drug patient counts: Gallup, RAND Corporation and Forbes Health estimates of Americans on GLP-1 therapy for obesity/weight loss, 2019-2025. Bariatric surgery: American Society for Metabolic and Bariatric Surgery annual U.S. procedure estimates. Approximate.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "GLP-1 weight-loss drugs",
+          "color": "#2E7D32",
+          "values": [
+            290,
+            450,
+            900,
+            2000,
+            3800,
+            6000,
+            10000
+          ]
+        },
+        {
+          "name": "Bariatric surgery",
+          "color": "#8B5E3C",
+          "values": [
+            256,
+            198,
+            262,
+            280,
+            273,
+            198,
+            175
+          ]
+        }
+      ],
+      "hashtags": [
+        "ozempic",
+        "glp1",
+        "weightloss",
+        "bariatricsurgery",
+        "wegovy",
+        "obesity",
+        "health",
+        "medicine",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260920"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-browser-beat-department-stores",
+      "title": "The Browser Beat The Department Store",
+      "hook": "The mall never recovered.",
+      "y_label": "U.S. retail sales per year (billion dollars)",
+      "duration": 13,
+      "source": "U.S. Census Bureau retail trade estimates: non-store (mostly online) retail sales vs. department store sales, annual totals, 2000-2024. Approximate.",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2013,
+        2015,
+        2019,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Online / non-store retail",
+          "color": "#1E88E5",
+          "values": [
+            27,
+            86,
+            169,
+            231,
+            340,
+            598,
+            870,
+            1193
+          ]
+        },
+        {
+          "name": "Department stores",
+          "color": "#B71C1C",
+          "values": [
+            140,
+            128,
+            120,
+            110,
+            100,
+            85,
+            52,
+            39.6
+          ]
+        }
+      ],
+      "hashtags": [
+        "ecommerce",
+        "onlineshopping",
+        "departmentstores",
+        "retail",
+        "mallcore",
+        "amazon",
+        "economy",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260920"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-america-replaced-cars-with-trucks",
+      "title": "America Replaced Cars With Trucks",
+      "hook": "The sedan lost the driveway.",
+      "y_label": "Share of new U.S. vehicle sales (percent)",
+      "duration": 13,
+      "source": "WardsAuto / Motor Intelligence U.S. light-vehicle sales by body style: passenger cars vs. light trucks (SUVs, crossovers, pickups, vans), share of new sales, 1990-2024. Approximate.",
+      "years": [
+        1990,
+        1998,
+        2004,
+        2009,
+        2013,
+        2018,
+        2024
+      ],
+      "series": [
+        {
+          "name": "SUVs & trucks",
+          "color": "#616161",
+          "values": [
+            30,
+            45,
+            55,
+            48,
+            52.1,
+            67,
+            80
+          ]
+        },
+        {
+          "name": "Sedans & cars",
+          "color": "#C62828",
+          "values": [
+            70,
+            55,
+            45,
+            52,
+            47.9,
+            33,
+            20
+          ]
+        }
+      ],
+      "hashtags": [
+        "suv",
+        "trucks",
+        "sedan",
+        "cars",
+        "automotive",
+        "carsales",
+        "wardsauto",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260920"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-internet-ate-newspaper-ads",
+      "title": "The Internet Ate The Newspaper Ad",
+      "hook": "Print never caught the feed.",
+      "y_label": "U.S. advertising revenue per year (billion dollars)",
+      "duration": 13,
+      "source": "Newspaper advertising revenue: Pew Research Center State of the News Media. Digital/internet advertising revenue: IAB/PwC Internet Advertising Revenue Report, U.S. totals. Approximate.",
+      "years": [
+        2000,
+        2005,
+        2008,
+        2010,
+        2013,
+        2016,
+        2019,
+        2022
+      ],
+      "series": [
+        {
+          "name": "Newspaper ads",
+          "color": "#5D4037",
+          "values": [
+            46,
+            49.4,
+            34.7,
+            22.8,
+            17.3,
+            14.3,
+            13,
+            9.8
+          ]
+        },
+        {
+          "name": "Digital ads",
+          "color": "#0288D1",
+          "values": [
+            8.2,
+            12.5,
+            23.4,
+            26,
+            42.8,
+            72.5,
+            129.3,
+            209.7
+          ]
+        }
+      ],
+      "hashtags": [
+        "digitalads",
+        "advertising",
+        "newspapers",
+        "media",
+        "journalism",
+        "adrevenue",
+        "internet",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260920"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "meeting-minutes-boss-denial",
+      "title": "My Boss Denied Every Instruction. So I Kept Every Receipt.",
+      "hashtags": [
+        "workplace",
+        "maliciouscompliance",
+        "boss",
+        "hr",
+        "office",
+        "receipts",
+        "storytime",
+        "shorts"
+      ],
+      "script": "My boss denied everything. He gave verbal instructions in meetings, then blamed me when the result matched exactly what he asked for. So I started to send a written recap after every conversation: task, deadline, and his approval. He rejected every one with “too much email,” but never corrected a detail. Three months later, the quarterly audit arrived and found a project he claimed I had changed without permission. He called me into a conference room with HR and began explaining my “pattern.” I opened the entire paper trail. Every recap showed his instructions, and every message showed him reading it without objection. HR asked whether he had any written correction. He had none. The project stayed with me, the warning disappeared, and his new performance plan required all changes in writing. Apparently email was only excessive until it became evidence.",
+      "shots": [
+        {
+          "phrase": "gave verbal instructions in meetings",
+          "query": "manager speaking in office meeting",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1SgtIZcL5U7FWWMiotV-JyBi2tQsZF34N",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1SgtIZcL5U7FWWMiotV-JyBi2tQsZF34N",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "ef0dc52c517e583f56f3b3f74019f5637a3fadf61564341d64d7ce9a2a045936",
+              "bytes": 1736663,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "send a written recap",
+          "query": "professional written meeting recap",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1Yi_d2Perc1x-cJI_zjoP76iQWy_qw0Xx",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1Yi_d2Perc1x-cJI_zjoP76iQWy_qw0Xx",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "e944cbae310c4ad0dc541311b1a5d1332e40ab3ef66be21afe9a548fe86c8483",
+              "bytes": 1721920,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "He rejected every one",
+          "query": "stack of rejected office documents",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1dohuDzmIgBkSuUFJ08sAkmfBkbufgE_J",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1dohuDzmIgBkSuUFJ08sAkmfBkbufgE_J",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "53e676883f96f396e7a1df7acb65798b857bab2e3e3e216b70a9b4f2a78bce7e",
+              "bytes": 1883012,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "the quarterly audit arrived",
+          "query": "auditors at conference table",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "18zZtc5WlKQsJF8hKI0cgyUVACceMbqFW",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=18zZtc5WlKQsJF8hKI0cgyUVACceMbqFW",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "f117b4077c33914a2bd05f1478940fb65b9cb5809e79169c260efaa3e3bc1db2",
+              "bytes": 1921859,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "the entire paper trail",
+          "query": "organized paper trail documents",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "16gBSjz1ZSTgN1e192b21K8sKoUS3-lSu",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=16gBSjz1ZSTgN1e192b21K8sKoUS3-lSu",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "911f15896b3a36c10c93e0ada2ae7927ec7a324aa7c2bf558a8109b0dd2fc9d5",
+              "bytes": 1888752,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "all changes in writing",
+          "query": "signed workplace policy memo",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1uVA7qYwR5jJrDQ_3ebmpn8PZYn4yl3H0",
+              "filename": "20260920__authored-meeting-minutes-boss-denial-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1uVA7qYwR5jJrDQ_3ebmpn8PZYn4yl3H0",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "5e095d99c75fadf2533a36d79156e4bf4a8663c1226153046c9d88f73c6e8cff",
+              "bytes": 1932541,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "My boss denied everything",
+          "text": "DENIED EVERYTHING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "too much email",
+          "text": "TOO MUCH EMAIL",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "the entire paper trail",
+          "text": "THE RECEIPTS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "all changes in writing",
+          "text": "NOW IN WRITING",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "tense",
+      "_authored_by": "chatgpt-takeover-20260920"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "wrong-hotel-reservation-name",
+      "title": "She Demanded Someone Else's Suite. The Address Ended It.",
+      "hashtags": [
+        "hotel",
+        "entitledcustomer",
+        "customerservice",
+        "frontdesk",
+        "karma",
+        "receipts",
+        "storytime",
+        "shorts"
+      ],
+      "script": "She booked the wrong hotel. A woman stormed to my desk demanding a suite from a reservation under her sister's name, at another property across town. I asked for photo ID that matched the booking. She had none, then called me incompetent loudly enough to empty the lobby chairs. She insisted I cancel someone else's reservation and give her the room because she was “already here.” My manager checked the security camera, heard the entire exchange, and asked her to show the confirmation email. The address at the top was not ours. Then the actual sister called, wondering why her reservation had been canceled online. The guest had done it herself while arguing with me. With the sister's room gone and our hotel nearly full, the woman finally booked our last standard room and paid the walk-in rate—more than the suite she had tried to take. She read the address before signing this time.",
+      "shots": [
+        {
+          "phrase": "a reservation under her sister's name",
+          "query": "hotel reservation paperwork",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1oSy6NRkZx9QXOSMgLsesdHhHt38FjUQH",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1oSy6NRkZx9QXOSMgLsesdHhHt38FjUQH",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "302549ee85ce20d55ed6e1cbec8a5bb6e36f9c484e514a466df784a75e03a316",
+              "bytes": 1861197,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "photo ID that matched the booking",
+          "query": "hotel desk identification check",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1614-7uHrWQRCm9l-m4VuuaZIgq1WysTx",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1614-7uHrWQRCm9l-m4VuuaZIgq1WysTx",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "96061f4208cd249c307dcaff2ba919b639c9df7a76c156ade443fe6b22c910c5",
+              "bytes": 1868363,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "called me incompetent",
+          "query": "angry hotel guest at front desk",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1oQzvXmaJbPCYYPZuT4l6uk30C0jXVOAG",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1oQzvXmaJbPCYYPZuT4l6uk30C0jXVOAG",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6d4feea95c3e53322a49985e8244784a419d08bc2fe1e4053b19fe8a3091127f",
+              "bytes": 2169013,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "My manager checked the security camera",
+          "query": "hotel manager reviewing security camera",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1BSe3zaj2ueFC9q5ofx-S73S5rbGpWhuk",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1BSe3zaj2ueFC9q5ofx-S73S5rbGpWhuk",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "d4d8776d4d6ab483dc4ddb04eaabd981b5ee1dbf0517fcb3372740e47a1d1bf2",
+              "bytes": 1814982,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "the actual sister called",
+          "query": "phone call in hotel lobby",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1A_oDDTKgkW7JSTe7Lhxc6rhEQjaXxTWD",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1A_oDDTKgkW7JSTe7Lhxc6rhEQjaXxTWD",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "4b8192d4307b3e572bcbef30065f0390af1a68115098460d4a64594da06e8f93",
+              "bytes": 2045662,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "paid the walk-in rate",
+          "query": "hotel guest paying at front desk",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1tCjE4U4YtVDemmxtTKGCBv6aLkXB7MSg",
+              "filename": "20260920__authored-wrong-hotel-reservation-name-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1tCjE4U4YtVDemmxtTKGCBv6aLkXB7MSg",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "298e3335be6871ee58938863cd8b19a9e03b5af84adbd92ad39872597382469d",
+              "bytes": 1987001,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "wrong hotel",
+          "text": "WRONG HOTEL",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "called me incompetent",
+          "text": "BLAMED THE DESK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The address at the top was not ours",
+          "text": "READ THE ADDRESS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "paid the walk-in rate",
+          "text": "PAID MORE",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "deadpan",
+      "_authored_by": "chatgpt-takeover-20260920"
+    }
+  ],
+  "authored_explainer": [],
+  "notes": [
+    "No READY or bundle.json appeared during the required 45-minute wait. Full registry takeover authored 4 graph_race + 2 reddit_story; every Reddit shot has verified Drive media.",
+    "All three deterministic Explainer stories are already present in the posted log, so there was no unposted deterministic Explainer work to rewrite.",
+    "Graph-race values use previously validated repository datasets with their original source attributions; titles, hooks, and slugs were newly authored and checked against the recent-title window."
+  ],
+  "completion": {
+    "target_mix": {
+      "graph_race": 4,
+      "reddit_story": 2
+    },
+    "authored_mix": {
+      "graph_race": 4,
+      "reddit_story": 2
+    },
+    "authored_shots": 12,
+    "verified_shots": 12,
+    "closed": true
+  }
+}
