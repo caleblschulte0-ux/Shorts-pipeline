@@ -1,3 +1,5 @@
 {
-  "date": "20260920"
+  "date": "20260920",
+  "retry": 1,
+  "retry_reason": "Phase B refused the no-bundle response because its live rescue contract cannot share a stable source_commit with a two-commit response/DONE handoff; response declaration repaired and revalidated."
 }
