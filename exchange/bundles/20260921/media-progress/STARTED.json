@@ -1,0 +1,9 @@
+{
+  "schema": "chatgpt-media-start/v1",
+  "date": "20260921",
+  "owner": "chatgpt",
+  "status": "waiting_for_bundle",
+  "started_at": "2026-09-21T11:16:48.108Z",
+  "source_commit": "789e7d3ebe9eca5f0c489a441c0a50a0e31da63d",
+  "note": "Bundle not present at initial check; waiting up to 45 minutes for READY + bundle.json before no-bundle takeover."
+}
