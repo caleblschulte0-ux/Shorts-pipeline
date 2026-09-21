@@ -1,4 +1,226 @@
-{
-  "skipped": true,
-  "recent_posts": 4
-}
+[
+  {
+    "topic": "Debit Cards Replaced The Checkbook",
+    "title": "Debit Cards Replaced The Checkbook",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 87.4,
+    "package_path": "state/trending_packages/20260921/01_graph-debit-cards-replaced-checks.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-195934_debit_cards_replaced_the_checkbook.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Smartphones Passed PCs In Two Years",
+    "title": "Smartphones Passed PCs In Two Years",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 83.8,
+    "package_path": "state/trending_packages/20260921/02_graph-smartphones-passed-pcs.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-200101_smartphones_passed_pcs_in_two_years.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "meta stock",
+    "angle": null,
+    "publish_at": "2026-09-21T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Every number in this video is a caption laid over unrelated stock footage \u2014 trash bags, a school of fish, a woman on a phone \u2014 so nothing is demonstrated and the topic match fails outright.",
+    "elapsed_seconds": 476.0,
+    "title": "My Stepdad Drained My College Fund For Meta Stock",
+    "package_path": "state/trending_packages/20260921-200500_auto_meta_stock.json",
+    "video_path": "output/daily_20260921-200500_meta_stock.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 41.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Every number in this video is a caption laid over unrelated stock footage \u2014 trash bags, a school of fish, a woman on a phone \u2014 so nothing is demonstrated and the topic match fails outright.",
+      "score": 26
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "baseball",
+    "angle": null,
+    "publish_at": "2026-09-22T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A travel-baseball story illustrated with a shotgun, a military police radar gun, an armed man by a truck and a hockey arena \u2014 the media is not about this story at all.",
+    "elapsed_seconds": 798.8,
+    "title": "The Travel Baseball Star Was Lying About His Age",
+    "package_path": "state/trending_packages/20260921-201300_auto_baseball.json",
+    "video_path": "output/daily_20260921-201300_baseball.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.067,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A travel-baseball story illustrated with a shotgun, a military police radar gun, an armed man by a truck and a hockey arena \u2014 the media is not about this story at all.",
+      "score": 34
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "el nino",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Every picture above the gameplay is auto-grabbed stock that contradicts the line it sits over \u2014 an awards gala, a Paris statue twice, a war memorial \u2014 so the story is narrated against images from a different world entirely.",
+    "elapsed_seconds": 711.1,
+    "title": "My Neighbor Called Cops On Us Mid-Evacuation",
+    "package_path": "state/trending_packages/20260921-202610_auto_el_nino.json",
+    "video_path": "output/daily_20260921-202610_el_nino.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 41.167,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Every picture above the gameplay is auto-grabbed stock that contradicts the line it sits over \u2014 an awards gala, a Paris statue twice, a war memorial \u2014 so the story is narrated against images from a different world entirely.",
+      "score": 34
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "pictures",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The reveal lands in the words and nowhere else \u2014 the pictures are mismatched stock (2000s flip phones, a storefront, nine seconds of train b-roll) and the opening second is a black text card.",
+    "elapsed_seconds": 662.2,
+    "title": "His Mom Secretly Ran My Whole Wedding",
+    "package_path": "state/trending_packages/20260921-203826_auto_pictures.json",
+    "video_path": "output/daily_20260921-203826_pictures.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.9,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The reveal lands in the words and nowhere else \u2014 the pictures are mismatched stock (2000s flip phones, a storefront, nine seconds of train b-roll) and the opening second is a black text card.",
+      "score": 30
+    },
+    "blocked": true,
+    "backfill": true
+  }
+]
