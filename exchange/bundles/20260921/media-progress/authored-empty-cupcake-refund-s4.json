@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:22:01.524Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-empty-cupcake-refund-s4",
+  "safe_request_id": "authored-empty-cupcake-refund-s4",
+  "prompt_sha256": "ecd76d9556f82cae6de1799b4327d114b7fe43c59acd6c2c2b3cfffec68c765d",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: Organized chargeback evidence on a desk: signed color approval sheet, cupcake pickup photo, email printout and empty-box security still, arranged as a professional case file\nStyle/medium: cinematic overhead documentary photography, realistic paper and office textures\nComposition/framing: vertical 2:3 portrait, top-down arrangement, no readable personal details\nLighting/mood: methodical and decisive\nConstraints: no legible text, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+    "filename": "20260921__authored-empty-cupcake-refund-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bc234a674697a62707fde46be74b9c71192db45287f37869aa8d9d840e046be2",
+    "bytes": 2269390,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "empty-cupcake-refund",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
