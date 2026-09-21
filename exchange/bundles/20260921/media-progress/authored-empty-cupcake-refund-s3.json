@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:21:52.173Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-empty-cupcake-refund-s3",
+  "safe_request_id": "authored-empty-cupcake-refund-s3",
+  "prompt_sha256": "e6e721ff82fe8ea3fc4bbde2e44e2bf593376a048441c23f04fbdc24e7dd4395",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: Bakery manager and employee reviewing a smartphone pickup photo of blue cupcakes at the counter, screen image visible but no readable words\nStyle/medium: cinematic documentary photography, realistic people and hands\nComposition/framing: vertical 2:3 portrait, over-the-shoulder view centered on phone and cupcake photo\nLighting/mood: calm, evidentiary\nConstraints: no legible text, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+    "filename": "20260921__authored-empty-cupcake-refund-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c499a77f6a15a3051a8f23e52fbc3e4e9247513b3e327f107d538ac931a6d8dd",
+    "bytes": 1845787,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "empty-cupcake-refund",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
