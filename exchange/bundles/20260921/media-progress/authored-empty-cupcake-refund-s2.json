@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:21:43.054Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-empty-cupcake-refund-s2",
+  "safe_request_id": "authored-empty-cupcake-refund-s2",
+  "prompt_sha256": "e2d37cb444f3c962849a23775ff5bc58856c7272b36ea5b54e2988ece0fc82a3",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: Crumpled cupcake wrappers scattered inside an otherwise empty bakery box on a counter\nStyle/medium: detailed documentary close-up photography\nComposition/framing: vertical 2:3 portrait, close-up of wrappers and crumbs, unmistakably no cupcakes remain\nLighting/mood: dry comedic evidence photo\nConstraints: no text, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+    "filename": "20260921__authored-empty-cupcake-refund-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "46340c21116dde0fc140f49c31aa1e06f361e24e1dad5b2ca7e8f711da6993f4",
+    "bytes": 2342217,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "empty-cupcake-refund",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
