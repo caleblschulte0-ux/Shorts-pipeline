@@ -9,5 +9,5 @@
 | drama | 8 | 0.055 |
 | jumpscare | 4 | 0.005 |
 | argument | 4 | 0.025 |
-| beef | 3 | 0.03 |
+| beef | 2 | 0.02 |
 | rage | 2 | 0.005 |
