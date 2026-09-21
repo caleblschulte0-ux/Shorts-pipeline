@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260921T200756Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only stands and slides: he glides down the bar rows (hook@0.3 -> seg0:end), stands in front of the 750000 bar hiding it (seg2:start), and stands beside the column doing nothing at seg3:start/mid/end \u2014 no setup->action->payoff tied to any stat.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "broken_composition_overlapping_text",
+  "visible_evidence": "seg1:mid and seg1:end stack four unrelated layers in one frame: a headline 'it never settled' printed on top of the scene title 'Amazon deforestation by year', a constellation-like line chart whose nodes overrun that title, a pill-shaped slider widget with a red dot, a label 'anywhere between 4571 and 27772' that collides with a mascot, plus TWO copies of Data on screen at once and a burned-in caption underneath \u2014 and the claim it draws (a range between 4571 and 27772) is not the narration's claim (750,000 km2 lost since 1970, bigger than France).",
+  "root_cause": "A range/uncertainty machine was composited full-frame with its own title and axis labels over a scene that already carried a title and a mascot, and a second mascot instance was placed in the same scene; nothing measured the text extents or reserved a band for the caption, and the machine chosen does not match the segment's relationship (a total/comparison, not a spread).",
+  "repair_goal": "Rebuild seg1 as a single full-bleed depiction of the 750,000 km2 total against France \u2014 one title, one mascot, the caption band clear of all marks, no overlapping type \u2014 and drop the range slider and the constellation line entirely."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
