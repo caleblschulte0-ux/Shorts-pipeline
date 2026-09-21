@@ -11,15 +11,15 @@
     },
     "wholesome": {
       "n": 10,
-      "median_vph": 0.04
-    },
-    "drama": {
-      "n": 8,
       "median_vph": 0.06
     },
     "win": {
-      "n": 7,
-      "median_vph": 0.04
+      "n": 8,
+      "median_vph": 0.1
+    },
+    "drama": {
+      "n": 8,
+      "median_vph": 0.055
     },
     "jumpscare": {
       "n": 4,
