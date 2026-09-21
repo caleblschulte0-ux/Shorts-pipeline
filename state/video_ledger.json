@@ -4006,6 +4006,193 @@
           "detail": "closing: the last footprint is still up there"
         }
       ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "directed_at": "2026-09-21",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "inversion",
+      "hook_text": "Recycling isn't doing what you think.",
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Just Recycle It",
+      "notes": "Re-verified pass: seg3 now plastic-sluice-split (bottles physically fork into a bin vs a landfill pile at each rate) replaced the old bin-fill-duel -- a stronger tier-1 read because the SAME chute widens/narrows its recycled fork for 2019 vs 2060 instead of two separate gauges, landing the 'still mostly landfill even in the best case' punch harder.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "\"Recycling isn't doing what you think.\" over trash-mountain-rise build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "trash-mountain-rise: plastic waste on track from 353M to 1,014M tons/yr by 2060"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "share: only 9% recycled, 50% landfilled, 22% mismanaged"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "plastic-sluice-split: bottles fork 9%->17% recycled, rest piles onto landfill"
+        },
+        {
+          "t": 35,
+          "event": "payoff",
+          "detail": "closing line: The label says recyclable. The landfill says otherwise."
+        },
+        {
+          "t": 38,
+          "event": "cta",
+          "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "highest-point-illusion",
+      "directed_at": "2026-09-21",
+      "video_id": null,
+      "topic_category": "geography",
+      "hook_type": "inversion",
+      "hook_text": "Everest wins on a technicality. Two, actually.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:summit-skyline-ascent",
+        "mechanic:ocean-drains-to-reveal",
+        "viz:comparison"
+      ],
+      "ending_type": "inversion",
+      "notes": "Re-verified pass: seg2 replaced waterline-mountain-pair with ocean-drains-to-reveal -- the ocean itself recedes off the SAME mountain photo, exposing more of Mauna Kea's true 10,211m as the beat plays, with Everest's summit marked as a fixed line partway up the same rock. Stronger tier-1 read than a side-by-side pair because the subject's own exposure IS the number, not two static bars.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'Everest wins on a technicality. Two, actually.' over the summit skyline"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "ocean-drains-to-reveal: Mauna Kea's ocean floor-to-summit 10,211m exposed as the water drains"
+        },
+        {
+          "t": 19,
+          "event": "visual_swap",
+          "detail": "comparison chart: distance from Earth's center, Chimborazo 13.4km vs Everest 11.3km"
+        },
+        {
+          "t": 27,
+          "event": "payoff",
+          "detail": "closing line: 'highest' just depends on where you start counting"
+        },
+        {
+          "t": 29,
+          "event": "cta",
+          "detail": "which mountain would you call the real winner?"
+        }
+      ]
+    },
+    {
+      "slug": "gps-einstein-fix",
+      "directed_at": "2026-09-21",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "shock_stat",
+      "hook_text": "Every GPS satellite lies about the time. Deliberately.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:satellite-tick-ledger",
+        "mechanic:pin-walks-off-the-map",
+        "viz:comparison"
+      ],
+      "ending_type": "consequence",
+      "notes": "Re-verified pass: seg1 replaced orbit-clock-tug-of-war with satellite-tick-ledger -- 45 real microsecond-cells light up under the satellite, then orbital speed strikes out 7 of them, so the net +38us the rest of the video hangs off is a COUNT the viewer watches happen rather than two dueling arrows asserting it. seg2 (pin-walks-off-the-map) and seg3 (comparison chart) unchanged from prior pass.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'every GPS satellite lies about the time, deliberately' over the tick-ledger build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "satellite-tick-ledger: 45 microsecond cells fill, 7 struck out, net 38us/day counted"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "pin-walks-off-the-map: map pin drifts 10km off by end of day"
+        },
+        {
+          "t": 26,
+          "event": "payoff",
+          "detail": "closing line: Einstein's homework, running in your pocket, all day, every day"
+        },
+        {
+          "t": 28,
+          "event": "cta",
+          "detail": "did you know your phone runs on relativity?"
+        }
+      ]
+    },
+    {
+      "slug": "measles-ninety-five-rule",
+      "directed_at": "2026-09-21",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "One number decides whether measles comes back.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 4,
+      "depictions": [
+        "mechanic:outbreak-radiate-count",
+        "mechanic:forty-kids-three-gaps",
+        "viz:trend"
+      ],
+      "ending_type": "consequence",
+      "notes": "Re-verified pass: scenes unchanged since the 2026-08-16 pass, confirmed still current and matched against real CDC/WHO source data. outbreak-radiate-count's R0 swarm (measles 15 vs flu 1.3) remains the video's tier-1 beat -- infection literally radiating outward IS the R0 number. Closing line's '3 in 40' refers to the actual unimmunized share (100-92.5%=7.5%=3/40), a sharper final stat than the on-screen 1-kid coverage gap.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'one number decides whether measles comes back' over the radiating outbreak swarm"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "measles R0=15 swarm vs flu R0=1.3, barely any company"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "forty-kid grid: 92.5% covered, needs 95%, one kid short"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "trend line: 285 cases in 2024 to 2,566 in 2026"
+        },
+        {
+          "t": 29,
+          "event": "payoff",
+          "detail": "closing line: measles doesn't need many open doors, three in forty will do"
+        },
+        {
+          "t": 31,
+          "event": "cta",
+          "detail": "do you know if you got both measles shots?"
+        }
+      ]
     }
   ]
 }

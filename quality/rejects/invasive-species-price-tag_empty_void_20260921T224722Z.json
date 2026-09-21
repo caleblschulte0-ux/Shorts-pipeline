@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T224722Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid \u2014 the top two-thirds of the frame are bare gradient with nothing in them while a thin pink line hugs the bottom edge; at seg1:end an empty cyan annotation ring floats in the void at lower-right circling nothing at all.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg1:mid the entire upper two-thirds of the frame is blank gradient; the only content is a hairline pink line along the bottom with the mascot straddling it, a stray mid-frame label 'and back again', and at seg1:end a vacant cyan ellipse hanging in dead space at lower-right highlighting nothing.",
+  "root_cause": "The scene falls back to a generic line chart plotted on a low, compressed baseline instead of a relationship made of the subject, so the composition never fills the vertical frame and the annotation ring resolves to an empty region.",
+  "repair_goal": "Replace the line fallback with a growth machine that uses the full frame height \u2014 e.g. a decade-by-decade stack of invasive-species forms whose mass quadruples each step from 1970 to 2019, ending at the $423B figure \u2014 and remove or re-anchor the orphan ellipse and the 'and back again' label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
