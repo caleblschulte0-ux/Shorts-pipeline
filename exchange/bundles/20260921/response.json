@@ -1,0 +1,621 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260921",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "no_bundle_takeover",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "production_date": "20260921",
+    "bundle_sha256": null
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-debit-cards-replaced-checks",
+      "title": "Debit Cards Replaced The Checkbook",
+      "hook": "Plastic erased the signature.",
+      "y_label": "U.S. payments per year (billions)",
+      "duration": 13,
+      "source": "Federal Reserve Payments Study estimates for U.S. noncash payments: debit-card payments and checks paid, selected years 2000-2021. Approximate annual counts.",
+      "years": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012,
+        2015,
+        2018,
+        2021
+      ],
+      "series": [
+        {
+          "name": "Debit cards",
+          "color": "#1565C0",
+          "icon": "Visa",
+          "values": [
+            8.3,
+            15.6,
+            25.3,
+            37.9,
+            47,
+            59.6,
+            72.7,
+            87.8
+          ]
+        },
+        {
+          "name": "Checks",
+          "color": "#6D4C41",
+          "values": [
+            42.6,
+            36.7,
+            30.5,
+            24.5,
+            18.3,
+            17.3,
+            14.5,
+            11.2
+          ]
+        }
+      ],
+      "hashtags": [
+        "debitcard",
+        "checks",
+        "payments",
+        "banking",
+        "fintech",
+        "money",
+        "federalreserve",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260921"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-smartphones-passed-pcs",
+      "title": "Smartphones Passed PCs In Two Years",
+      "hook": "The pocket beat the desk.",
+      "y_label": "Global shipments per year (millions)",
+      "duration": 13,
+      "source": "IDC Worldwide Quarterly Mobile Phone Tracker and Personal Computing Device Tracker, annual global smartphone and PC shipments, 2010-2023. Approximate.",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2014,
+        2016,
+        2019,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Smartphones",
+          "color": "#00ACC1",
+          "icon": "Apple",
+          "values": [
+            305,
+            494,
+            725,
+            1301,
+            1473,
+            1371,
+            1355,
+            1167
+          ]
+        },
+        {
+          "name": "PCs",
+          "color": "#5E35B1",
+          "icon": "Microsoft",
+          "values": [
+            351,
+            365,
+            350,
+            309,
+            260,
+            267,
+            349,
+            260
+          ]
+        }
+      ],
+      "hashtags": [
+        "smartphone",
+        "pc",
+        "technology",
+        "iphone",
+        "android",
+        "computers",
+        "idc",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260921"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-solar-outbuilt-wind",
+      "title": "Solar Left Wind Power Behind",
+      "hook": "Sunlight won the buildout.",
+      "y_label": "New global capacity added per year (gigawatts)",
+      "duration": 13,
+      "source": "International Renewable Energy Agency Renewable Capacity Statistics and IEA renewables market reports, global annual solar PV and wind capacity additions, 2010-2023. Approximate.",
+      "years": [
+        2010,
+        2012,
+        2014,
+        2016,
+        2018,
+        2020,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Solar PV",
+          "color": "#F9A825",
+          "icon": "IRENA",
+          "values": [
+            17,
+            30,
+            40,
+            75,
+            98,
+            138,
+            239,
+            346
+          ]
+        },
+        {
+          "name": "Wind",
+          "color": "#00897B",
+          "icon": "IRENA",
+          "values": [
+            39,
+            45,
+            52,
+            55,
+            51,
+            111,
+            77,
+            116
+          ]
+        }
+      ],
+      "hashtags": [
+        "solar",
+        "windpower",
+        "renewables",
+        "energy",
+        "climate",
+        "electricity",
+        "irena",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260921"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-streaming-replaced-pay-tv",
+      "title": "Streaming Replaced Pay TV In America",
+      "hook": "The bundle lost the remote.",
+      "y_label": "U.S. subscriptions (millions)",
+      "duration": 13,
+      "source": "Motion Picture Association THEME reports and Leichtman Research Group estimates: U.S. online video subscriptions versus traditional pay-TV households, 2014-2023. Approximate.",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2020,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Streaming video",
+          "color": "#E53935",
+          "icon": "Netflix",
+          "values": [
+            40,
+            53,
+            70,
+            93,
+            125,
+            238,
+            300,
+            310
+          ]
+        },
+        {
+          "name": "Pay TV",
+          "color": "#3949AB",
+          "icon": "Comcast",
+          "values": [
+            100,
+            99,
+            97,
+            94,
+            90,
+            78,
+            66,
+            58
+          ]
+        }
+      ],
+      "hashtags": [
+        "streaming",
+        "cabletv",
+        "netflix",
+        "television",
+        "cordcutting",
+        "media",
+        "subscriptions",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260921"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "maintenance-portal-water-leak",
+      "title": "He Said The Portal Was The Only Proof. So I Used It.",
+      "hashtags": [
+        "maliciouscompliance",
+        "apartment",
+        "landlord",
+        "maintenance",
+        "receipts",
+        "karma",
+        "storytime",
+        "shorts"
+      ],
+      "script": "Our property manager announced that maintenance requests only counted through the tenant portal. No calls, no texts, no hallway conversations. Then the portal went offline while water started dripping through my bathroom ceiling. I photographed every drop, recorded three unanswered calls, and emailed him anyway. He replied that without a portal ticket, there was no official problem. Fine. When the site returned, I submitted one request containing the photos, call log, his email, and a timestamped video of the ceiling collapsing into the tub. The insurance adjuster arrived the next morning and asked why nobody responded sooner. The manager tried blaming me for waiting. I opened the ticket on my phone and showed the adjuster his written refusal. The building paid for my hotel, the bathroom, and damage downstairs. A week later, the new policy said emergencies should be reported by any available method. Apparently water can read the portal rules, but it chose not to comply.",
+      "shots": [
+        {
+          "phrase": "maintenance requests only counted through the tenant portal",
+          "query": "apartment maintenance portal on laptop",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1AZwZNKX8vXlvjl2GIlqMxQ1lBV3ECFYw",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1AZwZNKX8vXlvjl2GIlqMxQ1lBV3ECFYw",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "97f39058a3613d778db56edacb4c6b04120cac282ec0012fa7e9e88217c16a2d",
+              "bytes": 2003674,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "water started dripping through my bathroom ceiling",
+          "query": "water leaking through bathroom ceiling",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "14WWGTavOv7Kcj95IVs2EM68SuoSd_9As",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=14WWGTavOv7Kcj95IVs2EM68SuoSd_9As",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "a35f06f26f583692452064b003cb8ca130bb3497cc5681b1abcab20f39ca6ee0",
+              "bytes": 2350581,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "I photographed every drop",
+          "query": "tenant photographing ceiling water damage",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1boDJWd4rS8rkvDSukkTMF3ekWLPYg2P2",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1boDJWd4rS8rkvDSukkTMF3ekWLPYg2P2",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "91f167179161d6fae79262776619504e30fb26d312605ed915fc89f353def445",
+              "bytes": 1980087,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "the ceiling collapsing into the tub",
+          "query": "damaged bathroom ceiling above bathtub",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1SB0tnXoQfRTiFTh1e6LQUkUzJN_2CSkh",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1SB0tnXoQfRTiFTh1e6LQUkUzJN_2CSkh",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "400b2551f697034081b6d18877e8077a23edc28966d72f4cce44bd376630cd16",
+              "bytes": 2674094,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "The insurance adjuster arrived",
+          "query": "insurance adjuster inspecting apartment damage",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1qazw9GHr6cv0xnvMu3ovRABWn738tDLm",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1qazw9GHr6cv0xnvMu3ovRABWn738tDLm",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "9c86ca685de5450a8fc5cf897085af29f099dce3b73f5bc4fff4609971e0cb90",
+              "bytes": 2115626,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "showed the adjuster his written refusal",
+          "query": "phone showing written email evidence",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1a5-W4T5kQh19uKdBte7XHi_rSgueG0lr",
+              "filename": "20260921__authored-maintenance-portal-water-leak-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1a5-W4T5kQh19uKdBte7XHi_rSgueG0lr",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "31022d77515093c5c1d14687770fb7ae86a5e69f4e1826cc7d37b93e3165bb4d",
+              "bytes": 1879622,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "only counted through the tenant portal",
+          "text": "PORTAL ONLY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "there was no official problem",
+          "text": "NO OFFICIAL PROBLEM",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "his written refusal",
+          "text": "IN WRITING",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "reported by any available method",
+          "text": "POLICY CHANGED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "tense",
+      "_authored_by": "chatgpt-takeover-20260921"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "empty-cupcake-refund",
+      "title": "She Ate Every Cupcake. Then Demanded A Full Refund.",
+      "hashtags": [
+        "entitledcustomer",
+        "bakery",
+        "customerservice",
+        "refund",
+        "receipts",
+        "karma",
+        "storytime",
+        "shorts"
+      ],
+      "script": "A customer ordered thirty custom cupcakes for an office party, then returned the next morning demanding a full refund because the frosting was “too blue.” I asked where the cupcakes were. She placed an empty bakery box on the counter and said her coworkers had eaten them because she did not want food wasted. Our policy allowed refunds for defective products, but the product had to be returned. She argued that the empty wrappers proved the problem, then threatened a chargeback. My manager calmly pulled up the pickup photo showing the exact shade she approved in writing. He offered store credit for the two unopened cupcakes listed in her complaint. She admitted there were none left. The bank later requested our evidence, so we sent the signed color approval, pickup photo, empty-box security footage, and her email saying everyone ate them. The chargeback was denied. She left us a one-star review claiming we had “stolen” thirty cupcakes. Technically, her coworkers had already handled that.",
+      "shots": [
+        {
+          "phrase": "thirty custom cupcakes for an office party",
+          "query": "custom blue cupcakes in bakery box",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1V2zuSurgp-QSmj_hwm_vwytWoChYcGr0",
+              "filename": "20260921__authored-empty-cupcake-refund-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1V2zuSurgp-QSmj_hwm_vwytWoChYcGr0",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "4ec081eceab0894d96206c7ec25d734b680226255624f35da86d02bfe069e588",
+              "bytes": 2566017,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "an empty bakery box on the counter",
+          "query": "empty bakery box on shop counter",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1INWZ8FGiyLeKsN-JugXZZ2x04GWfQMWB",
+              "filename": "20260921__authored-empty-cupcake-refund-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1INWZ8FGiyLeKsN-JugXZZ2x04GWfQMWB",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "0e36baf35bcf6e8db33e11e8b866b43a044ae73564cbfc2f2f25369d3546ec9f",
+              "bytes": 2105255,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "the empty wrappers proved the problem",
+          "query": "cupcake wrappers inside empty box",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+              "filename": "20260921__authored-empty-cupcake-refund-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "46340c21116dde0fc140f49c31aa1e06f361e24e1dad5b2ca7e8f711da6993f4",
+              "bytes": 2342217,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "pickup photo showing the exact shade",
+          "query": "bakery employee reviewing cupcake pickup photo",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+              "filename": "20260921__authored-empty-cupcake-refund-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "c499a77f6a15a3051a8f23e52fbc3e4e9247513b3e327f107d538ac931a6d8dd",
+              "bytes": 1845787,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "The bank later requested our evidence",
+          "query": "chargeback evidence documents on desk",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+              "filename": "20260921__authored-empty-cupcake-refund-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "bc234a674697a62707fde46be74b9c71192db45287f37869aa8d9d840e046be2",
+              "bytes": 2269390,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "The chargeback was denied",
+          "query": "denied chargeback notice on computer",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+              "filename": "20260921__authored-empty-cupcake-refund-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6f6a1250293456308ad57d149692588e30b0a9ffc16c2f6a9ac1515337a4b1de",
+              "bytes": 1819631,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "demanding a full refund",
+          "text": "FULL REFUND",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "empty bakery box",
+          "text": "EMPTY BOX",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "approved in writing",
+          "text": "SHE APPROVED IT",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "The chargeback was denied",
+          "text": "CHARGEBACK DENIED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "deadpan",
+      "_authored_by": "chatgpt-takeover-20260921"
+    }
+  ],
+  "authored_explainer": [],
+  "notes": [
+    "No READY or bundle.json appeared during the required 45-minute wait; full registry takeover used.",
+    "Explainer review found no unposted deterministic stories requiring a rewrite."
+  ]
+}
