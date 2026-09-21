@@ -1,40 +1,83 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260920",
-  "judged_date": "20260919",
+  "date": "20260921",
+  "judged_date": "20260920",
   "alarm": {
-    "date": "20260919",
+    "date": "20260920",
     "ok": false,
     "alarms": [
       {
+        "code": "phase_a_never_ran",
+        "severity": "critical",
+        "detail": "PHASE A HAS NOT RUN FOR 20260920 \u2014 no bundle exists and the 05:00 Central deadline has passed. The 06:00 media worker is about to start with nothing to work from.",
+        "fix": "Phase A's only trigger independent of upstream authoring is one cron whose drift is measured in hours. With no bundle the 06:00 Central media worker has nothing to work from and the day renders without the exchange. Dispatch exchange_phase_a.yml for this date."
+      },
+      {
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 1/4 posted for 20260920.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 1/6 posted for 20260920.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/6 posted for 20260919.",
+        "detail": "trending: 5/6 posted for 20260920.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260919: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
+        "detail": "trending 20260920: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 5 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "no_bundle",
+        "severity": "warning",
+        "detail": "no exchange/bundles/20260920/bundle.json \u2014 Phase A never wrote one.",
+        "fix": "A Phase A that finds no packages exits 0, so this is invisible in the Actions tab. Check exchange_phase_a.yml."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (11 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (12 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "explainer: 5/4 posted",
-      "third: 7/6 posted",
-      "exchange: 16/16 ChatGPT images pinned"
+      "chatgpt media: artifact present"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260920",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 4,
+      "rendered_or_attempted": 6,
+      "uploaded": 5,
+      "quarantined": 0,
+      "failed": 5,
+      "failed_by_stage": {
+        "showrunner_block": 1,
+        "infra_error": 4
+      },
+      "failed_by_format": {
+        "graph_race": 1,
+        "unknown": 4
+      },
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/gMOgljY4tH0"
+      ]
+    },
     {
       "date": "20260919",
       "channel": "trending",
@@ -170,128 +213,9 @@
       },
       "status": "repair_required",
       "video_urls": []
-    },
-    {
-      "date": "20260911",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 0,
-      "failed": 8,
-      "failed_by_stage": {
-        "showrunner_block": 4,
-        "infra_error": 4
-      },
-      "failed_by_format": {
-        "graph_race": 3,
-        "reddit": 1,
-        "unknown": 4
-      },
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/gSP4iDZndOU",
-        "https://youtube.com/shorts/mN9ikzZBeNc"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-17T21:33:02+00:00",
-      "slug": "gold-cube-mined",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The title promises a 22-metre cube and the video never draws one \u2014 it hands the premise to two abstract pills in a mostly empty frame, while the share scene clips its own labels off the edge and a frozen clipboard Data stands duplicated in the corner for 36 seconds.",
-      "auto_fails": [
-        "decorative_mascot: The lower clipboard-holding Data is in an IDENTICAL pointing pose from seg1:mid (t=11.22) through payoff@-0.4 (t=47.07) \u2014 36 seconds of pinned sticker \u2014 while a SECOND copy of him perches on a bar (seg1:end) and stands on the ruler lines (seg3:end, seg4:start) doing nothing tied to the stat.",
-        "empty_void: seg3:start (t=32.26) is two small pills floating in a near-black frame with the entire upper third and lower third dead, and seg3:end (t=39.06) is two hairlines plus two tiny mascots with a vast empty middle \u2014 the 22-meter cube, the video's whole premise, occupies almost none of the frame.",
-        "unreadable: seg2:start (t=19.73) clips the label at the right frame edge \u2014 it reads 'Bars, Coins & ETFs  22' with the % amputated \u2014 while 'Industrial & Other 15%' and 'Central Banks 17%' sit at near-background grey; seg2:end truncates it again to 'Bars, Coins & ET...'; seg0:start (t=1.19) and seg3:start print 'of gold.' and 'it's only 22.3' as dark grey ghosts over a dark ground; seg3:end has the mascot standing on top of the words 'The Gold Cube'."
-      ],
-      "problems": [
-        "seg2:start/seg2:end \u2014 category labels overflow the right frame edge ('Bars, Coins & ETFs  22', then 'Bars, Coins & ET...') and the 15%/17% labels are near-invisible grey on the dark ground.",
-        "seg3 \u2014 the cube is the whole story and it is drawn as two rounded pills (seg3:start/seg3:mid) and then two bare hairlines (seg3:end) in a frame that is mostly empty space; nothing physical, nothing cube-shaped, no volume.",
-        "TWO mascots occupy the frame simultaneously from seg1:mid onward \u2014 a large clipboard Data locked in one pointing pose for 36 seconds plus a second small copy perched on bars and ruler lines. The character reads as a UI sticker, not a performer.",
-        "seg3:end \u2014 the small mascot is planted on top of the words 'The Gold Cube', covering the end of the label.",
-        "seg0:start and seg3:start hold caption text ('of gold.', 'it's only 22.3') at a grey so close to the background it disappears.",
-        "hook@0.3/hook@0.8 \u2014 the '216,000 tons' caption is printed across the '1950' row label and the top of the bar race, so two pieces of text collide in the opening second."
-      ],
-      "fixes": [
-        "Lay the seg2 category labels with a MEASURED text extent inside the safe right margin (wrap to two lines rather than clip or ellipsise), and raise every non-accent label to full look ink; keep the accent on the 45% subject only.",
-        "Rebuild seg3 as an actual volume: draw the gold cube as a 22.3m cube next to a 50m Olympic pool at true relative scale, filling the frame, so the 'that's all of it?' beat is SEEN rather than asserted by two bars.",
-        "Delete the duplicate mascot \u2014 ONE Data on screen at a time \u2014 and give the surviving one a real bit per beat (climbing the bars in seg1, being dwarfed standing beside the cube in seg3) instead of a fixed clipboard-point held for 36 seconds.",
-        "Offset the mascot off any label it overlaps (seg3:end 'The Gold Cube') and keep captions clear of the axis/row labels in the hook.",
-        "Raise caption opacity floor so transition frames never sit at background contrast.",
-        "Fix the cadence \u2014 animate at the export frame rate so the bar race and column build stop duplicating 29% of frames."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-09-17T21:43:30+00:00",
-      "slug": "gold-cube-mined",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The comparison idea is sound but the video ends on a ~5-second frozen, mostly-empty frame with two mascots on screen and a scatter of clipped, overlapping labels \u2014 and it never once shows the cube the title promises.",
-      "auto_fails": [
-        "junk_imagery: seg1:mid (t=11.22s) has a stray empty teal outlined ellipse floating in mid-air at right with nothing in it \u2014 an unowned/blank prop the bottom mascot is pointing at; nothing in the script refers to it.",
-        "decorative_mascot: The large foreground mascot at bottom-centre is pixel-identical in every frame from seg1:mid (11.22s) through payoff@-0.4 (47.07s) \u2014 parked, clipboard out, arm extended, no setup\u2192action\u2192payoff; worse, a SECOND mascot occupies the scene simultaneously (seg1:end, seg2:mid, seg3:end).",
-        "dead_air: seg4:start (42.46s) \u2192 payoff@-0.4 (47.07s) is one unchanged composition for ~4.6s: same speech bubble, same title, same two labelled rules, same parked mascot \u2014 the only delta is a ~10px shuffle of the tiny mascot beside '50'.",
-        "empty_void: seg3:end (39.06s) is ~70% flat dark ground: two hairline rules with 30px mascots on them and a dotted ruler hugging the right edge; seg3:start (32.26s) is emptier still, two small lozenges adrift in the middle of the frame.",
-        "unreadable: seg2:start (19.73s) 'Bars, Coins & ETFs  22' has its % clipped off by the right frame edge and 'Industrial & Other 15%' is near-black-on-black; seg1:mid (11.22s) prints '216' half off the bottom edge; hook@0.3 prints '216,000 tons' straight on top of the 1950 row label; seg2:mid (23.61s) leaves a ghosted '22%' overlapping the 'Jewellery' label."
-      ],
-      "problems": [
-        "seg4 (42.46\u201347.07s): the closing is one held composition for ~4.6s \u2014 speech bubble, rules and foreground mascot all motionless while the frame's centre sits empty.",
-        "Two mascots are on screen at once from seg1:mid onward; the large bottom one is pixel-identical for 36 seconds \u2014 a sticker, not a performer.",
-        "seg1:mid: a blank teal ellipse floats at right with nothing inside it and the mascot gestures at it; the '216' caption is cut in half by the bottom frame edge.",
-        "seg2:start: 'Bars, Coins & ETFs 22' loses its % to the right frame edge and 'Industrial & Other 15%' is near-invisible against the ground; seg2:end truncates it further to 'Bars, Coins & ET...'.",
-        "hook@0.3\u20130.8: the '216,000 tons' caption is printed on top of the 1950 axis label, and the hook itself is a slow bar build rather than something happening.",
-        "seg3 (32.26\u201339.06s): the headline comparison is two rounded lozenges and, by seg3:end, two hairlines in a dark void \u2014 the '22-metre cube' of the title is never drawn as a cube."
-      ],
-      "fixes": [
-        "Rebuild seg4 as an arriving payoff: the pool bar collapses/pours into a single solid 22.3m cube that lands centre-frame with a human or lobby silhouette for scale, animating through the whole closing line so the last 5 seconds are the biggest move in the video.",
-        "Allow exactly one mascot on screen at a time \u2014 cut the parked bottom-centre narrator entirely and let the in-scene mascot carry each beat with a distinct setup\u2192action\u2192payoff.",
-        "Fix the blank prop at seg1:mid: the prop lookup is resolving to an empty shape (the blank-price-tag signature). Give that beat a real prop or no prop, and add the test that the prop name RESOLVES.",
-        "Measure and fit every category label: reserve the right gutter so 'Bars, Coins & ETFs 22%' and 'Industrial & Other 15%' fit inside the safe area at full ink contrast instead of clipping or fading; never truncate to an ellipsis.",
-        "Keep captions out of the plot: raise the caption band above the axis labels so '216,000 tons' never lands on '1950', and clamp the burned-in number so '216' cannot run off the bottom edge.",
-        "Replace the seg3 lozenges with the actual geometry \u2014 draw the cube as a cube against the pool's length so the comparison is a picture, not two bars, and fill the dead ground around it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-09-17T22:09:55+00:00",
       "slug": "tequila_just_passed_whiskey_in_america",
@@ -2724,16 +2648,77 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-20T21:33:16+00:00",
+      "slug": "weight_loss_drugs_left_surgery_behind",
+      "score": 5,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 1
+      },
+      "one_line": "blocked before vision review: duplicate_ratio 0.462 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "auto_fails": [
+        "temporal_gate: duplicate_ratio 0.462 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "problems": [
+        "duplicate_ratio 0.462 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-20T21:37:15+00:00",
+      "slug": "she_demanded_someone_else_s_suite__the_a",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A well-produced Reddit story with clear visuals and good pacing, effectively demonstrating the narrative.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.076,
+        "sampled": 157
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "7e9d26f 2026-09-19 daily: 2026-09-19 report + state [skip ci]",
-    "3a0986a 2026-09-19 deadman: repaired 2026-09-19 [skip ci]"
+    "6bd7d39 2026-09-20 explainer: update posted log + analytics [skip ci]",
+    "997496d 2026-09-20 third: analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-06": 2,
         "2026-09-07": 6,
         "2026-09-10": 2,
         "2026-09-11": 2,
@@ -2742,15 +2727,15 @@
         "2026-09-16": 2,
         "2026-09-17": 2,
         "2026-09-18": 2,
-        "2026-09-19": 2
+        "2026-09-19": 2,
+        "2026-09-20": 5
       },
-      "total_posted": 332,
-      "attempted": 332,
+      "total_posted": 337,
+      "attempted": 337,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-09-06": 2,
         "2026-09-07": 1,
         "2026-09-08": 2,
         "2026-09-09": 3,
@@ -2762,15 +2747,15 @@
         "2026-09-16": 3,
         "2026-09-17": 1,
         "2026-09-18": 2,
-        "2026-09-19": 5
+        "2026-09-19": 5,
+        "2026-09-20": 1
       },
-      "total_posted": 260,
-      "attempted": 260,
+      "total_posted": 261,
+      "attempted": 261,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-09-06": 4,
         "2026-09-07": 2,
         "2026-09-08": 4,
         "2026-09-09": 3,
@@ -2801,63 +2786,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 90,
+      "videos": 87,
       "top_by_vph": [
         {
-          "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
-          "vph": 14.73,
-          "views": 1050
+          "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
+          "vph": 27.32,
+          "views": 24
         },
         {
-          "title": "1 In 3 Couples Now Sleep In Separate Rooms",
-          "vph": 4.56,
-          "views": 96
+          "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
+          "vph": 9.8,
+          "views": 970
         },
         {
           "title": "51% Of The Internet Is Now Bots",
-          "vph": 4.4,
-          "views": 302
+          "vph": 3.02,
+          "views": 291
         },
         {
           "title": "The Lake That Basically Disappeared (3 Charts)",
-          "vph": 2.53,
+          "vph": 2.35,
           "views": 901
         },
         {
-          "title": "Brain Plastic Levels Rose 50% Since 2016",
-          "vph": 2.53,
-          "views": 191
+          "title": "The #1 Baby Name Isn't What It Used To Be",
+          "vph": 2.2,
+          "views": 1221
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 108,
+      "videos": 102,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 29.49,
-          "views": 1313
+          "vph": 18.31,
+          "views": 1406
+        },
+        {
+          "title": "Chat Could Not Handle This Caseoh Moment",
+          "vph": 5.74,
+          "views": 131
+        },
+        {
+          "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
+          "vph": 2.56,
+          "views": 70
         },
         {
           "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-          "vph": 3.71,
-          "views": 243
+          "vph": 2.38,
+          "views": 233
         },
         {
           "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
-          "vph": 1.02,
-          "views": 315
-        },
-        {
-          "title": "Jynxzi Loses His Mind Defending His Teammate's Tachanka Pick",
-          "vph": 0.94,
-          "views": 15
-        },
-        {
-          "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27",
-          "vph": 0.66,
-          "views": 46
+          "vph": 0.92,
+          "views": 316
         }
       ],
       "full_data": "state/analytics_third/latest.json"
