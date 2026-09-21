@@ -356,6 +356,53 @@ def exit_code_for(buckets: dict) -> int:
     return 1
 
 
+#: Where `scene_repair` persists a repaired segment's {viz, perf}. The
+#: renderer honours it as `plan_locked` on every later run.
+_PLANS_DIR = REPO / "state" / "scene_plans"
+
+
+def _plan_snapshot(slug: str):
+    """The plan file's contents before a repair touches it — or None if
+    there was none. Taken BEFORE `scene_repair.propose(apply_plan=True)`,
+    which writes the plan before anyone knows whether the repair will
+    stick."""
+    try:
+        pf = _PLANS_DIR / f"{slug}.json"
+        return pf.read_text() if pf.exists() else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _plan_restore(slug: str, snapshot) -> None:
+    """Put the plan back the way it was — or remove it, if there was none.
+
+    THE LOSING REPAIR'S PLAN OUTLIVED THE REPAIR. `fusion-net-energy-gain`,
+    2026-09-16, off the CI logs: the bolt-grid cut blocked at 48; the
+    repair re-rendered seg1 as a chart, scored 40, and this loop correctly
+    REVERTED to the better cut — then the persist step committed the plan
+    the repair had already written, and the next run printed
+    "[studio] scene plan seg1: pictorial_race+block_wall" and replaced the
+    bar race the showrunner had praised with a chart, before it started,
+    on a decision this very loop had just rejected.
+
+    A repair only sticks if it scores higher. Its plan now only sticks under
+    the same rule. Never raises: this runs on the revert path of a live
+    publish and a failed cleanup must not cost the kept cut.
+    """
+    try:
+        pf = _PLANS_DIR / f"{slug}.json"
+        if snapshot is None:
+            if pf.exists():
+                pf.unlink()
+                print(f"[{slug}] losing repair's plan removed", flush=True)
+            return
+        _PLANS_DIR.mkdir(parents=True, exist_ok=True)
+        pf.write_text(snapshot)
+        print(f"[{slug}] plan restored to its pre-repair state", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"[{slug}] plan restore skipped: {e}", flush=True)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
@@ -604,6 +651,9 @@ def main() -> int:
             repairs += 1
             try:
                 from scripts import scene_repair as _sr2
+                # `propose` WRITES the plan file before the A/B is judged —
+                # keep what was there so a losing repair can be undone.
+                _plan_before = _plan_snapshot(slug)
                 plan = _sr2.propose(slug, verdict, apply_plan=True)
                 print(f"[{slug}] repair {repairs}/{args.repair}: seg "
                       f"{plan.get('seg')} -> {plan.get('chosen')}", flush=True)
@@ -654,6 +704,9 @@ def main() -> int:
                 if _keep and _keep.exists():
                     _sh.move(str(_keep), str(out))
                     _gate.log(gate, slug)      # re-assert the kept verdict
+                # ...and the plan that produced the losing cut goes with it,
+                # or the next run locks it in anyway (fusion, 2026-09-16).
+                _plan_restore(slug, _plan_before)
             if _keep and Path(_keep).exists():
                 Path(_keep).unlink(missing_ok=True)
 

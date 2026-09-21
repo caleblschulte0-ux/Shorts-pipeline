@@ -265,6 +265,14 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # Build every insight first, then pick viz at the video level, then render.
     seg_cfgs = list(story_cfg["segments"])
     inss = [_build_insight(seg_cfg) for seg_cfg in seg_cfgs]
+    # THE INSIGHT KNOWS WHICH CONFIG SEGMENT IT CAME FROM. This function
+    # reorders (trend beats move to the end) and can DROP segments, so
+    # `st.segments[i]` is not `story_cfg["segments"][i]`, and anything that
+    # wants to write a rendered depiction back to the config — see
+    # `studio_render._persist_rendered_mechanic` — needs the pointer, not the
+    # index. Set here, once, on the object that survives the shuffle.
+    for _ins, _cfg in zip(inss, seg_cfgs):
+        _ins.seg_cfg = _cfg
     # ONE FACT IS ONE BEAT.
     #
     # Operator, 2026-09-08: "we would say the same thing in 3 different beats
