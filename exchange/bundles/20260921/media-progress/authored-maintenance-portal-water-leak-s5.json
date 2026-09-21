@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:21:07.522Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-maintenance-portal-water-leak-s5",
+  "safe_request_id": "authored-maintenance-portal-water-leak-s5",
+  "prompt_sha256": "a4ff907dfea35fe6d22c22a531ab2eeed97d7978071a1eef09d775830165b9ca",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: Close-up of a tenant holding a smartphone toward an insurance adjuster, showing an email thread as evidence; screen content visibly formatted but not legible\nStyle/medium: cinematic documentary photography, realistic hands and phone\nComposition/framing: vertical 2:3 portrait, phone foreground and adjuster listening in background\nLighting/mood: decisive, documentary realism\nConstraints: no readable text, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1a5-W4T5kQh19uKdBte7XHi_rSgueG0lr",
+    "filename": "20260921__authored-maintenance-portal-water-leak-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1a5-W4T5kQh19uKdBte7XHi_rSgueG0lr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "31022d77515093c5c1d14687770fb7ae86a5e69f4e1826cc7d37b93e3165bb4d",
+    "bytes": 1879622,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "maintenance-portal-water-leak",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
