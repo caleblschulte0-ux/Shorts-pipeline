@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260921T141347Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start prints the category label as 'Soy, Mining, Logging /' cut off by the right frame edge, and at seg1:mid the caption 'it never settled' plus the plotted line both run straight through the chart title 'Amazon deforestation by year'.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the caption 'it never settled' sits directly on the chart title 'Amazon deforestation by year', and the blue connected-dot path crosses through the words 'by year' so the title is unreadable at arm's length; below it an unlabelled capsule dial with a red dot and a second duplicate mascot on the right add marks that state no claim.",
+  "root_cause": "The scene's machine draws its plot into the same vertical band the title and caption occupy - no reserved safe zone above the plot area - and a range/dial element plus a duplicated mascot instance are composited with no claim tied to the 27,772-to-6,288 fall.",
+  "repair_goal": "Reserve a clear title band above the plot so no mark or caption overlaps the headline, drop the unlabelled dial and the duplicate mascot, and let seg1 carry ONE legible demonstration of the drop to the lowest year in a decade with a single mascot performing against it."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

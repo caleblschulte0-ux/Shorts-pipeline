@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T141347Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end waste the top two-thirds of the frame on flat empty navy with the line pinned to the bottom fifth; seg4 repeats it with a shrunken recap chart floating in a large blank middle.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid \u2014 the top two-thirds of the frame is flat empty navy; the pink line sits in the bottom fifth, a second Data stands below it holding a clipboard, an orphan label 'and back again' from a different visual sits between them, and by seg1:end a stray teal ellipse floats at right while the '423' stamp is sliced by the bottom edge.",
+  "root_cause": "Two compositions are stacked in one scene: the line machine is drawn into the lower band with no vertical fill of the frame, and a leftover mascot layer plus an orphan caption and number stamp from another machine are composited on top of it instead of replacing it.",
+  "repair_goal": "Make the rising-cost line own the whole frame \u2014 scale the plot to fill the vertical space with one Data riding the curve, drop the duplicate standing mascot and the orphan 'and back again' label and the stray ellipse, and place the '423' value as an anchored end-of-line label fully inside the safe area."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
