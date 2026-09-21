@@ -1,0 +1,15 @@
+{
+ "bundle_id": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+ "bundle_path": "exchange/bundles/20260921/bundle.json",
+ "bundle_present": false,
+ "checked_at": "2026-09-21T16:41:29+00:00",
+ "date": "20260921",
+ "deadline_central": 5,
+ "deadline_passed": true,
+ "has_contract": false,
+ "headline": "PHASE A HAS NOT RUN FOR 20260921 \u2014 no bundle exists and the 05:00 Central deadline has passed. The 06:00 media worker is about to start with nothing to work from.",
+ "n_requests": 0,
+ "ok": false,
+ "schema": "phase-a-readiness/v1",
+ "status": "MISSING"
+}
