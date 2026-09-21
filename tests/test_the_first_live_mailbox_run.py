@@ -166,3 +166,17 @@ class TheFramesReachThePreviewBranch(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheRepairPlannerSaysWhyItCannotPlan(unittest.TestCase):
+    """`max() arg is an empty sequence` (invasive-species-price-tag, 21:48
+    UTC) was a scene whose shape had NO repair candidate. Say that."""
+
+    def test_no_candidates_is_a_named_error_not_a_max_crash(self):
+        import inspect
+        from scripts import scene_repair as R
+        src = inspect.getsource(R.propose)
+        self.assertIn("no repair candidate for seg", src)
+        self.assertLess(src.index("no repair candidate for seg"),
+                        src.index("max(survivors, key="),
+                        "the empty case must be named before the chooser runs")

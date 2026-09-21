@@ -334,6 +334,15 @@ def propose(slug: str, verdict: dict, frames: int = 60,
         claim = getattr(base, "main_insight", "") or ""
         print(f"[scene_repair] {slug}: failing scene = seg{idx} "
               f"(shape {shape}); {len(cands)} structural candidates")
+        if not cands:
+            # `max(survivors)` used to crash here as "max() arg is an empty
+            # sequence" (invasive-species-price-tag, 2026-09-21 21:48) — a
+            # message that reads like a bug in the chooser when the truth
+            # is that this scene's shape has NO repair candidate. Say that.
+            raise RuntimeError(
+                f"no repair candidate for seg {idx} (shape {shape!r}): "
+                f"nothing to re-render it as — the story needs a different "
+                f"depiction, not a repair")
         results = []
         bdir = Path(td) / "cands"
         for ci, cand in enumerate(cands):
