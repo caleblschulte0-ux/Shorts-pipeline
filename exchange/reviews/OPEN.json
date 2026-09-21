@@ -1,0 +1,17 @@
+{
+ "schema": "shorts-review-index/v1",
+ "updated": "2026-09-21T21:59:26Z",
+ "open": [
+  {
+   "id": "amazon-still-shrinking__1c646748b2",
+   "channel": "explainer",
+   "slug": "amazon-still-shrinking",
+   "title": "The Amazon Has Lost 750,000 Square Kilometers Since 1970",
+   "filed": "2026-09-21T21:59:26Z",
+   "request": "exchange/reviews/20260921/amazon-still-shrinking__1c646748b2.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260921/amazon-still-shrinking__1c646748b2/sheet.jpg",
+   "answer_path": "exchange/reviews/20260921/amazon-still-shrinking__1c646748b2.verdict.json"
+  }
+ ],
+ "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260921T220006Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data perches on whatever mark is tallest and slides with it \u2014 stood on the 1996 bar at hook@0.8, stood on top of the 2019 bar at seg1:start, stood on the 2022 pan at seg2:end, leaning on the column at seg3:mid \u2014 no setup->action->payoff anywhere, and at seg4:start he is duplicated",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start through payoff@-0.4 (44.1-50.8s, ~7s) is a speech bubble at the top, a caption at the bottom, and between them a huge black band holding only two 20px mascots on faint rules plus a dotted vertical strip pinned to the right edge; the four frames are near-identical apart from a sub-pixel mascot slide.",
+  "root_cause": "The closing beat re-draws the 80/20 split as a sparse two-row dot/strip layout scaled far smaller than the scene it follows, so the composition abandons the middle and lower-middle of the frame and the only motion left is a slow mascot glide.",
+  "repair_goal": "Make the closing beat fill the frame and keep arriving: drop the dotted right-edge strip, scale the 80/20 demonstration to the full width under the bubble, and give Data one real closing action (loading the last box onto the 80% side) so the final 7 seconds carry visible change instead of a near-frozen card."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

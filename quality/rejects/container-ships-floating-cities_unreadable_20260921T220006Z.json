@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260921T220006Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:start the mascot sits on top of the title so it reads 'largest container ship capacit(y) ear'; at seg3:start the cyan highlight ellipse is printed straight over the label 'By sea 80%', and 'Everything else 20%' is grey-on-dark at the same moment.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start through payoff@-0.4 (44.1-50.8s, ~7s) is a speech bubble at the top, a caption at the bottom, and between them a huge black band holding only two 20px mascots on faint rules plus a dotted vertical strip pinned to the right edge; the four frames are near-identical apart from a sub-pixel mascot slide.",
+  "root_cause": "The closing beat re-draws the 80/20 split as a sparse two-row dot/strip layout scaled far smaller than the scene it follows, so the composition abandons the middle and lower-middle of the frame and the only motion left is a slow mascot glide.",
+  "repair_goal": "Make the closing beat fill the frame and keep arriving: drop the dotted right-edge strip, scale the 80/20 demonstration to the full width under the bubble, and give Data one real closing action (loading the last box onto the 80% side) so the final 7 seconds carry visible change instead of a near-frozen card."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
