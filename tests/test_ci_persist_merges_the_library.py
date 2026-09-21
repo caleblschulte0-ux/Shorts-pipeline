@@ -46,6 +46,33 @@ class TheLibraryIsUnioned(unittest.TestCase):
         got2 = M.merge_mechanics(ours, theirs)
         self.assertEqual(got2[0]["grade"]["bespoke"], 3, "the older grade won")
 
+    def test_legacy_entries_without_a_sig_survive_and_get_one(self):
+        """The first live merge dropped 24 of them: 64 -> 40."""
+        legacy = {"mechanic": "old-one", "code": "c1", "concept": "x", "starred": True}
+        theirs = [dict(legacy), _m("t1", exemplar=True)]
+        ours = [dict(legacy), _m("run")]
+        got = M.merge_mechanics(theirs, ours)
+        self.assertEqual(len(got), 3)
+        old = next(e for e in got if e["mechanic"] == "old-one")
+        import hashlib
+        self.assertEqual(old["sig"], hashlib.sha1(b"old-onec1").hexdigest()[:12])
+
+    def test_the_real_2026_09_21_race_loses_nothing(self):
+        """The two exact library versions the runner merged, if git has them."""
+        import subprocess
+        try:
+            a = json.loads(subprocess.check_output(
+                ["git", "-C", str(ROOT), "show", "4ace6373:data_learning/viz_mechanics.json"],
+                stderr=subprocess.DEVNULL))
+            b = json.loads(subprocess.check_output(
+                ["git", "-C", str(ROOT), "show", "164f801a:data_learning/viz_mechanics.json"],
+                stderr=subprocess.DEVNULL))
+        except Exception:  # noqa: BLE001 — a shallow checkout
+            self.skipTest("those commits are not in this checkout")
+        got = M.merge_mechanics(a, b)
+        self.assertGreaterEqual(len(got), len(a))
+        self.assertEqual(sum(1 for e in got if e.get("exemplar")), 4)
+
     def test_starred_is_never_lost_and_the_cap_holds(self):
         theirs = [_m(f"s{i}", starred=(i < 5)) for i in range(130)]
         ours = [_m("brand-new")]

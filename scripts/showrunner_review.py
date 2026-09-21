@@ -587,10 +587,104 @@ def _headless_claude_judge(prompt: str, labeled) -> dict:
     if proc.returncode != 0:
         raise RuntimeError(
             f"claude CLI rc={proc.returncode}: {(proc.stderr or proc.stdout)[:200]}")
-    m = re.search(r"\{.*\}", (proc.stdout or "").strip(), re.S)
-    if not m:
-        raise RuntimeError(f"no JSON in claude output: {(proc.stdout or '')[:200]}")
-    return json.loads(m.group(0))
+    return parse_judge_json(proc.stdout or "", repair=_repair_json_via_cli)
+
+
+def _balanced_objects(text: str):
+    """Every top-level {...} span in `text`, by brace depth (quotes
+    respected), outermost first. Prose before/after and a SECOND object
+    ("here is the JSON: {...} — and a note {...}") no longer confuse it."""
+    out, depth, start, in_str, esc = [], 0, None, False, False
+    for i, ch in enumerate(text):
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == "{":
+            if depth == 0:
+                start = i
+            depth += 1
+        elif ch == "}" and depth:
+            depth -= 1
+            if depth == 0 and start is not None:
+                out.append(text[start:i + 1])
+                start = None
+    return out
+
+
+def parse_judge_json(text: str, repair=None) -> dict:
+    """The judge's JSON out of whatever the judge actually printed.
+
+    THREE TIMES ON 2026-09-21 the headless brain graded a video and the
+    grade was thrown away: `Expecting ',' delimiter: line 7 column 1395`,
+    three attempts in a row on `amazon-still-shrinking`, and the same at
+    17:33 on `global-ewaste-crisis`. Each time the verdict text was there —
+    a stray unescaped quote inside a string, or prose around the object —
+    and `re.search(r"\\{.*\\}")` + `json.loads` had no second idea. Three
+    identical retries cost ~15 minutes of judge time and then the gate
+    failed CLOSED on a video the brain had watched and graded.
+
+    Recovery, in order, each one strictly a parse of what the judge wrote:
+      1. the whole text;  2. the text with ``` fences stripped;
+      3. each balanced top-level object, largest first;
+      4. `repair(text)` — a model asked ONLY to make the same JSON parse
+         (no frames, no grading), then steps 1-3 on its answer.
+    Nothing here changes a grade. If none of it parses, raise, and the gate
+    still holds.
+    """
+    raw = (text or "").strip()
+    if not raw:
+        raise RuntimeError("no JSON in judge output: (empty)")
+    fenced = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.S | re.M).strip()
+    tries = [raw, fenced]
+    tries += sorted(_balanced_objects(raw), key=len, reverse=True)
+    last = None
+    for cand in tries:
+        try:
+            got = json.loads(cand)
+            if isinstance(got, dict):
+                return got
+        except json.JSONDecodeError as e:
+            last = e
+    if repair is not None:
+        try:
+            fixed = repair(raw)
+        except Exception as e:  # noqa: BLE001 — the repair is best-effort
+            fixed = None
+            last = last or e
+        if fixed:
+            return parse_judge_json(fixed, repair=None)
+    raise RuntimeError(f"no JSON in judge output ({last}): {raw[:200]}")
+
+
+def _repair_json_via_cli(broken: str) -> str | None:
+    """Ask the headless brain to make its OWN output parse — no frames, no
+    rubric, no grading — and return what it prints. The fix is checked by
+    `parse_judge_json`, never trusted."""
+    if not shutil.which("claude"):
+        return None
+    ask = ("The text below is meant to be ONE JSON object but does not parse "
+           "(a stray quote, a missing comma, or prose around it). Return the "
+           "SAME object as valid JSON — same keys, same values, same numbers, "
+           "escape quotes inside strings. Output ONLY the JSON.\n\n" + broken[:20000])
+    try:
+        proc = subprocess.run(
+            ["claude", "-p", ask, "--model",
+             os.environ.get("SHOWRUNNER_REPAIR_MODEL", "sonnet"),
+             "--output-format", "text"],
+            capture_output=True, text=True,
+            timeout=int(os.environ.get("SHOWRUNNER_REPAIR_TIMEOUT", "120")))
+    except Exception:  # noqa: BLE001
+        return None
+    if proc.returncode != 0:
+        return None
+    return proc.stdout or None
 
 
 def _gemini_judge(prompt: str, labeled) -> dict:
@@ -610,16 +704,10 @@ def _gemini_judge(prompt: str, labeled) -> dict:
                              "temperature": 0.2, "maxOutputTokens": 8000}},
         {"content-type": "application/json"})
     txt = resp["candidates"][0]["content"]["parts"][0]["text"]
-    try:
-        return json.loads(txt)
-    except json.JSONDecodeError:
-        # A verdict cut off mid-object is still evidence. Recover the outermost
-        # complete object if one is there; otherwise raise so the caller keeps
-        # failing CLOSED rather than inventing a pass.
-        m = re.search(r"\{.*\}", txt, re.S)
-        if m:
-            return json.loads(m.group(0))
-        raise
+    # A verdict cut off mid-object or wrapped in prose is still evidence:
+    # the same recovery ladder as the headless brain, still failing CLOSED
+    # when nothing parses.
+    return parse_judge_json(txt)
 
 
 def _judge(prompt: str, labeled):
@@ -690,6 +778,9 @@ ship or block. Grade each segment's picture on two anchors, 0-3:
   proves_claim 3 = a viewer sees the number's meaning without reading it;
                0 = the picture asserts nothing the label does not.
 Name the kind you saw: "bespoke" | "machine" | "chart". One short note.
+Your whole reply must PARSE as JSON: escape any double quote inside a string \
+(write \\"), no trailing commas, nothing before the opening brace or after the \
+closing one.
 
 STRUCTURED DIAGNOSIS (required): identify the WEAKEST SCENE by its frame-label \
 segment id (segN as printed on the frame labels; the hook is "hook"). If you \
