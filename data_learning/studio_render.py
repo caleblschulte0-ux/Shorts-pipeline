@@ -1174,8 +1174,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                     "\\3c&HF0E14F&\\bord5\\shad0\\fad(120,150)"
                     "\\t(0,200,\\fscx106\\fscy106)\\t(200,420,\\fscx100\\fscy100)"
                     "\\p1}" + _ellipse_path_abs(mx, my, rx, ry) + "{\\p0}")
-            lines.append(f"Dialogue: 3,{_ass_time(max(0, ps - 0.15))},"
-                         f"{_ass_time(pe)},Mark,,0,0,0,,{ring}")
+            # the ring's own window: on the number as it is said, but never
+            # before the build has put the number there (`_plan_events`)
+            r0 = e.get("ring0") if e.get("ring0") is not None else max(0, ps - 0.15)
+            r1 = e.get("ring1") if e.get("ring1") is not None else pe
+            lines.append(f"Dialogue: 3,{_ass_time(max(0, r0))},"
+                         f"{_ass_time(r1)},Mark,,0,0,0,,{ring}")
         styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
                   + ")\\fs104\\c" + color + "}" + p.get("text", ""))
         lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
@@ -1332,15 +1336,38 @@ def _anchor_for_punch(seg: story.Segment, punch: dict):
     return min(seg.anchors, key=lambda a: abs(a["value"] - val))
 
 
-def _phrase_frac(sentence: str, phrase: str) -> float:
-    """Fraction through the sentence (by word) where ``phrase`` starts —
-    approximates *when* it's spoken, so markers/monster line up with the
-    narration instead of even slots."""
+def _phrase_frac(sentence: str, phrase: str):
+    """Fraction of the way through the SPOKEN sentence where ``phrase`` is
+    said — or None when it cannot be found.
+
+    THE RING CAME EARLY OR LATE. Operator, 2026-09-21: *"the blue circle
+    that circles the data we are talking about misses about 75% of the time
+    or it comes too early or late."* This measured the fraction by WORD
+    COUNT of the written sentence, and a written word is not a spoken
+    length: "$1,920" is one word on the page and eleven syllables in the
+    voice ("one thousand nine hundred twenty dollars"), "82%" is one word
+    and five syllables, "a" is one word and one. A sentence front-loaded
+    with numbers put every ring seconds early; one that ended in a number
+    put it late. So this now measures CHARACTERS of the text the voice
+    actually reads (`_tts_text`, numbers spelled out), which tracks speaking
+    time far more closely, and it looks for the phrase in that same spelled
+    text so "82M" finds "eighty-two million".
+
+    None instead of a guess: a phrase that is not in the sentence used to
+    return 0.5 — a ring at mid-sentence, on a number the voice was not
+    saying. The caller draws NO ring for None (the punch text still shows).
+    """
+    if not phrase or not sentence:
+        return None
+    spoken = _tts_text(sentence)
+    target = _tts_text(phrase).strip()
+    idx = spoken.lower().find(target.lower()) if target else -1
+    if idx >= 0:
+        return len(spoken[:idx]) / max(1, len(spoken))
     idx = sentence.lower().find(phrase.lower())
-    total = max(1, len(sentence.split()))
-    if idx < 0:
-        return 0.5
-    return len(sentence[:idx].split()) / total
+    if idx >= 0:
+        return len(sentence[:idx]) / max(1, len(sentence))
+    return None
 
 
 #: Characters that fit 1040px at fs15 — ONE line of the sources strip.
@@ -1360,15 +1387,53 @@ def _plan_events(st: story.Story, windows):
     for i, seg in enumerate(st.segments):
         s0, s1 = windows[1 + i]
         seg_events = []
+        spans = getattr(seg, "spans", None) or []
         for p in seg.punches:
             frac = _phrase_frac(seg.sentence, p.get("phrase", ""))
-            ps = s0 + frac * (s1 - s0)
+            timed = frac is not None
+            ps = s0 + (frac if timed else 0.5) * (s1 - s0)
             dur = min(float(p.get("duration", 1.8)), max(0.6, s1 - ps))
-            a = _anchor_for_punch(seg, p)
-            xy = _screen(a["cx"], a["cy"]) if a else None
-            box = (a["w"] * SCALE_X, a["h"] * SCALE_Y) if a else None
+            # THE RING MISSED 75% OF THE TIME. It was placed from
+            # `seg.anchors` — the coordinates of the CHEAP build story.build
+            # ran to discover which numbers the line names — and that chart
+            # is, since the per-span edit, almost never the visual on screen:
+            # a beat shows a mechanic, then a machine, then maybe a chart, each
+            # with its own geometry, and the ring circled where a number sat
+            # on a picture nobody saw. It is placed now from the anchors of the
+            # span that is ON SCREEN when the number is said; a full-frame
+            # visual (mechanic / scene / diorama) records no number positions,
+            # so during one there is NO ring rather than a wrong one.
+            a, xy, box, ring0 = None, None, None, None
+            sp = _span_at(spans, ps)
+            if sp is not None:
+                a = _anchor_in(sp.get("anchors") or [], p) if timed else None
+                if a:
+                    if sp.get("kind") in charts.FULLFRAME_RENDERERS:
+                        xy = (float(a["cx"]), float(a["cy"]))
+                        box = (float(a["w"]), float(a["h"]))
+                    else:
+                        xy = _screen(a["cx"], a["cy"])
+                        box = (a["w"] * SCALE_X, a["h"] * SCALE_Y)
+                    # ...AND NOT BEFORE THE NUMBER IS THERE. A build reaches
+                    # its final frame — where the anchors are — at `full_by`
+                    # of its span; a ring drawn while the bar is still rising
+                    # circles empty space. Wait for the build, never past the
+                    # span's end.
+                    done_at = sp["t0"] + (sp["t1"] - sp["t0"]) * float(sp.get("full_by", 1.0))
+                    ring0 = min(max(ps - 0.15, done_at), max(sp["t0"], sp["t1"] - 0.6))
+            elif not spans and timed:
+                # a story read before render (no spans yet): the old answer
+                a = _anchor_for_punch(seg, p)
+                if a:
+                    xy = _screen(a["cx"], a["cy"])
+                    box = (a["w"] * SCALE_X, a["h"] * SCALE_Y)
+                    ring0 = ps - 0.15
             seg_events.append({"ps": ps, "pe": ps + dur, "punch": p, "xy": xy,
-                               "box": box, "anchor": a, "seg": i})
+                               "box": box, "anchor": a, "seg": i,
+                               "timed": timed,
+                               "ring0": ring0,
+                               "ring1": (max(ring0 + 0.8, ps + dur)
+                                         if ring0 is not None else None)})
         # Show-windows: split the segment among its numbers (mascot stays on
         # number j until the next number is spoken).
         seg_events.sort(key=lambda e: e["ps"])
@@ -1380,6 +1445,40 @@ def _plan_events(st: story.Story, windows):
             e["w0"], e["w1"] = bounds[k], bounds[k + 1]
         events.extend(seg_events)
     return events
+
+
+def _span_at(spans, t: float):
+    """The recorded visual span covering time ``t`` (the last one whose
+    start is at or before ``t``), or None."""
+    hit = None
+    for sp in spans or []:
+        try:
+            if float(sp["t0"]) <= t and (hit is None or sp["t0"] >= hit["t0"]):
+                hit = sp
+        except (KeyError, TypeError, ValueError):
+            continue
+    if hit is not None and t >= float(hit.get("t1", t + 1)) + 0.05:
+        return None
+    return hit
+
+
+def _anchor_in(anchors, punch: dict):
+    """The label-dict anchor whose value matches this punch's number, among
+    THESE anchors (a span's), ignoring any non-dict entry a full-frame
+    visual may record."""
+    txt = punch.get("text", "").replace("%", "").replace(",", "").strip()
+    try:
+        val = float(txt)
+    except ValueError:
+        return None
+    dicts = [a for a in (anchors or []) if isinstance(a, dict) and "value" in a]
+    if not dicts:
+        return None
+    best = min(dicts, key=lambda a: abs(float(a["value"]) - val))
+    # a match, not the nearest stranger: within 2% (or 0.5 absolute)
+    if abs(float(best["value"]) - val) > max(0.5, 0.02 * abs(val)):
+        return None
+    return best
 
 
 def _screen_box(a):
@@ -2312,6 +2411,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             for j, (kind, (t0, t1)) in enumerate(zip(kinds, spans)):
                 nfr = int(max(30, min(1200, _mfr.ceil((t1 - t0) * 30))))
                 cpath, anc = None, []
+                _fb = 1.0
                 # Per-span truth: the renderer SETS this while it draws Data
                 # into the visual (every chart's `_bake_host`, every
                 # self-hosting machine in `render_scene`). Cleared before each
@@ -2331,14 +2431,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # completion): the chart keeps moving for as long as it is
                     # on screen, so there is never a finished-and-held stretch
                     # (that was the dead_air / 5fps).
+                    _fb = _full_by(
+                        t1 - t0,
+                        CLOSING_STILL_TAIL
+                        if (windows and t1 - windows[-1][0] > 0.35)
+                        else MAX_STILL_TAIL)
                     cpath, anc = charts.render_story_build(
                         seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
                         frames=nfr,
-                        full_by=_full_by(
-                            t1 - t0,
-                            CLOSING_STILL_TAIL
-                            if (windows and t1 - windows[-1][0] > 0.35)
-                            else MAX_STILL_TAIL),
+                        full_by=_fb,
                         # only the opening visual bursts up out of the hook
                         hook_lead=(i == 0 and lead_hook and j == 0))
                 except Exception as e:  # noqa: BLE001 — a missing extra visual
@@ -2353,6 +2454,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                                                rendered_as=f"seg{i}")
                 seg.spans.append({"kind": kind, "path": str(cpath),
                                   "anchors": anc, "t0": t0, "t1": t1,
+                                  # when this build reaches its final frame —
+                                  # the ring waits for it (`_plan_events`)
+                                  "full_by": float(_fb),
                                   "host_baked": bool(getattr(seg.insight,
                                                              "host_baked", False))})
                 _kinds_used.add(kind)

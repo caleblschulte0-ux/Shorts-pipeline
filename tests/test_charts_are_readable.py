@@ -89,7 +89,10 @@ class ReadingTime(unittest.TestCase):
         fraction scales the wrong way: the same 0.62 that holds a 5.8s visual
         for 2.2s holds a 7.9s one for 3.0."""
         src = (_REPO / "data_learning" / "studio_render.py").read_text()
-        self.assertIn("full_by=_full_by(", src)
+        # computed per span into `_fb`, passed to the build AND recorded on
+        # the span so the ring can wait for the build to finish
+        self.assertIn("_fb = _full_by(", src)
+        self.assertIn("full_by=_fb", src)
 
     def test_the_still_tail_is_bounded_in_seconds_not_fraction(self):
         """Reading time is a HUMAN quantity — it does not grow because the
