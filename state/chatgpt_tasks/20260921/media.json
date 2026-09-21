@@ -1,0 +1,33 @@
+{
+ "checked_at": "2026-09-21T18:12:06+00:00",
+ "date": "20260921",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260921/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "authored-empty-cupcake-refund-s0.json",
+  "authored-empty-cupcake-refund-s1.json",
+  "authored-empty-cupcake-refund-s2.json",
+  "authored-empty-cupcake-refund-s3.json",
+  "authored-empty-cupcake-refund-s4.json",
+  "authored-empty-cupcake-refund-s5.json",
+  "authored-maintenance-portal-water-leak-s0.json",
+  "authored-maintenance-portal-water-leak-s1.json",
+  "authored-maintenance-portal-water-leak-s2.json",
+  "authored-maintenance-portal-water-leak-s3.json",
+  "authored-maintenance-portal-water-leak-s4.json",
+  "authored-maintenance-portal-water-leak-s5.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "no bundle.json \u2014 PHASE A NEVER RAN for this date (see state/phase_a_readiness/20260921.json)"
+}
