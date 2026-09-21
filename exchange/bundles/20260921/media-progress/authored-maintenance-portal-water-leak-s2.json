@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:20:31.630Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-maintenance-portal-water-leak-s2",
+  "safe_request_id": "authored-maintenance-portal-water-leak-s2",
+  "prompt_sha256": "c0059de3570dc15b4aeacacf7473a4ae671571cfa60d8e6cabe0adea6744ca40",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: A renter using a smartphone to photograph water damage and dripping ceiling in an apartment bathroom\nStyle/medium: cinematic documentary photography, realistic hands and phone\nComposition/framing: vertical 2:3 portrait, over-the-shoulder view, phone and damaged ceiling both visible\nLighting/mood: tense natural indoor light\nConstraints: no readable phone text, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1boDJWd4rS8rkvDSukkTMF3ekWLPYg2P2",
+    "filename": "20260921__authored-maintenance-portal-water-leak-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1boDJWd4rS8rkvDSukkTMF3ekWLPYg2P2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "91f167179161d6fae79262776619504e30fb26d312605ed915fc89f353def445",
+    "bytes": 1980087,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "maintenance-portal-water-leak",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
