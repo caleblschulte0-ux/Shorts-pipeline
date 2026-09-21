@@ -8089,6 +8089,23 @@
         "end": 19.5
       },
       "director_cut": true
+    },
+    "rejected-pluckybetterottertakenrg-tcbuyqhecpolaihw": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/PluckyBetterOtterTakeNRG-tcbuYqhEcpolaiHw",
+      "streamer": "extraemily",
+      "title": "Extraemily Watches Someone Jump In London And Loses It",
+      "qa_rejected": true,
+      "ts": "2026-09-21T14:41:06.630534+00:00"
+    },
+    "clip-20260921-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/HeartlessSpinelessClintmullinsHoneyBadger-Jtqq_OP0QmI2DqUg",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Asks If Trask's A Bad Guy And The Game Actually Answers",
+      "kind": "twitch_clip",
+      "ts": "2026-09-21T14:43:17.851351+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
