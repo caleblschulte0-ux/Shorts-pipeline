@@ -1,140 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260914",
-      "dry_run": false,
-      "ts": "2026-09-14T18:35:56+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 105,
-        "with_retention": 81,
-        "with_curve": 15,
-        "fetched_at": "2026-09-14T17:23:19.841118+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 3
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260914-1",
-          "ok": false,
-          "error": "CalledProcessError: Command '['yt-dlp', '-q', '--force-overwrites', '-o', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_c1a0250027.%(ext)s', '--recode-video', 'mp4', '--print-to-file', '%(id)s\\t%(title)s\\t%(uploader)s\\t%(view_count|0)s\\t%(duration)s', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_c1a0250027.meta', 'https://www.twitch.tv/fuslie/clip/ImpossibleBlitheMosquitoWOOP-zmIw7LQHo2ESaSpw']' returned non-zero exit status 1.",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            }
-          },
-          "took_s": 14.0
-        },
-        {
-          "slug": "clip-20260914-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
       "date": "20260915",
       "dry_run": false,
       "ts": "2026-09-15T15:41:27+00:00",
@@ -5272,6 +5138,58 @@
             }
           },
           "took_s": 135.5
+        },
+        {
+          "slug": "clip-20260921-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260921",
+      "dry_run": false,
+      "ts": "2026-09-21T17:01:41+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 101,
+        "with_retention": 88,
+        "with_curve": 13,
+        "fetched_at": "2026-09-21T15:16:07.238296+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20260921-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20260921-6",
