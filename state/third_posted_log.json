@@ -8130,14 +8130,27 @@
       "ts": "2026-09-21T14:44:56.868798+00:00"
     },
     "clip-20260921-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/moistcr1tikal/clip/ObliqueVictoriousWafflePartyTime-ZnW_guRNoCr5dHEj",
-      "story_key": null,
-      "streamer": "moistcr1tikal",
+      "url": "https://youtube.com/shorts/RdBSr-nqJTE",
       "title": "Moistcr1Tikal Reacts To This Stop That Never Came",
       "kind": "twitch_clip",
-      "ts": "2026-09-21T14:47:08.594935+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-21T14:47:12.419364+00:00",
+      "uploaded_at": "2026-09-21T14:47:12.419385+00:00",
+      "publish_at": "2026-09-22T03:30:00Z",
+      "source_url": "https://www.twitch.tv/moistcr1tikal/clip/ObliqueVictoriousWafflePartyTime-ZnW_guRNoCr5dHEj",
+      "streamer": "moistcr1tikal",
+      "series": "chaos",
+      "hook": "SO MUCH FOR A STOP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2770,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 17.18
+      },
+      "director_cut": true
     }
   }
 }

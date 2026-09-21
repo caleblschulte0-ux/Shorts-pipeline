@@ -3,213 +3,6 @@
     {
       "date": "20260914",
       "dry_run": false,
-      "ts": "2026-09-14T17:23:06+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 106,
-        "with_retention": 82,
-        "with_curve": 15,
-        "fetched_at": "2026-09-14T15:10:26.545820+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fanum": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:connoreatspants": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:timthetatman": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:pokimane": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260914-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "[Fuslie] [Burn] This radio station sucks",
-              "raw": "[Fuslie] [Burn] This radio station sucks",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 690.1
-        },
-        {
-          "slug": "clip-20260914-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260914-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260914",
-      "dry_run": false,
       "ts": "2026-09-14T18:35:56+00:00",
       "feedback": {
         "snapshot": true,
@@ -5312,6 +5105,178 @@
             }
           },
           "took_s": 163.0
+        }
+      ]
+    },
+    {
+      "date": "20260921",
+      "dry_run": false,
+      "ts": "2026-09-21T14:47:12+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 89,
+        "with_curve": 13,
+        "fetched_at": "2026-09-20T23:18:40.858208+00:00"
+      },
+      "brain": {
+        "ok": 17,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260921-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "funny in-game coincidence moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague reaction, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lirik Asks If Trask's A Bad Guy And The Game Actually Answers"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": []
+            }
+          },
+          "took_s": 139.3
+        },
+        {
+          "slug": "clip-20260921-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260921-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, implies fail but unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague title, no visible event confirmed",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Moistcr1Tikal Reacts To This Stop That Never Came"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": []
+            }
+          },
+          "took_s": 135.5
+        },
+        {
+          "slug": "clip-20260921-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
