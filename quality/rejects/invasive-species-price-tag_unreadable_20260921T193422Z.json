@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T193422Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start-end cut 'Prevention & mana' off the right edge and clip 'Damage & losses' at the left edge; seg3 cuts 'Classified as harmful invas'; hook@1.5 prints the caption 'countries make.' straight over the $1.6B value ('6B' poking out); seg4:mid's 'Classified as harmful invasive' is ~1",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "Across seg2:start, seg2:mid and seg2:end the right-hand category label renders as 'Prevention & mana' \u2014 the rest is off the frame \u2014 while 'Damage & losses' is flush against x=0 with its first glyph clipped; at seg2:start a stray cyan ellipse also lassoes the clipped left label.",
+  "root_cause": "The balance machine lays its two pan labels out from each pan's centre with no measured text width and no clamp to the safe area, so a long category string overruns both frame edges instead of wrapping, shrinking, or anchoring inward.",
+  "repair_goal": "Measure each pan label's rendered width and lay it out inside a safe margin \u2014 wrap or shorten 'Prevention & management' to two lines and anchor both labels so no glyph crosses the frame edge, and drop the circle annotation that sits on top of the left label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

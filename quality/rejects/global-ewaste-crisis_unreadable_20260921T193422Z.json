@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260921T193422Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end prints '2030 (projected) 82M' directly on top of the title 'the world's growing e-waste pile' so both are illegible, and the mascot's head covers the title's first word; seg2:start/seg2:mid clip the labels to 'Properly recycled 22'' and 'Not properly recycle' at the right frame ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_layout_collision",
+  "visible_evidence": "At seg1:mid and seg1:end the annotation 'the data stops here' and the endpoint label '2030 (projected) 82M' are drawn over the persistent title 'the world's growing e-waste pile', and a second mascot is pasted on the title's first word \u2014 three text layers stack in the same 120px band. Below it, two thirds of the frame (the whole area under the line) is empty, and a hollow cyan ellipse sits circling blank background at the right edge.",
+  "root_cause": "The projection machine draws its title-band annotations and its endpoint value label in absolute frame coordinates without reserving or measuring the header block, and it places a scene mascot at the line's start point with no collision test against text; the circle-annotation is anchored to a data point that has not yet been drawn, so it lands on empty ground.",
+  "repair_goal": "Lay the projection out below a reserved header band: move 'the data stops here' to sit beside the red divider inside the plot area, place the endpoint label to the LEFT of its point so it stays inside the frame and clear of the title, drop the duplicate scene mascot at the line origin, and either anchor the circle annotation to the 2022 point it is meant to mark or remove it. Fill the lower two thirds by scaling the line up into the vacated space."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

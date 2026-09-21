@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T193422Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid (t=7.00s) is a hairline pink line hugging the bottom edge with the entire top two-thirds of the 1080x1920 frame empty gradient; seg4:start/mid repeat it with a vast blank band between the 3.5K and 37K rows.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "Across seg2:start, seg2:mid and seg2:end the right-hand category label renders as 'Prevention & mana' \u2014 the rest is off the frame \u2014 while 'Damage & losses' is flush against x=0 with its first glyph clipped; at seg2:start a stray cyan ellipse also lassoes the clipped left label.",
+  "root_cause": "The balance machine lays its two pan labels out from each pan's centre with no measured text width and no clamp to the safe area, so a long category string overruns both frame edges instead of wrapping, shrinking, or anchoring inward.",
+  "repair_goal": "Measure each pan label's rendered width and lay it out inside a safe margin \u2014 wrap or shorten 'Prevention & management' to two lines and anchor both labels so no glyph crosses the frame edge, and drop the circle annotation that sits on top of the left label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

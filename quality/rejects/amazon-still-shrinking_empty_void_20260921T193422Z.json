@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260921T193422Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:mid/seg4:end: a large empty outlined square occupies the middle third with only a grey '4' and a mascot the size of a thumbnail inside it, plus a wide blank band above the closing bubble.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlapping_composite",
+  "visible_evidence": "seg1:mid and seg1:end stack three unrelated things in one frame: a stray unlabelled line chart drawn straight through the title 'Amazon deforestation by year', overlay text 'it never settled' printed on top of that same title, a gauge whose caption 'anywhere between 4571 and 27772' runs into the right frame edge, and TWO copies of Data on screen at once (one at right, one at bottom).",
+  "root_cause": "The scene composites an uncertainty-gauge machine on top of a leftover line-chart layer and the scene title without any layout reservation, and the mascot is instanced twice; the range caption is laid out by character count rather than measured width so it overruns the frame.",
+  "repair_goal": "Rebuild seg1 as ONE picture: drop the stray line-chart layer and the duplicate mascot, move 'it never settled' clear of the title band, and measure the range caption so both endpoints sit inside the safe area \u2014 the beat must read as the 750,000 km2 cumulative loss, not as an unexplained 4571-27772 dial."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
