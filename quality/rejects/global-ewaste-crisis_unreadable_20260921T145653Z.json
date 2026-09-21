@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260921T145653Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end prints '2030 (projected) 82M' directly on top of the title so both read as illegible mush, and the mascot covers the first word ('t_e world's growing e-waste pile'); seg2:start clips the legend at the right frame edge to 'Properly recycled 22'' and 'Not properly recycle'; seg3:e",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlapping_text",
+  "visible_evidence": "seg1:mid and seg1:end stack two titles in the same band - 'the data stops here' over 'the world's growing e-waste pile' - with the value label '2030 (projected) 82M' overprinted on top of both, a mascot covering the leading word, and a stray unlabeled cyan ellipse floating in empty space on the right; the caption reads '2010. That's enough' while a '82' sits under it with nothing tying them together.",
+  "root_cause": "The projection machine draws its own header and endpoint label into the same top-of-frame region the scene title already occupies, with no layout reservation or collision check, and the annotation ellipse is placed against stale coordinates from the previous bar-chart scene.",
+  "repair_goal": "Give seg1 a single title, reserve an exclusive band for it, move the '82M' endpoint label to sit beside the projected line's terminus inside the plot area, drop the orphan ellipse, and keep the mascot clear of all type so every word is legible on a phone at arm's length."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

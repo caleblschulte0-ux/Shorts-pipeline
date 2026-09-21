@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T145653Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid (t=7.00s) is ~60% empty navy: the trajectory line is squashed into the bottom fifth of the frame with nothing above it, and seg4's recap (seg4:mid, t=33.16s) leaves the whole mid-frame blank between two faint rows.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg1:mid (t=7.00s) the top ~60% of the frame is bare navy \u2014 the pink trajectory line hugs the bottom fifth at near-zero amplitude with the performing mascot standing on its tip, the static host mascot duplicated directly below him, and TWO caption tracks stacked ('and back again' mid-frame plus 'every decade since' at the bottom). By seg1:end the line has grown but still occupies only the lower third, and a stray teal ellipse hangs unexplained at mid-right.",
+  "root_cause": "The trajectory machine is drawn into the bottom band of the safe area instead of being scaled to the full composition height, so the quadrupling it is meant to SHOW reads as a nearly flat line in a void; the host mascot is composited into the same scene as a second Data, and a leftover mid-frame caption line is rendered alongside the bottom caption.",
+  "repair_goal": "Scale the trajectory to fill the frame vertically (steep rise from a low 1970 to a top-of-frame 2019 with the decade tick labels and $ values attached to the line), remove the duplicate static host mascot and the stray ellipse from this scene, and run ONE caption track so the beat is a single full-bleed shot of the curve quadrupling."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
