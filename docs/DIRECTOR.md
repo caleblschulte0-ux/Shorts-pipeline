@@ -72,9 +72,19 @@ slide" list:
   "auto_fails": ["..."],
   "dimensions": {"hook": n, "data_demo": n, "mascot": n, "craft": n, "pace": n, "payoff": n, "temporal_craft": n},
   "problems": ["specific, concrete, per-scene"],
-  "fixes": ["specific, actionable — what to change to pass"]
+  "fixes": ["specific, actionable — what to change to pass"],
+  "depictions": [{"id": "seg0", "kind": "bespoke|machine|chart",
+                  "bespoke": 0-3, "proves_claim": 0-3, "note": "..."}]
 }
 ```
+
+`depictions` is a **learning signal, not a gate input**: it never affects
+`score` or `verdict`, it is optional (older verdicts lack it, a malformed one
+is dropped entry by entry), and its only consumer is
+`viz_director.grade_mechanics`, which writes each grade onto the mechanic it
+judged so the brain's examples are ranked by a measured opinion instead of
+its own `starred`. Added 2026-09-21 after the bolt-grid case: the judge had
+praised that depiction in prose twice and nothing could read it.
 
 `verdict: "block"` (score < 70 OR any auto-fail) stops the upload. The problems
 and fixes are logged so the pipeline (or a human) can act on them. The bounded

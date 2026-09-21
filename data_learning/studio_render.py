@@ -2059,7 +2059,8 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
 _PERSISTED: list = []
 
 
-def _persist_rendered_mechanic(insight, slug: str) -> None:
+def _persist_rendered_mechanic(insight, slug: str,
+                               rendered_as: str | None = None) -> None:
     """The moment a brain mechanic is COMMITTED to a render, write it down.
 
     THE BEST ANIMATION ON THE CHANNEL WAS LOST FROM EVERY PLACE THE BRAIN
@@ -2104,6 +2105,14 @@ def _persist_rendered_mechanic(insight, slug: str) -> None:
         cfg_seg = getattr(insight, "seg_cfg", None)
         if isinstance(cfg_seg, dict):
             keep = {k: sc[k] for k in ("mechanic", "concept", "code") if k in sc}
+            # The judge grades by RENDERED segment id ("seg1"), and
+            # `story.build` reorders, so the config segment carries the id it
+            # rendered as — that is how a grade finds its way back to the
+            # mechanic it was about (`viz_director.grade_mechanics`).
+            if rendered_as:
+                keep["rendered_as"] = rendered_as
+            if isinstance(cfg_seg.get("scene"), dict) and cfg_seg["scene"].get("grade"):
+                keep["grade"] = cfg_seg["scene"]["grade"]   # never lose a grade
             if cfg_seg.get("scene") != keep:
                 cfg_seg["scene"] = keep
                 _PERSISTED.append(slug)
@@ -2283,7 +2292,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 if not cpath:
                     continue
                 if kind == "mechanic":
-                    _persist_rendered_mechanic(seg.insight, slug)
+                    _persist_rendered_mechanic(seg.insight, slug,
+                                               rendered_as=f"seg{i}")
                 seg.spans.append({"kind": kind, "path": str(cpath),
                                   "anchors": anc, "t0": t0, "t1": t1})
                 _kinds_used.add(kind)

@@ -459,6 +459,13 @@ while-loops, NO names with underscores):
   Safe drawing area: x in [RX0=40, RX1=1040], y in [RTOP=80, RBOT=1560].
 
 HARD RULES:
+- AT LEAST ONE TIER-1 BEAT PER VIDEO. A tier-1 picture is MADE OF the subject
+  and the subject's own physics carries the number: a grid of laser bolts,
+  each 0.2 MJ, filling to the value; a shoreline receding to the lost area.
+  A stock machine with a subject icon dropped in (a track with a dog, a
+  seesaw with a cat, two tubes, a timeline cross) is tier 2 — the icon could
+  be swapped for anything. The showrunner grades every depiction 0-3 on
+  exactly this and the library you learn from is ranked by it.
 - SHOW THE THING: you MUST place at least one real subject image (paste /
   fill_image / images / subject_image). A mechanic with no subject is rejected.
 - Depict every data point THROUGH the visual (size/fill/position/count/motion),
@@ -497,11 +504,20 @@ def _mechanic_examples(k: int = 2) -> list:
     import json
 
     def _rank(m):
-        # measured-moving (0) < unscored (1) < measured-static (2);
-        # starred first within each band, newest first after that.
+        # measured-moving (0) < unscored (1) < measured-static (2); then the
+        # JUDGE'S bespoke grade, high first — a measured opinion of the
+        # picture outranks `starred`, which is the brain's opinion of
+        # itself; then starred; newest first after that.
         moves = m.get("moves")
         band = 0 if moves is True else (1 if moves is None else 2)
-        return (band, 0 if m.get("starred") else 1)
+        g = (m.get("grade") or {}).get("bespoke")
+        # 3 > 2 > UNKNOWN > 1 > 0. An unjudged mechanic outranks a judged
+        # tier-2 one: a grade of 1 is EVIDENCE the picture is generic, and
+        # an unknown is at least not that. It sits below 2 because a judged
+        # "real invented form" is worth more than a maybe.
+        order = {3: 0, 2: 1, None: 2, 1: 3, 0: 4}
+        return (band, order.get(g if isinstance(g, int) else None, 2),
+                0 if m.get("starred") else 1)
 
     try:
         with open(_MECH_LIB, encoding="utf-8") as fh:
@@ -550,6 +566,94 @@ def _record_mechanic(ins, spec) -> None:
             json.dump(lib, fh, indent=1, ensure_ascii=False)
     except Exception as e:  # noqa: BLE001
         print(f"[director] mechanic save skipped: {e}", flush=True)
+
+
+def grade_mechanics(story_cfg: dict, depictions, config_path=None) -> int:
+    """Write the judge's per-depiction grades onto the mechanics they judged.
+
+    THIS IS THE EDGE THAT CLOSED THE LOOP. The showrunner has always been
+    able to tell a bolt grid from a dog on a track — it said so in prose,
+    twice, about `fusion-net-energy-gain` — and nothing read the prose. The
+    brain went on learning from `starred`, its own opinion of its own work,
+    while a measured judgment sat in a log. Now each grade lands on:
+
+      * the config segment's `scene["grade"]` (persisted by the workflow),
+      * the library entry with the same signature (what `_mechanic_examples`
+        ranks by, ahead of `starred`).
+
+    Matching is by the `rendered_as` tag `studio_render` wrote when it
+    committed the mechanic — the judge grades rendered segment ids and
+    `story.build` reorders, so a config index would grade the wrong beat.
+    Returns how many mechanics were graded. Never raises; a lost grade is a
+    slower loop, a crashed publish is a lost video.
+    """
+    import json
+    import hashlib
+    import time
+    try:
+        deps = [d for d in (depictions or []) if isinstance(d, dict) and d.get("id")]
+        if not deps or not isinstance(story_cfg, dict):
+            return 0
+        by_id = {str(d["id"]): d for d in deps}
+        graded = 0
+        sigs: dict = {}
+        for seg in story_cfg.get("segments", []) or []:
+            sc = seg.get("scene") if isinstance(seg, dict) else None
+            if not (isinstance(sc, dict) and sc.get("code")):
+                continue
+            d = by_id.get(str(sc.get("rendered_as") or ""))
+            if not d:
+                continue
+            grade = {"bespoke": int(d.get("bespoke", 0)),
+                     "proves_claim": int(d.get("proves_claim", 0)),
+                     "kind": str(d.get("kind") or ""),
+                     "note": str(d.get("note") or "")[:240],
+                     "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+            sc["grade"] = grade
+            sig = hashlib.sha1((sc.get("mechanic", "") + sc.get("code", ""))
+                               .encode()).hexdigest()[:12]
+            sigs[sig] = grade
+            graded += 1
+        if not graded:
+            return 0
+        # the library
+        try:
+            with open(_MECH_LIB, encoding="utf-8") as fh:
+                lib = json.load(fh)
+            hit = 0
+            for m in lib:
+                g = sigs.get(m.get("sig"))
+                if g:
+                    m["grade"] = g
+                    hit += 1
+            if hit:
+                with open(_MECH_LIB, "w", encoding="utf-8") as fh:
+                    json.dump(lib, fh, indent=1, ensure_ascii=False)
+        except Exception as e:  # noqa: BLE001
+            print(f"[director] library grade skipped: {e}", flush=True)
+        # the config, this story only, re-read at write time
+        if config_path:
+            try:
+                cp = str(config_path)
+                cfg = json.loads(open(cp, encoding="utf-8").read())
+                for st_ in cfg.get("stories", []):
+                    if st_.get("slug") != story_cfg.get("slug"):
+                        continue
+                    for a, b in zip(st_.get("segments", []),
+                                    story_cfg.get("segments", [])):
+                        if isinstance(b.get("scene"), dict) and b["scene"].get("grade"):
+                            a["scene"] = b["scene"]
+                    break
+                with open(cp, "w", encoding="utf-8") as fh:
+                    fh.write(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+            except Exception as e:  # noqa: BLE001
+                print(f"[director] config grade skipped: {e}", flush=True)
+        print(f"[director] graded {graded} mechanic(s) for "
+              f"'{story_cfg.get('slug')}'", flush=True)
+        return graded
+    except Exception as e:  # noqa: BLE001
+        print(f"[director] grade_mechanics skipped: {e}", flush=True)
+        return 0
 
 
 def _invent_mechanic(ins):
