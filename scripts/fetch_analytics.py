@@ -389,6 +389,66 @@ def _hours_since(iso_ts: str | None) -> float | None:
     return max(0.01, (datetime.now(timezone.utc) - dt).total_seconds() / 3600.0)
 
 
+#: The creative decisions a video was made of. They live in the VIDEO LEDGER,
+#: keyed by slug; the posted log is keyed by upload. Anything already on the
+#: entry wins — this only FILLS GAPS.
+_LEDGER_FIELDS = (
+    "depictions", "hook_type", "ending_type", "topic_category",
+    "scene_changes_before_5s", "words_first_10s", "n_beats",
+    "story_structure", "actual_structure",
+)
+
+
+def _fill_from_ledger(entries: list) -> None:
+    """Join `state/video_ledger.json` onto the posted-log entries by slug.
+
+    THE CHANNEL RECORDED WHAT IT MADE AND WHAT HAPPENED, AND NEVER JOINED
+    THEM. The ledger has a per-beat `depictions` list for 96 videos
+    ("mechanic:lake-shoreline-recede", "viz:trend", "scene:kit"); the
+    analytics snapshot reads its creative fields off the POSTED LOG, which
+    carries them for 15. So the one question the operator actually asked on
+    2026-09-21 — do the bespoke per-video animations earn the views? — came
+    back n=6 against n=9 and could not be answered either way.
+
+    Nothing was broken and nothing was missing. The two halves were just in
+    different files, and the report quietly showed whichever handful had both.
+
+    Gap-fill only: an entry that already carries a field keeps it, so a
+    value written at upload time always beats one reconstructed later.
+    """
+    try:
+        led = json.loads(
+            (ROOT / "state" / "video_ledger.json").read_text())
+    except Exception:  # noqa: BLE001 — no ledger, no join, no crash
+        return
+    rows = led.get("videos") if isinstance(led, dict) else led
+    if not isinstance(rows, list):
+        return
+    by_slug = {r.get("slug"): r for r in rows
+               if isinstance(r, dict) and r.get("slug")}
+    if not by_slug:
+        return
+    filled = 0
+    for e in entries:
+        # THE POSTED LOG CALLS IT `ident`; THE LEDGER CALLS IT `slug`.
+        # Joining on "slug" matched zero of 248 entries — the posted log has
+        # no such key — and the join looked like it simply had nothing to add.
+        # A rename between two files is the cheapest possible way to lose a
+        # dataset, and it is invisible: both sides are present and correct.
+        row = by_slug.get(e.get("ident")) or by_slug.get(e.get("slug"))
+        if not row:
+            continue
+        hit = False
+        for key in _LEDGER_FIELDS:
+            if e.get(key) is None and row.get(key) is not None:
+                e[key] = row[key]
+                hit = True
+        filled += bool(hit)
+    if filled:
+        print(f"[analytics] joined creative fields from the ledger for "
+              f"{filled} video(s)", file=sys.stderr)
+
+
 def build_snapshot(posted_log: Path, channel: str = "",
                    max_age_days: int = 30) -> dict:
     """Pull stats for every uploaded video the posted_log knows about
@@ -398,6 +458,7 @@ def build_snapshot(posted_log: Path, channel: str = "",
     if not posted_log.exists():
         sys.exit(f"missing {posted_log} — nothing to analyse")
     entries = _entries(json.loads(posted_log.read_text()))
+    _fill_from_ledger(entries)
 
     # Pair each log entry with its video ID + age. Drop entries older
     # than max_age_days so we don't waste quota on dead history.
