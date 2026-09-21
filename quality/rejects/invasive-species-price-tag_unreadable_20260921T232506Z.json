@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T232506Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Hook captions print straight over the chart's own text \u2014 'That's more' covers the 1970 row at hook@0.3 and 'countries make.' sits on $1.6B leaving '6B' showing at hook@1.5; 'Prevention & mana' is sliced by the right edge at seg2:start/mid/end, 'Damage & losses' is clipped at the left edg",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg4:start/mid and payoff@-0.4 the closing bubble fills the top third while the actual data \u2014 two hairline rules with 3.5K and 37K and mascot figures about 30px tall \u2014 occupies a narrow strip, and the bottom half of the frame is entirely empty gradient; the axis labels 'Classified as harmful invader' and 'Alien species established' are tiny grey-on-navy and unreadable on a phone, and the beat barely moves (max duplicate run measured at 33.79s).",
+  "root_cause": "The payoff beat shrank a dumbbell/lollipop comparison into the residual space left by the quote bubble instead of being composed as its own full-bleed shot, so scale, type size and motion all collapsed.",
+  "repair_goal": "Recompose seg4 to fill the frame: drop or shrink the quote bubble, scale the 37K vs 3.5K comparison to at least half the frame height with labels at body-text size in look.TEXT ink, and give the beat a real arrival (the 3.5K portion separating out of the 37K) so the last four seconds still move."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
