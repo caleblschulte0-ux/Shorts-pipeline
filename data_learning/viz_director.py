@@ -466,6 +466,24 @@ HARD RULES:
   seesaw with a cat, two tubes, a timeline cross) is tier 2 — the icon could
   be swapped for anything. The showrunner grades every depiction 0-3 on
   exactly this and the library you learn from is ranked by it.
+- THE METHOD (do this before writing any code): write down what the SUBJECT
+  physically DOES with the quantity — arrives, drains, spreads, stacks,
+  shrinks, burns, breaks off. Take that verb. Then draw the number as that
+  action happening to the real subject, so the picture is a count, an
+  area, a level or a distance OF THE SUBJECT: units of it landing one at a
+  time (each = fmt(per)); it draining into the vessel that receives the
+  share; its own footprint shrinking through every point of the series;
+  copies of it stacking until they reach the bigger one. Then apply the
+  swap test: replace the subject with a different one — if the picture
+  would not have to change, you have drawn a machine, not the thing. Start
+  over. The worked examples below passed this test; copy their METHOD, not
+  their subject.
+- MOTION THE REVIEWER CAN SEE. The gate diffs ADJACENT frames at 24fps on a
+  192px thumbnail. Things that register: a unit landing, a copy falling
+  (~15px per frame or more at full size), a stream, a level band sweeping, a
+  counter changing. Things that do NOT: an ease-out's tail, a slow glide, a
+  gentle pulse — those are a freeze to it, and a frozen beat costs the
+  video. Keep something ARRIVING right up to reveal 0.95.
 - SHOW THE THING: you MUST place at least one real subject image (paste /
   fill_image / images / subject_image). A mechanic with no subject is rejected.
 - Depict every data point THROUGH the visual (size/fill/position/count/motion),

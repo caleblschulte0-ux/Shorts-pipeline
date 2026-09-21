@@ -449,6 +449,38 @@ Ask, before writing a mechanic: if I swapped the subject for a different one,
 would this picture have to change? If not, it is tier 2 — fine for a
 supporting beat, not for the one the video is about.
 
+### The METHOD — how to get to tier 1 without waiting for inspiration
+
+A definition tells you what tier 1 is; this is how you MAKE one, every time:
+
+1. **Name the subject's verb.** What does the real subject physically DO
+   with this quantity? Energy *arrives* in pulses. Food *drains* into a bin.
+   A lake *shrinks*. Debt *stacks*. Forest *burns*. Ice *breaks off*. Write
+   the verb down before any code.
+2. **Draw the number as that verb happening to the subject**, so the number
+   is a COUNT, an AREA, a LEVEL or a DISTANCE *of the subject itself*:
+   units of it landing one at a time (`each = fmt(per)`); it draining into
+   whatever receives the share; its own footprint shrinking through every
+   point of the series; copies of it stacking until they reach the bigger
+   one.
+3. **Run the swap test.** Replace the subject with a different one. If the
+   picture would not have to change, you drew a machine with an icon in it.
+   Go back to step 1 and pick a different verb.
+4. **Keep it arriving.** The reviewer diffs adjacent frames at 24fps on a
+   192px thumbnail. A unit landing, a copy falling, a stream, a sweeping
+   level band, a changing counter all register; an ease-out's tail, a slow
+   glide and a gentle pulse read as a FREEZE. Something must still be
+   arriving at reveal 0.95.
+
+Four hand-authored exemplars in `viz_mechanics.json` were built exactly
+this way and are marked `exemplar: true` (`scripts/seed_exemplars.py`
+renders and verifies them on every shape before it will seed them):
+`subject-strike-grid` (count), `subject-shore-recede` (series),
+`subject-drain-share` (share), `subject-true-scale` (comparison). They are
+ranked first among the examples you are shown. **Copy their METHOD, not
+their subject** — a strike grid of pizzas for a food-waste story is a
+copied picture; food draining into a bin is the method applied.
+
 ## Your EYES — self-QA before anything ships
 
 Nothing uploads until YOU have looked at it. After writing the scenes:

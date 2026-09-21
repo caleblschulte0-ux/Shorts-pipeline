@@ -140,6 +140,25 @@ A new machine goes through the checklist at the bottom of
 `docs/DATA_MACHINES.md`, which also records what is deliberately NOT built
 (a network map needs edge data no source returns) and why.
 
+- **A bespoke mechanic is TIER 1 only if it is MADE OF the subject**
+  (operator, 2026-09-21, on a sheet of six brain mechanics: a track with a
+  dog, a seesaw with a cat, two tubes, a timeline cross — *"everything in
+  this image should be considered a non-chart, not a video-specific
+  animation"*; of the fusion bolt grid: *"those were sick"*). The
+  showrunner grades every depiction 0-3 on exactly that (`depictions` in
+  the verdict, a learning signal, never a gate input), `grade_mechanics`
+  writes the grade onto the scene and the library entry, and
+  `_mechanic_examples` ranks by it ahead of `starred`. Four HAND-AUTHORED
+  tier-1 teachers sit in `data_learning/viz_mechanics.json` flagged
+  `exemplar: true`, seeded by `scripts/seed_exemplars.py`, which renders
+  and verifies each on every data shape through the real sandbox before it
+  will write. **Edit a teacher in the script, re-run `--write`** — the test
+  holds the shelf copy byte-for-byte to the source. The method the brain is
+  given (name the subject's verb, draw the number as that verb, swap test,
+  keep it arriving) is in the kit prompt and `data_learning/VIZ_BRAIN.md`;
+  the retro brief's `depictions` section measures whether tier 1 actually
+  earns more watch instead of asserting it.
+
 ## The LOOK is `shared/look.py`, and it is held by tests (docs/CHANNEL_LOOK.md)
 
 Operator ruling 2026-09-10: *"the whole look of the thing is cheap and shit
