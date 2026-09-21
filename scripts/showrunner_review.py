@@ -674,6 +674,23 @@ and empty_void:
 FORMAT CONTRACT (authoritative for how this format demonstrates its content):
 {format_directive}
 
+DEPICTION GRADES (required, one per segment you can see, hook excluded). This \
+is a LEARNING signal for the brain that invents the visuals — it never decides \
+ship or block. Grade each segment's picture on two anchors, 0-3:
+  bespoke      3 = the picture is MADE OF the subject and the subject's own
+                   physics carries the number (a grid of laser bolts, each one
+                   0.2 MJ, filling to the value; a lake whose shoreline recedes
+                   to the lost area). Nothing generic remains.
+               2 = a real invented form for THIS story, but a generic element
+                   still carries the number (a subject-shaped vessel filling).
+               1 = a stock machine with a subject icon dropped in —
+                   a track with a dog on it, a seesaw with a cat, two tubes,
+                   a timeline cross. The icon could be swapped for any subject.
+               0 = a chart (bars, a line, a donut, a waffle).
+  proves_claim 3 = a viewer sees the number's meaning without reading it;
+               0 = the picture asserts nothing the label does not.
+Name the kind you saw: "bespoke" | "machine" | "chart". One short note.
+
 STRUCTURED DIAGNOSIS (required): identify the WEAKEST SCENE by its frame-label \
 segment id (segN as printed on the frame labels; the hook is "hook"). If you \
 would block this video you MUST name the scene that most needs repair, the \
@@ -688,6 +705,7 @@ Return ONLY this JSON:
  "unreadable":{{"present":bool,"evidence":str}}}},
  "weakest_scene":{{"id":str,"index":int,"failure_class":str,
  "visible_evidence":str,"root_cause":str,"repair_goal":str}},
+ "depictions":[{{"id":str,"kind":str,"bespoke":int,"proves_claim":int,"note":str}}],
  "one_line":str,"problems":[str],"fixes":[str]}}
 
 RUBRIC:
@@ -695,6 +713,38 @@ RUBRIC:
 
 SCRIPT / SCENE CONTEXT:
 {ctx}"""
+
+
+def clean_depictions(raw) -> list | None:
+    """The judge's per-depiction grades, made safe to store — or None.
+
+    OPTIONAL BY DESIGN. This field is a learning signal for the brain that
+    invents the visuals; it never touches ship/block, so its absence or
+    malformation must never become a block reason (`validate_judge_response`
+    does not know about it). Older judges and older verdicts simply lack it.
+    Anything that is not a list of {id, bespoke, proves_claim} with the ints
+    in 0-3 is dropped, entry by entry, rather than trusted.
+    """
+    if not isinstance(raw, list):
+        return None
+    out = []
+    for d in raw:
+        if not isinstance(d, dict):
+            continue
+        sid = str(d.get("id") or "").strip()
+        if not sid:
+            continue
+        try:
+            b = max(0, min(3, int(d.get("bespoke"))))
+            pc = max(0, min(3, int(d.get("proves_claim"))))
+        except (TypeError, ValueError):
+            continue
+        kind = str(d.get("kind") or "").strip().lower()
+        if kind not in ("bespoke", "machine", "chart"):
+            kind = "bespoke" if b >= 2 else ("chart" if b == 0 else "machine")
+        out.append({"id": sid, "kind": kind, "bespoke": b, "proves_claim": pc,
+                    "note": str(d.get("note") or "")[:240]})
+    return out or None
 
 
 def review_video(mp4: Path, context: dict | None = None) -> dict:
@@ -806,6 +856,12 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
         "auto_fails": [f"{k}: {checks[k].get('evidence', '')}" for k in failed],
         "checks": checks, "motion": motion, "temporal": temporal,
         "judge": backend, "weakest_scene": ws,
+        # Per-depiction grades ride along to the ledger and to post_stories,
+        # which hands them to `viz_director.grade_mechanics`. This return
+        # is built field by field, so a key the judge sends is dropped unless
+        # it is named here — which is how "the showrunner already sees which
+        # beat was a bolt grid" stayed prose for months.
+        "depictions": clean_depictions(grades.get("depictions")),
         "one_line": grades.get("one_line", ""),
         "problems": grades.get("problems", []),
         "fixes": grades.get("fixes", []),

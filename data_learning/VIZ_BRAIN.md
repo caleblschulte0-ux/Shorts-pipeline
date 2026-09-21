@@ -416,6 +416,39 @@ Photo-ranking rows are the SAFE FALLBACK, not the house style. Across a video
   radiating to the edges, a gauge sweeping, the subject filling to the value, a
   count of stacked objects — the subject large and central, no dead regions.
 
+## TIER 1 vs TIER 2 — what "a good per-video animation" MEANS here
+
+Operator, 2026-09-21, looking at a sheet of six brain-written mechanics: a
+dog on a track, a seesaw with a cat, two gauge tubes, a timeline cross —
+*"everything in this image should be considered a non-chart, not a
+video-specific animation."* And of the one that was: *"that laser one ...
+those were sick."* The code called all seven "mechanic". The viewer does not.
+
+**Tier 1** — the picture is MADE OF the subject and the subject's own physics
+carries the number. `fusion-net-energy-gain`: a grid of laser bolts, each
+one 0.2 megajoules, filling to the energy output. The showrunner's words:
+*"a genuinely good demonstration."* The bolts are not an icon on a bar; the
+bolts ARE the bar. A shoreline receding to exactly the lost area. Ants
+pouring into a pan of a scale until it tips at the real ratio.
+
+**Tier 2** — a stock machine with a subject icon dropped in:
+a track with a runner, a tube that fills, a seesaw, a row of gauges, a timeline cross with
+a dot. Real, honest, and generic — the icon could be swapped for any other
+subject and the picture would not change. Most of the library is this.
+
+**Tier 0** — a chart.
+
+The showrunner now grades every segment it sees 0-3 on exactly this
+(`bespoke`) and on whether the picture proves the claim without the label
+(`proves_claim`). Those grades are written onto the mechanic in
+`viz_mechanics.json` and onto the story's `scene`, and the examples you are
+shown are ranked by them — a measured judgment, not your own `starred`.
+
+**Rule: at least one tier-1 beat per video.** Spend your invention there.
+Ask, before writing a mechanic: if I swapped the subject for a different one,
+would this picture have to change? If not, it is tier 2 — fine for a
+supporting beat, not for the one the video is about.
+
 ## Your EYES — self-QA before anything ships
 
 Nothing uploads until YOU have looked at it. After writing the scenes:

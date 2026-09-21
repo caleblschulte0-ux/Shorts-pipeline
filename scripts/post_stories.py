@@ -710,6 +710,16 @@ def main() -> int:
             if _keep and Path(_keep).exists():
                 Path(_keep).unlink(missing_ok=True)
 
+        # THE JUDGE'S PER-DEPICTION GRADES GO BACK TO THE BRAIN — from the
+        # FINAL verdict, i.e. the cut that shipped or held after repair. A
+        # learning signal only: nothing above or below reads it to decide.
+        try:
+            from data_learning import viz_director as _vd
+            _vd.grade_mechanics(sc, (verdict or {}).get("depictions"),
+                                config_path=args.config)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[{slug}] depiction grades skipped: {_e}", flush=True)
+
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")
             results.append({"slug": slug, "ok": True,
