@@ -7,10 +7,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 82.8,
+    "elapsed_seconds": 84.9,
     "package_path": "state/trending_packages/20260921/01_graph-debit-cards-replaced-checks.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-122919_debit_cards_replaced_the_checkbook.mp4",
+    "video_path": "output/daily_20260921-124700_debit_cards_replaced_the_checkbook.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -41,10 +41,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 80.0,
+    "elapsed_seconds": 81.6,
     "package_path": "state/trending_packages/20260921/02_graph-smartphones-passed-pcs.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-123042_smartphones_passed_pcs_in_two_years.mp4",
+    "video_path": "output/daily_20260921-124825_smartphones_passed_pcs_in_two_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -72,13 +72,13 @@
     "title": "Solar Left Wind Power Behind",
     "format": "graph_race",
     "publish_at": "2026-09-21T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clear graph race demonstrating solar power's rapid growth over wind power, but with significant empty space.",
-    "elapsed_seconds": 114.1,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/MN0XUKO80fg",
+    "error": null,
+    "elapsed_seconds": 148.4,
     "package_path": "state/trending_packages/20260921/03_graph-solar-outbuilt-wind.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-123202_solar_left_wind_power_behind.mp4",
+    "video_path": "output/daily_20260921-124947_solar_left_wind_power_behind.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,24 +95,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clear graph race demonstrating solar power's rapid growth over wind power, but with significant empty space.",
-      "score": 87
+      "blocked": false,
+      "reason": "",
+      "score": 82
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Streaming Replaced Pay TV In America",
     "title": "Streaming Replaced Pay TV In America",
     "format": "graph_race",
-    "publish_at": "2026-09-21T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/zM1hpToFdlM",
-    "error": null,
-    "elapsed_seconds": 124.0,
+    "publish_at": "2026-09-21T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 84.3,
     "package_path": "state/trending_packages/20260921/04_graph-streaming-replaced-pay-tv.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-123356_streaming_replaced_pay_tv_in_america.mp4",
+    "video_path": "output/daily_20260921-125215_streaming_replaced_pay_tv_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -129,27 +129,27 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.453 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "He Said The Portal Was The Only Proof. So I Used It.",
     "title": "He Said The Portal Was The Only Proof. So I Used It.",
     "format": "reddit",
     "publish_at": "2026-09-21T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/xYcn0yME2VE",
-    "error": null,
-    "elapsed_seconds": 201.3,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Strong split-screen craft and genuinely relevant footage for the first two thirds, but the last ~12 seconds \u2014 including the entire payoff \u2014 sit on one recycled photo, so the story stops showing anything right when it should land.",
+    "elapsed_seconds": 228.0,
     "package_path": "state/trending_packages/20260921/05_maintenance-portal-water-leak.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-123619_he_said_the_portal_was_the_only_proof__s.mp4",
+    "video_path": "output/daily_20260921-125352_he_said_the_portal_was_the_only_proof__s.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.7,
+      "duration": 55.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.9
+      "loudness_lufs": -24.1
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "None"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 100
+      "blocked": true,
+      "reason": "showrunner BLOCK: Strong split-screen craft and genuinely relevant footage for the first two thirds, but the last ~12 seconds \u2014 including the entire payoff \u2014 sit on one recycled photo, so the story stops showing anything right when it should land.",
+      "score": 66
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "She Ate Every Cupcake. Then Demanded A Full Refund.",
     "title": "She Ate Every Cupcake. Then Demanded A Full Refund.",
     "format": "reddit",
-    "publish_at": "2026-09-21T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant real-world footage and engaging gameplay, but suffers from an unreadable caption and uses a decorative mascot not aligned with the channel's specific mascot strategy.",
-    "elapsed_seconds": 227.8,
+    "publish_at": "2026-09-21T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ezvIPTsLh6o",
+    "error": null,
+    "elapsed_seconds": 239.8,
     "package_path": "state/trending_packages/20260921/06_empty-cupcake-refund.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-123941_she_ate_every_cupcake__then_demanded_a_f.mp4",
+    "video_path": "output/daily_20260921-125806_she_ate_every_cupcake__then_demanded_a_f.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 59.4,
+      "duration": 54.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,19 +199,19 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
+      "loudness_lufs": -24.0
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant real-world footage and engaging gameplay, but suffers from an unreadable caption and uses a decorative mascot not aligned with the channel's specific mascot strategy.",
-      "score": 82
+      "blocked": false,
+      "reason": "",
+      "score": 87
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "pelican",
@@ -219,18 +219,24 @@
     "publish_at": "2026-09-21T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 77)",
-    "elapsed_seconds": 35.6,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 8 shot(s) have no real image and would fall to off-topic keyword stock: ['pounded on my door', 'blood soaking through her sleeve', 'disown him if he married me', 'she was shaking so hard she could barely stand', 'whispering \"I\\'m sorry\" over and over', 'collapsed on our kitchen floor', \"she'd been driving drunk\", \"tell the police she'd been home with me all night\"]",
+    "elapsed_seconds": 151.7,
+    "title": "My Mother-In-Law Banged On My Door, Bleeding",
+    "package_path": "state/trending_packages/20260921-130428_auto_pelican.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "adam sandler",
+    "topic": "current events",
     "angle": null,
     "publish_at": "2026-09-21T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 66)",
-    "elapsed_seconds": 11.0,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['banned from every family event', 'drive a new truck', 'bills went unpaid', 'started saving statements', 'voicemail where he told grandma', 'mailed copies to the trust lawyer', 'certified letter ordering him to repay']",
+    "elapsed_seconds": 95.9,
+    "title": "Family Banned Me From Every Holiday For Asking",
+    "package_path": "state/trending_packages/20260921-130630_auto_current_events.json",
+    "quarantined": true,
     "backfill": true
   },
   {
@@ -239,18 +245,76 @@
     "publish_at": "2026-09-21T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 74)",
-    "elapsed_seconds": 11.0,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 865 (char 4881)\", \"headless-claude[1]: Expecting ',' delimiter: line 14",
+    "elapsed_seconds": 755.9,
+    "title": "My Mother-in-Law Said I Wasn't Really Family",
+    "package_path": "state/trending_packages/20260921-130815_auto_holiday_today.json",
+    "video_path": "output/daily_20260921-130815_holiday_today.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 12 column 865 (char 4881)\", \"headless-claude[1]: Expecting ',' delimiter: line 14",
+      "score": null
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "bitcoin",
+    "topic": "adam sandler",
     "angle": null,
     "publish_at": "2026-09-21T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 80)",
-    "elapsed_seconds": 11.6,
+    "error": "showrunner_block: showrunner BLOCK: The story is strong but the pictures belong to a different video \u2014 a smiling pregnant woman under the word 'DYING' is the exact junk-imagery auto-fail, and there is no data demonstration or mascot anywhere.",
+    "elapsed_seconds": 496.2,
+    "title": "Dad Filmed Mom Dying, Then I Saw Why",
+    "package_path": "state/trending_packages/20260921-132022_auto_adam_sandler.json",
+    "video_path": "output/daily_20260921-132022_adam_sandler.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.3,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is strong but the pictures belong to a different video \u2014 a smiling pregnant woman under the word 'DYING' is the exact junk-imagery auto-fail, and there is no data demonstration or mascot anywhere.",
+      "score": 34
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
