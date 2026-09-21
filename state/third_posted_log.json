@@ -7942,13 +7942,52 @@
       "banger": 0.7
     },
     "clip-20260921-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/BusyTardyEchidnaTBTacoLeft-NrH0rPrWcL0zfqrC",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/55rr8dpE1qw",
       "title": "Jynxzi Has No Idea What He's Looking At \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-09-21T13:36:38.670638+00:00",
+      "ts": "2026-09-21T13:36:46.791674+00:00",
+      "uploaded_at": "2026-09-21T13:36:46.791692+00:00",
+      "publish_at": "2026-09-21T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BusyTardyEchidnaTBTacoLeft-NrH0rPrWcL0zfqrC",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "JACOB, WHAT EVEN IS THIS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3568,
+      "banger": 0.65,
+      "cut": {
+        "start": 3.3,
+        "end": 9.8
+      },
+      "director_cut": true
+    },
+    "rejected-yawningflirtycoffeepermasmug-fvcjuwy5a6fg48pf": {
+      "source_url": "https://www.twitch.tv/buddha/clip/YawningFlirtyCoffeePermaSmug-fvCjUWY5A6Fg48pF",
+      "streamer": "buddha",
+      "title": "Buddha Song Audition For Brickbois Records",
+      "qa_rejected": true,
+      "ts": "2026-09-21T13:45:13.519138+00:00"
+    },
+    "rejected-wisesilkyturnipbudstar-pvjfgrqxrlwf9oxu": {
+      "source_url": "https://www.twitch.tv/emiru/clip/WiseSilkyTurnipBudStar-PVJfGrQxRLwF9OXU",
+      "streamer": "emiru",
+      "title": "olympic level hatewatching",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (streamer recounts harassment, no visible)",
+      "ts": "2026-09-21T13:46:38.412963+00:00"
+    },
+    "clip-20260921-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/EncouragingSmoggyTarsierRickroll-QPvRxV2zsEORTsqY",
+      "story_key": null,
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin RP Reunion Turns Into A Wild Family Lore Drop",
+      "kind": "twitch_clip",
+      "ts": "2026-09-21T14:19:27.333330+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
