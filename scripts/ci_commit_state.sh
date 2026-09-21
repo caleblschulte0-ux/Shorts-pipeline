@@ -59,10 +59,25 @@ for attempt in 1 2 3 4 5; do
   # ...then recompute the dedupe ledgers as a UNION of theirs + ours. Scan
   # the backup mirror so ledgers inside directory args (e.g. `state/`) are
   # found too, not just explicitly-listed files.
-  (cd "$SAVE" && find . -type f \( -name '*posted_log.json' -o -name '*_log.json' \) 2>/dev/null) \
+  # ...and the two LEARNING files the same way (scripts/merge_state_json.py):
+  # the mechanic library by `sig` and the story config by `slug`. Restoring
+  # OUR copy over fresh main deleted four just-merged exemplars from the
+  # library on 2026-09-21, fourteen minutes after they landed, with this
+  # step reporting success.
+  (cd "$SAVE" && find . -type f \( -name '*posted_log.json' -o -name '*_log.json' \
+        -o -name 'viz_mechanics.json' -o -name 'niche.config.json' \) 2>/dev/null) \
   | while read -r rel; do
     rel="${rel#./}"
     THEIRS=$(mktemp)
+    case "$rel" in
+      *viz_mechanics.json|*niche.config.json)
+        git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '' > "$THEIRS"
+        python3 scripts/merge_state_json.py "$THEIRS" "$SAVE/$rel" "$rel" \
+          || { echo "::error::[persist] union-merge failed for $rel — refusing to overwrite either side" >&2
+               touch "$SAVE/.merge_failed"; }
+        rm -f "$THEIRS"
+        continue ;;
+    esac
     git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '{}' > "$THEIRS"
     # A merge failure means a side is CORRUPT (merge_posted_log fails
     # closed on unparseable input). The old fallback here — cp OURS over

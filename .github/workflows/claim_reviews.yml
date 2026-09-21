@@ -72,6 +72,24 @@ jobs:
           [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
           exit 0
 
+      # This workflow's judge is the MAILBOX VERDICT — graded anchors from
+      # ChatGPT, decided by the same code as every judge — so it publishes
+      # nothing a rate-limited Claude could have stopped it from publishing.
+      # The token is still checked the way every publishing workflow checks
+      # it (CLAUDE.md, tests/test_no_ungated_publish.py): an UNSET secret is
+      # a misconfigured repo and must be loud, not silent.
+      - name: Pre-flight — a fail-closed gate needs a judge
+        if: steps.any.outputs.open != '0'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no judge secret at all (CLAUDE_CODE_OAUTH_TOKEN / GEMINI_API_KEY) — the repo is misconfigured; the mailbox verdict still decides here, but fix the secrets"
+            exit 1
+          fi
+          echo "judge of record for this workflow: the ChatGPT mailbox verdict, decided by code"
+
       - name: Decide, then publish only a code-decided ship
         if: steps.any.outputs.open != '0'
         env:
