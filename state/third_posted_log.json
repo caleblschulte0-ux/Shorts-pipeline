@@ -8020,13 +8020,61 @@
       "ts": "2026-09-21T14:20:56.668246+00:00"
     },
     "clip-20260921-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/SincereDependableWalletRiPepperonis-ikEjAdu7kMuiUhBQ",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/P0deZFQGrUE",
       "title": "Kaicenat: Kai Cenat Reveals His Custom One-Of-One Wolverine Suit",
       "kind": "twitch_clip",
-      "ts": "2026-09-21T14:24:17.638677+00:00",
+      "ts": "2026-09-21T14:24:25.908967+00:00",
+      "uploaded_at": "2026-09-21T14:24:25.908987+00:00",
+      "publish_at": "2026-09-21T21:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SincereDependableWalletRiPepperonis-ikEjAdu7kMuiUhBQ",
+      "streamer": "kaicenat",
+      "series": "wholesome",
+      "hook": "HIS WOLVERINE SUIT IS ONE OF ONE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3255,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 31.7
+      },
+      "director_cut": true
+    },
+    "rejected-longlittlejellyfishtakenrg-a-hcx01odkpibisu": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/LongLittleJellyfishTakeNRG-a-hcx01OdKPibisU",
+      "streamer": "caseoh_",
+      "title": "oshi says my name",
+      "qa_rejected": true,
+      "ts": "2026-09-21T14:24:34.858051+00:00"
+    },
+    "rejected-deafsassycariboubleedpurple-h67y2a7ecwiqat2i": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DeafSassyCaribouBleedPurple-h67y2a7ECwIQAT2I",
+      "streamer": "kaicenat",
+      "title": "Mike Dean!??!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just talking about soundtrack, no event)",
+      "ts": "2026-09-21T14:25:58.526432+00:00"
+    },
+    "rejected-peacefulvictoriouspotatoopieop-hb5azvgstvtuiyf-": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/PeacefulVictoriousPotatoOpieOP-hb5azvgsTVTUiyF-",
+      "streamer": "pokimane",
+      "title": ".",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (mod/ban chat talk, no clear event)",
+      "ts": "2026-09-21T14:26:44.626939+00:00"
+    },
+    "clip-20260921-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CarefulDirtyPlumImGlitch-Ml5quV6WNSV1futO",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Called It Then Took One Right To The Face",
+      "kind": "twitch_clip",
+      "ts": "2026-09-21T14:31:11.882218+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
