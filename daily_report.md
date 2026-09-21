@@ -5,22 +5,22 @@
 
 - queued: **6**
 - succeeded: **0**
-- quarantined (off-topic imagery): **2**
-- failed: **4**
+- quarantined (off-topic imagery): **1**
+- failed: **5**
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **el nino**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mother-in-law called screaming', 'destroyed her basement', 'drained the account', 'hands shaking', 'basement had flooded 2 years ago', 'second account I never knew existed', 'never sent her a cent']
-- **gracie mansion**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ["seating chart with Chloe's name circled in red", 'Chloe stole $2,000 from me', 'I confronted my fiancé, Marcus', 'wearing my old bridesmaid dress', 'raised a toast', 'grabbed the microphone', 'eviction notice']
+- **the voice**
+  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['drove her to the arena', 'waited in the parking lot', 'a producer pulled me aside', "Mia's face went white", 'self-taught songwriter from nothing', 'disqualified her on the spot', 'handed me a card']
 
 ## Failed
 - **Debit Cards Replaced The Checkbook**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
 - **Smartphones Passed PCs In Two Years**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 6.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **meta stock**
-  - error: `showrunner_block: showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed — stock b-roll over parkour, with another creator's caption still burned into one clip.`
-- **flores amarillas**
-  - error: `showrunner_block: showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.`
+- **trump tv**
+  - error: `showrunner_block: showrunner BLOCK: Every top-panel image is mismatched auto-grabbed stock — the hook opens on a Hiroshima memorial behind a boyfriend's-dad story — so the video is a caption track riding unrelated photos over parkour.`
+- **houston weather**
+  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: Expecting ',' delimiter: line 36 column 151 (char 6014)", "headless-claude[1]: Expecting ',' delimiter: line 7 `
+- **puka nacua**
+  - error: `showrunner_block: showrunner BLOCK: Every visual above the gameplay is unrelated auto-grabbed stock — a gym photo, a carnival puppet, a rubbish-strewn underpass under 'CAUGHT' — so the video demonstrates nothing and opens on a second of black text card.`
 

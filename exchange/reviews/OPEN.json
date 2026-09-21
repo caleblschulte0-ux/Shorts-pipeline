@@ -1,16 +1,26 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-21T22:46:40Z",
+ "updated": "2026-09-21T23:07:01Z",
  "open": [
   {
-   "id": "amazon-still-shrinking__c92a6758c5",
+   "id": "amazon-still-shrinking__1c646748b2",
    "channel": "explainer",
    "slug": "amazon-still-shrinking",
    "title": "The Amazon Has Lost 750,000 Square Kilometers Since 1970",
-   "filed": "2026-09-21T22:46:40Z",
-   "request": "exchange/reviews/20260921/amazon-still-shrinking__c92a6758c5.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260921/amazon-still-shrinking__c92a6758c5/sheet.jpg",
-   "answer_path": "exchange/reviews/20260921/amazon-still-shrinking__c92a6758c5.verdict.json"
+   "filed": "2026-09-21T21:59:26Z",
+   "request": "exchange/reviews/20260921/amazon-still-shrinking__1c646748b2.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260921/amazon-still-shrinking__1c646748b2/sheet.jpg",
+   "answer_path": "exchange/reviews/20260921/amazon-still-shrinking__1c646748b2.verdict.json"
+  },
+  {
+   "id": "houston_weather__fe8b3306f6",
+   "channel": "trending",
+   "slug": "houston_weather",
+   "title": "She Faked Storm Damage Before The Storm Hit",
+   "filed": "2026-09-21T23:07:01Z",
+   "request": "exchange/reviews/20260921/houston_weather__fe8b3306f6.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260921/houston_weather__fe8b3306f6/sheet.jpg",
+   "answer_path": "exchange/reviews/20260921/houston_weather__fe8b3306f6.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."

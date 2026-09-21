@@ -7,10 +7,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 85.1,
+    "elapsed_seconds": 84.5,
     "package_path": "state/trending_packages/20260921/01_graph-debit-cards-replaced-checks.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-210227_debit_cards_replaced_the_checkbook.mp4",
+    "video_path": "output/daily_20260921-223548_debit_cards_replaced_the_checkbook.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -41,10 +41,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 6.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 82.5,
+    "elapsed_seconds": 81.0,
     "package_path": "state/trending_packages/20260921/02_graph-smartphones-passed-pcs.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-210352_smartphones_passed_pcs_in_two_years.mp4",
+    "video_path": "output/daily_20260921-223713_smartphones_passed_pcs_in_two_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -68,19 +68,19 @@
     "blocked": true
   },
   {
-    "topic": "meta stock",
+    "topic": "trump tv",
     "angle": null,
     "publish_at": "2026-09-22T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed \u2014 stock b-roll over parkour, with another creator's caption still burned into one clip.",
-    "elapsed_seconds": 608.3,
-    "title": "Dad Emptied My Wedding Fund To Buy Meta Stock",
-    "package_path": "state/trending_packages/20260921-210801_auto_meta_stock.json",
-    "video_path": "output/daily_20260921-210801_meta_stock.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Every top-panel image is mismatched auto-grabbed stock \u2014 the hook opens on a Hiroshima memorial behind a boyfriend's-dad story \u2014 so the video is a caption track riding unrelated photos over parkour.",
+    "elapsed_seconds": 558.9,
+    "title": "My Boyfriend's Dad Banned Me From His Family",
+    "package_path": "state/trending_packages/20260921-224122_auto_trump_tv.json",
+    "video_path": "output/daily_20260921-224122_trump_tv.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.7,
+      "duration": 43.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -91,7 +91,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.3
+      "loudness_lufs": -11.9
     },
     "qa": {
       "ok": true,
@@ -100,52 +100,39 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed \u2014 stock b-roll over parkour, with another creator's caption still burned into one clip.",
-      "score": 26
+      "reason": "showrunner BLOCK: Every top-panel image is mismatched auto-grabbed stock \u2014 the hook opens on a Hiroshima memorial behind a boyfriend's-dad story \u2014 so the video is a caption track riding unrelated photos over parkour.",
+      "score": 30
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "el nino",
+    "topic": "the voice",
     "angle": null,
     "publish_at": "2026-09-22T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mother-in-law called screaming', 'destroyed her basement', 'drained the account', 'hands shaking', 'basement had flooded 2 years ago', 'second account I never knew existed', 'never sent her a cent']",
-    "elapsed_seconds": 91.8,
-    "title": "My Mother-In-Law Faked a Flood for Our Savings",
-    "package_path": "state/trending_packages/20260921-211754_auto_el_nino.json",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['drove her to the arena', 'waited in the parking lot', 'a producer pulled me aside', \"Mia's face went white\", 'self-taught songwriter from nothing', 'disqualified her on the spot', 'handed me a card']",
+    "elapsed_seconds": 137.4,
+    "title": "My Sister Stole My Song For The Voice",
+    "package_path": "state/trending_packages/20260921-225054_auto_the_voice.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "gracie mansion",
+    "topic": "houston weather",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: [\"seating chart with Chloe's name circled in red\", 'Chloe stole $2,000 from me', 'I confronted my fianc\u00e9, Marcus', 'wearing my old bridesmaid dress', 'raised a toast', 'grabbed the microphone', 'eviction notice']",
-    "elapsed_seconds": 126.9,
-    "title": "His Mother Invited My Enemy to Our Engagement",
-    "package_path": "state/trending_packages/20260921-211946_auto_gracie_mansion.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "flores amarillas",
-    "angle": null,
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.",
-    "elapsed_seconds": 850.7,
-    "title": "He Left Yellow Flowers On A Stranger's Porch",
-    "package_path": "state/trending_packages/20260921-212154_auto_flores_amarillas.json",
-    "video_path": "output/daily_20260921-212154_flores_amarillas.mp4",
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 36 column 151 (char 6014)\", \"headless-claude[1]: Expecting ',' delimiter: line 7 ",
+    "elapsed_seconds": 911.6,
+    "title": "She Faked Storm Damage Before The Storm Hit",
+    "package_path": "state/trending_packages/20260921-225241_auto_houston_weather.json",
+    "video_path": "output/daily_20260921-225241_houston_weather.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.867,
+      "duration": 47.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -156,7 +143,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.6
+      "loudness_lufs": -11.3
     },
     "qa": {
       "ok": true,
@@ -165,7 +152,46 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.",
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: Expecting ',' delimiter: line 36 column 151 (char 6014)\", \"headless-claude[1]: Expecting ',' delimiter: line 7 ",
+      "score": null
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "puka nacua",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Every visual above the gameplay is unrelated auto-grabbed stock \u2014 a gym photo, a carnival puppet, a rubbish-strewn underpass under 'CAUGHT' \u2014 so the video demonstrates nothing and opens on a second of black text card.",
+    "elapsed_seconds": 526.8,
+    "title": "He Wasn't Injured, He Was Training To Leave",
+    "package_path": "state/trending_packages/20260921-230802_auto_puka_nacua.json",
+    "video_path": "output/daily_20260921-230802_puka_nacua.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.367,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Every visual above the gameplay is unrelated auto-grabbed stock \u2014 a gym photo, a carnival puppet, a rubbish-strewn underpass under 'CAUGHT' \u2014 so the video demonstrates nothing and opens on a second of black text card.",
       "score": 30
     },
     "blocked": true,
