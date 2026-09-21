@@ -8098,13 +8098,45 @@
       "ts": "2026-09-21T14:41:06.630534+00:00"
     },
     "clip-20260921-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/HeartlessSpinelessClintmullinsHoneyBadger-Jtqq_OP0QmI2DqUg",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/rD8XA0TM0-M",
       "title": "Lirik Asks If Trask's A Bad Guy And The Game Actually Answers",
       "kind": "twitch_clip",
-      "ts": "2026-09-21T14:43:17.851351+00:00",
+      "ts": "2026-09-21T14:43:25.900100+00:00",
+      "uploaded_at": "2026-09-21T14:43:25.900121+00:00",
+      "publish_at": "2026-09-22T02:00:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/HeartlessSpinelessClintmullinsHoneyBadger-Jtqq_OP0QmI2DqUg",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "SO WHICH ONE IS THE BAD GUY",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3034,
+      "banger": 0.65,
+      "cut": {
+        "start": 1.0,
+        "end": 9.18
+      },
+      "director_cut": true
+    },
+    "rejected-ramshackleelatedmacaronifloof-0hic7uqoi40jexg3": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/RamshackleElatedMacaroniFloof-0hIC7uqoi40jEXG3",
+      "streamer": "ohnepixel",
+      "title": "xqc check your dm",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just recruiting for lobby, no event)",
+      "ts": "2026-09-21T14:44:56.868798+00:00"
+    },
+    "clip-20260921-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/moistcr1tikal/clip/ObliqueVictoriousWafflePartyTime-ZnW_guRNoCr5dHEj",
+      "story_key": null,
+      "streamer": "moistcr1tikal",
+      "title": "Moistcr1Tikal Reacts To This Stop That Never Came",
+      "kind": "twitch_clip",
+      "ts": "2026-09-21T14:47:08.594935+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
