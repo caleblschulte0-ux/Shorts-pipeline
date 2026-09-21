@@ -13393,5 +13393,903 @@
       ],
       "music_vibe": "cinematic"
     }
+  },
+  "20260622": {
+    "01_beavers-greenford-tube-london.json": {
+      "version": 8,
+      "slug": "beavers-greenford-tube-london",
+      "title": "London Beavers Just Fixed a Tube Station Engineers Couldn't",
+      "script": "Beavers beat London's flood engineers! For years, the Greenford Underground station in Ealing kept flooding. Engineers drew up plans for an artificial reservoir \u2014 expensive, slow, complicated. Then conservationists proposed something wild: beavers. The Eurasian beaver went extinct in Britain 400 years ago, hunted out for fur and castoreum. In 2023, a family of five was reintroduced to 24-acre Paradise Fields right next to the station. They got to work. They built dams, carved channels, transformed the meadow into a natural wetland \u2014 all without permits, meetings, or budget approvals. Within weeks, the flooding stopped. The colony has grown to eight beavers, and Greenford hasn't flooded since. Engineers spent years planning a reservoir. The beavers built one in weeks. So \u2014 how many other London stations need a beaver?",
+      "shots": [
+        {
+          "phrase": "Beavers beat London's flood engineers!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greenford_station_entrance.JPG",
+          "query": "London underground station entrance flooding",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "the Greenford Underground station in Ealing kept flooding",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greenford_station_entrance.JPG",
+          "query": "flooded train station rainwater puddles",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Engineers drew up plans for an artificial reservoir",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greenford_station_entrance.JPG",
+          "query": "engineering blueprint reservoir construction plan",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "conservationists proposed something wild: beavers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "Eurasian beaver swimming river",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "The Eurasian beaver went extinct in Britain 400 years ago",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "historical beaver pelt fur trade",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a family of five was reintroduced to 24-acre Paradise Fields",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "beaver family wetland meadow green",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They built dams, carved channels, transformed the meadow into a natural wetland",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "beaver dam wetland nature waterway",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "all without permits, meetings, or budget approvals",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "city hall meeting bureaucracy permit desk",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Within weeks, the flooding stopped",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greenford_station_entrance.JPG",
+          "query": "dry clean train station platform",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The colony has grown to eight beavers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "beaver colony wetland nature reserve",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Engineers spent years planning a reservoir",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Greenford_station_entrance.JPG",
+          "query": "engineer blueprint infrastructure city report",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The beavers built one in weeks",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "beaver dam logs branches fast build",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "how many other London stations need a beaver?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beaver_Castor_barrage.jpg",
+          "query": "London underground tube map stations",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Beavers beat London's flood engineers!",
+          "text": "BEAVERS WON",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "The Eurasian beaver went extinct in Britain 400 years ago",
+          "text": "EXTINCT 400 YEARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "They built dams, carved channels",
+          "text": "THEY GOT TO WORK",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "all without permits, meetings, or budget approvals",
+          "text": "NO PERMITS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "The colony has grown to eight beavers",
+          "text": "NOW 8 BEAVERS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "The beavers built one in weeks",
+          "text": "IN WEEKS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "how many other London stations need a beaver?",
+          "text": "HOW MANY MORE?",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "beavers",
+        "londonunderground",
+        "greenford",
+        "tube",
+        "flooding",
+        "rewilding",
+        "ukwildlife",
+        "ealing",
+        "londonlife",
+        "natureworks",
+        "wildlifeuk",
+        "ecosystems",
+        "beaveruk",
+        "oddnews",
+        "weirdnews"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_emu-sussex-county-new-jersey.json": {
+      "version": 8,
+      "slug": "emu-sussex-county-new-jersey",
+      "title": "An Emu Is Loose in New Jersey. Nobody Knows Who Lost It.",
+      "script": "New Jersey has an emu problem! The bird showed up in Byram Township, Sussex County this week \u2014 large, fluffy, and completely unaccounted for. Animal control officers, dog handlers, and large-bird wranglers have all tried to catch it. None of them succeeded. The emu was spotted on International Drive in Budd Lake, then immediately made itself scarce. Animal shelters posted on Facebook. Police departments asked the public for help. Nobody has come forward to claim it. Here's the thing about emus: they run 31 miles per hour. So when an emu doesn't want to be caught, it won't be caught. As of this morning, it's still out there. So who exactly lost a 130-pound bird in New Jersey and just... forgot?",
+      "shots": [
+        {
+          "phrase": "New Jersey has an emu problem!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "emu bird standing full body",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "The bird showed up in Byram Township, Sussex County this week",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "suburban New Jersey street neighborhood road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Animal control officers, dog handlers, and large-bird wranglers have all tried to catch it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "animal control officer field net",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "None of them succeeded",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "man chasing bird running field fail",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The emu was spotted on International Drive in Budd Lake",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "road suburban intersection daytime New Jersey",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "immediately made itself scarce",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "bird running away fast ground",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Nobody has come forward to claim it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "lost animal poster bulletin board missing",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "they run 31 miles per hour",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "emu running fast ground feet",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "when an emu doesn't want to be caught, it won't be caught",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "emu walking confident determined stride",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "it's still out there",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "empty suburban road morning quiet",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who exactly lost a 130-pound bird in New Jersey and just... forgot?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Emu_Side.JPG",
+          "query": "emu bird free roaming suburb",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "New Jersey has an emu problem!",
+          "text": "EMU PROBLEM",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "None of them succeeded",
+          "text": "FAILED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "immediately made itself scarce",
+          "text": "GONE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Nobody has come forward to claim it",
+          "text": "NOBODY'S CLAIMING IT",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "they run 31 miles per hour",
+          "text": "31 MPH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "who exactly lost a 130-pound bird in New Jersey and just... forgot?",
+          "text": "130 LB BIRD",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "emu",
+        "newjersey",
+        "njnews",
+        "animalescaped",
+        "sussexcounty",
+        "byramtownship",
+        "wildanimal",
+        "looseanimal",
+        "animalnews",
+        "animalcontrol",
+        "weirdnews",
+        "lostbird",
+        "emubird",
+        "oddnews",
+        "njweird"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "03_alligator-moncks-corner-front-door.json": {
+      "version": 8,
+      "slug": "alligator-moncks-corner-front-door",
+      "title": "An Alligator Parked Itself at a South Carolina Front Door",
+      "script": "Alligator at the door! In Moncks Corner, South Carolina, a homeowner stepped out to find their front porch occupied \u2014 by a very large alligator, apparently going nowhere. Not moving. Not interested in leaving. Just posted up. The Berkeley County Sheriff's Office sent an animal control officer. The officer took one look and immediately called for backup: the South Carolina Department of Natural Resources. Because that's the threshold where 'we need SCDNR' \u2014 when even the animal control professionals say it's too big. Together, they secured the alligator and relocated it to a more appropriate setting. The homeowner was not injured. The alligator was not harmed. The front door is now unblocked. But this is South Carolina in June \u2014 why are we even surprised anymore?",
+      "shots": [
+        {
+          "phrase": "Alligator at the door!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "suburban front porch South Carolina doorstep",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "In Moncks Corner, South Carolina, a homeowner stepped out to find their front porch occupied",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "front door porch suburban home morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "by a very large alligator, apparently going nowhere",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "alligator resting ground suburban close",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Not moving. Not interested in leaving. Just posted up.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "alligator resting eyes still cold",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "The Berkeley County Sheriff's Office sent an animal control officer",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "sheriff police car South Carolina county",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The officer took one look and immediately called for backup",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "animal control officer radio phone backup call",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the South Carolina Department of Natural Resources",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "wildlife officer uniform trapper reptile",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Because that's the threshold where 'we need SCDNR'",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "wildlife department officer badge uniform South Carolina",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Together, they secured the alligator",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "wildlife officers catching alligator rope team",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The homeowner was not injured. The alligator was not harmed.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "alligator transport wildlife truck safe",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The front door is now unblocked",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "clear front porch doorway empty suburban",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "But this is South Carolina in June \u2014 why are we even surprised anymore?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_Alligator.JPG",
+          "query": "alligator wetlands swamp South Carolina",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Alligator at the door!",
+          "text": "AT THE DOOR",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "by a very large alligator",
+          "text": "VERY LARGE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Just posted up.",
+          "text": "POSTED UP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "immediately called for backup",
+          "text": "CALLED BACKUP",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the animal control professionals say it's too big",
+          "text": "TOO BIG",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "why are we even surprised anymore?",
+          "text": "ZERO SURPRISE",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "alligator",
+        "southcarolina",
+        "monckscorner",
+        "berkeleycounty",
+        "gator",
+        "wildlifenews",
+        "reptile",
+        "animalnews",
+        "frontporch",
+        "scwildlife",
+        "surprisevisitor",
+        "weirdnews",
+        "gatorwatch",
+        "oddnews",
+        "scnews"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "04_mary-tasmanian-devil-escaped-queensland.json": {
+      "version": 8,
+      "slug": "mary-tasmanian-devil-escaped-queensland",
+      "title": "Mary the Tasmanian Devil Escaped a Zoo. It Took 2 Weeks to Find Her.",
+      "script": "Mary the Tasmanian devil vanished! On June 2, at Paradise Country theme park on Queensland's Gold Coast, Mary the Tasmanian devil made one abnormally large leap out of her quarantine enclosure and disappeared. Park rangers, tracker dogs, and thermal-imaging drones searched for two weeks. Nothing. Then a family's security camera caught something small and black moving through the bushland in Oxenford \u2014 about 2 kilometers from the park. It was Mary. Searchers found her in unstable condition and rushed her to a specialist veterinary hospital, where staff stabilized her. Two weeks on her own in the Australian bush \u2014 a place where everything is actively trying to kill everything else. Mary survived. Which is impressive \u2014 because Tasmanian devils are listed as endangered. There are maybe 20,000 left. So what did Mary eat out there?",
+      "shots": [
+        {
+          "phrase": "Mary the Tasmanian devil vanished!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "zoo enclosure quarantine fence wildlife park",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Paradise Country theme park on Queensland's Gold Coast",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Gold Coast Queensland Australia theme park",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "made one abnormally large leap out of her quarantine enclosure",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "animal enclosure fence jump escape",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Park rangers, tracker dogs, and thermal-imaging drones searched for two weeks. Nothing.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "thermal drone search rescue night forest",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "a family's security camera caught something small and black",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "home security camera night footage motion",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "moving through the bushland in Oxenford",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Australian bushland scrub animals night dark",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Searchers found her in unstable condition",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "wildlife rescue animal stretcher veterinary emergency",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "rushed her to a specialist veterinary hospital",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "veterinary hospital wildlife emergency care",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Two weeks on her own in the Australian bush",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Australian bush wilderness dense scrub",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Tasmanian devils are listed as endangered. There are maybe 20,000 left.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "endangered species sign wildlife conservation",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "So what did Mary eat out there?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "Tasmanian devil feeding scavenging wildlife",
+          "mascot_pose": "laugh"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Mary the Tasmanian devil vanished!",
+          "text": "VANISHED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "made one abnormally large leap",
+          "text": "ONE HUGE LEAP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "searched for two weeks. Nothing.",
+          "text": "2 WEEKS \u2014 NOTHING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Searchers found her in unstable condition",
+          "text": "UNSTABLE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Two weeks on her own in the Australian bush",
+          "text": "2 WEEKS SOLO",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "There are maybe 20,000 left",
+          "text": "ONLY 20,000 LEFT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "So what did Mary eat out there?",
+          "text": "WHAT DID SHE EAT?",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "tasmaniandevil",
+        "mary",
+        "paradisecountry",
+        "goldcoast",
+        "queensland",
+        "australia",
+        "endangered",
+        "wildliferescue",
+        "animalescape",
+        "australianwildlife",
+        "wildlifeconservation",
+        "animalnews",
+        "tasdevil",
+        "weirdnews",
+        "marsupial"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_melissa-johnson-nc-lottery-trash.json": {
+      "version": 8,
+      "slug": "melissa-johnson-nc-lottery-trash",
+      "title": "She Almost Threw Away a $1 Million Lottery Ticket",
+      "script": "She almost trashed it! Melissa Johnson from Hendersonville, North Carolina, bought a 10-dollar scratch-off ticket at Rock Convenience on Chimney Rock Road. She scratched it, looked it over, decided it was a loser \u2014 and set it aside to throw away. Then she thought: just scan it first. Her phone said $1 million. Johnson said her heart started beating fast. Then she started screaming. The ticket was a winner for the North Carolina Education Lottery \u2014 a top-prize 'Loteria Multiplier' ticket. She took the lump sum: $600,000 before taxes, $432,063 after. And the $10 she almost tossed into the trash is now paying for her family's future. The moral: always scan your scratch-offs before you throw them out. Unless \u2014 what if the trash can knew something you didn't?",
+      "shots": [
+        {
+          "phrase": "She almost trashed it!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "scratch off lottery ticket hand",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Melissa Johnson from Hendersonville, North Carolina",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "small town North Carolina road sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "bought a 10-dollar scratch-off ticket at Rock Convenience on Chimney Rock Road",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "convenience store gas station lottery ticket display",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "decided it was a loser \u2014 and set it aside to throw away",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "scratch off lottery ticket loser trash bin",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Then she thought: just scan it first",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "person scanning ticket phone barcode lottery",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Her phone said $1 million",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "phone screen million dollar win notification",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Johnson said her heart started beating fast. Then she started screaming.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "woman celebrating screaming excited shock",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "The ticket was a winner for the North Carolina Education Lottery",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "winning lottery ticket scratch off winner prize",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She took the lump sum: $600,000 before taxes, $432,063 after",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "dollar bills cash stack money bundle",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the $10 she almost tossed into the trash is now paying for her family's future",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "happy family celebration money future",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "what if the trash can knew something you didn't?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/5_Year_Anniversary_California_Lottery_Tickets.jpg",
+          "query": "trash can outdoor blue bin close",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "She almost trashed it!",
+          "text": "ALMOST TRASHED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "bought a 10-dollar scratch-off ticket",
+          "text": "$10 TICKET",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "decided it was a loser",
+          "text": "SHE THOUGHT: LOSER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "just scan it first",
+          "text": "SCAN IT FIRST",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Her phone said $1 million",
+          "text": "$1 MILLION",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "she started screaming",
+          "text": "SHE STARTED SCREAMING",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "$600,000 before taxes, $432,063 after",
+          "text": "$432K TAKE HOME",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "lottery",
+        "northcarolina",
+        "lotterywin",
+        "scratchoff",
+        "millionaire",
+        "nclottery",
+        "hendersonville",
+        "luckywin",
+        "lotto",
+        "bigwin",
+        "lotterywinner",
+        "millionaires",
+        "luckyday",
+        "weirdnews",
+        "oddnews"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "06_colombia-de-la-espriella-trump-winner.json": {
+      "version": 8,
+      "slug": "colombia-de-la-espriella-trump-winner",
+      "title": "Trump's Guy Won Colombia. By Less Than 1%.",
+      "script": "Trump's pick won Colombia! Abelardo de la Espriella \u2014 Colombian lawyer, dual US citizen, never held elected office before \u2014 won Colombia's presidential runoff on Sunday by less than 1%. He got 12.9 million votes. His opponent, Iv\u00e1n Cepeda, got 12.6 million. About 250,000 votes between them, out of nearly 26 million cast. De la Espriella ran on an 'iron fist' approach to crime: mega-prisons, crackdowns, close ties to Washington. He was endorsed by President Trump and spoke openly about his connections to US political circles. He takes office August 7. Cepeda has called for a full final count, which in Colombia is a second, thorough review conducted by judges and lawyers. Until it's done, no official winner exists. So \u2014 when Trump backs your candidate and he wins by 0.97%, is that a mandate or a coin flip?",
+      "shots": [
+        {
+          "phrase": "Trump's pick won Colombia!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "Colombia election day voting booth",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Abelardo de la Espriella \u2014 Colombian lawyer, dual US citizen",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "Colombian lawyer businessman suit formal",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "never held elected office before",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "political outsider campaign rally crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "won Colombia's presidential runoff on Sunday by less than 1%",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "election results vote counting ballot Colombia",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He got 12.9 million votes",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_downtown_Bogota.jpg",
+          "query": "Colombia election ballot counting tally",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "His opponent, Iv\u00e1n Cepeda, got 12.6 million",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_downtown_Bogota.jpg",
+          "query": "close election narrow margin two candidates",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "About 250,000 votes between them, out of nearly 26 million cast",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_downtown_Bogota.jpg",
+          "query": "votes ballot boxes election count Colombia",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "De la Espriella ran on an 'iron fist' approach to crime",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "prison jail cell bars Colombia crime",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He was endorsed by President Trump",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "Trump endorsement rally thumbs up crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He takes office August 7",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_downtown_Bogota.jpg",
+          "query": "Colombian presidential palace Casa Narino Bogota",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Cepeda has called for a full final count",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skyline_downtown_Bogota.jpg",
+          "query": "election recount ballot protest Colombia court",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "is that a mandate or a coin flip?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Abelardo_de_la_Espriella_2025.jpg",
+          "query": "coin flip heads tails close call decision",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Trump's pick won Colombia!",
+          "text": "TRUMP'S PICK",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "won Colombia's presidential runoff on Sunday by less than 1%",
+          "text": "LESS THAN 1%",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He got 12.9 million votes",
+          "text": "12.9M VOTES",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "De la Espriella ran on an 'iron fist' approach to crime",
+          "text": "IRON FIST",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He was endorsed by President Trump",
+          "text": "TRUMP ENDORSED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "he wins by 0.97%",
+          "text": "0.97% MARGIN",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "colombia",
+        "colombiaelection",
+        "delespriella",
+        "ivancepeda",
+        "trump",
+        "trumpendorsed",
+        "bogota",
+        "election2026",
+        "latinamerica",
+        "colombianews",
+        "presidentelect",
+        "closeelection",
+        "worldnews",
+        "uspolitics",
+        "latinopolitics"
+      ],
+      "music_vibe": "dark"
+    },
+    "07_ohio-goats-suv-getaway.json": {
+      "version": 1,
+      "slug": "ohio-goats-suv-getaway",
+      "title": "8 Goats Got Loose in Ohio \u2014 One Used an SUV as a Getaway Ramp",
+      "hashtags": [
+        "goats",
+        "ohio",
+        "escapedanimal",
+        "ontheloose",
+        "oddnews",
+        "goat",
+        "localnews",
+        "caughtoncamera",
+        "animals",
+        "getaway",
+        "fyp",
+        "viral"
+      ],
+      "script": "Eight goats versus one county? In Ohio, sheriff's deputies got called out for the least intimidating emergency imaginable: a herd of 8 goats loose on the road. Easy, right? Round them up, go home. Except these goats did not get the memo. As deputies closed in, one goat sized up the situation, spotted a parked SUV, and leapt clean onto the hood \u2014 then used it as a launchpad to escape. A getaway. Off a car. By a goat. The rest of the herd scattered while one four-legged mastermind disappeared down the road. Deputies eventually corralled most of them. Most. So who taught one Ohio goat to use a parked SUV as a getaway ramp?",
+      "shots": [
+        {
+          "phrase": "Eight goats versus one county",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "herd of goats",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "a herd of 8 goats loose on the road",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "goats on road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Round them up, go home",
+          "query": "police car rural road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "these goats did not get the memo",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "goat close up",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "leapt clean onto the hood",
+          "query": "goat on car",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "used it as a launchpad to escape",
+          "query": "parked suv",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A getaway. Off a car. By a goat",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "goat jumping",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "one four-legged mastermind disappeared down the road",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "goat running",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Deputies eventually corralled most of them",
+          "query": "animal control officer",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who taught one Ohio goat to use a parked SUV as a getaway ramp",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Capra_aegagrus_hircus_in_isla_Margarita.jpg",
+          "query": "goat farm",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Eight goats versus one county",
+          "text": "8 GOATS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "loose on the road",
+          "text": "ON THE LOOSE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "leapt clean onto the hood",
+          "text": "ONTO THE SUV!",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "A getaway. Off a car. By a goat",
+          "text": "GETAWAY GOAT",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "corralled most of them",
+          "text": "MOST...",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "_schedule.json": {
+      "per_slot": 2
+    }
   }
 }

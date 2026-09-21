@@ -1,4 +1,256 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "Debit Cards Replaced The Checkbook",
+    "title": "Debit Cards Replaced The Checkbook",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 82.8,
+    "package_path": "state/trending_packages/20260921/01_graph-debit-cards-replaced-checks.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-122919_debit_cards_replaced_the_checkbook.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.544 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Smartphones Passed PCs In Two Years",
+    "title": "Smartphones Passed PCs In Two Years",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 80.0,
+    "package_path": "state/trending_packages/20260921/02_graph-smartphones-passed-pcs.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-123042_smartphones_passed_pcs_in_two_years.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.1 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Solar Left Wind Power Behind",
+    "title": "Solar Left Wind Power Behind",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clear graph race demonstrating solar power's rapid growth over wind power, but with significant empty space.",
+    "elapsed_seconds": 114.1,
+    "package_path": "state/trending_packages/20260921/03_graph-solar-outbuilt-wind.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-123202_solar_left_wind_power_behind.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clear graph race demonstrating solar power's rapid growth over wind power, but with significant empty space.",
+      "score": 87
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Streaming Replaced Pay TV In America",
+    "title": "Streaming Replaced Pay TV In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-21T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/zM1hpToFdlM",
+    "error": null,
+    "elapsed_seconds": 124.0,
+    "package_path": "state/trending_packages/20260921/04_graph-streaming-replaced-pay-tv.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-123356_streaming_replaced_pay_tv_in_america.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "He Said The Portal Was The Only Proof. So I Used It.",
+    "title": "He Said The Portal Was The Only Proof. So I Used It.",
+    "format": "reddit",
+    "publish_at": "2026-09-21T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xYcn0yME2VE",
+    "error": null,
+    "elapsed_seconds": 201.3,
+    "package_path": "state/trending_packages/20260921/05_maintenance-portal-water-leak.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-123619_he_said_the_portal_was_the_only_proof__s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 52.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 100
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Ate Every Cupcake. Then Demanded A Full Refund.",
+    "title": "She Ate Every Cupcake. Then Demanded A Full Refund.",
+    "format": "reddit",
+    "publish_at": "2026-09-21T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant real-world footage and engaging gameplay, but suffers from an unreadable caption and uses a decorative mascot not aligned with the channel's specific mascot strategy.",
+    "elapsed_seconds": 227.8,
+    "package_path": "state/trending_packages/20260921/06_empty-cupcake-refund.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260921-123941_she_ate_every_cupcake__then_demanded_a_f.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 59.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant real-world footage and engaging gameplay, but suffers from an unreadable caption and uses a decorative mascot not aligned with the channel's specific mascot strategy.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "pelican",
+    "angle": null,
+    "publish_at": "2026-09-21T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 77)",
+    "elapsed_seconds": 35.6,
+    "backfill": true
+  },
+  {
+    "topic": "adam sandler",
+    "angle": null,
+    "publish_at": "2026-09-21T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 66)",
+    "elapsed_seconds": 11.0,
+    "backfill": true
+  },
+  {
+    "topic": "holiday today",
+    "angle": null,
+    "publish_at": "2026-09-21T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 74)",
+    "elapsed_seconds": 11.0,
+    "backfill": true
+  },
+  {
+    "topic": "bitcoin",
+    "angle": null,
+    "publish_at": "2026-09-21T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 80)",
+    "elapsed_seconds": 11.6,
+    "backfill": true
+  }
+]
