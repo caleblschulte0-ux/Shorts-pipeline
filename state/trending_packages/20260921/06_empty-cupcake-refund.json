@@ -1,0 +1,96 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "empty-cupcake-refund",
+  "title": "She Ate Every Cupcake. Then Demanded A Full Refund.",
+  "hashtags": [
+    "entitledcustomer",
+    "bakery",
+    "customerservice",
+    "refund",
+    "receipts",
+    "karma",
+    "storytime",
+    "shorts"
+  ],
+  "script": "A customer ordered thirty custom cupcakes for an office party, then returned the next morning demanding a full refund because the frosting was \u201ctoo blue.\u201d I asked where the cupcakes were. She placed an empty bakery box on the counter and said her coworkers had eaten them because she did not want food wasted. Our policy allowed refunds for defective products, but the product had to be returned. She argued that the empty wrappers proved the problem, then threatened a chargeback. My manager calmly pulled up the pickup photo showing the exact shade she approved in writing. He offered store credit for the two unopened cupcakes listed in her complaint. She admitted there were none left. The bank later requested our evidence, so we sent the signed color approval, pickup photo, empty-box security footage, and her email saying everyone ate them. The chargeback was denied. She left us a one-star review claiming we had \u201cstolen\u201d thirty cupcakes. Technically, her coworkers had already handled that.",
+  "shots": [
+    {
+      "phrase": "thirty custom cupcakes for an office party",
+      "query": "custom blue cupcakes in bakery box",
+      "image_url": "https://drive.google.com/uc?export=download&id=1V2zuSurgp-QSmj_hwm_vwytWoChYcGr0",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1V2zuSurgp-QSmj_hwm_vwytWoChYcGr0",
+      "media_sha256": "4ec081eceab0894d96206c7ec25d734b680226255624f35da86d02bfe069e588",
+      "media_bytes": 2566017
+    },
+    {
+      "phrase": "an empty bakery box on the counter",
+      "query": "empty bakery box on shop counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1INWZ8FGiyLeKsN-JugXZZ2x04GWfQMWB",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1INWZ8FGiyLeKsN-JugXZZ2x04GWfQMWB",
+      "media_sha256": "0e36baf35bcf6e8db33e11e8b866b43a044ae73564cbfc2f2f25369d3546ec9f",
+      "media_bytes": 2105255
+    },
+    {
+      "phrase": "the empty wrappers proved the problem",
+      "query": "cupcake wrappers inside empty box",
+      "image_url": "https://drive.google.com/uc?export=download&id=1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1gsuiEfFd44DAgzbUuZAzGh7lZaEfaUCS",
+      "media_sha256": "46340c21116dde0fc140f49c31aa1e06f361e24e1dad5b2ca7e8f711da6993f4",
+      "media_bytes": 2342217
+    },
+    {
+      "phrase": "pickup photo showing the exact shade",
+      "query": "bakery employee reviewing cupcake pickup photo",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1Hrc3PeNHzxNia-W8JcCNf91AZGtjv7Fa",
+      "media_sha256": "c499a77f6a15a3051a8f23e52fbc3e4e9247513b3e327f107d538ac931a6d8dd",
+      "media_bytes": 1845787
+    },
+    {
+      "phrase": "The bank later requested our evidence",
+      "query": "chargeback evidence documents on desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1Xiq_JYcpSqFqsAXyp1D9H1RLjU-ViCS9",
+      "media_sha256": "bc234a674697a62707fde46be74b9c71192db45287f37869aa8d9d840e046be2",
+      "media_bytes": 2269390
+    },
+    {
+      "phrase": "The chargeback was denied",
+      "query": "denied chargeback notice on computer",
+      "image_url": "https://drive.google.com/uc?export=download&id=19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+      "media_sha256": "6f6a1250293456308ad57d149692588e30b0a9ffc16c2f6a9ac1515337a4b1de",
+      "media_bytes": 1819631
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "demanding a full refund",
+      "text": "FULL REFUND",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "empty bakery box",
+      "text": "EMPTY BOX",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "approved in writing",
+      "text": "SHE APPROVED IT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "The chargeback was denied",
+      "text": "CHARGEBACK DENIED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "deadpan",
+  "_authored_by": "chatgpt-takeover"
+}

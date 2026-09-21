@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-solar-outbuilt-wind",
+  "title": "Solar Left Wind Power Behind",
+  "hook": "Sunlight won the buildout.",
+  "y_label": "New global capacity added per year (gigawatts)",
+  "duration": 13,
+  "source": "International Renewable Energy Agency Renewable Capacity Statistics and IEA renewables market reports, global annual solar PV and wind capacity additions, 2010-2023. Approximate.",
+  "years": [
+    2010,
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Solar PV",
+      "color": "#F9A825",
+      "icon": "IRENA",
+      "values": [
+        17,
+        30,
+        40,
+        75,
+        98,
+        138,
+        239,
+        346
+      ]
+    },
+    {
+      "name": "Wind",
+      "color": "#00897B",
+      "icon": "IRENA",
+      "values": [
+        39,
+        45,
+        52,
+        55,
+        51,
+        111,
+        77,
+        116
+      ]
+    }
+  ],
+  "hashtags": [
+    "solar",
+    "windpower",
+    "renewables",
+    "energy",
+    "climate",
+    "electricity",
+    "irena",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

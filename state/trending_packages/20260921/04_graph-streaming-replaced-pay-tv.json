@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-replaced-pay-tv",
+  "title": "Streaming Replaced Pay TV In America",
+  "hook": "The bundle lost the remote.",
+  "y_label": "U.S. subscriptions (millions)",
+  "duration": 13,
+  "source": "Motion Picture Association THEME reports and Leichtman Research Group estimates: U.S. online video subscriptions versus traditional pay-TV households, 2014-2023. Approximate.",
+  "years": [
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2020,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Streaming video",
+      "color": "#E53935",
+      "icon": "Netflix",
+      "values": [
+        40,
+        53,
+        70,
+        93,
+        125,
+        238,
+        300,
+        310
+      ]
+    },
+    {
+      "name": "Pay TV",
+      "color": "#3949AB",
+      "icon": "Comcast",
+      "values": [
+        100,
+        99,
+        97,
+        94,
+        90,
+        78,
+        66,
+        58
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "cabletv",
+    "netflix",
+    "television",
+    "cordcutting",
+    "media",
+    "subscriptions",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}
