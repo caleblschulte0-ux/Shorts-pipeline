@@ -698,6 +698,25 @@ jobs:
 
       # Pull view/like counts for the channel's published videos so the daily
       # routine learns which hooks/topics land (feedback loop, channel #3).
+      # THE JUDGE OF LAST RESORT (docs/REVIEW_MAILBOX.md). A render nobody
+      # could watch is held by the gate AND kept here as an artifact, with
+      # its frames published to preview-renders and a review request filed
+      # for ChatGPT; claim_reviews.yml ships it later on a code-decided ship.
+      - name: Keep held renders for the mailbox judge
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        uses: actions/upload-artifact@v4
+        with:
+          name: held-renders-${{ github.run_id }}
+          path: |
+            output/held/*.mp4
+            output/held/*.json
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Publish review frames to preview-renders
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        run: bash scripts/publish_review_media.sh output/review_media
+
       - name: Did the channel actually post today?
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
@@ -827,4 +846,5 @@ jobs:
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json \
             state/showrunner_verdicts.jsonl \
+            exchange/reviews exchange/asks \
             state/scene_plans quality

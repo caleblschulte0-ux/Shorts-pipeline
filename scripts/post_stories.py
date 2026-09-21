@@ -632,6 +632,15 @@ def main() -> int:
         # previously unwatched) runs the SAME gate rather than a second copy
         # of it. See docs/SYSTEM_AUDIT.md §D.
         from shared import showrunner_gate as _gate
+        if will_upload and os.environ.get("REVIEW_MAILBOX", "1") not in ("0", "off"):
+            # THE JUDGE OF LAST RESORT (shared/review_mailbox.py). This only
+            # ADDS: if nobody can watch this render the gate still holds it
+            # exactly as before, but the render is kept as an artifact and a
+            # review request is filed for ChatGPT. `scripts/claim_reviews.py`
+            # publishes it later, only on a code-decided ship.
+            _rid = os.environ.get("GITHUB_RUN_ID", "")
+            ctx["mailbox"] = {"channel": args.channel, "run_id": _rid,
+                              "artifact": f"held-renders-{_rid or 'local'}"}
         gate = _gate.run(out, slug=slug, context=ctx, will_upload=will_upload)
         _gate.log(gate, slug)
         blocked = gate["blocked"]

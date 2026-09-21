@@ -812,8 +812,40 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             format_directive=_format_directive(ctx),
             rubric=_rubric()[:6000],
             ctx=json.dumps(ctx, indent=0)[:3000])
-        grades, backend = _judge(prompt, labeled)
+        try:
+            grades, backend = _judge(prompt, labeled)
+        except Exception as judge_err:  # noqa: BLE001
+            # NOBODY COULD WATCH. The gate will hold (fail-closed) — that is
+            # right. What was wrong on 2026-09-21 is that the render then
+            # died with the runner and the fleet's third brain was never
+            # asked. If the caller opened the mailbox (`ctx["mailbox"]`,
+            # publish runs only), keep the render and file a review request
+            # carrying exactly what the judge would have been given; the
+            # claim step ships it later on an explicit code-decided ship.
+            # See `shared/review_mailbox.py`.
+            mb = ctx.get("mailbox")
+            rid = None
+            if isinstance(mb, dict):
+                from shared import review_mailbox as _rm
+                rid = _rm.file_request(
+                    mp4=mp4, slug=str(ctx.get("slug") or mp4.stem),
+                    labeled=labeled, prompt=prompt, motion=motion,
+                    temporal=temporal, ctx=ctx, mailbox=mb)
+            raise RuntimeError(
+                f"{judge_err}"
+                + (f" — review request filed: {rid}" if rid else "")) from judge_err
 
+    return assemble_verdict(grades, motion=motion, temporal=temporal,
+                            backend=backend)
+
+
+def assemble_verdict(grades: dict, *, motion: dict, temporal: dict,
+                     backend: str) -> dict:
+    """Turn a judge's graded anchors into the verdict — ONE function for
+    every judge. The headless brain, the Gemini fallback and a ChatGPT
+    mailbox answer all pass through here, so the schema check, the
+    code-computed score, the motion override and `decide_verdict` are
+    byte-identical whoever graded. A judge grades; this decides."""
     schema_problems = validate_judge_response(grades)
     if schema_problems:
         dims = {k: 0 for k in WEIGHTS}

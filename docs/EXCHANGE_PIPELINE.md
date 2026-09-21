@@ -185,6 +185,14 @@ the same breath. One round trip, one wait.
 | `scripts/exchange_phase_b.py` | Phase B entrypoint. Pulls media, self-fills, applies guarded punch-ups. |
 | `scripts/fetch_exchange_media.py` | The paranoid downloader (hash + full pixel decode + placeholder detection). |
 
+## The judge of last resort — ChatGPT grades what no judge could watch
+
+Separate from the media/authoring exchange below: when a publish run
+has no vision judge (2026-09-21: Claude CLI session limit + Gemini 429),
+the render is kept and a review request is filed for ChatGPT, and a text
+question no backend could answer is filed as an ask. Contract, the
+ChatGPT round text and the Aletheia attachment: `docs/REVIEW_MAILBOX.md`.
+
 ## The judge — when do we call ChatGPT?
 
 Not only when we find nothing. A shot is a gap when the media is:

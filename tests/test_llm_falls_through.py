@@ -151,11 +151,15 @@ class TestTheRealChainIsStillWiredFreeFirst(unittest.TestCase):
     #: The CLAUDE_CODE_OAUTH_TOKEN subscription — free, but it spawns a
     #: process and the SHOWRUNNER spends the same budget, so it goes last.
     SUBSCRIPTION = ("claude_cli",)
+    #: The ChatGPT mailbox — no key, answers on the NEXT run
+    #: (shared/llm_mailbox.py). Dead last: it cannot answer now.
+    MAILBOX = ("mailbox",)
 
     def test_every_backend_is_accounted_for_here(self):
         """A new backend has to declare which kind it is, so the ordering
         rules below actually cover it instead of silently skipping it."""
-        known = set(self.FREE) | set(self.PAID) | set(self.SUBSCRIPTION)
+        known = (set(self.FREE) | set(self.PAID) | set(self.SUBSCRIPTION)
+                 | set(self.MAILBOX))
         names = {n for n, _e, _c in sg._LLM_CHAIN}
         self.assertEqual(names - known, set(),
                          "an unclassified backend — add it to FREE, PAID or "
@@ -172,20 +176,27 @@ class TestTheRealChainIsStillWiredFreeFirst(unittest.TestCase):
                                     f"{paid} is tried before {free}")
 
     def test_the_subscription_brain_is_the_last_resort(self):
+        """...of the backends that can answer NOW. The mailbox after it
+        answers next run, so it never spends the subscription's turn."""
         names = [n for n, _e, _c in sg._LLM_CHAIN]
+        keyed = [n for n, env, _c in sg._LLM_CHAIN if env]
         for sub in self.SUBSCRIPTION:
             if sub not in names:
                 continue
-            self.assertEqual(names[-1], sub,
+            self.assertEqual(keyed[-1], sub,
                              "the showrunner shares this subscription — it "
                              "must only be reached once everything else has "
                              "failed")
+        self.assertEqual(names[-1], self.MAILBOX[0])
 
     def test_each_entry_names_the_env_var_that_enables_it(self):
         """`_call_llm` SKIPS a backend whose env var is unset, so a wrong name
         here means the backend is silently never tried — which is exactly how
         a judge can be present and unreachable at the same time."""
-        expected = {"claude_cli": "CLAUDE_CODE_OAUTH_TOKEN"}
+        expected = {"claude_cli": "CLAUDE_CODE_OAUTH_TOKEN",
+                    # the mailbox needs no key: env=None means "always
+                    # configured" in `_call_llm` (it files the ask instead)
+                    "mailbox": None}
         for name, env, _call in sg._LLM_CHAIN:
             self.assertEqual(env, expected.get(name, f"{name.upper()}_API_KEY"),
                              name)

@@ -1,0 +1,93 @@
+name: Claim mailbox verdicts (judge of last resort)
+
+# docs/REVIEW_MAILBOX.md. ChatGPT graded a kept render into
+# exchange/reviews/<date>/<id>.verdict.json (or answered an ask batch).
+# This runs the grades through the SAME code every judge's grades go
+# through, and on an explicit code-decided ship downloads the kept artifact,
+# verifies its sha256 against the request, and uploads it the ordinary way.
+# It never renders, never judges by itself, never weakens anything: a hold
+# is a hold, and a story held here re-renders normally on its channel.
+#
+# Fires when a verdict lands on main; the hourly cron catches a verdict
+# whose push carried [skip ci] or a claim that failed transiently. Every
+# step is idempotent: a settled request is never re-claimed.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'exchange/reviews/**/*.verdict.json'
+  schedule:
+    - cron: '25 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: claim-reviews
+  cancel-in-progress: false
+
+permissions:
+  contents: write          # persist posted logs + settled requests
+  actions: read            # download the kept-render artifact
+
+jobs:
+  claim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Anything to claim?
+        id: any
+        run: |
+          n=$(python3 - <<'PY'
+          import json, pathlib
+          idx = pathlib.Path("exchange/reviews/OPEN.json")
+          try:
+              print(len(json.loads(idx.read_text()).get("open") or []))
+          except Exception:
+              print(0)
+          PY
+          )
+          echo "open=$n" >> "$GITHUB_OUTPUT"
+          echo "open review requests: $n"
+
+      - uses: actions/setup-python@v5
+        if: steps.any.outputs.open != '0'
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        if: steps.any.outputs.open != '0'
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+
+      - name: Pre-flight — kill switch
+        if: steps.any.outputs.open != '0'
+        run: |
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          exit 0
+
+      - name: Decide, then publish only a code-decided ship
+        if: steps.any.outputs.open != '0'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          # the uploader's auto-localization layer; absent keys degrade quietly
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/claim_reviews.py --channel all --publish
+
+      - name: Persist settled requests + posted logs
+        if: always() && steps.any.outputs.open != '0'
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "claim: mailbox verdicts $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]" \
+            exchange/reviews state/explainer_posted_log.json state/posted_log.json \
+            state/showrunner_verdicts.jsonl

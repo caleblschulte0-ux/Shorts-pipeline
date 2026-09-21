@@ -92,8 +92,11 @@ class ItRidesTheVerdictWithoutTouchingTheDecision(unittest.TestCase):
         and without `depictions` must produce the identical score/verdict,
         and the field must be present in the returned dict."""
         import inspect
-        src = inspect.getsource(SR.review_video)
+        # the verdict is assembled in ONE place for every judge now
+        # (`assemble_verdict`, shared with the ChatGPT mailbox claim)
+        src = inspect.getsource(SR.assemble_verdict)
         self.assertIn('"depictions": clean_depictions(grades.get("depictions"))', src)
+        self.assertIn("assemble_verdict(", inspect.getsource(SR.review_video))
         # score/verdict are computed from dims + checks only — assert the
         # function that computes them never sees the field
         self.assertNotIn("depictions", inspect.getsource(SR.compute_score))
