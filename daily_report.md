@@ -5,20 +5,22 @@
 
 - queued: **6**
 - succeeded: **0**
-- quarantined (off-topic imagery): **0**
-- failed: **6**
+- quarantined (off-topic imagery): **2**
+- failed: **4**
+
+## Quarantined (off-topic imagery — fix & re-author)
+- **el nino**
+  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mother-in-law called screaming', 'destroyed her basement', 'drained the account', 'hands shaking', 'basement had flooded 2 years ago', 'second account I never knew existed', 'never sent her a cent']
+- **gracie mansion**
+  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ["seating chart with Chloe's name circled in red", 'Chloe stole $2,000 from me', 'I confronted my fiancé, Marcus', 'wearing my old bridesmaid dress', 'raised a toast', 'grabbed the microphone', 'eviction notice']
 
 ## Failed
 - **Debit Cards Replaced The Checkbook**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
 - **Smartphones Passed PCs In Two Years**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.0 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 6.8 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
 - **meta stock**
-  - error: `showrunner_block: showrunner BLOCK: Every number in this video is a caption laid over unrelated stock footage — trash bags, a school of fish, a woman on a phone — so nothing is demonstrated and the topic match fails outright.`
-- **baseball**
-  - error: `showrunner_block: showrunner BLOCK: A travel-baseball story illustrated with a shotgun, a military police radar gun, an armed man by a truck and a hockey arena — the media is not about this story at all.`
-- **el nino**
-  - error: `showrunner_block: showrunner BLOCK: Every picture above the gameplay is auto-grabbed stock that contradicts the line it sits over — an awards gala, a Paris statue twice, a war memorial — so the story is narrated against images from a different world entirely.`
-- **pictures**
-  - error: `showrunner_block: showrunner BLOCK: The reveal lands in the words and nowhere else — the pictures are mismatched stock (2000s flip phones, a storefront, nine seconds of train b-roll) and the opening second is a black text card.`
+  - error: `showrunner_block: showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed — stock b-roll over parkour, with another creator's caption still burned into one clip.`
+- **flores amarillas**
+  - error: `showrunner_block: showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.`
 

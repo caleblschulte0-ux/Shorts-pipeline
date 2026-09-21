@@ -1,0 +1,15 @@
+{
+ "schema": "shorts-ask-index/v1",
+ "updated": "2026-09-21T21:07:00Z",
+ "open": [
+  {
+   "batch": "exchange/asks/20260921.json",
+   "answer_path": "exchange/asks/20260921.answers.json",
+   "pending": 1,
+   "keys": [
+    "69f0f96894613917"
+   ]
+  }
+ ],
+ "how": "Open each `batch` (raw), answer every listed key, commit `answer_path` (merge into it if it exists)."
+}

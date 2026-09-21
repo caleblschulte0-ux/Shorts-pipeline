@@ -3,14 +3,14 @@
     "topic": "Debit Cards Replaced The Checkbook",
     "title": "Debit Cards Replaced The Checkbook",
     "format": "graph_race",
-    "publish_at": "2026-09-21T20:30:00Z",
+    "publish_at": "2026-09-22T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 87.4,
+    "elapsed_seconds": 85.1,
     "package_path": "state/trending_packages/20260921/01_graph-debit-cards-replaced-checks.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-195934_debit_cards_replaced_the_checkbook.mp4",
+    "video_path": "output/daily_20260921-210227_debit_cards_replaced_the_checkbook.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -37,14 +37,14 @@
     "topic": "Smartphones Passed PCs In Two Years",
     "title": "Smartphones Passed PCs In Two Years",
     "format": "graph_race",
-    "publish_at": "2026-09-21T20:30:00Z",
+    "publish_at": "2026-09-22T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 83.8,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 6.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 82.5,
     "package_path": "state/trending_packages/20260921/02_graph-smartphones-passed-pcs.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260921-200101_smartphones_passed_pcs_in_two_years.mp4",
+    "video_path": "output/daily_20260921-210352_smartphones_passed_pcs_in_two_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,7 +62,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 6.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 0
     },
     "blocked": true
@@ -70,56 +70,17 @@
   {
     "topic": "meta stock",
     "angle": null,
-    "publish_at": "2026-09-21T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every number in this video is a caption laid over unrelated stock footage \u2014 trash bags, a school of fish, a woman on a phone \u2014 so nothing is demonstrated and the topic match fails outright.",
-    "elapsed_seconds": 476.0,
-    "title": "My Stepdad Drained My College Fund For Meta Stock",
-    "package_path": "state/trending_packages/20260921-200500_auto_meta_stock.json",
-    "video_path": "output/daily_20260921-200500_meta_stock.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 41.533,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every number in this video is a caption laid over unrelated stock footage \u2014 trash bags, a school of fish, a woman on a phone \u2014 so nothing is demonstrated and the topic match fails outright.",
-      "score": 26
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "baseball",
-    "angle": null,
     "publish_at": "2026-09-22T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A travel-baseball story illustrated with a shotgun, a military police radar gun, an armed man by a truck and a hockey arena \u2014 the media is not about this story at all.",
-    "elapsed_seconds": 798.8,
-    "title": "The Travel Baseball Star Was Lying About His Age",
-    "package_path": "state/trending_packages/20260921-201300_auto_baseball.json",
-    "video_path": "output/daily_20260921-201300_baseball.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed \u2014 stock b-roll over parkour, with another creator's caption still burned into one clip.",
+    "elapsed_seconds": 608.3,
+    "title": "Dad Emptied My Wedding Fund To Buy Meta Stock",
+    "package_path": "state/trending_packages/20260921-210801_auto_meta_stock.json",
+    "video_path": "output/daily_20260921-210801_meta_stock.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.067,
+      "duration": 49.7,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -130,7 +91,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -12.0
+      "loudness_lufs": -13.3
     },
     "qa": {
       "ok": true,
@@ -139,8 +100,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A travel-baseball story illustrated with a shotgun, a military police radar gun, an armed man by a truck and a hockey arena \u2014 the media is not about this story at all.",
-      "score": 34
+      "reason": "showrunner BLOCK: The hook opens on an irrelevant LEGO-mech photo and the $12,000 is never shown, only typed \u2014 stock b-roll over parkour, with another creator's caption still burned into one clip.",
+      "score": 26
     },
     "blocked": true,
     "backfill": true
@@ -148,56 +109,43 @@
   {
     "topic": "el nino",
     "angle": null,
-    "publish_at": null,
+    "publish_at": "2026-09-22T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every picture above the gameplay is auto-grabbed stock that contradicts the line it sits over \u2014 an awards gala, a Paris statue twice, a war memorial \u2014 so the story is narrated against images from a different world entirely.",
-    "elapsed_seconds": 711.1,
-    "title": "My Neighbor Called Cops On Us Mid-Evacuation",
-    "package_path": "state/trending_packages/20260921-202610_auto_el_nino.json",
-    "video_path": "output/daily_20260921-202610_el_nino.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 41.167,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every picture above the gameplay is auto-grabbed stock that contradicts the line it sits over \u2014 an awards gala, a Paris statue twice, a war memorial \u2014 so the story is narrated against images from a different world entirely.",
-      "score": 34
-    },
-    "blocked": true,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mother-in-law called screaming', 'destroyed her basement', 'drained the account', 'hands shaking', 'basement had flooded 2 years ago', 'second account I never knew existed', 'never sent her a cent']",
+    "elapsed_seconds": 91.8,
+    "title": "My Mother-In-Law Faked a Flood for Our Savings",
+    "package_path": "state/trending_packages/20260921-211754_auto_el_nino.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "pictures",
+    "topic": "gracie mansion",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The reveal lands in the words and nowhere else \u2014 the pictures are mismatched stock (2000s flip phones, a storefront, nine seconds of train b-roll) and the opening second is a black text card.",
-    "elapsed_seconds": 662.2,
-    "title": "His Mom Secretly Ran My Whole Wedding",
-    "package_path": "state/trending_packages/20260921-203826_auto_pictures.json",
-    "video_path": "output/daily_20260921-203826_pictures.mp4",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: [\"seating chart with Chloe's name circled in red\", 'Chloe stole $2,000 from me', 'I confronted my fianc\u00e9, Marcus', 'wearing my old bridesmaid dress', 'raised a toast', 'grabbed the microphone', 'eviction notice']",
+    "elapsed_seconds": 126.9,
+    "title": "His Mother Invited My Enemy to Our Engagement",
+    "package_path": "state/trending_packages/20260921-211946_auto_gracie_mansion.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "flores amarillas",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.",
+    "elapsed_seconds": 850.7,
+    "title": "He Left Yellow Flowers On A Stranger's Porch",
+    "package_path": "state/trending_packages/20260921-212154_auto_flores_amarillas.json",
+    "video_path": "output/daily_20260921-212154_flores_amarillas.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 42.9,
+      "duration": 45.867,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -208,7 +156,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.1
+      "loudness_lufs": -13.6
     },
     "qa": {
       "ok": true,
@@ -217,7 +165,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The reveal lands in the words and nowhere else \u2014 the pictures are mismatched stock (2000s flip phones, a storefront, nine seconds of train b-roll) and the opening second is a black text card.",
+      "reason": "showrunner BLOCK: An unrelated iMessage screenshot at mid3 and a Grand Canyon photo at mid0 are junk imagery that break the story, and the final ten seconds hold a single still while the twist lands.",
       "score": 30
     },
     "blocked": true,
