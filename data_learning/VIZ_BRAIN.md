@@ -97,10 +97,27 @@ images   dict label -> subject image (RGBA, may be None)
 subject_image(name)  fetch a real photo/cut-out of ANY subject you name
 paste(img, x, y, w=None, h=None)                       stamp a subject image
 fill_image(img, frac, x, y, w, h, direction='up', color=None)  reveal filled to frac
-text(s, x, y, size=48, color=TEXT, center=False)       labelled numbers
+text(s, x, y, size=48, color=TEXT, center=False)       labelled numbers — MEASURED
+fmt(v)                                                 the number the VOICE says (unit included)
 font(size), rgba(color, alpha), clamp(v,lo,hi), lerp(a,b,t), math
-Colors: ACCENT, HIGHLIGHT, WARN, TEXT     Area: x in [RX0=40,RX1=1040], y in [RTOP=80,RBOT=1180]
+Colors: HIGHLIGHT (the one accent, on the SUBJECT), REST (supporting marks),
+        WARN (baseline/alarm only), TEXT / SUBTLE (type)
+Area:   x in [RX0=40,RX1=1040], y in [RTOP=80,RBOT=1560]
 ```
+
+**Labels are measured now, and numbers go through `fmt()`.** Read the
+showrunner's verdicts on the lowest-retention videos and the same five
+craft faults recur in brain-written mechanics: a label clipped off the frame
+edge (five of the seven worst), two category names printed on top of each
+other, a raw `51915952` on screen while the voice says "million metric
+tons", the mascot parked on the number, half the frame empty. The
+demonstrations were fine — the showrunner said so — the CRAFT lost the
+video. So `text()` shrinks to fit, clamps into the safe area and nudges off
+any label already on the frame, and `fmt(v)` prints the value the way the
+narration says it. You still choose WHERE; the sandbox makes it legible. Use
+the whole safe box: `RBOT` is **1560**, not 1180 — the old number was a
+layout this channel has not had for months and it is why so many scenes
+left the bottom 39% of the frame as empty gradient.
 
 Mechanic rules: it **must place at least one real subject image** (paste /
 fill_image / images / subject_image). Depict every data point through the visual,

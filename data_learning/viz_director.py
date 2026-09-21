@@ -444,12 +444,19 @@ while-loops, NO names with underscores):
   paste(img, x, y, w=None, h=None)          - stamp a subject image
   fill_image(img, frac, x, y, w, h, direction='up', color=None)
                         - reveal a subject filled to `frac` (gauges/'X% of a thing')
-  text(s, x, y, size=48, color=TEXT, center=False)   - labelled numbers
+  text(s, x, y, size=48, color=TEXT, center=False)   - labelled numbers.
+                        MEASURED: it shrinks to fit, never leaves the safe
+                        area, and never prints on a label already drawn this
+                        frame. Ask for the position you want; it stays legible.
+  fmt(v)               - the number the way the VOICE says it, unit included
+                        (with unit 'million metric tons', fmt(52) -> '52M';
+                         with unit 'percent', fmt(36.1) -> '36.1%').
+                        ALWAYS print values through fmt(), never raw floats.
   font(size), rgba(color, alpha), clamp(v,lo,hi), lerp(a,b,t), math
   Colors: HIGHLIGHT (the ONE accent - put it on the SUBJECT and nothing
           else), REST (every supporting mark), WARN (a baseline/alarm only),
           TEXT / SUBTLE (type - text NEVER wears a mark's colour)
-  Safe drawing area: x in [RX0=40, RX1=1040], y in [RTOP=80, RBOT=1180].
+  Safe drawing area: x in [RX0=40, RX1=1040], y in [RTOP=80, RBOT=1560].
 
 HARD RULES:
 - SHOW THE THING: you MUST place at least one real subject image (paste /
