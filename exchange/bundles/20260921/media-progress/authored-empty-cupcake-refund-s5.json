@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50",
+    "path": "exchange/bundles/20260921/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-21T12:22:10.787Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-empty-cupcake-refund-s5",
+  "safe_request_id": "authored-empty-cupcake-refund-s5",
+  "prompt_sha256": "5a206737058d047e6355d06662341e57ecaa98e90e8dad7833ef97bf390ee2e7",
+  "prompt_used": "Use case: photorealistic-natural\nAsset type: vertical YouTube Shorts story b-roll\nPrimary request: Computer monitor displaying a generic bank dispute decision with a large clear red denied status symbol, bakery office setting, no brand identity\nStyle/medium: cinematic documentary photography, realistic computer workstation\nComposition/framing: vertical 2:3 portrait, screen centered with employee hand nearby\nLighting/mood: satisfying resolution\nConstraints: avoid readable sentences or personal information, no logos, no watermark, no collage",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+    "filename": "20260921__authored-empty-cupcake-refund-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19TJEeu5RIyJUxcWWYbTs4aAVc-ftvRze",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6f6a1250293456308ad57d149692588e30b0a9ffc16c2f6a9ac1515337a4b1de",
+    "bytes": 1819631,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "empty-cupcake-refund",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
