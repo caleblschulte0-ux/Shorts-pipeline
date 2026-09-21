@@ -7981,13 +7981,52 @@
       "ts": "2026-09-21T13:46:38.412963+00:00"
     },
     "clip-20260921-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/EncouragingSmoggyTarsierRickroll-QPvRxV2zsEORTsqY",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/k-3p8yF7P_8",
       "title": "Sodapoppin RP Reunion Turns Into A Wild Family Lore Drop",
       "kind": "twitch_clip",
-      "ts": "2026-09-21T14:19:27.333330+00:00",
+      "ts": "2026-09-21T14:19:35.409138+00:00",
+      "uploaded_at": "2026-09-21T14:19:35.409153+00:00",
+      "publish_at": "2026-09-21T20:00:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/EncouragingSmoggyTarsierRickroll-QPvRxV2zsEORTsqY",
+      "streamer": "sodapoppin",
+      "series": "wholesome",
+      "hook": "THIS DAD REUNION HID A SECRET",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3083,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.2,
+        "end": 42.6
+      },
+      "director_cut": true
+    },
+    "rejected-tardyaffluenttarsierkappaclaus-tjkzd2gqjsl39t9k": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/TardyAffluentTarsierKappaClaus-Tjkzd2gQjsl39t9K",
+      "streamer": "caseoh_",
+      "title": "relic",
+      "qa_rejected": true,
+      "ts": "2026-09-21T14:19:42.687212+00:00"
+    },
+    "rejected-moldyspinelesshabaneroyee-bknyzubju42bfybg": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/MoldySpinelessHabaneroYee-BKNyzubjU42bfybg",
+      "streamer": "stableronaldo",
+      "title": "stable",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (crude banter, no visible event)",
+      "ts": "2026-09-21T14:20:56.668246+00:00"
+    },
+    "clip-20260921-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SincereDependableWalletRiPepperonis-ikEjAdu7kMuiUhBQ",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Reveals His Custom One-Of-One Wolverine Suit",
+      "kind": "twitch_clip",
+      "ts": "2026-09-21T14:24:17.638677+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
