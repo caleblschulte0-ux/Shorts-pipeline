@@ -86,6 +86,57 @@ def _seg_is_baked(seg) -> bool:
             or getattr(seg, "host_baked", False)
             or getattr(getattr(seg, "insight", None), "host_baked", False))
 
+
+def _span_bakes(sp: dict) -> bool:
+    """Did THIS rendered span draw Data inside itself?
+
+    Two sources of truth, and the second is the one that was missing. A chart
+    KIND bakes him by construction (`_kind_bakes`). A `scene` span bakes him
+    only when the scene it drew is one of the self-hosting DATA MACHINES
+    (`viz_scene._SELF_HOSTING`) — the renderer says so by setting
+    `insight.host_baked` while it draws, and the span loop records that
+    answer on the span as `host_baked` the moment the span finishes.
+
+    THE SECOND DATA WITH THE CLIPBOARD. `invasive-species-price-tag`,
+    2026-09-21, held at 48 twice: "a SECOND copy of Data is composited in
+    the lower third holding a clipboard in an identical arm-out pose in every
+    frame from seg1:start (t=4.32s) through payoff (t=36.13s) — he never
+    moves, never touches a stat, and covers the caption line". The
+    trajectory machine drew Data on its tip, the segment was rightly marked
+    baked, the overlay for it was rightly hidden — and then the GAP-FILLER,
+    which trusted only chart kinds, saw a `scene` span, called it unbaked,
+    and parked the home host over the whole beat. `fusion-net-energy-gain`
+    was blocked on "two mascots on screen" the same way. A flag set on the
+    INSIGHT cannot answer a per-span question, so the answer is recorded
+    per span.
+    """
+    return bool(sp.get("host_baked")) or _kind_bakes(sp.get("kind"))
+
+
+def baked_spans_of(segments, disp_start: dict, disp_end: dict) -> list:
+    """Time ranges where something on screen already draws Data — the ranges
+    the travelling/gap-fill overlay must leave alone. Per SPAN when the
+    segment rendered spans; the segment's own verdict only as a fallback for
+    a story read before render (`spans` does not exist yet)."""
+    out = []
+    for i, seg in enumerate(segments):
+        sp = getattr(seg, "spans", None) or []
+        if sp:
+            out += [(x["t0"], x["t1"]) for x in sp if _span_bakes(x)]
+        elif _seg_is_baked(seg) and i in disp_start:
+            out.append((disp_start[i], disp_end[i]))
+    return out
+
+
+def fully_baked(segments) -> bool:
+    """Does EVERY visual in the story draw Data itself? Then the overlay adds
+    nothing at all — otherwise the home host parks at bottom-centre through
+    the hook/payoff windows as a second, pixel-identical Data."""
+    allsp = [x for s in segments for x in (getattr(s, "spans", None) or [])]
+    if allsp:
+        return all(_span_bakes(x) for x in allsp)
+    return bool(segments) and all(_seg_is_baked(s) for s in segments)
+
 MASCOT_SIZE = 520                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
@@ -2261,6 +2312,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             for j, (kind, (t0, t1)) in enumerate(zip(kinds, spans)):
                 nfr = int(max(30, min(1200, _mfr.ceil((t1 - t0) * 30))))
                 cpath, anc = None, []
+                # Per-span truth: the renderer SETS this while it draws Data
+                # into the visual (every chart's `_bake_host`, every
+                # self-hosting machine in `render_scene`). Cleared before each
+                # span so the answer belongs to THIS span, not to whatever
+                # rendered before it on the same insight (`_span_bakes`).
+                seg.insight.host_baked = False
                 try:
                     seg.insight.kind = kind
                     if kind in _SCENE_TOKENS:
@@ -2295,7 +2352,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     _persist_rendered_mechanic(seg.insight, slug,
                                                rendered_as=f"seg{i}")
                 seg.spans.append({"kind": kind, "path": str(cpath),
-                                  "anchors": anc, "t0": t0, "t1": t1})
+                                  "anchors": anc, "t0": t0, "t1": t1,
+                                  "host_baked": bool(getattr(seg.insight,
+                                                             "host_baked", False))})
                 _kinds_used.add(kind)
                 if j == 0:
                     seg.chart_path = str(cpath)
@@ -2347,12 +2406,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             """A director spec for segment i (its whole beat), or a pose name.
             Gauge beats bake Data INTO the chart (he rides the arc), so the
             travelling overlay is hidden there to avoid a duplicate mascot."""
-            # Beats that composite Data straight INTO the chart (he rides the
-            # gauge arc / walks the timeline dot): suppress the traveling
-            # overlay so there's exactly one host on the beat. Covered either by
-            # a baked chart kind or a scene mechanic that flagged host_baked.
-            if _seg_is_baked(st.segments[i]):
-                return {"hidden": True}
+            # Whether the overlay is HIDDEN for a beat is decided per SPAN in
+            # the loop below (`_span_bakes`): a beat that shows a machine and
+            # then a mechanic needs Data hidden for the first and drawn for
+            # the second. This only authors WHAT he does.
             if not _director:
                 return ("point", "shock", "point", "think")[i % 4]
             try:
@@ -2480,8 +2537,6 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 if not wi:
                     continue
                 spec = _seg_spec(i)
-                if isinstance(spec, dict) and spec.get("hidden"):
-                    continue                       # host baked into the chart
                 # Data sweeps up onto THIS beat's winning datum and performs his
                 # authored ANIMATED action ON it (push / ride / hoist) — moves in
                 # place (not a frozen sticker), on-topic (no random prop).
@@ -2494,11 +2549,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # showrunner records as `decorative_mascot`. He re-stages on
                 # each depiction as it comes up, so STRICT_CONTACT holds for
                 # every second the video is on screen, not just the first few.
-                sub = [(sp["t0"], sp["t1"], sp.get("anchors"))
+                sub = [(sp["t0"], sp["t1"], sp.get("anchors"), _span_bakes(sp))
                        for sp in (getattr(st.segments[i], "spans", []) or [])]
                 if not sub:
-                    sub = [(wi[0], wi[1], None)]
-                for t0, t1, anc in sub:
+                    # no spans recorded: the segment's own verdict decides
+                    sub = [(wi[0], wi[1], None, _seg_is_baked(st.segments[i]))]
+                for t0, t1, anc, baked in sub:
+                    if baked:
+                        continue       # this visual draws Data itself: ONE host
                     staged = _stage_on_data(st.segments[i], t0, t1,
                                             _act(st.segments[i]), None,
                                             anchors=anc)
@@ -2588,14 +2646,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # switched off for the ENTIRE video, and Data appeared only where a
         # chart happened to draw him. The opening eight seconds — the hook —
         # had no mascot at all.
-        baked_spans = []
-        for _bi, _bseg in enumerate(st.segments):
-            _sp = getattr(_bseg, "spans", None) or []
-            if _sp:
-                baked_spans += [(x["t0"], x["t1"]) for x in _sp
-                                if _kind_bakes(x.get("kind"))]
-            elif _seg_is_baked(_bseg) and _bi in disp_start:
-                baked_spans.append((disp_start[_bi], disp_end[_bi]))
+        # `_span_bakes` — a chart KIND, or a scene that recorded `host_baked`
+        # while it drew (the data machines). The kind-only version of this
+        # is what parked the clipboard Data over a trajectory machine.
+        baked_spans = baked_spans_of(st.segments, disp_start, disp_end)
 
         def _baked_at(t):
             return any(a - 0.06 <= t <= b + 0.06 for a, b in baked_spans)
@@ -2605,12 +2659,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # host parks at bottom-centre through the hook/payoff windows (when
         # lead_hook/lead_payoff are off those windows aren't in baked_spans),
         # which the gate reads as a SECOND, pixel-identical, decorative Data.
-        _all_spans = [x for s_ in st.segments
-                      for x in (getattr(s_, "spans", None) or [])]
-        _fully_baked = (
-            all(_kind_bakes(x.get("kind")) for x in _all_spans) if _all_spans
-            else all(_seg_is_baked(s_) for s_ in st.segments))
-        if st.segments and _fully_baked:
+        if fully_baked(st.segments):
             gap_fill = {"hidden": True}
 
         seq.sort(key=lambda s: s[2])

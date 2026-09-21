@@ -69,22 +69,13 @@ class OnlyAChartBakesHim(unittest.TestCase):
 class TheOverlayCoversWhatTheChartsDoNot(unittest.TestCase):
     """The two decisions the bug turned on, exercised directly."""
 
+    # The renderer's OWN helpers — this test used to re-implement them, which
+    # is how it stayed green while the real code parked a second Data.
     def _baked_spans(self, segs, disp_start, disp_end):
-        out = []
-        for i, seg in enumerate(segs):
-            sp = getattr(seg, "spans", None) or []
-            if sp:
-                out += [(x["t0"], x["t1"]) for x in sp
-                        if SR._kind_bakes(x.get("kind"))]
-            elif SR._seg_is_baked(seg) and i in disp_start:
-                out.append((disp_start[i], disp_end[i]))
-        return out
+        return SR.baked_spans_of(segs, disp_start, disp_end)
 
     def _fully_baked(self, segs):
-        allsp = [x for s in segs for x in (getattr(s, "spans", None) or [])]
-        if allsp:
-            return all(SR._kind_bakes(x.get("kind")) for x in allsp)
-        return all(SR._seg_is_baked(s) for s in segs)
+        return SR.fully_baked(segs)
 
     def test_the_ozone_shape_no_longer_hides_the_mascot(self):
         """Three baked-kind segments, each showing a mechanic first."""
@@ -129,8 +120,47 @@ class TheOverlayCoversWhatTheChartsDoNot(unittest.TestCase):
         self.assertEqual(self._baked_spans(segs, {}, {}), [])
 
 
+class AMachineThatDrawsHimIsBakedAndAMechanicAfterItIsNot(unittest.TestCase):
+    """THE SECOND DATA WITH THE CLIPBOARD (`invasive-species-price-tag`,
+    2026-09-21, held at 48 twice; `fusion-net-energy-gain` before it):
+    a trajectory machine drew Data on its tip, the gap-filler trusted only
+    chart KINDS, called the `scene` span unbaked, and parked the home host
+    over the whole beat — "a SECOND copy of Data ... holding a clipboard in
+    an identical arm-out pose in every frame from seg1:start through
+    payoff". The renderer sets `insight.host_baked` while it draws him, and
+    the span records that answer, per span."""
+
+    def test_a_scene_that_recorded_host_baked_is_baked(self):
+        self.assertTrue(SR._span_bakes(dict(_span("scene", 0, 5), host_baked=True)))
+
+    def test_a_scene_that_did_not_is_not(self):
+        self.assertFalse(SR._span_bakes(_span("scene", 0, 5)))
+        self.assertFalse(SR._span_bakes(dict(_span("mechanic", 0, 5), host_baked=False)))
+
+    def test_a_chart_kind_is_baked_without_the_flag(self):
+        self.assertTrue(SR._span_bakes(_span("bars", 0, 5)))
+
+    def test_the_invasive_species_shape(self):
+        """seg1 = a trajectory machine (self-hosting scene) then a mechanic.
+        The machine's range is baked; the mechanic's is not; and the flag
+        left on the INSIGHT by the machine must not leak onto the mechanic."""
+        seg = _Seg("trend", [dict(_span("scene", 4.3, 9.0), host_baked=True),
+                             dict(_span("mechanic", 9.0, 14.0), host_baked=False)])
+        seg.insight = type("I", (), {"host_baked": True})()   # leaked flag
+        self.assertEqual(SR.baked_spans_of([seg], {}, {}), [(4.3, 9.0)])
+        self.assertFalse(SR.fully_baked([seg]))
+
+    def test_a_story_of_machines_only_suppresses_the_overlay(self):
+        segs = [_Seg("trend", [dict(_span("scene", 0, 8), host_baked=True)]),
+                _Seg("rank", [dict(_span("scene", 8, 16), host_baked=True)])]
+        self.assertTrue(SR.fully_baked(segs))
+
+    def test_an_empty_story_is_not_fully_baked(self):
+        self.assertFalse(SR.fully_baked([]))
+
+
 class TheRendererUsesIt(unittest.TestCase):
-    def test_it_reads_the_spans_not_the_segment_kind(self):
+    def _code(self):
         import ast
         import inspect
         src = inspect.getsource(SR.render)
@@ -138,9 +168,29 @@ class TheRendererUsesIt(unittest.TestCase):
         for node in ast.walk(tree):
             if isinstance(node, ast.Constant) and isinstance(node.value, str):
                 node.value = ""
-        code = ast.unparse(tree)
-        self.assertIn("_kind_bakes", code)
+        return ast.unparse(tree)
+
+    def test_it_reads_the_spans_not_the_segment_kind(self):
+        code = self._code()
+        self.assertIn("baked_spans_of(st.segments", code)
+        self.assertIn("fully_baked(st.segments)", code)
         self.assertNotIn("all(_seg_is_baked(s) for s in st.segments)", code)
+
+    def test_the_span_records_whether_it_drew_him(self):
+        """Cleared before every span's render, recorded on the span after —
+        otherwise the flag a machine left on the insight makes the mechanic
+        after it read as baked, and Data is missing from the best beat."""
+        code = self._code()
+        self.assertIn("seg.insight.host_baked = False", code)
+        # (string constants are blanked, so the key and the attribute name
+        # inside getattr read as '' here — the SHAPE is what is asserted)
+        self.assertIn("bool(getattr(seg.insight, '', False))", code)
+
+    def test_the_overlay_is_decided_per_span(self):
+        code = self._code()
+        self.assertIn("_span_bakes(sp)", code)
+        self.assertNotIn("if _seg_is_baked(st.segments[i]):\n                return {'hidden': True}",
+                         code)
 
 
 if __name__ == "__main__":
