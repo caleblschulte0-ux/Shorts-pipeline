@@ -5760,14 +5760,106 @@ def _mechanic_env(insight, slug):
 
     return dict(values=values, labels=labels, vmax=vmax, n=len(values),
                 images=images, subject_image=subject_image,
+                # the story's unit, so `fmt()` prints the number the voice says
+                unit=str(getattr(insight, "unit", "") or ""),
                 _Image=Image, _ImageDraw=ImageDraw, _ImageOps=ImageOps,
                 _ImageChops=ImageChops)
+
+
+class _BlendDraw:
+    """An ImageDraw whose TRANSLUCENT fills blend instead of overwrite.
+
+    PIL's `ImageDraw` WRITES pixels; it does not composite. So a mechanic
+    that draws its number and then lays a tint over the region —
+
+        text(f'{v:.1f} yrs', px, y + 20, ...)
+        d.rectangle([fx0, y + 20, fx1, ...], fill=rgba(WARN, 40))
+
+    — wipes the number and leaves a dark box with "yrs" sticking out of one
+    side. That is the pet-obesity lifespan scene exactly, found on
+    2026-09-21 by rendering it: "13.0 yrs" became "yrs". The brain wrote an
+    alpha of 40 because it MEANT a tint; nothing it could write would have
+    produced one, and nothing told it so. The showrunner files this family
+    as "the headline number is hidden" and it is one of the five recurring
+    craft faults that separate a 57 from a 95.
+
+    `ImageDraw.Draw(canvas, "RGBA")` does NOT fix it on an RGBA canvas —
+    checked empirically before this was written, both modes wipe. So: a
+    fill or outline with alpha strictly between 0 and 255 is drawn on a
+    transparent layer the size of the shape's box and alpha-composited.
+    Opaque drawing goes straight to the canvas as before, byte for byte, so
+    every existing mechanic renders identically except where it was
+    destroying its own labels.
+    """
+    _SHAPES = ("rectangle", "rounded_rectangle", "ellipse", "polygon",
+               "pieslice", "chord", "line", "arc", "point", "regular_polygon")
+
+    def __init__(self, canvas):
+        from PIL import ImageDraw
+        self._canvas = canvas
+        self._draw = ImageDraw.Draw(canvas)
+
+    def __getattr__(self, name):                 # text, textbbox, textlength…
+        return getattr(self._draw, name)
+
+    @staticmethod
+    def _alpha(c):
+        return c[3] if isinstance(c, (tuple, list)) and len(c) > 3 else 255
+
+    @staticmethod
+    def _bbox(xy, margin):
+        pts = []
+        for v in (xy if isinstance(xy, (list, tuple)) else []):
+            if isinstance(v, (list, tuple)):
+                pts.extend(float(t) for t in v[:2])
+            else:
+                pts.append(float(v))
+        if len(pts) < 2:
+            return None
+        xs, ys = pts[0::2], pts[1::2]
+        return (int(min(xs)) - margin, int(min(ys)) - margin,
+                int(max(xs)) + margin + 1, int(max(ys)) + margin + 1)
+
+    def _shape(self, method, *args, **kwargs):
+        a_fill = self._alpha(kwargs.get("fill"))
+        a_out = self._alpha(kwargs.get("outline"))
+        translucent = (0 < a_fill < 255) or (0 < a_out < 255)
+        if not translucent or not args:
+            return getattr(self._draw, method)(*args, **kwargs)
+        from PIL import Image, ImageDraw
+        margin = int(kwargs.get("width", 1) or 1) + 4
+        box = self._bbox(args[0], margin)
+        W, H = self._canvas.size
+        if box is None:
+            box = (0, 0, W, H)
+        x0, y0, x1, y1 = (max(0, box[0]), max(0, box[1]),
+                          min(W, box[2]), min(H, box[3]))
+        if x1 <= x0 or y1 <= y0:
+            return None
+        layer = Image.new("RGBA", (x1 - x0, y1 - y0), (0, 0, 0, 0))
+        xy = args[0]
+        if isinstance(xy, (list, tuple)) and xy and isinstance(xy[0], (list, tuple)):
+            shifted = [(float(p[0]) - x0, float(p[1]) - y0) for p in xy]
+        else:
+            flat = [float(v) for v in xy]
+            shifted = [v - (x0 if i % 2 == 0 else y0) for i, v in enumerate(flat)]
+        try:
+            getattr(ImageDraw.Draw(layer), method)(shifted, *args[1:], **kwargs)
+        except Exception:  # noqa: BLE001 — never lose a frame to the proxy
+            return getattr(self._draw, method)(*args, **kwargs)
+        self._canvas.alpha_composite(layer, (x0, y0))
+        return None
+
+
+for _m in _BlendDraw._SHAPES:
+    setattr(_BlendDraw, _m,
+            (lambda name: lambda self, *a, **k: self._shape(name, *a, **k))(_m))
 
 
 def _run_mechanic_frame(code_obj, canvas, base, reveal):
     """Exec the mechanic body for one frame in the sandbox, drawing onto canvas."""
     from PIL import Image, ImageDraw, ImageOps, ImageChops
-    d = ImageDraw.Draw(canvas)
+    d = _BlendDraw(canvas)          # translucent fills TINT; see the class
     Image, ImageOps, ImageChops = base["_Image"], base["_ImageOps"], base["_ImageChops"]
 
     def clamp(v, lo=0.0, hi=1.0):
@@ -5788,14 +5880,111 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
     def font(size=48):
         return _pil_font(int(size))
 
+    # EVERY LABEL THIS FRAME HAS DRAWN, so the next one can stay off it.
+    # Fresh per frame: this closure is rebuilt on every `_run_mechanic_frame`.
+    _drawn: list = []
+
     def text(s, x, y, size=48, color=TEXT, center=False, stroke=4):
-        fnt = _pil_font(int(size))
+        """A label that CANNOT leave the frame and CANNOT land on another.
+
+        THE THING THAT SEPARATES A 57 FROM A 95. Read across the showrunner's
+        verdicts on 2026-09-21, the top-retention videos and the bottom ones
+        score the same on `data_demo` — "genuinely varied", "genuinely
+        animated", "solid, honest" — and split on `craft`: 3 at the top, 1
+        at the bottom, every time. And the craft failures are the SAME
+        FIVE, over and over, in the brain's own mechanics:
+
+            "labels clipped by the left frame edge — '1963 (all-time low'"
+            "'Submarine cables  95' truncated at the right frame edge — the
+             video's central claim (95%) is never shown as a complete label"
+            "the two bottom category labels are printed on top of each
+             other and are unreadable across the whole scene"
+            "bar labels show unformatted raw values (51915952 … 93466633)
+             while the VO says 'million metric tons'"
+
+        Five of the seven lowest-retention videos clip a label off the
+        frame. The chart composers had every one of these defects and lost
+        them to MEASUREMENT (`fit_title`, `_fit_text_to`, `_measure_pts`,
+        `_numbers_on_top`). The mechanics had none of it: the brain called
+        `text(s, x, y)` and the sandbox drew wherever it was told, with no
+        way for the author to know the string ran off the edge. The brain
+        writes hundreds of these and cannot see any of them. This is the
+        one place all of them go through, so this is where the craft goes.
+
+        In order:
+          1. SHRINK to fit the safe width — a credit or a long category name
+             loses points before it loses characters, same rule as the
+             card footer.
+          2. CLAMP inside [RX0, RX1] x [RTOP, RBOT]. A label asked for at
+             x=1000 lands at the right margin, complete.
+          3. NUDGE off any label already drawn this frame — down if there is
+             room, else up — so two category names never print on each
+             other. Bounded, so a pile-up cannot walk off the bottom.
+        Nothing here changes what the brain SAID; it changes where it is
+        legible. The fitters are the same idea `docs/CHANNEL_LOOK.md` states
+        for the whole channel: "Every extent is MEASURED."
+        """
         s = str(s)
+        size = int(size)
+        stroke = int(stroke)
+        safe_w = (RX1 - RX0)
+
+        def _extents(txt, f):
+            # PIL's textbbox is measured FROM THE DRAW ORIGIN and includes
+            # the ascent gap, so ink runs to (x + bb[2], y + bb[3]) — NOT to
+            # x + width. Clamping on the width alone left labels 12px past
+            # the edge and 30px past the box; the first test run caught it.
+            b = d.textbbox((0, 0), txt, font=f, stroke_width=stroke)
+            return b[0], b[1], b[2], b[3]
+
+        fnt = _pil_font(size)
+        l, t, r, b = _extents(s, fnt)
+        # 1. shrink before anything is dropped (floor keeps it legible)
+        while (r - l) > safe_w and size > 18:
+            size -= 2
+            fnt = _pil_font(size)
+            l, t, r, b = _extents(s, fnt)
+        if (r - l) > safe_w:                   # still too wide at the floor
+            while len(s) > 4 and (r - l) > safe_w:
+                s = s[:-2].rstrip() + "…"
+                l, t, r, b = _extents(s, fnt)
         if center:
-            bb = d.textbbox((0, 0), s, font=fnt)
-            x = x - (bb[2] - bb[0]) / 2
+            x = x - (r - l) / 2
+        # 2. clamp so the INK stays inside the safe area
+        x = min(max(float(x), RX0 - l), RX1 - r)
+        y = min(max(float(y), RTOP - t), RBOT - b)
+        # 3. stay off what is already on this frame (real ink rects)
+        gap = 6
+        for _ in range(6):
+            hit = None
+            ix0, iy0, ix1, iy1 = x + l, y + t, x + r, y + b
+            for (ox0, oy0, ox1, oy1) in _drawn:
+                if ix0 < ox1 + gap and ix1 > ox0 - gap and \
+                        iy0 < oy1 + gap and iy1 > oy0 - gap:
+                    hit = (ox0, oy0, ox1, oy1)
+                    break
+            if hit is None:
+                break
+            below = hit[3] + gap - t
+            if below + b <= RBOT:
+                y = below
+            else:
+                y = max(RTOP - t, hit[1] - gap - b)
+        _drawn.append((x + l, y + t, x + r, y + b))
         d.text((int(x), int(y)), s, font=fnt, fill=rgba(color),
-               stroke_width=int(stroke), stroke_fill=(5, 8, 15, 255))
+               stroke_width=stroke, stroke_fill=(5, 8, 15, 255))
+
+    def fmt(v, unit=None):
+        """The number the way the VOICE says it. `values` are raw floats;
+        printed raw, a catch in tonnes reads '51915952' while the narration
+        says 'million metric tons' — a number wrong by 10^6 on screen. This
+        is `charts._ulabel` (the same formatter every chart label uses) with
+        the story's unit already filled in."""
+        u = base.get("unit", "") if unit is None else unit
+        try:
+            return charts._ulabel(float(v), u or "", group=True)
+        except Exception:  # noqa: BLE001 — a label beats a crash
+            return str(v)
 
     def paste(img, x, y, w=None, h=None):
         if img is None:
@@ -5850,7 +6039,7 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
           "ACCENT": _c.ACCENT, "REST": REST, "SUBTLE": SUBTLE,
           "HIGHLIGHT": _c.HIGHLIGHT, "WARN": WARN, "TEXT": TEXT,
           "clamp": clamp, "lerp": lerp, "rgba": rgba, "font": font, "text": text,
-          "paste": paste, "fill_image": fill_image,
+          "paste": paste, "fill_image": fill_image, "fmt": fmt,
           "values": base["values"], "labels": base["labels"],
           "vmax": base["vmax"], "n": base["n"],
           "images": base["images"], "subject_image": base["subject_image"]}
