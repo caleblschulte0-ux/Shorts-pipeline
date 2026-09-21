@@ -3,7 +3,7 @@
 | series | n | median VPH |
 |---|---|---|
 | chaos | 41 | 0.01 |
-| fail | 11 | 0.03 |
+| fail | 12 | 0.03 |
 | wholesome | 10 | 0.06 |
 | win | 8 | 0.1 |
 | drama | 8 | 0.055 |
