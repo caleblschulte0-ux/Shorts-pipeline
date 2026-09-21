@@ -461,15 +461,45 @@ HARD RULES:
 
 
 def _mechanic_examples(k: int = 2) -> list:
+    """The worked examples handed to the brain — MOVING ones first.
+
+    The library is the few-shot teacher, and it was ranking STARRED first —
+    a flag the brain writes on its own work. Scored on 2026-09-21 with
+    `scripts/score_mechanics.py` against four common data shapes:
+
+        library 60:  30 move on at least one shape,  30 move on NONE
+        of the 34 STARRED:                           16 move on none
+
+    so about half the examples the brain studied were mechanics the motion
+    gate refuses. Studying a freeze is how you write one.
+
+    WHY PREFER AND NOT EXCLUDE. A mechanic is written for ONE story's data,
+    so a scorer firing synthetic shapes at it can call a good mechanic dead
+    — a two-way duel legitimately will not animate on a four-point trend.
+    The score is strong evidence and weak proof, so it REORDERS the shelf
+    and never empties it: measured-moving first, then unscored, and a
+    measured-static example is still reachable rather than deleted. If the
+    scorer is wrong about one, the cost is a worse ordering, not a missing
+    teacher.
+
+    Whatever the ranking, the mix that actually SHIPS is already 89%
+    bespoke mechanics (measured over 96 videos in `state/video_ledger.json`,
+    against 8% charts), so this tilts the odds on an already-working path
+    rather than rescuing a broken one.
+    """
     import json
+
+    def _rank(m):
+        # measured-moving (0) < unscored (1) < measured-static (2);
+        # starred first within each band, newest first after that.
+        moves = m.get("moves")
+        band = 0 if moves is True else (1 if moves is None else 2)
+        return (band, 0 if m.get("starred") else 1)
+
     try:
         with open(_MECH_LIB, encoding="utf-8") as fh:
             lib = json.load(fh)
-        # The brain STARS its best inventions — teach from those first, most
-        # recent otherwise, so the visual language compounds around quality.
-        starred = [m for m in lib if m.get("starred")]
-        rest = [m for m in lib if not m.get("starred")]
-        pool = (starred[::-1] + rest[::-1])[:k]
+        pool = sorted(reversed(lib), key=_rank)[:k]
         return [{"mechanic": m.get("mechanic"), "concept": m.get("concept"),
                  "code": m.get("code")} for m in pool]
     except Exception:  # noqa: BLE001
@@ -492,9 +522,15 @@ def _record_mechanic(ins, spec) -> None:
                            .encode()).hexdigest()[:12]
         if any(m.get("sig") == sig for m in lib):
             return
+        # `moves` is recorded HERE because this is the one place the answer
+        # is already known for free: `_record_mechanic` is only reached after
+        # `mechanic_dry_ok` accepted this spec for this insight, and that
+        # call ends in the motion probe. Writing it down is what stops the
+        # library refilling with mechanics nobody ever measured — an
+        # unscored row does not teach (`_mechanic_examples`).
         lib.append({"sig": sig, "mechanic": spec.get("mechanic", ""),
                     "concept": spec.get("concept", ""), "code": spec.get("code", ""),
-                    "topic": ins.topic or ""})
+                    "topic": ins.topic or "", "moves": True})
         lib = lib[-60:]                       # keep the corpus bounded
         with open(_MECH_LIB, "w", encoding="utf-8") as fh:
             json.dump(lib, fh, indent=1, ensure_ascii=False)
