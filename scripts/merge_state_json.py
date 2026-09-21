@@ -36,6 +36,7 @@ must never be pushed over a good one.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -71,23 +72,41 @@ def _pin(t: dict, o: dict) -> dict:
     return m
 
 
+def _key(e: dict) -> str:
+    """The entry's identity: its `sig`, or — for the 24 legacy entries that
+    predate signatures — the SAME sha1(mechanic + code)[:12] that
+    `viz_director._record_mechanic` writes as `sig`, written onto the entry
+    so it has one from here on. The first live run of this merger (2026-09-21
+    22:00 UTC) kept only entries that already had a `sig` and dropped the
+    other 24, 64 -> 40. Identity is the CONTENT, not the presence of a field."""
+    sig = e.get("sig")
+    if not sig:
+        sig = hashlib.sha1((str(e.get("mechanic", "")) + str(e.get("code", "")))
+                           .encode()).hexdigest()[:12]
+        e["sig"] = sig
+    return str(sig)
+
+
 def merge_mechanics(theirs, ours) -> list:
     tl = theirs if isinstance(theirs, list) else []
     ol = ours if isinstance(ours, list) else []
     by = {}
     order = []
     for e in tl:
-        if isinstance(e, dict) and e.get("sig"):
-            by[e["sig"]] = e
-            order.append(e["sig"])
-    for e in ol:
-        if not (isinstance(e, dict) and e.get("sig")):
+        if not isinstance(e, dict):
             continue
-        if e["sig"] in by:
-            by[e["sig"]] = _pin(by[e["sig"]], e)
+        k = _key(e)
+        by[k] = e
+        order.append(k)
+    for e in ol:
+        if not isinstance(e, dict):
+            continue
+        k = _key(e)
+        if k in by:
+            by[k] = _pin(by[k], e)
         else:
-            by[e["sig"]] = e
-            order.append(e["sig"])
+            by[k] = e
+            order.append(k)
     lib = [by[s] for s in order]
     keep = [m for m in lib if m.get("starred") or m.get("exemplar")]
     rest = [m for m in lib if not (m.get("starred") or m.get("exemplar"))]
