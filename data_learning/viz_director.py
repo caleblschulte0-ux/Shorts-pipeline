@@ -534,12 +534,41 @@ def _mechanic_examples(k: int = 2) -> list:
         # an unknown is at least not that. It sits below 2 because a judged
         # "real invented form" is worth more than a maybe.
         order = {3: 0, 2: 1, None: 2, 1: 3, 0: 4}
+        # A hand-authored teacher ties with a judge-graded 3 on every key
+        # above; the brain's OWN tier-1 work wins the tie. The teachers are
+        # there to be copied until the brain has real ones — the moment it
+        # does, those are the better examples of what it can do.
         return (band, order.get(g if isinstance(g, int) else None, 2),
+                1 if m.get("exemplar") else 0,
                 0 if m.get("starred") else 1)
 
     try:
         with open(_MECH_LIB, encoding="utf-8") as fh:
             lib = json.load(fh)
+    except Exception:  # noqa: BLE001
+        lib = []
+    # THE TEACHERS ARE CODE, NOT DATA. `scripts/seed_exemplars.py` seeds the
+    # four hand-authored tier-1 mechanics into the library, and twice on
+    # 2026-09-21 a CI persist that lost a push race restored its older copy
+    # of the library over main and erased them — minutes after they merged,
+    # reporting success. The union-merge (`merge_state_json.py`) stops that
+    # for future runs; this stops it from ever mattering to the brain: a
+    # teacher missing from the shelf is put back on it, here, from source,
+    # with the grade and flags the seeder gives it.
+    try:
+        from scripts import seed_exemplars as _se
+        have = {m.get("sig") for m in lib if isinstance(m, dict)}
+        for ex in _se.EXEMPLARS:
+            spec = {"mechanic": ex["mechanic"], "concept": ex["concept"],
+                    "code": ex["code"]}
+            sig = _se.sig_of(spec)
+            if sig not in have:
+                lib.append({"sig": sig, **spec, "starred": True, "moves": True,
+                            "exemplar": True,
+                            "grade": dict(_se.EXEMPLAR_GRADE)})
+    except Exception:  # noqa: BLE001 — the library alone is still a library
+        pass
+    try:
         pool = sorted(reversed(lib), key=_rank)[:k]
         return [{"mechanic": m.get("mechanic"), "concept": m.get("concept"),
                  "code": m.get("code")} for m in pool]

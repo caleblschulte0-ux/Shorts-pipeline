@@ -204,8 +204,12 @@ class TheBrainLearnsFromTheJudgeNotFromItself(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             lp = Path(td) / "lib.json"; lp.write_text(json.dumps(lib))
             with mock.patch.object(VD, "_MECH_LIB", str(lp)):
-                names = [e["mechanic"] for e in VD._mechanic_examples(3)]
-        self.assertEqual(names[0], "judge-loved")
+                # the four hand-authored teachers are always on the shelf
+                # too (restored from source), so ask for enough to see all
+                names = [e["mechanic"] for e in VD._mechanic_examples(8)]
+        self.assertEqual(names[0], "judge-loved",
+                         "the brain's own judge-graded 3 outranks everything, "
+                         "the teachers included")
         self.assertLess(names.index("self-starred"), names.index("judge-meh"),
                         "a judge-graded 1 must not outrank an ungraded star "
                         "— the grade is evidence it is tier 2")
@@ -219,8 +223,8 @@ class TheBrainLearnsFromTheJudgeNotFromItself(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             lp = Path(td) / "lib.json"; lp.write_text(json.dumps(lib))
             with mock.patch.object(VD, "_MECH_LIB", str(lp)):
-                names = [e["mechanic"] for e in VD._mechanic_examples(2)]
-        self.assertEqual(names[0], "moving-1")
+                names = [e["mechanic"] for e in VD._mechanic_examples(8)]
+        self.assertLess(names.index("moving-1"), names.index("frozen-but-3"))
 
 
 class TheBrainIsToldWhatTierOneMeans(unittest.TestCase):

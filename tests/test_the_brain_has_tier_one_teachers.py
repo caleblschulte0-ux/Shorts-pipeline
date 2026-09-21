@@ -118,9 +118,27 @@ class TheTeachersAreOnTheShelf(unittest.TestCase):
         self.assertLess(LIB.stat().st_size, 256 * 1024)
 
     def test_the_brain_is_shown_the_teachers_first(self):
-        names = [m["mechanic"] for m in VD._mechanic_examples(len(SE.EXEMPLARS))]
-        self.assertEqual(set(names), {e["mechanic"] for e in SE.EXEMPLARS},
-                         f"the first examples handed to the brain are {names}")
+        """...after its OWN judge-graded tier-1 work, of which there may be
+        some by now — those outrank a teacher on purpose."""
+        own = sum(1 for m in self._lib()
+                  if (m.get("grade") or {}).get("bespoke") == 3
+                  and m.get("moves") is True and not m.get("exemplar"))
+        k = len(SE.EXEMPLARS) + own
+        names = [m["mechanic"] for m in VD._mechanic_examples(k)]
+        self.assertTrue({e["mechanic"] for e in SE.EXEMPLARS} <= set(names),
+                        f"the first {k} examples handed to the brain are {names}")
+
+    def test_the_teachers_are_shown_even_when_the_shelf_lost_them(self):
+        """2026-09-21, twice: a CI persist that lost a push race restored its
+        older library over main and erased the teachers minutes after they
+        merged. The brain must never depend on the shelf copy surviving."""
+        with tempfile.TemporaryDirectory() as td:
+            lp = Path(td) / "lib.json"; lp.write_text(json.dumps(
+                [{"sig": "b", "mechanic": "brain", "code": "c", "moves": True}]))
+            with mock.patch.object(VD, "_MECH_LIB", str(lp)):
+                names = [m["mechanic"] for m in VD._mechanic_examples(5)]
+        self.assertEqual(set(names), {e["mechanic"] for e in SE.EXEMPLARS} | {"brain"})
+        self.assertEqual(names[-1], "brain", "an ungraded brain entry outranked a teacher")
 
     def test_a_judge_graded_3_still_outranks_a_teacher_that_stopped_moving(self):
         """Motion band first, always: a teacher measured static would sink."""
