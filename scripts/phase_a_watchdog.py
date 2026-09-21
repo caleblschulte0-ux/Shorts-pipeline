@@ -99,11 +99,23 @@ def bundle_state(date: str) -> dict:
         "bundle_id": _identity(date),
         "n_requests": len((bundle or {}).get("requests") or []) if ok else 0,
         "has_contract": (d / "bundle.json.contract").exists(),
+        # A no-bundle day that ChatGPT CLAIMED. `takeover.json` is written by
+        # the 06:00/07:00 workers when they find no bundle (CLAUDE.md,
+        # Fallbacks: "no bundle is the takeover signal, not permission to
+        # stop"), and its ownership rule says a late bundle must not replace
+        # the claim. Recorded as a fact so the verdict can tell "nobody ran
+        # Phase A and nobody covered it" from "nobody ran Phase A and the
+        # takeover covered it".
+        "takeover_present": (d / "takeover.json").exists(),
+        "takeover_claimed_at": str(((_load(d / "takeover.json") or {})
+                                    .get("claimed_at") or "")),
+        "done_present": (d / "DONE").exists(),
     }
 
 
 def evaluate(date: str, now=None) -> dict:
-    """ready | pending | MISSING, with the facts that decided it."""
+    """ready | covered_by_takeover | pending | MISSING, with the facts that
+    decided it."""
     st = bundle_state(date)
     now = now or datetime.now(timezone.utc)
     passed = centraltime.deadline_passed(date, DEADLINE_CENTRAL, now)
@@ -111,6 +123,27 @@ def evaluate(date: str, now=None) -> dict:
         status = "ready"
         headline = (f"bundle present for {date} "
                     f"({st['n_requests']} media request(s))")
+    elif st["takeover_present"]:
+        # 2026-09-21: Phase A never wrote a bundle (the Routine authored no
+        # packages), ChatGPT's takeover claimed the day at 12:03 UTC, Phase B
+        # applied, trending posted — and this watchdog went RED twice in the
+        # afternoon saying the media worker was "about to start with
+        # nothing", hours after it had finished. An alarm that fires on a
+        # covered day is an alarm people learn to ignore on the uncovered
+        # one. The missing bundle is the takeover's TRIGGER, by design; it is
+        # recorded, not shouted. The only thing this must never do is
+        # dispatch Phase A here: the claim says a late bundle must not
+        # replace it.
+        status = "covered_by_takeover"
+        headline = (f"no bundle for {date}: ChatGPT's no-bundle takeover "
+                    f"claimed the day"
+                    + (f" at {st['takeover_claimed_at']}"
+                       if st["takeover_claimed_at"] else "")
+                    + f" (exchange/bundles/{date}/takeover.json"
+                    + (", DONE written" if st["done_present"] else ", no DONE yet")
+                    + "). Phase A did not run — the Routine authored no "
+                    "packages — and the takeover is the designed cover for "
+                    "that, not an outage.")
     elif not passed:
         # Calling it missing before the deadline is how an alarm earns a
         # reputation for lying.
@@ -126,7 +159,7 @@ def evaluate(date: str, now=None) -> dict:
             f"with nothing to work from.")
     return {
         "schema": SCHEMA, "date": str(date), "status": status,
-        "ok": status in ("ready", "pending"),
+        "ok": status in ("ready", "pending", "covered_by_takeover"),
         "deadline_central": DEADLINE_CENTRAL,
         "deadline_passed": passed,
         "checked_at": now.replace(microsecond=0).isoformat(),

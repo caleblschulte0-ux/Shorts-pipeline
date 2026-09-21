@@ -62,7 +62,11 @@ class TheBrainIsInTheChain(unittest.TestCase):
         """It spawns a process and spends a shared subscription, so it is the
         resort, not the default."""
         names = [n for n, _, _ in sg._LLM_CHAIN]
-        self.assertEqual(names[-1], "claude_cli")
+        # the last KEYED backend; the only thing after it is the mailbox,
+        # which answers next run and needs no key (shared/llm_mailbox.py)
+        keyed = [n for n, env, _ in sg._LLM_CHAIN if env]
+        self.assertEqual(keyed[-1], "claude_cli")
+        self.assertEqual(names[-1], "mailbox")
         for cheap in ("groq", "gemini"):
             self.assertLess(names.index(cheap), names.index("claude_cli"))
 

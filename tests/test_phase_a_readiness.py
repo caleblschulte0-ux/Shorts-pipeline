@@ -116,6 +116,41 @@ class TestTheVerdict(unittest.TestCase):
         self.assertFalse(r["ok"])
         self.assertIn("PHASE A HAS NOT RUN", r["headline"])
 
+    def test_a_takeover_day_is_COVERED_not_missing(self):
+        """2026-09-21: no bundle, ChatGPT's takeover claimed the day at
+        12:03 UTC, Phase B applied, trending posted — and this watchdog went
+        red twice in the afternoon. A covered day is recorded, not shouted,
+        and Phase A is NOT dispatched over the claim."""
+        d = self.tmp / "exchange" / "bundles" / "20260921"
+        d.mkdir(parents=True)
+        (d / "takeover.json").write_text(json.dumps(
+            {"owner": "chatgpt", "claimed_at": "2026-09-21T12:03:11Z"}))
+        (d / "DONE").write_text("")
+        r = paw.evaluate("20260921", CDT_0700)
+        self.assertEqual(r["status"], "covered_by_takeover")
+        self.assertTrue(r["ok"], "a covered day must not fail the run")
+        self.assertTrue(r["takeover_present"])
+        self.assertTrue(r["done_present"])
+        self.assertIn("2026-09-21T12:03:11Z", r["headline"])
+        self.assertIn("not an outage", r["headline"])
+
+    def test_a_takeover_claim_before_DONE_is_still_covered(self):
+        d = self.tmp / "exchange" / "bundles" / "20260921"
+        d.mkdir(parents=True)
+        (d / "takeover.json").write_text(json.dumps({"owner": "chatgpt"}))
+        r = paw.evaluate("20260921", CDT_0700)
+        self.assertEqual(r["status"], "covered_by_takeover")
+        self.assertIn("no DONE yet", r["headline"])
+
+    def test_a_bundle_still_wins_over_a_takeover_file(self):
+        self._bundle("20260921")
+        d = self.tmp / "exchange" / "bundles" / "20260921"
+        (d / "takeover.json").write_text("{}")
+        self.assertEqual(paw.evaluate("20260921", CDT_0700)["status"], "ready")
+
+    def test_no_bundle_and_no_takeover_is_still_MISSING(self):
+        self.assertEqual(paw.evaluate("20260909", CDT_0700)["status"], "MISSING")
+
     def test_an_unreadable_bundle_counts_as_absent(self):
         d = self.tmp / "exchange" / "bundles" / "20260909"
         d.mkdir(parents=True)

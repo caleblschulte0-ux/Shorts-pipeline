@@ -394,7 +394,9 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
             "land, write fewer and say so."),
         "read_first": ["CLAUDE_ROUTINE_INSTRUCTIONS.md",
                        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-                       "docs/FALLBACKS.md"],
+                       "docs/FALLBACKS.md",
+                       # the judge of last resort: open reviews + asks
+                       "docs/REVIEW_MAILBOX.md"],
         "media_contract": MEDIA_CONTRACT,
     }
 

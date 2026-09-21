@@ -72,6 +72,22 @@ of 2026-08-01 **so does trending**. The headless-Claude SHOWRUNNER
 If a future task asks you to make the channel ship more / faster, the answer
 is better videos, never a weaker gate.
 
+- **The judge of last resort is a MAILBOX ChatGPT answers**
+  (`docs/REVIEW_MAILBOX.md`, ruling 2026-09-21). When neither the headless
+  brain nor Gemini can watch a render on a publish run, the gate still
+  holds it — and the render is KEPT (workflow artifact), its frames go to
+  `preview-renders`, and `exchange/reviews/<date>/<id>.request.json` is
+  filed with the verbatim prompt. ChatGPT grades into `<id>.verdict.json`;
+  `scripts/claim_reviews.py` runs those grades through the SAME
+  `assemble_verdict` + `showrunner_gate.decide`, verifies the artifact's
+  sha256 against the request, and only then uploads. ChatGPT grades, code
+  decides; nothing in the mailbox can ship what the gate did not approve.
+  The same mailbox idea ends the text chain: `shared/llm_mailbox.py` files
+  a question no backend could answer into `exchange/asks/` and returns the
+  committed answer on the next run. Aletheia is attached as a reader only
+  ("sucker fish"): the Thea ChatGPT Project takes the round, its pulse
+  already watches the verdict log; nothing in Aletheia is edited.
+
 ## Data (the mascot) performs a bespoke pose PER SCENE
 
 `data_learning/mascot_director.py` renders **any** pose from parameters

@@ -554,8 +554,19 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
            "title": result.get("title") or pkg.get("title"),
            "hook": (pkg.get("hook") or "") or None,
            "format": fmt,
+           "topic": result.get("topic"),
+           # the package on disk, so a kept render can be published later
+           # with THIS package's description/tags (scripts/claim_reviews.py)
+           "package": pkg.get("_path") or result.get("package_path"),
            "segments": [s.get("say") or s.get("text") or s.get("caption")
                         for s in (pkg.get("shots") or [])][:8]}
+    if will_upload and os.environ.get("REVIEW_MAILBOX", "1") not in ("0", "off"):
+        # THE JUDGE OF LAST RESORT (shared/review_mailbox.py): only ADDS.
+        # If nobody can watch, the gate holds as before AND the render is
+        # kept + a review request filed for ChatGPT.
+        _rid = os.environ.get("GITHUB_RUN_ID", "")
+        ctx["mailbox"] = {"channel": "trending", "run_id": _rid,
+                          "artifact": f"held-renders-{_rid or 'local'}"}
     gate = showrunner_gate.run(out_path, slug=ctx["slug"], context=ctx,
                                will_upload=will_upload)
     showrunner_gate.log(gate, ctx["slug"])

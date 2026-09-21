@@ -380,7 +380,20 @@ _LLM_CHAIN = (
     # judgment. See `_call_claude_cli` for the day this cost.
     ("claude_cli", "CLAUDE_CODE_OAUTH_TOKEN", lambda s, u, m: _call_claude_cli(
         s, u, model=m)),
+    # THE MAILBOX, dead last and needing no key: a question the run cannot
+    # get answered is filed for ChatGPT and answered on the next run
+    # (`shared/llm_mailbox.py`). On 2026-09-21 all four backends above were
+    # gone at once and the editorial gate held 83 stories with nobody to
+    # ask; this is the difference between "held until the brains return"
+    # and "held one run". It returns exactly what a model would have said,
+    # or raises — it never invents an answer.
+    ("mailbox", None, lambda s, u, m: _call_mailbox(s, u)),
 )
+
+
+def _call_mailbox(system: str, user: str) -> str:
+    from shared import llm_mailbox
+    return llm_mailbox.call(system, user, caller="_call_llm")
 
 
 def _call_llm(system: str, user: str, *, backend: str | None = None,
@@ -406,8 +419,8 @@ def _call_llm(system: str, user: str, *, backend: str | None = None,
         raise RuntimeError(f"unknown LLM backend {backend!r}")
     errs: list[str] = []
     for name, env, call in _LLM_CHAIN:
-        if not os.environ.get(env):
-            continue
+        if env and not os.environ.get(env):
+            continue                       # env=None: always configured
         try:
             return call(system, user, model)
         except Exception as e:  # noqa: BLE001 — try the next backend

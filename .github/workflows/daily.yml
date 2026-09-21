@@ -553,6 +553,24 @@ jobs:
           retention-days: 5
           if-no-files-found: warn
 
+      # THE JUDGE OF LAST RESORT (docs/REVIEW_MAILBOX.md): a render nobody
+      # could watch is held by the gate AND kept as an artifact, its frames
+      # published to preview-renders, a review request filed for ChatGPT.
+      - name: Keep held renders for the mailbox judge
+        if: always() && steps.preflight.outputs.skip == ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: held-renders-${{ github.run_id }}
+          path: |
+            output/held/*.mp4
+            output/held/*.json
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Publish review frames to preview-renders
+        if: always() && steps.preflight.outputs.skip == ''
+        run: bash scripts/publish_review_media.sh output/review_media
+
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
         env:
@@ -621,7 +639,8 @@ jobs:
           # back awake AFTER the day rendered.
           bash scripts/ci_commit_state.sh \
             "daily: $(date -u +%Y-%m-%d) report + state [skip ci]" \
-            state/ daily_report.md daily_report.json
+            state/ daily_report.md daily_report.json \
+            exchange/reviews exchange/asks
 
       - name: Post report to tracking issue
         if: always() && steps.preflight.outputs.skip == ''
