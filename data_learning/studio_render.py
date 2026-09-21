@@ -2054,6 +2054,88 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     return seq
 
 
+#: Config segments whose `scene` was written by the renderer this run —
+#: `_save_persisted_mechanics` flushes them to disk once, after the loop.
+_PERSISTED: list = []
+
+
+def _persist_rendered_mechanic(insight, slug: str) -> None:
+    """The moment a brain mechanic is COMMITTED to a render, write it down.
+
+    THE BEST ANIMATION ON THE CHANNEL WAS LOST FROM EVERY PLACE THE BRAIN
+    LEARNS FROM. `fusion-net-energy-gain`, 2026-09-16: the showrunner called
+    its bolt-per-0.2-megajoule grid "a genuinely good demonstration" twice,
+    blocked it twice on craft alone, and the run that finally shipped had
+    re-invented the story from scratch without it. Today its code is in
+    neither the config, nor the 60-slot library, nor the ledger, nor git.
+    The operator, asked what makes a video work: "that laser one".
+
+    Three separate mechanisms let it vanish, and this is the fix for the
+    first: NOTHING IN CODE PERSISTED A MECHANIC THAT RENDERED. The only
+    caller of `_record_mechanic` is the render-time invention pass, which is
+    OFF in CI; the pre-render brain is asked to save its work by a line in a
+    prompt, inside a 720-second budget. A capability that depends on a
+    headless model remembering step 5 is not a capability.
+
+    So the renderer does it, here, at the one point where it is certain the
+    mechanic drew: `render_story_build` returned frames for kind "mechanic".
+    Two writes, both idempotent:
+
+      * the LIBRARY (`viz_director._record_mechanic`, dedup by signature,
+        `moves: True` because the motion probe just passed it) — so the next
+        brain studies it as an example;
+      * the CONFIG SEGMENT it came from, via the pointer `story.build` set,
+        never by index (that function reorders and drops segments) — so the
+        next run RE-RENDERS the same animation through the now-measured
+        sandbox instead of re-inventing, and a craft block costs a repair,
+        not the idea. `_save_persisted_mechanics` flushes once per render.
+
+    Never raises: losing a record is bad, losing a render over it is worse.
+    """
+    try:
+        sc = getattr(insight, "scene", None)
+        if not (isinstance(sc, dict) and sc.get("code")):
+            return
+        try:
+            from data_learning import viz_director as _vd
+            _vd._record_mechanic(insight, sc)
+        except Exception as e:  # noqa: BLE001
+            print(f"[studio] library record skipped: {e}", flush=True)
+        cfg_seg = getattr(insight, "seg_cfg", None)
+        if isinstance(cfg_seg, dict):
+            keep = {k: sc[k] for k in ("mechanic", "concept", "code") if k in sc}
+            if cfg_seg.get("scene") != keep:
+                cfg_seg["scene"] = keep
+                _PERSISTED.append(slug)
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] mechanic persist skipped: {e}", flush=True)
+
+
+def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> None:
+    """Flush any `scene` written by `_persist_rendered_mechanic` to the config
+    file — ONE read-modify-write per render, touching only this story, so a
+    concurrent author's edits to other stories survive. The workflow's
+    persist step commits the file; that is what makes it durable."""
+    if slug not in _PERSISTED:
+        return
+    try:
+        _PERSISTED[:] = [x for x in _PERSISTED if x != slug]
+        cfg = json.loads(Path(config_path).read_text())
+        for st_ in cfg.get("stories", []):
+            if st_.get("slug") != slug:
+                continue
+            for a, b in zip(st_.get("segments", []), story_cfg.get("segments", [])):
+                if isinstance(b.get("scene"), dict) and b["scene"].get("code"):
+                    a["scene"] = b["scene"]
+            break
+        Path(config_path).write_text(
+            json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+        print(f"[studio] persisted rendered mechanic(s) for '{slug}' to "
+              f"{Path(config_path).name}", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] mechanic save skipped: {e}", flush=True)
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
            config_path: Path | None = None) -> Path:
     """`config_path` lets a sibling channel (e.g. curiosity) render from its
@@ -2200,6 +2282,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     seg.insight.kind = _orig_kind
                 if not cpath:
                     continue
+                if kind == "mechanic":
+                    _persist_rendered_mechanic(seg.insight, slug)
                 seg.spans.append({"kind": kind, "path": str(cpath),
                                   "anchors": anc, "t0": t0, "t1": t1})
                 _kinds_used.add(kind)
@@ -2209,6 +2293,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 print(f"[studio] seg{i}: "
                       + " -> ".join(f"{sp['kind']}({sp['t1'] - sp['t0']:.1f}s)"
                                     for sp in seg.spans), flush=True)
+        _save_persisted_mechanics(config_path, story_cfg, slug)
 
         # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
         # reviewer's own cadence detector + the build-time temporal gate on it,

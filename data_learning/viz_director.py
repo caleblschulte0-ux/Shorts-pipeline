@@ -538,7 +538,14 @@ def _record_mechanic(ins, spec) -> None:
         lib.append({"sig": sig, "mechanic": spec.get("mechanic", ""),
                     "concept": spec.get("concept", ""), "code": spec.get("code", ""),
                     "topic": ins.topic or "", "moves": True})
-        lib = lib[-60:]                       # keep the corpus bounded
+        # BOUNDED, BUT NOT BLIND. 60 slots is what aged the fusion bolt grid
+        # out of existence while forty static mechanics stayed. Starred
+        # entries — the brain's own "this one was good" — are never evicted;
+        # the rest roll. 120 x ~1.5KB stays well under the repo's 256KB file
+        # rule (CLAUDE.md storage rules).
+        _starred = [m for m in lib if m.get("starred")]
+        _rest = [m for m in lib if not m.get("starred")]
+        lib = _starred + _rest[-max(0, 120 - len(_starred)):]
         with open(_MECH_LIB, "w", encoding="utf-8") as fh:
             json.dump(lib, fh, indent=1, ensure_ascii=False)
     except Exception as e:  # noqa: BLE001

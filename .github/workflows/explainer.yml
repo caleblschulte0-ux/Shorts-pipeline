@@ -405,9 +405,15 @@ jobs:
               st = by.get(sl)
               if not st:
                   continue
+              # A MECHANIC IS A SCENE TOO. This counted only kit scenes
+              # (`elements`), so a story already carrying a brain-authored
+              # {mechanic, code} read as undirected and the next brain step
+              # overwrote it — the second of three ways the fusion bolt grid
+              # was lost (2026-09-16). Hands off anything that has EITHER.
               kit = sum(1 for sg in st.get('segments', [])
                         if isinstance(sg.get('scene'), dict)
-                        and sg['scene'].get('elements'))
+                        and (sg['scene'].get('elements')
+                             or sg['scene'].get('code')))
               if kit < len(st.get('segments', [])):
                   keep.append(sl)
               else:
