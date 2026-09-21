@@ -399,6 +399,82 @@ def pipeline_health(today: str) -> dict:
     return out
 
 
+#: The judge's per-depiction grade (`showrunner_review._GRADE_PROMPT`):
+#: 3 = the picture is MADE OF the subject; 1 = a stock machine with an
+#: icon in it; 0 = a chart. The operator's ruling of 2026-09-21 is that
+#: tier-1 pictures are what the audience turns up for — this section is
+#: where that claim gets measured instead of asserted.
+_TIER_NAMES = {3: "tier1_bespoke", 2: "tier2_invented_form",
+               1: "tier2_machine", 0: "tier0_chart"}
+
+
+def depictions_vs_performance(channel_path: str = CHANNELS["explainer"],
+                              verdict_log: Path | None = None,
+                              min_age_hours: float = 24.0) -> dict:
+    """Did the bespoke pictures actually earn more watch than the machines?
+
+    Joins every explainer video's analytics to the showrunner's FINAL
+    verdict for that slug (the verdict log is append-only, so the last entry
+    per slug is the one that shipped) and buckets videos by the best
+    `bespoke` grade the judge gave any of their depictions. Reports median
+    views-per-hour and the sample size per bucket, on videos old enough to
+    have been watched. It is deliberately honest about thinness: until the
+    grade loop has been running for a while most videos are `ungraded`,
+    and a bucket under `MIN_SAMPLES` is labelled thin, not concluded on.
+    """
+    out: dict = {"note": "best judge `bespoke` grade per video vs "
+                         "views-per-hour at >= %gh" % min_age_hours,
+                 "buckets": {}, "ungraded": 0, "thin": []}
+    data = _load(ROOT / channel_path)
+    videos = [v for v in ((data or {}).get("videos") or []) if isinstance(v, dict)]
+    if not videos:
+        out["note"] = "no explainer analytics"
+        return out
+    log = verdict_log or (STATE / "showrunner_verdicts.jsonl")
+    best: dict[str, int] = {}
+    kinds: dict[str, list] = {}
+    if log.exists():
+        for line in log.read_text().splitlines():
+            try:
+                v = json.loads(line)
+            except Exception:  # noqa: BLE001
+                continue
+            slug = str(v.get("slug") or "")
+            deps = v.get("depictions")
+            if not slug or not isinstance(deps, list):
+                continue
+            grades = [int(d.get("bespoke")) for d in deps
+                      if isinstance(d, dict) and isinstance(d.get("bespoke"), int)]
+            if grades:
+                best[slug] = max(grades)          # LAST verdict wins
+                kinds[slug] = [str(d.get("kind") or "") for d in deps
+                               if isinstance(d, dict)]
+    buckets: dict[str, list[float]] = {}
+    for v in videos:
+        if float(v.get("age_hours") or 0) < min_age_hours:
+            continue
+        slug = str(v.get("catalog_id") or v.get("slug") or "")
+        g = best.get(slug)
+        if g is None:
+            out["ungraded"] += 1
+            continue
+        buckets.setdefault(_TIER_NAMES.get(g, "tier?"), []).append(_vph(v))
+    for name, vals in sorted(buckets.items()):
+        out["buckets"][name] = {"n": len(vals),
+                                "median_vph": round(statistics.median(vals), 3),
+                                "max_vph": round(max(vals), 3)}
+        if len(vals) < MIN_SAMPLES:
+            out["thin"].append(name)
+    if out["buckets"] and not out["thin"]:
+        top = out["buckets"].get("tier1_bespoke")
+        rest = [b for k, b in out["buckets"].items() if k != "tier1_bespoke"]
+        if top and rest:
+            out["tier1_vs_rest"] = {
+                "tier1_median_vph": top["median_vph"],
+                "rest_best_median_vph": max(b["median_vph"] for b in rest)}
+    return out
+
+
 def repo_state(since_days: int = 1) -> dict:
     since = (datetime.now(timezone.utc)
              - timedelta(days=since_days)).strftime("%Y-%m-%d")
@@ -549,6 +625,9 @@ def build(date: str) -> dict:
             "outcome ONLY when `what_you_owe_today.must_do` is 0."),
         "channels": channels,
         "pipeline_health": pipeline_health(date),
+        # THE OPERATOR'S CLAIM, MEASURED: "every time we have a good one of
+        # those [per-video animations], the video gets a ton of views."
+        "depictions": depictions_vs_performance(),
         "levity": levity_coverage(),
         "repo": repo_state(),
         # THE RULING THE DAY WAS SHIPPED UNDER. A proposal that says "graph
@@ -634,6 +713,14 @@ def executive_summary(brief: dict) -> str:
             L.append(f"    - worst: {str(worst['title'])[:60]} "
                      f"({worst.get('vph')} vph)")
     L.append("")
+
+    dep = brief.get("depictions") or {}
+    t1 = dep.get("tier1_vs_rest")
+    if t1:
+        L += ["## Do the bespoke pictures pay?", "",
+              f"- tier-1 median {t1['tier1_median_vph']} vph vs "
+              f"{t1['rest_best_median_vph']} vph for the best other tier "
+              f"(n per bucket >= {MIN_SAMPLES})", ""]
 
     # 3. What is actually in flight.
     cont = brief.get("continuity") or {}
@@ -723,6 +810,19 @@ def to_markdown(brief: dict) -> str:
             L.append(f"- `{e['id']}` — {e['hypothesis']}")
             L.append(f"    - {e['days']}d, {e['samples']} samples, "
                      f"needs {e['needs']} · {e['blocked_by']}")
+        L.append("")
+
+    dep = brief.get("depictions") or {}
+    if dep.get("buckets") or dep.get("ungraded"):
+        L += ["## Bespoke pictures vs performance", "",
+              f"_{dep.get('note')}_", ""]
+        for name, b in (dep.get("buckets") or {}).items():
+            L.append(f"- {name}: n={b['n']}, median {b['median_vph']} vph, "
+                     f"best {b['max_vph']} vph"
+                     + (" _(thin)_" if name in (dep.get("thin") or []) else ""))
+        if dep.get("ungraded"):
+            L.append(f"- ungraded (shipped before the judge graded "
+                     f"depictions): {dep['ungraded']}")
         L.append("")
 
     h = brief["pipeline_health"]

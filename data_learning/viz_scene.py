@@ -6003,10 +6003,18 @@ def _run_mechanic_frame(code_obj, canvas, base, reveal):
         frac = clamp(frac, 0.0, 1.0)
         if img is not None:
             im = ImageOps.fit(img.convert("RGBA"), (w, h))
-            if color is not None:                       # optional tint wash
-                wash = Image.new("RGBA", (w, h), rgba(color, 90))
-                im = Image.alpha_composite(im, wash)
             a = im.split()[3]
+            if color is not None:
+                # A tint wash ON THE SUBJECT, not on its box. The wash used
+                # to be laid over the whole w x h rectangle and then the
+                # alpha was read AFTER it — so a transparent cut-out came
+                # back as a solid tinted slab with the subject inside it.
+                # Seen on 2026-09-21 rendering `subject-cut-away`: a pizza
+                # slice sitting in a mustard rectangle. Masking the wash by
+                # the image's own alpha keeps the tint where the pixels are.
+                wash = Image.new("RGBA", (w, h), rgba(color, 90))
+                wash.putalpha(ImageChops.multiply(wash.split()[3], a))
+                im = Image.alpha_composite(im, wash)
             mask = Image.new("L", (w, h), 0)
             md = ImageDraw.Draw(mask)
             fp = int(h * frac)
