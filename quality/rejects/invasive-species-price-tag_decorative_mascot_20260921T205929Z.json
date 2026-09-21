@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260921T205929Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: A second clipboard-holding Data stands in the identical pose at the bottom of every frame from seg1:mid through payoff@-0.4 doing nothing; the in-scene copy merely perches on a bar end (seg1:end) or a bubble (seg3:mid) with no setup\u2192action\u2192payoff.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid \u2014 the upper two-thirds of the 1080x1920 frame is empty ground; the only graphic is a thin pink line pinned to the bottom third, running off the left edge, with the mascot standing on its tip. seg1:end adds an unexplained cyan ellipse in blank space at right and the '423' readout is half off the bottom edge.",
+  "root_cause": "The line machine is laid out to the data's own y-extent inside a band anchored near the caption line instead of composing to the full frame, so a shallow-then-steep series occupies a sliver of the canvas; a stray highlight ellipse is drawn at a default position with no anchor.",
+  "repair_goal": "Compose the quadrupling to fill the frame: scale the line's plot box to the full safe area (top ~15% to bottom ~25%), start it inside the left margin rather than off-edge, let the value readout ride the line's head inside frame, and either anchor the highlight ellipse to the 2019 endpoint or drop it."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

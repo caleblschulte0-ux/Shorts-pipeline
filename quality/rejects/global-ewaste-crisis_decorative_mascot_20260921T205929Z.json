@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260921T205929Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The same clipboard-and-outstretched-arm mascot sits unchanged at the bottom of seg1:mid, seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 while a second copy slides beside the bars \u2014 no setup, action or payoff tied to any stat.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end three text layers occupy the same band at the top of the frame \u2014 the scene kicker 'the data stops here', the chart title 'the world's growing e-waste pile', and the projection annotation '82M (projected) 82M' \u2014 rendered over one another into an illegible smear, with a second small mascot pasted across the first two words of the title. The 'measured to 2022' / 'projected' pair and a stray empty cyan ellipse float in otherwise dead space.",
+  "root_cause": "The projection machine draws its own kicker and endpoint annotation at fixed top coordinates without reserving or measuring against the host-baked title band, and the mascot is placed at a chart-space point with no collision test against text; the annotation is also drawn twice (label + value) at the same y.",
+  "repair_goal": "Lay seg1 out so no two text runs overlap and nothing sits under the mascot: measure the title band, place the kicker and the '82M (projected)' endpoint label in reserved clear space (annotation anchored to the line's end point, inset from the right edge), draw it once, drop the empty ellipse, and keep the mascot clear of all type."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

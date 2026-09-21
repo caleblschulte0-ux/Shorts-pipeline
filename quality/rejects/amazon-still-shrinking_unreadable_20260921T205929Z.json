@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260921T205929Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid/seg1:end print 'it never settled' on top of the title 'Amazon deforestation by year' and run 'anywhere between 4571 and 27772' into the right frame edge; seg3:start/seg3:mid clip the legend to 'Soy, Mining, Logging /' at the edge and set 'Cattle Pasture 80%' in near-invisible gr",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_text_pileup_and_wrong_claim",
+  "visible_evidence": "seg1:mid and seg1:end stack four text layers in one frame \u2014 'it never settled' over the title 'Amazon deforestation by year', a line chart drawn straight through that title, the gauge labels '4571' / '27772' with 'anywhere between 4571 and 27772' clipped at the right edge, plus the caption 'that had fallen' and the big '6,288' at the bottom \u2014 while two mascots stand in the frame at once.",
+  "root_cause": "The scene composited a range/uncertainty machine (a pill gauge with a sliding red dot) over a leftover chart layer and its title without clearing the previous scene's furniture or measuring label extents; the machine also asserts a range the script never makes \u2014 the line is 27,772 in 2004 falling to 6,288 in 2024, not 'anywhere between'.",
+  "repair_goal": "Rebuild seg1 as a single full-bleed layer: drop the inherited chart and title, drop the gauge, and show the 2004\u21922024 fall as one measured movement (27,772 collapsing to 6,288) with exactly one text layer on screen at a time, every label measured to sit inside the safe area and off the mascot."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
