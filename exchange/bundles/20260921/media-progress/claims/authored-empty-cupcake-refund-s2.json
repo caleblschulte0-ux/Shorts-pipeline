@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260921",
+  "bundle": {
+    "identity": "takeover-d82b0d26dce1f8203ce5f203b3ae465a8530bd50"
+  },
+  "request_id": "authored-empty-cupcake-refund-s2",
+  "safe_request_id": "authored-empty-cupcake-refund-s2",
+  "worker": "finalizer",
+  "worker_run_id": "daily-producer-20260921-0615",
+  "created_at": "2026-09-21T12:21:32.798Z",
+  "expires_at": "2026-09-21T12:36:32.798Z",
+  "lease_seconds": 900
+}
