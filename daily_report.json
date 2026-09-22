@@ -6,14 +6,14 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A Reddit story told almost entirely over blown-out, blurry gameplay: one stock shrug photo in 45 seconds, captions dropping out at the end, and no visible payoff.",
-    "elapsed_seconds": 303.4,
+    "error": "showrunner_block: showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets a picture, so the petty-revenge story is heard but never shown.",
+    "elapsed_seconds": 547.8,
     "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
     "source": "brain",
-    "video_path": "output/daily_20260922-213332_she_mistook_me_for_staff__i__helped__her.mp4",
+    "video_path": "output/daily_20260922-220418_she_mistook_me_for_staff__i__helped__her.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.733,
+      "duration": 45.7,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,45 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A Reddit story told almost entirely over blown-out, blurry gameplay: one stock shrug photo in 45 seconds, captions dropping out at the end, and no visible payoff.",
-      "score": 44
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Mountain lion caught on camera in Tuolumne County - ABC10",
-    "angle": "A mountain lion prowls a California county, sparking wildlife\u2011safety alerts and a surge of online speculation.",
-    "publish_at": "2026-09-23T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: all 8 segments are null, so no beat of the barista/VIP story is ever shown, and the payoff lands on generic lava parkour.",
-    "elapsed_seconds": 184.5,
-    "title": "Barista Beats Entitled VIP With Ghost Note",
-    "package_path": "state/trending_packages/20260922-213849_auto_mountain_lion_caught_on_camera_in_tuolum.json",
-    "video_path": "output/daily_20260922-213849_mountain_lion_caught_on_camera_in_tuolum.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.0,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.7
+      "loudness_lufs": -24.2
     },
     "qa": {
       "ok": true,
@@ -71,37 +33,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: all 8 segments are null, so no beat of the barista/VIP story is ever shown, and the payoff lands on generic lava parkour.",
-      "score": 48
+      "reason": "showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets a picture, so the petty-revenge story is heard but never shown.",
+      "score": 57
     },
-    "blocked": true,
+    "blocked": true
+  },
+  {
+    "topic": "dairy queen oreo halloween blizzard",
+    "angle": null,
+    "publish_at": "2026-09-23T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['read every promo rule out loud', 'grabbed the binder', 'fine print into the microphone', 'pulled out their phones to film him', 'line behind him started laughing', 'demanded an actual manager', 'stormed out with nothing']",
+    "elapsed_seconds": 187.1,
+    "title": "I Read The Rules Word For Word And Ruined Him",
+    "package_path": "state/trending_packages/20260922-221602_auto_dairy_queen_oreo_halloween_blizzard.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls",
-    "angle": "A Florida resident finds a blue crab clutching a kitchen knife, turning a beach walk into a viral oddity.",
+    "topic": "measles",
+    "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: '\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls' refused by the writer: The provided trend is not a workplace setting; it describes an outdoor scenario, which violates the requirement for a setting such as a cafe, hardware store, ai",
-    "elapsed_seconds": 0.9,
+    "error": "unfit_for_fiction: 'measles' refused by the writer: trend is a measles/illness outbreak exposure story - illness is a banned seed category",
+    "elapsed_seconds": 27.9,
     "unfit": true,
     "backfill": true
   },
   {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
-    "angle": "Self\u2011driving Waymo cars weave through a bustling farmer\u2019s market, raising questions about autonomous navigation in crowds.",
+    "topic": "andy green",
+    "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-and-captions reddit story. No story beat is ever shown, a horizontal seam line cuts through every frame, and the ending trails off with no caption.",
-    "elapsed_seconds": 220.9,
-    "title": "I Got Caught Stealing a Drill and Got Promoted",
-    "package_path": "state/trending_packages/20260922-214157_auto_waymo_caught_on_camera_driving_through_f.json",
-    "video_path": "output/daily_20260922-214157_waymo_caught_on_camera_driving_through_f.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat of the malicious-compliance plot is illustrated, so the story is only captioned and never shown.",
+    "elapsed_seconds": 307.0,
+    "title": "I Followed My Manager's Rule To The Letter",
+    "package_path": "state/trending_packages/20260922-221905_auto_andy_green.json",
+    "video_path": "output/daily_20260922-221905_andy_green.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.667,
+      "duration": 52.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -112,32 +86,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.1
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a bare gameplay-and-captions reddit story. No story beat is ever shown, a horizontal seam line cuts through every frame, and the ending trails off with no caption.",
+      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat of the malicious-compliance plot is illustrated, so the story is only captioned and never shown.",
       "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
-    "angle": "Alaska\u2019s annual Fat Bear Week pits plump brown bears against each other, a quirky contest with tourism dollars at stake.",
+    "topic": "la verne",
+    "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['ultra soft', 'full menu', 'kitchen hatch', \"manager's headset\", 'tip pouch', 'stormed out']",
-    "elapsed_seconds": 28.8,
-    "title": "I gave a demanding customer a free pastry and got a massive tip",
-    "package_path": "state/trending_packages/20260922-214538_auto_battle_for_heavyweight_crown_begins_as_a.json",
-    "quarantined": true,
+    "error": "unfit_for_fiction: 'la verne' refused by the writer: Trend is a hazardous-materials fire with evacuations and an injured employee - a disaster/injury event, which cannot seed a fictional story per the rules.",
+    "elapsed_seconds": 29.3,
+    "unfit": true,
     "backfill": true
   }
 ]

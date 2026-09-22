@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "us-height-ranking-fall__dfb4fa2e",
- "filed": "2026-09-22T15:06:18Z",
+ "filed": "2026-09-22T16:53:11Z",
  "status": "open",
  "channel": "explainer",
  "slug": "us-height-ranking-fall",
@@ -98,10 +98,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The premise lacks a specific, verifiable number and relies only on a vague claim."
+  "premise: brain: The premise lacks a single verifiable numeric claim and does not hinge on one consequential number."
  ],
  "reasons": [
-  "premise: brain: The premise lacks a specific, verifiable number and relies only on a vague claim."
+  "premise: brain: The premise lacks a single verifiable numeric claim and does not hinge on one consequential number."
  ],
  "judge": null,
  "prior_rejection": [],
