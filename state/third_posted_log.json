@@ -8355,23 +8355,68 @@
       "ts": "2026-09-22T13:49:24.167471+00:00"
     },
     "clip-20260922-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/GoodBlazingSangDogFace-ykRCWzyUbddH8emL",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/9z7iUq8pMT0",
       "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T13:53:05.339630+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-22T13:53:12.911192+00:00",
+      "uploaded_at": "2026-09-22T13:53:12.911209+00:00",
+      "publish_at": "2026-09-23T02:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/GoodBlazingSangDogFace-ykRCWzyUbddH8emL",
+      "streamer": "lacy",
+      "series": "rage",
+      "hook": "JOE CHAT IS MAD SHE WON $20K",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1657,
+      "banger": 0.75,
+      "cut": {
+        "start": 5.5,
+        "end": 28.0
+      },
+      "director_cut": true
     },
     "clip-20260922-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/ShinyCredulousSandpiperPlanking-lgM9i55vRgoFXKrL",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/u140w4pIjS0",
       "title": "Plaqueboymax Snaps And Calls Someone Out For Wanting To Be A \"Songstress\"",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T13:57:29.309621+00:00",
+      "ts": "2026-09-22T13:57:36.456236+00:00",
+      "uploaded_at": "2026-09-22T13:57:36.456252+00:00",
+      "publish_at": "2026-09-23T03:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/ShinyCredulousSandpiperPlanking-lgM9i55vRgoFXKrL",
+      "streamer": "plaqueboymax",
+      "series": "chaos",
+      "hook": "NOBODY CARES, JUST DO THE WORK",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1885,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.2,
+        "end": 24.6
+      },
+      "director_cut": true
+    },
+    "rejected-courageousartisticgazelleshazbotstix-bpqcbj_qysr2ho-7": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CourageousArtisticGazelleShazBotstix-BpqcBj_QYsR2ho-7",
+      "streamer": "caseoh_",
+      "title": "WHO THAT DUDE BACK THERE???",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay, NPC dialogue, no event)",
+      "ts": "2026-09-22T14:00:14.095529+00:00"
+    },
+    "clip-20260922-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/shroud/clip/IgnorantCrowdedMarrow4Head-HFzQB4QUhSxLImrX",
+      "story_key": null,
+      "streamer": "shroud",
+      "title": "Shroud Kills The Heli And Even He Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-09-22T14:02:55.456632+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
