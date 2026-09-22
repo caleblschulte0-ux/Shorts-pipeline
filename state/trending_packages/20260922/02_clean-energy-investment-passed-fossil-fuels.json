@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "clean-energy-investment-passed-fossil-fuels",
+  "title": "Clean Energy Investment Passed Fossil Fuels",
+  "hook": "The World's Money Moved",
+  "y_label": "Global annual energy investment ($ billions)",
+  "duration": 13,
+  "source": "IEA World Energy Investment reports (2016-2025 editions); approximate global annual investment in clean energy technologies (renewables, EVs, grids, nuclear, efficiency) vs. fossil fuel supply and power. Clean energy investment overtook fossil fuels for the first time in 2023 and the gap has widened since ($2.2T vs ~$1.05T in 2025).",
+  "years": [
+    2015,
+    2019,
+    2021,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Clean energy",
+      "color": "#2ecc71",
+      "values": [
+        650,
+        900,
+        1300,
+        1700,
+        2000,
+        2200
+      ]
+    },
+    {
+      "name": "Fossil fuels",
+      "color": "#7f8c8d",
+      "values": [
+        1050,
+        950,
+        800,
+        1050,
+        1100,
+        1050
+      ]
+    }
+  ],
+  "hashtags": [
+    "cleanenergy",
+    "fossilfuels",
+    "energyinvestment",
+    "iea",
+    "renewableenergy",
+    "energytransition",
+    "climate",
+    "solar",
+    "wind",
+    "oilandgas",
+    "sustainability",
+    "energy",
+    "climatechange",
+    "globaleconomy",
+    "investing"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

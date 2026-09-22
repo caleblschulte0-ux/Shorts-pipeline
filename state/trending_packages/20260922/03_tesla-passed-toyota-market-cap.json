@@ -1,0 +1,67 @@
+{
+  "format": "graph_race",
+  "slug": "tesla-passed-toyota-market-cap",
+  "title": "Tesla Passed Toyota In Market Value",
+  "hook": "Tesla Out-Valued Toyota",
+  "y_label": "Market capitalization ($ billions)",
+  "duration": 13,
+  "source": "Public equity market capitalization, NASDAQ: TSLA vs NYSE: TM, year-end closes (approximate, compiled from Bloomberg/CNBC/Forbes reporting). Tesla passed Toyota to become the world's most valuable automaker on July 1, 2020 ($207.2B vs $201.9B) and has stayed ahead since.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Tesla",
+      "color": "#e74c3c",
+      "icon": "Tesla",
+      "values": [
+        75,
+        668,
+        1100,
+        389,
+        800,
+        1300,
+        1480
+      ]
+    },
+    {
+      "name": "Toyota",
+      "color": "#4a90e2",
+      "icon": "Toyota",
+      "values": [
+        190,
+        210,
+        250,
+        220,
+        230,
+        230,
+        233
+      ]
+    }
+  ],
+  "hashtags": [
+    "tesla",
+    "toyota",
+    "marketcap",
+    "automaker",
+    "evs",
+    "stockmarket",
+    "wallstreet",
+    "automotive",
+    "electricvehicles",
+    "investing",
+    "teslastock",
+    "carindustry",
+    "business",
+    "finance",
+    "elonmusk"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto"
+}

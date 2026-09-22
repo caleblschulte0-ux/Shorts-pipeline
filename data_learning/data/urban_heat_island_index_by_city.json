@@ -1,0 +1,26 @@
+{
+  "key": "urban_heat_island_index_by_city",
+  "title": "Urban Heat Island Index -- added heat from the built environment, per capita average (degrees Fahrenheit)",
+  "unit": "degrees",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Urban Heat Hot Spots in 65 Cities",
+    "publisher": "Climate Central",
+    "url": "https://www.climatecentral.org/climate-matters/urban-heat-islands-2024",
+    "officiality": "secondary",
+    "access_date": "2026-09-22"
+  },
+  "notes": "Climate Central's 2024 analysis of 65 major US cities (50 million residents, 15% of the US population) computed a per-neighborhood Urban Heat Island (UHI) Index -- how many extra degrees pavement, buildings, and lost tree cover add versus a natural land-cover baseline. Per-capita city averages ranged 7.4-9.7 degrees F; the 65-city average was 8.0 degrees F.",
+  "points": [
+    {"label": "New York City", "value": 9.7},
+    {"label": "San Francisco", "value": 9.1},
+    {"label": "Newark", "value": 9.0},
+    {"label": "Chicago", "value": 8.7},
+    {"label": "Phoenix", "value": 7.4}
+  ],
+  "baseline": {
+    "label": "65-city average",
+    "value": 8.0
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "key": "centenarian_gender_gap",
+  "title": "Share of US centenarians who are men: today vs. 2054 (projected)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024 vs. 2054 (projected)",
+  "source": {
+    "name": "US centenarian population estimates and projections",
+    "publisher": "Pew Research Center, based on U.S. Census Bureau data and projections",
+    "url": "https://www.pewresearch.org/short-reads/2024/01/09/us-centenarian-population-is-projected-to-quadruple-over-the-next-30-years/",
+    "officiality": "official",
+    "access_date": "2026-09-22"
+  },
+  "notes": "As of 2024, 78% of US centenarians are women and 22% are men. The Census Bureau projects that by 2054, women will make up 68% of centenarians and men 32% -- the gender gap at the very top of the age distribution is projected to narrow.",
+  "points": [
+    {"label": "Men, today (2024)", "value": 22},
+    {"label": "Men, by 2054 (projected)", "value": 32}
+  ]
+}

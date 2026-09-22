@@ -1,0 +1,19 @@
+{
+  "key": "redlining_heat_gap",
+  "title": "Added summer land-surface heat: formerly redlined neighborhoods vs. non-redlined neighborhoods nearby (degrees Fahrenheit)",
+  "unit": "degrees",
+  "geography": "United States (108 urban areas studied)",
+  "time_coverage": "2020 study (based on 1930s HOLC redlining maps vs. present-day land surface temperature)",
+  "source": {
+    "name": "The Effects of Historical Housing Policies on Resident Exposure to Intra-Urban Heat: A Study of 108 US Urban Areas",
+    "publisher": "Hoffman, Shandas & Pendleton, journal 'Climate' (MDPI), Portland State University",
+    "url": "https://www.mdpi.com/2225-1154/8/1/12",
+    "officiality": "secondary",
+    "access_date": "2026-09-22"
+  },
+  "notes": "Peer-reviewed 2020 study comparing present-day land surface temperatures inside 1930s HOLC 'redlined' (D-grade) districts against non-redlined districts in the same 108 US urban areas: redlined areas ran about 5 degrees F hotter on average (up to 12.6 degrees F in the most extreme cities -- Portland OR, Denver CO, Minneapolis MN), a pattern consistent across 94% of the areas studied.",
+  "points": [
+    {"label": "Non-redlined neighborhoods (baseline)", "value": 0},
+    {"label": "Formerly redlined neighborhoods", "value": 5}
+  ]
+}
