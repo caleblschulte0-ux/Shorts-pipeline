@@ -1,58 +1,19 @@
 [
   {
-    "topic": "My Landlord Invented Damage For My Deposit",
-    "title": "My Landlord Invented Damage For My Deposit",
-    "format": "reddit",
-    "publish_at": "2026-09-22T20:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/AeZ5C1AstxI",
-    "error": null,
-    "elapsed_seconds": 202.1,
-    "package_path": "state/trending_packages/20260922/05_landlord-invented-deposit-damage.json",
-    "source": "brain",
-    "video_path": "output/daily_20260922-193323_my_landlord_invented_damage_for_my_depos.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.467,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default"
-  },
-  {
     "topic": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
     "title": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
     "format": "reddit",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-22T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: After the Reddit card fades there is nothing but dark Geometry Dash gameplay and sparse captions. No picture ever shows the story's beats, and much of the frame is empty black.",
-    "elapsed_seconds": 150.9,
+    "error": "showrunner_block: showrunner BLOCK: The whole story is carried by a 2-3 word caption over generic parkour gameplay. After the post card there is not a single story illustration, so none of the cause-and-effect beats are shown.",
+    "elapsed_seconds": 180.9,
     "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
     "source": "brain",
-    "video_path": "output/daily_20260922-193646_she_mistook_me_for_staff__i__helped__her.mp4",
+    "video_path": "output/daily_20260922-201208_she_mistook_me_for_staff__i__helped__her.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.7,
+      "duration": 46.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -27.1
     },
     "qa": {
       "ok": true,
@@ -72,38 +33,38 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: After the Reddit card fades there is nothing but dark Geometry Dash gameplay and sparse captions. No picture ever shows the story's beats, and much of the frame is empty black.",
-      "score": 53
+      "reason": "showrunner BLOCK: The whole story is carried by a 2-3 word caption over generic parkour gameplay. After the post card there is not a single story illustration, so none of the cause-and-effect beats are shown.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "Mountain lion caught on camera in Tuolumne County - ABC10",
-    "angle": "A massive mountain lion prowls a California highway, sparking wildlife\u2011safety alarms for commuters.",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "topic": "Sri Lanka court convicts 15 men over deadly Easter Sunday bombings",
+    "angle": "Sri Lankan courts hand down verdicts to 15 suspects in the 2019 Easter bombings, delivering a long\u2011awaited justice milestone for victims.",
+    "publish_at": "2026-09-22T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['mountain lion strutted', 'stared directly at', \"my dad's illegal\", 'escaped into the forest', 'the camera froze']",
-    "elapsed_seconds": 38.9,
-    "title": "My Hike Turned Into a Lion Nightmare",
-    "package_path": "state/trending_packages/20260922-193931_auto_mountain_lion_caught_on_camera_in_tuolum.json",
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['judge just announced', '15 men', '260 years', 'all their assets', 'real mastermind was still free', 'doors slammed']",
+    "elapsed_seconds": 37.3,
+    "title": "Handcuffed Next to the Bomb Mastermind",
+    "package_path": "state/trending_packages/20260922-201528_auto_sri_lanka_court_convicts_15_men_over_dea.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "Sri Lanka court convicts 15 men over deadly Easter Sunday bombings",
-    "angle": "A landmark verdict brings justice for the 2019 Easter bombings, closing a chapter on Sri Lanka\u2019s deadliest terror attack.",
+    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
+    "angle": "Alaska\u2019s annual Fat Bear Week pits the state\u2019s heaviest brown bears against each other, turning wildlife into a viral showdown with millions watching.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Block. Irrelevant stock photos (cocktails, a ship, a hotel desk, a US law library) sit over a fabricated first-person 'cover-up' story about a real mass-casualty terror attack.",
-    "elapsed_seconds": 407.3,
-    "title": "I Uncovered the Easter Bombing Cover\u2011Up",
-    "package_path": "state/trending_packages/20260922-194010_auto_sri_lanka_court_convicts_15_men_over_dea.json",
-    "video_path": "output/daily_20260922-194010_sri_lanka_court_convicts_15_men_over_dea.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a stitched Reddit-style fiction over Minecraft parkour: no data demonstration, no mascot, a cut-off hook, and a dog-food stock photo as the payoff shot.",
+    "elapsed_seconds": 394.9,
+    "title": "Family Fortune Lost to Fat Bear Week",
+    "package_path": "state/trending_packages/20260922-201606_auto_battle_for_heavyweight_crown_begins_as_a.json",
+    "video_path": "output/daily_20260922-201606_battle_for_heavyweight_crown_begins_as_a.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.733,
+      "duration": 42.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -114,7 +75,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.7
+      "loudness_lufs": -13.3
     },
     "qa": {
       "ok": true,
@@ -123,46 +84,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Block. Irrelevant stock photos (cocktails, a ship, a hotel desk, a US law library) sit over a fabricated first-person 'cover-up' story about a real mass-casualty terror attack.",
-      "score": 26
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
-    "angle": "Self\u2011driving Waymo taxis weave through a bustling farmer\u2019s market, raising questions about autonomous navigation in crowds.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Off-topic stock photos (Elmo, a wedding-cake topper, wedding rings, a businessman) sit on top of an incoherent made-up first-person script that never shows the Waymo or the farmers market.",
-    "elapsed_seconds": 376.2,
-    "title": "Self-Driving Car Crashed Into Farmer's Market Chaos",
-    "package_path": "state/trending_packages/20260922-194654_auto_waymo_caught_on_camera_driving_through_f.json",
-    "video_path": "output/daily_20260922-194654_waymo_caught_on_camera_driving_through_f.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.267,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Off-topic stock photos (Elmo, a wedding-cake topper, wedding rings, a businessman) sit on top of an incoherent made-up first-person script that never shows the Waymo or the farmers market.",
+      "reason": "showrunner BLOCK: This is a stitched Reddit-style fiction over Minecraft parkour: no data demonstration, no mascot, a cut-off hook, and a dog-food stock photo as the payoff shot.",
       "score": 22
     },
     "blocked": true,
@@ -170,14 +92,27 @@
   },
   {
     "topic": "Humpback whale mother may have mourned her dead calf for days",
-    "angle": "Scientists document a grieving humpback whale staying beside its dead calf, offering rare insight into marine mammal emotions.",
+    "angle": "Scientists captured a grieving humpback mother lingering beside her stillborn calf, highlighting deep emotional lives in the ocean\u2019s giants.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['pretended nothing happened', 'I confronted Mom', 'she whispered about a whale', 'the whole family left', 'I realized the grief was real']",
-    "elapsed_seconds": 29.6,
-    "title": "Mom Buried My Baby's Blanket and Pretended Nothing Happened",
-    "package_path": "state/trending_packages/20260922-195311_auto_humpback_whale_mother_may_have_mourned_h.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: [\"whispered the baby's name\", 'clutched tighter', 'feeding the dead infant', 'hospital discharge papers', 'she never told anyone']",
+    "elapsed_seconds": 30.1,
+    "title": "My Mom Mourned Our Dead Baby for Days",
+    "package_path": "state/trending_packages/20260922-202242_auto_humpback_whale_mother_may_have_mourned_h.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "MIT\u2019s tiny flying robot gets 450% faster with AI",
+    "angle": "MIT engineers boost a miniature robot\u2019s speed by 450% using AI\u2011driven control, edging closer to insect\u2011like drones for real\u2011world tasks.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: [\"my roommate's secret lab\", 'the robot flipped ten times', 'I watched it dodge a ceiling fan', 'the AI was learning my moves', 'I realized it was spying on me', 'the whole building went dark']",
+    "elapsed_seconds": 6.1,
+    "title": "My Roommate's Secret Lab Went Insane",
+    "package_path": "state/trending_packages/20260922-202311_auto_mit_s_tiny_flying_robot_gets_450__faster.json",
     "quarantined": true,
     "backfill": true
   }

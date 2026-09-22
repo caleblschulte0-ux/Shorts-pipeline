@@ -3,20 +3,18 @@
   "channel": "trending",
   "schema": "production-channel-outcome/v1",
   "expected": 6,
-  "previously_uploaded": 4,
-  "rendered_or_attempted": 6,
+  "previously_uploaded": 5,
+  "rendered_or_attempted": 5,
   "uploaded": 5,
-  "quarantined": 2,
-  "failed": 3,
+  "quarantined": 3,
+  "failed": 2,
   "failed_by_stage": {
-    "showrunner_block": 3
+    "showrunner_block": 2
   },
   "failed_by_format": {
     "reddit": 1,
-    "unknown": 2
+    "unknown": 1
   },
   "status": "repair_required",
-  "video_urls": [
-    "https://youtube.com/shorts/AeZ5C1AstxI"
-  ]
+  "video_urls": []
 }
