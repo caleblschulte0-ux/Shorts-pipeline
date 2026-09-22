@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T115057Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only stands/perches: on a bar at seg0:end, over the 2011 row at seg1:end, among the buildings at seg2:end, in front of the E-cigarettes bar at seg3:mid, inside the filmstrip at seg4:end \u2014 no setup->action->payoff tied to any number.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:mid and seg2:end replace the chart with 14 emoji-style office-building icons captioned \"each = 2%\", the mascot blocking the title (\"the vaping crackdow\"), and at seg2:mid the bottom half of the frame is dead space.",
+  "root_cause": "The unit-pictograph machine drew a default/mismatched icon for the subject (buildings for teen nicotine use) instead of a subject-made unit, and the mascot was placed on top of the title band.",
+  "repair_goal": "Draw the 7.8% as units MADE OF the subject \u2014 e.g. 14 vape devices / pouch tins, the 27.5% peak grid greying down to 4 of them \u2014 in the channel's own flat palette, with the mascot clear of the title and the unit legend and one accent on the surviving units."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

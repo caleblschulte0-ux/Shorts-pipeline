@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T115057Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Multiple: seg3:start prints 'Soy, Mining, Logging &' cut off by the right frame edge; seg1:mid/seg1:end stack 'it never settled' directly on top of the headline 'Amazon deforestation by year'; hook@0.3 buries the 2004 bar and its 27772 value under the caption; seg4:start's '4 times over'",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_static_outro_with_broken_layout",
+  "visible_evidence": "seg4:start (39.80s), seg4:mid (42.04s), payoff@-1.8, seg4:end and payoff@-0.4 are visually the same frame for ~5s. It shows a dark-on-dark 2x2 square with a ghost grey '4' nobody can read, the PREVIOUS scene's title 'why the Amazon keeps disappearing' still sitting under the speech bubble tail, an 8px subtitle 'Soy, Mining, Logging & Other fits in Cattle Pasture', a mascot shrunk to roughly 20 pixels in the lower-left corner, and a large empty band of background below the square.",
+  "root_cause": "The closing beat reuses the prior scene's chart furniture (leftover title + tiny legend line) under an outro card, and its '4 times over' multiplier machine finishes its build before the scene starts, so the last five seconds have nothing left to animate and no element sized for a phone.",
+  "repair_goal": "Rebuild seg4 as its own full-bleed shot: drop the inherited 'why the Amazon keeps disappearing' title and the 8px legend, scale the 2x2 multiplier and the '4 times over' label to headline size in look.HIGHLIGHT on look.ground, restore the mascot to normal scale with a real closing action, and re-time the multiplier build so the tiles are still arriving through the final 5 seconds instead of holding a frozen frame."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

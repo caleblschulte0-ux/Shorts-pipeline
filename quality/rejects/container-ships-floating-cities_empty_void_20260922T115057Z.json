@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T115057Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 is a near-black frame with one 80px grey stub and two lines of text, the lower two-thirds empty; seg4:start through payoff@-0.4 leave the entire bottom 40% of the frame dead while the rail holds two 20px mascots.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_occlusion",
+  "visible_evidence": "seg1:start -- the mascot stands on the 2019 bar directly on top of the chart title, leaving 'largest container ship capacity(mascot)ear'; seg1:mid and seg1:end -- he straddles the 2013 and 2006 rows, hiding the row bar and its label, while the layout also swaps from vertical columns (seg0) to horizontal rows mid-story for the same series.",
+  "root_cause": "Mascot placement is anchored to the leading bar/row with no occlusion test against the title band or the value labels, and the scene re-draws the same 1996-2019 series in a second, different chart form instead of continuing the one the viewer just learned.",
+  "repair_goal": "Place Data clear of the header and of every value label (beside the chart, on the ground line, or behind the plot at low opacity), keep one chart orientation across seg0 and seg1, and give him one act tied to the growth -- climbing from the 1996 bar to the 2019 bar as it builds -- so the labels stay fully legible on a phone."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

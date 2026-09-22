@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260922T115057Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid is a tiny three-point line in the upper-left of an otherwise black frame, and seg3:end has three bins crammed at the top with the entire lower two-thirds empty except a faint \"each = 5%\".",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the scene title \"the world's growing e-waste pile\" is overprinted by the series label \"2030 (projected) 82M\" and by a second header \"the data stops here\", with the mascot parked on top of the title's first characters; the line chart itself occupies a narrow strip of an otherwise empty frame.",
+  "root_cause": "The projection scene composes its own header and its end-of-series annotation in the same band as the inherited scene title, with no measured collision test or reserved title zone, and the mascot is placed at a fixed top-left anchor independent of where text sits.",
+  "repair_goal": "Lay out seg1 so exactly one header occupies the title band: drop or reposition the duplicate \"the data stops here\"/series annotation below the plot, keep the mascot clear of any text bounding box, and scale the measured/projected line to fill the frame height instead of a corner strip."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

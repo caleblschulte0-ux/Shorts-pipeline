@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T115057Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:mid and seg2:end print 'Chose AI over a human for a serious talk 33%' directly on top of 'Shared personal info with an AI compa...' so both are illegible mush, and the second label is also cut by the right frame edge; seg0's row labels are cut by the LEFT edge ('ed one at least once",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end the two series labels are drawn at the same y and overlap character-for-character ('AI over a human for a serious talk 33%' stamped over 'Shared personal info with an AI compa'), and the right-hand label runs off the frame edge; at seg2:start the two circle labels also collide with each other under the bubbles.",
+  "root_cause": "The dot-plot/lollipop machine places each row label at the mark's own y with no collision resolution and no measured text extent against the frame width, so as the two values converge (33% vs 25%, '8% apart') the labels land on the same line and overflow the right margin.",
+  "repair_goal": "Lay the two series labels out with measured widths and enforced vertical separation inside the safe area \u2014 one label above its mark, one below, each truncated/wrapped to fit the frame \u2014 so both series names and both values are readable at arm's length, and the value sits next to its own mark rather than in a shared text run."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

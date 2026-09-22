@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T115057Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=38.53) is ~70% empty dark field \u2014 three small caps hugging the title and a tiny grey 'each = 0.3' floating mid-frame; seg4 likewise leaves the bottom third of the frame dead below the grid.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg3:end and seg4:start-end tile the frame with graduation-cap/mortarboard icons (angled dark square + orange tassel), 17 of them at 'each = 0.3', to represent 5 degrees of extra heat in formerly redlined blocks; the scene title is also clipped to 'rmerly redlined neighborhoods' by the left frame edge.",
+  "root_cause": "The unit-icon lookup for this subject resolved to an unrelated default glyph (mortarboard) instead of a heat/housing mark, and the scene title is laid out wider than the frame so it is cropped rather than fitted.",
+  "repair_goal": "Replace the icon-grid unit with a mark made of the subject \u2014 a row of house/block silhouettes reddening, or heat-shimmer tiles accumulating \u2014 so each unit visibly means 0.3 degrees of heat, and fit the scene title inside the frame so it reads 'Formerly redlined neighborhoods' in full."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260922T115057Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data does nothing but stand and slide along the bars \u2014 he drifts from the 2030 bar (hook@0.3) up to the 2019 bar (seg0:end) to the 2014 bar (seg1:start), then simply stands beside a column at seg2:start and seg3:mid; no setup->action->payoff is ever tied to 62M, 22% or 1%.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the scene title \"the world's growing e-waste pile\" is overprinted by the series label \"2030 (projected) 82M\" and by a second header \"the data stops here\", with the mascot parked on top of the title's first characters; the line chart itself occupies a narrow strip of an otherwise empty frame.",
+  "root_cause": "The projection scene composes its own header and its end-of-series annotation in the same band as the inherited scene title, with no measured collision test or reserved title zone, and the mascot is placed at a fixed top-left anchor independent of where text sits.",
+  "repair_goal": "Lay out seg1 so exactly one header occupies the title band: drop or reposition the duplicate \"the data stops here\"/series annotation below the plot, keep the mascot clear of any text bounding box, and scale the measured/projected line to fill the frame height instead of a corner strip."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "centenarian-population-boom",
+ "ts": "20260922T115057Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start crops both seesaw labels at the frame edges \u2014 'en, by 2054 (proj' and 'Men, today (2024' \u2014 and prints '17.9%' on top of the right label; seg3:end prints 'US national average 30' across the red bar with the mascot covering 'av'; seg4:start-end has the bubble tail struck through",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:start the seesaw's two labels run off the frame on both sides ('en, by 2054 (proj' at left, 'Men, today (2024' at right) and the value '17.9%' is printed over the right-hand label; at seg2:end a ghost '32%' sits under the caption. The beam itself is a generic seesaw with the mascot dropped on one pan.",
+  "root_cause": "Seesaw pan labels are placed at the pan centres with no measured text extent or frame-inset clamp, so long labels overflow the 1080 width, and the value is drawn at a fixed offset that collides with the label box.",
+  "repair_goal": "Measure each label's rendered width and clamp the whole seesaw assembly inside a safe margin (shorten to 'Men 2054' / 'Men today' if it still overflows), stack value above label with no overlap, and drop the residual ghost '32%' behind the caption."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
