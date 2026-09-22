@@ -1,0 +1,114 @@
+{
+  "date": "20260922",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 16,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "8bfe46d82d6feac7e173f8c3317b2e7da39275a71144068013c2992f0614b848",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "landlord-invented-deposit-damage-s0-2e458514ef50",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g74b87da72870770697b77dbdbc11bc32a0f7b419b549176e83ccd08943a857bf3f5ff52226969f1a3f524636eef435a7f17dc7b3315d2b000b4f16eb89043fd3_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s1-f832e39c71d6",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gae4ad7aecb1db49e7cd0ceca1c7b77ffba541cb08bd25b5bd6273d97b696a6e24e68a074167f6ae18c0c1b0d3734845684036b79974c8d40844083b0d7f5e1d8_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s2-59804c1216ad",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5bb05a60e5f95e23a5461d88830205ddc2d678fb6b225b8f86fc71a1235b611ce5a10aa3eadaeb560d8cde5dfea1a551400f5b6560ec2c7269c8886afe7e1fec_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s3-c73294707a52",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g64b86905b387d32fa2114fcfff1f57fb7d7adfb4de3a74d7577af142940c792e9d59170577c4d95d09cedb13e1d3222539203d14ede7001b21d97b8b5376758c_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s4-405148c944ac",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g13d6867f53661cf869ded0dea1107462fc716342b253e512ca3ea47dd6bd9e8d288f2bf48f677782536934a161e3c5fdba3385a0406fb320817654cbc6d12603_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s5-bde7fab47574",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga5a96f28e9cc6d8e4a14cfbd63806a4da5402717200801fc1cfa1b3ea9b009ba60c9bace6a9c12c8224172e996a37cab8dedf96324cf57289fb3154203bf902c_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s7-6e705113b2a6",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g6fc43fc3b2c8da49bfcfc0d272323615505900cb335c8929c3f3291c46a83a3923839369430d0689ddee486ec61fe56fa4ee065de1944a94ec77303681bdb570_1280.jpg"
+    },
+    {
+      "request_id": "landlord-invented-deposit-damage-s6-b7455c2e7295",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/7329/27256508896_39abe606c0_b.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s0-7923c094f639",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfa8184bb589ccd706717ad76ce11b2fb52bbb3d9641807cec5b4ecf48d2f456877c8c390c07352b293c8ef2a86b001e05381e3c27429aa47db71c1aeb86e2451_1280.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s1-a6d78f672f6d",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3493/5833632186_f5d010ca82_b.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s2-038d7f3c368e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf9044c03afdbe2f790fd1465ad57d174732581c00ad3c1f1be368fd12cb869a15f7f2dbc4bab1c3710276bb132b07bdaaff36900f047ac677593e94357779625_1280.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s3-ab346331bda2",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/36650049/pexels-photo-36650049.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s4-57e127b5eb13",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc475e31b47970834692905df78d8a798000a0ce9d2e54de85075db7a431868aa6a64d73c0793abfc1538f34b3b25385bdd4f1a83863c9b174f4920c85b4b2599_1280.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s5-00f5a62ad502",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfcc98115b69cc4f6665761b7605f9b1caff7f745139d301a3a1d29c425decf98fb480fc439a697fd200d781320f39e14f2d2eb64114cd3b50876dec5dc5a42c2_1280.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s6-e1901fadb007",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g1caa6c368be6e42c5e8192c16dc0981f3dae715dc8512a32d1b35481af82a004dc288abb64a6ae9084942c366e808352be7ea86787ca9ba2e31c0b955ed50b7e_1280.jpg"
+    },
+    {
+      "request_id": "mistaken-for-staff-faucet-clearance-s7-63f4d2240bbc",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5f70d72afccf32a1184b7624e546abfb3bdae40e1151c921a90f8434c5a5b5c49912e75210b32990af6362604113e89561518856a506207cb5aef7db25a8902d_1280.jpg"
+    }
+  ]
+}
