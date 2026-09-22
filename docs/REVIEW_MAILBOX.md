@@ -87,24 +87,44 @@ only an exact `true`). `exchange/asks/OPEN.json` lists what is pending.
 On by default in CI (`LLM_MAILBOX=0` to disable), off on a laptop unless
 `LLM_MAILBOX=1`.
 
-## The ChatGPT round — paste into the scheduled task / Project
+### 3. Rewrites — `exchange/rewrites/` (`shared/rewrite_mailbox.py`)
 
-> **Shorts review round.** Open
-> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/reviews/OPEN.json`.
-> For each entry: open its `request` file (raw, on `main`); open
-> `sheet_url` and any frame URL you need to look closer; grade EXACTLY as
-> the request's `prompt` says — anchors and hard checks only, cite frame
-> labels as evidence, never output ship or block. Write `answer_path` as
-> one JSON object matching the request's `answer_schema`, copying
-> `request_id` and `video_sha256` from the request, and commit it to
-> `main`. Never edit a request. Then open
-> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/asks/OPEN.json`;
-> for each open batch, answer every listed key exactly as the batch's
-> `how_to_answer` says and commit its `answer_path`. If both indexes are
-> empty, stop; say nothing.
+Operator, 2026-09-22: *"ChatGPT is supposed to render videos if nothing
+else is available. And ChatGPT is always available."* The explainer had no
+re-author loop: the deterministic gate held 312 of 337 stories, almost all
+for WORD reasons (no number in the title or hook, a noun-phrase title, a
+segment topic with no keyword bridge to the headline, a spoken number the
+beat's data cannot show), and a story held on Monday was held identically
+on Tuesday. Now:
 
-Run it at least twice a day (after the 13:40 UTC explainer cron and after
-the 17:10 UTC one), or hourly — a settled request costs nothing.
+- every story a run holds for word reasons, or the judge blocks, is filed
+  as `exchange/rewrites/<date>/<slug>__<hash>.request.json` with its
+  current words, **every segment's real data points**, the exact rules the
+  gate applies, the exact hold reasons, and (for a judge block) the judge's
+  own problems/fixes; `exchange/rewrites/OPEN.json` lists what is open;
+- ChatGPT writes `<id>.answer.json`: title, hook, closing, question, and
+  one `{topic, say}` per segment;
+- `scripts/claim_rewrites.py claim` (in `claim_reviews.yml`, and at the
+  start of every explainer run) **validates by code**: same segment
+  count; every spoken quantity derivable from that beat's data through the
+  gate's own matcher (`shared.beat_match`); no named entity the data does
+  not name; topics ≤ 4 words, says ≤ 40; and the same deterministic gate
+  the run applies must PASS on the rewritten story. Only then does
+  `niche.config.json` change (`words_by: chatgpt-rewrite`), the slug's old
+  scene plan is dropped, and the persist commit goes out **without**
+  `[skip ci]` so the explainer's push trigger renders it within the hour.
+  A refused rewrite is settled with its reasons and re-filed carrying them.
+
+`python scripts/claim_rewrites.py sweep` files the whole backlog.
+
+## The ChatGPT round — nothing to paste
+
+Operator ruling 2026-09-22: *"I should not have to paste anything in a
+ChatGPT."* The round is **section 7 of `doctor/PROMPTS.md`**, which every
+ChatGPT firing already reads fresh from `main` (sections 4, 5 and 6 end by
+executing it). One roll-up index, `exchange/OPEN.json`, tells it whether
+any of the three mailboxes has work. Change section 7 and every firing
+changes; no app prompt is ever touched again.
 
 ## The sucker fish — how this uses Aletheia without touching it
 

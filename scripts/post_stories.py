@@ -451,6 +451,20 @@ def main() -> int:
               f"handle={me['handle']!r} id={me['id']}")
         return 0
 
+    # THE RE-AUTHOR LOOP, inbound: apply any ChatGPT rewrites that landed
+    # since the last run BEFORE reading the config (shared/rewrite_mailbox:
+    # validated by code, gated by the same rules this run applies). A held
+    # story with an accepted rewrite renders in THIS run.
+    if not args.dry_run:
+        try:
+            from shared import rewrite_mailbox as _rw
+            _rep = _rw.claim_all(args.config)
+            if _rep["applied"] or _rep["rejected"]:
+                print(f"[rewrites] applied {len(_rep['applied'])}, "
+                      f"rejected {len(_rep['rejected'])}, open {_rep['open']}",
+                      flush=True)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[rewrites] claim skipped: {_e}", flush=True)
     cfg = json.loads(args.config.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     slugs = args.slugs or list(stories)
@@ -894,6 +908,21 @@ def main() -> int:
     _b = classify_results(results)
     posted, held, faults, dry = (_b["posted"], _b["held"],
                                  _b["faults"], _b["dry"])
+
+    # THE RE-AUTHOR LOOP, outbound: every story this run held for WORD
+    # reasons, or the judge blocked, is filed for ChatGPT to rewrite —
+    # with its data, the exact rules and the exact reasons. A held slot is
+    # re-authored, not parked (the trending channel has had this since
+    # `_backfill`; the explainer had nothing).
+    if not args.dry_run:
+        try:
+            from shared import rewrite_mailbox as _rw
+            _filed = _rw.file_for_run(results, stories)
+            if _filed:
+                print(f"[rewrites] {len(_filed)} rewrite request(s) filed for "
+                      f"ChatGPT (exchange/rewrites/OPEN.json)", flush=True)
+        except Exception as _e:  # noqa: BLE001
+            print(f"[rewrites] filing skipped: {_e}", flush=True)
 
     print(f"\ndone: {len(posted)} posted, {len(held)} held by the gate, "
           f"{len(faults)} faults"

@@ -1,0 +1,139 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "peanut-allergy-guideline-flip__d2045db9",
+ "filed": "2026-09-22T11:08:33Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "peanut-allergy-guideline-flip",
+ "current": {
+  "title": "Doctors Had Peanut Allergies Backwards For Decades",
+  "hook": "The peanut allergy advice was backwards the whole time.",
+  "closing": "Sometimes the cure is just... eating the thing.",
+  "question": "Did your family avoid peanuts when you were little? Comment below.",
+  "segments": [
+   {
+    "topic": "peanut allergy in American kids",
+    "say": "Peanut allergies in American kids tripled in about a decade -- 0.4% in 1997, 0.8% in 2002, 1.4% by 2008. And doctors' advice made total sense: keep babies away from peanuts as long as possible."
+   },
+   {
+    "topic": "the trial that flipped the advice",
+    "say": "Then one trial flipped it. Infants told to avoid peanut hit a 13.7% allergy rate by age 5. Infants fed peanut early? Just 1.9%. Avoidance was the actual trigger."
+   },
+   {
+    "topic": "what happened after guidelines flipped",
+    "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "peanut allergy in American kids",
+   "say": "Peanut allergies in American kids tripled in about a decade -- 0.4% in 1997, 0.8% in 2002, 1.4% by 2008. And doctors' advice made total sense: keep babies away from peanuts as long as possible.",
+   "role": "1 · SETUP",
+   "data": {
+    "file": "peanut_allergy_prevalence_trend.json",
+    "unit": "percent",
+    "title": "Peanut allergy prevalence among US children",
+    "points": [
+     {
+      "label": "1997",
+      "value": 0.4,
+      "period": "1997"
+     },
+     {
+      "label": "2002",
+      "value": 0.8,
+      "period": "2002"
+     },
+     {
+      "label": "2008",
+      "value": 1.4,
+      "period": "2008"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "the trial that flipped the advice",
+   "say": "Then one trial flipped it. Infants told to avoid peanut hit a 13.7% allergy rate by age 5. Infants fed peanut early? Just 1.9%. Avoidance was the actual trigger.",
+   "role": "2 · THE TURN",
+   "data": {
+    "file": "leap_study_avoidance_vs_consumption.json",
+    "unit": "percent",
+    "title": "Peanut allergy rate by age 5: avoidance vs. early consumption",
+    "points": [
+     {
+      "label": "Avoided peanut in infancy",
+      "value": 13.7
+     },
+     {
+      "label": "Ate peanut early (LEAP protocol)",
+      "value": 1.9
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "what happened after guidelines flipped",
+   "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban.",
+   "role": "3 · CONSEQUENCE",
+   "data": {
+    "file": "peanut_allergy_before_after_guidelines.json",
+    "unit": "percent",
+    "title": "Peanut allergy diagnoses in US kids under 3, before vs. after early-introduction guidelines",
+    "points": [
+     {
+      "label": "Before early-introduction guidelines",
+      "value": 0.79
+     },
+     {
+      "label": "After early-introduction guidelines",
+      "value": 0.45
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/peanut-allergy-guideline-flip__d2045db9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

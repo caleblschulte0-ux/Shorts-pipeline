@@ -291,6 +291,11 @@ def write_index(reviews_dir: Path | None = None) -> Path | None:
         reviews_dir.mkdir(parents=True, exist_ok=True)
         ip = reviews_dir / "OPEN.json"
         ip.write_text(json.dumps(idx, indent=1, ensure_ascii=False) + "\n")
+        try:
+            from shared import exchange_index as _xi
+            _xi.refresh(reviews_dir.parent)
+        except Exception:  # noqa: BLE001 — a stale roll-up, never a failure
+            pass
         return ip
     except Exception as e:  # noqa: BLE001
         print(f"[mailbox] index not written: {e}", flush=True)

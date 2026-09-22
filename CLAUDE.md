@@ -87,6 +87,15 @@ is better videos, never a weaker gate.
   committed answer on the next run. Aletheia is attached as a reader only
   ("sucker fish"): the Thea ChatGPT Project takes the round, its pulse
   already watches the verdict log; nothing in Aletheia is edited.
+- **A held explainer story is RE-AUTHORED, not parked** (ruling
+  2026-09-22, `shared/rewrite_mailbox.py`). The deterministic gate held
+  312 of 337 stories that morning, nearly all for WORD reasons, and
+  nothing ever asked anyone to rewrite them. Every story a run holds for
+  word reasons or the judge blocks goes to `exchange/rewrites/` with its
+  data, the rules and the reasons; ChatGPT rewrites; code validates
+  (numbers derivable from the beat's data via `shared.beat_match`, no new
+  entities, the same gate must pass) before `niche.config.json` changes.
+  The gate does not move; the story does.
 
 ## Data (the mascot) performs a bespoke pose PER SCENE
 

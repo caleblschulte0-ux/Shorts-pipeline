@@ -1,0 +1,148 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "ozone-hole-recovery__fb0993e5",
+ "filed": "2026-09-22T11:08:32Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "ozone-hole-recovery",
+ "current": {
+  "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+  "hook": "Remember the ozone hole? It's actually healing.",
+  "closing": "It's healing -- just not before anyone watching this sees it finish.",
+  "question": "Did you know the ozone hole was healing? Tell me below.",
+  "segments": [
+   {
+    "topic": "size of the Antarctic ozone hole",
+    "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9."
+   },
+   {
+    "topic": "ozone-depleting chemicals phased out",
+    "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there."
+   },
+   {
+    "topic": "years until full recovery",
+    "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "size of the Antarctic ozone hole",
+   "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9.",
+   "role": "1 · THE WOUND",
+   "data": {
+    "file": "ozone_hole_peak_extent.json",
+    "unit": "million",
+    "title": "Antarctic ozone hole, greatest single-day extent (million sq km)",
+    "points": [
+     {
+      "label": "2000",
+      "value": 29.9,
+      "period": "2000"
+     },
+     {
+      "label": "2015",
+      "value": 28.2,
+      "period": "2015"
+     },
+     {
+      "label": "2024",
+      "value": 22.4,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 22.9,
+      "period": "2025"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "ozone-depleting chemicals phased out",
+   "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there.",
+   "role": "2 · THE FIX",
+   "data": {
+    "file": "ozone_depleting_chemicals_phased_out.json",
+    "unit": "percent",
+    "title": "Ozone-depleting chemicals: phased out vs still in use (percent)",
+    "points": [
+     {
+      "label": "Phased out",
+      "value": 99
+     },
+     {
+      "label": "Still in use",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "years until full recovery",
+   "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now.",
+   "role": "3 · THE TIMELINE",
+   "data": {
+    "file": "ozone_recovery_years_by_region.json",
+    "unit": "years",
+    "title": "Projected years from now until full ozone recovery, by region",
+    "points": [
+     {
+      "label": "Rest of world",
+      "value": 14
+     },
+     {
+      "label": "Arctic",
+      "value": 19
+     },
+     {
+      "label": "Antarctic",
+      "value": 40
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/ozone-hole-recovery__fb0993e5.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

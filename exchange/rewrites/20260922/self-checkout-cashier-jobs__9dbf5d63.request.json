@@ -1,0 +1,139 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "self-checkout-cashier-jobs__9dbf5d63",
+ "filed": "2026-09-22T11:08:33Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "self-checkout-cashier-jobs",
+ "current": {
+  "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+  "hook": "That kiosk replaced somebody's job.",
+  "closing": "The line moved. So did the job.",
+  "question": "Do you use self-checkout, or always pick a cashier? Tell me below.",
+  "segments": [
+   {
+    "topic": "self-checkout adoption in grocery stores",
+    "say": "In 2000, only 6% of big grocery chains had self-checkout lanes. By 2023, that number was over 92%, almost every major chain now pushes you to scan it yourself."
+   },
+   {
+    "topic": "US cashier employment, 2013 vs 2023",
+    "say": "That swap has a cost. US cashier employment fell from about 3.5 million workers in 2013 to roughly 3 million by 2023, even as the population kept growing."
+   },
+   {
+    "topic": "theft rate: staffed vs self-checkout",
+    "say": "Here's the catch: retail loss-prevention data shows self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% at a staffed register. The savings aren't free."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "self-checkout adoption in grocery stores",
+   "say": "In 2000, only 6% of big grocery chains had self-checkout lanes. By 2023, that number was over 92%, almost every major chain now pushes you to scan it yourself.",
+   "role": "1 · THE TAKEOVER",
+   "data": {
+    "file": "self_checkout_adoption_trend.json",
+    "unit": "percent",
+    "title": "Share of large US grocery chains offering self-checkout",
+    "points": [
+     {
+      "label": "2000",
+      "value": 6,
+      "period": "2000"
+     },
+     {
+      "label": "2012",
+      "value": 33,
+      "period": "2012"
+     },
+     {
+      "label": "2023",
+      "value": 92,
+      "period": "2023"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "US cashier employment, 2013 vs 2023",
+   "say": "That swap has a cost. US cashier employment fell from about 3.5 million workers in 2013 to roughly 3 million by 2023, even as the population kept growing.",
+   "role": "2 · THE JOB THAT SHRANK",
+   "data": {
+    "file": "cashier_employment_2013_vs_2023.json",
+    "unit": "million",
+    "title": "US cashier employment, 2013 vs. 2023",
+    "points": [
+     {
+      "label": "2013",
+      "value": 3.5
+     },
+     {
+      "label": "2023",
+      "value": 3.0
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "theft rate: staffed vs self-checkout",
+   "say": "Here's the catch: retail loss-prevention data shows self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% at a staffed register. The savings aren't free.",
+   "role": "3 · THE TWIST",
+   "data": {
+    "file": "checkout_loss_rate_comparison.json",
+    "unit": "percent",
+    "title": "Retail loss rate: staffed checkout vs. self-checkout",
+    "points": [
+     {
+      "label": "Staffed checkout",
+      "value": 1.6
+     },
+     {
+      "label": "Self-checkout",
+      "value": 4.0
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "thesis: seg1 ('US cashier employment, 2013 vs 2023') shares no keyword with the headline ('Self-Checkout Is Quietly Replacing Cashiers (3 Charts)') — no checkable bridge to the thesis"
+ ],
+ "reasons": [
+  "thesis: seg1 ('US cashier employment, 2013 vs 2023') shares no keyword with the headline ('Self-Checkout Is Quietly Replacing Cashiers (3 Charts)') — no checkable bridge to the thesis"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/self-checkout-cashier-jobs__9dbf5d63.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
