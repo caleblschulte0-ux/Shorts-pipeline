@@ -10,4 +10,4 @@
 | jumpscare | 3 | 0.01 |
 | argument | 3 | 0.02 |
 | beef | 2 | 0.02 |
-| rage | 2 | 0.005 |
+| rage | 2 | 0.0 |
