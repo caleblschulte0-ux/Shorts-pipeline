@@ -21254,6 +21254,7 @@
      "role": "3 · THE REAL WINNER",
      "topic": "distance from Earth's center",
      "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
+     "viz": "comparison",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",

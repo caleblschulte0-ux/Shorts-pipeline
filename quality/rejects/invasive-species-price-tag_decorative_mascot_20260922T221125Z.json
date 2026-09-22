@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T221125Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3 to seg0:end Data just walks up the bar rows. In seg4:start to seg4:end there are two copies of Data standing next to the value labels, and no setup, action or payoff is tied to 3.5K vs 37K.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "In seg1:start and seg1:mid a thin pink line sits in the lower third with about 60% of the frame empty above it. A stray cyan ellipse floats alone at the right edge in seg1:mid. The axis label reads 'and back again', but the cost only ever went up.",
+  "root_cause": "The generic trend line fallback was used for a 'quadrupled every decade' claim, with a template annotation that doesn't match the data and a mis-anchored highlight ellipse.",
+  "repair_goal": "Show the cost compounding with a picture made of the subject: the bill multiplies about 4x each decade (for example a stack of invoices or a spreading invasive mass that quadruples per decade tick) and fills the frame to $423B. Remove the 'and back again' label and the loose ellipse."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

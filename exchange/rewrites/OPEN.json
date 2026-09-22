@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-22T16:53:11Z",
+ "updated": "2026-09-22T22:11:18Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -25,9 +25,9 @@
   {
    "id": "amazon-still-shrinking__89e4b00c",
    "slug": "amazon-still-shrinking",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "judge: The closing beat parks on a static grid of empty boxes for over five seconds, and the whole video leans on charts while captions are printed on top of the very numbers they narrate."
+    "premise: brain: It presents a factual loss figure without overturning a viewer expectation, failing the reversal requirement."
    ],
    "request": "exchange/rewrites/20260922/amazon-still-shrinking__89e4b00c.request.json",
    "answer_path": "exchange/rewrites/20260922/amazon-still-shrinking__89e4b00c.answer.json"
@@ -186,9 +186,9 @@
   {
    "id": "coffee-price-record__0c7ec6d0",
    "slug": "coffee-price-record",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "judge: Every number here is still a chart, a pill or a circle with the figure printed on it, and two of those labels are clipped or buried — the coffee never appears as the thing being measured."
+    "judge: Competent and clean-ish, but it opens on a slow bar build instead of a hook, leans on charts and stock machines for a story that begs to be made of coffee, and puts text under the mascot and under a mark in three places."
    ],
    "request": "exchange/rewrites/20260922/coffee-price-record__0c7ec6d0.request.json",
    "answer_path": "exchange/rewrites/20260922/coffee-price-record__0c7ec6d0.answer.json"
@@ -379,9 +379,9 @@
   {
    "id": "global-ewaste-crisis__82dcc083",
    "slug": "global-ewaste-crisis",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "premise: brain: It relies on multiple numbers rather than a single consequential, verifiable figure, failing the one-number requirement."
+    "premise: brain: It presents two numbers and lacks a clear reversal of a specific viewer expectation, making the premise weak."
    ],
    "request": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.request.json",
    "answer_path": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.answer.json"
@@ -395,6 +395,16 @@
    ],
    "request": "exchange/rewrites/20260922/gps-einstein-fix__dad5454f.request.json",
    "answer_path": "exchange/rewrites/20260922/gps-einstein-fix__dad5454f.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__e96b02c3",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-22T22:11:18Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a viewer's expectation and relies on a vague comparison rather than a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.request.json",
+   "answer_path": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.answer.json"
   },
   {
    "id": "helium-supply-squeeze__c62dbd35",
@@ -450,9 +460,9 @@
   {
    "id": "invasive-species-price-tag__5dd628a5",
    "slug": "invasive-species-price-tag",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "judge: Four beats, four charts — and seg3 ships a label sliced off by the frame edge, so the one comparison that needed reading cannot be read."
+    "judge: Real motion and an honest chain of numbers, but the labels are cut off and overprinted and every depiction is a stock chart or a swappable seesaw - nothing here is made of invasive species."
    ],
    "request": "exchange/rewrites/20260922/invasive-species-price-tag__5dd628a5.request.json",
    "answer_path": "exchange/rewrites/20260922/invasive-species-price-tag__5dd628a5.answer.json"
@@ -470,9 +480,9 @@
   {
    "id": "lab-grown-diamond-price-collapse__147039f2",
    "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague comparison rather than a single verifiable number."
+    "premise: brain: The premise relies on a vague hook rather than a clear, verifiable 90% loss figure that overturns a specific viewer expectation."
    ],
    "request": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.request.json",
    "answer_path": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.answer.json"
@@ -583,9 +593,9 @@
   {
    "id": "muscle-loss-after-30__a6d6cd11",
    "slug": "muscle-loss-after-30",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "premise: brain: It lacks a single verifiable numerical claim, offering only a vague age threshold instead of a concrete number."
+    "premise: brain: It lacks a single verifiable number, offering only a vague age range."
    ],
    "request": "exchange/rewrites/20260922/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20260922/muscle-loss-after-30__a6d6cd11.answer.json"
@@ -600,6 +610,16 @@
    ],
    "request": "exchange/rewrites/20260922/ocean-floor-vs-mars-mapped__a4d569a1.request.json",
    "answer_path": "exchange/rewrites/20260922/ocean-floor-vs-mars-mapped__a4d569a1.answer.json"
+  },
+  {
+   "id": "oceanic-shark-collapse__7abc9718",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-09-22T18:40:00Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague claim rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20260922/oceanic-shark-collapse__7abc9718.request.json",
+   "answer_path": "exchange/rewrites/20260922/oceanic-shark-collapse__7abc9718.answer.json"
   },
   {
    "id": "ozone-hole-recovery__fb0993e5",
@@ -724,9 +744,9 @@
   {
    "id": "teen-ai-companion-boom__28b9c5d0",
    "slug": "teen-ai-companion-boom",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation despite presenting a single statistic."
+    "premise: brain: Unclear if it truly reverses a common viewer expectation, so defaulting to reject."
    ],
    "request": "exchange/rewrites/20260922/teen-ai-companion-boom__28b9c5d0.request.json",
    "answer_path": "exchange/rewrites/20260922/teen-ai-companion-boom__28b9c5d0.answer.json"
@@ -734,9 +754,9 @@
   {
    "id": "teen-vaping-crash-nicotine-pouches__b591e29d",
    "slug": "teen-vaping-crash-nicotine-pouches",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "judge: Five beats of the same four numbers drawn as charts, with Data standing on top of the labels he is covering — the crash never becomes a picture."
+    "judge: Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars."
    ],
    "request": "exchange/rewrites/20260922/teen-vaping-crash-nicotine-pouches__b591e29d.request.json",
    "answer_path": "exchange/rewrites/20260922/teen-vaping-crash-nicotine-pouches__b591e29d.answer.json"
@@ -774,9 +794,9 @@
   {
    "id": "urban-heat-island-redlining__b4590558",
    "slug": "urban-heat-island-redlining",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "judge: The high-jump beat is a genuinely good demonstration, but the video ends on a grid of graduation caps for a story about urban heat, under a headline chopped off at both edges — and seg2's labels print on top of each other."
+    "judge: One genuinely good beat (Data clearing the 8-degree crossbar) is surrounded by charts, overprinted labels and a payoff grid built out of graduation caps."
    ],
    "request": "exchange/rewrites/20260922/urban-heat-island-redlining__b4590558.request.json",
    "answer_path": "exchange/rewrites/20260922/urban-heat-island-redlining__b4590558.answer.json"
@@ -784,9 +804,9 @@
   {
    "id": "us-height-ranking-fall__dfb4fa2e",
    "slug": "us-height-ranking-fall",
-   "filed": "2026-09-22T16:53:11Z",
+   "filed": "2026-09-22T15:06:18Z",
    "why": [
-    "premise: brain: The premise lacks a single verifiable numeric claim and does not hinge on one consequential number."
+    "premise: brain: The premise lacks a specific, verifiable number and relies only on a vague claim."
    ],
    "request": "exchange/rewrites/20260922/us-height-ranking-fall__dfb4fa2e.request.json",
    "answer_path": "exchange/rewrites/20260922/us-height-ranking-fall__dfb4fa2e.answer.json"

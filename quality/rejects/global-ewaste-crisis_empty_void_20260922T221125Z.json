@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260922T221125Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start and seg1:mid the bottom ~40% of the frame is empty gradient under a small line chart. In seg3:end three bins sit in a row at the top over a big empty field, with a faint 'each = 5%' floating in the middle.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_depiction",
+  "visible_evidence": "In seg4:mid, 20 identical wastebaskets labeled 'each = 5%' fill up under the header 'Met by new mining 99%'. The speech-bubble tail slashes through that header, and Data stands waving in front of the bins.",
+  "root_cause": "A generic icon-count machine was dropped onto the closing line. Twenty bins make 100%, not 99%. Wastebaskets represent recycling, but the scene counts them as mining, so the picture says the opposite of the claim. It was also laid out with no collision check between the bubble and the label.",
+  "repair_goal": "Show the 1% vs 99% as a physical split made of the subject. For example, a pile of 100 discarded phones where only one goes into a recycling bin and 99 go to a mine pit. Data should perform the action himself, like dropping the single phone in as the rest tumble past. Keep the bubble off every label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

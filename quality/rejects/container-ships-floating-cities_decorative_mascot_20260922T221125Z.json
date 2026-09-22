@@ -1,0 +1,25 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T221125Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.8 to seg0:end: Data just walks up and down the bar rows. seg4:start to payoff@-0.4: two Datas stand on race lanes. His only bit tied to a stat is sitting on the 2022 seesaw pan (seg2:mid).",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_layout_and_void",
+  "visible_evidence": "seg1:mid: the title is clipped at both edges ('\u00b7gest ... by ye'). A faint '24,000' and a ghost '2019' hover over the 2008 tick while the caption says 12,500. The frame is one thin line with a huge empty lower half, and at seg1:end the mascot covers the 2019 tick.",
+  "root_cause": "A generic timeline machine with an unwrapped, unmeasured title. The end-state value and year labels are drawn before the playhead reaches them, and nothing fills the frame. It also repeats the seg0 data (1996 to 2019 max ship size) with a weaker picture.",
+  "repair_goal": "Replace it with a picture made of the subject: container ships drawn to scale with 6,600, 12,500 and 24,000 box stacks, each ship growing out of the last so the doubling is visible. Wrap or measure the title so it fits inside the safe area. Only show the value that matches the current year, and use the lower half of the frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

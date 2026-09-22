@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T221125Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start: Data stands on top of the 33% circle, and in seg3:start/mid he hangs beside the stacked column doing nothing tied to the stat. In seg4 two copies stand on lines and dance. There is no setup->action->payoff anywhere except seg0:end, where he circles the 72%",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:mid/end: a two-pole gauge on a baseline with the two category labels printed on top of each other in one garbled line ('AI oversShared personal info...33%'). The '8% apart' reading compares two unrelated stats as if they were one quantity, and most of the frame is empty",
+  "root_cause": "The distance/gap machine was chosen for two independent stats (chose AI over a human = 33%, shared personal info = 25%) that are not a comparison. Its label layout does not measure or avoid collisions, so both long labels are drawn in the same slot and run past the frame edge",
+  "repair_goal": "Show the two stats as separate claims that are each made of the subject. For example, 1 in 3 speech bubbles turned toward a chatbot instead of a person, then a quarter of typed personal details flying into a chat window. Give each label its own measured slot that stays fully inside the frame. Drop the meaningless '8% apart' gap"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

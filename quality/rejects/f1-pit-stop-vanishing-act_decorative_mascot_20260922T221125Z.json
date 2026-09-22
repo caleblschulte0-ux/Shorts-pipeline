@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260922T221125Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never does a bit tied to the stat. In hook@0.3 to seg0:end he slides up the bar rows, in seg1:start he perches on the end of a bar, in seg1:mid/end he stands on the seesaw pan, in seg2:mid/end he stands with his hands up by the hourglasses, and in seg4 he slides along the rul",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "generic_chart_low_contrast",
+  "visible_evidence": "seg2:start is a stock two-bar 'vs' chart (1.8 vs 0.3). seg2:mid/end switch to two hourglasses: the pit-stop glass drains in pink and the reaction-time glass is an empty grey outline labelled '0.3' at near-zero contrast. Two stacked headings, 'how fast that really is' and 'how long it takes', say the same thing. Data stands off to the side with his arms up.",
+  "root_cause": "The scene's claim is that the whole stop takes under seven reaction times, which is a COUNT of blinks. It was drawn with a generic duration comparison (bars, then hourglasses), so the 'seven' never appears on screen. The comparison side is rendered with the muted REST treatment until it disappears.",
+  "repair_goal": "Draw the stop as a count: a 1.8s pit-stop strip filled one by one with ~6.7 blink or reaction-tick units, each one a flash that Data triggers or blinks through, so the viewer counts 'seven blinks' without reading. Keep every label at INK contrast, use one heading, and keep the mascot clear of every value."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

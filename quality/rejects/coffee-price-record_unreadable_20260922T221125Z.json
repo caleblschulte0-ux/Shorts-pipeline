@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T221125Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start through seg4:end the February 2024 value ($0.7, $1.0, $2.0) is dark grey on a dark navy ground and nearly disappears on a phone. In seg3:start and seg3:mid the '$4.4' inside the pink circle has a doubled outline and looks smeared.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "off_claim_generic_chart",
+  "visible_evidence": "seg1:start to seg1:end show two plain bars headed '2019 VS 2020' at $1.1 and $1.2. The narration is about the record $4.41 and the 2019 baseline, so the scene shows a 10-cent move and nothing about the record.",
+  "root_cause": "The scene picked the wrong pair of data points (2019 vs 2020 instead of 2019 vs the Feb 2025 peak), then drew it as the default two-bar comparison. The line never makes the viewer feel the 4x climb.",
+  "repair_goal": "Show $1.05 (2019) against $4.41 (Feb 2025) as a jump you can feel, e.g. a coffee bag or cup price tag stretching or stacking to four times its height, with Data climbing up to the record. Drop the 2020 bar entirely."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

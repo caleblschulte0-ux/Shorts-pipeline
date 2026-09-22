@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "teen-vaping-crash-nicotine-pouches__b591e29d",
- "filed": "2026-09-22T16:53:11Z",
+ "filed": "2026-09-22T15:06:18Z",
  "status": "open",
  "channel": "explainer",
  "slug": "teen-vaping-crash-nicotine-pouches",
@@ -110,30 +110,30 @@
   }
  ],
  "held_for": [
-  "judge: Five beats of the same four numbers drawn as charts, with Data standing on top of the labels he is covering — the crash never becomes a picture."
+  "judge: Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars."
  ],
  "reasons": [
-  "judge: Five beats of the same four numbers drawn as charts, with Data standing on top of the labels he is covering — the crash never becomes a picture."
+  "judge: Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars."
  ],
  "judge": {
-  "ts": "2026-09-22T16:43:32+00:00",
+  "ts": "2026-09-22T14:56:46+00:00",
   "score": 34,
-  "one_line": "Five beats of the same four numbers drawn as charts, with Data standing on top of the labels he is covering — the crash never becomes a picture.",
+  "one_line": "Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars.",
   "problems": [
-   "hook@0.3 is a blank gradient with a title card: no motion, no image, no reason to stay through the first second.",
-   "The mascot occludes data in four separate scenes — \"7.8%\" at seg3:mid, \"27.5%\" at seg2:start, the title at seg2:mid, the 2011 bar at seg1:end.",
-   "seg0 and seg1 are the identical dataset twice: columns, then rows. The second telling adds nothing.",
-   "seg3:end is a near-empty frame — one small film-strip bar bottom-left and two grey stubs under a completely dead upper two-thirds.",
-   "Data never performs a bit: he perches, points, and slides to a new mark; for the last five seconds he stands motionless at the foot of a finished bar.",
-   "The 2011-2019 rise and the 2019-2024 crash are told with the same generic grammar, so the story's turn (\"it just moved\") never registers visually."
+   "Hook (hook@0.3 t=0.30s to hook@2.2 t=2.20s) is a slow bar-chart build on a near-black frame with word-by-word title text — nothing happens in the first second.",
+   "seg2 (t=24.71s, t=28.32s) uses glossy school-building emoji clip-art as its unit, one tile rendering dark and unfilled, against a flat vector look.",
+   "seg2:mid (t=24.71s): the mascot covers the last letter of the title, leaving 'the vaping crackdow'.",
+   "seg3:end (t=41.10s): a single small filmstrip bar in the lower-left with the entire upper frame empty; the '7.8%' inside it is unreadably small.",
+   "seg3:mid (t=37.23s): the '7.8%' value label is printed over the mascot's body.",
+   "Data never performs a bit — he waves from the top of a bar in seg0:end (t=2.87s), seg1:start (t=7.06s), seg2:start (t=21.10s) and seg4:end (t=49.35s) with no action tied to the stat."
   ],
   "fixes": [
-   "Replace the hook with a full-bleed subject image in motion at t=0: a dense cloud of 27.5% arriving and collapsing to 7.8% in under a second, title entering over it, not before it.",
-   "Collision-test mascot placement against every label and title bounding box; offset him outward when he overlaps — no value or heading may sit under the character.",
-   "Cut one of seg0/seg1. Spend the reclaimed seconds making the 2019 peak arrive with weight instead of restating it as rows.",
-   "Make the crash a bespoke mechanic made of the subject: a vapour column whose volume drains 27.5 -> 7.8 while a pouch slides in under the lip and holds a small, stubborn 1.8.",
-   "Give Data one real bit with a setup -> action -> payoff: he plugs the vape cloud shut, turns to celebrate, and the pouch appears behind him — tied to the actual numbers.",
-   "Extend the final beat's motion (pouch settling, count ticking) or trim it by 2s so the video ends on movement instead of a held frame."
+   "Open on the drop, not the climb: start at the 27.5% mass already on screen and collapse it to 7.8% inside the first second, with Data physically riding it down.",
+   "Rebuild seg2 as a form made of the subject — 100 teen silhouettes in a classroom, 27.5 exhaling vapour, draining to 7.8 — and delete the emoji asset path from this scene.",
+   "Merge seg0 and seg1 into one continuous rise so the same numbers are not charted twice; use the reclaimed time for the pouches beat.",
+   "Give seg3/seg4 a depiction made of nicotine, not filmstrips: a lip-tucked pouch and a vape cloud whose volumes are the 1.8 and 7.8, sharing one scale.",
+   "Reserve a title-safe band and keep the mascot out of it; move value labels off the mascot's silhouette (seg3:mid) and set a minimum on-screen size for any value text (seg3:end).",
+   "Fill the frame in seg3:end — the composition must use the full vertical, no single small element in a corner."
   ]
  },
  "prior_rejection": [],

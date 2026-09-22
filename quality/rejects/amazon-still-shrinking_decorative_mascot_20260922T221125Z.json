@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T221125Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data slides between bar rows (hook@0.3 to seg0:end), stands at the edge of the slider (seg1:mid), stands next to the glass (seg2:mid/end), raises his arms beside a stacked bar (seg3:mid) and stays parked in the bottom-left corner of the payoff box (seg4:start to payoff@-0.4). None",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg2:mid/end show a glass draining under '699,173 left of 750,000' and 'only 74% stay', with a cyan ellipse drawn over the number text. The 750,000 km\u00b2 LOST is shown as a full glass that is being depleted, which inverts the claim. The France comparison in seg2:start is a plain two-bar chart.",
+  "root_cause": "A generic 'vessel drains' machine was applied to a cumulative-loss total. It treated the loss as the whole and invented a 'remaining' quantity and a 74% figure that are not in the story. The ellipse annotation was also placed without checking where the text sits.",
+  "repair_goal": "Show 750,000 km\u00b2 as the cleared area growing over a map-like forest canopy, or as a France outline that the cleared area overflows (750k vs 552k, so France fits with about 36% to spare). Remove the invented 'left of' and '74% stay' text, and keep all annotations off the text."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

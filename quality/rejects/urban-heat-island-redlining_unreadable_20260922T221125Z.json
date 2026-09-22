@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T221125Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:mid and seg2:end: the '68%' label is printed on top of the lower-exposure label and reads as garbled text. seg4:start to payoff@-0.4: 'rmerly redlined neighborhoods' is cut off at the left edge. seg1:end: 'clears it by 1.7' collides with '65-city average 8'. seg2:start: 'Live in low",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end two labels ('Live in 8F+ heat-island exposure 68%' and the lower-exposure 32% label) are drawn on the same line and overprint each other. A '36% apart' ruler measures the gap between two shares of one whole, which means nothing. The mascot just stands with his hands on his head under a post.",
+  "root_cause": "A share relationship (68/32 of one population) was sent to a gap or distance machine. Its label placement puts both category labels at the same anchor, so they collide during the transition.",
+  "repair_goal": "Show the 68% as people in one population: for example a city block of 100 residents where 68 end up under the heat shimmer with no trees and 32 in shade. Each label sits on its own measured line with no overlap, and Data walks from the shaded group into the hot one and wilts."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
