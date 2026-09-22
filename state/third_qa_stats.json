@@ -3,198 +3,6 @@
     {
       "date": "20260915",
       "dry_run": false,
-      "ts": "2026-09-15T17:47:19+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 86,
-        "with_curve": 15,
-        "fetched_at": "2026-09-15T15:51:38.420523+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fanum": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260915-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Buddha on Mrmoonshouse",
-              "raw": "Buddha on Mrmoonshouse",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 363.6
-        },
-        {
-          "slug": "clip-20260915-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260915",
-      "dry_run": false,
       "ts": "2026-09-15T19:05:56+00:00",
       "feedback": {
         "snapshot": true,
@@ -5155,6 +4963,224 @@
             }
           },
           "took_s": 175.0
+        }
+      ]
+    },
+    {
+      "date": "20260922",
+      "dry_run": false,
+      "ts": "2026-09-22T12:10:55+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 100,
+        "with_retention": 90,
+        "with_curve": 15,
+        "fetched_at": "2026-09-22T01:15:29.596432+00:00"
+      },
+      "brain": {
+        "ok": 24,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260922-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp/focused region only fills roughly a third of the canvas height (equal top/middle/bottom thirds), so the streamer f; vision: From ~3.3s to ~5.3s (over a third of the 6.1s clip) there is n",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague one-word title, no event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague title, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Zackrawrr Compares This Horror Game Area To Something Wild"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "Sharp/focused region only fills roughly a third of the canvas height (equal top/middle/bottom thirds), so the streamer f",
+                "From ~3.3s to ~5.3s (over a third of the 6.1s clip) there is no sharp footage at all \u2014 every frame in that span is unifo"
+              ]
+            }
+          },
+          "took_s": 183.3
+        },
+        {
+          "slug": "clip-20260922-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260922-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Sharp region is tiny and floats in a mostly black canvas for most of the clip (0-9.4s) \u2014 subject is small-and-",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "giving up, unclear visible moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "streamer quits, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Knut Just Gives Up And Quits GTA RP Mid-Stream"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.9,
+              "problems": [
+                "Sharp region is tiny and floats in a mostly black canvas for most of the clip (0-9.4s) \u2014 subject is small-and-lost, not ",
+                "Several frames (4.4s, 5.6s, 6.9s, 8.1s, 9.4s) show almost no visible video at all, just a caption word floating in solid",
+                "From 10.6s onward the sharp region shows a full desktop screenshot (taskbar, browser windows) with the facecam shrunk in",
+                "Framing looks broken/malfunctioning rather than an intentional edited crop"
+              ]
+            }
+          },
+          "took_s": 151.4
+        },
+        {
+          "slug": "clip-20260922-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp in-focus region is a thin strip occupying roughly a quarter of the canvas height, not the ~75% the format calls fo; vision: Several frames (8.8s-21.3s, 28.8s) are almost entirely blurred",
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible reaction to real drama",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "reaction talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets So Hype He Says He Wants To Kiss Tobi"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.75,
+              "problems": [
+                "Sharp in-focus region is a thin strip occupying roughly a quarter of the canvas height, not the ~75% the format calls fo",
+                "Several frames (8.8s-21.3s, 28.8s) are almost entirely blurred/black with no legible sharp content visible at all, readi",
+                "The framing looks reposted/screen-recorded (webcam + game overlay + chat crammed into a small strip) rather than edited/"
+              ]
+            }
+          },
+          "took_s": 294.5
+        },
+        {
+          "slug": "clip-20260922-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260922-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
