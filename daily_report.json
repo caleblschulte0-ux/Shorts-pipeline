@@ -6,14 +6,14 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets a picture, so the petty-revenge story is heard but never shown.",
-    "elapsed_seconds": 547.8,
+    "error": "showrunner_block: showrunner BLOCK: The captions and gameplay are clean and readable, but the story is never shown. It is 44s of generic parkour with captions and not one shot of the store, the customer or the manager.",
+    "elapsed_seconds": 507.8,
     "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
     "source": "brain",
-    "video_path": "output/daily_20260922-220418_she_mistook_me_for_staff__i__helped__her.mp4",
+    "video_path": "output/daily_20260922-233354_she_mistook_me_for_staff__i__helped__her.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.7,
+      "duration": 44.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -25.0
     },
     "qa": {
       "ok": true,
@@ -33,49 +33,38 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets a picture, so the petty-revenge story is heard but never shown.",
-      "score": 57
+      "reason": "showrunner BLOCK: The captions and gameplay are clean and readable, but the story is never shown. It is 44s of generic parkour with captions and not one shot of the store, the customer or the manager.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "dairy queen oreo halloween blizzard",
+    "topic": "choosin texas",
     "angle": null,
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['read every promo rule out loud', 'grabbed the binder', 'fine print into the microphone', 'pulled out their phones to film him', 'line behind him started laughing', 'demanded an actual manager', 'stormed out with nothing']",
-    "elapsed_seconds": 187.1,
-    "title": "I Read The Rules Word For Word And Ruined Him",
-    "package_path": "state/trending_packages/20260922-221602_auto_dairy_queen_oreo_halloween_blizzard.json",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['slammed his receipt', 'fuel dispute over $10', 'transaction log', 'mandatory five\u2011day audit', 'fleet manager called', 'entire fleet account was locked', 'signed apology']",
+    "elapsed_seconds": 177.7,
+    "title": "I Locked a Whole Fleet Over a $27 Dispute",
+    "package_path": "state/trending_packages/20260922-234506_auto_choosin_texas.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "measles",
+    "topic": "princess kate royal amethyst necklace",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'measles' refused by the writer: trend is a measles/illness outbreak exposure story - illness is a banned seed category",
-    "elapsed_seconds": 27.9,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "andy green",
-    "angle": null,
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat of the malicious-compliance plot is illustrated, so the story is only captioned and never shown.",
-    "elapsed_seconds": 307.0,
-    "title": "I Followed My Manager's Rule To The Letter",
-    "package_path": "state/trending_packages/20260922-221905_auto_andy_green.json",
-    "video_path": "output/daily_20260922-221905_andy_green.mp4",
+    "error": "showrunner_block: showrunner BLOCK: A readable but bare reddit story: the whole video is Minecraft gameplay plus one-word captions, with no shot that shows the queue, the customer, the necklace or the ticket stub.",
+    "elapsed_seconds": 426.6,
+    "title": "I Made The Entitled Customer Wait Her Turn",
+    "package_path": "state/trending_packages/20260922-234813_auto_princess_kate_royal_amethyst_necklace.json",
+    "video_path": "output/daily_20260922-234813_princess_kate_royal_amethyst_necklace.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.1,
+      "duration": 44.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -86,7 +75,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -26.2
     },
     "qa": {
       "ok": true,
@@ -95,20 +84,31 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat of the malicious-compliance plot is illustrated, so the story is only captioned and never shown.",
-      "score": 57
+      "reason": "showrunner BLOCK: A readable but bare reddit story: the whole video is Minecraft gameplay plus one-word captions, with no shot that shows the queue, the customer, the necklace or the ticket stub.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "la verne",
+    "topic": "emmanuel macron",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'la verne' refused by the writer: Trend is a hazardous-materials fire with evacuations and an injured employee - a disaster/injury event, which cannot seed a fictional story per the rules.",
-    "elapsed_seconds": 29.3,
+    "error": "unfit_for_fiction: 'emmanuel macron' refused by the writer: Trending items are all political news (Macron/Trump/UN/Ukraine diplomacy) - politics is a banned seed topic per rule 1",
+    "elapsed_seconds": 28.4,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "vogue world: milano 2026",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: the story still names the real news (made) after 2 retries",
+    "elapsed_seconds": 142.4,
     "unfit": true,
     "backfill": true
   }
