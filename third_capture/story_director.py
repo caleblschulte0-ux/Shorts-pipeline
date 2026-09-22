@@ -142,10 +142,21 @@ def _fmt_reports(reports: list[dict]) -> str:
         vis = "; ".join(
             f"[{b['start']:.1f}-{b['end']:.1f}] {b.get('event', '')}"
             for b in r.get("visual_beats", []))
+        # Broadcast position, when the sources are one stream (a VOD arc).
+        # Without it the director sees three same-day clips with no order
+        # and has to guess which is the setup and which the reaction —
+        # Twitch already told us, to the second.
+        at = ""
+        if r.get("vod_offset") is not None:
+            try:
+                o = int(float(r["vod_offset"]))
+                at = f" broadcast_at={o // 3600}h{(o % 3600) // 60:02d}m{o % 60:02d}s"
+            except (TypeError, ValueError):
+                at = ""
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
-            f"date={r.get('date', '?')}\n"
+            f"date={r.get('date', '?')}{at}\n"
             f"  summary: {r['summary']}\n"
             f"  people: {', '.join(r.get('people', []))}\n"
             f"  dialogue: {beats or '(none)'}\n"
@@ -462,6 +473,13 @@ def plan_story(reports: list[dict], event: dict | None = None,
         user += (f"EVENT: {event.get('event_id', '?')} "
                  f"people={event.get('people')} "
                  f"type={event.get('event_type', '?')}\n\n")
+    if reports and all(r.get("vod_offset") is not None for r in reports):
+        # Say it plainly: these are not clips that might be related. They
+        # were cut from the same broadcast, in this order.
+        user += ("THESE SOURCES ARE ONE BROADCAST: consecutive moments from "
+                 "the same stream, listed in broadcast order "
+                 "(`broadcast_at`). Judge whether they form setup -> "
+                 "escalation -> payoff; do not assume they do.\n\n")
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
     out = _brain(user, _PLAN_SYSTEM)
     rs: list = []
