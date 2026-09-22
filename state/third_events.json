@@ -1811,10 +1811,13 @@
       "known_claims": [],
       "candidate_sources": [
         "https://www.twitch.tv/buddha/clip/ClumsyHonorableTubersRaccAttack-1ZQohPJECicKB7cR",
-        "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj"
+        "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj",
+        "https://www.twitch.tv/buddha/clip/BovineKathishStrawberryStinkyCheese-mgwZA5r0wJkk951o",
+        "https://www.twitch.tv/buddha/clip/BoldFriendlyUdonSmoocherZ-901TwqU9hvqoUYAb",
+        "https://www.twitch.tv/buddha/clip/LaconicMagnificentSkirretJonCarnage-9EKgncWy8pTAU0Js"
       ],
       "published_versions": [],
-      "last_updated": "2026-09-18"
+      "last_updated": "2026-09-22"
     },
     "buddha-buddha-call-2026w38": {
       "event_id": "buddha-buddha-call-2026w38",
@@ -1836,6 +1839,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-19"
+    },
+    "buddha-city-driv-2026w38": {
+      "event_id": "buddha-city-driv-2026w38",
+      "people": [
+        "buddha"
+      ],
+      "actions": [
+        "city",
+        "driv",
+        "passeng",
+        "through"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-22",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/buddha/clip/BovineKathishStrawberryStinkyCheese-mgwZA5r0wJkk951o",
+        "https://www.twitch.tv/buddha/clip/CuteInexpensiveMouseDerp-1AR3NlSp3PhUNxzu"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-22"
+    },
+    "buddha-buddha-casino-2026w38": {
+      "event_id": "buddha-buddha-casino-2026w38",
+      "people": [
+        "buddha"
+      ],
+      "actions": [
+        "buddha",
+        "casino",
+        "other",
+        "phone"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-22",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/buddha/clip/BlatantEndearingSandpiperBuddhaBar-RU470ifb-RNVoYUj",
+        "https://www.twitch.tv/buddha/clip/BoldFriendlyUdonSmoocherZ-901TwqU9hvqoUYAb"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-22"
     }
   }
 }
