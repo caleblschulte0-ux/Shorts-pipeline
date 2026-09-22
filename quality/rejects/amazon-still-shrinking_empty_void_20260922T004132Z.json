@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T004132Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end waste the whole lower third below 'anywhere between 4571 and 27772' on bare gradient with only a thumbnail mascot at the right edge; seg4:start-seg4:end repeat it, with the bottom ~200px of frame empty between the square and the CTA.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlap_broken_composition",
+  "visible_evidence": "At seg1:mid and seg1:end three unrelated layers stack in one frame: the caption 'it never settled' collides with the scene title 'Amazon deforestation by year', a connected-dot line runs diagonally through that title and exits the top-right frame edge mid-stroke, a generic rounded 'range' capsule with an orange dot sits mid-frame, and 'anywhere between 4571 and 27772' overprints the 27772 axis label beneath it. The lower third is empty background. Nothing in the frame states the segment's actual claim (750,000 km2 lost since 1970).",
+  "root_cause": "Two depictions (a trend line and a range/uncertainty gauge) were composited into one scene without a layout pass: neither element was given an exclusive band, the line's extent was not clipped or measured to the safe area, and captions were placed at fixed y-positions that already hold title and axis text.",
+  "repair_goal": "Rebuild seg1 as ONE depiction of the cumulative 750,000 km2 claim occupying the full frame: drop the range capsule and the stray line, give the single picture the vertical band from below the title to above the caption, clip every mark inside the safe area, and place each text run in its own band so no label overprints another."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T004132Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start/mid/end 'Prevention & man' is sliced off by the right frame edge (should read 'Prevention & management') and 'Damage & losses' is clipped at the left edge; seg3 'Classified as harmful invas' is cut off the same way; seg4's recap labels are ~8px grey on dark and vanish at arm's",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_labels_and_stock_machine",
+  "visible_evidence": "seg2:mid (t=15.86s): the right pan's label reads 'Prevention & mana' with the rest off-frame, the left pan's 'Damage & losses' is clipped at x=0, and the picture is a generic seesaw with the mascot dropped on one pan \u2014 the icon could be any subject.",
+  "root_cause": "Pan labels are laid out from the pan centre with no measured text width and no clamp to the safe area, so a long category name overruns both frame edges; and the machine was chosen by shape (imbalance -> seesaw) rather than built out of the subject.",
+  "repair_goal": "Measure each label and keep it inside the safe margins (wrap or shorten 'Prevention & management' to two lines, inset 'Damage & losses' from the left), and replace the generic seesaw with a form made of the subject \u2014 e.g. a bill/ledger that fills 90% with repair costs while a thin sliver funds prevention, so the 10:1 split reads without any label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

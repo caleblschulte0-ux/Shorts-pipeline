@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T004132Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only relocates: he slides between chart rows (hook@0.8 -> seg0:end), stands with arms out beside the draining tank doing nothing to it (seg2:mid, seg2:end), and at seg4:start/mid he is a ~30px speck parked in the bottom-left corner of the square \u2014 no setup->action->payoff tie",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlap_broken_composition",
+  "visible_evidence": "At seg1:mid and seg1:end three unrelated layers stack in one frame: the caption 'it never settled' collides with the scene title 'Amazon deforestation by year', a connected-dot line runs diagonally through that title and exits the top-right frame edge mid-stroke, a generic rounded 'range' capsule with an orange dot sits mid-frame, and 'anywhere between 4571 and 27772' overprints the 27772 axis label beneath it. The lower third is empty background. Nothing in the frame states the segment's actual claim (750,000 km2 lost since 1970).",
+  "root_cause": "Two depictions (a trend line and a range/uncertainty gauge) were composited into one scene without a layout pass: neither element was given an exclusive band, the line's extent was not clipped or measured to the safe area, and captions were placed at fixed y-positions that already hold title and axis text.",
+  "repair_goal": "Rebuild seg1 as ONE depiction of the cumulative 750,000 km2 claim occupying the full frame: drop the range capsule and the stray line, give the single picture the vertical band from below the title to above the caption, clip every mark inside the safe area, and place each text run in its own band so no label overprints another."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
