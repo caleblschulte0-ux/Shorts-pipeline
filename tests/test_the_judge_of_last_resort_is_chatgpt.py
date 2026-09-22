@@ -357,5 +357,56 @@ class AletheiaIsAReaderNotAPatient(unittest.TestCase):
             self.assertIn(s, txt, s)
 
 
+class ARequestNobodyCanAnswerIsWithdrawn(unittest.TestCase):
+    """The request is written while the render is judged; the frames are
+    pushed in a later step. When that push fails the request sits open
+    with a sheet_url that 404s — three did, from the first live run on
+    2026-09-21 until 2026-09-22 — and the next ChatGPT round is told to
+    grade a video it cannot see. The workflow now withdraws exactly the
+    requests whose frames were staged and not published, and stays red."""
+
+    def _req(self, d: Path, date: str, rid: str) -> Path:
+        (d / date).mkdir(parents=True, exist_ok=True)
+        rp = d / date / f"{rid}.request.json"
+        rp.write_text(json.dumps({"schema": RM.SCHEMA, "id": rid,
+                                  "video_sha256": "0" * 64, "channel": "explainer"}))
+        return rp
+
+    def test_only_the_staged_requests_are_withdrawn(self):
+        with tempfile.TemporaryDirectory() as td:
+            reviews = Path(td) / "reviews"
+            self._req(reviews, "20260922", "a__1111111111")
+            self._req(reviews, "20260922", "b__2222222222")
+            stage = Path(td) / "stage"
+            (stage / "reviews" / "20260922" / "a__1111111111").mkdir(parents=True)
+            ids = RM.withdraw_staged(stage, "frames never published", reviews_dir=reviews)
+            self.assertEqual(ids, ["a__1111111111"])
+            left = [r["id"] for r in RM.open_requests(reviews)]
+            self.assertEqual(left, ["b__2222222222"])
+            done = json.loads((reviews / "20260922" / "a__1111111111.done.json").read_text())
+            self.assertEqual(done["decision"], "withdrawn")
+            self.assertIn("never published", done["reason"])
+
+    def test_the_cli_and_both_workflows_carry_it(self):
+        import subprocess
+        with tempfile.TemporaryDirectory() as td:
+            reviews = Path(td) / "reviews"
+            self._req(reviews, "20260922", "c__3333333333")
+            stage = Path(td) / "stage"
+            (stage / "reviews" / "20260922" / "c__3333333333").mkdir(parents=True)
+            r = subprocess.run([sys.executable, str(ROOT / "scripts" / "claim_reviews.py"),
+                                "--withdraw-stage", str(stage), "--reviews-dir", str(reviews)],
+                               capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertIn("withdrawn 1", r.stdout)
+            self.assertEqual(RM.open_requests(reviews), [])
+        for wf in ("explainer.yml", "daily.yml"):
+            src = (ROOT / ".github" / "workflows" / wf).read_text()
+            i = src.index("publish_review_media.sh output/review_media")
+            blk = src[i:i + 300]
+            self.assertIn("--withdraw-stage output/review_media", blk, wf)
+            self.assertIn("exit 1", blk, f"{wf}: the failed publish must stay red")
+
+
 if __name__ == "__main__":
     unittest.main()

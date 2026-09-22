@@ -247,6 +247,29 @@ def open_requests(reviews_dir: Path | None = None) -> list[dict]:
     return out
 
 
+def withdraw_staged(stage_dir, reason: str,
+                    reviews_dir: Path | None = None) -> list[str]:
+    """Settle as WITHDRAWN every open request whose frames were staged under
+    `stage_dir` but never reached `preview-renders`.
+
+    The request is written while the render is judged; the frames are
+    pushed in a later workflow step. When that push fails the request is
+    left open with a `sheet_url` that 404s — three sat that way from the
+    first live run (2026-09-21) until 2026-09-22 — and the next ChatGPT
+    round is told to grade a video it cannot see. The render dies with its
+    runner, so nothing about the request can be repaired later: it is
+    withdrawn, with the reason, and the workflow step stays red so the
+    failure is still seen. Returns the ids withdrawn."""
+    stage = Path(stage_dir) / "reviews"
+    staged = {p.name for p in stage.glob("*/*") if p.is_dir()} if stage.exists() else set()
+    done = []
+    for req in open_requests(reviews_dir):
+        if req["id"] in staged:
+            settle(req, {"decision": "withdrawn", "reason": reason, "judge": None})
+            done.append(req["id"])
+    return done
+
+
 def verdict_for(req: dict) -> tuple[dict | None, str]:
     """The grades ChatGPT wrote for this request — or (None, why not).
 

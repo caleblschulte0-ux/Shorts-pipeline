@@ -1,0 +1,7 @@
+{
+ "id": "houston_weather__fe8b3306f6",
+ "settled": "2026-09-22T13:27:04Z",
+ "decision": "withdrawn",
+ "reason": "unreviewable: the frames were never published (the first live publish on 2026-09-21 pushed an orphan root and was refused) and the render died with its runner; nothing here can be graded",
+ "judge": null
+}

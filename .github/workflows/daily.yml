@@ -569,7 +569,14 @@ jobs:
 
       - name: Publish review frames to preview-renders
         if: always() && steps.preflight.outputs.skip == ''
-        run: bash scripts/publish_review_media.sh output/review_media
+        # A request whose frames never reached preview-renders is one
+        # nobody can answer — withdraw it (shared/review_mailbox.withdraw_
+        # staged), and stay RED so the failed publish is still seen.
+        run: |
+          bash scripts/publish_review_media.sh output/review_media || {
+            python3 scripts/claim_reviews.py --withdraw-stage output/review_media
+            exit 1
+          }
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
