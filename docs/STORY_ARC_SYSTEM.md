@@ -13,7 +13,11 @@ overlays ON moving footage.
 
 ```
 corpus (posted log + wide 7d/30d sweep)
-  -> storyline.find_clusters      people-clustering, ALIASES, jaccard dedupe
+  -> storyline.find_vod_arcs      FIRST: clips from ONE broadcast, minutes
+       |                          apart, in broadcast order (video_id +
+       |                          vod_offset from helix) — one incident by
+       |                          construction; skips token subclustering
+  -> storyline.find_clusters      then: people-clustering, ALIASES, jaccard
   -> event records                state/third_events.json survives runs
   -> scene_analysis.analyze_source   FULL transcript + frames -> people,
        |                             dialogue/visual beats, missing context
@@ -161,13 +165,41 @@ C. **Semantic subclustering, not just naming**: `find_clusters()` groups by
    if <2 sources), because compiling unrelated same-people clips into a
    fake story is the worse error (§21).
 
+## VOD arcs — where stories actually come from (2026-09-22)
+
+Between 2026-09-16 and 09-22 the story arm ran 7 times, considered 21
+clusters, and rendered nothing: 11 `no_shared_event` (no two clips in the
+pile shared any event), 9 `not_a_story`, 1 `starved`. The last story shipped
+2026-08-20.
+
+The clusters were **people piles** — a streamer's top clips from a 10-day
+window, i.e. their greatest hits. PLAYBOOK §5 says a story cluster must be
+"based on an event … not merely repeated appearances by the same streamer",
+and names "the original incident, the immediate reaction" as the evidence.
+Both happen inside one stream.
+
+Helix attaches `video_id` and `vod_offset` to every clip, and
+`storyline.from_discovery` was throwing both away. `find_vod_arcs` groups
+clips by broadcast, collapses one moment clipped many times into its
+most-viewed copy (one viral second is not a five-beat story), and
+single-links moments within `story_vod_gap_s` of each other. The director is
+told the sources are one broadcast and their `broadcast_at` times — and is
+told explicitly not to assume that makes them a story; §8 still decides.
+
+**Not measured at build time.** The session that built this had no Twitch
+credentials, so the live supply of arcs was not sampled. Every story slot now
+records `judges.story_director.supply` (`vod_arcs`, `pool_with_vod`,
+`arc_sizes`) in `state/third_qa_stats.json` — read that before tuning.
+
 ## Knobs (capture spec, `state/third_packages/default_clip.json`)
 
 | key | default | meaning |
 |---|---|---|
 | `story_count` | 1 | story slots/day (raise only after ~20-25 mature story posts) |
 | `story_lookback_days` | 30 | posted-log corpus window |
-| `story_top` | 6 | clips per channel per window in the wide sweep |
+| `story_top` | 6 | clips per channel in the 30d sweep (people clusters) |
+| `story_top_vod` | 20 | clips per channel in the 7d sweep — deep enough to hold several from one broadcast; same number of helix calls |
+| `story_vod_gap_s` | 900 | max broadcast gap between two moments of one arc |
 | `story_max_clusters` | 3 | clusters offered to the director per slot |
 | `story_dur_min/max` | 25 / 90 | story length band (s) |
 

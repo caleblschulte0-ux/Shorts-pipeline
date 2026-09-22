@@ -224,7 +224,6 @@ def _learned_prior() -> dict:
     try:
         if not ANALYTICS_LATEST.exists():
             return _PRIOR_CACHE
-        import math
         AVP_CAP = 200.0   # a looped 5-view clip reports 1500% — cap it
         MIN_PUBLIC_AGE = 24.0     # judge on 24h+ maturity, not 6h noise
         MIN_STREAMER_VIDS = 3     # 1-2 clips is not evidence about a streamer
@@ -244,29 +243,58 @@ def _learned_prior() -> dict:
                 and v.get("actual_structure") != "story"]
         if not vids:
             return _PRIOR_CACHE
-        # Channel baselines (capped AVP; velocity from aged videos only).
-        vph = sorted(v["views_per_hour"] for v in vids
-                     if v.get("views_per_hour", 0) > 0)
-        vph_med = vph[len(vph) // 2] if vph else 0.0
-        rets = [min(v["average_view_percentage"], AVP_CAP) for v in vids
-                if v.get("usable_for_retention")
-                and v.get("average_view_percentage") is not None]
-        ret_mean = (sum(rets) / len(rets)) if rets else 0.0
+        # ONE SCALE FOR EVERY VIDEO — percentile ranks, not ratios.
+        #
+        # This used to judge a clip with >=50 views on RETENTION (its AVP
+        # over the channel's mean — ratios around 0.6-1.4) and every other
+        # clip on VIEWS-PER-HOUR over the channel median. That median was
+        # 0.03: nearly every Short we post gets ~no traffic, so a flop at
+        # 0.08 vph scored a 2.7x "win" against it while a genuine hit
+        # scored ~1.3x on retention. Streamers whose clips ALL flopped were
+        # judged only on the inflating scale. Measured 2026-09-22 on this
+        # channel's own analytics:
+        #
+        #     kaicenat  max boost 1.40  median 5 views   (n=9)
+        #     buddha    max boost 1.40  median 8 views   (n=9)
+        #     jynxzi          1.25     median 41 views, top video 1,355,
+        #                               #1 search term on the channel
+        #
+        # Percentiles are scale-free and cannot blow up near zero: each
+        # video contributes 2 * (its percentile) — the median video is
+        # exactly 1.0, the best ~2.0, the worst ~0.0. Retention is kept, as
+        # the original design intended — but as a MULTIPLIER on reach
+        # (x0.75..x1.25), never an average with it. It can only be ranked
+        # among the videos that HAVE a usable number, which are the hits;
+        # averaging it in pulled every hit with ordinary retention halfway
+        # back to 1.0 while a flop, with no retention data, kept its full
+        # score. Having retention data became a penalty — the same
+        # two-populations error in a smaller form, caught by
+        # tests/test_third_streamer_prior.py before it shipped.
+        def _pct_fn(values):
+            vals = sorted(values)
+            n_ = len(vals)
+
+            def pct(x):
+                lo = sum(1 for y in vals if y < x)
+                eq = sum(1 for y in vals if y == x)
+                return (lo + 0.5 * eq) / n_ if n_ else 0.5
+            return pct
+
+        vph_pct = _pct_fn(float(v.get("views_per_hour") or 0.0) for v in vids)
+        ret_vids = [v for v in vids if v.get("usable_for_retention")
+                    and v.get("average_view_percentage") is not None]
+        ret_pct = _pct_fn(min(float(v["average_view_percentage"]), AVP_CAP)
+                          for v in ret_vids) if len(ret_vids) >= 3 else None
 
         def _ratio(v):
-            """Return (ratio, weight) or None. Retention only counts with a
-            usable sample; weight by sqrt(engaged_views) so a 500-view result
-            outweighs a 50-view one."""
-            w = math.sqrt(max(1.0, v.get("engaged_views") or v.get("views", 0)))
-            if (v.get("usable_for_retention")
-                    and v.get("average_view_percentage") is not None
-                    and ret_mean > 0):
-                r = min(v["average_view_percentage"], AVP_CAP) / ret_mean
-            elif vph_med > 0 and v.get("views_per_hour", 0) >= 0:
-                r = v["views_per_hour"] / vph_med
-            else:
-                return None
-            return max(0.3, min(3.0, r)), w
+            """2 * percentile on one shared scale; None never happens now —
+            every eligible video has a views-per-hour, even when it is 0."""
+            r = 2.0 * vph_pct(float(v.get("views_per_hour") or 0.0))
+            if (ret_pct is not None and v.get("usable_for_retention")
+                    and v.get("average_view_percentage") is not None):
+                r *= 0.75 + 0.5 * ret_pct(
+                    min(float(v["average_view_percentage"]), AVP_CAP))
+            return r, 1.0
 
         from collections import defaultdict
         buckets: dict = defaultdict(list)
@@ -293,6 +321,103 @@ def _learned_prior() -> dict:
               flush=True)
         _PRIOR_CACHE = {}
     return _PRIOR_CACHE
+
+
+_SEARCH_SNAP: dict | None = None
+
+
+def _search_guidance(streamer: str, known: list[str] | None = None) -> str:
+    """How viewers actually FIND this channel, told to the title author.
+
+    `fetch_analytics.py` has written the channel's top YouTube search
+    queries into `state/analytics_third/latest.json` for weeks, and nothing
+    read them — on a channel whose views are ~89% YouTube search (2026-09-22:
+    3,956 of 4,442). The queries are specific and usable: "jynxzi" (497),
+    "jasontheween news" (87), "lang buddha" (14) — people search Buddha as
+    "lang buddha", which a title saying only "Buddha" does not match.
+
+    Returns a directive listing the real queries that mention THIS streamer
+    (by handle or a known alias), plus the channel's top event/game phrases
+    that name no other streamer — so the author is never invited to
+    name-drop someone who is not in the clip. Empty unless search is a
+    genuine share of traffic and there are queries to show: a feed-driven
+    channel should not be told to write for search. Never raises."""
+    global _SEARCH_SNAP
+    try:
+        if _SEARCH_SNAP is None:
+            _SEARCH_SNAP = (json.loads(ANALYTICS_LATEST.read_text())
+                            if ANALYTICS_LATEST.exists() else {})
+        snap = _SEARCH_SNAP
+        terms = [t for t in (snap.get("search_terms") or [])
+                 if isinstance(t, dict) and t.get("term")]
+        ts = snap.get("traffic_sources") or {}
+        total = sum(float(v) for v in ts.values()
+                    if isinstance(v, (int, float)))
+        share = float(ts.get("YT_SEARCH") or 0) / total if total else 0.0
+        if share < 0.40 or not terms:
+            return ""
+
+        def _n(x: str) -> str:
+            return re.sub(r"[^a-z0-9]", "", str(x).lower())
+
+        handle = _n(streamer)
+        if len(handle) < 3:
+            return ""
+        try:
+            from third_capture.storyline import ALIASES
+        except Exception:  # noqa: BLE001
+            ALIASES = {}
+        # Short aliases ("ron", "pain", "case") collide with ordinary words
+        # in a query; only aliases of 4+ letters, matched as whole words.
+        aliases = {a for a, canon in ALIASES.items()
+                   if _n(canon) == handle and len(a) >= 4}
+        others = {_n(k) for k in (known or []) if _n(k) and _n(k) != handle}
+        # ...and their aliases: "jason and sakura" names jasontheween as
+        # "jason", and offering it on a jynxzi clip is an invitation to
+        # name-drop someone who is not in it.
+        other_aliases = {a for a, canon in ALIASES.items()
+                         if len(a) >= 4 and _n(canon) != handle}
+
+        def _mentions_me(term: str) -> bool:
+            if handle in _n(term):
+                return True
+            words = set(re.findall(r"[a-z0-9]+", term.lower()))
+            return bool(words & aliases)
+
+        mine = [t for t in terms if _mentions_me(t["term"])][:5]
+        def _names_someone_else(term: str) -> bool:
+            if any(o and o in _n(term) for o in others):
+                return True
+            return bool(set(re.findall(r"[a-z0-9]+", term.lower()))
+                        & other_aliases)
+
+        general = [t for t in terms
+                   if not _mentions_me(t["term"])
+                   and not _names_someone_else(t["term"])][:5]
+        if not mine and not general:
+            return ""
+
+        def _fmt(ts_):
+            return ", ".join(f'"{t["term"]}" ({int(t.get("views") or 0)})'
+                             for t in ts_)
+        parts = [f"About {round(share * 100)}% of this channel's views come "
+                 f"from YouTube SEARCH, so the title must contain the words "
+                 f"people actually type."]
+        if mine:
+            parts.append(f"Real queries that brought viewers to {streamer} "
+                         f"clips: {_fmt(mine)}. Spell the name the way they "
+                         f"search it.")
+        if general:
+            parts.append(f"Other top queries on the channel: {_fmt(general)}.")
+        parts.append("Use a query's exact wording in the title and the first "
+                     "hashtags ONLY when this clip genuinely involves it. "
+                     "Never add a name, event or game the transcript and "
+                     "original title do not support — a search match on a "
+                     "false title is a viewer who leaves.")
+        return " ".join(parts)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[search] guidance unavailable ({e})", flush=True)
+        return ""
 
 
 _GUIDANCE_CACHE: str | None = None
@@ -1029,13 +1154,19 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         global _STORY_POOL
         if _STORY_POOL is None:
             pool: list[dict] = []
+            # The 7d window is where VOD arcs live, and an arc needs several
+            # clips from ONE broadcast — the top 6 of a week rarely hold two
+            # from the same stream. Helix pages up to 100, so asking for 20
+            # costs the same number of calls as asking for 6.
+            _tops = {"7d": int(spec.get("story_top_vod", 20)),
+                     "30d": int(spec.get("story_top", 6))}
             for window in ("7d", "30d"):
                 for platform, chans in sources_cfg.items():
                     for ch in chans:
                         try:
                             pool += clip_edit.discover(
                                 platform, ch,
-                                top=int(spec.get("story_top", 6)),
+                                top=_tops[window],
                                 range_=window)
                         except Exception as e:  # noqa: BLE001
                             print(f"::warning::[story] discover "
@@ -1044,7 +1175,36 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _STORY_POOL = pool
         pool_by_url = {c.get("url"): c for c in _STORY_POOL}
         corpus += storyline.from_discovery(_STORY_POOL)
-        clusters = storyline.find_clusters(corpus, known)
+        # VOD ARCS FIRST. Clips cut from one broadcast minutes apart are one
+        # incident by construction — Twitch's own coordinates say so — so
+        # they are the strongest story evidence we can hand the director.
+        # People clusters follow, as the fallback they always should have
+        # been: across 2026-09-16..22 they produced 21 deliberations and no
+        # render, 11 of them with no two clips sharing any event at all.
+        vod_arcs = storyline.find_vod_arcs(
+            _STORY_POOL,
+            gap_s=float(spec.get("story_vod_gap_s", 900.0)),
+            max_members=6)
+        clusters = vod_arcs + storyline.find_clusters(corpus, known)
+        print(f"[story] {len(vod_arcs)} VOD arc(s) + "
+              f"{len(clusters) - len(vod_arcs)} people cluster(s)",
+              flush=True)
+        # DURABLE, not just printed: whether single-broadcast arcs exist at
+        # useful volume is the open question this design rests on, and it
+        # could not be measured from the session that built it (no Twitch
+        # credentials there). Every story slot now answers it in
+        # state/third_qa_stats.json.
+        try:
+            _JUDGES.setdefault("story_director", {})["supply"] = {
+                "vod_arcs": len(vod_arcs),
+                "people_clusters": len(clusters) - len(vod_arcs),
+                "pool": len(_STORY_POOL),
+                "pool_with_vod": sum(1 for c in _STORY_POOL
+                                     if c.get("video_id")),
+                "arc_sizes": [len(a["clips"]) for a in vod_arcs[:10]],
+            }
+        except Exception:  # noqa: BLE001
+            pass
         if not clusters:
             print("[story] no candidate storylines in the corpus",
                   flush=True)
@@ -1077,6 +1237,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                       f"arm", flush=True)
                 return None
             who = "+".join(cluster["who"])
+            is_vod_arc = cluster.get("kind") == "vod_arc"
+            if is_vod_arc:
+                who = f"{who}@vod{cluster.get('video_id')}"
             urls = [c["source_url"] for c in cluster["clips"]]
             if storyline.story_key(urls) in shipped:
                 continue
@@ -1134,6 +1297,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             rep["path"] = vod["path"]
                             rep["used_vod"] = True     # per-SOURCE, not per-pile
                 rep["date"] = c.get("date", "")
+                rep["vod_offset"] = c.get("vod_offset")
                 reports.append(rep)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
@@ -1146,7 +1310,17 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # may hold several DISTINCT events. Split it into real events and
             # try each independently — one event record + one director call
             # per event, not one call over a mixed pile.
-            _subs = _semantic_subclusters(reports)
+            # A VOD ARC IS ALREADY ONE EVENT. Token-overlap subclustering
+            # exists to split a PEOPLE pile into events; run over an arc it
+            # would re-split the setup from its own payoff, because an
+            # accusation and the reply to it rarely share two action words.
+            # Tell it in broadcast order instead.
+            if is_vod_arc:
+                _subs = [sorted(reports,
+                                key=lambda r: float(r.get("vod_offset")
+                                                    or 0.0))]
+            else:
+                _subs = _semantic_subclusters(reports)
             # RECORD THE SHAPE, ALWAYS. When every subcluster is a
             # singleton the loop below simply `continue`s and the run
             # recorded NOTHING for this cluster — the arm looked idle when
@@ -1164,7 +1338,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                f"{_shape} — no two sources share an event, "
                                f"so no director call was made")
                 continue
-            for sub in _semantic_subclusters(reports):
+            for sub in _subs:
                 if len(sub) < 2:
                     continue      # a lone source is not a story
                 sub_urls = [r["source_id"] for r in sub]
@@ -1691,6 +1865,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
+                    "rejected_by": "preflight",
+                    "rejected_why": "; ".join(pf)[:300],
                     "ts": datetime.now(timezone.utc).isoformat(),
                 })
                 raise RuntimeError("preflight: " + "; ".join(pf)[:180])
@@ -1710,11 +1886,16 @@ def process(pkg: dict, pkg_path: Path | None, *,
                          str(info["path"])], text=True, timeout=30).strip())
                 except Exception:  # noqa: BLE001
                     clip_dur = words[-1]["e"] if words else 0.0
+                _cap = pkg.get("capture") or {}
+                _known = [ch for chans in (_cap.get("sources") or {
+                    "twitch": _cap.get("channels", [])}).values()
+                    for ch in chans]
                 meta = author.author_package(
                     streamer, info["title"],
                     " ".join(w["w"] for w in words), info["views"],
                     words=words, clip_dur=clip_dur,
-                    guidance=_opening_guidance())
+                    guidance=_opening_guidance(),
+                    search=_search_guidance(streamer, _known))
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             # "unknown", never "chaos" -- a failed/absent author call is not
             # a confirmed chaos classification (doctor finding 2127c6395c2c).
@@ -1882,6 +2063,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
+                    "rejected_by": "director",
+                    "rejected_why": "clip incomplete (no setup / payoff cut "
+                                    "off)",
                     "ts": datetime.now(timezone.utc).isoformat(),
                 })
                 raise RuntimeError(
@@ -1999,6 +2183,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     "title": (led.get("authored_title")
                               or led["clip_title"]),
                     "qa_rejected": True,
+                    "rejected_by": "qa",
+                    "rejected_why": "; ".join(qa["problems"])[:300],
                     "ts": datetime.now(timezone.utc).isoformat(),
                 })
                 raise RuntimeError(

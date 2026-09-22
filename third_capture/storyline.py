@@ -13,8 +13,20 @@ Design constraints:
 - Pure heuristics here, judgement in the brain: this module only proposes
   candidate clusters (cheap, offline, deterministic); `order_story` is the
   strict gate that rejects piles that aren't stories.
-- A cluster must show CHANGE OVER TIME (>=2 distinct moments on >=2
-  distinct dates) — one hot afternoon clipped twice is not an arc.
+- A PEOPLE cluster must show CHANGE OVER TIME (>=2 distinct moments on
+  >=2 distinct dates) — a streamer's scattered greatest hits are not an arc.
+- A VOD ARC is the other kind, and the one that actually produces stories
+  (`find_vod_arcs`): several clips cut from the SAME broadcast, minutes
+  apart. Twitch tells us each clip's `video_id` and `vod_offset`, so this
+  is not a guess about shared events — it is the incident, the escalation
+  and the reaction, in broadcast order. The people-cluster heuristic used
+  to say "one hot afternoon clipped twice is not an arc"; the governing
+  spec (STORY_DIRECTOR_PLAYBOOK §5) says the opposite — story evidence is
+  "the original incident, the immediate reaction, another person's
+  response", and a cluster must be "based on an event … not merely
+  repeated appearances by the same streamer". Between 2026-09-16 and
+  09-22 the people clusters produced 21 deliberations and zero renders:
+  11 had no two clips sharing an event at all.
 - Compilations get their own identity (`story_key`, hashed from the member
   set) so the posted-log's never-repeat law applies to the STORY without
   burning its member clips for single-slot use — members may already be
@@ -252,8 +264,107 @@ def from_discovery(pool: list[dict]) -> list[dict]:
                 .strftime("%Y-%m-%d")
         out.append({"source_url": url, "title": str(c.get("title", "")),
                     "channel": str(c.get("channel", "")), "date": date,
-                    "views": c.get("views", 0), "posted": False})
+                    "views": c.get("views", 0), "posted": False,
+                    # Kept, not discarded: these two fields are the only
+                    # PROOF that two clips are one incident. Dropping them
+                    # here is why the story arm could only ever guess.
+                    "video_id": c.get("video_id"),
+                    "vod_offset": c.get("vod_offset"),
+                    "duration": c.get("duration")})
     return out
+
+
+def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,
+                  same_moment_s: float = 20.0, min_span_s: float = 45.0,
+                  max_members: int = 6) -> list[dict]:
+    """Stories that happened inside ONE broadcast.
+
+    Groups discovery items by `video_id`, orders each broadcast by
+    `vod_offset`, and single-links clips whose gap (end of one to start of
+    the next) is at most `gap_s`. A component is an arc when it holds >=2
+    DISTINCT moments spanning >= `min_span_s` seconds of broadcast.
+
+    Two clips starting within `same_moment_s` of each other are the SAME
+    moment clipped twice — the one hot moment everybody clipped. Only the
+    higher-viewed copy is kept; one moment from two angles is not a story,
+    and without this a single viral second would look like a five-beat arc.
+
+    Returns clusters in `find_clusters` shape — {"who", "clips", "score"} —
+    plus `"kind": "vod_arc"` and `"video_id"`, clips in broadcast order,
+    each carrying its `vod_offset`. Scored by total views: the broadcasts
+    viewers clipped hardest are the ones where something happened.
+
+    Offline, deterministic, no whisper and no brain: the expensive scene
+    analysis only runs on arcs this proposes. The director still decides
+    whether it is a story (§8); this only guarantees it is one EVENT."""
+    by_vod: dict[str, list[dict]] = {}
+    now = datetime.now(timezone.utc)
+    seen = set()
+    for c in pool or []:
+        vid = str(c.get("video_id") or "").strip()
+        url = c.get("url") or c.get("source_url")
+        off = c.get("vod_offset")
+        if not vid or not url or off is None:
+            continue
+        ck = clip_key(url)
+        if not ck or ck in seen:
+            continue
+        seen.add(ck)
+        try:
+            off = float(off)
+            dur = float(c.get("duration") or 30.0)
+        except (TypeError, ValueError):
+            continue
+        date = str(c.get("date") or "")
+        if not date and c.get("age_h"):
+            date = (now - timedelta(hours=float(c["age_h"]))) \
+                .strftime("%Y-%m-%d")
+        by_vod.setdefault(vid, []).append({
+            "source_url": url, "title": str(c.get("title", "")),
+            "channel": str(c.get("channel", "")), "date": date,
+            "views": int(c.get("views") or 0), "video_id": vid,
+            "vod_offset": off, "duration": dur, "posted": False})
+
+    arcs = []
+    for vid, clips in by_vod.items():
+        clips.sort(key=lambda c: c["vod_offset"])
+        # one moment clipped many times -> keep the most-viewed copy
+        moments: list[dict] = []
+        for c in clips:
+            if moments and c["vod_offset"] - moments[-1]["vod_offset"] \
+                    < same_moment_s:
+                if c["views"] > moments[-1]["views"]:
+                    moments[-1] = c
+                continue
+            moments.append(c)
+        # single-link consecutive moments within the gap
+        runs: list[list[dict]] = []
+        for c in moments:
+            if runs:
+                prev = runs[-1][-1]
+                if c["vod_offset"] - (prev["vod_offset"] + prev["duration"]) \
+                        <= gap_s:
+                    runs[-1].append(c)
+                    continue
+            runs.append([c])
+        for run in runs:
+            if len(run) < 2:
+                continue
+            span = (run[-1]["vod_offset"] + run[-1]["duration"]
+                    - run[0]["vod_offset"])
+            if span < min_span_s:
+                continue
+            if len(run) > max_members:
+                # keep the hottest moments, still told in broadcast order
+                run = sorted(sorted(run, key=lambda c: -c["views"])
+                             [:max_members],
+                             key=lambda c: c["vod_offset"])
+            arcs.append({"who": [_norm_ent(run[0]["channel"])],
+                         "clips": run,
+                         "score": float(sum(c["views"] for c in run)),
+                         "kind": "vod_arc", "video_id": vid})
+    arcs.sort(key=lambda a: -a["score"])
+    return arcs
 
 
 def _densest_window(clips: list[dict], window_days: int) -> list[dict]:
