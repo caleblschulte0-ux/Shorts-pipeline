@@ -370,21 +370,51 @@ _INFLECT = ("", "s", "es", "ed", "ing")
 _STEM_LEN = 6
 
 
+#: Keys whose plural is a DIFFERENT word. "times" is a frequency or a
+#: multiplier ("few times/month", "4 times more"), never a clock: an alarm
+#: clock filled a whole "each = 5%" grid for teens who "use one regularly
+#: (few times/month+)" on 2026-09-22 and the judge called it junk, FATAL.
+_NO_INFLECT = {"time"}
+
+
 def _token_matches(token: str, key: str) -> bool:
     if not token.startswith(key):
         return False
     rest = token[len(key):]
+    if rest and key in _NO_INFLECT:
+        return False
     return not rest or len(key) >= _STEM_LEN or rest in _INFLECT
 
 
+#: Population words whose icon is an OBJECT, not a person: a school
+#: building, a graduation cap. A person icon honestly depicts "people
+#: forcibly displaced"; a mortarboard does not depict "high school
+#: e-cigarette use".
+_OBJECT_FOR_PEOPLE = {"school", "schools", "schooler", "schoolers",
+                      "student", "students"}
+#: ...and it is only a modifier when what follows is a BEHAVIOUR being
+#: measured. "School enrollment" is still a school.
+_BEHAVIOUR = {"use", "uses", "usage", "consumption", "habit", "habits"}
+
+
 def _phrase_matches(tokens: list[str], key: str) -> bool:
-    """A multi-word key ("drinking water") matches consecutive tokens."""
+    """A multi-word key ("drinking water") matches consecutive tokens.
+
+    A key that lands on a school/student word does not count when a
+    BEHAVIOUR follows it ("use", "consumption") — then it is a modifier.
+    In "High school e-cigarette use" the school is a modifier and the thing
+    measured is the use; that title drew a school building across a whole
+    unit grid on 2026-09-22 and the judge called it junk, FATAL."""
     parts = _WORD.findall(key)
     if not parts:
         return False
     for i in range(len(tokens) - len(parts) + 1):
         if all(_token_matches(tokens[i + j], parts[j])
                for j in range(len(parts))):
+            end = i + len(parts)
+            if (all(t in _OBJECT_FOR_PEOPLE for t in tokens[i:end])
+                    and _BEHAVIOUR & set(tokens[end:])):
+                continue
             return True
     return False
 
@@ -417,6 +447,10 @@ _SETTING = {
     "below", "near", "beside", "across", "inside", "outside",
     "around", "beneath", "atop", "amid", "between", "before", "after",
     "during", "onto", "within", "beyond", "toward", "towards",
+    # "nicotine product use AMONG high school students" is about the
+    # product; the students are where it was measured (a graduation cap
+    # over a vaping stat, 2026-09-22).
+    "among", "amongst",
 }
 #: `at` and `through` were here and cost two GOOD matches — "staring at
 #: ringing phone" (the phone is exactly the subject) and "trail through
@@ -425,15 +459,42 @@ _SETTING = {
 #: that removed more signal than noise, so they are deliberately out.
 
 
+#: After one of these the label names a BEHAVIOUR of the population before
+#: it, and the behaviour is what is being counted. "percent of high
+#: schoolers who vape" drew a SCHOOL BUILDING (the judge: "yellow
+#: office/hospital buildings with a clock on top ... nothing to do with
+#: vaping"); "High school students currently using e-cigarettes" drew a
+#: GRADUATION CAP whose tassel "reads like a vape pen". The population may
+#: not decide the picture; when the behaviour has no icon the caller draws
+#: a plain tile, which is a count and never a lie.
+_CLAUSE = {"who", "whom", "whose", "that", "which", "currently", "using"}
+#: ...but only a population of PEOPLE hands the picture to its behaviour.
+#: "Banana varieties that exist" is still a banana.
+_POPULATION = {
+    "student", "students", "schooler", "schoolers", "school", "kid", "kids",
+    "child", "children", "teen", "teens", "teenager", "teenagers", "youth",
+    "adult", "adults", "people", "person", "persons", "worker", "workers",
+    "employee", "employees", "employer", "employers", "user", "users",
+    "american", "americans", "resident", "residents", "household",
+    "households", "voter", "voters", "parent", "parents", "patient",
+    "patients", "respondent", "respondents", "men", "women", "boy", "boys",
+    "girl", "girls", "senior", "seniors", "consumer", "consumers",
+}
+
+
 def _subject_tokens(label: str) -> list:
     """The part of `label` that names WHAT IS BEING SHOWN.
 
     A picture is chosen from the subject, not from the medium it is delivered
-    in and not from the place it happens to be. Both of those were deciding
-    pictures that shipped.
+    in, not from the place it happens to be, and not from the population a
+    behaviour is measured in. All three were deciding pictures that shipped.
     """
     toks = [t for t in _WORD.findall((label or "").lower())
             if t not in _MEDIUM]
+    for i, t in enumerate(toks):
+        if t in _CLAUSE and i > 0 and _POPULATION & set(toks[:i]):
+            toks = [x for x in toks[i + 1:] if x not in _CLAUSE]
+            break
     for i, t in enumerate(toks):
         if t in _SETTING:
             return toks[:i]
