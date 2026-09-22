@@ -4,20 +4,20 @@
 
 - queued: **5**
 - succeeded: **0**
-- quarantined (off-topic imagery): **3**
-- failed: **2**
+- quarantined (off-topic imagery): **1**
+- failed: **4**
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **Sri Lanka court convicts 15 men over deadly Easter Sunday bombings**
-  - quarantined: illustration coverage 14.3% < 20.0% — 6 shot(s) have no real image and would fall to off-topic keyword stock: ['judge just announced', '15 men', '260 years', 'all their assets', 'real mastermind was still free', 'doors slammed']
-- **Humpback whale mother may have mourned her dead calf for days**
-  - quarantined: illustration coverage 16.7% < 20.0% — 5 shot(s) have no real image and would fall to off-topic keyword stock: ["whispered the baby's name", 'clutched tighter', 'feeding the dead infant', 'hospital discharge papers', 'she never told anyone']
-- **MIT’s tiny flying robot gets 450% faster with AI**
-  - quarantined: illustration coverage 0.0% < 20.0% — 6 shot(s) have no real image and would fall to off-topic keyword stock: ["my roommate's secret lab", 'the robot flipped ten times', 'I watched it dodge a ceiling fan', 'the AI was learning my moves', 'I realized it was spying on me', 'the whole building went dark']
+- **Battle for heavyweight crown begins as Alaska's Fat Bear Week opens**
+  - quarantined: illustration coverage 14.3% < 20.0% — 6 shot(s) have no real image and would fall to off-topic keyword stock: ['ultra soft', 'full menu', 'kitchen hatch', "manager's headset", 'tip pouch', 'stormed out']
 
 ## Failed
 - **She Mistook Me For Staff. I 'Helped' Her Anyway.**
-  - error: `showrunner_block: showrunner BLOCK: The whole story is carried by a 2-3 word caption over generic parkour gameplay. After the post card there is not a single story illustration, so none of the cause-and-effect beats are shown.`
-- **Battle for heavyweight crown begins as Alaska's Fat Bear Week opens**
-  - error: `showrunner_block: showrunner BLOCK: This is a stitched Reddit-style fiction over Minecraft parkour: no data demonstration, no mascot, a cut-off hook, and a dog-food stock photo as the payoff shot.`
+  - error: `showrunner_block: showrunner BLOCK: A Reddit story told almost entirely over blown-out, blurry gameplay: one stock shrug photo in 45 seconds, captions dropping out at the end, and no visible payoff.`
+- **Mountain lion caught on camera in Tuolumne County - ABC10**
+  - error: `showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: all 8 segments are null, so no beat of the barista/VIP story is ever shown, and the payoff lands on generic lava parkour.`
+- **‘Gangster Crab’: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls**
+  - error: `unfit_for_fiction: '‘Gangster Crab’: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls' refused by the writer: The provided trend is not a workplace setting; it describes an outdoor scenario, which violates the requirement for a setting such as a cafe, hardware store, ai`
+- **Waymo caught on camera driving through farmer's market in Denver - CBS News**
+  - error: `showrunner_block: showrunner BLOCK: This is a bare gameplay-and-captions reddit story. No story beat is ever shown, a horizontal seam line cuts through every frame, and the ending trails off with no caption.`
 
