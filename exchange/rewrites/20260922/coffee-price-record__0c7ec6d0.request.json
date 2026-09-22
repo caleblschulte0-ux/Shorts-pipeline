@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "coffee-price-record__0c7ec6d0",
- "filed": "2026-09-22T16:53:11Z",
+ "filed": "2026-09-22T15:06:18Z",
  "status": "open",
  "channel": "explainer",
  "slug": "coffee-price-record",
@@ -121,30 +121,30 @@
   }
  ],
  "held_for": [
-  "judge: Every number here is still a chart, a pill or a circle with the figure printed on it, and two of those labels are clipped or buried — the coffee never appears as the thing being measured."
+  "judge: Competent and clean-ish, but it opens on a slow bar build instead of a hook, leans on charts and stock machines for a story that begs to be made of coffee, and puts text under the mascot and under a mark in three places."
  ],
  "reasons": [
-  "judge: Every number here is still a chart, a pill or a circle with the figure printed on it, and two of those labels are clipped or buried — the coffee never appears as the thing being measured."
+  "judge: Competent and clean-ish, but it opens on a slow bar build instead of a hook, leans on charts and stock machines for a story that begs to be made of coffee, and puts text under the mascot and under a mark in three places."
  ],
  "judge": {
-  "ts": "2026-09-22T16:04:13+00:00",
-  "score": 34,
-  "one_line": "Every number here is still a chart, a pill or a circle with the figure printed on it, and two of those labels are clipped or buried — the coffee never appears as the thing being measured.",
+  "ts": "2026-09-22T14:33:56+00:00",
+  "score": 39,
+  "one_line": "Competent and clean-ish, but it opens on a slow bar build instead of a hook, leans on charts and stock machines for a story that begs to be made of coffee, and puts text under the mascot and under a mark in three places.",
   "problems": [
-   "Hook (hook@0.3–2.2) is a slow bar-chart build with the caption 'Your coffee' stamped across the 2019 row — no event in the first two seconds and text on top of a mark.",
-   "seg1:end — 'anywhere between $1.1 and $4.4' overflows the right frame edge and prints over the '$4.4' endpoint label; Data covers its tail.",
-   "seg1 — an unlabelled zigzag polyline floats in the empty upper half with no axis or connection to the range track below it.",
-   "seg2 — 'September Estimate 45.4M' is set in the accent pink (text must wear ink), and the grid shows 20 cups at 'each = 2M', i.e. 40M, contradicting the stated 45.4M.",
-   "seg3 — two plain circles with '$4.4' and '$2' printed inside is a bare number card; '$4.4' is dark navy on pink with the mascot's legs across it at seg3:mid, and the whole upper half of the frame is empty.",
-   "seg4 — the closing 'Drink it slow' speech box is a bordered panel filling the top third: a UI widget, not a shot."
+   "The hook is the thing the rubric names first: hook@0.3 to hook@2.2 (t=0.30-2.20s) is a bar chart filling in behind caption words — a slow chart build, no event, no reason to stay.",
+   "hook@0.3 (t=0.30s): the caption 'Your coffee' is set straight across the 2019 row, covering that row's $1.1 value; on a phone the top row is unreadable for the first second.",
+   "seg1:mid/seg1:end (t=11.61s/16.26s): the pink polyline floats with no axis or baseline, disconnected from the range pill below it, and reads as a decorative scribble rather than a price path.",
+   "seg1:mid (t=11.61s): '$4.4' at the end of 'anywhere between $1.1 and $4.4' is behind the mascot's torso.",
+   "seg1 does not demonstrate its own line — the script says 'a series of shocks' and the picture shows one dot resting inside a span.",
+   "seg2:start (t=21.95s) abandons its best idea: the coffee-cup waffle (each = 2M) is the only subject-made image in the video and it is replaced by a generic line chart for the actual 45.4M to 34.4M cut."
   ],
   "fixes": [
-   "Open on an event made of coffee — a cup filling past its own rim, or beans piling until the scale breaks — and keep the caption off every mark and out of the label column.",
-   "Measure every annotation's width against the safe area and reflow seg1's 'anywhere between…' onto its own line beneath the track; move Data out of the label's box.",
-   "Replace seg1's pill-and-dot with a coffee-made mechanic: one cup whose fill jumps shock by shock from $1.05 to $4.41, each jump captioned with its shock.",
-   "Make the seg2 cup count equal the stated figure (or restate the unit) and set 'September Estimate 45.4M' in look ink, not the accent.",
-   "Rebuild seg3 as a demonstration rather than two labelled circles — e.g. last year's cup beside this year's with the second one needing two pours to reach the same line — and fill the empty upper half.",
-   "Drop the bordered speech panel at seg4; set the closing line full-bleed on the ground and let the tipped balance be the last image."
+   "Open on the shock, not the axis: start at seg1's content — the price jolting up in one visible hit with a hard sound-shaped move in frame 1 — and let the 2019-2023 history arrive after the viewer is held.",
+   "Never print a caption over a data row: reserve the caption band below the source line, or push the chart's top row down so hook@0.3's 'Your coffee' cannot land on 2019's value.",
+   "Rebuild seg1 as a coffee-made shock ladder: a cup or bean column whose level jumps once per shock (2021 frost, 2024 drought) and holds between jumps, anchored to a baseline that uses the empty lower third; delete the floating polyline and the range pill.",
+   "Keep the cup waffle and make it the seg2 mechanic end to end: let 11M bags' worth of cups (2M each) physically empty out of the grid to land 34.4M, instead of cutting to a line chart.",
+   "Move the mascot's anchor out of every text band — offset him to the opposite side of any active label, so seg1's '$4.4' and the seg2 caption are never occluded.",
+   "Lift the Feb-2024 value off its pan: set it above or beside the slab in ink on the ground, not on the mark, at seg4."
   ]
  },
  "prior_rejection": [],

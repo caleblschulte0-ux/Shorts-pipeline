@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T184007Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:mid and seg2:end the top half of the frame above the gap ruler is empty. In seg3:end one row of 3 caps sits in a mostly empty frame. In seg3:start the tiny 'baseline' blob floats in space.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "From seg4:start to payoff@-0.4, graduation-cap icons ('each = 0.3') tile the frame under a label cut off at the left edge ('rmerly redlined neighborhoods'). Data stands waving in the middle of the grid.",
+  "root_cause": "The unit-icon resolver picked a mortarboard for 'redlined neighborhoods' (likely a keyword or default lookup), and nobody checked that the header text fits the frame width.",
+  "repair_goal": "Show the 5-degree redlining gap as heat: redlined blocks glowing hotter or a thermometer column rising 5 degrees over the baseline, using a heat or house icon that resolves to the subject. Measure the header so it fits inside the frame, and give Data an action that lands the payoff, such as fanning himself when the hot side tops out."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

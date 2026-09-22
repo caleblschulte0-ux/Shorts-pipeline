@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260922T184007Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start and seg3:start/seg3:mid show Data just perched on top of a pink bar. In seg2:mid/seg2:end he stands beside the hourglasses with his arms up, unconnected to them. In seg4 he shuffles along a ruler. Only the seg1 seesaw, where he rides the heavy pan, is a real bit.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "weak_data_demo",
+  "visible_evidence": "seg2:start is a plain two-bar chart (1.8 vs 0.3) with Data parked on the bar top. seg2:mid/end switches to two identical-size hourglasses: the pit-stop one drains pink while the human-reaction one is a grey outline with an unreadable '0.3'. Two stacked headers ('how fast that really is' / 'how long it takes') also appear, and Data stands arms-up on an empty baseline below.",
+  "root_cause": "The claim is 'the whole stop is under seven reaction times', a COUNT of blinks. It was rendered as a generic two-quantity comparison: first a chart, then a stock hourglass pair. Neither shows 1.8 as ~7 units of 0.27. The rival value was drawn in the REST neutral at near-zero contrast.",
+  "repair_goal": "Show a single 1.8s pit-stop window that fills with ~7 discrete reaction-time ticks or blinks (0.27s each) as the crew finishes. Use one header only and legible ink on every value. Make Data the thing that blinks or reacts once per tick, so the count lands without reading."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

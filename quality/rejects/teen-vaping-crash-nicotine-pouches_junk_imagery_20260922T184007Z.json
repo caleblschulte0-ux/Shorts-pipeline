@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T184007Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg2:mid and seg2:end use generic hospital-with-clock emoji buildings as the unit ('each = 2%') for the teen vaping rate. Nothing links hospitals to that number. The film-strip bars at seg4:start to seg4:end also have nothing to do with nicotine.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:start shows two plain circles (27.5% vs 7.8%). seg2:mid and seg2:end then switch to a grid of hospital-with-clock emoji labelled 'each = 2%' under '2019 peak 27.5%'. The mascot covers the title 'the vaping crackdown', and the drop to 7.8% is never shown as a loss.",
+  "root_cause": "The scene picked an unrelated generic icon (a hospital) as the unit for a count. It shows the peak filling up instead of the crash the narration describes, so the key claim, the 72% collapse, is never shown.",
+  "repair_goal": "Show the crash as physics made of vaping itself: a crowd of 27.5-in-100 vape clouds or teen silhouettes that visibly evaporates or deflates down to 7.8, so about 72% of them are gone on screen. Have Data react to the collapse, for example by waving away the vapor. Keep the title clear of the mascot."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

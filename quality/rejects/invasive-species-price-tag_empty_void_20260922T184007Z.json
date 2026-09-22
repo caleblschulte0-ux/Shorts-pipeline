@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T184007Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start and seg1:mid a thin pink line runs along one strip of the frame and roughly 70% of the frame above and below it is empty dark gradient.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg3:start, mid and end the 3.5K label is cut off at the right edge as 'Classified as harmful invas'. The 3.5K bubble is tiny and grey, off to the side, and Data only perches on top of the big bubble.",
+  "root_cause": "The label is placed from the small bubble's centre without measuring its width against the frame edge. The bubble layout also puts the subject (the harmful 3.5K) as the neutral afterthought instead of the story.",
+  "repair_goal": "Measure and clamp every label inside the safe area (wrap it or place it under the bubble). Make the 3.5K harmful set the accented subject, for example as a small cluster inside or pulled out of the 37K mass. Give Data an action that picks out the harmful tenth instead of standing on the big bubble."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

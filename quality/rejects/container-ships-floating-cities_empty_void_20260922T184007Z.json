@@ -1,0 +1,25 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T184007Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end: the timeline is one thin strip at about 43% height. Everything from about y=380 down to the caption bar, over half the frame, is empty gradient.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_layout_void",
+  "visible_evidence": "The title is cropped on both sides (\"\u00b7gest container ship capacity by ye\"). The whole scene is one thin timeline line with a ghosted 24,000, and over half the frame below it is empty. The marker covers the 2019 tick. It also repeats the same 1996-2019 numbers seg0 has just shown.",
+  "root_cause": "The timeline machine's title is set at a fixed large size that is never measured against the frame width. The composition puts a single thin line on a full vertical frame. Seg0 and seg1 draw the same series twice, so the second beat adds no new picture.",
+  "repair_goal": "Measure the title and wrap or shrink it inside the safe margins. Replace the repeated timeline with a depiction made of the subject: a ship hull that fills with stacked containers from 6,600 to 12,500 to 24,000 boxes, filling the vertical frame. Keep every tick label clear of the mascot."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

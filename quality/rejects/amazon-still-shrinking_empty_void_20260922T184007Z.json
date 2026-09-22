@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T184007Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In hook@0.3 through seg1:start, the whole band below the chart (about y 600-760, about 20% of the frame) is empty dark navy except the caption. In seg2:mid the bottom third under the glass is empty. In seg4:start two tile slots are empty dark boxes.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_claim_depiction",
+  "visible_evidence": "seg2:mid shows a draining cup labelled '563,883 left of 750,000' and 'only 74% stay'. The narration says 750,000 km\u00b2 were LOST in total, bigger than France. The picture treats the loss as a reservoir that is still there and leaking, so the claim is backwards and the numbers it counts down are invented.",
+  "root_cause": "The relationship classifier turned a cumulative-loss total into a 'drain/retention' machine. The glass counts down from 750,000 as if that were the forest left, and the France comparison is only in the caption. The seg1 bars before it already made the comparison and were cut away.",
+  "repair_goal": "Show 750,000 km\u00b2 as land that is GONE and compare it with France. Cover the Amazon outline with a cleared (brown) region that grows to 750k while a France silhouette at the same scale sits beside it and gets overtaken. Drop the 'left of' / '% stay' counter and use no numbers that are not in the data."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

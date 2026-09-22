@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T184007Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The hook frames cut a label off at the left edge ('ed one at least once'). seg1 cuts one off at both edges ('ave used one at least once   72'). In seg2:mid/end two labels print on top of each other ('AI overShared personal info with an AI compa\u202633%'). In seg3 the 34% label is near-invisi",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid/end the two category labels for 33% and 25% print over each other on one line, so they read as garbled text ('AI overShared personal info wit\u202633%'), and they run off both frame edges. seg2:start is two bare circles with numbers in them.",
+  "root_cause": "Both pole labels sit at the same y-position with no collision avoidance, and they are not measured against the frame width. The scene falls back to a generic circle compare and a pole gap instead of a picture of trust or of sharing secrets.",
+  "repair_goal": "Give each value its own measured label lane that never overlaps and stays inside the frame. Replace the circles and poles with one picture made of the subject, e.g. a row of teens where a third turn to a phone instead of a person and a quarter hand a note to it, with Data acting out the handoff."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

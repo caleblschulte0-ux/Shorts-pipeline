@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260922T184007Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data slides between bar rows in seg0 (f02\u2013f06), stands with his hands up beside the column in seg2/seg3 (f09\u2013f13) and waves in the corner at seg4:start/mid (f15\u2013f18). None of it acts out a stat.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "decorative_mascot_and_misleading_depiction",
+  "visible_evidence": "At seg4:start/mid (f15\u2013f18) a fixed grid of 18\u201320 identical wastebaskets labelled \"each = 5%\" sits under \"Met by new mining 99%\". A speech bubble's tail slices through \"mining\" and Data waves from the corner, and the frame does not change for about 4s.",
+  "root_cause": "A stock icon-array machine was given a share it cannot show. At 5% per bin, 1% is a fifth of one bin, so the grid is just '99% = full'. No bin is set apart as the 1% that recycling covers. The closing bubble was laid over the label, and the mascot has no action.",
+  "repair_goal": "Make the 1% the subject. Put one lit, sorted recycling bin against 99 greyed mining carts (or a pit that keeps deepening), and have Data drop a phone into the lone bin while the pit swallows the rest. Keep the bubble clear of the label and keep something moving through the whole close."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "invasive-species-price-tag__5dd628a5",
- "filed": "2026-09-22T16:53:11Z",
+ "filed": "2026-09-22T15:06:18Z",
  "status": "open",
  "channel": "explainer",
  "slug": "invasive-species-price-tag",
@@ -111,28 +111,30 @@
   }
  ],
  "held_for": [
-  "judge: Four beats, four charts — and seg3 ships a label sliced off by the frame edge, so the one comparison that needed reading cannot be read."
+  "judge: Real motion and an honest chain of numbers, but the labels are cut off and overprinted and every depiction is a stock chart or a swappable seesaw - nothing here is made of invasive species."
  ],
  "reasons": [
-  "judge: Four beats, four charts — and seg3 ships a label sliced off by the frame edge, so the one comparison that needed reading cannot be read."
+  "judge: Real motion and an honest chain of numbers, but the labels are cut off and overprinted and every depiction is a stock chart or a swappable seesaw - nothing here is made of invasive species."
  ],
  "judge": {
-  "ts": "2026-09-22T16:09:47+00:00",
-  "score": 39,
-  "one_line": "Four beats, four charts — and seg3 ships a label sliced off by the frame edge, so the one comparison that needed reading cannot be read.",
+  "ts": "2026-09-22T14:39:44+00:00",
+  "score": 43,
+  "one_line": "Real motion and an honest chain of numbers, but the labels are cut off and overprinted and every depiction is a stock chart or a swappable seesaw - nothing here is made of invasive species.",
   "problems": [
-   "seg3:start/mid/end — 'Classified as harmful invas' is truncated by the right frame edge in every sampled frame of the scene.",
-   "hook@0.3/0.8 — the burned-in caption sits directly on top of the 1970 row, covering its $1.6B value; the hook is also just a bar chart building, no motion that earns a stop.",
-   "seg1:mid — the frame is ~70% empty gradient with a hairline at the bottom and a tiny mascot; seg1:end adds a stray cyan ellipse hanging half off the right edge with no explanation.",
-   "seg4:start -> payoff@-0.4 — five seconds in which the only change is a mascot sliding right; the middle third of the frame stays empty the whole time.",
-   "Depiction tier is low across the board: bars, a line, a seesaw and two circles. Nothing is made of invasive species — measured duplicate_ratio 0.308 (effective 16.6fps) also makes the motion read soft."
+   "seg3: 'Classified as harmful invas' is amputated by the right frame edge in all three sampled frames - a viewer cannot read the label at all.",
+   "hook@0.3 and hook@0.8: the burned-in caption 'That's more' lands on top of the 1970 row label and its $1.6B value; two text layers fight in the same pixels.",
+   "seg1:mid: the top two-thirds of the frame is empty gradient with a thin line pinned to the bottom edge - the composition wastes the phone screen.",
+   "seg1:end: a loose cyan ellipse floats half off the right edge with no relationship to the line or the number.",
+   "seg2: the seesaw is the exact stock machine the channel has been told not to lean on - the mascot could be any subject and the pans carry generic percent chips.",
+   "seg4: the payoff is a quote bubble over a hollow middle, with an undecoded dotted column at the right margin doing nothing."
   ],
   "fixes": [
-   "Measure rendered text extents for the bubble labels in seg3 and anchor them inside a safe margin (wrap 'Classified as harmful invasive' to two lines, right-align it inward from the small bubble) so no glyph crosses the frame edge.",
-   "Replace seg3's two-circle chart with a subject-made demonstration: a swarm of 37,000 marks in which ~3,500 flip to the accent and start eating, so the 1-in-10 lands before anyone reads a label.",
-   "Reposition the hook caption below the chart area (or lift the chart) so it never overprints the 1970 row, and open on the 2019 bar slamming out to full length rather than a quiet build.",
-   "Fill seg1's frame: scale the line to use the full height, or swap it for the bill itself — an invoice unrolling to 423 billion — and delete the stray cyan ellipse at seg1:end.",
-   "Give seg4 a real final move (the two rows resolving into one, or the bill stamping UNPAID) instead of the mascot sliding across an empty band."
+   "Measure every label against the safe area before drawing: wrap or left-anchor the seg3 small-circle caption so 'invasive' is never clipped, and move the 3.5K chip off the label's first line.",
+   "Give the caption band its own reserved strip and push the seg0 chart rows out of it, so no caption is ever stamped over a row label or a value.",
+   "Fill seg1: scale the line to use the full frame height, or replace it with a form made of the subject - a spreading infestation whose covered area IS the dollar figure - instead of a line at the bottom edge.",
+   "Delete the stray cyan ellipse at seg1:end or tie it to a stated value.",
+   "Replace the seg2 seesaw with a bespoke mechanic: one bill split into a repair pile and a tiny prevention pile, the repair pile physically burying the prevention one, so 90/10 is seen rather than read.",
+   "Rebuild seg4 so the closing line sits over a live final state - the 37K field with only 3.5K of it lit - instead of an empty middle and a dotted column."
   ]
  },
  "prior_rejection": [],

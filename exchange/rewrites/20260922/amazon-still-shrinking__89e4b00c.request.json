@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "amazon-still-shrinking__89e4b00c",
- "filed": "2026-09-22T16:53:11Z",
+ "filed": "2026-09-22T15:06:18Z",
  "status": "open",
  "channel": "explainer",
  "slug": "amazon-still-shrinking",
@@ -126,32 +126,12 @@
   }
  ],
  "held_for": [
-  "judge: The closing beat parks on a static grid of empty boxes for over five seconds, and the whole video leans on charts while captions are printed on top of the very numbers they narrate."
+  "premise: brain: It presents a factual loss figure without overturning a viewer expectation, failing the reversal requirement."
  ],
  "reasons": [
-  "judge: The closing beat parks on a static grid of empty boxes for over five seconds, and the whole video leans on charts while captions are printed on top of the very numbers they narrate."
+  "premise: brain: It presents a factual loss figure without overturning a viewer expectation, failing the reversal requirement."
  ],
- "judge": {
-  "ts": "2026-09-22T16:26:46+00:00",
-  "score": 34,
-  "one_line": "The closing beat parks on a static grid of empty boxes for over five seconds, and the whole video leans on charts while captions are printed on top of the very numbers they narrate.",
-  "problems": [
-   "seg4 holds one frame from 40.22s to 45.50s — four empty tiles, a dim '4 times over', and a mascot that only wiggles an arm; the video ends on a freeze.",
-   "seg4's tiles are empty containers, so the '4 times over' payoff is a label claiming something the picture never shows.",
-   "Captions are drawn over chart labels: 'The clearing'/'The damage' sit on the 2004 row at hook@0.8 and seg0:mid, cutting '27772' down to '7772' and covering the year.",
-   "At seg1:start Data stands on top of the 27772 value, and at seg1:mid/end his arm crosses the '27772' end-label of the range dial.",
-   "A teal ellipse is stroked straight through '699,173 left of 750,000' at seg2:mid.",
-   "The seg2 bucket drains from 750,000 downward, reading as forest left rather than forest lost — the metaphor contradicts the narration."
-  ],
-  "fixes": [
-   "Re-time seg4 so the four tiles land one per beat across the full 5s and the last tile seats on the final word; never let the closing composition reach its end state before the audio does.",
-   "Fill seg4's tiles with the subject — cleared-land blocks, cattle, tree stumps — so a viewer counts four without reading '4 times over', and lift that label to ink contrast.",
-   "Reserve a caption band clear of the chart plot: push narration captions to the lower safe area for seg0/hook instead of drawing them across the 2004 row.",
-   "Move Data off the value column at seg1:start and off the dial's end-label at seg1:mid — place him clear of any text extent, measured, not eyeballed.",
-   "Kill the ellipse prop crossing the counter at seg2:mid, or move the counter above it.",
-   "Flip seg2's vessel: fill it as the loss accumulates to 750,000 rather than draining from it, so the picture and the narration agree."
-  ]
- },
+ "judge": null,
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

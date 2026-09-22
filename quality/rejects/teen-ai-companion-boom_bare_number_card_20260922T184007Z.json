@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T184007Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:start: two plain circles that only say '33%' and '25%'. Neither one demonstrates anything.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid/end the two category labels for 33% and 25% print over each other on one line, so they read as garbled text ('AI overShared personal info wit\u202633%'), and they run off both frame edges. seg2:start is two bare circles with numbers in them.",
+  "root_cause": "Both pole labels sit at the same y-position with no collision avoidance, and they are not measured against the frame width. The scene falls back to a generic circle compare and a pole gap instead of a picture of trust or of sharing secrets.",
+  "repair_goal": "Give each value its own measured label lane that never overlaps and stays inside the frame. Replace the circles and poles with one picture made of the subject, e.g. a row of teens where a third turn to a phone instead of a person and a quarter hand a note to it, with Data acting out the handoff."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

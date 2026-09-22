@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T184007Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:mid the label 'Live in 8F+ heat-island exposure 68%' is garbled. In seg2:end two labels are printed on top of each other. seg4 labels are cut off at the left edge ('rmerly redlined'). In seg3:end the mascot covers the title ('got ho r first'). In seg0 frames the '9.7' inside the ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "From seg4:start to payoff@-0.4, graduation-cap icons ('each = 0.3') tile the frame under a label cut off at the left edge ('rmerly redlined neighborhoods'). Data stands waving in the middle of the grid.",
+  "root_cause": "The unit-icon resolver picked a mortarboard for 'redlined neighborhoods' (likely a keyword or default lookup), and nobody checked that the header text fits the frame width.",
+  "repair_goal": "Show the 5-degree redlining gap as heat: redlined blocks glowing hotter or a thermometer column rising 5 degrees over the baseline, using a heat or house icon that resolves to the subject. Measure the header so it fits inside the frame, and give Data an action that lands the payoff, such as fanning himself when the hot side tops out."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T184007Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands on a bar (hook@0.3), on the line tip (seg1:mid), on the seesaw pan (seg2:start-end) and on top of the 37K bubble (seg3:start-end), and in seg4 two copies stand beside the values. He sits on the stat but never does anything to it: no setup, action or payoff.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg3:start, mid and end the 3.5K label is cut off at the right edge as 'Classified as harmful invas'. The 3.5K bubble is tiny and grey, off to the side, and Data only perches on top of the big bubble.",
+  "root_cause": "The label is placed from the small bubble's centre without measuring its width against the frame edge. The bubble layout also puts the subject (the harmful 3.5K) as the neutral afterthought instead of the story.",
+  "repair_goal": "Measure and clamp every label inside the safe area (wrap it or place it under the bubble). Make the 3.5K harmful set the accented subject, for example as a small cluster inside or pulled out of the 37K mass. Give Data an action that picks out the harmful tenth instead of standing on the big bubble."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

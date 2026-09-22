@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T184007Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 to seg0:end: the bottom ~15% of the frame is a blank dark band, and the bar chart only fills the middle. seg2:start also has a big empty strip under the cup grid.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_chart_hook",
+  "visible_evidence": "hook@0.3 to seg0:end: a plain horizontal bar chart of 2019-2023 with the hook caption printed over the 2019 row. The claimed record year, 2025 ($4.41), is not on screen in the hook at all, so the frame promises a record it never shows.",
+  "root_cause": "The hook reuses a generic rank-bar chart that stops at 2023. The caption layer is placed in the chart's top row, not in a clear band.",
+  "repair_goal": "Open on the $4.41 record climbing past earlier years as physical motion (a price gauge or a stack of beans rising 2019 to 2025), with 2025 visible in frame 1 and the caption in a clear band that never overlaps the data."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
