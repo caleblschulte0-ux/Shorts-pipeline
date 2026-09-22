@@ -94,7 +94,9 @@ class ItIsGoneAndStaysGone(unittest.TestCase):
         chart-led open, which is the thing that carries it."""
         src = inspect.getsource(sr.build_story_ass)
         self.assertIn("hchunks = _chunks(st.hook, 2) if not hook_visual", src)
-        self.assertIn("pos(540,470)", src)
+        # ...on the lower caption plate since 2026-09-22 — at y=470 it sat on
+        # the leading chart's top rows (test_the_frame_reads_on_a_phone).
+        self.assertIn("pos(540,1734)\\\\fs78", src)
 
 
 class TheHELPERIsStillLive(unittest.TestCase):
