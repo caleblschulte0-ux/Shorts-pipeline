@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T232442Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: At seg3:start and seg3:mid the whole middle of the frame is empty dark ground around one thin bar and a tiny grey '0' stub. At seg4:start three thermometers sit at the top over a large empty field.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end two long labels are drawn at the same spot, so the text above the gauge is illegible. The '36% apart' gap between two thin poles barely shows the 68% share, and the mascot just stands with his hands on his head.",
+  "root_cause": "The labels for the two poles are placed at one anchor with no collision check. The machine turns a share-of-people claim into a gap between two poles, which asserts nothing about 68% of residents.",
+  "repair_goal": "Show the 68% share as people: for example, 100 residents filling hot and cool blocks, with 68 landing in the hot ones. Draw one label per group with measured, non-overlapping positions, and give the mascot an action tied to the split, such as being herded or fanning himself in the hot block."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

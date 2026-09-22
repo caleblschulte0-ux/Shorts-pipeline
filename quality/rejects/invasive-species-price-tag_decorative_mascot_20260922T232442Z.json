@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T232442Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data walks along the bars (hook@0.8-seg0:end), strikes an arms-up pose on the line tip (seg1), stands on the end of the scale beam (seg2) and stands on top of the 37K bubble (seg3:start-end). In seg4 two identical copies stand beside their labels. He never does anything that affec",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_physics_demonstration",
+  "visible_evidence": "seg2:start-end (f10-f12): the balance scale rises on the Damage & losses side (46.3%->88.7%) and sinks on the 9.9% Prevention side. The heavy side goes UP, so the picture argues the opposite of the narration. The minority value is also dark-on-dark and unreadable, and the percentages count through 46.3 and 76.4, which the viewer reads as the claim.",
+  "root_cause": "The balance machine maps value to beam height the wrong way round, lifting the larger pan instead of letting it sink. The accent/REST colours leave the REST label below readable contrast. The count-up shows interim values as if they were data.",
+  "repair_goal": "Make weight physical: the 90% damage pan must drop hard and slam down while the ~10% prevention pan flies up. Ideally draw the pans as piles of money or coins so the size difference is visible without reading. Keep both labels in ink at readable contrast. Show only the final values, or clearly mark the count-up as counting."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

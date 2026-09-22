@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-22T16:53:11Z",
+ "updated": "2026-09-22T23:24:35Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -162,6 +162,16 @@
    ],
    "request": "exchange/rewrites/20260922/chatgpt-fastest-adoption-ever__cb5bfb31.request.json",
    "answer_path": "exchange/rewrites/20260922/chatgpt-fastest-adoption-ever__cb5bfb31.answer.json"
+  },
+  {
+   "id": "chess-online-boom__a777710a",
+   "slug": "chess-online-boom",
+   "filed": "2026-09-22T23:24:35Z",
+   "why": [
+    "premise: brain: This is a searchable trend-story framed as a habit-formation claim, but it doesn't reverse a specific expectation the viewer holds and the '200-million' figure isn't tied to a verifiable, sourced count of chess habit formation caused by the show rather than general interest spikes."
+   ],
+   "request": "exchange/rewrites/20260922/chess-online-boom__a777710a.request.json",
+   "answer_path": "exchange/rewrites/20260922/chess-online-boom__a777710a.answer.json"
   },
   {
    "id": "chip-transistor-shrink-limit__32aedade",
@@ -397,6 +407,16 @@
    "answer_path": "exchange/rewrites/20260922/gps-einstein-fix__dad5454f.answer.json"
   },
   {
+   "id": "gulf-dead-zone-growth__e96b02c3",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-22T23:24:35Z",
+   "why": [
+    "premise: brain: This is just the well-known, searchable 'Gulf of Mexico Dead Zone' topic restated with a size comparison, not a premise that reverses a specific expectation the viewer holds."
+   ],
+   "request": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.request.json",
+   "answer_path": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.answer.json"
+  },
+  {
    "id": "helium-supply-squeeze__c62dbd35",
    "slug": "helium-supply-squeeze",
    "filed": "2026-09-22T11:08:32Z",
@@ -600,6 +620,16 @@
    ],
    "request": "exchange/rewrites/20260922/ocean-floor-vs-mars-mapped__a4d569a1.request.json",
    "answer_path": "exchange/rewrites/20260922/ocean-floor-vs-mars-mapped__a4d569a1.answer.json"
+  },
+  {
+   "id": "oceanic-shark-collapse__7abc9718",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-09-22T18:40:00Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague claim rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20260922/oceanic-shark-collapse__7abc9718.request.json",
+   "answer_path": "exchange/rewrites/20260922/oceanic-shark-collapse__7abc9718.answer.json"
   },
   {
    "id": "ozone-hole-recovery__fb0993e5",

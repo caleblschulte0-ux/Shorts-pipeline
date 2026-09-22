@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T232442Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end is the whole frame empty and dark. seg1:mid leaves the lower 40% blank under 'each = 5%', and seg2:mid/end leave most of the frame empty around two thin posts.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:end two long labels are printed on top of each other in one line ('AI overShared personal info with an AI compa\u202633%'), cut off at both frame edges. The picture is two thin posts on an axis with '8% apart'. seg2:start was two numbered circles.",
+  "root_cause": "The label layout puts both series labels on the same baseline with no measured width or collision check, and the chosen machine (a gap between two posts) says nothing about choosing an AI over a person or handing over personal data.",
+  "repair_goal": "Replace it with a picture made of the subject: for example, a row of teen silhouettes where 1 in 3 turns away from a person toward a chat bubble, then 1 in 4 slides an ID or diary card into the bubble. Give each label its own measured line fully inside the frame, and have Data act out handing a secret to the bot."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

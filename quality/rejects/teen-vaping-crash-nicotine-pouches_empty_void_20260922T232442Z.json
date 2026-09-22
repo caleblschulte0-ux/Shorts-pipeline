@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T232442Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 is almost entirely empty navy with only a title and a faint sliver. hook@0.8 to seg0:mid has one tiny bar in the lower left and about 85% dead space. seg2:mid has half the frame empty below four icons. seg4:start has a large empty top.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg3:start and seg3:mid fill a 4x4 grid with graduation-cap emoji ('each = 0.5%') under 'E-cigarettes 7.8%'. The narration here is about nicotine pouches at 1.8%, which never appear as a picture, and Data only points at the grid.",
+  "root_cause": "The pictograph machine picked a generic 'teen/school' stock icon instead of an object that is the subject. It also counted the wrong series: it depicted e-cigarettes when the story beat is pouches quietly taking the second spot.",
+  "repair_goal": "Make the beat's picture about the subject: vape clouds shrinking beside small pouch tins that slide into view (pouches at 1.8% set against vapes at 7.8%), so the 'cloud vs. tucked in a lip' contrast is visible. Have Data do something with it, such as waving away a cloud and then finding a pouch tin in his coat pocket. Drop the graduation caps."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

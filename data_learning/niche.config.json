@@ -21254,7 +21254,6 @@
      "role": "3 · THE REAL WINNER",
      "topic": "distance from Earth's center",
      "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
-     "viz": "comparison",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
@@ -21331,7 +21330,11 @@
      "role": "3 · THE FIX",
      "topic": "GPS accuracy, corrected vs not",
      "say": "So every satellite launches with its clock deliberately set slow. That one fix is why your phone puts you inside 4.9 meters instead of 10,000.",
-     "viz": "comparison"
+     "scene": {
+      "mechanic": "gps-off-target-dial",
+      "concept": "A log-scale rangefinder from the true spot: the corrected pin barely leaves home at 4.9m while the uncorrected one races almost the full width to 10,000m, same start, wildly different landing.",
+      "code": "lo = 1.0\nhi = 12000.0\nlg_lo = math.log10(lo)\nlg_hi = math.log10(hi)\nspan = lg_hi - lg_lo\nv_fix = values[0]\nv_off = values[1]\nfrac_fix = clamp((math.log10(clamp(v_fix, lo, hi)) - lg_lo) / span)\nfrac_off = clamp((math.log10(clamp(v_off, lo, hi)) - lg_lo) / span)\nbx0 = RX0 + 70\nbx1 = RX1 - 70\nby = RTOP + 820\ntarget = subject_image('archery target bullseye')\npin = subject_image('map location pin marker')\ntext('WHERE YOUR PHONE THINKS YOU ARE', (bx0 + bx1) // 2, RTOP + 40, size=30, color=TEXT, center=True)\nd.line([bx0, by, bx1, by], fill=rgba(REST, 190), width=7)\nticks = [1, 10, 100, 1000, 10000]\nfor tv in ticks:\n    tf = clamp((math.log10(tv) - lg_lo) / span)\n    tx = lerp(bx0, bx1, tf)\n    d.line([tx, by - 16, tx, by + 16], fill=rgba(SUBTLE, 210), width=3)\n    lab = (str(tv) + 'm') if tv < 1000 else (str(tv // 1000) + 'km')\n    text(lab, tx, by + 40, size=22, color=SUBTLE, center=True)\nif target is not None:\n    paste(target, bx0 - 46, by - 46, 92, 92)\nelse:\n    d.ellipse([bx0 - 30, by - 30, bx0 + 30, by + 30], outline=rgba(TEXT, 220), width=5)\ntext('TRUE SPOT', bx0, by + 74, size=22, color=TEXT, center=True)\np1 = clamp(reveal / 0.45)\nfx1 = lerp(bx0, lerp(bx0, bx1, frac_fix), p1)\nd.line([bx0, by, fx1, by], fill=rgba(HIGHLIGHT, 220), width=9)\nif pin is not None:\n    paste(pin, fx1 - 26, by - 128, 52, 88)\nelse:\n    d.ellipse([fx1 - 14, by - 14, fx1 + 14, by + 14], fill=rgba(HIGHLIGHT))\nif p1 > 0.3:\n    text('WITH THE FIX: ' + fmt(v_fix), fx1, by - 150, size=28, color=HIGHLIGHT, center=True)\np2 = clamp((reveal - 0.45) / 0.4)\nif p2 > 0:\n    fx2 = lerp(bx0, lerp(bx0, bx1, frac_off), p2)\n    dash_n = 26\n    for k in range(dash_n):\n        t0 = k / dash_n\n        t1 = (k + 0.5) / dash_n\n        if t0 > p2:\n            break\n        x0 = lerp(bx0, fx2, t0)\n        x1 = lerp(bx0, fx2, min(t1, p2))\n        d.line([x0, by, x1, by], fill=rgba(WARN, 210), width=9)\n    if pin is not None:\n        paste(pin, fx2 - 26, by - 128, 52, 88)\n    else:\n        d.ellipse([fx2 - 14, by - 14, fx2 + 14, by + 14], fill=rgba(WARN))\n    if p2 > 0.85:\n        text('WITHOUT IT: ' + fmt(v_off), fx2, by - 150, size=30, color=WARN, center=True)\n    pr = (reveal * 4) % 1.0\n    prad = 22 + pr * 26\n    d.ellipse([fx2 - prad, by - prad, fx2 + prad, by + prad], outline=rgba(WARN, int(200 * (1 - pr))), width=4)"
+     }
     }
    ]
   },

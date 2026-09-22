@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T232442Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The code measured a 30-frame duplicate run at 40.17s, and seg4:start (40.22s) to payoff@-0.4 (45.5s) is the same frame except for tiny tile shifts: about 5s of the closing card held.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg2:mid/end: a cup of water drains with '563,883 left of 750,000' and 'only 74% stay'. The narration says 750,000 km\u00b2 was LOST and that this is bigger than France. The cup shows the loss as the amount REMAINING, invents a 74% figure, drops France entirely, and a cyan ellipse covers the headline number.",
+  "root_cause": "A generic 'leaking vessel' machine was picked for a cumulative-total-vs-reference claim. It counts down from the value it should be building up to, and it has no second quantity for the France comparison.",
+  "repair_goal": "Show the cumulative loss GROWING to 750,000 km\u00b2 next to a France-sized outline, for example a cleared patch of forest spreading year by year until it overflows a France silhouette (551,695 km\u00b2). The number should count UP to 750,000, with no invented percentage and no mark covering the text."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

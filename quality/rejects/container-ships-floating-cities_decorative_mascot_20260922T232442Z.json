@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T232442Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data glides over the bars with the same arms-out pose (hook@1.5, seg0:end, seg1:start), stands on the timeline (seg1:mid) and on the seesaw (seg2:mid) without doing anything to either, and duplicate copies of him stand on the race lanes at the end (seg4:mid). No setup, action and ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_and_empty_void",
+  "visible_evidence": "seg1:mid and seg1:end: the title is cropped on both sides, the mascot's marker covers the 2008 tick, the ghost '24,000' is illegible, and the lower half of the 9:16 frame is empty. It also replays the same 1996\u21922019 data that seg0's bars had just shown.",
+  "root_cause": "A generic timeline machine was used on the same series seg0 had already charted, with an unmeasured title width and no composition for vertical space. The bottom caption also shows '12,500' while the frame reads 2008/2019, so the numbers disagree.",
+  "repair_goal": "Replace the timeline with a picture made of the subject. Show a 6,600-box ship, then 12,500, then 24,000, each ship's hull filling the frame as stacked containers pile up to the value, with Data loading the last container as the payoff. Fit the title to the measured frame width and use the full vertical space."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

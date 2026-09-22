@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T232442Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Only seg1 has a real bit (he clears the 65-city-average hurdle at seg1:end). Everywhere else he perches or stands: on the NYC bubble (hook@0.3 to seg0:end), against the bar (seg3:start/mid), and in front of the thermometers (seg4:mid, payoff@-0.4).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:mid and seg2:end two long labels are drawn at the same spot, so the text above the gauge is illegible. The '36% apart' gap between two thin poles barely shows the 68% share, and the mascot just stands with his hands on his head.",
+  "root_cause": "The labels for the two poles are placed at one anchor with no collision check. The machine turns a share-of-people claim into a gap between two poles, which asserts nothing about 68% of residents.",
+  "repair_goal": "Show the 68% share as people: for example, 100 residents filling hot and cool blocks, with 68 landing in the hot ones. Draw one label per group with measured, non-overlapping positions, and give the mascot an action tied to the split, such as being herded or fanning himself in the hot block."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
