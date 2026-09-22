@@ -129,6 +129,21 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
         except Exception as exc:  # noqa: BLE001
             print(f"      shot panel {i} skipped: {type(exc).__name__}: "
                   f"{str(exc)[:90]}", flush=True)
+    # THE BRAIN LOOKS AT EVERY PANEL BEFORE IT IS PLACED (shared/shot_
+    # relevance). A keyword-matched stock photo that does not depict its
+    # line was 27 of 101 trending verdicts to 2026-09-22 — junk_imagery,
+    # the one FATAL check. A rejected shot gets no panel; the gameplay shows
+    # through for its window, exactly as for an unresolved image.
+    try:
+        from shared import shot_relevance as _rel
+        out, dropped = _rel.filter_panels(out, pkg.get("shots") or [],
+                                          title=str(pkg.get("title") or ""))
+        for d in dropped:
+            print(f"      shot panel {d['index']} DROPPED — does not depict its "
+                  f"line: {d['why'][:100]}", flush=True)
+    except Exception as exc:  # noqa: BLE001 — a relevance check must never kill a render
+        print(f"      shot relevance check skipped: {type(exc).__name__}: "
+              f"{str(exc)[:90]}", flush=True)
     return out
 
 
