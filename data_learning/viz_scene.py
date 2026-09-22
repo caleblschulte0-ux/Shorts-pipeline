@@ -971,6 +971,47 @@ def unit_plan(value: float, per_value: float, cap: int = 60) -> tuple:
     return max(1, min(cap, k)), per
 
 
+class InkDraw:
+    """A drawing surface on which TYPE CAN BE READ.
+
+    `look.REST` is the neutral every supporting MARK wears, and at 2.05:1 on
+    the ground it is exactly right for a bar and exactly wrong for a number.
+    Twenty-odd machine sites print a supporting item's value "in its mark's
+    colour" (`color if i == 0 else REST`, `_rgba(col, ...)`), and the judge
+    named the result in five stories on 2026-09-22 alone: "the non-subject
+    values (0.9/1.7, 0.3) are low-contrast grey that almost disappears",
+    "the Prevention percentage is dark slate on a dark ground", "the 2019
+    $1.1 is muted grey on grey". Fixing the sites one by one is how the
+    twenty-first gets missed; every machine draws through this, so text
+    in REST is lifted to the secondary ink (`look.INK_2`, recessive and
+    readable) here, once. Shapes pass through untouched."""
+
+    def __init__(self, draw):
+        self._draw = draw
+
+    def __getattr__(self, name):
+        return getattr(self._draw, name)
+
+    def text(self, xy, text, fill=None, *args, **kwargs):
+        return self._draw.text(xy, text, _lift_rest(fill), *args, **kwargs)
+
+    def multiline_text(self, xy, text, fill=None, *args, **kwargs):
+        return self._draw.multiline_text(xy, text, _lift_rest(fill),
+                                         *args, **kwargs)
+
+
+def _lift_rest(fill):
+    """`fill` with REST's RGB replaced by the secondary ink, alpha kept."""
+    try:
+        from shared import look as _look
+        if (isinstance(fill, (tuple, list)) and len(fill) >= 3
+                and tuple(int(c) for c in fill[:3]) == tuple(_look.REST)):
+            return (*_look.INK_2, *(tuple(fill[3:4]) or (255,)))
+    except Exception:  # noqa: BLE001 — never lose a frame over a colour
+        pass
+    return fill
+
+
 def legible(color):
     """`color` if TYPE set in it can be READ on the ground — else plain ink.
 
@@ -1156,7 +1197,12 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     d.text((_cx(box), bot + 34), f"each  =  {each}", font=_pil_font(44),
            fill=_rgba(TEXT, int(255 * min(1.0, reveal * 2))), anchor="mm")
     total = charts._ulabel(value, unit, group=True)
-    d.text((_cx(box), by0 + 58), f"{label}   {total}", font=_pil_font(60),
+    # FITTED to the frame. At a fixed 60pt "have used one at least once   72%"
+    # ran off both edges ("ave used one at least once 72", the judge,
+    # 2026-09-22) — and the number it cut was the one the grid counts.
+    _hf, _ht = fit_centred(d, f"{label}   {total}", 60, _cx(box),
+                           (40, 0, W - 40, H), min_size=34)
+    d.text((_cx(box), by0 + 58), _ht, font=_hf,
            fill=_rgba(legible(color),
                       int(255 * min(1.0, max(0.0, reveal - 0.25) * 2))),
            anchor="mm")
@@ -1606,18 +1652,29 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
                width=4)
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.3))
     # Each post carries its own label, anchored to stay inside the frame.
-    for _px, _c, _p, _v, _al in ((pa, TEXT, items[0], a, 1.0),
-                                 (pb, color, items[-1], b, na)):
+    # THE TWO LABELS NEVER SHARE A LINE THEY CANNOT BOTH FIT ON. Each was
+    # printed at the same height beside its own post, so two posts 8 points
+    # apart printed "AI over a human" and "Shared personal info with an AI
+    # companion" on top of each other (the judge, 2026-09-22: "composited on
+    # top of each other into unreadable mush"). Each is fitted to the frame,
+    # kept inside it, and the first moves up a row when the spans would meet.
+    _spans = []
+    for _p, _v in ((items[0], a), (items[-1], b)):
+        _s = f"{getattr(_p, 'label', '')}  {charts._ulabel(_v, unit)}"
+        _spans.append((_s, fit_text(d, _s, 40, int(bx1 - bx0 - 60), 26)[0]))
+    _ws = [d.textlength(_s, font=_ff) for _s, _ff in _spans]
+    _cs = [min(bx1 - 30 - _w / 2, max(bx0 + 30 + _w / 2, _px))
+           for _w, _px in zip(_ws, (pa, pb))]
+    _up = abs(_cs[0] - _cs[1]) < sum(_ws) / 2 + 24
+    for k, (_px, _c, _al, _p, _v) in enumerate(((pa, TEXT, 1.0, items[0], a),
+                                                (pb, color, na, items[-1], b))):
         d.line([(_px, y + 22), (_px, _ground)], fill=_rgba(_c, 150), width=10)
         d.rounded_rectangle([_px - 40, _ground - 14, _px + 40, _ground + 14],
                             radius=10, fill=_rgba(_c, 190))
-        _tx = min(bx1 - 30, max(bx0 + 30, _px))
-        _anchor = "mm" if bx0 + 200 < _px < bx1 - 200 else (
-            "lm" if _px <= bx0 + 200 else "rm")
-        d.text((_tx, y - 62),
-               f"{getattr(_p, 'label', '')}  {charts._ulabel(_v, unit)}",
-               font=_pil_font(40), fill=_rgba(_c, int(255 * _al)),
-               anchor=_anchor)
+        _f, _t = fit_text(d, _spans[k][0], 40, int(bx1 - bx0 - 60), 26)
+        d.text((int(_cs[k]), y - 62 - (int(_f.size * 1.35) if _up and k == 0
+                                      else 0)), _t, font=_f,
+               fill=_rgba(legible(_c), int(255 * _al)), anchor="mm")
     d.text(((lo + hi) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
@@ -3925,6 +3982,30 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[-1], "art", mx, cy)
 
 
+def skyline_windows(x0: int, x1: int, y0: int, y1: int):
+    """The window grid on a tower face [x0, x1] x [y0, y1]:
+    (cols, rows, (first_x, first_y), (win_w, win_h), (step_x, step_y)).
+
+    At least three columns, spread across the WHOLE face with an equal
+    margin at each wall, so no column of squares runs down an edge (a film
+    strip's sprocket holes). Windows shrink with the face; a face too narrow
+    for three draws none."""
+    face = x1 - x0
+    if face < 72:
+        return 0, 0, (x0, y0), (0, 0), (0, 0)
+    cols = max(3, min(6, int(face // 48)))
+    margin = max(12, int(face * 0.13))
+    # windows take a bit over half of each column's pitch, so the face
+    # reads as wall with windows in it, not as a checkerboard
+    pitch = (face - 2 * margin) / cols
+    win_w = max(8, min(22, int(pitch * 0.55)))
+    step_x = (face - 2 * margin - win_w) / max(1, cols - 1)
+    step_y = 46
+    rows = max(0, int((y1 - y0 - 40) // step_y))
+    return (cols, rows, (x0 + margin, y0 + 22), (win_w, 18),
+            (step_x, step_y))
+
+
 def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
     """A SKYLINE: one thing dwarfing the rest, with Data tiny at its foot.
 
@@ -3965,15 +4046,23 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
         lead = (i == 0)
         d.rounded_rectangle([sx + 10, sy, int(sx + w - 10), bot], radius=8,
                             fill=_rgba(color if lead else REST, 240))
-        # windows, so it reads as a BUILDING and not a bar
-        rows = int(h // 46)
+        # WINDOWS, so it reads as a BUILDING and not a bar. They used to be
+        # two 16px columns hugging the walls, and a tower with a row of
+        # square holes down each edge is a FILM STRIP: the judge, 2026-09-22,
+        # "seg3:end/seg4 wrap the bars in film-strip frames that have nothing
+        # to do with nicotine" (junk_imagery, FATAL). A building has a GRID
+        # of windows across its face, so they are laid out as one.
+        # The lead tower prints its value inside, near the roof: the
+        # windows start below it rather than under the number.
+        _roof = 76 if (lead and h > 140) else 0
+        cols, rows, (wx0, wy0), (ww, wh), (gx, gy) = skyline_windows(
+            sx + 10, int(sx + w - 10), sy + _roof, bot)
         for r_ in range(rows):
-            for c_ in range(2):
-                wx = int(sx + 26 + c_ * (w - 62) / 1.0)
-                wy = int(sy + 22 + r_ * 46)
-                if wy + 18 < bot - 12:
-                    d.rectangle([wx, wy, wx + 16, wy + 18],
-                                fill=_rgba(charts.CARD, 210))
+            for c_ in range(cols):
+                wx = int(wx0 + c_ * gx)
+                wy = int(wy0 + r_ * gy)
+                d.rectangle([wx, wy, wx + ww, wy + wh],
+                            fill=_rgba(charts.CARD, 210))
         na = max(0.0, min(1.0, (reveal - 0.3) / 0.3))
         # The tallest tower reaches the top of the box, so its value goes
         # INSIDE near the roof — above it, the label printed over the title.
@@ -5680,7 +5769,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         global _BEAT_PHASE
         _BEAT_PHASE = f / max(1, frames)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        d = ImageDraw.Draw(canvas)
+        d = InkDraw(ImageDraw.Draw(canvas))
         if show_title:
             draw_caption(d, (RX0, 250, RX1, 250), insight.topic, 1.0, size=52)
         for i, el in enumerate(els):
