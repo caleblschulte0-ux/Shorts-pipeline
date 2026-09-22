@@ -1211,7 +1211,9 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     for e in events:
         ps, pe, p = e["ps"], e["pe"], e["punch"]
         color = _hex_to_ass(p.get("color", "#ffffff"))
-        if e["xy"] and e["box"]:
+        _a = e.get("anchor")
+        if (e["xy"] and e["box"]
+                and not (isinstance(_a, dict) and _a.get("measured") is False)):
             mx, my = int(e["xy"][0]), int(e["xy"][1])
             rx = e["box"][0] / 2 + 24      # encase the WHOLE number + padding
             ry = e["box"][1] / 2 + 14
