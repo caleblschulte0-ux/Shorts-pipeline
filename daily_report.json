@@ -3,17 +3,17 @@
     "topic": "My Landlord Invented Damage For My Deposit",
     "title": "My Landlord Invented Damage For My Deposit",
     "format": "reddit",
-    "publish_at": "2026-09-22T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The pictures are generic, loosely matched stock (email clip-art, a medical book under a gavel) held for 10s at a time over blurry gameplay, and the story has no visible payoff.",
-    "elapsed_seconds": 172.3,
+    "publish_at": "2026-09-22T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/AeZ5C1AstxI",
+    "error": null,
+    "elapsed_seconds": 202.1,
     "package_path": "state/trending_packages/20260922/05_landlord-invented-deposit-damage.json",
     "source": "brain",
-    "video_path": "output/daily_20260922-185040_my_landlord_invented_damage_for_my_depos.mp4",
+    "video_path": "output/daily_20260922-193323_my_landlord_invented_damage_for_my_depos.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.6,
+      "duration": 49.467,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,7 +24,46 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.6
+      "loudness_lufs": -23.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
+    "title": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
+    "format": "reddit",
+    "publish_at": "2026-09-23T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: After the Reddit card fades there is nothing but dark Geometry Dash gameplay and sparse captions. No picture ever shows the story's beats, and much of the frame is empty black.",
+    "elapsed_seconds": 150.9,
+    "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
+    "source": "brain",
+    "video_path": "output/daily_20260922-193646_she_mistook_me_for_staff__i__helped__her.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.2
     },
     "qa": {
       "ok": true,
@@ -33,26 +72,38 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The pictures are generic, loosely matched stock (email clip-art, a medical book under a gavel) held for 10s at a time over blurry gameplay, and the story has no visible payoff.",
-      "score": 49
+      "reason": "showrunner BLOCK: After the Reddit card fades there is nothing but dark Geometry Dash gameplay and sparse captions. No picture ever shows the story's beats, and much of the frame is empty black.",
+      "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
-    "title": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
-    "format": "reddit",
-    "publish_at": "2026-09-22T19:00:00Z",
+    "topic": "Mountain lion caught on camera in Tuolumne County - ABC10",
+    "angle": "A massive mountain lion prowls a California highway, sparking wildlife\u2011safety alarms for commuters.",
+    "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The stock photos don't match the story: a paint-store revenge tale is shown with polaroids, a candy kiosk and a fruit stand, and the payoff lands on a black void.",
-    "elapsed_seconds": 127.5,
-    "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
-    "source": "brain",
-    "video_path": "output/daily_20260922-185332_she_mistook_me_for_staff__i__helped__her.mp4",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['mountain lion strutted', 'stared directly at', \"my dad's illegal\", 'escaped into the forest', 'the camera froze']",
+    "elapsed_seconds": 38.9,
+    "title": "My Hike Turned Into a Lion Nightmare",
+    "package_path": "state/trending_packages/20260922-193931_auto_mountain_lion_caught_on_camera_in_tuolum.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Sri Lanka court convicts 15 men over deadly Easter Sunday bombings",
+    "angle": "A landmark verdict brings justice for the 2019 Easter bombings, closing a chapter on Sri Lanka\u2019s deadliest terror attack.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Block. Irrelevant stock photos (cocktails, a ship, a hotel desk, a US law library) sit over a fabricated first-person 'cover-up' story about a real mass-casualty terror attack.",
+    "elapsed_seconds": 407.3,
+    "title": "I Uncovered the Easter Bombing Cover\u2011Up",
+    "package_path": "state/trending_packages/20260922-194010_auto_sri_lanka_court_convicts_15_men_over_dea.json",
+    "video_path": "output/daily_20260922-194010_sri_lanka_court_convicts_15_men_over_dea.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.067,
+      "duration": 48.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,66 +114,70 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.2
+      "loudness_lufs": -13.7
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The stock photos don't match the story: a paint-store revenge tale is shown with polaroids, a candy kiosk and a fruit stand, and the payoff lands on a black void.",
-      "score": 53
+      "reason": "showrunner BLOCK: Block. Irrelevant stock photos (cocktails, a ship, a hotel desk, a US law library) sit over a fabricated first-person 'cover-up' story about a real mass-casualty terror attack.",
+      "score": 26
     },
-    "blocked": true
-  },
-  {
-    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
-    "angle": "Alaska's annual Fat Bear Week pits heavyweight brown bears against each other in a viral showdown that draws millions of viewers.",
-    "publish_at": "2026-09-22T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: [\"my mom's secret\", 'the voting link', 'I saw the bracket', 'the final vote', 'the unexpected winner']",
-    "elapsed_seconds": 37.1,
-    "title": "Family Secrets & Fat Bear Drama",
-    "package_path": "state/trending_packages/20260922-185550_auto_battle_for_heavyweight_crown_begins_as_a.json",
-    "quarantined": true,
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Mountain lion caught on camera in Tuolumne County - ABC10",
-    "angle": "A mountain lion prowls a California highway, captured on dashcam, sparking safety warnings for motorists.",
-    "publish_at": "2026-09-22T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['livestreaming my backyard BBQ', 'camera caught a mountain lion', \"my brother's secret\", 'the fence shivered', \"dad's escaped pet\", 'hidden in his shed']",
-    "elapsed_seconds": 18.1,
-    "title": "Backyard BBQ Turns Into Lion Hunt",
-    "package_path": "state/trending_packages/20260922-185626_auto_mountain_lion_caught_on_camera_in_tuolum.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - cbsnews.com",
-    "angle": "Waymo\u2019s autonomous shuttle weaves through a bustling Denver farmer\u2019s market, prompting debate over robot\u2011car safety in crowds.",
+    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
+    "angle": "Self\u2011driving Waymo taxis weave through a bustling farmer\u2019s market, raising questions about autonomous navigation in crowds.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 3 column 13 (char 81)",
-    "elapsed_seconds": 19.6,
+    "error": "showrunner_block: showrunner BLOCK: Off-topic stock photos (Elmo, a wedding-cake topper, wedding rings, a businessman) sit on top of an incoherent made-up first-person script that never shows the Waymo or the farmers market.",
+    "elapsed_seconds": 376.2,
+    "title": "Self-Driving Car Crashed Into Farmer's Market Chaos",
+    "package_path": "state/trending_packages/20260922-194654_auto_waymo_caught_on_camera_driving_through_f.json",
+    "video_path": "output/daily_20260922-194654_waymo_caught_on_camera_driving_through_f.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.267,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Off-topic stock photos (Elmo, a wedding-cake topper, wedding rings, a businessman) sit on top of an incoherent made-up first-person script that never shows the Waymo or the farmers market.",
+      "score": 22
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Sri Lanka court convicts 15 men over deadly Easter Sunday bombings",
-    "angle": "Sri Lanka\u2019s highest court delivers verdict on the 2019 Easter bombings, sentencing 15 suspects and reigniting calls for justice.",
+    "topic": "Humpback whale mother may have mourned her dead calf for days",
+    "angle": "Scientists document a grieving humpback whale staying beside its dead calf, offering rare insight into marine mammal emotions.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['courtroom was silent', '15 men in orange jumpsuits', 'judge read the verdict', \"brother's name was on the list\", 'real mastermind was never caught', 'hollow victory']",
-    "elapsed_seconds": 25.2,
-    "title": "I Survived the Easter Verdict Nightmare",
-    "package_path": "state/trending_packages/20260922-185703_auto_sri_lanka_court_convicts_15_men_over_dea.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['pretended nothing happened', 'I confronted Mom', 'she whispered about a whale', 'the whole family left', 'I realized the grief was real']",
+    "elapsed_seconds": 29.6,
+    "title": "Mom Buried My Baby's Blanket and Pretended Nothing Happened",
+    "package_path": "state/trending_packages/20260922-195311_auto_humpback_whale_mother_may_have_mourned_h.json",
     "quarantined": true,
     "backfill": true
   }
