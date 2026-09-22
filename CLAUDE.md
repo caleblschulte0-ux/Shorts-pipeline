@@ -473,6 +473,16 @@ three things worth knowing without opening it:
   and `tests/test_backfill.py` fails if it ever does. A replacement the gate
   also refuses stays refused, and a day with nothing fresh to author stays
   honestly short.
+  **A replacement is a reddit_story, and a reddit_story is FICTION on a
+  universal premise — never the news** (2026-09-22: four backfills told
+  "a fabricated first-person 'cousin sold missiles' story laid over a real
+  geopolitical headline", all blocked at 18-22). `shared/script_generator`
+  builds its prompt from the registry's own reddit_story spec, refuses a
+  topic about death, violence, war, crime or politics before a word is
+  written (`unfit_for_fiction`; `_backfill` skips those before a render),
+  and rejects a story that names anything the headline capitalises
+  (`real_entities`). The trend only chooses the setting. Held by
+  `tests/test_a_backfill_story_is_fiction_on_a_universal_premise.py`.
 
   **There is no reserve bank.** `shared/package_buffer.py` +
   `scripts/package_reserve.py` were retired 2026-08-05 on the operator's

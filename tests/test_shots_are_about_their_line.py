@@ -111,7 +111,96 @@ class TheBrainsNoRemovesThePanel(unittest.TestCase):
         run.assert_not_called()
 
 
+class ARejectedPanelGetsOneReplacementRound(unittest.TestCase):
+    """2026-09-22 20:15, the staff story at 65: "after the post card there
+    is not a single story illustration". Dropping the wrong picture opened
+    the next hole. The brain's own better query is searched once through
+    the self-fill lanes, materialised and judged again."""
+
+    def setUp(self):
+        self.td = tempfile.TemporaryDirectory()
+        self.d = Path(self.td.name)
+        self._env = mock.patch.dict("os.environ", {"SHOT_RELEVANCE": "on"})
+        self._env.start()
+        self.pkg = {"title": "t", "slug": "t", "shots": [
+            {"phrase": "walked every room", "query": "apartment", "image_url": "u0"},
+            {"phrase": "the deposit law", "query": "gavel", "image_url": "u1",
+             "media_sha256": "abc", "media_bytes": 5},
+            {"phrase": "a cracked mirror", "query": "mirror", "image_url": "u2"}]}
+        self.dropped = [{"index": 1, "why": "a gavel on a medicine book",
+                         "better_query": "security deposit form"}]
+        self.made = []
+
+    def tearDown(self):
+        self._env.stop()
+        self.td.cleanup()
+
+    def materialise(self, i, url):
+        p = self.d / f"panel_{i}.jpg"
+        p.write_bytes(b"x")
+        self.made.append((i, url))
+        return p
+
+    def _round(self, answer, fill="https://img/deposit-form.jpg"):
+        with mock.patch("scripts.exchange_phase_b.self_fill",
+                        return_value=fill) as sf, \
+                mock.patch.object(SR.shutil, "which", return_value="/usr/bin/claude"), \
+                mock.patch.object(SR.subprocess, "run", return_value=_proc(answer)):
+            kept, again = SR.replace_dropped(self.pkg, self.dropped,
+                                             self.materialise, title="t")
+        return kept, again, sf
+
+    def test_the_brains_query_is_searched_materialised_and_judged_again(self):
+        answer = json.dumps({"shots": [{"index": 1, "depicts": True, "why": "a form"}]})
+        kept, again, sf = self._round(answer)
+        self.assertEqual(sorted(kept), [1])
+        self.assertEqual(again, [])
+        sf.assert_called_once_with(self.pkg, 1)
+        shot = self.pkg["shots"][1]
+        self.assertEqual(shot["query"], "security deposit form")
+        self.assertEqual(shot["image_url"], "https://img/deposit-form.jpg")
+        self.assertNotIn("media_sha256", shot)       # a new picture, no old attestation
+        self.assertEqual(self.made, [(1, "https://img/deposit-form.jpg")])
+
+    def test_a_second_no_keeps_the_gap(self):
+        answer = json.dumps({"shots": [{"index": 1, "depicts": False, "why": "still a gavel"}]})
+        kept, again, _ = self._round(answer)
+        self.assertEqual(kept, {})
+        self.assertEqual([d["index"] for d in again], [1])
+        self.assertNotIn("image_url", self.pkg["shots"][1])
+
+    def test_no_search_hit_restores_the_shot_and_leaves_the_gap(self):
+        kept, again, _ = self._round("{}", fill=None)
+        self.assertEqual((kept, again), ({}, []))
+        self.assertEqual(self.pkg["shots"][1]["query"], "gavel")
+        self.assertEqual(self.pkg["shots"][1]["media_sha256"], "abc")
+        self.assertEqual(self.made, [])
+
+    def test_no_better_query_means_no_search(self):
+        with mock.patch("scripts.exchange_phase_b.self_fill") as sf:
+            kept, again = SR.replace_dropped(
+                self.pkg, [{"index": 1, "why": "x", "better_query": ""}], self.materialise)
+        sf.assert_not_called()
+        self.assertEqual((kept, again), ({}, []))
+
+    def test_the_first_verdict_carries_the_better_query(self):
+        answer = json.dumps({"shots": [
+            {"index": 1, "depicts": False, "why": "gavel", "better_query": "deposit form"}]})
+        with mock.patch.object(SR.shutil, "which", return_value="/usr/bin/claude"), \
+                mock.patch.object(SR.subprocess, "run", return_value=_proc(answer)):
+            _, dropped = SR.filter_panels({1: self.d / "p.jpg"}, self.pkg["shots"])
+        self.assertEqual(dropped[0]["better_query"], "deposit form")
+        self.assertIn("better_query", SR._PROMPT)
+
+
 class TheRendererRoutesItsPanelsThroughIt(unittest.TestCase):
+    def test_a_dropped_panel_is_replaced_before_the_render(self):
+        src = (ROOT / "make_reddit_story.py").read_text()
+        body = src[src.index("def _shot_panels("):src.index("def _shot_windows(")]
+        self.assertLess(body.index("filter_panels"), body.index("replace_dropped"))
+        self.assertIn("_rel.replace_dropped(", body)
+        self.assertIn("out.update(replaced)", body)
+
     def test_shot_panels_calls_the_gate_after_materialising(self):
         src = (ROOT / "make_reddit_story.py").read_text()
         i = src.index("def _shot_panels(")
