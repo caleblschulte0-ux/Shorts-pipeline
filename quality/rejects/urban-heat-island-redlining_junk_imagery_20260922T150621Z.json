@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T150621Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg3:end and seg4:start-end: the unit grid for degrees of heat is drawn as GRADUATION CAPS (dark mortarboards with gold tassels) - an icon with nothing to do with heat, pavement or redlining, repeated 20+ times under 'each = 0.3'.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg4:start/seg4:mid/seg4:end: a 21-icon isotype grid where every unit is a graduation cap with a gold tassel, captioned 'each = 0.3', over a title clipped to 'rmerly redlined neighborhoods'; the closing speech bubble sits on top of that title.",
+  "root_cause": "The unit-icon lookup fell through to a default glyph (mortarboard) because no icon is registered for heat/redlining/temperature, and the scene title is laid out without measuring against the frame width, so it overflows the left edge.",
+  "repair_goal": "Redraw the payoff grid out of the subject: each unit = 0.3 degrees rendered as a heat mark made of the story's own material (a paved block tile / a tree-less lot square warming from neutral to accent), never a mortarboard; fit the scene title inside the frame with the full word 'Formerly' visible and move the closing bubble clear of it."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

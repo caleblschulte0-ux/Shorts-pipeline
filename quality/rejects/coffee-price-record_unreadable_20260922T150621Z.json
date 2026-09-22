@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T150621Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Three separate collisions: at hook@0.3 (t=0.30s) the caption 'Your coffee' is printed across the 2019 row and hides its $1.1 value; at seg1:mid (t=11.61s) the line 'anywhere between $1.1 and $4.4' has its final '$4.4' sitting underneath the mascot's body; and at seg4:start/seg4:end (t=46",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_and_non_explanatory_visual",
+  "visible_evidence": "At seg1:mid and seg1:end (t=11.61s/16.26s) a pink polyline zigzags in mid-air with no axis, baseline or anchor to anything below it, while a separate lozenge with a single orange dot sits under it labelled '$1.1' and '$4.4'; the caption 'anywhere between $1.1 and $4.4' has its last value covered by the mascot standing on it, and the bottom third of the frame is empty. Nothing in the shot shows 'a series of shocks' \u2014 the dot just sits in a pill.",
+  "root_cause": "A generic range/dot machine plus a free-floating sparkline were chosen for a claim about volatility, so the picture asserts a span instead of demonstrating shocks; the mascot was placed at a fixed right-hand spot that lands directly on the value text.",
+  "repair_goal": "Replace the pill-and-dot with a subject-made shock ladder \u2014 the price as a coffee level that jolts upward once per shock and holds, each jolt annotated with its year \u2014 anchor the line to a visible baseline that fills the lower third, and move the mascot clear of the caption band so no value is ever behind him."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

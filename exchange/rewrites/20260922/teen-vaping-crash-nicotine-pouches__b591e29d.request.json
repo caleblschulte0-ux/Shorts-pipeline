@@ -1,0 +1,168 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "teen-vaping-crash-nicotine-pouches__b591e29d",
+ "filed": "2026-09-22T15:06:18Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "current": {
+  "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+  "hook": "The vaping crisis didn't end. It just moved.",
+  "closing": "One nicotine habit down, a stealthier one clocked in.",
+  "question": "Do you know anyone who vapes or uses pouches? Tell me below.",
+  "segments": [
+   {
+    "topic": "teen vaping rates over time",
+    "say": "In 2011, just 1.5 percent of high schoolers vaped. By 2017 it was 11.7 percent. By 2019, 27.5 percent -- more than one in four teenagers using e-cigarettes regularly."
+   },
+   {
+    "topic": "the vaping crackdown",
+    "say": "Then came flavor bans and FDA crackdowns on Juul. Vaping crashed from 27.5 percent at its peak to just 7.8 percent by 2024 -- the lowest in a decade."
+   },
+   {
+    "topic": "which nicotine product teens use now",
+    "say": "But e-cigarettes are still nicotine's top seller among teens -- now trailed by nicotine pouches at 1.8 percent, barely regulated. Same habit, quieter: tucked in a lip instead of a cloud."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "teen vaping rates over time",
+   "say": "In 2011, just 1.5 percent of high schoolers vaped. By 2017 it was 11.7 percent. By 2019, 27.5 percent -- more than one in four teenagers using e-cigarettes regularly.",
+   "role": "1 · THE RISE",
+   "data": {
+    "file": "teen_vaping_rate_trend.json",
+    "unit": "percent",
+    "title": "High school students currently using e-cigarettes (percent)",
+    "points": [
+     {
+      "label": "2011",
+      "value": 1.5,
+      "period": "2011"
+     },
+     {
+      "label": "2017",
+      "value": 11.7,
+      "period": "2017"
+     },
+     {
+      "label": "2018",
+      "value": 20.8,
+      "period": "2018"
+     },
+     {
+      "label": "2019",
+      "value": 27.5,
+      "period": "2019"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "the vaping crackdown",
+   "say": "Then came flavor bans and FDA crackdowns on Juul. Vaping crashed from 27.5 percent at its peak to just 7.8 percent by 2024 -- the lowest in a decade.",
+   "role": "2 · THE CRACKDOWN",
+   "data": {
+    "file": "teen_vaping_peak_vs_2024.json",
+    "unit": "percent",
+    "title": "High school e-cigarette use: 2019 peak vs. 2024",
+    "points": [
+     {
+      "label": "2019 peak",
+      "value": 27.5
+     },
+     {
+      "label": "2024",
+      "value": 7.8
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "which nicotine product teens use now",
+   "say": "But e-cigarettes are still nicotine's top seller among teens -- now trailed by nicotine pouches at 1.8 percent, barely regulated. Same habit, quieter: tucked in a lip instead of a cloud.",
+   "role": "3 · THE NEW DOOR",
+   "data": {
+    "file": "youth_nicotine_products_2024.json",
+    "unit": "percent",
+    "title": "Current tobacco/nicotine product use among high school students, by product (2024)",
+    "points": [
+     {
+      "label": "E-cigarettes",
+      "value": 7.8
+     },
+     {
+      "label": "Nicotine pouches",
+      "value": 1.8
+     },
+     {
+      "label": "Cigarettes",
+      "value": 1.7
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars."
+ ],
+ "reasons": [
+  "judge: Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars."
+ ],
+ "judge": {
+  "ts": "2026-09-22T14:56:46+00:00",
+  "score": 34,
+  "one_line": "Five beats, four of them charts and one an emoji waffle — the subject is never the picture, and the mascot just perches on the bars.",
+  "problems": [
+   "Hook (hook@0.3 t=0.30s to hook@2.2 t=2.20s) is a slow bar-chart build on a near-black frame with word-by-word title text — nothing happens in the first second.",
+   "seg2 (t=24.71s, t=28.32s) uses glossy school-building emoji clip-art as its unit, one tile rendering dark and unfilled, against a flat vector look.",
+   "seg2:mid (t=24.71s): the mascot covers the last letter of the title, leaving 'the vaping crackdow'.",
+   "seg3:end (t=41.10s): a single small filmstrip bar in the lower-left with the entire upper frame empty; the '7.8%' inside it is unreadably small.",
+   "seg3:mid (t=37.23s): the '7.8%' value label is printed over the mascot's body.",
+   "Data never performs a bit — he waves from the top of a bar in seg0:end (t=2.87s), seg1:start (t=7.06s), seg2:start (t=21.10s) and seg4:end (t=49.35s) with no action tied to the stat."
+  ],
+  "fixes": [
+   "Open on the drop, not the climb: start at the 27.5% mass already on screen and collapse it to 7.8% inside the first second, with Data physically riding it down.",
+   "Rebuild seg2 as a form made of the subject — 100 teen silhouettes in a classroom, 27.5 exhaling vapour, draining to 7.8 — and delete the emoji asset path from this scene.",
+   "Merge seg0 and seg1 into one continuous rise so the same numbers are not charted twice; use the reclaimed time for the pouches beat.",
+   "Give seg3/seg4 a depiction made of nicotine, not filmstrips: a lip-tucked pouch and a vape cloud whose volumes are the 1.8 and 7.8, sharing one scale.",
+   "Reserve a title-safe band and keep the mascot out of it; move value labels off the mascot's silhouette (seg3:mid) and set a minimum on-screen size for any value text (seg3:end).",
+   "Fill the frame in seg3:end — the composition must use the full vertical, no single small element in a corner."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/teen-vaping-crash-nicotine-pouches__b591e29d.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

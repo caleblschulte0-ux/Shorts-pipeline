@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T150621Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:mid (t=24.71s) the title 'the vaping crackdow[n]' has its last letter covered by the mascot, and the '7.8%' value at seg3:mid (t=37.23s) is printed on top of the mascot's body; seg3:end (t=41.10s) '7.8%' is a few pixels tall inside the tiny filmstrip.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:mid (t=24.71s) and seg2:end (t=28.32s) show a waffle grid of glossy yellow school-building emoji with 'each = 2%', one of them rendering as an unfilled dark cutout; the mascot sits inside the grid covering the final letter of the title, and the bottom 40% of the frame is empty.",
+  "root_cause": "The percent-of-teens statistic was routed to a generic icon-waffle machine with an emoji asset dropped in as the unit glyph, so a rate of teenagers is counted out in buildings \u2014 a stock pictogram with a topical icon swapped in, not a form made of the subject \u2014 and the icon set does not match the flat look, producing clip-art contrast and one broken tile.",
+  "repair_goal": "Replace the emoji waffle with a depiction made of the subject: 100 teen figures (or a single classroom of silhouettes) with 27.5 of them exhaling a vapour plume and then draining to 7.8, drawn in the channel palette with no raster emoji; fill the frame vertically and keep the title clear of the mascot."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

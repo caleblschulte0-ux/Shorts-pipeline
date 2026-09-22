@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T150621Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start/mid/end print 'Classified as harmful invas' cut off by the right frame edge, and at hook@0.3 the caption 'That's more' is stamped straight over the 1970 row label and its $1.6B value.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg3:start, seg3:mid and seg3:end the right-hand label runs off the frame as 'Classified as harmful invas' with the final word amputated by the edge, and at seg3:start the '3.5K' chip sits directly on top of that label's first line while the mascot straddles the top of the 37K circle.",
+  "root_cause": "The bubble-comparison composer places its label anchored at the small circle's centre and lets the string extend right without measuring the text width against the safe area, so a long caption overruns the canvas instead of wrapping or re-anchoring left.",
+  "repair_goal": "Measure the label's rendered width and lay it out inside the safe margin - wrap 'Classified as harmful invasive' to two lines or left-anchor it beside the small circle - and offset the value chip so it never overprints the label; every word must read whole at arm's length."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

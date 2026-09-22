@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260922T150621Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end is a near-black frame with only a thin title, a hairline ruler, one thin pink pole and a tiny mascot -- the top third and bottom quarter are empty gradient; the same waste persists through seg4:start and payoff@-0.4 where a huge gap sits between the speech bubble and the ruler.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "chart_fallback_with_overprinted_text",
+  "visible_evidence": "hook@0.3 through seg1:start is a slow horizontal bar-chart build ('F1 pit stop time', rows 1950s/Refueling era/First sub-2s/Current record) whose bars are near-invisible slate-on-navy; the giant caption 'A pit' / 'stop used' / 'to take' is printed on top of the 1950s row and its bar, the value column (60, 9, 1.9, 1.8) fades in late, and at seg1:start Data parks on top of the '60'.",
+  "root_cause": "The relationship classifier fell through to the chart fallback for the headline 'a minute became 1.8 seconds' collapse, and the caption band is composited over the plot area instead of in reserved space, so burned text and the mascot both land on live marks.",
+  "repair_goal": "Replace the opening bar chart with a bespoke made-of-the-subject mechanic for the 60s-to-1.8s collapse -- e.g. a pit box whose lollipop drops and a crew swarm that clears in the time it takes one 1950s mechanic to lift one wheel, the clock draining as the subject's own action -- and reserve the caption band + a mascot exclusion zone so no burned text or limb ever overlaps a row label, a bar or a value."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
