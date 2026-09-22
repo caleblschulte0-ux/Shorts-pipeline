@@ -1,0 +1,81 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "mistaken-for-staff-faucet-clearance",
+  "title": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
+  "hashtags": [
+    "idontworkherelady",
+    "entitled",
+    "retailstory",
+    "hardwarestore",
+    "reddit",
+    "redditstories",
+    "karma",
+    "customerservice",
+    "pettyrevenge",
+    "storytime",
+    "funny",
+    "satisfying",
+    "truestory",
+    "shopping",
+    "retail"
+  ],
+  "script": "I was restocking my own cart at the hardware store when a woman grabbed my arm and demanded I find her a specific faucet in 'the employee discount color.' I don't work there. I've never worked there. But she was already mid-rant about customer service, so I decided to help. I walked her straight to the most expensive faucet in the store, told her with a completely straight face that it was on 'manager clearance' if she asked for it by name at the register, and wished her luck. She marched up, demanded the discount loudly, by name, in front of an actual employee, who had no idea what she was talking about. The manager got called. The real story came out fast, security footage of me in my own clothes included. She stormed out without her faucet, and I finished picking my paint samples in peace.",
+  "shots": [
+    {
+      "phrase": "restocking my own cart at the hardware store",
+      "query": "hardware store aisle"
+    },
+    {
+      "phrase": "grabbed my arm and demanded I find her a specific faucet",
+      "query": "bathroom faucet display"
+    },
+    {
+      "phrase": "I don't work there.",
+      "query": "confused shrug person"
+    },
+    {
+      "phrase": "the most expensive faucet in the store",
+      "query": "expensive faucet fixture"
+    },
+    {
+      "phrase": "manager clearance",
+      "query": "clearance sign discount"
+    },
+    {
+      "phrase": "She marched up, demanded the discount loudly",
+      "query": "customer arguing register"
+    },
+    {
+      "phrase": "The manager got called.",
+      "query": "store manager walking"
+    },
+    {
+      "phrase": "She stormed out without her faucet",
+      "query": "person storming out store"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "I don't work there.",
+      "text": "NOT STAFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "manager clearance",
+      "text": "FAKE CLEARANCE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "The manager got called.",
+      "text": "MANAGER CALLED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "She stormed out without her faucet",
+      "text": "NO FAUCET",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

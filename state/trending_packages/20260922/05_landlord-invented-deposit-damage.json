@@ -1,0 +1,81 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "landlord-invented-deposit-damage",
+  "title": "My Landlord Invented Damage For My Deposit",
+  "hashtags": [
+    "prorevenge",
+    "landlord",
+    "securitydeposit",
+    "tenantrights",
+    "reddit",
+    "redditstories",
+    "renting",
+    "smallclaimscourt",
+    "justice",
+    "karma",
+    "tenant",
+    "apartment",
+    "storytime",
+    "satisfying",
+    "revenge"
+  ],
+  "script": "I moved out of that apartment convinced I'd never see my deposit again. The landlord had a reputation for finding damage that didn't exist, so before I left I walked every room on video, timestamp running, narrating each wall and outlet like a lunatic. Two weeks later his email landed: eleven hundred dollars in 'damage,' including a cracked bathroom mirror I had never even touched. I didn't argue. I replied with the walkthrough video, the move-in inspection report he'd signed himself, and the file metadata proving both were shot before I ever handed back the keys. He tried to claim my footage was doctored. Small claims court did not agree. The judge read the state's security deposit law out loud, the part about landlords who withhold in bad faith owing double, and he walked out owing me my deposit back twice over, for damage that had never existed.",
+  "shots": [
+    {
+      "phrase": "I moved out of that apartment",
+      "query": "moving boxes apartment"
+    },
+    {
+      "phrase": "I walked every room on video, timestamp running",
+      "query": "phone recording apartment"
+    },
+    {
+      "phrase": "his email landed: eleven hundred dollars in 'damage,'",
+      "query": "laptop email notification"
+    },
+    {
+      "phrase": "a cracked bathroom mirror",
+      "query": "cracked bathroom mirror"
+    },
+    {
+      "phrase": "the move-in inspection report he'd signed himself",
+      "query": "signed inspection paperwork"
+    },
+    {
+      "phrase": "He tried to claim my footage was doctored.",
+      "query": "video editing timeline"
+    },
+    {
+      "phrase": "Small claims court did not agree.",
+      "query": "courtroom gavel bench"
+    },
+    {
+      "phrase": "owing me my deposit back twice over",
+      "query": "stack of cash"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "The landlord had a reputation for finding damage that didn't exist",
+      "text": "SHADY LANDLORD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "eleven hundred dollars in 'damage,'",
+      "text": "$1,100 'DAMAGE'",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "He tried to claim my footage was doctored.",
+      "text": "CALLED IT FAKE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "owing double",
+      "text": "PAY DOUBLE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "tense",
+  "bottom_theme": "auto"
+}

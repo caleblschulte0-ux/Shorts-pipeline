@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "china-passed-japan-vehicle-exports",
+  "title": "China Passed Japan In Vehicle Exports",
+  "hook": "China Out-Exported Japan",
+  "y_label": "Vehicles exported per year (millions)",
+  "duration": 13,
+  "source": "China Association of Automobile Manufacturers (CAAM) and Japan Automobile Manufacturers Association (JAMA) annual export data, 2015-2023; China overtook Japan as the world's top vehicle exporter in 2023 (CAAM: 4.91M vs JAMA: 4.42M).",
+  "years": [
+    2015,
+    2018,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#e74c3c",
+      "icon": "CN",
+      "values": [
+        0.72,
+        1.04,
+        1.06,
+        2.02,
+        3.11,
+        4.91
+      ]
+    },
+    {
+      "name": "Japan",
+      "color": "#4a90e2",
+      "icon": "JP",
+      "values": [
+        4.46,
+        4.82,
+        3.75,
+        3.82,
+        3.81,
+        4.42
+      ]
+    }
+  ],
+  "hashtags": [
+    "chinacars",
+    "vehicleexports",
+    "japanauto",
+    "caam",
+    "jama",
+    "chinamanufacturing",
+    "autoindustry",
+    "globaltrade",
+    "manufacturing",
+    "exports",
+    "china",
+    "japan",
+    "cars",
+    "economy",
+    "worldtrade"
+  ],
+  "music_vibe": "tense",
+  "bottom_theme": "auto"
+}

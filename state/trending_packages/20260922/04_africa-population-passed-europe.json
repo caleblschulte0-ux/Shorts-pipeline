@@ -1,0 +1,65 @@
+{
+  "format": "graph_race",
+  "slug": "africa-population-passed-europe",
+  "title": "Africa's Population Passed Europe's",
+  "hook": "Africa Passed Europe In People",
+  "y_label": "Population (millions)",
+  "duration": 13,
+  "source": "UN World Population Prospects (2024 revision); Africa's population overtook Europe's around 1995 (~720M vs ~728M) and has kept growing while Europe's has stayed roughly flat.",
+  "years": [
+    1950,
+    1970,
+    1990,
+    2000,
+    2010,
+    2020,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Africa",
+      "color": "#f5c518",
+      "values": [
+        225,
+        366,
+        630,
+        811,
+        1039,
+        1341,
+        1590
+      ]
+    },
+    {
+      "name": "Europe",
+      "color": "#4a90e2",
+      "values": [
+        546,
+        657,
+        721,
+        726,
+        735,
+        750,
+        745
+      ]
+    }
+  ],
+  "hashtags": [
+    "africa",
+    "europe",
+    "population",
+    "demographics",
+    "unitednations",
+    "worldpopulation",
+    "globalpopulation",
+    "geopolitics",
+    "worldnews",
+    "statistics",
+    "continent",
+    "economy",
+    "migration",
+    "future",
+    "globalgrowth"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
