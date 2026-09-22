@@ -5603,7 +5603,15 @@ def _as_anchor(an):
         return {"value": float(value),
                 "cx": float(cx) if cx is not None else 0.0,
                 "cy": float(cy) if cy is not None else 0.0,
-                "w": 220.0, "h": 90.0}
+                "w": 220.0, "h": 90.0,
+                # A machine returns a point ON ITS MARK (the tape's end, a
+                # tower's roof), not the box of the number it printed, and
+                # 220x90 is a guess. A ring drawn round a guess lands across
+                # whatever label is near: "a cyan ellipse is drawn over
+                # '88.7%'", "over '699,173'", "over the 'By sea 80%' text"
+                # (four stories, 2026-09-22). `_plan_events` rings only a
+                # MEASURED number.
+                "measured": False}
     except Exception:                      # noqa: BLE001
         return None
 
