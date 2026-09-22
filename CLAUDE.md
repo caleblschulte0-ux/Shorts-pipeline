@@ -263,6 +263,13 @@ and the takeover went on asking for a retired format with everything green.
   hangs off a manual dispatch a schedule cannot supply. This was found live
   on 2026-08-06 — long-form was three days from uploading a video the
   2026-08-05 ruling had switched off everywhere except that one file.
+- **OpenRangeInteractive (curiosity) publishes DOCUMENTARIES** (2026-09-22,
+  `docs/ORI_DOCUMENTARY.md`): 8-10 minute narrated films over real stock
+  footage, 3/week from `curiosity.yml`'s own cron, fail-closed behind the
+  showrunner. Scripts live in `data_learning/ori_episodes/`, written by
+  `scripts/ori_author.py`; `scripts/post_ori.py` publishes. The registry
+  entry stays disabled on purpose (it describes the retired pro queue) —
+  the path is in `ON_BUT_GATED`, like long-form.
 
 Trending's formats are `reddit_story` (gameplay + post card + TTS) and
 `graph_race` (animated chart); `text_card` is retired. **Those are the

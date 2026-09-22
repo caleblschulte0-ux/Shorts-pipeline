@@ -51,9 +51,7 @@ SCHEDULED_PUBLISHERS = ["daily.yml", "explainer.yml", "third.yml",
 #: Workflows that publish a channel/format the operator has switched off.
 #: To re-enable one: turn it on in the registry (or add the format), then
 #: take it out of this list in the SAME change — never one without the other.
-OFF_BY_RULING = {
-    "curiosity.yml": "curiosity is disabled in config/channel_registry.json",
-}
+OFF_BY_RULING: dict = {}
 
 #: Paths that publish on a timer BECAUSE the operator turned them on, and
 #: therefore owe the gate instead of a dry-run guard. `longform.yml` moved
@@ -69,6 +67,16 @@ OFF_BY_RULING = {
 ON_BUT_GATED = {
     "longform.yml": "long-form publishes weekly, fail-closed behind the "
                     "showrunner (2026-08-25 ruling)",
+    # Operator, 2026-09-22, of the OpenRangeInteractive long-form channel:
+    # "I want you to be producing videos reliably that work and look good."
+    # It publishes three documentaries a week from its OWN cron, outside the
+    # registry exactly as long-form does: its registry entry still describes
+    # the retired pro-producer queue and stays disabled so the Shorts
+    # machinery (Phase A/B plans, the daily alarm, ChatGPT stocking) does
+    # not start supervising a channel it has no part in. What makes a cron
+    # upload acceptable is the gate, held below.
+    "curiosity.yml": "ORI documentaries publish 3/week, fail-closed behind "
+                     "the showrunner (2026-09-22 ruling)",
 }
 
 
@@ -128,11 +136,26 @@ class TestAnOffChannelHasNoPublishingCron(unittest.TestCase):
                          "long-form is no longer a concatenation of Shorts")
 
     def test_curiosity_cron_cannot_set_the_publish_flag(self):
+        """The retired pro/legacy paths still need the explicit dispatch
+        flag; only the documentary path publishes on the cron."""
         src = body("curiosity.yml")
         self.assertIn("CURIOSITY_PUBLISH_ENABLED", src)
         self.assertIn("inputs.enable_publish", src,
                       "publishing must hang off a dispatch input a cron "
                       "cannot supply")
+
+    def test_ori_documentary_publishes_only_behind_the_fail_closed_gate(self):
+        src = body("curiosity.yml")
+        self.assertRegex(src, r"no CLAUDE_CODE_OAUTH_TOKEN and no GEMINI_API_KEY",
+                         "the documentary job must preflight the judge")
+        self.assertIn("scripts/post_ori.py", src)
+        pub = (ROOT / "scripts" / "post_ori.py").read_text()
+        self.assertLess(pub.index("showrunner_gate.run("),
+                        pub.index("up.upload("),
+                        "the gate must run BEFORE the upload call")
+        self.assertIn("will_upload=will_upload", pub)
+        self.assertLess(pub.index('reasons.append("showrunner: "'),
+                        pub.index("up.upload("))
 
 
 class TestTheRegistryAndTheWorkflowsAgree(unittest.TestCase):

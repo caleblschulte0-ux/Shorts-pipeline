@@ -64,6 +64,8 @@ DISPATCH_INPUTS = {
     "explainer.yml": {"mode": "schedule"},
     "deadman.yml": {"dry_run": "false"},
     "exchange_phase_b.yml": {"backstop": "true"},
+    # a missed documentary slot is the cron path: render, judge, publish
+    "curiosity.yml": {"mode": "documentary", "enable_publish": "true"},
 }
 
 #: Crons the clock deliberately leaves to GitHub, each with its reason.

@@ -151,6 +151,21 @@ def _format_directive(ctx: dict) -> str:
             "here, mark decorative_mascot present. If none appears, grade "
             "mascot=4 for correct channel-brand separation. A one-series "
             "growth chart has a scale payoff, not a competitive winner.")
+    if fmt == "documentary":
+        return (
+            "FORMAT = DOCUMENTARY (OpenRangeInteractive long-form: 8-10 "
+            "minutes, 16:9, narration over REAL stock footage with chapter "
+            "cards and on-screen stat callouts). There is no mascot in this "
+            "format: if none appears, grade mascot=4 for correct channel "
+            "separation; if one appears, mark decorative_mascot present. "
+            "Grade data_demo by whether each shot SHOWS what the narration "
+            "is saying at that moment (the script is in the context) and "
+            "whether the stat callouts land on the numbers being said. "
+            "junk_imagery is present if footage contradicts or is unrelated "
+            "to the line it plays under, or the same clip repeats. A chapter "
+            "card (chapter number + title over dimmed footage) is a section "
+            "break, not a bare_number_card. dead_air, empty_void and "
+            "unreadable apply exactly as written.")
     return "Apply the general director rubric exactly as written."
 
 
