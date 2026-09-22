@@ -316,6 +316,30 @@ class TheTipLabelClearsTheMarker(unittest.TestCase):
         self.assertIn("off = (_dot_r + 8) if art is None", blk)
 
 
+class TheHookCardIsReadableAndOffTheAxis(unittest.TestCase):
+    """"the hook card 'Tesla Out-Valued Toyota' sits on top of the y-axis
+    tick labels and the plot gridlines, then fades through a dark brown
+    that is unreadable on the black ground" — auto-fail `unreadable`,
+    2026-09-22. Full ink until a short cut; fitted to and centred on the
+    axes box so it cannot reach the tick labels."""
+
+    def test_full_ink_then_a_short_cut_not_a_long_fade(self):
+        src = (ROOT / "engines" / "chart_race.py").read_text()
+        i = src.index("if hook and f < HOOK_S * fps:")
+        blk = src[i:i + 4000]
+        self.assertNotIn("alpha = max(0.0, 1.0 - f / (HOOK_S * fps))", blk)
+        self.assertIn("alpha = 1.0\n", blk)
+        self.assertNotIn("_left / 0.25", blk)
+
+    def test_it_is_fitted_to_and_centred_on_the_axes(self):
+        src = (ROOT / "engines" / "chart_race.py").read_text()
+        i = src.index("if hook and f < HOOK_S * fps:")
+        blk = src[i:i + 4000]
+        self.assertIn("_text_px(fig, hook, _hsize) > _bb.width * 0.86", blk)
+        self.assertIn("_hx = (_bb.x0 + _bb.x1) / 2.0 / W", blk)
+        self.assertIn("fig.text(_hx, _hy, hook", blk)
+
+
 if __name__ == "__main__":
     unittest.main()
 

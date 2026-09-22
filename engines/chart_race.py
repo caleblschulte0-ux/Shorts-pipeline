@@ -962,11 +962,31 @@ def render(spec: dict, out: str | Path, *,
                 # the plot has nothing in it by construction, every frame.
                 # Anchored just under the axes top, the card clears every
                 # label instead of hoping to miss them.
-                alpha = max(0.0, 1.0 - f / (HOOK_S * fps))
+                # ...AT FULL INK, CUT NOT FADED, AND NO WIDER THAN THE PLOT.
+                #
+                # A linear fade over the whole window spent most of it in
+                # the dark browns between gold and black — "the hook card
+                # 'Tesla Out-Valued Toyota' sits on top of the y-axis tick
+                # labels and the plot gridlines, then fades through a dark
+                # brown that is unreadable on the black ground" (auto-fail
+                # `unreadable`, 2026-09-22). The card now holds full contrast
+                # and cuts out at the end of its window; and it is fitted to the
+                # AXES box and centred on it, so it never reaches the tick
+                # labels to the left of the plot however long the line runs.
                 _bb = ax.get_window_extent()
+                # A HARD CUT. Even a quarter-second tail spends frames in
+                # the dimmed gold the judge read as unreadable; the card
+                # is either at full ink or gone.
+                alpha = 1.0
                 _hy = _bb.y1 / H - 0.030
-                fig.text(0.5, _hy, hook, color="#f5c518", ha="center",
-                         va="center", fontproperties=hook_font, alpha=alpha,
+                _hx = (_bb.x0 + _bb.x1) / 2.0 / W
+                _hsize = 54
+                while _hsize > 30 and _text_px(fig, hook, _hsize) > _bb.width * 0.86:
+                    _hsize -= 2
+                _hfont = (fm.FontProperties(fname=_FONT, size=_hsize) if have_font
+                          else fm.FontProperties(size=_hsize, weight="bold"))
+                fig.text(_hx, _hy, hook, color="#f5c518", ha="center",
+                         va="center", fontproperties=_hfont, alpha=alpha,
                          bbox=dict(boxstyle="round,pad=0.45",
                                    facecolor="#000000",
                                    edgecolor="#f5c518",

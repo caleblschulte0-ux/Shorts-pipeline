@@ -174,9 +174,17 @@ def _format_topics(topics: list[Topic], *, max_headline_chars: int = 140) -> str
 # Hard ceiling on how many candidates we serialize into the ranker prompt.
 # A busy news day produced 542 candidates and the single ranking request hit
 # HTTP 413 (Payload Too Large), which crashed the whole run and shipped zero
-# videos. ~100 candidates is the normal load; 160 keeps the payload well under
-# the limit with headroom.
-MAX_RANK_CANDIDATES = 160
+# videos. 160 was the cap for llama-3.3-70b; on 2026-09-22 the first ranking
+# request on its replacement `openai/gpt-oss-120b` 413'd AT 160 (the free
+# tier's per-request token limit is smaller), every other backend was down
+# or rate-limited, and the backfill went ahead "using unranked candidates" —
+# it authored 'msft', 'pltr stock', 'schd' and 'sp500' off the raw Google
+# Trends feed, and the judge blocked all four at 22. The ranker only has to
+# return five picks; sixty quirky-first candidates is plenty. And a 413 is
+# retried with half the pool (`rank`), so a wider prompt can never again be
+# the reason the day ships tickers.
+MAX_RANK_CANDIDATES = 60
+MIN_RANK_CANDIDATES = 20
 
 # Cheap local signal used ONLY to decide which candidates survive the cap —
 # floats the channel's high-engagement animal/quirky bucket to the front so a
@@ -218,7 +226,22 @@ def rank(topics: list[Topic], *, top_k: int = 5, backend: str | None = None,
         half_k=half_k, other_k=other_k,
         topics_block=_format_topics(topics),
     )
-    raw = _call_llm(RANKER_SYSTEM, user, backend=backend, model=model)
+    while True:
+        try:
+            raw = _call_llm(RANKER_SYSTEM, user, backend=backend, model=model)
+            break
+        except Exception as e:  # noqa: BLE001
+            # A request-size refusal (HTTP 413) is OURS to fix, not the
+            # backend's: halve the pool and ask again, down to a floor.
+            if "413" in str(e) and len(topics) > MIN_RANK_CANDIDATES:
+                topics = topics[:max(MIN_RANK_CANDIDATES, len(topics) // 2)]
+                print(f"[rank] 413 from the ranker — retrying with "
+                      f"{len(topics)} candidates", flush=True)
+                user = RANKER_USER_TEMPLATE.format(
+                    n=len(topics), top_k=top_k, half_k=half_k, other_k=other_k,
+                    topics_block=_format_topics(topics))
+                continue
+            raise
     # _call_llm returns the raw string content. Strip fences just in
     # case (some backends ignore JSON-mode).
     raw = raw.strip()

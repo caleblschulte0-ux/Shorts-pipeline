@@ -269,5 +269,51 @@ class TestThereIsNoReserveBank(unittest.TestCase):
                       "_backfill exists but main() never calls it")
 
 
+class TheRankerNeverShipsTickersBecauseItsPromptWasTooWide(unittest.TestCase):
+    """2026-09-22: the first ranking request on `openai/gpt-oss-120b` 413'd
+    at 160 candidates, every other backend was down, and the backfill
+    authored 'msft', 'pltr stock', 'schd' and 'sp500' off the raw feed —
+    all four blocked at 22. The pool is 60 now, and a 413 is retried with
+    half the pool before any fallback is even considered."""
+
+    def _topics(self, n):
+        from scripts.discover_topic import Topic
+        return [Topic(query=f"topic number {i}", traffic=i, headlines=[f"h{i}"])
+                for i in range(n)]
+
+    def test_the_pool_fits_the_free_tier(self):
+        from scripts import rank_topics as R
+        self.assertLessEqual(R.MAX_RANK_CANDIDATES, 60)
+        self.assertGreaterEqual(R.MIN_RANK_CANDIDATES, 10)
+
+    def test_a_413_is_retried_with_half_the_pool(self):
+        from unittest import mock
+        from scripts import rank_topics as R
+        calls = []
+
+        def fake(system, user, backend=None, model=None):
+            calls.append(user)
+            if len(calls) == 1:
+                raise RuntimeError("groq: HTTPError: HTTP Error 413: Payload Too Large")
+            return '{"picks": [{"index": 1, "topic": "topic number 0", "score": 9, "angle": "a"}]}'
+
+        with mock.patch("shared.script_generator._call_llm", fake):
+            picks = R.rank(self._topics(60), top_k=3)
+        self.assertEqual(len(calls), 2)
+        self.assertEqual([t.query for t in picks], ["topic number 0"])
+        self.assertLess(calls[1].count("topic number"), calls[0].count("topic number"))
+
+    def test_any_other_failure_still_raises(self):
+        from unittest import mock
+        from scripts import rank_topics as R
+
+        def fake(system, user, backend=None, model=None):
+            raise RuntimeError("no backend answered")
+
+        with mock.patch("shared.script_generator._call_llm", fake):
+            with self.assertRaises(RuntimeError):
+                R.rank(self._topics(30), top_k=3)
+
+
 if __name__ == "__main__":
     unittest.main()
