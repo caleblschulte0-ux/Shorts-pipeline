@@ -243,7 +243,21 @@ def main() -> int:
                     help="upload a shipped kept render (needs GITHUB_TOKEN + "
                          "the channel's YouTube secrets)")
     ap.add_argument("--reviews-dir", type=Path, default=None)
+    ap.add_argument("--withdraw-stage", type=Path, default=None,
+                    help="settle as WITHDRAWN every open request whose frames "
+                         "were staged here but never published (the workflow "
+                         "calls this when the preview-renders push fails)")
     args = ap.parse_args()
+    if args.withdraw_stage is not None:
+        ids = rm.withdraw_staged(
+            args.withdraw_stage,
+            reason=("unreviewable: the frames never reached preview-renders "
+                    "(publish failed) and the render dies with its runner"),
+            reviews_dir=args.reviews_dir)
+        for rid in ids:
+            print(f"[claim] withdrawn {rid}: frames never published", flush=True)
+        print(f"[claim] withdrawn {len(ids)}", flush=True)
+        return 0
     reqs = rm.open_requests(args.reviews_dir)
     if args.channel != "all":
         reqs = [r for r in reqs if r.get("channel") == args.channel]

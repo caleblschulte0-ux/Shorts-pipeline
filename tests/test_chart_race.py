@@ -301,6 +301,21 @@ class TestAssessRefusesUnjudgeableData(unittest.TestCase):
         self.assertTrue(cr.assess(v)["ok"])
 
 
+class TheTipLabelClearsTheMarker(unittest.TestCase):
+    """Without a logo the tip still carries a 16pt marker dot, and the label
+    used to start 8pt from its centre — so a label flipped to the LEFT of
+    the tip put its last glyph under the dot ("1276.8B" with the B behind
+    the leader's marker, clean-energy race, 2026-09-22)."""
+
+    def test_the_no_icon_offset_clears_the_dots_radius_and_edge(self):
+        src = (ROOT / "engines" / "chart_race.py").read_text()
+        i = src.index("iw = 0.0 if art is None")
+        blk = src[i:i + 900]
+        self.assertNotIn("off = 8 if art is None", blk)
+        self.assertIn("_dot_r = (16 if rank == 0 else 13) / 2.0 + 1.4", blk)
+        self.assertIn("off = (_dot_r + 8) if art is None", blk)
+
+
 if __name__ == "__main__":
     unittest.main()
 

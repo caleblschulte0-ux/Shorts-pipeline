@@ -574,6 +574,28 @@ def scene_host(action: str, phase: float, insight=None, kind: str = ""):
 PUSH_SAFE = 26
 
 
+TITLE_Y = 250          # where render_scene draws the beat title
+TITLE_GAP = 24         # air between the title's last row and the picture
+
+
+def title_clearance(topic: str) -> int:
+    """The first y a machine may use under the beat title — MEASURED by
+    drawing the title as `render_scene` draws it and reading back its last
+    inked row, so a two-line title clears more than a one-line one and a
+    missing one clears nothing."""
+    text = str(topic or "")
+    if not text:
+        return RTOP
+    from PIL import Image as _Im, ImageDraw as _Dr
+    probe = _Im.new("RGBA", (W, TITLE_Y + 320), (0, 0, 0, 0))
+    draw_caption(_Dr.Draw(probe), (RX0, TITLE_Y, RX1, TITLE_Y), text, 1.0,
+                 size=52)
+    bbox = probe.split()[-1].getbbox()
+    if not bbox:
+        return RTOP
+    return int(bbox[3] + TITLE_GAP)
+
+
 def draw_caption(d, box, text, reveal, size=42, color=TEXT):
     """A caption that FITS. Shrinks, then wraps; it never runs off the frame.
 
@@ -1233,10 +1255,23 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         # largest text on the card stopped changing before the pans did — the
         # identical defect one line away from where it was just fixed.
         shown_v = val * ease
-        d.text((px, py + 168), charts._ulabel(shown_v, unit, group=True),
-               font=_pil_font(72), fill=_rgba(col, int(255 * na)), anchor="mm")
-        d.text((px, py + 234), str(lab)[:18], font=_pil_font(44),
-               fill=_rgba(TEXT, int(230 * na)), anchor="mm")
+        # BOTH TEXTS ARE FITTED TO THE ROOM THE PAN ACTUALLY HAS. Centred on
+        # a pan 350px from the middle, a 72pt "2,609,874" and a 44pt
+        # "Prevention & management" both ran past the frame edge, and the
+        # old eighteen-character cut made the second "Prevention & manag" —
+        # a garble that still did not fit. The showrunner's words, three days
+        # running: "'Prevention & man' is sliced off by the right frame
+        # edge", "the seesaw's own values off the left edge". A name too
+        # long for one readable line wraps to two instead of shrinking
+        # into illegibility.
+        _nf, _nt = fit_centred(d, charts._ulabel(shown_v, unit, group=True),
+                               72, px, box, min_size=36)
+        d.text((px, py + 168), _nt, font=_nf, fill=_rgba(col, int(255 * na)),
+               anchor="mm")
+        for k, (_lf, _lt) in enumerate(fit_centred_lines(d, str(lab), 44, px,
+                                                         box, min_size=30)):
+            d.text((px, py + 234 + k * 48), _lt, font=_lf,
+                   fill=_rgba(TEXT, int(230 * na)), anchor="mm")
     # THE HOST RIDES THE HEAVY PAN. `render_scene` marks every scene
     # host_baked, which suppresses the travelling overlay — so an element that
     # draws no host ships a beat with none at all.
@@ -3956,6 +3991,10 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[0], "art", tall_xy[0], tall_xy[1]) if tall_xy else None
 
 
+STAIR_HOST_H = 280      # the climber's height on the top step
+STAIR_VALUE_ROOM = 64   # a step must be this tall before its value is drawn inside
+
+
 def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     """A STAIRCASE: progress becomes height, and Data climbs it.
 
@@ -3970,7 +4009,11 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     lo, hi = min(vals), max(vals)
     span = (hi - lo) or 1.0
     bx0, by0, bx1, by1 = box
-    top, bot = max(by0 + 200, 340), by1 - 120
+    # HEADROOM FOR THE CLIMBER. He stands on the top step at up to
+    # STAIR_HOST_H tall, so the top step must sit that far below the box's
+    # top — or his head is drawn through the beat title above the box
+    # ("largest container ship capacity [Data] year", 2026-09-22).
+    top, bot = max(by0 + STAIR_HOST_H + 30, 340), by1 - 120
     n = len(items)
     w = (bx1 - bx0 - 160) / n
     x0 = bx0 + 80
@@ -3993,12 +4036,17 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
                             fill=_rgba(color if i == n - 1 else REST,
                                        int(235 * a)))
         if a > 0.6:
-            # The last step carries the host, so its value moves to the side
-            # rather than sitting under his feet where he covers it.
-            vx = int(sx + w / 2) if i < n - 1 else int(sx - 12)
-            va = "mm" if i < n - 1 else "rm"
-            d.text((vx, sy - 30), charts._ulabel(v, unit),
-                   font=_pil_font(34), fill=_rgba(TEXT, 235), anchor=va)
+            # THE VALUE IS INSIDE THE STEP, UNDER ITS TOP EDGE. It used to
+            # sit 30px ABOVE the step — exactly where the climber's feet
+            # land as he arrives on it, so every value he reached was
+            # covered as he reached it: "'12500' reads '1 0'", "'6600'
+            # reads '6 0'" (showrunner, 2026-09-22). Inside the step his
+            # feet stop at the edge and the number is always clear of them.
+            if h >= STAIR_VALUE_ROOM:
+                _vf, _vt = fit_text(d, charts._ulabel(v, unit), 34,
+                                    max(44, int(w) - 12), min_size=20)
+                d.text((int(sx + w / 2), sy + 36), _vt, font=_vf,
+                       fill=_rgba(TEXT, 235), anchor="mm")
             _tf, _tt = fit_text(d, str(getattr(p, "label", "")), 30,
                                 max(44, int(w) - 6), min_size=16)
             d.text((int(sx + w / 2), bot + 34), _tt, font=_tf,
@@ -4006,7 +4054,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
             top_xy = (int(sx + w / 2), sy)
     host = scene_host("climb", reveal, insight, "staircase")
     if host is not None and top_xy is not None:
-        mh = int(min(280, (bot - top) * 0.34))
+        mh = int(min(STAIR_HOST_H, (bot - top) * 0.34))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(
             _fit(host, mw, mh),
@@ -4107,6 +4155,35 @@ def spread(positions, min_gap: float, lo: float, hi: float) -> list:
         out[i] = min(out[i], prev - min_gap)
         prev = out[i]
     return out
+
+
+def fit_centred(d, text: str, size: int, x: int, box, min_size: int = 26,
+                pad: int = 12):
+    """`fit_text` for a label centred at `x`: the room is twice the distance
+    to the NEARER side of the box, because a centred label grows both ways.
+    A pan, a column or a marker near an edge gets a smaller label, never a
+    clipped one."""
+    bx0, _y0, bx1, _y1 = box
+    room = 2 * min(int(x) - bx0, bx1 - int(x)) - pad
+    return fit_text(d, text, size, max(60, int(room)), min_size=min_size)
+
+
+def fit_centred_lines(d, text: str, size: int, x: int, box,
+                      min_size: int = 26) -> list:
+    """`fit_centred`, allowed to WRAP: if the label cannot keep `min_size`
+    on one line it is split at the space nearest its middle and each half
+    fitted on its own. Returns [(font, line), ...] — one or two entries.
+    The label is the claim's subject; two readable lines beat one tiny one
+    and both beat "Prevention & manag"."""
+    f, out = fit_centred(d, text, size, x, box, min_size=min_size)
+    words = str(text).split()
+    if f.size > min_size or len(words) < 2:
+        return [(f, out)]
+    mid = len(text) / 2.0
+    cut = min((i for i, ch in enumerate(text) if ch == " "),
+              key=lambda i: abs(i - mid))
+    return [fit_centred(d, text[:cut].strip(), size, x, box, min_size=min_size),
+            fit_centred(d, text[cut:].strip(), size, x, box, min_size=min_size)]
 
 
 def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26):
@@ -5475,6 +5552,21 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     # the whole frame; the topic is spoken + captioned by the renderer anyway).
     show_title = (spec.get("title", True) and bool(insight.topic)
                   and not rank_rows)
+    # THE PICTURE STARTS BELOW THE TITLE, NOT UNDER IT.
+    #
+    # The beat title is drawn at y=250 (below), and every box above started
+    # at RTOP=80 — so seven machines printed straight through it: the fan
+    # filled 19% of the title band, the sorter 18%, the nest 17% (measured
+    # 2026-09-22 with a realistic label), the staircase stood Data's head
+    # in it, and the spotlight's "it never settled" collided with the
+    # headline in the exact words the showrunner used on `amazon-still-
+    # shrinking` that morning. Measured from the title as drawn, so a
+    # two-line title clears more than a one-line one.
+    if show_title:
+        _clear = title_clearance(insight.topic)
+        boxes = [(x0, max(y0, _clear), x1, y1)
+                 if (y0 < _clear and y1 - _clear >= 360) else (x0, y0, x1, y1)
+                 for (x0, y0, x1, y1) in boxes]
     # Pre-load cut-outs once (cached anyway) so we can bail to fallback if the
     # whole scene is image-only and every image failed.
     cuts, photos = {}, {}

@@ -177,13 +177,17 @@ class TheClosingCardDoesNotEatTheRecap(unittest.TestCase):
     FOOT_BAND_TOP = 1683           # question at 1745, CTA under it, sources
 
     def test_the_recap_starts_below_the_card(self):
-        self.assertGreater(sr.RECAP_Y, self.CARD_BOTTOM,
-                           "the recap is back under the closing bubble")
+        for vw, vh in ((sr.CHART_W, sr.CHART_H), (sr.W, sr.H)):
+            g = sr.recap_geometry(vw, vh)
+            self.assertGreater(g["ry"], self.CARD_BOTTOM,
+                               "the recap is back under the closing bubble")
 
     def test_the_recap_ends_above_the_foot_band(self):
-        bottom = sr.RECAP_Y + sr.CHART_H * sr.RECAP_SCALE
-        self.assertLess(bottom, self.FOOT_BAND_TOP,
-                        f"the recap runs to {bottom:.0f}, into the CTA")
+        for vw, vh in ((sr.CHART_W, sr.CHART_H), (sr.W, sr.H)):
+            g = sr.recap_geometry(vw, vh)
+            bottom = g["ry"] + g["rh"]
+            self.assertLess(bottom, self.FOOT_BAND_TOP,
+                            f"the recap runs to {bottom:.0f}, into the CTA")
 
     def test_it_is_repositioned_not_dimmed(self):
         """Dimming was the first attempt and it was wrong twice: the card is
