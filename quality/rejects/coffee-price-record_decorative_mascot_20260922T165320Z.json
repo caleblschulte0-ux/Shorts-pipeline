@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T165320Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data merely perches with an arm out in 4 of 5 segments \u2014 sliding along bars at seg0:mid, standing in the corner at seg1:mid, parked on a cup at seg2:start, standing on the bubble at seg3:mid; only seg4's pan-weight is a real bit.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the caption 'anywhere between $1.1 and $4.4' runs off the right edge of the frame and prints on top of the '$4.4' endpoint label, with Data standing over its last words; above it a zigzag polyline floats unlabelled in an otherwise empty upper half, and the picture itself is a generic pill with a dot that asserts nothing about the $1.05\u2192$4.41 climb.",
+  "root_cause": "The range machine's annotation text is laid out by character count rather than measured width, so it overflows the frame and overlaps the endpoint labels; the mascot is placed in the same lower-right region, and the stray trend polyline is drawn in unrelated space with no shared axis.",
+  "repair_goal": "Re-lay seg1 so every label is measured and fully inside the safe area with no overlap (annotation on its own line under the track, mascot moved clear), and replace the dot-in-a-pill with a depiction made of coffee \u2014 e.g. a cup whose fill line jumps shock by shock from $1.05 to $4.41 with each shock labelled \u2014 so the picture carries the climb instead of the text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

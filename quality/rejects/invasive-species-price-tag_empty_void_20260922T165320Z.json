@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T165320Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid is ~70% empty gradient \u2014 a title, a hairline pink line hugging the bottom third and a thumbnail-sized mascot; seg4:start wastes the whole middle band between the two rows.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_offframe_label",
+  "visible_evidence": "At seg3:start, seg3:mid and seg3:end the right-hand bubble's label reads 'Classified as harmful invas' \u2014 truncated mid-word at x=430; the 3.5K bubble itself is a dim grey disc against a dark ground while the 37K disc is a flat pink circle with black text, so the comparison is two circles and a broken caption.",
+  "root_cause": "The label was laid out from a character count rather than a measured text extent and anchored to the small bubble's right side, so it overruns the frame; the depiction also falls back to a proportional-area bubble chart instead of a picture made of the subject.",
+  "repair_goal": "Re-anchor and wrap both bubble labels so every glyph is inside a safe margin (measure the rendered extent, right-align the small bubble's caption inward), and replace the two-circle chart with a demonstration made of the subject \u2014 e.g. a field of 37,000 alien organisms of which a visibly small, differently-marked 3.5K cluster turns hostile \u2014 so the 1-in-10 ratio reads without the caption."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

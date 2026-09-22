@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T165320Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg4:start (40.22s), seg4:mid (42.54s), payoff@-1.8, seg4:end and payoff@-0.4 (45.50s) are the same composition \u2014 speech bubble, four tiles, '4 times over' \u2014 for ~5.3s, with the measured 30-frame duplicate run at 40.17s sitting inside it; only a tile shade and the mascot's arm change.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_air",
+  "visible_evidence": "seg4:start through payoff@-0.4 (40.22s-45.50s) hold one unchanged frame: a static speech bubble, a four-tile grid whose cells are empty translucent boxes, a low-contrast grey '4' and a dim '4 times over'. The only change across 5.3s is one tile's shade and a small arm wiggle, and the label 'Soy, Mining, Logging & Other fits in Cattle Pasture' restates seg3 rather than closing the beef story.",
+  "root_cause": "The closing beat resolves its containment machine early and then parks: the tiles finish filling before seg4:start, leaving the remaining ~5s with no scheduled motion and no content inside the tiles to carry the payoff line.",
+  "repair_goal": "Make the closing beat arrive across its full duration \u2014 stage the four tiles landing one at a time through to the last second, fill each with the thing being counted (cleared-land blocks / cattle) instead of empty boxes, raise '4 times over' to ink contrast, and give Data one act that lands the final tile so the last frame resolves on motion rather than a hold."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

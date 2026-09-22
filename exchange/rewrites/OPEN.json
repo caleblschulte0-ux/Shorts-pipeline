@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-22T11:08:33Z",
+ "updated": "2026-09-22T16:53:11Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -21,6 +21,16 @@
    ],
    "request": "exchange/rewrites/20260922/adhd-diagnosis-surge__684cfeea.request.json",
    "answer_path": "exchange/rewrites/20260922/adhd-diagnosis-surge__684cfeea.answer.json"
+  },
+  {
+   "id": "amazon-still-shrinking__89e4b00c",
+   "slug": "amazon-still-shrinking",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "judge: The closing beat parks on a static grid of empty boxes for over five seconds, and the whole video leans on charts while captions are printed on top of the very numbers they narrate."
+   ],
+   "request": "exchange/rewrites/20260922/amazon-still-shrinking__89e4b00c.request.json",
+   "answer_path": "exchange/rewrites/20260922/amazon-still-shrinking__89e4b00c.answer.json"
   },
   {
    "id": "americans-stopped-moving__f6264643",
@@ -172,6 +182,16 @@
    ],
    "request": "exchange/rewrites/20260922/clear-air-turbulence-increase__452b3b56.request.json",
    "answer_path": "exchange/rewrites/20260922/clear-air-turbulence-increase__452b3b56.answer.json"
+  },
+  {
+   "id": "coffee-price-record__0c7ec6d0",
+   "slug": "coffee-price-record",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "judge: Every number here is still a chart, a pill or a circle with the figure printed on it, and two of those labels are clipped or buried — the coffee never appears as the thing being measured."
+   ],
+   "request": "exchange/rewrites/20260922/coffee-price-record__0c7ec6d0.request.json",
+   "answer_path": "exchange/rewrites/20260922/coffee-price-record__0c7ec6d0.answer.json"
   },
   {
    "id": "coldest-place-in-the-universe-is-human-made__851891bb",
@@ -357,6 +377,16 @@
    "answer_path": "exchange/rewrites/20260922/global-displacement-record__94a06c8b.answer.json"
   },
   {
+   "id": "global-ewaste-crisis__82dcc083",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers rather than a single consequential, verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__dad5454f",
    "slug": "gps-einstein-fix",
    "filed": "2026-09-22T11:08:32Z",
@@ -418,6 +448,16 @@
    "answer_path": "exchange/rewrites/20260922/insect-planet__be913ed4.answer.json"
   },
   {
+   "id": "invasive-species-price-tag__5dd628a5",
+   "slug": "invasive-species-price-tag",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "judge: Four beats, four charts — and seg3 ships a label sliced off by the frame edge, so the one comparison that needed reading cannot be read."
+   ],
+   "request": "exchange/rewrites/20260922/invasive-species-price-tag__5dd628a5.request.json",
+   "answer_path": "exchange/rewrites/20260922/invasive-species-price-tag__5dd628a5.answer.json"
+  },
+  {
    "id": "kids-phones-getting-younger__e1fceca3",
    "slug": "kids-phones-getting-younger",
    "filed": "2026-09-22T11:08:33Z",
@@ -426,6 +466,16 @@
    ],
    "request": "exchange/rewrites/20260922/kids-phones-getting-younger__e1fceca3.request.json",
    "answer_path": "exchange/rewrites/20260922/kids-phones-getting-younger__e1fceca3.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague comparison rather than a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "landline-death-robocall-boom__0460d3b4",
@@ -529,6 +579,16 @@
    ],
    "request": "exchange/rewrites/20260922/moon-drifting-away__1f633000.request.json",
    "answer_path": "exchange/rewrites/20260922/moon-drifting-away__1f633000.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__a6d6cd11",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: It lacks a single verifiable numerical claim, offering only a vague age threshold instead of a concrete number."
+   ],
+   "request": "exchange/rewrites/20260922/muscle-loss-after-30__a6d6cd11.request.json",
+   "answer_path": "exchange/rewrites/20260922/muscle-loss-after-30__a6d6cd11.answer.json"
   },
   {
    "id": "ocean-floor-vs-mars-mapped__a4d569a1",
@@ -662,6 +722,26 @@
    "answer_path": "exchange/rewrites/20260922/tattoo-mainstream-shift__60b6520c.answer.json"
   },
   {
+   "id": "teen-ai-companion-boom__28b9c5d0",
+   "slug": "teen-ai-companion-boom",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation despite presenting a single statistic."
+   ],
+   "request": "exchange/rewrites/20260922/teen-ai-companion-boom__28b9c5d0.request.json",
+   "answer_path": "exchange/rewrites/20260922/teen-ai-companion-boom__28b9c5d0.answer.json"
+  },
+  {
+   "id": "teen-vaping-crash-nicotine-pouches__b591e29d",
+   "slug": "teen-vaping-crash-nicotine-pouches",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "judge: Five beats of the same four numbers drawn as charts, with Data standing on top of the labels he is covering — the crash never becomes a picture."
+   ],
+   "request": "exchange/rewrites/20260922/teen-vaping-crash-nicotine-pouches__b591e29d.request.json",
+   "answer_path": "exchange/rewrites/20260922/teen-vaping-crash-nicotine-pouches__b591e29d.answer.json"
+  },
+  {
    "id": "third-interstellar-visitor__ce81b458",
    "slug": "third-interstellar-visitor",
    "filed": "2026-09-22T11:08:33Z",
@@ -690,6 +770,26 @@
    ],
    "request": "exchange/rewrites/20260922/unclaimed-money-states-hold__0a1cacc5.request.json",
    "answer_path": "exchange/rewrites/20260922/unclaimed-money-states-hold__0a1cacc5.answer.json"
+  },
+  {
+   "id": "urban-heat-island-redlining__b4590558",
+   "slug": "urban-heat-island-redlining",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "judge: The high-jump beat is a genuinely good demonstration, but the video ends on a grid of graduation caps for a story about urban heat, under a headline chopped off at both edges — and seg2's labels print on top of each other."
+   ],
+   "request": "exchange/rewrites/20260922/urban-heat-island-redlining__b4590558.request.json",
+   "answer_path": "exchange/rewrites/20260922/urban-heat-island-redlining__b4590558.answer.json"
+  },
+  {
+   "id": "us-height-ranking-fall__dfb4fa2e",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable numeric claim and does not hinge on one consequential number."
+   ],
+   "request": "exchange/rewrites/20260922/us-height-ranking-fall__dfb4fa2e.request.json",
+   "answer_path": "exchange/rewrites/20260922/us-height-ranking-fall__dfb4fa2e.answer.json"
   },
   {
    "id": "volcano-country-ranking__4ec1f46e",

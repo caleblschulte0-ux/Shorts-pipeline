@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T165320Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end (t=38.64): three small caps sit in the top-left corner and a faint \"each = 0.3\" floats mid-frame; the entire lower two-thirds of the 9:16 frame is empty ground with nothing in it.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg4:start/mid/end and payoff@-0.4 show a 4-wide unit grid of ~20 graduation caps (dark mortarboard + gold tassel) captioned \"each = 0.3\" for the redlining heat-gap stat, under a headline clipped on both sides to \"rmerly redlined neighborhoods\"; at seg3:end the same grid is three caps alone in the top-left of an otherwise empty frame, with the mascot sitting on top of the title text.",
+  "root_cause": "The unit-grid icon was resolved by a silent-default lookup that returned the generic 'graduate/cap' glyph because no heat/neighborhood icon matched the label, and the segment title is being laid out at a width greater than the frame so it overflows both edges instead of wrapping or shrinking.",
+  "repair_goal": "Replace the cap glyph with a unit that is MADE OF the subject \u2014 e.g. a block/rooftop tile that reddens as the grid fills, each = 0.3 degrees \u2014 measure the headline and wrap or shrink it to fit inside the safe area, and start the grid centred and filling rather than three icons in a corner."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

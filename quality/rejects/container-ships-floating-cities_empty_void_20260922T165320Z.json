@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T165320Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 is ~75% bare gradient with one line of text and a 1cm grey bar stub; seg4:start through payoff@-0.4 leaves the whole middle third of the frame empty between the two rows.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "duplicate_beat_and_occlusion",
+  "visible_evidence": "seg1:start shows the SAME title \"largest container ship capacity by year\" and the same 6600/12500/18000/24000 values as seg0, redrawn as horizontal bars; the chart is already fully built at t=7.76s while the caption still reads \"held 6,600 boxes.\"; at seg1:mid and seg1:end the mascot floats in empty space over the rows, covering the 2013 bar and the 1996 row.",
+  "root_cause": "The scene re-renders seg0's dataset in a second chart form instead of depicting the new claim (the whole FLEET grew from 1.2M to 25.8M), and the mascot is placed by drift rather than anchored to a mark, so he lands on the row labels while the bars race ahead of the narration.",
+  "repair_goal": "Give seg1 its own picture made of the subject -- a harbour filling with ship silhouettes, each one a fixed number of boxes, growing from a handful in 1990 to a packed waterline in 2022 -- reveal it in step with the spoken numbers, and park Data on a fixed anchor doing one bit (hauling a box aboard) so he never overlaps a label."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

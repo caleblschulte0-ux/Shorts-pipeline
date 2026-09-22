@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T165320Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:mid the mascot's head and arm sit on top of \"7.8%\"; at seg2:start his legs cross through \"27.5%\"; at seg2:mid he covers the end of the title so it reads \"the vaping crackdow\"; at seg1:end he covers the 2011 row's bar and label; the source line at seg1:mid/seg3:mid is illegibly sm",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "empty_void",
+  "visible_evidence": "hook@0.3 shows a near-black gradient with only the standing title \"teen vaping rates over time\", the partial caption \"The vaping\" and a 2%-wide grey stub bottom-left; nothing has happened by 0.8s except the mascot fading in beside a 1.5% chip.",
+  "root_cause": "The hook scene is composited over the seg0 chart backdrop before any mark is drawn, so the opening second is the empty stage plus a title card rather than an event; the first visual information (a 1.5% chip) is also the smallest number in the story.",
+  "repair_goal": "Open frame 1 on a moving, subject-made image that already carries the crash \u2014 e.g. the 27.5% mass arriving full-bleed and collapsing toward 7.8% \u2014 so the first 0.5s contains motion and the story's claim, with no blank stage and no title-card hold."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
