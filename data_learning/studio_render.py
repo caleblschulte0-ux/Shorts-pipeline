@@ -1023,8 +1023,44 @@ CLOSING_PULSE_S = 0.62
 # Where the recap goes during the closing. The card is a 900x320 bubble ending
 # at y=470; the foot band with the question and CTA starts at 1683. This sits
 # between them, centred, in space these frames were leaving empty.
-RECAP_SCALE = 0.62
-RECAP_Y = 520
+#
+# AT 0.62 THE RECAP'S TYPE WAS UNREADABLE. A chart's row names are 23pt on
+# the card; shrunk to 62% under the closing they were "~8px grey on dark and
+# vanish at arm's length" (showrunner, invasive species, 2026-09-22 — the
+# same note on container ships, sleep divorce, brain microplastics). The
+# shrink was uniform because the whole visual had to fit 1213px, and a
+# full-frame scene is 1920 tall. But the top of every visual is its heading
+# (a card's kicker/headline/subtitle band, a scene's title band) and the
+# bottom is its footer or the empty strip under MACHINE_BOT — neither is
+# the picture the payoff wants behind it. So the recap is TRIMMED to its
+# content band first — a CENTRED crop, the same band off the top and the
+# bottom, no offsets and no motion (the operator's ruling against camera
+# moves stands; `tests/test_edit_pacing.py` holds that a crop here never
+# carries a computed offset) — and only then scaled to the room: a card
+# keeps its type at full size, a scene at ~94%. `recap_geometry` is the
+# one place this is computed; `tests/test_the_frame_reads_on_a_phone.py`
+# holds it.
+RECAP_TOP = 490                  # 20px under the bubble (ends y=470)
+RECAP_BAND_H = 1683 - 20 - RECAP_TOP   # ...to 20px above the foot band
+RECAP_TRIM = 0.175               # trimmed off the top AND the bottom
+
+
+def recap_geometry(vw: int, vh: int) -> dict:
+    """Where and how big a visual's CONTENT BAND is drawn under the closing.
+
+    Returns the centred crop (crop_top rows off each end, crop_h kept) and
+    the scaled size and position (rw, rh, rx, ry) — all even, for yuv420p.
+    Scale never exceeds 1.0: a card already fits, so its type stays exactly
+    as set."""
+    vw, vh = int(vw), int(vh)
+    crop_top = int(vh * RECAP_TRIM)
+    crop_h = max(2, vh - 2 * crop_top) & ~1
+    s = min(1.0, RECAP_BAND_H / float(crop_h), (W - 2 * 12) / float(vw))
+    rw = max(2, int(vw * s)) & ~1
+    rh = max(2, int(crop_h * s)) & ~1
+    return {"crop_top": crop_top, "crop_h": crop_h, "scale": s,
+            "rw": rw, "rh": rh, "rx": (W - rw) // 2,
+            "ry": RECAP_TOP + (RECAP_BAND_H - rh) // 2}
 
 
 def _full_by(span: float, tail: float = MAX_STILL_TAIL) -> float:
@@ -3080,9 +3116,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # nothing dims, and the frame finally uses its bottom.
                 _close0 = windows[-1][0] if windows else t1
                 if t1 - _close0 > 0.35 and t0 < _close0:
-                    _rw = int(vw * RECAP_SCALE)
-                    _rh = int(vh * RECAP_SCALE)
-                    _rx = (W - _rw) // 2
+                    _rg = recap_geometry(vw, vh)
+                    _rw, _rh, _rx, _ry = _rg["rw"], _rg["rh"], _rg["rx"], _rg["ry"]
+                    _ch = _rg["crop_h"]           # centred trim: no offsets
                     # THE RECAP REPLAYS ITS BUILD, it does not carry on with
                     # the tail of one.
                     #
@@ -3104,7 +3140,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     _k = (t1 - _close0) / _span
                     fc.append(f"[{lab}]split=2[{lab}a][{lab}b]")
                     fc.append(
-                        f"[{lab}b]scale={_rw}:{_rh},"
+                        f"[{lab}b]crop={vw}:{_ch},"
+                        f"scale={_rw}:{_rh},"
                         f"setpts=(PTS-STARTPTS)*{_k:.5f}+{_close0:.3f}/TB"
                         f"[{lab}d]")
                     fc.append(
@@ -3112,7 +3149,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                         f"enable='between(t,{t0:.2f},{_close0:.2f})'"
                         f"[b{i}_{j}p]")
                     fc.append(
-                        f"[b{i}_{j}p][{lab}d]overlay=x={_rx}:y={RECAP_Y}:"
+                        f"[b{i}_{j}p][{lab}d]overlay=x={_rx}:y={_ry}:"
                         f"enable='between(t,{_close0:.2f},{t1:.2f})'[b{i}_{j}]")
                 else:
                     fc.append(

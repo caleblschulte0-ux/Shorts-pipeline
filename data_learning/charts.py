@@ -599,13 +599,32 @@ def beat_phase():
     return _TOUR if _TOUR_LIVE else None
 
 
-def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
+def _zoom_for_height(fig, img_h_px: float, max_h_frac: float) -> float:
+    """The OffsetImage zoom at which an image `img_h_px` rows tall is
+    `max_h_frac` of the figure height — the arithmetic `_clamp_host`
+    documents (frac = px * zoom / (72 * inches)), solved for zoom."""
+    fh_in = float(fig.get_size_inches()[1])
+    return max(0.05, float(max_h_frac) * 72.0 * fh_in / max(1.0, float(img_h_px)))
+
+
+def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08),
+               max_h_frac: float | None = None):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
     pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
     so he stands ON the datum. Records the grip into the attachment log
     (`_ATTACH_FRAME`) — the contract that the mascot is ATTACHED to a chart
-    object, not floating near it."""
+    object, not floating near it.
+
+    ``max_h_frac`` caps his HEIGHT as a fraction of the figure. A row chart
+    hands in its row pitch: at zoom 1.0 on a four-row race he was 330px tall
+    against a 160px row, centred on it — so he "straddles the 2013 and 2006
+    rows, hiding the row bar and its label" (showrunner, container ships,
+    2026-09-22), and on a ranking "stands on the 2019 bar directly on top of
+    the chart title". Sized to the row he is working, he can only ever cover
+    his own bar's tip, which is the contact the bake exists to show."""
     img = _host_img(action, _perf_phase(phase))
+    if img is not None and max_h_frac:
+        zoom = min(zoom, _zoom_for_height(ax.figure, img.shape[0], max_h_frac))
     if img is not None:
         x, y = _clamp_host(ax, x, y, img.shape[:2], zoom, align)
     _ATTACH_FRAME.append({"action": action, "x": float(x), "y": float(y),
@@ -1190,8 +1209,12 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     # other half of that: the sprite's empty rows are cropped, so "bottom"
     # means his feet and not the edge of the SVG canvas.)
     _stand = (lw * SERIES_DPI / 72.0 * 0.5) / max(1.0, _rowpx)
+    # ...AND NO TALLER THAN THE GAP ABOVE HIS BAR. Feet on the bar, his head
+    # must stay under the row above (its name hangs below its bar, so the
+    # air above his bar is the whole pitch less that name) — and on the top
+    # row, under the subtitle band, which `_clamp_host` also enforces.
     _bake_host(ax, _wtip * 0.55, _row - _stand, _act_b, _beat(),
-               zoom=0.44, align=(0.5, 0.0))
+               zoom=0.44, align=(0.5, 0.0), max_h_frac=_pitch * 0.80)
     insight.host_baked = True
     return ax, arts
 
@@ -2153,8 +2176,12 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
     _act_r = _perf_action(insight, "pictorial_race")
+    # NO TALLER THAN THE ROW HE IS SHOVING. The axes is 0.72 of the figure
+    # over `n` rows; centred on his row (align y 0.5) he may fill 92% of
+    # that pitch and nothing of the rows above and below.
     _bake_host(ax, _ttip, n - 1 - _row, _act_r, _beat(),
-               zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)))
+               zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)),
+               max_h_frac=0.72 / max(1, n) * 0.92)
     insight.host_baked = True
     return ax, specs
 
@@ -2202,7 +2229,33 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     t = max(0.0, min(1.0, reveal))
     filled = t * 100.0
 
-    cx0, cx1 = 0.30, 0.66
+    # THE LABELS GET THE ROOM THEY MEASURE, AND WRAP BEFORE THEY CLIP.
+    #
+    # The column sat at 0.30..0.66 of the axes and its labels hung off the
+    # right at 0.705 — 0.30 of the card for "Properly recycled 22%", which
+    # ran off the frame as "Properly recycled 22'" and "Not properly
+    # recycle"; "Soy, Mining, Logging & Other" shipped as "Soy, Mining,
+    # Logging &" (showrunner, e-waste and Amazon, 2026-09-21/22). The column
+    # moves left, and every label is fitted to the width actually left of
+    # the frame's safe edge: shrink to a readable floor, then split into two
+    # lines rather than go smaller.
+    cx0, cx1 = 0.22, 0.56
+    _lab_x = cx1 + 0.045
+    _room_pts = _axes_pts((0.96 - (0.10 + 0.80 * _lab_x))) - 6.0
+
+    def _fit_seg_label(text: str, size: int):
+        fs = _fit_fontsize(text, _room_pts, size, min_size=19)
+        if fs >= 19 and _fit_width_pts(text, fs) <= _room_pts:
+            return text, fs
+        words = text.split()
+        if len(words) < 2:
+            return text, fs
+        mid = len(text) / 2.0
+        cut = min((i for i, ch in enumerate(text) if ch == " "),
+                  key=lambda i: abs(i - mid))
+        a, b = text[:cut].strip(), text[cut:].strip()
+        return (a + "\n" + b), min(_fit_fontsize(a, _room_pts, size, 16),
+                                   _fit_fontsize(b, _room_pts, size, 16))
     # THE SEGMENTS ARE SEPARATED BY GROUND, NOT BY A BORDER.
     #
     # Each block carried `edgecolor=CARD, linewidth=2` — a 2px rule in the
@@ -2224,9 +2277,10 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
                            p.label == insight.highlight_label)
         ax.add_patch(Rectangle((cx0, _gy), cx1 - cx0, max(0.4, sh - _gap),
                      facecolor=gcol, edgecolor="none", alpha=0.22, zorder=1))
-        ax.text(cx1 + 0.045, _gy + sh / 2.0, _seg_label(insight, p, sh),
-                ha="left", va="center", fontsize=23, color=SUBTLE,
-                zorder=2, alpha=0.22)
+        _gt, _gfs = _fit_seg_label(_seg_label(insight, p, sh), 23)
+        ax.text(_lab_x, _gy + sh / 2.0, _gt,
+                ha="left", va="center", fontsize=_gfs, color=SUBTLE,
+                zorder=2, alpha=0.22, linespacing=1.05)
         _gy += sh
     specs, la = [], _lblalpha(reveal)
     y0, top_y = 0.0, 0.0
@@ -2240,11 +2294,13 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
                          facecolor=col, edgecolor="none", zorder=3))
             top_y = vis_top
             if vis_top >= y0 + sh * 0.55:       # label once the segment is mostly in
-                tt = ax.text(cx1 + 0.045, y0 + sh / 2.0,
-                             _seg_label(insight, p, sh), ha="left", va="center",
-                             fontsize=25 if _is_hi else 23,
+                _lt, _lfs = _fit_seg_label(_seg_label(insight, p, sh),
+                                           25 if _is_hi else 23)
+                tt = ax.text(_lab_x, y0 + sh / 2.0, _lt,
+                             ha="left", va="center", fontsize=_lfs,
                              color=TEXT if _is_hi else SUBTLE,
-                             zorder=5, alpha=la, path_effects=_shadow())
+                             zorder=5, alpha=la, path_effects=_shadow(),
+                             linespacing=1.05)
                 specs.append((p.value, "art", tt, None))
         y0 += sh
     # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as

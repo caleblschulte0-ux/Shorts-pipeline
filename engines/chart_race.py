@@ -825,7 +825,15 @@ def render(spec: dict, out: str | Path, *,
                 label = f"{s['name']}  {_fmt_compact(cv)}"
                 iw = 0.0 if art is None else _icon_width(art, TIP_ICON_PX,
                                                          TIP_ICON_MAX_W)
-                off = 8 if art is None else iw + 16
+                # WITHOUT AN ICON THE TIP STILL CARRIES THE MARKER DOT. The
+                # label used to start 8pt from the tip's centre, inside a
+                # 16pt marker — so whenever it flipped LEFT of the tip its
+                # last glyph sat under the dot ("1276.8B" with the B behind
+                # the leader's marker, clean-energy race, 2026-09-22; the
+                # showrunner's "colliding, edge-clipped tip badges"). Clear
+                # the dot's radius and its white edge before the text.
+                _dot_r = (16 if rank == 0 else 13) / 2.0 + 1.4
+                off = (_dot_r + 8) if art is None else iw + 16
                 # Flip the icon+label to the LEFT of the tip once they would
                 # not fit to its right. This used to be one shared
                 # `cur > 82% of the span` flag, which is wrong twice over: it
