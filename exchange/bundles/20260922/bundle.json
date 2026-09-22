@@ -370,43 +370,43 @@
           "shot_index": 0,
           "phrase": "I moved out of that apartment",
           "query": "moving boxes apartment",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "I walked every room on video, timestamp running",
           "query": "phone recording apartment",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "his email landed: eleven hundred dollars in 'damage,'",
           "query": "laptop email notification",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "a cracked bathroom mirror",
           "query": "cracked bathroom mirror",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "the move-in inspection report he'd signed himself",
           "query": "signed inspection paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "He tried to claim my footage was doctored.",
           "query": "video editing timeline",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -419,14 +419,14 @@
           "shot_index": 7,
           "phrase": "owing me my deposit back twice over",
           "query": "stack of cash",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -437,8 +437,8 @@
         "landlord-invented-deposit-damage-s3-c73294707a52",
         "landlord-invented-deposit-damage-s4-405148c944ac",
         "landlord-invented-deposit-damage-s5-bde7fab47574",
-        "landlord-invented-deposit-damage-s7-6e705113b2a6",
-        "landlord-invented-deposit-damage-s6-b7455c2e7295"
+        "landlord-invented-deposit-damage-s6-b7455c2e7295",
+        "landlord-invented-deposit-damage-s7-6e705113b2a6"
       ]
     },
     {
@@ -450,63 +450,63 @@
           "shot_index": 0,
           "phrase": "restocking my own cart at the hardware store",
           "query": "hardware store aisle",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "grabbed my arm and demanded I find her a specific faucet",
           "query": "bathroom faucet display",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "I don't work there.",
           "query": "confused shrug person",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "the most expensive faucet in the store",
           "query": "expensive faucet fixture",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "manager clearance",
           "query": "clearance sign discount",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "She marched up, demanded the discount loudly",
           "query": "customer arguing register",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "The manager got called.",
           "query": "store manager walking",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "She stormed out without her faucet",
           "query": "person storming out store",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -545,9 +545,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "landlord-invented-deposit-damage-s1-f832e39c71d6",
@@ -571,9 +573,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "landlord-invented-deposit-damage-s2-59804c1216ad",
@@ -597,9 +601,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "landlord-invented-deposit-damage-s3-c73294707a52",
@@ -623,9 +629,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "landlord-invented-deposit-damage-s4-405148c944ac",
@@ -649,9 +657,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "landlord-invented-deposit-damage-s5-bde7fab47574",
@@ -675,20 +685,22 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
-      "request_id": "landlord-invented-deposit-damage-s7-6e705113b2a6",
-      "safe_request_id": "landlord-invented-deposit-damage-s7-6e705113b2a6",
-      "drive_filename": "20260922__landlord-invented-deposit-damage-s7-6e705113b2a6.png",
-      "prompt_sha256": "9330a70005283285f23121b1c4b5ea47c480ba22be0c4ba27c9d5bd9382f0c3a",
-      "checkpoint_path": "exchange/bundles/20260922/media-progress/landlord-invented-deposit-damage-s7-6e705113b2a6.json",
+      "request_id": "landlord-invented-deposit-damage-s6-b7455c2e7295",
+      "safe_request_id": "landlord-invented-deposit-damage-s6-b7455c2e7295",
+      "drive_filename": "20260922__landlord-invented-deposit-damage-s6-b7455c2e7295.png",
+      "prompt_sha256": "97ea736d2ff2f1814c1914c86e608691d5ec7fda0d690799d835cda196775244",
+      "checkpoint_path": "exchange/bundles/20260922/media-progress/landlord-invented-deposit-damage-s6-b7455c2e7295.json",
       "slug": "landlord-invented-deposit-damage",
-      "shot_index": 7,
+      "shot_index": 6,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: stack of cash. It accompanies the narration: \"owing me my deposit back twice over\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom gavel bench. It accompanies the narration: \"Small claims court did not agree.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -701,20 +713,22 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
-      "request_id": "landlord-invented-deposit-damage-s6-b7455c2e7295",
-      "safe_request_id": "landlord-invented-deposit-damage-s6-b7455c2e7295",
-      "drive_filename": "20260922__landlord-invented-deposit-damage-s6-b7455c2e7295.png",
-      "prompt_sha256": "97ea736d2ff2f1814c1914c86e608691d5ec7fda0d690799d835cda196775244",
-      "checkpoint_path": "exchange/bundles/20260922/media-progress/landlord-invented-deposit-damage-s6-b7455c2e7295.json",
+      "request_id": "landlord-invented-deposit-damage-s7-6e705113b2a6",
+      "safe_request_id": "landlord-invented-deposit-damage-s7-6e705113b2a6",
+      "drive_filename": "20260922__landlord-invented-deposit-damage-s7-6e705113b2a6.png",
+      "prompt_sha256": "9330a70005283285f23121b1c4b5ea47c480ba22be0c4ba27c9d5bd9382f0c3a",
+      "checkpoint_path": "exchange/bundles/20260922/media-progress/landlord-invented-deposit-damage-s7-6e705113b2a6.json",
       "slug": "landlord-invented-deposit-damage",
-      "shot_index": 6,
+      "shot_index": 7,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom gavel bench. It accompanies the narration: \"Small claims court did not agree.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stack of cash. It accompanies the narration: \"owing me my deposit back twice over\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -755,9 +769,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s1-a6d78f672f6d",
@@ -781,9 +797,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s2-038d7f3c368e",
@@ -807,9 +825,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s3-ab346331bda2",
@@ -833,9 +853,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s4-57e127b5eb13",
@@ -859,9 +881,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s5-00f5a62ad502",
@@ -885,9 +909,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s6-e1901fadb007",
@@ -911,9 +937,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mistaken-for-staff-faucet-clearance-s7-63f4d2240bbc",
@@ -937,9 +965,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
