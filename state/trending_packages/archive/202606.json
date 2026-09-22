@@ -14291,5 +14291,829 @@
     "_schedule.json": {
       "per_slot": 2
     }
+  },
+  "20260623": {
+    "01_mauriceville-bees-semi-texas.json": {
+      "version": 8,
+      "slug": "mauriceville-bees-semi-texas",
+      "title": "2 Million Bees Escaped a Texas Semi. It Was Chaos.",
+      "script": "2 million bees just escaped! Sunday morning in Mauriceville, Texas, a semi hauling 408 beehives took a turn too wide and tipped over \u2014 dumping an estimated 2 million bees onto Colony Drive. The driver walked away fine. The bees did not stay in the truck. Orange County Emergency Services ordered the entire neighborhood indoors while local beekeepers in full protective suits descended on the scene. The truck had been carrying 50,000 pounds of hive boxes. When it went over, the swarm was so thick responders could barely see through it. Beekeepers spent hours loading surviving hives onto replacement trucks, standing waist-deep in bees the whole time. Every recovered colony eventually made it to a local honey farm. The town of Mauriceville is going to need a moment. With 2 million bees on Colony Drive \u2014 would you have gone outside?",
+      "shots": [
+        {
+          "phrase": "2 million bees just escaped!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "honey bee swarm cloud dense",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Mauriceville, Texas",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "Texas country road sunny morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a semi hauling 408 beehives took a turn too wide and tipped over",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "semi truck overturned road accident",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "dumping an estimated 2 million bees onto Colony Drive",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "bee swarm thick cloud street",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "The driver walked away fine",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "truck driver road walking away",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Orange County Emergency Services ordered the entire neighborhood indoors",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "emergency services warning neighborhood alert",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "local beekeepers in full protective suits descended on the scene",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "beekeeper full protective suit working",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The truck had been carrying 50,000 pounds of hive boxes",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "stacked beehive boxes transport truck",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the swarm was so thick responders could barely see through it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "dense bee swarm thick air cloud",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Beekeepers spent hours loading surviving hives onto replacement trucks",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "beekeeper working beehive boxes loading",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "standing waist-deep in bees the whole time",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "beekeeper surrounded bees field apiary",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Every recovered colony eventually made it to a local honey farm",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "honey farm beehive rows rural",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "would you have gone outside?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bee_Swarm.JPG",
+          "query": "suburban neighborhood street outside empty",
+          "mascot_pose": "laugh"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "2 million bees just escaped!",
+          "text": "2 MILLION BEES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "408 beehives",
+          "text": "408 HIVES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Orange County Emergency Services ordered the entire neighborhood indoors",
+          "text": "STAY INSIDE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "50,000 pounds of hive boxes",
+          "text": "50K POUNDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "swarm was so thick responders could barely see",
+          "text": "CAN'T SEE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "standing waist-deep in bees",
+          "text": "WAIST DEEP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Every recovered colony eventually made it to a local honey farm",
+          "text": "ALL SAVED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "would you have gone outside?",
+          "text": "WOULD YOU?",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "mauriceville",
+        "texasbees",
+        "beesemitruck",
+        "beswarm",
+        "orangecountytexas",
+        "beekeeping",
+        "wildnews",
+        "texasnews",
+        "weirdnews",
+        "freak",
+        "bees",
+        "honey",
+        "truckaccident",
+        "beeswarm"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_queensland-python-tv-sunshine-coast.json": {
+      "version": 8,
+      "slug": "queensland-python-tv-sunshine-coast",
+      "title": "A Snake Was Hiding Behind This Family's TV",
+      "script": "Nobody checked behind the TV! A Queensland, Australia family had a house guest they didn't know about \u2014 a large carpet python, coiled behind their living room TV mount. They'd left the doors and windows open, and apparently the snake saw an opportunity. When they finally found it, they called Stuart McKenzie of Sunshine Coast Snake Catchers 24/7. McKenzie arrived with a hook, reached behind the mount, and pulled the python out \u2014 calm, professional, utterly unbothered. The homeowner explained that the snake must have slipped in through an open door or window while they were airing out the place. Which is one way to describe almost sharing a couch with a python for who knows how long. The snake was released safely outdoors. How long had that snake been back there?",
+      "shots": [
+        {
+          "phrase": "Nobody checked behind the TV!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "living room TV mounted wall sofa",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Queensland, Australia family had a house guest",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "Australian suburban home interior",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a large carpet python, coiled behind their living room TV mount",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "carpet python coiled resting close up",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "They'd left the doors and windows open",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "open window door house ventilation",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Stuart McKenzie of Sunshine Coast Snake Catchers 24/7",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "snake handler professional bag reptile",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "McKenzie arrived with a hook, reached behind the mount, and pulled the python out",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "snake catcher hook removal behind furniture",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "calm, professional, utterly unbothered",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "reptile expert holding snake bag calm",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "the snake must have slipped in through an open door or window",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "snake entering doorway gap crack",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "almost sharing a couch with a python for who knows how long",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "living room couch sofa TV watching",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The snake was released safely outdoors",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "snake released outdoor bush nature",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How long had that snake been back there?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Darwin_Carpet_Python_(Morelia_spilota_variegata)_(8691290901).jpg",
+          "query": "dark space behind TV wall mount",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Nobody checked behind the TV!",
+          "text": "NOBODY CHECKED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "carpet python, coiled behind their living room TV mount",
+          "text": "BEHIND THE TV",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Stuart McKenzie of Sunshine Coast Snake Catchers 24/7",
+          "text": "SNAKE CATCHERS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "calm, professional, utterly unbothered",
+          "text": "UNBOTHERED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "almost sharing a couch with a python",
+          "text": "WITH A PYTHON",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The snake was released safely outdoors",
+          "text": "RELEASED SAFE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "How long had that snake been back there?",
+          "text": "HOW LONG?",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "sunshinecoacarpetpython",
+        "australiawildlife",
+        "queensland",
+        "snakecatchers",
+        "carpetpython",
+        "snakeinthehouse",
+        "australia",
+        "weirdnews",
+        "wildlife",
+        "reptile",
+        "snakecatcher",
+        "oddnews",
+        "wildlifeaustralia"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "03_bingo-armadillo-oklahoma.json": {
+      "version": 8,
+      "slug": "bingo-armadillo-oklahoma",
+      "title": "Bingo the Golden Retriever Brought Home a Live Armadillo",
+      "script": "The dog brought home WHAT? Meet Bingo \u2014 a golden retriever from Allen, Oklahoma, who decided last Thursday that the family needed a new pet. Specifically, a live armadillo. Bingo walked through the front door carrying the armadillo in his mouth. The family's home security camera caught the whole thing: kids running, adults screaming, absolute chaos on the front lawn. Owner Alycia Napier said the family eventually managed to coax Bingo into going back outside \u2014 at which point Bingo dropped the armadillo, and the armadillo immediately scurried into a neighbor's yard. So it's now the neighbor's problem. The armadillo appears to be fine. Bingo, for his part, seemed very proud. Who's walking around with a live armadillo in their yard right now \u2014 the neighbor, or you?",
+      "shots": [
+        {
+          "phrase": "The dog brought home WHAT?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "golden retriever dog mouth carrying object",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Meet Bingo \u2014 a golden retriever from Allen, Oklahoma",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "golden retriever friendly face outdoor yard",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Specifically, a live armadillo",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "nine banded armadillo close up",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Bingo walked through the front door carrying the armadillo in his mouth",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "dog walking front door home entrance",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The family's home security camera caught the whole thing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "home security camera footage front door",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "kids running, adults screaming, absolute chaos on the front lawn",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "front lawn chaos family scrambling",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Owner Alycia Napier said the family eventually managed to coax Bingo into going back outside",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "woman coaxing dog outside front yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Bingo dropped the armadillo, and the armadillo immediately scurried into a neighbor's yard",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "armadillo running scurrying grass yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "So it's now the neighbor's problem",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "suburban neighbor yard fence property",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The armadillo appears to be fine",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "armadillo walking grass looking fine",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Bingo, for his part, seemed very proud",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Golden_retriever.jpg",
+          "query": "golden retriever sitting proud happy expression",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Who's walking around with a live armadillo in their yard right now \u2014 the neighbor, or you?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nine-banded_Armadillo.jpg",
+          "query": "armadillo exploring yard neighborhood suburban",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "The dog brought home WHAT?",
+          "text": "WHAT?!",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Specifically, a live armadillo",
+          "text": "LIVE ARMADILLO",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "kids running, adults screaming, absolute chaos",
+          "text": "ABSOLUTE CHAOS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Bingo dropped the armadillo",
+          "text": "DROPPED IT",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "armadillo immediately scurried into a neighbor's yard",
+          "text": "GONE NEXT DOOR",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The armadillo appears to be fine",
+          "text": "TOTALLY FINE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Bingo, for his part, seemed very proud",
+          "text": "VERY PROUD",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "bingo",
+        "goldenretriever",
+        "armadillo",
+        "allenoklahomadog",
+        "oklahoma",
+        "dogsofinstagram",
+        "wildanimal",
+        "securitycamera",
+        "weirdpets",
+        "dogmom",
+        "goldenretrieverlife",
+        "oddnews",
+        "armadillos",
+        "funnydog"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_carol-oram-engagement-ring-michigan.json": {
+      "version": 8,
+      "slug": "carol-oram-engagement-ring-michigan",
+      "title": "A Plumber Found Her Lost Engagement Ring. It Had Been in a Pipe for 10 Years.",
+      "script": "10 years inside a pipe! Carol Oram lost her engagement ring 10 years ago when a customer dropped it down a toilet at a shopping plaza in Hartland, Michigan \u2014 and it slipped into the drain before anyone could retrieve it. She gave up hope. Last week, plumbers from Titan Plumbing in Howell showed up for a routine sewer job at the same plaza. Inside the pipe, they spotted something shiny. They posted about it online. Carol's coworker Sue recognized the description and connected the dots. Carol and her husband \u2014 married 60 years \u2014 drove down to claim the ring. She cried. The plumbers had it professionally cleaned first, because 10 years in a sewer pipe does things to jewelry. What are the odds that ring survived 10 years in Hartland's plumbing?",
+      "shots": [
+        {
+          "phrase": "10 years inside a pipe!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "dark drain pipe sewer underground",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Carol Oram lost her engagement ring 10 years ago",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "engagement ring dropped toilet bathroom",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a shopping plaza in Hartland, Michigan",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "shopping plaza strip mall Michigan",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "it slipped into the drain before anyone could retrieve it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "toilet drain ring falling water swirl",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She gave up hope",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "sad person sitting alone thinking loss",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "plumbers from Titan Plumbing in Howell showed up for a routine sewer job",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "plumber sewer pipe work underground manhole",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Inside the pipe, they spotted something shiny",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "flashlight pipe interior shiny object found",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Carol's coworker Sue recognized the description and connected the dots",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "woman phone social media scrolling recognition",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Carol and her husband \u2014 married 60 years \u2014 drove down to claim the ring",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "older couple driving happy reunion road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She cried",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "emotional reunion jewelry wedding ring reclaimed",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "10 years in a sewer pipe does things to jewelry",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "corroded old pipe sewer grime buildup",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "What are the odds that ring survived 10 years in Hartland's plumbing?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Classic_Diamond_Engagement_Ring.jpg",
+          "query": "diamond ring gleaming clean sparkle",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "10 years inside a pipe!",
+          "text": "10 YEARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Hartland, Michigan",
+          "text": "HARTLAND MI",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "plumbers from Titan Plumbing in Howell",
+          "text": "TITAN PLUMBING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Inside the pipe, they spotted something shiny",
+          "text": "SOMETHING SHINY",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "married 60 years",
+          "text": "60 YEARS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "She cried",
+          "text": "SHE CRIED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "10 years in a sewer pipe does things to jewelry",
+          "text": "10-YEAR SEWER",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "caroloram",
+        "titanplumbing",
+        "hartlandmichigan",
+        "engagementring",
+        "lostjewelry",
+        "michigan",
+        "plumber",
+        "ringfound",
+        "weirdnews",
+        "feelgood",
+        "jewelry",
+        "plumbing",
+        "oddnews",
+        "miraclestory"
+      ],
+      "music_vibe": "cinematic"
+    },
+    "05_tesla-autopilot-crash-katy-texas.json": {
+      "version": 8,
+      "slug": "tesla-autopilot-crash-katy-texas",
+      "title": "A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.",
+      "script": "Tesla drove into her house! On Friday evening in Katy, Texas, a Tesla Model 3 left the road and crashed through the side of a residential home. Inside was Martha Avila, 76 years old. She died from her injuries. The driver, Michael Butler, said he was using the car's Autopilot feature at the time \u2014 that the car was driving itself when it drifted out of its lane. A Ring doorbell camera recorded the moment of impact. Butler showed no signs of intoxication and is cooperating with investigators. The crash is now tied to a 3.2-million-vehicle federal probe by the National Highway Traffic Safety Administration, already at Engineering Analysis \u2014 the final step before a recall demand. A grandmother is dead. A 3.2-million-car recall is on the table. Was Autopilot to blame for Martha Avila's death?",
+      "shots": [
+        {
+          "phrase": "Tesla drove into her house!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "car crashed into house wall damage",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Katy, Texas",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "suburban neighborhood Texas residential street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a Tesla Model 3 left the road and crashed through the side of a residential home",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "Tesla Model 3 road driving residential",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Inside was Martha Avila, 76 years old",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "home interior living room residential quiet",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She died from her injuries",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "ambulance emergency response suburban house",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The driver, Michael Butler, said he was using the car's Autopilot feature at the time",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "Tesla autopilot dashboard touchscreen self driving",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "A Ring doorbell camera recorded the moment of impact",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "ring doorbell camera front porch footage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "3.2-million-vehicle federal probe by the National Highway Traffic Safety Administration",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "NHTSA federal investigation safety recall automotive",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "already at Engineering Analysis \u2014 the final step before a recall demand",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "federal agency recall engineering analysis document",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A grandmother is dead",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "crashed house wall impact damage exterior",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A 3.2-million-car recall is on the table",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "car recall notice fleet of vehicles",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Was Autopilot to blame for Martha Avila's death?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Model_3_Front_View.jpg",
+          "query": "Tesla autopilot steering wheel driver assist",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Tesla drove into her house!",
+          "text": "CRASHED IN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Martha Avila, 76 years old",
+          "text": "76 YEARS OLD",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "She died from her injuries",
+          "text": "DEAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the car was driving itself when it drifted out of its lane",
+          "text": "AUTOPILOT ON",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "3.2-million-vehicle federal probe",
+          "text": "3.2M CARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the final step before a recall demand",
+          "text": "RECALL COMING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Was Autopilot to blame for Martha Avila's death?",
+          "text": "WHO'S GUILTY?",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "teslaautopilot",
+        "marthaavila",
+        "katytexas",
+        "teslacrash",
+        "nhtsa",
+        "autopilot",
+        "selfdriving",
+        "teslamodel3",
+        "carrecall",
+        "evnews",
+        "texasnews",
+        "crimejustice",
+        "tesla",
+        "selfdriving"
+      ],
+      "music_vibe": "dark"
+    },
+    "06_seattle-dim-sum-guinness-record.json": {
+      "version": 8,
+      "slug": "seattle-dim-sum-guinness-record",
+      "title": "Seattle Just Broke a World Record With 830 People Eating Dim Sum",
+      "script": "The biggest dim sum ever! Seattle's Chinatown-International District gathered 830 people on a closed block of South King Street and broke the Guinness World Record for the world's largest dim sum gathering. The previous record was 764, set in Sydney in 2019. To qualify, everyone had to stay seated simultaneously \u2014 900 showed up, but 70 stood up before the headcount and disqualified themselves. The dumplings came from Jade Garden restaurant, whose team hand-rolled 3,600 by hand. At 3:32 p.m., the Guinness adjudicator made it official. Seattle won. The neighborhood has dealt with years of safety concerns and gentrification pressure \u2014 and it answered with 830 people eating dumplings together in the street. How many of those 70 people who stood up early are regretting it right now?",
+      "shots": [
+        {
+          "phrase": "The biggest dim sum ever!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "dim sum large spread bamboo steamer table",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Seattle's Chinatown-International District",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "Seattle Chinatown gate street colorful",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "gathered 830 people on a closed block of South King Street",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "outdoor street dining large crowd tables",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "broke the Guinness World Record for the world's largest dim sum gathering",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "guinness world record official certificate celebration",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The previous record was 764, set in Sydney in 2019",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "Sydney Australia city event crowd outdoor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "everyone had to stay seated simultaneously",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "crowd seated outdoor tables event rules",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "900 showed up, but 70 stood up before the headcount and disqualified themselves",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "person standing up crowd seated disqualified",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "The dumplings came from Jade Garden restaurant, whose team hand-rolled 3,600 by hand",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "dumpling making restaurant hand roll dough",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "At 3:32 p.m., the Guinness adjudicator made it official",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "guinness official adjudicator announcement ceremony",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Seattle won",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "crowd cheering celebration outdoor street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "safety concerns and gentrification pressure",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Seattle_-_Chinatown_gate_01.jpg",
+          "query": "Chinatown neighborhood community street sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "830 people eating dumplings together in the street",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "outdoor street dinner crowd tables city",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How many of those 70 people who stood up early are regretting it right now?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim-sum-HK.JPG",
+          "query": "person regret facepalm missed opportunity",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "The biggest dim sum ever!",
+          "text": "WORLD RECORD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "830 people on a closed block of South King Street",
+          "text": "830 PEOPLE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The previous record was 764",
+          "text": "BEAT 764",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "70 stood up before the headcount and disqualified themselves",
+          "text": "70 DISQUALIFIED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "hand-rolled 3,600 by hand",
+          "text": "3,600 DUMPLINGS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "At 3:32 p.m., the Guinness adjudicator made it official",
+          "text": "3:32 OFFICIAL",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Seattle won",
+          "text": "SEATTLE WINS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "How many of those 70 people who stood up early",
+          "text": "REGRET IT",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "seattlechinastownid",
+        "dimsum",
+        "guinnessrecord",
+        "seattledimsum",
+        "southkingstreet",
+        "jadegarden",
+        "seattle",
+        "chinatown",
+        "worldrecord",
+        "dumplings",
+        "chinesefood",
+        "seattleeats",
+        "guinessworldrecords",
+        "weirdnews"
+      ],
+      "music_vibe": "hiphop"
+    }
   }
 }
