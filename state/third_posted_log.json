@@ -8174,13 +8174,82 @@
       "ts": "2026-09-22T00:40:05.663479+00:00"
     },
     "clip-20260922-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/CloudyTallGoatPeteZarollTie-VeXZI3zeAAxnFGN8",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/vgOsPtQYauA",
       "title": "Sodapoppin Gets Wrecked By A Rogue Then Pulls Off The Comeback",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T00:55:30.876286+00:00",
+      "ts": "2026-09-22T00:55:37.521439+00:00",
+      "uploaded_at": "2026-09-22T00:55:37.521457+00:00",
+      "publish_at": "2026-09-22T18:30:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/CloudyTallGoatPeteZarollTie-VeXZI3zeAAxnFGN8",
+      "streamer": "sodapoppin",
+      "series": "clutch",
+      "hook": "THIS ROGUE WAS BEATING HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3428,
+      "banger": 0.65,
+      "cut": {
+        "start": 5.1,
+        "end": 40.5
+      },
+      "director_cut": true
+    },
+    "rejected-courteousfriendlybibimbapargieb8-z7cr55wrq74anccg": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/CourteousFriendlyBibimbapArgieB8-z7cR55WRq74AnCcg",
+      "streamer": "northernlion",
+      "title": "Domino",
+      "qa_rejected": true,
+      "ts": "2026-09-22T00:55:50.416306+00:00"
+    },
+    "rejected-triangularseductivebulgogideilluminati-q4tdlwikgaiqmnn7": {
+      "source_url": "https://www.twitch.tv/xqc/clip/TriangularSeductiveBulgogiDeIlluminati-q4tdlWIKGaiQMNN7",
+      "streamer": "xqc",
+      "title": "Xqc Screams 'Marty No!' Then Can't Explain What Just Happened",
+      "qa_rejected": true,
+      "ts": "2026-09-22T01:01:35.668743+00:00"
+    },
+    "rejected-aggressiverenownedstrawberrygowskull-oaxuhvfqwnsetc51": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AggressiveRenownedStrawberryGOWSkull-OAxuHVfqwNSeTc51",
+      "streamer": "jynxzi",
+      "title": "jynxzi and mooda cheating in tournament",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (routine gameplay, no visible event)",
+      "ts": "2026-09-22T01:02:40.931665+00:00"
+    },
+    "rejected-miniaturehilariousfiddleheadscharliebitme-isxpwurvxvfpcynu": {
+      "source_url": "https://www.twitch.tv/lacy/clip/MiniatureHilariousFiddleheadsCharlieBitMe-IsxpWURvxVfPcYNu",
+      "streamer": "lacy",
+      "title": "Lacy lamborghini keys",
+      "qa_rejected": true,
+      "ts": "2026-09-22T01:02:50.678832+00:00"
+    },
+    "rejected-ugliestthirstyreindeernerfblueblaster-yarcdfyuzxsfovi1": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/UgliestThirstyReindeerNerfBlueBlaster-yarcDfYUzXsfOvi1",
+      "streamer": "plaqueboymax",
+      "title": "m",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confusing shooting dispute, no clear pay)",
+      "ts": "2026-09-22T01:05:06.173225+00:00"
+    },
+    "rejected-zealousrelentlesskoalawow-bsoh5llexpm4c2n0": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/ZealousRelentlessKoalaWow-bsOH5LlexPm4c2N0",
+      "streamer": "northernlion",
+      "title": "NL on Dan's take to try to stay apolitical",
+      "qa_rejected": true,
+      "ts": "2026-09-22T01:06:37.511467+00:00"
+    },
+    "clip-20260922-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PopularCrepuscularGrouseFailFish-XrCq5MmHpCtRZ3L4",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Got The Chills And Said He Can't Do This",
+      "kind": "twitch_clip",
+      "ts": "2026-09-22T01:10:03.061360+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
