@@ -115,9 +115,19 @@ WORKFLOWS = {
 #: renders, reviews and uploads, and it carries `--repair 1`, which is what
 #: a repair dispatch wants. It reaches the identical editorial + showrunner
 #: path — this lifts no gate and skips no judgment.
+#: ...AND A TRENDING REPAIR MUST SAY `force`. `run_trending_daily` refuses
+#: to run when anything posted in the last six hours ("2 short(s) posted in
+#: the last 6 hours; skipping. Use --force-rerun") — the duplicate-trigger
+#: guard for a day that fired twice. A repair IS a second firing on
+#: purpose: on 2026-09-22 the switch re-dispatched Daily Shorts for a
+#: 2-of-6 day at 13:43 and the orchestrator exited in under a second,
+#: green, having rendered nothing. `force` is daily.yml's own repair input
+#: ("resume the unposted remainder even when one package succeeded in the
+#: last six hours; posted-title dedupe still prevents that successful
+#: package from being uploaded twice").
 DISPATCH_INPUTS = {
     "explainer": {"mode": "schedule"},
-    "trending": {},
+    "trending": {"force": "true"},
     "third": {},
 }
 
