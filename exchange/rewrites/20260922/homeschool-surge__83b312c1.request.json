@@ -1,0 +1,147 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "homeschool-surge__83b312c1",
+ "filed": "2026-09-22T11:08:32Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "homeschool-surge",
+ "current": {
+  "title": "Homeschooling Never Went Back To Normal After Covid",
+  "hook": "School reopened. A lot of families didn't go back.",
+  "closing": "Some habits from 2020 just stuck.",
+  "question": "Would you ever homeschool your kids? Tell me why.",
+  "segments": [
+   {
+    "topic": "share of families homeschooling",
+    "say": "Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, then only fell back to 5.4 percent."
+   },
+   {
+    "topic": "top reasons parents give",
+    "say": "Why'd it stick? The number one reason parents give — 83 percent — is concern about the environment at other schools."
+   },
+   {
+    "topic": "homeschool vs private school, 2023",
+    "say": "That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 percent homeschooled. Same year, same survey."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "share of families homeschooling",
+   "say": "Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, then only fell back to 5.4 percent.",
+   "role": "1 · THE SPIKE",
+   "data": {
+    "file": "homeschool_rate_trend.json",
+    "unit": "percent",
+    "title": "Share of US families homeschooling: before, during, and after the pandemic",
+    "points": [
+     {
+      "label": "2019 (pre-pandemic)",
+      "value": 2.8,
+      "period": "2019"
+     },
+     {
+      "label": "2020 (pandemic peak)",
+      "value": 11.1,
+      "period": "2020"
+     },
+     {
+      "label": "2023",
+      "value": 5.4,
+      "period": "2023"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "top reasons parents give",
+   "say": "Why'd it stick? The number one reason parents give — 83 percent — is concern about the environment at other schools.",
+   "role": "2 · WHY IT STUCK",
+   "data": {
+    "file": "homeschool_top_reasons.json",
+    "unit": "percent",
+    "title": "Top reasons US parents give for homeschooling (2023)",
+    "points": [
+     {
+      "label": "Concern about school environment/safety",
+      "value": 83
+     },
+     {
+      "label": "Desire for moral instruction",
+      "value": 75
+     },
+     {
+      "label": "Desire for family time together",
+      "value": 72
+     },
+     {
+      "label": "Dissatisfied with academics elsewhere",
+      "value": 72
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "homeschool vs private school, 2023",
+   "say": "That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 percent homeschooled. Same year, same survey.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "homeschool_vs_private_2023.json",
+    "unit": "percent",
+    "title": "Homeschooled vs privately schooled share of US K-12 kids (2023)",
+    "points": [
+     {
+      "label": "Homeschooled",
+      "value": 5.4
+     },
+     {
+      "label": "Private school",
+      "value": 9.6
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/homeschool-surge__83b312c1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

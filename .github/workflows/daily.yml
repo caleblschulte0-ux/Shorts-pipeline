@@ -640,7 +640,7 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "daily: $(date -u +%Y-%m-%d) report + state [skip ci]" \
             state/ daily_report.md daily_report.json \
-            exchange/reviews exchange/asks
+            exchange/reviews exchange/asks exchange/rewrites
 
       - name: Post report to tracking issue
         if: always() && steps.preflight.outputs.skip == ''

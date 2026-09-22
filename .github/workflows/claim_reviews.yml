@@ -17,6 +17,7 @@ on:
     branches: [main]
     paths:
       - 'exchange/reviews/**/*.verdict.json'
+      - 'exchange/rewrites/**/*.answer.json'
   schedule:
     - cron: '25 * * * *'
   workflow_dispatch:
@@ -44,11 +45,13 @@ jobs:
         run: |
           n=$(python3 - <<'PY'
           import json, pathlib
-          idx = pathlib.Path("exchange/reviews/OPEN.json")
-          try:
-              print(len(json.loads(idx.read_text()).get("open") or []))
-          except Exception:
-              print(0)
+          n = 0
+          for idx in ("exchange/reviews/OPEN.json", "exchange/rewrites/OPEN.json"):
+              try:
+                  n += len(json.loads(pathlib.Path(idx).read_text()).get("open") or [])
+              except Exception:
+                  pass
+          print(n)
           PY
           )
           echo "open=$n" >> "$GITHUB_OUTPUT"
@@ -90,6 +93,17 @@ jobs:
           fi
           echo "judge of record for this workflow: the ChatGPT mailbox verdict, decided by code"
 
+      # REWRITES: ChatGPT's words for held explainer stories, validated by
+      # code (numbers derivable from the data, no new entities, the same
+      # deterministic gate must pass) before they touch niche.config.json.
+      - name: Claim rewrites (validate + apply)
+        id: rewrites
+        if: steps.any.outputs.open != '0'
+        run: |
+          out=$(python scripts/claim_rewrites.py claim 2>&1 | tee /dev/stderr)
+          applied=$(echo "$out" | grep -o 'applied=[0-9]*' | tail -1 | cut -d= -f2)
+          echo "applied=${applied:-0}" >> "$GITHUB_OUTPUT"
+
       - name: Decide, then publish only a code-decided ship
         if: steps.any.outputs.open != '0'
         env:
@@ -105,7 +119,16 @@ jobs:
       - name: Persist settled requests + posted logs
         if: always() && steps.any.outputs.open != '0'
         run: |
-          bash scripts/ci_commit_state.sh \
-            "claim: mailbox verdicts $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]" \
-            exchange/reviews state/explainer_posted_log.json state/posted_log.json \
+          # An APPLIED rewrite is new content in niche.config.json, and that
+          # file's push is the explainer workflow's trigger — so leave
+          # [skip ci] OFF when one was applied, and the fixed story renders
+          # within the hour instead of at the next cron.
+          if [ "${{ steps.rewrites.outputs.applied }}" != "0" ] && [ -n "${{ steps.rewrites.outputs.applied }}" ]; then
+            msg="claim: ${{ steps.rewrites.outputs.applied }} ChatGPT rewrite(s) applied $(date -u +%Y-%m-%dT%H:%MZ)"
+          else
+            msg="claim: mailbox verdicts $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]"
+          fi
+          bash scripts/ci_commit_state.sh "$msg" \
+            exchange/reviews exchange/rewrites data_learning/niche.config.json \
+            state/scene_plans state/explainer_posted_log.json state/posted_log.json \
             state/showrunner_verdicts.jsonl

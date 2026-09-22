@@ -87,6 +87,36 @@ only an exact `true`). `exchange/asks/OPEN.json` lists what is pending.
 On by default in CI (`LLM_MAILBOX=0` to disable), off on a laptop unless
 `LLM_MAILBOX=1`.
 
+### 3. Rewrites — `exchange/rewrites/` (`shared/rewrite_mailbox.py`)
+
+Operator, 2026-09-22: *"ChatGPT is supposed to render videos if nothing
+else is available. And ChatGPT is always available."* The explainer had no
+re-author loop: the deterministic gate held 312 of 337 stories, almost all
+for WORD reasons (no number in the title or hook, a noun-phrase title, a
+segment topic with no keyword bridge to the headline, a spoken number the
+beat's data cannot show), and a story held on Monday was held identically
+on Tuesday. Now:
+
+- every story a run holds for word reasons, or the judge blocks, is filed
+  as `exchange/rewrites/<date>/<slug>__<hash>.request.json` with its
+  current words, **every segment's real data points**, the exact rules the
+  gate applies, the exact hold reasons, and (for a judge block) the judge's
+  own problems/fixes; `exchange/rewrites/OPEN.json` lists what is open;
+- ChatGPT writes `<id>.answer.json`: title, hook, closing, question, and
+  one `{topic, say}` per segment;
+- `scripts/claim_rewrites.py claim` (in `claim_reviews.yml`, and at the
+  start of every explainer run) **validates by code**: same segment
+  count; every spoken quantity derivable from that beat's data through the
+  gate's own matcher (`shared.beat_match`); no named entity the data does
+  not name; topics ≤ 4 words, says ≤ 40; and the same deterministic gate
+  the run applies must PASS on the rewritten story. Only then does
+  `niche.config.json` change (`words_by: chatgpt-rewrite`), the slug's old
+  scene plan is dropped, and the persist commit goes out **without**
+  `[skip ci]` so the explainer's push trigger renders it within the hour.
+  A refused rewrite is settled with its reasons and re-filed carrying them.
+
+`python scripts/claim_rewrites.py sweep` files the whole backlog.
+
 ## The ChatGPT round — paste into the scheduled task / Project
 
 > **Shorts review round.** Open
@@ -100,8 +130,12 @@ On by default in CI (`LLM_MAILBOX=0` to disable), off on a laptop unless
 > `main`. Never edit a request. Then open
 > `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/asks/OPEN.json`;
 > for each open batch, answer every listed key exactly as the batch's
-> `how_to_answer` says and commit its `answer_path`. If both indexes are
-> empty, stop; say nothing.
+> `how_to_answer` says and commit its `answer_path`. Then open
+> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/rewrites/OPEN.json`;
+> for each entry open its `request`, rewrite the story's words exactly as
+> the request's `rules` and `how_to_answer` say — numbers ONLY from the
+> listed data points — and commit `answer_path`. If every index is empty,
+> stop; say nothing.
 
 Run it at least twice a day (after the 13:40 UTC explainer cron and after
 the 17:10 UTC one), or hourly — a settled request costs nothing.

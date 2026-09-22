@@ -1,0 +1,132 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "betelgeuse-great-dimming__5b23be2f",
+ "filed": "2026-09-22T11:08:32Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "betelgeuse-great-dimming",
+ "current": {
+  "title": "The Star That Faked Its Own Death",
+  "hook": "A star faked its own death.",
+  "closing": "Still not the finale. Yet.",
+  "question": "Would you have believed the supernova headlines? Tell me below.",
+  "segments": [
+   {
+    "topic": "Betelgeuse's brightness drop",
+    "say": "In late 2019, the star Betelgeuse started fading. By February 2020 it had dropped to about 36 percent of its normal brightness, the faintest astronomers had ever recorded it."
+   },
+   {
+    "topic": "share of the star's disk obscured",
+    "say": "Telescope images explained why: a giant plume of gas had erupted from the surface and cooled into a dust cloud, blocking roughly half the star's visible disk from our point of view."
+   },
+   {
+    "topic": "the fake-out vs the real thing",
+    "say": "That fake-out lasted about 6 months before the star brightened back up. The real explosion is still roughly 100,000 years away, so no, Betelgeuse isn't dying yet."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Betelgeuse's brightness drop",
+   "say": "In late 2019, the star Betelgeuse started fading. By February 2020 it had dropped to about 36 percent of its normal brightness, the faintest astronomers had ever recorded it.",
+   "role": "1 · THE FADE",
+   "data": {
+    "file": "betelgeuse_brightness_drop.json",
+    "unit": "percent",
+    "title": "Betelgeuse brightness, normal vs. dimmest recorded (percent of normal)",
+    "points": [
+     {
+      "label": "Normal brightness",
+      "value": 100
+     },
+     {
+      "label": "Feb 2020 (dimmest)",
+      "value": 36
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "share of the star's disk obscured",
+   "say": "Telescope images explained why: a giant plume of gas had erupted from the surface and cooled into a dust cloud, blocking roughly half the star's visible disk from our point of view.",
+   "role": "2 · WHAT ACTUALLY HAPPENED",
+   "data": {
+    "file": "betelgeuse_dust_coverage.json",
+    "unit": "percent",
+    "title": "Share of Betelgeuse's imaged disk obscured by the dust cloud",
+    "points": [
+     {
+      "label": "Dust-obscured",
+      "value": 50
+     },
+     {
+      "label": "Unobscured",
+      "value": 50
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "the fake-out vs the real thing",
+   "say": "That fake-out lasted about 6 months before the star brightened back up. The real explosion is still roughly 100,000 years away, so no, Betelgeuse isn't dying yet.",
+   "role": "3 · NOT YET",
+   "data": {
+    "file": "betelgeuse_timescale_comparison.json",
+    "unit": "",
+    "title": "Length of the dimming episode vs. time until an actual supernova (years)",
+    "points": [
+     {
+      "label": "The 'fake' dimming",
+      "value": 0.5
+     },
+     {
+      "label": "Time to real supernova (est.)",
+      "value": 100000
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260922/betelgeuse-great-dimming__5b23be2f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
