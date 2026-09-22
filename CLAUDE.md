@@ -423,11 +423,34 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
 ## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)
 
 The third channel's `story_count` daily slots auto-detect narrative arcs
-(clips clustered by shared people across days) and compile them into
-multi-clip stories — quality-gated by a showrunner brain, falling back to
-a normal clip when no genuine arc exists. Compilation dedupe rides
-`story_key` (member-set hash), never member `source_url`s. Content
-standard: docs/THIRD_INTERNET_PLAYBOOK.md.
+and compile them into multi-clip stories — quality-gated by a showrunner
+brain, falling back to a normal clip when no genuine arc exists.
+Compilation dedupe rides `story_key` (member-set hash), never member
+`source_url`s. Content standard: docs/THIRD_INTERNET_PLAYBOOK.md.
+
+- **A story is ONE broadcast, and Twitch says which clips those are**
+  (2026-09-22). Helix gives every clip a `video_id` and `vod_offset`;
+  `storyline.find_vod_arcs` groups clips cut from the same stream minutes
+  apart, in broadcast order, and they are offered to the director FIRST.
+  The old source — a streamer's top clips from a 10-day window, clustered by
+  shared people — is only the fallback: over 09-16..22 it produced 21
+  deliberations and no render, because a streamer's greatest hits are not
+  one event (PLAYBOOK §5 says exactly that). `from_discovery` used to throw
+  the VOD fields away. Whether arcs exist at volume was NOT measured when
+  this was built (no Twitch credentials in that session) — read
+  `judges.story_director.supply` in `state/third_qa_stats.json` before
+  tuning anything.
+- **Slots follow `_learned_prior()`, and it had no tests** until the day it
+  was found inverted: kaicenat and buddha (median 5 and 8 views) at the
+  maximum boost, jynxzi (1,355-view top video) below them, because flops and
+  hits were scored in different units. Every video is now a percentile on
+  one scale. `tests/test_third_streamer_prior.py` includes a direction check
+  against the committed analytics — if it fails, the prior disagrees with
+  the channel's own view counts.
+- **The channel is a SEARCH channel** — ~89% of views are YouTube search.
+  `_search_guidance` hands the title author the real queries for that
+  streamer ("lang buddha", "jasontheween news"), with an honesty rule and
+  every other streamer's name and aliases filtered out.
 
 ## Media acquisition (docs/MEDIA_ACQUISITION.md)
 
