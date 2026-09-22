@@ -138,7 +138,12 @@ jobs:
             --date "$DATE" --channel "${{ inputs.channel || 'trending' }}" $FLAGS
 
       - name: Commit the ask
-        if: ${{ inputs.dry_run != true }}
+        # !cancelled() (not the implicit success()) so a bundle that wrote
+        # successfully but whose READY completion signal failed (script
+        # exits 1 for that) still gets committed instead of being thrown
+        # away with the runner — the failed job status is the alarm, losing
+        # the bundle on top of that would be a second, worse failure.
+        if: ${{ inputs.dry_run != true && !cancelled() }}
         run: |
           set -e
           DATE="${{ inputs.date }}"

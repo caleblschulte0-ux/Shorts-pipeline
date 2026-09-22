@@ -14,8 +14,10 @@ Writes:
     exchange/bundles/<date>/bundle.json
     exchange/bundles/<date>/READY
 
-Exit 0 always unless the packages directory is unreadable — a day with no
-gaps is a valid, successful Phase A (it just asks for nothing).
+Exit 0 unless the packages directory is unreadable, or the bundle wrote but
+its READY completion signal did not — a day with no gaps is a valid,
+successful Phase A (it just asks for nothing), but a bundle nothing can
+prove is complete is not.
 """
 from __future__ import annotations
 
@@ -366,7 +368,13 @@ def main() -> int:
     if ready:
         print(f"[phase-a] wrote {ready.relative_to(ROOT)} — "
               f"commit these; ChatGPT answers next")
-    return 0
+        return 0
+    ready_path = xb.bundle_dir(args.date) / "READY"
+    print(f"[phase-a] ERROR: could not write "
+          f"{ready_path.relative_to(ROOT)} — bundle.json was written but "
+          f"the completion signal was not, so consumers cannot prove this "
+          f"bundle is complete")
+    return 1
 
 
 if __name__ == "__main__":
