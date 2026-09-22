@@ -8243,13 +8243,45 @@
       "ts": "2026-09-22T01:06:37.511467+00:00"
     },
     "clip-20260922-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/PopularCrepuscularGrouseFailFish-XrCq5MmHpCtRZ3L4",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/xS9V3_1gLmg",
       "title": "Caseoh Got The Chills And Said He Can't Do This",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T01:10:03.061360+00:00",
+      "ts": "2026-09-22T01:10:06.124122+00:00",
+      "uploaded_at": "2026-09-22T01:10:06.124147+00:00",
+      "publish_at": "2026-09-22T23:00:00Z",
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PopularCrepuscularGrouseFailFish-XrCq5MmHpCtRZ3L4",
+      "streamer": "caseoh_",
+      "series": "jumpscare",
+      "hook": "GOT CHILLS, CAN'T DO THIS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2426,
+      "banger": 0.5,
+      "cut": {
+        "start": 20.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-talentedfitlocustresidentsleeper-leugk8umgyloyf3h": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TalentedFitLocustResidentSleeper-leUGk8umgYLoyF3h",
+      "streamer": "kaicenat",
+      "title": "Announcment!!! VIVET at ComplexCon!!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (sponsor-style announcement, no event)",
+      "ts": "2026-09-22T01:12:26.945457+00:00"
+    },
+    "clip-20260922-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/nickmercs/clip/SassyEnjoyableCobraBuddhaBar-4vk-wNTzXxX3Bkfx",
+      "story_key": null,
+      "streamer": "nickmercs",
+      "title": "Nickmercs Shows Off His Costume And Gets Roasted For It",
+      "kind": "twitch_clip",
+      "ts": "2026-09-22T01:15:18.536381+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
