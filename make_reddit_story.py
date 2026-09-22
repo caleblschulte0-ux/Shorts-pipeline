@@ -100,12 +100,24 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
 
     out: dict[int, Path] = {}
     cache = workdir / "shot_cache"
+
+    def _panel_for(i: int, src: str) -> Path:
+        """Fetch, attest, fit and save shot `i`'s image as its panel."""
+        shot = (pkg.get("shots") or [])[i]
+        local = base._fetch_image(str(src), cache)  # verified upstream
+        _verify_shot_attestation(shot, local, i)
+        with Image.open(local) as im:
+            panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
+                                 method=Image.Resampling.LANCZOS)
+        dest = workdir / f"shot_panel_{i:02d}.jpg"
+        panel.save(dest, "JPEG", quality=92)
+        return dest
+
     for i, shot in enumerate(pkg.get("shots") or []):
         src = shot.get("image_url") or shot.get("image")
         if not src:
             continue
         try:
-            local = base._fetch_image(str(src), cache)  # verified upstream
             # Byte attestation BEFORE any decode (doctor finding
             # 8b6949ab0573): ChatGPT-supplied shots carry media_sha256 /
             # media_bytes beside a MUTABLE Drive URL, recorded when Phase B
@@ -118,14 +130,7 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
             # `_visual_track` leaves the gap) rather than silently swapped.
             # Shots without the fields (legacy / self-filled media) keep the
             # old behavior: absent attestation is absent, not failing.
-            _verify_shot_attestation(shot, local, i)
-            with Image.open(local) as im:
-                panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
-                                     method=Image.Resampling.LANCZOS)
-
-            dest = workdir / f"shot_panel_{i:02d}.jpg"
-            panel.save(dest, "JPEG", quality=92)
-            out[i] = dest
+            out[i] = _panel_for(i, str(src))
         except Exception as exc:  # noqa: BLE001
             print(f"      shot panel {i} skipped: {type(exc).__name__}: "
                   f"{str(exc)[:90]}", flush=True)
@@ -141,6 +146,17 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
         for d in dropped:
             print(f"      shot panel {d['index']} DROPPED — does not depict its "
                   f"line: {d['why'][:100]}", flush=True)
+        # A GAP IS BETTER THAN A LIE, AND A RIGHT PICTURE BEATS BOTH: one
+        # replacement round with the brain's own better query, judged again.
+        replaced, dropped_again = _rel.replace_dropped(
+            pkg, dropped, _panel_for, title=str(pkg.get("title") or ""))
+        for i in sorted(replaced):
+            print(f"      shot panel {i} REPLACED — re-searched as "
+                  f"{(pkg['shots'][i].get('query') or '')!r}", flush=True)
+        for d in dropped_again:
+            print(f"      shot panel {d['index']} stays EMPTY — replacement "
+                  f"rejected too: {d['why'][:80]}", flush=True)
+        out.update(replaced)
     except Exception as exc:  # noqa: BLE001 — a relevance check must never kill a render
         print(f"      shot relevance check skipped: {type(exc).__name__}: "
               f"{str(exc)[:90]}", flush=True)

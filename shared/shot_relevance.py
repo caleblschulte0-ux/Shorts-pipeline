@@ -49,8 +49,14 @@ less than a wrong one.
 Shots:
 {shots}
 
+For every shot you reject, also give better_query: 2-4 concrete words an \
+image search would need to return a picture that DOES depict the line (the \
+object or action itself: "security deposit form", "empty apartment walk", \
+"paint store aisle"), never a brand or a mood word. Empty when nothing would.
+
 Return ONLY a JSON object, no prose:
-{{"shots": [{{"index": <int>, "depicts": <true|false>, "why": "<one line>"}}, ...]}}
+{{"shots": [{{"index": <int>, "depicts": <true|false>, "why": "<one line>", \
+"better_query": "<2-4 words or empty>"}}, ...]}}
 """
 
 
@@ -103,7 +109,8 @@ def judge_panels(panels: list[tuple[int, Path, str]], title: str = "",
         except Exception:  # noqa: BLE001
             continue
         out[i] = {"depicts": bool(r.get("depicts")),
-                  "why": str(r.get("why") or "")[:200]}
+                  "why": str(r.get("why") or "")[:200],
+                  "better_query": str(r.get("better_query") or "").strip()[:60]}
     return out or None
 
 
@@ -127,7 +134,71 @@ def filter_panels(panels: dict[int, Path], shots: list[dict], title: str = "",
     for i, p in panels.items():
         v = verdicts.get(i)
         if v is not None and v.get("depicts") is False:
-            dropped.append({"index": i, "why": v.get("why", "")})
+            dropped.append({"index": i, "why": v.get("why", ""),
+                            "better_query": v.get("better_query", "")})
         else:
             kept[i] = p
     return kept, dropped
+
+
+_ATTESTED = ("image_url", "image", "media_sha256", "media_bytes")
+
+
+def replace_dropped(pkg: dict, dropped: list[dict], materialise,
+                    title: str = "") -> tuple[dict[int, Path], list[dict]]:
+    """ONE replacement round for the panels the brain rejected.
+
+    Dropping a wrong picture fixed junk_imagery and opened the next hole
+    the same afternoon (2026-09-22, 20:15, the staff story at 65): "after
+    the post card there is not a single story illustration". A gap is
+    better than a lie, and a right picture is better than either. So each
+    rejected shot is searched AGAIN with the brain's own `better_query`
+    through the same self-fill lanes Phase B uses, materialised by the
+    renderer's `materialise(index, url) -> Path`, and judged once more.
+    A replacement the brain also rejects is dropped; one it cannot rule
+    on is kept (the status quo for a picture nothing said no to). A shot
+    with no better query, or no search hit, keeps its gap and its
+    original fields. Bounded: one search per rejected shot, one judge
+    call for the whole round, never a third."""
+    if not dropped or not enabled():
+        return {}, []
+    shots = pkg.get("shots") or []
+    try:
+        from scripts.exchange_phase_b import self_fill
+    except Exception:  # noqa: BLE001
+        return {}, []
+    fresh: dict[int, Path] = {}
+    for d in dropped:
+        i = int(d.get("index", -1))
+        q = str(d.get("better_query") or "").strip()
+        if not q or not 0 <= i < len(shots):
+            continue
+        shot = shots[i]
+        before = dict(shot)
+        shot["query"] = q
+        for k in _ATTESTED:            # a new picture carries no old attestation
+            shot.pop(k, None)
+        url = None
+        try:
+            url = self_fill(pkg, i)
+        except Exception:  # noqa: BLE001
+            url = None
+        panel = None
+        if url:
+            shot["image_url"] = url
+            try:
+                panel = materialise(i, url)
+            except Exception:  # noqa: BLE001
+                panel = None
+        if panel:
+            fresh[i] = Path(panel)
+        else:
+            shot.clear()
+            shot.update(before)
+    if not fresh:
+        return {}, []
+    kept, dropped_again = filter_panels(fresh, shots, title=title)
+    for d in dropped_again:            # the second no: the gap stays, the shot goes back
+        i = d["index"]
+        shots[i].pop("image_url", None)
+    return kept, dropped_again

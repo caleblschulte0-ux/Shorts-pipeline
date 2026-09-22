@@ -70,23 +70,81 @@ DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
 
-SYSTEM_PROMPT = """You write viral Reddit-style DRAMA STORYTIME scripts for \
-YouTube Shorts as strict JSON. 1080x1920 vertical, ~45-60 seconds. First-person, \
-emotionally charged, authentic Reddit voice (AITA / relationship / entitled \
-family / revenge). Write an ORIGINAL story — never copy a real post. Open on the \
-shock, build tension, end on a twist. \
-Output JSON only — no prose, no fences."""
+class UnfitTopic(ValueError):
+    """The topic cannot seed a story. Raised BEFORE any render is spent."""
 
 
-USER_PROMPT_TEMPLATE = """Topic: {topic_query}
+# A reddit_story is FICTION ON A UNIVERSAL PREMISE (the registry's own words,
+# `authoring_brief.FORMAT_SPECS["reddit_story"]`). It is never a retelling
+# of the news, and it is never set next to a tragedy.
+#
+# 2026-09-22, the showrunner on four backfills in one afternoon: "a
+# fabricated first-person 'cousin sold missiles' story laid over a real
+# geopolitical headline", "a fabricated first-person 'cover-up' story about
+# a real terror attack ... misinformation risk", and two ticker topics told
+# as drama over brand photos. Every one was blocked at 18-22, and every one
+# was authored by THIS module from a news topic the ranker had picked for
+# a news channel, under a prompt that said "use the topic as loose
+# inspiration". A real headline is not inspiration for fiction; it is the
+# thing fiction must not be mistaken for. So a topic about death, violence,
+# war, crime or politics is REFUSED before a word is written, the trend
+# may only choose the story's SETTING (a coffee shop, a car dealership, an
+# office), and no real person, company, product, place or event from the
+# headline may appear in the story — held by `_validate_package`.
+_UNFIT = re.compile(
+    r"\b(?:terror\w*|attack\w*|bomb\w*|shoot\w*|shot|gunman|gunmen|kill\w*|"
+    r"dead|death\w*|die[sd]?|dying|murder\w*|stab\w*|assault\w*|rape\w*|"
+    r"abuse\w*|war|wars|warfare|missile\w*|airstrike\w*|arming|weapon\w*|"
+    r"troops|military|hostage\w*|kidnap\w*|crash\w*|collision|disaster\w*|"
+    r"earthquake\w*|hurricane\w*|tornado\w*|flood\w*|wildfire\w*|missing|"
+    r"victim\w*|cancer|overdose\w*|suicide\w*|genocide|massacre\w*|famine|"
+    r"epidemic|pandemic|outbreak|verdict|sentenced|indict\w*|arrest\w*|"
+    r"trial|lawsuit|election\w*|senat\w*|congress|parliament|president\w*|"
+    r"minister\w*|sanction\w*|houthi\w*|hamas|taliban|nato|kremlin|pentagon)\b",
+    re.I)
 
-Context (headlines and snippets driving the trend):
+
+def unfit_for_fiction(text: str) -> str | None:
+    """The first word that makes `text` unusable as a story seed, or None.
+    A refusal list, so it can only ever SKIP a topic — never admit one."""
+    m = _UNFIT.search(text or "")
+    return m.group(0) if m else None
+
+
+def reddit_spec() -> dict:
+    """The registry's own definition of a reddit_story — rules and the
+    subreddit list — read at call time so this module never keeps a copy."""
+    from shared import authoring_brief
+    return authoring_brief.FORMAT_SPECS["reddit_story"]
+
+
+def system_prompt() -> str:
+    spec = reddit_spec()
+    rules = "\n".join(f"- {r}" for r in spec["rules"])
+    return (
+        "You write ORIGINAL first-person Reddit-style storytime scripts for "
+        "YouTube Shorts as strict JSON (1080x1920 vertical, ~45-60 seconds). "
+        "The story is FICTION on a UNIVERSAL premise. It is never about the "
+        "news, never a real event, and it names no real person, company, "
+        "brand, product, place or organisation. Open on the shock, build "
+        "tension, end on a twist or payoff.\n\nThe channel's rules for this "
+        f"format:\n{rules}\n\nSubreddit: exactly one of "
+        f"{', '.join(spec['subreddit_options'])}.\n"
+        "Output JSON only - no prose, no fences.")
+
+
+USER_PROMPT_TEMPLATE = """Setting seed: {topic_query}
+
+What is trending right now (for SETTING and OCCUPATION only - a story set \
+in a cafe, a hardware store, an airport, a rental office):
 {context_block}
 
 Schema:
 {{
-  "title": "<6-10 word punchy YouTube title>",
-  "script": "<130-170 words, first-person, sentence 1 drops into the shock/premise, builds tension, ends on the twist — NOT a question>",
+  "subreddit": "<one of the listed subreddits>",
+  "title": "<6-10 word punchy YouTube title, first-person, no real names>",
+  "script": "<130-170 words, first-person, sentence 1 drops into the shock/premise, builds tension, ends on the twist or payoff - NOT a question>",
+  "hashtags": ["<3-5 lowercase tags, first one the subreddit>"],
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
       "query": "<1-3 word stock-footage search, visually concrete>"}}
@@ -101,55 +159,50 @@ Schema:
 
 Hard rules (validated):
 
-1. SCRIPT LENGTH: 130-170 words (renders ~45-60s, must fit a 60s Short). First-person. Must end on a statement. Longer or shorter is rejected.
+1. THE TREND IS A SETTING, NOT A STORY. Do not retell, reference or \
+dramatise the news above. No real person, company, brand, product, place, \
+event or organisation from it may appear anywhere in the title or script - \
+the narrator is an ordinary person at work, and every name is invented. \
+If the trend is about death, injury, violence, war, crime victims, disaster, \
+illness or politics, it cannot seed a story: output ONLY \
+{{"unusable": "<one line why>"}} and nothing else.
 
-2. OPEN-LOOP HOOK (correct for stories): Sentence 1 drops the viewer into the \
-most shocking moment or the jaw-dropping premise so they NEED to know what \
-happens. Name the drama, WITHHOLD the resolution. Good: "My fiance's mother \
-stood up at our rehearsal dinner and read my private diary out loud.", "I found \
-out my sister had been forwarding my texts to my ex for a year." Bad (vague / \
-no stakes): "Something crazy happened to me.", "You won't believe this story." \
-It is burned huge on the cover frame — make it a specific, dramatic gut-punch.
+2. SCRIPT LENGTH: 130-170 words (renders ~45-60s, must fit a 60s Short). \
+First-person, ONE paragraph. Must end on a statement.
 
-3. ENDING: Land on the TWIST or a cliffhanger gut-punch. Do NOT append a \
-question ("What would you do?", "AITA?", "Part 2?") or any call-to-action — it \
-wastes the closing seconds and reads as bait.
+3. OPEN-LOOP HOOK: Sentence 1 drops the viewer into the most shocking \
+moment or the jaw-dropping premise so they NEED to know what happens. \
+Name the drama, WITHHOLD the resolution. Good: "My landlord invented $4,000 \
+of damage and then the neighbour handed me a key.", "The customer who \
+mistook me for staff got exactly the help she asked for." Bad (vague / no \
+stakes): "Something crazy happened at work." It is burned huge on the \
+cover frame - make it a specific gut-punch.
 
-4. BANNED phrases — algorithm-suppressed engagement-bait: "comment YES", \
+4. ENDING: Land on the TWIST or payoff. Do NOT append a question ("What \
+would you do?", "AITA?", "Part 2?") or any call-to-action.
+
+5. BANNED phrases - algorithm-suppressed engagement-bait: "comment YES", \
 "subscribe for part 2", "tag a friend", "let me know in the comments", \
 "like if you agree", "drop a like".
 
-5. STORY SHAPE: Shock hook (drop into the drama) → escalating first-person \
-beats with concrete details (names, ages, exact texts/quotes) → the twist. Feel \
-like a real person venting, not a summary. Use {topic_query} only as loose \
-inspiration for the drama — the story is original, not about a news topic.
+6. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and \
+punch.phrase must appear in the script word-for-word, exact order.
 
-6. TRIGGER PHRASES MUST BE VERBATIM SUBSTRINGS. Each shot.phrase and punch.phrase \
-must appear in the script word-for-word, exact order. Mismatches break the renderer.
-
-7. NUMBERS in the script use digits ("12 million", "25%", "1980") so audio transcription \
-matches. Trigger phrases that contain numbers must also use digits.
+7. NUMBERS in the script use digits ("12 dollars", "25%", "3 weeks") so \
+audio transcription matches. Trigger phrases with numbers use digits too.
 
 8. AVOID: "Wayfair" (transcribes as "wafer"); "Once" as a sentence opener \
-(transcribes as "wants" — use "First" / "Back in" / "Once you").
+(transcribes as "wants" - use "First" / "Back in" / "Once you").
 
-9. SHOTS: exactly 6-8. shot.query is concrete MOOD b-roll matching the beat \
-("woman crying", "phone text messages", "couple arguing", "wedding rings", \
-"person walking away"), not an abstraction. These are stock clips over the \
-gameplay strip.
+9. SHOTS: exactly 6-8. shot.query is concrete b-roll matching the beat \
+("angry customer", "phone text messages", "empty apartment", "cash \
+register", "person walking away"), not an abstraction and never a brand.
 
-10. MASCOT POSE per shot — one of: idle (default, neutral at desk), shock \
-(twist / surprising fact), point (first mention of the central entity), laugh \
-(absurd/quirky beat), think (setup / mystery framing), dismiss (skeptical \
-kicker). Default to "idle" for most shots. **At most 3 non-idle poses per \
-script** — over-reacting defeats the watermark feel.
+10. PUNCHES: exactly 3-5. 1-3 ALL CAPS words on the most shocking phrases. \
+Colors: #ff3030 (shock/bad), #50ff80 (positive), #ffaa30 (warning), \
+#ffffff (neutral). The FIRST punch fires at video start (frame 0).
 
-11. PUNCHES: exactly 3-5. 1-3 ALL CAPS words on the most shocking phrases. \
-Colors: #ff3030 (shock/bad), #50ff80 (positive), #ffaa30 (warning), #ffffff \
-(neutral). The FIRST punch fires at video start (frame 0) so a jaw-drop word is \
-on screen before the TTS even speaks.
-
-12. music_vibe: dark (serious/exposé), cinematic (big-picture), hiphop (cultural/upbeat).
+11. music_vibe: dark (serious), cinematic (big-picture), hiphop (upbeat).
 
 Output ONLY the JSON object."""
 
@@ -496,9 +549,73 @@ def _hook_word_count(script: str) -> int:
     return len([w for w in first.split() if w])
 
 
-def _validate_package(pkg: dict) -> list[str]:
+def _title_case(line: str) -> bool:
+    words = [w for w in re.findall(r"[A-Za-z][A-Za-z'\-]*", line) if len(w) > 3]
+    return len(words) >= 3 and sum(w[:1].isupper() for w in words) >= 0.6 * len(words)
+
+
+def _sentences(text: str) -> list[list[str]]:
+    return [s.split() for s in re.split(r"(?<=[.!?])\s+|\n+", text or "")
+            if s.strip()]
+
+
+def real_entities(topic_query: str, headlines: list[str],
+                  snippets: list[str] | None = None) -> set[str]:
+    """The named things in the trend a story must not contain.
+
+    A name is a word the trend capitalises MID-SENTENCE in prose and never
+    writes in lowercase anywhere. That one test separates "Tesla" from the
+    "Price" of a Title-Case headline: a Title-Case line says nothing about
+    which of its words are names, so its middle contributes none; the
+    article text (`snippets`, from `_research`) says "price" in lowercase
+    somewhere and "Tesla" never. A sentence's first word is sentence case,
+    not a name, unless it opens a second sentence, is capitalised
+    mid-sentence elsewhere, or is a word of the search query ("tesla
+    recall" / "Tesla said on Monday..."). An all-lowercase line IS a search
+    query, so its words are the subject, never evidence that "tesla" is an
+    ordinary word."""
+    from collections import Counter
+    from shared.punchup_guard import _COMMON_CAPS, proper_nouns
+    lines = [ln.strip() for ln in [topic_query or "", *(headlines or [])]
+             if ln and ln.strip()]
+    queries = {ln for ln in lines if ln == ln.lower()}
+    query_words = set(re.findall(r"[a-z0-9'\-]+", " ".join(queries)))
+    prose = [ln for ln in lines if ln not in queries and not _title_case(ln)]
+    lower_seen = set(re.findall(r"\b[a-z][a-z0-9'\-]*\b",
+                                " ".join(prose + list(snippets or []))))
+    mid: set[str] = set()
+    openers: Counter = Counter()
+    for words in _sentences("\n".join(prose + list(snippets or []))):
+        first = re.sub(r"[^A-Za-z0-9'\-]", "", words[0])
+        if first[:1].isupper() and first.lower() not in _COMMON_CAPS:
+            openers[first.lower()] += 1
+        if len(words) > 1 and not _title_case(" ".join(words)):
+            mid |= proper_nouns(" ".join(words[1:]))
+    caps = mid | {w for w, n in openers.items()
+                  if n >= 2 or w in mid or w in query_words}
+    return {w for w in caps if w not in lower_seen and len(w) > 2}
+
+
+def _validate_package(pkg: dict, real_entities: set[str] | None = None) -> list[str]:
     """Return a list of validation issues. Empty list = clean."""
     issues: list[str] = []
+    try:
+        subs = list(reddit_spec()["subreddit_options"])
+    except Exception:                                       # noqa: BLE001
+        subs = []
+    if subs and pkg.get("subreddit") not in subs:
+        issues.append(
+            f"subreddit {pkg.get('subreddit')!r} is not one of {subs} - a "
+            "package without one is not a reddit_story and cannot render.")
+    if real_entities:
+        from shared.punchup_guard import _all_words
+        named = sorted(real_entities & _all_words(
+            f"{pkg.get('title') or ''} {pkg.get('script') or ''}"))
+        if named:
+            issues.append(
+                f"the story names the real news ({', '.join(named)}) - a "
+                "reddit story is fiction on a universal premise. Remove every "
+                "real person, company, product, place and event; invent names.")
     script = pkg.get("script", "") or ""
     script_lower = script.lower()
 
@@ -586,14 +703,25 @@ def generate(topic_query: str, headlines: list[str], snippets: list[str] | None 
     mismatch, etc.) we send the issues back to the model and ask for a
     fix — up to `max_retries` times before giving up and returning the
     last attempt with a warning."""
+    seed = " ".join([topic_query or "", *(headlines or [])])
+    hit = unfit_for_fiction(seed)
+    if hit:
+        raise UnfitTopic(f"{topic_query!r} cannot seed a story ({hit!r}): "
+                         "a real tragedy, war, crime or politics is not "
+                         "inspiration for fiction")
+    names = real_entities(topic_query, headlines or [], snippets or [])
     user = USER_PROMPT_TEMPLATE.format(
         topic_query=topic_query,
         context_block=_build_context(headlines, snippets or []),
     )
+    system = system_prompt()
 
-    raw = _call_llm(SYSTEM_PROMPT, user, backend=backend, model=model)
+    raw = _call_llm(system, user, backend=backend, model=model)
     pkg = json.loads(_strip_fence(raw))
-    issues = _validate_package(pkg)
+    if isinstance(pkg, dict) and pkg.get("unusable"):
+        raise UnfitTopic(f"{topic_query!r} refused by the writer: "
+                         f"{str(pkg['unusable'])[:160]}")
+    issues = _validate_package(pkg, names)
 
     attempt = 0
     while issues and attempt < max_retries:
@@ -606,7 +734,7 @@ def generate(topic_query: str, headlines: list[str], snippets: list[str] | None 
             issues="\n".join(f"- {i}" for i in issues),
             previous=json.dumps(pkg, indent=2),
         )
-        raw = _call_llm(SYSTEM_PROMPT, retry_user, backend=backend, model=model)
+        raw = _call_llm(system, retry_user, backend=backend, model=model)
         try:
             pkg = json.loads(_strip_fence(raw))
         except json.JSONDecodeError:
@@ -614,7 +742,7 @@ def generate(topic_query: str, headlines: list[str], snippets: list[str] | None 
             print("[script_generator] retry returned non-JSON, keeping prior attempt",
                   file=sys.stderr)
             break
-        issues = _validate_package(pkg)
+        issues = _validate_package(pkg, names)
 
     if issues:
         print(f"[script_generator] WARNING: {len(issues)} unresolved issue(s):",
@@ -622,6 +750,30 @@ def generate(topic_query: str, headlines: list[str], snippets: list[str] | None 
         for i in issues:
             print(f"   - {i}", file=sys.stderr)
 
+    # A story that STILL names the news after every retry does not exist:
+    # it is the misinformation shape, and no render should be spent on it.
+    from shared.punchup_guard import _all_words
+    named = sorted(names & _all_words(
+        f"{pkg.get('title') or ''} {pkg.get('script') or ''}"))
+    if named:
+        raise UnfitTopic(f"the story still names the real news "
+                         f"({', '.join(named)}) after {max_retries} retries")
+
+    # The subreddit is the card's label, nothing more; a package without one
+    # would route to the retired stacked renderer, so it is filled here -
+    # deterministically from the title, and SAID, never silently.
+    subs = list(reddit_spec()["subreddit_options"])
+    if pkg.get("subreddit") not in subs:
+        pick = subs[sum(map(ord, pkg.get("title") or topic_query)) % len(subs)]
+        print(f"[script_generator] WARNING: subreddit {pkg.get('subreddit')!r} "
+              f"not in the registry's list - card labelled r/{pick}",
+              file=sys.stderr)
+        pkg["subreddit"] = pick
+    if not pkg.get("slug"):
+        pkg["slug"] = re.sub(r"[^a-z0-9]+", "-",
+                             (pkg.get("title") or topic_query).lower()).strip("-")[:60]
+    if not isinstance(pkg.get("hashtags"), list) or not pkg["hashtags"]:
+        pkg["hashtags"] = [pkg["subreddit"].lower(), "storytime", "reddit"]
     pkg["topic"] = topic_query
     return pkg
 

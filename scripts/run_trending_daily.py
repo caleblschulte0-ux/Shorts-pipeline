@@ -655,9 +655,23 @@ def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
               f"something unjudged", flush=True)
         return []
 
-    fresh = [t for t in picks
-             if (getattr(t, "query", "") or "").strip().casefold()
-             not in already]
+    fresh = []
+    for t in picks:
+        q = (getattr(t, "query", "") or "").strip()
+        if q.casefold() in already:
+            continue
+        # A replacement is a reddit_story: FICTION on a universal premise.
+        # A real tragedy, war, crime or political headline cannot seed one
+        # (2026-09-22: "a fabricated first-person 'cousin sold missiles'
+        # story laid over a real geopolitical headline", blocked at 22).
+        # Skipping it here costs nothing; authoring it costs a render.
+        hit = script_generator.unfit_for_fiction(
+            " ".join([q, *(getattr(t, "headlines", None) or [])]))
+        if hit:
+            print(f"[backfill] skipping {q!r}: not a story seed ({hit!r})",
+                  flush=True)
+            continue
+        fresh.append(t)
     if not fresh:
         print("[backfill] discovery returned nothing this channel has not "
               "already posted — an honest short day", flush=True)
@@ -978,9 +992,18 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         # The backfill is the LAST unattended chance to fill a slot. It is
         # the one place that must never depend on a single provider.
         print(f"[{topic.query!r}] generating script...", flush=True)
-        pkg = script_generator.generate(
-            topic.query, topic.headlines, topic.snippets,
-        )
+        try:
+            pkg = script_generator.generate(
+                topic.query, topic.headlines, topic.snippets,
+            )
+        except script_generator.UnfitTopic as exc:
+            # No story exists for this topic (a tragedy, or the writer
+            # could not keep the real names out). Nothing was rendered.
+            result["error"] = f"unfit_for_fiction: {exc}"
+            result["unfit"] = True
+            result["elapsed_seconds"] = round(time.time() - t_start, 1)
+            print(f"[{topic.query!r}] NOT A STORY SEED - {exc}", flush=True)
+            return result
 
         # Save the package alongside so we can re-render or audit later.
         ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
