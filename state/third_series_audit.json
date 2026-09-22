@@ -5,13 +5,13 @@
       "n": 40,
       "median_vph": 0.01
     },
-    "fail": {
-      "n": 13,
-      "median_vph": 0.03
-    },
     "wholesome": {
       "n": 12,
-      "median_vph": 0.145
+      "median_vph": 0.195
+    },
+    "fail": {
+      "n": 12,
+      "median_vph": 0.025
     },
     "drama": {
       "n": 9,
@@ -19,7 +19,7 @@
     },
     "win": {
       "n": 8,
-      "median_vph": 0.1
+      "median_vph": 0.095
     },
     "jumpscare": {
       "n": 3,
@@ -35,7 +35,7 @@
     },
     "rage": {
       "n": 2,
-      "median_vph": 0.005
+      "median_vph": 0.0
     }
   },
   "excluded": {}
