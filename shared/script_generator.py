@@ -47,7 +47,25 @@ GEMINI_API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:ge
 GROQ_API = "https://api.groq.com/openai/v1/chat/completions"
 
 # Default model per backend.
-DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
+# THE PRIMARY TEXT BRAIN WAS DEAD FOR FIVE WEEKS AND NOBODY SAW IT.
+#
+# Groq retired `llama-3.3-70b-versatile` on 2026-08-16 (announced by email
+# on 06-17; console.groq.com/docs/deprecations). From that day every
+# `_call_llm` got `HTTP Error 404` from Groq and fell through to Gemini's
+# free tier — which the same run then exhausted, so by the time a rendered
+# video needed the Gemini JUDGE fallback it was 429 too. Read off the
+# 2026-09-22 09:36 explainer run: 18 Groq 404s, 9 Gemini 429s, every video
+# held. Groq's named replacement is `openai/gpt-oss-120b` (JSON object mode,
+# 131K context, free tier). `RETIRED_GROQ_MODELS` keeps a stale `GROQ_MODEL`
+# env pin from resurrecting the 404; `tests/test_the_groq_model_is_alive.py`
+# holds the pin against Groq's published shutdown list.
+DEFAULT_GROQ_MODEL = "openai/gpt-oss-120b"
+RETIRED_GROQ_MODELS = frozenset({
+    "llama-3.3-70b-versatile", "llama-3.1-8b-instant",          # 2026-08-16
+    "qwen/qwen3.6-27b",                                          # 2026-09-14
+    "groq/compound", "groq/compound-mini",                       # 2026-09-21
+    "qwen/qwen3-32b", "meta-llama/llama-4-scout-17b-16e-instruct",  # 2026-07-17
+})
 DEFAULT_GEMINI_MODEL = "gemini-2.5-flash"
 DEFAULT_ANTHROPIC_MODEL = "claude-sonnet-4-6"
 
@@ -170,17 +188,26 @@ def _call_groq(system: str, user: str, model: str = DEFAULT_GROQ_MODEL) -> str:
     api_key = os.environ.get("GROQ_API_KEY")
     if not api_key:
         raise RuntimeError("GROQ_API_KEY env var not set")
-    body = json.dumps({
+    if model in RETIRED_GROQ_MODELS:
+        print(f"[groq] '{model}' is retired on Groq — using {DEFAULT_GROQ_MODEL}",
+              file=sys.stderr)
+        model = DEFAULT_GROQ_MODEL
+    payload = {
         "model": model,
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
         "temperature": 0.7,
-        "max_tokens": 2000,
+        # gpt-oss spends part of this budget on reasoning tokens before the
+        # JSON; 2000 was enough for Llama's answer alone, not for both.
+        "max_tokens": 4000,
         # Forces a valid JSON object back — no fence stripping needed.
         "response_format": {"type": "json_object"},
-    }).encode()
+    }
+    if model.startswith("openai/gpt-oss"):
+        payload["reasoning_effort"] = "low"     # a ranker, not a proof
+    body = json.dumps(payload).encode()
 
     last_err: Exception | None = None
     # Backoff schedule: respect Retry-After when present, otherwise short

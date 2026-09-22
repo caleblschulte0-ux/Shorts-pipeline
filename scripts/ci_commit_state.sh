@@ -49,8 +49,25 @@ for attempt in 1 2 3 4 5; do
   fi
   echo "[persist] push failed (attempt $attempt) — union-merging onto fresh $BRANCH"
   SAVE=$(mktemp -d)
-  for p in "$@"; do
-    [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
+  # EVERYTHING THE RUN HAS PRODUCED SO FAR, not only the paths of THIS call.
+  #
+  # `git reset --hard` below throws away every uncommitted change in the
+  # checkout. This script is also called MID-RUN by post_stories with a
+  # single path (the posted log, pushed the moment a video is live) — and on
+  # 2026-09-22 that call lost the race (Phase A, the doctor and a claim had
+  # moved main since the 09:36 checkout), backed up the posted log alone,
+  # reset, and silently destroyed seven showrunner verdicts appended to
+  # state/showrunner_verdicts.jsonl and the repair plan the run had just
+  # written. The end-of-run persist then found "nothing changed" in both.
+  # The ledger is the showrunner's memory and the rewrite mailbox's
+  # evidence; a plan is a repair the next run would otherwise redo.
+  # So: back up every modified tracked file too, and restore it. Only the
+  # given paths are committed here; the rest stay dirty for the caller's
+  # own persist, exactly as if the push had simply succeeded.
+  { printf '%s\n' "$@"
+    git diff --name-only 2>/dev/null
+    git diff --cached --name-only 2>/dev/null; } | sort -u | while read -r p; do
+    [ -n "$p" ] && [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
   done
   git fetch origin "$BRANCH"
   git reset --hard "origin/$BRANCH"
@@ -64,12 +81,23 @@ for attempt in 1 2 3 4 5; do
   # OUR copy over fresh main deleted four just-merged exemplars from the
   # library on 2026-09-21, fourteen minutes after they landed, with this
   # step reporting success.
+  # ...and every append-only *.jsonl ledger (the showrunner's verdicts) as a
+  # UNION OF LINES — theirs, then ours that theirs lacks — so a verdict
+  # appended on either side of the race survives.
   (cd "$SAVE" && find . -type f \( -name '*posted_log.json' -o -name '*_log.json' \
-        -o -name 'viz_mechanics.json' -o -name 'niche.config.json' \) 2>/dev/null) \
+        -o -name 'viz_mechanics.json' -o -name 'niche.config.json' \
+        -o -name '*.jsonl' \) 2>/dev/null) \
   | while read -r rel; do
     rel="${rel#./}"
     THEIRS=$(mktemp)
     case "$rel" in
+      *.jsonl)
+        git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || : > "$THEIRS"
+        python3 scripts/merge_state_json.py "$THEIRS" "$SAVE/$rel" "$rel" \
+          || { echo "::error::[persist] union-merge failed for $rel — refusing to overwrite either side" >&2
+               touch "$SAVE/.merge_failed"; }
+        rm -f "$THEIRS"
+        continue ;;
       *viz_mechanics.json|*niche.config.json)
         git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '' > "$THEIRS"
         python3 scripts/merge_state_json.py "$THEIRS" "$SAVE/$rel" "$rel" \
