@@ -1175,19 +1175,66 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _STORY_POOL = pool
         pool_by_url = {c.get("url"): c for c in _STORY_POOL}
         corpus += storyline.from_discovery(_STORY_POOL)
-        # VOD ARCS FIRST. Clips cut from one broadcast minutes apart are one
-        # incident by construction — Twitch's own coordinates say so — so
-        # they are the strongest story evidence we can hand the director.
-        # People clusters follow, as the fallback they always should have
-        # been: across 2026-09-16..22 they produced 21 deliberations and no
-        # render, 11 of them with no two clips sharing any event at all.
+        # VOD ARCS: clips cut from one broadcast minutes apart are one
+        # incident by construction — Twitch's own coordinates say so. They
+        # are offered after the scout's proposals (below) and before the
+        # people clusters, which across 2026-09-16..22 produced 21
+        # deliberations and no render, 11 with no two clips sharing any
+        # event at all. A one-stream story the scout also spots is analysed
+        # once — the dedupe below keeps the first.
         vod_arcs = storyline.find_vod_arcs(
             _STORY_POOL,
             gap_s=float(spec.get("story_vod_gap_s", 900.0)),
             max_members=6)
-        clusters = vod_arcs + storyline.find_clusters(corpus, known)
-        print(f"[story] {len(vod_arcs)} VOD arc(s) + "
-              f"{len(clusters) - len(vod_arcs)} people cluster(s)",
+
+        # THE SCOUT GOES FIRST — the brain reads the whole month.
+        #
+        # Operator, 2026-09-22: "Twitch isn't gonna hand them to you on a
+        # silver platter ... these are gonna have to be from over extended
+        # periods of time, more than one stream sometimes. Sometimes they'll
+        # be from one stream. The thing needs to use its brain."
+        #
+        # Every mechanical grouping here matches WORDS: people clusters on
+        # shared names, subclusters on shared action tokens within a week,
+        # VOD arcs on one broadcast. A story is "picks his squad" on the
+        # 19th, "defends his teammate's pick" on the 18th and "accused of
+        # cheating in the tournament" on the 22nd — three streams, no words
+        # in common, one week of one saga. Only something that knows what
+        # happened can see that. So the scout reads a catalogue of the whole
+        # lookback window — every clip posted, the discovery sweep, one line
+        # each — and proposes stories. It proposes; `plan_story` decides,
+        # with the transcripts and frames in front of it and §8 unchanged.
+        cat_lines, cat_ids = storyline.build_catalogue(corpus)
+        scouted = []
+        for st in story_director.scout_stories(cat_lines, set(cat_ids)):
+            members = [cat_ids[m] for m in st["members"]]
+            # story order as the scout gave it, stable across a date
+            members = sorted(members, key=lambda c: str(c.get("date", "")))
+            scouted.append({
+                "who": sorted({storyline._norm_ent(c.get("channel", ""))
+                               for c in members if c.get("channel")}),
+                "clips": members, "score": 1e12, "kind": "scouted",
+                "premise": st["premise"],
+                "why_connected": st["why_connected"],
+                "shape": st["shape"]})
+            print(f"[scout] {st['shape'] or '?'}: {st['premise'][:90]!r} "
+                  f"({len(members)} clips)", flush=True)
+
+        clusters = (scouted + vod_arcs
+                    + storyline.find_clusters(corpus, known))
+        # One candidate per story. The scout and the VOD grouping will often
+        # find the same broadcast; analysing it twice is minutes of whisper
+        # and vision spent on nothing.
+        _deduped, _members_seen = [], []
+        for cl in clusters:
+            urls_ = [c["source_url"] for c in cl["clips"]]
+            if storyline.near_dup(urls_, _members_seen):
+                continue
+            _members_seen.append(urls_)
+            _deduped.append(cl)
+        clusters = _deduped
+        print(f"[story] {len(scouted)} scouted + {len(vod_arcs)} VOD arc(s) + "
+              f"people clusters = {len(clusters)} candidate(s) after dedupe",
               flush=True)
         # DURABLE, not just printed: whether single-broadcast arcs exist at
         # useful volume is the open question this design rests on, and it
@@ -1196,8 +1243,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # state/third_qa_stats.json.
         try:
             _JUDGES.setdefault("story_director", {})["supply"] = {
+                "catalogue": len(cat_lines),
+                "scouted": [{"premise": x["premise"][:120],
+                             "shape": x["shape"], "n": len(x["clips"])}
+                            for x in scouted],
                 "vod_arcs": len(vod_arcs),
-                "people_clusters": len(clusters) - len(vod_arcs),
+                "candidates": len(clusters),
                 "pool": len(_STORY_POOL),
                 "pool_with_vod": sum(1 for c in _STORY_POOL
                                      if c.get("video_id")),
@@ -1238,8 +1289,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 return None
             who = "+".join(cluster["who"])
             is_vod_arc = cluster.get("kind") == "vod_arc"
+            is_scouted = cluster.get("kind") == "scouted"
             if is_vod_arc:
                 who = f"{who}@vod{cluster.get('video_id')}"
+            elif is_scouted:
+                who = f"scout:{who}"
             urls = [c["source_url"] for c in cluster["clips"]]
             if storyline.story_key(urls) in shipped:
                 continue
@@ -1298,6 +1352,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             rep["used_vod"] = True     # per-SOURCE, not per-pile
                 rep["date"] = c.get("date", "")
                 rep["vod_offset"] = c.get("vod_offset")
+                rep["video_id"] = c.get("video_id")
                 reports.append(rep)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
@@ -1319,6 +1374,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 _subs = [sorted(reports,
                                 key=lambda r: float(r.get("vod_offset")
                                                     or 0.0))]
+            elif is_scouted:
+                # The scout's grouping IS the hypothesis under test — the
+                # ±1-week token rule would split a three-week saga into
+                # three singletons before the director ever saw it. The
+                # director is the check, not the week window.
+                _subs = [list(reports)]
             else:
                 _subs = _semantic_subclusters(reports)
             # RECORD THE SHAPE, ALWAYS. When every subcluster is a
@@ -1349,7 +1410,10 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
 
                 # ---- eligibility + structure + story EDL (§8-10)
                 edl = story_director.plan_story(
-                    sub, event, guidance=_story_guidance())
+                    sub, event, guidance=_story_guidance(),
+                    hypothesis=(f"{cluster.get('premise', '')} — "
+                                f"{cluster.get('why_connected', '')}"
+                                if is_scouted else ""))
                 if not edl:
                     # NAME THE GATE. plan_story returns None for an
                     # editorial "not a story" AND for ten different
