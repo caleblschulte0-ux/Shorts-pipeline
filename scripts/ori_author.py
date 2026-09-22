@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -31,6 +32,11 @@ sys.path.insert(0, str(REPO))
 from data_learning import ori_documentary as OD      # noqa: E402
 
 CONFIG = REPO / "data_learning" / "ori.config.json"
+#: topics tried beyond the number wanted before the author gives up for the run
+MAX_EXTRA_TOPICS = 1
+#: a 1,500-word script is not a one-line judgement; the shared CLI default
+#: (90s) is sized for the latter and timed every attempt out in CI
+os.environ.setdefault("CLAUDE_CLI_TIMEOUT", "600")
 POSTED = REPO / "state" / "curiosity_posted_log.json"
 
 SYSTEM = """You write narration scripts for OpenRangeInteractive, a faceless \
@@ -116,7 +122,6 @@ def _parse(text: str) -> dict:
 
 def _ask(system: str, user: str) -> str:
     """The brain chain without the mailbox (see module docstring)."""
-    import os
     from shared import script_generator as sg
     errs = []
     # the strongest writer first: a ten-minute script is not a caption
@@ -170,10 +175,12 @@ def main() -> int:
     else:
         done = used_topics()
         topics = [t for t in cfg["topics"] if t.lower() not in done]
-    wrote = 0
+    wrote = tried = 0
     for t in topics:
-        if wrote >= want:
+        # a bounded budget: a dark brain must cost minutes, not the run
+        if wrote >= want or tried >= want + MAX_EXTRA_TOPICS:
             break
+        tried += 1
         ep = author(t)
         if ep is None:
             continue
