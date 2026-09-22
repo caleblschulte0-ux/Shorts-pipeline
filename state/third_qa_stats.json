@@ -3,198 +3,6 @@
     {
       "date": "20260915",
       "dry_run": false,
-      "ts": "2026-09-15T15:51:27+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 86,
-        "with_curve": 15,
-        "fetched_at": "2026-09-15T13:47:53.430857+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fanum": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260915-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Summit gets naded",
-              "raw": "Summit gets naded",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 456.5
-        },
-        {
-          "slug": "clip-20260915-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260915",
-      "dry_run": false,
       "ts": "2026-09-15T17:47:19+00:00",
       "feedback": {
         "snapshot": true,
@@ -5055,6 +4863,298 @@
           "slug": "clip-20260921-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260922",
+      "dry_run": false,
+      "ts": "2026-09-22T01:15:21+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 88,
+        "with_curve": 13,
+        "fetched_at": "2026-09-21T17:05:29.340590+00:00"
+      },
+      "brain": {
+        "ok": 39,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260922-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp (in-focus) region is only about a third of the canvas \u2014 a thin horizontal strip with heavy blurred padding above a; vision: The player character/action inside that sharp strip is small a",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction emoji title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "routine GTA RP gameplay, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha Headshot Off A Bike Left This Guy So Confused"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.72,
+              "problems": [
+                "Sharp (in-focus) region is only about a third of the canvas \u2014 a thin horizontal strip with heavy blurred padding above a",
+                "The player character/action inside that sharp strip is small and distant (wide GTA landscape shot), making the headshot "
+              ]
+            }
+          },
+          "took_s": 272.3
+        },
+        {
+          "slug": "clip-20260922-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "buddha/buddha-buddha-casino-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "jynxzi",
+                  "outcome": "no_shared_event",
+                  "why": "6 analysed -> subclusters [1, 1, 1, 1, 1, 1] over 2 date(s) \u2014 no two sources share an event, so no director call was made"
+                },
+                {
+                  "cluster": "xqc",
+                  "outcome": "no_shared_event",
+                  "why": "5 analysed -> subclusters [1, 1, 1, 1, 1] over 4 date(s) \u2014 no two sources share an event, so no director call was made"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.65,
+              "why": "visible loss/fail reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "clutch PvP win, vindicated reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Sodapoppin Gets Wrecked By A Rogue Then Pulls Off The Comeback"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 931.9
+        },
+        {
+          "slug": "clip-20260922-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (routine gameplay, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.78,
+              "why": "cheating scandal, exposed, searchable na",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "routine gameplay, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 65.3
+        },
+        {
+          "slug": "clip-20260922-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (confusing shooting dispute, no clear pay)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title uninformative, can't assess",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "confusing shooting dispute, no clear pay",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 64.3
+        },
+        {
+          "slug": "clip-20260922-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine scared reaction, liminal horror ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Got The Chills And Said He Can't Do This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": []
+            }
+          },
+          "took_s": 208.6
+        },
+        {
+          "slug": "clip-20260922-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "shows off cheap Wolverine costume, self-",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Nickmercs Shows Off His Costume And Gets Roasted For It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 175.0
         }
       ]
     }

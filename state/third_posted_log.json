@@ -8275,14 +8275,27 @@
       "ts": "2026-09-22T01:12:26.945457+00:00"
     },
     "clip-20260922-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/nickmercs/clip/SassyEnjoyableCobraBuddhaBar-4vk-wNTzXxX3Bkfx",
-      "story_key": null,
-      "streamer": "nickmercs",
+      "url": "https://youtube.com/shorts/SDX4qgpYJO4",
       "title": "Nickmercs Shows Off His Costume And Gets Roasted For It",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T01:15:18.536381+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-22T01:15:21.926991+00:00",
+      "uploaded_at": "2026-09-22T01:15:21.927006+00:00",
+      "publish_at": "2026-09-23T00:30:00Z",
+      "source_url": "https://www.twitch.tv/nickmercs/clip/SassyEnjoyableCobraBuddhaBar-4vk-wNTzXxX3Bkfx",
+      "streamer": "nickmercs",
+      "series": "fail",
+      "hook": "WE GOT WOLVERINE AT HOME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2401,
+      "banger": 0.5,
+      "cut": {
+        "start": 3.8,
+        "end": 24.37
+      },
+      "director_cut": true
     }
   }
 }
