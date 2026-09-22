@@ -1,4 +1,252 @@
-{
-  "skipped": true,
-  "recent_posts": 2
-}
+[
+  {
+    "topic": "Clean Energy Investment Passed Fossil Fuels",
+    "title": "Clean Energy Investment Passed Fossil Fuels",
+    "format": "graph_race",
+    "publish_at": "2026-09-22T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/DPv111hLPfU",
+    "error": null,
+    "elapsed_seconds": 139.7,
+    "package_path": "state/trending_packages/20260922/02_clean-energy-investment-passed-fossil-fuels.json",
+    "source": "brain",
+    "video_path": "output/daily_20260922-153225_clean_energy_investment_passed_fossil_fu.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Tesla Passed Toyota In Market Value",
+    "title": "Tesla Passed Toyota In Market Value",
+    "format": "graph_race",
+    "publish_at": "2026-09-22T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest graph race whose one piece of hook copy is printed over the axis in a colour that fades into the black \u2014 the only text asking a viewer to stay is the one text they cannot read.",
+    "elapsed_seconds": 125.3,
+    "package_path": "state/trending_packages/20260922/03_tesla-passed-toyota-market-cap.json",
+    "source": "brain",
+    "video_path": "output/daily_20260922-153445_tesla_passed_toyota_in_market_value.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, honest graph race whose one piece of hook copy is printed over the axis in a colour that fades into the black \u2014 the only text asking a viewer to stay is the one text they cannot read.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "My Landlord Invented Damage For My Deposit",
+    "title": "My Landlord Invented Damage For My Deposit",
+    "format": "reddit",
+    "publish_at": "2026-09-22T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The narrative and captions are clean, but the top half is a slideshow of mismatched stock \u2014 '@' clipart for photographing rooms and a surgery textbook for deposit law \u2014 so the story is never actually illustrated.",
+    "elapsed_seconds": 207.2,
+    "package_path": "state/trending_packages/20260922/05_landlord-invented-deposit-damage.json",
+    "source": "brain",
+    "video_path": "output/daily_20260922-153652_my_landlord_invented_damage_for_my_depos.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.867,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The narrative and captions are clean, but the top half is a slideshow of mismatched stock \u2014 '@' clipart for photographing rooms and a surgery textbook for deposit law \u2014 so the story is never actually illustrated.",
+      "score": 62
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
+    "title": "She Mistook Me For Staff. I 'Helped' Her Anyway.",
+    "format": "reddit",
+    "publish_at": "2026-09-22T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The split-screen and captions are clean and the cut never stalls, but half the illustrations are unrelated stock \u2014 a polaroid wall and a repeated fruit stand carrying the paint-aisle punchline \u2014 so the story is told by the captions alone.",
+    "elapsed_seconds": 261.7,
+    "package_path": "state/trending_packages/20260922/06_mistaken-for-staff-faucet-clearance.json",
+    "source": "brain",
+    "video_path": "output/daily_20260922-154019_she_mistook_me_for_staff__i__helped__her.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The split-screen and captions are clean and the cut never stalls, but half the illustrations are unrelated stock \u2014 a polaroid wall and a repeated fruit stand carrying the paint-aisle punchline \u2014 so the story is told by the captions alone.",
+      "score": 66
+    },
+    "blocked": true
+  },
+  {
+    "topic": "msft",
+    "angle": null,
+    "publish_at": "2026-09-22T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration anywhere in this video - every top panel is an auto-grabbed brand photo unrelated to the line it sits over, and the revenue stat is illustrated with a computer mouse.",
+    "elapsed_seconds": 508.4,
+    "title": "My Boss Turned My Savings Into a Microsoft AI Bet",
+    "package_path": "state/trending_packages/20260922-154623_auto_msft.json",
+    "video_path": "output/daily_20260922-154623_msft.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.133,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: There is no data demonstration anywhere in this video - every top panel is an auto-grabbed brand photo unrelated to the line it sits over, and the revenue stat is illustrated with a computer mouse.",
+      "score": 22
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "pltr stock",
+    "angle": null,
+    "publish_at": "2026-09-22T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration at all \u2014 six off-topic stock photos stacked over unrelated Subway Surfers footage, closing on an illegible letter about a local newspaper.",
+    "elapsed_seconds": 913.7,
+    "title": "My Dad Secretly Bought PLTR With My Tuition",
+    "package_path": "state/trending_packages/20260922-155450_auto_pltr_stock.json",
+    "video_path": "output/daily_20260922-155450_pltr_stock.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.467,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: There is no data demonstration at all \u2014 six off-topic stock photos stacked over unrelated Subway Surfers footage, closing on an illegible letter about a local newspaper.",
+      "score": 22
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "schd",
+    "angle": null,
+    "publish_at": "2026-09-22T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['fee hidden', 'decade\u2011long underperformance', 'retirement account', 'the truth', 'I confronted']",
+    "elapsed_seconds": 31.4,
+    "title": "My Dad's $500K Retirement Fund Vanished Overnight",
+    "package_path": "state/trending_packages/20260922-161004_auto_schd.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "sp500",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['my $12,000 limit order', 'app froze', 'order filled at half price', '25\\u202f% in minutes', 'brother\u2019s prank', 'the market was fine']",
+    "elapsed_seconds": 21.3,
+    "title": "The $12K Limit Order Nightmare",
+    "package_path": "state/trending_packages/20260922-161038_auto_sp500.json",
+    "quarantined": true,
+    "backfill": true
+  }
+]
