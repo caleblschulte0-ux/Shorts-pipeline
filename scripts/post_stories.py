@@ -250,6 +250,12 @@ def _persist_posted_log_now(log_path: Path, slug: str,
             print(f"[{slug}] WARNING: could not persist the posted log now "
                   f"(rc={r.returncode}); the end-of-run persist must catch it: "
                   f"{(r.stderr or r.stdout)[-200:]}", flush=True)
+        elif "union-merging" in (r.stdout or ""):
+            # A lost push race used to be invisible here (rc=0 after the
+            # retry) — and it used to cost the run every other uncommitted
+            # artifact. Say it happened, so a missing verdict can be traced.
+            print(f"[{slug}] posted-log push raced main and was union-merged; "
+                  f"the run's other artifacts were kept", flush=True)
     except Exception as e:  # noqa: BLE001 — never break a run over bookkeeping
         print(f"[{slug}] WARNING: posted-log persist raised: {e}", flush=True)
 

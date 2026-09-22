@@ -163,10 +163,33 @@ def merge_for(name: str, theirs, ours):
     raise SystemExit(f"merge_state_json: no rule for {name}")
 
 
+def merge_jsonl(theirs_text: str, ours_text: str) -> str:
+    """Union of LINES for an append-only ledger (state/showrunner_verdicts
+    .jsonl): theirs in order, then every line of ours theirs does not have.
+    Never reorders, never drops. A blank line is not a record."""
+    out: list[str] = []
+    seen: set[str] = set()
+    for text in (theirs_text, ours_text):
+        for line in text.splitlines():
+            s = line.strip()
+            if s and s not in seen:
+                seen.add(s)
+                out.append(s)
+    return ("\n".join(out) + "\n") if out else ""
+
+
 def main(argv: list[str]) -> int:
     if len(argv) != 4:
         print(__doc__.splitlines()[2], file=sys.stderr)
         return 2
+    if argv[3].endswith(".jsonl"):
+        theirs = Path(argv[1]).read_text() if Path(argv[1]).exists() else ""
+        ours = Path(argv[2]).read_text() if Path(argv[2]).exists() else ""
+        merged = merge_jsonl(theirs, ours)
+        Path(argv[3]).write_text(merged)
+        print(f"[merge_state_json] line-union -> {merged.count(chr(10))} "
+              f"lines in {Path(argv[3]).name}")
+        return 0
     try:
         theirs, ours = _load(argv[1]), _load(argv[2])
     except json.JSONDecodeError as e:

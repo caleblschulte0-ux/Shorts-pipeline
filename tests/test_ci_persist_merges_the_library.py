@@ -129,5 +129,79 @@ class TheScriptFailsClosedAndTheShellRoutesIt(unittest.TestCase):
         self.assertIn(".merge_failed", sh[i:i + 400])
 
 
+def _git(cwd, *args, **kw):
+    return subprocess.run(["git", "-C", str(cwd), *args], check=True,
+                          capture_output=True, text=True, **kw).stdout
+
+
+class AMidRunPushRaceKeepsTheRunsOtherArtifacts(unittest.TestCase):
+    """2026-09-22 09:36 UTC: post_stories pushed the posted log the moment a
+    video was live (one path), main had moved three times since checkout,
+    the push failed, and the race handler backed up THAT path, reset --hard,
+    and destroyed seven appended verdicts and a repair plan. This stages the
+    same race against a real bare remote and requires everything to survive:
+    the posted log unioned and pushed; the ledger a union of both sides,
+    still uncommitted for the caller's own persist; the plan's edit intact."""
+
+    def _seed(self, td: Path):
+        bare = td / "remote.git"
+        subprocess.run(["git", "init", "-q", "--bare", "-b", "main", str(bare)], check=True)
+        seed = td / "seed"
+        subprocess.run(["git", "init", "-q", "-b", "main", str(seed)], check=True)
+        _git(seed, "config", "user.email", "t@t"); _git(seed, "config", "user.name", "t")
+        (seed / "scripts").mkdir()
+        for name in ("ci_commit_state.sh", "merge_posted_log.py", "merge_state_json.py"):
+            (seed / "scripts" / name).write_text((ROOT / "scripts" / name).read_text())
+        (seed / "state" / "scene_plans").mkdir(parents=True)
+        (seed / "state" / "explainer_posted_log.json").write_text(json.dumps({"posted": {}}))
+        (seed / "state" / "showrunner_verdicts.jsonl").write_text('{"slug": "A"}\n')
+        (seed / "state" / "scene_plans" / "p.json").write_text('{"v": 1}')
+        _git(seed, "add", "."); _git(seed, "commit", "-qm", "seed")
+        _git(seed, "remote", "add", "origin", str(bare)); _git(seed, "push", "-q", "origin", "main")
+        return bare
+
+    def test_the_verdicts_and_the_plan_survive_the_race(self):
+        with tempfile.TemporaryDirectory() as tds:
+            td = Path(tds)
+            bare = self._seed(td)
+            run = td / "run"; other = td / "other"
+            for d in (run, other):
+                subprocess.run(["git", "clone", "-q", str(bare), str(d)], check=True)
+                _git(d, "config", "user.email", "t@t"); _git(d, "config", "user.name", "t")
+            # main moves: another workflow lands a verdict of its own
+            with (other / "state" / "showrunner_verdicts.jsonl").open("a") as fh:
+                fh.write('{"slug": "B-from-main"}\n')
+            _git(other, "commit", "-qam", "other run"); _git(other, "push", "-q", "origin", "main")
+            # the stale run: two verdicts appended, a plan repaired, a video posted
+            with (run / "state" / "showrunner_verdicts.jsonl").open("a") as fh:
+                fh.write('{"slug": "C"}\n{"slug": "D"}\n')
+            (run / "state" / "scene_plans" / "p.json").write_text('{"v": 2}')
+            (run / "state" / "explainer_posted_log.json").write_text(
+                json.dumps({"posted": {"y": {"at": "2026-09-22T11:50:00Z"}}}))
+            r = subprocess.run(["bash", "scripts/ci_commit_state.sh", "posted y",
+                                "state/explainer_posted_log.json"],
+                               cwd=run, capture_output=True, text=True,
+                               env={**__import__("os").environ, "CI_COMMIT_BRANCH": "main"})
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("union-merging", r.stdout)
+            # the posted log reached the remote
+            remote_log = json.loads(_git(run, "show", "origin/main:state/explainer_posted_log.json"))
+            self.assertIn("y", remote_log["posted"])
+            # the ledger is a UNION of both sides and is still the run's to commit
+            led = (run / "state" / "showrunner_verdicts.jsonl").read_text().splitlines()
+            self.assertEqual(led, ['{"slug": "A"}', '{"slug": "B-from-main"}',
+                                   '{"slug": "C"}', '{"slug": "D"}'])
+            self.assertEqual(json.loads((run / "state" / "scene_plans" / "p.json").read_text()), {"v": 2})
+            status = _git(run, "status", "--porcelain")
+            self.assertIn("state/showrunner_verdicts.jsonl", status)
+            self.assertIn("state/scene_plans/p.json", status)
+            self.assertNotIn("posted_log", status, "the given path was committed")
+
+    def test_the_line_union_never_drops_or_reorders(self):
+        got = M.merge_jsonl('{"a":1}\n{"b":2}\n', '{"a":1}\n{"c":3}\n\n')
+        self.assertEqual(got, '{"a":1}\n{"b":2}\n{"c":3}\n')
+        self.assertEqual(M.merge_jsonl("", ""), "")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -20,7 +20,10 @@ import json
 import os
 import re
 
-MODEL = "llama-3.3-70b-versatile"
+# Same pin as `shared.script_generator.DEFAULT_GROQ_MODEL` (held equal by
+# `tests/test_the_groq_model_is_alive.py`): Groq retired llama-3.3-70b on
+# 2026-08-16 and this file 404'd on every clip title for five weeks.
+MODEL = "openai/gpt-oss-120b"
 
 # The exact enum the SYSTEM prompt hands the model (see "series:" rule
 # below). Anything the model returns outside this set — empty, cut off by
@@ -626,6 +629,8 @@ def _call_groq(user: str, system: str = SYSTEM) -> dict | None:
               "messages": [{"role": "system", "content": system},
                            {"role": "user", "content": user}],
               "temperature": 0.5,
+              "max_tokens": 4000,
+              "reasoning_effort": "low",
               "response_format": {"type": "json_object"}},
         timeout=45)
     resp.raise_for_status()
