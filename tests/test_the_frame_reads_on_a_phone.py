@@ -274,5 +274,75 @@ class TheRecapIsReadable(unittest.TestCase):
         self.assertIn("crop={vw}:{_ch},", blk)
 
 
+class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
+    """The 13:43 run on the first fixes was judged at 14:07-15:06 and blocked
+    every video for the SAME class in OTHER visuals: the hook caption on the
+    leading chart's top rows, bubble labels off the edge and over each
+    other, scene hosts over the title and the sub-caption, a dot-field label
+    off the left edge. Each is held here."""
+
+    def test_the_hook_take_sits_on_the_lower_plate_not_the_chart(self):
+        src = (_REPO / "data_learning" / "studio_render.py").read_text()
+        i = src.index("hchunks = _chunks(st.hook, 2)")
+        blk = src[i:i + 2500]
+        self.assertNotIn("pos(540,470)", blk, "the hook take is back on the chart's top rows")
+        self.assertEqual(blk.count("\\pos(540,1734)"), 2)
+
+    def test_bubble_labels_fit_their_slot_and_stay_on_the_card(self):
+        import tempfile
+        ins = _insight([("Classified as harmful invasive", 3500.0),
+                        ("Live in 8F+ heat-island exposure", 2100.0),
+                        ("Established", 900.0), ("Prevention & management", 400.0),
+                        ("Damage", 120.0)], kind="bubbles", topic="invasive species")
+        with tempfile.TemporaryDirectory() as td:
+            pth = charts.render_chart(ins, Path(td) / "b.png")
+            self.assertIsNotNone(pth)
+            a = _alpha(Image.open(pth).convert("RGBA"))
+        self.assertEqual(a[:, :8].sum() + a[:, -8:].sum(), 0, "a bubble label reached the edge")
+        t, fs = charts.fit_label_lines("Live in 8F+ heat-island exposure", 120.0, 22)
+        self.assertIn("\n", t)
+        self.assertGreaterEqual(fs, 13)
+
+    def _host_rows(self, draw, box, *args, **kw):
+        sprite = Image.new("RGBA", (200, 300), (255, 0, 255, 255))
+        img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+        with mock.patch.object(vs, "scene_host", return_value=sprite):
+            draw(ImageDraw.Draw(img), img, box, *args, **kw)
+        px = np.asarray(img)
+        m = (px[:, :, 0] > 200) & (px[:, :, 1] < 60) & (px[:, :, 2] > 200)
+        rows = np.where(m.any(axis=1))[0]
+        return (int(rows.min()), int(rows.max())) if len(rows) else None
+
+    def test_the_unit_grid_and_dot_field_hosts_start_under_the_value_line(self):
+        box = (vs.RX0, vs.title_clearance(TOPIC), vs.RX1, vs.MACHINE_BOT)
+        for rv in (0.15, 0.5, 1.0):
+            r = self._host_rows(vs.draw_unit_figures, box, None, 14.0, 1.0,
+                                "teen vaping", charts.HIGHLIGHT, rv, unit="percent")
+            if r:
+                self.assertGreaterEqual(r[0], box[1] + 96, f"unit grid host at reveal {rv}")
+            r = self._host_rows(vs.draw_dot_field, box, None, 68.0, "Formerly redlined",
+                                charts.HIGHLIGHT, rv, unit="percent")
+            if r:
+                self.assertGreaterEqual(r[0], box[1] + 110, f"dot field host at reveal {rv}")
+
+    def test_the_spotlight_host_starts_under_its_sub_caption(self):
+        box = (vs.RX0, vs.title_clearance(TOPIC), vs.RX1, vs.MACHINE_BOT)
+        safe = vs.drawable_insight(_insight([("2019", 1.1), ("2020", 2.4), ("2021", 4.4),
+                                             ("2022", 3.1), ("2023", 2.2)]))
+        bx0, by0, bx1, by1 = box
+        cy = by1 - 430
+        lane = int(min(88, (by1 - by0) * 0.075))
+        cap_bot = cy + lane + 124 + 22
+        r = self._host_rows(vs.draw_spotlight, box, safe, charts.HIGHLIGHT, 0.9, "dollars")
+        self.assertIsNotNone(r)
+        self.assertGreaterEqual(r[0], cap_bot)
+
+    def test_the_dot_field_label_is_fitted(self):
+        src = (_REPO / "data_learning" / "viz_scene.py").read_text()
+        i = src.index("def draw_dot_field(")
+        body = src[i:i + 6000]
+        self.assertIn("fit_centred(d, f\"{label}   {charts._ulabel(value, unit)}\"", body)
+
+
 if __name__ == "__main__":
     unittest.main()

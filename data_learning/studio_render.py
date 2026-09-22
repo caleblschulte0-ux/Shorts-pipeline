@@ -1175,13 +1175,22 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
             cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
-            # The take sits BELOW the hero number (and above the mascot) so the
-            # number, the claim, and the host never fight for the same pixels.
+            # THE HOOK TAKE SITS ON THE LOWER PLATE, WHERE EVERY OTHER CAPTION
+            # SITS. It was pinned at y=470 — the top rows of whichever chart
+            # leads the cold open, which is the ONLY case this branch runs
+            # (`hook_visual` is false exactly when seg0's chart is on screen
+            # from frame 1). Three of seven verdicts on 2026-09-22 named it:
+            # "'A pit / stop used' overlapping the '1950s' label and bar",
+            # "'Your coffee' set straight across the 2019 row, covering that
+            # row's $1.1 value", "'That's more' lands on top of the 1970 row
+            # label and its $1.6B value". The lower plate is below the card
+            # and above the source line, and seg0's own captions only start
+            # when the hook window ends, so nothing shares these pixels.
             if j == 0:
-                pop = ("{\\an5\\pos(540,470)\\fs92\\fad(0,70)\\fscx120\\fscy120"
+                pop = ("{\\an2\\pos(540,1734)\\fs78\\fad(0,70)\\fscx118\\fscy118"
                        "\\t(0,130,\\fscx100\\fscy100)\\3c" + accent + "\\bord8\\blur5}")
             else:
-                pop = ("{\\an5\\pos(540,470)\\fs92\\fad(70,70)\\fscx108\\fscy108"
+                pop = ("{\\an2\\pos(540,1734)\\fs78\\fad(70,70)\\fscx106\\fscy106"
                        "\\t(0,110,\\fscx100\\fscy100)\\bord8}")
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
                          f"{pop}{ch.strip()}")

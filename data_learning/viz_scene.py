@@ -1179,7 +1179,11 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
         mw = int(host.width * mh / host.height)
         hx = int(min(max(cx_last + side * 0.55, 8), W - mw - 8))
         hy = int(cy_last - side // 2 - mh + side * 0.30)
-        canvas.alpha_composite(_fit(host, mw, mh), (hx, max(0, hy)))
+        # NEVER ABOVE THE VALUE LINE. On a top-row figure his head reached
+        # the beat title ("the mascot covers the last letter of the title,
+        # leaving 'the vaping crackdow'", 2026-09-22). The value line sits at
+        # by0 + 58 in 60pt; he starts under it, among the figures if he must.
+        canvas.alpha_composite(_fit(host, mw, mh), (hx, max(by0 + 96, hy)))
     return (value, "art", cx_last, cy_last)
 
 
@@ -1379,8 +1383,12 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
     na = max(0.0, min(1.0, (reveal - 0.2) / 0.4))
     d.text((_cx(box), by0 + 58), f"{k} in {n}", font=_pil_font(78),
            fill=_rgba(legible(color), int(255 * na)), anchor="mm")
-    d.text((_cx(box), bot + 40), f"{label}   {charts._ulabel(value, unit)}",
-           font=_pil_font(44), fill=_rgba(TEXT, int(235 * na)), anchor="mm")
+    # FITTED: "Formerly redlined neighborhoods  68%" ran off the left edge
+    # as "rmerly redlined neighborhoods" (showrunner, urban heat, 2026-09-22).
+    _lf, _lt = fit_centred(d, f"{label}   {charts._ulabel(value, unit)}", 44,
+                           _cx(box), box, min_size=26)
+    d.text((_cx(box), bot + 40), _lt, font=_lf,
+           fill=_rgba(TEXT, int(235 * na)), anchor="mm")
     host = scene_host("point", reveal, label, "dot_field")
     if host is not None and cx_last is not None:
         mh = int(max(150, min(280, side * 2.2)))
@@ -1388,7 +1396,7 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
         canvas.alpha_composite(
             _fit(host, mw, mh),
             (int(min(max(cx_last + side * 0.6, 8), W - mw - 8)),
-             int(max(0, cy_last - side // 2 - mh + side * 0.3))))
+             int(max(by0 + 110, cy_last - side // 2 - mh + side * 0.3))))
     if cx_last is None:
         return None
     return (value, "art", cx_last, cy_last)
@@ -3902,7 +3910,13 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
     host = scene_host("think", reveal, insight, "spotlight")
     if host is not None:
-        mh = 240
+        # ...AND UNDER THE SUB-CAPTION, NOT THROUGH ITS TAIL. At 240 tall on
+        # the floor his head reached the "anywhere between ... and ..." line
+        # and covered its last value ("'$4.4' is behind the mascot's torso",
+        # coffee, 2026-09-22). The caption's bottom is at cy + lane + 124 +
+        # half a 38pt line; he starts below it.
+        _cap_bot = cy + lane + 124 + 22
+        mh = int(max(120, min(240, by1 - _cap_bot - 6)))
         mw = int(host.width * mh / host.height)
         # RIGHT of the centred sub-caption, standing on the floor of the box.
         # On the left he stood on the words.
