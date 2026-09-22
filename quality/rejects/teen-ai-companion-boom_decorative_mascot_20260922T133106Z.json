@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T133106Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly perches beside a mark with no setup->action->payoff (seg2:mid he simply stands at the base of the lollipop, seg3:mid he stands on the column edge); in seg4 he is duplicated as two tiny static stickers at the row ends.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "overprinted_unreadable_labels",
+  "visible_evidence": "At seg2:mid (t=19.95s) and seg2:end (t=23.38s) two category labels and their values occupy the identical baseline and are composited over one another \u2014 'AI over a human for a serious talk 33%' and 'Shared personal info with an AI compa' overlap letter-on-letter and neither can be read; the label row is also clipped by the left edge and the bottom two-thirds of the frame is empty.",
+  "root_cause": "The lollipop layout places every series label at one fixed y with no measured width or collision/stagger logic, so labels collapse onto each other and overflow the left margin; the two stems are crammed into the right quarter leaving the rest of the frame dead.",
+  "repair_goal": "Lay the two comparisons out with measured, non-overlapping labels fully inside the safe area (stagger or anchor each label to its own stem), spread the stems across the frame width, and let the 33% vs 25% difference be demonstrated by the marks rather than by text that has to be decoded."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

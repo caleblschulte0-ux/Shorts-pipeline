@@ -1,0 +1,14 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260922T133106Z",
+ "failure_class": "malformed_judge_response",
+ "evidence": "malformed_judge_response: checks missing or not an object",
+ "weakest_scene": {},
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

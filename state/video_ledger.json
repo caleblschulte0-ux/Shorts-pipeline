@@ -1764,11 +1764,11 @@
       "depictions": [
         "mechanic:trash-mountain-rise",
         "viz:share",
-        "mechanic:recycling-bin-fill-duel"
+        "mechanic:plastic-sluice-split"
       ],
       "ending_type": "inversion",
       "franchise": "Just Recycle It",
-      "notes": "First ledger entry for this slug. Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), recycling-bin-fill-duel closes on OECD's own best-case (17%) still being mostly empty -- so even the optimistic future doesn't rescue the label.",
+      "notes": "Updated 2026-09-22: seg3 mechanic corrected to what's actually in niche.config.json (plastic-sluice-split replaced the earlier recycling-bin-fill-duel; this entry had drifted out of sync). Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), plastic-sluice-split closes on real bottles forking at OECD's own best-case rate (17%) -- most of the chute still piles onto the landfill heap, so even the optimistic future doesn't rescue the label.",
       "timeline": [
         {
           "t": 0,
@@ -1788,7 +1788,7 @@
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "recycling-bin-fill-duel: Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Ju"
+          "detail": "plastic-sluice-split: Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Ju"
         },
         {
           "t": 35,
@@ -1993,11 +1993,11 @@
       "scene_changes_before_5s": 2,
       "depictions": [
         "mechanic:summit-skyline-ascent",
-        "mechanic:waterline-mountain-pair",
+        "mechanic:ocean-drains-to-reveal",
         "viz:comparison"
       ],
       "ending_type": "inversion",
-      "notes": "First ledger entry for this slug. Three 'highest' definitions, three different winners: seg1's zoomed skyline of five real summits shows how tight the sea-level leaderboard actually is (no scene existed before this pass); seg2 keeps the existing waterline-mountain-pair for Mauna Kea's base-to-peak height; seg3 stays the classic comparison chart for Chimborazo's equatorial-bulge win, the actual answer to the hook.",
+      "notes": "Updated 2026-09-22: seg2 mechanic corrected to what's actually in niche.config.json (ocean-drains-to-reveal replaced the earlier waterline-mountain-pair; this entry had drifted out of sync). Three 'highest' definitions, three different winners: seg1's zoomed skyline of five real summits shows how tight the sea-level leaderboard actually is; seg2 starts the same mountain photo mostly submerged at today's waterline and drains the ocean away through the beat to expose Mauna Kea's full 10,211m, with Everest's summit marked as a fixed line partway up the same rock; seg3 stays the classic comparison chart for Chimborazo's equatorial-bulge win, the actual answer to the hook.",
       "timeline": [
         {
           "t": 0,
@@ -2007,7 +2007,7 @@
         {
           "t": 9,
           "event": "visual_swap",
-          "detail": "waterline pair: Mauna Kea 10,211m base-to-peak vs Everest from sea level"
+          "detail": "ocean-drains-to-reveal: the water drains away to expose Mauna Kea's full 10,211m, Everest's summit marked mid-rock"
         },
         {
           "t": 19,
@@ -2036,22 +2036,22 @@
       "words_first_10s": 8,
       "scene_changes_before_5s": 3,
       "depictions": [
-        "mechanic:orbit-clock-tug-of-war",
+        "mechanic:satellite-tick-ledger",
         "mechanic:pin-walks-off-the-map",
         "viz:comparison"
       ],
       "ending_type": "consequence",
-      "notes": "First ledger entry for this slug. Bet: a literal tug-of-war between a gravity arrow and a speed arrow on an orbiting clock face makes the two competing relativistic effects (+45us vs -7us) readable as a single fight instead of two abstract numbers, landing on the net +38us that the rest of the video hangs off; seg2's map-pin drift and seg3's comparison chart (kept from the prior pass) carry the consequence and the fix.",
+      "notes": "Updated 2026-09-22: seg1 mechanic corrected to what's actually in niche.config.json (satellite-tick-ledger replaced the earlier orbit-clock-tug-of-war; this entry had drifted out of sync). Bet: 45 real microsecond-cells light up one at a time under the orbiting satellite as gravity pulls its clock ahead, then orbital speed strikes out the last 7 with an X -- the 38 that survive are counted, not asserted, landing on the net gain the rest of the video hangs off; seg2's map-pin drift and seg3's comparison chart carry the consequence and the fix.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "'every GPS satellite lies about the time, deliberately' over the tug-of-war clock"
+          "detail": "'every GPS satellite lies about the time, deliberately' over the satellite tick-ledger grid"
         },
         {
           "t": 8,
           "event": "visual_swap",
-          "detail": "gravity arrow +45us vs speed arrow -7us, net +38us bar fills in"
+          "detail": "satellite-tick-ledger: 45 microsecond-cells light up, orbital speed strikes out the last 7, net +38us/day"
         },
         {
           "t": 17,

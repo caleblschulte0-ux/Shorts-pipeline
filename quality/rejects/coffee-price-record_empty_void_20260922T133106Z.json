@@ -1,0 +1,9 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T133106Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.8 through seg0:end (t=0.80-2.61s): a single small pill with one dot sits mid-frame while the entire lower 40% of the frame is empty gradient; seg4:end (t=50.06s) leaves the bottom third blank below the scale.",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

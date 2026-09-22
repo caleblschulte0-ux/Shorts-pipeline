@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T133106Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg2:mid and seg2:end fill the frame with clip-art HOSPITAL/office buildings with clock faces as the unit for teen vaping percentage - a generic icon with no relation to nicotine or vaping",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:mid and seg2:end draw 14 yellow-and-blue hospital buildings with clock faces, 'each = 2%', as the unit for the teen vaping rate; the mascot stands over the title text and the upper title 'the vaping crackdown' is clipped by him at seg2:mid, with the lower half of the frame empty",
+  "root_cause": "the unit-icon lookup fell through to a generic building glyph instead of a subject-relevant unit, so the waffle asserts nothing about vaping - and the icon grid was laid out without reserving the title band or filling the lower frame",
+  "repair_goal": "replace the waffle units with a mark made of the subject (vapour puffs / pods draining away as the rate falls from 27.5% to 7.8%), keep the crash itself animated as the drop, clear the title band of the mascot, and use the full frame height"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

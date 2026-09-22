@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T133106Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:mid/end (t=21.7/24.8s) print 'Live in 8F+ heat-island exposure 68%' directly on top of the other axis label \u2014 a solid block of double-struck garble; seg4 titles 'rmerly redlined neighborhoods' with 'Fo' cut off the left edge; and the NYC value is covered by the mascot through seg0, ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg4:mid (t=45.36s): a 4-wide grid of dark GRADUATION CAPS with 'each = 0.3' beneath, carrying the closing line 'The redlining maps are gone. The heat still remembers them.' \u2014 and its own heading clipped to 'rmerly redlined neighborhoods'.",
+  "root_cause": "The unit-icon lookup resolved 'degrees' to a mortarboard glyph instead of a heat unit, and the scene title is laid out wider than the frame so it is cropped at the left edge rather than fitted.",
+  "repair_goal": "Replace the mortarboard tiles with a heat unit made of the subject (a tiled block of pavement/rooftop cells warming from neutral to accent as they fill to 5 degrees), fit the heading inside the safe area so 'Formerly redlined neighborhoods' reads in full, and let the tiles fill the frame so the lower two-thirds is not blank."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -362,6 +362,38 @@
   "sig": "4b5725fa4241"
  },
  {
+  "sig": "f3441d66d836",
+  "mechanic": "trash-mountain-rise",
+  "concept": "a mountain of plastic waste grows from today's pile toward 2060's towering scale, a human silhouette pinned beside it for horrifying scale",
+  "code": "trash = subject_image('plastic waste pile photo')\nperson = subject_image('person silhouette icon for scale')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / vmax)\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\nmax_h = RBOT - RTOP - 220\nh = int(max_h * frac)\nw = int(500 * (0.5 + 0.5 * frac))\nif trash is not None:\n    paste(trash, cx - w // 2, base_y - h, w, h)\nelse:\n    d.polygon([(cx - w // 2, base_y), (cx + w // 2, base_y), (cx, base_y - h)], fill=rgba(WARN, 210))\nif person is not None:\n    paste(person, cx - w // 2 - 60, base_y - 140, 50, 140)\ntext(f'{int(cur)}M TONS/YEAR', cx, base_y - h - 50, size=33, color=WARN, center=True)\ntext(f'{labels[0]}: {int(values[0])}M  ->  {labels[-1]}: {int(values[-1])}M', cx, RTOP + 70, size=25, color=TEXT, center=True)\n",
+  "topic": "global plastic waste generated",
+  "starred": true
+ },
+ {
+  "sig": "a93c6bf6b7dc",
+  "mechanic": "ocean-drains-to-reveal",
+  "concept": "The real mountain photo starts mostly underwater, at today's true waterline - only its snowy tip showing, exactly like Mauna Kea now. The ocean drains away through the beat, exposing more and more of the SAME photo, and the exposed height counts up to the full 10,211m. Everest's summit is a single fixed mark on that same rock, so the punchline is one picture: the water it takes to hide a taller mountain.",
+  "code": "mtn = subject_image('snow capped mountain summit')\nvmk = values[0]\nvev = values[1]\nvup = values[2]\ncx = (RX0 + RX1) // 2\ntop_y = RTOP + 150\nbase_y = RBOT - 140\nimg_h = base_y - top_y\nimg_w = int(img_h * 0.62)\nx0 = cx - img_w // 2\nstart_level = clamp(vup / vmk)\ndrain = clamp(reveal / 0.9)\nlevel = lerp(start_level, 1.0, drain)\nif mtn is not None:\n    paste(mtn, x0, top_y, img_w, img_h)\nelse:\n    d.rounded_rectangle([x0, top_y, x0 + img_w, base_y], radius=20, fill=rgba(REST, 200))\ncovered_h = img_h * (1 - level)\nwaterline_y = base_y - img_h * level\nfor k in range(9):\n    bt = (reveal * 2.6 + k / 9.0) % 1.0\n    by = base_y - bt * covered_h\n    bx = x0 + 30 + (k * 37) % max(img_w - 60, 1)\n    if by > waterline_y + 6:\n        d.ellipse([bx - 6, by - 6, bx + 6, by + 6], fill=rgba('#7DD3FC', 160))\nd.rectangle([x0 - 6, waterline_y, x0 + img_w + 6, base_y + 4], fill=rgba('#1E3A8A', 150))\nripple = [ (x0 - 6 + q * (img_w + 12) / 40.0, waterline_y + 6 * math.sin(q / 3.0 + reveal * 30)) for q in range(41) ]\nd.line(ripple, fill=rgba('#7DD3FC', 230), width=5)\nev_frac = clamp(vev / vmk)\nev_y = base_y - img_h * ev_frac\nd.line([x0 - 34, ev_y, x0, ev_y], fill=rgba(ACCENT, 235), width=6)\ntext('Everest would end here', x0 - 300, ev_y - 16, size=24, color=ACCENT)\ntext(fmt(vmk * level) + ' exposed', cx, waterline_y - 50, size=34, color=TEXT, center=True)\ntext('Mauna Kea, ocean floor to summit: ' + fmt(vmk), cx, RTOP + 50, size=28, color=TEXT, center=True)\nif level > 0.995:\n    text('only ' + fmt(vup) + ' of it ever broke the surface', cx, base_y + 44, size=26, color=SUBTLE, center=True)\n",
+  "topic": "mountain height from its own base",
+  "starred": true
+ },
+ {
+  "sig": "df7501763c55",
+  "mechanic": "outbreak-radiate-count",
+  "concept": "Four patient-zero silhouettes, one per disease, each ringed by its own orbiting cloud of infected silhouettes counted out to the exact R0 - measles visibly swarmed while flu barely has company.",
+  "code": "person = subject_image('person silhouette icon')\ncols = 2\nqw = (RX1 - RX0) // cols\nqh = (RBOT - RTOP) // 2\nfor i in range(n):\n    if reveal < (i + 0.2) / n:\n        continue\n    r_ = i // cols\n    c = i % cols\n    cx = RX0 + c * qw + qw // 2\n    cy = RTOP + r_ * qh + qh // 2\n    count = max(int(round(values[i])), 1)\n    grow = clamp((reveal - i / n) * n, 0, 1)\n    shown = int(round(count * grow))\n    if person is not None:\n        paste(person, cx - 30, cy - 40, 60, 80)\n    else:\n        d.ellipse([cx - 24, cy - 24, cx + 24, cy + 24], fill=rgba(HIGHLIGHT))\n    radius = 100\n    for k in range(shown):\n        ang = (k / count) * 2 * math.pi\n        px = cx + int(radius * math.cos(ang))\n        py = cy + int(radius * math.sin(ang) * 0.6)\n        if person is not None:\n            paste(person, px - 15, py - 20, 30, 40)\n        else:\n            d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(WARN))\n    text(labels[i], cx, cy - qh // 2 + 46, size=30, color=TEXT, center=True)\n    text(str(values[i]) + ' infected', cx, cy + qh // 2 - 60, size=32, color=WARN if i == 0 else ACCENT, center=True)",
+  "topic": "how many people one case infects",
+  "starred": true
+ },
+ {
+  "sig": "5dcb2fff720d",
+  "mechanic": "forty-kids-three-gaps",
+  "concept": "Forty kindergartners in a grid. The covered ones light up one by one; the last few stay red. Measles only needs the red ones - and the bar it has to clear is one kid away.",
+  "code": "person = subject_image('child silhouette icon')\nneed = values[0]\nhave = values[1]\ncols = 8\nrows = 5\ntotal = cols * rows\niw = 100\nih = 148\nx0 = RX0 + 70\ny0 = RTOP + 230\nfilled = int(round(total * have / 100.0 * reveal))\nneed_n = int(round(total * need / 100.0))\nfor i in range(total):\n    r = i // cols\n    c = i % cols\n    x = x0 + c * (iw + 10)\n    y = y0 + r * (ih + 12)\n    col = HIGHLIGHT if i < filled else WARN\n    if person is not None:\n        paste(person, x, y, iw, ih)\n        d.rounded_rectangle([x, y + ih - 14, x + iw, y + ih], radius=6, fill=rgba(col, 235))\n    else:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=16, fill=rgba(col, 225))\ntext(str(have) + '% covered  (' + str(filled) + ' of 40)', x0, y0 - 138, size=44, color=HIGHLIGHT)\ntext('measles needs ' + str(int(need)) + '%  (' + str(need_n) + ' of 40)', x0, y0 - 78, size=40, color=WARN)",
+  "topic": "measles immunity needed vs actual",
+  "starred": true
+ },
+ {
   "sig": "ed6be810497e",
   "mechanic": "citykiller-searchlight",
   "concept": "a city-killer-sized asteroid sits half-lit to the found share while a dashed marker shows how far short that is of Congress's 90% goal",
@@ -560,5 +592,21 @@
   "topic": "fifty-years-since-moon-landing",
   "starred": false,
   "sig": "2ef2cbe506e7"
+ },
+ {
+  "sig": "fa80061f095a",
+  "mechanic": "summit-skyline-ascent",
+  "concept": "Five real snow-capped summits rise in a row from one sea-level baseline, each column landing in order, Everest tallest and glowing - a skyline so close together it needs a zoomed baseline to even show the gaps.",
+  "code": "base_y = RBOT - 140\ncap = 620\nvmin = min(values)\nzbase = vmin - 200\nspan = max(values) - zbase\nmtn = subject_image('snow capped mountain peak')\ncw = 150\ngap = 34\ntotal_w = n * cw + (n - 1) * gap\nx0 = (RX0 + RX1) // 2 - total_w // 2\nfor i in range(n):\n    if reveal < (i + 0.3) / n:\n        continue\n    grow = clamp((reveal - i / n) * n, 0, 1)\n    frac = clamp((values[i] - zbase) / span)\n    h = int(cap * frac * grow)\n    x = x0 + i * (cw + gap)\n    top = base_y - h\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rounded_rectangle([x, top, x + cw, base_y], radius=18, fill=rgba(col, 225))\n    if mtn is not None:\n        paste(mtn, x - 10, top - 70, cw + 20, 90)\n    text(str(int(values[i])) + 'm', x + cw // 2, top - 130, size=30, color=col, center=True)\n    text(labels[i], x + cw // 2, base_y + 18, size=22, color=TEXT, center=True)\nd.line([RX0, base_y, RX1, base_y], fill=rgba(TEXT, 160), width=3)\ntext('measured from sea level', RX0 + 40, RTOP + 60, size=34, color=TEXT)",
+  "topic": "highest peaks above sea level",
+  "starred": false
+ },
+ {
+  "sig": "fbc616960b2c",
+  "mechanic": "pin-walks-off-the-map",
+  "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
+  "code": "pin = subject_image('map location pin marker')\ncx = RX0 + 130\ncy = RTOP + 190\nvlast = values[-1] or 1.0\nmax_x = RX1 - 250\npulse = (reveal * 3.0) % 1.0\nprad = 22 + pulse * 30\nd.ellipse([cx - prad, cy - prad, cx + prad, cy + prad], outline=rgba(HIGHLIGHT, int(200 * (1 - pulse))), width=4)\nd.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=rgba(HIGHLIGHT))\ntext('you are here', cx + 46, cy - 26, size=32, color=HIGHLIGHT)\nfor i in range(n):\n    w0 = i / n\n    w1 = (i + 1) / n\n    grow = clamp((reveal - w0) / (w1 - w0))\n    if grow <= 0:\n        continue\n    py = cy + 190 + i * 200\n    target_x = cx + int((max_x - cx) * (values[i] / vlast))\n    px = cx + int((target_x - cx) * grow)\n    d.line([cx, py, px, py], fill=rgba(WARN, 170), width=7)\n    if pin is not None:\n        paste(pin, px - 38, py - 96, 76, 96)\n    else:\n        d.ellipse([px - 24, py - 24, px + 24, py + 24], fill=rgba(WARN))\n    text(labels[i], RX0 + 20, py + 22, size=28, color=TEXT)\n    text(fmt(values[i] * grow) + ' off', px - 40, py - 148, size=32, color=WARN)",
+  "topic": "GPS error without the fix",
+  "starred": false
  }
 ]

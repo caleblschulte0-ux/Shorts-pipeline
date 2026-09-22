@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T133106Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start (t=42.80s) puts three caps in the top eighth and leaves the bottom two-thirds of the frame completely empty; seg3:start (t=29.86s) likewise holds one small bar in an otherwise blank field.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg4:mid (t=45.36s): a 4-wide grid of dark GRADUATION CAPS with 'each = 0.3' beneath, carrying the closing line 'The redlining maps are gone. The heat still remembers them.' \u2014 and its own heading clipped to 'rmerly redlined neighborhoods'.",
+  "root_cause": "The unit-icon lookup resolved 'degrees' to a mortarboard glyph instead of a heat unit, and the scene title is laid out wider than the frame so it is cropped at the left edge rather than fitted.",
+  "repair_goal": "Replace the mortarboard tiles with a heat unit made of the subject (a tiled block of pavement/rooftop cells warming from neutral to accent as they fill to 5 degrees), fit the heading inside the safe area so 'Formerly redlined neighborhoods' reads in full, and let the tiles fill the frame so the lower two-thirds is not blank."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
