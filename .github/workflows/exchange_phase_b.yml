@@ -44,6 +44,12 @@ on:
         required: false
         type: boolean
         default: false
+      backstop:
+        description: 'Behave as the scheduled backstop (no-op before the finalizer window or when the day is applied). The clock passes this when GitHub cron missed a slot.'
+        required: false
+        default: 'false'
+        type: choice
+        options: ['false', 'true']
   # BACKSTOP: if ChatGPT never writes DONE, the push trigger never fires and
   # the day would never render at all.
   #
@@ -159,7 +165,7 @@ jobs:
         run: |
           set -e
           D="${{ steps.which.outputs.date }}"
-          if [ "${{ github.event_name }}" = "schedule" ] \
+          if { [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.backstop }}" = "true" ]; } \
              && [ -f "exchange/bundles/$D/phase_b_report.json" ]; then
             echo "already applied for $D — backstop no-ops"
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -181,7 +187,9 @@ jobs:
           [ "${{ inputs.require_checkpoints }}" = "true" ] && FLAGS="$FLAGS --require-checkpoints"
           # Scheduled runs are backstops: no-op unless the 07:00 Central
           # finalizer has had its full window (decided in Central, not UTC).
-          [ "${{ github.event_name }}" = "schedule" ] && FLAGS="$FLAGS --backstop"
+          # ...and a clock dispatch standing in for a missed cron is the same
+          # backstop (scripts/clock.py passes backstop=true).
+          { [ "${{ github.event_name }}" = "schedule" ] || [ "${{ inputs.backstop }}" = "true" ]; } && FLAGS="$FLAGS --backstop"
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
           python scripts/exchange_phase_b.py \
             --date "${{ steps.which.outputs.date }}" \

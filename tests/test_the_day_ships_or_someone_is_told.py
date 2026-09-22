@@ -304,6 +304,16 @@ class TheDispatCHActuallyREACHESTheWorkflow(unittest.TestCase):
         accident — the empty ones are a decision."""
         self.assertEqual(set(dm.DISPATCH_INPUTS), set(dm.WORKFLOWS))
 
+    def test_a_trending_repair_says_force(self):
+        """`run_trending_daily` refuses to run when anything posted in the
+        last six hours — the duplicate-trigger guard. A repair is a second
+        firing on purpose: on 2026-09-22 the switch re-dispatched Daily
+        Shorts for a 2-of-6 day and the orchestrator exited in under a
+        second, green, having rendered nothing. `force` is daily.yml's own
+        repair input."""
+        self.assertEqual(dm.DISPATCH_INPUTS["trending"].get("force"), "true")
+        self.assertIn("force", self._declared_inputs(dm.WORKFLOWS["trending"]))
+
     def test_the_explainer_is_not_dispatched_into_VERIFY(self):
         """Its `mode` defaults to 'verify', which posts nothing. A repair
         that runs in verify mode is a repair that reports success and
