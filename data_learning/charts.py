@@ -3725,6 +3725,21 @@ def render_story_chart(insight: Insight, out_path: Path):
     return out_path, anchors
 
 
+HOOK_REVEAL_START = 0.35     # the leading chart's build on its first frame
+HOOK_BURST_END = 0.22        # ...bursts to HOOK_BURST_LEVEL by this fraction
+HOOK_BURST_LEVEL = 0.75
+
+
+def hook_reveal(hf: float) -> float:
+    """Reveal for a chart that carries the cold open, from beat progress
+    `hf` (0..1, already scaled by `full_by`). A picture from frame one,
+    a fast burst, then a steady draw to 1.0 — never a still."""
+    hf = max(0.0, min(1.0, float(hf)))
+    if hf < HOOK_BURST_END:
+        return HOOK_REVEAL_START + (hf / HOOK_BURST_END) * (HOOK_BURST_LEVEL - HOOK_REVEAL_START)
+    return HOOK_BURST_LEVEL + (hf - HOOK_BURST_END) / (1.0 - HOOK_BURST_END) * (1.0 - HOOK_BURST_LEVEL)
+
+
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
                        frames: int = 60, full_by: float = 1.0,
                        hook_lead: bool = False):
@@ -3758,14 +3773,17 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         # which lands on the exact static chart so the rings still anchor.
         r = min(1.0, (f / frames) / max(0.05, full_by))
         if hook_lead:
-            # HOOK BURST: the opening chart shoots up FAST in the first ~22% of the
-            # beat (frame 1 is already big motion + the coupled mascot in action —
-            # not a slow build the gate dings), then eases to a steady draw. Still
-            # ends on the exact static chart; still never freezes (0.7x tail moves).
-            # ...and it honours `full_by` too, or the opening chart would be
-            # the one visual in the video that never finishes before it cuts.
+            # HOOK BURST — and A PICTURE ON FRAME ONE. The burst alone started
+            # from zero, so at t=0.3s of an eight-second opening beat the
+            # reveal was 0.08: "hook@0.3 is a near-black title card with one
+            # karaoke word", "a blank gradient with a title card: no motion,
+            # no image, no reason to stay through the first second" — the
+            # judge's words on every explainer verdict of 2026-09-22, and
+            # hook scored 1 of 4 on all of them. The opening chart now
+            # starts a third built and bursts to three quarters by 22% of
+            # the beat, then draws steadily to the exact static chart.
             hf = min(1.0, (f / frames) / max(0.05, full_by))
-            r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
+            r = hook_reveal(hf)
         if f == frames:
             r = 1.0                         # final frame == static chart
         # THE TOUR is BEAT PROGRESS, not reveal — that is the whole point.

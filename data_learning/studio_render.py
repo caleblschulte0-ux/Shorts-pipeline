@@ -1637,10 +1637,26 @@ def _stage_on_data(seg, w0, w1, pose, prev_tl, anchors=None):
         return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
                 min(max(cy - S / 2, 2.0), float(H - S - 2)))
 
-    def _onto(a):                       # stand ON element a (feet on top, off #)
-        cx, cy, _w, _h = _screen_box(a)
-        cxc = max(cx - Sk * 0.5 - 15.0, float(CHART_X) + Sk * 0.5 + 6.0)
-        return _tl(cxc, cy - Sk * 0.40)
+    def _onto(a):                       # stand BESIDE element a, never on it
+        # THE OLD ARITHMETIC PUT HIS RIGHT EDGE 15px LEFT OF THE LABEL'S
+        # CENTRE — i.e. across its left half. The docstring above always
+        # said "right edge just LEFT of the tip so he never covers the value
+        # number", and the showrunner read the difference for weeks: "the
+        # mascot is parked directly on the '60' value label", "his legs
+        # cross through '27.5%'", "'12500' reads '1 0'". Clear the label's
+        # LEFT edge by a gap; if that pushes him off the card, stand on its
+        # RIGHT edge instead.
+        # The sprite is DRAWN at Sk wide from the tuple's top-left (see the
+        # overlay loop: `Sk = round(S * sc)` placed at (x, y)), so the
+        # geometry is done on the drawn box, not on a full-size centre.
+        cx, cy, w, _h = _screen_box(a)
+        gap = 14.0
+        sprite_left = cx - w / 2.0 - gap - Sk
+        if sprite_left < float(CHART_X) + 6.0:
+            sprite_left = cx + w / 2.0 + gap
+        tlx = min(max(sprite_left, 2.0), float(W - Sk - 2))
+        tly = min(max(cy - Sk * 0.40 - S / 2, 2.0), float(H - S - 2))
+        return (tlx, tly)
 
     peak = max(anchors, key=lambda a: a.get("value", 0.0))
     low = min(anchors, key=lambda a: a.get("value", 0.0))
