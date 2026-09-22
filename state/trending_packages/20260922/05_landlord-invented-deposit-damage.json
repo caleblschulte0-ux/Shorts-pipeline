@@ -47,7 +47,24 @@
     },
     {
       "phrase": "Small claims court did not agree.",
-      "query": "courtroom gavel bench"
+      "query": "courtroom gavel bench",
+      "pin_query": "Small",
+      "pin_context": "My Landlord Invented Damage For My Deposit",
+      "news_query": "Small",
+      "news_angle": "My Landlord Invented Damage For My Deposit",
+      "image_url": "https://live.staticflickr.com/5194/5856716576_777f6f716c.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "My Landlord Invented Damage For My Deposit",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Small",
+        "url": "https://live.staticflickr.com/5194/5856716576_777f6f716c.jpg",
+        "verified_at": "2026-09-22T09:37:28Z",
+        "width": 0
+      }
     },
     {
       "phrase": "owing me my deposit back twice over",
