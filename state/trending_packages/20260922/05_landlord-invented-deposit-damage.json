@@ -54,14 +54,16 @@
       "news_angle": "My Landlord Invented Damage For My Deposit",
       "image_url": "https://live.staticflickr.com/5194/5856716576_777f6f716c.jpg",
       "media_evidence": {
-        "url": "https://live.staticflickr.com/5194/5856716576_777f6f716c.jpg",
-        "source_class": "unverified",
-        "provider": "live.staticflickr.com",
-        "width": 0,
-        "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T12:08:21Z",
-        "resolved_by": "verify_shot_urls"
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "My Landlord Invented Damage For My Deposit",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "Small",
+        "url": "https://live.staticflickr.com/5194/5856716576_777f6f716c.jpg",
+        "verified_at": "2026-09-22T09:37:28Z",
+        "width": 0
       }
     },
     {
