@@ -1084,6 +1084,28 @@ def _lblalpha(reveal: float) -> float:
     return max(0.0, min(1.0, (reveal - 0.45) / 0.2))
 
 
+def fit_label_lines(text: str, room_pts: float, size: int, floor: int = 19,
+                    min_size: int = 16) -> tuple[str, int]:
+    """A label that FITS `room_pts`: shrink to `floor`, and if it still does
+    not fit split it at the space nearest its middle and fit each half
+    (down to `min_size`). Returns (text with an optional newline, size).
+    Two readable lines beat one tiny one, and both beat "Soy, Mining,
+    Logging &" or "Classified as harmful invas" running off the frame."""
+    text = str(text)
+    fs = _fit_fontsize(text, room_pts, size, min_size=floor)
+    if fs >= floor and _fit_width_pts(text, fs) <= room_pts:
+        return text, fs
+    words = text.split()
+    if len(words) < 2:
+        return text, fs
+    mid = len(text) / 2.0
+    cut = min((i for i, ch in enumerate(text) if ch == " "),
+              key=lambda i: abs(i - mid))
+    a, b = text[:cut].strip(), text[cut:].strip()
+    return (a + "\n" + b), min(_fit_fontsize(a, room_pts, size, min_size),
+                               _fit_fontsize(b, room_pts, size, min_size))
+
+
 def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """A ranking, set the way an editorial ranking is set.
 
@@ -2244,18 +2266,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     _room_pts = _axes_pts((0.96 - (0.10 + 0.80 * _lab_x))) - 6.0
 
     def _fit_seg_label(text: str, size: int):
-        fs = _fit_fontsize(text, _room_pts, size, min_size=19)
-        if fs >= 19 and _fit_width_pts(text, fs) <= _room_pts:
-            return text, fs
-        words = text.split()
-        if len(words) < 2:
-            return text, fs
-        mid = len(text) / 2.0
-        cut = min((i for i, ch in enumerate(text) if ch == " "),
-                  key=lambda i: abs(i - mid))
-        a, b = text[:cut].strip(), text[cut:].strip()
-        return (a + "\n" + b), min(_fit_fontsize(a, _room_pts, size, 16),
-                                   _fit_fontsize(b, _room_pts, size, 16))
+        return fit_label_lines(text, _room_pts, size, floor=19, min_size=16)
     # THE SEGMENTS ARE SEPARATED BY GROUND, NOT BY A BORDER.
     #
     # Each block carried `edgecolor=CARD, linewidth=2` — a 2px rule in the
@@ -2448,9 +2459,23 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
                      va="center", color=_ink_on(color),
                      fontproperties=_num_face(int(fs)),
                      zorder=4, alpha=_balpha)
-        ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
-                fontsize=22, fontweight="bold", zorder=4, alpha=_balpha,
-                path_effects=_shadow())
+        # THE LABEL FITS ITS BUBBLE'S SLOT AND STAYS ON THE CARD. Centred
+        # under the circle at a flat 22pt, a long name ran off the frame
+        # ("'Classified as harmful invas' is amputated by the right frame
+        # edge") and two neighbours printed through each other ("'Live in
+        # 8F+ heat-island exposure 68%' is printed on top of a second
+        # label") — showrunner, 2026-09-22. The slot is the circle plus its
+        # gap; the label wraps to two lines before it shrinks past reading
+        # size, and its centre is pulled inside the axes when the circle
+        # sits at an edge.
+        _slot_pts = _axes_pts(0.92 * (2 * r + gap) / 100.0) - 4.0
+        _lt, _lfs = fit_label_lines(p.label, _slot_pts, 22, floor=15, min_size=13)
+        _hw = max(_fit_width_pts(ln, _lfs) for ln in _lt.split("\n")) \
+            / _axes_pts(0.92) * 100.0 / 2.0
+        _lx = min(max(cx, 1.0 + _hw), 99.0 - _hw)
+        ax.text(_lx, cy - r - 3.2, _lt, ha="center", va="top", color=TEXT,
+                fontsize=_lfs, fontweight="bold", zorder=4, alpha=_balpha,
+                path_effects=_shadow(), linespacing=1.05)
         specs.append((p.value, "art", tt, None))
         if i == 0:
             _star_top = (cx, cy + r * t)
