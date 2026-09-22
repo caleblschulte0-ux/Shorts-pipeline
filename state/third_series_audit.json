@@ -2,16 +2,16 @@
   "mature_hours": 72.0,
   "content_series": {
     "chaos": {
-      "n": 39,
+      "n": 40,
       "median_vph": 0.01
     },
     "fail": {
-      "n": 12,
+      "n": 13,
       "median_vph": 0.03
     },
     "wholesome": {
-      "n": 11,
-      "median_vph": 0.08
+      "n": 12,
+      "median_vph": 0.145
     },
     "drama": {
       "n": 9,
@@ -27,7 +27,7 @@
     },
     "argument": {
       "n": 3,
-      "median_vph": 0.03
+      "median_vph": 0.02
     },
     "beef": {
       "n": 2,
