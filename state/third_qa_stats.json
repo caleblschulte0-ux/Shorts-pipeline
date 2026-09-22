@@ -3,198 +3,6 @@
     {
       "date": "20260915",
       "dry_run": false,
-      "ts": "2026-09-15T17:47:19+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 86,
-        "with_curve": 15,
-        "fetched_at": "2026-09-15T15:51:38.420523+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:lospollostv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fanum": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:deshaefrost": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:brucedropemoff": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dougdoug": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nymn": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260915-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "lacy",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "xqc",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "jynxzi",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Buddha on Mrmoonshouse",
-              "raw": "Buddha on Mrmoonshouse",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 363.6
-        },
-        {
-          "slug": "clip-20260915-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260915-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260915",
-      "dry_run": false,
       "ts": "2026-09-15T19:05:56+00:00",
       "feedback": {
         "snapshot": true,
@@ -5155,6 +4963,216 @@
             }
           },
           "took_s": 175.0
+        }
+      ]
+    },
+    {
+      "date": "20260922",
+      "dry_run": false,
+      "ts": "2026-09-22T14:03:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 90,
+        "with_curve": 14,
+        "fetched_at": "2026-09-22T13:35:04.774605+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260922-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "visible emotional meltdown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "genuine animated rant, chat mad at him",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": [
+                "skull emoji briefly covers the streamer's face around 8.7s (reads as intentional reaction meme, not a defect, but worth "
+              ]
+            }
+          },
+          "took_s": 228.7
+        },
+        {
+          "slug": "clip-20260922-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260922-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "emoji title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "gym owner yells, visible confrontation e",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Plaqueboymax Snaps And Calls Someone Out For Wanting To Be A \"Songstress\""
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "5.1s frame is just a blank gray wall with no subject visible (likely a quick pan/transition), momentarily loses the pers"
+              ]
+            }
+          },
+          "took_s": 263.5
+        },
+        {
+          "slug": "clip-20260922-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "routine gameplay kill clip",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "kill confirmed then confusion, unclear p",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Shroud Kills The Heli And Even He Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "10.3s frame is empty scenery with no player/weapon or caption visible, reads as a dead gap in the action"
+              ]
+            }
+          },
+          "took_s": 169.3
+        },
+        {
+          "slug": "clip-20260922-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260922-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }

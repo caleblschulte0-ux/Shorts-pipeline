@@ -8410,14 +8410,27 @@
       "ts": "2026-09-22T14:00:14.095529+00:00"
     },
     "clip-20260922-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/shroud/clip/IgnorantCrowdedMarrow4Head-HFzQB4QUhSxLImrX",
-      "story_key": null,
-      "streamer": "shroud",
+      "url": "https://youtube.com/shorts/1AwuSoJpo0U",
       "title": "Shroud Kills The Heli And Even He Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-09-22T14:02:55.456632+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-22T14:03:03.357402+00:00",
+      "uploaded_at": "2026-09-22T14:03:03.357419+00:00",
+      "publish_at": "2026-09-23T05:00:00Z",
+      "source_url": "https://www.twitch.tv/shroud/clip/IgnorantCrowdedMarrow4Head-HFzQB4QUhSxLImrX",
+      "streamer": "shroud",
+      "series": "clutch",
+      "hook": "WAIT... HE KILLED WHAT?",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2320,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 13.0
+      },
+      "director_cut": true
     }
   }
 }
