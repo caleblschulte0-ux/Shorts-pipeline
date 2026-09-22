@@ -401,6 +401,20 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   were stale copies of retired schedules; the doctor caught the drift on
   2026-08-22. The crons are `30 13` and `30 14` in exchange_phase_b.yml and
   the hour lives in `FINALIZER_HOUR_CENTRAL`, nowhere else.)
+- **GitHub's cron is NOT a clock — `clock.yml` is** (2026-09-22). Every
+  scheduled run that day landed two to five hours late or never came: the
+  explainer's 13:40, Phase B's 13:30 backstop and two dead-man slots did
+  not fire, the hourly claim cron ran three times in fourteen hours. The
+  clock is a `workflow_dispatch` CHAIN (`scripts/clock.py`): each tick reads
+  every cron in the repo, gives GitHub `GRACE_MIN` to honour a slot, then
+  dispatches what was missed with the inputs the cron path uses
+  (`DISPATCH_INPUTS` — an empty `mode` on the explainer posts nothing; Phase
+  B gets `backstop=true`), sleeps to the next quarter hour and dispatches
+  itself. A dispatch is an API call, honoured immediately, and the one
+  event GITHUB_TOKEN may raise. Its own cron is only a bootstrap. Stop it
+  with `state/clock/OFF`. `tests/test_the_clock_does_not_trust_cron.py`
+  holds that every cron is covered or excused with a reason — a new cron
+  is not scheduled until that test says the clock will fire it.
 - A Phase A that finds no packages exits 0 — so this bug class is INVISIBLE in
   the Actions tab. To confirm the exchange ran, check for
   `exchange/bundles/<date>/bundle.json`, not a green checkmark.

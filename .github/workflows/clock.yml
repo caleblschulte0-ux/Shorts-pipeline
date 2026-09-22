@@ -1,0 +1,59 @@
+name: Clock (GitHub cron is not a clock)
+
+# 2026-09-22: every scheduled run landed two to five hours late or never came
+# — the explainer's 13:40, Phase B's 13:30 backstop and two dead-man slots
+# did not fire at all, and the hourly claim cron ran three times in fourteen
+# hours. This is a workflow_dispatch CHAIN: each run fires what the crons
+# missed (scripts/clock.py), sleeps to the next quarter hour, dispatches the
+# next run and exits. A dispatch is an API call, honoured immediately, and
+# the one event GITHUB_TOKEN may raise. The cron below is only a bootstrap:
+# if the chain ever dies, GitHub restarts it — late, as usual.
+#
+# Stop it: create `state/clock/OFF` (or `PAUSED`). It lifts no gate: a
+# dispatched run is the same run, through the same editorial gate and the
+# same showrunner veto.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/20 * * * *'
+
+permissions:
+  actions: write
+  contents: read
+
+# ONE clock at a time. cancel-in-progress is false, so a bootstrap or a
+# self-dispatch that arrives while a tick is running QUEUES behind it, and
+# the running tick sees it queued and does not spawn another.
+concurrency:
+  group: clock
+  cancel-in-progress: false
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install -q pyyaml
+
+      - name: Fire what GitHub's cron missed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/clock.py --fire | tee "$RUNNER_TEMP/clock.txt"
+          { echo '```'; cat "$RUNNER_TEMP/clock.txt"; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      # The chain must survive a failed dispatch above, or one bad hour
+      # stops every hour after it.
+      - name: Keep the clock alive
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/clock.py --tick
