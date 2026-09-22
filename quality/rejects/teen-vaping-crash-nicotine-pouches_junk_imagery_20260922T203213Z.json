@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260922T203213Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg2:mid/seg2:end: a grid of clip-art office/clock-tower building emojis stands in for 'percent of high schoolers who vape'. Nothing ties a building to vaping, and seg3:end/seg4 wrap the bars in film-strip frames that have nothing to do with nicotine.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg2:start shows two bare circles (27.5% vs 7.8%). seg2:mid/end then fills a grid of generic office/clock building emojis ('each = 2%') up to '2019 peak 27.5%', and the mascot blocks one building.",
+  "root_cause": "The segment's claim is the CRASH, from 27.5% down to 7.8%, but the picture is a generic stock-icon unit grid that only fills up to the peak. It never shows the fall, and the icon has no link to teens or vaping.",
+  "repair_goal": "Show the drop physically. Start with a full group of 27.5% teens, or vape clouds, and have the crackdown knock out or clear about 72% of them until 7.8% remain, with the remaining share lit in the accent. Data should be the one doing the knocking-out and should react at the lowest level. Remove the building emoji and keep him clear of the marks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

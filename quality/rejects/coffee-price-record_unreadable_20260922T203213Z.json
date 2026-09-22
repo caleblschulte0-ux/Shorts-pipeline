@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260922T203213Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start to payoff@-0.4 the February 2024 value (\"$1.0\", \"$1.7\", \"$2.0\") is dark slate on the dark navy background and nearly disappears at phone distance. The same happens to \"$0.7\" in seg3:end. The 2019 \"$1.1\" in seg1:end is also muted grey on grey.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "off_message_chart",
+  "visible_evidence": "seg1:mid and seg1:end show a plain two-bar chart, 2019 $1.1 vs 2020 $1.2, labelled '2019 VS 2020', with empty space above it. The narration at the same moment is about the record $4.41 and 'a series of shocks'.",
+  "root_cause": "A default bar comparison was chosen from the first two data points instead of from the claim. That puts a 10-cent change on screen while the story is a 4x climb to a record.",
+  "repair_goal": "Show the climb from $1.05 (2019) to the $4.41 record (Feb 2025) as a subject-made picture, for example a coffee cup or price tag that jumps in visible shocks. The record should land as the payoff, with Data reacting to each shock."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

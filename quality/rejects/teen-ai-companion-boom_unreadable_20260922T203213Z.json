@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260922T203213Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3\u2013seg1:start: labels are cut off at the left edge ('ed one at least once'). seg1:mid: 'ave used one at least once 72' is clipped on both sides. seg2:end: two labels are printed on top of each other ('AI over Shared personal info...'). seg3:start: the '34%' label is almost invisibl",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:mid/seg2:end: the labels 'Chose AI over a human for a serious talk 33%' and 'Shared personal info with an AI companion' are drawn on top of each other along one line and clipped at both frame edges. seg2:start is a bare two-circle number card with a garbled '33%'.",
+  "root_cause": "The two-pin gap machine puts both long category labels at the same y position with no measured width or collision avoidance. The opening two-circle card has no demonstration at all.",
+  "repair_goal": "Show 1 in 3 teens choosing an AI over a person, and 1 in 4 sharing personal info, as a picture made of the subject. For example, a row of teen figures where a third turn toward a phone instead of a person, and a quarter pass a note into a chat bubble. Put each label on its own line, sized by measurement to fit the frame, and have Data act out the choice."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

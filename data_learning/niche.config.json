@@ -21254,7 +21254,11 @@
      "role": "3 · THE REAL WINNER",
      "topic": "distance from Earth's center",
      "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
-     "viz": "comparison"
+     "scene": {
+      "mechanic": "sphere-bulge-radial",
+      "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
+      "code": "earth = subject_image('earth globe photo from space')\nmtn = subject_image('snow capped mountain peak photo')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 640\nR = 300\nif earth is not None:\n    paste(earth, cx - R, cy - R, R * 2, R * 2)\nelse:\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=rgba(REST, 130))\nfor k in range(0, 360, 12):\n    a = math.radians(k)\n    x0 = cx + (R + 4) * math.cos(a)\n    y0 = cy + (R + 4) * math.sin(a)\n    x1 = cx + (R + 14) * math.cos(a)\n    y1 = cy + (R + 14) * math.sin(a)\n    d.line([x0, y0, x1, y1], fill=rgba(SUBTLE, 170), width=3)\ntext('a perfect sphere', cx, cy - R - 46, size=27, color=SUBTLE, center=True)\nscale = 9.0\npeaks = [(labels[0], values[0], 300, HIGHLIGHT), (labels[1], values[1], 245, ACCENT)]\nfor i in range(len(peaks)):\n    lab, val, ang_deg, col = peaks[i]\n    a = math.radians(ang_deg)\n    grow = clamp((reveal - i * 0.2) / 0.45)\n    dist = R + val * scale * grow\n    bx = cx + R * math.cos(a)\n    by = cy + R * math.sin(a)\n    tx = cx + dist * math.cos(a)\n    ty = cy + dist * math.sin(a)\n    d.line([bx, by, tx, ty], fill=rgba(col, 235), width=9)\n    if mtn is not None:\n        paste(mtn, int(tx - 55), int(ty - 95), 110, 100)\n    else:\n        d.ellipse([tx - 16, ty - 16, tx + 16, ty + 16], fill=rgba(col))\n    pulse_t = (reveal * 3.4 + i * 0.5) % 1.0\n    px = lerp(bx, tx, pulse_t)\n    py = lerp(by, ty, pulse_t)\n    d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(col, 220))\n    text(fmt(val) + ' past the sphere', tx, ty - 165, size=26, color=col, center=True)\n    text(lab, tx, ty - 130, size=23, color=TEXT, center=True)\ntext('bulge exaggerated for clarity', cx, cy + R + 60, size=22, color=SUBTLE, center=True)\n"
+     }
     }
    ]
   },

@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260922T203213Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly perches. He stands beside the bar chart (hook@0.3 to seg0:end), sits on top of the bars (seg2:start, seg3:mid), and holds the same hands-on-head pose in seg2:mid, seg3:end and seg4. The only real bit is riding the seesaw pan (seg1). Walking along the ruler in seg4 does",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "generic_chart_no_subject",
+  "visible_evidence": "seg3:start and seg3:mid are two plain rounded bars (20 vs 3) with Data parked on top. seg3:end switches to a ruler gauge reading \"17 apart\" with Data holding his head. No crew, no car, no wheels appear anywhere.",
+  "root_cause": "The claim is that about twenty people each do one exact job at the same moment. It was drawn as a two-bar comparison and then a distance ruler, which measures a crew head-count as a length. The picture never shows many hands working at once, which is the actual point.",
+  "repair_goal": "Build the beat from the subject. Show a top-down car silhouette with 3 figures in 1950s that fill in one by one, then 20 figures that snap into place all at once around the four wheels, jack and front wing. The simultaneity should be visible. Data should play one crew member, a wheel gunner, whose action lands the payoff."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

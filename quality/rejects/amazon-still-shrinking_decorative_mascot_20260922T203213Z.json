@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260922T203213Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data slides along the bars (hook@0.3 to seg0:end) and rides the stacked bar up (seg3), but he stands off to the side in seg1:mid/end and seg2:start/end, and waves from the bottom-left corner of the box, clipped at the edge, through all of seg4 (seg4:start to payoff@-0.4). He never",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "wrong_claim_ui_widget",
+  "visible_evidence": "seg4:start to payoff@-0.4: a bordered card says \"Soy, Mining, Logging & Other fits in Cattle Pasture\" and \"4 times over\", but only 3 of the 4 tiles ever fill. The \"4\" is printed over the tile seams. A speech-bubble box of text sits above it, Data is pinned in the bottom-left corner, and the frame holds almost unchanged for about 3s into the end.",
+  "root_cause": "A generic 'fits N times' tile machine was applied to an 80/20 share. It states a ratio the narration never makes, draws it wrong (3 tiles for 4), and lands the closing line as a UI card instead of a picture.",
+  "repair_goal": "Replace seg4 with a payoff that shows the closing claim, falling yearly clearing against a still-growing total, e.g. the yearly-loss bars shrinking while a cumulative lost-forest area keeps spreading. Put it full bleed with no bordered card, keep the mascot in the scene doing an action tied to the growing total, and drop the 'N times over' ratio."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

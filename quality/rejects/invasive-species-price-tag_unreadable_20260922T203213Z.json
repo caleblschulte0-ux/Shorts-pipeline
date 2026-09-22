@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260922T203213Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start through seg2:end the Prevention percentage (5.1%, 8.5%, 9.9%) is dark slate on a dark ground and nearly disappears. In seg2:end a cyan ring is drawn right through the '88.7%' label.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:start/end: a thin pink line crosses the middle of an empty frame, captioned 'and back again' although the cost only went up, with a stray cyan ellipse floating at the top right (seg1:end).",
+  "root_cause": "A generic trend-line machine drew the quadrupling claim at small scale. It used a leftover 'and back again' label and left an unanchored highlight ellipse, so the frame's space and meaning are wasted.",
+  "repair_goal": "Show quadrupling every decade as something that fills the frame. For example, a bill or invoice that doubles twice per decade until it covers the screen at $423B, with Data holding it up. Remove the 'and back again' label and the orphan ellipse."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

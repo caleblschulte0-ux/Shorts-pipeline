@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260922T203213Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.8 to seg1:start: the NYC value '9.7' is half hidden under the mascot's feet and reads as '8.7'. seg2:end: two labels are printed on top of each other ('Live in 8F+ ... 68%' over the lower-exposure label). seg4:start to seg4:end: the header is cut off at the frame edge as 'rmerly r",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg4:start to seg4:end: a grid of graduation caps labelled 'each = 0.3', a header cut off as 'rmerly redlined neighborhoods', and the mascot waving over the icons under a speech bubble.",
+  "root_cause": "The icon lookup matched an unrelated prop (a mortarboard) for 'redlined neighborhoods' degrees. The header is wider than the frame and was never measured, and the mascot is placed on top of the grid.",
+  "repair_goal": "Show the 5-degree redlining gap with a picture made of the subject, such as a block of city houses where the redlined half glows hotter, or two thermometers side by side. Fit the header inside the frame, and give the mascot a bit that lands the 'heat still remembers' line instead of waving over the grid."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

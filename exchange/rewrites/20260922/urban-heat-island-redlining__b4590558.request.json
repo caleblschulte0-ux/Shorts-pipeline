@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "urban-heat-island-redlining__b4590558",
- "filed": "2026-09-22T15:06:18Z",
+ "filed": "2026-09-22T16:53:11Z",
  "status": "open",
  "channel": "explainer",
  "slug": "urban-heat-island-redlining",
@@ -106,30 +106,30 @@
   }
  ],
  "held_for": [
-  "judge: One genuinely good beat (Data clearing the 8-degree crossbar) is surrounded by charts, overprinted labels and a payoff grid built out of graduation caps."
+  "judge: The high-jump beat is a genuinely good demonstration, but the video ends on a grid of graduation caps for a story about urban heat, under a headline chopped off at both edges — and seg2's labels print on top of each other."
  ],
  "reasons": [
-  "judge: One genuinely good beat (Data clearing the 8-degree crossbar) is surrounded by charts, overprinted labels and a payoff grid built out of graduation caps."
+  "judge: The high-jump beat is a genuinely good demonstration, but the video ends on a grid of graduation caps for a story about urban heat, under a headline chopped off at both edges — and seg2's labels print on top of each other."
  ],
  "judge": {
-  "ts": "2026-09-22T15:06:14+00:00",
-  "score": 39,
-  "one_line": "One genuinely good beat (Data clearing the 8-degree crossbar) is surrounded by charts, overprinted labels and a payoff grid built out of graduation caps.",
+  "ts": "2026-09-22T16:53:07+00:00",
+  "score": 48,
+  "one_line": "The high-jump beat is a genuinely good demonstration, but the video ends on a grid of graduation caps for a story about urban heat, under a headline chopped off at both edges — and seg2's labels print on top of each other.",
   "problems": [
-   "seg4: the degrees-of-heat unit grid is drawn as graduation caps - an irrelevant default glyph repeated 21 times in the closing beat.",
-   "seg4: the scene title is clipped by the left frame edge ('rmerly redlined neighborhoods') and the closing speech bubble's tail lands on top of it.",
-   "seg2:mid/seg2:end: 'Live in 8F+ heat-island exposure 68%' is printed on top of a second label; both are unreadable on a phone.",
-   "seg0: the bubble sizes barely differ between 9.7 and 7.4, and Data's feet sit on the highlighted NYC value so the 9.7 is partly covered.",
-   "seg0 hook: the video opens on a slow chart build with a title card - nothing happens in the first two seconds.",
-   "seg3: the upper 40% of the frame stays empty through start and mid while the bars sit low and small."
+   "seg4: the payoff grid is made of graduation-cap icons, an off-subject glyph for an urban-heat/redlining stat — the exact silent-default lookup failure this channel has been burned by before.",
+   "seg4: the segment headline overflows the frame on both sides, reading \"rmerly redlined neighborhoods\" instead of \"Formerly redlined neighborhoods\".",
+   "seg2:mid and seg2:end: two value labels are drawn at the same baseline, overstriking into unreadable garbage.",
+   "seg3:end: three caps in a corner leave two-thirds of the frame empty while the audio keeps going.",
+   "hook through seg0:end: Data is parked on the New York City bubble and hides its 9.7 — the one number the hook headline (\"NEW YORK CITY TOPS THE LIST\") depends on.",
+   "Measured effective_fps is 14.8 against a 24fps sample with a 27-frame duplicate run at t=5.21 — the motion judders rather than glides."
   ],
   "fixes": [
-   "Replace the seg4 unit icon with a mark made of the subject - a paved block tile or a tree-less lot square that warms toward the accent as the grid fills - and register it so the lookup cannot fall back to a default glyph.",
-   "Measure the seg4 title against the frame width and fit or wrap it so 'Formerly redlined neighborhoods' is fully visible; offset the closing bubble so its tail does not cross the title.",
-   "De-collide the seg2 series labels: place the 68% label inside/beside its own mark and drop or reposition the second label so no two strings share pixels.",
-   "Open on motion: start seg0 with the heat already building on the city marks, or lead with the seg1 high-jump rig so frame one has a moving object and a reason to stay.",
-   "Scale the seg0 bubbles on area so 9.7 is visibly larger than 7.4, and move Data off the NYC value so the number reads clean.",
-   "Raise the seg3 composition into the empty upper half so the frame is used, or start the bars taller and animate the gap opening."
+   "Swap the seg4 unit glyph for a subject-made unit (a rooftop/block tile that reddens as the grid fills) and add a test that the unit-grid icon name RESOLVES for this story's label instead of falling back to a default.",
+   "Measure the seg4 headline and wrap/shrink to the safe area; nothing may be laid out wider than the frame.",
+   "Give seg2's two labels separate baselines (or lead one to the mark it names) so neither can overstrike the other.",
+   "Move Data off the New York City bubble in seg0 — stand him beside it, pointing, so 9.7 is visible for the whole hook.",
+   "Fill seg3:end: begin the grid centred and filling from the first frame rather than three icons in the top-left corner.",
+   "Fix the cadence — regenerate the seg0/seg1 transition so no value is held for 27 consecutive source frames, and lift effective unique-frame rate toward the export rate."
   ]
  },
  "prior_rejection": [],

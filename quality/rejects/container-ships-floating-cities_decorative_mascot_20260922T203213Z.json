@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260922T203213Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Across hook@0.3 to seg0:end, Data dances over the bar chart. In seg3:start and seg3:mid he perches on the fill edge. None of this is tied to any stat.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg1:mid and seg1:end the title is clipped at both frame edges (\"\u00b7gest container ship capacity by ye\"). The mascot stands on and hides the timeline tick labels. A tiny 1996-2019 axis floats in the upper third and the lower ~55% of the frame is empty.",
+  "root_cause": "The timeline machine sets the title at a fixed large size without measuring it against the frame width. The mascot is anchored on the moving marker, which sits exactly on top of the tick labels. The layout only uses a thin horizontal band.",
+  "repair_goal": "Fit the title inside the safe margins by measuring its width and wrapping or shrinking it. Move the tick labels out from under the mascot, or place Data above or beside the marker. Show ship size physically, e.g. a hull growing from 6,600 to 24,000 boxes, so the scene fills the vertical frame instead of a bare axis line."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
