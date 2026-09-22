@@ -73,7 +73,13 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("coffee", "caffeine", "espresso"), "2615"),
     (("flight", "plane", "airline", "air travel", "aviation"), "2708"),
     (("car", "auto", "vehicle", "ev"), "1f697"),
-    (("college", "tuition", "student", "university", "degree"), "1f393"),
+    # "degree" is NOT a graduation key. In this catalogue a degree is almost
+    # always a temperature — "8 degrees hotter", "degrees of warming" — and
+    # the urban-heat/redlining payoff shipped its unit grid as twenty-one
+    # graduation caps (FATAL `junk_imagery`, 2026-09-22). "college" and
+    # "university" still find the cap; a bare degree finds nothing and the
+    # grid falls back to honest dots.
+    (("college", "tuition", "student", "university"), "1f393"),
     (("insurance", "hospital", "health", "healthcare", "medical",
       "premium"), "1f3e5"),
     (("wildfire", "fire"), "1f525"),

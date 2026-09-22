@@ -359,5 +359,21 @@ class TheSecondCoverageBlock(unittest.TestCase):
                                     f"and say why in icons.py")
 
 
+class ADegreeIsATemperatureNotADiploma(unittest.TestCase):
+    """The urban-heat/redlining payoff shipped its unit grid as twenty-one
+    graduation caps: "degree" was a graduation key, and in this catalogue a
+    degree is almost always heat (FATAL `junk_imagery`, 2026-09-22)."""
+
+    def test_a_bare_degree_finds_no_cap(self):
+        from data_learning import icons
+        self.assertIsNone(icons.emoji_codepoint("8 degrees hotter"))
+        self.assertIsNone(icons.emoji_codepoint("Formerly redlined neighborhoods"))
+
+    def test_heat_and_college_still_resolve(self):
+        from data_learning import icons
+        self.assertEqual(icons.emoji_codepoint("degrees of heat"), "1f321")
+        self.assertEqual(icons.emoji_codepoint("college degree"), "1f393")
+
+
 if __name__ == "__main__":
     unittest.main()

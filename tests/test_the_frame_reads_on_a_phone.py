@@ -344,5 +344,56 @@ class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
         self.assertIn("fit_centred(d, f\"{label}   {charts._ulabel(value, unit)}\"", body)
 
 
+class TheTravellingHostStandsBesideTheNumber(unittest.TestCase):
+    """`_stage_on_data` put his right edge 15px LEFT OF THE LABEL'S CENTRE —
+    across its left half — while its docstring promised "just left of the
+    tip so he never covers the value number". "the mascot is parked
+    directly on the '60' value label", "his legs cross through '27.5%'",
+    "'12500' reads '1 0'" (2026-09-22). Now the sprite's box and the
+    label's box are disjoint, whichever side of the label he ends up on."""
+
+    def _sprite_and_label(self, cx_png, cy_png, w_png=140.0, h_png=44.0):
+        from data_learning import studio_render as sr
+        anc = {"value": 1.0, "cx": cx_png, "cy": cy_png, "w": w_png, "h": h_png}
+        seg = type("Seg", (), {"anchors": [anc]})()
+        out = sr._stage_on_data(seg, 0.0, 1.0, "point_at", None)
+        self.assertIsNotNone(out)
+        (tlx, tly, _w0, _w1, _ang, _flip, _pose, isc), _entry = out
+        Sk = round(sr.MASCOT_SIZE * isc)
+        lcx, lcy, lw, lh = sr._screen_box(anc)
+        return (tlx, tlx + Sk), (lcx - lw / 2, lcx + lw / 2)
+
+    def test_a_label_mid_card_gets_him_on_its_left_clear_of_it(self):
+        (sx0, sx1), (lx0, lx1) = self._sprite_and_label(600.0, 700.0)
+        self.assertLess(sx1, lx0, "the sprite reaches into the label")
+
+    def test_a_label_at_the_left_margin_gets_him_on_its_right(self):
+        (sx0, sx1), (lx0, lx1) = self._sprite_and_label(80.0, 700.0)
+        self.assertTrue(sx1 < lx0 or sx0 > lx1, "the sprite overlaps the label")
+        self.assertGreater(sx0, lx1)
+
+
+class TheColdOpenHasAPictureOnFrameOne(unittest.TestCase):
+    """"hook@0.3 is a near-black title card with one karaoke word" — the
+    leading chart's burst started from zero. It starts a third built now,
+    bursts, then draws steadily; it is never still and always ends on the
+    exact static chart."""
+
+    def test_frame_one_is_a_third_built_and_it_never_stops(self):
+        self.assertGreaterEqual(charts.hook_reveal(0.0), 0.3)
+        self.assertGreaterEqual(charts.hook_reveal(0.22), 0.7)
+        self.assertEqual(charts.hook_reveal(1.0), 1.0)
+        prev = -1.0
+        for i in range(0, 101):
+            r = charts.hook_reveal(i / 100.0)
+            self.assertGreater(r, prev)
+            prev = r
+
+    def test_the_build_uses_it_when_the_chart_leads(self):
+        src = (_REPO / "data_learning" / "charts.py").read_text()
+        i = src.index("def render_story_build(")
+        self.assertIn("r = hook_reveal(hf)", src[i:i + 6000])
+
+
 if __name__ == "__main__":
     unittest.main()
