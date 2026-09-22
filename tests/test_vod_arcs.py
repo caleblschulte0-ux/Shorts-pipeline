@@ -132,7 +132,13 @@ class TheStoryArmUsesThem(unittest.TestCase):
         cls.body = ast.get_source_segment(src, cls.fn)
 
     def test_vod_arcs_are_offered_before_people_clusters(self):
-        self.assertIn("vod_arcs + storyline.find_clusters(", self.body)
+        """The scout's proposals come first (tests/test_story_scout.py);
+        what this pins is that same-broadcast arcs still outrank the
+        people piles that produced nothing."""
+        expr = " ".join(self.body.split("clusters = (", 1)[1]
+                        .split(")", 1)[0].split())
+        self.assertLess(expr.index("vod_arcs"),
+                        expr.index("storyline.find_clusters("))
 
     def test_a_vod_arc_is_not_resplit_by_token_overlap(self):
         """Token subclustering splits people piles into events. Run over an
@@ -153,7 +159,7 @@ class TheDirectorIsToldTheOrder(unittest.TestCase):
         from third_capture import story_director as sd
         reps = [{"source_id": "a", "channel": "jynxzi", "duration_s": 30,
                  "date": "2026-09-22", "summary": "s", "vod_offset": 3725}]
-        self.assertIn("broadcast_at=1h02m05s", sd._fmt_reports(reps))
+        self.assertIn("at=1h02m05s", sd._fmt_reports(reps))
 
     def test_the_director_keeps_its_veto(self):
         """Being one broadcast is not being a story. §8 still decides."""

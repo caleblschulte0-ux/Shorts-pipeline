@@ -13,11 +13,15 @@ overlays ON moving footage.
 
 ```
 corpus (posted log + wide 7d/30d sweep)
-  -> storyline.find_vod_arcs      FIRST: clips from ONE broadcast, minutes
-       |                          apart, in broadcast order (video_id +
-       |                          vod_offset from helix) — one incident by
-       |                          construction; skips token subclustering
-  -> storyline.find_clusters      then: people-clustering, ALIASES, jaccard
+  -> storyline.build_catalogue    one line per clip over the whole window:
+       |                          every posted clip (authored titles) +
+       |                          the freshest discovery (views, vod pos)
+  -> story_director.scout_stories FIRST: the brain reads the month and
+       |                          PROPOSES stories — one stream, several
+       |                          streams, several streamers, days or weeks
+  -> storyline.find_vod_arcs      then: clips from ONE broadcast, minutes
+       |                          apart (video_id + vod_offset from helix)
+  -> storyline.find_clusters      last: people-clustering, ALIASES, jaccard
   -> event records                state/third_events.json survives runs
   -> scene_analysis.analyze_source   FULL transcript + frames -> people,
        |                             dialogue/visual beats, missing context
@@ -165,7 +169,43 @@ C. **Semantic subclustering, not just naming**: `find_clusters()` groups by
    if <2 sources), because compiling unrelated same-people clips into a
    fake story is the worse error (§21).
 
-## VOD arcs — where stories actually come from (2026-09-22)
+## The scout — the brain finds the story (2026-09-22)
+
+Operator: *"Twitch isn't gonna hand them to you on a silver platter ... these
+are gonna have to be from over extended periods of time, more than one
+stream sometimes. Sometimes they'll be from one stream. The thing needs to
+use its brain."*
+
+Every mechanical grouping matched WORDS. Measured on three stories in the
+channel's own log that week, titles only, through the old subclusterer:
+
+| story | chapters | old matcher |
+|---|---|---|
+| Kai Cenat's Wolverine suit | built (09-18) → revealed (09-21) → the controversy (09-22) | `[2, 1]` — kept the build, **cut the payoff** |
+| Brickbois Records | Lang's audition (Buddha, 09-13) → Kevin (Soda, 09-17) → the record (Buddha, 09-21) | `[1, 1, 1]` — no story |
+| The rug pull | promised the coin will pump (09-10) → loses $800 (09-11) | `[1, 1]` — they share only "buddha" |
+
+`storyline.build_catalogue` writes the whole lookback window as one line per
+clip — **every posted clip** across the month (authored titles, ~6 a day)
+plus the freshest discovery (views, broadcast positions). "Most recent N"
+was tried first and reached back four days, because ~17 rejected clips a day
+crowded out every earlier chapter. `story_director.scout_stories` reads it
+and proposes up to three stories.
+
+**The scout proposes; it never decides.** A proposal only buys scene
+analysis on its members. `plan_story` then gets the proposal labelled as a
+HYPOTHESIS ("the scout never saw the clips") with the transcripts and frames
+in front of it, and §8 is unchanged. Proposals are checked structurally —
+members must be real catalogue ids, 2-6 of them — and a scouted story is not
+re-split by the ±1-week token rule, which would cut a three-week saga into
+singletons before the director saw it. What the scout proposed is recorded
+per slot in `judges.story_director.supply.scouted`.
+
+Also fixed on the way: the director was told "THESE SOURCES ARE ONE
+BROADCAST" whenever every source had a position — a multi-stream story has
+positions too, in different broadcasts. It keys on one shared `video_id`.
+
+## VOD arcs — one-broadcast stories (2026-09-22)
 
 Between 2026-09-16 and 09-22 the story arm ran 7 times, considered 21
 clusters, and rendered nothing: 11 `no_shared_event` (no two clips in the
@@ -183,7 +223,7 @@ Helix attaches `video_id` and `vod_offset` to every clip, and
 clips by broadcast, collapses one moment clipped many times into its
 most-viewed copy (one viral second is not a five-beat story), and
 single-links moments within `story_vod_gap_s` of each other. The director is
-told the sources are one broadcast and their `broadcast_at` times — and is
+told the sources are one broadcast and their `at=` times — and is
 told explicitly not to assume that makes them a story; §8 still decides.
 
 **Not measured at build time.** The session that built this had no Twitch

@@ -106,6 +106,86 @@ The FIRST beat is the opening — moving footage from second zero, hook
 overlaid on it. 2-5 beats total. Honesty is law: never imply an event the
 sources don't show."""
 
+_SCOUT_SYSTEM = """You are the STORY SCOUT for a streamer-clip channel.
+You get a CATALOGUE of recent clips across many streamers, one per line:
+id | date | streamer | views | title | broadcast position when known.
+
+Find the STORIES hiding in it: 2-6 clips that, watched in order, tell ONE
+story with a meaningful CHANGE. Stories come in every shape — look for all
+of them:
+- one stream: setup -> blowup -> reaction, minutes apart (same `vod=`)
+- several streams over days or weeks: a ban -> the return; a feud -> the
+  confrontation -> the makeup; a challenge started -> attempts -> result;
+  a promise or prediction -> proven right or wrong; a running bit that
+  keeps escalating
+- several streamers: A does something on stream, B reacts or answers on
+  B's own stream; a group event seen from two sides
+Use what you know about these streamers, their relationships and ongoing
+sagas to spot connections a keyword match would miss — but every proposal
+must be grounded in lines that are actually in the catalogue.
+
+NOT a story: a streamer's greatest hits; clips that merely share a person;
+the same moment clipped twice; a pile of funny moments with no change.
+
+Titles can mislead. Every proposal is VERIFIED afterwards against the real
+transcripts and frames, and rejected if the footage does not show it — so
+propose what the lines plausibly support, and never pad a story with a
+clip it does not need.
+
+Return STRICT JSON, best story first, at most 3:
+{"stories": [{"members": ["C3", "C9", "C14"],
+              "premise": "<one sentence: who, what changed>",
+              "why_connected": "<why these clips are one story>",
+              "shape": "one_stream|multi_stream|multi_streamer"}]}
+Return {"stories": []} when the catalogue holds no real story."""
+
+
+def scout_stories(lines: list[str], ids: set[str],
+                  max_stories: int = 3) -> list[dict]:
+    """Ask the brain which clips in the catalogue form stories.
+
+    The scout PROPOSES; it never decides. A proposal only buys the expensive
+    part — scene analysis on its members — and then `plan_story` judges it
+    against what the footage actually says and shows, with the §8 gate
+    unchanged. This replaces the job the token-overlap heuristics were doing
+    badly: across 2026-09-16..22 they grouped 21 piles, 11 of which had no
+    two clips about the same thing, and never once handed the director a
+    story. An editor finds a story by knowing what happened, not by
+    matching words in titles.
+
+    Validation is structural and strict: members must be catalogue ids,
+    distinct, 2-6 of them. Returns [] on no brain, bad JSON or no stories —
+    the slot then falls back to the mechanical candidates. Never raises."""
+    if len(lines) < 2:
+        return []
+    try:
+        out = _brain("CATALOGUE:\n" + "\n".join(lines), _SCOUT_SYSTEM)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[scout] failed ({e})", flush=True)
+        return []
+    stories = (out or {}).get("stories") if isinstance(out, dict) else None
+    if not isinstance(stories, list):
+        return []
+    kept: list[dict] = []
+    for st in stories:
+        if not isinstance(st, dict):
+            continue
+        mem = [str(m).strip() for m in (st.get("members") or [])]
+        mem = list(dict.fromkeys(m for m in mem if m in ids))
+        if not 2 <= len(mem) <= 6:
+            continue
+        kept.append({
+            "members": mem,
+            "premise": scrub_text(str(st.get("premise", "")).strip())[:200],
+            "why_connected": scrub_text(
+                str(st.get("why_connected", "")).strip())[:240],
+            "shape": str(st.get("shape", ""))[:20],
+        })
+        if len(kept) >= max_stories:
+            break
+    return kept
+
+
 _REVIEW_SYSTEM = """You are the NARRATIVE CRITIC for a streamer-story
 channel. You receive a story's premise, its edit plan (EDL), the final
 rendered transcript, a contact-sheet image path (read it if given), and
@@ -150,7 +230,10 @@ def _fmt_reports(reports: list[dict]) -> str:
         if r.get("vod_offset") is not None:
             try:
                 o = int(float(r["vod_offset"]))
-                at = f" broadcast_at={o // 3600}h{(o % 3600) // 60:02d}m{o % 60:02d}s"
+                vid = r.get("video_id")
+                at = ((f" broadcast={vid}" if vid else "")
+                      + f" at={o // 3600}h{(o % 3600) // 60:02d}m"
+                        f"{o % 60:02d}s")
             except (TypeError, ValueError):
                 at = ""
         out.append(
@@ -458,7 +541,7 @@ def last_rejection() -> dict:
 
 
 def plan_story(reports: list[dict], event: dict | None = None,
-               guidance: str = "") -> dict | None:
+               guidance: str = "", hypothesis: str = "") -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
     `guidance` is the channel's own evidence about which structures/
     lengths retain (empty until >=25 mature stories exist — creative
@@ -473,12 +556,25 @@ def plan_story(reports: list[dict], event: dict | None = None,
         user += (f"EVENT: {event.get('event_id', '?')} "
                  f"people={event.get('people')} "
                  f"type={event.get('event_type', '?')}\n\n")
-    if reports and all(r.get("vod_offset") is not None for r in reports):
+    if hypothesis:
+        # The scout's reading, from titles alone. The director is the one
+        # with the transcripts and frames — it confirms or kills it.
+        user += ("A SCOUT PROPOSED THIS STORY from clip titles: "
+                 f"{hypothesis}\nTreat it as a HYPOTHESIS. Verify it against "
+                 "the scene reports below; if the footage does not show it, "
+                 "reject it — the scout never saw the clips.\n\n")
+    # ONE broadcast means one shared video_id — not merely "every source has
+    # a position". A scouted multi-stream story has positions too, in
+    # DIFFERENT broadcasts, and telling the director they are one stream
+    # would be a false premise handed to the one judge that must not get one.
+    _vids = {str(r.get("video_id") or "") for r in reports}
+    if (reports and len(_vids) == 1 and "" not in _vids
+            and all(r.get("vod_offset") is not None for r in reports)):
         # Say it plainly: these are not clips that might be related. They
         # were cut from the same broadcast, in this order.
         user += ("THESE SOURCES ARE ONE BROADCAST: consecutive moments from "
                  "the same stream, listed in broadcast order "
-                 "(`broadcast_at`). Judge whether they form setup -> "
+                 "(`at=`). Judge whether they form setup -> "
                  "escalation -> payoff; do not assume they do.\n\n")
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
     out = _brain(user, _PLAN_SYSTEM)

@@ -274,6 +274,83 @@ def from_discovery(pool: list[dict]) -> list[dict]:
     return out
 
 
+
+def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
+                    max_history: int = 160) -> tuple[list[str], dict]:
+    """The story scout's reading material: one line per clip.
+
+    Two halves, because a story needs both. FRESH — the discovery sweep's
+    most-viewed clips, which carry Twitch view counts and broadcast
+    positions and are where today's story is breaking. HISTORY — the most
+    recent clips this channel posted or considered over the lookback window,
+    which carry OUR authored titles ("Jynxzi Is Finally Allowed Back Into
+    NoPixel After 3 Years") and are where last week's chapter of it lives.
+    A clip in both keeps the authored title and the discovery metadata.
+
+    Returns (lines, {id: clip}). Ids are short (C1, C2, ...) so the brain
+    answers with tokens it cannot misspell into a different clip. Pure and
+    offline."""
+    merged: dict[str, dict] = {}
+    for c in corpus or []:
+        ck = clip_key(c.get("source_url", ""))
+        if not ck:
+            continue
+        prev = merged.get(ck)
+        if prev is None:
+            merged[ck] = dict(c)
+            continue
+        # posted-log titles are authored and descriptive; discovery titles
+        # are whatever the clipper typed. Keep the better of each field.
+        if c.get("posted") is not None and "views" not in c:
+            prev["title"] = c.get("title") or prev.get("title", "")
+        for k in ("views", "video_id", "vod_offset", "duration"):
+            if prev.get(k) in (None, "", 0) and c.get(k) not in (None, ""):
+                prev[k] = c[k]
+        if not prev.get("date"):
+            prev["date"] = c.get("date", "")
+
+    items = list(merged.values())
+    fresh = sorted((c for c in items if c.get("views")),
+                   key=lambda c: -int(c.get("views") or 0))[:max_fresh]
+    seen = {clip_key(c["source_url"]) for c in fresh}
+    rest = [c for c in items if clip_key(c["source_url"]) not in seen]
+    # HISTORY IS WHAT WE POSTED, across the whole window. "Most recent N"
+    # sounded right and reached back four days: the log also holds ~17
+    # rejected clips a day, and they crowded out every earlier chapter. The
+    # posted clips are ~6 a day, span the full lookback, and carry authored
+    # titles. Rejected clips are still story material — rejection judged
+    # the standalone render, not the moment — so they fill what room is
+    # left, newest first, and only when the title says something (64 of 161
+    # on 2026-09-22 were "?", "truth bomb", "LMAOOO").
+    posted = sorted((c for c in rest if c.get("posted")),
+                    key=lambda c: str(c.get("date", "")), reverse=True)
+    extra = sorted((c for c in rest if not c.get("posted")
+                    and len(str(c.get("title", "")).split()) >= 3),
+                   key=lambda c: str(c.get("date", "")), reverse=True)
+    history = (posted + extra)[:max_history]
+    chosen = sorted(fresh + history,
+                    key=lambda c: (str(c.get("date", "")),
+                                   str(c.get("video_id") or ""),
+                                   float(c.get("vod_offset") or 0.0)))
+
+    def _views(v):
+        v = int(v or 0)
+        return f"{v / 1000:.1f}k" if v >= 1000 else (str(v) if v else "-")
+
+    lines, ids = [], {}
+    for i, c in enumerate(chosen, 1):
+        cid = f"C{i}"
+        ids[cid] = c
+        pos = ""
+        if c.get("video_id") and c.get("vod_offset") is not None:
+            o = int(float(c["vod_offset"]))
+            pos = f" | vod={c['video_id']}@{o // 3600}:{(o % 3600) // 60:02d}"
+        title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
+        lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
+                     f"{c.get('channel', '?')} | {_views(c.get('views'))} | "
+                     f"{title}{pos}")
+    return lines, ids
+
 def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,
                   same_moment_s: float = 20.0, min_span_s: float = 45.0,
                   max_members: int = 6) -> list[dict]:

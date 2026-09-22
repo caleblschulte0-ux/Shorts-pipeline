@@ -428,18 +428,22 @@ brain, falling back to a normal clip when no genuine arc exists.
 Compilation dedupe rides `story_key` (member-set hash), never member
 `source_url`s. Content standard: docs/THIRD_INTERNET_PLAYBOOK.md.
 
-- **A story is ONE broadcast, and Twitch says which clips those are**
-  (2026-09-22). Helix gives every clip a `video_id` and `vod_offset`;
-  `storyline.find_vod_arcs` groups clips cut from the same stream minutes
-  apart, in broadcast order, and they are offered to the director FIRST.
-  The old source — a streamer's top clips from a 10-day window, clustered by
-  shared people — is only the fallback: over 09-16..22 it produced 21
-  deliberations and no render, because a streamer's greatest hits are not
-  one event (PLAYBOOK §5 says exactly that). `from_discovery` used to throw
-  the VOD fields away. Whether arcs exist at volume was NOT measured when
-  this was built (no Twitch credentials in that session) — read
-  `judges.story_director.supply` in `state/third_qa_stats.json` before
-  tuning anything.
+- **The BRAIN finds the story — across a month, across streams**
+  (operator, 2026-09-22: *"Twitch isn't gonna hand them to you on a silver
+  platter ... more than one stream sometimes. Sometimes they'll be from one
+  stream. The thing needs to use its brain"*). `storyline.build_catalogue`
+  writes the whole lookback window as one line per clip — every POSTED clip
+  across the month plus the freshest discovery — and
+  `story_director.scout_stories` reads it and proposes stories. It goes
+  FIRST; same-broadcast VOD arcs (`find_vod_arcs`, from helix's `video_id` +
+  `vod_offset`) second; word-matched people clusters last. Measured on that
+  week's own log, the old word matcher cut the payoff off Kai Cenat's
+  Wolverine arc and split Lang's Brickbois story and Buddha's rug pull into
+  singletons. **The scout proposes, it never decides:** a proposal only buys
+  scene analysis, then `plan_story` gets it labelled as a HYPOTHESIS with
+  the transcripts and frames, §8 unchanged. What it proposed is recorded
+  per slot in `judges.story_director.supply` in `state/third_qa_stats.json`
+  — read that before tuning anything.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
