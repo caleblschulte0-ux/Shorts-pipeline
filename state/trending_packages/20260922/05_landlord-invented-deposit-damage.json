@@ -33,9 +33,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Apartment",
+      "pin_context": "rental apartment interior hallway living room",
+      "news_query": "Apartment",
+      "news_angle": "The tenant moves out of the apartment fearing loss of the security deposit."
     },
     {
       "phrase": "I walked every room on video, timestamp running",
@@ -49,9 +53,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Walkthrough Video",
+      "pin_context": "video recording smartphone walkthrough apartment",
+      "news_query": "Walkthrough Video",
+      "news_angle": "The tenant records a video walkthrough of the apartment before moving out to document its condition."
     },
     {
       "phrase": "his email landed: eleven hundred dollars in 'damage,'",
@@ -65,9 +73,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Email",
+      "pin_context": "email inbox screenshot digital message",
+      "news_query": "Email",
+      "news_angle": "The landlord sends an email alleging $1,100 in damage to the tenant."
     },
     {
       "phrase": "a cracked bathroom mirror",
@@ -81,9 +93,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Cracked Bathroom Mirror",
+      "pin_context": "bathroom mirror cracked glass damage",
+      "news_query": "Cracked Bathroom Mirror",
+      "news_angle": "The landlord claims a cracked bathroom mirror that the tenant never touched as part of the damage."
     },
     {
       "phrase": "the move-in inspection report he'd signed himself",
@@ -97,9 +113,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Move-in Inspection Report",
+      "pin_context": "signed inspection report landlord tenant document",
+      "news_query": "Move-in Inspection Report",
+      "news_angle": "The tenant presents the original move\u2011in inspection report signed by the landlord as evidence."
     },
     {
       "phrase": "He tried to claim my footage was doctored.",
@@ -113,7 +133,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:05Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -132,7 +152,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:06Z",
+        "verified_at": "2026-09-22T14:18:19Z",
         "resolved_by": "verify_shot_urls"
       },
       "media_origin": "self_fill"
@@ -149,9 +169,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-22T14:10:06Z",
+        "verified_at": "2026-09-22T14:18:20Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "Deposit",
+      "pin_context": "security deposit money rental lease",
+      "news_query": "Deposit",
+      "news_angle": "The tenant fights to recover the security deposit withheld by the landlord."
     }
   ],
   "punches": [
