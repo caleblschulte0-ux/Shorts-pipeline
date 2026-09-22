@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260919",
+  "updated": "20260922",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1295,14 +1295,19 @@
       "commit": "e913ed1"
     },
     "ad9061de9638": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: shared/exchange_bundle.py mark_ready() swallows every exception and returns None; scripts/exchange_phase_a.py only uses the truthiness of that result for a print statement and unconditionally returns 0. A failed READY write is reported as a successful Phase A run. Small, concrete fix; queued behind this run's build (73ecfd950397, ranked first by severity).",
+      "verdict": "in_progress",
+      "date": "20260922",
+      "because": "picked up",
       "history": [
         {
           "verdict": "doing",
           "date": "20260909",
           "because": "Verified: shared/exchange_bundle.py mark_ready() swallows every exception and returns None; scripts/exchange_phase_a.py only uses the truthiness of that result for a print statement and unconditionally returns 0. A failed READY write is reported as a successful Phase A run. Small, concrete fix; queued and will likely be built this same session alongside the critical item since both are one-line-scope."
+        },
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: shared/exchange_bundle.py mark_ready() swallows every exception and returns None; scripts/exchange_phase_a.py only uses the truthiness of that result for a print statement and unconditionally returns 0. A failed READY write is reported as a successful Phase A run. Small, concrete fix; queued behind this run's build (73ecfd950397, ranked first by severity)."
         }
       ]
     },
