@@ -28624,6 +28624,252 @@
      "say": "Most of those visa programs cluster in Europe and the Americas, chasing the same remote paycheck -- proof that a laptop and a wifi password now count as an economy."
     }
    ]
+  },
+  {
+   "slug": "teen-vaping-crash-nicotine-pouches",
+   "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+   "hook": "The vaping crisis didn't end. It just moved.",
+   "closing": "One nicotine habit down, a stealthier one clocked in.",
+   "question": "Do you know anyone who vapes or uses pouches? Tell me below.",
+   "caption": "Teen vaping hit 27.5% by 2019 -- then crashed to 7.8% by 2024 after flavor bans and FDA crackdowns. But nicotine didn't disappear, it just switched products: pouches like Zyn are quietly climbing among kids who've never touched a vape. Do you know anyone who uses either? 👇",
+   "hashtags": [
+    "vaping",
+    "ecigarettes",
+    "nicotinepouches",
+    "zyn",
+    "teenhealth",
+    "publichealth",
+    "cdc",
+    "vapingfacts",
+    "nicotine",
+    "fda",
+    "tobaccofree",
+    "harmreduction",
+    "teens",
+    "health",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "teen_vaping_rate_trend",
+     "params": {
+      "file": "teen_vaping_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RISE",
+     "topic": "teen vaping rates over time",
+     "say": "In 2011, just 1.5 percent of high schoolers vaped. By 2017 it was 11.7 percent. By 2019, 27.5 percent -- more than one in four teenagers using e-cigarettes regularly."
+    },
+    {
+     "source": "offline",
+     "key": "teen_vaping_peak_vs_2024",
+     "params": {
+      "file": "teen_vaping_peak_vs_2024.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE CRACKDOWN",
+     "topic": "the vaping crackdown",
+     "say": "Then came flavor bans and FDA crackdowns on Juul. Vaping crashed from 27.5 percent at its peak to just 7.8 percent by 2024 -- the lowest in a decade."
+    },
+    {
+     "source": "offline",
+     "key": "youth_nicotine_products_2024",
+     "params": {
+      "file": "youth_nicotine_products_2024.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE NEW DOOR",
+     "topic": "which nicotine product teens use now",
+     "say": "But e-cigarettes are still nicotine's top seller among teens -- now trailed by nicotine pouches at 1.8 percent, barely regulated. Same habit, quieter: tucked in a lip instead of a cloud."
+    }
+   ]
+  },
+  {
+   "slug": "urban-heat-island-redlining",
+   "title": "Your City Is Secretly 8 Degrees Hotter Than It Should Be",
+   "hook": "The city itself is cooking your block.",
+   "closing": "The redlining maps are gone. The heat still remembers them.",
+   "question": "Does your neighborhood feel hotter than it should? Tell me below.",
+   "caption": "Across 65 major US cities, pavement and buildings add an average of 8°F of extra heat -- and 68% of the 50 million people studied live in the hottest pockets. It's not random: neighborhoods redlined in the 1930s are still about 5°F hotter today. Does your block feel it? 👇",
+   "hashtags": [
+    "urbanheat",
+    "climatechange",
+    "heatisland",
+    "climatecentral",
+    "redlining",
+    "environment",
+    "cities",
+    "climatedata",
+    "urbanplanning",
+    "publichealth",
+    "heatwave",
+    "environmentaljustice",
+    "science",
+    "climate",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "urban_heat_island_index_by_city",
+     "params": {
+      "file": "urban_heat_island_index_by_city.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "1 · THE HEAT",
+     "topic": "why your city runs hotter",
+     "say": "Across 65 major US cities, pavement and buildings add an average of 8 degrees of extra heat. New York adds 9.7, San Francisco 9.1 -- heat with no clouds involved, just concrete."
+    },
+    {
+     "source": "offline",
+     "key": "urban_heat_exposure_share",
+     "params": {
+      "file": "urban_heat_exposure_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHO FEELS IT",
+     "topic": "who lives in the hotter city blocks",
+     "say": "That heat isn't spread evenly. 68 percent of everyone studied live in the very hottest pockets -- older, paved-over blocks with almost no tree cover left."
+    },
+    {
+     "source": "offline",
+     "key": "redlining_heat_gap",
+     "params": {
+      "file": "redlining_heat_gap.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE PATTERN",
+     "topic": "why some neighborhoods got hotter first",
+     "say": "This isn't random. Neighborhoods redlined back in the 1930s are, on average, 5 degrees hotter today than nearby areas that weren't -- sometimes over 12. The maps are gone. The heat still follows them."
+    }
+   ]
+  },
+  {
+   "slug": "teen-ai-companion-boom",
+   "title": "72% Of Teens Have Talked To An AI Like It's A Friend",
+   "hook": "Your kid might trust a chatbot more than you.",
+   "closing": "Would you trust a chatbot with your secrets?",
+   "question": "Have you ever talked to an AI like it was a friend? Tell me below.",
+   "caption": "72% of teens have used an AI companion, and 52% do it regularly -- 13% every single day. A third have picked the AI over an actual human for a serious conversation. Have you ever talked to one like it was a friend? 👇",
+   "hashtags": [
+    "aicompanion",
+    "artificialintelligence",
+    "teenhealth",
+    "mentalhealth",
+    "chatbot",
+    "commonsensemedia",
+    "screentime",
+    "genz",
+    "digitalwellbeing",
+    "parenting",
+    "aiethics",
+    "teens",
+    "technology",
+    "psychology",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "teen_ai_companion_use_2025",
+     "params": {
+      "file": "teen_ai_companion_use_2025.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE HABIT",
+     "topic": "how many teens use an AI companion",
+     "say": "72 percent of teens have talked to an AI companion. 52 percent use one regularly, and 13 percent do it every single day -- that's routine, not curiosity."
+    },
+    {
+     "source": "offline",
+     "key": "teen_ai_vs_human_trust",
+     "params": {
+      "file": "teen_ai_vs_human_trust.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE TRUST",
+     "topic": "when teens trust AI over a person",
+     "say": "A third of teens have picked an AI over an actual person for a serious conversation, and a quarter have handed over personal information -- real details, typed to something that isn't real."
+    },
+    {
+     "source": "offline",
+     "key": "teen_ai_uncomfortable_share",
+     "params": {
+      "file": "teen_ai_uncomfortable_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE COST",
+     "topic": "teens and their AI chatbot",
+     "say": "34 percent of teens who use an AI companion say it's said or done something that made them uncomfortable. Most keep coming back anyway. That's the part that should worry you."
+    }
+   ]
+  },
+  {
+   "slug": "centenarian-population-boom",
+   "title": "Why Is America Growing 4 Times More 100-Year-Olds?",
+   "hook": "How rare is it to turn 100 today?",
+   "closing": "We're not living forever. The math just caught up.",
+   "question": "Do you know anyone who's lived to 100? Tell me below.",
+   "caption": "About 101,000 Americans are 100 or older today -- up from just 2,300 in 1950. The Census Bureau projects that'll hit 422,000 by 2054, more than quadrupling in 30 years. Do you know anyone who's lived to 100? 👇",
+   "hashtags": [
+    "centenarians",
+    "longevity",
+    "aging",
+    "demographics",
+    "census",
+    "pewresearch",
+    "lifeexpectancy",
+    "population",
+    "agingpopulation",
+    "healthspan",
+    "didyouknow",
+    "statistics",
+    "society",
+    "science",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "us_centenarian_population_trend",
+     "params": {
+      "file": "us_centenarian_population_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COUNT",
+     "topic": "how fast America's centenarian count is growing",
+     "say": "In 1950, only 2,300 Americans lived to 100. By 1990 that was 37,000. Today it's 101,000 -- and by 2054, the Census Bureau expects 422,000. That's math compounding, not a typo."
+    },
+    {
+     "source": "offline",
+     "key": "centenarian_gender_gap",
+     "params": {
+      "file": "centenarian_gender_gap.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHO GETS THERE",
+     "topic": "the gender gap among Americans turning 100 today",
+     "say": "Right now, 78 percent of centenarians are women, only 22 percent are men. But by 2054, men are projected to reach 32 percent -- the gap at the very top is closing too."
+    },
+    {
+     "source": "offline",
+     "key": "centenarian_state_rate",
+     "params": {
+      "file": "centenarian_state_rate.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "3 · WHERE",
+     "topic": "where America's centenarians actually live",
+     "say": "Hawaii has the most centenarians per capita -- 240 per 100,000 residents. The national average is just 30. Where you live shapes how long you're likely to live."
+    }
+   ]
   }
  ],
  "videos": [

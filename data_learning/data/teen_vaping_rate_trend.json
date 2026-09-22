@@ -1,0 +1,21 @@
+{
+  "key": "teen_vaping_rate_trend",
+  "title": "High school students currently using e-cigarettes (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2011-2019 (annual)",
+  "source": {
+    "name": "National Youth Tobacco Survey (NYTS)",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/68/wr/mm6806e1.htm",
+    "officiality": "official",
+    "access_date": "2026-09-22"
+  },
+  "notes": "Current (past-30-day) e-cigarette use among US high school students. 2011 and 2018 figures from CDC MMWR 'Vital Signs: Tobacco Product Use Among Middle and High School Students -- United States, 2011-2018' (68(6):157); 2017 figure (11.7%) and 2019 peak (27.5%) from CDC MMWR Vol. 68 No. 12 (2019 NYTS). All CDC-reported, none illustrative.",
+  "points": [
+    {"label": "2011", "value": 1.5, "period": "2011"},
+    {"label": "2017", "value": 11.7, "period": "2017"},
+    {"label": "2018", "value": 20.8, "period": "2018"},
+    {"label": "2019", "value": 27.5, "period": "2019"}
+  ]
+}

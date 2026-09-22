@@ -1,0 +1,19 @@
+{
+  "key": "urban_heat_exposure_share",
+  "title": "Share of studied residents living in the highest urban-heat-island exposure (8 degrees F or more of added heat)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Urban Heat Hot Spots in 65 Cities",
+    "publisher": "Climate Central",
+    "url": "https://www.climatecentral.org/climate-matters/urban-heat-islands-2024",
+    "officiality": "secondary",
+    "access_date": "2026-09-22"
+  },
+  "notes": "Of the 50 million residents across the 65 cities Climate Central analyzed in 2024, nearly 34 million (68%) live in census block groups with a UHI index of 8 degrees F or higher; the remainder (32%) live in less-exposed blocks within the same cities.",
+  "points": [
+    {"label": "Live in 8F+ heat-island exposure", "value": 68},
+    {"label": "Live in lower-exposure blocks", "value": 32}
+  ]
+}

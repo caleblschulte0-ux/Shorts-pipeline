@@ -1,0 +1,21 @@
+{
+  "key": "us_centenarian_population_trend",
+  "title": "Number of Americans age 100 or older",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1950-2054 (2054 projected)",
+  "source": {
+    "name": "US centenarian population estimates and projections",
+    "publisher": "Pew Research Center, based on U.S. Census Bureau data and projections",
+    "url": "https://www.pewresearch.org/short-reads/2024/01/09/us-centenarian-population-is-projected-to-quadruple-over-the-next-30-years/",
+    "officiality": "official",
+    "access_date": "2026-09-22"
+  },
+  "notes": "Census Bureau estimates: about 2,300 Americans were 100+ in 1950; about 37,000 in 1990; an estimated 101,000 in 2024. Census Bureau projects the total will reach about 422,000 by 2054, more than quadrupling in 30 years.",
+  "points": [
+    {"label": "1950", "value": 2300, "period": "1950"},
+    {"label": "1990", "value": 37000, "period": "1990"},
+    {"label": "2024", "value": 101000, "period": "2024"},
+    {"label": "2054 (projected)", "value": 422000, "period": "2054"}
+  ]
+}

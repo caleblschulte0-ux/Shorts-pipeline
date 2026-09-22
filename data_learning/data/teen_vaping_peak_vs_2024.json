@@ -1,0 +1,19 @@
+{
+  "key": "teen_vaping_peak_vs_2024",
+  "title": "High school e-cigarette use: 2019 peak vs. 2024",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019 vs. 2024",
+  "source": {
+    "name": "National Youth Tobacco Survey (NYTS)",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/73/wr/mm7341a2.htm",
+    "officiality": "official",
+    "access_date": "2026-09-22"
+  },
+  "notes": "2019 was the NYTS peak year for high school current e-cigarette use (27.5%); 2024 NYTS (published in MMWR Vol 73 No 41) recorded 7.8%, the lowest level in a decade, following FDA flavor restrictions and enforcement actions against unauthorized e-cigarette products (including Juul).",
+  "points": [
+    {"label": "2019 peak", "value": 27.5},
+    {"label": "2024", "value": 7.8}
+  ]
+}

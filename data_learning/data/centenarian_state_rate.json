@@ -1,0 +1,24 @@
+{
+  "key": "centenarian_state_rate",
+  "title": "Centenarians per 100,000 residents, by state",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Social Security Administration centenarian data, analyzed by state",
+    "publisher": "Social Security Administration (via Northwell Health / Stacker analysis)",
+    "url": "https://www.northwell.edu/news/the-latest/centenarian-older-adult-population-change-by-state",
+    "officiality": "secondary",
+    "access_date": "2026-09-22"
+  },
+  "notes": "2022 SSA data: Hawaii has the highest share of centenarians in its population (0.24%), followed by Washington DC (0.20%) and Connecticut (0.19%); nationally, centenarians are about 0.03% of the US population (Pew Research, 2024, citing Census Bureau data). Percentages converted here to a per-100,000-residents rate (percent x 1,000) for on-screen readability: 0.24% = 240 per 100,000, etc.",
+  "points": [
+    {"label": "Hawaii", "value": 240},
+    {"label": "Washington DC", "value": 200},
+    {"label": "Connecticut", "value": 190}
+  ],
+  "baseline": {
+    "label": "US national average",
+    "value": 30
+  }
+}

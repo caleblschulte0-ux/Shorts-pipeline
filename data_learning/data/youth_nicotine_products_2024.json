@@ -1,0 +1,20 @@
+{
+  "key": "youth_nicotine_products_2024",
+  "title": "Current tobacco/nicotine product use among high school students, by product (2024)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "National Youth Tobacco Survey (NYTS) 2024",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/73/wr/mm7335a3.htm",
+    "officiality": "official",
+    "access_date": "2026-09-22"
+  },
+  "notes": "2024 NYTS: e-cigarettes remained the most commonly used tobacco/nicotine product among US high schoolers for the 11th straight year (7.8%); nicotine pouches (e.g. Zyn) were the second most common product (1.8%, up from 1.5% in 2023); cigarettes fell to their lowest-ever recorded prevalence (1.7%). Source: CDC MMWR 'Notes from the Field: E-Cigarette and Nicotine Pouch Use Among Middle and High School Students -- United States, 2024.'",
+  "points": [
+    {"label": "E-cigarettes", "value": 7.8},
+    {"label": "Nicotine pouches", "value": 1.8},
+    {"label": "Cigarettes", "value": 1.7}
+  ]
+}
