@@ -3,6 +3,303 @@
     {
       "date": "20260916",
       "dry_run": false,
+      "ts": "2026-09-16T12:42:32+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 9,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 91,
+        "with_curve": 15,
+        "fetched_at": "2026-09-15T19:06:10.373403+00:00"
+      },
+      "brain": {
+        "ok": 41,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260916-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "visible achievement, niche interest",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine excited reaction to cover reveal",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Claps Back After Chat Says They're Refunding EAFC 27"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 241.9
+        },
+        {
+          "slug": "clip-20260916-2",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit",
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "caught saying slur, controversy",
+              "blind": false
+            }
+          },
+          "took_s": 9.4
+        },
+        {
+          "slug": "clip-20260916-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "wholesome real moment, new puppy reveal",
+              "blind": false
+            },
+            "content": {
+              "score": 0.6,
+              "why": "cute puppy antics, wholesome not dramati",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Timthetatman Finds Out His New Puppy Could Grow To 200 Pounds"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "subject occupies a small portion of the sharp frame with excess dark background/void around him, though position is cons"
+              ]
+            }
+          },
+          "took_s": 220.8
+        },
+        {
+          "slug": "clip-20260916-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "closeup",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "insider talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.87,
+              "problems": []
+            }
+          },
+          "took_s": 248.4
+        },
+        {
+          "slug": "clip-20260916-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "xqc/xqc-charact-down-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "lirik",
+                  "outcome": "no_shared_event",
+                  "why": "6 analysed -> subclusters [1, 1, 1, 1, 1, 1] over 5 date(s) \u2014 no two sources share an event, so no director call was made"
+                },
+                {
+                  "cluster": "lacy",
+                  "outcome": "no_shared_event",
+                  "why": "5 analysed -> subclusters [1, 1, 1, 1, 1] over 2 date(s) \u2014 no two sources share an event, so no director call was made"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "chaotic confrontation, run over, insult ",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets Ran Over Then Snaps Over A NOSE Joke"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Subject is small and facing away/distant in several mid-clip frames (2.8s, 6.6s, 8.4s, 10.3s, 12.2s, 17.8s, 19.7s, 21.6s"
+              ]
+            }
+          },
+          "took_s": 1134.9
+        },
+        {
+          "slug": "clip-20260916-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title blank, no info",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine disgusted reaction to gross mess",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Finds The Most DISGUSTING Thing He's Ever Seen"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 337.3
+        }
+      ]
+    },
+    {
+      "date": "20260916",
+      "dry_run": false,
       "ts": "2026-09-16T15:31:21+00:00",
       "feedback": {
         "snapshot": true,
@@ -4695,58 +4992,6 @@
         "with_retention": 90,
         "with_curve": 14,
         "fetched_at": "2026-09-22T13:35:04.774605+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260922-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260922",
-      "dry_run": false,
-      "ts": "2026-09-22T17:34:00+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 102,
-        "with_retention": 90,
-        "with_curve": 14,
-        "fetched_at": "2026-09-22T14:06:22.784589+00:00"
       },
       "brain": {
         "ok": 0,
