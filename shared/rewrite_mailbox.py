@@ -211,6 +211,11 @@ def write_index(rewrites_dir: Path | None = None) -> Path | None:
         rewrites_dir.mkdir(parents=True, exist_ok=True)
         ip = rewrites_dir / "OPEN.json"
         ip.write_text(json.dumps(idx, indent=1, ensure_ascii=False) + "\n")
+        try:
+            from shared import exchange_index as _xi
+            _xi.refresh(rewrites_dir.parent)
+        except Exception:  # noqa: BLE001 — a stale roll-up, never a failure
+            pass
         return ip
     except Exception as e:  # noqa: BLE001
         print(f"[rewrites] index not written: {e}", flush=True)

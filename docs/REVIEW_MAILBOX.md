@@ -117,28 +117,14 @@ on Tuesday. Now:
 
 `python scripts/claim_rewrites.py sweep` files the whole backlog.
 
-## The ChatGPT round — paste into the scheduled task / Project
+## The ChatGPT round — nothing to paste
 
-> **Shorts review round.** Open
-> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/reviews/OPEN.json`.
-> For each entry: open its `request` file (raw, on `main`); open
-> `sheet_url` and any frame URL you need to look closer; grade EXACTLY as
-> the request's `prompt` says — anchors and hard checks only, cite frame
-> labels as evidence, never output ship or block. Write `answer_path` as
-> one JSON object matching the request's `answer_schema`, copying
-> `request_id` and `video_sha256` from the request, and commit it to
-> `main`. Never edit a request. Then open
-> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/asks/OPEN.json`;
-> for each open batch, answer every listed key exactly as the batch's
-> `how_to_answer` says and commit its `answer_path`. Then open
-> `https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/main/exchange/rewrites/OPEN.json`;
-> for each entry open its `request`, rewrite the story's words exactly as
-> the request's `rules` and `how_to_answer` say — numbers ONLY from the
-> listed data points — and commit `answer_path`. If every index is empty,
-> stop; say nothing.
-
-Run it at least twice a day (after the 13:40 UTC explainer cron and after
-the 17:10 UTC one), or hourly — a settled request costs nothing.
+Operator ruling 2026-09-22: *"I should not have to paste anything in a
+ChatGPT."* The round is **section 7 of `doctor/PROMPTS.md`**, which every
+ChatGPT firing already reads fresh from `main` (sections 4, 5 and 6 end by
+executing it). One roll-up index, `exchange/OPEN.json`, tells it whether
+any of the three mailboxes has work. Change section 7 and every firing
+changes; no app prompt is ever touched again.
 
 ## The sucker fish — how this uses Aletheia without touching it
 

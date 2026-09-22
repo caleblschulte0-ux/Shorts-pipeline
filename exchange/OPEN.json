@@ -1,0 +1,20 @@
+{
+ "schema": "shorts-exchange-index/v1",
+ "updated": "2026-09-22T11:41:47Z",
+ "open_total": 73,
+ "mailboxes": {
+  "reviews": {
+   "open": 3,
+   "index": "exchange/reviews/OPEN.json"
+  },
+  "asks": {
+   "open": 1,
+   "index": "exchange/asks/OPEN.json"
+  },
+  "rewrites": {
+   "open": 69,
+   "index": "exchange/rewrites/OPEN.json"
+  }
+ },
+ "how": "The contract is doctor/PROMPTS.md section 7 (the mailbox round). Open each mailbox's `index` that has open > 0 and do exactly what its entries say. If open_total is 0, there is nothing to do."
+}

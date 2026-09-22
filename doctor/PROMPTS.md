@@ -376,9 +376,12 @@ HARD RULES: NEVER write response.json. NEVER write DONE. Those belong to
 the 7:00 finalizer. Your checkpoints are how it knows what you did — you
 two share no memory except the repo.
 
+STEP 3 — MAILBOX ROUND: execute section 7 of this file completely. It is
+part of this job, not optional; a run that skips it FAILED.
+
 FINISH by stating: how many requests the bundle had, how many checkpoints
-you committed, how many FAILED notes, and the commit SHAs. A finish
-statement without commit SHAs is a failed run.
+you committed, how many FAILED notes, the mailbox round's counts, and the
+commit SHAs. A finish statement without commit SHAs is a failed run.
 ```
 
 ## 5. The ChatGPT scheduled task — "Shorts Daily Finalizer" (7:00 AM Central)
@@ -413,9 +416,14 @@ If any step is impossible, still commit response.json with what you HAVE
 plus a "blocked" field naming the failed step; skip DONE only if
 response.json itself could not be written — and then say so explicitly.
 
+STEP 4 — MAILBOX ROUND: after DONE, execute section 7 of this file
+completely. It is part of this job, not optional; a run that skips it
+FAILED.
+
 FINISH by stating: checkpoints recovered, gaps filled, packages punched
-up vs kept (with reasons), the response.json commit SHA, and the DONE
-commit SHA. No SHAs = the run failed, say so plainly.
+up vs kept (with reasons), the response.json commit SHA, the DONE
+commit SHA, and the mailbox round's counts. No SHAs = the run failed, say
+so plainly.
 ```
 
 ---
@@ -477,5 +485,68 @@ STEP 3 — EXECUTE THE SELECTED CONTRACT
 Read the selected numbered section fresh from main and execute every numbered
 step completely. Its detailed contract wins over summaries in this router.
 Finish with the evidence and commit SHAs that selected section requires.
+
+STEP 4 — THE MAILBOX ROUND, AT EVERY FIRING (Doctor firing included)
+After the selected contract, execute section 7 completely. It is how the
+pipeline hands you the work no other brain could do that day — a video to
+grade, a question to answer, a held story to rewrite. Three firings a day
+means a held story waits hours, not days.
+```
+
+---
+
+## 7. THE MAILBOX ROUND — every ChatGPT firing, last step (no pasting, ever)
+
+Operator ruling 2026-09-22: *"I should not have to paste anything in a
+ChatGPT. ChatGPT should be reading the instructions somewhere on the GitHub
+that you can update at will."* This section IS those instructions. Sections
+4, 5 and 6 point here; nothing in any app prompt changes when this changes.
+
+The pipeline files the work it could not finish into three mailboxes under
+`exchange/`. You read them from `main`, do the work, and COMMIT the answer
+file each request names. Code validates every answer; nothing you write
+ships a video or changes a story on its own. Full contract:
+`docs/REVIEW_MAILBOX.md`.
+
+```text
+MAILBOX ROUND
+
+STEP 0 — Open exchange/OPEN.json (raw, on main). If open_total is 0, say
+"mailbox round: nothing open" and stop. Otherwise open each mailbox index
+it lists with open > 0, in this order:
+
+STEP 1 — REVIEWS (exchange/reviews/OPEN.json). A video the judge could not
+watch. For each entry: open its `request` file; open `sheet_url` (a contact
+sheet of labelled frames) and any frame url you need to look closer; grade
+EXACTLY as the request's `prompt` says — dimension anchors and hard checks
+only, cite frame labels as evidence, NEVER output ship or block (the code
+decides that). Write `answer_path` as one JSON object matching the
+request's `answer_schema`, with request_id and video_sha256 copied
+verbatim. Commit it to main.
+
+STEP 2 — ASKS (exchange/asks/OPEN.json). Questions no backend could answer
+in-run. For each open batch: open `batch`; for every listed key answer the
+`user` message under its `system` instruction exactly as the model it was
+written for would (JSON where JSON is asked for, no commentary). Write or
+merge into `answer_path` per the batch's how_to_answer. Commit.
+
+STEP 3 — REWRITES (exchange/rewrites/OPEN.json). Held explainer stories.
+For each entry: open its `request`; rewrite the WORDS so the story clears
+every rule in `rules` and answers every reason in `held_for` (and
+`prior_rejection` if present). Same number of segments, same order. Use
+ONLY numbers you can derive from each segment's `data.points` (a listed
+value, a difference, a percent change, a share of the total, a rescale) or
+a year that appears as a label. No country, company or person the data
+does not name. Topics <= 4 words (they are printed on the video), says <=
+40 words. Write `answer_path` as one JSON object matching `answer_schema`,
+request_id and slug copied. Commit.
+
+HARD RULES: never edit a request file; never edit anything outside the
+answer paths the requests name; never touch code, workflows, docs or
+config — a validator applies your answers, you do not. One commit per
+mailbox is fine; message "exchange: mailbox round <date> [skip ci]".
+
+FINISH by stating, for each mailbox: open, answered, skipped (with the
+reason), and the commit SHA(s). A round with no SHAs and open > 0 FAILED.
 ```
 
