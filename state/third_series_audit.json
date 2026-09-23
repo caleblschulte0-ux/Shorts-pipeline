@@ -5,21 +5,21 @@
       "n": 40,
       "median_vph": 0.01
     },
-    "fail": {
-      "n": 13,
-      "median_vph": 0.03
-    },
     "wholesome": {
       "n": 12,
-      "median_vph": 0.145
+      "median_vph": 0.18
+    },
+    "fail": {
+      "n": 12,
+      "median_vph": 0.02
     },
     "drama": {
       "n": 9,
-      "median_vph": 0.05
+      "median_vph": 0.04
     },
     "win": {
       "n": 8,
-      "median_vph": 0.1
+      "median_vph": 0.085
     },
     "jumpscare": {
       "n": 3,
@@ -31,12 +31,17 @@
     },
     "beef": {
       "n": 2,
-      "median_vph": 0.02
+      "median_vph": 0.015
     },
     "rage": {
       "n": 2,
-      "median_vph": 0.005
+      "median_vph": 0.0
     }
   },
-  "excluded": {}
+  "excluded": {
+    "unknown": {
+      "n": 1,
+      "median_vph": 2.48
+    }
+  }
 }
