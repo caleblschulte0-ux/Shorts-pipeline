@@ -8647,14 +8647,27 @@
       "director_cut": true
     },
     "clip-20260923-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/clix/clip/RefinedEnjoyableOcelotOpieOP--YfaG6naeat1h8nP",
-      "story_key": null,
-      "streamer": "clix",
+      "url": "https://youtube.com/shorts/Hu8rQiG7GCA",
       "title": "Clix Hits The Pump Shot Nobody Can Explain",
       "kind": "twitch_clip",
-      "ts": "2026-09-23T15:31:44.184203+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-23T15:31:52.873557+00:00",
+      "uploaded_at": "2026-09-23T15:31:52.873574+00:00",
+      "publish_at": "2026-09-24T05:00:00Z",
+      "source_url": "https://www.twitch.tv/clix/clip/RefinedEnjoyableOcelotOpieOP--YfaG6naeat1h8nP",
+      "streamer": "clix",
+      "series": "clutch",
+      "hook": "HOW DID HE HIT THAT PUMP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2018,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 6.8
+      },
+      "director_cut": true
     }
   }
 }
