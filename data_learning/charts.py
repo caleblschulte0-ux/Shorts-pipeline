@@ -2455,8 +2455,12 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         color = (HIGHLIGHT if p.label == insight.highlight_label
                  else WARN if (insight.baseline and p.label == insight.baseline.label)
                  else REST)
+        # OPAQUE: at alpha 0.96 the gridline behind a bubble showed through
+        # as a faint bar across its number ("the '$4.4' inside the pink
+        # bubble ... has a horizontal stroke through it, so it reads as
+        # struck through", coffee-price-record, 2026-09-23).
         ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor=GRID,
-                            linewidth=1.5, alpha=0.96, zorder=3))
+                            linewidth=1.5, alpha=1.0, zorder=3))
         fs = max(16, min(46, r * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
