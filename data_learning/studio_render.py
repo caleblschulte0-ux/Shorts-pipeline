@@ -1120,8 +1120,16 @@ def _readable_punch(hex_color: str) -> str:
     return "#" + "".join(f"{c:02x}" for c in out)
 
 
+def _dash(text: str) -> str:
+    """A typed '--' is a dash on screen. It burned in raw ('to 6,288 --')."""
+    import re as _re
+    return _re.sub(r"\s*--\s*", " \u2014 ", text or "").strip()
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
-                    accent: str = "&H4FD1F5&", hook_visual: bool = False) -> None:
+                    accent: str = "&H4FD1F5&", hook_visual: bool = False,
+                    closing_scene: bool = False,
+                    scene_beats: frozenset = frozenset()) -> None:
     """Burn the hook, the kinetic captions and the closing into one ASS file.
 
     `chart_hook` used to be a parameter here. Its only reader was the hero
@@ -1153,7 +1161,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     sentences = st.sentences()
 
     def kinetic(sent, s0, s1):
-        chunks = _chunks(sent, 3)
+        chunks = _chunks(_dash(sent), 3)
         if not chunks:
             return
         step = (s1 - s0) / len(chunks)
@@ -1194,7 +1202,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # no data on screen is the `empty_void` / `decorative_mascot` the gate
     # blocks, and the data demonstration should be the star from frame 1.
     # `_headline_number` is still live for the thumbnail and for long-form.
-    hchunks = _chunks(st.hook, 2) if not hook_visual else []
+    hchunks = _chunks(_dash(st.hook), 2) if not hook_visual else []
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
@@ -1251,6 +1259,12 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             r1 = e.get("ring1") if e.get("ring1") is not None else pe
             lines.append(f"Dialogue: 3,{_ass_time(max(0, r0))},"
                          f"{_ass_time(r1)},Mark,,0,0,0,,{ring}")
+        if e.get("seg") in scene_beats:
+            # A SUBJECT SCENE prints its own readout. The punch put the same
+            # number a third time under the caption that already says it —
+            # the "faded ghost '6,288' under the caption" the showrunner
+            # named twice (2026-09-23).
+            continue
         styled = ("{\\fad(120,120)\\pos(" + str(PUNCH_X) + "," + str(PUNCH_Y)
                   + ")\\fs104\\c" + color + "}" + p.get("text", ""))
         lines.append(f"Dialogue: 1,{_ass_time(ps)},{_ass_time(pe)},Punch,,0,0,0,,"
@@ -1291,9 +1305,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
               "\\fad(250,0)\\p1}"
               + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
               + "{\\p0}")
-    lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{bubble}")
-    quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
-            "\\fad(300,0)}" + _wrap(st.closing, 20))
+    if closing_scene:
+        # The closing is a full-bleed scene of its own: the line sits on the
+        # sky it keeps clear (y 140..480), outlined like every caption — no
+        # bordered card. The showrunner named the card a UI widget.
+        quip = ("{\\an5\\pos(540,308)\\fs62\\c&HFFFFFF&\\b1\\bord5\\3c&H000000&"
+                "\\shad0\\fad(300,0)}" + _wrap(st.closing, 22))
+    else:
+        lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,"
+                     f"{bubble}")
+        quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
+                "\\fad(300,0)}" + _wrap(st.closing, 20))
     lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{quip}")
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
@@ -2426,6 +2448,10 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
                     a["scene"] = b["scene"]
                 if b.get("illustrated_scene"):          # a verified brain scene
                     a["illustrated_scene"] = b["illustrated_scene"]
+            for k in ("closing_scene", "closing_data",     # its bookends
+                      "hook_scene", "hook_data"):
+                if story_cfg.get(k) is not None:
+                    st_[k] = story_cfg[k]
             break
         Path(config_path).write_text(
             json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
@@ -2433,6 +2459,27 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
               f"{Path(config_path).name}", flush=True)
     except Exception as e:  # noqa: BLE001
         print(f"[studio] mechanic save skipped: {e}", flush=True)
+
+
+def _resolve_scene(slug: str, story_cfg: dict, i: int, insight):
+    """Beat i's subject scene: saved code first (a brain draft, or a REDRAW
+    that beat the teacher under the keep-best rule, scripts/scene_redraw.py),
+    then the hand-drawn teacher, then a fresh brain draft — verified — or
+    None."""
+    from data_learning import scene_author as _sa
+    from data_learning import subject_scenes as _ss
+    segs = story_cfg.get("segments") or []
+    seg_cfg = segs[i] if i < len(segs) else {}
+    log = (lambda m: print(f"[studio] seg{i}: {m}", flush=True))
+    scene = _sa.saved_scene(seg_cfg, log=log)
+    if scene is None:
+        scene = _ss.scene_for(slug, i)
+    if scene is None:
+        had = bool(seg_cfg.get("illustrated_scene"))
+        scene = _sa.scene_for_segment(story_cfg, i, insight, log=log)
+        if scene is not None and not had:
+            _PERSISTED.append(slug)
+    return scene
 
 
 def render(slug: str, out_path: Path, voice: str | None = None,
@@ -2460,6 +2507,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     accent_ass = _hex_to_ass(_readable_punch(charts.HIGHLIGHT))
     # WHICH LOOK — the A/B arm, from the registry (shared/style_arms.py).
     from shared import style_arms as _style_arms
+    try:                          # a new video: no gesture used yet
+        from data_learning import subject_scenes as _ss0
+        _ss0.reset_acts()
+    except Exception:  # noqa: BLE001 — no pycairo: no subject scenes either
+        pass
     _style = {"style_arm": _style_arms.choose(slug),
               "illustrated_beats": [], "fallback_beats": []}
     print(f"[studio] style arm: {_style['style_arm']}", flush=True)
@@ -2509,6 +2561,28 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                                       hook_dur=windows[0][1] - windows[0][0])
         lead_hook = receipt is None          # seg0's chart carries the cold-open
 
+        # ONE VIDEO, ONE LOOK. Every beat's subject scene is found BEFORE the
+        # render — saved code, then the teacher, then a brain draft — and if
+        # any beat has none, the whole video renders in the current look. A
+        # beat that fell back alone put an old chart between drawn scenes
+        # (kelp, 2026-09-23): two looks in one video is a craft defect the
+        # judge takes points for, whichever look is better.
+        _prepared: dict = {}
+        if _style["style_arm"] == "illustrated":
+            for _i, _sg in enumerate(st.segments):
+                if not getattr(_sg, "insight", None):
+                    continue
+                _got = _resolve_scene(slug, story_cfg, _i, _sg.insight)
+                if _got is None:
+                    _style["style_arm"] = "current"
+                    _style["illustrated_fallback"] = f"beat {_i}: no verified scene"
+                    print(f"[studio] style arm: current — beat {_i} has no "
+                          f"verified subject scene, and one video has one look",
+                          flush=True)
+                    _prepared = {}
+                    break
+                _prepared[_i] = _got
+
         # TRUE 30fps: re-render each chart at frames = span*30 now that the beat
         # length is known, so the build animates smoothly across the WHOLE window
         # (no held/duplicate frames — the choppiness the temporal grade caught).
@@ -2556,20 +2630,82 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             if _style["style_arm"] == "illustrated":
                 from data_learning import illustrated as _il
                 from data_learning import subject_scenes as _ss
+                from data_learning import scene_author as _sa
                 # A SUBJECT SCENE first (operator 2026-09-23: the reference
                 # is the subject itself, not a chart in a world); the
                 # illustrated chart drawings only where no scene exists.
-                _scene = _ss.scene_for(slug, i)
-                if _scene is None:   # the brain draws one, verified, or None
-                    from data_learning import scene_author as _sa
-                    _had = bool((story_cfg.get("segments") or [{}] * (i + 1))[i]
-                                .get("illustrated_scene")) if i < len(
-                        story_cfg.get("segments") or []) else False
-                    _scene = _sa.scene_for_segment(
-                        story_cfg, i, seg.insight,
-                        log=lambda m: print(f"[studio] seg{i}: {m}", flush=True))
-                    if _scene is not None and not _had:
-                        _PERSISTED.append(slug)
+                _scene = _prepared.get(i)
+                # THE CLOSING IS ITS OWN SCENE. The last beat used to run on
+                # under the closing, shrunk into an inset beneath a bordered
+                # bubble; the showrunner gave that payoff 1/2 on the 74
+                # ("a static reprise under a text card ... nothing shows
+                # 'the bill still grows'"). The last beat now stops where
+                # the closing starts and the closing line gets a picture.
+                # THE HOOK IS ITS OWN SCENE TOO: the first seconds state the
+                # story's surprise as a picture, instead of opening on the
+                # first beat's machine ("the hook uses the same machine as
+                # seg1, so the opening and the first data beat look the
+                # same" — showrunner, 2026-09-23).
+                _hook, _hpath = None, None
+                if (i == 0 and lead_hook and _scene is not None
+                        and windows[0][1] - start >= 1.0
+                        and end - windows[0][1] >= 2.0):
+                    _hook = (_sa.saved_bookend(story_cfg, "hook", len(st.segments))
+                             or _ss.hook_for(slug))
+                    if _hook is None:
+                        _hadh = bool(story_cfg.get("hook_scene"))
+                        _hook = _sa.scene_for_bookend(
+                            story_cfg, "hook", [sg.insight for sg in st.segments],
+                            log=lambda m: print(f"[studio] hook: {m}", flush=True))
+                        if _hook is not None and not _hadh:
+                            _PERSISTED.append(slug)
+                if _hook is not None:
+                    _h1 = windows[0][1]
+                    try:
+                        _hfn, _hidx = _hook
+                        _hpath, _ = _ss.render_build(
+                            _hfn, st.segments[_hidx].insight, chart_dir,
+                            f"{slug}_hook_ss",
+                            int(max(30, min(1800, _mfr.ceil((_h1 - start) * 30)))),
+                            t0=start)
+                    except Exception as e:  # noqa: BLE001
+                        print(f"[studio] hook scene failed: {e}", flush=True)
+                        _hpath = None
+                    if _hpath:
+                        _hspan = {"kind": "subject_scene", "path": _hpath,
+                                  "anchors": [], "t0": start, "t1": _h1,
+                                  "full_by": 1.0, "host_baked": True,
+                                  "scene": _hfn.__name__}
+                        start = _h1
+                        dur = max(0.0, end - start)
+                _close = None
+                if i == last_i and lead_payoff and windows[-1][0] > start + 1.0:
+                    _close = (_sa.saved_closing(story_cfg, len(st.segments))
+                              or _ss.closing_for(slug))
+                    if _close is None:
+                        _hadc = bool(story_cfg.get("closing_scene"))
+                        _close = _sa.scene_for_closing(
+                            story_cfg, [sg.insight for sg in st.segments],
+                            log=lambda m: print(f"[studio] closing: {m}",
+                                                flush=True))
+                        if _close is not None and not _hadc:
+                            _PERSISTED.append(slug)
+                _cpath = None
+                if _scene is not None and _close is not None:
+                    _c0 = windows[-1][0]
+                    try:
+                        _cfn, _cidx = _close
+                        _cpath, _ = _ss.render_build(
+                            _cfn, st.segments[_cidx].insight, chart_dir,
+                            f"{slug}_closing_ss",
+                            int(max(30, min(1800, _mfr.ceil((end - _c0) * 30)))),
+                            t0=_c0)
+                    except Exception as e:  # noqa: BLE001
+                        print(f"[studio] closing scene failed: {e}", flush=True)
+                        _cpath = None
+                    if _cpath:
+                        end = _c0
+                        dur = max(0.0, end - start)
                 if _scene is not None:
                     try:
                         _spath, _ = _ss.render_build(
@@ -2586,8 +2722,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                                       "anchors": [], "t0": start, "t1": end,
                                       "full_by": 1.0, "host_baked": True,
                                       "scene": _scene.__name__}]
+                        if _hpath:
+                            seg.spans.insert(0, _hspan)
+                            print(f"[studio] hook: subject scene "
+                                  f"{_hspan['scene']}", flush=True)
+                        if _cpath:
+                            seg.spans.append(
+                                {"kind": "subject_scene", "path": _cpath,
+                                 "anchors": [], "t0": end,
+                                 "t1": windows[-1][1], "full_by": 1.0,
+                                 "host_baked": True,
+                                 "scene": _close[0].__name__})
+                            _style["closing_scene"] = True
+                            print(f"[studio] closing: subject scene "
+                                  f"{_close[0].__name__}", flush=True)
                         seg.chart_path = _spath
                         _style["illustrated_beats"].append(i)
+                        _style.setdefault("scene_beats", []).append(i)
                         print(f"[studio] seg{i}: subject scene "
                               f"{_scene.__name__} ({dur:.1f}s)", flush=True)
                         continue
@@ -2741,7 +2892,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # no receipt, seg0's chart leads and the hook text plays over it.
         ass = work / "cap.ass"
         build_story_ass(st, windows, events, ass, accent=accent_ass,
-                        hook_visual=bool(receipt))
+                        hook_visual=bool(receipt),
+                        closing_scene=bool(_style.get("closing_scene")),
+                        scene_beats=frozenset(_style.get("scene_beats") or ()))
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
@@ -3275,6 +3428,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # at 1080x1920 and fill the whole frame; card charts/maps stay in the
             # top chart region. The registry is charts' single source of truth.
             full = getattr(st.segments[i], "kind", "") in charts.FULLFRAME_RENDERERS
+            # A SUBJECT SCENE is drawn at 1080x1920 and is the whole shot. It
+            # inherited its segment's chart kind here, so a bar-race story's
+            # scenes were shrunk into the chart region with a dark border and
+            # a dead band under them — the "inset" the showrunner named.
+            full = full or any(sp.get("kind") == "subject_scene" for sp in spans)
             vw, vh = (W, H) if full else (CHART_W, CHART_H)
             vx, vy = (0, 0) if full else (CHART_X, CHART_Y)
             # NO per-layer float here any more. The card used to drift on its
@@ -3302,12 +3460,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 t0, t1 = float(sp["t0"]), float(sp["t1"])
                 hold = max(0.5, t1 - t0) + 1.0
                 lab = f"v{i}_{j}"
+                # A SUBJECT SCENE CUTS. It is an opaque full frame, so there is
+                # no near-black to hide, and a cross-fade laid two scenes'
+                # readouts — which sit at the same spot — over each other: the
+                # "garbled crossfade number" that blocked a 73 (2026-09-23).
+                _fades = ("" if sp.get("kind") == "subject_scene" else
+                          f",fade=t=in:st={t0:.2f}:d=0.12:alpha=1,"
+                          f"fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1")
                 fc.append(
                     f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                     f"setpts=PTS-STARTPTS+{t0:.2f}/TB,"
-                    f"scale={vw}:{vh},format=rgba,"
-                    f"fade=t=in:st={t0:.2f}:d=0.12:alpha=1,"
-                    f"fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1"
+                    f"scale={vw}:{vh},format=rgba"
+                    f"{_fades}"
                     f"[{lab}]")
                 # THE CLOSING CARD OWNS THE FRAME.
                 #

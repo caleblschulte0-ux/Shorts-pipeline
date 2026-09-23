@@ -72,6 +72,17 @@ of 2026-08-01 **so does trending**. The headless-Claude SHOWRUNNER
 If a future task asks you to make the channel ship more / faster, the answer
 is better videos, never a weaker gate.
 
+- **The explainer AIMS AT 90** (operator, 2026-09-23: *"We need to be
+  building a system that consistently puts out 90s ... Don't ask if you can
+  post a 74. Make a system that makes better videos."*). `quality.target`
+  in the registry: a cut the gate SHIPS below it is still repaired and
+  re-judged, `polish_rounds` times within `polish_budget_min`, keeping the
+  best cut ranked (ships, score). The illustrated arm's repair is the brain
+  redrawing the scene the judge named, from the judge's own words
+  (`scripts/scene_redraw.py`). The judge's `segN` ids count WINDOWS —
+  [hook, beat 0, …, closing] — not beats (`scene_repair.judged_window`).
+  Rules every subject scene meets are in `docs/CHANNEL_LOOK.md`.
+
 - **The judge of last resort is a MAILBOX ChatGPT answers**
   (`docs/REVIEW_MAILBOX.md`, ruling 2026-09-21). When neither the headless
   brain nor Gemini can watch a render on a publish run, the gate still

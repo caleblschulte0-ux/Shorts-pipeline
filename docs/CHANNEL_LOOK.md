@@ -94,3 +94,57 @@ Each world names `sky` (gradient stops), `glow`, `far`/`mid`/`near`
   `tests/test_the_illustrated_arm.py`, not asserted.
 - **Every number drawn is the data's.** Decoration moves; it never adds a
   quantity. The test reads back every string the final frame prints.
+
+### Subject scenes: the picture IS the subject (2026-09-23)
+
+The operator, on the first illustrated renders: *"It's not just a chart on a
+gradient background ... you need to be far more throwing the mascot on top
+of this video than trying to drag this video into what we already have."*
+So each beat is a drawn scene of the subject itself — the forest felled one
+tree per 1,000 km², France dropped into the clearing, coins piled on a
+scale — in `data_learning/subject_scenes.py`. Hand-drawn TEACHERS cover
+three stories; for any other beat the headless brain draws one
+(`data_learning/scene_author.py`) and code verifies it before it is used.
+
+Every rule below is a check the verifier runs on a brain scene AND a test
+every teacher passes (`tests/test_subject_scenes.py`,
+`tests/test_the_brain_draws_the_scene.py`), and each came from a render:
+
+- **No held frame.** temporal_craft is 3/3 only at 24 effective fps, and the
+  gate samples at 24 — so 3/3 means none. A sine walk crawls into each
+  turn; `walk()` is a constant-speed walk that turns sharply, and lifts
+  each step fastest exactly at the turn. A Data who holds a spot (riding,
+  hanging on, tracing) gets `sway()`, a circle, whose speed never drops to
+  zero. Measured the way the real render is made — a 30fps clock, his pose
+  looping over 120 frames, sampled at the gate's 24 — over a whole stride
+  (`scene_author.held_ratio`, ceiling `MAX_HELD`): 71 held frames across
+  the teachers became 0. (A 24fps harness said 2 while the real render of
+  the same scenes held 11; measure on the render's own clock.)
+- **Data has a BIT.** At least two acts over the beat and 150px of travel
+  that is his own, not pacing (`bit_problems`). The rubric asks for
+  "setup → action → payoff"; the story whose teachers failed this is the
+  one the judge called decorative.
+- **No repeated gesture in one video.** A role resolves to the act this
+  video has used least (`act_for`), so "shock" is not the same
+  hands-on-head pose in three scenes.
+- **Nothing is said twice.** A subject scene prints its own readout, so the
+  renderer draws no punch number on its beats (the "faded ghost 6,288"),
+  and a typed `--` is a dash on screen.
+- **Full bleed.** A scene is the whole shot. Scenes inherited their
+  segment's chart kind and were shrunk into the chart region with a
+  border — the "inset" the judge named.
+- **Data stays in frame**: his centre never comes nearer an edge than
+  `EDGE`.
+- **The hook and the closing are scenes of their own.** The hook states the
+  story's surprise from frame 1 (not the first beat's picture); the closing
+  shows the last line HAPPENING (the Amazon scar growing one ring per year,
+  each ring thinner — "fewer trees fall, the bill still grows"), full bleed,
+  with the line on its sky and no bordered card. Payoff went 1/2 → 2/2 on
+  the same story.
+
+**The channel aims at 90, not at the pass bar.** `quality.target` in the
+registry: a cut that ships below it is still repaired — for this arm the
+brain redraws the scene the judge named, from the judge's own words
+(`scripts/scene_redraw.py`) — re-judged, and kept only if it scores
+higher, ranked (ships, score). The gate's bar and its sovereignty do not
+move. Held by `tests/test_the_channel_aims_at_90.py`.
