@@ -2424,6 +2424,8 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
             for a, b in zip(st_.get("segments", []), story_cfg.get("segments", [])):
                 if isinstance(b.get("scene"), dict) and b["scene"].get("code"):
                     a["scene"] = b["scene"]
+                if b.get("illustrated_scene"):          # a verified brain scene
+                    a["illustrated_scene"] = b["illustrated_scene"]
             break
         Path(config_path).write_text(
             json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
@@ -2558,6 +2560,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # is the subject itself, not a chart in a world); the
                 # illustrated chart drawings only where no scene exists.
                 _scene = _ss.scene_for(slug, i)
+                if _scene is None:   # the brain draws one, verified, or None
+                    from data_learning import scene_author as _sa
+                    _had = bool((story_cfg.get("segments") or [{}] * (i + 1))[i]
+                                .get("illustrated_scene")) if i < len(
+                        story_cfg.get("segments") or []) else False
+                    _scene = _sa.scene_for_segment(
+                        story_cfg, i, seg.insight,
+                        log=lambda m: print(f"[studio] seg{i}: {m}", flush=True))
+                    if _scene is not None and not _had:
+                        _PERSISTED.append(slug)
                 if _scene is not None:
                     try:
                         _spath, _ = _ss.render_build(
