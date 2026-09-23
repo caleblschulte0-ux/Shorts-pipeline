@@ -2197,7 +2197,46 @@ def is_repeated_icon(kind: str, scene: dict | None = None) -> bool:
     return False
 
 
-def _depiction_sequence(insight, used: set, dur: float) -> list:
+def cover_every_window(kinds, windows, draw, spare, start, log=print) -> list:
+    """Render one picture per window, leaving NO window empty.
+
+    `draw(kind, t0, t1, tag, first) -> span dict | None`. A window whose
+    picture fails first tries the `spare` candidates for the same window; if
+    none builds, the neighbouring picture is re-drawn across both windows (it
+    builds for the longer time rather than freezing). Only a beat where
+    nothing at all renders is left without spans.
+    """
+    spare = list(spare)
+    out, holes = [], []
+    for j, (kind, (t0, t1)) in enumerate(zip(kinds, windows)):
+        sp = draw(kind, t0, t1, j, j == 0)
+        while sp is None and spare:
+            alt = spare.pop(0)
+            log(f"visual {j} ({kind}) did not render -> trying {alt} for the "
+                f"same window")
+            sp = draw(alt, t0, t1, f"{j}s", j == 0)
+        if sp is None:
+            holes.append((t0, t1))
+            continue
+        out.append(sp)
+    for (h0, h1) in holes:
+        prev = next((x for x in out if abs(x["t1"] - h0) < 1e-6), None)
+        nxt = next((x for x in out if abs(x["t0"] - h1) < 1e-6), None)
+        host = prev or nxt
+        if host is None:
+            continue
+        a0, a1 = (prev["t0"], h1) if prev is not None else (h0, nxt["t1"])
+        wide = draw(host["kind"], a0, a1, f"w{len(out)}", a0 == start)
+        if wide is not None:
+            out[out.index(host)] = wide
+            log(f"{host['kind']} widened over the empty window "
+                f"{h0:.1f}-{h1:.1f}s")
+    out.sort(key=lambda x: x["t0"])
+    return out
+
+
+def _depiction_sequence(insight, used: set, dur: float,
+                        cap: int | None = None) -> list:
     """The ORDERED, NON-REPEATING depictions one beat shows, front to back.
 
     Element 0 is the beat's own chart; the rest are different ways to show the
@@ -2217,7 +2256,7 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     cutting so much for no reason" half of the ruling.
     """
     kind = str(getattr(insight, "kind", "") or "")
-    n = max(1, min(MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
+    n = max(1, min(cap or MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
     seq = [kind]
     if n == 1:
         return seq
@@ -2504,7 +2543,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             spans = _visual_spans(start, end, len(kinds))
             seg.spans = []
             _orig_kind = seg.insight.kind
-            for j, (kind, (t0, t1)) in enumerate(zip(kinds, spans)):
+
+            def _draw(kind, t0, t1, tag, first):
+                """Render `kind` for exactly [t0, t1]; the span dict, or None."""
                 nfr = int(max(30, min(1200, _mfr.ceil((t1 - t0) * 30))))
                 cpath, anc = None, []
                 _fb = 1.0
@@ -2519,16 +2560,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     if kind == "scene" else None)
                 if _icon_kind and "__repeated_icon__" in _kinds_used:
                     # this video already had its one field of copies
-                    _sub = next((c for c in _depiction_sequence(
-                        seg.insight, _kinds_used | {"__repeated_icon__"},
-                        max(dur, SPAN_TARGET * MAX_SPANS))[1:]
-                        if c not in kinds and not is_repeated_icon(c)), None)
-                    print(f"[studio] seg{i} visual {j} ({kind}) is a field of "
-                          f"one repeated icon and this video has had its one "
-                          f"-> {_sub or 'dropped'}", flush=True)
-                    if _sub is None:
-                        continue
-                    kind, _icon_kind = _sub, False
+                    print(f"[studio] seg{i} visual {tag} ({kind}) is a field "
+                          f"of one repeated icon and this video has had its "
+                          f"one", flush=True)
+                    return None
                 try:
                     seg.insight.kind = kind
                     if kind in _SCENE_TOKENS:
@@ -2548,33 +2583,52 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                         if (windows and t1 - windows[-1][0] > 0.35)
                         else MAX_STILL_TAIL)
                     cpath, anc = charts.render_story_build(
-                        seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
+                        seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{tag}",
                         frames=nfr,
                         full_by=_fb,
                         # only the opening visual bursts up out of the hook
-                        hook_lead=(i == 0 and lead_hook and j == 0))
+                        hook_lead=(i == 0 and lead_hook and first))
                 except Exception as e:  # noqa: BLE001 — a missing extra visual
-                    print(f"[studio] seg{i} visual {j} ({kind}) skipped: {e}",
-                          flush=True)   # is fewer things, never a failed render
+                    print(f"[studio] seg{i} visual {tag} ({kind}) skipped: {e}",
+                          flush=True)
                 finally:
                     seg.insight.kind = _orig_kind
                 if not cpath:
-                    continue
+                    return None
                 if kind == "mechanic":
                     _persist_rendered_mechanic(seg.insight, slug,
                                                rendered_as=f"seg{i}")
-                seg.spans.append({"kind": kind, "path": str(cpath),
-                                  "anchors": anc, "t0": t0, "t1": t1,
-                                  # when this build reaches its final frame —
-                                  # the ring waits for it (`_plan_events`)
-                                  "full_by": float(_fb),
-                                  "host_baked": bool(getattr(seg.insight,
-                                                             "host_baked", False))})
                 _kinds_used.add(kind)
                 if _icon_kind:
                     _kinds_used.add("__repeated_icon__")
-                if j == 0:
-                    seg.chart_path = str(cpath)
+                return {"kind": kind, "path": str(cpath),
+                        "anchors": anc, "t0": t0, "t1": t1,
+                        # when this build reaches its final frame —
+                        # the ring waits for it (`_plan_events`)
+                        "full_by": float(_fb),
+                        "host_baked": bool(getattr(seg.insight,
+                                                   "host_baked", False))}
+
+            # A WINDOW THAT FAILED TO RENDER IS NEVER LEFT EMPTY.
+            #
+            # Every span is laid at its own t0 and enabled only for its own
+            # window, so a picture that failed simply left its window with
+            # nothing in it: "seg3:end (t=32.92s) is a completely empty
+            # gradient frame with only the caption 'that should worry'. The
+            # whole picture drops out while the narration is at its key line"
+            # (teen-ai-companion-boom, three verdicts, 2026-09-22/23). A failed
+            # window first tries the next candidate for the SAME window; if
+            # none builds, the neighbouring picture is re-rendered across both
+            # windows, so it builds for the longer time instead of freezing.
+            _spare = [c for c in _depiction_sequence(
+                seg.insight, set(_kinds_used), SPAN_TARGET * 8, cap=8)[1:]
+                if c not in kinds][:3]
+            seg.spans = cover_every_window(
+                kinds, spans, _draw, _spare, start,
+                log=lambda m: print(f"[studio] seg{i}: {m}", flush=True))
+            seg.spans.sort(key=lambda x: x["t0"])
+            if seg.spans:
+                seg.chart_path = seg.spans[0]["path"]
             if seg.spans:
                 print(f"[studio] seg{i}: "
                       + " -> ".join(f"{sp['kind']}({sp['t1'] - sp['t0']:.1f}s)"
