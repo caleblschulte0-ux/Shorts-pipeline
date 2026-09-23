@@ -3,14 +3,14 @@
     "topic": "SpaceX Now Out-Launches Every Other Country",
     "title": "SpaceX Now Out-Launches Every Other Country",
     "format": "graph_race",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 84.2,
+    "elapsed_seconds": 81.7,
     "package_path": "state/trending_packages/20260923/01_spacex-out-launches-the-world.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-115514_spacex_now_out_launches_every_other_coun.mp4",
+    "video_path": "output/daily_20260923-133517_spacex_now_out_launches_every_other_coun.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -37,14 +37,14 @@
     "topic": "India Just Passed Japan In GDP",
     "title": "India Just Passed Japan In GDP",
     "format": "graph_race",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race builds well, but the overtake it exists to show is an unreadable pile of flags and labels at the right edge.",
-    "elapsed_seconds": 103.7,
+    "error": "showrunner_block: showrunner BLOCK: A solid two-line race whose whole payoff, India passing Japan, gets lost in a pile of overlapping flags and labels right when it happens.",
+    "elapsed_seconds": 102.9,
     "package_path": "state/trending_packages/20260923/02_india-passed-japan-gdp.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-115639_india_just_passed_japan_in_gdp.mp4",
+    "video_path": "output/daily_20260923-133639_india_just_passed_japan_in_gdp.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,8 +62,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The race builds well, but the overtake it exists to show is an unreadable pile of flags and labels at the right edge.",
-      "score": 66
+      "reason": "showrunner BLOCK: A solid two-line race whose whole payoff, India passing Japan, gets lost in a pile of overlapping flags and labels right when it happens.",
+      "score": 62
     },
     "blocked": true
   },
@@ -71,14 +71,14 @@
     "topic": "BYD Passed Tesla In Global EV Sales",
     "title": "BYD Passed Tesla In Global EV Sales",
     "format": "graph_race",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 56 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=12.04s of 14.38s (~2.3s frozen)",
-    "elapsed_seconds": 85.6,
+    "elapsed_seconds": 79.0,
     "package_path": "state/trending_packages/20260923/03_byd-passed-tesla-ev-sales.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-115822_byd_passed_tesla_in_global_ev_sales.mp4",
+    "video_path": "output/daily_20260923-133822_byd_passed_tesla_in_global_ev_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -105,14 +105,14 @@
     "topic": "Non-Religious Americans Just Passed Catholics",
     "title": "Non-Religious Americans Just Passed Catholics",
     "format": "graph_race",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.506 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 88.8,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 82.1,
     "package_path": "state/trending_packages/20260923/04_nones-passed-catholics.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-115948_non_religious_americans_just_passed_cath.mp4",
+    "video_path": "output/daily_20260923-133941_non_religious_americans_just_passed_cath.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +130,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.506 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
       "score": 5
     },
     "blocked": true
@@ -139,17 +139,17 @@
     "topic": "She Faked A Fourth Excuse. I Had The Paperwork.",
     "title": "She Faked A Fourth Excuse. I Had The Paperwork.",
     "format": "reddit",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is plain gameplay with captions and no story illustrations. It has a near-black void at mid2 and ends with no visible payoff: the progress bar is only about 2/3 full and the last frame has no caption.",
-    "elapsed_seconds": 257.6,
+    "error": "showrunner_block: showrunner BLOCK: Captions overlap into unreadable text at mid1 and mid3, and the story beats are never illustrated: it is only gameplay and captions, with a near-empty dark stretch at mid2.",
+    "elapsed_seconds": 274.8,
     "package_path": "state/trending_packages/20260923/05_allergy-excuse-fundraiser-fraud.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-120142_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
+    "video_path": "output/daily_20260923-134107_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.733,
+      "duration": 54.933,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -165,12 +165,12 @@
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": "None"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is plain gameplay with captions and no story illustrations. It has a near-black void at mid2 and ends with no visible payoff: the progress bar is only about 2/3 full and the last frame has no caption.",
-      "score": 53
+      "reason": "showrunner BLOCK: Captions overlap into unreadable text at mid1 and mid3, and the story beats are never illustrated: it is only gameplay and captions, with a near-empty dark stretch at mid2.",
+      "score": 61
     },
     "blocked": true
   },
@@ -178,17 +178,17 @@
     "topic": "He Returned The Same Machine Five Times",
     "title": "He Returned The Same Machine Five Times",
     "format": "reddit",
-    "publish_at": "2026-09-23T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is 55s of pure Subway Surfers with captions: no beat illustrations, overlapping caption words, a stray line across every frame, and a flat ending.",
-    "elapsed_seconds": 233.7,
+    "publish_at": "2026-09-23T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/kHnGtjUP4Nc",
+    "error": null,
+    "elapsed_seconds": 242.9,
     "package_path": "state/trending_packages/20260923/06_same-serial-number-returns.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-120600_he_returned_the_same_machine_five_times.mp4",
+    "video_path": "output/daily_20260923-134603_he_returned_the_same_machine_five_times.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 55.933,
+      "duration": 54.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +199,45 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -22.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None of the frames show corrupt, garbled, smeared, gray/blank placeholders, or obvious render errors. No unsafe content is present. The content is clear and fits the described format of gameplay with "
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
+    "angle": "Alaska's annual Fat Bear Week pits the heaviest brown bears against each other, turning wildlife into a viral weight\u2011watching showdown.",
+    "publish_at": "2026-09-23T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Only generic Minecraft gameplay and captions. Not one story beat is illustrated, and it ends on a bare 'TIP.' over blown-out yellow lava, which is not a payoff.",
+    "elapsed_seconds": 215.9,
+    "title": "I Served a VIP Customer Who Tried to Destroy My Job",
+    "package_path": "state/trending_packages/20260923-135014_auto_battle_for_heavyweight_crown_begins_as_a.json",
+    "video_path": "output/daily_20260923-135014_battle_for_heavyweight_crown_begins_as_a.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.8
     },
     "qa": {
       "ok": true,
@@ -208,25 +246,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is 55s of pure Subway Surfers with captions: no beat illustrations, overlapping caption words, a stray line across every frame, and a flat ending.",
-      "score": 53
+      "reason": "showrunner BLOCK: Only generic Minecraft gameplay and captions. Not one story beat is illustrated, and it ends on a bare 'TIP.' over blown-out yellow lava, which is not a payoff.",
+      "score": 49
     },
-    "blocked": true
+    "blocked": true,
+    "backfill": true
   },
   {
-    "topic": "Lightning strike caught on camera in St. John's Parish - WWLTV.com",
-    "angle": "A massive lightning bolt slams into a church roof, captured on video, highlighting nature\u2019s raw power over historic buildings.",
-    "publish_at": "2026-09-23T13:00:00Z",
+    "topic": "Caught on camera: Gigantic moose seen roaming through Gardner - Boston 25 News",
+    "angle": "A massive moose wandered downtown Gardner, baffling residents and prompting a wildlife chase through city streets.",
+    "publish_at": "2026-09-23T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The narration and captions are clean over smooth gameplay, but not one story beat is shown on screen, so the latte-karma story plays as a radio drama over unrelated parkour.",
-    "elapsed_seconds": 202.6,
-    "title": "I Served a Free Latte to an Entitled Flyer and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260923-120943_auto_lightning_strike_caught_on_camera_in_st_.json",
-    "video_path": "output/daily_20260923-120943_lightning_strike_caught_on_camera_in_st_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a clean, readable Reddit-story render, but after the post card it is 44 seconds of generic Minecraft parkour and captions with no shot illustrations, so none of the latte-karma story is actually shown.",
+    "elapsed_seconds": 308.7,
+    "title": "I Served a Free Latte to an Entitled Customer and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260923-135359_auto_caught_on_camera__gigantic_moose_seen_ro.json",
+    "video_path": "output/daily_20260923-135359_caught_on_camera__gigantic_moose_seen_ro.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.767,
+      "duration": 44.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -237,7 +276,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.1
+      "loudness_lufs": -25.0
     },
     "qa": {
       "ok": true,
@@ -246,45 +285,30 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The narration and captions are clean over smooth gameplay, but not one story beat is shown on screen, so the latte-karma story plays as a radio drama over unrelated parkour.",
-      "score": 65
+      "reason": "showrunner BLOCK: This is a clean, readable Reddit-story render, but after the post card it is 44 seconds of generic Minecraft parkour and captions with no shot illustrations, so none of the latte-karma story is actually shown.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - cbsnews.com",
-    "angle": "Waymo\u2019s autonomous cars weave through a bustling farmer\u2019s market, raising safety questions for driverless tech in crowded public spaces.",
-    "publish_at": "2026-09-23T14:30:00Z",
+    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
+    "angle": "Self\u2011driving Waymo cars rolled into a bustling Denver farmer\u2019s market, raising safety questions for autonomous fleets in public spaces.",
+    "publish_at": "2026-09-23T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['hand the manager', 'free latte', 'fake receipt', 'cup of water', 'fume']",
-    "elapsed_seconds": 28.5,
-    "title": "I gave the entitled customer a free latte... of water",
-    "package_path": "state/trending_packages/20260923-121302_auto_waymo_caught_on_camera_driving_through_f.json",
-    "quarantined": true,
+    "error": "JSONDecodeError: Unterminated string starting at: line 55 column 16 (char 2334)",
+    "elapsed_seconds": 33.9,
     "backfill": true
   },
   {
-    "topic": "\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls",
-    "angle": "A Florida man finds a blue crab clutching a kitchen knife, a bizarre sea\u2011creature encounter that went viral for its oddity.",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "topic": "Lightning strike caught on camera in St. John's Parish - WWLTV.com",
+    "angle": "A bolt slammed into St.\u202fJohn\u2019s Parish, captured on video, illustrating how sudden lightning can turn a quiet town into a disaster zone.",
+    "publish_at": "2026-09-23T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: '\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls' refused by the writer: The requested trend is not a permitted setting (cafe, hardware store, airport, rental office)",
-    "elapsed_seconds": 1.6,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "Trump\u2019s sneaky plan to gut Endangered Species Act draws from 1995 Scalia dissent",
-    "angle": "The administration drafts a plan to roll back the Endangered Species Act, echoing a decades\u2011old Supreme Court dissent.",
-    "publish_at": "2026-09-23T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Trump\u2019s sneaky plan to gut Endangered Species Act draws from 1995 Scalia dissent' refused by the writer: The trend involves political figures and policy, which is prohibited for story setting.",
-    "elapsed_seconds": 0.8,
-    "unfit": true,
+    "error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 25 column 6 (char 1499)",
+    "elapsed_seconds": 34.8,
     "backfill": true
   }
 ]

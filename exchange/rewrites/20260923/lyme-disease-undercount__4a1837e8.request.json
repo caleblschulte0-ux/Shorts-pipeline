@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "lyme-disease-undercount__4a1837e8",
- "filed": "2026-09-23T13:39:38Z",
+ "filed": "2026-09-23T11:36:43Z",
  "status": "open",
  "channel": "explainer",
  "slug": "lyme-disease-undercount",
@@ -96,12 +96,32 @@
   }
  ],
  "held_for": [
-  "premise: brain: It relies on multiple numbers (16x and 45%) instead of a single consequential, verifiable figure."
+  "judge: A tick-spread story told with a recycled seesaw, a bubble chart and bars: nothing shows ticks or counties, Data only perches, and one scene opens on an empty void."
  ],
  "reasons": [
-  "premise: brain: It relies on multiple numbers (16x and 45%) instead of a single consequential, verifiable figure."
+  "judge: A tick-spread story told with a recycled seesaw, a bubble chart and bars: nothing shows ticks or counties, Data only perches, and one scene opens on an empty void."
  ],
- "judge": null,
+ "judge": {
+  "ts": "2026-09-23T11:33:22+00:00",
+  "score": 44,
+  "one_line": "A tick-spread story told with a recycled seesaw, a bubble chart and bars: nothing shows ticks or counties, Data only perches, and one scene opens on an empty void.",
+  "problems": [
+   "The hook and seg2 reuse the same generic balance scale, and its small tilt does not convey 45% vs 30% or a 9x rise.",
+   "seg2's counter shows fractional counties (16.9, 26.5) mid-animation, which looks wrong for a count of counties.",
+   "seg1:start prints 476000 and 30000 without thousands separators, and its caption 'climbing too. They' is nearly invisible.",
+   "seg1:mid shows two copies of the mascot and an unexplained hollow cyan ring on a sparse ladder, which is confusing.",
+   "seg3:start is an empty void: zero-length bars, a tiny mascot and a dark frame.",
+   "seg3 and seg4 repeat the 29→260 comparison as a plain bar chart that seg2 already showed."
+  ],
+  "fixes": [
+   "Replace the seesaw with a picture made of the subject: a US county map where tick-infested counties spread from 30% to 45% coverage.",
+   "Show 30,000 vs 476,000 as reported vs unreported: 1 lit tick-bite icon for every 16 dark ones, so the 16x undercount is visible without reading.",
+   "Round the county counter to whole numbers and format large numbers with thousands separators.",
+   "Start seg3 on a full composition, or cut it and let seg2's county picture carry the 9x payoff.",
+   "Give Data a real bit, such as swatting ticks or stamping counties as they turn high-risk, and aim the closing speech bubble at him.",
+   "Raise caption contrast: no navy-on-navy captions, and keep labels clear of the mascot."
+  ]
+ },
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

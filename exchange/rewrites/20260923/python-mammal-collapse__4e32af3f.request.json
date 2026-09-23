@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "python-mammal-collapse__4e32af3f",
- "filed": "2026-09-23T13:39:38Z",
+ "filed": "2026-09-23T11:36:43Z",
  "status": "open",
  "channel": "explainer",
  "slug": "python-mammal-collapse",
@@ -102,32 +102,12 @@
   }
  ],
  "held_for": [
-  "judge: A strong story (a 99% wipeout, a 19-ft snake) is told entirely through generic charts and stock machines, and the mascot is just parked on top of them."
+  "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on a broad, unverifiable statistic rather than a single, concrete number."
  ],
  "reasons": [
-  "judge: A strong story (a 99% wipeout, a 19-ft snake) is told entirely through generic charts and stock machines, and the mascot is just parked on top of them."
+  "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on a broad, unverifiable statistic rather than a single, concrete number."
  ],
- "judge": {
-  "ts": "2026-09-23T13:35:08+00:00",
-  "score": 30,
-  "one_line": "A strong story (a 99% wipeout, a 19-ft snake) is told entirely through generic charts and stock machines, and the mascot is just parked on top of them.",
-  "problems": [
-   "The hook plays the giraffe-length line over a slowly building mammal bar chart, so the words and the picture don't match and nothing happens in frame 1.",
-   "seg1's rings machine says the four declines are 'near enough identical', which misreads the claim and wastes the story's biggest beat.",
-   "The 19 ft vs 18 ft comparison is shown as number bubbles and then a level seesaw. Nobody sees a snake stretched against a giraffe.",
-   "The final seesaw counts up to 18.9 and 17.9 at payoff@-0.4 instead of landing on 19 and 18.",
-   "Data only slides, perches and stands on marks in every scene. His head covers the 99.3% label in seg1:start.",
-   "Empty lower third in seg1 and seg2; ghosted, doubled \"19\" glyph in seg3."
-  ],
-  "fixes": [
-   "Open with the 19-ft python uncoiling next to a giraffe silhouette in the first 0.5 s, so the hook line has a picture.",
-   "Show the collapse with the animals: rows of 100 raccoon, opossum, deer and bobcat icons shrinking to 1, 1, 6 and 12 survivors.",
-   "Show removals as snake icons piling into a bin: 343, then 1,022, with the second pile visibly towering.",
-   "Stretch the python along the frame's height next to a giraffe and have Data hold a tape measure between them, with the snake overshooting by a foot.",
-   "Make sure count-up tickers finish on the true values (19 and 18) before the cut.",
-   "Keep Data clear of value labels, fix the doubled \"19\" glyph, and fill or crop the empty lower band."
-  ]
- },
+ "judge": null,
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
