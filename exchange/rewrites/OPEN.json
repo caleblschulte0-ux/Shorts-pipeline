@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-23T13:39:38Z",
+ "updated": "2026-09-23T15:32:54Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -496,18 +496,6 @@
    ],
    "request": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.request.json",
    "answer_path": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.answer.json"
-  },
-  {
-   "id": "landline-death-robocall-boom__0460d3b4",
-   "slug": "landline-death-robocall-boom",
-   "filed": "2026-09-22T11:08:33Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
-    "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
-   ],
-   "request": "exchange/rewrites/20260922/landline-death-robocall-boom__0460d3b4.request.json",
-   "answer_path": "exchange/rewrites/20260922/landline-death-robocall-boom__0460d3b4.answer.json"
   },
   {
    "id": "left-brain-right-brain-myth__e9ed048f",
@@ -1284,6 +1272,16 @@
    "answer_path": "exchange/rewrites/20260923/homeschool-surge__83b312c1.answer.json"
   },
   {
+   "id": "human-domesticated-14-animals__6031475a",
+   "slug": "human-domesticated-14-animals",
+   "filed": "2026-09-23T15:32:53Z",
+   "why": [
+    "premise: brain: 14 domesticated animals is a static trivia fact, not a reversal of a specific expectation the viewer holds, so it's a searchable-noun-phrase premise in disguise."
+   ],
+   "request": "exchange/rewrites/20260923/human-domesticated-14-animals__6031475a.request.json",
+   "answer_path": "exchange/rewrites/20260923/human-domesticated-14-animals__6031475a.answer.json"
+  },
+  {
    "id": "hurricane-names-retired-growing-list__ca1668e1",
    "slug": "hurricane-names-retired-growing-list",
    "filed": "2026-09-23T00:49:12Z",
@@ -1317,9 +1315,9 @@
   {
    "id": "kelp-forest-sea-star-collapse__a63835cd",
    "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-09-23T13:39:38Z",
+   "filed": "2026-09-23T11:36:43Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of viewer expectation and the hook is unrelated to the stated 96% kelp loss figure."
+    "judge: blocked before vision review: duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) — too many held frames"
    ],
    "request": "exchange/rewrites/20260923/kelp-forest-sea-star-collapse__a63835cd.request.json",
    "answer_path": "exchange/rewrites/20260923/kelp-forest-sea-star-collapse__a63835cd.answer.json"
@@ -1335,16 +1333,26 @@
    "answer_path": "exchange/rewrites/20260923/kids-phones-getting-younger__e1fceca3.answer.json"
   },
   {
-   "id": "landline-death-robocall-boom__0460d3b4",
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-09-23T15:32:54Z",
+   "why": [
+    "premise: brain: The premise conflates two unrelated claims (a 90% market-wide value drop vs. a single anecdotal diamond that 'kept its price') without one verifiable, consequential number tying them together, and the hook is vague rather than a concrete reversal of a specific expectation."
+   ],
+   "request": "exchange/rewrites/20260923/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20260923/lab-grown-diamond-price-collapse__147039f2.answer.json"
+  },
+  {
+   "id": "landline-death-robocall-boom__8f868915",
    "slug": "landline-death-robocall-boom",
-   "filed": "2026-09-23T00:49:11Z",
+   "filed": "2026-09-23T11:36:42Z",
    "why": [
     "premise: no consequential number in the title or hook",
     "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
     "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
    ],
-   "request": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4.request.json",
-   "answer_path": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4.answer.json"
+   "request": "exchange/rewrites/20260923/landline-death-robocall-boom__8f868915.request.json",
+   "answer_path": "exchange/rewrites/20260923/landline-death-robocall-boom__8f868915.answer.json"
   },
   {
    "id": "left-brain-right-brain-myth__e9ed048f",
@@ -1399,9 +1407,9 @@
   {
    "id": "lyme-disease-undercount__4a1837e8",
    "slug": "lyme-disease-undercount",
-   "filed": "2026-09-23T13:39:38Z",
+   "filed": "2026-09-23T11:36:43Z",
    "why": [
-    "premise: brain: It relies on multiple numbers (16x and 45%) instead of a single consequential, verifiable figure."
+    "judge: A tick-spread story told with a recycled seesaw, a bubble chart and bars: nothing shows ticks or counties, Data only perches, and one scene opens on an empty void."
    ],
    "request": "exchange/rewrites/20260923/lyme-disease-undercount__4a1837e8.request.json",
    "answer_path": "exchange/rewrites/20260923/lyme-disease-undercount__4a1837e8.answer.json"
@@ -1491,9 +1499,9 @@
   {
    "id": "passport-ownership-surge__926cfa86",
    "slug": "passport-ownership-surge",
-   "filed": "2026-09-23T13:39:38Z",
+   "filed": "2026-09-23T11:36:43Z",
    "why": [
-    "judge: This is a stack of generic machines and charts with a mascot perched on them, and the numbers contradict each other: the hook says 48% while the VO says New Jersey, and the scale says 22.1M while the VO says 27.3M."
+    "premise: brain: It relies on two numbers (50% and 5%) instead of a single consequential, verifiable figure."
    ],
    "request": "exchange/rewrites/20260923/passport-ownership-surge__926cfa86.request.json",
    "answer_path": "exchange/rewrites/20260923/passport-ownership-surge__926cfa86.answer.json"
@@ -1542,9 +1550,9 @@
   {
    "id": "python-mammal-collapse__4e32af3f",
    "slug": "python-mammal-collapse",
-   "filed": "2026-09-23T13:39:38Z",
+   "filed": "2026-09-23T11:36:43Z",
    "why": [
-    "judge: A strong story (a 99% wipeout, a 19-ft snake) is told entirely through generic charts and stock machines, and the mascot is just parked on top of them."
+    "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on a broad, unverifiable statistic rather than a single, concrete number."
    ],
    "request": "exchange/rewrites/20260923/python-mammal-collapse__4e32af3f.request.json",
    "answer_path": "exchange/rewrites/20260923/python-mammal-collapse__4e32af3f.answer.json"

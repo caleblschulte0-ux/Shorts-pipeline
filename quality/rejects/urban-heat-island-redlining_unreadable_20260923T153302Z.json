@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T153302Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end: 'clears it by 1.7' runs into the orange '65-city average 8' label, and the leading '6' of '65' sits under the mark. seg0:start/hook@0.3: NYC's own value is dark text on a light-blue bubble, and at phone size it reads as '8.7' next to Chicago's 8.7. seg4 labels are cut off ('For",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg2:start shows 68% vs 32% as two parts of one stacked column, with the 32% label almost invisible in faint grey. seg2:mid/end then turns them into two gauge needles and prints '36% apart'. The top 40% of the frame is empty, and Data stands under the right needle with his arms up and no bit.",
+  "root_cause": "The relationship is SHARE: 68% of people live in the hottest pockets, and the other 32% are the rest of the same whole. The scene drew it as a DISTANCE between two separate measurements, which invents a '36% apart' claim the script never makes. This is the wrong relationship for the data.",
+  "repair_goal": "Draw the 68% as a share of one whole made of the subject, for example a city grid of blocks where 68 of 100 turn heat-red. Drop the '36% apart' gauge, fill the empty upper frame, and have Data walk from a shaded tree block into the red blocks as they heat up. Every label should be high-contrast ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

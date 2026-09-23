@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20260923T153302Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:start/seg4:mid: the grey '25' sits on grey tiles and nearly vanishes; hook@0.3: the '1%' is tiny inside a dark dot; seg1:start: the mascot covers one of the icons",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start\u2013seg3:end: the same growing yellow disc as the hook, reading '100%' with the mascot perched on top and a tiny '4%' dot labelled 'Canopy now'. The kicker reads 'PRE-2014 CANOPY TOPS THE LIST', ranking language for a before/after loss",
+  "root_cause": "a 96% loss went to the generic proportional-bubble comparison, the same machine used for seg0, so the payoff stat is a repeated number-on-a-blob with nothing made of kelp",
+  "repair_goal": "draw the 96% kelp loss AS kelp: a canopy of kelp stalks seen from the surface, with urchins mowing it down until 4% of the stalks remain. The mascot acts in the scene (swimming through the thinning forest, grabbing the last stalk), and the scene must not reuse the hook's bubble"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

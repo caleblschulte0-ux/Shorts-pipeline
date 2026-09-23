@@ -1,0 +1,16 @@
+{
+ "slug": "python-mammal-collapse",
+ "ts": "20260923T153302Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start\u2013end is two circles labelled 19 and 18 with the numbers printed inside. seg2:start is 1022 and 343 bubbles. Circle size is the only demonstration.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "hook@0.3 to seg1:start: a standard horizontal bar chart where the bars GROW to 99.3%/98.9%/94.1%/87.5%, and the kicker reads 'RACCOONS PULLS AHEAD'. A 99% collapse is drawn as a winning race.",
+  "root_cause": "The rank/bar chart kind was picked instead of a loss relationship. Bars filling toward 99% say 'more', the opposite of a population that vanished.",
+  "repair_goal": "Show the collapse as disappearance. For example, a field of 100 raccoon silhouettes (and opossums, deer, bobcats) that blink out until 1 remains, with a python shape sliding through. Drop the 'pulls ahead' kicker and have Data react to the emptied field."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

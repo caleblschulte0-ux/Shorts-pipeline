@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T153302Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start and seg1:mid the line takes up a thin band around y=420-500. The frame's upper half, between the title and the line, and the band below the 'and back again' label are empty dark space.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "weak_depiction_and_wrong_label",
+  "visible_evidence": "seg1:start and seg1:mid show a small pink polyline in the lower middle of an otherwise empty frame. It carries the label 'and back again', which contradicts the story because the cost never comes back. Data just cheers at the end point.",
+  "root_cause": "A generic trend-line template was used for the headline claim ('roughly quadrupled every decade to $423B'). The template's default annotation text leaked through, and the line was sized to a narrow band instead of filling the frame.",
+  "repair_goal": "Show the quadrupling as the bill itself: an invoice or stack of bills that multiplies by 4x each decade (1970 $1.6B to 2019 $423B) and fills the full frame height. Remove the 'and back again' label and let Data get buried by, or struggle to carry, the final stack."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

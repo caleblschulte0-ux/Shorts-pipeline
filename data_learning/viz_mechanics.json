@@ -394,6 +394,24 @@
   "starred": true
  },
  {
+  "sig": "f1e84747eb7e",
+  "mechanic": "peanut-shield-crack-duel",
+  "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
+  "code": "v0 = values[0]; v1 = values[-1]\nprog = clamp(reveal)\npeanut = subject_image('peanut')\nshield = subject_image('round shield icon')\nlx, rx = RX0 + 240, RX1 - 240\ncy = RTOP + 480\nsz = 260\nif shield is not None:\n    paste(shield, lx - sz // 2, cy - sz // 2, sz, sz)\n    paste(shield, rx - sz // 2, cy - sz // 2, sz, sz)\ncrack0 = clamp(v0 / 20.0) * prog\ncrack1 = clamp(v1 / 20.0) * prog\nd.line([lx - int(sz * crack0 / 2), cy - sz // 2, lx, cy], fill=rgba(WARN, 230), width=int(6 + 20 * crack0))\nd.line([rx - int(sz * crack1 / 2), cy - sz // 2, rx, cy], fill=rgba(WARN, 230), width=int(6 + 20 * crack1))\nn0 = max(1, int(4 * clamp(v0 / 14.0)))\nfor i in range(n0):\n    px = lx - 60 + i * 40\n    if peanut is not None:\n        paste(peanut, px, cy + 40, 50, 50)\nif peanut is not None:\n    paste(peanut, rx - 25, cy + 40, 50, 50)\nnp_particles = 5\nfor k in range(np_particles):\n    t = (reveal * 2.0 + k / np_particles) % 1.0\n    lx_end = lx - int(sz * crack0 / 2)\n    lpx = lerp(lx - sz - 40, lx_end, t)\n    lpy = cy - sz // 2 + int(t * sz)\n    if peanut is not None:\n        paste(peanut, int(lpx) - 16, int(lpy) - 16, 32, 32)\n    rx_end = rx - int(sz * crack1 / 2)\n    rpx = lerp(rx + sz + 40, rx_end, t)\n    rpy = cy - sz // 2 + int(t * sz)\n    if peanut is not None:\n        paste(peanut, int(rpx) - 13, int(rpy) - 13, 26, 26)\ntext('avoided peanut: ' + str(v0) + '%', lx - 140, cy + sz // 2 + 40, size=26, color=WARN)\ntext('ate peanut early: ' + str(v1) + '%', rx - 150, cy + sz // 2 + 40, size=26, color=HIGHLIGHT)\n",
+  "topic": "the trial that flipped the advice",
+  "moves": true,
+  "starred": true
+ },
+ {
+  "sig": "9eddf6a34848",
+  "mechanic": "robocall-tower-flood",
+  "concept": "a cell tower broadcasts rings that flood the frame with phone icons -- far fewer for 2016, nearly double for 2024",
+  "code": "v0 = values[0]; v1 = values[-1]\nprog = clamp(reveal)\ntower = subject_image('cell phone tower')\nphone = subject_image('ringing smartphone')\ntcx = RX0 + 140\ntcy = RTOP + 300\nif tower is not None:\n    paste(tower, tcx - 60, tcy - 160, 120, 220)\nfor k in range(3):\n    t = (reveal * 2.2 + k / 3) % 1.0\n    rr = int(20 + t * 220)\n    ring_a = int(220 * (1.0 - t))\n    d.ellipse([tcx - rr, tcy - rr, tcx + rr, tcy + rr], outline=rgba(ACCENT, ring_a), width=4)\nn0 = max(1, int(8 * clamp(v0 / 60.0) * prog))\nn1 = max(1, int(8 * clamp(v1 / 60.0) * prog))\ncols = 8\ngx0 = RX0 + 260\nfor i in range(n1):\n    r = i // cols\n    c = i % cols\n    px = gx0 + c * 90\n    py = RTOP + 220 + r * 110\n    tint = HIGHLIGHT if i < n0 else WARN\n    if phone is not None:\n        paste(phone, px, py, 60, 60)\n    d.ellipse([px - 4, py - 4, px + 64, py + 64], outline=rgba(tint, 180), width=3)\ntext(str(v0) + 'B calls (2016)', RX0 + 20, RBOT - 140, size=30, color=HIGHLIGHT)\ntext(str(v1) + 'B calls (2024)', RX0 + 20, RBOT - 90, size=34, color=WARN)\n",
+  "topic": "how big robocalling got",
+  "moves": true,
+  "starred": true
+ },
+ {
   "sig": "ed6be810497e",
   "mechanic": "citykiller-searchlight",
   "concept": "a city-killer-sized asteroid sits half-lit to the found share while a dashed marker shows how far short that is of Congress's 90% goal",
@@ -608,5 +626,21 @@
   "code": "pin = subject_image('map location pin marker')\ncx = RX0 + 130\ncy = RTOP + 190\nvlast = values[-1] or 1.0\nmax_x = RX1 - 250\npulse = (reveal * 3.0) % 1.0\nprad = 22 + pulse * 30\nd.ellipse([cx - prad, cy - prad, cx + prad, cy + prad], outline=rgba(HIGHLIGHT, int(200 * (1 - pulse))), width=4)\nd.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=rgba(HIGHLIGHT))\ntext('you are here', cx + 46, cy - 26, size=32, color=HIGHLIGHT)\nfor i in range(n):\n    w0 = i / n\n    w1 = (i + 1) / n\n    grow = clamp((reveal - w0) / (w1 - w0))\n    if grow <= 0:\n        continue\n    py = cy + 190 + i * 200\n    target_x = cx + int((max_x - cx) * (values[i] / vlast))\n    px = cx + int((target_x - cx) * grow)\n    d.line([cx, py, px, py], fill=rgba(WARN, 170), width=7)\n    if pin is not None:\n        paste(pin, px - 38, py - 96, 76, 96)\n    else:\n        d.ellipse([px - 24, py - 24, px + 24, py + 24], fill=rgba(WARN))\n    text(labels[i], RX0 + 20, py + 22, size=28, color=TEXT)\n    text(fmt(values[i] * grow) + ' off', px - 40, py - 148, size=32, color=WARN)",
   "topic": "GPS error without the fix",
   "starred": false
+ },
+ {
+  "sig": "95f9b90dd33a",
+  "mechanic": "peanut-rash-climb",
+  "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
+  "code": "prog = clamp(reveal)\npeanut = subject_image('peanut')\nn = len(values)\ngx0, gx1 = RX0 + 60, RX1 - 60\nbase_y = RBOT - 120\ntop_y = RTOP + 140\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    x = lerp(gx0, gx1, t)\n    frac = clamp(values[i] / vmax)\n    y = lerp(base_y, top_y, frac)\n    pts.append((x, y))\nshow_n = max(1, int(n * prog) + 1)\nfor i in range(min(show_n, n)):\n    x, y = pts[i]\n    sz = int(70 + 60 * clamp(values[i] / vmax))\n    if peanut is not None:\n        paste(peanut, int(x) - sz // 2, int(y) - sz // 2, sz, sz)\n    wash_a = int(60 + 140 * clamp(values[i] / vmax))\n    d.ellipse([x - sz // 2, y - sz // 2, x + sz // 2, y + sz // 2], outline=rgba(WARN, wash_a), width=6)\n    text(labels[i], int(x) - 30, base_y + 30, size=26, color=TEXT)\n    text(str(values[i]) + '%', int(x) - 24, int(y) - sz // 2 - 40, size=28, color=WARN)\n    if i > 0:\n        px, py = pts[i - 1]\n        d.line([px, py, x, y], fill=rgba(HIGHLIGHT, 200), width=6)\nloop_t = (reveal * 1.7) % 1.0\nli = min(n - 2, int(loop_t * (n - 1)))\nlf = clamp(loop_t * (n - 1) - li, 0, 1)\npx2 = lerp(pts[li][0], pts[li + 1][0], lf)\npy2 = lerp(pts[li][1], pts[li + 1][1], lf)\npr = 22\nd.ellipse([px2 - pr, py2 - pr, px2 + pr, py2 + pr], outline=rgba(HIGHLIGHT, 230), width=6)\nd.ellipse([px2 - 6, py2 - 6, px2 + 6, py2 + 6], fill=rgba(HIGHLIGHT, 255))\ntext('CHILD PEANUT ALLERGY RATE', RX0 + 20, RTOP + 40, size=30, color=TEXT)\n",
+  "topic": "peanut allergy in American kids",
+  "moves": true
+ },
+ {
+  "sig": "c73de2445fa0",
+  "mechanic": "robocall-phone-swarm-sort",
+  "concept": "ringing phone icons flood down into four labeled bins, filling each to its share of 2024's 52.8 billion robocalls",
+  "code": "prog = clamp(reveal)\nphone = subject_image('ringing smartphone')\nn = len(values)\ngx0, gx1 = RX0 + 40, RX1 - 40\nbin_w = (gx1 - gx0) // n\nbase_y = RBOT - 80\ntop_y = RTOP + 140\nfor i in range(n):\n    bx0 = gx0 + i * bin_w\n    frac = clamp(values[i] / vmax) * prog\n    bh = int((base_y - top_y) * frac)\n    d.rectangle([bx0 + 10, base_y - bh, bx0 + bin_w - 10, base_y], outline=rgba(TEXT, 200), width=4)\n    n_phones = max(1, int(4 * frac))\n    for k in range(n_phones):\n        py = base_y - 20 - k * 60\n        if py >= base_y - bh:\n            if phone is not None:\n                paste(phone, bx0 + bin_w // 2 - 24, py - 40, 48, 48)\n    text(str(int(values[i])) + '%', bx0 + 10, base_y - bh - 40, size=26, color=WARN)\n    text(labels[i][:12], bx0 + 6, base_y + 14, size=18, color=TEXT)\ntext('52.8 BILLION ROBOCALLS IN 2024', RX0 + 10, RTOP + 40, size=28, color=TEXT)\n",
+  "topic": "what filled the vacuum",
+  "moves": true
  }
 ]

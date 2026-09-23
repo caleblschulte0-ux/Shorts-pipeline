@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260923T153302Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data just steps from bar to bar. seg1:mid/end: he stands in the corner waving. seg2:mid/end: he poses beside the cup doing nothing. seg4:start to payoff@-0.4: he is pinned to the left edge pointing, and never interacts with the numbers.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg2:mid/end: a cup of water drains from '697,954 left of 750,000' to '563,971 left of 750,000' with the caption 'only 74% stay'. The script says 750,000 km\u00b2 were LOST in total and compares that to France. A cyan ellipse also covers the headline number.",
+  "root_cause": "A generic 'leaking vessel' machine was applied to a cumulative-loss total. It invented a remaining-stock number and a retention percentage that the data does not contain, and dropped the France comparison the narration is making.",
+  "repair_goal": "Show the cumulative 750,000 km\u00b2 as area. Clear forest cells year by year until the cleared area outgrows a France outline (551,695 km\u00b2) drawn at the same scale. No invented 'left' or '% stay' numbers, and no mark overlapping the label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

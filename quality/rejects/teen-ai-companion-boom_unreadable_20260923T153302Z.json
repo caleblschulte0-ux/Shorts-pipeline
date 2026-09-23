@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T153302Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg0:start/mid: Data covers \"Use one every day\" and \"(few times/month+)\". seg1:start: Data's circle sits over the 72% label. seg3:start/mid: \"Felt uncomfortable by something the bot said/did 34%\" is grey on grey and nearly invisible. seg4: \"Felt uncomfortable by some...\" is cut off, and ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:start shows two thin horizontal lines with tiny mascots, labels in small pink or grey type, one label cut off as \"Felt uncomfortable by some...\", a dotted rail on the right edge, and a large empty middle. The closing speech bubble then covers the top of the frame.",
+  "root_cause": "The 34/66 claim, the video's alarming payoff, falls back to a generic race-line machine with truncated labels. It repeats the stacked-column split from seg3 instead of dramatizing the point that most teens keep coming back even after it made them uncomfortable.",
+  "repair_goal": "Make the payoff one bespoke picture of the subject. For example, 100 chat bubbles where 34 flash a warning red, and those same teens' bubbles keep stacking back up to show they return anyway. Keep full, readable labels in ink, and have Data react with a setup, action and payoff (he flinches at a red bubble, then watches it reopen)."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

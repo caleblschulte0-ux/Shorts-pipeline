@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "kelp-forest-sea-star-collapse__a63835cd",
- "filed": "2026-09-23T13:39:38Z",
+ "filed": "2026-09-23T11:36:43Z",
  "status": "open",
  "channel": "explainer",
  "slug": "kelp-forest-sea-star-collapse",
@@ -94,12 +94,22 @@
   }
  ],
  "held_for": [
-  "premise: brain: The premise lacks a clear reversal of viewer expectation and the hook is unrelated to the stated 96% kelp loss figure."
+  "judge: blocked before vision review: duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) — too many held frames"
  ],
  "reasons": [
-  "premise: brain: The premise lacks a clear reversal of viewer expectation and the hook is unrelated to the stated 96% kelp loss figure."
+  "judge: blocked before vision review: duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) — too many held frames"
  ],
- "judge": null,
+ "judge": {
+  "ts": "2026-09-23T11:36:40+00:00",
+  "score": 5,
+  "one_line": "blocked before vision review: duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) — too many held frames",
+  "problems": [
+   "duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) — too many held frames"
+  ],
+  "fixes": [
+   "raise real motion per output frame (see temporal thresholds)"
+  ]
+ },
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

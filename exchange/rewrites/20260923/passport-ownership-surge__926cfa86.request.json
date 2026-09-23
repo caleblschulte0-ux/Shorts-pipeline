@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "passport-ownership-surge__926cfa86",
- "filed": "2026-09-23T13:39:38Z",
+ "filed": "2026-09-23T11:36:43Z",
  "status": "open",
  "channel": "explainer",
  "slug": "passport-ownership-surge",
@@ -96,32 +96,12 @@
   }
  ],
  "held_for": [
-  "judge: This is a stack of generic machines and charts with a mascot perched on them, and the numbers contradict each other: the hook says 48% while the VO says New Jersey, and the scale says 22.1M while the VO says 27.3M."
+  "premise: brain: It relies on two numbers (50% and 5%) instead of a single consequential, verifiable figure."
  ],
  "reasons": [
-  "judge: This is a stack of generic machines and charts with a mascot perched on them, and the numbers contradict each other: the hook says 48% while the VO says New Jersey, and the scale says 22.1M while the VO says 27.3M."
+  "premise: brain: It relies on two numbers (50% and 5%) instead of a single consequential, verifiable figure."
  ],
- "judge": {
-  "ts": "2026-09-23T13:39:35+00:00",
-  "score": 43,
-  "one_line": "This is a stack of generic machines and charts with a mascot perched on them, and the numbers contradict each other: the hook says 48% while the VO says New Jersey, and the scale says 22.1M while the VO says 27.3M.",
-  "problems": [
-   "Hook (hook@0.3 to seg0:end): the header shows '2023 48%' while the VO and caption say 'New Jersey ... 68%'. The picture and the words disagree from frame 1, and a slow empty block stack is not a reason to stay.",
-   "seg2:start: the scale shows 22.1M FY2025 vs 19.5M FY2023, but the VO says 24M and 27.3M. It then hard-cuts to a bar chart with the correct numbers, so the video shows two conflicting sets of values.",
-   "seg3: '68.1%' is dark text on a light-blue circle with a doubled or smeared glyph edge, and it is unreadable on a phone.",
-   "The mascot only perches on top of marks (block stack, bars, bubble, scale pan) with his arms up. He never does a bit tied to a stat.",
-   "seg4 re-shows the NJ vs national comparison from seg3 on a stock seesaw. That is redundant, and the closing line 'half ready to leave' has no visual payoff.",
-   "Source lines on seg1:mid and seg3 are too small to read."
-  ],
-  "fixes": [
-   "Make the hook show the NJ 68% claim the VO is making, and give it immediate motion: for example, passports flooding a state outline to 68%.",
-   "Make the seg2 scale use the narrated values (24M → 27.3M), or drop it in favour of one machine. Show passports being printed or stamped, so the record-breaking volume is physical.",
-   "Render the seg3 value in high-contrast ink with a single draw. Replace the circles with a 100-person grid or a stack of passports for NJ vs US.",
-   "Give Data a setup → action → payoff bit in each beat: stamping passports, carrying a stack to the top, getting left behind with the 'other half'.",
-   "Cut seg4's duplicate comparison, or make it land the closing line visually: a crowd split in half, one side walking to a plane.",
-   "Enlarge source text to a legible minimum."
-  ]
- },
+ "judge": null,
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

@@ -1,0 +1,178 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "human-domesticated-14-animals__6031475a",
+ "filed": "2026-09-23T15:32:53Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "human-domesticated-14-animals",
+ "current": {
+  "title": "Humans Have Only Ever Domesticated 14 Large Animals",
+  "hook": "The list closed thousands of years ago.",
+  "closing": "The dog got there first. Nothing's caught up since.",
+  "question": "If you could domesticate one wild animal, which would you pick? Tell me below.",
+  "segments": [
+   {
+    "topic": "how long ago each animal was domesticated",
+    "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other."
+   },
+   {
+    "topic": "candidate species versus actual successes",
+    "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity."
+   },
+   {
+    "topic": "the domestication count over time",
+    "say": "The count climbed steadily until about 4,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how long ago each animal was domesticated",
+   "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other.",
+   "role": "1 · THE FIRST",
+   "data": {
+    "file": "domestication_rank.json",
+    "unit": "years",
+    "title": "Years ago first domesticated",
+    "points": [
+     {
+      "label": "Dog",
+      "value": 15000
+     },
+     {
+      "label": "Sheep",
+      "value": 11000
+     },
+     {
+      "label": "Pig",
+      "value": 10500
+     },
+     {
+      "label": "Goat",
+      "value": 10500
+     },
+     {
+      "label": "Cattle",
+      "value": 10500
+     },
+     {
+      "label": "Cat",
+      "value": 9500
+     },
+     {
+      "label": "Chicken",
+      "value": 8000
+     },
+     {
+      "label": "Horse",
+      "value": 5500
+     }
+    ],
+    "n_points": 8
+   }
+  },
+  {
+   "index": 1,
+   "topic": "candidate species versus actual successes",
+   "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity.",
+   "role": "2 · WHY SO FEW",
+   "data": {
+    "file": "domestication_candidates_comparison.json",
+    "unit": "species",
+    "title": "Candidate large wild mammals vs species ever domesticated",
+    "points": [
+     {
+      "label": "Candidate Wild Species",
+      "value": 148
+     },
+     {
+      "label": "Actually Domesticated",
+      "value": 14
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "the domestication count over time",
+   "say": "The count climbed steadily until about 4,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species.",
+   "role": "3 · THE FLATLINE",
+   "data": {
+    "file": "domestication_cumulative_flatline.json",
+    "unit": "species",
+    "title": "Cumulative large domesticated mammal species over time",
+    "points": [
+     {
+      "label": "15,000 yrs ago",
+      "value": 1,
+      "period": "-15000"
+     },
+     {
+      "label": "10,500 yrs ago",
+      "value": 5,
+      "period": "-10500"
+     },
+     {
+      "label": "8,000 yrs ago",
+      "value": 7,
+      "period": "-8000"
+     },
+     {
+      "label": "5,500 yrs ago",
+      "value": 9,
+      "period": "-5500"
+     },
+     {
+      "label": "4,000 yrs ago",
+      "value": 13,
+      "period": "-4000"
+     },
+     {
+      "label": "Today",
+      "value": 14,
+      "period": "0"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: 14 domesticated animals is a static trivia fact, not a reversal of a specific expectation the viewer holds, so it's a searchable-noun-phrase premise in disguise."
+ ],
+ "reasons": [
+  "premise: brain: 14 domesticated animals is a static trivia fact, not a reversal of a specific expectation the viewer holds, so it's a searchable-noun-phrase premise in disguise."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/human-domesticated-14-animals__6031475a.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "lyme-disease-undercount",
+ "ts": "20260923T153302Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:mid the label 'Officially reported to CDC' runs into the mascot. At seg1:mid the caption number '30%' is dark navy on navy. At seg2:start the caption 'climbing too. They' is near-invisible dark-on-dark.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg3:start/mid the seesaw counts show impossible fractional values like '16.9' and '26.5' counties next to '152 Today'. At seg3:end the scene collapses to an empty frame with two stub bars and a tiny mascot at the left edge, while the narration is still delivering the 9x payoff.",
+  "root_cause": "The scene reuses the hook's seesaw machine and tweens integer county counts through decimals, then hands off to a bar scene that starts from zero width. The strongest line in the script ('9 times more places') lands on a nearly blank frame.",
+  "repair_goal": "Make one bespoke depiction of the 29 to 260 counties: a county map or grid where 29 cells are tick-infested and 231 more fill in until 260 read as 9x. Count whole numbers only, keep the frame full through the end of the segment, and give Data a bit, such as swatting ticks as they spread across the cells."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
