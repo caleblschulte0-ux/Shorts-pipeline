@@ -5,20 +5,41 @@
   "hook": "China's EV Maker Took The Lead",
   "y_label": "Global annual sales (vehicles)",
   "duration": 13,
-  "source": "BYD's reported annual new-energy-vehicle sales (BEV + plug-in hybrid, via CnEVPost and BYD's own sales releases) vs. Tesla's annual global delivery totals (Tesla investor updates). 2018: BYD 247,811 NEVs vs Tesla 245,491 deliveries. BYD's NEV sales then pulled ahead through 2022-2025 (1.80M, 3.02M, 4.27M, 4.60M) while Tesla's deliveries plateaued and slipped (1.31M, 1.81M, 1.79M, 1.64M) — BYD's full-year sales topped Tesla's for the first time in 2023-2024, confirmed in BYD's 2024 annual report (CNN Business, CNBC, March 2025). Note: BYD's total includes plug-in hybrids; Tesla sells fully-electric only.",
-  "years": [2018, 2021, 2022, 2023, 2024, 2025],
+  "source": "BYD's reported annual new-energy-vehicle sales (BEV + plug-in hybrid, via CnEVPost and BYD's own sales releases) vs. Tesla's annual global delivery totals (Tesla investor updates). 2018: BYD 247,811 NEVs vs Tesla 245,491 deliveries. BYD's NEV sales then pulled ahead through 2022-2025 (1.80M, 3.02M, 4.27M, 4.60M) while Tesla's deliveries plateaued and slipped (1.31M, 1.81M, 1.79M, 1.64M) \u2014 BYD's full-year sales topped Tesla's for the first time in 2023-2024, confirmed in BYD's 2024 annual report (CNN Business, CNBC, March 2025). Note: BYD's total includes plug-in hybrids; Tesla sells fully-electric only.",
+  "years": [
+    2018,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
   "series": [
     {
       "name": "BYD",
       "color": "#e74c3c",
       "icon": "BYD",
-      "values": [247811, 593745, 1802464, 3024417, 4272145, 4602436]
+      "values": [
+        247811,
+        593745,
+        1802464,
+        3024417,
+        4272145,
+        4602436
+      ]
     },
     {
       "name": "Tesla",
       "color": "#4a90e2",
       "icon": "Tesla",
-      "values": [245491, 936222, 1313851, 1808581, 1789226, 1636129]
+      "values": [
+        245491,
+        936222,
+        1313851,
+        1808581,
+        1789226,
+        1636129
+      ]
     }
   ],
   "hashtags": [

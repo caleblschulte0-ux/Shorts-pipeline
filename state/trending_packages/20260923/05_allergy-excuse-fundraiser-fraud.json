@@ -19,22 +19,79 @@
     "justice",
     "school"
   ],
-  "script": "The fundraiser fee was forty dollars, and one mom wanted a refund for her son's sudden peanut allergy, then decided every parent whose kid skipped deserved one too. I run the PTA sign-up sheets, so before anyone got a check I pulled the year's paperwork. The same mom had used a dairy intolerance to skip the bake sale shift, a migraine to skip chaperoning, and a family emergency to dodge the car wash — four different excuses, four different fee waivers, all drawn from the district's actual needs-based hardship fund, the one meant for families who genuinely couldn't pay forty dollars. I didn't say a word to her. I forwarded the sign-up history to the district's finance office with the fund's real purpose attached. Three weeks later the district audited every waiver on that sheet, flagged hers by name, and mailed her an invoice for eleven months of fees. The whole PTA got a calm, cheerful email about 'fund integrity' that same afternoon.",
+  "script": "The fundraiser fee was forty dollars, and one mom wanted a refund for her son's sudden peanut allergy, then decided every parent whose kid skipped deserved one too. I run the PTA sign-up sheets, so before anyone got a check I pulled the year's paperwork. The same mom had used a dairy intolerance to skip the bake sale shift, a migraine to skip chaperoning, and a family emergency to dodge the car wash \u2014 four different excuses, four different fee waivers, all drawn from the district's actual needs-based hardship fund, the one meant for families who genuinely couldn't pay forty dollars. I didn't say a word to her. I forwarded the sign-up history to the district's finance office with the fund's real purpose attached. Three weeks later the district audited every waiver on that sheet, flagged hers by name, and mailed her an invoice for eleven months of fees. The whole PTA got a calm, cheerful email about 'fund integrity' that same afternoon.",
   "shots": [
-    {"phrase": "The fundraiser fee was forty dollars", "query": "school fundraiser table"},
-    {"phrase": "a refund for her son's sudden peanut allergy", "query": "peanut allergy warning label"},
-    {"phrase": "I run the PTA sign-up sheets", "query": "clipboard sign-up sheet"},
-    {"phrase": "a dairy intolerance to skip the bake sale shift", "query": "school bake sale table"},
-    {"phrase": "a migraine to skip chaperoning", "query": "person holding forehead headache"},
-    {"phrase": "the district's actual needs-based hardship fund", "query": "school district office building"},
-    {"phrase": "the district audited every waiver on that sheet", "query": "auditor reviewing paperwork"},
-    {"phrase": "mailed her an invoice for eleven months of fees", "query": "mailbox envelope invoice"}
+    {
+      "phrase": "The fundraiser fee was forty dollars",
+      "query": "school fundraiser table"
+    },
+    {
+      "phrase": "a refund for her son's sudden peanut allergy",
+      "query": "peanut allergy warning label"
+    },
+    {
+      "phrase": "I run the PTA sign-up sheets",
+      "query": "clipboard sign-up sheet",
+      "pin_query": "PTA",
+      "pin_context": "parent teacher association meeting paperwork",
+      "news_query": "PTA",
+      "news_angle": "The PTA reviews sign-up sheets and discovers the mom's multiple fee waivers.",
+      "image_url": "https://live.staticflickr.com/7440/13879390115_ec5a277c85_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "parent teacher association meeting paperwork",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "PTA",
+        "url": "https://live.staticflickr.com/7440/13879390115_ec5a277c85_b.jpg",
+        "verified_at": "2026-09-23T10:15:50Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "a dairy intolerance to skip the bake sale shift",
+      "query": "school bake sale table"
+    },
+    {
+      "phrase": "a migraine to skip chaperoning",
+      "query": "person holding forehead headache"
+    },
+    {
+      "phrase": "the district's actual needs-based hardship fund",
+      "query": "school district office building"
+    },
+    {
+      "phrase": "the district audited every waiver on that sheet",
+      "query": "auditor reviewing paperwork"
+    },
+    {
+      "phrase": "mailed her an invoice for eleven months of fees",
+      "query": "mailbox envelope invoice"
+    }
   ],
   "punches": [
-    {"phrase": "one mom wanted a refund", "text": "REFUND DEMAND", "color": "#ffaa30"},
-    {"phrase": "four different excuses, four different fee waivers", "text": "4 FAKE EXCUSES", "color": "#ff3030"},
-    {"phrase": "the district audited every waiver on that sheet", "text": "AUDIT TRIGGERED", "color": "#ffaa30"},
-    {"phrase": "an invoice for eleven months of fees", "text": "SHE OWES IT ALL", "color": "#50ff80"}
+    {
+      "phrase": "one mom wanted a refund",
+      "text": "REFUND DEMAND",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "four different excuses, four different fee waivers",
+      "text": "4 FAKE EXCUSES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the district audited every waiver on that sheet",
+      "text": "AUDIT TRIGGERED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "an invoice for eleven months of fees",
+      "text": "SHE OWES IT ALL",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark",
   "bottom_theme": "auto"

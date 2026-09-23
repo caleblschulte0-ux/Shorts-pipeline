@@ -5,19 +5,40 @@
   "hook": "SpaceX Out-Launched Everyone",
   "y_label": "Orbital launch attempts per year",
   "duration": 13,
-  "source": "Global orbital launch attempts by year (newspace.im / Payload Space launch trackers) vs. SpaceX's own annual Falcon 9 + Starship orbital launch count (Space.com, AIAA, BryceTech's 2025 launch report). SpaceX flew 165 orbital missions in 2025 alone — roughly 51% of the ~329 orbital launch attempts worldwide that year, more than every other country combined (China ~90, Russia ~17, and the rest smaller still).",
-  "years": [2015, 2018, 2020, 2022, 2024, 2025],
+  "source": "Global orbital launch attempts by year (newspace.im / Payload Space launch trackers) vs. SpaceX's own annual Falcon 9 + Starship orbital launch count (Space.com, AIAA, BryceTech's 2025 launch report). SpaceX flew 165 orbital missions in 2025 alone \u2014 roughly 51% of the ~329 orbital launch attempts worldwide that year, more than every other country combined (China ~90, Russia ~17, and the rest smaller still).",
+  "years": [
+    2015,
+    2018,
+    2020,
+    2022,
+    2024,
+    2025
+  ],
   "series": [
     {
       "name": "SpaceX",
       "color": "#e74c3c",
       "icon": "SpaceX",
-      "values": [7, 21, 25, 61, 134, 165]
+      "values": [
+        7,
+        21,
+        25,
+        61,
+        134,
+        165
+      ]
     },
     {
       "name": "Rest of the world",
       "color": "#4a90e2",
-      "values": [77, 93, 121, 125, 127, 164]
+      "values": [
+        77,
+        93,
+        121,
+        125,
+        127,
+        164
+      ]
     }
   ],
   "hashtags": [

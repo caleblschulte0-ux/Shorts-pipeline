@@ -5,20 +5,41 @@
   "hook": "India Just Passed Japan",
   "y_label": "Nominal GDP ($ trillions)",
   "duration": 13,
-  "source": "IMF World Economic Outlook (nominal GDP, current prices) and World Bank national accounts data, 2015-2025. India's nominal GDP grew from $2.10T (2015) to $2.72T (2018), $2.68T (2020), $3.35T (2022) and $3.91T (2024); Japan's slid from $4.12T (2015) to a 2018-2020 peak near $5.05-5.07T before a weak yen pulled it to $4.26T (2022) and $4.03T (2024). The IMF's 2025 projection puts India at $4.187T against Japan's $4.186T — India overtaking Japan as the world's 4th-largest economy, reported April/May 2025 (IMF, NITI Aayog).",
-  "years": [2015, 2018, 2020, 2022, 2024, 2025],
+  "source": "IMF World Economic Outlook (nominal GDP, current prices) and World Bank national accounts data, 2015-2025. India's nominal GDP grew from $2.10T (2015) to $2.72T (2018), $2.68T (2020), $3.35T (2022) and $3.91T (2024); Japan's slid from $4.12T (2015) to a 2018-2020 peak near $5.05-5.07T before a weak yen pulled it to $4.26T (2022) and $4.03T (2024). The IMF's 2025 projection puts India at $4.187T against Japan's $4.186T \u2014 India overtaking Japan as the world's 4th-largest economy, reported April/May 2025 (IMF, NITI Aayog).",
+  "years": [
+    2015,
+    2018,
+    2020,
+    2022,
+    2024,
+    2025
+  ],
   "series": [
     {
       "name": "India",
       "color": "#ff9933",
       "icon": "IN",
-      "values": [2.10, 2.72, 2.675, 3.353, 3.91, 4.187]
+      "values": [
+        2.1,
+        2.72,
+        2.675,
+        3.353,
+        3.91,
+        4.187
+      ]
     },
     {
       "name": "Japan",
       "color": "#bc002d",
       "icon": "JP",
-      "values": [4.12, 5.07, 5.056, 4.256, 4.03, 4.186]
+      "values": [
+        4.12,
+        5.07,
+        5.056,
+        4.256,
+        4.03,
+        4.186
+      ]
     }
   ],
   "hashtags": [

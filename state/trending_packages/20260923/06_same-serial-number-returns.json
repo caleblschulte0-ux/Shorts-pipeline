@@ -19,22 +19,79 @@
     "corporatepolicy",
     "justice"
   ],
-  "script": "A guy came into my store returning a five-hundred-dollar espresso machine, insisting it 'just stopped working' after three weeks, demanding a brand new replacement instead of the free repair our policy actually offers. I processed it because that's the job, but our warranty system logs a serial number on every claim, and something about his story felt rehearsed. I searched it. It was the same serial number, four returns, four different store locations, four different months, always the same claim, always a brand new box walking back out the door with him. He wasn't buying new machines and returning broken ones — he'd found one machine that never left his house, and just kept 'returning' it for a fresh one every time the warranty reset. I flagged the account company-wide with the pattern attached. He came back a fifth time, receipt in hand, and the register simply refused the return — right in front of the whole line, with his own serial number printed on the screen.",
+  "script": "A guy came into my store returning a five-hundred-dollar espresso machine, insisting it 'just stopped working' after three weeks, demanding a brand new replacement instead of the free repair our policy actually offers. I processed it because that's the job, but our warranty system logs a serial number on every claim, and something about his story felt rehearsed. I searched it. It was the same serial number, four returns, four different store locations, four different months, always the same claim, always a brand new box walking back out the door with him. He wasn't buying new machines and returning broken ones \u2014 he'd found one machine that never left his house, and just kept 'returning' it for a fresh one every time the warranty reset. I flagged the account company-wide with the pattern attached. He came back a fifth time, receipt in hand, and the register simply refused the return \u2014 right in front of the whole line, with his own serial number printed on the screen.",
   "shots": [
-    {"phrase": "a five-hundred-dollar espresso machine", "query": "espresso machine countertop"},
-    {"phrase": "insisting it 'just stopped working' after three weeks", "query": "broken appliance box"},
-    {"phrase": "our warranty system logs a serial number", "query": "barcode scanner receipt"},
-    {"phrase": "four returns, four different store locations", "query": "retail store storefront"},
-    {"phrase": "a brand new box walking back out the door", "query": "customer carrying box"},
-    {"phrase": "I flagged the account company-wide", "query": "computer database screen"},
-    {"phrase": "the register simply refused the return", "query": "cash register checkout counter"},
-    {"phrase": "his own serial number printed on the screen", "query": "receipt printer screen"}
+    {
+      "phrase": "a five-hundred-dollar espresso machine",
+      "query": "espresso machine countertop",
+      "pin_query": "espresso machine",
+      "pin_context": "espresso machine coffee shop retail",
+      "news_query": "espresso machine",
+      "news_angle": "The espresso machine is being returned repeatedly by the customer as a faulty item.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "espresso machine coffee shop retail",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "espresso machine",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-23T10:16:12Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "insisting it 'just stopped working' after three weeks",
+      "query": "broken appliance box"
+    },
+    {
+      "phrase": "our warranty system logs a serial number",
+      "query": "barcode scanner receipt"
+    },
+    {
+      "phrase": "four returns, four different store locations",
+      "query": "retail store storefront"
+    },
+    {
+      "phrase": "a brand new box walking back out the door",
+      "query": "customer carrying box"
+    },
+    {
+      "phrase": "I flagged the account company-wide",
+      "query": "computer database screen"
+    },
+    {
+      "phrase": "the register simply refused the return",
+      "query": "cash register checkout counter"
+    },
+    {
+      "phrase": "his own serial number printed on the screen",
+      "query": "receipt printer screen"
+    }
   ],
   "punches": [
-    {"phrase": "insisting it 'just stopped working'", "text": "'BROKEN' AGAIN", "color": "#ffaa30"},
-    {"phrase": "four returns, four different store locations", "text": "SAME SERIAL, 4X", "color": "#ff3030"},
-    {"phrase": "he'd found one machine that never left his house", "text": "NEVER EVEN BROKE", "color": "#ff3030"},
-    {"phrase": "the register simply refused the return", "text": "DENIED", "color": "#50ff80"}
+    {
+      "phrase": "insisting it 'just stopped working'",
+      "text": "'BROKEN' AGAIN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "four returns, four different store locations",
+      "text": "SAME SERIAL, 4X",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "he'd found one machine that never left his house",
+      "text": "NEVER EVEN BROKE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the register simply refused the return",
+      "text": "DENIED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark",
   "bottom_theme": "auto"

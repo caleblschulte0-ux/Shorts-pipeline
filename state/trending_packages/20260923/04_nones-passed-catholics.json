@@ -5,18 +5,39 @@
   "hook": "Nones Passed Catholics",
   "y_label": "Share of US adults (percent)",
   "duration": 13,
-  "source": "Pew Research Center's religious-identity trend surveys: the religiously unaffiliated (\"nones\") share of US adults rose from 16% (2007) to 17% (2009), 22.8% (2014, Religious Landscape Study), 26% (2019), and 29% (2021 NPORS) — overtaking Catholics, who declined from 24% (2007) to 23% (2009), roughly 21% (2014, 2019, 2021) and 19% (2023-24 Religious Landscape Study, published Feb 2025). Pew's newest study confirms the unaffiliated are now the single largest religious-identity group in America.",
-  "years": [2007, 2009, 2014, 2019, 2021, 2023],
+  "source": "Pew Research Center's religious-identity trend surveys: the religiously unaffiliated (\"nones\") share of US adults rose from 16% (2007) to 17% (2009), 22.8% (2014, Religious Landscape Study), 26% (2019), and 29% (2021 NPORS) \u2014 overtaking Catholics, who declined from 24% (2007) to 23% (2009), roughly 21% (2014, 2019, 2021) and 19% (2023-24 Religious Landscape Study, published Feb 2025). Pew's newest study confirms the unaffiliated are now the single largest religious-identity group in America.",
+  "years": [
+    2007,
+    2009,
+    2014,
+    2019,
+    2021,
+    2023
+  ],
   "series": [
     {
       "name": "Religiously unaffiliated",
       "color": "#7f8c8d",
-      "values": [16, 17, 22.8, 26, 29, 29]
+      "values": [
+        16,
+        17,
+        22.8,
+        26,
+        29,
+        29
+      ]
     },
     {
       "name": "Catholic",
       "color": "#4a90e2",
-      "values": [24, 23, 20.8, 20, 21, 19]
+      "values": [
+        24,
+        23,
+        20.8,
+        20,
+        21,
+        19
+      ]
     }
   ],
   "hashtags": [
