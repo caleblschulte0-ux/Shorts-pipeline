@@ -15115,5 +15115,770 @@
       ],
       "music_vibe": "hiphop"
     }
+  },
+  "20260624": {
+    "01_gracie-giraffe-cedar-hollow-texas.json": {
+      "version": 8,
+      "slug": "gracie-giraffe-cedar-hollow-texas",
+      "title": "Texas Lost a Giraffe Named Gracie",
+      "script": "Texas lost a giraffe! Cedar Hollow Ranch in Real County had a problem Monday: Gracie \u2014 their giraffe \u2014 wandered to a corner of the property the herd never visits, found a gate, and walked out. Into the Texas Hill Country. By herself. The ranch offered a $5,000 reward. Authorities asked the public for help. A game camera caught her west of Leakey \u2014 which, if you're wondering, is deep in the Texas Hill Country. Ranch manager Vick Jones says she's been located and he's hoping to get her back Tuesday. The question nobody's asking: how does a giraffe just disappear? She's 15 feet tall. You can see her from a mile away. How does a 15-foot animal just vanish?",
+      "shots": [
+        {
+          "phrase": "Texas lost a giraffe!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+          "query": "giraffe standing tall",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Cedar Hollow Ranch in Real County",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "Texas ranch fence road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Gracie \u2014 their giraffe \u2014 wandered",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+          "query": "giraffe grazing open field",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "found a gate, and walked out",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "ranch gate open countryside",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Into the Texas Hill Country",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG",
+          "query": "Texas Hill Country scrub brush landscape",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "By herself",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+          "query": "lone giraffe savanna walking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The ranch offered a $5,000 reward",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "reward sign missing animal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A game camera caught her west of Leakey",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+          "query": "trail camera wildlife night footage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Ranch manager Vick Jones says she's been located",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG",
+          "query": "Texas rancher outdoors hill country",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how does a giraffe just disappear?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+          "query": "giraffe camouflage brush trees",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "She's 15 feet tall",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe_standing.jpg",
+          "query": "giraffe height tall animal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How does a 15-foot animal just vanish?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kruger_Giraffe.JPG",
+          "query": "giraffe walking away disappearing",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Texas lost a giraffe!",
+          "text": "GRACIE'S GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "found a gate, and walked out",
+          "text": "JUST WALKED OUT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The ranch offered a $5,000 reward",
+          "text": "$5,000 REWARD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "A game camera caught her west of Leakey",
+          "text": "ON CAMERA",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "she's been located",
+          "text": "SHE'S FOUND",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "She's 15 feet tall",
+          "text": "15 FEET TALL",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "graciegiraffe",
+        "cedarhollowranch",
+        "texashillcountry",
+        "realcounty",
+        "giraffe",
+        "animalescape",
+        "texasnews",
+        "wildanimal",
+        "missinggiraffe",
+        "weirdnews",
+        "animalnews",
+        "texas",
+        "wildlife"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_berlin-caterpillars-parks-closed.json": {
+      "version": 8,
+      "slug": "berlin-caterpillars-parks-closed",
+      "title": "Toxic Caterpillars Just Shut Berlin's Parks",
+      "script": "Berlin's parks are closed! Not for a protest or a concert \u2014 for caterpillars. Specifically: oak processionary moth caterpillars. They've invaded Berlin's green spaces, and they look harmless. They are not. Each one carries about 700,000 microscopic barbed hairs. Those hairs break off in the wind and land on human skin, causing rashes, burning eyes, and breathing difficulties. Children have had severe reactions. Elderly residents are afraid to leave their homes. Berlin's second-largest park, Jungfernheide, has 2,000 trees cordoned off. Playgrounds closed. Sports fields shut down. The cleanup crew isn't using spray. They're wearing full protective suits \u2014 the same type used for asbestos \u2014 and vacuuming nests off branches 20 meters in the air. Climate change is making this worse every year. How long before Berlin can't keep up?",
+      "shots": [
+        {
+          "phrase": "Berlin's parks are closed!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "park closed barrier tape sign",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "They've invaded Berlin's green spaces, and they look harmless",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "Berlin park path trees summer green",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Specifically: oak processionary moth caterpillars",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "oak processionary caterpillar colony nest",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Each one carries about 700,000 microscopic barbed hairs",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "caterpillar hairs magnified microscope toxic",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Elderly residents are afraid to leave their homes",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "elderly person home indoors worried",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Children have had severe reactions",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "child outdoor allergy skin reaction",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Berlin's second-largest park, Jungfernheide, has 2,000 trees cordoned off",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "park trees cordoned off warning signs",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Sports fields shut down",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "sports field closed empty grass",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They're wearing full protective suits \u2014 the same type used for asbestos",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "hazmat suit protective gear blue workers",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "vacuuming nests off branches 20 meters in the air",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "cherry picker tree branch aerial workers",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Climate change is making this worse every year",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "climate change hot summer drought trees",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How long before Berlin can't keep up?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eichenprozessionsspinner_(2020-001).jpg",
+          "query": "Berlin park summer empty abandoned",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Berlin's parks are closed!",
+          "text": "PARKS CLOSED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Each one carries about 700,000 microscopic barbed hairs",
+          "text": "700,000 TOXIC HAIRS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Sports fields shut down",
+          "text": "SPORTS FIELDS: SHUT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "They're wearing full protective suits \u2014 the same type used for asbestos",
+          "text": "ASBESTOS-GRADE GEAR",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "2,000 trees cordoned off",
+          "text": "2,000 TREES CLOSED",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Climate change is making this worse every year",
+          "text": "GETS WORSE YEARLY",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "berlincaterpillars",
+        "oakprocessionary",
+        "jungfernheide",
+        "berlinparks",
+        "germany",
+        "toxiccaterpillars",
+        "climatechange",
+        "berlin",
+        "weirdnews",
+        "nature",
+        "invasivespecies",
+        "environmentalnews",
+        "europe"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_nicole-watt-barbie-dreamhouse-scotland.json": {
+      "version": 8,
+      "slug": "nicole-watt-barbie-dreamhouse-scotland",
+      "title": "A Mom Spent $9,500 to Barbie-fy Her House in Scotland",
+      "script": "Scotland went full Barbie! Nicole Watt, 27, from Carluke \u2014 a small town outside Glasgow \u2014 spent 6 months and about $9,500 turning her house into a Barbie Dreamhouse. For her 3 daughters. And for the local Gala Day celebration. We're talking: a pink slide, fake flamingos, palm trees, surfboards, and a disco ball. Outside. A house in Scotland. In June. Grandparents helped build most of it from wood, paint, and recycled materials. When Nicole posted it online, the house went viral. Strangers drove over from nearby towns. People lined up outside just to take photos. Not every neighbor loved it. But enough people did that the house basically became a free local attraction. Would you make the drive to see Nicole's house?",
+      "shots": [
+        {
+          "phrase": "Scotland went full Barbie!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "pink house exterior Barbie themed",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Nicole Watt, 27, from Carluke",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "small town Scotland residential street",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "turning her house into a Barbie Dreamhouse",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "pink decorations house facade bright",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a pink slide, fake flamingos, palm trees, surfboards, and a disco ball",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "pink flamingo palm tree outdoor decoration",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "A house in Scotland",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "Scottish terraced houses street Glasgow",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Grandparents helped build most of it from wood, paint, and recycled materials",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "family building painting decoration wood",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "When Nicole posted it online, the house went viral",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "viral social media TikTok phone video",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Strangers drove over from nearby towns",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "people car drive residential street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "People lined up outside just to take photos",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "crowd people taking photos outside house",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Not every neighbor loved it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "neighbor looking annoyed residential",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "the house basically became a free local attraction",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "tourist attraction visitors entrance",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Would you make the drive to see Nicole's house?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Early_Barbie_dolls.jpg",
+          "query": "road trip driving countryside Scotland",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Scotland went full Barbie!",
+          "text": "FULL BARBIE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "spent 6 months and about $9,500",
+          "text": "$9,500 + 6 MONTHS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a pink slide, fake flamingos, palm trees, surfboards, and a disco ball",
+          "text": "DISCO BALL. IN SCOTLAND.",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "the house went viral",
+          "text": "VIRAL",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Strangers drove over from nearby towns",
+          "text": "STRANGERS SHOWED UP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Not every neighbor loved it",
+          "text": "NEIGHBORS: NOT A FAN",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "nicolewatt",
+        "barbiedreamhouse",
+        "carluke",
+        "scotland",
+        "barbie",
+        "galadayscotland",
+        "pinkhouse",
+        "viralscotland",
+        "glasgow",
+        "weirdnews",
+        "funny",
+        "homedesign",
+        "barbiegirl",
+        "scotiamom"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "04_tennessee-woman-ohio-lottery-500k.json": {
+      "version": 8,
+      "slug": "tennessee-woman-ohio-lottery-500k",
+      "title": "She Stopped for Gas in Ohio. Won $500,000.",
+      "script": "She stopped for gas! A woman from Nashville, Tennessee was on her way to a family reunion when she pulled into the S&G station on Fremont Pike in Perrysburg, Ohio, to fill up. At checkout, a $10 scratch-off caught her eye \u2014 Ohio Lottery, Bingo Times 50. She bought one. Scratched it in the parking lot. $500,000. She was in a random gas station in Ohio \u2014 not even her home state \u2014 and she'd just won half a million dollars. She drove straight to the reunion. Told nobody. The entire time. She later told lottery officials she wants to use some of the winnings to do something nice for her family. Half a million dollars in her pocket \u2014 and she didn't say a word. Did she tell them at the reunion?",
+      "shots": [
+        {
+          "phrase": "She stopped for gas!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "gas station fuel pump highway road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A woman from Nashville, Tennessee",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "Nashville Tennessee skyline city",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "she pulled into the S&G station on Fremont Pike in Perrysburg, Ohio",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "gas station convenience store Ohio",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a $10 scratch-off caught her eye \u2014 Ohio Lottery, Bingo Times 50",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "scratch off lottery ticket bingo",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Scratched it in the parking lot",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "scratch lottery ticket reveal prize",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "$500,000",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "five hundred thousand dollars cash money",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "she'd just won half a million dollars",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "lottery winner celebrate scratch ticket",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She drove straight to the reunion",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "family reunion outdoor cookout picnic",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Told nobody",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "secret keeping quiet silent face",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Half a million dollars in her pocket \u2014 and she didn't say a word",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "wallet pocket money hidden secret",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Did she tell them at the reunion?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_Hill_Country_187N.JPG",
+          "query": "family reunion surprise announcement",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "She stopped for gas!",
+          "text": "JUST STOPPED FOR GAS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "$500,000",
+          "text": "$500,000",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "not even her home state",
+          "text": "WRONG STATE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Told nobody",
+          "text": "TOLD NOBODY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "The entire time",
+          "text": "ENTIRE REUNION",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "do something nice for her family",
+          "text": "FOR FAMILY",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "ohiolottery",
+        "perrysburgohio",
+        "nashvillewoman",
+        "scratchoff",
+        "lotterywinner",
+        "bingotimes50",
+        "lottery",
+        "500k",
+        "weirdnews",
+        "luckyday",
+        "roadtrip",
+        "familyreunion",
+        "tennessee",
+        "ohio"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "05_france-heatwave-44c-drowning-deaths.json": {
+      "version": 8,
+      "slug": "france-heatwave-44c-drowning-deaths",
+      "title": "France Just Broke Its All-Time Heat Record. 40 Drowned.",
+      "script": "France just hit 44\u00b0C! That's not a typo. On June 23, France recorded its hottest day in history \u2014 44.3 degrees Celsius, or about 112 degrees Fahrenheit, in parts of the southwest. M\u00e9t\u00e9o France put 54 departments \u2014 more than half the country \u2014 under a red heatwave alert. Now here's the worst part. At least 40 people drowned in rivers and lakes, trying to escape the heat. A 13-year-old girl drowned in the Seine. A professional footballer was pulled from the Rh\u00f4ne in critical condition. 2 young children were found dead in a parked car in southern France. This is not an ordinary heat wave. France has seen records broken year after year \u2014 but this one, June 23, 2026, is the worst in recorded French history. How many more summers like this can Europe handle?",
+      "shots": [
+        {
+          "phrase": "France just hit 44\u00b0C!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "France heatwave extreme heat Europe satellite",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "France recorded its hottest day in history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "Eiffel Tower summer heat Paris France",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "44.3 degrees Celsius, or about 112 degrees Fahrenheit",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "thermometer extreme heat temperature record",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "M\u00e9t\u00e9o France put 54 departments \u2014 more than half the country \u2014 under a red heatwave alert",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "France map weather red alert heatwave",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "At least 40 people drowned in rivers and lakes, trying to escape the heat",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "river France swimming people crowded",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "A 13-year-old girl drowned in the Seine",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "Seine river Paris water shore",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A professional footballer was pulled from the Rh\u00f4ne in critical condition",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "Rhone river France emergency rescue water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "2 young children were found dead in a parked car in southern France",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "parked car hot sun heatwave",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "This is not an ordinary heat wave",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "Paris summer empty streets extreme heat",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "the worst in recorded French history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Extreme_heatwave_ESA19643799.jpeg",
+          "query": "record breaking temperature chart graph history",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How many more summers like this can Europe handle?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Eiffel_Tower_Paris_01.JPG",
+          "query": "Europe summer heatwave future climate",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "France just hit 44\u00b0C!",
+          "text": "44.3\u00b0C RECORD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "France recorded its hottest day in history",
+          "text": "HOTTEST DAY EVER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "54 departments",
+          "text": "54 DEPTS RED ALERT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "At least 40 people drowned",
+          "text": "40 DROWNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "A professional footballer was pulled from the Rh\u00f4ne in critical condition",
+          "text": "FOOTBALLER CRITICAL",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the worst in recorded French history",
+          "text": "WORST EVER RECORDED",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "franceheatwave",
+        "heatwave2026",
+        "europeanheatwave",
+        "44celsius",
+        "france",
+        "climate",
+        "climatecrisis",
+        "paris",
+        "extremeheat",
+        "climatechange",
+        "heatdome",
+        "europe",
+        "naturaldisaster",
+        "worldnews"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_montreal-hilton-shooting-officer.json": {
+      "version": 8,
+      "slug": "montreal-hilton-shooting-officer",
+      "title": "A Gunman Killed a Montreal Officer at the Hilton",
+      "script": "A Montreal cop was killed! Monday morning, June 22. Someone in Montreal's C\u00f4te-des-Neiges neighborhood called 911: there's a man in the Hilton with a gun pointed out the window. Officers responded. Constable Mohamed Lamine Benredouane \u2014 34 years old, on the force since 2021 \u2014 was shot and killed. A second officer was wounded and is in stable condition. A civilian also died. The gunman was shot dead at the scene. It was the first time a Montreal police officer had been killed in the line of duty in 24 years. Investigators ruled out terrorism. They haven't confirmed what triggered the shooting. Constable Benredouane had spent 5 years protecting that city. What brought the gunman to that Hilton window?",
+      "shots": [
+        {
+          "phrase": "A Montreal cop was killed!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "Montreal police officer patrol car lights",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Someone in Montreal's C\u00f4te-des-Neiges neighborhood called 911",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "Montreal neighborhood residential street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "there's a man in the Hilton with a gun pointed out the window",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "hotel building exterior urban city",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Constable Mohamed Lamine Benredouane \u2014 34 years old, on the force since 2021 \u2014 was shot and killed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "police officer uniform badge memorial",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A second officer was wounded and is in stable condition",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "police ambulance emergency hospital",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A civilian also died",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "crime scene police tape urban street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The gunman was shot dead at the scene",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "police response active shooter urban",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the first time a Montreal police officer had been killed in the line of duty in 24 years",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "Montreal police memorial tribute candles",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Investigators ruled out terrorism",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "investigators forensic police crime scene",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "They haven't confirmed what triggered the shooting",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "investigation unknown crime motive",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Constable Benredouane had spent 5 years protecting that city",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "Montreal skyline city Canada police",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "What brought the gunman to that Hilton window?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Montreal_-_QC_-_Skyline.jpg",
+          "query": "hotel window overlooking city mystery",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A Montreal cop was killed!",
+          "text": "OFFICER DOWN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Constable Mohamed Lamine Benredouane",
+          "text": "CONSTABLE BENREDOUANE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "A civilian also died",
+          "text": "3 DEAD TOTAL",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the first time a Montreal police officer had been killed in the line of duty in 24 years",
+          "text": "FIRST IN 24 YEARS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Investigators ruled out terrorism",
+          "text": "NOT TERRORISM",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "5 years protecting that city",
+          "text": "5 YEARS ON THE FORCE",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "montrealshooting",
+        "benredouane",
+        "cotedesneigesmontrealpolice",
+        "spvm",
+        "montreal",
+        "policenews",
+        "canada",
+        "officerdown",
+        "hilton",
+        "crimejustice",
+        "canadanews",
+        "breakingnews",
+        "worldnews",
+        "policeshooting"
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
