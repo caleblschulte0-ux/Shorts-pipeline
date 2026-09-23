@@ -177,6 +177,32 @@ class TheDirectorKeepsTheVeto(unittest.TestCase):
         self.assertIn("ONE BROADCAST", seen["user"])
 
 
+class TheDirectorsReasonIsKept(unittest.TestCase):
+    """2026-09-23: the director turned down all three scouted stories and the
+    record said only "director judged: not a story" — the `why_not` it is
+    asked for was thrown away."""
+
+    def _plan(self, answer):
+        reps = [{"source_id": s, "channel": "kai", "duration_s": 30,
+                 "date": "2026-09-18", "summary": "x"} for s in ("a", "b")]
+        with mock.patch.object(sd, "_brain", return_value=answer):
+            sd.plan_story(reps, None)
+        return sd.last_rejection()
+
+    def test_the_why_not_reaches_the_record(self):
+        rej = self._plan({"is_story": False,
+                          "why_not": "the second clip is a different game"})
+        self.assertIn("the second clip is a different game", rej["why"])
+
+    def test_it_is_still_classified_editorial(self):
+        rej = self._plan({"is_story": False, "why_not": "no payoff shown"})
+        self.assertTrue(rej["editorial"])
+
+    def test_a_missing_why_not_still_records_the_verdict(self):
+        rej = self._plan({"is_story": False})
+        self.assertIn("not a story", rej["why"])
+
+
 class TheSlotUsesTheScoutFirst(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -187,7 +213,16 @@ class TheSlotUsesTheScoutFirst(unittest.TestCase):
         cls.body = ast.get_source_segment(src, fn)
 
     def test_scouted_stories_are_offered_first(self):
-        self.assertIn("clusters = (scouted + vod_arcs", self.body)
+        """The scout's best proposal is the first candidate; after that the
+        scout and the VOD arcs take turns (2026-09-23: the scout's three
+        took every slot and 174 arcs went unexamined)."""
+        i_first = self.body.index("_mixed.append(scouted[i])")
+        i_vod = self.body.index("_mixed.append(vod_arcs[i])")
+        self.assertLess(i_first, i_vod)
+        self.assertIn("clusters = _mixed + storyline.find_clusters(", self.body)
+
+    def test_the_candidate_budget_is_six(self):
+        self.assertIn('spec.get("story_max_clusters", 6)', self.body)
 
     def test_the_catalogue_is_built_from_the_whole_corpus(self):
         self.assertIn("storyline.build_catalogue(corpus)", self.body)
@@ -205,6 +240,22 @@ class TheSlotUsesTheScoutFirst(unittest.TestCase):
 
     def test_what_the_scout_proposed_is_recorded(self):
         self.assertIn('"scouted": [{"premise"', self.body)
+
+
+
+class ARetryDoesNotRepeatTheStory(unittest.TestCase):
+    """`main` retries a failed slot up to MAX_SLOT_ATTEMPTS times and every
+    retry re-entered the story branch — paying for the whole story search
+    again (16 minutes for three candidates on 2026-09-23)."""
+
+    def test_the_story_branch_requires_the_first_attempt(self):
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        fn = next(n for n in ast.walk(ast.parse(src))
+                  if isinstance(n, ast.FunctionDef) and n.name == "process")
+        body = ast.get_source_segment(src, fn)
+        i_guard = body.index("and attempt == 1")
+        i_call = body.index("_story_attempt(pkg, log, work, out_mp4,")
+        self.assertLess(i_guard, i_call)
 
 
 if __name__ == "__main__":
