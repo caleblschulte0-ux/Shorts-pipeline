@@ -204,6 +204,14 @@ one is a picture rule now, not a judge rule:
   (`people.head_of`), the face and its open mouth go to the top of the
   head, and a hand goes to the brow, the way anyone looks at something far
   and high. It reads from across the room.
+- *"a blocky mammoth by the fire."* The body was a blob on four boxes.
+  It has a high domed hump over the shoulders, a back that slopes to the
+  rump and a shaggy fringe hanging along the belly now — and the layout
+  had been cutting it by the frame at every size, because a 1,000 px back
+  prop placed AFTER the people had nowhere left to go, and `settle` gave
+  up on the spot whose first try hung off the left edge instead of walking
+  in. Solid scenery is placed before the people (`place_prop`, `early`)
+  and a slide only stops at the edge it is walking toward.
 - The rebalanced script (35 cave-mouth scenes of 141, argued down from 57)
   was put BACK by the run's own persist: the storyboard had stamped the
   old copy in a run that checked out three hours earlier, and on the push

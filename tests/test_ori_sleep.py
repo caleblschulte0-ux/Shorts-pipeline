@@ -497,6 +497,19 @@ class ThePictureIsReadable(unittest.TestCase):
             self.assertEqual(lay["collisions"], [], seed)
             self.assertGreaterEqual(lay["scale"], 2.05 * 0.84, seed)
 
+    def test_big_scenery_is_placed_before_the_people(self):
+        # a mammoth placed after the man and the fire had nowhere to go and
+        # was cut by the frame at every size; solid scenery goes first and
+        # the people find room around it, at their natural size
+        spec = {"setting": "grassland", "time": "dusk", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "stand", "action": "point"}],
+                "props": ["campfire", "mammoth"]}
+        for seed in range(6):
+            lay = self.S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [], seed)
+            self.assertGreaterEqual(lay["scale"], 2.05 * 0.84, seed)
+            self.assertIn("mammoth", [q["name"] for q in lay["props"]])
+
     def test_looking_up_reads_from_across_the_room(self):
         # the fifth film's judge could not see "looking up" in a sky chapter
         # where every figure did it: it was two dots moved a finger's width.

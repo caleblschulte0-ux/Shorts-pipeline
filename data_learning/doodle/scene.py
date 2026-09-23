@@ -432,7 +432,13 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                 cand = x + sign * k * 30
                 lo, hi = span_of(cand)
                 if lo < lo_lim or hi > hi_lim:
-                    break
+                    # out of the frame on the side we are walking toward: this
+                    # direction is spent. Out on the OTHER side (a mammoth
+                    # whose first spot hangs off the left edge): keep walking
+                    # in — giving up here left it cut by the frame at every size
+                    if (sign > 0 and hi > hi_lim) or (sign < 0 and lo < lo_lim):
+                        break
+                    continue
                 c = clash(lo, hi, head_of(cand) if head_of else None)
                 if c <= 0:
                     return cand
@@ -484,6 +490,76 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         if (pr.layer != "back" or focal["name"] in SOLID_BACK) and not on_table:
             put(focal_x - w / 2, focal_x + w / 2)   # a lamp that will stand on the table takes no floor
 
+    rest = [p for p in pl if p is not focal]
+    # big solid scenery (a mammoth, a hut, a cart) is placed BEFORE the
+    # people, so they find room around it: placed after, a 1000px mammoth
+    # had nowhere to go and was cut by the frame at every size
+    early = [p for p in rest if PROPS[p['name']].layer == 'back' and p['name'] in SOLID_BACK
+             and not PROPS[p['name']].living]
+    late = [p for p in rest if p not in early]
+    stirrer = sleeper = None
+    def place_prop(p):
+        """Place one non-focal prop; bedroll and pot go with their person."""
+        pr, ps, py, w = prop_geom(p)
+        if p.get("at"):
+            x = W * SLOTS[p["at"]]
+        elif sleeper and p["name"] in ("bedroll", "bed") and not sleeper.get("_bed"):
+            # under the sleeper, centred on the body (head to feet), and
+            # exempt from the crowding check — it is meant to be under them
+            size = people.WHO[sleeper["who"]]["size"]
+            R = people.R0 * s * size
+            d = 1 if sleeper["facing"] == "right" else -1
+            lo, hi = figure_extent("lie", R)
+            x = sleeper["x"] + d * (lo + hi) / 2
+            py = sleeper["y"] - 4 * s
+            ps = s * size             # a child's bed is a child's size
+            sleeper["_bed"] = True
+            put(x - pr.width * ps / 2, x + pr.width * ps / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            return
+        elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
+            R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
+            # the pot goes on the cook's far side from the fire, and the cook
+            # turns to it — a pot between a person and the flames hides both
+            d = 1 if stirrer["x"] >= focal_x else -1
+            stirrer["facing"] = "right" if d > 0 else "left"
+            x = stirrer["x"] + d * (1.55 * R + (50 if p["name"] == "pot" else 20) * ps)
+            stirrer["_pot"] = True
+            # between the cook's knees on purpose: exempt from the crowding
+            # check against HER — but it still takes room from everything else
+            put(x - w / 2, x + w / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(stirrer)))
+            return
+        else:
+            scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
+            tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
+            cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
+                     else [0.4, 0.6, 0.5, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
+            x = None
+            for cnd in cands:
+                if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
+                    continue
+                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2):
+                    x = W * cnd
+                    if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
+                                                      if q["layer"] == "back"):
+                        x = None
+                        continue
+                    break
+            if x is None and (not scenery or pr.solid_width):
+                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE)
+            if x is None:
+                x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
+        if pr.layer != "back" or p["name"] in SOLID_BACK:
+            put(x - w / 2, x + w / 2)
+        elif pr.solid_width:
+            put(x - pr.solid_width * ps / 2, x + pr.solid_width * ps / 2)
+        placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                           seed=seed + len(placed) * 17))
+    for p in early:
+        place_prop(p)
     # people next, around the focal thing and facing it — each one's REAL
     # width (a sleeper is five heads long) kept clear of the fire and of
     # each other. The judge's first note on the first film: "sleepers are
@@ -524,66 +600,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # goes under whoever is lying down
     stirrer = next((f for f in figs if f["action"] == "stir"), None)
     sleeper = next((f for f in figs if f["pose"] == "lie"), None)
-    rest = [p for p in pl if p is not focal]
-    for p in rest:
-        pr, ps, py, w = prop_geom(p)
-        if p.get("at"):
-            x = W * SLOTS[p["at"]]
-        elif sleeper and p["name"] in ("bedroll", "bed") and not sleeper.get("_bed"):
-            # under the sleeper, centred on the body (head to feet), and
-            # exempt from the crowding check — it is meant to be under them
-            size = people.WHO[sleeper["who"]]["size"]
-            R = people.R0 * s * size
-            d = 1 if sleeper["facing"] == "right" else -1
-            lo, hi = figure_extent("lie", R)
-            x = sleeper["x"] + d * (lo + hi) / 2
-            py = sleeper["y"] - 4 * s
-            ps = s * size             # a child's bed is a child's size
-            sleeper["_bed"] = True
-            put(x - pr.width * ps / 2, x + pr.width * ps / 2)
-            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
-                               seed=seed + len(placed) * 17, under=figs.index(sleeper)))
-            continue
-        elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
-            R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
-            # the pot goes on the cook's far side from the fire, and the cook
-            # turns to it — a pot between a person and the flames hides both
-            d = 1 if stirrer["x"] >= focal_x else -1
-            stirrer["facing"] = "right" if d > 0 else "left"
-            x = stirrer["x"] + d * (1.55 * R + (50 if p["name"] == "pot" else 20) * ps)
-            stirrer["_pot"] = True
-            # between the cook's knees on purpose: exempt from the crowding
-            # check against HER — but it still takes room from everything else
-            put(x - w / 2, x + w / 2)
-            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
-                               seed=seed + len(placed) * 17, under=figs.index(stirrer)))
-            continue
-        else:
-            scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
-            tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
-            cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
-                     else [0.4, 0.6, 0.5, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
-            x = None
-            for cnd in cands:
-                if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
-                    continue
-                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2):
-                    x = W * cnd
-                    if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
-                                                      if q["layer"] == "back"):
-                        x = None
-                        continue
-                    break
-            if x is None and (not scenery or pr.solid_width):
-                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE)
-            if x is None:
-                x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
-        if pr.layer != "back" or p["name"] in SOLID_BACK:
-            put(x - w / 2, x + w / 2)
-        elif pr.solid_width:
-            put(x - pr.solid_width * ps / 2, x + pr.solid_width * ps / 2)
-        placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
-                           seed=seed + len(placed) * 17))
+    for p in late:
+        place_prop(p)
     # a small light stands ON a table when there is one (a lamp on the
     # floor under the table was where the crowding check put it)
     tables = [i for i, q in enumerate(placed) if q["name"] == "table"]
