@@ -808,7 +808,22 @@ def main() -> int:
                 _sh.copy2(out, _keep)
             except Exception:                        # noqa: BLE001
                 _keep = None
+            # The cut's ARM travels with the cut. A re-render can land in a
+            # different arm than the first (the first fell back to the current
+            # look, the repair's drafts were verified): ctx was read once, so
+            # invasive-species-price-tag shipped illustrated with "current" in
+            # every verdict row and got the chart repair instead of a redraw
+            # (2026-09-23). Its sidecar is kept and restored with the video.
+            _arm_before = ctx.get("style_arm")
+            _side = _style_arms.sidecar(out)
+            _side_keep = None
+            try:
+                if _side.exists():
+                    _side_keep = _side.read_bytes()
+            except Exception:                        # noqa: BLE001
+                _side_keep = None
             studio_render.render(slug, out, config_path=args.config)
+            ctx["style_arm"] = _style_arms.read(out).get("style_arm") or "current"
             new_gate = _gate.run(out, slug=slug, context=ctx,
                                  will_upload=will_upload)
             _new_score = (new_gate.get("verdict") or {}).get("score")
@@ -833,6 +848,9 @@ def main() -> int:
                       f"— REVERTING to the better cut", flush=True)
                 if _keep and _keep.exists():
                     _sh.move(str(_keep), str(out))
+                    ctx["style_arm"] = _arm_before
+                    if _side_keep is not None:
+                        _side.write_bytes(_side_keep)
                     _gate.log(gate, slug)      # re-assert the kept verdict
                 # ...and the plan that produced the losing cut goes with it,
                 # or the next run locks it in anyway (fusion, 2026-09-16).

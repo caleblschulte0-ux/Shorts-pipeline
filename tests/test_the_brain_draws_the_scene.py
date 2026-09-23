@@ -161,6 +161,15 @@ class TheVerifierRefusesBadScenes(unittest.TestCase):
                                 'fit_readout(cr, f"{rows[0][1]:.2f}", lab, 80, 520)')
         self.assertTrue(any("not 2025's" in p for p in self._problems(code)))
 
+    def test_data_drawn_over_a_number_is_refused(self):
+        """ "text is covered in the hook" held an 83 (coffee, 2026-09-23)."""
+        code = GOOD_MIN.replace(
+            '    host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)\n', "") \
+            .replace('fit_readout(cr, f"{val:.1f}", lab, 80, 520)',
+                     'fit_readout(cr, f"{val:.1f}", lab, 80, 1300)\n'
+                     '    host("point" if u < 0.5 else "cheer", 140 + 60 * u, 1500, 240)')
+        self.assertTrue(any("Data is drawn over" in p for p in self._problems(code)))
+
     def test_a_sticker_mascot_is_refused(self):
         """The rubric: a bit (setup -> action -> payoff) and he MOVES."""
         code = GOOD_MIN.replace('host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)',

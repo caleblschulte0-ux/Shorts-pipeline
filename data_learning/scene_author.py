@@ -173,6 +173,14 @@ def _mispaired(pairs, pts):
     return None
 
 
+def _covered(text_box, body) -> float:
+    """How much of a text box lies under Data's body box (0..1)."""
+    ix = max(0.0, min(text_box[2], body[2]) - max(text_box[0], body[0]))
+    iy = max(0.0, min(text_box[3], body[3]) - max(text_box[1], body[1]))
+    area = (text_box[2] - text_box[0]) * (text_box[3] - text_box[1])
+    return ix * iy / area if area > 0 else 0.0
+
+
 def _overlap(a, b) -> float:
     """Intersection of two (x0, y0, x1, y1) boxes over the smaller one."""
     ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
@@ -361,6 +369,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     low = []
     boxes = []                         # (text, box) visible in THIS frame
     overlaps = []
+    covered = []                       # text Data is drawn on top of
 
     def spy(cr, s, *a, **k):
         texts.append(str(s))
@@ -383,9 +392,18 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         fn.__globals__["text"] = spy
         SS.text = spy
         fn.__globals__["fit_readout"] = ro_spy
+        def host(role, x, fy, h, pace=True):
+            hosts.append((role, x, fy, h))
+            # Where Data can be while he performs: his body, widened by his
+            # walk and lifted by his step when he paces.
+            reach = SS.PACE_AMP if pace else 20.0
+            body = (x - 0.3 * h - reach, fy - h - (SS.STEP_BOB if pace else 20.0),
+                    x + 0.3 * h + reach, fy)
+            for t_, b_ in boxes:              # text drawn BEFORE him, under him
+                if _covered(b_, body) > 0.25:
+                    covered.append(t_)
         try:
-            fn(cr, 3.0 + u * 10, u, rows,
-               lambda role, x, fy, h, pace=True: hosts.append((role, x, fy, h)))
+            fn(cr, 3.0 + u * 10, u, rows, host)
         finally:
             fn.__globals__["text"] = real
             SS.text = real
@@ -419,6 +437,10 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     mis = _mispaired(pairs, pts)
     if mis:
         problems.append(mis)
+    if covered:
+        problems.append(f"Data is drawn over {covered[0]!r} — he stands in front "
+                        f"of text drawn before him; draw the text after him or "
+                        f"keep him clear of it")
     if overlaps:
         a_, b_ = overlaps[0]
         problems.append(f"prints {b_!r} over {a_!r} — two pieces of text overlap "
