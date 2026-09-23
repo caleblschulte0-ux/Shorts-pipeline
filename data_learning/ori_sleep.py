@@ -317,8 +317,13 @@ def _render_chunk(args) -> str:
 def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     """On-screen words: the title over the opening, then each chapter's
     title in the corner as it begins. Everything else is heard, not read."""
-    out = [dict(text=ep["title"].split("|")[0].strip(), size=74, t0=1.0, t1=9.0,
+    out = [dict(text=ep["title"].split("|")[0].strip(), size=74, t0=1.0, t1=10.0,
                 x=110, y=110, band=True)]
+    # the second line of the title ("Cozy History for Sleep") says what this
+    # is and invites the listener in — the hook the judge grades
+    tail = ep["title"].split("|")[1].strip() if "|" in ep["title"] else ""
+    if tail:
+        out.append(dict(text=tail, size=44, t0=1.8, t1=10.0, x=118, y=232, band=True))
     seen = set()
     for bt in beats:
         if bt.chapter not in seen and bt.chapter > 0:

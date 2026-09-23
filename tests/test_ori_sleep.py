@@ -570,6 +570,21 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertIn("Prefer other settings", note)
         self.assertEqual(A._tally_note({}, 0), "")
 
+    def test_the_author_refuses_a_chapter_where_everyone_only_sits(self):
+        import ori_author as A
+        say = " ".join(["the fire burns low and the night goes on"] * 12)
+        places = ["cave_mouth", "grassland", "riverbank", "forest", "cave_inside"]
+        beats = [{"say": say, "scene": {"setting": places[j % 5], "time": "night", "shot": "close",
+                                        "props": ["campfire"],
+                                        "cast": [{"who": "man", "pose": "sit", "action": "idle"}]}}
+                 for j in range(10)]
+        bad = A._chapter_problems(beats, "stone_age", 0, 99999)
+        self.assertTrue(any("everyone idle" in b for b in bad), bad)
+        for j in range(8):
+            beats[j]["scene"]["cast"][0]["action"] = ["warm_hands", "talk", "knap", "sew", "eat", "feed_fire",
+                                                      "look_up", "hug_self"][j]
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999) if "idle" in b], [])
+
     def test_the_author_refuses_a_chapter_that_is_one_picture(self):
         import ori_author as A
         say = " ".join(["the fire burns low and the night goes on"] * 12)

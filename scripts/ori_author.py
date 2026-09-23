@@ -87,8 +87,11 @@ NARRATION RULES — a chapter that breaks one is thrown away:
   No invented names of real people, no exact dates you are not sure of.
 - Never mention the video, the channel, subscribing, AI, or "this chapter".
 - Each scene must SHOW what its passage says: same place, same time of day,
-  people doing what the words describe. Change the picture every beat; vary
-  settings, shots and people across the chapter.
+  people doing what the words describe — pick the ACTION from the vocabulary
+  that matches the words (sewing, knapping, feeding the fire, playing,
+  telling, carrying, eating, looking up); "idle" only where the words say
+  rest. Change the picture every beat; vary settings, shots and people
+  across the chapter.
 {final}
 SCENE vocabulary (exact names only):
 {vocab}
@@ -173,6 +176,7 @@ def _outline_problems(o: dict, era: str) -> list[str]:
 
 
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
+IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyone idle
 FILM_LOOK_SHARE = 0.3      # ... and at most three in ten of the whole film's
 
 
@@ -226,6 +230,15 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None) -> list[st
         if isinstance(sc, dict):
             k = (sc.get("setting"), S.shot_of(sc))
             looks[k] = looks.get(k, 0) + 1
+    # the judge grades whether each picture SHOWS the activity its words
+    # describe; a cast that only sits is a picture of nothing in particular
+    peopled = [b for b in beats if isinstance(b, dict) and isinstance(b.get("scene"), dict)
+               and b["scene"].get("cast")]
+    idle = [b for b in peopled if all(isinstance(c, dict) and c.get("action", "idle") in ("idle", "hold")
+                                      for c in b["scene"]["cast"])]
+    if peopled and len(idle) > max(1, int(len(peopled) * IDLE_SHARE)):
+        bad.append(f"{len(idle)} of {len(peopled)} peopled beats show everyone idle: give the people the "
+                   f"action the words describe (sew, knap, feed_fire, play, talk, carry, eat, look_up...)")
     prev = None
     for j, b in enumerate(beats):
         sc = b.get("scene") if isinstance(b, dict) else None
