@@ -19,9 +19,9 @@ on:
       mode:
         description: 'verify | canary | schedule | all | preview | pro | batch'
         required: true
-        default: 'documentary'
+        default: 'sleep'
         type: choice
-        options: [documentary, verify, canary, schedule, all, preview, pro, batch]
+        options: [sleep, verify, canary, schedule, all, preview, pro, batch]
       batch_max:
         description: 'batch mode: how many stories to render (default 2)'
         required: false
@@ -72,14 +72,13 @@ on:
         description: 'Blender hero Cycles samples (blank = CI default 24; full quality is 32)'
         required: false
         default: ''
-  # THE DOCUMENTARY CADENCE (operator, 2026-09-22: "I want you to be
-  # producing videos reliably that work and look good"). Three episodes a
-  # week, each 8-10 minutes, each judged by the fail-closed showrunner
-  # before it can upload (scripts/post_ori.py, docs/ORI_DOCUMENTARY.md).
-  # The old weekly cron for the pro producer stays retired: it never
-  # produced a publishable cut (docs/ORI_DOCUMENTARY.md, "why").
+  # THE SLEEP-FILM CADENCE (operator, 2026-09-23: "we do like one video like
+  # a week ... that going to sleep niche"). One two-hour film a week, drawn
+  # by the doodle kit, judged by the fail-closed showrunner before it can
+  # upload (scripts/post_ori.py, docs/ORI_DOCUMENTARY.md). Friday 19:00 UTC
+  # so it lands in the US evening. The old pro-producer cron stays retired.
   schedule:
-    - cron: '0 15 * * 1,3,5'
+    - cron: '0 19 * * 5'
 
 permissions:
   contents: write          # persist state/curiosity_posted_log.json
@@ -89,16 +88,17 @@ env:
 
 jobs:
   # ------------------------------------------------------------------
-  # OpenRangeInteractive DOCUMENTARY — the channel's production path.
-  # Author (top the script queue up) -> render -> showrunner -> upload.
-  # Uploads on the cron, and on a dispatch only with enable_publish.
+  # OpenRangeInteractive SLEEP FILM — the channel's production path.
+  # Make sure one script is ready -> render -> showrunner -> upload ->
+  # write next week's script. Uploads on the cron, and on a dispatch only
+  # with enable_publish.
   # ------------------------------------------------------------------
-  documentary:
+  sleep:
     if: >-
       github.event_name == 'schedule' ||
-      (github.event_name == 'workflow_dispatch' && inputs.mode == 'documentary')
+      (github.event_name == 'workflow_dispatch' && inputs.mode == 'sleep')
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 355
     concurrency:
       group: curiosity-longform
       cancel-in-progress: false
@@ -133,52 +133,52 @@ jobs:
       - name: Install deps
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -q ffmpeg
+          # libcairo2-dev + pkg-config: pycairo draws every frame (data_learning/doodle)
+          sudo apt-get install -y -q ffmpeg libcairo2-dev pkg-config
           pip install --upgrade pip
-          pip install -r requirements.txt -r data_learning/requirements.txt
+          pip install -r requirements.txt -r data_learning/requirements.txt pycairo
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
             && echo "claude CLI installed" \
             || echo "::warning::claude CLI install failed — judge falls back to Gemini"
       - name: Cache Kokoro TTS models (~350MB)
-        id: cache-kokoro-doc
+        id: cache-kokoro-sleep
         uses: actions/cache@v4
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
       - name: Download Kokoro TTS models if cache miss
-        if: steps.cache-kokoro-doc.outputs.cache-hit != 'true'
+        if: steps.cache-kokoro-sleep.outputs.cache-hit != 'true'
         run: |
           mkdir -p kokoro_models
           curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
             "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
           curl -fsSL -o kokoro_models/voices-v1.0.bin \
             "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
-      - name: Cache music library
+      - name: Cache sleep music
         uses: actions/cache@v4
         with:
-          path: data_learning/music/
-          key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
-      - name: Fetch music library
-        run: python3 scripts/fetch_music.py
-      - name: Keep the script queue stocked
+          path: data_learning/music/sleep/
+          key: music-sleep-${{ hashFiles('scripts/fetch_music.py') }}
+      - name: Fetch sleep music
+        run: python3 scripts/fetch_music.py --only sleep
+      - name: Make sure one script is ready
         continue-on-error: true
-        timeout-minutes: 30
+        timeout-minutes: 110
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python scripts/ori_author.py
+        run: python scripts/ori_author.py --if-empty
       - name: Render, judge, publish
+        timeout-minutes: 230
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           YOUTUBE_EXPECTED_CHANNEL: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL || 'OpenRangeInteractive' }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          # ~30 sampled frames a film, twice a Short's; a timeout is still a HOLD
-          SHOWRUNNER_TIMEOUT: '1500'
+          # ~50 sampled frames of a two-hour film; a timeout is still a HOLD
+          SHOWRUNNER_TIMEOUT: '1800'
         run: |
           ARGS=""
           SLUG="$(echo "${{ inputs.slugs }}" | awk '{print $1}')"
@@ -194,7 +194,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ori-documentary-${{ github.run_id }}
+          name: ori-sleep-${{ github.run_id }}
           path: |
             output/ori_*.mp4
             output/ori_*.jpg
@@ -204,6 +204,15 @@ jobs:
             output/ori_*.showrunner.json
           if-no-files-found: ignore
           retention-days: 30
+      - name: Write next week's script
+        if: always()
+        continue-on-error: true
+        timeout-minutes: 100
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python scripts/ori_author.py
       - name: Persist posted log + new scripts
         if: always()
         env:
@@ -211,7 +220,7 @@ jobs:
           CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
           bash scripts/ci_commit_state.sh \
-            "curiosity: documentary log + scripts [skip ci]" \
+            "curiosity: sleep film log + scripts [skip ci]" \
             state/curiosity_posted_log.json state/ori_pending.json \
             state/showrunner_verdicts.jsonl data_learning/ori_episodes
 
@@ -245,9 +254,9 @@ jobs:
 
   curiosity:
     needs: plan
-    # the pro/legacy paths are manual-only now; the cron runs `documentary`
+    # the pro/legacy paths are manual-only now; the cron runs `sleep`
     if: >-
-      github.event_name == 'workflow_dispatch' && inputs.mode != 'documentary'
+      github.event_name == 'workflow_dispatch' && inputs.mode != 'sleep'
     runs-on: ubuntu-latest
     # preview renders the PREMIUM cut (all Cycles heroes) on GitHub's own
     # infra — independent of any local session. 335 min sits safely under

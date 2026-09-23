@@ -1,0 +1,345 @@
+"""OpenRangeInteractive sleep films — the kit, the renderer, the author and
+the publisher, held to what they claim.
+
+Four promises, each a test class:
+
+  * EVERY NAME RESOLVES. A name looked up with a silent default is a
+    capability that does not exist (CLAUDE.md). Every setting, prop, pose,
+    action, item, mood and person the validator accepts is drawn here, and
+    every name it refuses is refused by name.
+  * MOTION IS MEASURED, NOT ASSERTED. The validator says a scene moves
+    enough to read as alive; this renders scenes it accepts and runs the
+    showrunner's OWN cadence probe (`_temporal_evidence`) over them. A scene
+    the validator passes and the probe calls frozen is a lie in the kit.
+  * THE FILM IS WHOLE. A tiny episode renders end to end (with a stand-in
+    voice, so the suite needs no model files): video, audio, captions,
+    chapters and a 1920x1080 thumbnail.
+  * NOTHING UNFINISHED SHIPS. The author drops an episode rather than
+    write a broken one; the publisher's floor and the judge's context are
+    what the gate needs.
+"""
+import json
+import random
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "scripts"))
+
+try:
+    import cairo  # noqa: F401
+    HAVE_CAIRO = True
+except ImportError:                                   # pragma: no cover
+    HAVE_CAIRO = False
+
+needs_cairo = unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+
+
+def _scene(**kw):
+    base = {"setting": "grassland", "time": "night", "weather": "clear", "props": ["campfire"]}
+    base.update(kw)
+    return base
+
+
+@needs_cairo
+class EveryNameResolves(unittest.TestCase):
+    def setUp(self):
+        from data_learning.doodle import people, props, scene, settings
+        self.P, self.PR, self.S, self.ST = people, props, scene, settings
+
+    def _draw(self, spec, era, t=1.3):
+        sc = self.S.Scene(spec, era, 5)
+        sc.frame(t)
+        sc.frame(t + 0.5)
+        return sc
+
+    def test_every_setting_draws_at_every_time(self):
+        for name, st in self.ST.SETTINGS.items():
+            for era in st.eras:
+                for time in self.ST.TIMES:
+                    self._draw(_scene(setting=name, time=time, props=["hearth" if era == "medieval" else "campfire"],
+                                      shot="close", weather="clear" if st.interior else "rain"), era)
+
+    def test_every_weather_draws(self):
+        for w in self.ST.WEATHER:
+            self._draw(_scene(weather=w, props=["campfire"], shot="close"), "stone_age")
+
+    def test_every_prop_draws_in_every_era_it_claims(self):
+        for name, pr in self.PR.PROPS.items():
+            for era in pr.eras:
+                self._draw(_scene(props=[name], setting="riverbank"), era)
+
+    def test_every_action_draws_in_every_pose_it_allows(self):
+        for act, cfg in self.P.ACTIONS.items():
+            for pose in cfg["poses"]:
+                for who in ("man", "girl"):
+                    self._draw(_scene(setting="riverbank", props=[],
+                                      cast=[{"who": who, "pose": pose, "action": act}]), "medieval")
+
+    def test_every_item_mood_and_person_draws(self):
+        for item in self.P.ITEMS:
+            self._draw(_scene(setting="riverbank", props=[],
+                              cast=[{"who": "woman", "pose": "stand", "action": "hold", "item": item}]),
+                       "stone_age")
+        for mood in self.P.MOODS:
+            for who in self.P.WHO:
+                self._draw(_scene(cast=[{"who": who, "pose": "sit", "action": "talk", "mood": mood}]),
+                           "stone_age")
+
+    def test_unknown_names_are_refused_by_name(self):
+        v = self.S.validate
+        for bad, word in (({"setting": "moon_base"}, "moon_base"), ({"time": "noon"}, "noon"),
+                          ({"props": ["laser"]}, "laser"),
+                          ({"cast": [{"who": "robot", "pose": "stand", "action": "idle"}]}, "robot"),
+                          ({"cast": [{"who": "man", "pose": "fly", "action": "idle"}]}, "fly"),
+                          ({"cast": [{"who": "man", "pose": "stand", "action": "juggle"}]}, "juggle"),
+                          ({"cast": [{"who": "man", "pose": "stand", "action": "idle", "item": "phone"}]},
+                           "phone")):
+            errs = v(_scene(**bad), "stone_age")
+            self.assertTrue(any(word in e for e in errs), (bad, errs))
+
+    def test_an_action_a_pose_cannot_do_is_refused(self):
+        errs = self.S.validate(_scene(cast=[{"who": "man", "pose": "lie", "action": "chop"}]), "stone_age")
+        self.assertTrue(any("cannot 'chop'" in e for e in errs), errs)
+
+    def test_another_eras_things_are_refused(self):
+        self.assertTrue(self.S.validate(_scene(props=["cottage", "campfire"]), "stone_age"))
+        self.assertTrue(self.S.validate(_scene(props=["mammoth", "campfire"]), "medieval"))
+        self.assertTrue(self.S.validate(_scene(setting="cave_inside"), "medieval"))
+
+    def test_a_still_scene_is_refused(self):
+        errs = self.S.validate({"setting": "grassland", "time": "day", "weather": "clear",
+                                "props": ["tree"]}, "stone_age")
+        self.assertTrue(any("moves enough" in e for e in errs), errs)
+        # a fire at noon is a small orange shape on bright grass: not enough alone
+        self.assertTrue(self.S.validate({"setting": "grassland", "time": "day", "props": ["campfire"]},
+                                        "stone_age"))
+
+    def test_the_vocabulary_an_author_is_shown_only_names_what_draws(self):
+        import re
+        for era in self.S.ERAS:
+            voc = self.S.vocabulary(era)
+            sets = re.search(r"setting: one of ([^(]+)\(", voc).group(1)
+            for name in [x.strip() for x in sets.split(",") if x.strip()]:
+                fire = "hearth" if era == "medieval" else "campfire"
+                self.assertEqual(self.S.validate(_scene(setting=name, props=[fire], shot="close"), era),
+                                 [], name)
+            props = re.search(r"props: 0-\d+ of ([^(]+)\(", voc).group(1)
+            for name in [x.strip() for x in props.split(",") if x.strip()]:
+                self.assertIn(era, self.PR.PROPS[name].eras)
+
+
+@needs_cairo
+class MotionIsMeasuredWithTheGatesOwnProbe(unittest.TestCase):
+    """Renders accepted scenes and asks the showrunner's cadence probe. The
+    phase-1 ceilings are 45% held frames and a 45-frame held run; a single
+    scene is held to a stricter 45% so a film made of them has margin."""
+
+    @staticmethod
+    def _probe(spec, era, seconds=4.0, seed=3):
+        import cairo
+        import showrunner_review as SR
+        from data_learning.doodle import scene as S
+        sc = S.Scene(spec, era, seed)
+        surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 1920, 1080)
+        with tempfile.TemporaryDirectory() as td:
+            mp4 = Path(td) / "s.mp4"
+            p = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgr0",
+                                  "-s", "1920x1080", "-r", "24", "-i", "-", "-c:v", "libx264", "-preset",
+                                  "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", str(mp4)],
+                                 stdin=subprocess.PIPE)
+            for i in range(int(seconds * 24)):
+                sc.frame(i / 24, surf)
+                p.stdin.write(bytes(surf.get_data()))
+            p.stdin.close()
+            p.wait()
+            return SR._temporal_evidence(mp4, Path(td))
+
+    def _assert_alive(self, spec, era):
+        ev = self._probe(spec, era)
+        self.assertTrue(ev["measured"], ev)
+        self.assertLessEqual(ev["duplicate_ratio"], 0.45, (spec, ev))
+        self.assertLessEqual(ev["max_dup_run"], 45, (spec, ev))
+
+    def test_the_staple_scenes_are_alive(self):
+        for era, spec in (
+            ("stone_age", {"setting": "cave_mouth", "time": "night", "cast": [
+                {"who": "man", "pose": "sit", "action": "warm_hands"},
+                {"who": "woman", "pose": "sit", "action": "stir"}], "props": ["campfire", "pot"]}),
+            ("medieval", {"setting": "cottage_inside", "time": "night", "cast": [
+                {"who": "old_woman", "pose": "sit_on", "action": "sew"}], "props": ["hearth", "table"]}),
+            ("stone_age", {"setting": "riverbank", "time": "night", "shot": "wide", "props": ["canoe"]}),
+            ("medieval", {"setting": "field", "time": "day", "weather": "rain", "shot": "wide"}),
+            ("stone_age", {"setting": "grassland", "time": "day", "shot": "close",
+                           "cast": [{"who": "man", "pose": "stand", "action": "chop"}], "props": ["woodpile"]}),
+        ):
+            self.assertEqual(__import__("data_learning.doodle.scene", fromlist=["x"]).validate(spec, era), [])
+            self._assert_alive(spec, era)
+
+    def test_random_accepted_scenes_are_alive(self):
+        from data_learning.doodle import people as P, props as PR, scene as S, settings as ST
+        r = random.Random(20260923)
+        checked = 0
+        while checked < 6:
+            era = r.choice(S.ERAS)
+            setting = r.choice([k for k, v in ST.SETTINGS.items() if era in v.eras])
+            spec = {"setting": setting, "time": r.choice(ST.TIMES),
+                    "weather": "clear" if ST.SETTINGS[setting].interior else r.choice(ST.WEATHER),
+                    "shot": r.choice(S.SHOTS),
+                    "props": r.sample([k for k, v in PR.PROPS.items() if era in v.eras], r.choice([1, 2, 3])),
+                    "cast": []}
+            for _ in range(r.choice([0, 1, 2])):
+                act = r.choice(list(P.ACTIONS))
+                spec["cast"].append({"who": r.choice(list(P.WHO)), "pose": r.choice(P.ACTIONS[act]["poses"]),
+                                     "action": act})
+            if S.validate(spec, era):
+                continue
+            checked += 1
+            self._assert_alive(spec, era)
+
+
+def _episode(chapters=8, beats=3):
+    say = ("The fire has burned low now, and the families gather close to its warmth. "
+           "Somebody feeds it one more branch, slowly, and the sparks rise into the dark sky.")
+    scenes = [
+        {"setting": "cave_mouth", "time": "dusk", "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}],
+         "props": ["campfire"]},
+        {"setting": "riverbank", "time": "dusk", "cast": [{"who": "woman", "pose": "sit", "action": "fish"}],
+         "props": ["reeds"]},
+        {"setting": "cave_inside", "time": "night", "cast": [{"who": "child", "pose": "lie", "action": "sleep"}],
+         "props": ["campfire"]},
+    ]
+    return {"slug": "a-test-night", "title": "What Did Early Humans Do at Night? | Cozy History for Sleep",
+            "thumbnail_text": "NO FIRE?", "era": "stone_age", "description": "A calm night.",
+            "thumbnail_scene": {"setting": "cave_mouth", "time": "night",
+                                "cast": [{"who": "man", "pose": "crouch", "action": "warm_hands",
+                                          "mood": "worried"}], "props": ["campfire"]},
+            "tags": ["history for sleep"],
+            "chapters": [{"title": f"Part {i + 1}", "beats": [{"say": say, "scene": scenes[(i + j) % 3]}
+                                                             for j in range(beats)]}
+                         for i in range(chapters)]}
+
+
+class FakeVoice:
+    """A quiet tone as long as the sentence would take to say — the render
+    path without the Kokoro model files."""
+    def say(self, text):
+        import numpy as np
+        n = int(24000 * max(0.4, len(text) * 0.012))
+        return (0.1 * np.sin(np.arange(n) * 2 * np.pi * 220 / 24000)).astype(np.float32)
+
+
+class TheEpisodeContract(unittest.TestCase):
+    def test_a_short_script_is_refused_for_length(self):
+        from data_learning import ori_sleep as OS
+        bad = OS.validate(_episode())
+        self.assertTrue(any("narrated words" in b for b in bad), bad)
+        self.assertEqual([b for b in bad if "narrated words" not in b], [])
+
+    def test_a_broken_scene_names_its_beat(self):
+        from data_learning import ori_sleep as OS
+        ep = _episode()
+        ep["chapters"][2]["beats"][1]["scene"] = {"setting": "moon", "time": "night"}
+        self.assertTrue(any(b.startswith("chapter 3 beat 2 scene") for b in OS.validate(ep)))
+
+    def test_sentences_split_where_a_voice_breathes(self):
+        from data_learning import ori_sleep as OS
+        self.assertEqual(OS.sentences("One. Two? \"Three!\" four is lower. Five."),
+                         ["One.", "Two?", "\"Three!\" four is lower.", "Five."])
+
+
+@needs_cairo
+class TheFilmIsWhole(unittest.TestCase):
+    def test_a_short_render_has_every_part(self):
+        from PIL import Image
+        from data_learning import ori_sleep as OS
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "ori_test.mp4"
+            meta = OS.render(_episode(), out, max_seconds=9, workers=2, voice=FakeVoice())
+            self.assertTrue(out.exists())
+            self.assertGreater(meta["duration"], 9)
+            self.assertEqual(meta["chapters"][0]["t"], 0.0)
+            self.assertTrue(out.with_suffix(".srt").read_text().startswith("1\n00:00:01,500 --> "))
+            with Image.open(out.with_suffix(".jpg")) as im:
+                self.assertEqual(im.size, (1920, 1080))
+            json.loads(out.with_suffix(".meta.json").read_text())
+            streams = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,width,height",
+                                      "-of", "json", str(out)], capture_output=True, text=True).stdout
+            kinds = {s["codec_type"] for s in json.loads(streams)["streams"]}
+            self.assertEqual(kinds, {"video", "audio"})
+
+
+class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
+    def _fake_ask(self, chapter_words=110, broken_chapter=None):
+        from data_learning.doodle import scene as S  # noqa: F401
+        calls = {"n": 0}
+        say = " ".join(["gentle"] * chapter_words)
+
+        def ask(system, user):
+            calls["n"] += 1
+            if user.startswith("Plan one episode"):
+                return json.dumps({
+                    "slug": "a-quiet-stone-age-night", "title": "What Did Early Humans Do at Night? | Cozy History for Sleep",
+                    "thumbnail_text": "NO FIRE?", "description": "Calm.", "tags": ["history for sleep"],
+                    "thumbnail_scene": {"setting": "cave_mouth", "time": "night", "props": ["campfire"]},
+                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(13)]})
+            n = int(user.split("Chapter ")[1].split(" of")[0])
+            scene = {"setting": "cave_mouth", "time": "night", "props": ["campfire"]}
+            if broken_chapter == n:
+                scene = {"setting": "spaceship", "time": "night"}
+            return json.dumps({"beats": [{"say": say, "scene": scene} for _ in range(9)]})
+        return ask, calls
+
+    def test_a_valid_book_of_chapters_becomes_an_episode(self):
+        import ori_author
+        ask, calls = self._fake_ask()
+        ep = ori_author.author("What did early humans do at night?", "stone_age", ask=ask)
+        self.assertIsNotNone(ep)
+        self.assertEqual(len(ep["chapters"]), 13)
+        self.assertEqual(calls["n"], 14)
+        from data_learning import ori_sleep as OS
+        self.assertEqual(OS.validate(ep), [])
+
+    def test_a_chapter_that_stays_broken_sinks_the_episode(self):
+        import ori_author
+        ask, calls = self._fake_ask(broken_chapter=5)
+        self.assertIsNone(ori_author.author("x", "stone_age", ask=ask))
+        self.assertEqual(calls["n"], 1 + 4 + 2)     # outline, four good chapters, two tries at the fifth
+
+
+class ThePublisherGivesTheGateWhatItNeeds(unittest.TestCase):
+    def test_the_judge_context_fits_and_says_sleep(self):
+        import post_ori
+        ep = _episode(chapters=15, beats=12)
+        ctx = post_ori.judge_context(ep, {"duration": 7200, "chapters": [{"t": 0, "label": "x"}]})
+        self.assertEqual(ctx["format"], "sleep")
+        self.assertLess(len(json.dumps(ctx, indent=0)), 3000 + 1500)
+        import showrunner_review as SR
+        d = SR._format_directive(ctx)
+        self.assertIn("SLEEP FILM", d)
+        self.assertIn("mascot=4", d)
+
+    def test_the_floor_refuses_a_short_film(self):
+        import post_ori
+        with tempfile.TemporaryDirectory() as td:
+            out = Path(td) / "x.mp4"
+            out.write_bytes(b"0")
+            bad = post_ori.technical_floor(out, {"duration": 600, "chapters": []}, {"min_seconds": 5400})
+        self.assertTrue(any("sleep-film floor" in b for b in bad))
+        self.assertTrue(any("thumbnail" in b for b in bad))
+
+    def test_the_description_says_what_is_true(self):
+        import post_ori
+        d = post_ori.description(_episode(), {"chapters": [{"t": 0, "label": "a"}, {"t": 600, "label": "b"},
+                                                           {"t": 1200, "label": "c"}]})
+        self.assertIn("no AI-generated images", d)
+        self.assertIn("Kevin MacLeod", d)
+        self.assertIn("0:00 a", d)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -70,20 +70,26 @@ STRONG_ACTIONS = ("chop", "wave")
 
 
 def _fire_strength(name, time, shot, interior):
-    dark = interior or time == "night"
+    """Measured 2026-09-23 with the real probe (4 s clips, the fire alone):
+    campfire night close 0.04, dusk close 0.17, night wide 0.39, dusk wide
+    0.44, inside a cave 0.00/0.16; hearth 0.06/0.24; cauldron close 0.08-0.10,
+    wide 0.45; torch 0.29-0.54; candle 0.26. Daylight fires: not measured
+    alive. 2 is <= 0.30 held frames alone; 1 is a helper."""
+    dark = interior or time in ("night", "dusk")
     if name == "hearth":
         return 2
     if name == "campfire":
-        return 2 if dark else (1 if time == "dusk" else 0) if shot == "wide" else \
-            (2 if dark or time == "dusk" else 0)
+        if not dark:
+            return 0
+        return 2 if (shot == "close" or interior) else 1
     if name == "cauldron":
-        if shot == "close":
-            return 2 if (dark or time == "dusk") else 1
-        return 1 if (dark or time == "dusk") else 0
-    if name in ("torch",):
-        return 2 if shot == "close" and (dark or time != "dusk") else 1
-    if name == "candle":
+        if not dark:
+            return 0
+        return 2 if shot == "close" else 1
+    if name == "torch":
         return 1
+    if name == "candle":
+        return 2
     return 0
 
 
@@ -178,8 +184,8 @@ def validate(spec, era: str) -> list[str]:
             bad.append(f"props[{i}].at {p.get('at')!r} is not one of {sorted(SLOTS)}")
     if not bad and not is_living(spec):
         bad.append("nothing in this scene moves enough to read as alive: add a campfire or "
-                   "cauldron at dusk or night, a hearth or a torch, a river/lake/sea setting, rain, "
-                   "or (in daylight, close shot) someone walking, chopping or waving")
+                   "cauldron at dusk or night (close shot), a hearth or candle, a river/lake/sea "
+                   "setting, rain, or (in daylight, close shot) someone walking, chopping or waving")
     return bad
 
 
@@ -346,12 +352,12 @@ class Scene:
         cr.set_source_rgb(*self.ambient_light)
         cr.paint()
         cr.set_operator(cairo.OPERATOR_ADD)
-        fl = 0.74 + 0.52 * level / (self.LIGHT_LEVELS - 1)
+        fl = 0.68 + 0.64 * level / (self.LIGHT_LEVELS - 1)
         for (x, y, k, sd) in self.lights:
             rad = 560 * k * fl
             g = cairo.RadialGradient(x, y, 0, x, y, rad)
-            g.add_color_stop_rgba(0, 0.62 * fl, 0.42 * fl, 0.22 * fl, 1.0)
-            g.add_color_stop_rgba(0.4, 0.46 * fl, 0.3 * fl, 0.15 * fl, 1.0)
+            g.add_color_stop_rgba(0, 0.48 * fl, 0.34 * fl, 0.19 * fl, 1.0)
+            g.add_color_stop_rgba(0.45, 0.4 * fl, 0.27 * fl, 0.14 * fl, 1.0)
             g.add_color_stop_rgba(1, 0.0, 0.0, 0.0, 1.0)
             cr.set_source(g)
             cr.arc(x, y, rad, 0, 2 * math.pi)
@@ -362,7 +368,7 @@ class Scene:
 
     def _light(self, cr, t):
         if self.lights:
-            u = (ink.vnoise(t, 9.0, self.seed + 3) + 1) / 2
+            u = (ink.vnoise(t, 8.0, self.seed + 3) + 1) / 2
             level = max(0, min(self.LIGHT_LEVELS - 1, int(u * self.LIGHT_LEVELS)))
         else:
             level = 0
@@ -404,3 +410,34 @@ class Scene:
         self.draw(cr, t)
         surf.flush()
         return surf
+
+
+# ------------------------------------------------------------------ for authors
+def vocabulary(era: str) -> str:
+    """Every name a scene may use in `era`, generated from the kit itself so
+    an author's brief can never promise a picture the kit cannot draw."""
+    sets = [k for k, v in SETTINGS.items() if era in v.eras]
+    prs = [k for k, v in PROPS.items() if era in v.eras]
+    living = [k for k in prs if PROPS[k].living]
+    acts = "; ".join(f"{a} ({'/'.join(v['poses'])})" for a, v in people.ACTIONS.items())
+    return "\n".join([
+        f"setting: one of {', '.join(sets)} (interiors: "
+        f"{', '.join(k for k in sets if SETTINGS[k].interior)} — weather must be clear)",
+        f"time: one of {', '.join(TIMES)}",
+        f"weather: one of {', '.join(WEATHER)}",
+        f"shot: close (1-2 people, big) or wide (3-4 people or a landscape)",
+        f"cast: 0-{MAX_CAST} people, each {{who, pose, action, mood, item?, at?}}",
+        f"  who: {', '.join(people.WHO)}",
+        f"  pose: {', '.join(people.POSES)}",
+        f"  action (poses it works in): {acts}",
+        f"  mood: {', '.join(people.MOODS)}",
+        f"  item (optional, held): {', '.join(i for i in people.ITEMS if i != 'none')}",
+        f"  at (optional): {', '.join(SLOTS)}",
+        f"props: 0-{MAX_PROPS} of {', '.join(prs)} (living: {', '.join(living)})",
+        "EVERY scene must move enough to read as alive. It passes if it has ANY of: "
+        "a river/lake/seashore setting; rain; a hearth or a candle (interiors); a "
+        "campfire or cauldron at dusk or night in a CLOSE shot, or a campfire inside a "
+        "cave or hut; or, in daylight close shots, someone walking, chopping or waving. "
+        "Helpers that count for half: a torch, a wide-shot campfire or cauldron at "
+        "dusk/night. A daytime fire alone does NOT pass.",
+    ])

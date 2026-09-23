@@ -69,14 +69,15 @@ ON_BUT_GATED = {
                     "showrunner (2026-08-25 ruling)",
     # Operator, 2026-09-22, of the OpenRangeInteractive long-form channel:
     # "I want you to be producing videos reliably that work and look good."
-    # It publishes three documentaries a week from its OWN cron, outside the
+    # And 2026-09-23: "one video like a week ... that going to sleep niche".
+    # It publishes one two-hour sleep film a week from its OWN cron, outside the
     # registry exactly as long-form does: its registry entry still describes
     # the retired pro-producer queue and stays disabled so the Shorts
     # machinery (Phase A/B plans, the daily alarm, ChatGPT stocking) does
     # not start supervising a channel it has no part in. What makes a cron
     # upload acceptable is the gate, held below.
-    "curiosity.yml": "ORI documentaries publish 3/week, fail-closed behind "
-                     "the showrunner (2026-09-22 ruling)",
+    "curiosity.yml": "ORI sleep films publish 1/week, fail-closed behind "
+                     "the showrunner (2026-09-22/23 rulings)",
 }
 
 
@@ -137,17 +138,17 @@ class TestAnOffChannelHasNoPublishingCron(unittest.TestCase):
 
     def test_curiosity_cron_cannot_set_the_publish_flag(self):
         """The retired pro/legacy paths still need the explicit dispatch
-        flag; only the documentary path publishes on the cron."""
+        flag; only the sleep-film path publishes on the cron."""
         src = body("curiosity.yml")
         self.assertIn("CURIOSITY_PUBLISH_ENABLED", src)
         self.assertIn("inputs.enable_publish", src,
                       "publishing must hang off a dispatch input a cron "
                       "cannot supply")
 
-    def test_ori_documentary_publishes_only_behind_the_fail_closed_gate(self):
+    def test_ori_sleep_film_publishes_only_behind_the_fail_closed_gate(self):
         src = body("curiosity.yml")
         self.assertRegex(src, r"no CLAUDE_CODE_OAUTH_TOKEN and no GEMINI_API_KEY",
-                         "the documentary job must preflight the judge")
+                         "the sleep job must preflight the judge")
         self.assertIn("scripts/post_ori.py", src)
         pub = (ROOT / "scripts" / "post_ori.py").read_text()
         self.assertLess(pub.index("showrunner_gate.run("),

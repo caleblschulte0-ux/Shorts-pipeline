@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Render, judge and publish the next OpenRangeInteractive documentary.
+"""Render, judge and publish the next OpenRangeInteractive sleep film.
 
 The whole path for one episode, and every gate is fail-closed:
 
   1. stop if the kill switch (`state/curiosity_kill_switch`) or PAUSED exists
   2. settle any upload a previous run left unconfirmed (never guess)
   3. the next unposted, VALID episode script in `data_learning/ori_episodes/`
-  4. render it (`data_learning/ori_documentary.py`)
-  5. technical floor: long enough for mid-rolls, a real thumbnail, footage
-     found for nearly every shot
+  4. render it (`data_learning/ori_sleep.py`)
+  5. technical floor: long enough to be a sleep film, a real thumbnail
   6. THE SHOWRUNNER (`shared/showrunner_gate.run`) watches it — a BLOCK,
      no verdict, an infra error or a timeout all HOLD on a publish run
   7. leak-scan the public payload (`publish_security.scan_upload`)
@@ -16,7 +15,7 @@ The whole path for one episode, and every gate is fail-closed:
 
     python scripts/post_ori.py --dry-run          # render + judge, no upload
     python scripts/post_ori.py                    # the cron path
-    python scripts/post_ori.py --slug how-deep-is-the-ocean
+    python scripts/post_ori.py --slug what-did-early-humans-do-at-night
 """
 from __future__ import annotations
 
@@ -30,7 +29,7 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / "scripts"))
 
-from data_learning import ori_documentary as OD      # noqa: E402
+from data_learning import ori_sleep as OS      # noqa: E402
 
 CONFIG = REPO / "data_learning" / "ori.config.json"
 LOG = REPO / "state" / "curiosity_posted_log.json"
@@ -42,7 +41,10 @@ CHANNEL = "curiosity"
 ATTRIBUTION = ("Music by Kevin MacLeod (incompetech.com), licensed under "
                "Creative Commons: By Attribution 4.0 "
                "(creativecommons.org/licenses/by/4.0/)")
-BASE_TAGS = ["documentary", "science", "curiosity", "educational", "facts"]
+BASE_TAGS = ["history for sleep", "sleep story", "relaxing history", "bedtime story",
+             "history", "fall asleep", "cozy"]
+DRAWN = ("Every picture in this film is drawn from scratch for this channel — "
+         "no AI-generated images.")
 
 
 def _ts(sec: float) -> str:
@@ -69,8 +71,7 @@ def description(ep: dict, meta: dict) -> str:
     if ep.get("sources"):
         parts.append("Sources:\n" + "\n".join(
             f"- {s['name']}: {s['url']}" for s in ep["sources"]))
-    parts.append("Footage: Pexels, Pixabay and Mixkit contributors (free "
-                 "licenses).")
+    parts.append(DRAWN)
     parts.append(ATTRIBUTION)
     parts.append(" ".join("#" + t.replace(" ", "") for t in tags(ep)[:5]))
     return "\n\n".join(p for p in parts if p)[:5000]
@@ -87,15 +88,15 @@ def tags(ep: dict) -> list[str]:
 
 def next_episode(explicit: str | None, posted: dict) -> dict | None:
     if explicit:
-        ep = OD.load(explicit)
-        bad = OD.validate(ep)
+        ep = OS.load(explicit)
+        bad = OS.validate(ep)
         if bad:
             raise SystemExit(f"{explicit}: invalid script: {'; '.join(bad)}")
         return ep
     import ori_author
     for slug in ori_author.queue():
         if slug not in posted:
-            return OD.load(slug)
+            return OS.load(slug)
     return None
 
 
@@ -131,9 +132,8 @@ def technical_floor(out: Path, meta: dict, cfg: dict) -> list[str]:
     if not out.exists():
         return ["no rendered video on disk"]
     dur = float(meta.get("duration") or 0)
-    if dur < float(cfg.get("min_seconds", 480)):
-        bad.append(f"{dur:.0f}s is under the {cfg.get('min_seconds')}s "
-                   "long-form floor")
+    if dur < float(cfg.get("min_seconds", 5400)):
+        bad.append(f"{dur:.0f}s is under the {cfg.get('min_seconds')}s sleep-film floor")
     thumb = out.with_suffix(".jpg")
     try:
         from PIL import Image
@@ -142,11 +142,21 @@ def technical_floor(out: Path, meta: dict, cfg: dict) -> list[str]:
                 bad.append(f"thumbnail is {im.size}, not 1920x1080")
     except Exception:                                   # noqa: BLE001
         bad.append("no readable thumbnail")
-    shots = len(meta.get("footage") or []) + len(meta.get("footage_misses") or [])
-    miss = len(meta.get("footage_misses") or []) / max(1, shots)
-    if miss > float(cfg.get("max_footage_miss_ratio", 0.12)):
-        bad.append(f"{miss:.0%} of shots found no footage")
+    if len(meta.get("chapters") or []) < OS.MIN_CHAPTERS:
+        bad.append(f"{len(meta.get('chapters') or [])} chapters rendered (at least {OS.MIN_CHAPTERS})")
     return bad
+
+
+def judge_context(ep: dict, meta: dict) -> dict:
+    """What the showrunner reads beside the frames. Its context window is a
+    few thousand characters, so a two-hour script travels as each chapter's
+    opening lines — enough to check a frame against what is being said."""
+    return {"format": "sleep", "channel": CHANNEL, "aspect": "16:9",
+            "duration_s": meta.get("duration"), "chapters": meta.get("chapters") or [],
+            "title": ep["title"], "era": ep["era"],
+            "hook": ep["chapters"][0]["beats"][0]["say"],
+            "script": [{"chapter": c["title"],
+                        "opening": c["beats"][0]["say"][:180]} for c in ep["chapters"]]}
 
 
 def main() -> int:
@@ -175,20 +185,12 @@ def main() -> int:
     will_upload = not args.dry_run
     out = OUT / f"ori_{slug}.mp4"
     print(f"[ori] episode {slug}: {ep['title']}", flush=True)
-    meta = OD.render(ep, out)
+    meta = OS.render(ep, out)
 
     reasons = technical_floor(out, meta, cfg)
     from shared import showrunner_gate
     gate = showrunner_gate.run(
-        out, slug=f"ori:{slug}", will_upload=will_upload,
-        context={"format": "documentary", "channel": CHANNEL,
-                 "aspect": "16:9", "duration_s": meta.get("duration"),
-                 "chapters": meta.get("chapters") or [],
-                 "title": ep["title"],
-                 "hook": " ".join(b["say"] for b in ep["chapters"][0]["beats"]),
-                 "script": [{"chapter": c["title"],
-                             "narration": " ".join(b["say"] for b in c["beats"])}
-                            for c in ep["chapters"]]})
+        out, slug=f"ori:{slug}", will_upload=will_upload, context=judge_context(ep, meta))
     print(showrunner_gate.log(gate, slug=slug), flush=True)
     if gate.get("blocked"):
         reasons.append("showrunner: " + str(gate.get("reason") or "blocked"))
@@ -224,7 +226,7 @@ def main() -> int:
         (getattr(res, "url", None) or str(res))
     entry = {"url": url, "title": ep["title"], "at": now,
              "publish_at": args.publish_at, "duration": meta.get("duration"),
-             "format": "documentary",
+             "format": "sleep",
              "showrunner_score": (gate.get("verdict") or {}).get("score")}
     _write(PENDING, {"slug": slug, "phase": "uploaded", **entry})
     log["posted"][slug] = entry

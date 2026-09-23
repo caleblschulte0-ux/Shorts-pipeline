@@ -195,16 +195,18 @@ def glow(cr, x, y, r, color, a=1.0):
     cr.fill()
 
 
-def vnoise(t: float, rate: float, seed: int) -> float:
+def vnoise(t: float, rate: float, seed: int, eased: bool = False) -> float:
     """Value noise in [-1, 1]: a fresh random value `rate` times a second,
-    eased between. This is how a flame or firelight really flickers — a new
-    shape every few frames — where a sine wave only sways."""
+    interpolated between. This is how a flame or firelight really flickers —
+    a new shape every few frames — where a sine wave only sways. Linear by
+    default: cosine easing goes flat at every knot, and two frames on a flat
+    spot are two frames the cadence probe rightly calls identical."""
     x = t * rate
     i = math.floor(x)
     f = x - i
     a = random.Random(seed * 1000003 + i).uniform(-1, 1)
     b = random.Random(seed * 1000003 + i + 1).uniform(-1, 1)
-    k = (1 - math.cos(math.pi * f)) / 2
+    k = (1 - math.cos(math.pi * f)) / 2 if eased else f
     return a + (b - a) * k
 
 

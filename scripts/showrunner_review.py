@@ -151,21 +151,36 @@ def _format_directive(ctx: dict) -> str:
             "here, mark decorative_mascot present. If none appears, grade "
             "mascot=4 for correct channel-brand separation. A one-series "
             "growth chart has a scale payoff, not a competitive winner.")
-    if fmt == "documentary":
+    if fmt == "sleep":
         return (
-            "FORMAT = DOCUMENTARY (OpenRangeInteractive long-form: 8-10 "
-            "minutes, 16:9, narration over REAL stock footage with chapter "
-            "cards and on-screen stat callouts). There is no mascot in this "
-            "format: if none appears, grade mascot=4 for correct channel "
-            "separation; if one appears, mark decorative_mascot present. "
-            "Grade data_demo by whether each shot SHOWS what the narration "
-            "is saying at that moment (the script is in the context) and "
-            "whether the stat callouts land on the numbers being said. "
-            "junk_imagery is present if footage contradicts or is unrelated "
-            "to the line it plays under, or the same clip repeats. A chapter "
-            "card (chapter number + title over dimmed footage) is a section "
-            "break, not a bare_number_card. dead_air, empty_void and "
-            "unreadable apply exactly as written.")
+            "FORMAT = SLEEP FILM (OpenRangeInteractive long-form: about two "
+            "hours, 16:9, a calm narrated history story people fall asleep "
+            "to, often with the screen face down). Every picture is a "
+            "hand-drawn cartoon scene (round-headed people, ink outlines) "
+            "made by code, one per narrated passage, each dissolving into "
+            "the next; there are no numbers on screen. The rubric applies "
+            "in full; translate its terms to what this audience needs, never "
+            "lower a bar. There is no mascot: if none appears, grade "
+            "mascot=4 for correct channel separation; if one appears, mark "
+            "decorative_mascot present. hook: the opening frames must set "
+            "the place and time and invite the listener in (a title over an "
+            "inviting scene) — a jolt or a blank opening fails it. "
+            "data_demo: grade whether each scene SHOWS what the narration "
+            "says at that moment (the script is in the context): the right "
+            "era and place, the people doing the activity described. "
+            "junk_imagery is present if a scene contradicts or is unrelated "
+            "to its line (wrong era, a modern object, the wrong activity) "
+            "or the same picture repeats back to back. pace: steady is "
+            "correct here — grade whether scenes change at a regular rhythm "
+            "with no abrupt cuts and no long stretch where the picture "
+            "stops living; slowness itself is the format, not a flaw. "
+            "payoff: the ending should wind down (night, rest, a quiet last "
+            "scene), not stop mid-thought. craft: a consistent drawn style, "
+            "readable characters, and nothing broken (detached limbs, props "
+            "drawn through people, clipped figures). bare_number_card "
+            "applies only if a number card appears. dead_air, empty_void "
+            "and unreadable apply exactly as written — night scenes are "
+            "deep blue and firelit, never black.")
     return "Apply the general director rubric exactly as written."
 
 
@@ -361,6 +376,61 @@ def _max_block_diff(a, b, w: int, grid: int = 12) -> float:
 BLOCK_MOTION_THRESH = 6.0
 
 
+def _gray_stream(mp4: Path, fps: int, width: int):
+    """Yield every sampled frame of `mp4` as a flat numpy uint8 gray array,
+    decoded through the SAME filter chain the probes always used
+    (`fps=N,scale=W:-1,format=gray`) but piped as raw bytes instead of
+    written to PNGs and held in Python lists. Holding them was fine for a
+    40-second short; a two-hour long-form is 172,800 frames at 24fps and
+    ran out of memory, which the gate would have read as an unmeasured
+    probe and held forever. Pixel values are identical: the PNGs were
+    lossless copies of these same bytes (`tests/test_showrunner_probe_stream.py`
+    holds the old implementation as the oracle). Returns (w, h) first."""
+    import numpy as np
+    vf = f"fps={fps},scale={width}:-1,format=gray"
+    head = subprocess.run(
+        ["ffmpeg", "-loglevel", "error", "-i", str(mp4), "-vf", vf, "-frames:v", "1",
+         "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, check=True).stdout
+    from PIL import Image
+    import io
+    with Image.open(io.BytesIO(head)) as im:
+        w, h = im.size
+    yield (w, h)
+    proc = subprocess.Popen(
+        ["ffmpeg", "-loglevel", "error", "-i", str(mp4), "-vf", vf, "-f", "rawvideo",
+         "-pix_fmt", "gray", "-"], stdout=subprocess.PIPE)
+    try:
+        n = w * h
+        while True:
+            buf = proc.stdout.read(n)
+            if len(buf) < n:
+                break
+            yield np.frombuffer(buf, dtype=np.uint8)
+    finally:
+        proc.stdout.close()
+        rc = proc.wait()
+    if rc != 0:
+        raise RuntimeError(f"ffmpeg exited {rc} decoding {Path(mp4).name}")
+
+
+def _max_block_diff_np(a, b, w: int, grid: int = 12) -> float:
+    """`_max_block_diff` in numpy, exactly: the same blocks (bw = w//grid,
+    bh = h//grid, as many whole blocks as fit), each block's integer sum of
+    absolute differences divided by its pixel count, the max of those."""
+    import numpy as np
+    h = len(a) // w if w else 0
+    ai = a.astype(np.int32)
+    bi = b.astype(np.int32)
+    if h < grid:
+        return float(np.abs(ai - bi).sum()) / max(1, len(a))
+    bw = max(1, w // grid)
+    bh = max(1, h // grid)
+    rows, cols = h // bh, w // bw
+    d = np.abs(ai[: h * w].reshape(h, w) - bi[: h * w].reshape(h, w))
+    d = d[: rows * bh, : cols * bw].reshape(rows, bh, cols, bw).sum(axis=(1, 3), dtype=np.int64)
+    return float(d.max()) / (bw * bh)
+
+
 def _motion_evidence(mp4: Path, td: Path) -> dict:
     """Objective, code-measured motion facts (NOT a judgement). Samples the whole
     clip at ~3fps and reports the longest near-frozen run (seconds) and the
@@ -369,39 +439,37 @@ def _motion_evidence(mp4: Path, td: Path) -> dict:
     ev = {"longest_static_s": 0.0, "static_at_s": None, "dark_fraction": 0.0,
           "sampled": 0}
     try:
-        from PIL import Image
+        from collections import deque
         fps = 3
-        seq = td / "mv"
-        seq.mkdir(exist_ok=True)
         # 160px (was 96) so a moving mascot registers as motion the way a human
         # sees it — 96px was too coarse and false-flagged a moving closing.
-        subprocess.run(
-            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4),
-             "-vf", f"fps={fps},scale=160:-1,format=gray", str(seq / "m%04d.png")],
-            check=True)
-        imgs = sorted(seq.glob("m*.png"))
-        ev["sampled"] = len(imgs)
-        if len(imgs) < 2:
-            return ev
-        px = [list(Image.open(p).getdata()) for p in imgs]
-        n = len(px)
-        dark = sum(1 for p in px if (sum(p) / len(p)) < 22)
-        ev["dark_fraction"] = round(dark / n, 3)
-        # DEAD AIR = a stretch where NO block changes over ~1s (1s LOOKBACK, not
-        # consecutive frames) so a SMOOTH build reads as motion; only a genuine
-        # static hold registers. Block-max (not a whole-frame mean) so a small
-        # animating region still counts as motion. Also report WHERE it starts.
+        stream = _gray_stream(mp4, fps, 160)
+        w, _h = next(stream)
         lb = fps
+        window: deque = deque(maxlen=lb + 1)
+        n = dark = 0
         run = best = best_end = 0
-        for i in range(lb, n):
-            a, b = px[i], px[i - lb]
-            diff = _max_block_diff(a, b, 160)
-            if diff < BLOCK_MOTION_THRESH:
-                run += 1
-                if run > best:
-                    best, best_end = run, i
-            else:
-                run = 0
+        for i, px in enumerate(stream):
+            n += 1
+            if float(px.sum(dtype="int64")) / len(px) < 22:
+                dark += 1
+            window.append(px)
+            # DEAD AIR = a stretch where NO block changes over ~1s (1s LOOKBACK, not
+            # consecutive frames) so a SMOOTH build reads as motion; only a genuine
+            # static hold registers. Block-max (not a whole-frame mean) so a small
+            # animating region still counts as motion. Also report WHERE it starts.
+            if i >= lb:
+                diff = _max_block_diff_np(window[-1], window[0], w)
+                if diff < BLOCK_MOTION_THRESH:
+                    run += 1
+                    if run > best:
+                        best, best_end = run, i
+                else:
+                    run = 0
+        ev["sampled"] = n
+        if n < 2:
+            return ev
+        ev["dark_fraction"] = round(dark / n, 3)
         ev["longest_static_s"] = round(best / fps, 2)
         if best:
             ev["static_at_s"] = round((best_end - best) / fps, 2)   # run start
@@ -419,37 +487,35 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
     ev = {"sample_fps": 24, "duplicate_ratio": None, "effective_fps": None,
           "max_dup_run": None, "measured": False}
     try:
-        from PIL import Image
         sf = 24
-        seq = td / "tc"
-        seq.mkdir(exist_ok=True)
-        subprocess.run(
-            ["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp4),
-             "-vf", f"fps={sf},scale=192:-1,format=gray", str(seq / "t%05d.png")],
-            check=True)
-        imgs = sorted(seq.glob("t*.png"))
-        if len(imgs) < 3:
-            ev["error"] = f"only {len(imgs)} sampled frames — nothing to measure"
-            return ev
-        px = [list(Image.open(p).getdata()) for p in imgs]
-        n = len(px)
+        stream = _gray_stream(mp4, sf, 192)
+        w, _h = next(stream)
+        prev = None
+        n = 0
         dup = run = maxrun = 0
         run_start = maxrun_start = 0
-        for _i, (a, b) in enumerate(zip(px, px[1:])):
-            # Block-max, not a whole-frame mean: a frame is a DUPLICATE only if
-            # NO block moved. A whole-frame mean diluted a chart that fills part
-            # of the frame down below 0.8 and mislabelled smooth builds as held
-            # (effective_fps ~10 on a genuinely-30fps render). Choppy low-fps
-            # source dup still shows identical blocks -> still caught.
-            if _max_block_diff(a, b, 192) < BLOCK_MOTION_THRESH:
-                dup += 1
-                if run == 0:
-                    run_start = _i
-                run += 1
-                if run > maxrun:
-                    maxrun, maxrun_start = run, run_start
-            else:
-                run = 0
+        for px in stream:
+            if prev is not None:
+                _i = n - 1
+                # Block-max, not a whole-frame mean: a frame is a DUPLICATE only if
+                # NO block moved. A whole-frame mean diluted a chart that fills part
+                # of the frame down below 0.8 and mislabelled smooth builds as held
+                # (effective_fps ~10 on a genuinely-30fps render). Choppy low-fps
+                # source dup still shows identical blocks -> still caught.
+                if _max_block_diff_np(prev, px, w) < BLOCK_MOTION_THRESH:
+                    dup += 1
+                    if run == 0:
+                        run_start = _i
+                    run += 1
+                    if run > maxrun:
+                        maxrun, maxrun_start = run, run_start
+                else:
+                    run = 0
+            prev = px
+            n += 1
+        if n < 3:
+            ev["error"] = f"only {n} sampled frames — nothing to measure"
+            return ev
         pairs = n - 1
         ev["duplicate_ratio"] = round(dup / pairs, 3)
         ev["effective_fps"] = round(sf * (1 - dup / pairs), 1)

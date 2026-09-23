@@ -1,48 +1,71 @@
 {
-  "_doc": "OpenRangeInteractive (curiosity channel) documentary EPISODES — data_learning/ori_documentary.py renders them, scripts/ori_author.py writes them, scripts/post_ori.py publishes them behind the showrunner. docs/ORI_DOCUMENTARY.md.",
-  "min_seconds": 480,
-  "max_footage_miss_ratio": 0.12,
-  "queue_minimum": 3,
-  "topics": [
-    "How deep does the ocean really go?",
-    "What would happen if the Moon disappeared?",
-    "How big is the universe, really?",
-    "What is actually inside a volcano?",
-    "How do airplanes actually stay in the air?",
-    "What happens inside a black hole?",
-    "Why is the Sahara a desert when it used to be green?",
-    "How the Amazon rainforest makes its own rain",
-    "What happens to your body in space",
-    "How deep underground have humans ever gone?",
-    "Why don't skyscrapers fall over?",
-    "What is at the center of the Earth?",
-    "How lightning actually works",
-    "How hurricanes grow into monsters",
-    "What would happen if all the ice on Earth melted?",
-    "How the pyramids of Giza were built",
-    "How fast is the Earth actually moving?",
-    "Why the Dead Sea is dying",
-    "How the Grand Canyon was carved",
-    "What lives in the Antarctic ice?",
-    "How big is the Sun compared to other stars?",
-    "How the Great Barrier Reef is built by tiny animals",
-    "Why do volcanoes form rings of fire?",
-    "What happens when two galaxies collide?",
-    "How cities get their water",
-    "How the internet crosses the ocean floor",
-    "Why the Mariana Trench is so deep",
-    "How glaciers move mountains",
-    "The largest animals that ever lived",
-    "How the human heart pumps for a lifetime",
-    "How honeybees run a colony",
-    "Why do some deserts get colder than the Arctic?",
-    "How tsunamis cross entire oceans",
-    "How the Panama Canal lifts ships over a continent",
-    "What the deepest caves on Earth hide",
-    "How long would it take to travel to the nearest star?",
-    "Why Venus is hotter than Mercury",
-    "How ants build cities underground",
-    "The most extreme weather ever recorded on Earth",
-    "How a tree drinks water forty meters up"
-  ]
+ "_doc": "OpenRangeInteractive sleep films (docs/ORI_DOCUMENTARY.md). One two-hour film a week from curiosity.yml. Topics are tried in order; each names the era the doodle kit draws it in.",
+ "min_seconds": 5400,
+ "queue_minimum": 1,
+ "topics": [
+  {
+   "topic": "What did early humans actually do at night?",
+   "era": "stone_age"
+  },
+  {
+   "topic": "What did medieval peasants do after dark?",
+   "era": "medieval"
+  },
+  {
+   "topic": "How did Ice Age families survive the long winter?",
+   "era": "stone_age"
+  },
+  {
+   "topic": "A whole winter's night in a medieval village",
+   "era": "medieval"
+  },
+  {
+   "topic": "A day and a night in a Stone Age river camp",
+   "era": "stone_age"
+  },
+  {
+   "topic": "What did medieval people eat, from sunrise to bedtime?",
+   "era": "medieval"
+  },
+  {
+   "topic": "How early humans made fire, clothes and tools",
+   "era": "stone_age"
+  },
+  {
+   "topic": "Life inside a medieval cottage",
+   "era": "medieval"
+  },
+  {
+   "topic": "What Stone Age children did all day",
+   "era": "stone_age"
+  },
+  {
+   "topic": "How medieval peasants slept, and why they woke at midnight",
+   "era": "medieval"
+  },
+  {
+   "topic": "How early humans found food through the seasons",
+   "era": "stone_age"
+  },
+  {
+   "topic": "A medieval harvest, from first light to the last candle",
+   "era": "medieval"
+  },
+  {
+   "topic": "The first farmers: life in the first villages",
+   "era": "stone_age"
+  },
+  {
+   "topic": "What medieval people did for fun on long evenings",
+   "era": "medieval"
+  },
+  {
+   "topic": "How early humans lived beside the sea",
+   "era": "stone_age"
+  },
+  {
+   "topic": "A year in the life of a medieval farming family",
+   "era": "medieval"
+  }
+ ]
 }
