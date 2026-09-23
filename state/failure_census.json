@@ -2,188 +2,143 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 19,
+   "count": 17,
    "stories": {
-    "container-ships-floating-cities": 8,
-    "global-ewaste-crisis": 1,
-    "invasive-species-price-tag": 2,
-    "amazon-still-shrinking": 4,
-    "teen-ai-companion-boom": 2,
-    "teen-vaping-crash-nicotine-pouches": 1,
-    "urban-heat-island-redlining": 1
+    "teen-ai-companion-boom": 4,
+    "lyme-disease-undercount": 3,
+    "python-mammal-collapse": 3,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "coffee-price-record": 2,
+    "invasive-species-price-tag": 1,
+    "teen-vaping-crash-nicotine-pouches": 2
    },
    "timestamps": [
-    "2026-09-22T21:15:49+00:00",
-    "2026-09-22T21:22:59+00:00",
-    "2026-09-22T21:22:59+00:00",
-    "2026-09-22T21:30:07+00:00",
-    "2026-09-22T21:30:07+00:00",
-    "2026-09-22T21:37:03+00:00",
-    "2026-09-22T21:49:20+00:00",
-    "2026-09-22T21:56:08+00:00",
-    "2026-09-22T21:56:08+00:00",
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T22:46:17+00:00",
-    "2026-09-22T22:52:00+00:00",
-    "2026-09-22T22:52:00+00:00",
-    "2026-09-22T23:03:18+00:00",
-    "2026-09-22T23:08:32+00:00",
-    "2026-09-22T23:08:32+00:00",
-    "2026-09-22T23:14:00+00:00",
-    "2026-09-22T23:19:38+00:00",
-    "2026-09-22T23:24:32+00:00"
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T18:51:59+00:00",
+    "2026-09-23T18:56:53+00:00",
+    "2026-09-23T19:05:24+00:00",
+    "2026-09-23T19:26:41+00:00",
+    "2026-09-23T19:41:34+00:00",
+    "2026-09-23T20:08:39+00:00"
    ],
    "examples": [
-    "decorative_mascot: In hook@0.3 through seg0:end Data just shuffles along the bar rows. In seg3:start through seg3:end he slides up the column edge, and in seg4:mid he stands on a line. None of it is a",
-    "decorative_mascot: In seg0:start through seg0:end Data just walks along the bar tips. In seg3:start through seg3:end he slides up the side of the column. Neither is a bit tied to the stat. Only seg2 (",
-    "unreadable: In seg1:mid and seg1:end the title is cut off at both edges and reads \"\u00b7gest container ship capacity by ye\". In seg1:mid the mascot covers the \"2008\" tick, which also sits under a faint \"2"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 11,
-   "stories": {
-    "container-ships-floating-cities": 2,
-    "global-ewaste-crisis": 1,
-    "coffee-price-record": 1,
-    "invasive-species-price-tag": 2,
-    "urban-heat-island-redlining": 2,
-    "teen-ai-companion-boom": 2,
-    "teen-vaping-crash-nicotine-pouches": 1
-   },
-   "timestamps": [
-    "2026-09-22T21:15:49+00:00",
-    "2026-09-22T21:37:03+00:00",
-    "2026-09-22T21:44:12+00:00",
-    "2026-09-22T21:49:20+00:00",
-    "2026-09-22T22:03:34+00:00",
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T22:46:17+00:00",
-    "2026-09-22T23:03:18+00:00",
-    "2026-09-22T23:14:00+00:00",
-    "2026-09-22T23:19:38+00:00",
-    "2026-09-22T23:24:32+00:00"
-   ],
-   "examples": [
-    "unreadable: In seg1:mid and seg1:end the title is cut off at both frame edges ('\u00b7rgest container ship capacity by ye'). In seg1:mid a faded '24,000' and '2019' sit over the playhead while the ticker r",
-    "unreadable: In seg4:mid to payoff@-0.4 the speech-bubble tail cuts through 'Met by new mining' so it reads 'new \\ining', and the tops of its letters are clipped by the bubble. In seg2:start and seg3:s",
-    "unreadable: In seg4:start through seg4:end the February 2024 value ($0.7, $1.0, $2.0) is dark grey on a dark navy ground and nearly disappears on a phone. In seg3:start and seg3:mid the '$4.4' inside "
+    "decorative_mascot: In hook@0.3 through seg0:end Data stands on top of the bars, and in seg1:mid and seg1:end he just perches on top of the 72% bubble. In seg3:start and seg3:mid he stands beside the s",
+    "empty_void: In seg3:end most of the frame is empty dark space, with two tiny mascots on hairlines and a dotted rail. In seg1:mid the middle of the frame holds only small bubbles, with large empty area",
+    "unreadable: In seg3:start and seg3:mid the label 'Felt uncomfortable by something the bot said/did 34%' is dark grey on dark grey and disappears. In hook@0.3 and seg0:start the mascot covers 'Use one "
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 10,
+   "count": 7,
    "stories": {
-    "container-ships-floating-cities": 4,
-    "global-ewaste-crisis": 1,
-    "invasive-species-price-tag": 1,
-    "teen-ai-companion-boom": 2,
+    "python-mammal-collapse": 2,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "coffee-price-record": 2,
+    "invasive-species-price-tag": 1
+   },
+   "timestamps": [
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T18:51:59+00:00",
+    "2026-09-23T18:56:53+00:00",
+    "2026-09-23T19:05:24+00:00"
+   ],
+   "examples": [
+    "empty_void: seg2:mid: the top third and the area under the axis are empty dark ground around two thin poles. hook@0.3: the frame is empty below the four paw prints except a faint caption.",
+    "empty_void: In seg2:start and seg3:start to seg3:end, two circles sit in the middle and roughly the top and bottom thirds are empty dark gradient. seg1 leaves the lower third empty too.",
+    "empty_void: In seg2:mid the frame is mostly empty dark gradient: two small stubs sit at the bottom and the whole upper two-thirds is blank. seg1:mid leaves a big blank area left of the 48% bar above t"
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 7,
+   "stories": {
+    "python-mammal-collapse": 1,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "invasive-species-price-tag": 2,
     "teen-vaping-crash-nicotine-pouches": 1,
     "urban-heat-island-redlining": 1
    },
    "timestamps": [
-    "2026-09-22T21:15:49+00:00",
-    "2026-09-22T21:22:59+00:00",
-    "2026-09-22T21:30:07+00:00",
-    "2026-09-22T21:37:03+00:00",
-    "2026-09-22T21:49:20+00:00",
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T22:52:00+00:00",
-    "2026-09-22T23:14:00+00:00",
-    "2026-09-22T23:19:38+00:00",
-    "2026-09-22T23:24:32+00:00"
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T19:05:24+00:00",
+    "2026-09-23T19:13:02+00:00",
+    "2026-09-23T19:34:47+00:00",
+    "2026-09-23T19:46:35+00:00"
    ],
    "examples": [
-    "empty_void: In seg1:mid and seg1:end one thin timeline sits at y\u2248330 and the whole lower half of the frame, from about 370 to 660px, is empty dark gradient.",
-    "empty_void: In seg1:mid and seg1:end the only thing on screen is one thin timeline at y about 330. The whole lower half of the frame, from about y=380 to the caption bar, is empty dark gradient.",
-    "empty_void: seg1:mid and seg1:end: a thin timeline across the middle, with the bottom ~45% of the frame empty dark gradient down to the caption."
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 4,
-   "stories": {
-    "teen-ai-companion-boom": 2,
-    "amazon-still-shrinking": 1,
-    "urban-heat-island-redlining": 1
-   },
-   "timestamps": [
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T23:08:32+00:00",
-    "2026-09-22T23:19:38+00:00",
-    "2026-09-22T23:24:32+00:00"
-   ],
-   "examples": [
-    "dead_air: seg3:end (t=32.92s): a fully empty gradient frame with only the caption 'that should worry'. The narration's key line plays over nothing",
-    "dead_air: The code measured a 30-frame duplicate run at 40.17s, and seg4:start (40.22s) to payoff@-0.4 (45.5s) is the same frame except for tiny tile shifts: about 5s of the closing card held.",
-    "dead_air: The payoff holds the same speech bubble and thermometer grid from seg4:mid (45.5s) through payoff@-0.4 (48.8s), and the hook's bubbles only grow slowly for about 2s. The measured max_dup_run"
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 3,
-   "stories": {
-    "teen-ai-companion-boom": 2,
-    "teen-vaping-crash-nicotine-pouches": 1
-   },
-   "timestamps": [
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T23:14:00+00:00",
-    "2026-09-22T23:24:32+00:00"
-   ],
-   "examples": [
-    "junk_imagery: hook@0.3 to seg0:end: a stock alarm-clock emoji sits on the '52%' bar and in seg1 it is tiled as the unit for a teen-usage waffle; a clock has nothing to do with teens talking to AI comp",
-    "junk_imagery: seg2:mid/end and seg3:start/mid use unrelated stock emoji icons: office/school buildings with clocks stand in for 'the vaping crackdown', and graduation caps stand in for e-cigarette use",
-    "junk_imagery: hook@0.3\u2013seg0:end and seg1: an alarm-clock emoji stands in for 'AI companion'. It has nothing to do with chatbots or friendship, and in seg1:mid it is tiled as the unit of a '72%' grid."
+    "unreadable: The source lines at the bottom of seg0:mid, seg1:start and seg3 are microscopic. 'each = 5%' at hook@0.3 is low-contrast grey on navy. The '19' in the seg3 bubble looks doubled or ghosted.",
+    "unreadable: In seg3:start, seg3:mid and seg3:end the '68.1%' is dark navy text on the saturated blue circle and nearly vanishes at phone distance. In seg1:mid Data's head covers the bottom of the '48%",
+    "unreadable: At seg1:start the number '9 s' and the caption under it are ghosted and blend into the sunset. The caption is illegible on a phone. At hook@2.2 the old '60 s' label is still fading out as "
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
-   "count": 2,
+   "count": 3,
    "stories": {
-    "teen-ai-companion-boom": 2
+    "python-mammal-collapse": 2,
+    "coffee-price-record": 1
    },
    "timestamps": [
-    "2026-09-22T22:11:14+00:00",
-    "2026-09-22T23:24:32+00:00"
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T18:56:53+00:00"
    ],
    "examples": [
-    "bare_number_card: seg2:start: '33%' and '25%' are printed inside two plain circles with captions, just numbers on blobs",
-    "bare_number_card: seg2:start: 33% and 25% are just two circles with numbers in them. Nothing is demonstrated."
+    "bare_number_card: seg3:start to seg3:end shows a teal circle reading '19' next to a grey circle reading '18'. It is two numbers on blobs, and nothing shows that a python is longer than a giraffe is ta",
+    "bare_number_card: seg3:start to seg3:end is two circles reading 19 and 18 on a plain background. seg2:start is the same with 1022 and 343.",
+    "bare_number_card: seg3:start and seg3:mid are just '$4.4' on a pink circle next to '$2' on a grey circle. Only the circle size changes; nothing shows the price doubling."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 1,
+   "median": 3,
    "min": 1,
-   "max": 2
+   "max": 3
   },
   "data_demo": {
-   "median": 1,
+   "median": 3,
    "min": 1,
-   "max": 2
+   "max": 4
   },
   "mascot": {
    "median": 2,
    "min": 1,
-   "max": 4
+   "max": 3
   },
   "craft": {
-   "median": 1,
-   "min": 0,
-   "max": 2
+   "median": 2,
+   "min": 1,
+   "max": 3
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 2
   },
   "payoff": {
    "median": 1,
    "min": 0,
-   "max": 1
+   "max": 2
   },
   "temporal_craft": {
    "median": 2,
@@ -192,25 +147,25 @@
   }
  },
  "scores": [
-  39,
   35,
-  39,
-  30,
-  47,
-  39,
-  30,
-  39,
-  31,
-  57,
-  57,
-  43,
   35,
-  34,
+  30,
   26,
+  48,
+  74,
+  78,
+  79,
+  43,
+  38,
   34,
+  34,
+  79,
+  66,
+  78,
+  78,
   39,
-  31,
   65,
-  61
+  77,
+  65
  ]
 }
