@@ -130,6 +130,16 @@ every teacher passes (`tests/test_subject_scenes.py`,
 - **Nothing is said twice.** A subject scene prints its own readout, so the
   renderer draws no punch number on its beats (the "faded ghost 6,288"),
   and a typed `--` is a dash on screen.
+- **A number stays up long enough to read** (`MIN_DWELL_S`, measured as
+  its longest unbroken stretch at the scene's real length): a hook that
+  cycled values every few frames was "a number that flickers too fast to
+  register".
+- **A readout's number and its label are the same row** — "$1.05" over
+  "2025 · $4.41" is refused — and a derived number only contradicts the
+  narration in the SAME unit ("4.2x" is a ratio, not a misprint of $4.41).
+- **The captions read over any scene.** Every scene darkens softly toward
+  its foot (`caption_scrim`), under the narration — a fade, not a card.
+  "Subtitles lost in clouds and bricks" held a 79.
 - **Full bleed.** A scene is the whole shot. Scenes inherited their
   segment's chart kind and were shrunk into the chart region with a
   border — the "inset" the judge named.

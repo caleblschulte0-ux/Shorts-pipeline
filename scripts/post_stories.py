@@ -827,9 +827,10 @@ def main() -> int:
                       f"{verdict.get('one_line') or gate['reason']}",
                       flush=True)
             else:
-                print(f"[{slug}] repair {repairs} scored {_new_score} vs "
-                      f"{_prev_score} — REVERTING to the better cut",
-                      flush=True)
+                print(f"[{slug}] repair {repairs} scored {_new_score}"
+                      f"{' but the gate BLOCKED it' if new_gate['blocked'] else ''}"
+                      f" vs {'shipping ' if not blocked else ''}{_prev_score} "
+                      f"— REVERTING to the better cut", flush=True)
                 if _keep and _keep.exists():
                     _sh.move(str(_keep), str(out))
                     _gate.log(gate, slug)      # re-assert the kept verdict

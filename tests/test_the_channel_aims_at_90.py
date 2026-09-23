@@ -22,6 +22,10 @@ What that took, each held here:
 from __future__ import annotations
 
 import ast
+try:
+    import cairo
+except Exception:  # noqa: BLE001
+    cairo = None
 import inspect
 import json
 import shutil
@@ -335,6 +339,30 @@ class ScenesCutTheyDoNotCrossfade(unittest.TestCase):
     def test_a_subject_scene_has_no_alpha_fade(self):
         src = _code((ROOT / "data_learning" / "studio_render.py").read_text())
         self.assertIn("_fades = '' if sp.get('kind') == 'subject_scene' else", src)
+
+
+class TheCaptionsReadOverAnyScene(unittest.TestCase):
+    """ "subtitles lost in clouds and bricks" held a 79."""
+
+    @unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+    def test_every_scene_darkens_under_the_captions(self):
+        from data_learning import subject_scenes as SS
+        self.assertIn("caption_scrim(cr)", inspect.getsource(SS._render_frames))
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+        cr = cairo.Context(surf)
+        cr.set_source_rgb(1, 1, 1)
+        cr.paint()
+        SS.caption_scrim(cr)
+        surf.flush()
+        data = surf.get_data()
+        px = lambda y: data[(y * SS.W + 540) * 4]           # blue channel
+        self.assertEqual(px(1400), 255)                     # the scene is untouched
+        self.assertLess(px(1734), 150)                      # the caption line is not
+        self.assertLessEqual(SS.SCRIM_TOP, 1560)
+
+    def test_a_blocked_higher_score_is_logged_as_blocked(self):
+        self.assertIn("but the gate BLOCKED it",
+                      (ROOT / "scripts" / "post_stories.py").read_text())
 
 
 class NothingOnScreenSaysItTwice(unittest.TestCase):

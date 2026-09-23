@@ -487,10 +487,14 @@ def amazon_bill_grows(cr, t, u, pts, host):
     wx, lift = walk(ex, ey + 40, t, amp=70.0)   # he paces the rim he holds
     host("point" if run < 0.12 else ("strain" if run < 1 else "shock"),
          ex + 40 + (wx - clamp(ex, EDGE + 70, W - EDGE - 70)), lift, 220, pace=False)
-    # ONE headline: the yearly number, and it SHRINKS with the year it names
+    # ONE headline, and it SHRINKS: the first year's clearing while the rings
+    # begin, the latest year's once they are laid. Every year in between is
+    # a ring, not a readout — eight numbers in six seconds were each on
+    # screen for 0.6s, too fast to read (the dwell check).
+    ry, rv = rows[0] if run < 0.6 else rows[-1]
     vmax = max(v for _, v in rows) or 1.0
-    fit_readout(cr, f"{int(val):,} km²", f"cleared in {year}", 80, 700,
-                a=ease(seg(u, 0.0, 0.05)), size=70 + 90 * (val / vmax))
+    fit_readout(cr, f"{int(rv):,} km²", f"cleared in {ry}", 80, 700,
+                a=ease(seg(u, 0.0, 0.05)), size=70 + 90 * (rv / vmax))
 
 
 SCAR = (W / 2, 1270, 470)
@@ -1241,6 +1245,25 @@ def render_build(scene, insight, out_dir, name, frames, t0=0.0):
     return str(out_dir / f"{name}_build%02d.png"), []
 
 
+#: Where the narration is burned in (studio_render: anchored at y=1734,
+#: two lines reach ~1560). A full-bleed scene put its clouds and bricks
+#: right under it: "subtitles lost in clouds and bricks" held a 79.
+SCRIM_TOP = 1480
+
+
+def caption_scrim(cr):
+    """A soft dark fade at the foot of every scene, under the captions.
+    Not a card: no edge, no border — the scene just darkens toward the
+    bottom, the way a film darkens under its subtitles."""
+    g = cairo.LinearGradient(0, SCRIM_TOP, 0, H)
+    g.add_color_stop_rgba(0.0, 0.02, 0.03, 0.07, 0.0)
+    g.add_color_stop_rgba(0.45, 0.02, 0.03, 0.07, 0.45)
+    g.add_color_stop_rgba(1.0, 0.02, 0.03, 0.07, 0.72)
+    cr.set_source(g)
+    cr.rectangle(0, SCRIM_TOP, W, H - SCRIM_TOP)
+    cr.fill()
+
+
 def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
     for f in range(frames):
         cr = cairo.Context(surf)
@@ -1249,5 +1272,6 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
             place_host(_cr, role, (_f % 120) / 120.0, insight, x, fy, h,
                        _f / 30.0, pace)
         scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
+        caption_scrim(cr)
         surf.flush()
         surf.write_to_png(str(out_dir / f"{name}_build{f + 1:02d}.png"))
