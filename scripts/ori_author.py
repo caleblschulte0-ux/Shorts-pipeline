@@ -259,6 +259,17 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
             bad.append(f"{n} of {len(beats)} beats are the same picture ({setting}, {shot} shot): "
                        f"vary the setting and the shot, and show what each passage describes")
     if before:
+        # a new chapter is a new picture: it opens somewhere other than where
+        # the last one closed (the sixth film's judge, sampling each chapter's
+        # first, middle and last frame, saw the cave-fire picture "in over
+        # half the sampled frames, so chapters blur together")
+        prev = before[-1] if isinstance(before[-1], dict) else {}
+        prev_beats = prev.get("beats") or []
+        last = prev_beats[-1].get("scene") if prev_beats and isinstance(prev_beats[-1], dict) else None
+        first = beats[0].get("scene") if isinstance(beats[0], dict) else None
+        if isinstance(last, dict) and isinstance(first, dict) and last.get("setting") == first.get("setting"):
+            bad.append(f"beat 1 opens in {first.get('setting')}, where the previous chapter closed: a new chapter "
+                       f"opens on a new place")
         # the whole film, not just this chapter: the second film's judge
         # counted one cave-front picture in 15 of 42 sampled frames, and the
         # fourth still saw "the cave mouth on the left, a campfire in the

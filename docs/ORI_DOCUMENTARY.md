@@ -236,6 +236,13 @@ children's game and the sky chapter (the last already fixed above).
   (`scene.SCENERY_K`; a hut or a mammoth keeps its size).
 - **Cold you can see.** In frost or snow every waking figure breathes out a
   puff every few seconds (`people._breath`).
+- **A new chapter opens on a new place.** The judge samples each chapter's
+  first, middle and last frame; two chapters opened where the last had
+  closed, and *"the cave-fire template recurs in over half the sampled
+  frames, so chapters blur together"*. `_chapter_problems` refuses a
+  chapter whose first beat is set where the previous chapter's last beat
+  was; the shelf's two offenders moved (the night watch to the riverbank,
+  the old man's chapter to the cave mouth, his back to the rock).
 
 ## Any topic: the era is found or the refusal is honest
 

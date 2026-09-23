@@ -675,6 +675,17 @@ class ThePictureIsReadable(unittest.TestCase):
                        if "picture" in x or "of the film" in x]
                 self.assertEqual(bad, [], f"{f.name}: {c['title']}")
 
+    def test_a_chapter_opens_on_a_new_place(self):
+        import ori_author as A
+        _beat = lambda **kw: {"say": "words", "scene": _scene(**kw)}
+        prev = {"beats": [_beat(setting="cave_mouth", shot="close")]}
+        beats = [_beat(setting="cave_mouth", shot="wide"), _beat(setting="forest", shot="close")]
+        bad = A._chapter_problems(beats, "stone_age", 0, 99999, before=[prev])
+        self.assertTrue(any("new chapter opens on a new place" in b for b in bad), bad)
+        beats[0] = _beat(setting="grassland", shot="wide")
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999, before=[prev])
+                          if "new place" in b], [])
+
     def test_the_author_caps_one_picture_across_the_whole_film(self):
         import ori_author as A
         say = " ".join(["the fire burns low and the night goes on"] * 12)
