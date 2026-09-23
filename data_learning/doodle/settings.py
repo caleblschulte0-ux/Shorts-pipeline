@@ -113,6 +113,30 @@ def _stars(cr, r, n=140):
                 (1, 1, 1, r.uniform(0.35, 0.9)))
 
 
+def _milky_way(cr, r):
+    """A band of dense faint stars across the sky, the way a clear night
+    away from any town really looks — and the picture the seventh film's
+    judge asked for under a sky chapter. Soft haze first, then the stars."""
+    x0, y0 = r.uniform(-200, 200), r.uniform(H * 0.05, H * 0.35)
+    x1, y1 = W + r.uniform(-200, 200), r.uniform(H * 0.1, H * 0.45)
+    if r.random() < 0.5:
+        y0, y1 = y1, y0
+    for k in range(3):
+        cr.save()
+        cr.set_line_width(180 - k * 50)
+        cr.set_line_cap(1)
+        cr.set_source_rgba(0.85, 0.88, 1.0, 0.07 + k * 0.025)
+        cr.move_to(x0, y0)
+        cr.line_to(x1, y1)
+        cr.stroke()
+        cr.restore()
+    for _ in range(420):
+        u = r.random()
+        x = x0 + (x1 - x0) * u
+        y = y0 + (y1 - y0) * u + r.gauss(0, 55)
+        ink.dot(cr, x, y, r.uniform(0.5, 1.4), (1, 1, 1, r.uniform(0.25, 0.75)))
+
+
 def _hills(cr, r, y0, amp, color, seed, lw=4.0):
     pts = [(-50, H)]
     n = 9
@@ -359,6 +383,8 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     _sky(cr, time if weather not in ("rain",) else ("night" if time == "night" else "dusk"))
     if time == "night" and weather in ("clear", "snow", "frost"):
         _stars(cr, r)
+        if weather == "clear" and name in OPEN_SKY and r.random() < 0.5:
+            _milky_way(cr, r)
     if weather in ("clear", "cloudy", "snow", "frost") or time == "night":
         _sun_moon(cr, time, r)
     far = {"day": rgb("#9fb7a8"), "dawn": rgb("#9d8fa0"), "dusk": rgb("#7a6485"), "night": rgb("#34466b")}[time]
@@ -436,6 +462,9 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
 
 # how much nearer the world is in a close shot: the cave mouth grows with
 # it, so a woman is not "filling the cave mouth" (the sixth film's judge)
+# settings with a wide open sky where a clear night may show the Milky Way
+OPEN_SKY = ("grassland", "mountains", "riverbank", "lakeshore", "snowfield", "seashore", "desert", "field",
+            "harbour", "nile_bank")
 CLOSE_WORLD = 1.35
 CLOSE_TREES = 1.9                # the tree line, nearer still: about twice a standing figure
 

@@ -293,6 +293,13 @@ note names a real thing, so every note moved the film, not the judge:
   storyboard respec is also held to the author's picture rules: one that
   copies its neighbour's picture is refused and the small repair happens.
 
+- **A clear night in the open may show the Milky Way** (`settings._milky_way`,
+  half the time by seed, `OPEN_SKY` settings only): a soft band of haze and
+  four hundred faint stars across the sky. The judge asked for "a dense
+  starfield or Milky Way" under the sky chapter; it is also what a night
+  away from any town looks like, and it tells one open-sky night from the
+  next.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
