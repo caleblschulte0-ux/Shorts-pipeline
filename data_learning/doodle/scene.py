@@ -194,6 +194,7 @@ def validate(spec, era: str) -> list[str]:
 
 # ------------------------------------------------------------------ layout
 MARGIN = 12.0        # px two things may share before they count as touching
+EDGE = 30.0          # px of frame kept clear on each side of anything drawn
 PAD = 0.35           # head radii of air kept around every figure
 
 # how far a figure reaches, in head radii, left and right of its feet when
@@ -235,6 +236,9 @@ def collisions(lay: dict) -> list[str]:
     one overlap that is meant. Empty means the picture is readable."""
     items = spans(lay)
     bad = []
+    for it in items:
+        if it["lo"] < EDGE or it["hi"] > W - EDGE:
+            bad.append(f"{it['label']} is cut by the frame edge")
     for a in range(len(items)):
         for b in range(a + 1, len(items)):
             A, B = items[a], items[b]
@@ -247,7 +251,7 @@ def collisions(lay: dict) -> list[str]:
     return bad
 
 
-SHRINK = (1.0, 0.92, 0.84, 0.76)
+SHRINK = (1.0, 0.92, 0.84, 0.76, 0.68)
 
 
 def layout(spec: dict, seed: int) -> dict:
@@ -348,13 +352,14 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             for k in range(len(slots_auto)):
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
-                if free(*fig_span(c, cand, facing, R)):
+                lo, hi = fig_span(c, cand, facing, R)
+                if lo >= EDGE and hi <= W - EDGE and free(lo, hi):
                     x = cand
                     break
             if x is None:
                 cand = W * slots_auto[i % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
-                x = settle(cand, lambda xx: fig_span(c, xx, facing, R), 20, W - 20)
+                x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE)
         put(*fig_span(c, x, facing, R))
         figs.append(dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
                          mood=c.get("mood", "calm"), item=c.get("item"), x=x,
@@ -401,7 +406,7 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
                      else [0.4, 0.6, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
-                if pr.layer != "back" and not (-w * 0.15 <= W * cnd - w / 2 and W * cnd + w / 2 <= W + w * 0.15):
+                if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
                     continue
                 if pr.layer == "back" or free(W * cnd - w / 2, W * cnd + w / 2):
                     x = W * cnd
@@ -411,8 +416,9 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
                         continue
                     break
             if x is None and pr.layer != "back":
-                x = settle(W * cands[0], lambda xx: (xx - w / 2, xx + w / 2), -w * 0.15, W + w * 0.15)
-            x = x if x is not None else W * r.uniform(0.1, 0.9)
+                x = settle(W * cands[0], lambda xx: (xx - w / 2, xx + w / 2), EDGE, W - EDGE)
+            if x is None:
+                x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
         if pr.layer != "back":
             put(x - w / 2, x + w / 2)
         placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,

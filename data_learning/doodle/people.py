@@ -77,6 +77,8 @@ ACTIONS = {
     "hoe": dict(poses=("stand",), item="hoe"),
     "hug_self": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
     "look_up": dict(poses=("stand", "sit", "sit_on", "lie"), item=None),
+    "play": dict(poses=("stand", "crouch"), item="stick"),
+    "feed_fire": dict(poses=("sit", "sit_on", "crouch"), item="stick"),
 }
 
 
@@ -186,8 +188,18 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     if action == "carry":
         return ((nx + 0.55 * R, ny - 0.55 * R), (nx - 0.25 * R, ny - 0.6 * R))
     if action == "point":
+        # short of a straight arm, so the elbow bends
         k = math.sin(c / 4.0 + ph) * 0.08 * R
-        return ((nx + 1.9 * R, ny + 0.1 * R + k), rest_b)
+        return ((nx + 1.55 * R, ny + 0.2 * R + k), rest_b)
+    if action == "play":
+        # a stick swung high and low, both hands in it
+        k = math.sin(c / 1.1 + ph)
+        return ((nx + 0.9 * R + k * 0.5 * R, ny + 0.2 * R - k * 0.9 * R),
+                (nx + 0.6 * R + k * 0.4 * R, ny + 0.45 * R - k * 0.7 * R))
+    if action == "feed_fire":
+        # a branch pushed low toward the flames and drawn back
+        k = (math.sin(c / 2.6 + ph) + 1) / 2
+        return ((nx + 1.1 * R + k * 0.7 * R, ny + 1.35 * R + k * 0.25 * R), rest_b)
     if action == "talk":
         k = (math.sin(c / 1.8 + ph) + 1) / 2
         return ((nx + 1.05 * R, ny + 1.2 * R - k * 0.55 * R), rest_b)
@@ -220,7 +232,8 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         k = math.sin(c / 4.5 + ph) * 0.1 * R
         return ((nx + 1.25 * R, ny + 0.7 * R + k), (nx + 1.0 * R, ny + 0.85 * R + k))
     if action == "hug_self":
-        return ((nx + 0.55 * R, ny + 0.85 * R), (nx + 0.35 * R, ny + 0.75 * R))
+        # arms crossed on the chest, each hand at the other shoulder
+        return ((nx - 0.05 * R, ny + 0.55 * R), (nx + 0.5 * R, ny + 0.6 * R))
     if action == "look_up":
         return rest_f, rest_b
     raise KeyError(f"action {action!r} has no hands")
@@ -505,7 +518,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
     if action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish", "hug_self", "knap", "eat",
-                  "drink"):
+                  "drink", "play"):
         e2, h2 = _ik(*sh_b, *back, ua, la, bend)
         ink.fill_stroke(cr, ink.ellipse_pts(h2[0], h2[1], 0.16 * R, 0.15 * R, 12), HEAD,
                         lw=lw * 0.6, amp=0)

@@ -25,7 +25,7 @@ from .props import pine, tree
 W, H = 1920, 1080
 
 TIMES = ("day", "dusk", "night", "dawn")
-WEATHER = ("clear", "cloudy", "rain", "snow", "fog")
+WEATHER = ("clear", "cloudy", "rain", "snow", "fog", "frost")
 
 SKY = {
     "day": [(0, "#8ecae6"), (0.7, "#cfe8ef"), (1, "#f1f0dc")],
@@ -147,6 +147,20 @@ def _ground(cr, kind, gy, seed):
             ink.line(cr, [(-10, y), (W + 10, y + r.uniform(-4, 4))], lw=3, ink=shade(c, 0.7), amp=1, seed=k)
 
 
+def _frost(cr, gy, seed):
+    """A hard frost: the ground goes pale and every tuft carries a white
+    edge. Still; the fire and the people carry the motion."""
+    r = random.Random(seed)
+    cr.set_source_rgba(0.92, 0.95, 1.0, 0.22)
+    cr.rectangle(0, gy - 60, W, H - gy + 60)
+    cr.fill()
+    for _ in range(90):
+        x, y = r.uniform(0, W), r.uniform(gy - 30, H - 6)
+        w = r.uniform(8, 26)
+        ink.line(cr, [(x - w, y), (x + w, y - r.uniform(1, 3))], lw=r.uniform(2, 3.5),
+                 ink=(0.93, 0.96, 1.0), amp=0)
+
+
 def _interior(cr, name, seed, r):
     if name == "cave_inside":
         cr.set_source_rgba(*rgb("#4a4038"))
@@ -204,9 +218,9 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
         _ground(cr, st.ground, gy, seed + 1)
         return facts
     _sky(cr, time if weather not in ("rain",) else ("night" if time == "night" else "dusk"))
-    if time == "night" and weather in ("clear", "snow"):
+    if time == "night" and weather in ("clear", "snow", "frost"):
         _stars(cr, r)
-    if weather in ("clear", "cloudy", "snow") or time == "night":
+    if weather in ("clear", "cloudy", "snow", "frost") or time == "night":
         _sun_moon(cr, time, r)
     far = {"day": rgb("#9fb7a8"), "dawn": rgb("#9d8fa0"), "dusk": rgb("#7a6485"), "night": rgb("#34466b")}[time]
     if name in ("mountains", "snowfield", "cave_mouth", "lakeshore"):
@@ -231,6 +245,8 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
             y = H * 0.66 + k * 22
             ink.line(cr, [(-10, y), (W + 10, y + 6)], lw=3, ink=shade(c, 0.8), amp=1.5, seed=k)
     _ground(cr, st.ground, gy, seed + 1)
+    if weather == "frost":
+        _frost(cr, gy, seed + 2)
     if st.water:
         top, bot = _water(cr, st.water, gy, seed + 2)
         facts["water"] = (st.water, top, bot)

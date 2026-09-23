@@ -384,18 +384,30 @@ def mammoth(cr, x, y, s, t, seed):
 
 
 def wolf(cr, x, y, s, t, seed):
-    """A dog/wolf lying curled by the fire, tail flicking."""
+    """A dog/wolf curled asleep by the fire: a round body that breathes,
+    head on its paws, ears down, tail tucked and flicking. (The first
+    draft's head bump, ear and tail read to the judge as "an animal upside
+    down with its legs in the air".)"""
     c = rgb("#8d8479")
-    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 38 * s, 95 * s, 38 * s, 22), c, lw=5 * s, amp=1.2, seed=seed,
+    br = math.sin(t * 2 * math.pi / 4.2 + seed) * 2.5 * s          # breathing
+    ink.fill_stroke(cr, ink.ellipse_pts(x - 10 * s, y - 40 * s - br, 88 * s, 40 * s + br, 24), c, lw=5 * s,
+                    amp=1.2, seed=seed, shadow=shade(c), shadow_dir=(0, 1), texture="fur", tex_alpha=0.35)
+    # tail tucked along the belly, its tip flicking
+    f = math.sin(t * 2 * math.pi / 3.0 + seed) * 6 * s
+    ink.line(cr, [(x - 92 * s, y - 30 * s), (x - 128 * s, y - 22 * s), (x - 118 * s, y - 8 * s + f),
+                  (x - 70 * s, y - 6 * s + f)], lw=13 * s, ink=c, amp=0)
+    # head resting on the front paws
+    hx, hy = x + 88 * s, y - 34 * s
+    for dx in (-8, 26):
+        ink.fill_stroke(cr, ink.ellipse_pts(hx + dx * s, y - 8 * s, 19 * s, 9 * s, 12), c, lw=4 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 36 * s, 27 * s, 20), c, lw=5 * s, amp=1, seed=seed + 1,
                     shadow=shade(c), shadow_dir=(0, 1))
-    ink.fill_stroke(cr, [(x + 70 * s, y - 55 * s), (x + 135 * s, y - 70 * s), (x + 150 * s, y - 45 * s),
-                         (x + 120 * s, y - 25 * s), (x + 75 * s, y - 20 * s)], c, lw=5 * s, amp=1, seed=seed + 1)
-    ink.fill_stroke(cr, [(x + 95 * s, y - 68 * s), (x + 102 * s, y - 100 * s), (x + 117 * s, y - 72 * s)], c,
-                    lw=4 * s, amp=0)
-    ink.line(cr, [(x + 125 * s, y - 55 * s), (x + 135 * s, y - 52 * s)], lw=4 * s, amp=0)
-    f = math.sin(t * 2 * math.pi / 3.0 + seed) * 20 * s
-    ink.line(cr, [(x - 90 * s, y - 40 * s), (x - 140 * s, y - 55 * s + f), (x - 165 * s, y - 30 * s + f)],
-             lw=14 * s, ink=c, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 34 * s, hy + 6 * s, 16 * s, 11 * s, 12), c, lw=4 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 46 * s, hy + 6 * s, 5 * s, 4 * s, 8), ink.INK, lw=0, amp=0)
+    for dx in (-22, -4):                                            # ears laid back
+        ink.fill_stroke(cr, [(hx + dx * s, hy - 22 * s), (hx + (dx - 14) * s, hy - 36 * s),
+                             (hx + (dx + 6) * s, hy - 30 * s)], c, lw=3.5 * s, amp=0)
+    ink.line(cr, [(hx + 8 * s, hy - 2 * s), (hx + 22 * s, hy - 4 * s)], lw=3 * s, amp=0)   # closed eye
 
 
 def sheep(cr, x, y, s, t, seed):
@@ -599,12 +611,12 @@ PROPS = {
     "rock": Prop(rock, 200, "mid", BOTH),
     "reeds": Prop(reeds, 150, "front", BOTH),
     "woodpile": Prop(woodpile, 180, "mid", BOTH),
-    "bedroll": Prop(bedroll, 290, "mid", STONE_AGE),
+    "bedroll": Prop(bedroll, 280, "mid", STONE_AGE),
     "hide_rack": Prop(hide_rack, 240, "back", STONE_AGE),
     "deer": Prop(deer, 280, "back", BOTH),
     "mammoth": Prop(mammoth, 520, "back", STONE_AGE),
-    "wolf": Prop(wolf, 330, "mid", STONE_AGE),
-    "dog": Prop(wolf, 330, "mid", MEDIEVAL),
+    "wolf": Prop(wolf, 270, "mid", STONE_AGE),
+    "dog": Prop(wolf, 270, "mid", MEDIEVAL),
     "sheep": Prop(sheep, 200, "mid", MEDIEVAL),
     "cow": Prop(cow, 330, "back", MEDIEVAL),
     "chicken": Prop(chicken, 90, "front", MEDIEVAL),

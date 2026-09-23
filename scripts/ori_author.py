@@ -199,6 +199,14 @@ def _chapter_problems(beats, era: str, lo: int, hi: int) -> list[str]:
         if isinstance(sc, dict):
             k = (sc.get("setting"), S.shot_of(sc))
             looks[k] = looks.get(k, 0) + 1
+    prev = None
+    for j, b in enumerate(beats):
+        sc = b.get("scene") if isinstance(b, dict) else None
+        k = (sc.get("setting"), S.shot_of(sc)) if isinstance(sc, dict) else None
+        if k is not None and k == prev:
+            bad.append(f"beats {j} and {j + 1} are the same picture ({k[0]}, {k[1]} shot) back to back: "
+                       f"change the setting or the shot between them")
+        prev = k
     if looks:
         (setting, shot), n = max(looks.items(), key=lambda kv: kv[1])
         if n > max(2, int(len(beats) * SAME_LOOK_SHARE)):

@@ -670,7 +670,7 @@
        {
         "who": "man",
         "pose": "crouch",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "content"
        }
       ],
@@ -1015,7 +1015,7 @@
     {
      "say": "Beside her, a man works on a spear point. He holds the flint against a pad of leather in his palm and presses the tip of an antler against its edge, and a thin flake lifts away with a soft click. Press, click. Press, click. Each flake makes the edge a little sharper and the point a little thinner. This is slow, careful work, and firelight is enough for it, because his fingers can feel what his eyes cannot quite see. A good point might take him most of the evening. He has most of the evening.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1101,7 +1101,7 @@
     {
      "say": "Another man is doing something less useful, and more important. He has a small, flat pebble in his hand, and with the point of a flint he is scratching a shape into it: a few lines, curving, that might be the back of a horse, or a bison, or nothing at all. He tilts it to the firelight to see. The child leaning against him watches the lines appear, and gasps a little when the shape becomes an animal. People were making pictures like this, on stone and bone and cave walls, all through this age. Nobody is sure why. Perhaps for the same reason you would.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1298,13 +1298,13 @@
        {
         "who": "girl",
         "pose": "stand",
-        "action": "wave",
+        "action": "play",
         "mood": "happy"
        },
        {
         "who": "child",
-        "pose": "stand",
-        "action": "idle",
+        "pose": "crouch",
+        "action": "play",
         "mood": "surprised"
        }
       ],
@@ -1377,7 +1377,7 @@
     {
      "say": "A boy of perhaps eight has been given a real piece of flint and a real hammerstone, and is trying to make a flake. His mother sits beside him and does not help, except to move his thumb once, out of the way. He hits the flint and nothing happens. He hits it again, and a flake jumps off, crooked and thick, and he holds it up in triumph. It is not a good flake. It is his first. She tells him so, and he keeps it.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1467,7 +1467,7 @@
     {
      "say": "The girl is given a last drink of water, and yawns hugely in the middle of it. Her mother takes the bowl before it spills. It is late for the children, though nobody here would say so, or could say what \"late\" meant. Children slept when they were tired. They slept near their parents and grandparents and cousins, in a heap of furs and grass and warm bodies, and if they woke in the night they were never alone, and never in the dark, because the fire was always there.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1778,7 +1778,7 @@
     {
      "say": "The man with the scratched pebble holds it up to show the woman beside him, and she takes it and turns it in the light and hands it back, and says something short and approving. He tucks it into a fold of his clothing, and will carry it for years, until it is lost, and someone will find it in the ground forty thousand years from tonight and wonder, as you might, what it meant to him. The honest answer is that we do not know. The kinder answer is that it was beautiful, and he liked it.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2008,7 +2008,7 @@
     {
      "say": "Something streaks across the sky and is gone. A shooting star. The man's head turns to follow it, and he says a word under his breath. People have been startled by falling stars for as long as there have been people, and have told each other what they mean, and have all been wrong, and it has not mattered. He watches the place where it vanished for a while, in case there is another. There is not. He turns back toward the fire.",
      "scene": {
-      "setting": "grassland",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2193,7 +2193,7 @@
     {
      "say": "And he is not alone. Curled at the edge of the firelight, nose on paws, is a wolf. Or something between a wolf and a dog, because the line between them was only beginning to be drawn in this age. Some of the very first dogs may have come from wolves that learned to follow human camps for scraps, and then to sleep near the fire, and then to be useful. This one lifts its head when the man moves, and lowers it again. Its ears are better than his. If something comes, it will know first.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2363,7 +2363,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "calm"
        }
       ],
@@ -2483,7 +2483,7 @@
     {
      "say": "He feeds the fire, quietly, pushing the ends of the branches in toward the heart of it. He does it without thinking, the way you might pull a blanket up. Then he sits and watches the flames take hold, and listens to the others breathing. His wife is asleep beside him, one arm flung out over the child. Her breath is slow and even. He sits for a long time doing nothing at all, and there is no better word for it than peace.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2491,9 +2491,8 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "hold",
-        "mood": "calm",
-        "item": "stick"
+        "action": "feed_fire",
+        "mood": "calm"
        },
        {
         "who": "woman",
@@ -2512,7 +2511,7 @@
     {
      "say": "Out at the cave mouth, the watcher is asleep, and his fire has burned lower, and the wolf-dog has moved a little closer to it. The stars have wheeled on. The bright one the man pointed at earlier is high now. Nobody is watching it. There is no need. It will be there tomorrow night, and the night after, and it will still be there, more or less, when your great-grandchildren look up. The valley is silent under it.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2561,7 +2560,7 @@
     {
      "say": "The old man is awake too, and the two of them, the old man and the younger, talk for a little while in the low voices of the middle of the night. About nothing much. About the old man's father, who was a great one for finding honey. About whether the ache in the old man's knee means rain. These are the conversations that happened in the wakeful hour, in the dark, when the day's business was far away and there was nothing to do but be alive together. Then the old man lies back down.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2588,7 +2587,7 @@
     {
      "say": "The younger man gets up and takes a burning stick out to the front fire, which has burned very low, and coaxes it back. The wolf-dog opens one eye. The watcher does not wake. The man crouches there for a while in the orange light, looking out at the moonlit grass, at the shapes of the tents, at the slope beyond where the deer were this evening. Nothing moves. He has never in his life seen a night that was empty. But this one is quiet, and quiet is enough.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2696,7 +2695,7 @@
      "scene": {
       "setting": "cave_mouth",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "close",
       "cast": [
        {
@@ -2753,15 +2752,14 @@
      "scene": {
       "setting": "cave_mouth",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "close",
       "cast": [
        {
         "who": "woman",
         "pose": "sit",
-        "action": "sew",
-        "mood": "focused",
-        "item": "needle"
+        "action": "hug_self",
+        "mood": "focused"
        }
       ],
       "props": [
@@ -2832,7 +2830,7 @@
      "scene": {
       "setting": "cave_mouth",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "close",
       "cast": [
        {
@@ -2854,7 +2852,7 @@
      "scene": {
       "setting": "grassland",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "wide",
       "props": [
        "campfire",
@@ -2876,9 +2874,8 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "hold",
-        "mood": "calm",
-        "item": "stick"
+        "action": "feed_fire",
+        "mood": "calm"
        },
        {
         "who": "girl",
@@ -2898,13 +2895,13 @@
      "scene": {
       "setting": "cave_mouth",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "close",
       "cast": [
        {
         "who": "woman",
         "pose": "sit",
-        "action": "look_up",
+        "action": "hug_self",
         "mood": "calm"
        }
       ],
@@ -2918,15 +2915,15 @@
     {
      "say": "She feeds the fire one last time, properly, so that it will last until the others are up. Then she sits a moment longer with her hands out to it. The cold has gone out of her fingers. The night is nearly done, and it has been a good one: no alarms, no sickness, no bear at the rubbish heap, no crying child that could not be settled. Just the fire, and the stars, and the long, slow, ordinary hours of an Ice Age night. She yawns, and pulls the fur closer, and goes in to sleep.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
-      "weather": "clear",
+      "weather": "frost",
       "shot": "close",
       "cast": [
        {
         "who": "woman",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "sleepy"
        }
       ],
@@ -2967,7 +2964,7 @@
     {
      "say": "First, and always, the fire. A small fire makes a great many sounds. There is the low, steady breath of it, which you stop hearing after a while. There is the tick and click of the wood as it dries and splits in the heat. Now and then a branch settles and sends up a soft rush of sparks, with a sound like someone sighing. And under all of it, if you listen closely, a faint whisper, like paper, as the air moves through the coals.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -3550,7 +3547,7 @@
     {
      "say": "Perhaps the most important thing he knew was this: that the band would go on. He had seen bad winters and hungry summers, and children lost, and the band was still here. The young hunter would be a good hunter. The girl who spilled the water would one day know the river as well as he did. The stories would be told. He had no word for the future, but he trusted it, the way you trust the sun to come up, because it always had. He feeds the fire, and warms his hands, and yawns.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -3762,7 +3759,7 @@
     {
      "say": "There is nothing more to see tonight. The fire is fed. The cave is warm. The people are safe and asleep, all of them, in their heap under the painted horse, and the wolf-dog is asleep at the door, and the valley is quiet from the river to the ice. Let your own breathing slow to match theirs. Let the pillow take your head, the way the grass takes theirs. You have walked a long way today too, whatever your day was. You are allowed to stop.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "dawn",
       "weather": "clear",
       "shot": "close",

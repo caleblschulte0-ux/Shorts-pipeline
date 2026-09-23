@@ -98,9 +98,26 @@ watcher's face, one cave-and-fire template for most of the film, no dawn in
 - A held spear rests its butt on the ground and leans away from the body.
 - Sewing shows a hide over the knees; knapping shows the core and its flakes.
 - The author refuses a chapter where more than half the beats are one
-  setting and shot (`ori_author.SAME_LOOK_SHARE`), and the last chapter's
-  outdoor scenes are asked for at dawn — a campfire at dawn in a close shot
-  measured 0.06-0.10 held frames, alive; in a wide shot 0.52-0.63, not.
+  setting and shot (`ori_author.SAME_LOOK_SHARE`) or where two beats in a
+  row are the same picture, and the last chapter's outdoor scenes are asked
+  for at dawn — a campfire at dawn in a close shot measured 0.06-0.10 held
+  frames, alive; in a wide shot 0.52-0.63, not.
+
+The second film (same day) was BLOCKED at 74 for `junk_imagery`: the
+curled wolf's head bump, ear and tail read as "an animal upside down with
+its legs in the air", figures were cropped at the frame edge (a mammoth at
+the 6% slot), the cold chapter showed nothing cold, and the children's game
+and the fire-feeding the words describe were drawn as idle sitting. So:
+
+- The wolf is a round body that breathes, head on its paws, ears laid back,
+  a closed eye, tail tucked.
+- **Nothing is cut by the frame edge** (`scene.EDGE`): a span outside the
+  safe margin is a collision like any other, so the same slide-and-shrink
+  loop keeps it in frame; back-layer props only take slots they fit in.
+- Two more actions, `play` (a stick swung with both hands) and `feed_fire`
+  (a branch pushed toward the flames), a bent pointing arm, arms crossed
+  for `hug_self`, and a `frost` weather (pale ground, white-edged tufts,
+  stars still out).
 
 ## What the probes needed
 

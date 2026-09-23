@@ -404,7 +404,8 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertEqual(lay["collisions"], [])
         spans = {s["label"]: s for s in self.S.spans(lay)}
         man, fire = spans["man:lie"], spans["campfire"]
-        self.assertTrue(man["hi"] <= fire["lo"] or man["lo"] >= fire["hi"])
+        # the padded spans may touch by the shared margin, never more
+        self.assertLessEqual(min(man["hi"], fire["hi"]) - max(man["lo"], fire["lo"]), self.S.MARGIN)
         bed = spans["bedroll"]
         self.assertEqual(bed["under"], 0)
         self.assertLess(abs((bed["lo"] + bed["hi"]) / 2 - (man["lo"] + man["hi"]) / 2), 30)
@@ -419,6 +420,25 @@ class ThePictureIsReadable(unittest.TestCase):
         for s in self.S.spans(lay):
             self.assertGreaterEqual(s["lo"], -60)
             self.assertLessEqual(s["hi"], self.S.W + 60)
+
+    def test_nothing_is_cut_by_the_frame_edge(self):
+        # the second film's judge: "figures are cropped by the frame edge ...
+        # (the mammoth)" — a back-layer animal placed at the 6% slot
+        specs = [
+            {"setting": "grassland", "time": "night", "weather": "clear", "shot": "wide",
+             "props": ["campfire", "torch", "mammoth", "tent", "tree"]},
+            {"setting": "cave_mouth", "time": "night", "weather": "clear", "shot": "close",
+             "cast": [{"who": "man", "pose": "lie", "action": "sleep"}, {"who": "woman", "pose": "sit", "action": "sew"}],
+             "props": ["campfire", "wolf", "bedroll", "woodpile"]},
+        ]
+        for spec in specs:
+            lay = self.S.layout(spec, 9)
+            self.assertEqual(lay["collisions"], [], spec)
+            for sp in self.S.spans(lay):
+                self.assertGreaterEqual(sp["lo"], self.S.EDGE, sp)
+                self.assertLessEqual(sp["hi"], self.S.W - self.S.EDGE, sp)
+        cut = {"people": [{"who": "man", "pose": "stand", "x": 30, "s": 2.0, "facing": "right"}], "props": []}
+        self.assertTrue(any("cut by the frame edge" in b for b in self.S.collisions(cut)))
 
     def test_collisions_are_named_when_a_scene_cannot_be_helped(self):
         lay = {"people": [{"who": "man", "pose": "sit", "x": 500, "s": 2.0, "facing": "right"},
@@ -452,4 +472,10 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertTrue(any("same picture" in b for b in bad), bad)
         for j in range(5):
             beats[j]["scene"] = dict(cave, setting=["grassland", "riverbank", "cave_inside", "grassland", "riverbank"][j])
-        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999) if "same picture" in b], [])
+        # five different pictures then the cave five times running: the share
+        # is fine now, the run is not
+        bad = A._chapter_problems(beats, "stone_age", 0, 99999)
+        self.assertTrue(any("back to back" in b for b in bad), bad)
+        for j in range(5, 10):
+            beats[j]["scene"] = dict(cave, setting=["cave_mouth", "grassland", "cave_mouth", "riverbank", "cave_mouth"][j - 5])
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999) if "same picture" in b or "back to back" in b], [])
