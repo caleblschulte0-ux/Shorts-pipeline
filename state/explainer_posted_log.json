@@ -1950,6 +1950,13 @@
       "story_structure": "scene+auto+auto",
       "narrative_score": 79,
       "duration_s": 36.7
+    },
+    "teen-vaping-crash-nicotine-pouches": {
+      "claimed_at": "2026-09-23T19:41:36.209615+00:00",
+      "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+      "publish_at": "2026-09-24T07:18:41Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -2222,6 +2229,14 @@
       "state": "posted",
       "slug": "invasive-species-price-tag",
       "at": "2026-09-23T19:13:13.597002+00:00"
+    },
+    {
+      "claimed_at": "2026-09-23T19:41:36.209615+00:00",
+      "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+      "publish_at": "2026-09-24T07:18:41Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "teen-vaping-crash-nicotine-pouches"
     }
   ]
 }
