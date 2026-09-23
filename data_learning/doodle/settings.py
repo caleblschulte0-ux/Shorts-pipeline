@@ -346,7 +346,7 @@ def _water(cr, kind, gy, seed):
     return top, bot
 
 
-def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
+def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "wide") -> dict:
     """Paint the still world for a scene. Returns layout facts the scene needs."""
     st = SETTINGS[name]
     r = random.Random(seed)
@@ -395,21 +395,25 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
         from .props import pyramid
         for k, (fx, sc) in enumerate(((0.18, 0.55), (0.42, 0.75), (0.7, 0.45))):
             pyramid(cr, W * fx + r.uniform(-60, 60), H * st.horizon + 40, sc, 0.0, seed + k)
+    # the tree line is nearer in a close shot, so the trees are bigger and
+    # fewer: at one size for every shot a seated woman was "about as tall
+    # as the trees" (the sixth film's judge)
+    tk = CLOSE_TREES if shot == "close" else 1.0
     if name == "nile_bank":
         from .props import palm
-        for k in range(5):
-            palm(cr, k * 430 + r.uniform(-60, 60), H * st.horizon + 30, 0.75, 0.0, seed + k)
+        for k in range(int(5 / tk) + 1):
+            palm(cr, k * 430 * tk + r.uniform(-60, 60), H * st.horizon + 30, 0.75 * tk, 0.0, seed + k)
     if name == "olive_grove":
         from .props import olive
-        for k in range(6):
-            olive(cr, k * 360 + r.uniform(-70, 70), H * 0.72, 0.7, 0.0, seed + k)
+        for k in range(int(6 / tk) + 1):
+            olive(cr, k * 360 * tk + r.uniform(-70, 70), H * 0.72, 0.7 * tk, 0.0, seed + k)
     if name in ("forest",):
-        for k in range(9):
-            x = k * 230 + r.uniform(-40, 40)
-            (pine if k % 2 else tree)(cr, x, H * 0.72, 0.75, 0.0, seed + k)
+        for k in range(int(9 / tk) + 1):
+            x = k * 230 * tk + r.uniform(-40, 40)
+            (pine if k % 2 else tree)(cr, x, H * 0.72, 0.75 * tk, 0.0, seed + k)
     if name == "snowfield":
-        for k in range(6):
-            pine(cr, k * 360 + r.uniform(-60, 60), H * 0.71, 0.65, 0.0, seed + k, snow=True)
+        for k in range(int(6 / tk) + 1):
+            pine(cr, k * 360 * tk + r.uniform(-60, 60), H * 0.71, 0.65 * tk, 0.0, seed + k, snow=True)
     if name == "village":
         from .props import cottage_base
         for k in range(3):
@@ -426,11 +430,17 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
         top, bot = _water(cr, st.water, gy, seed + 2)
         facts["water"] = (st.water, top, bot)
     if name == "cave_mouth":
-        _cave_mouth(cr, r, gy, seed)
+        _cave_mouth(cr, r, gy, seed, shot)
     return facts
 
 
-def cave_opening(seed: int) -> tuple[int, float, float]:
+# how much nearer the world is in a close shot: the cave mouth grows with
+# it, so a woman is not "filling the cave mouth" (the sixth film's judge)
+CLOSE_WORLD = 1.35
+CLOSE_TREES = 1.9                # the tree line, nearer still: about twice a standing figure
+
+
+def cave_opening(seed: int, shot: str = "wide") -> tuple[int, float, float]:
     """(side, centre x, half width) of the cave mouth's dark opening for a
     seed — a pure function, so the layout (which runs before the still is
     painted) can keep people out of it. The fifth film's judge: dark hair
@@ -438,13 +448,14 @@ def cave_opening(seed: int) -> tuple[int, float, float]:
     mask", so nobody stands in front of it."""
     side = 1 if seed % 2 else -1
     x0 = 0 if side < 0 else W
-    return side, x0 - side * W * 0.3, W * 0.15
+    k = CLOSE_WORLD if shot == "close" else 1.0
+    return side, x0 - side * W * 0.3, W * 0.15 * k
 
 
-def _cave_mouth(cr, r, gy, seed):
+def _cave_mouth(cr, r, gy, seed, shot="wide"):
     """A hill of rock on one side of the frame with an arched dark opening."""
     rockc = rgb("#857a6d")
-    side, mx, ow = cave_opening(seed)
+    side, mx, ow = cave_opening(seed, shot)
     x0 = 0 if side < 0 else W
     far = x0 - side * W * 0.62
     pts = [(x0 + side * 40, gy + 40), (x0 + side * 40, H * 0.05), (x0 - side * W * 0.18, H * 0.02),
@@ -459,7 +470,7 @@ def _cave_mouth(cr, r, gy, seed):
                       (cx - side * r.uniform(60, 120), cy + r.uniform(50, 90))], lw=4,
                  ink=shade(rockc, 0.6), amp=1.5, seed=seed + k)
     # the opening: an arch standing on the ground
-    oh = H * 0.4
+    oh = H * 0.4 * (CLOSE_WORLD if shot == "close" else 1.0)
     arch = [(mx - ow, gy + 5)]
     for i in range(17):
         a = math.pi + math.pi * i / 16

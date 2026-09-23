@@ -370,6 +370,7 @@ def layout(spec: dict, seed: int) -> dict:
 # it (a cook with her pot between the fire and the cave opening), it moves
 # a little before anyone is drawn smaller
 FOCAL_SHIFTS = (0.0, -0.12, 0.12)
+SCENERY_K = 1.35                 # a tree's scale against the shot's: about twice a standing figure
 
 
 def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: float = 0.0) -> dict:
@@ -386,7 +387,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         # the fifth film's judge: dark hair and a beard against the black of
         # the opening left "a floating white mask". A fire or a curled wolf
         # in front of it still reads; a face does not
-        _, mx, ow = settings.cave_opening(seed)
+        _, mx, ow = settings.cave_opening(seed, shot)
         blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
 
     def clash(lo, hi, head=None):
@@ -473,7 +474,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
 
     def prop_geom(p):
         pr = PROPS[p["name"]]
-        ps = s * (0.82 if pr.layer == "back" else 1.0) * (0.95 if shot == "wide" else 1.0)
+        # scenery with a trunk stands well over a person's head: at the old
+        # 0.82 a close-shot man was "about as tall as the trees" (the sixth
+        # film's judge). Solid back props (a hut, a mammoth) keep their size
+        scenery_k = SCENERY_K if (pr.layer == "back" and pr.solid_width) else 0.82
+        ps = s * (scenery_k if pr.layer == "back" else 1.0) * (0.95 if shot == "wide" else 1.0)
         if pr.living and shot == "wide":
             ps *= 1.35          # a fire is the heart of a wide shot, not a speck in it
         py = gy + {"back": -60 * s, "mid": 10 * s, "front": 70 * s}[pr.layer]
@@ -637,7 +642,7 @@ class Scene:
         self.lay = layout(spec, seed)
         self.still = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(self.still)
-        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed)
+        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec))
         for layer in ("back", "mid", "front"):
             for p in self.lay["props"]:
                 if p["layer"] != layer:
@@ -721,7 +726,8 @@ class Scene:
         for f in sorted(lay["people"], key=lambda f: f["y"]):
             people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
                         action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
-                        facing=f["facing"], mood=f["mood"], item=f["item"])
+                        facing=f["facing"], mood=f["mood"], item=f["item"],
+                        cold=self.weather in ("frost", "snow"))
         for p in lay["props"]:
             if p["layer"] == "front" and p["name"] not in STILL:
                 PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])

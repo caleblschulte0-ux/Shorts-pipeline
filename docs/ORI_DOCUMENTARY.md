@@ -220,6 +220,23 @@ one is a picture rule now, not a judge rule:
   now, and says so in the log; the ledgers beside it are still unioned
   (`tests/test_ci_persist_merges_the_library.py`).
 
+### The sixth film (83, SHIP): scale, and the cold
+
+Round four's film scored 83 with `hook 4` and no auto-fails. Its notes:
+*"figure scale is inconsistent: a man about as tall as the trees, a woman
+filling the cave mouth next to a small child"*, *"no visible cold"*, the
+children's game and the sky chapter (the last already fixed above).
+
+- **A close shot brings the WORLD nearer, not only the people.** The
+  people were drawn at 2.05 and the setting at one size for every shot, so
+  in a close shot the tree line came to a seated woman's shoulder and a
+  standing woman overtopped the cave. `draw_still` takes the shot now: the
+  cave mouth grows by `CLOSE_WORLD`, the tree line by `CLOSE_TREES` (fewer,
+  bigger trees), and a tree placed as a prop stands about twice a figure
+  (`scene.SCENERY_K`; a hut or a mammoth keeps its size).
+- **Cold you can see.** In frost or snow every waking figure breathes out a
+  puff every few seconds (`people._breath`).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

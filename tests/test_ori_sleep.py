@@ -510,6 +510,50 @@ class ThePictureIsReadable(unittest.TestCase):
             self.assertGreaterEqual(lay["scale"], 2.05 * 0.84, seed)
             self.assertIn("mammoth", [q["name"] for q in lay["props"]])
 
+    def test_the_world_is_nearer_in_a_close_shot(self):
+        # the sixth film's judge: "a man about as tall as the trees", "a woman
+        # filling the cave mouth next to a small child". A close shot brings
+        # the world nearer too: a wider, taller cave mouth and a tree line
+        # about twice a standing figure
+        from data_learning.doodle import settings as ST
+        _, _, ow_wide = ST.cave_opening(4, "wide")
+        _, _, ow_close = ST.cave_opening(4, "close")
+        self.assertGreater(ow_close, ow_wide * 1.2)
+        self.assertGreater(ST.CLOSE_TREES, 1.5)
+        spec = {"setting": "forest", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "stand", "action": "idle"}], "props": ["campfire", "tree"]}
+        lay = self.S.layout(spec, 1)
+        tree = next(q for q in lay["props"] if q["name"] == "tree")
+        man = lay["people"][0]
+        figure_h = self.P.R0 * man["s"] * 4.8                     # feet to crown, about
+        self.assertGreater(400 * tree["s"], figure_h * 1.4, (tree["s"], figure_h))
+
+    def test_breath_shows_in_the_cold(self):
+        # "no visible cold in the cold chapter": in frost or snow a figure
+        # breathes out a puff every few seconds; the same figure drawn warm
+        # does not, so the two frames differ
+        import cairo
+        def frame(cold, t):
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 600, 600)
+            cr = cairo.Context(surf)
+            cr.set_source_rgb(0.1, 0.1, 0.2); cr.paint()
+            self.P.draw(cr, who="woman", era="stone_age", seed=3, pose="sit", action="hug_self", x=300,
+                        ground_y=560, scale=1.5, t=t, cold=cold)
+            return bytes(surf.get_data())
+        ts = [0.2, 0.9, 1.6, 2.3, 3.0]
+        self.assertTrue(any(frame(True, t) != frame(False, t) for t in ts))
+        # asleep, nobody puffs
+        self.assertEqual(
+            *[bytes(self._sleeper(cold)) for cold in (True, False)])
+
+    def _sleeper(self, cold):
+        import cairo
+        surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 600, 600)
+        cr = cairo.Context(surf)
+        self.P.draw(cr, who="man", era="stone_age", seed=3, pose="lie", action="sleep", x=300,
+                    ground_y=560, scale=1.5, t=0.3, cold=cold)
+        return surf.get_data()
+
     def test_looking_up_reads_from_across_the_room(self):
         # the fifth film's judge could not see "looking up" in a sky chapter
         # where every figure did it: it was two dots moved a finger's width.

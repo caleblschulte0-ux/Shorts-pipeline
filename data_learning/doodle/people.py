@@ -278,6 +278,23 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
 
 
 # ------------------------------------------------------------------ drawing
+def _breath(cr, cx, cy, R, t, seed):
+    """A puff of breath every few seconds in frost or snow — the sixth
+    film's judge could see no cold in the cold chapter. It leaves the
+    mouth, drifts up and forward, and fades."""
+    period = 3.4 + (seed % 5) * 0.3
+    u = ((t + seed * 0.7) % period) / period
+    if u > 0.55:
+        return
+    k = u / 0.55
+    mx, my = cx + 0.3 * R, cy + 0.4 * R
+    for i in range(3):
+        px = mx + (0.35 + 0.9 * k + i * 0.22) * R
+        py = my - (0.15 + 0.7 * k) * R + i * 0.08 * R
+        rr = (0.12 + 0.3 * k) * R * (1 - i * 0.2)
+        ink.dot(cr, px, py, rr, (0.96, 0.97, 1.0, 0.55 * (1 - k)))
+
+
 def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
     r = random.Random(seed)
     blink_every = 3.8 + r.random() * 2.5
@@ -448,7 +465,7 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
 
 def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
          x: float, ground_y: float, scale: float, t: float, facing: str = "right",
-         mood: str = "calm", item: str | None = None, dim: float = 0.0):
+         mood: str = "calm", item: str | None = None, dim: float = 0.0, cold: bool = False):
     """Draw one person with feet at (x, ground_y)."""
     lk = look(who, era, seed)
     R = R0 * scale * lk["size"]
@@ -578,6 +595,8 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                 (hcx - 0.3 * R, hcy + 0.95 * R)]
         ink.fill_stroke(cr, bpts, ink.mix(lk["hair"], HEAD, 0.3), lw=lw * 0.7, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
+    if cold and action != "sleep":
+        _breath(cr, hcx, hcy, R, t, seed)
 
     # the work itself, where the action has something to show: a hide
     # across the lap for sewing, a core and its flakes for knapping. The
