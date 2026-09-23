@@ -1,0 +1,22 @@
+{
+  "key": "python_mammal_declines",
+  "title": "Mammal sighting declines in Everglades National Park since pythons arrived",
+  "unit": "percent",
+  "geography": "Everglades National Park, Florida",
+  "time_coverage": "1996-1997 baseline vs. 2003-2011 road surveys",
+  "source": {
+    "name": "Severe mammal declines coincide with proliferation of invasive Burmese pythons in Everglades National Park",
+    "publisher": "U.S. Geological Survey (USGS) / PNAS",
+    "url": "https://www.usgs.gov/faqs/how-have-invasive-pythons-impacted-florida-ecosystems",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "USGS-backed road-survey study (nearly 39,000 miles driven, 2003-2011, compared against 1996-1997 baseline surveys) found raccoon observations down 99.3%, opossum 98.9%, white-tailed deer 94.1% and bobcat 87.5% in the areas of the park where pythons have been established longest. Marsh rabbits, cottontail rabbits and foxes were not observed at all during the later surveys.",
+  "points": [
+    {"label": "Raccoons", "value": 99.3},
+    {"label": "Opossums", "value": 98.9},
+    {"label": "Deer", "value": 94.1},
+    {"label": "Bobcats", "value": 87.5}
+  ],
+  "ascending": false
+}

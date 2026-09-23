@@ -1,0 +1,19 @@
+{
+  "key": "seastar_wasting_population",
+  "title": "Sunflower sea star population, before vs. after the 2013 wasting-disease outbreak",
+  "unit": "percent",
+  "geography": "US West Coast (Washington to California)",
+  "time_coverage": "2013-2015",
+  "source": {
+    "name": "Sea Star Wasting Disease monitoring",
+    "publisher": "NOAA Fisheries / MARINe (UC Santa Cruz coastal monitoring network)",
+    "url": "https://www.fisheries.noaa.gov/feature-story/scientists-breed-sunflower-sea-stars-key-reviving-californias-imperiled-kelp-forests",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "A wasting-disease outbreak that swept the Pacific coast starting in 2013 killed an estimated 6 billion sunflower sea stars -- up to 99% of the population from Washington to Mexico, with the species completely disappearing off the California and Oregon coasts by 2015. Shown as percent of the pre-outbreak population remaining.",
+  "points": [
+    {"label": "Before 2013", "value": 100},
+    {"label": "After the outbreak", "value": 1}
+  ]
+}

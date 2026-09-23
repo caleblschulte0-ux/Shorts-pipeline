@@ -1,0 +1,19 @@
+{
+  "key": "passport_ownership_rate",
+  "title": "Share of Americans who hold a valid US passport",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1990-2023",
+  "source": {
+    "name": "Passport ownership rate, official statement",
+    "publisher": "U.S. Department of State, Bureau of Consular Affairs",
+    "url": "https://2021-2025.state.gov/expanding-passport-agencies-across-the-united-states/",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "The State Department's own account (@StateDept) put passport ownership at 5% of Americans in 1990, versus 48% as of its December 2023 statement -- a figure that has continued climbing toward roughly half the country.",
+  "points": [
+    {"label": "1990", "value": 5, "period": "1990"},
+    {"label": "2023", "value": 48, "period": "2023"}
+  ]
+}
