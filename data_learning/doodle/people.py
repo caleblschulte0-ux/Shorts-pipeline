@@ -61,6 +61,10 @@ OUTFIT = {
     # the Nile valley: white linen, a kilt or a straight dress, black hair, a collar of colour
     "egypt": dict(cloth=[rgb("#f2ecdc"), rgb("#ece3cc"), rgb("#f5efe0"), rgb("#e6dcc0")],
                   texture=None, strap=False),
+    # 1500-1750: wool coats and doublets in deep colours, a tricorn or a coif
+    "early_modern": dict(cloth=[rgb("#5a3a2a"), rgb("#2f4a6a"), rgb("#6b2f2f"), rgb("#3f5a3a"),
+                                rgb("#8a6a3a"), rgb("#4a3a5a")],
+                         texture=None, strap=False),
 }
 
 POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
@@ -114,6 +118,8 @@ def look(who: str, era: str, seed: int) -> dict:
               scarf=(era == "medieval" and w["long"] and r.random() < 0.6),
               cap=(era == "victorian" and not w["long"] and r.random() < 0.7),
               bonnet=(era == "victorian" and w["long"] and r.random() < 0.6),
+              tricorn=(era == "early_modern" and not w["long"] and r.random() < 0.65),
+              coif=(era == "early_modern" and w["long"] and r.random() < 0.6),
               spikes=r.randint(6, 9), seed=seed)
     return lk
 
@@ -485,6 +491,9 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     if lk["era"] == "egypt":
         # a straight dress to the ankle, or a kilt to the knee
         hem = (1.55 * R if lk["long"] else 0.95 * R) if pose in ("stand", "walk") else 0.35 * R
+    if lk["era"] == "early_modern":
+        # a long gown, or a coat to the knee over breeches
+        hem = (1.6 * R if lk["long"] else 1.0 * R) if pose in ("stand", "walk") else 0.35 * R
     body = [(nx - 0.3 * R, ny + 0.06 * R), (nx + 0.3 * R, ny + 0.06 * R),
             (nx + top_w, ny + 0.3 * R), (hx0 + bot_w, hy0 + hem),
             (hx0, hy0 + hem + 0.06 * R), (hx0 - bot_w, hy0 + hem), (nx - top_w, ny + 0.3 * R)]
@@ -499,10 +508,11 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         ink.fill_stroke(cr, [(nx - 0.42 * R, ny + 0.12 * R), (nx + 0.42 * R, ny + 0.12 * R),
                              (nx + 0.5 * R, ny + 0.42 * R), (nx - 0.5 * R, ny + 0.42 * R)],
                         rgb("#2f8f8f") if seed % 2 else rgb("#c99a2e"), lw=lw * 0.6, amp=0.6, seed=seed + 8)
-    if lk["era"] in ("medieval", "ancient", "victorian"):
+    if lk["era"] in ("medieval", "ancient", "victorian", "early_modern"):
         by = hy0 - 0.15 * R
         ink.line(cr, [(hx0 - bot_w * 0.85, by), (hx0 + bot_w * 0.85, by)], lw=lw * 0.7,
-                 ink=rgb("#4b3524") if lk["era"] in ("medieval", "victorian") else rgb("#9c7d4a"), amp=0)
+                 ink=rgb("#4b3524") if lk["era"] in ("medieval", "victorian", "early_modern") else rgb("#9c7d4a"),
+                 amp=0)
 
     # head (with hood/scarf) + hair + face
     if lk["hood"] or lk["scarf"]:
@@ -520,6 +530,19 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                              (hcx + 0.6 * R, hcy - 1.05 * R), (hcx + 1.0 * R, hcy - 0.5 * R),
                              (hcx + 1.35 * R, hcy - 0.42 * R), (hcx + 1.3 * R, hcy - 0.3 * R)], capc,
                         lw=lw * 0.8, amp=1.0, seed=seed + 6, shadow=shade(capc), shadow_dir=(0, 1))
+    if lk.get("tricorn"):
+        hc = rgb("#2a2422")
+        ink.fill_stroke(cr, [(hcx - 1.3 * R, hcy - 0.5 * R), (hcx - 0.7 * R, hcy - 1.35 * R),
+                             (hcx + 0.75 * R, hcy - 1.35 * R), (hcx + 1.3 * R, hcy - 0.5 * R),
+                             (hcx + 0.8 * R, hcy - 0.75 * R), (hcx - 0.8 * R, hcy - 0.75 * R)], hc,
+                        lw=lw * 0.8, amp=1.0, seed=seed + 6, shadow=shade(hc), shadow_dir=(0, 1))
+    if lk.get("coif"):
+        cc = rgb("#efe8d8")
+        ink.fill_stroke(cr, [(hcx - 1.05 * R, hcy + 0.2 * R), (hcx - 1.05 * R, hcy - 0.6 * R),
+                             (hcx - 0.5 * R, hcy - 1.2 * R), (hcx + 0.5 * R, hcy - 1.2 * R),
+                             (hcx + 1.05 * R, hcy - 0.6 * R), (hcx + 1.05 * R, hcy + 0.2 * R),
+                             (hcx + 0.75 * R, hcy - 0.45 * R), (hcx - 0.75 * R, hcy - 0.45 * R)], cc,
+                        lw=lw * 0.8, amp=1.0, seed=seed + 6, shadow=shade(cc), shadow_dir=(0, 1))
     if lk.get("bonnet"):
         bc = shade(lk["cloth"], 0.95)
         ink.fill_stroke(cr, [(hcx - 1.05 * R, hcy + 0.1 * R), (hcx - 1.1 * R, hcy - 0.7 * R),

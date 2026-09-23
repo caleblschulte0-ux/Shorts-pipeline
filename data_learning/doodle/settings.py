@@ -43,7 +43,7 @@ class Setting:
     ground: str                 # grass | snow | sand | rock | dirt | floor
     interior: bool = False
     water: str | None = None    # river | lake | sea
-    eras: tuple = ("stone_age", "medieval", "ancient", "victorian", "egypt")
+    eras: tuple = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern")
     horizon: float = 0.62       # fraction of H where the far land meets the sky
 
 
@@ -67,10 +67,13 @@ SETTINGS = {
     "olive_grove": Setting("dirt", eras=("ancient",)),
     "street": Setting("cobbles", eras=("victorian",)),            # a gas-lit terrace street
     "parlour_inside": Setting("boards", interior=True, eras=("victorian",)),
-    "farmyard": Setting("dirt", eras=("medieval", "victorian")),
+    "farmyard": Setting("dirt", eras=("medieval", "victorian", "early_modern")),
     "nile_bank": Setting("sand", water="river", eras=("egypt",)),   # palms and reeds along the river
     "desert": Setting("sand", eras=("egypt",), horizon=0.64),       # dunes, the pyramids on the skyline
     "mudbrick_inside": Setting("dirt", interior=True, eras=("egypt",)),
+    "harbour": Setting("stone", water="sea", eras=("early_modern",)),    # a quay, a ship at anchor
+    "tavern_inside": Setting("boards", interior=True, eras=("early_modern",)),
+    "market_square": Setting("cobbles", eras=("medieval", "early_modern")),
 }
 
 GROUND = {"grass": "#8fb35f", "snow": "#eef2f5", "sand": "#e3cf9a", "rock": "#9b8f80",
@@ -281,6 +284,25 @@ def _interior(cr, name, seed, r):
                         amp=0.6, seed=seed + 1)
         for k in range(1, 4):
             ink.line(cr, [(wx - 60 + k * 30, 120), (wx - 60 + k * 30, 200)], lw=4, ink=rgb("#b39a6a"), amp=0)
+    elif name == "tavern_inside":
+        wall = rgb("#a08a66")
+        cr.set_source_rgba(*wall)
+        cr.paint()
+        # dark beams, plaster between, a small leaded window, a shelf of tankards
+        for x in (120, 620, 1180, 1720):
+            ink.line(cr, [(x, -10), (x, H * 0.8)], lw=26, ink=rgb("#4a3424"), amp=0.8, seed=x)
+        ink.line(cr, [(-10, 140), (W + 10, 140)], lw=28, ink=rgb("#4a3424"), amp=0.8, seed=seed)
+        wx = r.choice([380, 900, 1450])
+        ink.fill_stroke(cr, [(wx - 80, 260), (wx + 80, 260), (wx + 80, 420), (wx - 80, 420)], rgb("#3a4a6a"), lw=8,
+                        amp=0.8, seed=seed + 1)
+        for k in range(1, 4):
+            ink.line(cr, [(wx - 80 + k * 40, 260), (wx - 80 + k * 40, 420)], lw=4, ink=rgb("#6a5a44"), amp=0)
+            ink.line(cr, [(wx - 80, 260 + k * 40), (wx + 80, 260 + k * 40)], lw=4, ink=rgb("#6a5a44"), amp=0)
+        sx = wx + 400 if wx < 1000 else wx - 500
+        ink.line(cr, [(sx - 150, 330), (sx + 150, 330)], lw=10, ink=rgb("#4a3424"), amp=0.5, seed=seed + 2)
+        for k in range(4):
+            ink.fill_stroke(cr, [(sx - 130 + k * 70, 330), (sx - 96 + k * 70, 330), (sx - 100 + k * 70, 280),
+                                 (sx - 126 + k * 70, 280)], rgb("#8a8d92"), lw=3, amp=0)
     elif name == "parlour_inside":
         wall = rgb("#6f7c5c")
         cr.set_source_rgba(*wall)
@@ -361,6 +383,13 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
             x = -60 + k * 400 + r.uniform(-30, 30)
             ink.line(cr, [(x, H * st.horizon + 90), (x, H * st.horizon + 30)], lw=6, ink=rgb("#6a5236"), amp=0.5, seed=k)
             ink.line(cr, [(x, H * st.horizon + 55), (x + 400, H * st.horizon + 55)], lw=4, ink=rgb("#6a5236"), amp=0.5, seed=k + 9)
+    if name == "market_square":
+        from .props import timber_house
+        for k in range(4):
+            timber_house(cr, 250 + k * 480 + r.uniform(-40, 40), H * st.horizon + 170, 0.8, 0.0, seed + k)
+    if name == "harbour":
+        from .props import ship
+        ship(cr, W * r.uniform(0.3, 0.7), H * 0.58 + 40, 0.9, 0.0, seed)
     if name == "desert":
         _dunes(cr, r, H * st.horizon + 20, seed)
         from .props import pyramid

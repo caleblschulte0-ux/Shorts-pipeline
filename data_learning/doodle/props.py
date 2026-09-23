@@ -711,6 +711,68 @@ def date_basket(cr, x, y, s, t, seed):
         ink.dot(cr, x - 30 * s + j * 10 * s, y - 62 * s - (j % 2) * 7 * s, 7 * s, rgb("#7a3b1e"))
 
 
+def ship(cr, x, y, s, t, seed):
+    """A square-rigged ship at anchor, rocking a little, a lantern at the stern."""
+    bob = math.sin(t * 2 * math.pi / 5.0 + seed) * 4 * s
+    hull = rgb("#5a3a26")
+    ink.fill_stroke(cr, [(x - 240 * s, y - 70 * s + bob), (x + 250 * s, y - 60 * s + bob), (x + 200 * s, y + bob),
+                         (x - 190 * s, y + bob)], hull, lw=5 * s, amp=1.2, seed=seed, shadow=shade(hull),
+                    shadow_dir=(0, 1), texture="grain", tex_alpha=0.2)
+    ink.line(cr, [(x - 230 * s, y - 40 * s + bob), (x + 240 * s, y - 32 * s + bob)], lw=3 * s, ink=rgb("#c9a95c"), amp=0)
+    for mx, h in ((x - 90 * s, 330), (x + 70 * s, 290)):
+        ink.line(cr, [(mx, y - 70 * s + bob), (mx, y - h * s + bob)], lw=8 * s, ink=WOOD_D, amp=0)
+        for k, (yy, w) in enumerate(((h - 60, 120), (h - 160, 150))):
+            sail = rgb("#e9e2d0")
+            ink.fill_stroke(cr, [(mx - w * s, y - yy * s + bob), (mx + w * s, y - yy * s + bob),
+                                 (mx + (w - 12) * s, y - (yy - 85) * s + bob), (mx - (w - 12) * s, y - (yy - 85) * s + bob)],
+                            sail, lw=4 * s, amp=1.2, seed=seed + k, shadow=shade(sail, 0.9), shadow_dir=(1, 0))
+    ink.line(cr, [(x + 250 * s, y - 60 * s + bob), (x + 380 * s, y - 130 * s + bob)], lw=6 * s, ink=WOOD_D, amp=0)
+    flame(cr, x + 230 * s, y - 100 * s + bob, 18 * s, t, seed, glow_r=6.0, glow_a=0.4)
+
+
+def timber_house(cr, x, y, s, t, seed):
+    """A half-timbered house: white plaster, dark beams, a jettied upper floor."""
+    wall = rgb("#efe6d2")
+    ink.fill_stroke(cr, [(x - 170 * s, y), (x - 170 * s, y - 160 * s), (x + 170 * s, y - 160 * s), (x + 170 * s, y)],
+                    wall, lw=5 * s, amp=1, seed=seed, shadow=shade(wall), shadow_dir=(1, 0))
+    ink.fill_stroke(cr, [(x - 190 * s, y - 160 * s), (x - 190 * s, y - 300 * s), (x + 190 * s, y - 300 * s),
+                         (x + 190 * s, y - 160 * s)], wall, lw=5 * s, amp=1, seed=seed + 1, shadow=shade(wall),
+                    shadow_dir=(1, 0))
+    beam = rgb("#4a3424")
+    for dx in (-190, -95, 0, 95, 190):
+        ink.line(cr, [(x + dx * s, y - 160 * s), (x + dx * s, y - 300 * s)], lw=8 * s, ink=beam, amp=0.5, seed=dx)
+    for dx in (-170, 170):
+        ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 160 * s)], lw=8 * s, ink=beam, amp=0.5, seed=dx + 1)
+    ink.line(cr, [(x - 190 * s, y - 160 * s), (x + 190 * s, y - 160 * s)], lw=9 * s, ink=beam, amp=0.5, seed=seed + 3)
+    ink.line(cr, [(x - 95 * s, y - 300 * s), (x - 190 * s, y - 230 * s)], lw=6 * s, ink=beam, amp=0.5, seed=seed + 4)
+    roof = rgb("#7a5a44")
+    ink.fill_stroke(cr, [(x - 215 * s, y - 295 * s), (x, y - 400 * s), (x + 215 * s, y - 295 * s)], roof, lw=5 * s,
+                    amp=1.5, seed=seed + 5, shadow=shade(roof), shadow_dir=(1, 0), texture="hatch", tex_alpha=0.15)
+    ink.fill_stroke(cr, [(x - 35 * s, y), (x - 35 * s, y - 120 * s), (x + 35 * s, y - 120 * s), (x + 35 * s, y)],
+                    rgb("#3a2a20"), lw=4 * s, amp=0.6, seed=seed + 6)
+    ink.fill_stroke(cr, [(x + 60 * s, y - 200 * s), (x + 140 * s, y - 200 * s), (x + 140 * s, y - 270 * s),
+                         (x + 60 * s, y - 270 * s)], rgb("#f3d58a"), lw=4 * s, amp=0.5, seed=seed + 7)
+
+
+def crates(cr, x, y, s, t, seed):
+    for k, (dx, dy, w) in enumerate(((-60, 0, 70), (40, 0, 60), (-15, -70, 60))):
+        ink.fill_stroke(cr, [(x + (dx - w / 2) * s, y + dy * s), (x + (dx + w / 2) * s, y + dy * s),
+                             (x + (dx + w / 2) * s, y + (dy - w) * s), (x + (dx - w / 2) * s, y + (dy - w) * s)],
+                        rgb("#a5803f"), lw=4 * s, amp=0.6, seed=seed + k, shadow=shade(rgb("#a5803f")),
+                        shadow_dir=(1, 0), texture="grain", tex_alpha=0.3)
+        ink.line(cr, [(x + (dx - w / 2) * s, y + (dy - w / 2) * s), (x + (dx + w / 2) * s, y + (dy - w / 2) * s)],
+                 lw=3 * s, ink=WOOD_D, amp=0)
+
+
+def mooring_post(cr, x, y, s, t, seed):
+    ink.line(cr, [(x, y), (x, y - 120 * s)], lw=22 * s, ink=WOOD_D, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 120 * s, 12 * s, 6 * s, 10), WOOD, lw=3 * s, amp=0)
+    for k in range(3):
+        a = -0.4 + k * 0.4
+        ink.line(cr, [(x, y - 90 * s), (x + math.cos(a) * 90 * s, y - 40 * s + math.sin(a) * 30 * s)], lw=4 * s,
+                 ink=rgb("#c9b26a"), amp=0.8, seed=seed + k)
+
+
 def hide_rack(cr, x, y, s, t, seed):
     for dx in (-100, 100):
         ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 230 * s)], lw=8 * s, ink=WOOD, amp=0)
@@ -981,24 +1043,25 @@ class Prop:
 
 
 BOTH = ("stone_age", "medieval")
-ALL = ("stone_age", "medieval", "ancient", "victorian", "egypt")
-LATER = ("medieval", "ancient", "victorian", "egypt")   # the settled world: tables, wells, carts, kept animals
+ALL = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern")
+LATER = ("medieval", "ancient", "victorian", "egypt", "early_modern")   # the settled world
 STONE_AGE = ("stone_age",)
 ANCIENT = ("ancient",)
 VICTORIAN = ("victorian",)
 EGYPT = ("egypt",)
+EARLY_MODERN = ("early_modern",)
 MEDIEVAL = ("medieval",)
 
 PROPS = {
     "campfire": Prop(campfire, 250, "mid", ALL, living=True, light=True, height=90, base=campfire_base),
-    "hearth": Prop(hearth, 300, "back", ("medieval", "victorian"), living=True, light=True, height=110, base=hearth_base),
+    "hearth": Prop(hearth, 300, "back", ("medieval", "victorian", "early_modern"), living=True, light=True, height=110, base=hearth_base),
     "torch": Prop(torch_wall, 60, "back", ALL, living=True, light=True, height=260, base=torch_base),
     "candle": Prop(candle, 60, "front", LATER, living=True, light=True, height=75, base=candle_base),
     "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", ALL, base=pot_base),
     "tent": Prop(tent, 360, "back", STONE_AGE),
     "hut": Prop(hut, 390, "back", ALL),
-    "cottage": Prop(cottage, 470, "back", ("medieval", "victorian"), base=cottage_base),
+    "cottage": Prop(cottage, 470, "back", ("medieval", "victorian", "early_modern"), base=cottage_base),
     "tree": Prop(tree, 300, "back", ALL, solid_width=110),
     "pine": Prop(pine, 280, "back", ALL, solid_width=110),
     "bush": Prop(bush, 190, "mid", ALL),
@@ -1020,7 +1083,7 @@ PROPS = {
     "cart": Prop(cart, 460, "back", LATER),
     "barrel": Prop(barrel, 130, "mid", LATER),
     "canoe": Prop(canoe, 400, "mid", STONE_AGE),
-    "wheat": Prop(wheat, 240, "front", ("medieval", "victorian")),
+    "wheat": Prop(wheat, 240, "front", ("medieval", "victorian", "early_modern")),
     "cave_painting": Prop(cave_painting, 360, "back", STONE_AGE, settings=("cave_inside",)),
     "stones": Prop(stones, 120, "front", STONE_AGE),
     "basket": Prop(basket, 130, "front", ALL),
@@ -1032,11 +1095,11 @@ PROPS = {
     "amphora": Prop(amphora, 80, "front", ANCIENT),
     "brazier": Prop(brazier, 150, "mid", ("ancient", "egypt"), living=True, light=True, height=100, base=brazier_base),
     "oil_lamp": Prop(oil_lamp, 60, "front", ("ancient", "egypt"), living=True, light=True, height=60, base=oil_lamp_base),
-    "stall": Prop(stall, 340, "mid", ("ancient", "egypt")),
+    "stall": Prop(stall, 340, "mid", ("ancient", "egypt", "medieval", "early_modern")),
     "goat": Prop(goat, 200, "mid", ("ancient", "egypt"), living=False),
     "olive": Prop(olive, 260, "back", ANCIENT, solid_width=110),
     "terrace": Prop(terrace, 420, "back", VICTORIAN),
-    "barn": Prop(barn, 540, "back", ("medieval", "victorian")),
+    "barn": Prop(barn, 540, "back", ("medieval", "victorian", "early_modern")),
     "gas_lamp": Prop(gas_lamp, 80, "back", VICTORIAN, living=True, light=True, height=360, base=gas_lamp_base),
     "stove": Prop(stove, 320, "back", VICTORIAN, living=True, light=True, height=90, base=stove_base),
     "chair": Prop(chair, 120, "mid", VICTORIAN),
@@ -1051,4 +1114,8 @@ PROPS = {
     "reed_boat": Prop(reed_boat, 420, "mid", EGYPT),
     "mudbrick_house": Prop(mudbrick_house, 420, "back", EGYPT),
     "date_basket": Prop(date_basket, 130, "front", EGYPT),
+    "ship": Prop(ship, 520, "back", EARLY_MODERN, settings=("harbour", "seashore")),
+    "timber_house": Prop(timber_house, 440, "back", ("medieval", "early_modern")),
+    "crates": Prop(crates, 180, "mid", EARLY_MODERN),
+    "mooring_post": Prop(mooring_post, 60, "front", EARLY_MODERN, settings=("harbour",)),
 }

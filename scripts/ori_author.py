@@ -321,9 +321,12 @@ ERA_WORDS = {
                 "mediterranean", "legion", "caesar", "villa", "forum", "byzant", "olive"),
     "egypt": ("egypt", "egyptian", "nile", "pharaoh", "pyramid", "pyramids", "thebes", "giza", "memphis", "luxor",
               "papyrus", "scribe"),
+    "early_modern": ("tudor", "elizabethan", "pirate", "pirates", "1500s", "1600s", "16th century", "17th century",
+                     "sixteenth century", "seventeenth century", "age of sail", "galleon", "plymouth", "puritan",
+                     "shakespeare", "musketeer", "renaissance", "reformation", "mayflower"),
     "victorian": ("victorian", "1800s", "19th century", "nineteenth century", "industrial", "dickens", "steam",
                   "railway", "gaslight", "gas lamp", "mill town", "workhouse", "regency", "georgian", "edwardian",
-                  "1700s", "18th century", "eighteenth century", "colonial", "frontier"),
+                  "1700s", "18th century", "eighteenth century", "colonial", "frontier", "1770s", "revolutionary war"),
 }
 
 ERA_PROMPT = """Which of these drawn worlds fits the topic below? Answer with ONE word from this list, or "none" if the topic belongs to a time none of them can show: {eras}.

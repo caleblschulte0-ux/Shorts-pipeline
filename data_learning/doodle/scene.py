@@ -32,7 +32,7 @@ from .props import PROPS
 from .settings import SETTINGS, TIMES, WEATHER
 
 W, H = settings.W, settings.H
-ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt")
+ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern")
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
@@ -40,7 +40,8 @@ STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
          "column", "temple", "villa", "amphora", "stall", "olive",
          "terrace", "chair", "bookshelf", "clock", "chimney_pot",
-         "pyramid", "palm", "obelisk", "jar", "reed_boat", "mudbrick_house", "date_basket"}
+         "pyramid", "palm", "obelisk", "jar", "reed_boat", "mudbrick_house", "date_basket",
+         "timber_house", "crates", "mooring_post"}
 MAX_CAST, MAX_PROPS = 4, 6
 LIGHT_ITEMS = ("torch", "lantern")
 
@@ -149,8 +150,8 @@ def motion_strength(spec: dict) -> int:
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
             k = _fire_strength(p["name"], time, shot, st.interior)
-            if fog and p["name"] == "cauldron":
-                k = max(0, k - 1)     # measured: dusk close 0.06 clear, 0.34 in fog
+            if fog and p["name"] in ("cauldron", "brazier"):
+                k = max(0, k - 1)     # measured: a cauldron 0.06 clear / 0.34 in fog; a brazier 0.18 / 0.47
             score += k
     for c in spec.get("cast") or []:
         if not isinstance(c, dict):
@@ -269,7 +270,7 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, 
 # else. Trees, tents and walls stay scenery.
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
-              "clock", "obelisk", "mudbrick_house"}
+              "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
 
 
 def figure_extent(pose: str, R: float, action: str = "idle", item: str | None = None) -> tuple[float, float]:
@@ -329,22 +330,27 @@ def collisions(lay: dict) -> list[str]:
 
 
 SHRINK = (1.0, 0.92, 0.84, 0.76, 0.68, 0.6)
+# where people stand when nobody said: around the focal thing first; spread
+# to the edges when the middle is full of furniture; close in when the
+# edges are
+SLOT_SETS = ([0.29, 0.71, 0.15, 0.85], [0.18, 0.82, 0.5, 0.34], [0.24, 0.76, 0.42, 0.58], [0.12, 0.88, 0.5, 0.3])
 
 
 def layout(spec: dict, seed: int) -> dict:
     """Place every prop and person. Deterministic in (spec, seed). A shot
-    too crowded to fit at its natural size is drawn a little smaller, in
-    steps, until nothing overlaps; the last step is kept regardless and
-    `collisions` says what still touches."""
+    too crowded to fit at its natural size tries the other standing spots,
+    then is drawn a little smaller, in steps, until nothing overlaps; the
+    last try is kept regardless and `collisions` says what still touches."""
     lay = None
     for k in SHRINK:
-        lay = _layout(spec, seed, k)
-        if not lay["collisions"]:
-            break
+        for slots in SLOT_SETS:
+            lay = _layout(spec, seed, k, slots)
+            if not lay["collisions"]:
+                return lay
     return lay
 
 
-def _layout(spec: dict, seed: int, shrink: float) -> dict:
+def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
     pl = _prop_list(spec)
@@ -435,7 +441,7 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
     # width (a sleeper is five heads long) kept clear of the fire and of
     # each other. The judge's first note on the first film: "sleepers are
     # drawn lying in the fire".
-    slots_auto = [0.29, 0.71, 0.15, 0.85] if focal else [0.35, 0.65, 0.2, 0.8]
+    slots_auto = list(slots_auto or SLOT_SETS[0])
     figs = []
     for i, c in enumerate(cast):
         R = people.R0 * s * people.WHO[c["who"]]["size"]

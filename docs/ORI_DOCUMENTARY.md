@@ -247,6 +247,14 @@ oracle: same answers, no memory.
   brazier, oil lamp, stall and goat are shared with the Mediterranean.
   Measured: the Nile follows the river table (0.88 by day, 0.28 at dusk);
   a desert campfire at night 0.00; a lamp in a mud-brick room 0.26.
+- A sixth era, `early_modern` (1500-1750): wool coats and doublets in deep
+  colours, a tricorn or a coif; a harbour on a stone quay with a ship at
+  anchor across the water, a beamed tavern with a leaded window and a
+  shelf of tankards, a half-timbered market square (shared with the
+  Middle Ages); a ship (harbour and seashore only, a lantern at its
+  stern), a timber house, crates, a mooring post; the stall, barn, hearth,
+  cottage and wheat are shared. The sea and hearth tables already cover
+  its light.
 - Fog is measured too: a river under fog holds 0.20 at night and 0.97 by
   day, a cauldron 0.06 clear and 0.34 in fog — so water counts only at
   night in fog and a cauldron drops a step.

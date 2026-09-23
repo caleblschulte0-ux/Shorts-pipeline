@@ -189,6 +189,9 @@ class MotionIsMeasuredWithTheGatesOwnProbe(unittest.TestCase):
             ("egypt", {"setting": "nile_bank", "time": "dusk", "shot": "wide", "props": ["reed_boat", "palm"]}),
             ("egypt", {"setting": "mudbrick_inside", "time": "night", "shot": "close",
                        "cast": [{"who": "woman", "pose": "sit_on", "action": "eat"}], "props": ["oil_lamp", "jar"]}),
+            ("early_modern", {"setting": "harbour", "time": "night", "shot": "wide", "props": ["crates", "mooring_post"]}),
+            ("early_modern", {"setting": "tavern_inside", "time": "night", "shot": "close",
+                              "cast": [{"who": "man", "pose": "sit_on", "action": "drink"}], "props": ["hearth", "table"]}),
         ):
             self.assertEqual(__import__("data_learning.doodle.scene", fromlist=["x"]).validate(spec, era), [])
             self._assert_alive(spec, era)
