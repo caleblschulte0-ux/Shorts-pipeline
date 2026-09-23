@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260922",
-  "generated_at": "2026-09-22T23:30:51Z",
+  "generated_at": "2026-09-23T00:31:00Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -1236,23 +1236,22 @@
       "backfilled": 4,
       "short": 6,
       "held_reasons": [
-        "showrunner_block: showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets a pic",
+        "showrunner_block: showrunner BLOCK: The captions and gameplay are clean and readable, but the story is never shown. It i",
         "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stoc",
-        "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat of the malicious-complia"
+        "showrunner_block: showrunner BLOCK: A readable but bare reddit story: the whole video is Minecraft gameplay plus one-wor"
       ]
     },
     "showrunner": {
       "recent": 40,
       "blocks": 40,
-      "avg_score": 37.6
+      "avg_score": 38.6
     },
     "failure_census": {
       "n_verdicts": 20,
       "classes": {
         "decorative_mascot": {
-          "count": 22,
+          "count": 19,
           "stories": {
-            "f1-pit-stop-vanishing-act": 3,
             "container-ships-floating-cities": 8,
             "global-ewaste-crisis": 1,
             "invasive-species-price-tag": 2,
@@ -1262,9 +1261,6 @@
             "urban-heat-island-redlining": 1
           },
           "timestamps": [
-            "2026-09-22T21:03:26+00:00",
-            "2026-09-22T21:03:26+00:00",
-            "2026-09-22T21:08:53+00:00",
             "2026-09-22T21:15:49+00:00",
             "2026-09-22T21:22:59+00:00",
             "2026-09-22T21:22:59+00:00",
@@ -1286,16 +1282,15 @@
             "2026-09-22T23:24:32+00:00"
           ],
           "examples": [
-            "decorative_mascot: Data mostly stands or perches on a bar top (seg2:start, seg3:mid) or stands with hands on head beside the hourglasses (seg2:mid, seg2:end). He never works a pit crew bit tied to the",
-            "unreadable: At seg1:start the mascot sits on top of the 1950s '60' value label and hides it. The 'Human reaction time 0.3' value in seg2:mid and seg2:end, and '0.9'/'1.7' in seg1:mid and seg1:end, are",
-            "decorative_mascot: Data never does a bit tied to the stat. In hook@0.3 to seg0:end he slides up the bar rows, in seg1:start he perches on the end of a bar, in seg1:mid/end he stands on the seesaw pan,"
+            "decorative_mascot: In hook@0.3 through seg0:end Data just shuffles along the bar rows. In seg3:start through seg3:end he slides up the column edge, and in seg4:mid he stands on a line. None of it is a",
+            "decorative_mascot: In seg0:start through seg0:end Data just walks along the bar tips. In seg3:start through seg3:end he slides up the side of the column. Neither is a bit tied to the stat. Only seg2 (",
+            "unreadable: In seg1:mid and seg1:end the title is cut off at both edges and reads \"\u00b7gest container ship capacity by ye\". In seg1:mid the mascot covers the \"2008\" tick, which also sits under a faint \"2"
           ],
           "recurred_after_fix": false
         },
         "other": {
-          "count": 12,
+          "count": 11,
           "stories": {
-            "f1-pit-stop-vanishing-act": 1,
             "container-ships-floating-cities": 2,
             "global-ewaste-crisis": 1,
             "coffee-price-record": 1,
@@ -1305,7 +1300,6 @@
             "teen-vaping-crash-nicotine-pouches": 1
           },
           "timestamps": [
-            "2026-09-22T21:08:53+00:00",
             "2026-09-22T21:15:49+00:00",
             "2026-09-22T21:37:03+00:00",
             "2026-09-22T21:44:12+00:00",
@@ -1319,9 +1313,9 @@
             "2026-09-22T23:24:32+00:00"
           ],
           "examples": [
-            "unreadable: seg1:start: Data's body covers the 1950s value '60'. seg2:mid/end: 'Human reaction time 0.3' is dark grey on navy and almost invisible. seg1:mid/end: the 'Current record' value (0.9/1.7) i",
             "unreadable: In seg1:mid and seg1:end the title is cut off at both frame edges ('\u00b7rgest container ship capacity by ye'). In seg1:mid a faded '24,000' and '2019' sit over the playhead while the ticker r",
-            "unreadable: In seg4:mid to payoff@-0.4 the speech-bubble tail cuts through 'Met by new mining' so it reads 'new \\ining', and the tops of its letters are clipped by the bubble. In seg2:start and seg3:s"
+            "unreadable: In seg4:mid to payoff@-0.4 the speech-bubble tail cuts through 'Met by new mining' so it reads 'new \\ining', and the tops of its letters are clipped by the bubble. In seg2:start and seg3:s",
+            "unreadable: In seg4:start through seg4:end the February 2024 value ($0.7, $1.0, $2.0) is dark grey on a dark navy ground and nearly disappears on a phone. In seg3:start and seg3:mid the '$4.4' inside "
           ],
           "recurred_after_fix": false
         },
@@ -1420,7 +1414,7 @@
           "max": 2
         },
         "mascot": {
-          "median": 1,
+          "median": 2,
           "min": 1,
           "max": 4
         },
@@ -1440,14 +1434,12 @@
           "max": 1
         },
         "temporal_craft": {
-          "median": 1,
+          "median": 2,
           "min": 1,
-          "max": 2
+          "max": 3
         }
       },
       "scores": [
-        38,
-        30,
         39,
         35,
         39,
@@ -1465,7 +1457,9 @@
         26,
         34,
         39,
-        31
+        31,
+        65,
+        61
       ]
     }
   },
@@ -1483,10 +1477,18 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "9a1d327",
-    "commits_since": "2026-09-21",
+    "head": "89e76af",
+    "commits_since": "2026-09-22",
     "commit_count": 50,
     "commits": [
+      "89e76af exchange: phase A bundle for 20260923 [skip ci]",
+      "283be32 Explainer: a field of one thing repeated is rare, at most one per video (#429)",
+      "af0557d daily: 2026-09-22 report + state [skip ci]",
+      "d7132a1 claim: mailbox verdicts 2026-09-22T23:47Z [skip ci]",
+      "8614474 third: analytics [skip ci]",
+      "0dd20bb third: update posted log + analytics [skip ci]",
+      "52a4bdf deadman: repaired 2026-09-22 [skip ci]",
+      "709568a retro: brief + triage for 20260922 [skip ci]",
       "9a1d327 exchange: phase A bundle for 20260922 [skip ci]",
       "6bc1538 Explainer: no ring round a guessed anchor; a timeline that fills its frame (#428)",
       "e3f241c explainer: update posted log + analytics [skip ci]",
@@ -1518,15 +1520,7 @@
       "8deefc8 third: analytics [skip ci]",
       "76586e8 third: update posted log + analytics [skip ci]",
       "ba2bfae deadman: repaired 2026-09-22 [skip ci]",
-      "a814c3c daily: 2026-09-22 report + state [skip ci]",
-      "8b64b9c claim: mailbox verdicts 2026-09-22T19:47Z [skip ci]",
-      "bde71b5 third: analytics [skip ci]",
-      "13d9be7 third: update posted log + analytics [skip ci]",
-      "caee2c4 deadman: repaired 2026-09-22 [skip ci]",
-      "ac1c93d claim: mailbox verdicts 2026-09-22T19:03Z [skip ci]",
-      "3124ac1 daily: 2026-09-22 report + state [skip ci]",
-      "fddc1b6 exchange: phase A bundle for 20260922 [skip ci]",
-      "8322d52 watchdog: chatgpt task verdicts 20260922 [skip ci]"
+      "a814c3c daily: 2026-09-22 report + state [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1613,6 +1607,7 @@
       "test_one_fact_one_beat.py",
       "test_one_icon_one_thing.py",
       "test_one_palette_reaches_the_frame.py",
+      "test_one_thing_repeated_is_rare.py",
       "test_package_schema.py",
       "test_palette.py",
       "test_phase_a_readiness.py",

@@ -2,9 +2,8 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 22,
+   "count": 19,
    "stories": {
-    "f1-pit-stop-vanishing-act": 3,
     "container-ships-floating-cities": 8,
     "global-ewaste-crisis": 1,
     "invasive-species-price-tag": 2,
@@ -14,9 +13,6 @@
     "urban-heat-island-redlining": 1
    },
    "timestamps": [
-    "2026-09-22T21:03:26+00:00",
-    "2026-09-22T21:03:26+00:00",
-    "2026-09-22T21:08:53+00:00",
     "2026-09-22T21:15:49+00:00",
     "2026-09-22T21:22:59+00:00",
     "2026-09-22T21:22:59+00:00",
@@ -38,16 +34,15 @@
     "2026-09-22T23:24:32+00:00"
    ],
    "examples": [
-    "decorative_mascot: Data mostly stands or perches on a bar top (seg2:start, seg3:mid) or stands with hands on head beside the hourglasses (seg2:mid, seg2:end). He never works a pit crew bit tied to the",
-    "unreadable: At seg1:start the mascot sits on top of the 1950s '60' value label and hides it. The 'Human reaction time 0.3' value in seg2:mid and seg2:end, and '0.9'/'1.7' in seg1:mid and seg1:end, are",
-    "decorative_mascot: Data never does a bit tied to the stat. In hook@0.3 to seg0:end he slides up the bar rows, in seg1:start he perches on the end of a bar, in seg1:mid/end he stands on the seesaw pan,"
+    "decorative_mascot: In hook@0.3 through seg0:end Data just shuffles along the bar rows. In seg3:start through seg3:end he slides up the column edge, and in seg4:mid he stands on a line. None of it is a",
+    "decorative_mascot: In seg0:start through seg0:end Data just walks along the bar tips. In seg3:start through seg3:end he slides up the side of the column. Neither is a bit tied to the stat. Only seg2 (",
+    "unreadable: In seg1:mid and seg1:end the title is cut off at both edges and reads \"\u00b7gest container ship capacity by ye\". In seg1:mid the mascot covers the \"2008\" tick, which also sits under a faint \"2"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 12,
+   "count": 11,
    "stories": {
-    "f1-pit-stop-vanishing-act": 1,
     "container-ships-floating-cities": 2,
     "global-ewaste-crisis": 1,
     "coffee-price-record": 1,
@@ -57,7 +52,6 @@
     "teen-vaping-crash-nicotine-pouches": 1
    },
    "timestamps": [
-    "2026-09-22T21:08:53+00:00",
     "2026-09-22T21:15:49+00:00",
     "2026-09-22T21:37:03+00:00",
     "2026-09-22T21:44:12+00:00",
@@ -71,9 +65,9 @@
     "2026-09-22T23:24:32+00:00"
    ],
    "examples": [
-    "unreadable: seg1:start: Data's body covers the 1950s value '60'. seg2:mid/end: 'Human reaction time 0.3' is dark grey on navy and almost invisible. seg1:mid/end: the 'Current record' value (0.9/1.7) i",
     "unreadable: In seg1:mid and seg1:end the title is cut off at both frame edges ('\u00b7rgest container ship capacity by ye'). In seg1:mid a faded '24,000' and '2019' sit over the playhead while the ticker r",
-    "unreadable: In seg4:mid to payoff@-0.4 the speech-bubble tail cuts through 'Met by new mining' so it reads 'new \\ining', and the tops of its letters are clipped by the bubble. In seg2:start and seg3:s"
+    "unreadable: In seg4:mid to payoff@-0.4 the speech-bubble tail cuts through 'Met by new mining' so it reads 'new \\ining', and the tops of its letters are clipped by the bubble. In seg2:start and seg3:s",
+    "unreadable: In seg4:start through seg4:end the February 2024 value ($0.7, $1.0, $2.0) is dark grey on a dark navy ground and nearly disappears on a phone. In seg3:start and seg3:mid the '$4.4' inside "
    ],
    "recurred_after_fix": false
   },
@@ -172,7 +166,7 @@
    "max": 2
   },
   "mascot": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 4
   },
@@ -192,14 +186,12 @@
    "max": 1
   },
   "temporal_craft": {
-   "median": 1,
+   "median": 2,
    "min": 1,
-   "max": 2
+   "max": 3
   }
  },
  "scores": [
-  38,
-  30,
   39,
   35,
   39,
@@ -217,6 +209,8 @@
   26,
   34,
   39,
-  31
+  31,
+  65,
+  61
  ]
 }

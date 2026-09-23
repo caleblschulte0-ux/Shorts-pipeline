@@ -1,6 +1,6 @@
 # Retro — 20260922
 
-generated 2026-09-22T23:30:51Z · 5 video(s) posted today
+generated 2026-09-23T00:31:00Z · 5 video(s) posted today
 
 ## trending
 
@@ -57,11 +57,11 @@ _best judge `bespoke` grade per video vs views-per-hour at >= 24h_
 
 - consecutive failures: 0
 - exchange: {"media": {"fulfilled": 0, "self_filled": 16, "unfilled": 0, "refused": 0}, "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 6}, "done_marker": false, "authored": {"promoted": 0, "rejecte
-- slots: {"target": 6, "shipped": 0, "held": 3, "backfilled": 4, "short": 6, "held_reasons": ["showrunner_block: showrunner BLOCK: This is almost all generic blurry gameplay: only one of the story's beats gets
-- showrunner: {"recent": 40, "blocks": 40, "avg_score": 37.6}
+- slots: {"target": 6, "shipped": 0, "held": 3, "backfilled": 4, "short": 6, "held_reasons": ["showrunner_block: showrunner BLOCK: The captions and gameplay are clean and readable, but the story is never shown
+- showrunner: {"recent": 40, "blocks": 40, "avg_score": 38.6}
 
 ## Repo
 
-- HEAD 9a1d327, 50 commit(s) since 2026-09-21
+- HEAD 89e76af, 50 commit(s) since 2026-09-22
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
