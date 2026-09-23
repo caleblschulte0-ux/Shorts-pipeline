@@ -109,7 +109,7 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
              min_days: int = DEFAULT_MIN_DAYS,
              min_samples: int = DEFAULT_MIN_SAMPLES,
              proposal_file: str = "", channel: str = "",
-             format: str = "", now: str = "") -> dict:
+             format: str = "", structure: str = "", now: str = "") -> dict:
     """Start the clock on a change that just shipped."""
     if direction not in DIRECTIONS:
         raise ValueError(f"direction must be one of {DIRECTIONS}")
@@ -120,9 +120,14 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
         "change": change,
         # Scope. Without these the sample counter would credit any video on
         # any channel, and the experiment would "finish" without ever having
-        # been tested.
+        # been tested. `structure` is narrower than `format`: a channel can
+        # ship several `actual_structure` values under one format (Third's
+        # `clip`/`story`/`simple_fallback` are all `format="third"`), and a
+        # story arm read out against `format` alone would count every
+        # self-healed fallback clip as a story sample.
         "channel": channel,
         "format": format,
+        "structure": structure,
         "files": files or [],
         "metric": metric,
         "direction": direction,
@@ -308,12 +313,16 @@ def eligible_videos(exp: dict, videos: list[dict]) -> list[dict]:
       published_at > started_at   the change was live when it rendered
       channel matches             a different channel is a different world
       format matches (if scoped)  a reddit_story does not test a graph tweak
+      structure matches (if scoped) a self-healed fallback clip is not a
+                                   story sample just because the slot was
+                                   assigned one (see `actual_structure`)
     """
     started = _parse(exp.get("started_at") or "")
     if not started:
         return []
     want_channel = (exp.get("channel") or "").strip()
     want_format = (exp.get("format") or "").strip()
+    want_structure = (exp.get("structure") or "").strip()
     out = []
     for v in videos or []:
         pub = _parse(v.get("published_at") or "")
@@ -322,6 +331,8 @@ def eligible_videos(exp: dict, videos: list[dict]) -> list[dict]:
         if want_channel and str(v.get("_channel") or "") != want_channel:
             continue
         if want_format and str(v.get("format") or v.get("_fmt") or "") != want_format:
+            continue
+        if want_structure and str(v.get("actual_structure") or "") != want_structure:
             continue
         out.append(v)
     return out
