@@ -135,8 +135,10 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         # and it is exactly the defect the film is graded on
         ep = _ep(3)
         asks = []
-        good = {"setting": "riverbank", "time": "dusk", "weather": "clear", "shot": "close",
-                "cast": [{"who": "woman", "pose": "sit", "action": "fish"}], "props": ["reeds"]}
+        # not the riverbank: beat 2 is there, and a respec that makes the
+        # same picture as its neighbour is refused (tested below)
+        good = {"setting": "forest", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "sit", "action": "sew"}], "props": ["campfire", "hide_rack"]}
         def ask(sy, u):
             asks.append(u)
             return json.dumps(good)
@@ -157,6 +159,19 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         finally:
             self.SB.MAX_RESPECS = old_cap
         self.assertEqual(len(asks), 2)
+
+    def test_a_respec_may_not_make_the_same_picture_as_its_neighbour(self):
+        # the author's own rules still hold inside the storyboard: a respec
+        # that copies the next beat's picture is refused and the small
+        # repair happens instead
+        ep = _ep(3)
+        nxt = ep["chapters"][0]["beats"][1]["scene"]
+        copy = dict(nxt)
+        rep = self.SB.polish(ep, judge=_judge_flagging({0: (False, 1)}, []), ask=lambda sy, u: json.dumps(copy),
+                             work=self.work / "w5", rounds=1)
+        sc = ep["chapters"][0]["beats"][0]["scene"]
+        self.assertGreaterEqual(int(sc.get("variant", 0)), 1, "fell back to the small repair")
+        self.assertEqual(rep["repaired"], 1)
 
     def test_a_clean_board_is_stamped_and_not_reviewed_again_for_the_same_kit(self):
         ep = _ep(3)

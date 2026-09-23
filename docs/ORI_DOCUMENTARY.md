@@ -287,6 +287,12 @@ note names a real thing, so every note moved the film, not the judge:
   actions that show things, and the author calls are capped
   (`MAX_RESPECS`) so a strict editor cannot cost a render slot.
 
+- **Two scenes at a fire are not the same arrangement.** The standing-spot
+  sets are tried in a seed-chosen order and two of them put everyone on one
+  side of the fire; the shelf went from 12 shrunk scenes to 7 on the way. A
+  storyboard respec is also held to the author's picture rules: one that
+  copies its neighbour's picture is refused and the small repair happens.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

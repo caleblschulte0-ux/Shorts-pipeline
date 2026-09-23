@@ -355,7 +355,10 @@ SHRINK = (1.0, 0.92, 0.84, 0.76, 0.68, 0.6)
 # where people stand when nobody said: around the focal thing first; spread
 # to the edges when the middle is full of furniture; close in when the
 # edges are
-SLOT_SETS = ([0.29, 0.71, 0.15, 0.85], [0.18, 0.82, 0.5, 0.34], [0.24, 0.76, 0.42, 0.58], [0.12, 0.88, 0.5, 0.3])
+# the last two put everyone on ONE side of the fire (which sits in the
+# middle half of the frame, so "one side" is still in the picture)
+SLOT_SETS = ([0.29, 0.71, 0.15, 0.85], [0.18, 0.82, 0.5, 0.34], [0.24, 0.76, 0.42, 0.58], [0.12, 0.88, 0.5, 0.3],
+             [0.7, 0.86, 0.55, 0.95], [0.3, 0.14, 0.45, 0.05])
 
 
 def layout(spec: dict, seed: int) -> dict:
@@ -364,9 +367,14 @@ def layout(spec: dict, seed: int) -> dict:
     then is drawn a little smaller, in steps, until nothing overlaps; the
     last try is kept regardless and `collisions` says what still touches."""
     lay = None
+    # the standing spots are tried in a seed-chosen order, so two scenes at a
+    # fire are not the same arrangement by default (the seventh film's judge:
+    # one composition in 16 of 42 samples)
+    rot = seed % len(SLOT_SETS)
+    sets = SLOT_SETS[rot:] + SLOT_SETS[:rot]
     for k in SHRINK:
         for shift in FOCAL_SHIFTS:
-            for slots in SLOT_SETS:
+            for slots in sets:
                 lay = _layout(spec, seed, k, slots, shift)
                 if not lay["collisions"]:
                     return lay

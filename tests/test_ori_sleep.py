@@ -554,6 +554,23 @@ class ThePictureIsReadable(unittest.TestCase):
                     ground_y=560, scale=1.5, t=0.3, cold=cold)
         return surf.get_data()
 
+    def test_two_seeds_do_not_stand_the_same_way(self):
+        # the seventh film's judge saw one composition in 16 of 42 samples:
+        # the standing spots are tried in a seed-chosen order, and two of the
+        # sets put everyone on one side of the fire
+        spec = {"setting": "grassland", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"},
+                         {"who": "woman", "pose": "sit", "action": "talk"}], "props": ["campfire"]}
+        sides = set()
+        for seed in range(12):
+            lay = self.S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [])
+            fire = next(q["x"] for q in lay["props"] if q["name"] == "campfire")
+            sides.add(tuple(sorted(f["x"] < fire for f in lay["people"])))
+        self.assertIn((True, True), sides | {(False, False)} if (False, False) in sides else sides,
+                      "no seed put both people on one side")
+        self.assertIn((False, True), sides, "no seed put one on each side")
+
     def test_looking_up_reads_from_across_the_room(self):
         # the fifth film's judge could not see "looking up" in a sky chapter
         # where every figure did it: it was two dots moved a finger's width.

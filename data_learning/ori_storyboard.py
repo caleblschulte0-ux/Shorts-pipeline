@@ -222,7 +222,7 @@ def repair_broken(spec: dict, era: str, round_: int) -> str | None:
     return "variant"
 
 
-def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None) -> str | None:
+def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapter_beats=None) -> str | None:
     """Ask the author's brain for a scene that shows the passage. Kept only
     if it validates against the kit; otherwise the old scene stays."""
     import ori_author as A
@@ -235,6 +235,17 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None) -> str
         return None if not isinstance(e, A.NoBrain) else None
     if not isinstance(new, dict) or S.validate(new, era):
         return None
+    if chapter_beats is not None:
+        # the author's own picture rules still hold: a respec that makes the
+        # same picture as the beat before or after it is not an improvement
+        before = set(A._chapter_problems(chapter_beats, era, 0, 10 ** 6))
+        saved = dict(fb["scene"])
+        fb["scene"].clear(); fb["scene"].update(new)
+        after = set(A._chapter_problems(chapter_beats, era, 0, 10 ** 6))
+        if any("same picture" in x for x in after - before):
+            fb["scene"].clear(); fb["scene"].update(saved)
+            return None
+        return "respecified"
     fb["scene"].clear()
     fb["scene"].update(new)
     return "respecified"
@@ -298,7 +309,8 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
                 if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS:
                     respecs += 1
                     did = respec(fb, ep["era"], f["why"], ask,
-                                 chapter=(ep["chapters"][fb["chapter"]].get("title") or ""))
+                                 chapter=(ep["chapters"][fb["chapter"]].get("title") or ""),
+                                 chapter_beats=ep["chapters"][fb["chapter"]]["beats"])
                 if did is None:
                     did = repair_broken(fb["scene"], ep["era"], r)
                 if did:
