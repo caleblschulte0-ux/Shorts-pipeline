@@ -213,7 +213,8 @@
        "campfire",
        "deer",
        "rock"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -388,7 +389,7 @@
     {
      "say": "There is always a little more to do while there is still light to do it by. A woman sits with a lump of flint in her lap and a smooth round stone in her hand, and taps, and turns the flint, and taps again. Each tap sends a thin, sharp flake skittering onto the hide spread in front of her. These flakes are knives. In a few minutes she has made half a dozen, each one sharper than anything in your kitchen drawer. The girl beside her collects the flakes carefully, by their blunt ends.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -488,13 +489,14 @@
        "tent",
        "tree",
        "campfire"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
      "say": "The cooking fire is tended now with more care. Flat stones have been pushed into the embers to heat. A woman crouches and stirs a wooden bowl of water with a stick, and in a moment she will drop a hot stone into it, and the water will hiss and steam. This is how you boil water when you have no pot that can sit in a flame. It works surprisingly well. Roots go into the hot water and slowly soften. A man nearby is already eating a handful of berries, because he cannot wait, and nobody stops him.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "dusk",
       "weather": "cloudy",
       "shot": "close",
@@ -543,7 +545,7 @@
     {
      "say": "There is a great deal of talking as the day winds down. Where the herds are moving. Which of the berry bushes are nearly finished. Whose feet are sore. Who saw the tracks of a bear by the stream, and how old the tracks were. These conversations were not idle. They were how the band kept its map of the world up to date, and everyone, even the children, had something to add. The old man on his log listens more than he speaks. He has heard most of it before.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "dusk",
       "weather": "cloudy",
       "shot": "wide",
@@ -662,7 +664,7 @@
     {
      "say": "Now the night has truly come, and the fire is the centre of everything. A man crouches beside it and feeds it, one branch at a time, laying each piece just so. He is not building a bonfire. A big fire wastes wood, and wood is precious. He wants a small, steady, hot fire that will burn all night with a little attention, and give heat and light and a thin curl of smoke that keeps the biting insects away. He has done this every night of his life. His hands know the work without him.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -738,7 +740,7 @@
     {
      "say": "When a band moved camp, someone carried the fire with them. A glowing coal, packed in moss or dry dung inside a hollow horn or a bundle of bark, could be kept alive for hours of walking. When they stopped, they blew on it, fed it, and the fire that had warmed them last night warmed them again tonight, in a new place. Some fires, in this way, may have burned for years, or lifetimes. Nobody kept count.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -774,7 +776,7 @@
     {
      "say": "The hot stones are lifted from the fire now with two sticks, and dropped one after another into the wooden bowl. The water leaps and hisses. The roots inside it, tough and starchy, begin to soften and sweeten. A man beside the cook has started on the fish, which were laid on the flat stones at the edge of the fire and are crisp and smoky. There is no hurry, and no plates, and no one goes without. Food, in a camp like this, belonged to everybody.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1037,7 +1039,7 @@
     {
      "say": "The old man watches the flint worker and, from time to time, says something. Turn it. Not there. Yes, there. He was the best maker of points in the band once, and his hands remember, even if they shake a little now. Skills like this passed from the old to the young over thousands of evenings like this one, by watching, by trying, by being corrected gently, and by trying again. There was no other way to learn, and no other school.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1165,7 +1167,7 @@
     {
      "say": "Someone passes a skin bag of water, and someone drinks. There is no beer yet, and no wine. Those will wait for farming, and farming is thirty thousand years away. What people drank was water, cold from the river, and sometimes, in the right season, the sweet juice of crushed berries, or a tea of leaves steeped in a bowl of water heated with stones. Whether it did anything, nobody knew. But it tasted of summer, and that was reason enough.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1220,7 +1222,7 @@
     {
      "say": "The fire keeper straightens a spear shaft. He has cut a young, straight sapling, stripped the bark, and now he warms it, section by section, over the coals, and then bends it gently against his knee to take the curve out. Wood heated this way will hold a new shape when it cools. He sights along it, one eye closed, the way a carpenter sights along a plank, and warms it again. The smell of hot green wood joins the smell of the smoke.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1243,7 +1245,7 @@
     {
      "say": "And so the evening goes on, quietly. The sewer sews. The flint worker presses and clicks. The old man nods, and his chin drops toward his chest, and he catches himself, and nods again. The smallest child sleeps through all of it on his bed of grass. There is no clock, and there is nowhere to be. When the work is done, or the eyes are too tired to do it, it stops. And that time is coming closer now, as the fire burns down toward its red heart.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1371,13 +1373,14 @@
       "props": [
        "campfire",
        "cave_painting"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
      "say": "A boy of perhaps eight has been given a real piece of flint and a real hammerstone, and is trying to make a flake. His mother sits beside him and does not help, except to move his thumb once, out of the way. He hits the flint and nothing happens. He hits it again, and a flake jumps off, crooked and thick, and he holds it up in triumph. It is not a good flake. It is his first. She tells him so, and he keeps it.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1405,7 +1408,7 @@
     {
      "say": "Children in this world worked, in their way. They carried firewood and water, gathered berries, picked the shells and bones out of the rubbish for beads and toys, and looked after children smaller than themselves. But they also played, all the time, at everything. They played at hunting with little spears, and at cooking with little bowls, and at being the old man with a stick and a croaky voice, which made everyone laugh, including the old man.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1591,7 +1594,7 @@
     {
      "say": "With the children asleep, the talk around the fire changes. It slows down, and goes deeper. This is the hour, in camps like this, when people told the long stories: not the funny ones for the children, but the ones about where the band came from, and who the first people were, and what the animals said to one another before people learned to listen. We do not know these stories. They were never written down, and they died with the last person who told them. But we know there were stories, because there always are.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1681,7 +1684,7 @@
     {
      "say": "Then he plays it again, and this time someone begins to hum along, and then to sing, low, a few words over and over. We cannot know the tune or the words. But it seems very unlikely that people who made flutes did not sing, and very unlikely that people who sang did not sing at night, by the fire, when the work was done. So let us say they did. Let us say it was slow, and a little sad, and that everyone knew it, and that it made the night feel smaller and warmer around them.",
      "scene": {
-      "setting": "grassland",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1778,7 +1781,7 @@
     {
      "say": "The man with the scratched pebble holds it up to show the woman beside him, and she takes it and turns it in the light and hands it back, and says something short and approving. He tucks it into a fold of his clothing, and will carry it for years, until it is lost, and someone will find it in the ground forty thousand years from tonight and wonder, as you might, what it meant to him. The honest answer is that we do not know. The kinder answer is that it was beautiful, and he liked it.",
      "scene": {
-      "setting": "grassland",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1806,7 +1809,7 @@
     {
      "say": "The talk drifts. It goes from the berries to the bear tracks to the shape of the clouds this evening, and settles, as talk does late at night, into long comfortable silences with a few words dropped into them. Nobody feels a need to fill the quiet. In a world without walls, silence was not empty. It was full of the river, and the wind in the grass, and the small sounds of the fire, and the far-off calls of animals nobody could see.",
      "scene": {
-      "setting": "grassland",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1918,7 +1921,8 @@
        "torch",
        "tent",
        "tree"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -2159,7 +2163,8 @@
        "woodpile",
        "bedroll",
        "tent"
-      ]
+      ],
+      "variant": 1
      }
     }
    ]
@@ -2193,7 +2198,7 @@
     {
      "say": "And he is not alone. Curled at the edge of the firelight, nose on paws, is a wolf. Or something between a wolf and a dog, because the line between them was only beginning to be drawn in this age. Some of the very first dogs may have come from wolves that learned to follow human camps for scraps, and then to sleep near the fire, and then to be useful. This one lifts its head when the man moves, and lowers it again. Its ears are better than his. If something comes, it will know first.",
      "scene": {
-      "setting": "forest",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2239,7 +2244,7 @@
     {
      "say": "A woman has woken and come out to sit with him, and they talk in low voices about the bear tracks by the stream. Old, he thinks. A day old at least. Going away from here, not toward. She agrees. Bears mostly wanted nothing to do with people, and a fire and a crowd of voices was usually enough to convince one to go elsewhere. Mostly. There were nights, in every band's memory, when mostly had not been enough. Those nights became stories too, and were told carefully, so that nobody forgot what to do.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2267,7 +2272,7 @@
     {
      "say": "The wolf-dog gets up, turns around twice, and lies down again facing the other way. The man watches it do this, and relaxes a little more. Animals tell you things, if you watch them. A wolf that sleeps is a wolf that has heard nothing worth waking for. In the deep quiet, the man can hear the river, and the wind moving the grass, and an owl somewhere down the valley, and, very faintly and very far away, the low grunting call of something large that is not coming any closer.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -2298,7 +2303,7 @@
     {
      "say": "He eats a strip of dried fish from the rack, slowly, to pass the time, and because being awake makes you hungry. Keeping watch was not a hardship, exactly. It was a quiet hour with the fire and your own thoughts, and a great many people, then and now, would call that a luxury. When he grows too tired, he will wake somebody else, or he will not, and simply lie down, and trust the fire and the wolf and the general good luck that has kept the band alive this long.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2750,7 +2755,7 @@
     {
      "say": "The woman by the fire picks up the hood she was sewing earlier and works on it a little, because her hands are cold and sewing warms them. The clothes these people wore were remarkable. Fitted trousers, and boots, and hooded jackets, sewn from hides with the fur turned inward, the seams closed tight with sinew. We know because the needles and the awls survive, and the beads that were sewn to the clothes, in rows, still lie in the ground where the clothes rotted away around them.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "frost",
       "shot": "close",
@@ -3427,7 +3432,7 @@
     {
      "say": "The women knew all this too, and more of some of it. A woman in the band might know two hundred plants and their seasons, and where each grew, and which part to use, and how to prepare it so it did not make you ill. The roots that were cooking earlier had to be cooked; raw, they would have twisted your stomach for a day. Someone learned that once, the hard way, a very long time ago, and told everyone, and it was never forgotten. That, more than the spears, is what kept these people alive.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -3638,7 +3643,8 @@
        "reeds",
        "deer",
        "tree"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -3678,7 +3684,7 @@
     {
      "say": "The watcher half-wakes, feels the cold on his face, reaches out without opening his eyes, and pushes the last of the branches onto the coals. They catch. The little flame grows for a moment into a proper fire, and the light of it moves on the rock above him, and on his closed eyes, and he is already asleep again. It will burn now until the others rise. The wood pile is empty. Someone will fill it tomorrow. That is tomorrow's business.",
      "scene": {
-      "setting": "forest",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -3767,22 +3773,42 @@
     {
      "say": "There is nothing more to see tonight. The fire is fed. The cave is warm. The people are safe and asleep, all of them, in their heap under the painted horse, and the wolf-dog is asleep at the door, and the valley is quiet from the river to the ice. Let your own breathing slow to match theirs. Let the pillow take your head, the way the grass takes theirs. You have walked a long way today too, whatever your day was. You are allowed to stop.",
      "scene": {
-      "setting": "grassland",
-      "time": "dawn",
+      "setting": "cave_inside",
+      "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "woman",
         "pose": "lie",
         "action": "sleep",
         "mood": "sleepy"
+       },
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       },
+       {
+        "who": "elder",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm"
        }
       ],
       "props": [
        "campfire",
+       "cave_painting",
+       "wolf",
        "bedroll",
-       "woodpile"
+       "hide_rack"
       ]
      }
     },
@@ -3828,5 +3854,12 @@
     }
    ]
   }
- ]
+ ],
+ "storyboard": {
+  "kit": "b88c572db2d0",
+  "clean": true,
+  "reviewed_at": "2026-09-23T14:36",
+  "rounds": 2,
+  "repaired": 7
+ }
 }
