@@ -40,6 +40,7 @@ WHO = {
 
 HAIR = [rgb("#6b4526"), rgb("#5a3d2a"), rgb("#8a5a2b"), rgb("#4a3a33"), rgb("#9c6b3a")]
 GREY_HAIR = [rgb("#c9c4bd"), rgb("#aaa49c")]
+EGYPT_HAIR = [rgb("#2e2a2c"), rgb("#3a3234")]
 
 # era -> outfit palette and pattern
 OUTFIT = {
@@ -57,6 +58,9 @@ OUTFIT = {
     "victorian": dict(cloth=[rgb("#3f4650"), rgb("#5a4a3f"), rgb("#4e5a4a"), rgb("#6e3f3f"),
                              rgb("#3a3f5c"), rgb("#7a6a55")],
                       texture=None, strap=False),
+    # the Nile valley: white linen, a kilt or a straight dress, black hair, a collar of colour
+    "egypt": dict(cloth=[rgb("#f2ecdc"), rgb("#ece3cc"), rgb("#f5efe0"), rgb("#e6dcc0")],
+                  texture=None, strap=False),
 }
 
 POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
@@ -101,7 +105,7 @@ def look(who: str, era: str, seed: int) -> dict:
     w = WHO[who]
     r = _person_rng(seed)
     o = OUTFIT[era]
-    hair = r.choice(GREY_HAIR if w["grey"] else HAIR)
+    hair = r.choice(GREY_HAIR if w["grey"] else (EGYPT_HAIR if era == "egypt" else HAIR))
     cloth = r.choice(o["cloth"])
     lk = dict(size=w["size"], hair=hair, cloth=cloth, texture=o["texture"],
               strap=o["strap"], long=w["long"],
@@ -478,6 +482,9 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     if lk["era"] == "victorian":
         # a long dress, or a coat to the knee
         hem = (1.6 * R if lk["long"] else 1.0 * R) if pose in ("stand", "walk") else 0.35 * R
+    if lk["era"] == "egypt":
+        # a straight dress to the ankle, or a kilt to the knee
+        hem = (1.55 * R if lk["long"] else 0.95 * R) if pose in ("stand", "walk") else 0.35 * R
     body = [(nx - 0.3 * R, ny + 0.06 * R), (nx + 0.3 * R, ny + 0.06 * R),
             (nx + top_w, ny + 0.3 * R), (hx0 + bot_w, hy0 + hem),
             (hx0, hy0 + hem + 0.06 * R), (hx0 - bot_w, hy0 + hem), (nx - top_w, ny + 0.3 * R)]
@@ -487,6 +494,11 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     if lk["strap"]:
         ink.line(cr, [(nx - 0.45 * R, ny + 0.2 * R), (nx + 0.3 * R, ny + 0.95 * R)],
                  lw=lw * 0.55, ink=shade(lk["cloth"], 0.6), amp=0)
+    if lk["era"] == "egypt":
+        # a broad collar of colour at the neck
+        ink.fill_stroke(cr, [(nx - 0.42 * R, ny + 0.12 * R), (nx + 0.42 * R, ny + 0.12 * R),
+                             (nx + 0.5 * R, ny + 0.42 * R), (nx - 0.5 * R, ny + 0.42 * R)],
+                        rgb("#2f8f8f") if seed % 2 else rgb("#c99a2e"), lw=lw * 0.6, amp=0.6, seed=seed + 8)
     if lk["era"] in ("medieval", "ancient", "victorian"):
         by = hy0 - 0.15 * R
         ink.line(cr, [(hx0 - bot_w * 0.85, by), (hx0 + bot_w * 0.85, by)], lw=lw * 0.7,

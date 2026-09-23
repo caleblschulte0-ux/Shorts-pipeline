@@ -239,6 +239,14 @@ oracle: same answers, no memory.
   snow (a helper: something has to move in its light); a walker on an
   unlit street at night is a black frame (1.0); falling snow alone is
   below the probe's notice (1.0) and a helper with a lamp.
+- A fifth era, `egypt` (the Nile valley): white linen with a broad collar,
+  black hair, a kilt or a straight dress; the Nile bank with palms, the
+  desert with dunes and the pyramids on the skyline, a whitewashed mud-brick
+  room with a painted band; a pyramid (desert only), palms, an obelisk, a
+  water jar, a papyrus skiff, a mud-brick house, a basket of dates; the
+  brazier, oil lamp, stall and goat are shared with the Mediterranean.
+  Measured: the Nile follows the river table (0.88 by day, 0.28 at dusk);
+  a desert campfire at night 0.00; a lamp in a mud-brick room 0.26.
 - Fog is measured too: a river under fog holds 0.20 at night and 0.97 by
   day, a cauldron 0.06 clear and 0.34 in fog — so water counts only at
   night in fog and a cauldron drops a step.

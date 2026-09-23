@@ -32,14 +32,15 @@ from .props import PROPS
 from .settings import SETTINGS, TIMES, WEATHER
 
 W, H = settings.W, settings.H
-ERAS = ("stone_age", "medieval", "ancient", "victorian")
+ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt")
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
 STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack",
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
          "column", "temple", "villa", "amphora", "stall", "olive",
-         "terrace", "chair", "bookshelf", "clock", "chimney_pot"}
+         "terrace", "chair", "bookshelf", "clock", "chimney_pot",
+         "pyramid", "palm", "obelisk", "jar", "reed_boat", "mudbrick_house", "date_basket"}
 MAX_CAST, MAX_PROPS = 4, 6
 LIGHT_ITEMS = ("torch", "lantern")
 
@@ -268,7 +269,7 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, 
 # else. Trees, tents and walls stay scenery.
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
-              "clock"}
+              "clock", "obelisk", "mudbrick_house"}
 
 
 def figure_extent(pose: str, R: float, action: str = "idle", item: str | None = None) -> tuple[float, float]:
@@ -327,7 +328,7 @@ def collisions(lay: dict) -> list[str]:
     return bad
 
 
-SHRINK = (1.0, 0.92, 0.84, 0.76, 0.68)
+SHRINK = (1.0, 0.92, 0.84, 0.76, 0.68, 0.6)
 
 
 def layout(spec: dict, seed: int) -> dict:
@@ -426,8 +427,9 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
         pr, ps, py, w = prop_geom(focal)
         placed.append(dict(name=focal["name"], x=focal_x, y=py, s=ps, layer=pr.layer,
                            seed=seed + 1))
-        if pr.layer != "back" or focal["name"] in SOLID_BACK:
-            put(focal_x - w / 2, focal_x + w / 2)
+        on_table = focal["name"] in ("candle", "oil_lamp") and any(q["name"] == "table" for q in pl)
+        if (pr.layer != "back" or focal["name"] in SOLID_BACK) and not on_table:
+            put(focal_x - w / 2, focal_x + w / 2)   # a lamp that will stand on the table takes no floor
 
     # people next, around the focal thing and facing it — each one's REAL
     # width (a sleeper is five heads long) kept clear of the fire and of
@@ -505,7 +507,7 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
             tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
-                     else [0.4, 0.6, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
+                     else [0.4, 0.6, 0.5, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
                 if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):

@@ -626,6 +626,91 @@ def chimney_pot(cr, x, y, s, t, seed):
                          (x + 88 * s, y - 260 * s)], rgb("#b8623f"), lw=3.5 * s, amp=0)
 
 
+def pyramid(cr, x, y, s, t, seed):
+    c = rgb("#e0c98f")
+    ink.fill_stroke(cr, [(x - 300 * s, y), (x, y - 240 * s), (x + 300 * s, y)], c, lw=5 * s, amp=1.2, seed=seed,
+                    shadow=shade(c, 0.86), shadow_dir=(1, 0), texture="grain", tex_alpha=0.15)
+    ink.fill_stroke(cr, [(x, y - 240 * s), (x + 300 * s, y), (x + 40 * s, y)], shade(c, 0.86), lw=0, amp=0)
+
+
+def palm(cr, x, y, s, t, seed):
+    r = random.Random(seed)
+    trunk = rgb("#8a6a44")
+    lean = r.uniform(-30, 30) * s
+    ink.fill_stroke(cr, [(x - 16 * s, y), (x + lean - 10 * s, y - 260 * s), (x + lean + 10 * s, y - 260 * s),
+                         (x + 16 * s, y)], trunk, lw=4.5 * s, amp=1, seed=seed, texture="hatch", tex_alpha=0.3)
+    top = (x + lean, y - 262 * s)
+    for k in range(7):
+        a = -math.pi * 0.95 + k * (math.pi * 0.9 / 6)
+        tip = (top[0] + math.cos(a) * 150 * s, top[1] + math.sin(a) * 90 * s + 40 * s)
+        mid = (top[0] + math.cos(a) * 80 * s, top[1] + math.sin(a) * 70 * s - 10 * s)
+        ink.fill_stroke(cr, [top, (mid[0] - 10 * s, mid[1] - 14 * s), tip, (mid[0] + 10 * s, mid[1] + 14 * s)],
+                        rgb("#5f8a4a"), lw=3.5 * s, amp=1, seed=seed + k, shadow=shade(rgb("#5f8a4a")),
+                        shadow_dir=(0, 1))
+    for k in range(3):
+        ink.dot(cr, top[0] - 14 * s + k * 12 * s, top[1] + 18 * s, 8 * s, rgb("#b0742e"))
+
+
+def obelisk(cr, x, y, s, t, seed):
+    c = rgb("#d8c7a0")
+    ink.fill_stroke(cr, [(x - 40 * s, y), (x + 40 * s, y), (x + 40 * s, y - 30 * s), (x - 40 * s, y - 30 * s)], c,
+                    lw=4 * s, amp=0.6, seed=seed)
+    ink.fill_stroke(cr, [(x - 24 * s, y - 30 * s), (x + 24 * s, y - 30 * s), (x + 14 * s, y - 330 * s),
+                         (x - 14 * s, y - 330 * s)], c, lw=4.5 * s, amp=0.8, seed=seed + 1, shadow=shade(c, 0.88),
+                    shadow_dir=(1, 0))
+    ink.fill_stroke(cr, [(x - 14 * s, y - 330 * s), (x + 14 * s, y - 330 * s), (x, y - 360 * s)], rgb("#c99a2e"),
+                    lw=3.5 * s, amp=0)
+    for k in range(4):
+        ink.line(cr, [(x - 6 * s, y - (80 + k * 60) * s), (x + 6 * s, y - (80 + k * 60) * s)], lw=3 * s,
+                 ink=shade(c, 0.7), amp=0)
+
+
+def jar(cr, x, y, s, t, seed):
+    """A round clay water jar in a ring stand."""
+    c = rgb("#b8713f")
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 12 * s, 30 * s, 10 * s, 16), rgb("#6d5a44"), lw=3.5 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 60 * s, 40 * s, 44 * s, 24), c, lw=4.5 * s, amp=1, seed=seed,
+                    shadow=shade(c), shadow_dir=(1, 0.3))
+    ink.fill_stroke(cr, [(x - 16 * s, y - 100 * s), (x + 16 * s, y - 100 * s), (x + 20 * s, y - 118 * s),
+                         (x - 20 * s, y - 118 * s)], c, lw=4 * s, amp=0.6, seed=seed + 1)
+    ink.line(cr, [(x - 30 * s, y - 70 * s), (x + 30 * s, y - 70 * s)], lw=3 * s, ink=rgb("#2f8f8f"), amp=0)
+
+
+def reed_boat(cr, x, y, s, t, seed):
+    """A papyrus skiff drawn up on the bank, both ends curving high."""
+    c = rgb("#c9b26a")
+    pts = [(x - 200 * s, y - 90 * s), (x - 150 * s, y - 30 * s), (x - 60 * s, y - 12 * s), (x + 60 * s, y - 12 * s),
+           (x + 150 * s, y - 30 * s), (x + 200 * s, y - 95 * s), (x + 170 * s, y - 40 * s), (x + 60 * s, y - 26 * s),
+           (x - 60 * s, y - 26 * s), (x - 170 * s, y - 40 * s)]
+    ink.fill_stroke(cr, pts, c, lw=4.5 * s, amp=1.2, seed=seed, shadow=shade(c), shadow_dir=(0, 1),
+                    texture="hatch", tex_alpha=0.3)
+    for dx in (-90, 0, 90):
+        ink.line(cr, [(x + dx * s, y - 14 * s), (x + dx * s, y - 34 * s)], lw=3 * s, ink=shade(c, 0.6), amp=0)
+
+
+def mudbrick_house(cr, x, y, s, t, seed):
+    """A flat-roofed mud-brick house, whitewashed, a door and a high window."""
+    wall = rgb("#e4d3ac")
+    ink.fill_stroke(cr, [(x - 190 * s, y), (x - 190 * s, y - 190 * s), (x + 190 * s, y - 190 * s), (x + 190 * s, y)],
+                    wall, lw=5 * s, amp=1.2, seed=seed, shadow=shade(wall), shadow_dir=(1, 0), texture="grain",
+                    tex_alpha=0.12)
+    ink.fill_stroke(cr, [(x - 200 * s, y - 190 * s), (x + 200 * s, y - 190 * s), (x + 200 * s, y - 206 * s),
+                         (x - 200 * s, y - 206 * s)], rgb("#b39a6a"), lw=4 * s, amp=0.6, seed=seed + 1)
+    ink.fill_stroke(cr, [(x - 35 * s, y), (x - 35 * s, y - 130 * s), (x + 35 * s, y - 130 * s), (x + 35 * s, y)],
+                    rgb("#4a3a2a"), lw=4 * s, amp=0.6, seed=seed + 2)
+    ink.fill_stroke(cr, [(x + 90 * s, y - 120 * s), (x + 140 * s, y - 120 * s), (x + 140 * s, y - 160 * s),
+                         (x + 90 * s, y - 160 * s)], rgb("#2f333d"), lw=3.5 * s, amp=0)
+    for k in range(3):
+        ink.line(cr, [(x - 150 * s + k * 20 * s, y - 206 * s), (x - 150 * s + k * 20 * s, y - 240 * s)], lw=4 * s,
+                 ink=rgb("#8a6a44"), amp=0)
+
+
+def date_basket(cr, x, y, s, t, seed):
+    basket(cr, x, y, s * 0.9, t, seed)
+    for j in range(7):
+        ink.dot(cr, x - 30 * s + j * 10 * s, y - 62 * s - (j % 2) * 7 * s, 7 * s, rgb("#7a3b1e"))
+
+
 def hide_rack(cr, x, y, s, t, seed):
     for dx in (-100, 100):
         ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 230 * s)], lw=8 * s, ink=WOOD, amp=0)
@@ -896,11 +981,12 @@ class Prop:
 
 
 BOTH = ("stone_age", "medieval")
-ALL = ("stone_age", "medieval", "ancient", "victorian")
-LATER = ("medieval", "ancient", "victorian")   # the settled world: tables, wells, carts, kept animals
+ALL = ("stone_age", "medieval", "ancient", "victorian", "egypt")
+LATER = ("medieval", "ancient", "victorian", "egypt")   # the settled world: tables, wells, carts, kept animals
 STONE_AGE = ("stone_age",)
 ANCIENT = ("ancient",)
 VICTORIAN = ("victorian",)
+EGYPT = ("egypt",)
 MEDIEVAL = ("medieval",)
 
 PROPS = {
@@ -928,7 +1014,7 @@ PROPS = {
     "sheep": Prop(sheep, 200, "mid", LATER),
     "cow": Prop(cow, 330, "back", LATER),
     "chicken": Prop(chicken, 90, "front", LATER),
-    "table": Prop(table, 400, "mid", LATER),
+    "table": Prop(table, 385, "mid", LATER),
     "bench": Prop(bench, 280, "mid", LATER),
     "well": Prop(well, 280, "back", LATER),
     "cart": Prop(cart, 460, "back", LATER),
@@ -944,10 +1030,10 @@ PROPS = {
     "temple": Prop(temple, 520, "back", ANCIENT),
     "villa": Prop(villa, 480, "back", ANCIENT),
     "amphora": Prop(amphora, 80, "front", ANCIENT),
-    "brazier": Prop(brazier, 150, "mid", ANCIENT, living=True, light=True, height=100, base=brazier_base),
-    "oil_lamp": Prop(oil_lamp, 60, "front", ANCIENT, living=True, light=True, height=60, base=oil_lamp_base),
-    "stall": Prop(stall, 340, "mid", ANCIENT),
-    "goat": Prop(goat, 200, "mid", ANCIENT, living=False),
+    "brazier": Prop(brazier, 150, "mid", ("ancient", "egypt"), living=True, light=True, height=100, base=brazier_base),
+    "oil_lamp": Prop(oil_lamp, 60, "front", ("ancient", "egypt"), living=True, light=True, height=60, base=oil_lamp_base),
+    "stall": Prop(stall, 340, "mid", ("ancient", "egypt")),
+    "goat": Prop(goat, 200, "mid", ("ancient", "egypt"), living=False),
     "olive": Prop(olive, 260, "back", ANCIENT, solid_width=110),
     "terrace": Prop(terrace, 420, "back", VICTORIAN),
     "barn": Prop(barn, 540, "back", ("medieval", "victorian")),
@@ -958,4 +1044,11 @@ PROPS = {
     "clock": Prop(clock, 100, "back", VICTORIAN),
     "carriage": Prop(carriage, 560, "mid", VICTORIAN),
     "chimney_pot": Prop(chimney_pot, 250, "back", VICTORIAN),
+    "pyramid": Prop(pyramid, 620, "back", EGYPT, settings=("desert",)),
+    "palm": Prop(palm, 300, "back", EGYPT, solid_width=90),
+    "obelisk": Prop(obelisk, 90, "back", EGYPT),
+    "jar": Prop(jar, 90, "front", EGYPT),
+    "reed_boat": Prop(reed_boat, 420, "mid", EGYPT),
+    "mudbrick_house": Prop(mudbrick_house, 420, "back", EGYPT),
+    "date_basket": Prop(date_basket, 130, "front", EGYPT),
 }

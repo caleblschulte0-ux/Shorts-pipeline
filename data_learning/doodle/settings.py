@@ -43,7 +43,7 @@ class Setting:
     ground: str                 # grass | snow | sand | rock | dirt | floor
     interior: bool = False
     water: str | None = None    # river | lake | sea
-    eras: tuple = ("stone_age", "medieval", "ancient", "victorian")
+    eras: tuple = ("stone_age", "medieval", "ancient", "victorian", "egypt")
     horizon: float = 0.62       # fraction of H where the far land meets the sky
 
 
@@ -68,6 +68,9 @@ SETTINGS = {
     "street": Setting("cobbles", eras=("victorian",)),            # a gas-lit terrace street
     "parlour_inside": Setting("boards", interior=True, eras=("victorian",)),
     "farmyard": Setting("dirt", eras=("medieval", "victorian")),
+    "nile_bank": Setting("sand", water="river", eras=("egypt",)),   # palms and reeds along the river
+    "desert": Setting("sand", eras=("egypt",), horizon=0.64),       # dunes, the pyramids on the skyline
+    "mudbrick_inside": Setting("dirt", interior=True, eras=("egypt",)),
 }
 
 GROUND = {"grass": "#8fb35f", "snow": "#eef2f5", "sand": "#e3cf9a", "rock": "#9b8f80",
@@ -216,6 +219,16 @@ def _colonnade(cr, r, y0, seed):
         column(cr, x, y0, 0.8, 0.0, seed + k)
 
 
+def _dunes(cr, r, y0, seed):
+    """Sand dunes on the skyline, two ridges."""
+    for k, (c, amp) in enumerate(((rgb("#d9c08a"), 50), (rgb("#e3cf9a"), 34))):
+        pts = [(-40, y0 + 80 + k * 40)]
+        for i in range(9):
+            pts.append((i * 250 + r.uniform(-40, 40), y0 + k * 40 - r.uniform(0, amp)))
+        pts += [(W + 40, y0 + 60 + k * 40), (W + 40, y0 + 200), (-40, y0 + 200)]
+        ink.fill_stroke(cr, pts, c, lw=4, amp=2, seed=seed + k, shadow=shade(c, 0.9), shadow_dir=(1, 0.3))
+
+
 def _interior(cr, name, seed, r):
     if name == "cave_inside":
         cr.set_source_rgba(*rgb("#4a4038"))
@@ -255,6 +268,19 @@ def _interior(cr, name, seed, r):
         ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), rgb("#8fa27a"), lw=3,
                         amp=1, seed=seed + 5)
         ink.line(cr, [(dx + 30, H * 0.62), (dx + 30, H * 0.58)], lw=6, ink=rgb("#6f5a44"), amp=0)
+    elif name == "mudbrick_inside":
+        wall = rgb("#e4d3ac")
+        cr.set_source_rgba(*wall)
+        cr.paint()
+        # whitewashed walls, a band of painted lotus, a high small window
+        ink.line(cr, [(-10, 240), (W + 10, 240)], lw=6, ink=rgb("#2f8f8f"), amp=0.6, seed=seed)
+        for k in range(0, W, 160):
+            ink.fill_stroke(cr, [(k + 60, 236), (k + 80, 196), (k + 100, 236)], rgb("#c99a2e"), lw=3, amp=0)
+        wx = r.choice([420, 1000, 1500])
+        ink.fill_stroke(cr, [(wx - 60, 120), (wx + 60, 120), (wx + 60, 200), (wx - 60, 200)], rgb("#8fc0e0"), lw=6,
+                        amp=0.6, seed=seed + 1)
+        for k in range(1, 4):
+            ink.line(cr, [(wx - 60 + k * 30, 120), (wx - 60 + k * 30, 200)], lw=4, ink=rgb("#b39a6a"), amp=0)
     elif name == "parlour_inside":
         wall = rgb("#6f7c5c")
         cr.set_source_rgba(*wall)
@@ -335,6 +361,15 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
             x = -60 + k * 400 + r.uniform(-30, 30)
             ink.line(cr, [(x, H * st.horizon + 90), (x, H * st.horizon + 30)], lw=6, ink=rgb("#6a5236"), amp=0.5, seed=k)
             ink.line(cr, [(x, H * st.horizon + 55), (x + 400, H * st.horizon + 55)], lw=4, ink=rgb("#6a5236"), amp=0.5, seed=k + 9)
+    if name == "desert":
+        _dunes(cr, r, H * st.horizon + 20, seed)
+        from .props import pyramid
+        for k, (fx, sc) in enumerate(((0.18, 0.55), (0.42, 0.75), (0.7, 0.45))):
+            pyramid(cr, W * fx + r.uniform(-60, 60), H * st.horizon + 40, sc, 0.0, seed + k)
+    if name == "nile_bank":
+        from .props import palm
+        for k in range(5):
+            palm(cr, k * 430 + r.uniform(-60, 60), H * st.horizon + 30, 0.75, 0.0, seed + k)
     if name == "olive_grove":
         from .props import olive
         for k in range(6):
