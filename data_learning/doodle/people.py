@@ -1,0 +1,523 @@
+"""People: the round-headed doodle characters.
+
+Everyone is drawn the way the channels the operator pointed at draw them: a
+big white round head with a dark marker outline, dot eyes, a small mouth,
+messy hair, a simple outfit with a shadow side, and thick ink stick limbs
+ending in small mitten hands and oval feet. The head is white for everyone —
+it is a cartoon convention, not a skin tone, and it keeps every era and place
+drawable by one rig.
+
+A person is (who, era, seed) for LOOK, (pose, action, facing, mood) for what
+they are DOING, and a time `t` in seconds. Actions are loops of real work —
+stirring, knapping, eating, warming hands — so a scene moves because somebody
+is doing something (never an idle bob: see ink.py on vibration).
+
+Every name a script may use is a key of POSES / ACTIONS / WHO / MOODS / ITEMS;
+`validate_cast` refuses anything else. A name looked up with a silent default
+is a capability that does not exist (CLAUDE.md), so nothing here has one.
+"""
+from __future__ import annotations
+
+import math
+import random
+from functools import lru_cache
+
+from . import ink
+from .ink import INK, rgb, shade
+
+HEAD = rgb("#fbf8f1")
+R0 = 46.0                                   # head radius of an adult at scale 1
+
+WHO = {
+    # size, hair default, beard?, long hair?
+    "man": dict(size=1.0, beard=0.5, long=False, grey=False),
+    "woman": dict(size=0.96, beard=0.0, long=True, grey=False),
+    "child": dict(size=0.72, beard=0.0, long=False, grey=False),
+    "girl": dict(size=0.72, beard=0.0, long=True, grey=False),
+    "elder": dict(size=0.95, beard=0.9, long=False, grey=True),
+    "old_woman": dict(size=0.92, beard=0.0, long=True, grey=True),
+}
+
+HAIR = [rgb("#6b4526"), rgb("#4a3020"), rgb("#8a5a2b"), rgb("#2f2622"), rgb("#9c6b3a")]
+GREY_HAIR = [rgb("#c9c4bd"), rgb("#aaa49c")]
+
+# era -> outfit palette and pattern
+OUTFIT = {
+    "stone_age": dict(cloth=[rgb("#b87a45"), rgb("#a86c3c"), rgb("#c48c55")],
+                      texture="fur", strap=True),
+    "medieval": dict(cloth=[rgb("#5d7a9e"), rgb("#7b8f55"), rgb("#9a5d45"),
+                            rgb("#8c7a5a"), rgb("#6d6591"), rgb("#a3844e")],
+                     texture=None, strap=False),
+}
+
+POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
+MOODS = ("calm", "happy", "sleepy", "worried", "surprised", "content", "focused")
+ITEMS = ("none", "spear", "stick", "torch", "bowl", "fish", "stone", "axe",
+         "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle")
+
+# action -> poses it can be done in (validation), and the item it implies
+ACTIONS = {
+    "idle": dict(poses=POSES, item=None),
+    "warm_hands": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
+    "stir": dict(poses=("stand", "sit", "sit_on", "crouch"), item="stick"),
+    "eat": dict(poses=("stand", "sit", "sit_on", "crouch"), item="bread"),
+    "drink": dict(poses=("stand", "sit", "sit_on", "crouch"), item="cup"),
+    "carry": dict(poses=("stand", "walk"), item="bundle"),
+    "point": dict(poses=("stand", "sit", "sit_on", "walk"), item=None),
+    "talk": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
+    "wave": dict(poses=("stand", "sit", "sit_on", "walk"), item=None),
+    "knap": dict(poses=("sit", "sit_on", "crouch"), item="stone"),
+    "gather": dict(poses=("crouch", "stand"), item=None),
+    "hold": dict(poses=POSES[:4] + ("walk",), item=None),
+    "sleep": dict(poses=("lie",), item=None),
+    "yawn": dict(poses=("stand", "sit", "sit_on"), item=None),
+    "sew": dict(poses=("sit", "sit_on"), item="needle"),
+    "chop": dict(poses=("stand",), item="axe"),
+    "fish": dict(poses=("stand", "sit", "sit_on"), item="rod"),
+    "hoe": dict(poses=("stand",), item="hoe"),
+    "hug_self": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
+    "look_up": dict(poses=("stand", "sit", "sit_on", "lie"), item=None),
+}
+
+
+def _person_rng(seed):
+    return random.Random(seed * 7919 + 13)
+
+
+@lru_cache(maxsize=4096)
+def look(who: str, era: str, seed: int) -> dict:
+    """The fixed appearance of one person — the same on every frame."""
+    w = WHO[who]
+    r = _person_rng(seed)
+    o = OUTFIT[era]
+    hair = r.choice(GREY_HAIR if w["grey"] else HAIR)
+    cloth = r.choice(o["cloth"])
+    lk = dict(size=w["size"], hair=hair, cloth=cloth, texture=o["texture"],
+              strap=o["strap"], long=w["long"],
+              beard=r.random() < w["beard"], era=era, who=who,
+              hood=(era == "medieval" and r.random() < 0.35 and not w["long"]),
+              scarf=(era == "medieval" and w["long"] and r.random() < 0.6),
+              spikes=r.randint(6, 9), seed=seed)
+    return lk
+
+
+# ------------------------------------------------------------------ skeleton
+def _ik(sx, sy, tx, ty, l1, l2, bend):
+    """Two-bone IK: elbow position for a shoulder->hand chain. `bend` +1/-1."""
+    dx, dy = tx - sx, ty - sy
+    d = max(1e-6, math.hypot(dx, dy))
+    d_c = min(d, l1 + l2 - 1e-3)
+    a = math.atan2(dy, dx)
+    cos_b = (l1 * l1 + d_c * d_c - l2 * l2) / (2 * l1 * d_c)
+    b = math.acos(max(-1.0, min(1.0, cos_b)))
+    ex = sx + l1 * math.cos(a + bend * b)
+    ey = sy + l1 * math.sin(a + bend * b)
+    if d > l1 + l2:
+        tx, ty = sx + (l1 + l2) * dx / d, sy + (l1 + l2) * dy / d
+    return (ex, ey), (tx, ty)
+
+
+def skeleton(pose: str, R: float, t: float, phase: float = 0.0) -> dict:
+    """Joint positions in LOCAL coords: feet on the ground at y=0, facing +x.
+    Returns hips, neck, head centre, and leg chains (hip, knee, foot) x2."""
+    leg, torso = 2.0 * R, 1.75 * R
+    if pose in ("stand",):
+        hip = (0.0, -leg)
+        legs = [((-0.28 * R, -leg), (-0.30 * R, -leg * 0.5), (-0.34 * R, 0.0)),
+                ((0.28 * R, -leg), (0.30 * R, -leg * 0.5), (0.36 * R, 0.0))]
+        lean = 0.0
+    elif pose == "walk":
+        hip = (0.0, -leg)
+        c = t * 2 * math.pi / 1.1 + phase
+        legs = []
+        for k, s in ((0, 1), (1, -1)):
+            sw = math.sin(c) * s
+            foot = (0.62 * R * sw, -max(0.0, math.cos(c) * s) * 0.18 * R)
+            knee = (0.22 * R * sw + 0.18 * R, -leg * 0.52)
+            legs.append(((0.0, -leg), knee, foot))
+        lean = 0.06
+    elif pose == "sit":
+        hip = (0.0, -0.32 * R)
+        legs = [((-0.1 * R, -0.32 * R), (0.95 * R, -1.05 * R), (1.55 * R, 0.0)),
+                ((0.15 * R, -0.32 * R), (1.15 * R, -0.95 * R), (1.8 * R, 0.0))]
+        lean = -0.02
+    elif pose == "sit_on":
+        seat = 1.05 * R
+        hip = (0.0, -seat)
+        legs = [((-0.1 * R, -seat), (0.95 * R, -seat), (0.95 * R, 0.0)),
+                ((0.15 * R, -seat), (1.15 * R, -seat + 0.05 * R), (1.2 * R, 0.0))]
+        lean = 0.0
+    elif pose == "crouch":
+        hip = (-0.3 * R, -0.95 * R)
+        legs = [((-0.3 * R, -0.95 * R), (0.55 * R, -1.45 * R), (0.35 * R, 0.0)),
+                ((-0.2 * R, -0.95 * R), (0.75 * R, -1.25 * R), (0.7 * R, 0.0))]
+        lean = 0.22
+    else:
+        raise KeyError(f"pose {pose!r} has no skeleton")
+    neck = (hip[0] + math.sin(lean) * torso, hip[1] - math.cos(lean) * torso)
+    head = (neck[0] + math.sin(lean) * 0.9 * R, neck[1] - math.cos(lean) * 0.95 * R)
+    return dict(hip=hip, neck=neck, head=head, legs=legs, lean=lean)
+
+
+def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
+    """(front_hand, back_hand) targets in local coords for an action at t."""
+    nx, ny = sk["neck"]
+    hx, hy = sk["hip"]
+    chest = (nx + 0.9 * R, ny + 0.9 * R)
+    rest_f = (nx + 0.42 * R, hy - 0.05 * R)
+    rest_b = (nx - 0.42 * R, hy - 0.05 * R)
+    c = 2 * math.pi * t
+    if action in ("idle", "hold"):
+        return rest_f, rest_b
+    if action == "warm_hands":
+        k = math.sin(c / 1.3 + ph) * 0.18 * R
+        return ((nx + 1.35 * R + k, ny + 0.95 * R), (nx + 1.2 * R - k, ny + 1.05 * R))
+    if action == "stir":
+        a = c / 2.2 + ph
+        return ((nx + 1.45 * R + math.cos(a) * 0.35 * R, ny + 1.25 * R + math.sin(a) * 0.12 * R),
+                rest_b)
+    if action in ("eat", "drink"):
+        k = (math.sin(c / 3.0 + ph) + 1) / 2          # 0 at lap, 1 at mouth
+        k = k ** 2
+        mouth = (sk["head"][0] + 0.55 * R, sk["head"][1] + 0.5 * R)
+        lap = (nx + 1.0 * R, ny + 1.4 * R)
+        return ((lap[0] + (mouth[0] - lap[0]) * k, lap[1] + (mouth[1] - lap[1]) * k),
+                (nx + 0.8 * R, ny + 1.5 * R))
+    if action == "carry":
+        return ((nx + 0.55 * R, ny - 0.55 * R), (nx - 0.25 * R, ny - 0.6 * R))
+    if action == "point":
+        k = math.sin(c / 4.0 + ph) * 0.08 * R
+        return ((nx + 1.9 * R, ny + 0.1 * R + k), rest_b)
+    if action == "talk":
+        k = (math.sin(c / 1.8 + ph) + 1) / 2
+        return ((nx + 1.05 * R, ny + 1.2 * R - k * 0.55 * R), rest_b)
+    if action == "wave":
+        k = math.sin(c / 0.9 + ph)
+        return ((nx + 0.7 * R + k * 0.35 * R, ny - 1.25 * R), rest_b)
+    if action == "knap":
+        k = abs(math.sin(c / 1.6 + ph))
+        return ((nx + 1.05 * R, ny + 0.6 * R + k * 0.75 * R), (nx + 1.0 * R, ny + 1.55 * R))
+    if action == "gather":
+        k = (math.sin(c / 3.2 + ph) + 1) / 2
+        return ((nx + 1.3 * R, sk["hip"][1] + (0.9 - 0.3 * k) * R), rest_b)
+    if action == "yawn":
+        k = max(0.0, math.sin(c / 5.0 + ph))
+        up = (nx + 0.3 * R, ny - 1.3 * R * k + 0.9 * R * (1 - k))
+        return (up, (nx - 0.3 * R, ny - 1.3 * R * k + 0.9 * R * (1 - k)))
+    if action == "sew":
+        k = (math.sin(c / 1.5 + ph) + 1) / 2
+        return ((nx + 0.9 * R + k * 0.6 * R, ny + 1.25 * R - k * 0.35 * R),
+                (nx + 0.85 * R, ny + 1.4 * R))
+    if action == "chop":
+        k = abs(math.sin(c / 2.4 + ph))
+        y = ny - 0.9 * R + k * 2.4 * R
+        return ((nx + 1.0 * R, y), (nx + 0.8 * R, y + 0.1 * R))
+    if action == "hoe":
+        k = abs(math.sin(c / 2.8 + ph))
+        y = ny + 0.2 * R + k * 0.9 * R
+        return ((nx + 0.95 * R, y), (nx + 0.55 * R, y - 0.4 * R))
+    if action == "fish":
+        k = math.sin(c / 4.5 + ph) * 0.1 * R
+        return ((nx + 1.25 * R, ny + 0.7 * R + k), (nx + 1.0 * R, ny + 0.85 * R + k))
+    if action == "hug_self":
+        return ((nx + 0.55 * R, ny + 0.85 * R), (nx + 0.35 * R, ny + 0.75 * R))
+    if action == "look_up":
+        return rest_f, rest_b
+    raise KeyError(f"action {action!r} has no hands")
+
+
+# ------------------------------------------------------------------ drawing
+def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
+    r = random.Random(seed)
+    blink_every = 3.8 + r.random() * 2.5
+    blink = (t + r.random() * 5) % blink_every < 0.14
+    ex = 0.30 * R
+    ox = 0.18 * R                       # face turned toward +x
+    ey = cy - 0.02 * R - (0.12 * R if looking_up else 0)
+    lw = max(2.5, R * 0.075)
+    if mood == "sleepy" or blink:
+        for sx in (-1, 1):
+            x = cx + ox + sx * ex
+            ink.line(cr, [(x - 0.13 * R, ey), (x, ey + 0.06 * R), (x + 0.13 * R, ey)],
+                     lw=lw * 0.8, amp=0)
+    elif mood == "happy":
+        for sx in (-1, 1):
+            x = cx + ox + sx * ex
+            ink.line(cr, [(x - 0.12 * R, ey + 0.04 * R), (x, ey - 0.07 * R),
+                          (x + 0.12 * R, ey + 0.04 * R)], lw=lw * 0.8, amp=0)
+    else:
+        er = 0.085 * R if mood != "surprised" else 0.11 * R
+        for sx in (-1, 1):
+            ink.dot(cr, cx + ox + sx * ex, ey, er)
+        if mood == "worried":
+            for sx in (-1, 1):
+                x = cx + ox + sx * ex
+                ink.line(cr, [(x - 0.14 * R, ey - 0.2 * R - sx * 0.05 * R),
+                              (x + 0.14 * R, ey - 0.2 * R + sx * 0.05 * R)], lw=lw * 0.7, amp=0)
+        if mood == "focused":
+            for sx in (-1, 1):
+                x = cx + ox + sx * ex
+                ink.line(cr, [(x - 0.14 * R, ey - 0.2 * R + sx * 0.04 * R),
+                              (x + 0.14 * R, ey - 0.2 * R - sx * 0.04 * R)], lw=lw * 0.7, amp=0)
+    my = cy + 0.38 * R
+    mx = cx + ox
+    if mood in ("happy", "content"):
+        w = 0.24 * R if mood == "happy" else 0.17 * R
+        ink.line(cr, [(mx - w, my - 0.04 * R), (mx, my + 0.08 * R), (mx + w, my - 0.04 * R)],
+                 lw=lw * 0.8, amp=0)
+    elif mood == "surprised":
+        cr.arc(mx, my + 0.02 * R, 0.08 * R, 0, 2 * math.pi)
+        ink.stroke(cr, lw * 0.7)
+    elif mood == "worried":
+        ink.line(cr, [(mx - 0.14 * R, my + 0.05 * R), (mx, my - 0.03 * R), (mx + 0.14 * R, my + 0.05 * R)],
+                 lw=lw * 0.8, amp=0)
+    else:
+        ink.line(cr, [(mx - 0.11 * R, my), (mx + 0.11 * R, my + 0.01 * R)], lw=lw * 0.75, amp=0)
+
+
+def _hair_pts(cx, cy, R, lk, back: bool):
+    r = random.Random(lk["seed"] * 31 + (7 if back else 0))
+    pts = []
+    if back and lk["long"]:
+        # long hair falling behind the head to the shoulders
+        for a in range(0, 181, 12):
+            ang = math.radians(180 + a)
+            rr = 1.08 * R + r.uniform(0, 0.08 * R)
+            pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang) * 1.02))
+        pts += [(cx + 1.12 * R, cy + 0.5 * R), (cx + 1.0 * R, cy + 1.25 * R),
+                (cx + 0.55 * R, cy + 1.05 * R), (cx - 0.7 * R, cy + 1.05 * R),
+                (cx - 1.1 * R, cy + 1.3 * R), (cx - 1.15 * R, cy + 0.4 * R)]
+        return pts
+    if back:
+        return None
+    # a messy mop: over the crown from ear to ear, then a jagged fringe back
+    shaggy = lk["era"] == "stone_age"
+    tuft = (0.22 if shaggy else 0.07) * R
+    n = 13
+    for i in range(n + 1):
+        a = math.radians(168 + (372 - 168) * i / n)
+        rr = 1.07 * R + (r.uniform(0.2, 1.0) * tuft if i % 2 else r.uniform(0, 0.3) * tuft)
+        pts.append((cx + rr * math.cos(a), cy + rr * math.sin(a)))
+    # right side down past the ear, then the fringe (teeth pointing down)
+    pts.append((cx + 1.02 * R, cy + 0.12 * R))
+    pts.append((cx + 0.86 * R, cy - 0.1 * R))
+    k = 6
+    for i in range(k + 1):
+        x = cx + 0.78 * R - 1.72 * R * i / k
+        y = cy - (0.32 if i % 2 else 0.5) * R + (r.uniform(-0.05, 0.08) * R if shaggy else 0)
+        if not shaggy:
+            y = cy - 0.42 * R
+        pts.append((x, y))
+    pts.append((cx - 1.02 * R, cy + 0.15 * R))
+    return pts
+
+
+def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
+    """Something held in the front hand, drawn in hand-local coords."""
+    if name in ("none", None):
+        return
+    if name == "spear":
+        ink.line(cr, [(hx, hy + 2.2 * R), (hx, hy - 2.6 * R)], lw=lw * 0.9, ink=rgb("#6b4a2e"), amp=0)
+        ink.fill_stroke(cr, [(hx, hy - 3.1 * R), (hx - 0.16 * R, hy - 2.55 * R),
+                             (hx + 0.16 * R, hy - 2.55 * R)], rgb("#8d8d86"), lw=lw * 0.7, amp=0)
+    elif name == "stick":
+        ink.line(cr, [(hx - 0.2 * R, hy - 0.5 * R), (hx + 0.35 * R, hy + 1.0 * R)], lw=lw * 0.8,
+                 ink=rgb("#6b4a2e"), amp=0)
+    elif name == "torch":
+        ink.line(cr, [(hx, hy + 0.7 * R), (hx + 0.1 * R, hy - 0.9 * R)], lw=lw, ink=rgb("#6b4a2e"), amp=0)
+        from .props import flame
+        flame(cr, hx + 0.1 * R, hy - 0.9 * R, 0.55 * R, t, seed=int(hx))
+    elif name == "lantern":
+        ink.line(cr, [(hx, hy), (hx, hy + 0.35 * R)], lw=lw * 0.6, amp=0)
+        ink.fill_stroke(cr, ink.ellipse_pts(hx, hy + 0.65 * R, 0.28 * R, 0.34 * R, 14),
+                        rgb("#f3c25a"), lw=lw * 0.7, amp=0)
+        from .props import flame
+        flame(cr, hx, hy + 0.7 * R, 0.2 * R, t, seed=int(hx), glow_r=2.4)
+    elif name in ("bowl", "cup"):
+        w = 0.42 * R if name == "bowl" else 0.24 * R
+        ink.fill_stroke(cr, [(hx - w, hy - 0.1 * R), (hx + w, hy - 0.1 * R),
+                             (hx + w * 0.7, hy + 0.25 * R), (hx - w * 0.7, hy + 0.25 * R)],
+                        rgb("#a0673e"), lw=lw * 0.7, amp=0)
+    elif name == "fish":
+        ink.fill_stroke(cr, ink.ellipse_pts(hx + 0.3 * R, hy, 0.45 * R, 0.16 * R, 16),
+                        rgb("#8fa7b3"), lw=lw * 0.7, amp=0.5, seed=3)
+    elif name == "stone":
+        ink.fill_stroke(cr, ink.blob_pts(hx + 0.1 * R, hy - 0.05 * R, 0.2 * R, 0.14 * R, 5),
+                        rgb("#8e8a84"), lw=lw * 0.7, amp=0)
+    elif name == "bread":
+        ink.fill_stroke(cr, ink.ellipse_pts(hx + 0.1 * R, hy - 0.05 * R, 0.26 * R, 0.16 * R, 16),
+                        rgb("#d5a25c"), lw=lw * 0.7, amp=0)
+    elif name == "axe":
+        ink.line(cr, [(hx - 0.2 * R, hy + 0.5 * R), (hx + 0.35 * R, hy - 1.1 * R)], lw=lw * 0.9,
+                 ink=rgb("#6b4a2e"), amp=0)
+        ink.fill_stroke(cr, [(hx + 0.25 * R, hy - 1.15 * R), (hx + 0.75 * R, hy - 1.25 * R),
+                             (hx + 0.7 * R, hy - 0.8 * R), (hx + 0.35 * R, hy - 0.85 * R)],
+                        rgb("#9a9a94"), lw=lw * 0.7, amp=0)
+    elif name == "hoe":
+        ink.line(cr, [(hx - 0.8 * R, hy - 1.0 * R), (hx + 0.9 * R, hy + 1.7 * R)], lw=lw * 0.9,
+                 ink=rgb("#6b4a2e"), amp=0)
+        ink.fill_stroke(cr, [(hx + 0.8 * R, hy + 1.6 * R), (hx + 1.25 * R, hy + 1.45 * R),
+                             (hx + 1.2 * R, hy + 1.75 * R)], rgb("#8e8e88"), lw=lw * 0.6, amp=0)
+    elif name == "rod":
+        tip = (hx + 2.6 * R, hy - 1.8 * R)
+        ink.line(cr, [(hx - 0.3 * R, hy + 0.3 * R), tip], lw=lw * 0.6, ink=rgb("#6b4a2e"), amp=0)
+        sway = math.sin(t * 1.1) * 0.12 * R
+        ink.line(cr, [tip, (tip[0] + 0.3 * R + sway, tip[1] + 2.8 * R)], lw=1.6, amp=0)
+    elif name == "bundle":
+        for k in range(4):
+            ink.line(cr, [(hx - 0.9 * R, hy - 0.1 * R + k * 0.12 * R),
+                          (hx + 0.7 * R, hy - 0.25 * R + k * 0.12 * R)], lw=lw * 0.9,
+                     ink=rgb("#6d4b2d"), amp=0.5, seed=k)
+        ink.line(cr, [(hx - 0.2 * R, hy - 0.35 * R), (hx - 0.15 * R, hy + 0.35 * R)], lw=lw * 0.5,
+                 ink=rgb("#c7a36a"), amp=0)
+    elif name == "basket":
+        ink.fill_stroke(cr, [(hx - 0.45 * R, hy + 0.05 * R), (hx + 0.45 * R, hy + 0.05 * R),
+                             (hx + 0.35 * R, hy + 0.65 * R), (hx - 0.35 * R, hy + 0.65 * R)],
+                        rgb("#b88a4d"), lw=lw * 0.7, amp=0, texture="hatch", tex_alpha=0.25)
+    elif name == "needle":
+        ink.line(cr, [(hx, hy), (hx + 0.2 * R, hy - 0.25 * R)], lw=1.6, amp=0)
+    else:
+        raise KeyError(f"item {name!r} is not drawable")
+
+
+def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
+         x: float, ground_y: float, scale: float, t: float, facing: str = "right",
+         mood: str = "calm", item: str | None = None, dim: float = 0.0):
+    """Draw one person with feet at (x, ground_y)."""
+    lk = look(who, era, seed)
+    R = R0 * scale * lk["size"]
+    ph = (seed % 97) * 0.37
+    cr.save()
+    cr.translate(x, ground_y)
+    if facing == "left":
+        cr.scale(-1, 1)
+    lw = max(2.4, R * 0.1)
+    held = item if item is not None else (ACTIONS[action]["item"] or "none")
+
+    if pose == "lie":
+        _draw_lying(cr, lk, R, t, lw, mood if action != "sleep" else "sleepy", seed)
+        cr.restore()
+        return
+
+    sk = skeleton(pose, R, t, ph)
+    front, back = hand_targets(action, sk, R, t, ph)
+    nx, ny = sk["neck"]
+    sh_f = (nx + 0.22 * R, ny + 0.28 * R)
+    sh_b = (nx - 0.22 * R, ny + 0.28 * R)
+    ua, la = 0.95 * R, 0.9 * R
+
+    if pose == "sit_on":
+        _seat(cr, lk, sk["hip"], R, lw)
+    # back arm + back leg (behind the body)
+    e, h = _ik(*sh_b, *back, ua, la, 1)
+    ink.line(cr, [sh_b, e, h], lw=lw, amp=0)
+    hip, knee, foot = sk["legs"][0]
+    ink.line(cr, [hip, knee, foot], lw=lw, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(foot[0] + 0.12 * R, foot[1] - 0.07 * R, 0.24 * R, 0.12 * R, 12),
+                    ink.INK, lw=0, amp=0)
+    # long hair behind the body
+    hcx, hcy = sk["head"]
+    bh = _hair_pts(hcx, hcy, R, lk, back=True)
+    if bh:
+        ink.fill_stroke(cr, bh, lk["hair"], lw=lw * 0.8, amp=1.2, seed=seed)
+
+    # front leg
+    hip, knee, foot = sk["legs"][1]
+    ink.line(cr, [hip, knee, foot], lw=lw, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(foot[0] + 0.12 * R, foot[1] - 0.07 * R, 0.24 * R, 0.12 * R, 12),
+                    ink.INK, lw=0, amp=0)
+
+    # body / outfit
+    hx0, hy0 = sk["hip"]
+    lean = sk["lean"]
+    top_w, bot_w = 0.52 * R, 0.78 * R
+    hem = 0.55 * R if pose in ("stand", "walk") else 0.25 * R
+    if lk["era"] == "medieval" and lk["long"]:
+        hem = 1.5 * R if pose in ("stand", "walk") else 0.35 * R
+    body = [(nx - 0.3 * R, ny + 0.06 * R), (nx + 0.3 * R, ny + 0.06 * R),
+            (nx + top_w, ny + 0.3 * R), (hx0 + bot_w, hy0 + hem),
+            (hx0, hy0 + hem + 0.06 * R), (hx0 - bot_w, hy0 + hem), (nx - top_w, ny + 0.3 * R)]
+    ink.fill_stroke(cr, body, lk["cloth"], lw=lw * 0.85, amp=1.6, seed=seed + 1,
+                    shadow=shade(lk["cloth"]), shadow_dir=(-1, 0.3),
+                    texture=lk["texture"], tex_alpha=0.55)
+    if lk["strap"]:
+        ink.line(cr, [(nx - 0.45 * R, ny + 0.2 * R), (nx + 0.3 * R, ny + 0.95 * R)],
+                 lw=lw * 0.55, ink=shade(lk["cloth"], 0.6), amp=0)
+    if lk["era"] == "medieval":
+        by = hy0 - 0.15 * R
+        ink.line(cr, [(hx0 - bot_w * 0.85, by), (hx0 + bot_w * 0.85, by)], lw=lw * 0.7,
+                 ink=rgb("#4b3524"), amp=0)
+
+    # head (with hood/scarf) + hair + face
+    if lk["hood"] or lk["scarf"]:
+        hood_c = shade(lk["cloth"], 0.9)
+        ink.fill_stroke(cr, ink.ellipse_pts(hcx - 0.05 * R, hcy - 0.05 * R, 1.22 * R, 1.25 * R, 26),
+                        hood_c, lw=lw * 0.85, amp=1.2, seed=seed + 5)
+    ink.fill_stroke(cr, ink.ellipse_pts(hcx, hcy, R, 1.03 * R, 30), HEAD, lw=lw * 0.95, amp=1.1,
+                    seed=seed + 2, shadow=rgb("#e9e2d4"), shadow_dir=(-1, 0.4))
+    if not (lk["hood"] or lk["scarf"]):
+        fh = _hair_pts(hcx, hcy, R, lk, back=False)
+        ink.fill_stroke(cr, fh, lk["hair"], lw=lw * 0.8, amp=0.8, seed=seed + 3)
+    if lk["beard"]:
+        bpts = [(hcx - 0.55 * R, hcy + 0.35 * R), (hcx + 0.95 * R, hcy + 0.3 * R),
+                (hcx + 0.7 * R, hcy + 1.05 * R), (hcx + 0.1 * R, hcy + 1.2 * R),
+                (hcx - 0.45 * R, hcy + 0.8 * R)]
+        ink.fill_stroke(cr, bpts, lk["hair"], lw=lw * 0.75, amp=1.5, seed=seed + 4)
+    _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
+
+    # front arm + held item
+    bend = -1 if action in ("carry", "wave", "yawn") else 1
+    e, h = _ik(*sh_f, *front, ua, la, bend)
+    if held != "none":
+        _item(cr, held, h[0], h[1], R, t, lw)
+    ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
+    if action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish", "hug_self", "knap", "eat",
+                  "drink"):
+        e2, h2 = _ik(*sh_b, *back, ua, la, bend)
+        ink.fill_stroke(cr, ink.ellipse_pts(h2[0], h2[1], 0.16 * R, 0.15 * R, 12), HEAD,
+                        lw=lw * 0.6, amp=0)
+    cr.restore()
+
+
+def _seat(cr, lk, hip, R, lw):
+    """What a person sitting 'on' something sits on: a stool indoors in the
+    middle ages, a log in the stone age."""
+    hx, hy = hip
+    if lk["era"] == "medieval":
+        top = hy + 0.12 * R
+        ink.fill_stroke(cr, [(hx - 0.8 * R, top), (hx + 0.8 * R, top), (hx + 0.8 * R, top + 0.22 * R),
+                             (hx - 0.8 * R, top + 0.22 * R)], rgb("#7a5233"), lw=lw * 0.8, amp=0.5, seed=3)
+        for dx in (-0.6, 0.6):
+            ink.line(cr, [(hx + dx * R, top + 0.22 * R), (hx + dx * R * 1.1, 0)], lw=lw * 1.1,
+                     ink=rgb("#5a3b24"), amp=0)
+    else:
+        c = rgb("#7a5233")
+        ink.fill_stroke(cr, [(hx - 1.0 * R, 0), (hx - 1.0 * R, hy + 0.1 * R), (hx + 0.9 * R, hy + 0.1 * R),
+                             (hx + 0.9 * R, 0)], c, lw=lw * 0.8, amp=1.0, seed=5, shadow=shade(c),
+                        shadow_dir=(0, 1))
+        ink.fill_stroke(cr, ink.ellipse_pts(hx + 0.9 * R, (hy + 0.1 * R) / 2, 0.18 * R, -(hy + 0.1 * R) / 2, 16),
+                        rgb("#c9a06c"), lw=lw * 0.7, amp=0)
+
+
+def _draw_lying(cr, lk, R, t, lw, mood, seed):
+    """Asleep on the ground under a fur/blanket, head to the left."""
+    head = (-2.1 * R, -0.95 * R)
+    hair = _hair_pts(head[0], head[1], R, lk, back=False)
+    blanket = rgb("#8a5a35") if lk["era"] == "stone_age" else lk["cloth"]
+    ink.fill_stroke(cr, [(-1.3 * R, -1.25 * R), (1.2 * R, -1.45 * R), (2.3 * R, -0.9 * R),
+                         (2.4 * R, 0.0), (-1.5 * R, 0.0)], blanket, lw=lw * 0.85, amp=2.2,
+                    seed=seed + 9, shadow=shade(blanket), shadow_dir=(0, 1),
+                    texture="fur" if lk["era"] == "stone_age" else None, tex_alpha=0.5)
+    ink.fill_stroke(cr, ink.ellipse_pts(head[0], head[1], R, 1.03 * R, 30), HEAD, lw=lw * 0.95,
+                    amp=1.1, seed=seed + 2)
+    ink.fill_stroke(cr, hair, lk["hair"], lw=lw * 0.8, amp=0.8, seed=seed + 3)
+    _face(cr, head[0], head[1], R, "sleepy", t, seed)
+    # Zzz: letters drifting up and fading, a slow loop
+    cr.select_font_face("Anton", 0, 0)
+    for k in range(3):
+        u = ((t / 3.6) + k / 3.0) % 1.0
+        cr.set_font_size(R * (0.35 + 0.25 * u))
+        cr.move_to(head[0] + 0.9 * R + u * 0.8 * R, head[1] - 1.1 * R - u * 1.3 * R)
+        cr.set_source_rgba(ink.INK[0], ink.INK[1], ink.INK[2], 0.75 * math.sin(math.pi * u))
+        cr.show_text("z")
