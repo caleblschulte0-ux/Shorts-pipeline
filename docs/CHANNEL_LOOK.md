@@ -124,6 +124,12 @@ every teacher passes (`tests/test_subject_scenes.py`,
   that is his own, not pacing (`bit_problems`). The rubric asks for
   "setup → action → payoff"; the story whose teachers failed this is the
   one the judge called decorative.
+- **Data performs more than he presents** — at least half the beat in a
+  physical act (strain, climb, hold_up) done to the thing the number is made
+  of; point/cheer/shock/think are the setup and the reaction. On the first
+  illustrated day mascot was the biggest loss (-7.5 of 18, "Data mostly
+  waves"); the scenes the judge praised were 71-100% physical, the ones it
+  called "just waves" 0%.
 - **No repeated gesture in one video.** A role resolves to the act this
   video has used least (`act_for`), so "shock" is not the same
   hands-on-head pose in three scenes.
