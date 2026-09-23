@@ -465,7 +465,10 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            # meant the brain could not compose with the only elements that
            # reliably work.
            "  unit_figures — N copies of one icon in a block; COUNTING them is "
-           "the number ('22 houses, each $20K'). needs subject + "
+           "the number ('22 houses, each $20K'). USE VERY SPARINGLY: at most "
+           "ONE unit_figures OR dot_field in the whole story, and only when "
+           "counting copies is the point - a field of one thing repeated is "
+           "not a picture of the subject. needs subject + "
            "data.value_from + data.per_value (a rough guess; it is rescaled "
            "to a round unit).\n"
            "  balance     — two values on a set of scales, heavier side down. "

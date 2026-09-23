@@ -51,13 +51,16 @@ KINDS = {
     # is FALSE and that is the point: it draws from the offline icon library,
     # so unlike every other subject-bearing scene it costs no image budget,
     # cannot time out, and can therefore be reached on any story.
-    "units_scene":    {"image": False, "novelty": True,  "repeatable": True},
+    "units_scene":    {"image": False, "novelty": True},
+    # units_scene and rate_scene are NOT repeatable: a field of one icon
+    # repeated is used "very, very sparingly" (operator, 2026-09-22), and
+    # `studio_render.REPEATED_ICON_BUDGET` holds the whole video to one.
     # A pair weighed on a set of scales. Drawn from primitives only — no
     # subject, no icon, no network — so it is never rationed either.
     "balance_scene":  {"image": False, "novelty": True,  "repeatable": True},
     # A share of a population as "k in n". Only offered for data that IS a
     # share of something countable — see viz_scene.rate_scene.
-    "rate_scene":     {"image": False, "novelty": True,  "repeatable": True},
+    "rate_scene":     {"image": False, "novelty": True},
     # Rank as POSITION: a field of Data clones racing, gap = distance.
     "race_scene":     {"image": False, "novelty": True,  "repeatable": True},
     "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %

@@ -2174,6 +2174,29 @@ def _buildable(kind: str, insight) -> bool:
         return False
 
 
+#: A FIELD OF ONE THING REPEATED — thirty thermometers, forty houses, a
+#: waffle of little people. Operator, 2026-09-22: "putting a lot of like one
+#: thing on the screen ... to simplify like a lot of something. I'm not a big
+#: fan of that. That should be used very, very sparingly." So these are the
+#: LAST alternates offered, and a video gets at most `REPEATED_ICON_BUDGET`
+#: of them however it was reached — the director, an alternate, or a scene
+#: the brain authored with a `unit_figures` / `dot_field` element.
+REPEATED_ICON_KINDS = frozenset({"units_scene", "rate_scene", "pictograph"})
+REPEATED_ICON_ELEMENTS = frozenset({"unit_figures", "dot_field"})
+REPEATED_ICON_BUDGET = 1
+
+
+def is_repeated_icon(kind: str, scene: dict | None = None) -> bool:
+    """Does drawing `kind` (with this authored `scene`) fill the frame with
+    copies of one icon?"""
+    if kind in REPEATED_ICON_KINDS:
+        return True
+    if kind == "scene" and isinstance(scene, dict):
+        return any(isinstance(e, dict) and e.get("type") in REPEATED_ICON_ELEMENTS
+                   for e in (scene.get("elements") or []))
+    return False
+
+
 def _depiction_sequence(insight, used: set, dur: float) -> list:
     """The ORDERED, NON-REPEATING depictions one beat shows, front to back.
 
@@ -2215,6 +2238,13 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
                 and _buildable(c, insight)]
 
     machines, fallback = _usable(machines), _usable(fallback)
+    # A repeated-icon grid is the LAST thing offered, and not at all once
+    # this video has had its one (`used` carries the marker the render loop
+    # adds when it draws one).
+    _icon_spent = "__repeated_icon__" in used
+    _icons = [c for c in machines + fallback if c in REPEATED_ICON_KINDS]
+    machines = [c for c in machines if c not in REPEATED_ICON_KINDS]
+    fallback = [c for c in fallback if c not in REPEATED_ICON_KINDS]
     # ROTATE THE PREFERENCE, or the ranked list is itself a template.
     #
     # Simulated across the 74 un-posted stories: every single one picked
@@ -2241,11 +2271,14 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     # duel -> scales, growth -> a count, decline -> a timeline), which is the
     # data driving the picture, which is the entire point. Only the chart
     # fallback rotates, because there one bar chart is much like another.
-    cands = machines + _rotate(fallback)
+    cands = machines + _rotate(fallback) + ([] if _icon_spent else _icons[:1])
 
     def _pick(want_family, avoid_used):
         for c in cands:
             if c in seq:
+                continue
+            if c in REPEATED_ICON_KINDS and any(
+                    k in REPEATED_ICON_KINDS for k in seq):
                 continue
             if want_family and _family(c) != want_family:
                 continue
@@ -2481,6 +2514,21 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # span so the answer belongs to THIS span, not to whatever
                 # rendered before it on the same insight (`_span_bakes`).
                 seg.insight.host_baked = False
+                _icon_kind = is_repeated_icon(
+                    kind, getattr(seg.insight, "scene", None)
+                    if kind == "scene" else None)
+                if _icon_kind and "__repeated_icon__" in _kinds_used:
+                    # this video already had its one field of copies
+                    _sub = next((c for c in _depiction_sequence(
+                        seg.insight, _kinds_used | {"__repeated_icon__"},
+                        max(dur, SPAN_TARGET * MAX_SPANS))[1:]
+                        if c not in kinds and not is_repeated_icon(c)), None)
+                    print(f"[studio] seg{i} visual {j} ({kind}) is a field of "
+                          f"one repeated icon and this video has had its one "
+                          f"-> {_sub or 'dropped'}", flush=True)
+                    if _sub is None:
+                        continue
+                    kind, _icon_kind = _sub, False
                 try:
                     seg.insight.kind = kind
                     if kind in _SCENE_TOKENS:
@@ -2523,6 +2571,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                                   "host_baked": bool(getattr(seg.insight,
                                                              "host_baked", False))})
                 _kinds_used.add(kind)
+                if _icon_kind:
+                    _kinds_used.add("__repeated_icon__")
                 if j == 0:
                     seg.chart_path = str(cpath)
             if seg.spans:
