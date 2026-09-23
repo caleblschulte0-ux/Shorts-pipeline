@@ -1,54 +1,99 @@
-# OpenRangeInteractive — the documentary pipeline
+# OpenRangeInteractive — the sleep films
 
-**What ships:** three times a week (`curiosity.yml`, Mon/Wed/Fri 15:00 UTC,
-plus `clock.yml` re-firing a missed slot), one 8–10 minute 1920x1080
-documentary on an evergreen curiosity topic, uploaded to the
-OpenRangeInteractive channel **only if the fail-closed showrunner passes it**.
+**What ships:** once a week (`curiosity.yml`, Friday 19:00 UTC, plus
+`clock.yml` re-firing a missed slot), one **two-hour** 1920x1080 history
+story to fall asleep to, drawn entirely by code in a hand-drawn cartoon
+style, uploaded to the OpenRangeInteractive channel **only if the
+fail-closed showrunner passes it**.
 
 ```bash
-python scripts/ori_author.py                     # top the script queue up (needs a brain)
-python -m data_learning.ori_documentary --slug how-deep-is-the-ocean --out o.mp4
-python -m data_learning.ori_documentary --slug how-deep-is-the-ocean --out o.mp4 --seconds 75   # preview
+python scripts/ori_author.py                     # write the next script (needs a brain)
+python -m data_learning.ori_sleep --slug <slug> --out o.mp4 --max-seconds 90   # preview
+python -m data_learning.ori_sleep --slug <slug> --out o.mp4                    # the whole film
 python scripts/post_ori.py --dry-run             # render + judge, no upload
 ```
 
 Stop everything for this channel: commit `state/curiosity_kill_switch`.
 
-## Why (2026-09-22)
+## Why (2026-09-22 → 2026-09-23)
 
-The channel posted one video (2026-07-08) and then nothing for eleven weeks.
-The "pro" producer (`scripts/produce.py` + `pro_render`, and a further 1,500
-commits on the unmerged `feature/curiosity-pro-integration`) took two-plus
-hours a render and its own blind judges returned five of five cuts BORING,
-so every run quarantined; it also required an owner approval file written on
-the runner, which a cron can never have. The operator, the day this was
-built: *"I want you to be producing videos reliably that work and look good
-... People do them all the time on the internet ... they get hundreds and
-thousands of views."*
+The channel had posted one video and then nothing for eleven weeks. The
+first rebuild (2026-09-22) was an 8-minute stock-footage documentary; its
+first CI run was rightly blocked by the showrunner — a bird in a tree and
+cartoon planets under "Life Without the Sun", the New York skyline under
+"The Bottom of the World" — because a keyword search cannot match footage
+to a line.
 
-The format those channels share is plain and proven, and this builds it in
-~30 minutes of CI: calm narration over **real footage that changes every ~4
-seconds**, the numbers on screen as they are said, chapter cards, a ducked
-music bed, captions, and a thumbnail made from a real frame. 8+ minutes so
-mid-roll ads apply.
+The operator's rulings the next day, in his words:
+
+- *"people dont want to watch somthing thwy can tell is AI"* — and the
+  market research agrees: in a January 2026 YouGov survey 72% of US users
+  view AI content negatively; YouTube's July 2025 "inauthentic content"
+  policy demonetises mass-produced slideshows; in early 2026 it removed
+  sixteen AI-slop channels (4.7B views). Human-drawn channels sell the
+  difference (History with Dave titles every video "(NO AI)").
+- *"that going to sleep niche ... I put this on, turn my phone over, so I'm
+  not even watching the screen and I'm just like listening."* The channels
+  there ("Boring History For Sleep", "History for Sleep") run 1:50–2:50
+  films; "What Did Early Humans ACTUALLY Do All Day?" sits at 2.6M views,
+  "Why You Wouldn't Last a Day in Medieval Times" at 4.3M. Nearly all of
+  them are AI painting slideshows.
+- *"we do like one video like a week."*
+- The art: the cartoon look of History with Dave and Deep Epoch — round
+  white heads, ink outlines, flat colour — *"it's what I've shown you."*
+- The voice is a separate conversation (he will bring ElevenLabs); until
+  then Kokoro `bm_george`, slowed, with breaths between sentences.
 
 ## The pieces
 
 | file | job |
 |---|---|
-| `data_learning/ori_episodes/<slug>.json` | one episode script — the queue. `validate()` in the renderer is the contract |
-| `data_learning/ori.config.json` | topic bank, queue minimum, the technical floor (min seconds, max footage misses) |
-| `scripts/ori_author.py` | writes the next script with the brain chain (Claude CLI first, never the mailbox), validated, one retry with the reasons |
-| `data_learning/ori_documentary.py` | script -> mp4 + thumbnail + chapters + captions |
-| `scripts/post_ori.py` | kill switch -> reconcile -> render -> floor -> **showrunner** -> leak scan -> claim -> upload -> receipt -> `state/curiosity_posted_log.json` |
+| `data_learning/doodle/` | the art kit: `ink` (marker line, flat fill, shadow side, grain), `people` (the rig: poses, actions, moods, items), `props`, `settings` (sky, land, weather, water), `scene` (validate, lay out, render) |
+| `data_learning/ori_episodes/<slug>.json` | one episode script — the queue. `ori_sleep.validate()` is the contract; every narrated beat carries the scene drawn under it |
+| `data_learning/ori.config.json` | the topic bank (each with its era), queue minimum, the technical floor |
+| `scripts/ori_author.py` | writes a script as an outline then one call per chapter, each checked against the kit's own vocabulary (`scene.vocabulary`), one retry with the reasons, dropped if still broken |
+| `data_learning/ori_sleep.py` | script → narration timed per sentence → scenes drawn in parallel chunks with dissolves → sleep bed → mp4 + thumbnail + chapters + captions |
+| `scripts/post_ori.py` | kill switch → reconcile → render → floor → **showrunner** → leak scan → claim → upload → receipt → `state/curiosity_posted_log.json` |
 
-## Rules the tests hold (`tests/test_ori_documentary.py`)
+## Motion is measured, never faked
 
-- Every on-screen stat is **said in its own beat** — a number the narrator
-  never says is usually one the author made up.
-- 1,150–1,900 narrated words, 5–10 chapters, 3+ sources with real URLs.
-- No clip twice in one film; a shot with no footage becomes a dark drift
-  (never black) and is counted — too many misses and the episode does not ship.
+The showrunner's cadence probe reads a held frame as a duplicate, and the
+operator ruled out every trick that makes a still picture shiver
+(`shared/camera_float.py`: no camera drift, no bob, no breathing crop). A
+sleep film is calm, so it earns its motion honestly: **every scene must
+contain something that really moves**, and `doodle.scene.validate` refuses
+one that does not. The strengths in `_fire_strength` / `motion_strength`
+are numbers measured with the REAL probe (encoded 4-second clips through
+`showrunner_review._temporal_evidence`): a campfire at night in a close shot
+holds 4% of frames, the same fire at noon is a small orange shape on bright
+grass and does not count; water, rain, a hearth and a candle count; a torch
+and a wide-shot fire are helpers. `tests/test_ori_sleep.py` re-measures the
+staples and a random sample of accepted scenes every run.
+
+What actually moves: flames whose tongues take a new height twelve times a
+second (linear, because eased noise goes flat at every knot and two frames
+on a flat spot are two identical frames), embers rising, firelight that
+flickers across ground and faces and never clips to white, sun and moon
+glints winking on the water, rain, animals grazing, people doing their work.
+
+## What the probes needed
+
+The probes used to hold every sampled frame in Python lists; a two-hour film
+is 172,800 frames and the runner ran out of memory, which the gate would
+have read as an unmeasured probe and held forever. They stream now
+(`_gray_stream`, `_max_block_diff_np`) and
+`tests/test_showrunner_probe_stream.py` holds the old code verbatim as the
+oracle: same answers, no memory.
+
+## Rules the tests hold (`tests/test_ori_sleep.py`)
+
+- Every name the validator accepts draws; every name it refuses is refused
+  by name; another era's props are refused; a still scene is refused.
+- 11,000–21,000 narrated words, 8–20 chapters, 20–190 words a beat; the
+  thumbnail is a close doodle scene with 2–4 words.
+- A short episode renders end to end with a stand-in voice: video, audio,
+  captions, chapters, a 1920x1080 thumbnail.
+- The author drops an episode whose chapter stays broken after one retry.
 - The gate runs before the upload, knows it is a publish run, and a BLOCK
   never reaches the uploader. A claim is written before the upload and a
   receipt after, so a crash in between is reconciled, never guessed.
@@ -57,8 +102,11 @@ mid-roll ads apply.
 
 - The registry entry for `curiosity` still describes the retired pro queue
   and stays `enabled: false`, so Phase A/B, the daily alarm and ChatGPT's
-  stocking job do not start supervising this channel. The documentary path
-  publishes from its own cron, gated, exactly like `longform.yml`
-  (`tests/test_disabled_channels_stay_off.py`, `ON_BUT_GATED`).
-- The pro producer and its modes (`preview`, `pro`, `batch`, `schedule`) are
-  untouched and manual-only.
+  stocking job do not start supervising this channel. The sleep path is in
+  `ON_BUT_GATED` (`tests/test_disabled_channels_stay_off.py`), like long-form.
+- The stock-footage documentary renderer is gone (2026-09-23), with its
+  three scripts. Its lesson lives in `post_ori.py`'s judge context: the
+  judge is told what each chapter says so it can check the picture.
+- Two eras are drawn (`stone_age`, `medieval`); a topic outside them waits
+  for its settings and props to be added to the kit, with the tests that
+  say they resolve and move.

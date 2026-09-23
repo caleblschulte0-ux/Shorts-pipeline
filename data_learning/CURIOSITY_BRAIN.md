@@ -1,12 +1,12 @@
 # VISUALIZED (curiosity channel) — brain playbook
 
-> **2026-09-22 — the production path is now the DOCUMENTARY pipeline
-> (`docs/ORI_DOCUMENTARY.md`): 8-10 minute narrated films over real footage,
-> scripts in `data_learning/ori_episodes/`, published 3/week behind the
-> showrunner by `scripts/post_ori.py`.** The pro producer described below
-> never shipped a publishable cut and is manual-only. The editorial doctrine
-> here (evergreen questions, real traceable numbers, hook first, the mute
-> test) still governs what a script says.
+> **2026-09-23 — the production path is now the SLEEP FILM pipeline
+> (`docs/ORI_DOCUMENTARY.md`): one two-hour history story a week to fall
+> asleep to, every frame drawn by code (`data_learning/doodle`), scripts in
+> `data_learning/ori_episodes/`, published behind the showrunner by
+> `scripts/post_ori.py`.** The pro producer described below never shipped
+> a publishable cut and is manual-only. The editorial doctrine here (real,
+> traceable facts; the mute test) still governs what a script says.
 
 > **Heads-up (2026-07-30): the TRENDING/DAILY channel's chain changed — THIS channel's flow did NOT.** For trending only: packages -> auto-merge -> Exchange Phase A -> ChatGPT -> Phase B -> render, so never dispatch `daily.yml` after authoring (it is the LAST step of that chain). THIS channel's authoring, triggers, and workflow are unchanged — follow this playbook exactly as written. Details: `docs/EXCHANGE_PIPELINE.md`.
 
