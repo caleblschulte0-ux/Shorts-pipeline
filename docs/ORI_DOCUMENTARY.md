@@ -98,8 +98,10 @@ watcher's face, one cave-and-fire template for most of the film, no dawn in
 - A held spear rests its butt on the ground and leans away from the body.
 - Sewing shows a hide over the knees; knapping shows the core and its flakes.
 - The author refuses a chapter where more than half the beats are one
-  setting and shot (`ori_author.SAME_LOOK_SHARE`) or where two beats in a
-  row are the same picture, and the last chapter's outdoor scenes are asked
+  setting and shot (`ori_author.SAME_LOOK_SHARE`), where two beats in a
+  row are the same picture, or where one picture would pass three in ten
+  of the whole film so far (`FILM_LOOK_SHARE` — each chapter's prompt
+  carries the running tally and how many more it may use), and the last chapter's outdoor scenes are asked
   for at dawn — a campfire at dawn in a close shot measured 0.06-0.10 held
   frames, alive; in a wide shot 0.52-0.63, not.
 

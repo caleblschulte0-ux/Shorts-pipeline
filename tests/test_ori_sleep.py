@@ -290,8 +290,8 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
             n = int(user.split("Chapter ")[1].split(" of")[0])
             # a real chapter is a sequence of DIFFERENT pictures; one picture
             # nine times is what the author refuses
-            places = ("cave_mouth", "grassland", "cave_inside", "riverbank")
-            scenes = [{"setting": places[j % 4], "time": "night", "props": ["campfire"]} for j in range(9)]
+            places = ("cave_mouth", "grassland", "cave_inside", "riverbank", "forest")
+            scenes = [{"setting": places[j % 5], "time": "night", "props": ["campfire"]} for j in range(9)]
             if broken_chapter == n:
                 scenes = [{"setting": "spaceship", "time": "night"}] * 9
             return json.dumps({"beats": [{"say": say, "scene": sc} for sc in scenes]})
@@ -461,6 +461,32 @@ class ThePictureIsReadable(unittest.TestCase):
                     lay = self.S.layout(b["scene"], 1000 + n)
                     self.assertEqual(lay["collisions"], [], f"{f.name}: {c['title']}: {b['say'][:60]}")
                     n += 1
+            # and the whole film obeys the author's own picture rules
+            import ori_author as A
+            for i, c in enumerate(ep["chapters"]):
+                bad = [x for x in A._chapter_problems(c["beats"], ep["era"], 0, 10 ** 6, before=ep["chapters"][:i])
+                       if "picture" in x or "of the film" in x]
+                self.assertEqual(bad, [], f"{f.name}: {c['title']}")
+
+    def test_the_author_caps_one_picture_across_the_whole_film(self):
+        import ori_author as A
+        say = " ".join(["the fire burns low and the night goes on"] * 12)
+        cave = {"setting": "cave_mouth", "time": "night", "shot": "close", "props": ["campfire"],
+                "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}]}
+        other = ["grassland", "riverbank", "forest", "lakeshore"]
+        # each chapter alone is fine (three cave beats of ten, none back to back)
+        chapter = [{"say": say, "scene": dict(cave, setting=(other[j % 4] if j % 3 else "cave_mouth"))}
+                   for j in range(10)]
+        self.assertEqual(A._chapter_problems(chapter, "stone_age", 0, 99999), [])
+        # a film that is nothing but such chapters crosses three in ten by
+        # the fourth one, and the fourth is told how many it may still use
+        before = [{"beats": [dict(b, scene=dict(cave)) for b in chapter]} for _ in range(3)]
+        bad = A._chapter_problems(chapter, "stone_age", 0, 99999, before=before)
+        self.assertTrue(any("of the film" in b for b in bad), bad)
+        note = A._tally_note(A._picture_tally(before), 30)
+        self.assertIn("cave_mouth (close shot) x30", note)
+        self.assertIn("Prefer other settings", note)
+        self.assertEqual(A._tally_note({}, 0), "")
 
     def test_the_author_refuses_a_chapter_that_is_one_picture(self):
         import ori_author as A

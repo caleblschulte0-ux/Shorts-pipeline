@@ -173,9 +173,36 @@ def _outline_problems(o: dict, era: str) -> list[str]:
 
 
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
+FILM_LOOK_SHARE = 0.3      # ... and at most three in ten of the whole film's
 
 
-def _chapter_problems(beats, era: str, lo: int, hi: int) -> list[str]:
+def _picture_tally(chapters) -> dict:
+    """How often each (setting, shot) picture has been used so far."""
+    tally = {}
+    for ch in chapters:
+        for b in ch.get("beats", []):
+            sc = b.get("scene") if isinstance(b, dict) else None
+            if isinstance(sc, dict):
+                k = (sc.get("setting"), S.shot_of(sc))
+                tally[k] = tally.get(k, 0) + 1
+    return tally
+
+
+def _tally_note(tally: dict, so_far: int) -> str:
+    """A line for the chapter prompt: the pictures the film has leaned on
+    and how many more of each this chapter may add."""
+    if not tally:
+        return ""
+    top = sorted(tally.items(), key=lambda kv: -kv[1])[:3]
+    parts = []
+    for (setting, shot), n in top:
+        room = max(0, int(FILM_LOOK_SHARE * (so_far + 12)) - n)
+        parts.append(f"{setting} ({shot} shot) x{n}, at most {room} more")
+    return ("- The film so far leans on: " + "; ".join(parts) + ". Prefer other settings and shots "
+            "for this chapter.")
+
+
+def _chapter_problems(beats, era: str, lo: int, hi: int, before=None) -> list[str]:
     if not isinstance(beats, list) or not beats:
         return ["no beats"]
     bad, total = [], 0
@@ -212,6 +239,18 @@ def _chapter_problems(beats, era: str, lo: int, hi: int) -> list[str]:
         if n > max(2, int(len(beats) * SAME_LOOK_SHARE)):
             bad.append(f"{n} of {len(beats)} beats are the same picture ({setting}, {shot} shot): "
                        f"vary the setting and the shot, and show what each passage describes")
+    if before:
+        # the whole film, not just this chapter: the second film's judge
+        # counted one cave-front picture in 15 of 42 sampled frames
+        prior = _picture_tally(before)
+        so_far = sum(prior.values())
+        for k, n in looks.items():
+            total = prior.get(k, 0) + n
+            if total > int(FILM_LOOK_SHARE * (so_far + len(beats))) + 1:
+                bad.append(f"{k[0]} ({k[1]} shot) would be {total} of the film's {so_far + len(beats)} "
+                           f"pictures so far: use it for at most "
+                           f"{max(0, int(FILM_LOOK_SHARE * (so_far + len(beats))) + 1 - prior.get(k, 0))} "
+                           f"beats in this chapter")
     return bad
 
 
@@ -252,13 +291,16 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                  "with the people asleep and the listener invited to sleep too. Its last "
                  "outdoor scenes use time \"dawn\" — the sky pales as the film ends."
                  if i == len(chs) - 1 else "")
+        tally = _picture_tally(out_chapters)
+        final = "\n".join(x for x in (final, _tally_note(tally, sum(tally.values()))) if x)
+        before = list(out_chapters)
         res = _with_retry(
             lambda pr, i=i, ch=ch, prev=prev, final=final: CHAPTER.format(
                 title=o["title"], era=era, n=i + 1, total=len(chs), chapter=ch.get("title", ""),
                 covers=ch.get("covers", ""), prev=prev, words_lo=words_lo, words_hi=words_hi,
                 final=final, vocab=vocab, problems=pr),
-            lambda r: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
-                                        words_lo - 100, words_hi + 200),
+            lambda r, before=before: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
+                                                       words_lo - 100, words_hi + 200, before=before),
             ask, f"{topic!r} chapter {i + 1}")
         if res is None:
             return None
