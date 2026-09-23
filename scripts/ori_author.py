@@ -287,6 +287,44 @@ def _with_retry(prompt_fn, check, ask, label):
     return None
 
 
+# what a topic's words say about WHEN it is — the deterministic first pass
+# of era_for(); the brain is asked only when none of these words appear
+ERA_WORDS = {
+    "stone_age": ("stone age", "ice age", "early human", "early humans", "cave", "hunter-gatherer",
+                  "hunter gatherer", "mammoth", "neanderthal", "first farmers", "prehistoric", "paleolithic",
+                  "neolithic", "flint"),
+    "medieval": ("medieval", "middle ages", "peasant", "castle", "knight", "monk", "monastery", "viking",
+                 "feudal", "manor", "plague", "crusade", "abbey", "serf"),
+    "ancient": ("roman", "rome", "greek", "greece", "athens", "sparta", "ancient", "egypt", "pharaoh", "pompeii",
+                "mediterranean", "legion", "caesar", "villa", "forum", "byzant"),
+}
+
+ERA_PROMPT = """Which of these drawn worlds fits the topic below? Answer with ONE word from this list, or "none" if the topic belongs to a time none of them can show: {eras}.
+{eras_doc}
+Topic: {topic}"""
+
+
+def era_for(topic: str, ask=_ask) -> str | None:
+    """The era a topic is drawn in, or None when the kit has no era for it.
+    Words first (deterministic, no model); the brain only for a topic that
+    names none of them; None is an honest refusal, never a default."""
+    t = topic.lower()
+    hits = {era: sum(1 for w in words if w in t) for era, words in ERA_WORDS.items()}
+    named = [era for era, n in hits.items() if n]
+    if len(named) == 1:
+        return named[0]          # two eras named at once is a question for the brain, not a count
+    if ask is None:
+        return None
+    eras_doc = "\n".join(f"- {e}: {S.vocabulary(e).splitlines()[0][:140]}" for e in S.ERAS)
+    try:
+        ans = ask("You choose which drawn world a story is set in. One word only.",
+                  ERA_PROMPT.format(eras=", ".join(S.ERAS), eras_doc=eras_doc, topic=topic))
+    except NoBrain:
+        return None
+    word = re.sub(r"[^a-z_]", "", (ans or "").strip().lower().split()[0] if (ans or "").strip() else "")
+    return word if word in S.ERAS else None
+
+
 def author(topic: str, era: str, ask=_ask) -> dict | None:
     vocab = S.vocabulary(era)
     o = _with_retry(lambda pr: OUTLINE.format(topic=topic, era=era, suffix=SUFFIX, vocab=vocab) + pr,
@@ -347,7 +385,12 @@ def main() -> int:
     if args.if_empty:
         want = 0 if queue() else 1
     if args.topic:
-        topics = [{"topic": args.topic, "era": args.era or "stone_age"}]
+        era = args.era or era_for(args.topic)
+        if era is None:
+            print(f"[ori_author] the kit has no era for {args.topic!r} — it draws {', '.join(S.ERAS)}; "
+                  f"add the era's settings and props to data_learning/doodle first, or pass --era", flush=True)
+            return 2
+        topics = [{"topic": args.topic, "era": era}]
         want = max(want, 1)
     else:
         done = used_topics()

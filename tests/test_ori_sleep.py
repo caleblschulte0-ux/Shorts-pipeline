@@ -570,6 +570,18 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertIn("Prefer other settings", note)
         self.assertEqual(A._tally_note({}, 0), "")
 
+    def test_a_topic_finds_its_era_or_is_refused_honestly(self):
+        import ori_author as A
+        self.assertEqual(A.era_for("What did ordinary Romans do after dark?", ask=None), "ancient")
+        self.assertEqual(A.era_for("How medieval peasants slept", ask=None), "medieval")
+        self.assertEqual(A.era_for("A night with the first humans in an Ice Age cave", ask=None), "stone_age")
+        # no word the table knows: the brain is asked, and only a listed era counts
+        self.assertEqual(A.era_for("A night in a lighthouse", ask=lambda sy, u: "ancient\n"), "ancient")
+        self.assertIsNone(A.era_for("A night in a lighthouse", ask=lambda sy, u: "victorian"))
+        self.assertIsNone(A.era_for("A night on the Apollo 11 launch pad", ask=None))
+        # two eras named at once is a question, not a guess
+        self.assertIsNone(A.era_for("Romans and medieval knights compared", ask=None))
+
     def test_the_author_refuses_a_chapter_where_everyone_only_sits(self):
         import ori_author as A
         say = " ".join(["the fire burns low and the night goes on"] * 12)

@@ -164,6 +164,17 @@ the film. The ledger is `state/ori_storyboard.jsonl`. The showrunner's
 verdict on the finished film is unchanged — this only moves defects to
 where fixing them is cheap.
 
+## Any topic: the era is found or the refusal is honest
+
+`ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
+a topic naming none of them is put to the brain, which may answer only
+with an era the kit draws; a topic naming two eras at once is a question,
+not a count. A topic the kit cannot draw is refused by name ("the kit has
+no era for ... — add the era's settings and props first, or pass --era"),
+never quietly drawn in the wrong world. Growing what the system can take
+means growing the kit: an era is an `OUTFIT`, settings, props and measured
+strengths, and `ERA_WORDS` for the words that name it.
+
 ## What the probes needed
 
 The probes used to hold every sampled frame in Python lists; a two-hour film
