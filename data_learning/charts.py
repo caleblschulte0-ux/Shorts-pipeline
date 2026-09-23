@@ -2146,9 +2146,23 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         # docstring; the coloured bar an inch to the right already says which
         # row is the subject, and on a dim row this painted the name in the
         # mark's tone on navy.
-        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center",
-                fontsize=lblfs, zorder=4,
-                color=TEXT if p.label == insight.highlight_label else SUBTLE)
+        # A NAME THAT DOES NOT FIT THE GUTTER GOES ABOVE ITS BAR. The gutter
+        # is the left 21% of the card (~225pt); right-aligned against the bar
+        # start, a long name simply ran off the left edge of the frame: "the
+        # left edge clips the bar label ('ed one at least once') in every
+        # hook and seg0 frame" (teen-ai-companion-boom, 2026-09-22). Above
+        # the bar it has the whole axes width, starting where the bar starts.
+        _ink = TEXT if p.label == insight.highlight_label else SUBTLE
+        _gut = _axes_pts(0.21)
+        if len(str(p.label)) * lblfs * _ADV <= _gut:
+            ax.text(-vmax * 0.03, y, p.label, ha="right", va="center",
+                    fontsize=lblfs, zorder=4, color=_ink)
+        else:
+            ax.annotate(p.label, (0, y), xytext=(0, lw / 2.0 + 6),
+                        textcoords="offset points", ha="left", va="bottom",
+                        fontsize=_fit_fontsize(p.label, _axes_pts(0.62 * 0.92),
+                                               22, 14),
+                        zorder=4, color=_ink, annotation_clip=False)
         # Value label WITH its unit (%/$/…). It sits INSIDE the coloured bar
         # (white, left-aligned on the fill) so the TIP stays clear for the mascot
         # pushing it — no tip collision (his shove-arm used to cover the leading
