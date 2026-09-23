@@ -174,6 +174,28 @@ WORLDS = {
         "rim": (255, 190, 140), "mote": (255, 180, 120),
     },
 }
+#: SUBJECT SCENES (data_learning/subject_scenes.py) — the reference's own
+#: palette: dawn over forest, cleared earth, pasture. The subject is warm,
+#: the setting is cool, and the readout is the sample's gold.
+SCENES = {
+    "readout": (255, 209, 102), "accent2": (124, 240, 255),
+    "dawn": [(0.0, (27, 31, 92)), (0.5, (106, 79, 163)),
+             (0.82, (243, 154, 107)), (1.0, (255, 208, 138))],
+    "sun": (255, 226, 168), "sun_glow": (255, 204, 128), "mist": (255, 236, 214),
+    "leaf": (46, 158, 104), "leaf_shade": (24, 104, 74), "rim_leaf": (190, 255, 200),
+    "leaf_far": (58, 92, 110), "leaf_far_shade": (40, 66, 88),
+    "trunk": (92, 60, 44), "trunk_far": (50, 48, 76),
+    "earth": [(0.0, (60, 40, 50)), (1.0, (22, 14, 26))],
+    "stump": (120, 80, 56), "stump_top": (214, 170, 120),
+    "cleared": [(0.0, (120, 84, 66)), (1.0, (40, 26, 30))],
+    "scar": (168, 112, 78), "dust": (230, 190, 150),
+    "france_lit": (130, 150, 230), "france_shade": (80, 96, 176),
+    "france_rim": (206, 214, 255), "flag": (255, 209, 102),
+    "pasture": (120, 170, 80), "pasture_lit": (176, 214, 120),
+    "cow": (246, 240, 232), "cow_patch": (60, 48, 50), "cow_dark": (40, 32, 36),
+    "truck": (214, 96, 70), "truck_cab": (240, 200, 90), "log": (150, 100, 66),
+}
+
 #: The subject's warm light on a lit face, and its shade, derived from the
 #: story's accent so there is still exactly ONE accent per story.
 ILLU_SHADE = 0.62          # shadow face = accent * this

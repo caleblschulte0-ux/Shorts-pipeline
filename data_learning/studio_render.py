@@ -2550,6 +2550,32 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # pictures below, and the fallback is recorded with its claim.
             if _style["style_arm"] == "illustrated":
                 from data_learning import illustrated as _il
+                from data_learning import subject_scenes as _ss
+                # A SUBJECT SCENE first (operator 2026-09-23: the reference
+                # is the subject itself, not a chart in a world); the
+                # illustrated chart drawings only where no scene exists.
+                _scene = _ss.scene_for(slug, i)
+                if _scene is not None:
+                    try:
+                        _spath, _ = _ss.render_build(
+                            _scene, seg.insight, chart_dir,
+                            f"{slug}_seg{i:02d}_ss",
+                            int(max(30, min(1800, _mfr.ceil(dur * 30)))),
+                            t0=start)
+                    except Exception as e:  # noqa: BLE001
+                        print(f"[studio] seg{i} subject scene failed: {e}",
+                              flush=True)
+                        _spath = None
+                    if _spath:
+                        seg.spans = [{"kind": "subject_scene", "path": _spath,
+                                      "anchors": [], "t0": start, "t1": end,
+                                      "full_by": 1.0, "host_baked": True,
+                                      "scene": _scene.__name__}]
+                        seg.chart_path = _spath
+                        _style["illustrated_beats"].append(i)
+                        print(f"[studio] seg{i}: subject scene "
+                              f"{_scene.__name__} ({dur:.1f}s)", flush=True)
+                        continue
                 _rel, _ifn = _il.drawing_for(seg.insight)
                 _ipath, _ianc = None, []
                 if _ifn is not None:
