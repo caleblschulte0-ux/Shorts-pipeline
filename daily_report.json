@@ -7,10 +7,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 84.3,
+    "elapsed_seconds": 84.2,
     "package_path": "state/trending_packages/20260923/01_spacex-out-launches-the-world.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-113438_spacex_now_out_launches_every_other_coun.mp4",
+    "video_path": "output/daily_20260923-115514_spacex_now_out_launches_every_other_coun.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A competent line race whose payoff, the overtake, arrives as overlapping labels on a 1B margin, so the whoa moment is unreadable.",
-    "elapsed_seconds": 98.4,
+    "error": "showrunner_block: showrunner BLOCK: The race builds well, but the overtake it exists to show is an unreadable pile of flags and labels at the right edge.",
+    "elapsed_seconds": 103.7,
     "package_path": "state/trending_packages/20260923/02_india-passed-japan-gdp.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-113603_india_just_passed_japan_in_gdp.mp4",
+    "video_path": "output/daily_20260923-115639_india_just_passed_japan_in_gdp.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,7 +62,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A competent line race whose payoff, the overtake, arrives as overlapping labels on a 1B margin, so the whoa moment is unreadable.",
+      "reason": "showrunner BLOCK: The race builds well, but the overtake it exists to show is an unreadable pile of flags and labels at the right edge.",
       "score": 66
     },
     "blocked": true
@@ -75,10 +75,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 56 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=12.04s of 14.38s (~2.3s frozen)",
-    "elapsed_seconds": 81.4,
+    "elapsed_seconds": 85.6,
     "package_path": "state/trending_packages/20260923/03_byd-passed-tesla-ev-sales.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-113741_byd_passed_tesla_in_global_ev_sales.mp4",
+    "video_path": "output/daily_20260923-115822_byd_passed_tesla_in_global_ev_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -108,11 +108,11 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 84.9,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.506 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 88.8,
     "package_path": "state/trending_packages/20260923/04_nones-passed-catholics.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-113902_non_religious_americans_just_passed_cath.mp4",
+    "video_path": "output/daily_20260923-115948_non_religious_americans_just_passed_cath.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +130,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.506 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
       "score": 5
     },
     "blocked": true
@@ -142,14 +142,14 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The Reddit card, gameplay and captions are clean, but after the hook nothing on screen shows the story: 50 seconds of generic gameplay under captions, and the paperwork payoff is never seen.",
-    "elapsed_seconds": 293.9,
+    "error": "showrunner_block: showrunner BLOCK: This is plain gameplay with captions and no story illustrations. It has a near-black void at mid2 and ends with no visible payoff: the progress bar is only about 2/3 full and the last frame has no caption.",
+    "elapsed_seconds": 257.6,
     "package_path": "state/trending_packages/20260923/05_allergy-excuse-fundraiser-fraud.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-114054_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
+    "video_path": "output/daily_20260923-120142_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.6,
+      "duration": 52.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.2
+      "loudness_lufs": -25.7
     },
     "qa": {
       "ok": true,
@@ -169,8 +169,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The Reddit card, gameplay and captions are clean, but after the hook nothing on screen shows the story: 50 seconds of generic gameplay under captions, and the paperwork payoff is never seen.",
-      "score": 65
+      "reason": "showrunner BLOCK: This is plain gameplay with captions and no story illustrations. It has a near-black void at mid2 and ends with no visible payoff: the progress bar is only about 2/3 full and the last frame has no caption.",
+      "score": 53
     },
     "blocked": true
   },
@@ -181,26 +181,14 @@
     "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: [\"insisting it 'just stopped working' after three we\", 'our warranty system logs a serial number', 'four returns, four different store locations', 'a brand new box walking back out the door', 'I flagged the account company-wide', 'the register simply refused the return', 'his own serial number printed on the screen']",
-    "elapsed_seconds": 24.6,
+    "error": "showrunner_block: showrunner BLOCK: This is 55s of pure Subway Surfers with captions: no beat illustrations, overlapping caption words, a stray line across every frame, and a flat ending.",
+    "elapsed_seconds": 233.7,
     "package_path": "state/trending_packages/20260923/06_same-serial-number-returns.json",
     "source": "brain",
-    "quarantined": true
-  },
-  {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
-    "angle": "Self\u2011driving Waymo cars navigated a bustling farmer\u2019s market, raising safety questions for autonomous tech in public spaces.",
-    "publish_at": "2026-09-23T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video is the Reddit post card over blurry Minecraft parkour with word-by-word captions: the story is narrated but never shown, and the ending has no visible punchline.",
-    "elapsed_seconds": 155.9,
-    "title": "I turned an entitled coffee snob into a viral meme",
-    "package_path": "state/trending_packages/20260923-114557_auto_waymo_caught_on_camera_driving_through_f.json",
-    "video_path": "output/daily_20260923-114557_waymo_caught_on_camera_driving_through_f.mp4",
+    "video_path": "output/daily_20260923-120600_he_returned_the_same_machine_five_times.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 42.5,
+      "duration": 55.933,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -211,7 +199,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -24.5
     },
     "qa": {
       "ok": true,
@@ -220,80 +208,83 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video is the Reddit post card over blurry Minecraft parkour with word-by-word captions: the story is narrated but never shown, and the ending has no visible punchline.",
+      "reason": "showrunner BLOCK: This is 55s of pure Subway Surfers with captions: no beat illustrations, overlapping caption words, a stray line across every frame, and a flat ending.",
       "score": 53
     },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
-    "angle": "Alaska\u2019s biggest brown bears battle for the title, turning wildlife competition into a viral showdown.",
-    "publish_at": "2026-09-23T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['watch her scream', 'tiny, lukewarm cup', 'unacceptable service', '$5 receipt', 'saving the shop\u2019s reputation']",
-    "elapsed_seconds": 27.5,
-    "title": "I turned an entitled coffee thief into a lesson",
-    "package_path": "state/trending_packages/20260923-114833_auto_battle_for_heavyweight_crown_begins_as_a.json",
-    "quarantined": true,
-    "backfill": true
+    "blocked": true
   },
   {
     "topic": "Lightning strike caught on camera in St. John's Parish - WWLTV.com",
-    "angle": "A massive bolt slammed a parish church, filmed live, showing nature\u2019s raw power in a suburban setting.",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "angle": "A massive lightning bolt slams into a church roof, captured on video, highlighting nature\u2019s raw power over historic buildings.",
+    "publish_at": "2026-09-23T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat is ever illustrated, and it ends on a caption cut off mid-sentence over empty parkour, so there is no payoff.",
-    "elapsed_seconds": 163.0,
-    "title": "I turned an entitled coffee snob into a corporate hero",
-    "package_path": "state/trending_packages/20260923-114902_auto_lightning_strike_caught_on_camera_in_st_.json",
-    "video_path": "output/daily_20260923-114902_lightning_strike_caught_on_camera_in_st_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The narration and captions are clean over smooth gameplay, but not one story beat is shown on screen, so the latte-karma story plays as a radio drama over unrelated parkour.",
+    "elapsed_seconds": 202.6,
+    "title": "I Served a Free Latte to an Entitled Flyer and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260923-120943_auto_lightning_strike_caught_on_camera_in_st_.json",
+    "video_path": "output/daily_20260923-120943_lightning_strike_caught_on_camera_in_st_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 41.367,
+      "duration": 46.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
       "has_audio": true,
-      "black_spans": [
-        [
-          6.66667,
-          7.06667
-        ]
-      ],
-      "black_frac": 0.0097,
+      "black_spans": [],
+      "black_frac": 0.0,
       "freeze_spans": [],
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.3
+      "loudness_lufs": -25.1
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions reddit story: no beat is ever illustrated, and it ends on a caption cut off mid-sentence over empty parkour, so there is no payoff.",
-      "score": 53
+      "reason": "showrunner BLOCK: The narration and captions are clean over smooth gameplay, but not one story beat is shown on screen, so the latte-karma story plays as a radio drama over unrelated parkour.",
+      "score": 65
     },
     "blocked": true,
     "backfill": true
   },
   {
+    "topic": "Waymo caught on camera driving through farmer's market in Denver - cbsnews.com",
+    "angle": "Waymo\u2019s autonomous cars weave through a bustling farmer\u2019s market, raising safety questions for driverless tech in crowded public spaces.",
+    "publish_at": "2026-09-23T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['hand the manager', 'free latte', 'fake receipt', 'cup of water', 'fume']",
+    "elapsed_seconds": 28.5,
+    "title": "I gave the entitled customer a free latte... of water",
+    "package_path": "state/trending_packages/20260923-121302_auto_waymo_caught_on_camera_driving_through_f.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
     "topic": "\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls",
-    "angle": "A Florida fisherman finds a blue crab clutching a kitchen knife, sparking viral speculation about \u201cweaponized\u201d crustaceans.",
+    "angle": "A Florida man finds a blue crab clutching a kitchen knife, a bizarre sea\u2011creature encounter that went viral for its oddity.",
+    "publish_at": "2026-09-23T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: '\u2018Gangster Crab\u2019: Florida Man Discovers Blue Crab with a Knife - Outdoors with Bear Grylls' refused by the writer: The requested trend is not a permitted setting (cafe, hardware store, airport, rental office)",
+    "elapsed_seconds": 1.6,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "Trump\u2019s sneaky plan to gut Endangered Species Act draws from 1995 Scalia dissent",
+    "angle": "The administration drafts a plan to roll back the Endangered Species Act, echoing a decades\u2011old Supreme Court dissent.",
     "publish_at": "2026-09-23T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['free power drill', 'entitled woman', 'coupon on the floor', 'entire display', 'glued together']",
-    "elapsed_seconds": 27.8,
-    "title": "I Gave the Entitled Customer a \u201cFree\u201d Drill",
-    "package_path": "state/trending_packages/20260923-115143_auto__gangster_crab___florida_man_discovers_b.json",
-    "quarantined": true,
+    "error": "unfit_for_fiction: 'Trump\u2019s sneaky plan to gut Endangered Species Act draws from 1995 Scalia dissent' refused by the writer: The trend involves political figures and policy, which is prohibited for story setting.",
+    "elapsed_seconds": 0.8,
+    "unfit": true,
     "backfill": true
   }
 ]
