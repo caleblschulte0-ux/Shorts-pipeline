@@ -892,6 +892,7 @@ class Prop:
     height: float = 200.0        # rough height at scale 1 (for light position)
     base: object = None          # the part that never moves, drawn once per scene
     settings: tuple | None = None  # the only settings it may appear in (None = any)
+    solid_width: float | None = None  # for scenery: the part nobody may stand on (a trunk), at scale 1
 
 
 BOTH = ("stone_age", "medieval")
@@ -912,8 +913,8 @@ PROPS = {
     "tent": Prop(tent, 360, "back", STONE_AGE),
     "hut": Prop(hut, 390, "back", ALL),
     "cottage": Prop(cottage, 470, "back", ("medieval", "victorian"), base=cottage_base),
-    "tree": Prop(tree, 300, "back", ALL),
-    "pine": Prop(pine, 280, "back", ALL),
+    "tree": Prop(tree, 300, "back", ALL, solid_width=110),
+    "pine": Prop(pine, 280, "back", ALL, solid_width=110),
     "bush": Prop(bush, 190, "mid", ALL),
     "rock": Prop(rock, 200, "mid", ALL),
     "reeds": Prop(reeds, 150, "front", ALL),
@@ -947,7 +948,7 @@ PROPS = {
     "oil_lamp": Prop(oil_lamp, 60, "front", ANCIENT, living=True, light=True, height=60, base=oil_lamp_base),
     "stall": Prop(stall, 340, "mid", ANCIENT),
     "goat": Prop(goat, 200, "mid", ANCIENT, living=False),
-    "olive": Prop(olive, 260, "back", ANCIENT),
+    "olive": Prop(olive, 260, "back", ANCIENT, solid_width=110),
     "terrace": Prop(terrace, 420, "back", VICTORIAN),
     "barn": Prop(barn, 540, "back", ("medieval", "victorian")),
     "gas_lamp": Prop(gas_lamp, 80, "back", VICTORIAN, living=True, light=True, height=360, base=gas_lamp_base),

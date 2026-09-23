@@ -300,8 +300,10 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
             n = int(user.split("Chapter ")[1].split(" of")[0])
             # a real chapter is a sequence of DIFFERENT pictures; one picture
             # nine times is what the author refuses
-            places = ("cave_mouth", "grassland", "cave_inside", "riverbank", "forest")
-            scenes = [{"setting": places[j % 5], "time": "night", "props": ["campfire"]} for j in range(9)]
+            # a real chapter walks the whole world: no place past a fifth of the film
+            places = ("cave_mouth", "grassland", "cave_inside", "riverbank", "forest", "lakeshore",
+                      "mountains", "seashore", "snowfield")
+            scenes = [{"setting": places[(j + n) % 9], "time": "night", "props": ["campfire"]} for j in range(9)]
             if broken_chapter == n:
                 scenes = [{"setting": "spaceship", "time": "night"}] * 9
             return json.dumps({"beats": [{"say": say, "scene": sc} for sc in scenes]})

@@ -228,7 +228,7 @@ def _text_surface(text: str, size: int, font: str = "PatrickHand-Regular.ttf",
     if band:
         # a soft dark band behind the words: the title is read over whatever
         # the opening scene happens to put there (a pale cloud, once)
-        ImageDraw.Draw(sh).rounded_rectangle((4, 4, w - 4, h - 4), radius=26, fill=(20, 16, 18, 120))
+        ImageDraw.Draw(sh).rounded_rectangle((4, 4, w - 4, h - 4), radius=26, fill=(20, 16, 18, 185))
         sh = sh.filter(ImageFilter.GaussianBlur(10))
     ImageDraw.Draw(sh).text((20 - bbox[0] + 3, 20 - bbox[1] + 4), text, font=f, fill=shadow)
     sh = sh.filter(ImageFilter.GaussianBlur(6))

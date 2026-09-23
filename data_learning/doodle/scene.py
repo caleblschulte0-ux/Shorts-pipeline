@@ -292,9 +292,12 @@ def spans(lay: dict) -> list[dict]:
         out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None,
                         pid=None, on=None))
     for i, p in enumerate(lay["props"]):
-        if p["layer"] == "back" and p["name"] not in SOLID_BACK:
+        pr = PROPS[p["name"]]
+        if p["layer"] == "back" and p["name"] not in SOLID_BACK and pr.solid_width is None:
             continue
-        w = PROPS[p["name"]].width * p["s"]
+        # scenery with a trunk: only the trunk takes room (the fourth film's
+        # judge: "a tree growing out of a man's head")
+        w = (pr.solid_width if (p["layer"] == "back" and p["name"] not in SOLID_BACK) else pr.width) * p["s"]
         out.append(dict(label=p["name"], lo=p["x"] - w / 2, hi=p["x"] + w / 2, fig=None,
                         under=p.get("under"), pid=i, on=p.get("on")))
     return out
@@ -391,7 +394,10 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             break
     if focal is None and pl:
         focal = pl[0]
-    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * 0.5
+    # the fourth film's judge: "cave mouth on the left, a campfire in the
+    # centre, one seated figure and a moon" repeated — so the focal thing
+    # sits somewhere between 38% and 62% of the width, by seed
+    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.38 + 0.24 * r.random())
 
     st = SETTINGS.get(spec.get("setting"))
     water = st.water if st is not None else None
@@ -489,31 +495,36 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             stirrer["facing"] = "right" if d > 0 else "left"
             x = stirrer["x"] + d * (1.55 * R + (50 if p["name"] == "pot" else 20) * ps)
             stirrer["_pot"] = True
-            # between the cook's knees on purpose: exempt from the crowding check
+            # between the cook's knees on purpose: exempt from the crowding
+            # check against HER — but it still takes room from everything else
+            put(x - w / 2, x + w / 2)
             placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                                seed=seed + len(placed) * 17, under=figs.index(stirrer)))
             continue
         else:
             scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
+            tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
                      else [0.4, 0.6, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
                 if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
                     continue
-                if scenery or free(W * cnd - w / 2, W * cnd + w / 2):
+                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2):
                     x = W * cnd
                     if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
                                                       if q["layer"] == "back"):
                         x = None
                         continue
                     break
-            if x is None and not scenery:
-                x = settle(W * cands[0], lambda xx: (xx - w / 2, xx + w / 2), EDGE, W - EDGE)
+            if x is None and (not scenery or pr.solid_width):
+                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE)
             if x is None:
                 x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
         if pr.layer != "back" or p["name"] in SOLID_BACK:
             put(x - w / 2, x + w / 2)
+        elif pr.solid_width:
+            put(x - pr.solid_width * ps / 2, x + pr.solid_width * ps / 2)
         placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                            seed=seed + len(placed) * 17))
     # a small light stands ON a table when there is one (a lamp on the

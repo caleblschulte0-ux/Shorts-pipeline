@@ -142,6 +142,20 @@ fire's stones, a cloud behind the title. So:
   since (`scripts/ci_commit_state.sh`); it restores only what the run
   changed now, with a real-git test.
 
+The fourth film (70, BLOCKED): a tree canopy sitting on a standing man's
+head, the cave-fire-seated-figure template in six chapters, chapters whose
+frames did not show their words, beards read as a black wedge across the
+face, a cloud through the title. So:
+
+- Scenery with a trunk (`Prop.solid_width`) takes room for the trunk, so
+  nobody stands under a canopy's centre.
+- The focal fire sits between 38% and 62% of the width by seed, not dead
+  centre every time; the author caps one picture at a fifth of the film
+  and one SETTING, whatever the shot, at a quarter (`FILM_PLACE_SHARE`).
+- A beard sits under the chin a shade lighter than the hair; the darkest
+  hair is dark brown, not black; the telling gesture rises to the shoulder.
+- The title band is opaque enough that a cloud cannot cross the words.
+
 ## The storyboard is looked at before the render (`data_learning/ori_storyboard.py`)
 
 His words, the morning after: *"it needs to be getting consistent 90s ...

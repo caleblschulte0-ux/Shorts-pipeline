@@ -38,7 +38,7 @@ WHO = {
     "old_woman": dict(size=0.92, beard=0.0, long=True, grey=True),
 }
 
-HAIR = [rgb("#6b4526"), rgb("#4a3020"), rgb("#8a5a2b"), rgb("#2f2622"), rgb("#9c6b3a")]
+HAIR = [rgb("#6b4526"), rgb("#5a3d2a"), rgb("#8a5a2b"), rgb("#4a3a33"), rgb("#9c6b3a")]
 GREY_HAIR = [rgb("#c9c4bd"), rgb("#aaa49c")]
 
 # era -> outfit palette and pattern
@@ -213,8 +213,10 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         k = (math.sin(c / 2.6 + ph) + 1) / 2
         return ((nx + 1.1 * R + k * 0.7 * R, ny + 1.35 * R + k * 0.25 * R), rest_b)
     if action == "talk":
+        # a hand raised and turned as the teller speaks — big enough to read
+        # from across the room
         k = (math.sin(c / 1.8 + ph) + 1) / 2
-        return ((nx + 1.05 * R, ny + 1.2 * R - k * 0.55 * R), rest_b)
+        return ((nx + 1.15 * R + k * 0.25 * R, ny + 0.95 * R - k * 0.95 * R), rest_b)
     if action == "wave":
         k = math.sin(c / 0.9 + ph)
         return ((nx + 0.7 * R + k * 0.35 * R, ny - 1.25 * R), rest_b)
@@ -514,10 +516,13 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                              (hcx + 0.7 * R, hcy - 0.55 * R), (hcx - 0.55 * R, hcy - 0.6 * R)], bc,
                         lw=lw * 0.8, amp=1.0, seed=seed + 6, shadow=shade(bc), shadow_dir=(0, 1))
     if lk["beard"]:
-        bpts = [(hcx - 0.55 * R, hcy + 0.35 * R), (hcx + 0.95 * R, hcy + 0.3 * R),
-                (hcx + 0.7 * R, hcy + 1.05 * R), (hcx + 0.1 * R, hcy + 1.2 * R),
-                (hcx - 0.45 * R, hcy + 0.8 * R)]
-        ink.fill_stroke(cr, bpts, lk["hair"], lw=lw * 0.75, amp=1.5, seed=seed + 4)
+        # under the chin, not across the mouth, and a shade lighter than the
+        # hair — the fourth film's judge read a beard as "a black wedge
+        # across the face"
+        bpts = [(hcx - 0.35 * R, hcy + 0.62 * R), (hcx + 0.98 * R, hcy + 0.5 * R),
+                (hcx + 0.72 * R, hcy + 1.08 * R), (hcx + 0.12 * R, hcy + 1.22 * R),
+                (hcx - 0.3 * R, hcy + 0.95 * R)]
+        ink.fill_stroke(cr, bpts, ink.mix(lk["hair"], HEAD, 0.3), lw=lw * 0.7, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
 
     # the work itself, where the action has something to show: a hide

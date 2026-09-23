@@ -177,7 +177,8 @@ def _outline_problems(o: dict, era: str) -> list[str]:
 
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
 IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyone idle
-FILM_LOOK_SHARE = 0.3      # ... and at most three in ten of the whole film's
+FILM_LOOK_SHARE = 0.2      # ... and at most one in five of the whole film's
+FILM_PLACE_SHARE = 0.25    # ... and no one SETTING, whatever the shot, past a quarter of the film
 
 
 def _picture_tally(chapters) -> dict:
@@ -254,16 +255,32 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None) -> list[st
                        f"vary the setting and the shot, and show what each passage describes")
     if before:
         # the whole film, not just this chapter: the second film's judge
-        # counted one cave-front picture in 15 of 42 sampled frames
+        # counted one cave-front picture in 15 of 42 sampled frames, and the
+        # fourth still saw "the cave mouth on the left, a campfire in the
+        # centre" in six chapters of fourteen
         prior = _picture_tally(before)
         so_far = sum(prior.values())
+        n_all = so_far + len(beats)
         for k, n in looks.items():
             total = prior.get(k, 0) + n
-            if total > int(FILM_LOOK_SHARE * (so_far + len(beats))) + 1:
-                bad.append(f"{k[0]} ({k[1]} shot) would be {total} of the film's {so_far + len(beats)} "
+            if total > int(FILM_LOOK_SHARE * n_all) + 1:
+                bad.append(f"{k[0]} ({k[1]} shot) would be {total} of the film's {n_all} "
                            f"pictures so far: use it for at most "
-                           f"{max(0, int(FILM_LOOK_SHARE * (so_far + len(beats))) + 1 - prior.get(k, 0))} "
+                           f"{max(0, int(FILM_LOOK_SHARE * n_all) + 1 - prior.get(k, 0))} "
                            f"beats in this chapter")
+        places_prior = {}
+        for (setting, _shot), n in prior.items():
+            places_prior[setting] = places_prior.get(setting, 0) + n
+        places_here = {}
+        for (setting, _shot), n in looks.items():
+            places_here[setting] = places_here.get(setting, 0) + n
+        for setting, n in places_here.items():
+            total = places_prior.get(setting, 0) + n
+            if total > int(FILM_PLACE_SHARE * n_all) + 1:
+                bad.append(f"{setting} would be {total} of the film's {n_all} pictures so far, whatever the "
+                           f"shot: use it for at most "
+                           f"{max(0, int(FILM_PLACE_SHARE * n_all) + 1 - places_prior.get(setting, 0))} "
+                           f"beats in this chapter and take the rest elsewhere")
     return bad
 
 
