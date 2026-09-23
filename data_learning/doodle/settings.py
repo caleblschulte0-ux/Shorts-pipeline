@@ -34,7 +34,7 @@ SKY = {
     "night": [(0, "#101a33"), (0.6, "#1d2c52"), (1, "#2f4271")],
 }
 # ambient light multiplier per time (the light map's base colour)
-AMBIENT = {"day": (1.0, 1.0, 1.0), "dawn": (0.92, 0.86, 0.86), "dusk": (0.86, 0.76, 0.82),
+AMBIENT = {"day": (1.0, 1.0, 1.0), "dawn": (0.92, 0.86, 0.86), "dusk": (0.74, 0.64, 0.74),
            "night": (0.40, 0.46, 0.70)}
 
 
@@ -335,7 +335,7 @@ def _flow(cr, kind, top, bot, t, seed, time):
         while x < W + spacing:
             cr.move_to(x, y)
             cr.curve_to(x + L * 0.3, y - 5, x + L * 0.7, y + 5, x + L, y)
-            cr.set_line_width(5)
+            cr.set_line_width(7)
             cr.set_line_cap(cairo.LINE_CAP_ROUND)
             cr.set_source_rgba(*hl)
             cr.stroke()
@@ -348,12 +348,33 @@ def _flow(cr, kind, top, bot, t, seed, time):
                  ink=(1, 1, 1, 0.85 if time != "night" else 0.55), amp=3, seed=seed)
 
 
+def glints(cr, facts: dict, time: str, t: float, seed: int):
+    """Sun or moon catching the ripples, each glint winking on and off the
+    way light on moving water does. They are LIGHT, so a scene draws them
+    after its light pass — at night the moon's glints are not darkened."""
+    w = facts.get("water")
+    if not w:
+        return
+    kind, top, bot = w
+    r = random.Random(seed + 13)
+    gl = (1, 0.97, 0.85) if time in ("day", "dawn", "dusk") else (0.88, 0.94, 1.0)
+    for k in range(110 if kind == "sea" else 70):
+        gx = r.uniform(0, W)
+        gy = r.uniform(top + 8, bot - 8)
+        w_ = r.uniform(16, 34)
+        v = ink.vnoise(t, 5.0 + (k % 5), seed * 31 + k)
+        if v > 0.1:
+            a = min(1.0, (v - 0.1) * 1.6)
+            ink.fill_stroke(cr, ink.ellipse_pts(gx, gy, w_, w_ * 0.24, 10), (gl[0], gl[1], gl[2], a),
+                            lw=0, amp=0)
+
+
 def _rain(cr, t, seed):
     r = random.Random(seed + 21)
-    cr.set_line_width(2.6)
+    cr.set_line_width(3.4)
     cr.set_line_cap(cairo.LINE_CAP_ROUND)
-    cr.set_source_rgba(0.82, 0.88, 1.0, 0.55)
-    for _ in range(260):
+    cr.set_source_rgba(0.86, 0.9, 1.0, 0.7)
+    for _ in range(700):
         x0, y0 = r.uniform(-100, W), r.uniform(0, H)
         v = r.uniform(900, 1300)
         y = (y0 + t * v) % (H + 80) - 40

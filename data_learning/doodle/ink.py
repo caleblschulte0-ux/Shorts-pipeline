@@ -195,6 +195,19 @@ def glow(cr, x, y, r, color, a=1.0):
     cr.fill()
 
 
+def vnoise(t: float, rate: float, seed: int) -> float:
+    """Value noise in [-1, 1]: a fresh random value `rate` times a second,
+    eased between. This is how a flame or firelight really flickers — a new
+    shape every few frames — where a sine wave only sways."""
+    x = t * rate
+    i = math.floor(x)
+    f = x - i
+    a = random.Random(seed * 1000003 + i).uniform(-1, 1)
+    b = random.Random(seed * 1000003 + i + 1).uniform(-1, 1)
+    k = (1 - math.cos(math.pi * f)) / 2
+    return a + (b - a) * k
+
+
 # ------------------------------------------------------------------ textures
 @lru_cache(maxsize=None)
 def _tex_surface(kind: str):

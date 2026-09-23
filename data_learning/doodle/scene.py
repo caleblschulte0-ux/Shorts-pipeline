@@ -55,20 +55,67 @@ def _prop_list(spec):
     return out
 
 
-def is_living(spec: dict) -> bool:
-    if spec.get("weather") in ("rain", "snow"):
-        return True
+def shot_of(spec: dict) -> str:
+    return spec.get("shot") or ("close" if len(spec.get("cast") or []) <= 2 else "wide")
+
+
+# How strongly each living thing moves, MEASURED with the showrunner's own
+# cadence detector on the thing alone in a scene (tests/test_ori_sleep.py
+# re-measures every claim). 2 = alone it keeps a scene moving (<= 35% held
+# frames); 1 = it helps; 0 = it is calm enough to read as a still. A scene
+# needs a total of 2. The numbers are why: a fire at night throws sparks
+# against the dark and makes the walls flicker; the same fire at noon is a
+# small orange shape on bright grass and barely registers.
+STRONG_ACTIONS = ("chop", "wave")
+
+
+def _fire_strength(name, time, shot, interior):
+    dark = interior or time == "night"
+    if name == "hearth":
+        return 2
+    if name == "campfire":
+        return 2 if dark else (1 if time == "dusk" else 0) if shot == "wide" else \
+            (2 if dark or time == "dusk" else 0)
+    if name == "cauldron":
+        if shot == "close":
+            return 2 if (dark or time == "dusk") else 1
+        return 1 if (dark or time == "dusk") else 0
+    if name in ("torch",):
+        return 2 if shot == "close" and (dark or time != "dusk") else 1
+    if name == "candle":
+        return 1
+    return 0
+
+
+def motion_strength(spec: dict) -> int:
     st = SETTINGS.get(spec.get("setting"))
-    if st is not None and st.water:
-        return True
+    if st is None:
+        return 0
+    time, shot = spec.get("time"), shot_of(spec)
+    score = 0
+    if st.water:
+        score += 2
+    if spec.get("weather") == "rain":
+        score += 2
     for p in _prop_list(spec):
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
-            return True
+            score += _fire_strength(p["name"], time, shot, st.interior)
     for c in spec.get("cast") or []:
-        if isinstance(c, dict) and c.get("item") in LIGHT_ITEMS:
-            return True
-    return False
+        if not isinstance(c, dict):
+            continue
+        if c.get("item") in LIGHT_ITEMS:
+            score += _fire_strength("torch", time, shot, st.interior)
+        if shot == "close" and time in ("day", "dawn") and not st.interior:
+            if c.get("action") in STRONG_ACTIONS or c.get("pose") == "walk":
+                score += 2
+            elif c.get("action") in ("hoe", "yawn", "eat", "drink", "stir"):
+                score += 1
+    return score
+
+
+def is_living(spec: dict) -> bool:
+    return motion_strength(spec) >= 2
 
 
 def validate(spec, era: str) -> list[str]:
@@ -130,9 +177,9 @@ def validate(spec, era: str) -> list[str]:
         if p.get("at") is not None and p.get("at") not in SLOTS:
             bad.append(f"props[{i}].at {p.get('at')!r} is not one of {sorted(SLOTS)}")
     if not bad and not is_living(spec):
-        bad.append("nothing in this scene moves: add a living thing (a campfire, hearth, torch, "
-                   "candle or cauldron; a river, lake or sea setting; rain or snow; or a person "
-                   "holding a torch or lantern)")
+        bad.append("nothing in this scene moves enough to read as alive: add a campfire or "
+                   "cauldron at dusk or night, a hearth or a torch, a river/lake/sea setting, rain, "
+                   "or (in daylight, close shot) someone walking, chopping or waving")
     return bad
 
 
@@ -142,7 +189,7 @@ def layout(spec: dict, seed: int) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
     pl = _prop_list(spec)
-    shot = spec.get("shot") or ("close" if len(cast) <= 2 else "wide")
+    shot = shot_of(spec)
     s = 2.05 if shot == "close" else 1.25
     gy = H * settings.GROUND_Y
     placed = []
@@ -167,6 +214,8 @@ def layout(spec: dict, seed: int) -> dict:
     def prop_geom(p):
         pr = PROPS[p["name"]]
         ps = s * (0.82 if pr.layer == "back" else 1.0) * (0.95 if shot == "wide" else 1.0)
+        if pr.living and shot == "wide":
+            ps *= 1.35          # a fire is the heart of a wide shot, not a speck in it
         py = gy + {"back": -60 * s, "mid": 10 * s, "front": 70 * s}[pr.layer]
         return pr, ps, py, pr.width * ps
 
@@ -280,7 +329,7 @@ class Scene:
         self.ambient_light = base
         self.lit = interior or self.time != "day" or self.weather == "rain"
 
-    LIGHT_LEVELS = 12
+    LIGHT_LEVELS = 24
 
     def _lightmap(self, level: int) -> cairo.ImageSurface:
         """The light over the whole frame at one of LIGHT_LEVELS flicker
@@ -294,13 +343,13 @@ class Scene:
         cr.set_source_rgb(*self.ambient_light)
         cr.paint()
         cr.set_operator(cairo.OPERATOR_ADD)
-        fl = 0.94 + 0.12 * level / (self.LIGHT_LEVELS - 1)
+        fl = 0.74 + 0.52 * level / (self.LIGHT_LEVELS - 1)
         for (x, y, k, sd) in self.lights:
             rad = 560 * k * fl
             g = cairo.RadialGradient(x, y, 0, x, y, rad)
-            g.add_color_stop_rgba(0, 0.95, 0.62, 0.32, 0.95 * fl)
-            g.add_color_stop_rgba(0.35, 0.75, 0.45, 0.22, 0.55 * fl)
-            g.add_color_stop_rgba(1, 0.5, 0.3, 0.15, 0.0)
+            g.add_color_stop_rgba(0, 0.62 * fl, 0.42 * fl, 0.22 * fl, 1.0)
+            g.add_color_stop_rgba(0.4, 0.46 * fl, 0.3 * fl, 0.15 * fl, 1.0)
+            g.add_color_stop_rgba(1, 0.0, 0.0, 0.0, 1.0)
             cr.set_source(g)
             cr.arc(x, y, rad, 0, 2 * math.pi)
             cr.fill()
@@ -310,7 +359,7 @@ class Scene:
 
     def _light(self, cr, t):
         if self.lights:
-            u = (props._n(t, 7.5, self.seed * 0.13) + 1) / 2
+            u = (ink.vnoise(t, 9.0, self.seed + 3) + 1) / 2
             level = max(0, min(self.LIGHT_LEVELS - 1, int(u * self.LIGHT_LEVELS)))
         else:
             level = 0
@@ -344,6 +393,7 @@ class Scene:
             settings._snow(cr, t, self.seed)
         if self.lit:
             self._light(cr, t)
+        settings.glints(cr, self.facts, self.time, t, self.seed)
 
     def frame(self, t: float, surf: cairo.ImageSurface | None = None) -> cairo.ImageSurface:
         surf = surf or cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)

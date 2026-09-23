@@ -37,25 +37,29 @@ def _n(t, f, ph):
 
 
 def flame(cr, x, y, size, t, seed=0, glow_r=3.2, glow_a=0.35):
-    """A living flame: tongue heights change every frame (real flicker)."""
+    """A living flame. Every tongue takes a new height about ten times a
+    second and the whole fire leans and breathes — a real fire changes shape
+    between frames, so this one does too."""
     r = random.Random(seed)
     ph = [r.uniform(0, 6.28) for _ in range(7)]
     if glow_r:
-        k = 0.85 + 0.15 * _n(t, 9.0, ph[0])
-        ink.glow(cr, x, y - size * 0.45, size * glow_r * k, (1.0, 0.72, 0.35), glow_a)
+        k = 0.8 + 0.2 * ink.vnoise(t, 8.0, seed + 5)
+        ink.glow(cr, x, y - size * 0.45, size * glow_r * k, (1.0, 0.72, 0.35), glow_a * (0.8 + 0.3 * k))
+    lean = 0.18 * ink.vnoise(t, 3.0, seed + 7)
     for layer, (col, sc) in enumerate(((FLAME_R, 1.12), (FLAME_O, 1.0), (FLAME_Y, 0.58))):
         n = 5
         pts = [(x - size * 0.55 * sc, y)]
         for i in range(n):
             u = (i + 0.5) / n
             h = size * sc * (0.55 + 0.45 * math.sin(math.pi * u)) * \
-                (0.78 + 0.22 * _n(t, 11.0 + i * 1.7, ph[i % 7] + layer))
-            sway = size * 0.12 * _n(t, 5.0, ph[(i + 3) % 7])
-            pts.append((x + size * sc * (u - 0.5) * 1.05 + sway, y - h * 1.35))
-            pts.append((x + size * sc * (u - 0.5 + 0.1) * 1.05, y - h * 0.55))
+                (0.66 + 0.34 * ink.vnoise(t, 11.0 + i, seed * 7 + i * 3 + layer))
+            sway = size * (0.14 * ink.vnoise(t, 6.0, seed * 11 + i) + lean)
+            pts.append((x + size * sc * (u - 0.5) * 1.05 + sway, y - h * 1.45))
+            pts.append((x + size * sc * (u - 0.5 + 0.1) * 1.05 + sway * 0.3, y - h * 0.55))
         pts.append((x + size * 0.55 * sc, y))
         pts.append((x, y + size * 0.08))
         ink.fill_stroke(cr, pts, col, lw=0, amp=0)
+    del ph
 
 
 def _logs(cr, x, y, s, seed):
@@ -85,15 +89,26 @@ def campfire_base(cr, x, y, s, t, seed):
     _logs(cr, x, y, s, seed)
 
 
+def embers(cr, x, y, s, t, seed, n=34, spread=46.0, rise=240.0):
+    """Sparks lifting off a fire: bright, fast, each one winking out as it
+    cools. They are what a camp fire at night actually looks like, and the
+    one part of a fire bright enough against the dark to read from across
+    the room."""
+    r = random.Random(seed + 77)
+    for k in range(n):
+        speed = r.uniform(0.7, 1.3)
+        period = rise * 1.6 / (speed * 150)
+        u = ((t / period) + r.random()) % 1.0
+        sx = x + (r.uniform(-1, 1) * spread * 0.5 + math.sin(t * 2.3 + k) * spread * u) * s
+        sy = y - (rise * u * speed * 1.6) * s
+        rad = (2.6 + 5.0 * (1 - u)) * s
+        a = max(0.0, 1 - u) * (0.65 + 0.35 * ink.vnoise(t, 9.0, seed + k))
+        ink.dot(cr, sx, sy, rad, (1.0, 0.86, 0.45, a))
+
+
 def campfire(cr, x, y, s, t, seed):
-    r = random.Random(seed)
     flame(cr, x, y - 10 * s, 64 * s, t, seed)
-    # sparks rising and fading
-    for k in range(6):
-        u = ((t * 0.55) + k / 6.0 + r.random() * 0.1) % 1.0
-        sx = x + math.sin(k * 2.3 + t * 1.3) * 24 * s * u
-        ink.dot(cr, sx, y - 90 * s - u * 170 * s, 2.6 * s * (1 - u) + 0.8,
-                (1.0, 0.8, 0.4, 0.9 * (1 - u)))
+    embers(cr, x, y - 70 * s, s, t, seed)
 
 
 def mix_stone(r):
@@ -114,6 +129,7 @@ def hearth_base(cr, x, y, s, t, seed):
 
 def hearth(cr, x, y, s, t, seed):
     flame(cr, x, y - 12 * s, 50 * s, t, seed, glow_r=3.6, glow_a=0.4)
+    embers(cr, x, y - 60 * s, s, t, seed, n=14, spread=60, rise=110)
 
 
 def torch_base(cr, x, y, s, t, seed):
@@ -126,6 +142,7 @@ def torch_base(cr, x, y, s, t, seed):
 def torch_wall(cr, x, y, s, t, seed):
     top = y - 260 * s
     flame(cr, x + 6 * s, top + 4 * s, 34 * s, t, seed, glow_r=4.0, glow_a=0.3)
+    embers(cr, x + 6 * s, top - 30 * s, s, t, seed, n=18, spread=28, rise=150)
 
 
 def candle_base(cr, x, y, s, t, seed):
@@ -138,7 +155,7 @@ def candle_base(cr, x, y, s, t, seed):
 
 
 def candle(cr, x, y, s, t, seed):
-    flame(cr, x, y - 122 * s, 26 * s, t, seed, glow_r=5.0, glow_a=0.35)
+    flame(cr, x, y - 122 * s, 34 * s, t, seed, glow_r=5.0, glow_a=0.45)
 
 
 def pot_base(cr, x, y, s, t, seed):
@@ -170,8 +187,9 @@ def cauldron_base(cr, x, y, s, t, seed):
 
 
 def cauldron(cr, x, y, s, t, seed):
-    _steam(cr, x, y - 125 * s, s, t, seed)
     flame(cr, x, y - 5 * s, 34 * s, t, seed, glow_r=2.6)
+    embers(cr, x, y - 20 * s, s, t, seed, n=12, spread=60, rise=60)
+    _steam(cr, x, y - 125 * s, s, t, seed)
 
 
 def tent(cr, x, y, s, t, seed):
