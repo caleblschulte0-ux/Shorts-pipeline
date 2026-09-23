@@ -7,7 +7,7 @@
     },
     "wholesome": {
       "n": 12,
-      "median_vph": 0.175
+      "median_vph": 0.18
     },
     "fail": {
       "n": 12,
@@ -19,7 +19,7 @@
     },
     "win": {
       "n": 8,
-      "median_vph": 0.08
+      "median_vph": 0.085
     },
     "jumpscare": {
       "n": 3,
@@ -41,7 +41,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 2.39
+      "median_vph": 2.46
     }
   }
 }

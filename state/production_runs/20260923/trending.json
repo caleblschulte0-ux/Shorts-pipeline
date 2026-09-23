@@ -3,18 +3,18 @@
   "channel": "trending",
   "schema": "production-channel-outcome/v1",
   "expected": 6,
-  "previously_uploaded": 0,
-  "rendered_or_attempted": 10,
-  "uploaded": 0,
+  "previously_uploaded": 1,
+  "rendered_or_attempted": 9,
+  "uploaded": 1,
   "quarantined": 2,
-  "failed": 8,
+  "failed": 7,
   "failed_by_stage": {
-    "showrunner_block": 6,
+    "showrunner_block": 5,
     "infra_error": 2
   },
   "failed_by_format": {
     "graph_race": 4,
-    "reddit": 2,
+    "reddit": 1,
     "unknown": 2
   },
   "status": "repair_required",
