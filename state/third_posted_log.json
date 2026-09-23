@@ -8506,13 +8506,72 @@
       "director_cut": true
     },
     "clip-20260923-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/FlirtyAggressiveGoatJebaited-VT2i3KcHYWySuxZm",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/-8s1O4b9oNw",
       "title": "Jasontheween Slows The Clip Down To Prove She Said It",
       "kind": "twitch_clip",
-      "ts": "2026-09-23T12:16:47.661170+00:00",
+      "ts": "2026-09-23T12:16:56.045322+00:00",
+      "uploaded_at": "2026-09-23T12:16:56.045342+00:00",
+      "publish_at": "2026-09-23T21:30:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/FlirtyAggressiveGoatJebaited-VT2i3KcHYWySuxZm",
+      "streamer": "jasontheween",
+      "series": "drama",
+      "hook": "SHE DEFINITELY SAID IT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1570,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.5,
+        "end": 36.5
+      },
+      "director_cut": true
+    },
+    "rejected-peppyabnegateborktakenrg-5bjqjya8glcrgrjm": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/PeppyAbnegateBorkTakeNRG-5bjqJYa8gLcrGRjm",
+      "streamer": "ironmouse",
+      "title": "mouse Accidentally reveals too much \ud83d\udc40",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (vague talk, no visible event)",
+      "ts": "2026-09-23T12:17:44.091868+00:00"
+    },
+    "rejected-crypticabstemioussharkasianglow-ihef_mom_hx-nvli": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/CrypticAbstemiousSharkAsianGlow-IHEF_mom_HX-NVlI",
+      "streamer": "northernlion",
+      "title": "NL's real actual thoughts not clipped out of context",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source barely moves (avg frame delta 0.06) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-09-23T12:17:51.518181+00:00"
+    },
+    "rejected-clip_01m35rz4nfzcs91f4jgz7hw4ax": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M35RZ4NFZCS91F4JGZ7HW4AX",
+      "streamer": "adinross",
+      "title": "Adinross: Adin Ross Reacts To A Wild Headline And Goes Off",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is a static screenshot-within-screenshot (a tweet/post image) with the actual streamer reduced to a tiny th; vision: Framing is identical across all 12 frames spanning the full 28s clip, suggesting frozen/static content rather than an ed; vision: Sharp region reads as a UI scree",
+      "ts": "2026-09-23T12:21:05.208246+00:00"
+    },
+    "rejected-laconicthirstybee4head-o3jcg0chnswwa8jf": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/LaconicThirstyBee4Head-o3jcg0chNsWwA8JF",
+      "streamer": "northernlion",
+      "title": "He washes it clean",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (mundane washing talk, no event)",
+      "ts": "2026-09-23T12:23:10.277788+00:00"
+    },
+    "clip-20260923-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SteamyBlightedChoughBudBlast-AKXHRif2lH1TT8-n",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Insists He's A Gamer, Then Says \"It's Easy\"",
+      "kind": "twitch_clip",
+      "ts": "2026-09-23T12:24:59.430693+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
