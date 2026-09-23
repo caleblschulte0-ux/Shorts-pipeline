@@ -133,10 +133,12 @@ def hearth(cr, x, y, s, t, seed):
 
 
 def torch_base(cr, x, y, s, t, seed):
-    """A torch in a bracket on a wall, flame at about head height."""
+    """A torch on a post driven into the ground, flame at about head height
+    — it stands anywhere, so it never floats where there is no wall."""
     top = y - 260 * s
-    ink.line(cr, [(x, top + 90 * s), (x + 6 * s, top)], lw=9 * s, ink=WOOD, amp=0)
-    ink.line(cr, [(x - 18 * s, top + 70 * s), (x + 20 * s, top + 70 * s)], lw=5 * s, amp=0)
+    ink.line(cr, [(x, y), (x + 4 * s, top + 40 * s)], lw=10 * s, ink=WOOD_D, amp=0.8, seed=seed)
+    ink.line(cr, [(x + 2 * s, top + 90 * s), (x + 6 * s, top)], lw=9 * s, ink=WOOD, amp=0)
+    ink.line(cr, [(x - 16 * s, top + 60 * s), (x + 22 * s, top + 60 * s)], lw=5 * s, amp=0)
 
 
 def torch_wall(cr, x, y, s, t, seed):
@@ -147,6 +149,7 @@ def torch_wall(cr, x, y, s, t, seed):
 
 def candle_base(cr, x, y, s, t, seed):
     """A fat candle on a small stand — a close living light for interiors."""
+    s = s * 0.6
     ink.fill_stroke(cr, [(x - 40 * s, y), (x + 40 * s, y), (x + 30 * s, y - 20 * s), (x - 30 * s, y - 20 * s)],
                     rgb("#6d5a44"), lw=4 * s, amp=0)
     ink.fill_stroke(cr, [(x - 20 * s, y - 20 * s), (x + 20 * s, y - 20 * s), (x + 20 * s, y - 120 * s),
@@ -155,7 +158,8 @@ def candle_base(cr, x, y, s, t, seed):
 
 
 def candle(cr, x, y, s, t, seed):
-    flame(cr, x, y - 122 * s, 40 * s, t, seed, glow_r=5.0, glow_a=0.45)
+    s = s * 0.6
+    flame(cr, x, y - 122 * s, 44 * s, t, seed, glow_r=5.0, glow_a=0.45)
 
 
 def pot_base(cr, x, y, s, t, seed):
@@ -575,7 +579,7 @@ PROPS = {
     "campfire": Prop(campfire, 220, "mid", BOTH, living=True, light=True, height=90, base=campfire_base),
     "hearth": Prop(hearth, 300, "back", MEDIEVAL, living=True, light=True, height=110, base=hearth_base),
     "torch": Prop(torch_wall, 60, "back", BOTH, living=True, light=True, height=260, base=torch_base),
-    "candle": Prop(candle, 90, "front", MEDIEVAL, living=True, light=True, height=125, base=candle_base),
+    "candle": Prop(candle, 60, "front", MEDIEVAL, living=True, light=True, height=75, base=candle_base),
     "cauldron": Prop(cauldron, 160, "mid", BOTH, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", BOTH, base=pot_base),
     "tent": Prop(tent, 360, "back", STONE_AGE),
