@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T004918Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end: 'clears it by 1.7' is printed on top of '65-city average 8' and the two collide. The hook@0.3 to seg0:end frames show '9.7' smeared and overprinted under the mascot's feet in the NYC bubble. seg2:start: 'Live in lower-exposure blocks 32%' is near-invisible grey on grey, and the",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_not_demonstration",
+  "visible_evidence": "seg3:start and seg3:mid are two bars, one tall bar labelled 5 against a grey stub labelled 0 marked 'vs', with Data hanging off the tall bar. Most of the frame above and between the bars is empty, and the baseline reading '0' suggests non-redlined areas have zero heat.",
+  "root_cause": "The redlining claim, the story's central reveal, falls back to a two-bar comparison chart. The 'extra degrees vs baseline' framing draws the baseline as literally 0, and the 'sometimes over 12' max is never shown.",
+  "repair_goal": "Show the 1930s redline boundary on a city block map where the formerly redlined blocks glow hotter, 5 degrees on average with a flare to 12. The baseline should be labelled 'nearby non-redlined blocks' and not '0'. Data should step across the old line and react to the heat."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

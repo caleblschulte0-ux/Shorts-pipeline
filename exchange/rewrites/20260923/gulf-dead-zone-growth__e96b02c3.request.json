@@ -1,0 +1,144 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "gulf-dead-zone-growth__e96b02c3",
+ "filed": "2026-09-23T00:49:11Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "gulf-dead-zone-growth",
+ "current": {
+  "title": "The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)",
+  "hook": "Part of the ocean dies every single summer.",
+  "closing": "One river, one dead zone, every single year.",
+  "question": "Did you know the Gulf has a dead zone? Tell me below.",
+  "segments": [
+   {
+    "topic": "size of the Gulf of Mexico dead zone",
+    "say": "Every summer part of the Gulf loses so much oxygen nothing can live there. In 2017 it hit 8,776 square miles. By 2024 it was still 6,705."
+   },
+   {
+    "topic": "current dead zone average vs the 2035 target",
+    "say": "Even the 5-year average, 3,745 square miles, is almost double the 1,900 square mile goal regulators set for 2035."
+   },
+   {
+    "topic": "nitrogen load in the Mississippi watershed vs the 1950s",
+    "say": "That's because 41 percent of the entire US drains into one river, and the fertilizer it carries has roughly tripled since the 1950s."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "size of the Gulf of Mexico dead zone",
+   "say": "Every summer part of the Gulf loses so much oxygen nothing can live there. In 2017 it hit 8,776 square miles. By 2024 it was still 6,705.",
+   "role": "1 · THE SWING",
+   "data": {
+    "file": "gulf_dead_zone_annual_size.json",
+    "unit": "square miles",
+    "title": "Gulf of Mexico summer hypoxic 'dead zone' size (square miles)",
+    "points": [
+     {
+      "label": "2017",
+      "value": 8776,
+      "period": "2017"
+     },
+     {
+      "label": "2021",
+      "value": 4880,
+      "period": "2021"
+     },
+     {
+      "label": "2023",
+      "value": 3058,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 6705,
+      "period": "2024"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "current dead zone average vs the 2035 target",
+   "say": "Even the 5-year average, 3,745 square miles, is almost double the 1,900 square mile goal regulators set for 2035.",
+   "role": "2 · STILL FAR FROM THE GOAL",
+   "data": {
+    "file": "gulf_dead_zone_vs_2035_goal.json",
+    "unit": "square miles",
+    "title": "Gulf dead zone: current 5-year average vs 2035 reduction goal (square miles)",
+    "points": [
+     {
+      "label": "5-year average (current)",
+      "value": 3745
+     },
+     {
+      "label": "2035 reduction goal",
+      "value": 1900
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "nitrogen load in the Mississippi watershed vs the 1950s",
+   "say": "That's because 41 percent of the entire US drains into one river, and the fertilizer it carries has roughly tripled since the 1950s.",
+   "role": "3 · WHY IT WON'T SHRINK",
+   "data": {
+    "file": "mississippi_nitrogen_load_index.json",
+    "unit": "percent",
+    "title": "Nitrogen load in the Mississippi River watershed vs the 1950s (index)",
+    "points": [
+     {
+      "label": "1950s nitrogen load",
+      "value": 100
+     },
+     {
+      "label": "Today's nitrogen load",
+      "value": 300
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The 'size of New Jersey' comparison and 'dies every summer' framing are attention-grabbing but the premise doesn't reverse a specific expectation the viewer holds — dead zones from agricultural runoff are a known, unsurprising phenomenon, not a violated assumption."
+ ],
+ "reasons": [
+  "premise: brain: The 'size of New Jersey' comparison and 'dies every summer' framing are attention-grabbing but the premise doesn't reverse a specific expectation the viewer holds — dead zones from agricultural runoff are a known, unsurprising phenomenon, not a violated assumption."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/gulf-dead-zone-growth__e96b02c3.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

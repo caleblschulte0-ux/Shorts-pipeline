@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T004918Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only perches: on a bar end (hook@0.3 to seg1:start), cheering with arms up at the end of a rising COST line (seg1:mid, the wrong reaction), standing on the seesaw arm (seg2), and on top of the 37K bubble (seg3). He sets nothing up and pays nothing off. In seg4 he is simply du",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_in_void_with_wrong_label",
+  "visible_evidence": "seg1:start and seg1:end show a flat thin pink line hugging the middle of an empty dark frame, with the caption 'and back again' under it. The data only rises, so that caption is false. Data raises his arms in celebration at the $423B peak.",
+  "root_cause": "A generic line machine was used for a 'quadrupled every decade' compounding claim. It went out with a leftover template caption and a stock cheer pose that contradicts a story about cost.",
+  "repair_goal": "Show the quadrupling as a physical bill that compounds: each decade the invoice or pile becomes four times the last one, filling the frame from $1.6B to $423B. Data should react with alarm, for example getting buried or straining under it. Remove the 'and back again' label and use the whole frame height."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

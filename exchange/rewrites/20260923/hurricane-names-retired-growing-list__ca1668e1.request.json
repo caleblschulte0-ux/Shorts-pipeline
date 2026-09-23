@@ -1,0 +1,163 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "hurricane-names-retired-growing-list__ca1668e1",
+ "filed": "2026-09-23T00:49:12Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "hurricane-names-retired-growing-list",
+ "current": {
+  "title": "Why Some Hurricane Names Get Retired Forever",
+  "hook": "A hurricane name just got retired forever.",
+  "closing": "The list only grows. It never shrinks.",
+  "question": "Do you know anyone whose name got retired? Tell me below.",
+  "segments": [
+   {
+    "topic": "cumulative retired Atlantic hurricane names",
+    "say": "By 1954, 1 hurricane name had ever been retired. By 2005 it was 50. By 2024, the list hit 100 names, permanently banned from ever being reused."
+   },
+   {
+    "topic": "costliest retired hurricanes",
+    "say": "It's not about wind speed. A name gets retired when a storm is catastrophic enough that reusing it would feel wrong — Katrina alone cost about $125 billion."
+   },
+   {
+    "topic": "billion-dollar disasters per year, then vs now",
+    "say": "It's not just perception. Coastlines are more crowded and oceans are warmer, so the US now averages over 20 billion-dollar disasters a year, up from about 3 in the 1980s."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "cumulative retired Atlantic hurricane names",
+   "say": "By 1954, 1 hurricane name had ever been retired. By 2005 it was 50. By 2024, the list hit 100 names, permanently banned from ever being reused.",
+   "role": "1 · THE GROWING LIST",
+   "data": {
+    "file": "hurricane_names_retired_cumulative.json",
+    "unit": "count",
+    "title": "Cumulative number of retired Atlantic hurricane names",
+    "points": [
+     {
+      "label": "1954",
+      "value": 1,
+      "period": "1954"
+     },
+     {
+      "label": "1979",
+      "value": 19,
+      "period": "1979"
+     },
+     {
+      "label": "2005",
+      "value": 50,
+      "period": "2005"
+     },
+     {
+      "label": "2017",
+      "value": 76,
+      "period": "2017"
+     },
+     {
+      "label": "2024",
+      "value": 100,
+      "period": "2024"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "costliest retired hurricanes",
+   "say": "It's not about wind speed. A name gets retired when a storm is catastrophic enough that reusing it would feel wrong — Katrina alone cost about $125 billion.",
+   "role": "2 · THE THRESHOLD",
+   "data": {
+    "file": "retired_hurricane_damage_cost.json",
+    "unit": "billion dollars",
+    "title": "Damage cost of notable retired hurricanes (billion dollars)",
+    "points": [
+     {
+      "label": "Katrina (2005)",
+      "value": 125
+     },
+     {
+      "label": "Harvey (2017)",
+      "value": 125
+     },
+     {
+      "label": "Ian (2022)",
+      "value": 113
+     },
+     {
+      "label": "Maria (2017)",
+      "value": 90
+     },
+     {
+      "label": "Helene (2024)",
+      "value": 78
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "billion-dollar disasters per year, then vs now",
+   "say": "It's not just perception. Coastlines are more crowded and oceans are warmer, so the US now averages over 20 billion-dollar disasters a year, up from about 3 in the 1980s.",
+   "role": "3 · WHY IT'S ACCELERATING",
+   "data": {
+    "file": "billion_dollar_disasters_per_year.json",
+    "unit": "count per year",
+    "title": "US billion-dollar weather disasters per year, then vs now",
+    "points": [
+     {
+      "label": "2019-2023 annual average",
+      "value": 20
+     },
+     {
+      "label": "1980s annual average",
+      "value": 3
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook",
+  "beats: seg2: the line's headline number (2e+10) is 29,998,500x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook",
+  "beats: seg2: the line's headline number (2e+10) is 29,998,500x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/hurricane-names-retired-growing-list__ca1668e1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

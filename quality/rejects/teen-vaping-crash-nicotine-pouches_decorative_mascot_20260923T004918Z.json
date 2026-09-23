@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260923T004918Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data waves or points while perched on bars (seg0:end, seg1:start), stands on tiles (seg2:mid, seg3:mid) and dances beside bars (seg4:start to payoff@-0.4). None of it is a setup, action and payoff tied to vaping moving to pouches.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg4:start to payoff@-0.4: a horizontal bar chart of E-cigarettes, Nicotine pouches and Cigarettes is covered by a closing speech bubble. Data dances beside the bars and his head covers the 7.8% label. The pouch bar (1.8%), the subject of the whole 'new door' claim, is an unhighlighted grey sliver.",
+  "root_cause": "The payoff about nicotine switching from a cloud to a lip pouch falls back to a generic ranked bar chart. Nothing shows the pouch as the new door, and the mascot is not doing a bit.",
+  "repair_goal": "Build the ending on the story's own verb, 'moved' or 'new door'. The vape cloud shrinks from 27.5 to 7.8 while a pouch tin fills to 1.8 at the same scale. Put the one accent on the pouches. Have Data do a bit tied to the switch, such as shutting the vape door and finding a pouch tucked in his lip. Keep every value label clear of the mascot."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

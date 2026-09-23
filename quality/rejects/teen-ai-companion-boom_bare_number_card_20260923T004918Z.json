@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T004918Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg2:start the stats are just '33%' and '25%' printed inside two plain circles, with no demonstration.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start shows a three-band stacked column for two values, with grey labels you can barely see. seg3:mid is the same column. seg3:end (32.92s) is a fully blank gradient frame on the line 'that should worry you'.",
+  "root_cause": "The scene is a generic stacked column: a share-of-whole chart with a stray third band. Its labels use the rest colour at near-zero contrast, and the scene ends before the next one begins, which leaves an empty frame over the key line.",
+  "repair_goal": "Replace the scene with one continuous depiction that shows 34% of teens uncomfortable and still coming back. For example, a chat thread where roughly a third of the bubbles turn red and the teen keeps typing anyway. The labels must be in ink at full contrast, and there must be no blank frame between seg3 and seg4."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

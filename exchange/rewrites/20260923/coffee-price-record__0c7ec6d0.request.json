@@ -1,0 +1,178 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "coffee-price-record__0c7ec6d0",
+ "filed": "2026-09-23T00:49:13Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "coffee-price-record",
+ "current": {
+  "title": "Coffee Just Hit $4.41 A Pound — A Record",
+  "hook": "Your coffee habit is about to get pricier.",
+  "closing": "Drink it slow. It earned that price.",
+  "question": "Have you noticed your coffee getting more expensive? Tell me below.",
+  "segments": [
+   {
+    "topic": "how high coffee prices have climbed",
+    "say": "Arabica coffee futures hit $4.41 a pound in February 2025, the highest price ever recorded. Back in 2019 it was around $1.05. The climb wasn't steady, it was a series of shocks."
+   },
+   {
+    "topic": "why coffee supply keeps shrinking",
+    "say": "The shock is Brazil's drought. One trade house cut its Brazil arabica forecast from 45.4 million bags to just 34.4 million, an 11-million-bag hole in the world's biggest coffee supply overnight."
+   },
+   {
+    "topic": "how much coffee prices have doubled",
+    "say": "That's why your cup costs more than it did a year ago. $2.00 a pound in February 2024. $4.41 by February 2025. More than double, in twelve months."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how high coffee prices have climbed",
+   "say": "Arabica coffee futures hit $4.41 a pound in February 2025, the highest price ever recorded. Back in 2019 it was around $1.05. The climb wasn't steady, it was a series of shocks.",
+   "role": "1 · THE RECORD",
+   "data": {
+    "file": "coffee_price_surge.json",
+    "unit": "dollars",
+    "title": "Arabica coffee futures, annual peak (dollars per pound)",
+    "points": [
+     {
+      "label": "2019",
+      "value": 1.05,
+      "period": "2019"
+     },
+     {
+      "label": "2020",
+      "value": 1.2,
+      "period": "2020"
+     },
+     {
+      "label": "2021",
+      "value": 2.55,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 2.4,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 1.95,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 3.3,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 4.41,
+      "period": "2025"
+     }
+    ],
+    "n_points": 7
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why coffee supply keeps shrinking",
+   "say": "The shock is Brazil's drought. One trade house cut its Brazil arabica forecast from 45.4 million bags to just 34.4 million, an 11-million-bag hole in the world's biggest coffee supply overnight.",
+   "role": "2 · THE SHORTAGE",
+   "data": {
+    "file": "coffee_supply_shortfall.json",
+    "unit": "million",
+    "title": "Brazil arabica coffee production forecast (million 60kg bags)",
+    "points": [
+     {
+      "label": "September Estimate",
+      "value": 45.4
+     },
+     {
+      "label": "Revised Estimate",
+      "value": 34.4
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how much coffee prices have doubled",
+   "say": "That's why your cup costs more than it did a year ago. $2.00 a pound in February 2024. $4.41 by February 2025. More than double, in twelve months.",
+   "role": "3 · THE DOUBLING",
+   "data": {
+    "file": "coffee_price_yoy.json",
+    "unit": "dollars",
+    "title": "Arabica coffee futures, February year-over-year (dollars per pound)",
+    "points": [
+     {
+      "label": "February 2024",
+      "value": 2.0
+     },
+     {
+      "label": "February 2025",
+      "value": 4.41
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Mostly stock charts and machines with a mascot who perches rather than performs, and the longest beat shows a 2019-vs-2020 comparison the story never makes."
+ ],
+ "reasons": [
+  "judge: Mostly stock charts and machines with a mascot who perches rather than performs, and the longest beat shows a 2019-vs-2020 comparison the story never makes."
+ ],
+ "judge": {
+  "ts": "2026-09-23T00:16:43+00:00",
+  "score": 34,
+  "one_line": "Mostly stock charts and machines with a mascot who perches rather than performs, and the longest beat shows a 2019-vs-2020 comparison the story never makes.",
+  "problems": [
+   "hook@0.3 to seg0:end: an abstract dot in a pill labeled 'anywhere between $1.1 and $4.4' gives no reason to stay, has no coffee in it, and never states the record.",
+   "seg1:mid/end: a '2019 VS 2020' bar chart ($1.1 vs $1.2) contradicts the narration's $1.05 to $4.41 record climb.",
+   "seg2: the cup grid is the one subject-made idea, but it cuts to a generic line chart instead of the cups disappearing to show the 11M-bag hole.",
+   "seg3: the '$4.4' in the pink bubble looks struck through or doubled and is hard to read on a phone.",
+   "Data is parked in a corner for the first ~15s, then just sits on bars, bubbles and the seesaw pan, with no bit tied to any number.",
+   "seg4: the seesaw barely tilts for 'more than double', so the physics contradicts the claim. The large bordered speech-bubble card at the top reads as a UI widget."
+  ],
+  "fixes": [
+   "Open on the record itself: a coffee cup or price tag bursting to $4.41 with a 'RECORD' mark in the first second, and Data recoiling from it.",
+   "Replace the seg1 bar chart with a coffee-made climb from $1.05 to $4.41 that jumps at each shock.",
+   "Keep the seg2 cup grid on screen and let 11M bags' worth of cups drain or vanish, with Data trying to catch them.",
+   "Fix the $4.4 bubble text rendering (no overlapping stroke) or drop the bubble scene for a coffee-made comparison.",
+   "Make the seg4 comparison tilt hard, e.g. a $4.41 bag slamming its side down with Data launched off the $2.00 side, and replace the bordered speech card with a plain closing line on the ground."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/coffee-price-record__0c7ec6d0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

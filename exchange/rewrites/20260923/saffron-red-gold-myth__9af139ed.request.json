@@ -1,0 +1,144 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "saffron-red-gold-myth__9af139ed",
+ "filed": "2026-09-23T00:49:11Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "saffron-red-gold-myth",
+ "current": {
+  "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
+  "hook": "One spice costs more than steak, by a lot.",
+  "closing": "Turns out flavor is cheap. Hands aren't.",
+  "question": "Have you ever actually cooked with real saffron? Tell me below.",
+  "segments": [
+   {
+    "topic": "saffron vs black pepper, price per gram",
+    "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more."
+   },
+   {
+    "topic": "spices ranked by price per gram",
+    "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars."
+   },
+   {
+    "topic": "hand-harvest labor per pound",
+    "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "saffron vs black pepper, price per gram",
+   "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more.",
+   "role": "1 · THE PRICE",
+   "data": {
+    "file": "saffron_vs_pepper_price.json",
+    "unit": "dollars",
+    "title": "Retail spice price (dollars per gram)",
+    "points": [
+     {
+      "label": "Black pepper",
+      "value": 0.02
+     },
+     {
+      "label": "Saffron",
+      "value": 15
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "spices ranked by price per gram",
+   "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars.",
+   "role": "2 · THE RANKING",
+   "data": {
+    "file": "expensive_spices_ranked.json",
+    "unit": "dollars",
+    "title": "Spices and specialty foods ranked by retail price (dollars per gram)",
+    "points": [
+     {
+      "label": "Black pepper",
+      "value": 0.02
+     },
+     {
+      "label": "Cinnamon",
+      "value": 0.03
+     },
+     {
+      "label": "Vanilla beans",
+      "value": 0.6
+     },
+     {
+      "label": "Black truffle",
+      "value": 4
+     },
+     {
+      "label": "Saffron",
+      "value": 15
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "hand-harvest labor per pound",
+   "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound.",
+   "role": "3 · THE WHY",
+   "data": {
+    "file": "labor_hours_per_pound.json",
+    "unit": "hours",
+    "title": "Hand-harvest labor per pound (hours)",
+    "points": [
+     {
+      "label": "Black pepper (machine-harvested)",
+      "value": 0.5
+     },
+     {
+      "label": "Saffron (hand-harvested)",
+      "value": 55
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: This is a searchable trivia-fact premise (\"world's most expensive spice\") stating a price rather than reversing a specific expectation the viewer holds."
+ ],
+ "reasons": [
+  "premise: brain: This is a searchable trivia-fact premise (\"world's most expensive spice\") stating a price rather than reversing a specific expectation the viewer holds."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/saffron-red-gold-myth__9af139ed.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

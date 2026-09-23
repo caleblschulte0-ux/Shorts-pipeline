@@ -1,0 +1,167 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "teen-vaping-crash-nicotine-pouches__b591e29d",
+ "filed": "2026-09-23T00:49:13Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "current": {
+  "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+  "hook": "The vaping crisis didn't end. It just moved.",
+  "closing": "One nicotine habit down, a stealthier one clocked in.",
+  "question": "Do you know anyone who vapes or uses pouches? Tell me below.",
+  "segments": [
+   {
+    "topic": "teen vaping rates over time",
+    "say": "In 2011, just 1.5 percent of high schoolers vaped. By 2017 it was 11.7 percent. By 2019, 27.5 percent -- more than one in four teenagers using e-cigarettes regularly."
+   },
+   {
+    "topic": "the vaping crackdown",
+    "say": "Then came flavor bans and FDA crackdowns on Juul. Vaping crashed from 27.5 percent at its peak to just 7.8 percent by 2024 -- the lowest in a decade."
+   },
+   {
+    "topic": "which nicotine product teens use now",
+    "say": "But e-cigarettes are still nicotine's top seller among teens -- now trailed by nicotine pouches at 1.8 percent, barely regulated. Same habit, quieter: tucked in a lip instead of a cloud."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "teen vaping rates over time",
+   "say": "In 2011, just 1.5 percent of high schoolers vaped. By 2017 it was 11.7 percent. By 2019, 27.5 percent -- more than one in four teenagers using e-cigarettes regularly.",
+   "role": "1 · THE RISE",
+   "data": {
+    "file": "teen_vaping_rate_trend.json",
+    "unit": "percent",
+    "title": "High school students currently using e-cigarettes (percent)",
+    "points": [
+     {
+      "label": "2011",
+      "value": 1.5,
+      "period": "2011"
+     },
+     {
+      "label": "2017",
+      "value": 11.7,
+      "period": "2017"
+     },
+     {
+      "label": "2018",
+      "value": 20.8,
+      "period": "2018"
+     },
+     {
+      "label": "2019",
+      "value": 27.5,
+      "period": "2019"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "the vaping crackdown",
+   "say": "Then came flavor bans and FDA crackdowns on Juul. Vaping crashed from 27.5 percent at its peak to just 7.8 percent by 2024 -- the lowest in a decade.",
+   "role": "2 · THE CRACKDOWN",
+   "data": {
+    "file": "teen_vaping_peak_vs_2024.json",
+    "unit": "percent",
+    "title": "High school e-cigarette use: 2019 peak vs. 2024",
+    "points": [
+     {
+      "label": "2019 peak",
+      "value": 27.5
+     },
+     {
+      "label": "2024",
+      "value": 7.8
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "which nicotine product teens use now",
+   "say": "But e-cigarettes are still nicotine's top seller among teens -- now trailed by nicotine pouches at 1.8 percent, barely regulated. Same habit, quieter: tucked in a lip instead of a cloud.",
+   "role": "3 · THE NEW DOOR",
+   "data": {
+    "file": "youth_nicotine_products_2024.json",
+    "unit": "percent",
+    "title": "Current tobacco/nicotine product use among high school students, by product (2024)",
+    "points": [
+     {
+      "label": "E-cigarettes",
+      "value": 7.8
+     },
+     {
+      "label": "Nicotine pouches",
+      "value": 1.8
+     },
+     {
+      "label": "Cigarettes",
+      "value": 1.7
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A story about nicotine changing form ('it just moved') is told with stock bars and a tile grid. The grid's scale changes mid-story so 7.8% looks bigger than 27.5%, the mascot is decoration and his head covers the key label."
+ ],
+ "reasons": [
+  "judge: A story about nicotine changing form ('it just moved') is told with stock bars and a tile grid. The grid's scale changes mid-story so 7.8% looks bigger than 27.5%, the mascot is decoration and his head covers the key label."
+ ],
+ "judge": {
+  "ts": "2026-09-23T00:28:39+00:00",
+  "score": 30,
+  "one_line": "A story about nicotine changing form ('it just moved') is told with stock bars and a tile grid. The grid's scale changes mid-story so 7.8% looks bigger than 27.5%, the mascot is decoration and his head covers the key label.",
+  "problems": [
+   "The hook (hook@0.3 to hook@2.2) is a slow chart build on an almost empty frame, with one tiny bar in the lower left.",
+   "seg3's tile grid switches from 2% to 0.5% per tile, so 7.8% shows 16 tiles against 14 for the 27.5% peak. The picture shows vaping going up when the claim is a 72% crash.",
+   "seg2 cuts from circles to a new tile grid with no link between the two pictures.",
+   "Data only perches, points and dances (seg0 to seg4). He does no bit tied to the move from vapes to pouches.",
+   "Data's head covers the E-cigarettes 7.8% label (payoff@-1.8, seg4:end) and at seg1:end he hides the 2011 bar.",
+   "Nicotine pouches, the payoff subject, never gets the accent or a picture of its own. It is a grey 1.8% sliver."
+  ],
+  "fixes": [
+   "Open on motion: a vape cloud swelling from 1.5 to 27.5 over the years in the first second, not a lone bar on an empty frame.",
+   "Keep one scale for the whole story, the same tile value or cloud volume from 27.5 to 7.8 to 1.8, so the crash shows as a loss.",
+   "Make the crash physical: the cloud collapses from 27.5 to 7.8 while a small pouch tin slides in to 1.8, with the pouches in the accent colour.",
+   "Give Data a real bit: he waves the cloud away, turns, and finds a pouch in his lip (setup, then action, then payoff).",
+   "Keep the mascot's area clear of value labels and data marks, and lay out the source line so it is legible or leave it off screen."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/teen-vaping-crash-nicotine-pouches__b591e29d.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,156 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "teen-ai-companion-boom__28b9c5d0",
+ "filed": "2026-09-23T00:49:13Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "teen-ai-companion-boom",
+ "current": {
+  "title": "72% Of Teens Have Talked To An AI Like It's A Friend",
+  "hook": "Your kid might trust a chatbot more than you.",
+  "closing": "Would you trust a chatbot with your secrets?",
+  "question": "Have you ever talked to an AI like it was a friend? Tell me below.",
+  "segments": [
+   {
+    "topic": "how many teens use an AI companion",
+    "say": "72 percent of teens have talked to an AI companion. 52 percent use one regularly, and 13 percent do it every single day -- that's routine, not curiosity."
+   },
+   {
+    "topic": "when teens trust AI over a person",
+    "say": "A third of teens have picked an AI over an actual person for a serious conversation, and a quarter have handed over personal information -- real details, typed to something that isn't real."
+   },
+   {
+    "topic": "teens and their AI chatbot",
+    "say": "34 percent of teens who use an AI companion say it's said or done something that made them uncomfortable. Most keep coming back anyway. That's the part that should worry you."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how many teens use an AI companion",
+   "say": "72 percent of teens have talked to an AI companion. 52 percent use one regularly, and 13 percent do it every single day -- that's routine, not curiosity.",
+   "role": "1 · THE HABIT",
+   "data": {
+    "file": "teen_ai_companion_use_2025.json",
+    "unit": "percent",
+    "title": "US teens (13-17) who have used an AI companion app",
+    "points": [
+     {
+      "label": "Have used one at least once",
+      "value": 72
+     },
+     {
+      "label": "Use one regularly (few times/month+)",
+      "value": 52
+     },
+     {
+      "label": "Use one every day",
+      "value": 13
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "when teens trust AI over a person",
+   "say": "A third of teens have picked an AI over an actual person for a serious conversation, and a quarter have handed over personal information -- real details, typed to something that isn't real.",
+   "role": "2 · THE TRUST",
+   "data": {
+    "file": "teen_ai_vs_human_trust.json",
+    "unit": "percent",
+    "title": "Teens who chose an AI companion over a human for a serious conversation vs. who shared personal info with one",
+    "points": [
+     {
+      "label": "Shared personal info with an AI companion",
+      "value": 25
+     },
+     {
+      "label": "Chose AI over a human for a serious talk",
+      "value": 33
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "teens and their AI chatbot",
+   "say": "34 percent of teens who use an AI companion say it's said or done something that made them uncomfortable. Most keep coming back anyway. That's the part that should worry you.",
+   "role": "3 · THE COST",
+   "data": {
+    "file": "teen_ai_uncomfortable_share.json",
+    "unit": "percent",
+    "title": "Share of teen AI-companion users who felt uncomfortable with something the bot said or did",
+    "points": [
+     {
+      "label": "Felt uncomfortable by something the bot said/did",
+      "value": 34
+     },
+     {
+      "label": "No such incident",
+      "value": 66
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A generic chart slideshow: it repeats 72%, invents an '8% apart' comparison, flashes an empty frame on the key line, and has labels cut off or unreadable throughout."
+ ],
+ "reasons": [
+  "judge: A generic chart slideshow: it repeats 72%, invents an '8% apart' comparison, flashes an empty frame on the key line, and has labels cut off or unreadable throughout."
+ ],
+ "judge": {
+  "ts": "2026-09-23T00:49:11+00:00",
+  "score": 31,
+  "one_line": "A generic chart slideshow: it repeats 72%, invents an '8% apart' comparison, flashes an empty frame on the key line, and has labels cut off or unreadable throughout.",
+  "problems": [
+   "The hook is the same bar chart as seg0 and seg1:start, so nothing new happens in the first 5 seconds.",
+   "Row labels are cut off at the left edge in hook@0.3 and seg0.",
+   "The mascot covers the 72% value in seg1:start.",
+   "The waffle in seg1 repeats 72% while the narration talks about 52% and 13%.",
+   "'33%' is printed twice over itself in seg2:start.",
+   "seg2's '8% apart' subtracts the answers to two unrelated survey questions."
+  ],
+  "fixes": [
+   "Open on a real bespoke visual about the subject, for example a phone chat where 72 of 100 teen avatars light up, instead of a bar chart.",
+   "Measure the label widths so nothing gets clipped at the frame edge.",
+   "Show 52% and 13% as rising frequency, e.g. messages per day, rather than repeating 72%.",
+   "Remove the '8% apart' comparison and show 33% and 25% as separate acts, like a teen turning from a person to a phone, or personal details sliding into a chat box.",
+   "Draw the 34% scene as uncomfortable messages the teen keeps replying to, with full-contrast ink labels.",
+   "Close the gap between seg3 and seg4 so no frame is empty."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/teen-ai-companion-boom__28b9c5d0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,164 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "urban-heat-island-redlining__b4590558",
+ "filed": "2026-09-23T00:49:13Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "urban-heat-island-redlining",
+ "current": {
+  "title": "Your City Is Secretly 8 Degrees Hotter Than It Should Be",
+  "hook": "The city itself is cooking your block.",
+  "closing": "The redlining maps are gone. The heat still remembers them.",
+  "question": "Does your neighborhood feel hotter than it should? Tell me below.",
+  "segments": [
+   {
+    "topic": "why your city runs hotter",
+    "say": "Across 65 major US cities, pavement and buildings add an average of 8 degrees of extra heat. New York adds 9.7, San Francisco 9.1 -- heat with no clouds involved, just concrete."
+   },
+   {
+    "topic": "who lives in the hotter city blocks",
+    "say": "That heat isn't spread evenly. 68 percent of everyone studied live in the very hottest pockets -- older, paved-over blocks with almost no tree cover left."
+   },
+   {
+    "topic": "why some neighborhoods got hotter first",
+    "say": "This isn't random. Neighborhoods redlined back in the 1930s are, on average, 5 degrees hotter today than nearby areas that weren't -- sometimes over 12. The maps are gone. The heat still follows them."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "why your city runs hotter",
+   "say": "Across 65 major US cities, pavement and buildings add an average of 8 degrees of extra heat. New York adds 9.7, San Francisco 9.1 -- heat with no clouds involved, just concrete.",
+   "role": "1 · THE HEAT",
+   "data": {
+    "file": "urban_heat_island_index_by_city.json",
+    "unit": "degrees",
+    "title": "Urban Heat Island Index -- added heat from the built environment, per capita average (degrees Fahrenheit)",
+    "points": [
+     {
+      "label": "New York City",
+      "value": 9.7
+     },
+     {
+      "label": "San Francisco",
+      "value": 9.1
+     },
+     {
+      "label": "Newark",
+      "value": 9.0
+     },
+     {
+      "label": "Chicago",
+      "value": 8.7
+     },
+     {
+      "label": "Phoenix",
+      "value": 7.4
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "who lives in the hotter city blocks",
+   "say": "That heat isn't spread evenly. 68 percent of everyone studied live in the very hottest pockets -- older, paved-over blocks with almost no tree cover left.",
+   "role": "2 · WHO FEELS IT",
+   "data": {
+    "file": "urban_heat_exposure_share.json",
+    "unit": "percent",
+    "title": "Share of studied residents living in the highest urban-heat-island exposure (8 degrees F or more of added heat)",
+    "points": [
+     {
+      "label": "Live in 8F+ heat-island exposure",
+      "value": 68
+     },
+     {
+      "label": "Live in lower-exposure blocks",
+      "value": 32
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "why some neighborhoods got hotter first",
+   "say": "This isn't random. Neighborhoods redlined back in the 1930s are, on average, 5 degrees hotter today than nearby areas that weren't -- sometimes over 12. The maps are gone. The heat still follows them.",
+   "role": "3 · THE PATTERN",
+   "data": {
+    "file": "redlining_heat_gap.json",
+    "unit": "degrees",
+    "title": "Added summer land-surface heat: formerly redlined neighborhoods vs. non-redlined neighborhoods nearby (degrees Fahrenheit)",
+    "points": [
+     {
+      "label": "Non-redlined neighborhoods (baseline)",
+      "value": 0
+     },
+     {
+      "label": "Formerly redlined neighborhoods",
+      "value": 5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Mostly charts with the mascot parked on them, plus colliding and low-contrast labels (seg1:end, seg2:start, seg4). The redlining reveal, the story's core, is a two-bar chart with a '0' baseline."
+ ],
+ "reasons": [
+  "judge: Mostly charts with the mascot parked on them, plus colliding and low-contrast labels (seg1:end, seg2:start, seg4). The redlining reveal, the story's core, is a two-bar chart with a '0' baseline."
+ ],
+ "judge": {
+  "ts": "2026-09-23T00:36:06+00:00",
+  "score": 39,
+  "one_line": "Mostly charts with the mascot parked on them, plus colliding and low-contrast labels (seg1:end, seg2:start, seg4). The redlining reveal, the story's core, is a two-bar chart with a '0' baseline.",
+  "problems": [
+   "Hook (hook@0.3 to hook@2.2): a static bubble ranking under a plain title, with no immediate action or reason to stay.",
+   "seg0: the NYC value '9.7' looks smeared or overprinted, and Data just stands on the bubble.",
+   "seg1:end: 'clears it by 1.7' overlaps '65-city average 8'.",
+   "seg2:start: the 32% label is grey-on-grey and nearly invisible, and the header is truncated with an ellipsis.",
+   "seg3: the core redlining claim is a bar vs a '0' stub in a mostly empty frame, and 'sometimes over 12' is never shown.",
+   "seg4: the speech-bubble tail slices through the 'Formerly redlined neighborhoods' label, and Data covers several thermometers."
+  ],
+  "fixes": [
+   "Open on motion: a city block heating up and Data reacting (fanning himself, pavement shimmering), not a bubble layout.",
+   "Show the redline effect spatially: an old HOLC map boundary over a block map where the redlined side glows 5 degrees hotter and flares to 12.",
+   "Replace the stacked column in seg2 with 100 people or blocks, 68 of them turning red-hot.",
+   "Separate the seg1 annotation from the '65-city average 8' label, and move the seg4 bubble tail off the heading.",
+   "Give text labels in seg2 full-contrast ink, and shorten the headers so they aren't truncated.",
+   "Keep Data off the numbers and marks he currently covers (the NYC 9.7 bubble, the seg4 thermometers)."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/urban-heat-island-redlining__b4590558.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

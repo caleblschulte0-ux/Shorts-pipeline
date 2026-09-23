@@ -1,0 +1,168 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "invasive-species-price-tag__5dd628a5",
+ "filed": "2026-09-23T00:49:13Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "invasive-species-price-tag",
+ "current": {
+  "title": "Invasive Species Now Cost The World $423 Billion A Year",
+  "hook": "That's more than most countries make.",
+  "closing": "Nature sent the world a bill nobody budgeted for.",
+  "question": "Ever seen an invasive species mess up your own backyard? Tell me below.",
+  "segments": [
+   {
+    "topic": "the cost of invasive species",
+    "say": "The global bill for invasive species has roughly quadrupled every decade since 1970 -- reaching 423 billion dollars a year."
+   },
+   {
+    "topic": "where invasive species money goes",
+    "say": "Almost all of it, over 90 percent, pays for damage already done. Barely 10 percent goes to stopping the next invasion."
+   },
+   {
+    "topic": "how many invasive species there really are",
+    "say": "Over 37 thousand alien species have taken hold worldwide. Only about 3.5 thousand of them are the ones actually causing the damage."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "the cost of invasive species",
+   "say": "The global bill for invasive species has roughly quadrupled every decade since 1970 -- reaching 423 billion dollars a year.",
+   "role": "1 · THE PRICE TAG",
+   "data": {
+    "file": "invasive_species_cost_growth.json",
+    "unit": "billion dollars",
+    "title": "Global economic cost of invasive species (billion dollars/year)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 1.6,
+      "period": "1970"
+     },
+     {
+      "label": "1980",
+      "value": 6.5,
+      "period": "1980"
+     },
+     {
+      "label": "1990",
+      "value": 26,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 105,
+      "period": "2000"
+     },
+     {
+      "label": "2019",
+      "value": 423,
+      "period": "2019"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "where invasive species money goes",
+   "say": "Almost all of it, over 90 percent, pays for damage already done. Barely 10 percent goes to stopping the next invasion.",
+   "role": "2 · WHERE IT GOES",
+   "data": {
+    "file": "invasive_species_damage_vs_management.json",
+    "unit": "percent",
+    "title": "Where the $423B/year invasive species bill goes (%)",
+    "points": [
+     {
+      "label": "Damage & losses",
+      "value": 90
+     },
+     {
+      "label": "Prevention & management",
+      "value": 10
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how many invasive species there really are",
+   "say": "Over 37 thousand alien species have taken hold worldwide. Only about 3.5 thousand of them are the ones actually causing the damage.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "invasive_species_established_vs_harmful.json",
+    "unit": "thousand species",
+    "title": "Alien species established worldwide vs. classified as harmful invasive (count)",
+    "points": [
+     {
+      "label": "Alien species established",
+      "value": 37
+     },
+     {
+      "label": "Classified as harmful invasive",
+      "value": 3.5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Three charts and a stock seesaw with Data perched on each; the quadrupling bill is never shown as anything physical, and the finale replays seg3's numbers as a meaningless race of duplicate mascots."
+ ],
+ "reasons": [
+  "judge: Three charts and a stock seesaw with Data perched on each; the quadrupling bill is never shown as anything physical, and the finale replays seg3's numbers as a meaningless race of duplicate mascots."
+ ],
+ "judge": {
+  "ts": "2026-09-23T00:21:57+00:00",
+  "score": 34,
+  "one_line": "Three charts and a stock seesaw with Data perched on each; the quadrupling bill is never shown as anything physical, and the finale replays seg3's numbers as a meaningless race of duplicate mascots.",
+  "problems": [
+   "Hook (hook@0.3 to 2.2) is a static bar chart building slowly behind the title; nothing grabs attention in frame 1.",
+   "seg1 shows a thin line in a large empty frame with a false 'and back again' label, and Data cheers at a cost peak.",
+   "seg2 settles at 88.7% while the narration says 'over 90 percent', and 76.4% plus 8.5% mid-animation reads as broken.",
+   "Data perches on bars, on the line end, on the seesaw and on the bubble in every scene; he never performs a bit.",
+   "seg4 duplicates the mascot into two racing lanes, repeating seg3's data with no meaning, and its grey lane label is too small to read.",
+   "Only the seesaw is more than a chart; nothing is made of invasive species or of a bill."
+  ],
+  "fixes": [
+   "Open on motion that carries the claim: a $423B invoice slamming down, or a pile of bills bursting upward, before any chart appears.",
+   "Rebuild seg1 as a compounding bill that grows fourfold each decade and fills the frame height; delete the 'and back again' caption.",
+   "Settle the seg2 seesaw on values that match the narration (over 90% vs about 10%), and have Data pile weight onto the damage side or be flung off the prevention end.",
+   "In seg3, draw the 37K as a swarm of species icons with the 3.5K harmful ones lighting up, instead of two bubbles.",
+   "Replace the seg4 duplicate-mascot race with a real payoff tied to the closing line (the bill arriving), and make the lane labels large and high-contrast."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/invasive-species-price-tag__5dd628a5.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260923T004918Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands parked in the lower-right corner pointing at nothing through hook@0.3 to seg1:start. At seg1:mid he hangs on the 2020 bar, at seg3:start/mid he sits on the $4.4 bubble, and in seg4 he stands on the seesaw pan cheering. Those are perches, not a setup->action->payoff tie",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "off_story_chart",
+  "visible_evidence": "seg1:mid and seg1:end show a two-bar '2019 VS 2020' chart, $1.1 vs $1.2, with Data clinging to the side of the 2020 bar. The narration is about a record $4.41 and a climb driven by shocks, so the picture shows a nearly flat comparison of two years the story never mentions.",
+  "root_cause": "The beat's claim is a record high reached through a series of shocks, but the scene was drawn as a default two-bar rank comparison of the first two data points. That picks the chart kind, not the relationship, and loses the 4x climb the story is about.",
+  "repair_goal": "Redraw seg1 as the climb from $1.05 (2019) to the record $4.41 (Feb 2025), made of coffee: for example a stack of beans or cups rising in jolts at each shock year and topping out at a 'RECORD' line. Data should react to each jump, e.g. get knocked upward or brace against the stack, and the scene should land on $4.41 as the peak."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
