@@ -259,7 +259,10 @@ def layout(spec: dict, seed: int) -> dict:
             x = W * SLOTS[p["at"]]
         elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
             R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
-            d = 1 if stirrer["facing"] == "right" else -1
+            # the pot goes on the cook's far side from the fire, and the cook
+            # turns to it — a pot between a person and the flames hides both
+            d = 1 if stirrer["x"] >= focal_x else -1
+            stirrer["facing"] = "right" if d > 0 else "left"
             x = stirrer["x"] + d * (1.55 * R + (50 if p["name"] == "pot" else 20) * ps)
             stirrer["_pot"] = True
         else:

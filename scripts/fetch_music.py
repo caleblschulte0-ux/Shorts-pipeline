@@ -32,6 +32,15 @@ LIBRARY = {
     "pulse":     ["Cool Vibes", "Bossa Antigua", "Inspired"],
 }
 
+# Fetched only on request (`--only sleep`): the slow, quiet beds the
+# OpenRangeInteractive sleep films play under the narration. Kept out of the
+# default LIBRARY so every other channel's fetch and cache stay as they were.
+EXTRA = {
+    "sleep": ["Meditation Impromptu 01", "Meditation Impromptu 02",
+              "Meditation Impromptu 03", "Dreamer", "Healing",
+              "Relaxing Piano Music"],
+}
+
 
 def _slug(title: str) -> str:
     return title.lower().replace(" ", "-").replace("'", "")
@@ -39,7 +48,11 @@ def _slug(title: str) -> str:
 
 def main() -> int:
     got = skipped = failed = 0
-    for vibe, titles in LIBRARY.items():
+    lib = LIBRARY
+    if "--only" in sys.argv:
+        want = sys.argv[sys.argv.index("--only") + 1]
+        lib = {want: {**LIBRARY, **EXTRA}[want]}
+    for vibe, titles in lib.items():
         d = MUSIC / vibe
         d.mkdir(parents=True, exist_ok=True)
         for title in titles:

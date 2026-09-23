@@ -101,9 +101,9 @@ def embers(cr, x, y, s, t, seed, n=34, spread=46.0, rise=240.0):
         u = ((t / period) + r.random()) % 1.0
         sx = x + (r.uniform(-1, 1) * spread * 0.5 + math.sin(t * 2.3 + k) * spread * u) * s
         sy = y - (rise * u * speed * 1.6) * s
-        rad = (2.6 + 5.0 * (1 - u)) * s
+        rad = (1.6 + 2.6 * (1 - u)) * s
         a = max(0.0, 1 - u) * (0.65 + 0.35 * ink.vnoise(t, 9.0, seed + k))
-        ink.dot(cr, sx, sy, rad, (1.0, 0.86, 0.45, a))
+        ink.dot(cr, sx, sy, rad, (1.0, 0.9, 0.55, a))
 
 
 def campfire(cr, x, y, s, t, seed):

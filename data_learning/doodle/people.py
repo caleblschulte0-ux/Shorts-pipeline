@@ -505,8 +505,9 @@ def _draw_lying(cr, lk, R, t, lw, mood, seed):
     head = (-2.1 * R, -0.95 * R)
     hair = _hair_pts(head[0], head[1], R, lk, back=False)
     blanket = rgb("#8a5a35") if lk["era"] == "stone_age" else lk["cloth"]
-    ink.fill_stroke(cr, [(-1.3 * R, -1.25 * R), (1.2 * R, -1.45 * R), (2.3 * R, -0.9 * R),
-                         (2.4 * R, 0.0), (-1.5 * R, 0.0)], blanket, lw=lw * 0.85, amp=2.2,
+    ink.fill_stroke(cr, [(-1.35 * R, -0.95 * R), (-0.6 * R, -1.55 * R), (0.5 * R, -1.7 * R),
+                         (1.5 * R, -1.35 * R), (2.35 * R, -1.1 * R), (2.7 * R, -0.45 * R),
+                         (2.6 * R, 0.0), (-1.5 * R, 0.0)], blanket, lw=lw * 0.85, amp=2.2,
                     seed=seed + 9, shadow=shade(blanket), shadow_dir=(0, 1),
                     texture="fur" if lk["era"] == "stone_age" else None, tex_alpha=0.5)
     ink.fill_stroke(cr, ink.ellipse_pts(head[0], head[1], R, 1.03 * R, 30), HEAD, lw=lw * 0.95,
