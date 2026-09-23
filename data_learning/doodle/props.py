@@ -1081,7 +1081,10 @@ MEDIEVAL = ("medieval",)
 PROPS = {
     "campfire": Prop(campfire, 250, "mid", ALL, living=True, light=True, height=90, base=campfire_base),
     "hearth": Prop(hearth, 300, "back", ("medieval", "victorian", "early_modern"), living=True, light=True, height=110, base=hearth_base),
-    "torch": Prop(torch_wall, 60, "back", ALL, living=True, light=True, height=260, base=torch_base),
+    # mid, not back: a torch on the back line put its flame inside the tree
+    # canopies ("the tree looks like it is on fire"); among the people it
+    # stands plainly in front of them
+    "torch": Prop(torch_wall, 60, "mid", ALL, living=True, light=True, height=260, base=torch_base),
     "candle": Prop(candle, 60, "front", LATER, living=True, light=True, height=75, base=candle_base),
     "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", ALL, base=pot_base),
@@ -1097,7 +1100,7 @@ PROPS = {
     "bedroll": Prop(bedroll, 280, "mid", STONE_AGE),
     "hide_rack": Prop(hide_rack, 240, "back", STONE_AGE),
     "deer": Prop(deer, 280, "back", BOTH),
-    "mammoth": Prop(mammoth, 600, "back", STONE_AGE),
+    "mammoth": Prop(mammoth, 720, "back", STONE_AGE),   # the trunk and tusks reach far in front of the body
     "wolf": Prop(wolf, 270, "mid", STONE_AGE),
     "dog": Prop(wolf, 270, "mid", LATER),
     "sheep": Prop(sheep, 200, "mid", LATER),

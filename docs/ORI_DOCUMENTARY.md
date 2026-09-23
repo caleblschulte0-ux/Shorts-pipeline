@@ -244,6 +244,39 @@ children's game and the sky chapter (the last already fixed above).
   was; the shelf's two offenders moved (the night watch to the riverbank,
   the old man's chapter to the cave mouth, his back to the rock).
 
+### The seventh film (74, BLOCK): one composition, and what could stand in the cave
+
+The first film with faces off the opening, the point-up and the mammoth
+came back LOWER, with a `junk_imagery` auto-fail: *"the same cave-mouth +
+campfire + seated-figure picture repeats back to back ... the stock layout
+for about 16 of 42 samples"*, plus a tipi drawn inside the cave mouth, the
+wolf there as *"an unclear grey blob"*, the mammoth's trunk over a tent, a
+torch flame inside a tree canopy, and the sky chapter still not reading.
+The judge is noisy — 83 and 74 on the same script a run apart — but every
+note names a real thing, so every note moved the film, not the judge:
+
+- **Only a light may stand in the mouth of the cave.** A fire reads there;
+  a tent, a woodpile or a wolf is a shape against black. Small props (under
+  `SMALL_PROP`) and anything under its sleeper (the bed, and the wolf, which
+  now curls beside the sleeper instead of finding its own spot) are exempt.
+  The fire may travel further (`FOCAL_SHIFTS` to ±0.24) before anyone is
+  drawn smaller: 141 scenes, zero collisions, 12 shrunk (was 20).
+- **The fire ranges over the middle half of the frame**, not the middle
+  quarter, so two fire scenes are less often the same picture.
+- **The torch stands among the people** (mid layer): on the back line its
+  flame sat inside the tree canopies. A carried torch is held out in front
+  and above the head, like the spear, never across the face.
+- **The mammoth is as wide as its trunk** (720).
+- **Looking up, fourth try.** Two dots moved a finger's width (5th film),
+  then a hand at the brow (7th: still "no one looks up"). A round head is
+  taller than a natural arm, so an arm straight up crossed the face and one
+  raised behind vanished behind the head. Now: the head tips well back, the
+  face and open mouth go to the crown, and the front arm — stretched, drawn
+  UNDER the head so it rises from behind the shoulder — points at the sky
+  with the hand clear above the crown. Lying down, the figure is on its back
+  with its face to the sky and an arm raised at it (`people._face_up`),
+  which is the judge's own picture for a sky chapter.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

@@ -323,6 +323,8 @@ def collisions(lay: dict) -> list[str]:
             if (A["under"] is not None and A["under"] == B["fig"]) or \
                (B["under"] is not None and B["under"] == A["fig"]):
                 continue
+            if A["under"] is not None and A["under"] == B["under"]:
+                continue          # the bedroll and the wolf at the same sleeper's feet
             if (A.get("on") is not None and A["on"] == B.get("pid")) or \
                (B.get("on") is not None and B["on"] == A.get("pid")):
                 continue          # a lamp on its table
@@ -332,6 +334,11 @@ def collisions(lay: dict) -> list[str]:
                 # may stand there
                 g, o = (A, B) if A.get("ground") else (B, A)
                 if o["fig"] is None:
+                    if PROPS[o["label"]].light or PROPS[o["label"]].width < SMALL_PROP or o["under"] is not None:
+                        continue      # a fire, something small, or a bed under its sleeper, reads there
+                    over = min(o["hi"], g["hi"]) - max(o["lo"], g["lo"])
+                    if over > MARGIN:
+                        bad.append(f"{o['label']} stands in front of {g['label']} by {over:.0f}px")
                     continue
                 hlo, hhi = o["head"]
                 over = min(hhi, g["hi"]) - max(hlo, g["lo"])
@@ -369,7 +376,8 @@ def layout(spec: dict, seed: int) -> dict:
 # the fire is placed first and by seed; when the people cannot fit around
 # it (a cook with her pot between the fire and the cave opening), it moves
 # a little before anyone is drawn smaller
-FOCAL_SHIFTS = (0.0, -0.12, 0.12)
+FOCAL_SHIFTS = (0.0, -0.12, 0.12, -0.24, 0.24)
+SMALL_PROP = 200                 # narrower than this (stones, a basket) reads fine in the mouth of the cave
 SCENERY_K = 1.35                 # a tree's scale against the shot's: about twice a standing figure
 
 
@@ -390,18 +398,23 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         _, mx, ow = settings.cave_opening(seed, shot)
         blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
 
-    def clash(lo, hi, head=None):
+    def clash(lo, hi, head=None, keep_off=False):
         """How much (lo, hi) overlaps what is taken. `head` is a person's
         head column: THAT is what must stay off ground the setting owns —
-        an arm or a pot over the dark opening still reads, a face does not."""
+        an arm or a pot over the dark opening still reads, a face does not.
+        `keep_off` is a prop that must not stand on that ground either: the
+        seventh film's judge saw "a tipi drawn inside the cave mouth" and a
+        wolf there as "an unclear grey blob" — only a light reads against it."""
         c = sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in taken)
         if head is not None:
             hlo, hhi = head
             c += sum(max(0.0, min(hhi, b["hi"]) - max(hlo, b["lo"]) - MARGIN) for b in blocked)
+        elif keep_off:
+            c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked)
         return c
 
-    def free(lo, hi, head=None):
-        return clash(lo, hi, head) <= 0
+    def free(lo, hi, head=None, keep_off=False):
+        return clash(lo, hi, head, keep_off) <= 0
 
     def put(lo, hi):
         taken.append((lo, hi))
@@ -423,7 +436,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     def head_span(x, R):
         return x - 1.25 * R, x + 1.25 * R
 
-    def settle(x, span_of, lo_lim, hi_lim, head_of=None):
+    def settle(x, span_of, lo_lim, hi_lim, head_of=None, keep_off=False):
         """Slide x away from the focal thing, then toward it, until its span
         is clear of everything placed; the least-crowded x if nothing is."""
         d = -1 if x < focal_x else 1
@@ -440,7 +453,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     if (sign > 0 and hi > hi_lim) or (sign < 0 and lo < lo_lim):
                         break
                     continue
-                c = clash(lo, hi, head_of(cand) if head_of else None)
+                c = clash(lo, hi, head_of(cand) if head_of else None, keep_off)
                 if c <= 0:
                     return cand
                 if best_c is None or c < best_c:
@@ -458,7 +471,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # the fourth film's judge: "cave mouth on the left, a campfire in the
     # centre, one seated figure and a moon" repeated — so the focal thing
     # sits somewhere between 38% and 62% of the width, by seed
-    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.38 + 0.24 * r.random() + focal_shift)
+    # ... and the seventh's still saw one composition in 16 of 42 samples, so
+    # the fire now ranges over the middle half of the frame
+    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.25 + 0.5 * r.random() + focal_shift)
+    focal_x = min(max(focal_x, W * 0.12), W * 0.88)
 
     st = SETTINGS.get(spec.get("setting"))
     water = st.water if st is not None else None
@@ -523,6 +539,22 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                                seed=seed + len(placed) * 17, under=figs.index(sleeper)))
             return
+        elif sleeper and p["name"] in ("wolf", "dog") and not sleeper.get("_dog"):
+            # curled at the sleeper's feet, on the side away from the fire —
+            # its own spot in the crowd never fit beside a sleeper and a fire
+            # in the mouth of a cave, and a wolf pushed into the dark opening
+            # was "an unclear grey blob" to the seventh film's judge
+            R = people.R0 * s * people.WHO[sleeper["who"]]["size"]
+            d = -1 if sleeper["x"] < focal_x else 1
+            lo, hi = figure_extent("lie", R)
+            edge = sleeper["x"] + d * (hi if d > 0 else -lo)
+            x = edge + d * (w / 2 + 0.15 * R)      # beside the sleeper, touching, not under the bed
+            x = min(max(x, EDGE + w / 2), W - EDGE - w / 2)
+            sleeper["_dog"] = True
+            put(x - w / 2, x + w / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            return
         elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
             R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
             # the pot goes on the cook's far side from the fire, and the cook
@@ -540,13 +572,14 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         else:
             scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
             tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
+            keep_off = not pr.light and pr.width >= SMALL_PROP   # a light, or something small, may be in the cave mouth
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
                      else [0.4, 0.6, 0.5, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
                 if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
                     continue
-                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2):
+                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2, keep_off=keep_off):
                     x = W * cnd
                     if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
                                                       if q["layer"] == "back"):
@@ -554,7 +587,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                         continue
                     break
             if x is None and (not scenery or pr.solid_width):
-                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE)
+                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE, keep_off=keep_off)
             if x is None:
                 x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
         if pr.layer != "back" or p["name"] in SOLID_BACK:
