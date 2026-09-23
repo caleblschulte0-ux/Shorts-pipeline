@@ -314,9 +314,19 @@ def woodpile(cr, x, y, s, t, seed):
 
 
 def bedroll(cr, x, y, s, t, seed):
+    """A sleeping place: a thick bed of dry grass with a fur thrown over it,
+    the fur folded back at one end — not a flat mat."""
+    grass = rgb("#c9b26a")
+    ink.fill_stroke(cr, ink.blob_pts(x, y - 22 * s, 165 * s, 26 * s, seed + 3, 0.1, 18), grass, lw=4 * s,
+                    amp=2, seed=seed + 3, texture="hatch", tex_alpha=0.18)
     c = rgb("#9a6a40")
-    ink.fill_stroke(cr, [(x - 150 * s, y), (x - 140 * s, y - 28 * s), (x + 150 * s, y - 30 * s), (x + 160 * s, y)],
-                    c, lw=4.5 * s, amp=1.5, seed=seed, texture="fur", tex_alpha=0.5)
+    fur = [(x - 150 * s, y - 20 * s), (x - 135 * s, y - 62 * s), (x - 40 * s, y - 78 * s), (x + 60 * s, y - 70 * s),
+           (x + 135 * s, y - 52 * s), (x + 150 * s, y - 18 * s), (x + 60 * s, y - 8 * s), (x - 60 * s, y - 8 * s)]
+    ink.fill_stroke(cr, fur, c, lw=4.5 * s, amp=2, seed=seed, shadow=shade(c), shadow_dir=(0, 1),
+                    texture="fur", tex_alpha=0.5)
+    # the turned-back corner
+    ink.fill_stroke(cr, [(x + 60 * s, y - 70 * s), (x + 135 * s, y - 52 * s), (x + 118 * s, y - 88 * s),
+                         (x + 70 * s, y - 92 * s)], rgb("#c9a06c"), lw=4 * s, amp=1.2, seed=seed + 1)
 
 
 def hide_rack(cr, x, y, s, t, seed):

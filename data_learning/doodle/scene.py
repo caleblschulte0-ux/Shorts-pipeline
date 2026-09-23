@@ -256,13 +256,21 @@ def layout(spec: dict, seed: int) -> dict:
                          mood=c.get("mood", "calm"), item=c.get("item"), x=x,
                          y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101))
 
-    # a pot or cauldron belongs in front of whoever is stirring it
+    # a pot or cauldron belongs in front of whoever is stirring it; a bedroll
+    # goes under whoever is lying down
     stirrer = next((f for f in figs if f["action"] == "stir"), None)
+    sleeper = next((f for f in figs if f["pose"] == "lie"), None)
     rest = [p for p in pl if p is not focal]
     for p in rest:
         pr, ps, py, w = prop_geom(p)
         if p.get("at"):
             x = W * SLOTS[p["at"]]
+        elif sleeper and p["name"] in ("bedroll", "bed") and not sleeper.get("_bed"):
+            R = people.R0 * s * people.WHO[sleeper["who"]]["size"]
+            d = 1 if sleeper["facing"] == "right" else -1
+            x = sleeper["x"] + d * 0.3 * R
+            py = sleeper["y"] - 4 * s
+            sleeper["_bed"] = True
         elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
             R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
             # the pot goes on the cook's far side from the fire, and the cook
@@ -290,6 +298,7 @@ def layout(spec: dict, seed: int) -> dict:
                            seed=seed + len(placed) * 17))
     for f in figs:
         f.pop("_pot", None)
+        f.pop("_bed", None)
     return dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot)
 
 

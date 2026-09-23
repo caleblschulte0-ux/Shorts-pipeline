@@ -156,8 +156,9 @@ def _interior(cr, name, seed, r):
             ink.fill_stroke(cr, ink.blob_pts(x, H * 0.35, 260, 330, seed + k, 0.12, 16),
                             ink.mix(rgb("#5e5247"), rgb("#6d6054"), r.random()), lw=5, amp=2, seed=seed + k,
                             shadow=rgb("#4b4139"), shadow_dir=(1, 0.5))
-        # the dark mouth of the cave behind
-        ink.fill_stroke(cr, ink.blob_pts(W * r.uniform(0.2, 0.8), H * 0.45, 230, 170, seed + 99, 0.1, 18),
+        # a darker passage leading further in, high on the wall so it sits
+        # behind the scene, never across a face
+        ink.fill_stroke(cr, ink.blob_pts(W * r.uniform(0.25, 0.75), H * 0.2, 200, 115, seed + 99, 0.1, 18),
                         rgb("#1d1a1c"), lw=5, amp=2, seed=seed + 99)
     elif name == "hut_inside":
         cr.set_source_rgba(*rgb("#6e5236"))
