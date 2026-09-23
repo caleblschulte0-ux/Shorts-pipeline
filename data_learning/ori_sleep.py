@@ -56,7 +56,7 @@ W, H, FPS = 1920, 1080, 24
 SR = 24000
 
 VOICE = os.environ.get("ORI_VOICE", "bm_george")   # low, unhurried British narrator
-SPEED = 0.84
+SPEED = 0.82
 SENTENCE_GAP = 0.55          # a breath between sentences — sleep narration is slow
 BEAT_GAP = 1.2               # a longer rest when the picture changes
 CHAPTER_GAP = 3.5            # music alone between chapters
