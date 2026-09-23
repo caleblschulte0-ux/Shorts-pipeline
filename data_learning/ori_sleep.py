@@ -216,7 +216,7 @@ def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None
 
 # ------------------------------------------------------------------ text on screen
 def _text_surface(text: str, size: int, font: str = "PatrickHand-Regular.ttf",
-                  color=(248, 240, 222), shadow=(20, 16, 18, 170)):
+                  color=(248, 240, 222), shadow=(20, 16, 18, 170), band: bool = False):
     """A cairo surface holding one line of hand-lettered text with a soft
     shadow, made once and painted with alpha as it fades."""
     import cairo
@@ -225,6 +225,11 @@ def _text_surface(text: str, size: int, font: str = "PatrickHand-Regular.ttf",
     bbox = f.getbbox(text)
     w, h = bbox[2] - bbox[0] + 40, bbox[3] - bbox[1] + 40
     sh = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    if band:
+        # a soft dark band behind the words: the title is read over whatever
+        # the opening scene happens to put there (a pale cloud, once)
+        ImageDraw.Draw(sh).rounded_rectangle((4, 4, w - 4, h - 4), radius=26, fill=(20, 16, 18, 120))
+        sh = sh.filter(ImageFilter.GaussianBlur(10))
     ImageDraw.Draw(sh).text((20 - bbox[0] + 3, 20 - bbox[1] + 4), text, font=f, fill=shadow)
     sh = sh.filter(ImageFilter.GaussianBlur(6))
     ImageDraw.Draw(sh).text((20 - bbox[0], 20 - bbox[1]), text, font=f, fill=color + (255,))
@@ -271,8 +276,8 @@ def _render_chunk(args) -> str:
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     a = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
     b = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
-    texts = [(c["t0"], c["t1"], c["x"], c["y"], _text_surface(c["text"], c["size"])) for c in captions
-             if c["t1"] > t0 and c["t0"] < t1]
+    texts = [(c["t0"], c["t1"], c["x"], c["y"], _text_surface(c["text"], c["size"], band=c.get("band", False)))
+             for c in captions if c["t1"] > t0 and c["t0"] < t1]
     i = lo
     for n in range(n0, n1):
         T = n / FPS
@@ -309,7 +314,7 @@ def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     """On-screen words: the title over the opening, then each chapter's
     title in the corner as it begins. Everything else is heard, not read."""
     out = [dict(text=ep["title"].split("|")[0].strip(), size=74, t0=1.0, t1=9.0,
-                x=110, y=110)]
+                x=110, y=110, band=True)]
     seen = set()
     for bt in beats:
         if bt.chapter not in seen and bt.chapter > 0:

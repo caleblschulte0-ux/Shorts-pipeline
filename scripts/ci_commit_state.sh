@@ -64,7 +64,16 @@ for attempt in 1 2 3 4 5; do
   # So: back up every modified tracked file too, and restore it. Only the
   # given paths are committed here; the rest stay dirty for the caller's
   # own persist, exactly as if the push had simply succeeded.
-  { printf '%s\n' "$@"
+  # ...but ONLY what this run actually changed. A listed path the run did
+  # not touch (a directory argument like data_learning/ori_episodes, given
+  # so a NEW script is picked up when one is written) must not be restored
+  # from this checkout over the fresher branch: on 2026-09-23 that put a
+  # three-hour-old copy of an episode over an edit that had landed since,
+  # with this step reporting success. The run's own changes are the commit
+  # it just made (HEAD, on the stale base), anything still dirty, and
+  # anything untracked under a listed path.
+  { git diff --name-only HEAD~1 HEAD 2>/dev/null
+    for p in "$@"; do git ls-files --others --exclude-standard -- "$p" 2>/dev/null; done
     git diff --name-only 2>/dev/null
     git diff --cached --name-only 2>/dev/null; } | sort -u | while read -r p; do
     [ -n "$p" ] && [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true

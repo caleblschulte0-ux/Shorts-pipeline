@@ -121,6 +121,27 @@ and the fire-feeding the words describe were drawn as idle sitting. So:
   for `hug_self`, and a `frost` weather (pale ground, white-edged tufts,
   stars still out).
 
+The third film (same day, BLOCKED at 74): cave paintings drawn in the open
+sky (a painting prop in an outdoor setting), a carried bundle crossing a
+seated head, a mammoth's tusk in the fire, a sleeper's hide touching the
+fire's stones, a cloud behind the title. So:
+
+- A prop may be tied to settings (`Prop.settings`); `cave_painting` only
+  exists in `cave_inside`, refused by name anywhere else.
+- A figure's extent includes what it reaches for or holds
+  (`scene.ACTION_REACH`, `ITEM_REACH`): a pointing arm, a fishing rod, a
+  spear, a bundle. A bundle is carried at the waist in both arms.
+- Back-layer props with a body (`SOLID_BACK`: animals, a hide rack, a
+  torch post, a hut) take room like anything else; trees and tents stay
+  scenery.
+- The fire's footprint includes its stones; a sleeper's extent its fur.
+- The opening title sits on a soft dark band.
+- The cave mouth has the range behind it only half the time.
+- The CI persist step, losing a push race, restored its stale copy of a
+  listed directory it had not written over an episode edit that had landed
+  since (`scripts/ci_commit_state.sh`); it restores only what the run
+  changed now, with a real-git test.
+
 ## What the probes needed
 
 The probes used to hold every sampled frame in Python lists; a two-hour film

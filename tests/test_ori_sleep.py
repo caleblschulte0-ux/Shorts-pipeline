@@ -71,7 +71,9 @@ class EveryNameResolves(unittest.TestCase):
     def test_every_prop_draws_in_every_era_it_claims(self):
         for name, pr in self.PR.PROPS.items():
             for era in pr.eras:
-                self._draw(_scene(props=[name], setting="riverbank"), era)
+                where = pr.settings[0] if pr.settings else "riverbank"
+                props = [name] + (["campfire"] if pr.settings else [])   # a wall has no water
+                self._draw(_scene(props=props, setting=where), era)
 
     def test_every_action_draws_in_every_pose_it_allows(self):
         for act, cfg in self.P.ACTIONS.items():
@@ -439,6 +441,53 @@ class ThePictureIsReadable(unittest.TestCase):
                 self.assertLessEqual(sp["hi"], self.S.W - self.S.EDGE, sp)
         cut = {"people": [{"who": "man", "pose": "stand", "x": 30, "s": 2.0, "facing": "right"}], "props": []}
         self.assertTrue(any("cut by the frame edge" in b for b in self.S.collisions(cut)))
+
+    def test_a_painting_needs_a_wall(self):
+        # the third film's judge: "cave-painting animals float in the open night sky"
+        spec = _scene(setting="cave_mouth", props=["campfire", "cave_painting"])
+        bad = self.S.validate(spec, "stone_age")
+        self.assertTrue(any("cave_painting" in b and "cave_inside" in b for b in bad), bad)
+        self.assertEqual(self.S.validate(_scene(setting="cave_inside", props=["campfire", "cave_painting"]),
+                                         "stone_age"), [])
+
+    def test_what_a_figure_holds_or_reaches_for_takes_room(self):
+        # "the torch-bearer's outstretched arm crosses the seated elder's head"
+        R = 40.0
+        _, idle = self.S.figure_extent("stand", R)
+        _, pointing = self.S.figure_extent("stand", R, "point")
+        _, fishing = self.S.figure_extent("sit", R, "fish")
+        _, spear = self.S.figure_extent("stand", R, "hold", "spear")
+        _, sitting = self.S.figure_extent("sit", R)
+        _, stirring = self.S.figure_extent("sit", R, "stir")
+        self.assertGreater(pointing, idle)
+        self.assertGreater(fishing, idle + 2 * R)
+        self.assertGreater(spear, idle)
+        self.assertEqual(stirring, sitting, "a sitter's legs already reach past a stirring hand")
+        spec = {"setting": "cave_mouth", "time": "dusk", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "elder", "pose": "sit", "action": "idle"},
+                         {"who": "girl", "pose": "stand", "action": "wave"},
+                         {"who": "woman", "pose": "walk", "action": "carry"}],
+                "props": ["campfire", "torch", "hide_rack", "woodpile"]}
+        self.assertEqual(self.S.layout(spec, 21)["collisions"], [])
+
+    def test_an_animal_behind_the_fire_is_not_in_the_fire(self):
+        # "the mammoth's tusk runs into the campfire"
+        spec = {"setting": "grassland", "time": "night", "weather": "clear", "shot": "wide",
+                "props": ["campfire", "torch", "mammoth", "tent"]}
+        lay = self.S.layout(spec, 22)
+        self.assertEqual(lay["collisions"], [])
+        labels = {sp["label"] for sp in self.S.spans(lay)}
+        self.assertIn("mammoth", labels, "a solid back prop takes room like anything else")
+        self.assertNotIn("tent", labels, "scenery does not")
+
+    def test_the_title_sits_on_a_band(self):
+        # "a cloud sits behind the title word"
+        from data_learning import ori_sleep as OS
+        ep = _episode(chapters=8, beats=3)
+        caps = OS._captions(ep, [OS.Beat(chapter=0, index=0, text="x", scene={}, start=0.0, end=30.0)])
+        self.assertTrue(caps[0].get("band"))
+        surf, _ = OS._text_surface("Title", 40, band=True)
+        self.assertGreater(surf.get_width(), 0)
 
     def test_collisions_are_named_when_a_scene_cannot_be_helped(self):
         lay = {"people": [{"who": "man", "pose": "sit", "x": 500, "s": 2.0, "facing": "right"},

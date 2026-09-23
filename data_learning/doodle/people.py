@@ -186,7 +186,8 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         return ((lap[0] + (mouth[0] - lap[0]) * k, lap[1] + (mouth[1] - lap[1]) * k),
                 (nx + 0.8 * R, ny + 1.5 * R))
     if action == "carry":
-        return ((nx + 0.55 * R, ny - 0.55 * R), (nx - 0.25 * R, ny - 0.6 * R))
+        # in both arms, in front, at the waist
+        return ((nx + 0.95 * R, ny + 1.0 * R), (nx + 0.7 * R, ny + 1.15 * R))
     if action == "point":
         # short of a straight arm, so the elbow bends
         k = math.sin(c / 4.0 + ph) * 0.08 * R
@@ -511,7 +512,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                             rgb("#8e8a84"), lw=1.6, amp=0)
 
     # front arm + held item
-    bend = -1 if action in ("carry", "wave", "yawn") else 1
+    bend = -1 if action in ("wave", "yawn") else 1
     e, h = _ik(*sh_f, *front, ua, la, bend)
     if held != "none":
         _item(cr, held, h[0], h[1], R, t, lw)

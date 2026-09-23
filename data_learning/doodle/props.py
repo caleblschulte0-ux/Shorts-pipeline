@@ -589,6 +589,7 @@ class Prop:
     light: bool = False          # casts firelight at night
     height: float = 200.0        # rough height at scale 1 (for light position)
     base: object = None          # the part that never moves, drawn once per scene
+    settings: tuple | None = None  # the only settings it may appear in (None = any)
 
 
 BOTH = ("stone_age", "medieval")
@@ -596,7 +597,7 @@ STONE_AGE = ("stone_age",)
 MEDIEVAL = ("medieval",)
 
 PROPS = {
-    "campfire": Prop(campfire, 220, "mid", BOTH, living=True, light=True, height=90, base=campfire_base),
+    "campfire": Prop(campfire, 250, "mid", BOTH, living=True, light=True, height=90, base=campfire_base),
     "hearth": Prop(hearth, 300, "back", MEDIEVAL, living=True, light=True, height=110, base=hearth_base),
     "torch": Prop(torch_wall, 60, "back", BOTH, living=True, light=True, height=260, base=torch_base),
     "candle": Prop(candle, 60, "front", MEDIEVAL, living=True, light=True, height=75, base=candle_base),
@@ -614,7 +615,7 @@ PROPS = {
     "bedroll": Prop(bedroll, 280, "mid", STONE_AGE),
     "hide_rack": Prop(hide_rack, 240, "back", STONE_AGE),
     "deer": Prop(deer, 280, "back", BOTH),
-    "mammoth": Prop(mammoth, 520, "back", STONE_AGE),
+    "mammoth": Prop(mammoth, 600, "back", STONE_AGE),
     "wolf": Prop(wolf, 270, "mid", STONE_AGE),
     "dog": Prop(wolf, 270, "mid", MEDIEVAL),
     "sheep": Prop(sheep, 200, "mid", MEDIEVAL),
@@ -627,7 +628,7 @@ PROPS = {
     "barrel": Prop(barrel, 130, "mid", MEDIEVAL),
     "canoe": Prop(canoe, 400, "mid", STONE_AGE),
     "wheat": Prop(wheat, 240, "front", MEDIEVAL),
-    "cave_painting": Prop(cave_painting, 360, "back", STONE_AGE),
+    "cave_painting": Prop(cave_painting, 360, "back", STONE_AGE, settings=("cave_inside",)),
     "stones": Prop(stones, 120, "front", STONE_AGE),
     "basket": Prop(basket, 130, "front", BOTH),
     "fish_rack": Prop(fish_rack, 220, "back", STONE_AGE),

@@ -183,6 +183,10 @@ def validate(spec, era: str) -> list[str]:
             continue
         if era not in pr.eras:
             bad.append(f"props[{i}] {p['name']!r} does not exist in {era}")
+        elif pr.settings is not None and spec.get("setting") not in pr.settings:
+            # the third film's judge: "cave-painting animals float in the
+            # open night sky" — a painting needs a wall
+            bad.append(f"props[{i}] {p['name']!r} only belongs in {', '.join(pr.settings)}")
         if p.get("at") is not None and p.get("at") not in SLOTS:
             bad.append(f"props[{i}].at {p.get('at')!r} is not one of {sorted(SLOTS)}")
     if not bad and not is_living(spec):
@@ -201,12 +205,30 @@ PAD = 0.35           # head radii of air kept around every figure
 # facing +x — read off the rig (people.skeleton / people._draw_lying)
 _EXTENT = {
     "stand": (-0.9, 1.1), "walk": (-1.0, 1.2), "sit": (-1.0, 2.0), "sit_on": (-1.1, 1.5),
-    "crouch": (-1.1, 1.3), "lie": (-3.2, 2.9),
+    "crouch": (-1.1, 1.3), "lie": (-3.2, 3.2),
 }
+# how far in front of the feet, in head radii, an action or a held thing
+# reaches — an ABSOLUTE extent, taken against the pose's own (a sitter's
+# legs already reach two heads forward, so a stirring hand adds nothing;
+# a fishing rod adds a lot). The third film's judge: "the torch-bearer's
+# outstretched arm crosses the seated elder's head".
+ACTION_REACH = {"point": 1.9, "carry": 1.8, "wave": 1.2, "play": 1.8, "feed_fire": 2.2, "stir": 1.9,
+                "fish": 3.9, "hoe": 2.4, "chop": 1.8, "gather": 1.7, "talk": 1.3, "warm_hands": 1.6,
+                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3}
+ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
+              "bundle": 1.8, "basket": 1.2, "lantern": 1.0}
+# back-layer props with a body: a deer standing "behind" the fire in the
+# same place reads as a deer in the fire, so they take room like anything
+# else. Trees, tents and walls stay scenery.
+SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
+              "hearth"}
 
 
-def figure_extent(pose: str, R: float) -> tuple[float, float]:
+def figure_extent(pose: str, R: float, action: str = "idle", item: str | None = None) -> tuple[float, float]:
     lo, hi = _EXTENT[pose]
+    if pose != "lie":
+        held = item if item is not None else people.ACTIONS.get(action, {}).get("item")
+        hi = max(hi, ACTION_REACH.get(action, 0.0), ITEM_REACH.get(held or "", 0.0))
     return (lo - PAD) * R, (hi + PAD) * R
 
 
@@ -217,12 +239,12 @@ def spans(lay: dict) -> list[dict]:
     out = []
     for i, f in enumerate(lay["people"]):
         R = people.R0 * f["s"] * people.WHO[f["who"]]["size"]
-        lo, hi = figure_extent(f["pose"], R)
+        lo, hi = figure_extent(f["pose"], R, f.get("action", "idle"), f.get("item"))
         if f["facing"] == "left":
             lo, hi = -hi, -lo
         out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None))
     for p in lay["props"]:
-        if p["layer"] == "back":
+        if p["layer"] == "back" and p["name"] not in SOLID_BACK:
             continue
         w = PROPS[p["name"]].width * p["s"]
         out.append(dict(label=p["name"], lo=p["x"] - w / 2, hi=p["x"] + w / 2, fig=None,
@@ -287,7 +309,7 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
         taken.append((lo, hi))
 
     def fig_span(c, x, facing, R):
-        lo, hi = figure_extent(c.get("pose", "stand"), R)
+        lo, hi = figure_extent(c.get("pose", "stand"), R, c.get("action", "idle"), c.get("item"))
         if facing == "left":
             lo, hi = -hi, -lo
         return x + lo, x + hi
@@ -332,7 +354,7 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
         pr, ps, py, w = prop_geom(focal)
         placed.append(dict(name=focal["name"], x=focal_x, y=py, s=ps, layer=pr.layer,
                            seed=seed + 1))
-        if pr.layer != "back":
+        if pr.layer != "back" or focal["name"] in SOLID_BACK:
             put(focal_x - w / 2, focal_x + w / 2)
 
     # people next, around the focal thing and facing it — each one's REAL
@@ -348,13 +370,17 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             x = W * SLOTS[c["at"]]
             facing = c.get("facing") or ("right" if x < focal_x else "left")
         else:
+            # its own slot first, slid clear of the fire if it has to be —
+            # jumping to the far slot instead put a cook at the frame edge
+            # with her pot outside it
             x = None
             for k in range(len(slots_auto)):
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
-                lo, hi = fig_span(c, cand, facing, R)
+                got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE)
+                lo, hi = fig_span(c, got, facing, R)
                 if lo >= EDGE and hi <= W - EDGE and free(lo, hi):
-                    x = cand
+                    x = got
                     break
             if x is None:
                 cand = W * slots_auto[i % len(slots_auto)]
@@ -402,24 +428,25 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
                                seed=seed + len(placed) * 17, under=figs.index(stirrer)))
             continue
         else:
+            scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
                      else [0.4, 0.6, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
                 if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
                     continue
-                if pr.layer == "back" or free(W * cnd - w / 2, W * cnd + w / 2):
+                if scenery or free(W * cnd - w / 2, W * cnd + w / 2):
                     x = W * cnd
                     if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
                                                       if q["layer"] == "back"):
                         x = None
                         continue
                     break
-            if x is None and pr.layer != "back":
+            if x is None and not scenery:
                 x = settle(W * cands[0], lambda xx: (xx - w / 2, xx + w / 2), EDGE, W - EDGE)
             if x is None:
                 x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
-        if pr.layer != "back":
+        if pr.layer != "back" or p["name"] in SOLID_BACK:
             put(x - w / 2, x + w / 2)
         placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                            seed=seed + len(placed) * 17))

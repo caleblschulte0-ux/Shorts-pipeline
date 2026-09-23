@@ -205,3 +205,42 @@ class AMidRunPushRaceKeepsTheRunsOtherArtifacts(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ARaceRestoresOnlyWhatTheRunChanged(unittest.TestCase):
+    """2026-09-23: the curiosity run lost a push race and restored its
+    checkout's copy of data_learning/ori_episodes — a listed directory it
+    had not written to — over an episode edit that had landed on the branch
+    since, reporting success. Real git, two clones, one race."""
+
+    def _git(self, cwd, *args):
+        return subprocess.check_output(["git", "-C", str(cwd), *args], stderr=subprocess.STDOUT, text=True)
+
+    def test_an_untouched_listed_path_is_not_rolled_back(self):
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            origin = td / "origin.git"
+            subprocess.check_call(["git", "init", "-q", "--bare", "-b", "main", str(origin)])
+            a, b = td / "a", td / "b"
+            subprocess.check_call(["git", "clone", "-q", str(origin), str(a)])
+            for cwd in (a,):
+                self._git(cwd, "config", "user.email", "t@t"); self._git(cwd, "config", "user.name", "t")
+                (cwd / "episodes").mkdir(); (cwd / "episodes" / "ep.json").write_text('{"v": 1}')
+                (cwd / "state").mkdir(); (cwd / "state" / "log.jsonl").write_text('{"n": 1}\n')
+                (cwd / "scripts").mkdir()
+                for f in ("ci_commit_state.sh", "merge_state_json.py", "merge_posted_log.py"):
+                    (cwd / "scripts" / f).write_bytes((ROOT / "scripts" / f).read_bytes())
+                self._git(cwd, "add", "-A"); self._git(cwd, "commit", "-qm", "base"); self._git(cwd, "push", "-q", "origin", "main")
+            # b: a later edit to the episode lands on main
+            subprocess.check_call(["git", "clone", "-q", str(origin), str(b)])
+            self._git(b, "config", "user.email", "t@t"); self._git(b, "config", "user.name", "t")
+            (b / "episodes" / "ep.json").write_text('{"v": 2}')
+            self._git(b, "commit", "-qam", "edit"); self._git(b, "push", "-q", "origin", "main")
+            # a: the stale run appends a verdict and persists log + the episodes DIRECTORY
+            (a / "state" / "log.jsonl").write_text('{"n": 1}\n{"n": 2}\n')
+            out = subprocess.run(["bash", "scripts/ci_commit_state.sh", "persist", "state/log.jsonl", "episodes"],
+                                 cwd=a, capture_output=True, text=True, env={**__import__("os").environ, "CI_COMMIT_BRANCH": "main"})
+            self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+            self._git(b, "pull", "-q", "origin", "main")
+            self.assertEqual((b / "episodes" / "ep.json").read_text(), '{"v": 2}', "the race rolled the episode back")
+            self.assertEqual((b / "state" / "log.jsonl").read_text(), '{"n": 1}\n{"n": 2}\n')

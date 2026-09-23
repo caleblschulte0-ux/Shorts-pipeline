@@ -223,7 +223,9 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
     if weather in ("clear", "cloudy", "snow", "frost") or time == "night":
         _sun_moon(cr, time, r)
     far = {"day": rgb("#9fb7a8"), "dawn": rgb("#9d8fa0"), "dusk": rgb("#7a6485"), "night": rgb("#34466b")}[time]
-    if name in ("mountains", "snowfield", "cave_mouth", "lakeshore"):
+    # the cave mouth is the film's most-used picture: half the time it has
+    # the range behind it, half the time only hills, so it is not one layout
+    if name in ("mountains", "snowfield", "lakeshore") or (name == "cave_mouth" and r.random() < 0.5):
         _mountains(cr, r, H * st.horizon, far, seed, snowcaps=True)
     _hills(cr, r, H * st.horizon + 30, 60, ink.mix(far, rgb(GROUND[st.ground]), 0.45), seed + 3)
     if name == "castle":
