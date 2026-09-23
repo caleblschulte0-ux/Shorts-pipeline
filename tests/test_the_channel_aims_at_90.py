@@ -267,7 +267,7 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         from tests.test_the_brain_draws_the_scene import GOOD_MIN
         asked = {}
 
-        def brain(prompt, model=None):
+        def brain(prompt, model=None, timeout=None):
             asked["p"] = prompt
             return GOOD_MIN
         story = {"title": "t", "hook": "The clearing is dropping. The damage isn't.",
@@ -285,7 +285,7 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         from data_learning import scene_author as SA
         asked = {}
 
-        def brain(prompt, model=None):
+        def brain(prompt, model=None, timeout=None):
             asked["p"] = prompt
             return None
         story = {"title": "t", "closing": "The bill still grows.",

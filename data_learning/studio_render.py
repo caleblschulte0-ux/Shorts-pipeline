@@ -2569,6 +2569,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # judge takes points for, whichever look is better.
         _prepared: dict = {}
         if _style["style_arm"] == "illustrated":
+            from data_learning import scene_author as _sa0
+            _sa0.set_budget()             # this video's drawing clock
             for _i, _sg in enumerate(st.segments):
                 if not getattr(_sg, "insight", None):
                     continue

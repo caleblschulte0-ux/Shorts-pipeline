@@ -39,6 +39,27 @@ from data_learning import subject_scenes as SS
 
 TIMEOUT_S = int(os.environ.get("SCENE_AUTHOR_TIMEOUT", "420"))
 
+# A VIDEO'S DRAWING TIME IS BOUNDED. An explainer run renders four videos in
+# one 300-minute job, each needing up to five first drafts (hook, beats,
+# closing) at three attempts apiece — unbounded, one slow brain could time the
+# whole job out with nothing posted. `set_budget` starts a video's clock;
+# once it is spent `author` stops asking, the video falls back to the current
+# look (one video, one look), and the drafts that did land are saved for the
+# next run. Drafts are drawn once per story, so this binds on first sight only.
+BUDGET_S = float(os.environ.get("SCENE_AUTHOR_BUDGET_S", "1200"))
+_DEADLINE = None
+
+
+def set_budget(seconds: float | None = None) -> None:
+    import time
+    global _DEADLINE
+    _DEADLINE = time.monotonic() + (BUDGET_S if seconds is None else seconds)
+
+
+def _remaining() -> float:
+    import time
+    return float("inf") if _DEADLINE is None else _DEADLINE - time.monotonic()
+
 #: The kit the brain may call — the reference's own vocabulary.
 KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "cow", "truck", "sack", "cup", "steam", "motes", "birds",
@@ -476,7 +497,8 @@ def _strip_fence(s: str) -> str:
     return m.group(1) if m else s
 
 
-def ask_brain(prompt: str, model: str | None = None) -> str | None:
+def ask_brain(prompt: str, model: str | None = None,
+              timeout: float | None = None) -> str | None:
     if not shutil.which("claude"):
         return None
     # The drawing IS the video: the strongest model draws it (the judge that
@@ -486,7 +508,8 @@ def ask_brain(prompt: str, model: str | None = None) -> str | None:
     try:
         proc = subprocess.run(["claude", "-p", prompt, "--model", model,
                                "--output-format", "text"],
-                              capture_output=True, text=True, timeout=TIMEOUT_S)
+                              capture_output=True, text=True,
+                              timeout=timeout or TIMEOUT_S)
     except Exception:  # noqa: BLE001
         return None
     return _strip_fence(proc.stdout or "") if proc.returncode == 0 else None
@@ -500,7 +523,9 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief=""):
     prompt = build_prompt(title, topic, say, pts, unit, brief)
     why = "no brain"
     for k in range(attempts):
-        code = ask_brain(prompt)
+        if _remaining() < 90:
+            return None, "this video's drawing budget is spent"
+        code = ask_brain(prompt, timeout=min(TIMEOUT_S, _remaining()))
         if not code:
             return None, why
         try:

@@ -96,6 +96,7 @@ def propose(slug: str, verdict: dict, config_path: Path, log=print) -> dict:
         idx, insight, target = beat, segs[beat].insight, beat
     log(f"[scene_redraw] {slug}: judge named seg{k} ({role}) — redrawing "
         f"{'the ' + role if role != 'beat' else f'beat {beat}'}")
+    SA.set_budget()                   # a redraw gets its own drawing clock
     fn, got = SA.redraw(story_cfg, target, insight,
                         _prior_code(story_cfg, role, beat, slug),
                         critique_for(verdict, k), log=log)

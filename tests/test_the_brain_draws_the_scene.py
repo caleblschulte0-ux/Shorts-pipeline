@@ -161,7 +161,7 @@ class TheAuthorLoop(unittest.TestCase):
                                'fit_readout(cr, "7.3 million", lab, 80, 520)')
         asks = []
 
-        def brain(prompt, model=None):
+        def brain(prompt, model=None, timeout=None):
             asks.append(prompt)
             return bad if len(asks) == 1 else GOOD_MIN
         with mock.patch.object(SA, "ask_brain", brain):
@@ -171,6 +171,18 @@ class TheAuthorLoop(unittest.TestCase):
         self.assertEqual(code, GOOD_MIN)
         self.assertIn("FAILED THESE CHECKS", asks[1])
         self.assertIn("does not have", asks[1])
+
+    def test_a_spent_drawing_budget_stops_asking(self):
+        from data_learning import scene_author as SA
+        SA.set_budget(0)
+        try:
+            with mock.patch.object(SA, "ask_brain") as asked:
+                fn, why = SA.author("t", "x", "y", [["a", 1.0]], log=lambda m: None)
+            asked.assert_not_called()
+            self.assertIsNone(fn)
+            self.assertIn("budget", why)
+        finally:
+            SA._DEADLINE = None
 
     def test_no_brain_means_none(self):
         from data_learning import scene_author as SA
@@ -208,7 +220,7 @@ class TheBrainKnowsTheRestOfTheVideo(unittest.TestCase):
         self.assertNotIn("beat 2:", sib)
         asked = {}
         with mock.patch.object(SA, "ask_brain",
-                               side_effect=lambda p, model=None: asked.setdefault("p", p) and None):
+                               side_effect=lambda p, model=None, timeout=None: asked.setdefault("p", p) and None):
             from data_learning.insights import Insight
             from data_learning.sources.base import DataPoint, Source
             ins = Insight(kind="trend", topic="t", main_insight="m",
