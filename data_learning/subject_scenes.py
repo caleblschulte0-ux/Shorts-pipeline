@@ -828,8 +828,9 @@ def traffic(cr, t):
 
 def heat_by_city(cr, t, u, pts, host):
     """Added heat by city: a street thermometer on a lamppost; the city name
-    changes and the mercury rises to that city's added degrees."""
-    rows = [(str(l), float(v)) for l, v in pts]
+    changes and the mercury rises to that city's added degrees. Coolest to
+    hottest, so it lands on the top city whatever order the data came in."""
+    rows = sorted(((str(l), float(v)) for l, v in pts), key=lambda r: r[1])
     n = len(rows)
     vgrad(cr, P["heat_sky"], 0, STREET_Y)
     glow(cr, 780, 420, 380, P["sun_hot"], 0.9)
