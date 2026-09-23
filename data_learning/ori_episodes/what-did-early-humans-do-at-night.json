@@ -1916,9 +1916,9 @@
       "props": [
        "campfire",
        "torch",
-       "tent",
-       "tree"
-      ]
+       "tent"
+      ],
+      "variant": 1
      }
     },
     {
@@ -2023,7 +2023,8 @@
       "props": [
        "campfire",
        "tree"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -3190,7 +3191,8 @@
        "mammoth",
        "tree",
        "tent"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -3356,9 +3358,9 @@
       "props": [
        "campfire",
        "torch",
-       "bedroll",
-       "cave_painting"
-      ]
+       "bedroll"
+      ],
+      "variant": 1
      }
     }
    ]
@@ -3419,9 +3421,9 @@
       "props": [
        "campfire",
        "torch",
-       "mammoth",
-       "tent"
-      ]
+       "mammoth"
+      ],
+      "variant": 1
      }
     },
     {
@@ -3828,5 +3830,12 @@
     }
    ]
   }
- ]
+ ],
+ "storyboard": {
+  "kit": "1b087aa02a76",
+  "clean": true,
+  "reviewed_at": "2026-09-23T17:04",
+  "rounds": 3,
+  "repaired": 8
+ }
 }
