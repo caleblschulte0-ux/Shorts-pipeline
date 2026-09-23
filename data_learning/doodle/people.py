@@ -48,6 +48,11 @@ OUTFIT = {
     "medieval": dict(cloth=[rgb("#5d7a9e"), rgb("#7b8f55"), rgb("#9a5d45"),
                             rgb("#8c7a5a"), rgb("#6d6591"), rgb("#a3844e")],
                      texture=None, strap=False),
+    # the Mediterranean world of Rome and Greece: undyed tunics, a few in
+    # terracotta, olive and sea blue, a rope belt, no hood
+    "ancient": dict(cloth=[rgb("#e9e1cf"), rgb("#e0d3b4"), rgb("#c47a55"), rgb("#8b9a60"),
+                           rgb("#6f8fa8"), rgb("#d9c9a0")],
+                    texture=None, strap=False),
 }
 
 POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
@@ -459,6 +464,9 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     hem = 0.55 * R if pose in ("stand", "walk") else 0.25 * R
     if lk["era"] == "medieval" and lk["long"]:
         hem = 1.5 * R if pose in ("stand", "walk") else 0.35 * R
+    if lk["era"] == "ancient":
+        # a tunic to the knee on everyone; to the ankle on the long-haired
+        hem = (1.5 * R if lk["long"] else 1.1 * R) if pose in ("stand", "walk") else 0.35 * R
     body = [(nx - 0.3 * R, ny + 0.06 * R), (nx + 0.3 * R, ny + 0.06 * R),
             (nx + top_w, ny + 0.3 * R), (hx0 + bot_w, hy0 + hem),
             (hx0, hy0 + hem + 0.06 * R), (hx0 - bot_w, hy0 + hem), (nx - top_w, ny + 0.3 * R)]
@@ -468,10 +476,10 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     if lk["strap"]:
         ink.line(cr, [(nx - 0.45 * R, ny + 0.2 * R), (nx + 0.3 * R, ny + 0.95 * R)],
                  lw=lw * 0.55, ink=shade(lk["cloth"], 0.6), amp=0)
-    if lk["era"] == "medieval":
+    if lk["era"] in ("medieval", "ancient"):
         by = hy0 - 0.15 * R
         ink.line(cr, [(hx0 - bot_w * 0.85, by), (hx0 + bot_w * 0.85, by)], lw=lw * 0.7,
-                 ink=rgb("#4b3524"), amp=0)
+                 ink=rgb("#4b3524") if lk["era"] == "medieval" else rgb("#9c7d4a"), amp=0)
 
     # head (with hood/scarf) + hair + face
     if lk["hood"] or lk["scarf"]:

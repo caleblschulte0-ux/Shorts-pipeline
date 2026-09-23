@@ -178,6 +178,10 @@ class MotionIsMeasuredWithTheGatesOwnProbe(unittest.TestCase):
             ("medieval", {"setting": "field", "time": "day", "weather": "rain", "shot": "wide"}),
             ("stone_age", {"setting": "grassland", "time": "day", "shot": "close",
                            "cast": [{"who": "man", "pose": "stand", "action": "chop"}], "props": ["woodpile"]}),
+            ("ancient", {"setting": "forum", "time": "night", "shot": "close",
+                         "cast": [{"who": "man", "pose": "stand", "action": "talk"}], "props": ["brazier", "column"]}),
+            ("ancient", {"setting": "villa_inside", "time": "night", "shot": "close",
+                         "cast": [{"who": "woman", "pose": "sit_on", "action": "eat"}], "props": ["oil_lamp", "table"]}),
         ):
             self.assertEqual(__import__("data_learning.doodle.scene", fromlist=["x"]).validate(spec, era), [])
             self._assert_alive(spec, era)
@@ -488,6 +492,35 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertTrue(caps[0].get("band"))
         surf, _ = OS._text_surface("Title", 40, band=True)
         self.assertGreater(surf.get_width(), 0)
+
+    def test_back_props_stand_on_the_far_shore_not_in_the_water(self):
+        spec = {"setting": "seashore", "time": "day", "weather": "clear", "shot": "wide",
+                "props": ["temple", "villa", "olive"]}
+        lay = self.S.layout(spec, 3)
+        gy = lay["ground_y"]
+        for p in lay["props"]:
+            self.assertLess(p["y"], self.S.H * 0.58, p["name"])
+        dry = self.S.layout(dict(spec, setting="grassland", props=["tree", "hut"]), 3)
+        for p in dry["props"]:
+            self.assertGreater(p["y"], gy - 170, p["name"])
+
+    def test_a_lamp_stands_on_the_table(self):
+        spec = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "sit_on", "action": "eat"}], "props": ["oil_lamp", "table", "amphora"]}
+        lay = self.S.layout(spec, 4)
+        self.assertEqual(lay["collisions"], [])
+        lamp = next(p for p in lay["props"] if p["name"] == "oil_lamp")
+        table = next(p for p in lay["props"] if p["name"] == "table")
+        self.assertEqual(lamp.get("on"), lay["props"].index(table))
+        self.assertLess(lamp["y"], table["y"] - 50)
+        self.assertLess(abs(lamp["x"] - table["x"]), 200 * table["s"])
+
+    def test_the_topic_bank_names_only_eras_the_kit_draws(self):
+        import json
+        cfg = json.loads((ROOT / "data_learning" / "ori.config.json").read_text())
+        eras = {t["era"] for t in cfg["topics"]}
+        self.assertTrue(eras <= set(self.S.ERAS), eras)
+        self.assertEqual(len(eras), len(self.S.ERAS), "every era the kit draws has topics waiting")
 
     def test_collisions_are_named_when_a_scene_cannot_be_helped(self):
         lay = {"people": [{"who": "man", "pose": "sit", "x": 500, "s": 2.0, "facing": "right"},

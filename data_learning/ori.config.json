@@ -1,71 +1,95 @@
 {
- "_doc": "OpenRangeInteractive sleep films (docs/ORI_DOCUMENTARY.md). One two-hour film a week from curiosity.yml. Topics are tried in order; each names the era the doodle kit draws it in.",
- "min_seconds": 4800,
- "queue_minimum": 1,
- "topics": [
-  {
-   "topic": "What did early humans actually do at night?",
-   "era": "stone_age"
-  },
-  {
-   "topic": "What did medieval peasants do after dark?",
-   "era": "medieval"
-  },
-  {
-   "topic": "How did Ice Age families survive the long winter?",
-   "era": "stone_age"
-  },
-  {
-   "topic": "A whole winter's night in a medieval village",
-   "era": "medieval"
-  },
-  {
-   "topic": "A day and a night in a Stone Age river camp",
-   "era": "stone_age"
-  },
-  {
-   "topic": "What did medieval people eat, from sunrise to bedtime?",
-   "era": "medieval"
-  },
-  {
-   "topic": "How early humans made fire, clothes and tools",
-   "era": "stone_age"
-  },
-  {
-   "topic": "Life inside a medieval cottage",
-   "era": "medieval"
-  },
-  {
-   "topic": "What Stone Age children did all day",
-   "era": "stone_age"
-  },
-  {
-   "topic": "How medieval peasants slept, and why they woke at midnight",
-   "era": "medieval"
-  },
-  {
-   "topic": "How early humans found food through the seasons",
-   "era": "stone_age"
-  },
-  {
-   "topic": "A medieval harvest, from first light to the last candle",
-   "era": "medieval"
-  },
-  {
-   "topic": "The first farmers: life in the first villages",
-   "era": "stone_age"
-  },
-  {
-   "topic": "What medieval people did for fun on long evenings",
-   "era": "medieval"
-  },
-  {
-   "topic": "How early humans lived beside the sea",
-   "era": "stone_age"
-  },
-  {
-   "topic": "A year in the life of a medieval farming family",
-   "era": "medieval"
-  }
- ]
+  "_doc": "OpenRangeInteractive sleep films (docs/ORI_DOCUMENTARY.md). One two-hour film a week from curiosity.yml. Topics are tried in order; each names the era the doodle kit draws it in.",
+  "min_seconds": 4800,
+  "queue_minimum": 1,
+  "topics": [
+    {
+      "topic": "What did early humans actually do at night?",
+      "era": "stone_age"
+    },
+    {
+      "topic": "What did medieval peasants do after dark?",
+      "era": "medieval"
+    },
+    {
+      "topic": "What did ordinary Romans do after dark?",
+      "era": "ancient"
+    },
+    {
+      "topic": "How did Ice Age families survive the long winter?",
+      "era": "stone_age"
+    },
+    {
+      "topic": "A whole winter's night in a medieval village",
+      "era": "medieval"
+    },
+    {
+      "topic": "A night in a Roman town, from the last market to first light",
+      "era": "ancient"
+    },
+    {
+      "topic": "A day and a night in a Stone Age river camp",
+      "era": "stone_age"
+    },
+    {
+      "topic": "What did medieval people eat, from sunrise to bedtime?",
+      "era": "medieval"
+    },
+    {
+      "topic": "Life in an ancient Greek village, sunrise to sleep",
+      "era": "ancient"
+    },
+    {
+      "topic": "How early humans made fire, clothes and tools",
+      "era": "stone_age"
+    },
+    {
+      "topic": "Life inside a medieval cottage",
+      "era": "medieval"
+    },
+    {
+      "topic": "How Romans slept, ate and kept warm through winter",
+      "era": "ancient"
+    },
+    {
+      "topic": "What Stone Age children did all day",
+      "era": "stone_age"
+    },
+    {
+      "topic": "How medieval peasants slept, and why they woke at midnight",
+      "era": "medieval"
+    },
+    {
+      "topic": "A day and a night at a Mediterranean harbour two thousand years ago",
+      "era": "ancient"
+    },
+    {
+      "topic": "How early humans found food through the seasons",
+      "era": "stone_age"
+    },
+    {
+      "topic": "A medieval harvest, from first light to the last candle",
+      "era": "medieval"
+    },
+    {
+      "topic": "What Roman children did all day",
+      "era": "ancient"
+    },
+    {
+      "topic": "The first farmers: life in the first villages",
+      "era": "stone_age"
+    },
+    {
+      "topic": "What medieval people did for fun on long evenings",
+      "era": "medieval"
+    },
+    {
+      "topic": "How early humans lived beside the sea",
+      "era": "stone_age"
+    },
+    {
+      "topic": "A year in the life of a medieval farming family",
+      "era": "medieval"
+    }
+  ]
 }

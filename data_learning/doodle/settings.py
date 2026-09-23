@@ -43,7 +43,7 @@ class Setting:
     ground: str                 # grass | snow | sand | rock | dirt | floor
     interior: bool = False
     water: str | None = None    # river | lake | sea
-    eras: tuple = ("stone_age", "medieval")
+    eras: tuple = ("stone_age", "medieval", "ancient")
     horizon: float = 0.62       # fraction of H where the far land meets the sky
 
 
@@ -62,10 +62,13 @@ SETTINGS = {
     "field": Setting("dirt", eras=("medieval",)),
     "cottage_inside": Setting("floor", interior=True, eras=("medieval",)),
     "castle": Setting("grass", eras=("medieval",)),
+    "forum": Setting("stone", eras=("ancient",)),                 # a town square: colonnade, town behind
+    "villa_inside": Setting("floor", interior=True, eras=("ancient",)),
+    "olive_grove": Setting("dirt", eras=("ancient",)),
 }
 
 GROUND = {"grass": "#8fb35f", "snow": "#eef2f5", "sand": "#e3cf9a", "rock": "#9b8f80",
-          "dirt": "#b59a6d", "floor": "#8a6a48"}
+          "dirt": "#b59a6d", "floor": "#8a6a48", "stone": "#cfc4b0"}
 GROUND_Y = 0.80                  # fraction of H where people stand
 
 
@@ -145,6 +148,14 @@ def _ground(cr, kind, gy, seed):
         for k in range(1, 6):
             y = gy - 30 + k * 50
             ink.line(cr, [(-10, y), (W + 10, y + r.uniform(-4, 4))], lw=3, ink=shade(c, 0.7), amp=1, seed=k)
+    elif kind == "stone":
+        # paving: a loose grid of flags
+        for k in range(1, 6):
+            y = gy - 40 + k * 52
+            ink.line(cr, [(-10, y), (W + 10, y + r.uniform(-3, 3))], lw=2.5, ink=shade(c, 0.8), amp=0.8, seed=k)
+            for j in range(9):
+                x = j * 240 + (k % 2) * 120 + r.uniform(-8, 8)
+                ink.line(cr, [(x, y), (x + r.uniform(-6, 6), y + 52)], lw=2.5, ink=shade(c, 0.8), amp=0.8, seed=k * 9 + j)
 
 
 def _frost(cr, gy, seed):
@@ -159,6 +170,35 @@ def _frost(cr, gy, seed):
         w = r.uniform(8, 26)
         ink.line(cr, [(x - w, y), (x + w, y - r.uniform(1, 3))], lw=r.uniform(2, 3.5),
                  ink=(0.93, 0.96, 1.0), amp=0)
+
+
+def _town(cr, r, y0, seed):
+    """A row of Mediterranean houses on the skyline: cream walls, low
+    terracotta roofs, a few dark windows."""
+    for k in range(6):
+        x = -80 + k * 380 + r.uniform(-50, 50)
+        w = r.uniform(150, 240)
+        h = r.uniform(110, 190)
+        wall = ink.mix(rgb("#e6dcc4"), rgb("#d9c7a3"), r.random())
+        ink.fill_stroke(cr, [(x - w / 2, y0), (x - w / 2, y0 - h), (x + w / 2, y0 - h), (x + w / 2, y0)], wall,
+                        lw=4, amp=1, seed=seed + k, shadow=shade(wall), shadow_dir=(1, 0))
+        roof = rgb("#b8623f")
+        ink.fill_stroke(cr, [(x - w / 2 - 14, y0 - h), (x, y0 - h - r.uniform(30, 55)), (x + w / 2 + 14, y0 - h)],
+                        roof, lw=4, amp=1, seed=seed + k + 7, shadow=shade(roof), shadow_dir=(1, 0))
+        for j in range(int(w // 70)):
+            wx = x - w / 2 + 35 + j * 70
+            ink.fill_stroke(cr, [(wx - 12, y0 - h * 0.55), (wx + 12, y0 - h * 0.55), (wx + 12, y0 - h * 0.25),
+                                 (wx - 12, y0 - h * 0.25)], rgb("#3d3a44"), lw=3, amp=0)
+
+
+def _colonnade(cr, r, y0, seed):
+    """A line of columns across the square, with the beam they carry."""
+    from .props import column
+    xs = [180 + k * 390 + r.uniform(-20, 20) for k in range(5)]
+    ink.fill_stroke(cr, [(xs[0] - 60, y0 - 215), (xs[-1] + 60, y0 - 215), (xs[-1] + 60, y0 - 190), (xs[0] - 60, y0 - 190)],
+                    rgb("#e3dbc9"), lw=4, amp=0.8, seed=seed, shadow=rgb("#cfc5b1"), shadow_dir=(0, 1))
+    for k, x in enumerate(xs):
+        column(cr, x, y0, 0.8, 0.0, seed + k)
 
 
 def _interior(cr, name, seed, r):
@@ -180,6 +220,26 @@ def _interior(cr, name, seed, r):
         for k in range(24):
             x = k * 90 + r.uniform(-10, 10)
             ink.line(cr, [(x, -10), (W / 2 + (x - W / 2) * 0.35, H * 0.55)], lw=6, ink=rgb("#5a4129"), amp=1, seed=k)
+    elif name == "villa_inside":
+        wall = rgb("#d9b9a0")
+        cr.set_source_rgba(*wall)
+        cr.paint()
+        # a painted dado in deep red with a pale band, the way villa walls were
+        ink.fill_stroke(cr, [(-10, H * 0.5), (W + 10, H * 0.5), (W + 10, H * 0.8), (-10, H * 0.8)], rgb("#8e3b34"),
+                        lw=0, amp=0)
+        ink.line(cr, [(-10, H * 0.5), (W + 10, H * 0.5)], lw=10, ink=rgb("#e8d9b8"), amp=0.6, seed=seed)
+        ink.line(cr, [(-10, H * 0.5 + 24), (W + 10, H * 0.5 + 24)], lw=3, ink=rgb("#e8d9b8"), amp=0.6, seed=seed + 1)
+        # a doorway to a sunlit courtyard
+        dx = r.choice([380, 1000, 1500])
+        ink.fill_stroke(cr, [(dx - 120, H * 0.8), (dx - 120, 200), (dx + 120, 200), (dx + 120, H * 0.8)],
+                        rgb("#c9b08a"), lw=8, amp=0.8, seed=seed + 2)
+        ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, 220), (dx + 100, 220), (dx + 100, H * 0.8)],
+                        rgb("#a9c4e0"), lw=0, amp=0)
+        ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, H * 0.62), (dx + 100, H * 0.62), (dx + 100, H * 0.8)],
+                        rgb("#8fb35f"), lw=0, amp=0)
+        ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), rgb("#8fa27a"), lw=3,
+                        amp=1, seed=seed + 5)
+        ink.line(cr, [(dx + 30, H * 0.62), (dx + 30, H * 0.58)], lw=6, ink=rgb("#6f5a44"), amp=0)
     elif name == "cottage_inside":
         wall = rgb("#d8c39a")
         cr.set_source_rgba(*wall)
@@ -230,6 +290,13 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
     _hills(cr, r, H * st.horizon + 30, 60, ink.mix(far, rgb(GROUND[st.ground]), 0.45), seed + 3)
     if name == "castle":
         _castle(cr, W * r.uniform(0.3, 0.7), H * st.horizon + 60, seed)
+    if name == "forum":
+        _town(cr, r, H * st.horizon + 40, seed)
+        _colonnade(cr, r, H * st.horizon + 150, seed)
+    if name == "olive_grove":
+        from .props import olive
+        for k in range(6):
+            olive(cr, k * 360 + r.uniform(-70, 70), H * 0.72, 0.7, 0.0, seed + k)
     if name in ("forest",):
         for k in range(9):
             x = k * 230 + r.uniform(-40, 40)

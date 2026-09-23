@@ -272,7 +272,15 @@ and the takeover went on asking for a retired format with everything green.
   must contain something that REALLY moves — strengths measured with the
   gate's own probe, never a camera trick. The registry entry stays
   disabled on purpose (it describes the retired pro queue) — the path is
-  in `ON_BUT_GATED`, like long-form.
+  in `ON_BUT_GATED`, like long-form. The judge's notes on the first three
+  films became rules with tests (a real-width layout that keeps a sleeper
+  out of the fire, nothing cut by the frame, a painting only on a wall) and
+  then a STORYBOARD review (`data_learning/ori_storyboard.py`): the same
+  brain looks at every scene as a still before the two-hour render and the
+  small repairs happen there. His words: *"don't make a great video and
+  then ruin it because of the judge ... [and don't] make the judge easier
+  because then that's how you put out trash."* The gate is never touched;
+  the film moves.
 
 Trending's formats are `reddit_story` (gameplay + post card + TTS) and
 `graph_race` (animated chart); `text_card` is retired. **Those are the

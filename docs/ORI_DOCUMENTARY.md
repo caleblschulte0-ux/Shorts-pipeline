@@ -195,6 +195,18 @@ oracle: same answers, no memory.
 - The stock-footage documentary renderer is gone (2026-09-23), with its
   three scripts. Its lesson lives in `post_ori.py`'s judge context: the
   judge is told what each chapter says so it can check the picture.
-- Two eras are drawn (`stone_age`, `medieval`); a topic outside them waits
-  for its settings and props to be added to the kit, with the tests that
-  say they resolve and move.
+- Three eras are drawn (`stone_age`, `medieval`, `ancient` — the Roman and
+  Greek Mediterranean: tunics, a forum with a colonnade and a town behind,
+  a villa interior with a painted dado, an olive grove, a temple, a villa,
+  columns, amphorae, a brazier and an oil lamp, a market stall, goats); a
+  topic outside them waits for its settings and props to be added to the
+  kit, with the tests that say they resolve and move. Adding an era is
+  data plus drawings: `OUTFIT`, `Setting.eras`, `Prop.eras`, and a measured
+  strength for each new living light (brazier: night close 0.18, night wide
+  0.32, day close 0.37, day wide 0.59; oil lamp 0.26-0.28 everywhere).
+- Fog is measured too: a river under fog holds 0.20 at night and 0.97 by
+  day, a cauldron 0.06 clear and 0.34 in fog — so water counts only at
+  night in fog and a cauldron drops a step.
+- Back props in a water setting stand on the far shore (across the bay for
+  the sea), never in the water; a small light stands on a table when there
+  is one.

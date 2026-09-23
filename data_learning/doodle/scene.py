@@ -32,12 +32,13 @@ from .props import PROPS
 from .settings import SETTINGS, TIMES, WEATHER
 
 W, H = settings.W, settings.H
-ERAS = ("stone_age", "medieval")
+ERAS = ("stone_age", "medieval", "ancient")
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
 STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack",
-         "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting"}
+         "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
+         "column", "temple", "villa", "amphora", "stall", "olive"}
 MAX_CAST, MAX_PROPS = 4, 6
 LIGHT_ITEMS = ("torch", "lantern")
 
@@ -91,9 +92,33 @@ def _fire_strength(name, time, shot, interior):
         return 2 if shot == "close" else 1
     if name == "torch":
         return 1
-    if name == "candle":
-        return 2
+    if name in ("candle", "oil_lamp"):
+        # measured 2026-09-23: 0.26-0.28 inside (the flicker plays on a wall),
+        # 0.53 on open grass at night — a small flame needs a room around it
+        return 2 if interior else 0
+    if name == "brazier":
+        # measured 2026-09-23: night close 0.18, night wide 0.32, day close 0.37, day wide 0.59
+        if shot == "close":
+            return 2 if dark else 1
+        return 1 if dark else 0
     return 0
+
+
+def _water_strength(kind, time, fog) -> int:
+    """Measured 2026-09-23 with the real probe (4 s clips, the water alone,
+    the same in a close and a wide shot): river day 0.88, dusk 0.27, night
+    0.17, dawn 0.67; lake day 0.80, dusk 0.33, night 0.24, dawn 0.66; sea
+    day 0.43, dusk 0.08, night 0.04, dawn 0.26. Fog: a river holds 0.20 at
+    night and 0.97 by day. Daylight water is a still picture with a few
+    glints; the glints carry it only against a darker sky."""
+    if fog and time != "night":
+        return 0
+    table = {
+        "river": {"day": 0, "dusk": 2, "night": 2, "dawn": 0},
+        "lake": {"day": 0, "dusk": 1, "night": 2, "dawn": 0},
+        "sea": {"day": 1, "dusk": 2, "night": 2, "dawn": 2},
+    }
+    return table.get(kind, {}).get(time, 0)
 
 
 def motion_strength(spec: dict) -> int:
@@ -101,15 +126,19 @@ def motion_strength(spec: dict) -> int:
     if st is None:
         return 0
     time, shot = spec.get("time"), shot_of(spec)
+    fog = spec.get("weather") == "fog"
     score = 0
     if st.water:
-        score += 2
+        score += _water_strength(st.water, time, fog)
     if spec.get("weather") == "rain":
         score += 2
     for p in _prop_list(spec):
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
-            score += _fire_strength(p["name"], time, shot, st.interior)
+            k = _fire_strength(p["name"], time, shot, st.interior)
+            if fog and p["name"] == "cauldron":
+                k = max(0, k - 1)     # measured: dusk close 0.06 clear, 0.34 in fog
+            score += k
     for c in spec.get("cast") or []:
         if not isinstance(c, dict):
             continue
@@ -190,9 +219,10 @@ def validate(spec, era: str) -> list[str]:
         if p.get("at") is not None and p.get("at") not in SLOTS:
             bad.append(f"props[{i}].at {p.get('at')!r} is not one of {sorted(SLOTS)}")
     if not bad and not is_living(spec):
-        bad.append("nothing in this scene moves enough to read as alive: add a campfire or "
-                   "cauldron at dusk or night (close shot), a hearth or candle, a river/lake/sea "
-                   "setting, rain, or (in daylight, close shot) someone walking, chopping or waving")
+        bad.append("nothing in this scene moves enough to read as alive: add a campfire, brazier or "
+                   "cauldron at dusk or night (close shot), a hearth, a candle or oil lamp indoors, "
+                   "a river/lake/sea at dusk or night (the sea by day too), rain, or (in daylight, "
+                   "close shot) someone walking, chopping or waving")
     return bad
 
 
@@ -221,7 +251,7 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, 
 # same place reads as a deer in the fire, so they take room like anything
 # else. Trees, tents and walls stay scenery.
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
-              "hearth"}
+              "hearth", "temple", "villa", "column"}
 
 
 def figure_extent(pose: str, R: float, action: str = "idle", item: str | None = None) -> tuple[float, float]:
@@ -242,13 +272,14 @@ def spans(lay: dict) -> list[dict]:
         lo, hi = figure_extent(f["pose"], R, f.get("action", "idle"), f.get("item"))
         if f["facing"] == "left":
             lo, hi = -hi, -lo
-        out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None))
-    for p in lay["props"]:
+        out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None,
+                        pid=None, on=None))
+    for i, p in enumerate(lay["props"]):
         if p["layer"] == "back" and p["name"] not in SOLID_BACK:
             continue
         w = PROPS[p["name"]].width * p["s"]
         out.append(dict(label=p["name"], lo=p["x"] - w / 2, hi=p["x"] + w / 2, fig=None,
-                        under=p.get("under")))
+                        under=p.get("under"), pid=i, on=p.get("on")))
     return out
 
 
@@ -267,6 +298,9 @@ def collisions(lay: dict) -> list[str]:
             if (A["under"] is not None and A["under"] == B["fig"]) or \
                (B["under"] is not None and B["under"] == A["fig"]):
                 continue
+            if (A.get("on") is not None and A["on"] == B.get("pid")) or \
+               (B.get("on") is not None and B["on"] == A.get("pid")):
+                continue          # a lamp on its table
             over = min(A["hi"], B["hi"]) - max(A["lo"], B["lo"])
             if over > MARGIN:
                 bad.append(f"{A['label']} overlaps {B['label']} by {over:.0f}px")
@@ -342,12 +376,27 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
         focal = pl[0]
     focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * 0.5
 
+    st = SETTINGS.get(spec.get("setting"))
+    water = st.water if st is not None else None
+    # the near edge of the water band (settings._water): back props stand
+    # on the far shore, above it, a little smaller — not in the water
+    far_shore = None
+    if water == "river":
+        far_shore = gy - 120 - 8
+    elif water == "lake":
+        far_shore = gy - 170 - 8
+    elif water == "sea":
+        far_shore = H * 0.58 - 8            # the sea runs to the horizon; things stand across the bay
+
     def prop_geom(p):
         pr = PROPS[p["name"]]
         ps = s * (0.82 if pr.layer == "back" else 1.0) * (0.95 if shot == "wide" else 1.0)
         if pr.living and shot == "wide":
             ps *= 1.35          # a fire is the heart of a wide shot, not a speck in it
         py = gy + {"back": -60 * s, "mid": 10 * s, "front": 70 * s}[pr.layer]
+        if pr.layer == "back" and far_shore is not None:
+            ps *= 0.8
+            py = far_shore
         return pr, ps, py, pr.width * ps
 
     if focal:
@@ -450,6 +499,18 @@ def _layout(spec: dict, seed: int, shrink: float) -> dict:
             put(x - w / 2, x + w / 2)
         placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                            seed=seed + len(placed) * 17))
+    # a small light stands ON a table when there is one (a lamp on the
+    # floor under the table was where the crowding check put it)
+    tables = [i for i, q in enumerate(placed) if q["name"] == "table"]
+    if tables:
+        ti = tables[0]
+        tb = placed[ti]
+        for q in placed:
+            if q["name"] in ("candle", "oil_lamp") and "on" not in q and not q.get("at"):
+                q["x"] = tb["x"] + 120 * tb["s"]
+                q["y"] = tb["y"] - props.TABLE_TOP * tb["s"]
+                q["on"] = ti
+                break
     for f in figs:
         f.pop("_pot", None)
         f.pop("_bed", None)

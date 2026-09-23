@@ -3700,14 +3700,22 @@
     {
      "say": "Out on the grass the frost is complete now, white on every blade, and the tents stand pale in it. There is not a breath of wind. In this stillness, sound carries a very long way: the river, an owl far down the valley, and the tiny tick of the fire on the hillside. If you stood out here you would see the eastern sky beginning, just barely, to separate itself from the mountains. Not light. Just less dark. The stars over there are going out one by one, quietly, like people leaving a room.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "grassland",
       "time": "dawn",
-      "weather": "clear",
-      "shot": "wide",
+      "weather": "frost",
+      "shot": "close",
       "props": [
+       "campfire",
        "tent",
-       "tree",
        "rock"
+      ],
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hug_self",
+        "mood": "calm"
+       }
       ]
      }
     },

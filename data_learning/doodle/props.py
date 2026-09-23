@@ -327,6 +327,154 @@ def bedroll(cr, x, y, s, t, seed):
                     texture="fur", tex_alpha=0.5)
 
 
+def column(cr, x, y, s, t, seed):
+    """A fluted stone column with a plain capital."""
+    c = rgb("#e8e0cf")
+    ink.fill_stroke(cr, [(x - 36 * s, y), (x + 36 * s, y), (x + 36 * s, y - 16 * s), (x - 36 * s, y - 16 * s)], c,
+                    lw=4 * s, amp=0.6, seed=seed)
+    ink.fill_stroke(cr, [(x - 24 * s, y - 16 * s), (x + 24 * s, y - 16 * s), (x + 22 * s, y - 250 * s),
+                         (x - 22 * s, y - 250 * s)], c, lw=4.5 * s, amp=0.8, seed=seed + 1, shadow=shade(c, 0.88),
+                    shadow_dir=(1, 0))
+    for dx in (-12, 0, 12):
+        ink.line(cr, [(x + dx * s, y - 30 * s), (x + dx * s, y - 240 * s)], lw=2 * s, ink=shade(c, 0.82), amp=0.4,
+                 seed=seed + dx)
+    ink.fill_stroke(cr, [(x - 36 * s, y - 250 * s), (x + 36 * s, y - 250 * s), (x + 36 * s, y - 268 * s),
+                         (x - 36 * s, y - 268 * s)], c, lw=4 * s, amp=0.6, seed=seed + 2)
+
+
+def temple(cr, x, y, s, t, seed):
+    """A small temple front: steps, four columns, a pediment."""
+    c = rgb("#e3dbc9")
+    for k, (hw, h) in enumerate(((250, 14), (230, 28))):
+        ink.fill_stroke(cr, [(x - hw * s, y - (h - 14) * s), (x + hw * s, y - (h - 14) * s), (x + hw * s, y - h * s),
+                             (x - hw * s, y - h * s)], c, lw=4 * s, amp=0.6, seed=seed + k)
+    for k, dx in enumerate((-165, -55, 55, 165)):
+        column(cr, x + dx * s, y - 28 * s, s * 0.85, t, seed + 10 + k)
+    top = y - 28 * s - 268 * s * 0.85
+    ink.fill_stroke(cr, [(x - 225 * s, top), (x + 225 * s, top), (x + 225 * s, top - 26 * s), (x - 225 * s, top - 26 * s)],
+                    c, lw=4 * s, amp=0.6, seed=seed + 3)
+    ink.fill_stroke(cr, [(x - 235 * s, top - 26 * s), (x, top - 110 * s), (x + 235 * s, top - 26 * s)],
+                    rgb("#d8cdb7"), lw=4.5 * s, amp=0.8, seed=seed + 4, shadow=shade(c, 0.9), shadow_dir=(1, 0))
+
+
+def villa(cr, x, y, s, t, seed):
+    """A Roman house: plastered wall, a low terracotta roof, a shuttered window."""
+    wall = rgb("#e7dcc2")
+    ink.fill_stroke(cr, [(x - 200 * s, y), (x - 200 * s, y - 175 * s), (x + 200 * s, y - 175 * s), (x + 200 * s, y)],
+                    wall, lw=5 * s, amp=1, seed=seed, shadow=shade(wall), shadow_dir=(1, 0), texture="grain",
+                    tex_alpha=0.12)
+    roof = rgb("#b8623f")
+    ink.fill_stroke(cr, [(x - 235 * s, y - 170 * s), (x - 150 * s, y - 240 * s), (x + 150 * s, y - 240 * s),
+                         (x + 235 * s, y - 170 * s)], roof, lw=5 * s, amp=1.5, seed=seed + 1, shadow=shade(roof),
+                    shadow_dir=(1, 0), texture="hatch", tex_alpha=0.15)
+    ink.fill_stroke(cr, [(x - 35 * s, y), (x - 35 * s, y - 120 * s), (x + 35 * s, y - 120 * s), (x + 35 * s, y)],
+                    rgb("#5a3b24"), lw=4 * s, amp=0.6, seed=seed + 2)
+    ink.fill_stroke(cr, [(x + 90 * s, y - 70 * s), (x + 150 * s, y - 70 * s), (x + 150 * s, y - 130 * s),
+                         (x + 90 * s, y - 130 * s)], rgb("#4b5d6e"), lw=4 * s, amp=0.5, seed=seed + 3)
+
+
+def amphora(cr, x, y, s, t, seed):
+    """A tall clay jar leaning in its stand."""
+    c = rgb("#b5673a")
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 62 * s, 30 * s, 56 * s, 24), c, lw=4.5 * s, amp=1, seed=seed,
+                    shadow=shade(c), shadow_dir=(1, 0.3))
+    ink.fill_stroke(cr, [(x - 14 * s, y - 112 * s), (x + 14 * s, y - 112 * s), (x + 18 * s, y - 136 * s),
+                         (x - 18 * s, y - 136 * s)], c, lw=4 * s, amp=0.6, seed=seed + 1)
+    for d in (-1, 1):
+        ink.line(cr, [(x + d * 16 * s, y - 128 * s), (x + d * 34 * s, y - 118 * s), (x + d * 28 * s, y - 92 * s)],
+                 lw=4 * s, ink=c, amp=0)
+    ink.line(cr, [(x - 22 * s, y - 40 * s), (x + 22 * s, y - 40 * s)], lw=3 * s, ink=shade(c, 0.7), amp=0)
+
+
+def brazier_base(cr, x, y, s, t, seed):
+    """An iron bowl on three legs, the fire people gathered round indoors and in the square."""
+    iron = rgb("#4a4744")
+    for dx in (-48, 0, 48):
+        ink.line(cr, [(x + dx * s, y), (x + dx * s * 0.45, y - 70 * s)], lw=6 * s, ink=iron, amp=0)
+    ink.fill_stroke(cr, [(x - 62 * s, y - 92 * s), (x + 62 * s, y - 92 * s), (x + 44 * s, y - 62 * s),
+                         (x - 44 * s, y - 62 * s)], iron, lw=4.5 * s, amp=0.8, seed=seed, shadow=shade(iron),
+                    shadow_dir=(1, 0.5))
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 92 * s, 62 * s, 12 * s, 20), rgb("#5a3a2a"), lw=4 * s, amp=0)
+
+
+def brazier(cr, x, y, s, t, seed):
+    flame(cr, x, y - 96 * s, 62 * s, t, seed, glow_r=4.0, glow_a=0.4)
+    embers(cr, x, y - 100 * s, s * 0.8, t, seed, n=14, spread=30.0, rise=180.0)
+
+
+def oil_lamp_base(cr, x, y, s, t, seed):
+    """A small clay lamp on a stand: a flat lens of a body with a spout."""
+    s = s * 0.6
+    ink.fill_stroke(cr, [(x - 30 * s, y), (x + 30 * s, y), (x + 22 * s, y - 16 * s), (x - 22 * s, y - 16 * s)],
+                    rgb("#6d5a44"), lw=4 * s, amp=0)
+    ink.line(cr, [(x, y - 16 * s), (x, y - 70 * s)], lw=6 * s, ink=rgb("#6d5a44"), amp=0)
+    c = rgb("#b5673a")
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 84 * s, 34 * s, 13 * s, 18), c, lw=4 * s, amp=0.6, seed=seed,
+                    shadow=shade(c), shadow_dir=(1, 0.5))
+    ink.fill_stroke(cr, [(x + 26 * s, y - 90 * s), (x + 50 * s, y - 86 * s), (x + 26 * s, y - 78 * s)], c,
+                    lw=3.5 * s, amp=0)
+
+
+def oil_lamp(cr, x, y, s, t, seed):
+    s = s * 0.6
+    flame(cr, x + 46 * s, y - 92 * s, 30 * s, t, seed, glow_r=5.5, glow_a=0.4)
+
+
+def stall(cr, x, y, s, t, seed):
+    """A market stall: two posts, a striped awning, a counter with baskets."""
+    for dx in (-130, 130):
+        ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 230 * s)], lw=8 * s, ink=WOOD, amp=0)
+    aw = rgb("#e8dcc0")
+    ink.fill_stroke(cr, [(x - 150 * s, y - 230 * s), (x + 150 * s, y - 230 * s), (x + 165 * s, y - 175 * s),
+                         (x - 165 * s, y - 175 * s)], aw, lw=4.5 * s, amp=1.5, seed=seed, shadow=shade(aw),
+                    shadow_dir=(0, 1))
+    for k in range(-2, 3):
+        ink.fill_stroke(cr, [(x + (k * 60 - 12) * s, y - 230 * s), (x + (k * 60 + 12) * s, y - 230 * s),
+                             (x + (k * 60 + 14) * s, y - 175 * s), (x + (k * 60 - 14) * s, y - 175 * s)],
+                        rgb("#b8623f"), lw=0, amp=0)
+    ink.fill_stroke(cr, [(x - 140 * s, y - 100 * s), (x + 140 * s, y - 100 * s), (x + 140 * s, y - 80 * s),
+                         (x - 140 * s, y - 80 * s)], WOOD, lw=4 * s, amp=0.6, seed=seed + 1)
+    for k, dx in enumerate((-90, -20, 60)):
+        basket(cr, x + dx * s, y - 100 * s, s * 0.75, t, seed + k)
+        for j in range(5):
+            ink.dot(cr, x + (dx - 18 + j * 9) * s, y - 125 * s - (j % 2) * 6 * s, 6 * s,
+                    rgb(["#c9432f", "#d9a441", "#7a9a3f"][(k + j) % 3]))
+
+
+def goat(cr, x, y, s, t, seed):
+    """A goat, head dipping to the ground and up, tail flicking."""
+    c = rgb("#b8a48a")
+    ink.fill_stroke(cr, ink.blob_pts(x, y - 78 * s, 75 * s, 42 * s, seed, 0.1, 18), c, lw=5 * s, amp=1.2, seed=seed,
+                    shadow=shade(c), shadow_dir=(0, 1))
+    for dx in (-48, -22, 28, 50):
+        ink.line(cr, [(x + dx * s, y - 45 * s), (x + dx * s, y)], lw=6 * s, amp=0)
+    g = (math.sin(t * 2 * math.pi / 5.0 + seed) + 1) / 2
+    hx, hy = x + 88 * s, y - 104 * s + g * 55 * s
+    ink.line(cr, [(x + 62 * s, y - 92 * s), (hx - 10 * s, hy + 4 * s)], lw=16 * s, ink=c, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 26 * s, 20 * s, 16), c, lw=4 * s, amp=0.6, seed=seed + 1)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 22 * s, hy + 2 * s, 5 * s, 4 * s, 8), ink.INK, lw=0, amp=0)
+    for d in (-1, 1):
+        ink.line(cr, [(hx - 8 * s + d * 8 * s, hy - 16 * s), (hx - 4 * s + d * 22 * s, hy - 44 * s)], lw=3.5 * s, amp=0)
+    ink.line(cr, [(hx + 4 * s, hy + 18 * s), (hx + 2 * s, hy + 32 * s)], lw=3 * s, amp=0)
+    f = math.sin(t * 2 * math.pi / 2.2 + seed) * 8 * s
+    ink.line(cr, [(x - 72 * s, y - 88 * s), (x - 92 * s, y - 104 * s + f)], lw=5 * s, ink=c, amp=0)
+
+
+def olive(cr, x, y, s, t, seed):
+    """An olive tree: a twisted trunk and a grey-green crown."""
+    r = random.Random(seed)
+    trunk = rgb("#6f5a44")
+    pts = [(x - 24 * s, y), (x - 10 * s + r.uniform(-8, 8) * s, y - 90 * s), (x + 6 * s, y - 150 * s),
+           (x + 30 * s, y - 150 * s), (x + 16 * s, y - 90 * s), (x + 26 * s, y)]
+    ink.fill_stroke(cr, pts, trunk, lw=4.5 * s, amp=1.5, seed=seed, texture="grain", tex_alpha=0.25)
+    crown = rgb("#8fa27a")
+    for k in range(5):
+        a = k * 1.25 + r.random()
+        ink.fill_stroke(cr, ink.blob_pts(x + 18 * s + math.cos(a) * 60 * s, y - 190 * s + math.sin(a) * 34 * s,
+                                         62 * s, 44 * s, seed + k, 0.12, 14), crown, lw=4 * s, amp=1.2,
+                        seed=seed + k, shadow=shade(crown), shadow_dir=(1, 0.6))
+
+
 def hide_rack(cr, x, y, s, t, seed):
     for dx in (-100, 100):
         ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 230 * s)], lw=8 * s, ink=WOOD, amp=0)
@@ -464,6 +612,9 @@ def table(cr, x, y, s, t, seed):
                     amp=0.6, seed=seed + 2)
 
 
+TABLE_TOP = 110          # the table top, above its feet, at scale 1 (a lamp stands on it)
+
+
 def bench(cr, x, y, s, t, seed):
     top = y - 60 * s
     ink.fill_stroke(cr, [(x - 130 * s, top), (x + 130 * s, top), (x + 130 * s, top + 16 * s),
@@ -593,44 +744,56 @@ class Prop:
 
 
 BOTH = ("stone_age", "medieval")
+ALL = ("stone_age", "medieval", "ancient")
+LATER = ("medieval", "ancient")          # the settled world: tables, wells, carts, kept animals
 STONE_AGE = ("stone_age",)
+ANCIENT = ("ancient",)
 MEDIEVAL = ("medieval",)
 
 PROPS = {
-    "campfire": Prop(campfire, 250, "mid", BOTH, living=True, light=True, height=90, base=campfire_base),
+    "campfire": Prop(campfire, 250, "mid", ALL, living=True, light=True, height=90, base=campfire_base),
     "hearth": Prop(hearth, 300, "back", MEDIEVAL, living=True, light=True, height=110, base=hearth_base),
-    "torch": Prop(torch_wall, 60, "back", BOTH, living=True, light=True, height=260, base=torch_base),
-    "candle": Prop(candle, 60, "front", MEDIEVAL, living=True, light=True, height=75, base=candle_base),
-    "cauldron": Prop(cauldron, 160, "mid", BOTH, living=True, light=True, height=40, base=cauldron_base),
-    "pot": Prop(pot, 130, "mid", BOTH, base=pot_base),
+    "torch": Prop(torch_wall, 60, "back", ALL, living=True, light=True, height=260, base=torch_base),
+    "candle": Prop(candle, 60, "front", LATER, living=True, light=True, height=75, base=candle_base),
+    "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
+    "pot": Prop(pot, 130, "mid", ALL, base=pot_base),
     "tent": Prop(tent, 360, "back", STONE_AGE),
-    "hut": Prop(hut, 390, "back", BOTH),
+    "hut": Prop(hut, 390, "back", ALL),
     "cottage": Prop(cottage, 470, "back", MEDIEVAL, base=cottage_base),
-    "tree": Prop(tree, 300, "back", BOTH),
-    "pine": Prop(pine, 280, "back", BOTH),
-    "bush": Prop(bush, 190, "mid", BOTH),
-    "rock": Prop(rock, 200, "mid", BOTH),
-    "reeds": Prop(reeds, 150, "front", BOTH),
-    "woodpile": Prop(woodpile, 180, "mid", BOTH),
+    "tree": Prop(tree, 300, "back", ALL),
+    "pine": Prop(pine, 280, "back", ALL),
+    "bush": Prop(bush, 190, "mid", ALL),
+    "rock": Prop(rock, 200, "mid", ALL),
+    "reeds": Prop(reeds, 150, "front", ALL),
+    "woodpile": Prop(woodpile, 180, "mid", ALL),
     "bedroll": Prop(bedroll, 280, "mid", STONE_AGE),
     "hide_rack": Prop(hide_rack, 240, "back", STONE_AGE),
     "deer": Prop(deer, 280, "back", BOTH),
     "mammoth": Prop(mammoth, 600, "back", STONE_AGE),
     "wolf": Prop(wolf, 270, "mid", STONE_AGE),
-    "dog": Prop(wolf, 270, "mid", MEDIEVAL),
-    "sheep": Prop(sheep, 200, "mid", MEDIEVAL),
-    "cow": Prop(cow, 330, "back", MEDIEVAL),
-    "chicken": Prop(chicken, 90, "front", MEDIEVAL),
-    "table": Prop(table, 400, "mid", MEDIEVAL),
-    "bench": Prop(bench, 280, "mid", MEDIEVAL),
-    "well": Prop(well, 280, "back", MEDIEVAL),
-    "cart": Prop(cart, 460, "back", MEDIEVAL),
-    "barrel": Prop(barrel, 130, "mid", MEDIEVAL),
+    "dog": Prop(wolf, 270, "mid", LATER),
+    "sheep": Prop(sheep, 200, "mid", LATER),
+    "cow": Prop(cow, 330, "back", LATER),
+    "chicken": Prop(chicken, 90, "front", LATER),
+    "table": Prop(table, 400, "mid", LATER),
+    "bench": Prop(bench, 280, "mid", LATER),
+    "well": Prop(well, 280, "back", LATER),
+    "cart": Prop(cart, 460, "back", LATER),
+    "barrel": Prop(barrel, 130, "mid", LATER),
     "canoe": Prop(canoe, 400, "mid", STONE_AGE),
     "wheat": Prop(wheat, 240, "front", MEDIEVAL),
     "cave_painting": Prop(cave_painting, 360, "back", STONE_AGE, settings=("cave_inside",)),
     "stones": Prop(stones, 120, "front", STONE_AGE),
-    "basket": Prop(basket, 130, "front", BOTH),
+    "basket": Prop(basket, 130, "front", ALL),
     "fish_rack": Prop(fish_rack, 220, "back", STONE_AGE),
-    "bed": Prop(bed, 400, "mid", MEDIEVAL),
+    "bed": Prop(bed, 400, "mid", LATER),
+    "column": Prop(column, 80, "back", ANCIENT),
+    "temple": Prop(temple, 520, "back", ANCIENT),
+    "villa": Prop(villa, 480, "back", ANCIENT),
+    "amphora": Prop(amphora, 80, "front", ANCIENT),
+    "brazier": Prop(brazier, 150, "mid", ANCIENT, living=True, light=True, height=100, base=brazier_base),
+    "oil_lamp": Prop(oil_lamp, 60, "front", ANCIENT, living=True, light=True, height=60, base=oil_lamp_base),
+    "stall": Prop(stall, 340, "mid", ANCIENT),
+    "goat": Prop(goat, 200, "mid", ANCIENT, living=False),
+    "olive": Prop(olive, 260, "back", ANCIENT),
 }
