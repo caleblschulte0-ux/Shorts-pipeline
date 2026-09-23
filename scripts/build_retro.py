@@ -475,6 +475,67 @@ def depictions_vs_performance(channel_path: str = CHANNELS["explainer"],
     return out
 
 
+#: Below this many mature videos per arm the comparison is reported, never
+#: concluded on. The operator's brief, 2026-09-23: "A dozen videos per arm is
+#: noise, and the brief should say so."
+ARM_MIN = 30
+
+
+def style_arms_vs_performance(channel_path: str = CHANNELS["explainer"],
+                              posted_log: Path | None = None,
+                              min_age_hours: float = 24.0) -> dict:
+    """The A/B test of the explainer's LOOK (`shared/style_arms.py`).
+
+    Every mature explainer video is scored as the percentile of its
+    views-per-hour among explainer videos in the SAME AGE BAND, then grouped
+    by the arm its posted-log entry recorded. Only videos posted since the
+    first illustrated upload are compared, so a channel-wide trend over time
+    cannot pose as a style effect. Honest about thinness: an arm under
+    `ARM_MIN` mature videos is labelled noise and no winner is named.
+    """
+    out: dict = {"note": ("views-per-hour percentile vs same-age explainer "
+                          "videos, by style arm, videos >= %gh old posted "
+                          "since the first illustrated upload" % min_age_hours),
+                 "arms": {}, "enough_to_judge": False}
+    data = _load(ROOT / channel_path)
+    videos = [v for v in ((data or {}).get("videos") or []) if isinstance(v, dict)]
+    log = _load(posted_log or (STATE / "explainer_posted_log.json")) or {}
+    posted = log.get("posted") or {}
+    arm_of = {slug: str(e.get("style_arm") or "current")
+              for slug, e in posted.items() if isinstance(e, dict)}
+    at_of = {slug: str(e.get("at") or "") for slug, e in posted.items()
+             if isinstance(e, dict)}
+    starts = sorted(at_of[s] for s, a in arm_of.items()
+                    if a == "illustrated" and at_of.get(s))
+    if not starts:
+        out["note"] = "no illustrated video has posted yet — nothing to compare"
+        return out
+    since = starts[0]
+    mature = [v for v in videos if float(v.get("age_hours") or 0) >= min_age_hours]
+    by_band: dict[str, list[float]] = {}
+    for v in mature:
+        by_band.setdefault(band_of(float(v.get("age_hours") or 0)), []).append(_vph(v))
+    groups: dict[str, list[float]] = {}
+    for v in mature:
+        slug = str(v.get("catalog_id") or v.get("slug") or "")
+        if slug not in arm_of or at_of.get(slug, "") < since:
+            continue
+        pct = percentile_in(_vph(v), by_band[band_of(float(v.get("age_hours") or 0))])
+        if pct is not None:
+            groups.setdefault(arm_of[slug], []).append(pct)
+    for arm, vals in sorted(groups.items()):
+        out["arms"][arm] = {"n": len(vals),
+                            "median_percentile": round(statistics.median(vals), 1),
+                            "thin": len(vals) < ARM_MIN}
+    ok = (len(out["arms"]) >= 2
+          and all(not a["thin"] for a in out["arms"].values()))
+    out["enough_to_judge"] = ok
+    if not ok:
+        out["caution"] = (f"fewer than {ARM_MIN} mature videos in at least one "
+                          f"arm: this is noise, not a result")
+    return out
+
+
 def repo_state(since_days: int = 1) -> dict:
     since = (datetime.now(timezone.utc)
              - timedelta(days=since_days)).strftime("%Y-%m-%d")
@@ -628,6 +689,9 @@ def build(date: str) -> dict:
         # THE OPERATOR'S CLAIM, MEASURED: "every time we have a good one of
         # those [per-video animations], the video gets a ton of views."
         "depictions": depictions_vs_performance(),
+        # THE A/B TEST OF THE LOOK (operator, 2026-09-23): current vs the
+        # illustrated 2D arm, by same-age percentile, honest about sample size.
+        "style_arms": style_arms_vs_performance(),
         "levity": levity_coverage(),
         "repo": repo_state(),
         # THE RULING THE DAY WAS SHIPPED UNDER. A proposal that says "graph
@@ -824,6 +888,16 @@ def to_markdown(brief: dict) -> str:
             L.append(f"- ungraded (shipped before the judge graded "
                      f"depictions): {dep['ungraded']}")
         L.append("")
+
+    sa = brief.get("style_arms") or {}
+    L += ["## Style arms (A/B of the explainer's look)", "",
+          f"_{sa.get('note')}_", ""]
+    for arm, a in (sa.get("arms") or {}).items():
+        L.append(f"- {arm}: n={a['n']}, median p{a['median_percentile']:.0f}"
+                 + (" _(noise: too few)_" if a.get("thin") else ""))
+    if sa.get("caution"):
+        L.append(f"- **{sa['caution']}**")
+    L.append("")
 
     h = brief["pipeline_health"]
     L += ["## Pipeline health", "",

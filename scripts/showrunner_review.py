@@ -847,6 +847,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     and a skip on a preview. This function never decides that itself."""
     mp4 = Path(mp4)
     ctx = dict(context or {})
+    # The A/B arm is a LABEL for the record, never something the judge is
+    # told: both looks are graded on what is seen, by the same rubric.
+    ctx.pop("style_arm", None)
     manifest = ctx.get("manifest")
     if manifest is None:
         mpath = mp4.with_suffix(".manifest.json")
@@ -1025,6 +1028,8 @@ def append_ledger(slug: str, verdict: dict) -> None:
                "judge": verdict.get("judge", "unknown"),   # ACTUAL backend used
                "model": os.environ.get("SHOWRUNNER_MODEL", "opus"),
                "rubric_sha": _rubric_sha()}
+        if verdict.get("style_arm"):          # the A/B look, when recorded
+            rec["style_arm"] = verdict["style_arm"]
         with LEDGER.open("a") as fh:
             fh.write(json.dumps(rec) + "\n")
     except Exception:  # noqa: BLE001 — the ledger must never break a run

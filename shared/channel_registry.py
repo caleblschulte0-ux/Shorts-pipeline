@@ -183,6 +183,10 @@ def validate(reg) -> list[str]:
             for role in fmt.get("chatgpt_roles") or []:
                 if role not in KNOWN_ROLES:
                     problems.append(f"{cid}.{fid}: unknown role {role!r}")
+            if "style_arms" in fmt:
+                from shared import style_arms as _arms
+                problems += [f"{cid}.{fid}: {m}"
+                             for m in _arms.problems(fmt.get("style_arms"))]
 
         # The one arithmetic invariant. Two numbers that must agree is how a
         # channel ends up asking for five packages and shipping six.

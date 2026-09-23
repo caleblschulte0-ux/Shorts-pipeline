@@ -133,8 +133,12 @@ jobs:
           #         that does not ship: the frame-occupancy sweep passed
           #         locally and failed here on five machines, because five
           #         machines had lost their host.
-          pip install -q pillow pyyaml requests numpy matplotlib cairosvg
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libcairo2
+          # pycairo (+ libcairo2-dev, pkg-config): the illustrated A/B arm,
+          #         so tests/test_the_illustrated_arm.py measures it here
+          #         instead of skipping.
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg libcairo2 \
+            libcairo2-dev pkg-config
+          pip install -q pillow pyyaml requests numpy matplotlib cairosvg pycairo
       # PIPEFAIL OR THE GATE IS DECORATION (doctor 03ed6ae9f195, 2026-08-24).
       # GitHub's default `run:` shell on Linux is `bash -e {0}` — NO pipefail —
       # so `unittest | tail` returned tail's zero and a red suite still
