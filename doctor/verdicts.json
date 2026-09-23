@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260922",
+  "updated": "20260923",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -492,10 +492,16 @@
       "history": []
     },
     "66364106b455": {
-      "verdict": "doing",
-      "date": "20260817",
-      "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs).",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260923",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs)."
+        }
+      ]
     },
     "87d632368528": {
       "verdict": "later",

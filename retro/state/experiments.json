@@ -1,0 +1,29 @@
+{
+  "experiments": [
+    {
+      "id": "20260923-third-story-arm-posts-hold-higher-views-per-hour-t",
+      "hypothesis": "Third story-arm posts hold higher views-per-hour than the clip baseline",
+      "change": "one date-randomized story attempt per day (state/third_packages/default_clip.json story_count=1), falling back to a normal clip when scripts/run_third.py finds no genuine arc; scoped to actual_structure=story so a self-healed fallback clip from that slot is never counted as a story sample",
+      "channel": "third",
+      "format": "",
+      "structure": "story",
+      "files": [
+        "state/third_packages/default_clip.json",
+        "scripts/run_third.py",
+        "shared/experiments.py"
+      ],
+      "metric": "views_per_hour (median, actual_structure=story, 24h+ maturity \u2014 state/analytics_third/latest.json summary.ab_experiment.story)",
+      "direction": "up",
+      "baseline": 0.03,
+      "guardrail": "average_view_percentage (median over mature actual_structure=clip posts, same file)",
+      "guardrail_baseline": 61.4,
+      "min_days": 28,
+      "min_samples": 25,
+      "started_at": "2026-09-23T05:16:02Z",
+      "status": "running",
+      "samples_seen": 0,
+      "proposal_file": "doctor:66364106b455",
+      "readout": null
+    }
+  ]
+}
