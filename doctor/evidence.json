@@ -2900,8 +2900,8 @@
     }
   ],
   "recent_commits": [
-    "7ce5d69 2026-09-23 claim: mailbox verdicts 2026-09-23T04:47Z [skip ci]",
-    "1ddfb5c 2026-09-22 Explainer: the illustrated 2D arm, and an A/B split held at 0 until previews are approved (#432)"
+    "34a12db 2026-09-23 claim: mailbox verdicts 2026-09-23T09:47Z [skip ci]",
+    "10e2d3f 2026-09-23 claim: mailbox verdicts 2026-09-23T08:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -3005,32 +3005,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 102,
+      "videos": 104,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 11.72,
+          "vph": 10.09,
           "views": 1355
         },
         {
           "title": "Jynxzi Has No Idea What He's Looking At \ud83d\ude2d",
-          "vph": 3.41,
-          "views": 72
+          "vph": 2.62,
+          "views": 104
         },
         {
           "title": "Chat Could Not Handle This Caseoh Moment",
-          "vph": 3.26,
-          "views": 201
+          "vph": 2.55,
+          "views": 205
+        },
+        {
+          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
+          "vph": 2.37,
+          "views": 16
         },
         {
           "title": "Jynxzi Is Finally Allowed Back Into NoPixel After 3 Years",
-          "vph": 1.65,
-          "views": 226
-        },
-        {
-          "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It",
-          "vph": 1.36,
-          "views": 90
+          "vph": 1.47,
+          "views": 228
         }
       ],
       "full_data": "state/analytics_third/latest.json"
