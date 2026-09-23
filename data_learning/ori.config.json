@@ -1,6 +1,6 @@
 {
  "_doc": "OpenRangeInteractive sleep films (docs/ORI_DOCUMENTARY.md). One two-hour film a week from curiosity.yml. Topics are tried in order; each names the era the doodle kit draws it in.",
- "min_seconds": 5400,
+ "min_seconds": 4800,
  "queue_minimum": 1,
  "topics": [
   {

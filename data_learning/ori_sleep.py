@@ -57,11 +57,11 @@ SR = 24000
 
 VOICE = os.environ.get("ORI_VOICE", "bm_george")   # low, unhurried British narrator
 SPEED = 0.82
-SENTENCE_GAP = 0.55          # a breath between sentences — sleep narration is slow
-BEAT_GAP = 1.2               # a longer rest when the picture changes
-CHAPTER_GAP = 3.5            # music alone between chapters
+SENTENCE_GAP = 0.7           # a breath between sentences — sleep narration is slow
+BEAT_GAP = 1.9               # a longer rest when the picture changes
+CHAPTER_GAP = 6.0            # music alone between chapters
 XFADE = 1.2                  # scenes dissolve into each other; nothing cuts
-MIN_WORDS, MAX_WORDS = 11000, 21000     # ~85 minutes to ~2h40 at this pace
+MIN_WORDS, MAX_WORDS = 11000, 22000     # ~85 minutes to ~2h50 at this pace
 MIN_CHAPTERS, MAX_CHAPTERS = 8, 20
 BEAT_WORDS = (20, 190)
 TITLE_MAX = 100

@@ -63,7 +63,7 @@ Return:
   "tags": ["10-14 lowercase tags, include history for sleep, sleep story, relaxing history"],
   "chapters": [{{"title": "short chapter title", "covers": "2-3 sentences: exactly what this chapter tells"}}]
 }}
-13-15 chapters. The first opens gently (welcome, settle in, where and when we are).
+14-16 chapters. The first opens gently (welcome, settle in, where and when we are).
 The arc is ONE evening-to-night or one day-to-night, so light moves from dusk to
 deep night as the film goes on, and the last chapter winds down to sleep.
 Only well-established history; where scholars are unsure, say so gently.
@@ -75,9 +75,9 @@ CHAPTER = """Episode: {title}
 Era: {era}
 Chapter {n} of {total}: "{chapter}" — {covers}
 {prev}
-Write this chapter as 10-13 beats. Each beat is one passage of narration and the
+Write this chapter as 10-14 beats. Each beat is one passage of narration and the
 single scene shown while it is spoken. Return:
-{{"beats": [{{"say": "70-130 words of narration", "scene": SCENE}}]}}
+{{"beats": [{{"say": "80-140 words of narration", "scene": SCENE}}]}}
 
 NARRATION RULES — a chapter that breaks one is thrown away:
 - {words_lo}-{words_hi} words in the chapter. Slow, second-person, present tense
@@ -167,8 +167,8 @@ def _outline_problems(o: dict, era: str) -> list[str]:
         bad.append("thumbnail_text must be 2-4 words")
     bad += ["thumbnail_scene: " + x for x in S.validate(o["thumbnail_scene"], era)]
     n = len(o["chapters"])
-    if not (13 <= n <= 15):
-        bad.append(f"{n} chapters (13-15)")
+    if not (14 <= n <= 16):
+        bad.append(f"{n} chapters (14-16)")
     return bad
 
 
@@ -217,7 +217,7 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
     if o is None:
         return None
     chs = o["chapters"]
-    words_lo, words_hi = 900, 1300
+    words_lo, words_hi = 1000, 1400
     out_chapters = []
     prev_text = ""
     for i, ch in enumerate(chs):

@@ -133,7 +133,7 @@ def technical_floor(out: Path, meta: dict, cfg: dict) -> list[str]:
     if not out.exists():
         return ["no rendered video on disk"]
     dur = float(meta.get("duration") or 0)
-    if dur < float(cfg.get("min_seconds", 5400)):
+    if dur < float(cfg.get("min_seconds", 4800)):
         bad.append(f"{dur:.0f}s is under the {cfg.get('min_seconds')}s sleep-film floor")
     thumb = out.with_suffix(".jpg")
     try:

@@ -286,7 +286,7 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
                     "slug": "a-quiet-stone-age-night", "title": "What Did Early Humans Do at Night? | Cozy History for Sleep",
                     "thumbnail_text": "NO FIRE?", "description": "Calm.", "tags": ["history for sleep"],
                     "thumbnail_scene": {"setting": "cave_mouth", "time": "night", "props": ["campfire"]},
-                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(13)]})
+                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(14)]})
             n = int(user.split("Chapter ")[1].split(" of")[0])
             scene = {"setting": "cave_mouth", "time": "night", "props": ["campfire"]}
             if broken_chapter == n:
@@ -299,8 +299,8 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
         ask, calls = self._fake_ask()
         ep = ori_author.author("What did early humans do at night?", "stone_age", ask=ask)
         self.assertIsNotNone(ep)
-        self.assertEqual(len(ep["chapters"]), 13)
-        self.assertEqual(calls["n"], 14)
+        self.assertEqual(len(ep["chapters"]), 14)
+        self.assertEqual(calls["n"], 15)
         from data_learning import ori_sleep as OS
         self.assertEqual(OS.validate(ep), [])
 
@@ -328,7 +328,7 @@ class ThePublisherGivesTheGateWhatItNeeds(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "x.mp4"
             out.write_bytes(b"0")
-            bad = post_ori.technical_floor(out, {"duration": 600, "chapters": []}, {"min_seconds": 5400})
+            bad = post_ori.technical_floor(out, {"duration": 600, "chapters": []}, {"min_seconds": 4800})
         self.assertTrue(any("sleep-film floor" in b for b in bad))
         self.assertTrue(any("thumbnail" in b for b in bad))
 

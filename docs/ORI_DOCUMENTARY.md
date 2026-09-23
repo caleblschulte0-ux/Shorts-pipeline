@@ -89,7 +89,7 @@ oracle: same answers, no memory.
 
 - Every name the validator accepts draws; every name it refuses is refused
   by name; another era's props are refused; a still scene is refused.
-- 11,000–21,000 narrated words, 8–20 chapters, 20–190 words a beat; the
+- 11,000–22,000 narrated words, 8–20 chapters (the author aims at 14–16 chapters of 1,000–1,400 words, about two hours), 20–190 words a beat; the
   thumbnail is a close doodle scene with 2–4 words.
 - A short episode renders end to end with a stand-in voice: video, audio,
   captions, chapters, a 1920x1080 thumbnail.
