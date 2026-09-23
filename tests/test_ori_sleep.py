@@ -182,6 +182,10 @@ class MotionIsMeasuredWithTheGatesOwnProbe(unittest.TestCase):
                          "cast": [{"who": "man", "pose": "stand", "action": "talk"}], "props": ["brazier", "column"]}),
             ("ancient", {"setting": "villa_inside", "time": "night", "shot": "close",
                          "cast": [{"who": "woman", "pose": "sit_on", "action": "eat"}], "props": ["oil_lamp", "table"]}),
+            ("victorian", {"setting": "street", "time": "night", "shot": "close",
+                           "cast": [{"who": "man", "pose": "walk", "action": "idle"}], "props": ["gas_lamp", "terrace"]}),
+            ("victorian", {"setting": "parlour_inside", "time": "night", "shot": "close",
+                           "cast": [{"who": "old_woman", "pose": "sit_on", "action": "sew"}], "props": ["stove", "chair"]}),
         ):
             self.assertEqual(__import__("data_learning.doodle.scene", fromlist=["x"]).validate(spec, era), [])
             self._assert_alive(spec, era)
@@ -577,7 +581,7 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertEqual(A.era_for("A night with the first humans in an Ice Age cave", ask=None), "stone_age")
         # no word the table knows: the brain is asked, and only a listed era counts
         self.assertEqual(A.era_for("A night in a lighthouse", ask=lambda sy, u: "ancient\n"), "ancient")
-        self.assertIsNone(A.era_for("A night in a lighthouse", ask=lambda sy, u: "victorian"))
+        self.assertIsNone(A.era_for("A night in a lighthouse", ask=lambda sy, u: "space_age"))
         self.assertIsNone(A.era_for("A night on the Apollo 11 launch pad", ask=None))
         # two eras named at once is a question, not a guess
         self.assertIsNone(A.era_for("Romans and medieval knights compared", ask=None))

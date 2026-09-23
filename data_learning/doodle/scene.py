@@ -32,13 +32,14 @@ from .props import PROPS
 from .settings import SETTINGS, TIMES, WEATHER
 
 W, H = settings.W, settings.H
-ERAS = ("stone_age", "medieval", "ancient")
+ERAS = ("stone_age", "medieval", "ancient", "victorian")
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
 STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack",
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
-         "column", "temple", "villa", "amphora", "stall", "olive"}
+         "column", "temple", "villa", "amphora", "stall", "olive",
+         "terrace", "chair", "bookshelf", "clock", "chimney_pot"}
 MAX_CAST, MAX_PROPS = 4, 6
 LIGHT_ITEMS = ("torch", "lantern")
 
@@ -96,6 +97,14 @@ def _fire_strength(name, time, shot, interior):
         # measured 2026-09-23: 0.26-0.28 inside (the flicker plays on a wall),
         # 0.53 on open grass at night — a small flame needs a room around it
         return 2 if interior else 0
+    if name == "gas_lamp":
+        # measured 2026-09-23: 0.53 alone at night, but 0.19 with someone
+        # walking under it, 0.17 with a held lantern, 0.33 in falling snow —
+        # a street lamp lights a scene; something has to move in its light
+        return 1
+    if name == "stove":
+        # measured 2026-09-23: 0.04 close, 0.23 wide (always indoors)
+        return 2
     if name == "brazier":
         # measured 2026-09-23: night close 0.18, night wide 0.32, day close 0.37, day wide 0.59
         if shot == "close":
@@ -132,6 +141,9 @@ def motion_strength(spec: dict) -> int:
         score += _water_strength(st.water, time, fog)
     if spec.get("weather") == "rain":
         score += 2
+    if spec.get("weather") == "snow":
+        score += 1                  # measured: 1.0 alone (too small for the probe), 0.33 with a lamp
+    lit = any(PROPS.get(p.get("name")) is not None and PROPS[p["name"]].light for p in _prop_list(spec))
     for p in _prop_list(spec):
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
@@ -149,6 +161,10 @@ def motion_strength(spec: dict) -> int:
                 score += 2
             elif c.get("action") in ("hoe", "yawn", "eat", "drink", "stir"):
                 score += 1
+        elif shot == "close" and c.get("pose") == "walk" and lit and not st.interior:
+            # measured: a walker under a street lamp at night 0.19; the same
+            # walker on an unlit street 1.0 (a black frame)
+            score += 1
     return score
 
 
@@ -251,7 +267,8 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, 
 # same place reads as a deer in the fire, so they take room like anything
 # else. Trees, tents and walls stay scenery.
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
-              "hearth", "temple", "villa", "column"}
+              "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
+              "clock"}
 
 
 def figure_extent(pose: str, R: float, action: str = "idle", item: str | None = None) -> tuple[float, float]:

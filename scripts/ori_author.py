@@ -297,6 +297,9 @@ ERA_WORDS = {
                  "feudal", "manor", "plague", "crusade", "abbey", "serf"),
     "ancient": ("roman", "rome", "greek", "greece", "athens", "sparta", "ancient", "egypt", "pharaoh", "pompeii",
                 "mediterranean", "legion", "caesar", "villa", "forum", "byzant"),
+    "victorian": ("victorian", "1800s", "19th century", "nineteenth century", "industrial", "dickens", "steam",
+                  "railway", "gaslight", "gas lamp", "mill town", "workhouse", "regency", "georgian", "edwardian",
+                  "1700s", "18th century", "eighteenth century", "colonial", "frontier"),
 }
 
 ERA_PROMPT = """Which of these drawn worlds fits the topic below? Answer with ONE word from this list, or "none" if the topic belongs to a time none of them can show: {eras}.

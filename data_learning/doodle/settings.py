@@ -43,7 +43,7 @@ class Setting:
     ground: str                 # grass | snow | sand | rock | dirt | floor
     interior: bool = False
     water: str | None = None    # river | lake | sea
-    eras: tuple = ("stone_age", "medieval", "ancient")
+    eras: tuple = ("stone_age", "medieval", "ancient", "victorian")
     horizon: float = 0.62       # fraction of H where the far land meets the sky
 
 
@@ -65,10 +65,14 @@ SETTINGS = {
     "forum": Setting("stone", eras=("ancient",)),                 # a town square: colonnade, town behind
     "villa_inside": Setting("floor", interior=True, eras=("ancient",)),
     "olive_grove": Setting("dirt", eras=("ancient",)),
+    "street": Setting("cobbles", eras=("victorian",)),            # a gas-lit terrace street
+    "parlour_inside": Setting("boards", interior=True, eras=("victorian",)),
+    "farmyard": Setting("dirt", eras=("medieval", "victorian")),
 }
 
 GROUND = {"grass": "#8fb35f", "snow": "#eef2f5", "sand": "#e3cf9a", "rock": "#9b8f80",
-          "dirt": "#b59a6d", "floor": "#8a6a48", "stone": "#cfc4b0"}
+          "dirt": "#b59a6d", "floor": "#8a6a48", "stone": "#cfc4b0", "cobbles": "#8c8781",
+          "boards": "#9a6f4a"}
 GROUND_Y = 0.80                  # fraction of H where people stand
 
 
@@ -148,6 +152,17 @@ def _ground(cr, kind, gy, seed):
         for k in range(1, 6):
             y = gy - 30 + k * 50
             ink.line(cr, [(-10, y), (W + 10, y + r.uniform(-4, 4))], lw=3, ink=shade(c, 0.7), amp=1, seed=k)
+    elif kind == "cobbles":
+        for k in range(1, 7):
+            y = gy - 40 + k * 46
+            for j in range(18):
+                x = j * 112 + (k % 2) * 56 + r.uniform(-6, 6)
+                ink.fill_stroke(cr, ink.ellipse_pts(x, y, 44, 16, 10), shade(c, 0.94 if (j + k) % 3 else 0.86),
+                                lw=2.5, amp=0.6, seed=k * 31 + j)
+    elif kind == "boards":
+        for k in range(1, 7):
+            y = gy - 30 + k * 44
+            ink.line(cr, [(-10, y), (W + 10, y + r.uniform(-2, 2))], lw=3, ink=shade(c, 0.75), amp=0.6, seed=k)
     elif kind == "stone":
         # paving: a loose grid of flags
         for k in range(1, 6):
@@ -240,6 +255,22 @@ def _interior(cr, name, seed, r):
         ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), rgb("#8fa27a"), lw=3,
                         amp=1, seed=seed + 5)
         ink.line(cr, [(dx + 30, H * 0.62), (dx + 30, H * 0.58)], lw=6, ink=rgb("#6f5a44"), amp=0)
+    elif name == "parlour_inside":
+        wall = rgb("#6f7c5c")
+        cr.set_source_rgba(*wall)
+        cr.paint()
+        # striped paper, a picture rail, a framed picture
+        for k in range(0, W, 90):
+            ink.line(cr, [(k, -10), (k, H * 0.8)], lw=18, ink=shade(wall, 0.92), amp=0)
+        ink.line(cr, [(-10, 170), (W + 10, 170)], lw=10, ink=rgb("#e6dcc4"), amp=0.5, seed=seed)
+        px = r.choice([420, 1000, 1500])
+        ink.fill_stroke(cr, [(px - 110, 300), (px + 110, 300), (px + 110, 470), (px - 110, 470)], rgb("#c9a36a"),
+                        lw=10, amp=0.6, seed=seed + 1)
+        ink.fill_stroke(cr, [(px - 90, 320), (px + 90, 320), (px + 90, 450), (px - 90, 450)], rgb("#8fb3c9"), lw=0, amp=0)
+        ink.fill_stroke(cr, [(px - 90, 400), (px - 20, 350), (px + 40, 410), (px + 90, 370), (px + 90, 450),
+                             (px - 90, 450)], rgb("#7a9a5c"), lw=0, amp=0)
+        # skirting
+        ink.line(cr, [(-10, H * 0.8 - 12), (W + 10, H * 0.8 - 12)], lw=16, ink=rgb("#e6dcc4"), amp=0)
     elif name == "cottage_inside":
         wall = rgb("#d8c39a")
         cr.set_source_rgba(*wall)
@@ -293,6 +324,17 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
     if name == "forum":
         _town(cr, r, H * st.horizon + 40, seed)
         _colonnade(cr, r, H * st.horizon + 150, seed)
+    if name == "street":
+        from .props import terrace
+        for k in range(4):
+            terrace(cr, 260 + k * 480 + r.uniform(-30, 30), H * st.horizon + 190, 0.8, 0.0, seed + k)
+    if name == "farmyard":
+        from .props import barn
+        barn(cr, W * r.uniform(0.25, 0.75), H * st.horizon + 90, 0.75, 0.0, seed)
+        for k in range(6):
+            x = -60 + k * 400 + r.uniform(-30, 30)
+            ink.line(cr, [(x, H * st.horizon + 90), (x, H * st.horizon + 30)], lw=6, ink=rgb("#6a5236"), amp=0.5, seed=k)
+            ink.line(cr, [(x, H * st.horizon + 55), (x + 400, H * st.horizon + 55)], lw=4, ink=rgb("#6a5236"), amp=0.5, seed=k + 9)
     if name == "olive_grove":
         from .props import olive
         for k in range(6):

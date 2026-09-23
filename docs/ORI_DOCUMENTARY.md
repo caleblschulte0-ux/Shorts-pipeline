@@ -215,6 +215,16 @@ oracle: same answers, no memory.
   data plus drawings: `OUTFIT`, `Setting.eras`, `Prop.eras`, and a measured
   strength for each new living light (brazier: night close 0.18, night wide
   0.32, day close 0.37, day wide 0.59; oil lamp 0.26-0.28 everywhere).
+- A fourth era, `victorian` (the 19th century): dark coats and long
+  dresses with a cap or a bonnet, a gas-lit terrace street on cobbles, a
+  papered parlour, a farmyard with a barn; props: a terrace, a barn, a gas
+  lamp, an iron range, a chair, a bookshelf, a long-case clock with a
+  swinging pendulum, a horse-drawn cab, a chimney wall. Measured: the range
+  0.04 close / 0.23 wide (carries a room); a gas lamp 0.53 alone, 0.19
+  with someone walking under it, 0.17 with a held lantern, 0.33 in falling
+  snow (a helper: something has to move in its light); a walker on an
+  unlit street at night is a black frame (1.0); falling snow alone is
+  below the probe's notice (1.0) and a helper with a lamp.
 - Fog is measured too: a river under fog holds 0.20 at night and 0.97 by
   day, a cauldron 0.06 clear and 0.34 in fog — so water counts only at
   night in fog and a cauldron drops a step.
