@@ -292,7 +292,7 @@ def spans(lay: dict) -> list[dict]:
         if f["facing"] == "left":
             lo, hi = -hi, -lo
         out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None,
-                        pid=None, on=None))
+                        pid=None, on=None, head=(f["x"] - 1.25 * R, f["x"] + 1.25 * R)))
     for i, p in enumerate(lay["props"]):
         pr = PROPS[p["name"]]
         if p["layer"] == "back" and p["name"] not in SOLID_BACK and pr.solid_width is None:
@@ -302,6 +302,9 @@ def spans(lay: dict) -> list[dict]:
         w = (pr.solid_width if (p["layer"] == "back" and p["name"] not in SOLID_BACK) else pr.width) * p["s"]
         out.append(dict(label=p["name"], lo=p["x"] - w / 2, hi=p["x"] + w / 2, fig=None,
                         under=p.get("under"), pid=i, on=p.get("on")))
+    for b in lay.get("blocked") or ():
+        out.append(dict(label=b["label"], lo=b["lo"], hi=b["hi"], fig=None, under=None, pid=None, on=None,
+                        ground=True))
     return out
 
 
@@ -323,6 +326,18 @@ def collisions(lay: dict) -> list[str]:
             if (A.get("on") is not None and A["on"] == B.get("pid")) or \
                (B.get("on") is not None and B["on"] == A.get("pid")):
                 continue          # a lamp on its table
+            if A.get("ground") or B.get("ground"):
+                # ground the setting owns keeps a person's HEAD off it (a face
+                # against the dark opening is a mask); a prop, an arm or a pot
+                # may stand there
+                g, o = (A, B) if A.get("ground") else (B, A)
+                if o["fig"] is None:
+                    continue
+                hlo, hhi = o["head"]
+                over = min(hhi, g["hi"]) - max(hlo, g["lo"])
+                if over > MARGIN:
+                    bad.append(f"{o['label']}'s head is in front of {g['label']} by {over:.0f}px")
+                continue
             over = min(A["hi"], B["hi"]) - max(A["lo"], B["lo"])
             if over > MARGIN:
                 bad.append(f"{A['label']} overlaps {B['label']} by {over:.0f}px")
@@ -343,14 +358,21 @@ def layout(spec: dict, seed: int) -> dict:
     last try is kept regardless and `collisions` says what still touches."""
     lay = None
     for k in SHRINK:
-        for slots in SLOT_SETS:
-            lay = _layout(spec, seed, k, slots)
-            if not lay["collisions"]:
-                return lay
+        for shift in FOCAL_SHIFTS:
+            for slots in SLOT_SETS:
+                lay = _layout(spec, seed, k, slots, shift)
+                if not lay["collisions"]:
+                    return lay
     return lay
 
 
-def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
+# the fire is placed first and by seed; when the people cannot fit around
+# it (a cook with her pot between the fire and the cave opening), it moves
+# a little before anyone is drawn smaller
+FOCAL_SHIFTS = (0.0, -0.12, 0.12)
+
+
+def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: float = 0.0) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
     pl = _prop_list(spec)
@@ -359,23 +381,48 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
     gy = H * settings.GROUND_Y
     placed = []
     taken = []                      # (lo, hi) in world x, everything that must not overlap
+    blocked = []                    # ground the SETTING owns: no PERSON is drawn in front of it
+    if spec.get("setting") == "cave_mouth":
+        # the fifth film's judge: dark hair and a beard against the black of
+        # the opening left "a floating white mask". A fire or a curled wolf
+        # in front of it still reads; a face does not
+        _, mx, ow = settings.cave_opening(seed)
+        blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
 
-    def clash(lo, hi):
-        return sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in taken)
+    def clash(lo, hi, head=None):
+        """How much (lo, hi) overlaps what is taken. `head` is a person's
+        head column: THAT is what must stay off ground the setting owns —
+        an arm or a pot over the dark opening still reads, a face does not."""
+        c = sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in taken)
+        if head is not None:
+            hlo, hhi = head
+            c += sum(max(0.0, min(hhi, b["hi"]) - max(hlo, b["lo"]) - MARGIN) for b in blocked)
+        return c
 
-    def free(lo, hi):
-        return clash(lo, hi) <= 0
+    def free(lo, hi, head=None):
+        return clash(lo, hi, head) <= 0
 
     def put(lo, hi):
         taken.append((lo, hi))
 
+    has_pot = next((q["name"] for q in pl if q["name"] in ("pot", "cauldron")), None)
+
     def fig_span(c, x, facing, R):
         lo, hi = figure_extent(c.get("pose", "stand"), R, c.get("action", "idle"), c.get("item"))
+        if c.get("action") == "stir" and has_pot:
+            # the pot goes on her far side from the fire (below), and she
+            # turns to it: it is part of her span, or she is placed at the
+            # frame edge with her pot outside it
+            hi = max(hi, (1.55 * R + (50 if has_pot == "pot" else 20) * s + PROPS[has_pot].width * s / 2) / R + PAD)
+            facing = "right" if x >= focal_x else "left"
         if facing == "left":
             lo, hi = -hi, -lo
         return x + lo, x + hi
 
-    def settle(x, span_of, lo_lim, hi_lim):
+    def head_span(x, R):
+        return x - 1.25 * R, x + 1.25 * R
+
+    def settle(x, span_of, lo_lim, hi_lim, head_of=None):
         """Slide x away from the focal thing, then toward it, until its span
         is clear of everything placed; the least-crowded x if nothing is."""
         d = -1 if x < focal_x else 1
@@ -386,7 +433,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
                 lo, hi = span_of(cand)
                 if lo < lo_lim or hi > hi_lim:
                     break
-                c = clash(lo, hi)
+                c = clash(lo, hi, head_of(cand) if head_of else None)
                 if c <= 0:
                     return cand
                 if best_c is None or c < best_c:
@@ -404,7 +451,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
     # the fourth film's judge: "cave mouth on the left, a campfire in the
     # centre, one seated figure and a moon" repeated — so the focal thing
     # sits somewhere between 38% and 62% of the width, by seed
-    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.38 + 0.24 * r.random())
+    focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.38 + 0.24 * r.random() + focal_shift)
 
     st = SETTINGS.get(spec.get("setting"))
     water = st.water if st is not None else None
@@ -457,15 +504,17 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
             for k in range(len(slots_auto)):
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
-                got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE)
+                got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
+                             head_of=lambda xx: head_span(xx, R))
                 lo, hi = fig_span(c, got, facing, R)
-                if lo >= EDGE and hi <= W - EDGE and free(lo, hi):
+                if lo >= EDGE and hi <= W - EDGE and free(lo, hi, head_span(got, R)):
                     x = got
                     break
             if x is None:
                 cand = W * slots_auto[i % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
-                x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE)
+                x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
+                           head_of=lambda xx: head_span(xx, R))
         put(*fig_span(c, x, facing, R))
         figs.append(dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
                          mood=c.get("mood", "calm"), item=c.get("item"), x=x,
@@ -550,7 +599,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None) -> dict:
     for f in figs:
         f.pop("_pot", None)
         f.pop("_bed", None)
-    lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot)
+    lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked)
     lay["collisions"] = collisions(lay)
     return lay
 

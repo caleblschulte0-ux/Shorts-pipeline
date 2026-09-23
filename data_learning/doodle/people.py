@@ -182,6 +182,15 @@ def skeleton(pose: str, R: float, t: float, phase: float = 0.0) -> dict:
     return dict(hip=hip, neck=neck, head=head, legs=legs, lean=lean)
 
 
+def head_of(sk: dict, R: float, action: str) -> tuple[float, float]:
+    """Where the head is drawn for an action: tipped back and up when the
+    figure looks up, so the whole silhouette says it, not just the eyes."""
+    hx, hy = sk["head"]
+    if action == "look_up":
+        return hx + 0.22 * R, hy - 0.14 * R
+    return hx, hy
+
+
 def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     """(front_hand, back_hand) targets in local coords for an action at t."""
     nx, ny = sk["neck"]
@@ -259,7 +268,12 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         # arms crossed on the chest, each hand at the other shoulder
         return ((nx - 0.05 * R, ny + 0.55 * R), (nx + 0.5 * R, ny + 0.6 * R))
     if action == "look_up":
-        return rest_f, rest_b
+        # a hand raised to the brow, the way anyone looks at something far
+        # and high — the fifth film's judge could not see "looking up" in a
+        # sky chapter where every figure did it, because it was two dots
+        # moved a finger's width
+        k = (math.sin(c / 2.6 + ph) + 1) / 2
+        return ((nx + 0.62 * R, ny - 0.72 * R - k * 0.1 * R), rest_b)
     raise KeyError(f"action {action!r} has no hands")
 
 
@@ -269,8 +283,8 @@ def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
     blink_every = 3.8 + r.random() * 2.5
     blink = (t + r.random() * 5) % blink_every < 0.14
     ex = 0.30 * R
-    ox = 0.18 * R                       # face turned toward +x
-    ey = cy - 0.02 * R - (0.12 * R if looking_up else 0)
+    ox = 0.18 * R + (0.12 * R if looking_up else 0)   # face turned toward +x
+    ey = cy - 0.02 * R - (0.34 * R if looking_up else 0)   # the face tips up to the sky
     lw = max(2.5, R * 0.075)
     if mood == "sleepy" or blink:
         for sx in (-1, 1):
@@ -296,9 +310,13 @@ def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
                 x = cx + ox + sx * ex
                 ink.line(cr, [(x - 0.14 * R, ey - 0.2 * R + sx * 0.04 * R),
                               (x + 0.14 * R, ey - 0.2 * R - sx * 0.04 * R)], lw=lw * 0.7, amp=0)
-    my = cy + 0.38 * R
+    my = cy + 0.38 * R - (0.34 * R if looking_up else 0)
     mx = cx + ox
-    if mood in ("happy", "content"):
+    if looking_up and mood not in ("happy", "content"):
+        # an open mouth, as at a sky full of stars
+        cr.arc(mx, my + 0.02 * R, 0.07 * R, 0, 2 * math.pi)
+        ink.stroke(cr, lw * 0.7)
+    elif mood in ("happy", "content"):
         w = 0.24 * R if mood == "happy" else 0.17 * R
         ink.line(cr, [(mx - w, my - 0.04 * R), (mx, my + 0.08 * R), (mx + w, my - 0.04 * R)],
                  lw=lw * 0.8, amp=0)
@@ -448,6 +466,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         return
 
     sk = skeleton(pose, R, t, ph)
+    sk["head"] = head_of(sk, R, action)
     front, back = hand_targets(action, sk, R, t, ph)
     nx, ny = sk["neck"]
     sh_f = (nx + 0.22 * R, ny + 0.28 * R)

@@ -178,6 +178,40 @@ the film. The ledger is `state/ori_storyboard.jsonl`. The showrunner's
 verdict on the finished film is unchanged — this only moves defects to
 where fixing them is cheap.
 
+### The fifth film's notes (78, SHIP — the first pass), and what moved
+
+The first film through the storyboard shipped at 78 with no auto-fails
+and `craft 2`. Its notes were smaller than the earlier films' and every
+one is a picture rule now, not a judge rule:
+
+- *"dark hair and a beard against the black of the cave mouth — a
+  floating white mask."* The opening is ground the setting owns:
+  `settings.cave_opening(seed)` is a pure function, so the layout — which
+  runs before the still is painted — keeps every person's HEAD column off
+  it. A fire, a curled wolf, an arm or a pot in front of it still reads,
+  so those may stand there (`blocked` in the layout; `ground` spans in the
+  collision check). Three cuts were measured on the shelf's 141 scenes: the
+  whole opening taken from everything cost thirty-eight scenes their
+  layout; people's whole spans kept off it, none of the layouts but six
+  of the natural sizes; heads only, with the fire allowed to move a
+  little before anyone is drawn smaller (`FOCAL_SHIFTS`), zero
+  collisions and fewer shrunk scenes than before the rule. A cook's span
+  includes the pot placed beyond her, which is what kept putting her pot
+  outside the frame.
+- *"the sky chapter does not show anyone looking up."* It did — every
+  figure in it did `look_up`, which was two dots moved a finger's width.
+  Looking up is a whole-body thing now: the head tips up and back
+  (`people.head_of`), the face and its open mouth go to the top of the
+  head, and a hand goes to the brow, the way anyone looks at something far
+  and high. It reads from across the room.
+- The rebalanced script (35 cave-mouth scenes of 141, argued down from 57)
+  was put BACK by the run's own persist: the storyboard had stamped the
+  old copy in a run that checked out three hours earlier, and on the push
+  race `ci_commit_state.sh` restored the run's copy over the branch's.
+  A file changed on both sides with no merge rule keeps the branch's copy
+  now, and says so in the log; the ledgers beside it are still unioned
+  (`tests/test_ci_persist_merges_the_library.py`).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

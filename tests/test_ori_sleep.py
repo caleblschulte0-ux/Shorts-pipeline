@@ -460,6 +460,60 @@ class ThePictureIsReadable(unittest.TestCase):
         cut = {"people": [{"who": "man", "pose": "stand", "x": 30, "s": 2.0, "facing": "right"}], "props": []}
         self.assertTrue(any("cut by the frame edge" in b for b in self.S.collisions(cut)))
 
+    def test_nobody_stands_in_front_of_the_cave_opening(self):
+        # the fifth film's judge: dark hair and a beard against the black of
+        # the opening left "a floating white mask" — so the opening is ground
+        # the setting owns, and no person's HEAD is placed on it (a fire, a
+        # curled wolf, an arm or a pot there still reads, so those may be)
+        from data_learning.doodle import settings as ST
+        spec = {"setting": "cave_mouth", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "stand", "action": "talk"},
+                         {"who": "woman", "pose": "sit", "action": "warm_hands"},
+                         {"who": "elder", "pose": "sit_on", "action": "idle"}],
+                "props": ["campfire", "stones"]}
+        for seed in range(12):
+            lay = self.S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [], seed)
+            _, mx, ow = ST.cave_opening(seed)
+            for sp in self.S.spans(lay):
+                if sp["fig"] is None:
+                    continue
+                hlo, hhi = sp["head"]
+                over = min(hhi, mx + ow) - max(hlo, mx - ow)
+                self.assertLessEqual(over, self.S.MARGIN, (seed, sp["label"], over))
+        # a sleeper with a wolf and a bedroll still lays out clean — the
+        # opening does not take room from the props — and a cook with her pot
+        # keeps her natural size: the fire moves before anyone is drawn smaller
+        sleeper = {"setting": "cave_mouth", "time": "night", "weather": "clear", "shot": "close",
+                   "cast": [{"who": "man", "pose": "lie", "action": "sleep"}],
+                   "props": ["campfire", "wolf", "bedroll"]}
+        cook = {"setting": "cave_mouth", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"},
+                         {"who": "woman", "pose": "sit", "action": "stir"}],
+                "props": ["campfire", "pot"]}
+        for seed in range(8):
+            self.assertEqual(self.S.layout(sleeper, seed)["collisions"], [], seed)
+            lay = self.S.layout(cook, seed)
+            self.assertEqual(lay["collisions"], [], seed)
+            self.assertGreaterEqual(lay["scale"], 2.05 * 0.84, seed)
+
+    def test_looking_up_reads_from_across_the_room(self):
+        # the fifth film's judge could not see "looking up" in a sky chapter
+        # where every figure did it: it was two dots moved a finger's width.
+        # Now the head tips back and a hand goes to the brow
+        R = 40.0
+        sk = self.P.skeleton("stand", R, 0.0)
+        nx, ny = sk["neck"]
+        (fx, fy), _ = self.P.hand_targets("look_up", sk, R, 0.0, 0.0)
+        self.assertLess(fy, ny - 0.5 * R)          # the hand is above the shoulders
+        (rx, ry), _ = self.P.hand_targets("idle", sk, R, 0.0, 0.0)
+        self.assertGreater(ry, fy + R)
+        hx, hy = sk["head"]
+        ux, uy = self.P.head_of(sk, R, "look_up")
+        self.assertLess(uy, hy)                    # the head goes up and back
+        self.assertGreater(ux, hx)
+        self.assertEqual(self.P.head_of(sk, R, "idle"), (hx, hy))
+
     def test_a_painting_needs_a_wall(self):
         # the third film's judge: "cave-painting animals float in the open night sky"
         spec = _scene(setting="cave_mouth", props=["campfire", "cave_painting"])

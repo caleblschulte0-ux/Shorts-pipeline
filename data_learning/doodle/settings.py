@@ -430,10 +430,21 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int) -> dict:
     return facts
 
 
+def cave_opening(seed: int) -> tuple[int, float, float]:
+    """(side, centre x, half width) of the cave mouth's dark opening for a
+    seed — a pure function, so the layout (which runs before the still is
+    painted) can keep people out of it. The fifth film's judge: dark hair
+    and a beard against the black of the opening left "a floating white
+    mask", so nobody stands in front of it."""
+    side = 1 if seed % 2 else -1
+    x0 = 0 if side < 0 else W
+    return side, x0 - side * W * 0.3, W * 0.15
+
+
 def _cave_mouth(cr, r, gy, seed):
     """A hill of rock on one side of the frame with an arched dark opening."""
     rockc = rgb("#857a6d")
-    side = r.choice([-1, 1])
+    side, mx, ow = cave_opening(seed)
     x0 = 0 if side < 0 else W
     far = x0 - side * W * 0.62
     pts = [(x0 + side * 40, gy + 40), (x0 + side * 40, H * 0.05), (x0 - side * W * 0.18, H * 0.02),
@@ -448,8 +459,7 @@ def _cave_mouth(cr, r, gy, seed):
                       (cx - side * r.uniform(60, 120), cy + r.uniform(50, 90))], lw=4,
                  ink=shade(rockc, 0.6), amp=1.5, seed=seed + k)
     # the opening: an arch standing on the ground
-    mx = x0 - side * W * 0.3
-    ow, oh = W * 0.15, H * 0.4
+    oh = H * 0.4
     arch = [(mx - ow, gy + 5)]
     for i in range(17):
         a = math.pi + math.pi * i / 16

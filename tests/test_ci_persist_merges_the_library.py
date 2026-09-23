@@ -216,6 +216,43 @@ class ARaceRestoresOnlyWhatTheRunChanged(unittest.TestCase):
     def _git(self, cwd, *args):
         return subprocess.check_output(["git", "-C", str(cwd), *args], stderr=subprocess.STDOUT, text=True)
 
+    def test_a_file_changed_on_both_sides_keeps_the_branchs_copy(self):
+        """2026-09-23 16:56: run #5's storyboard review edited the episode it
+        had checked out at 14:00; the branch had taken a rebalanced version
+        of the same script at 15:10; the race put the run's copy back (57
+        cave-mouth scenes over 35) and reported success. Two-sided, no merge
+        rule: the branch wins, and the ledger beside it is still unioned."""
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            origin = td / "origin.git"
+            subprocess.check_call(["git", "init", "-q", "--bare", "-b", "main", str(origin)])
+            a, b = td / "a", td / "b"
+            subprocess.check_call(["git", "clone", "-q", str(origin), str(a)])
+            self._git(a, "config", "user.email", "t@t"); self._git(a, "config", "user.name", "t")
+            (a / "episodes").mkdir(); (a / "episodes" / "ep.json").write_text('{"v": 1}')
+            (a / "state").mkdir(); (a / "state" / "log.jsonl").write_text('{"n": 1}\n')
+            (a / "state" / "plan.json").write_text('{"p": 1}')
+            (a / "scripts").mkdir()
+            for f in ("ci_commit_state.sh", "merge_state_json.py", "merge_posted_log.py"):
+                (a / "scripts" / f).write_bytes((ROOT / "scripts" / f).read_bytes())
+            self._git(a, "add", "-A"); self._git(a, "commit", "-qm", "base"); self._git(a, "push", "-q", "origin", "main")
+            subprocess.check_call(["git", "clone", "-q", str(origin), str(b)])
+            self._git(b, "config", "user.email", "t@t"); self._git(b, "config", "user.name", "t")
+            (b / "episodes" / "ep.json").write_text('{"v": 2, "rebalanced": true}')
+            self._git(b, "commit", "-qam", "rebalance"); self._git(b, "push", "-q", "origin", "main")
+            # the stale run: stamps the episode, appends a verdict, writes a plan nobody else touched
+            (a / "episodes" / "ep.json").write_text('{"v": 1, "storyboard": "stale"}')
+            (a / "state" / "log.jsonl").write_text('{"n": 1}\n{"n": 2}\n')
+            (a / "state" / "plan.json").write_text('{"p": 2}')
+            out = subprocess.run(["bash", "scripts/ci_commit_state.sh", "persist", "state", "episodes"],
+                                 cwd=a, capture_output=True, text=True, env={**__import__("os").environ, "CI_COMMIT_BRANCH": "main"})
+            self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+            self.assertIn("episodes/ep.json changed on main", out.stderr)
+            self._git(b, "pull", "-q", "origin", "main")
+            self.assertEqual(json.loads((b / "episodes" / "ep.json").read_text()), {"v": 2, "rebalanced": True})
+            self.assertEqual((b / "state" / "log.jsonl").read_text(), '{"n": 1}\n{"n": 2}\n')
+            self.assertEqual(json.loads((b / "state" / "plan.json").read_text()), {"p": 2}, "one-sided output lost")
+
     def test_an_untouched_listed_path_is_not_rolled_back(self):
         with tempfile.TemporaryDirectory() as td:
             td = Path(td)

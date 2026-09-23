@@ -77,8 +77,34 @@ for attempt in 1 2 3 4 5; do
     git diff --name-only 2>/dev/null
     git diff --cached --name-only 2>/dev/null; } | sort -u | while read -r p; do
     [ -n "$p" ] && [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
+    # ...and remember what each one looked like when this run CHECKED OUT
+    # (the parent of the commit it just made), so a file that moved on the
+    # branch since can be told from one that did not
+    base=$(git rev-parse -q --verify "HEAD~1:$p" 2>/dev/null || true)
+    [ -n "$p" ] && echo "$p $base" >> "$SAVE/.base"
   done
   git fetch origin "$BRANCH"
+  # A file that changed on BOTH sides and has no merge rule keeps the
+  # BRANCH's copy. On 2026-09-23 the storyboard review edited an episode
+  # script in a run that had checked out three hours earlier; the branch
+  # had since taken a rebalanced version of the same script; the race
+  # restored the run's copy over it and the persist reported success —
+  # 57 cave-mouth scenes back over the 35 that had been argued down. The
+  # ledgers below are unioned; anything else two-sided is one run's output
+  # against a deliberate push, and the push wins. It is said out loud.
+  if [ -f "$SAVE/.base" ]; then
+    while read -r p base; do
+      case "$p" in
+        *posted_log.json|*_log.json|*viz_mechanics.json|*niche.config.json|*.jsonl) continue ;;
+      esac
+      theirs=$(git rev-parse -q --verify "origin/$BRANCH:$p" 2>/dev/null || true)
+      if [ -n "$theirs" ] && [ "$theirs" != "$base" ]; then
+        echo "::warning::[persist] $p changed on $BRANCH since this run checked out; keeping the branch's copy, dropping this run's" >&2
+        rm -f "$SAVE/$p"
+      fi
+    done < "$SAVE/.base"
+    rm -f "$SAVE/.base"
+  fi
   git reset --hard "origin/$BRANCH"
   # Restore every artifact this run generated on top of the fresh branch...
   cp -a "$SAVE/." . 2>/dev/null || true
