@@ -30,16 +30,14 @@
       "news_angle": "The espresso machine is being returned repeatedly by the customer as a faulty item.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "espresso machine coffee shop retail",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "espresso machine",
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-09-23T10:16:12Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T10:34:16Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
