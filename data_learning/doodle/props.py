@@ -877,10 +877,20 @@ def cow(cr, x, y, s, t, seed):
     for dx in (-90, -60, 70, 95):
         ink.line(cr, [(x + dx * s, y - 72 * s), (x + dx * s, y)], lw=10 * s, amp=0)
     g = (math.sin(t * 2 * math.pi / 8.0 + seed) + 1) / 2
-    hx, hy = x + 140 * s, y - 150 * s + g * 90 * s
+    hx, hy = x + 150 * s, y - 150 * s + g * 90 * s
+    # a neck from the shoulder to the head, then horns, an ear and an eye —
+    # a white box with a pink nose read as a pig
+    ink.line(cr, [(x + 95 * s, y - 150 * s), (hx - 20 * s, hy + 4 * s)], lw=34 * s, ink=c, amp=0)
+    ink.line(cr, [(x + 95 * s, y - 150 * s), (hx - 20 * s, hy + 4 * s)], lw=34 * s + 6 * s, ink=ink.INK, amp=0)
+    ink.line(cr, [(x + 95 * s, y - 150 * s), (hx - 20 * s, hy + 4 * s)], lw=34 * s, ink=c, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 40 * s, 34 * s, 18), c, lw=5 * s, amp=0.8, seed=seed + 4)
+    for d in (-1, 1):
+        ink.line(cr, [(hx + d * 14 * s, hy - 30 * s), (hx + d * 30 * s, hy - 52 * s)], lw=5 * s, ink=rgb("#d9c9a0"),
+                 amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx - 34 * s, hy - 14 * s, 16 * s, 9 * s, 10), c, lw=3.5 * s, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(hx + 20 * s, hy + 18 * s, 22 * s, 14 * s, 12), rgb("#e8b7a8"), lw=3 * s,
                     amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 10 * s, hy - 6 * s, 5 * s, 5 * s, 8), ink.INK, lw=0, amp=0)
     tail = math.sin(t * 2 * math.pi / 2.5 + seed) * 15 * s
     ink.line(cr, [(x - 110 * s, y - 150 * s), (x - 130 * s + tail, y - 90 * s)], lw=5 * s, amp=0)
 
