@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | preview | pro | batch'
+        description: 'sleep (the weekly film) | verify | canary | schedule | all | preview | pro | batch'
         required: true
         default: 'sleep'
         type: choice
