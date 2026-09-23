@@ -1,0 +1,19 @@
+{
+  "key": "lyme_tick_county_coverage",
+  "title": "Share of US counties with Lyme-carrying blacklegged ticks",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1998-2024",
+  "source": {
+    "name": "County-level distribution of blacklegged ticks carrying Lyme bacteria",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/ticks/data-research/facts-stats/geographic-distribution-of-tickborne-disease-cases.html",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "CDC tick-surveillance data: blacklegged ticks capable of carrying Lyme bacteria were documented in about 30% of US counties in 1998, versus roughly 45% in the most recent nationwide survey, as milder winters and longer breeding seasons expand the tick's range northward and to higher elevation.",
+  "points": [
+    {"label": "1998", "value": 30, "period": "1998"},
+    {"label": "2024", "value": 45, "period": "2024"}
+  ]
+}

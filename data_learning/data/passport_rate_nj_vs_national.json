@@ -1,0 +1,19 @@
+{
+  "key": "passport_rate_nj_vs_national",
+  "title": "Passport ownership rate: New Jersey vs. the national average",
+  "unit": "percent",
+  "geography": "New Jersey vs. United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Passport possession, by state (analysis of Bureau of Consular Affairs issuance data)",
+    "publisher": "Center for American Progress",
+    "url": "https://www.americanprogress.org/wp-content/uploads/sites/2/2025/01/SAVEact-tables.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-09-23"
+  },
+  "notes": "New Jersey has the highest estimated passport ownership rate of any state at 68.1%, well above the roughly 48% national average, in an analysis of Bureau of Consular Affairs passport data by state.",
+  "points": [
+    {"label": "National average", "value": 48},
+    {"label": "New Jersey", "value": 68.1}
+  ]
+}

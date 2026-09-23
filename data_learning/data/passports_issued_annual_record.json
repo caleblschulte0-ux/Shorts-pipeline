@@ -1,0 +1,19 @@
+{
+  "key": "passports_issued_annual_record",
+  "title": "US passports issued per year, record vs. prior record",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "FY2023 vs FY2025",
+  "source": {
+    "name": "Passport issuance annual totals",
+    "publisher": "U.S. Department of State, Bureau of Consular Affairs",
+    "url": "https://2021-2025.state.gov/return-to-pre-pandemic-passport-processing-times/",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "The Bureau of Consular Affairs issued over 24 million passport books/cards in FY2023, the most in the department's history at the time; FY2025 broke that record again at 27.3 million.",
+  "points": [
+    {"label": "FY2023", "value": 24},
+    {"label": "FY2025", "value": 27.3}
+  ]
+}

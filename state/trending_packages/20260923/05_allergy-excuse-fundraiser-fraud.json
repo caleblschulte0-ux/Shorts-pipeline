@@ -1,0 +1,41 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "allergy-excuse-fundraiser-fraud",
+  "title": "She Faked A Fourth Excuse. I Had The Paperwork.",
+  "hashtags": [
+    "entitledparents",
+    "ptastory",
+    "schoolfundraiser",
+    "reddit",
+    "redditstories",
+    "karma",
+    "parenting",
+    "schoolstory",
+    "satisfying",
+    "storytime",
+    "truestory",
+    "pta",
+    "fraud",
+    "justice",
+    "school"
+  ],
+  "script": "The fundraiser fee was forty dollars, and one mom wanted a refund for her son's sudden peanut allergy, then decided every parent whose kid skipped deserved one too. I run the PTA sign-up sheets, so before anyone got a check I pulled the year's paperwork. The same mom had used a dairy intolerance to skip the bake sale shift, a migraine to skip chaperoning, and a family emergency to dodge the car wash — four different excuses, four different fee waivers, all drawn from the district's actual needs-based hardship fund, the one meant for families who genuinely couldn't pay forty dollars. I didn't say a word to her. I forwarded the sign-up history to the district's finance office with the fund's real purpose attached. Three weeks later the district audited every waiver on that sheet, flagged hers by name, and mailed her an invoice for eleven months of fees. The whole PTA got a calm, cheerful email about 'fund integrity' that same afternoon.",
+  "shots": [
+    {"phrase": "The fundraiser fee was forty dollars", "query": "school fundraiser table"},
+    {"phrase": "a refund for her son's sudden peanut allergy", "query": "peanut allergy warning label"},
+    {"phrase": "I run the PTA sign-up sheets", "query": "clipboard sign-up sheet"},
+    {"phrase": "a dairy intolerance to skip the bake sale shift", "query": "school bake sale table"},
+    {"phrase": "a migraine to skip chaperoning", "query": "person holding forehead headache"},
+    {"phrase": "the district's actual needs-based hardship fund", "query": "school district office building"},
+    {"phrase": "the district audited every waiver on that sheet", "query": "auditor reviewing paperwork"},
+    {"phrase": "mailed her an invoice for eleven months of fees", "query": "mailbox envelope invoice"}
+  ],
+  "punches": [
+    {"phrase": "one mom wanted a refund", "text": "REFUND DEMAND", "color": "#ffaa30"},
+    {"phrase": "four different excuses, four different fee waivers", "text": "4 FAKE EXCUSES", "color": "#ff3030"},
+    {"phrase": "the district audited every waiver on that sheet", "text": "AUDIT TRIGGERED", "color": "#ffaa30"},
+    {"phrase": "an invoice for eleven months of fees", "text": "SHE OWES IT ALL", "color": "#50ff80"}
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,19 @@
+{
+  "key": "python_removals_by_year",
+  "title": "Burmese pythons removed from the Florida Everglades, May-July",
+  "unit": "count",
+  "geography": "South Florida",
+  "time_coverage": "2024 vs 2025 (same May-July window)",
+  "source": {
+    "name": "Python Elimination Program / PATRIC removal totals",
+    "publisher": "Florida Fish and Wildlife Conservation Commission (FWC) / South Florida Water Management District",
+    "url": "https://myfwc.com/wildlifehabitats/nonnatives/python/action-team/",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "State-contracted hunters removed 343 pythons in the May-July window of 2024 and 1,022 in the same window of 2025, part of a program that has removed nearly 28,000 wild Burmese pythons since 2000.",
+  "points": [
+    {"label": "May-Jul 2024", "value": 343},
+    {"label": "May-Jul 2025", "value": 1022}
+  ]
+}

@@ -28878,6 +28878,237 @@
      "say": "Hawaii has the most centenarians per capita -- 240 per 100,000 residents. The national average is just 30. Where you live shapes how long you're likely to live."
     }
    ]
+  },
+  {
+   "slug": "lyme-disease-undercount",
+   "title": "The CDC Says Lyme Disease Is 16x More Common Than Reported",
+   "hook": "Blame the ticks -- they've spread into 45% of the country.",
+   "closing": "Check for ticks. Your backyard is bigger news than you think.",
+   "question": "Ever found a tick on yourself? Tell me where below.",
+   "caption": "The CDC officially logs about 30,000 Lyme disease cases a year. Its own real estimate? 476,000 -- because the ticks that carry it now cover 45% of US counties, up from 30% in 1998. Here's how a warming climate quietly turned a rare bite into a everyday risk. Ever pulled a tick off yourself? 👇",
+   "hashtags": [
+    "lyme",
+    "lymedisease",
+    "ticks",
+    "tickbite",
+    "publichealth",
+    "cdc",
+    "climatechange",
+    "outdoors",
+    "hiking",
+    "tickseason",
+    "insects",
+    "healthdata"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "lyme_tick_county_coverage",
+     "params": {
+      "file": "lyme_tick_county_coverage.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SPREAD",
+     "topic": "ticks that spread Lyme disease",
+     "say": "In 1998, ticks that spread Lyme disease were found in 30% of US counties. Today, it's 45% -- climate change keeps giving them new ground."
+    },
+    {
+     "source": "offline",
+     "key": "lyme_reported_vs_estimated",
+     "params": {
+      "file": "lyme_reported_vs_estimated.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE UNDERCOUNT",
+     "topic": "reported Lyme disease cases",
+     "say": "So official Lyme cases should be climbing too. They are -- but only 30,000 a year get reported. The CDC's real estimate is 476,000."
+    },
+    {
+     "source": "offline",
+     "key": "lyme_high_risk_counties",
+     "params": {
+      "file": "lyme_high_risk_counties.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE RISK",
+     "topic": "counties at high risk for Lyme disease",
+     "say": "Three decades ago, just 29 counties counted as high-risk. Now it's 260 -- 9 times more places where one tick bite can wreck your year."
+    }
+   ]
+  },
+  {
+   "slug": "python-mammal-collapse",
+   "title": "Pythons Wiped Out 99% Of Raccoons In Parts Of The Everglades",
+   "hook": "One caught in 2023 was longer than a giraffe is tall.",
+   "closing": "The raccoons never stood a chance.",
+   "question": "Would you go looking for a 19-foot python? Be honest below.",
+   "caption": "In the parts of the Everglades where Burmese pythons have been established longest, raccoon sightings are down 99%, opossums 99%, deer 94%, bobcats 88%. Florida now pays hunters to catch them -- removals nearly tripled in a single year. Would you go looking for a 19-foot snake? 👇",
+   "hashtags": [
+    "pythons",
+    "burmesepython",
+    "everglades",
+    "florida",
+    "invasivespecies",
+    "wildlife",
+    "usgs",
+    "snakes",
+    "conservation",
+    "floridawildlife",
+    "ecology",
+    "nature"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "python_mammal_declines",
+     "params": {
+      "file": "python_mammal_declines.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE COLLAPSE",
+     "topic": "pythons and Everglades mammals",
+     "say": "In parts of the Everglades, raccoon sightings dropped 99% after Burmese pythons moved in. Opossums fell 99%, deer 94%, bobcats 88%."
+    },
+    {
+     "source": "offline",
+     "key": "python_removals_by_year",
+     "params": {
+      "file": "python_removals_by_year.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE RESPONSE",
+     "topic": "pythons removed from the Everglades",
+     "say": "So Florida pays hunters to catch them. In summer 2024, they removed 343. By summer 2025, that number was 1,022 -- the problem is accelerating."
+    },
+    {
+     "source": "offline",
+     "key": "python_record_length_vs_giraffe",
+     "params": {
+      "file": "python_record_length_vs_giraffe.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SCALE",
+     "topic": "how big pythons get",
+     "say": "One python caught in 2023 measured 19 feet -- about as long as a giraffe is tall. And that's still just one snake."
+    }
+   ]
+  },
+  {
+   "slug": "kelp-forest-sea-star-collapse",
+   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
+   "hook": "A mystery disease wiped out billions of sea stars in 2013.",
+   "closing": "No sea stars, no kelp, no forest. One disease did all that.",
+   "question": "Did you know one disease could take down a whole forest? Tell me below.",
+   "caption": "In 2013, a mystery wasting disease killed up to 99% of Pacific sunflower sea stars. Without them, purple urchins exploded more than 10,000% -- and mowed California's north coast kelp forests down to almost nothing: a 96% loss. One missing predator, one collapsed ecosystem. Did you know this? 👇",
+   "hashtags": [
+    "kelpforest",
+    "seastar",
+    "seastarwasting",
+    "oceandisease",
+    "marinebiology",
+    "urchins",
+    "california",
+    "noaa",
+    "oceanconservation",
+    "ecosystem",
+    "climatechange",
+    "ocean"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "seastar_wasting_population",
+     "params": {
+      "file": "seastar_wasting_population.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE DIE-OFF",
+     "topic": "sea stars wiped out by disease",
+     "say": "In 2013, a mystery wasting disease killed billions of sunflower sea stars almost overnight -- up to 99% of them, gone within two years."
+    },
+    {
+     "source": "offline",
+     "key": "purple_urchin_population_index",
+     "params": {
+      "file": "purple_urchin_population_index.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE EXPLOSION",
+     "topic": "urchins take over without their main predator",
+     "say": "Sea stars used to keep purple urchins in check. Without them, urchin numbers exploded -- up more than 10,000% along the North Coast."
+    },
+    {
+     "source": "offline",
+     "key": "california_kelp_canopy_loss",
+     "params": {
+      "file": "california_kelp_canopy_loss.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE COLLAPSE",
+     "topic": "California's kelp forests disappear",
+     "say": "Those urchins mowed down the kelp forest the whole ecosystem depends on. California's north coast lost 96% of its kelp canopy in just a few years."
+    }
+   ]
+  },
+  {
+   "slug": "passport-ownership-surge",
+   "title": "Half Of Americans Now Own A Passport -- Up From Just 5% In 1990",
+   "hook": "New Jersey alone is already at 68%.",
+   "closing": "Half the country's ready to leave. The other half isn't.",
+   "question": "Do you actually have a valid passport right now? Tell me below.",
+   "caption": "In 1990, just 5% of Americans owned a passport. Today it's 48% -- and the government keeps breaking its own record, issuing 27.3 million in 2025 alone. New Jersey leads the country at 68%, 20 points above average. Do you actually have a valid one right now? 👇",
+   "hashtags": [
+    "passport",
+    "uspassport",
+    "travel",
+    "traveldata",
+    "statedepartment",
+    "internationaltravel",
+    "globaltravel",
+    "tourism",
+    "borders",
+    "passportpower",
+    "americans",
+    "wanderlust"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "passport_ownership_rate",
+     "params": {
+      "file": "passport_ownership_rate.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SHIFT",
+     "topic": "Americans who own a passport",
+     "say": "In 1990, just 5% of Americans owned a passport. Today it's 48% -- almost half the country has one."
+    },
+    {
+     "source": "offline",
+     "key": "passports_issued_annual_record",
+     "params": {
+      "file": "passports_issued_annual_record.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE DEMAND",
+     "topic": "how many Americans get a passport now",
+     "say": "The government can barely keep up -- it issued 24 million passports in 2023, then broke that record with 27.3 million in 2025."
+    },
+    {
+     "source": "offline",
+     "key": "passport_rate_nj_vs_national",
+     "params": {
+      "file": "passport_rate_nj_vs_national.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE DIVIDE",
+     "topic": "passport ownership across states",
+     "say": "It's not even across the map, though. New Jersey alone sits at 68% -- 20 points above the national average."
+    }
+   ]
   }
  ],
  "videos": [

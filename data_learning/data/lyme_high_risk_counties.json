@@ -1,0 +1,20 @@
+{
+  "key": "lyme_high_risk_counties",
+  "title": "US counties with high-incidence Lyme risk",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1990s-present",
+  "source": {
+    "name": "Lyme disease high-incidence county classification",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/lyme/data-research/facts-stats/lyme-disease-case-map.html",
+    "officiality": "official",
+    "access_date": "2026-09-23"
+  },
+  "notes": "CDC classifies a county as high-incidence when its Lyme case rate is at least twice the national average. That list held 29 counties three decades ago, grew to 130 a decade later, and now stands at roughly 260 -- concentrated in the Northeast and upper Midwest but expanding into the mid-Atlantic and parts of the West.",
+  "points": [
+    {"label": "30 years ago", "value": 29},
+    {"label": "Today", "value": 260}
+  ],
+  "ascending": false
+}
