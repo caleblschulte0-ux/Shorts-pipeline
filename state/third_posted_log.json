@@ -8586,6 +8586,52 @@
         "end": 34.95
       },
       "director_cut": true
+    },
+    "rejected-agitatedpeppyfishbuddhabar-ehirgsceqpneucze": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AgitatedPeppyFishBuddhaBar-eHirGScEQPNEucZe",
+      "streamer": "jynxzi",
+      "title": "type 1 one in the chat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (streamer just chatting, no event)",
+      "ts": "2026-09-23T12:29:42.337321+00:00"
+    },
+    "rejected-resourcefulcoweringhippoasianglow-pmv3s6vwervyie2j": {
+      "source_url": "https://www.twitch.tv/lospollostv/clip/ResourcefulCoweringHippoAsianGlow-pMv3S6vweRvYiE2J",
+      "streamer": "lospollostv",
+      "title": "Just a bebe",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (generic Fortnite gameplay, no payoff)",
+      "ts": "2026-09-23T12:30:59.584259+00:00"
+    },
+    "rejected-boringkawaiiwombatwow-j-egqf3mr_aapp9c": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/BoringKawaiiWombatWow-J-EgQF3mR_AAPP9C",
+      "streamer": "hasanabi",
+      "title": "GG FUGGIN EZ",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (political talking heads, no visible even)",
+      "ts": "2026-09-23T12:33:06.662448+00:00"
+    },
+    "rejected-athleticdependablerattf2john-bpdmzly-gvjo2wdp": {
+      "source_url": "https://www.twitch.tv/cinna/clip/AthleticDependableRatTF2John-bPDmZly-gVJo2Wdp",
+      "streamer": "cinna",
+      "title": "Cinna: Kalita Dub's Caternado Cat Escapes Like Usain Bolt",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Character/subject is a tiny, distant silhouette on the road \u2014 no crop toward the action, so the 'escape' the title promi; vision: Several frames (10.2s-16.1s, the 'GET OFF THE' caption frame, and the black band under 27.8s-33.6s) are almost entirely ; vision: Gameplay footage is very dark/lo",
+      "ts": "2026-09-23T12:39:29.678819+00:00"
+    },
+    "clip-20260923-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/erobb221/clip/CharmingTalentedSnailKappaRoss-DSE-mNEl_dgCvhvQ",
+      "story_key": null,
+      "streamer": "erobb221",
+      "title": "Erobb221: Ricky And Maynard's Street Fight Ends In The Wildest Way",
+      "kind": "twitch_clip",
+      "ts": "2026-09-23T12:45:53.310468+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
