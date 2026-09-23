@@ -1964,6 +1964,20 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 78,
       "duration_s": 50.3
+    },
+    "teen-ai-companion-boom": {
+      "url": "https://youtube.com/shorts/7cHprX-Tsdg",
+      "title": "72% Of Teens Have Talked To An AI Like It's A Friend",
+      "at": "2026-09-23T20:08:48.102170+00:00",
+      "publish_at": "2026-09-24T13:18:41Z",
+      "state": "posted",
+      "style_arm": "illustrated",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 77,
+      "duration_s": 41.2
     }
   },
   "uploads": [
@@ -2245,6 +2259,15 @@
       "state": "posted",
       "slug": "teen-vaping-crash-nicotine-pouches",
       "at": "2026-09-23T19:41:46.055483+00:00"
+    },
+    {
+      "claimed_at": "2026-09-23T20:08:41.075184+00:00",
+      "title": "72% Of Teens Have Talked To An AI Like It's A Friend",
+      "publish_at": "2026-09-24T13:18:41Z",
+      "url": "https://youtube.com/shorts/7cHprX-Tsdg",
+      "state": "posted",
+      "slug": "teen-ai-companion-boom",
+      "at": "2026-09-23T20:08:48.102170+00:00"
     }
   ]
 }
