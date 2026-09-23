@@ -22,10 +22,6 @@ What that took, each held here:
 from __future__ import annotations
 
 import ast
-try:
-    import cairo
-except Exception:  # noqa: BLE001
-    cairo = None
 import inspect
 import json
 import shutil
@@ -40,9 +36,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 try:
-    import cairo  # noqa: F401
+    import cairo
     HAVE_CAIRO = True
 except Exception:  # noqa: BLE001
+    cairo = None
     HAVE_CAIRO = False
 
 

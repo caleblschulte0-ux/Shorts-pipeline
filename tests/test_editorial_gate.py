@@ -263,5 +263,19 @@ class TestPreRenderVerdictSkipsThesisWhenAlreadyHeld(unittest.TestCase):
         self.assertFalse(v["data_ok"])
 
 
+
+class TestItRunsTheWayTheWorkflowRunsIt(unittest.TestCase):
+    """explainer.yml runs `python3 scripts/editorial_gate.py`, where only
+    scripts/ is on the path. Its `from shared import beat_match` died with
+    ModuleNotFoundError on every run (2026-09-23), hidden by `|| true`."""
+
+    def test_as_a_script(self):
+        import subprocess
+        r = subprocess.run([sys.executable, str(ROOT / "scripts" / "editorial_gate.py")],
+                           cwd=str(ROOT), capture_output=True, text=True, timeout=300)
+        self.assertNotIn("ModuleNotFoundError", r.stderr + r.stdout)
+        self.assertEqual(r.returncode, 0, r.stderr[-800:])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

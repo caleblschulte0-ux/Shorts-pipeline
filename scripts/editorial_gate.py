@@ -33,9 +33,15 @@ from __future__ import annotations
 import json
 import os
 import re
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
+# Run as a SCRIPT (explainer.yml: `python3 scripts/editorial_gate.py`), only
+# scripts/ is on the path, and the lazy `from shared import beat_match` below
+# died with ModuleNotFoundError on every run — hidden by the step's `|| true`.
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
 DATA_DIR = REPO / "data_learning" / "data"
 
 # Officiality values that count as a REAL, citable source. Everything else —
