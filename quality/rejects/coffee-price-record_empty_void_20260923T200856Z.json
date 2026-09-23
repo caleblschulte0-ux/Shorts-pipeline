@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260923T200856Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:mid the frame is almost empty: two short pill stubs, a faint 'vs' and blank space from the title down to y\u2248500. In seg3:start the top third is empty above the circles.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "meaningless_depiction",
+  "visible_evidence": "seg1:mid and seg1:end show 'it never settled': a zigzag line that trends DOWN toward the right, over a range slider whose red dot sits somewhere between '$1.1' and '$4.4'. The caption reads 'anywhere between $1.1 and $4.4'. Data stands in the corner pointing.",
+  "root_cause": "The shape was chosen as generic volatility/range. The story is a record CLIMB from $1.05 to $4.41 driven by shocks, and this picture shows a price falling and 'anywhere in a range'. That contradicts the narration.",
+  "repair_goal": "Show the climb as a series of shocks: coffee price jumps up in steps or spikes from $1.05 (2019) to a new record at $4.41 (Feb 2025), with each shock hitting visibly and the final one breaking through a 'previous record' ceiling. Data reacts to each jolt, for example getting knocked back as the level lurches up."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

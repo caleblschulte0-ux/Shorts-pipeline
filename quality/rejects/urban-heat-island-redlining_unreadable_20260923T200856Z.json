@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T200856Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:mid 'clears it by 1.7' prints on top of '65-city average 8'. In seg1:start the pin covers the '5' of '65-city'. In hook@0.3 and seg0 the 9.7 in the NYC bubble is dark text smeared over itself on light blue. In seg4:start the labels are cut off ('Formerly redli...', 'neighborhoods",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_relationship",
+  "visible_evidence": "seg2:start is a stacked single column (a chart) showing 68% vs 32%. It then turns into a caliper ruler reading '36% apart' between two posts (seg2:end). The two labels stack tightly and Data just stands at a post with his arms up.",
+  "root_cause": "The data is a share, two parts of one population. It was drawn first as a generic stacked bar and then as a distance or gap machine. '36% apart' is a claim the story never makes and misreads the share. None of it is made of the subject: hot, paved blocks with no trees.",
+  "repair_goal": "Draw the 68% as a population inside the city. For example, a grid of 100 city blocks or residents where 68 turn hot orange, pavement shimmering and trees gone, while 32 stay shaded green. Data walks from a shaded block into the heat and reacts to it. Remove the '36% apart' gap ruler entirely."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

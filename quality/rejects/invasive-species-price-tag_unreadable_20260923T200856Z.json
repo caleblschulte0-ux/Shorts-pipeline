@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T200856Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: From seg4:mid to payoff@-0.4 the closing line wraps, and its last word 'for.' sits right on top of the '$423B a year' headline, so the two text blocks collide. At seg3:start the caption 'taken hold worldwide.' is pale on light-green grass and almost disappears. At seg0:mid the words 'INV",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "From seg4:mid through payoff@-0.4 the three-line closing caption 'Nature sent the world / a bill nobody budgeted / for.' ends right on top of '$423B a year'. The word 'for.' touches the headline's cap height. The frame then stacks two more text blocks under it ('264\u00d7 the 1970 bill') plus a three-line CTA at the bottom, so there is text in four places.",
+  "root_cause": "The closing line and the stat headline are placed in the same top band without measuring each other. The closing line wraps to three lines at this width and runs into the headline. On top of that, the closing scene repeats the $423B and 264\u00d7 labels from the hook, which crowds the frame.",
+  "repair_goal": "Give the closing line its own band: keep it to two lines or measure it and push the stat headline below its measured bottom. Drop the repeated '264\u00d7 the 1970 bill' label, because the invoice-into-an-empty-BUDGET-jar bit already makes the point. The result should be one headline and one caption, with clear space between them and no overlapping glyphs."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

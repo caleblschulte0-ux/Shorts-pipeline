@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260923T200856Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:end the '19.7 points / lower than the peak' label sits on top of Data and the brick building, so the small subline is lost behind the mascot. At seg4:start the smoke covers the VAPE 27.5% card and 'vaping \u00b7 the 2019 peak' is low-contrast grey on the sunset.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:end the payoff stat '19.7 points' and its 'lower than the peak' subline sit on top of the mascot and the building behind him. The subline crosses Data's body and is hard to read at phone size.",
+  "root_cause": "The delta label is anchored to the cloud's final position, and the cloud sinks to where Data and the busy buildings are. No safe zone is kept clear of the mascot.",
+  "repair_goal": "Put the '19.7 points lower than the peak' callout in clear sky above the shrunken cloud, or up by the 7.8% headline, on a clean background. Keep Data beside the label, not behind it, so the drop reads at arm's length."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

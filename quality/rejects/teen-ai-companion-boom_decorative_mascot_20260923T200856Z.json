@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T200856Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start to seg3:end: Data only points, waves or holds his head beside the lit windows, the bench and the laptop (seg2:mid waves on the path, seg3:mid hands on head on the keyboard). None of that affects the stat. The only real bit is seg4, where he carries envelopes out of the ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start\u2013seg3:end: the laptop scrolls blue and red '!' bubbles while Data stands on the keyboard, waves and holds his head. The 34% 'uncomfortable' figure and the 'keep coming back anyway' twist are only in the text. The bubbles never add up to 34% as a visible share.",
+  "root_cause": "The scene uses a generic chat-scroll machine. Its red-bubble ratio is not tied to the number, and the mascot has no action tied to the claim that most teens come back after being made uncomfortable.",
+  "repair_goal": "Make about 1 in 3 bubbles visibly turn red and pile up as a counted stack reaching 34%. Then have Data flinch back from a red bubble and get pulled back to type again, so the 'most keep coming back' payoff is acted out, not just captioned."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
