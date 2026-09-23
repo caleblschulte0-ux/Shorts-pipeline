@@ -280,7 +280,14 @@ and the takeover went on asking for a retired format with everything green.
   small repairs happen there. His words: *"don't make a great video and
   then ruin it because of the judge ... [and don't] make the judge easier
   because then that's how you put out trash."* The gate is never touched;
-  the film moves.
+  the film moves. His bar, 2026-09-23 evening, after seven judged runs
+  (74, 74, 74, 70, 78, 83, 74): *"you need to be shooting for high 90s and
+  then we need to be getting at least consistent 80s. Before you come back
+  to me and show me anything, unless you're having a real question about
+  the direction of something."* So: no status reports to him until the
+  verdicts are consistently 80 or better; the only interruption allowed is
+  a real question of direction. `docs/ORI_DOCUMENTARY.md` keeps the per-run
+  record instead.
 
 Trending's formats are `reddit_story` (gameplay + post card + TTS) and
 `graph_race` (animated chart); `text_card` is retired. **Those are the

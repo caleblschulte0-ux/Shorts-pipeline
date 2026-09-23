@@ -128,6 +128,36 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         self.assertEqual(sc["setting"], "cave_mouth", "an invalid answer must not replace the scene")
         self.assertGreaterEqual(int(sc.get("variant", 0)), 1, "it falls back to the small repair")
 
+    def test_a_scene_graded_one_on_its_words_is_respecified_too_and_the_calls_are_capped(self):
+        # the seventh film's judge: chapters "never show the activity the
+        # narration describes" while the storyboard had graded every scene
+        # 1 or 2 — 1 ("right place, activity not shown") is the usual answer
+        # and it is exactly the defect the film is graded on
+        ep = _ep(3)
+        asks = []
+        good = {"setting": "riverbank", "time": "dusk", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "sit", "action": "fish"}], "props": ["reeds"]}
+        def ask(sy, u):
+            asks.append(u)
+            return json.dumps(good)
+        rep = self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w3",
+                             rounds=1)
+        self.assertEqual(rep["repaired"], 1)
+        self.assertEqual(ep["chapters"][0]["beats"][1]["scene"], good)
+        self.assertIn("Chapter:", asks[0])
+        self.assertIn("could guess the activity", asks[0])
+        # the cap: with every scene graded 1, no more than MAX_RESPECS author calls
+        ep2 = _ep(3)
+        asks.clear()
+        old_cap = self.SB.MAX_RESPECS
+        self.SB.MAX_RESPECS = 2
+        try:
+            self.SB.polish(ep2, judge=_judge_flagging({0: (False, 1), 1: (False, 1), 2: (False, 1)}, []),
+                           ask=ask, work=self.work / "w4", rounds=1)
+        finally:
+            self.SB.MAX_RESPECS = old_cap
+        self.assertEqual(len(asks), 2)
+
     def test_a_clean_board_is_stamped_and_not_reviewed_again_for_the_same_kit(self):
         ep = _ep(3)
         calls = []

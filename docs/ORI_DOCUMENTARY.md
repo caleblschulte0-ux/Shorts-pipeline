@@ -277,6 +277,16 @@ note names a real thing, so every note moved the film, not the judge:
   with its face to the sky and an arm raised at it (`people._face_up`),
   which is the judge's own picture for a sky chapter.
 
+- **The storyboard is strict about the words now.** Across three films the
+  storyboard editor never once graded a scene 0 on showing its words, and
+  1 ("right place, activity not shown") never triggered anything — while
+  the film's judge said chapter after chapter "never shows the activity the
+  narration describes". A scene graded 1 is re-specified now too
+  (`SHOWS_MIN`), the prompt asks whether a viewer who had not heard the
+  words could guess the activity, the respec is told the chapter and the
+  actions that show things, and the author calls are capped
+  (`MAX_RESPECS`) so a strict editor cannot cost a render slot.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

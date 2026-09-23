@@ -47,6 +47,8 @@ from data_learning.doodle import scene as S                       # noqa: E402
 LEDGER = REPO / "state" / "ori_storyboard.jsonl"
 PER_SHEET = 9                    # 3 x 3 tiles, each 640 x 360 — readable, one image per call
 ROUNDS = 3
+SHOWS_MIN = 1          # a scene graded this or lower on showing its words is re-specified
+MAX_RESPECS = 60       # author calls per polish, so a strict judge cannot cost a whole render slot
 TILE_W, TILE_H = 640, 360
 
 PROMPT = """You are the STORYBOARD EDITOR of a hand-drawn sleep film (round-headed \
@@ -61,9 +63,14 @@ frame edge, something floating where it cannot be (a painting in the sky), a \
 malformed limb or hand, an animal or person that reads as dead/upside down, \
 unreadable clutter. A calm, sparse picture is NOT broken.
   why          one short line naming the defect (empty if not broken)
-  shows_words  2 = the frame shows the place, time and activity the words \
-describe; 1 = right place/era but the activity is not shown (idle people \
-where the words describe work or play); 0 = wrong or unrelated
+  shows_words  2 = the frame shows the place, time and THE ACTIVITY the words \
+describe (name it to yourself first: sewing, knapping, a game, looking up, \
+carrying wood, feeding the fire, sleeping) and a viewer who had not heard \
+the words could guess them from the picture; 1 = right place and era but \
+that activity is not visible (people who only sit where the words describe \
+work, play or looking at the sky), or the picture could be any passage of \
+the film; 0 = wrong or unrelated. Be strict on 2: the finished film is \
+graded on whether each scene SHOWS its words, and 1 is the usual answer.
 
 Frames:
 {listing}
@@ -72,8 +79,15 @@ Return ONLY a JSON object: {{"frames": [{{"n": 1, "broken": false, "why": "", \
 "shows_words": 2}}, ...]}} with one entry per frame, n from 1 to {n}."""
 
 RESPEC = """One scene of a hand-drawn sleep film does not show its passage. Write a \
-new scene spec for it in the kit's own vocabulary. Return ONLY JSON: SCENE.
+new scene spec for it in the kit's own vocabulary, so that a viewer who had \
+not heard the words could guess the activity from the picture: give the people \
+the ACTION the words name (a child at play crouches with a stick; sky-watchers \
+look_up, one lying on their back on the grass; a fire-keeper does feed_fire; \
+cold is hug_self in frost), put the activity in a close shot, and prefer a \
+different setting from the old scene when the words allow it. \
+Return ONLY JSON: SCENE.
 Era: {era}
+Chapter: "{chapter}"
 Passage: "{say}"
 The old scene: {old}
 What was wrong: {why}
@@ -208,14 +222,14 @@ def repair_broken(spec: dict, era: str, round_: int) -> str | None:
     return "variant"
 
 
-def respec(fb: dict, era: str, why: str, ask) -> str | None:
+def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None) -> str | None:
     """Ask the author's brain for a scene that shows the passage. Kept only
     if it validates against the kit; otherwise the old scene stays."""
     import ori_author as A
     try:
         raw = ask(A.SYSTEM, RESPEC.format(era=era, say=fb["say"][:600], old=json.dumps(fb["scene"]),
                                           why=why or "the activity in the words is not shown",
-                                          vocab=S.vocabulary(era)))
+                                          chapter=chapter or "", vocab=S.vocabulary(era)))
         new = A._parse(raw)
     except Exception as e:                                # noqa: BLE001
         return None if not isinstance(e, A.NoBrain) else None
@@ -253,6 +267,7 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
     report = dict(reviewed=0, flagged=0, repaired=0, rounds=0, clean=False, skipped=None, notes=[])
     beats = flat_beats(ep)
     todo = beats
+    respecs = 0
     with tempfile.TemporaryDirectory() as td:
         wd = Path(work or td)
         for r in range(1, rounds + 1):
@@ -268,7 +283,7 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
             report["rounds"] = r
             report["reviewed"] += len(findings)
             flagged = [fb for fb in todo if fb["index"] in findings and
-                       (findings[fb["index"]]["broken"] or findings[fb["index"]]["shows_words"] == 0)]
+                       (findings[fb["index"]]["broken"] or findings[fb["index"]]["shows_words"] <= SHOWS_MIN)]
             report["flagged"] += len(flagged)
             _log(dict(ts=datetime.now(timezone.utc).isoformat(timespec="seconds"), slug=ep["slug"], round=r,
                       reviewed=len(findings), flagged=[dict(index=fb["index"], **findings[fb["index"]])
@@ -280,8 +295,10 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
             for fb in flagged:
                 f = findings[fb["index"]]
                 did = None
-                if f["shows_words"] == 0 and ask is not None:
-                    did = respec(fb, ep["era"], f["why"], ask)
+                if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS:
+                    respecs += 1
+                    did = respec(fb, ep["era"], f["why"], ask,
+                                 chapter=(ep["chapters"][fb["chapter"]].get("title") or ""))
                 if did is None:
                     did = repair_broken(fb["scene"], ep["era"], r)
                 if did:
