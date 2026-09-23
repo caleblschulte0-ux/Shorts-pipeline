@@ -307,6 +307,8 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
             places = ("cave_mouth", "grassland", "cave_inside", "riverbank", "forest", "lakeshore",
                       "mountains", "seashore", "snowfield")
             scenes = [{"setting": places[(j + n) % 9], "time": "night", "props": ["campfire"]} for j in range(9)]
+            if n == 1:
+                scenes[0] = dict(scenes[0], shot="wide", props=["campfire", "torch"])   # the film opens wide
             if broken_chapter == n:
                 scenes = [{"setting": "spaceship", "time": "night"}] * 9
             return json.dumps({"beats": [{"say": say, "scene": sc} for sc in scenes]})
@@ -590,6 +592,24 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertIsNone(A.era_for("A night on the Apollo 11 launch pad", ask=None))
         # two eras named at once is a question, not a guess
         self.assertIsNone(A.era_for("Romans and medieval knights compared", ask=None))
+
+    def test_the_film_opens_wide(self):
+        import ori_author as A
+        say = " ".join(["the fire burns low and the night goes on"] * 12)
+        places = ["cave_mouth", "grassland", "riverbank", "forest", "cave_inside"]
+        beats = [{"say": say, "scene": {"setting": places[j % 5], "time": "night", "shot": "close",
+                                        "props": ["campfire"], "cast": [{"who": "man", "pose": "sit", "action": "talk"}]}}
+                 for j in range(6)]
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999) if "wide" in b], [])
+        bad = A._chapter_problems(beats, "stone_age", 0, 99999, opening=True)
+        self.assertTrue(any("first picture" in b for b in bad), bad)
+        beats[0]["scene"]["shot"] = "wide"
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999, opening=True) if "wide" in b], [])
+        # the shelf's own film opens wide
+        from data_learning import ori_sleep as OS
+        for f in sorted(OS.EPISODES.glob("*.json")):
+            ep = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(A._chapter_problems(ep["chapters"][0]["beats"], ep["era"], 0, 10 ** 6, opening=True), [], f.name)
 
     def test_the_author_refuses_a_chapter_where_everyone_only_sits(self):
         import ori_author as A

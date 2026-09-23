@@ -207,10 +207,15 @@ def _tally_note(tally: dict, so_far: int) -> str:
             "for this chapter.")
 
 
-def _chapter_problems(beats, era: str, lo: int, hi: int, before=None) -> list[str]:
+def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: bool = False) -> list[str]:
     if not isinstance(beats, list) or not beats:
         return ["no beats"]
     bad, total = [], 0
+    if opening:
+        # the hook: the film opens on a wide establishing picture of the place
+        first = beats[0].get("scene") if isinstance(beats[0], dict) else None
+        if not isinstance(first, dict) or S.shot_of(first) != "wide":
+            bad.append("beat 1 (the film's first picture) must be a wide establishing shot: shot \"wide\"")
     for j, b in enumerate(beats):
         if not isinstance(b, dict):
             bad.append(f"beat {j + 1} is not an object")
@@ -359,7 +364,9 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
     prev_text = ""
     for i, ch in enumerate(chs):
         prev = (f"The previous chapter ended: \"{prev_text[-600:]}\"" if prev_text
-                else "This is the opening chapter: welcome the listener gently and set the scene.")
+                else "This is the opening chapter: welcome the listener gently and set the scene. "
+                     "Its FIRST beat is a wide establishing shot of the place (shot \"wide\"), "
+                     "with the title drawn over it — the picture the film opens on.")
         final = ("- This is the LAST chapter: let the night grow deep and quiet, and end "
                  "with the people asleep and the listener invited to sleep too. Its last "
                  "outdoor scenes use time \"dawn\" — the sky pales as the film ends."
@@ -372,8 +379,9 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                 title=o["title"], era=era, n=i + 1, total=len(chs), chapter=ch.get("title", ""),
                 covers=ch.get("covers", ""), prev=prev, words_lo=words_lo, words_hi=words_hi,
                 final=final, vocab=vocab, problems=pr),
-            lambda r, before=before: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
-                                                       words_lo - 100, words_hi + 200, before=before),
+            lambda r, before=before, i=i: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
+                                                            words_lo - 100, words_hi + 200, before=before,
+                                                            opening=(i == 0)),
             ask, f"{topic!r} chapter {i + 1}")
         if res is None:
             return None
