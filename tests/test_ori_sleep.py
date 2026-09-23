@@ -288,10 +288,13 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
                     "thumbnail_scene": {"setting": "cave_mouth", "time": "night", "props": ["campfire"]},
                     "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(14)]})
             n = int(user.split("Chapter ")[1].split(" of")[0])
-            scene = {"setting": "cave_mouth", "time": "night", "props": ["campfire"]}
+            # a real chapter is a sequence of DIFFERENT pictures; one picture
+            # nine times is what the author refuses
+            places = ("cave_mouth", "grassland", "cave_inside", "riverbank")
+            scenes = [{"setting": places[j % 4], "time": "night", "props": ["campfire"]} for j in range(9)]
             if broken_chapter == n:
-                scene = {"setting": "spaceship", "time": "night"}
-            return json.dumps({"beats": [{"say": say, "scene": scene} for _ in range(9)]})
+                scenes = [{"setting": "spaceship", "time": "night"}] * 9
+            return json.dumps({"beats": [{"say": say, "scene": sc} for sc in scenes]})
         return ask, calls
 
     def test_a_valid_book_of_chapters_becomes_an_episode(self):
@@ -372,3 +375,81 @@ class TheMailboxJudgeCoversTheChannel(unittest.TestCase):
         src = (ROOT / "shared" / "review_mailbox.py").read_text()
         for side in (".jpg", ".srt", ".meta.json"):
             self.assertIn(f'"{side}"', src)
+
+
+@needs_cairo
+class ThePictureIsReadable(unittest.TestCase):
+    """The first film's judge, 2026-09-23: "sleepers are drawn lying in the
+    fire with a plank through their heads". Every figure and every prop on
+    the ground plane has a real width (a sleeper is five heads long), the
+    layout keeps them clear of each other, a crowded shot is drawn smaller
+    rather than overlapped, and every scene of every episode on the shelf
+    lays out clean."""
+
+    def setUp(self):
+        from data_learning.doodle import people, scene
+        self.P, self.S = people, scene
+
+    def test_every_pose_has_an_extent(self):
+        for pose in self.P.POSES:
+            lo, hi = self.S.figure_extent(pose, 40.0)
+            self.assertLess(lo, 0)
+            self.assertGreater(hi, 0)
+
+    def test_a_sleeper_is_kept_out_of_the_fire(self):
+        spec = {"setting": "cave_mouth", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "lie", "action": "sleep"}],
+                "props": ["campfire", "wolf", "bedroll", "stones"]}
+        lay = self.S.layout(spec, 3)
+        self.assertEqual(lay["collisions"], [])
+        spans = {s["label"]: s for s in self.S.spans(lay)}
+        man, fire = spans["man:lie"], spans["campfire"]
+        self.assertTrue(man["hi"] <= fire["lo"] or man["lo"] >= fire["hi"])
+        bed = spans["bedroll"]
+        self.assertEqual(bed["under"], 0)
+        self.assertLess(abs((bed["lo"] + bed["hi"]) / 2 - (man["lo"] + man["hi"]) / 2), 30)
+
+    def test_a_crowded_heap_is_drawn_smaller_not_overlapped(self):
+        spec = {"setting": "cave_inside", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": w, "pose": "lie", "action": "sleep"} for w in ("man", "woman", "elder", "child")],
+                "props": ["campfire", "torch", "bedroll", "woodpile"]}
+        lay = self.S.layout(spec, 5)
+        self.assertEqual(lay["collisions"], [])
+        self.assertLess(lay["scale"], 1.25)
+        for s in self.S.spans(lay):
+            self.assertGreaterEqual(s["lo"], -60)
+            self.assertLessEqual(s["hi"], self.S.W + 60)
+
+    def test_collisions_are_named_when_a_scene_cannot_be_helped(self):
+        lay = {"people": [{"who": "man", "pose": "sit", "x": 500, "s": 2.0, "facing": "right"},
+                          {"who": "woman", "pose": "sit", "x": 520, "s": 2.0, "facing": "right"}],
+               "props": [{"name": "campfire", "x": 560, "s": 2.0, "layer": "mid"}]}
+        bad = self.S.collisions(lay)
+        self.assertTrue(any("man:sit overlaps woman:sit" in b for b in bad))
+        self.assertTrue(any("overlaps campfire" in b for b in bad))
+
+    def test_every_scene_on_the_shelf_lays_out_clean(self):
+        from data_learning import ori_sleep as OS
+        files = sorted(OS.EPISODES.glob("*.json"))
+        self.assertTrue(files, "no episode on the shelf")
+        n = 0
+        for f in files:
+            ep = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(OS.validate(ep), [], f.name)
+            for c in ep["chapters"]:
+                for b in c["beats"]:
+                    lay = self.S.layout(b["scene"], 1000 + n)
+                    self.assertEqual(lay["collisions"], [], f"{f.name}: {c['title']}: {b['say'][:60]}")
+                    n += 1
+
+    def test_the_author_refuses_a_chapter_that_is_one_picture(self):
+        import ori_author as A
+        say = " ".join(["the fire burns low and the night goes on"] * 12)
+        cave = {"setting": "cave_mouth", "time": "night", "shot": "close", "props": ["campfire"],
+                "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}]}
+        beats = [{"say": say, "scene": dict(cave)} for _ in range(10)]
+        bad = A._chapter_problems(beats, "stone_age", 0, 99999)
+        self.assertTrue(any("same picture" in b for b in bad), bad)
+        for j in range(5):
+            beats[j]["scene"] = dict(cave, setting=["grassland", "riverbank", "cave_inside", "grassland", "riverbank"][j])
+        self.assertEqual([b for b in A._chapter_problems(beats, "stone_age", 0, 99999) if "same picture" in b], [])

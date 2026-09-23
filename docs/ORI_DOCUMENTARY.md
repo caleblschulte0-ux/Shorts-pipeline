@@ -76,6 +76,32 @@ on a flat spot are two identical frames), embers rising, firelight that
 flickers across ground and faces and never clips to white, sun and moon
 glints winking on the water, rain, animals grazing, people doing their work.
 
+## The picture has to be readable (the first film's verdict, 2026-09-23)
+
+The first CI run rendered the whole film and the showrunner passed it at 74
+with the notes a good editor would write: *"sleepers are drawn lying in the
+fire with a plank through their heads"*, a spear tip across a seated
+watcher's face, one cave-and-fire template for most of the film, no dawn in
+"Toward Morning". Every one is now a rule with a test
+(`tests/test_ori_sleep.py::ThePictureIsReadable`):
+
+- **Everything on the ground has its real width.** `scene.figure_extent`
+  reads the rig (a sleeper is five heads long, a sitter's legs reach two
+  heads forward); `layout` keeps every figure and every mid/front prop clear
+  of every other, sliding a thing away from the fire until it fits and
+  drawing a shot that cannot fit at its natural size a little smaller
+  (`SHRINK`) rather than overlapped. `layout()["collisions"]` names what
+  still touches; every scene of every episode on the shelf must say `[]`.
+- A bedroll goes under its sleeper, sized to them, symmetric (the folded
+  corner was the plank); a cook's pot sits between their knees. Both are the
+  overlaps that are meant, and the checker knows them by `under`.
+- A held spear rests its butt on the ground and leans away from the body.
+- Sewing shows a hide over the knees; knapping shows the core and its flakes.
+- The author refuses a chapter where more than half the beats are one
+  setting and shot (`ori_author.SAME_LOOK_SHARE`), and the last chapter's
+  outdoor scenes are asked for at dawn — a campfire at dawn in a close shot
+  measured 0.06-0.10 held frames, alive; in a wide shot 0.52-0.63, not.
+
 ## What the probes needed
 
 The probes used to hold every sampled frame in Python lists; a two-hour film

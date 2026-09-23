@@ -158,7 +158,7 @@ def _interior(cr, name, seed, r):
                             shadow=rgb("#4b4139"), shadow_dir=(1, 0.5))
         # a darker passage leading further in, high on the wall so it sits
         # behind the scene, never across a face
-        ink.fill_stroke(cr, ink.blob_pts(W * r.uniform(0.25, 0.75), H * 0.2, 200, 115, seed + 99, 0.1, 18),
+        ink.fill_stroke(cr, ink.blob_pts(W * r.uniform(0.25, 0.75), H * 0.14, 190, 90, seed + 99, 0.1, 18),
                         rgb("#1d1a1c"), lw=5, amp=2, seed=seed + 99)
     elif name == "hut_inside":
         cr.set_source_rgba(*rgb("#6e5236"))

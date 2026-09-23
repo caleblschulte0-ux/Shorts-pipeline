@@ -415,7 +415,7 @@
     {
      "say": "Nearby, a man is sewing. His needle is a sliver of bone, polished smooth, with a tiny hole drilled through one end. His thread is sinew, the tough fibre from a deer's leg, softened in his mouth. He is closing a seam in a fur boot, and he works slowly, pushing the needle through a hole he has already made with a stone awl. Needles like his have been found in caves across Europe and Asia. They are one of the reasons people could live at all in a world this cold.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -578,7 +578,7 @@
     {
      "say": "The hunter sits with his spear across his knees and checks the point. It is a slim blade of flint, bound to the shaft with sinew and glue made from boiled birch bark. He runs his thumb along the edge, and nods. Tomorrow he will go out again, and the spear must be right. He does not resent the deer that got away. There will be other deer. In a world where you could not store much food, patience was not a virtue. It was simply how you lived.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "riverbank",
       "time": "dusk",
       "weather": "cloudy",
       "shot": "close",
@@ -601,9 +601,9 @@
     {
      "say": "The smallest child has already fallen asleep, curled against his mother on a bed of dry grass and fur. He was awake before the sun, and he has walked a long way today on short legs. His mother does not move him. She sits with one hand resting on his back, and looks at the fire, and lets the tiredness of the day come over her too. Nobody tells small children when to sleep in a camp like this. They sleep when they are tired, where they are, and someone keeps them warm.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "dusk",
-      "weather": "cloudy",
+      "weather": "clear",
       "shot": "close",
       "cast": [
        {
@@ -710,7 +710,7 @@
     {
      "say": "If the fire ever did go out, they could make another. One way was to strike a lump of iron-rich stone against a sharp flint, and catch the sparks in a nest of dry fungus or shredded bark. Another was to spin a dry stick fast against a dry board until the dust it made began to smoulder. Both ways took skill, and patience, and dry tinder, which was the hardest thing to find on a wet night. So the easiest way of all was simply never to let the fire go out.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -802,7 +802,7 @@
     {
      "say": "The old man eats slowly, because his teeth are worn, and because there is no reason to eat fast. He has lived a long time for his world, perhaps fifty years, perhaps more. His knees ache and his eyes are not what they were, but he can still tell every story the band has, and he knows where every spring is for three days' walk in any direction. The child sharing his fish does not think of him as old. She thinks of him as the one who knows things.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -822,7 +822,6 @@
       ],
       "props": [
        "campfire",
-       "stones",
        "basket"
       ]
      }
@@ -871,7 +870,7 @@
     {
      "say": "Afterwards, the woman who cooked gathers up the bones and the fish skins and the peelings, and carries them a little way off, away from the sleeping place. Rubbish that stays where you sleep brings flies, and smells, and worse. Archaeologists find these little rubbish heaps, thousands of years later, and read them like a diary: what was eaten, in what season, and how it was cooked. Tonight's diary entry is short. Fish. Roots. Berries. A good day.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -891,8 +890,7 @@
       ],
       "props": [
        "campfire",
-       "basket",
-       "stones"
+       "basket"
       ]
      }
     },
@@ -1103,7 +1101,7 @@
     {
      "say": "Another man is doing something less useful, and more important. He has a small, flat pebble in his hand, and with the point of a flint he is scratching a shape into it: a few lines, curving, that might be the back of a horse, or a bison, or nothing at all. He tilts it to the firelight to see. The child leaning against him watches the lines appear, and gasps a little when the shape becomes an animal. People were making pictures like this, on stone and bone and cave walls, all through this age. Nobody is sure why. Perhaps for the same reason you would.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1194,7 +1192,7 @@
     {
      "say": "The girl has been given a bowl of the crushed berries, and she holds it in both hands and drinks slowly, to make it last. It is deep red, and sweet, and a little sour. She has purple all round her mouth. Her mother tells her something, and she nods, and wipes her face with the back of her hand, which makes it worse. Some things about children have not changed in forty thousand years, and probably will not change in forty thousand more.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1292,7 +1290,7 @@
     {
      "say": "The older children are not ready for sleep. They rarely are. A girl and a boy have found a game near the edge of the firelight, something to do with a stick and a stone and a great deal of running back and forth. The grown-ups glance up now and then, and go back to their work. Children in a band like this grew up inside a circle of adults, all of whom kept half an eye on them, and none of whom fussed very much. Bumps and scrapes were part of the evening.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1379,7 +1377,7 @@
     {
      "say": "A boy of perhaps eight has been given a real piece of flint and a real hammerstone, and is trying to make a flake. His mother sits beside him and does not help, except to move his thumb once, out of the way. He hits the flint and nothing happens. He hits it again, and a flake jumps off, crooked and thick, and he holds it up in triumph. It is not a good flake. It is his first. She tells him so, and he keeps it.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1661,7 +1659,7 @@
     {
      "say": "One of the men has a flute. It is a hollow bone from the wing of a large bird, with a few holes cut along its length, and when he puts it to his lips and blows, it makes a thin, sweet, breathy note that carries surprisingly far into the night. Flutes like this, tens of thousands of years old, have been found in caves in Europe. They are among the oldest musical instruments we know. He plays a few notes, a little tune that goes up and comes down again, and then stops, and looks at it, as if surprised it still works.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1780,7 +1778,7 @@
     {
      "say": "The man with the scratched pebble holds it up to show the woman beside him, and she takes it and turns it in the light and hands it back, and says something short and approving. He tucks it into a fold of his clothing, and will carry it for years, until it is lost, and someone will find it in the ground forty thousand years from tonight and wonder, as you might, what it meant to him. The honest answer is that we do not know. The kinder answer is that it was beautiful, and he liked it.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1865,7 +1863,7 @@
     {
      "say": "The old man has stopped talking, and his eyes are closed again, and this time nobody thinks he will open them. The woman beside him puts a fur over his shoulders, gently, and he does not stir. The fire has burned down to a bed of orange coals with a few small flames dancing over it. She feeds it a little, not much, and holds her hands out to it, and listens to the night, and lets the last of the stories settle in her mind like leaves settling on water.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "cave_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1885,7 +1883,7 @@
       ],
       "props": [
        "campfire",
-       "stones"
+       "bedroll"
       ]
      }
     }
@@ -3705,13 +3703,11 @@
     {
      "say": "Out on the grass the frost is complete now, white on every blade, and the tents stand pale in it. There is not a breath of wind. In this stillness, sound carries a very long way: the river, an owl far down the valley, and the tiny tick of the fire on the hillside. If you stood out here you would see the eastern sky beginning, just barely, to separate itself from the mountains. Not light. Just less dark. The stars over there are going out one by one, quietly, like people leaving a room.",
      "scene": {
-      "setting": "grassland",
-      "time": "night",
+      "setting": "riverbank",
+      "time": "dawn",
       "weather": "clear",
       "shot": "wide",
       "props": [
-       "campfire",
-       "torch",
        "tent",
        "tree",
        "rock"
@@ -3744,7 +3740,7 @@
      "say": "And the night keeps going, a little longer. It has nearly done its work. It has rested the hunter's legs and the flint worker's hands and the old man's knees. It has let the children grow, a little, the way children do in their sleep. It has kept the fire, and been kept by it. Forty thousand years from now, someone lying in the dark will listen to a story about it and feel, for a moment, the warmth of that fire on their face. That is you. That is now. It worked.",
      "scene": {
       "setting": "cave_mouth",
-      "time": "night",
+      "time": "dawn",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -3767,7 +3763,7 @@
      "say": "There is nothing more to see tonight. The fire is fed. The cave is warm. The people are safe and asleep, all of them, in their heap under the painted horse, and the wolf-dog is asleep at the door, and the valley is quiet from the river to the ice. Let your own breathing slow to match theirs. Let the pillow take your head, the way the grass takes theirs. You have walked a long way today too, whatever your day was. You are allowed to stop.",
      "scene": {
       "setting": "cave_mouth",
-      "time": "night",
+      "time": "dawn",
       "weather": "clear",
       "shot": "close",
       "cast": [

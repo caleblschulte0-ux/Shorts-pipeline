@@ -172,6 +172,9 @@ def _outline_problems(o: dict, era: str) -> list[str]:
     return bad
 
 
+SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
+
+
 def _chapter_problems(beats, era: str, lo: int, hi: int) -> list[str]:
     if not isinstance(beats, list) or not beats:
         return ["no beats"]
@@ -187,6 +190,20 @@ def _chapter_problems(beats, era: str, lo: int, hi: int) -> list[str]:
         bad += [f"beat {j + 1} scene: {x}" for x in S.validate(b.get("scene"), era)]
     if not (lo <= total <= hi):
         bad.append(f"{total} words in the chapter ({lo}-{hi})")
+    # the first film's judge: "the cave mouth + fire + one or two seated
+    # figures template covers most of the film, so the story's activities
+    # are never shown". A chapter is a sequence of DIFFERENT pictures.
+    looks = {}
+    for b in beats:
+        sc = b.get("scene") if isinstance(b, dict) else None
+        if isinstance(sc, dict):
+            k = (sc.get("setting"), S.shot_of(sc))
+            looks[k] = looks.get(k, 0) + 1
+    if looks:
+        (setting, shot), n = max(looks.items(), key=lambda kv: kv[1])
+        if n > max(2, int(len(beats) * SAME_LOOK_SHARE)):
+            bad.append(f"{n} of {len(beats)} beats are the same picture ({setting}, {shot} shot): "
+                       f"vary the setting and the shot, and show what each passage describes")
     return bad
 
 
@@ -224,7 +241,8 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
         prev = (f"The previous chapter ended: \"{prev_text[-600:]}\"" if prev_text
                 else "This is the opening chapter: welcome the listener gently and set the scene.")
         final = ("- This is the LAST chapter: let the night grow deep and quiet, and end "
-                 "with the people asleep and the listener invited to sleep too."
+                 "with the people asleep and the listener invited to sleep too. Its last "
+                 "outdoor scenes use time \"dawn\" — the sky pales as the film ends."
                  if i == len(chs) - 1 else "")
         res = _with_retry(
             lambda pr, i=i, ch=ch, prev=prev, final=final: CHAPTER.format(

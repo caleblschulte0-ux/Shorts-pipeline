@@ -317,9 +317,20 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
     if name in ("none", None):
         return
     if name == "spear":
-        ink.line(cr, [(hx, hy + 2.2 * R), (hx, hy - 2.6 * R)], lw=lw * 0.9, ink=rgb("#6b4a2e"), amp=0)
-        ink.fill_stroke(cr, [(hx, hy - 3.1 * R), (hx - 0.16 * R, hy - 2.55 * R),
-                             (hx + 0.16 * R, hy - 2.55 * R)], rgb("#8d8d86"), lw=lw * 0.7, amp=0)
+        # held out in front and leaning away from the body, so the tip
+        # clears the head whatever the pose (a seated watcher's hand sits
+        # right under his chin; straight up put the point through his face)
+        # the butt rests on the ground (local y=0 is where the feet are)
+        bx, by = hx + 0.3 * R, 0.0
+        tx, ty = hx + 1.5 * R, hy - 2.6 * R
+        ink.line(cr, [(bx, by), (tx, ty)], lw=lw * 0.9, ink=rgb("#6b4a2e"), amp=0)
+        dx, dy = tx - bx, ty - by
+        n = math.hypot(dx, dy)
+        ux, uy = dx / n, dy / n
+        px, py = -uy, ux
+        ink.fill_stroke(cr, [(tx + ux * 0.5 * R, ty + uy * 0.5 * R),
+                             (tx + px * 0.16 * R, ty + py * 0.16 * R),
+                             (tx - px * 0.16 * R, ty - py * 0.16 * R)], rgb("#8d8d86"), lw=lw * 0.7, amp=0)
     elif name == "stick":
         ink.line(cr, [(hx - 0.2 * R, hy - 0.5 * R), (hx + 0.35 * R, hy + 1.0 * R)], lw=lw * 0.8,
                  ink=rgb("#6b4a2e"), amp=0)
@@ -464,6 +475,27 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                 (hcx - 0.45 * R, hcy + 0.8 * R)]
         ink.fill_stroke(cr, bpts, lk["hair"], lw=lw * 0.75, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
+
+    # the work itself, where the action has something to show: a hide
+    # across the lap for sewing, a core and its flakes for knapping. The
+    # first film's judge: "the story's activities are never shown".
+    if action == "sew":
+        hide = rgb("#c9a06c")
+        kx, ky = sk["legs"][1][1]          # draped over the knees
+        ink.fill_stroke(cr, ink.blob_pts(kx, ky - 0.1 * R, 1.05 * R, 0.5 * R, seed + 7, 0.08, 16),
+                        hide, lw=lw * 0.7, amp=1.2, seed=seed + 7, shadow=shade(hide), shadow_dir=(0, 1),
+                        texture="grain", tex_alpha=0.25)
+        for k in range(3):
+            sx = kx - 0.5 * R + k * 0.35 * R
+            ink.line(cr, [(sx, ky - 0.22 * R), (sx + 0.12 * R, ky - 0.08 * R)], lw=1.4, amp=0)
+    elif action == "knap":
+        core = rgb("#7d7a74")
+        ink.fill_stroke(cr, ink.blob_pts(nx + 1.0 * R, ny + 1.55 * R, 0.34 * R, 0.26 * R, seed + 8, 0.12, 8),
+                        core, lw=lw * 0.7, amp=0.8, seed=seed + 8, shadow=shade(core), shadow_dir=(1, 1))
+        for k in range(5):
+            fx = 1.3 * R + k * 0.28 * R + (seed % 5) * 0.03 * R
+            ink.fill_stroke(cr, [(fx, -0.02 * R), (fx + 0.16 * R, -0.03 * R), (fx + 0.07 * R, -0.16 * R)],
+                            rgb("#8e8a84"), lw=1.6, amp=0)
 
     # front arm + held item
     bend = -1 if action in ("carry", "wave", "yawn") else 1

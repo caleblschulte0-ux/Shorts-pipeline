@@ -79,6 +79,9 @@ def _fire_strength(name, time, shot, interior):
     if name == "hearth":
         return 2
     if name == "campfire":
+        if time == "dawn" and not interior:
+            # measured 2026-09-23: dawn close 0.06-0.10 (alive), dawn wide 0.52-0.63
+            return 2 if shot == "close" else 0
         if not dark:
             return 0
         return 2 if (shot == "close" or interior) else 1
@@ -190,22 +193,118 @@ def validate(spec, era: str) -> list[str]:
 
 
 # ------------------------------------------------------------------ layout
+MARGIN = 12.0        # px two things may share before they count as touching
+PAD = 0.35           # head radii of air kept around every figure
+
+# how far a figure reaches, in head radii, left and right of its feet when
+# facing +x — read off the rig (people.skeleton / people._draw_lying)
+_EXTENT = {
+    "stand": (-0.9, 1.1), "walk": (-1.0, 1.2), "sit": (-1.0, 2.0), "sit_on": (-1.1, 1.5),
+    "crouch": (-1.1, 1.3), "lie": (-3.2, 2.9),
+}
+
+
+def figure_extent(pose: str, R: float) -> tuple[float, float]:
+    lo, hi = _EXTENT[pose]
+    return (lo - PAD) * R, (hi + PAD) * R
+
+
+def spans(lay: dict) -> list[dict]:
+    """Every drawn thing that occupies the ground plane (people, mid and
+    front props) as {label, lo, hi, fig, under}: `fig` is the figure's own
+    index, `under` the index of the sleeper a bedroll was put beneath."""
+    out = []
+    for i, f in enumerate(lay["people"]):
+        R = people.R0 * f["s"] * people.WHO[f["who"]]["size"]
+        lo, hi = figure_extent(f["pose"], R)
+        if f["facing"] == "left":
+            lo, hi = -hi, -lo
+        out.append(dict(label=f"{f['who']}:{f['pose']}", lo=f["x"] + lo, hi=f["x"] + hi, fig=i, under=None))
+    for p in lay["props"]:
+        if p["layer"] == "back":
+            continue
+        w = PROPS[p["name"]].width * p["s"]
+        out.append(dict(label=p["name"], lo=p["x"] - w / 2, hi=p["x"] + w / 2, fig=None,
+                        under=p.get("under")))
+    return out
+
+
+def collisions(lay: dict) -> list[str]:
+    """Pairs of things drawn over each other: a sleeper in the fire, a pot on
+    a lap, two people in one spot. A bedroll under its own sleeper is the
+    one overlap that is meant. Empty means the picture is readable."""
+    items = spans(lay)
+    bad = []
+    for a in range(len(items)):
+        for b in range(a + 1, len(items)):
+            A, B = items[a], items[b]
+            if (A["under"] is not None and A["under"] == B["fig"]) or \
+               (B["under"] is not None and B["under"] == A["fig"]):
+                continue
+            over = min(A["hi"], B["hi"]) - max(A["lo"], B["lo"])
+            if over > MARGIN:
+                bad.append(f"{A['label']} overlaps {B['label']} by {over:.0f}px")
+    return bad
+
+
+SHRINK = (1.0, 0.92, 0.84, 0.76)
+
+
 def layout(spec: dict, seed: int) -> dict:
-    """Place every prop and person. Deterministic in (spec, seed)."""
+    """Place every prop and person. Deterministic in (spec, seed). A shot
+    too crowded to fit at its natural size is drawn a little smaller, in
+    steps, until nothing overlaps; the last step is kept regardless and
+    `collisions` says what still touches."""
+    lay = None
+    for k in SHRINK:
+        lay = _layout(spec, seed, k)
+        if not lay["collisions"]:
+            break
+    return lay
+
+
+def _layout(spec: dict, seed: int, shrink: float) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
     pl = _prop_list(spec)
     shot = shot_of(spec)
-    s = 2.05 if shot == "close" else 1.25
+    s = (2.05 if shot == "close" else 1.25) * shrink
     gy = H * settings.GROUND_Y
     placed = []
-    taken = []
+    taken = []                      # (lo, hi) in world x, everything that must not overlap
 
-    def free(x, w):
-        return all(abs(x - tx) > (w + tw) / 2 * 0.8 for tx, tw in taken)
+    def clash(lo, hi):
+        return sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in taken)
 
-    def put(x, w):
-        taken.append((x, w))
+    def free(lo, hi):
+        return clash(lo, hi) <= 0
+
+    def put(lo, hi):
+        taken.append((lo, hi))
+
+    def fig_span(c, x, facing, R):
+        lo, hi = figure_extent(c.get("pose", "stand"), R)
+        if facing == "left":
+            lo, hi = -hi, -lo
+        return x + lo, x + hi
+
+    def settle(x, span_of, lo_lim, hi_lim):
+        """Slide x away from the focal thing, then toward it, until its span
+        is clear of everything placed; the least-crowded x if nothing is."""
+        d = -1 if x < focal_x else 1
+        best, best_c = x, None
+        for sign in (d, -d):
+            for k in range(0, 40):
+                cand = x + sign * k * 30
+                lo, hi = span_of(cand)
+                if lo < lo_lim or hi > hi_lim:
+                    break
+                c = clash(lo, hi)
+                if c <= 0:
+                    return cand
+                if best_c is None or c < best_c:
+                    best, best_c = cand, c
+        return best
 
     # the focal thing: the first light/living prop, else the first prop
     focal = None
@@ -230,28 +329,33 @@ def layout(spec: dict, seed: int) -> dict:
         placed.append(dict(name=focal["name"], x=focal_x, y=py, s=ps, layer=pr.layer,
                            seed=seed + 1))
         if pr.layer != "back":
-            put(focal_x, w)
+            put(focal_x - w / 2, focal_x + w / 2)
 
-    # people next, around the focal thing and facing it
+    # people next, around the focal thing and facing it — each one's REAL
+    # width (a sleeper is five heads long) kept clear of the fire and of
+    # each other. The judge's first note on the first film: "sleepers are
+    # drawn lying in the fire".
     slots_auto = [0.29, 0.71, 0.15, 0.85] if focal else [0.35, 0.65, 0.2, 0.8]
     figs = []
-    pw = 190 * s
     for i, c in enumerate(cast):
+        R = people.R0 * s * people.WHO[c["who"]]["size"]
+        pose = c.get("pose", "stand")
         if c.get("at"):
             x = W * SLOTS[c["at"]]
+            facing = c.get("facing") or ("right" if x < focal_x else "left")
         else:
             x = None
             for k in range(len(slots_auto)):
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
-                if free(cand, pw):
+                facing = c.get("facing") or ("right" if cand < focal_x else "left")
+                if free(*fig_span(c, cand, facing, R)):
                     x = cand
                     break
-            x = x if x is not None else W * slots_auto[i % len(slots_auto)]
-        facing = c.get("facing") or ("right" if x < focal_x else "left")
-        pose = c.get("pose", "stand")
-        if pose == "lie" and not c.get("at"):
-            x = max(W * 0.12 + 200 * s, min(W * 0.88 - 200 * s, x))
-        put(x, pw)
+            if x is None:
+                cand = W * slots_auto[i % len(slots_auto)]
+                facing = c.get("facing") or ("right" if cand < focal_x else "left")
+                x = settle(cand, lambda xx: fig_span(c, xx, facing, R), 20, W - 20)
+        put(*fig_span(c, x, facing, R))
         figs.append(dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
                          mood=c.get("mood", "calm"), item=c.get("item"), x=x,
                          y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101))
@@ -266,11 +370,20 @@ def layout(spec: dict, seed: int) -> dict:
         if p.get("at"):
             x = W * SLOTS[p["at"]]
         elif sleeper and p["name"] in ("bedroll", "bed") and not sleeper.get("_bed"):
-            R = people.R0 * s * people.WHO[sleeper["who"]]["size"]
+            # under the sleeper, centred on the body (head to feet), and
+            # exempt from the crowding check — it is meant to be under them
+            size = people.WHO[sleeper["who"]]["size"]
+            R = people.R0 * s * size
             d = 1 if sleeper["facing"] == "right" else -1
-            x = sleeper["x"] + d * 0.3 * R
+            lo, hi = figure_extent("lie", R)
+            x = sleeper["x"] + d * (lo + hi) / 2
             py = sleeper["y"] - 4 * s
+            ps = s * size             # a child's bed is a child's size
             sleeper["_bed"] = True
+            put(x - pr.width * ps / 2, x + pr.width * ps / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            continue
         elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
             R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
             # the pot goes on the cook's far side from the fire, and the cook
@@ -279,27 +392,37 @@ def layout(spec: dict, seed: int) -> dict:
             stirrer["facing"] = "right" if d > 0 else "left"
             x = stirrer["x"] + d * (1.55 * R + (50 if p["name"] == "pot" else 20) * ps)
             stirrer["_pot"] = True
+            # between the cook's knees on purpose: exempt from the crowding check
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(stirrer)))
+            continue
         else:
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
                      else [0.4, 0.6, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
-                if pr.layer == "back" or free(W * cnd, w):
+                if pr.layer != "back" and not (-w * 0.15 <= W * cnd - w / 2 and W * cnd + w / 2 <= W + w * 0.15):
+                    continue
+                if pr.layer == "back" or free(W * cnd - w / 2, W * cnd + w / 2):
                     x = W * cnd
                     if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
                                                       if q["layer"] == "back"):
                         x = None
                         continue
                     break
+            if x is None and pr.layer != "back":
+                x = settle(W * cands[0], lambda xx: (xx - w / 2, xx + w / 2), -w * 0.15, W + w * 0.15)
             x = x if x is not None else W * r.uniform(0.1, 0.9)
         if pr.layer != "back":
-            put(x, w)
+            put(x - w / 2, x + w / 2)
         placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                            seed=seed + len(placed) * 17))
     for f in figs:
         f.pop("_pot", None)
         f.pop("_bed", None)
-    return dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot)
+    lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot)
+    lay["collisions"] = collisions(lay)
+    return lay
 
 
 # ------------------------------------------------------------------ render
