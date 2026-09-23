@@ -406,7 +406,7 @@ def amazon_clearing(cr, t, u, pts, host):
     birds(cr, t)
     motes(cr, t, P["mist"])
     fx = (felled + batch * fb) / max(1, len(stand)) * W
-    host("climb" if val > 12000 else "cheer", clamp(fx + 90, 120, W - 120),
+    host("climb" if val > 12000 else "strain", clamp(fx + 90, 120, W - 120),
          FOREST_Y + 250, 230)                  # above the caption band
     fit_readout(cr, f"{int(val):,} km²", f"of rainforest cleared in {year}",
                 80, 520, a=ease(seg(u, 0.0, 0.08)))
@@ -560,8 +560,8 @@ def amazon_vs_france(cr, t, u, pts, host):
                    14 * (1 - dust) + 4, 0, 2 * math.pi)
             cr.fill()
     motes(cr, t, P["dust"], speed=10, a=0.3)
-    if u > 0.40:
-        host("cheer" if u > 0.55 else "shock", cx + 30, fy - 8, 190)
+    if u > 0.40:            # he drives the flag into France, then reacts
+        host("strain" if u < 0.85 else "cheer", cx + 30, fy - 8, 190)
         cr.set_source_rgba(*_c(look.INK))
         cr.set_line_width(5)
         cr.move_to(cx + 90, fy - 8)
@@ -574,7 +574,9 @@ def amazon_vs_france(cr, t, u, pts, host):
         cr.close_path()
         cr.fill()
     else:
-        host("point", cx - R + 40, cy - 40, 190)
+        # he carries the flag in along the scar's rim while France falls
+        host("point" if u < 0.08 else "hold_up", cx - R + 40 + 200 * seg(u, 0.08, 0.4),
+             cy - 40, 190)
     fit_readout(cr, f"{int(lost):,} km²", "of Amazon lost since 1970", W / 2, 470,
                 anchor="center", a=ease(seg(u, 0.0, 0.1)))
     b = seg(u, 0.58, 0.8)
@@ -641,9 +643,10 @@ def amazon_where_it_goes(cr, t, u, pts, host):
     motes(cr, t, P["dust"], speed=12, a=0.25)
     if lead:   # he rides the lead cow: its walk is already his stride
         dx, dy = sway(t)
-        host("cheer", lead[0] - 4 + dx, lead[1] - 20 + dy, 180, pace=False)
+        host("hold_up" if u < 0.85 else "cheer", lead[0] - 4 + dx, lead[1] - 20 + dy,
+             180, pace=False)      # the reins while the herd spreads
     else:
-        host("point", x0 + 60, cy, 180)
+        host("strain", x0 + 60, cy, 180)   # driving the first cows in
     fit_readout(cr, f"{int(round(share * 100))}%", f"becomes {lp.lower()}", 80, 470,
                 a=ease(seg(u, 0.0, 0.1)), size=150)
     rest = f"{int(round((1 - share) * 100))}%"
@@ -856,7 +859,8 @@ def coffee_climb(cr, t, u, pts, host):
             cr.arc(0, 0, 18, 0, 2 * math.pi)
             cr.restore()
             cr.fill()
-    host("hold_up" if moving else "cheer", hx, hy, 240, pace=False)
+    host("hold_up" if moving else ("strain" if u < 0.9 else "cheer"), hx, hy, 240,
+         pace=False)               # tossing, hauling the next coin, then the reaction
     fit_readout(cr, f"${say_price:.2f}", f"a pound of arabica, {say_year}", 80, 520,
                 a=ease(seg(u, 0.0, 0.06)), size=150)
     text(cr, say_year, W - 80, 520, 64, look.INK, face="display", anchor="right",
@@ -915,8 +919,9 @@ def coffee_drought(cr, t, u, pts, host):
     motes(cr, t, P["dust"], speed=-20, a=0.3)
     # his bit: he points at the pile, climbs it to hold up the top sacks as
     # they crumble, and lands in shock on what is left
-    climb = ease(seg(u, 0.25, 0.6))
-    host("point" if climb <= 0 else ("climb" if lost < 0.95 else "shock"),
+    climb = ease(seg(u, 0.1, 0.55))
+    host("point" if climb <= 0 else ("climb" if lost < 0.95 else
+                                     ("strain" if u < 0.92 else "shock")),
          280 + 200 * climb, 1520 - 330 * climb, 220)
     lab, val = (l1, after) if lost >= 0.6 else (l0, before)
     fit_readout(cr, f"{val:.1f}M bags", f"Brazil arabica forecast · {lab.lower()}", 80, 520,
@@ -1168,9 +1173,9 @@ def heat_redlining(cr, t, u, pts, host):
         else:
             px_, py_ = zx, zy + zh - (d_ - 2 * zw - zh)
         dx, dy = sway(t)                       # he steps as he traces
-        host("point", px_ + dx, py_ + 10 + dy, 180, pace=False)
-    else:                # then he reacts as the heat rises off the old zone
-        host("shock" if ht > 0.5 else "point", mx + mw - 120,
+        host("strain", px_ + dx, py_ + 10 + dy, 180, pace=False)  # dragging the line
+    else:                # then he fans the heat rising off the old zone
+        host("hold_up" if (ht < 0.9 or u < 0.88) else "shock", mx + mw - 120,
              min(my + mh + 20, 1520), 240)
     if u < 0.45:     # the top of the frame carries the 1930s until the heat lands
         fit_readout(cr, "1930s", "a map drew these lines", 80, 520,

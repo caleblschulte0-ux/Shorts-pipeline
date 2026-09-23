@@ -312,6 +312,13 @@ def held_ratio(fn, pts, fps: int = 24, secs: float | None = None) -> float:
 #: at least two acts and his own spot (pacing aside) travels this far.
 MIN_ROLES = 2
 MIN_TRAVEL = 150.0
+#: ...and he PERFORMS more than he presents. mascot was the channel's biggest
+#: loss on its first illustrated day (-7.5 of 18 on average, "Data mostly
+#: waves"), and the teachers the judge praised (riding the mercury, pushing
+#: the rim) were 71-100% physical acts while the ones it called "just waves"
+#: were 0%. point / cheer / shock / think are the setup and the reaction.
+ACT_ROLES = ("strain", "climb", "hold_up")
+MIN_ACT = 0.5
 
 
 def bit_problems(fn, pts) -> list[str]:
@@ -332,6 +339,11 @@ def bit_problems(fn, pts) -> list[str]:
     if len(roles) < MIN_ROLES:
         out.append(f"Data has one act ({sorted(roles)[0]!r}) all beat — give him "
                    f"a bit: a setup, an action tied to the number, a reaction")
+    act = sum(c[0] in ACT_ROLES for c in calls) / len(calls)
+    if act < MIN_ACT:
+        out.append(f"Data presents more than he performs: {act:.0%} of the beat "
+                   f"in a physical act ({', '.join(ACT_ROLES)}); point/cheer/"
+                   f"shock/think are only the setup and the reaction")
     xs, ys = [c[1] for c in calls], [c[2] for c in calls]
     if max(max(xs) - min(xs), max(ys) - min(ys)) < MIN_TRAVEL:
         out.append(f"Data stays on one spot (moves "
@@ -521,7 +533,11 @@ keep Data's feet and every number above it, readouts between y=470 and y=1500 (t
 4. Data ACTS inside the scene, tied to the number — he rides it, pours it, \
 climbs it, carries it. Give him a BIT: a setup, an action, a reaction — at \
 least two different roles over the beat — and his spot follows what he is \
-doing (at least 150px of travel, not counting pace). Call host(...) every \
+doing (at least 150px of travel, not counting pace). He PERFORMS for at \
+least half the beat — roles strain, climb or hold_up, doing something to \
+the thing the number is made of; point, cheer, shock and think are only \
+the setup and the reaction. A Data who waves beside the data is marked \
+down every time. Call host(...) every \
 frame, height 180-240.
 5. Nothing is ever still: keep something big moving through the whole beat \
 (motes, birds, traffic, steam, falling items). Use pace=True (the default) so \

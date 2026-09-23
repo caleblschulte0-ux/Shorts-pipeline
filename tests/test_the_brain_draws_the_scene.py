@@ -47,7 +47,7 @@ def scene(cr, t, u, pts, host):
     heat_shimmer(cr, t, 600, 1500, a=0.3)
     lab, val = rows[-1]
     fit_readout(cr, f"{val:.1f}", lab, 80, 520)
-    host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)
+    host("point" if u < 0.2 else "strain", 300 + 400 * u, 1500, 220)
 '''
 
 
@@ -164,22 +164,29 @@ class TheVerifierRefusesBadScenes(unittest.TestCase):
     def test_data_drawn_over_a_number_is_refused(self):
         """ "text is covered in the hook" held an 83 (coffee, 2026-09-23)."""
         code = GOOD_MIN.replace(
-            '    host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)\n', "") \
+            '    host("point" if u < 0.2 else "strain", 300 + 400 * u, 1500, 220)\n', "") \
             .replace('fit_readout(cr, f"{val:.1f}", lab, 80, 520)',
                      'fit_readout(cr, f"{val:.1f}", lab, 80, 1300)\n'
                      '    host("point" if u < 0.5 else "cheer", 140 + 60 * u, 1500, 240)')
         self.assertTrue(any("Data is drawn over" in p for p in self._problems(code)))
 
+    def test_a_presenter_mascot_is_refused(self):
+        """ "Data mostly waves" — mascot was the biggest loss on day one."""
+        code = GOOD_MIN.replace('"point" if u < 0.2 else "strain"',
+                                '"point" if u < 0.6 else "cheer"')
+        self.assertTrue(any("presents more than he performs" in p
+                            for p in self._problems(code)))
+
     def test_a_sticker_mascot_is_refused(self):
         """The rubric: a bit (setup -> action -> payoff) and he MOVES."""
-        code = GOOD_MIN.replace('host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)',
+        code = GOOD_MIN.replace('host("point" if u < 0.2 else "strain", 300 + 400 * u, 1500, 220)',
                                 'host("point", 540, 1500, 220)')
         probs = self._problems(code)
         self.assertTrue(any("one act" in p for p in probs))
         self.assertTrue(any("one spot" in p for p in probs))
 
     def test_no_data_and_no_background_are_refused(self):
-        code = GOOD_MIN.replace('    host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)\n', "") \
+        code = GOOD_MIN.replace('    host("point" if u < 0.2 else "strain", 300 + 400 * u, 1500, 220)\n', "") \
                        .replace("0, H)", "0, 600)")
         probs = self._problems(code)
         self.assertTrue(any("Data is missing" in p for p in probs))
