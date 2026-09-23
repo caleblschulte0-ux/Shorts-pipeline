@@ -36,7 +36,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-23T12:59:26Z",
+        "verified_at": "2026-09-23T15:38:21Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -44,43 +44,125 @@
       "phrase": "insisting it 'just stopped working' after three weeks",
       "query": "broken appliance box",
       "image_url": "https://pixabay.com/get/g7bb3a06e38fc252b410e4a158bec3f80f703afcea86c4d22a2ed489c06b868795b5a113145e2f81d65fc1d523387366b9bb527815c325cda4abb1f1a7d2efa8c_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/g7bb3a06e38fc252b410e4a158bec3f80f703afcea86c4d22a2ed489c06b868795b5a113145e2f81d65fc1d523387366b9bb527815c325cda4abb1f1a7d2efa8c_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "our warranty system logs a serial number",
       "query": "barcode scanner receipt",
       "image_url": "https://pixabay.com/get/gb58cbdab53584f7c82793708869e6fbd5d60b64fce4a3a8f2dfea53e0b153c8ebdfc72aa4e7fe76f81fe70935be27677fb74eba37483672b5f3e5e627c6f1b52_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/gb58cbdab53584f7c82793708869e6fbd5d60b64fce4a3a8f2dfea53e0b153c8ebdfc72aa4e7fe76f81fe70935be27677fb74eba37483672b5f3e5e627c6f1b52_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "Serial Number",
+      "pin_context": "product identification code manufacturing",
+      "news_query": "Serial Number",
+      "news_angle": "The warranty system logged the espresso machine's serial number, which exposed the customer's fraudulent return scheme."
     },
     {
       "phrase": "four returns, four different store locations",
       "query": "retail store storefront",
       "image_url": "https://pixabay.com/get/gccfc645a62215fc1dc5466348921725660734ce253f3347b9fa3b37f935e9ffdc0c5878ae14fed8baf4cbb053d9d4e74f884d445ea310b7f5e0a8eae58cf0e1d_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/gccfc645a62215fc1dc5466348921725660734ce253f3347b9fa3b37f935e9ffdc0c5878ae14fed8baf4cbb053d9d4e74f884d445ea310b7f5e0a8eae58cf0e1d_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "a brand new box walking back out the door",
       "query": "customer carrying box",
       "image_url": "https://pixabay.com/get/g9213d5d19958593921fd65a03cf4b96b2ab58b6d5f19da6042014c714ba529ef9a2232dea63a3fe5ad5d10fa8ef8dc4a749aad340f26b2d49db3f1b5f3b55d8f_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/g9213d5d19958593921fd65a03cf4b96b2ab58b6d5f19da6042014c714ba529ef9a2232dea63a3fe5ad5d10fa8ef8dc4a749aad340f26b2d49db3f1b5f3b55d8f_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "I flagged the account company-wide",
       "query": "computer database screen",
       "image_url": "https://pixabay.com/get/g2818d96c70fb45e231942083de0da17b679969062e133188cdd60b084ff372cdcd5febf385de16f58c0a9c7cc987353c1eee71d6d3b2838d49e05b1e65834b9a_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/g2818d96c70fb45e231942083de0da17b679969062e133188cdd60b084ff372cdcd5febf385de16f58c0a9c7cc987353c1eee71d6d3b2838d49e05b1e65834b9a_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "Retail Company",
+      "pin_context": "store chain corporation customer service",
+      "news_query": "Retail Company",
+      "news_angle": "The retail company's internal system was flagged to identify a customer's fraudulent return pattern across multiple locations."
     },
     {
       "phrase": "the register simply refused the return",
       "query": "cash register checkout counter",
       "image_url": "https://pixabay.com/get/gf25c96a0cb2098ebd21087cee4526200729992f91f148c30c9340ad9d1517f06882f3a10187e1d8659dc1d2c13e153fc7f913caf70db2b90de932733ec296cd4_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/gf25c96a0cb2098ebd21087cee4526200729992f91f148c30c9340ad9d1517f06882f3a10187e1d8659dc1d2c13e153fc7f913caf70db2b90de932733ec296cd4_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "Cash Register",
+      "pin_context": "point of sale POS system retail checkout",
+      "news_query": "Cash Register",
+      "news_angle": "The cash register system refused the customer's return, displaying the problematic serial number on its screen."
     },
     {
       "phrase": "his own serial number printed on the screen",
       "query": "receipt printer screen",
       "image_url": "https://pixabay.com/get/gd572359a9dada91fe86a3325138f4da610d68dacd2211986cca09df722f33e323fa1da5fec8526ce22febf53a95da9191ee0f6051fabc056387b4a23c1a7e76d_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "media_evidence": {
+        "url": "https://pixabay.com/get/gd572359a9dada91fe86a3325138f4da610d68dacd2211986cca09df722f33e323fa1da5fec8526ce22febf53a95da9191ee0f6051fabc056387b4a23c1a7e76d_1280.jpg",
+        "source_class": "unverified",
+        "provider": "pixabay.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-23T15:38:21Z",
+        "resolved_by": "verify_shot_urls"
+      }
     }
   ],
   "punches": [

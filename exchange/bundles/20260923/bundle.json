@@ -370,15 +370,15 @@
           "shot_index": 0,
           "phrase": "The fundraiser fee was forty dollars",
           "query": "school fundraiser table",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "a refund for her son's sudden peanut allergy",
           "query": "peanut allergy warning label",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -391,15 +391,15 @@
           "shot_index": 3,
           "phrase": "a dairy intolerance to skip the bake sale shift",
           "query": "school bake sale table",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "a migraine to skip chaperoning",
           "query": "person holding forehead headache",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -412,32 +412,32 @@
           "shot_index": 6,
           "phrase": "the district audited every waiver on that sheet",
           "query": "auditor reviewing paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "mailed her an invoice for eleven months of fees",
           "query": "mailbox envelope invoice",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 2,
-        "missing": 6,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "allergy-excuse-fundraiser-fraud-s0-d9a6eb6d1909",
         "allergy-excuse-fundraiser-fraud-s1-80b4db5cb458",
+        "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
         "allergy-excuse-fundraiser-fraud-s3-32672d37a73a",
         "allergy-excuse-fundraiser-fraud-s4-8df559c7c086",
         "allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6",
         "allergy-excuse-fundraiser-fraud-s7-0210b89207c5",
-        "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
         "allergy-excuse-fundraiser-fraud-s5-303b39127943"
       ]
     },
@@ -457,56 +457,56 @@
           "shot_index": 1,
           "phrase": "insisting it 'just stopped working' after three weeks",
           "query": "broken appliance box",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "our warranty system logs a serial number",
           "query": "barcode scanner receipt",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "four returns, four different store locations",
           "query": "retail store storefront",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "a brand new box walking back out the door",
           "query": "customer carrying box",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "I flagged the account company-wide",
           "query": "computer database screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "the register simply refused the return",
           "query": "cash register checkout counter",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "his own serial number printed on the screen",
           "query": "receipt printer screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 1,
-        "weak": 0,
-        "missing": 7,
+        "weak": 7,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.125,
@@ -544,9 +544,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "allergy-excuse-fundraiser-fraud-s1-80b4db5cb458",
@@ -570,9 +572,39 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
+    },
+    {
+      "request_id": "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
+      "safe_request_id": "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
+      "drive_filename": "20260923__allergy-excuse-fundraiser-fraud-s2-aea8808ed54f.png",
+      "prompt_sha256": "dea2c5f61d47dfc9280202a4fc597ea0ff40ad8d4a3457a19c5e5687fe0731e5",
+      "checkpoint_path": "exchange/bundles/20260923/media-progress/allergy-excuse-fundraiser-fraud-s2-aea8808ed54f.json",
+      "slug": "allergy-excuse-fundraiser-fraud",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: clipboard sign-up sheet. It accompanies the narration: \"I run the PTA sign-up sheets\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "allergy-excuse-fundraiser-fraud-s3-32672d37a73a",
@@ -596,9 +628,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "allergy-excuse-fundraiser-fraud-s4-8df559c7c086",
@@ -622,9 +656,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6",
@@ -648,9 +684,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "allergy-excuse-fundraiser-fraud-s7-0210b89207c5",
@@ -662,32 +700,6 @@
       "shot_index": 7,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: mailbox envelope invoice. It accompanies the narration: \"mailed her an invoice for eleven months of fees\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
-      "safe_request_id": "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
-      "drive_filename": "20260923__allergy-excuse-fundraiser-fraud-s2-aea8808ed54f.png",
-      "prompt_sha256": "dea2c5f61d47dfc9280202a4fc597ea0ff40ad8d4a3457a19c5e5687fe0731e5",
-      "checkpoint_path": "exchange/bundles/20260923/media-progress/allergy-excuse-fundraiser-fraud-s2-aea8808ed54f.json",
-      "slug": "allergy-excuse-fundraiser-fraud",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: clipboard sign-up sheet. It accompanies the narration: \"I run the PTA sign-up sheets\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -729,8 +741,7 @@
       "height": 1080,
       "why": [
         "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "resolution unverified (no width/height reported)"
       ],
       "verdict": "weak"
     },
@@ -756,9 +767,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s2-65fcb92fed7b",
@@ -782,9 +795,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s3-8946c34627ee",
@@ -808,9 +823,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s4-cb1e16e1c0aa",
@@ -834,9 +851,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s5-8af4972769bd",
@@ -860,9 +879,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s6-90e66e2e793a",
@@ -886,9 +907,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "same-serial-number-returns-s7-cee4eab9e18d",
@@ -912,9 +935,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
