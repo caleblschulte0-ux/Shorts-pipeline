@@ -44,7 +44,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-23T10:34:15Z",
+        "verified_at": "2026-09-23T11:21:45Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -58,7 +58,24 @@
     },
     {
       "phrase": "the district's actual needs-based hardship fund",
-      "query": "school district office building"
+      "query": "school district office building",
+      "pin_query": "needs-based hardship fund",
+      "pin_context": "school district needs-based hardship fund",
+      "news_query": "needs-based hardship fund",
+      "news_angle": "The needs-based hardship fund is meant for families who genuinely cannot afford the fundraiser fee.",
+      "image_url": "https://live.staticflickr.com/65535/53990130924_4e8e612a1b_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "school district needs-based hardship fund",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "needs-based hardship fund",
+        "url": "https://live.staticflickr.com/65535/53990130924_4e8e612a1b_b.jpg",
+        "verified_at": "2026-09-23T11:22:00Z",
+        "width": 0
+      }
     },
     {
       "phrase": "the district audited every waiver on that sheet",

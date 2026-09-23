@@ -405,8 +405,8 @@
           "shot_index": 5,
           "phrase": "the district's actual needs-based hardship fund",
           "query": "school district office building",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -425,8 +425,8 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 2,
+        "missing": 6,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -435,10 +435,10 @@
         "allergy-excuse-fundraiser-fraud-s1-80b4db5cb458",
         "allergy-excuse-fundraiser-fraud-s3-32672d37a73a",
         "allergy-excuse-fundraiser-fraud-s4-8df559c7c086",
-        "allergy-excuse-fundraiser-fraud-s5-303b39127943",
         "allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6",
         "allergy-excuse-fundraiser-fraud-s7-0210b89207c5",
-        "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f"
+        "allergy-excuse-fundraiser-fraud-s2-aea8808ed54f",
+        "allergy-excuse-fundraiser-fraud-s5-303b39127943"
       ]
     },
     {
@@ -627,32 +627,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "allergy-excuse-fundraiser-fraud-s5-303b39127943",
-      "safe_request_id": "allergy-excuse-fundraiser-fraud-s5-303b39127943",
-      "drive_filename": "20260923__allergy-excuse-fundraiser-fraud-s5-303b39127943.png",
-      "prompt_sha256": "af1cafebdfece34d746db4092b358357ca0e925037730e7eca5cfb653d8dd07e",
-      "checkpoint_path": "exchange/bundles/20260923/media-progress/allergy-excuse-fundraiser-fraud-s5-303b39127943.json",
-      "slug": "allergy-excuse-fundraiser-fraud",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: school district office building. It accompanies the narration: \"the district's actual needs-based hardship fund\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6",
       "safe_request_id": "allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6",
       "drive_filename": "20260923__allergy-excuse-fundraiser-fraud-s6-e3c10f9dc3f6.png",
@@ -727,6 +701,33 @@
       "height": 1080,
       "why": [
         "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "allergy-excuse-fundraiser-fraud-s5-303b39127943",
+      "safe_request_id": "allergy-excuse-fundraiser-fraud-s5-303b39127943",
+      "drive_filename": "20260923__allergy-excuse-fundraiser-fraud-s5-303b39127943.png",
+      "prompt_sha256": "af1cafebdfece34d746db4092b358357ca0e925037730e7eca5cfb653d8dd07e",
+      "checkpoint_path": "exchange/bundles/20260923/media-progress/allergy-excuse-fundraiser-fraud-s5-303b39127943.json",
+      "slug": "allergy-excuse-fundraiser-fraud",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: school district office building. It accompanies the narration: \"the district's actual needs-based hardship fund\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
         "resolution unverified (no width/height reported)",
         "unverified provenance (unverified)"
       ],
