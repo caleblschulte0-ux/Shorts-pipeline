@@ -1936,6 +1936,20 @@
       ],
       "words_first_10s": 8,
       "scene_changes_before_5s": 3
+    },
+    "invasive-species-price-tag": {
+      "url": "https://youtube.com/shorts/juJhxt0AYe0",
+      "title": "Invasive Species Now Cost The World $423 Billion A Year",
+      "at": "2026-09-23T19:13:13.597002+00:00",
+      "publish_at": "2026-09-24T01:18:41Z",
+      "state": "posted",
+      "style_arm": "illustrated",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 36.7
     }
   },
   "uploads": [
@@ -2199,6 +2213,15 @@
       "state": "posted",
       "slug": "f1-pit-stop-vanishing-act",
       "at": "2026-09-23T18:42:28.541844+00:00"
+    },
+    {
+      "claimed_at": "2026-09-23T19:13:05.205473+00:00",
+      "title": "Invasive Species Now Cost The World $423 Billion A Year",
+      "publish_at": "2026-09-24T01:18:41Z",
+      "url": "https://youtube.com/shorts/juJhxt0AYe0",
+      "state": "posted",
+      "slug": "invasive-species-price-tag",
+      "at": "2026-09-23T19:13:13.597002+00:00"
     }
   ]
 }
