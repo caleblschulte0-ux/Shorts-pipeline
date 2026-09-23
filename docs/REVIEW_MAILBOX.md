@@ -161,3 +161,12 @@ reader here. Nothing in Aletheia changes:
 - `review_proposals.py` still refuses anything that weakens the gate.
 
 Held by `tests/test_the_judge_of_last_resort_is_chatgpt.py`.
+
+## The sleep channel (2026-09-23)
+
+OpenRangeInteractive's weekly sleep film takes the same route: `post_ori.py`
+opens the mailbox on publish runs, the held render is kept with its
+thumbnail, captions and chapters (`held-renders-<run_id>`), and
+`claim_reviews.py --channel curiosity` publishes a code-decided ship through
+the curiosity uploader with the same claim-then-receipt discipline as a live
+run. `claim_reviews.yml` carries `YOUTUBE_TOKEN_JSON_CURIOSITY` for it.

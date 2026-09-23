@@ -190,6 +190,33 @@ jobs:
             ARGS="$ARGS --dry-run"
           fi
           python scripts/post_ori.py $ARGS
+      - name: Did the channel actually post this week?
+        # The exit code cannot answer this: a gate hold is not a fault. So
+        # on a scheduled (publishing) run, ask the business question and go
+        # RED when nothing reached the channel — a week that ships nothing
+        # is the thing worth an alarm, whether the cause was the gate, a
+        # crash, or a dark judge (whose held film the mailbox now carries).
+        if: always() && github.event_name == 'schedule'
+        run: |
+          python3 - <<'PY'
+          import json, datetime
+          p = "state/curiosity_posted_log.json"
+          today = datetime.datetime.now(datetime.timezone.utc).date()
+          try:
+              posted = json.load(open(p)).get("posted", {})
+          except Exception as e:
+              print(f"::error title=posted-log-unreadable::{e}")
+              raise SystemExit(1)
+          recent = [k for k, v in posted.items()
+                    if str(v.get("at", ""))[:10] >= (today - datetime.timedelta(days=1)).isoformat()]
+          if recent:
+              print(f"::notice title=posted-this-week::{recent}")
+          else:
+              print("::error title=nothing-posted-this-week::no sleep film reached the "
+                    "channel this run — held by the gate, a dark judge (see the review "
+                    "mailbox), or a crash above.")
+              raise SystemExit(1)
+          PY
       - name: Keep the render (watch exactly what the judge watched)
         if: always()
         uses: actions/upload-artifact@v4
