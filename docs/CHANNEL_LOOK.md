@@ -56,3 +56,41 @@ derives its tokens from it (`TEXT`, `SUBTLE`, `HIGHLIGHT`, `REST`, `GRID`,
 `tests/test_the_channel_has_a_look.py` hold all of it. Every one of these
 is a defect that was visible in a rendered frame, which is why they are
 tests and not a style guide.
+
+## Worlds: the illustrated arm (A/B test, 2026-09-23)
+
+Operator, 2026-09-23, on an illustrated 2D style sample: *"that 2D animation,
+I want to start A/B testing that on the mascot channel."* The brief is
+`docs/style_samples/illustrated_2d/BRIEF.md`; the renderer is
+`data_learning/illustrated.py`; the split is `style_arms` on the explainer's
+`data_story` format in `config/channel_registry.json`.
+
+The illustrated arm is a new PALETTE, not new rules. Its tokens are
+`look.WORLDS` and nothing else names a colour:
+
+| World | When (topic words, `illustrated.WORLD_WORDS`) | Reads as |
+|---|---|---|
+| `dusk` | the default | sunset sky over layered hills, birds |
+| `city` | housing, rent, jobs, teens, retail | blue-hour skyline, lit windows, street lights |
+| `ocean` | sea, shipping, water, fish | water darkening with depth, rays, fish, bubbles |
+| `space` | orbit, moon, satellites | twinkling stars, a planet's limb, a meteor |
+| `farm` | crops, food, coffee | golden hour, field rows to the horizon |
+| `industry` | energy, emissions, waste, factories | smokestacks, drifting smoke, embers |
+
+Each world names `sky` (gradient stops), `glow`, `far`/`mid`/`near`
+(terrain, back to front), `form` (lit, shadow — the NEUTRAL data marks),
+`rim` and `mote`. The rules above still hold, applied to a world:
+
+- **One accent, on the subject.** The subject's column, ridge or liquid is
+  the story's accent (`charts.HIGHLIGHT`, the same one the current arm
+  uses), two-tone: lit face and a shadow face at `ILLU_SHADE`. Everything
+  else wears the world's `form` tones.
+- **Text wears INK** (`INK`, `INK_2`), with a soft drop shadow so it reads on
+  any sky. Numbers are Anton, labels Inter — registered with fontconfig by
+  the module itself.
+- **Nothing is ever still.** Each world carries ambient drift plus one
+  strong mover (birds, fish, embers, a meteor), and Data keeps performing
+  after the build lands. Measured with the machines' still-frame detector in
+  `tests/test_the_illustrated_arm.py`, not asserted.
+- **Every number drawn is the data's.** Decoration moves; it never adds a
+  quantity. The test reads back every string the final frame prints.

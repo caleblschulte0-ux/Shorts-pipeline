@@ -1,6 +1,6 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 5,
+  "revision": 6,
   "revision_note": "Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
@@ -251,7 +251,12 @@
             "editorial_review",
             "takeover_authoring",
             "production_supervisor"
-          ]
+          ],
+          "style_arms": {
+            "current": 1.0,
+            "illustrated": 0.0,
+            "note": "A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. illustrated stays 0 until the operator has seen three preview renders."
+          }
         }
       },
       "chatgpt_roles": [

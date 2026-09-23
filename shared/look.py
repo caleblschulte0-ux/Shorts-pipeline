@@ -106,6 +106,85 @@ WARN = (242, 84, 45)
 #: Colour means ONE thing on this channel: the thing being said.
 REST = (63, 72, 102)
 
+# --------------------------------------------------------------------------
+# THE ILLUSTRATED ARM — worlds, not grounds (docs/CHANNEL_LOOK.md §Worlds).
+#
+# Operator, 2026-09-23, on the illustrated 2D style sample: "that 2D
+# animation, I want to start A/B testing that on the mascot channel." Its
+# frames are full-bleed illustrated WORLDS: layered gradients, two-tone
+# shaded forms (a LIT face and a SHADOW face), rim light, soft glows and a
+# foreground layer. Those colours are a new PALETTE, so they live here and
+# nowhere else, same as the ground and the accents above. The rules do not
+# change: ONE accent on the subject (`accent()`), text in INK, supporting
+# marks neutral — here the world's own `form` tones, lit and shadow.
+#
+# Each world names: `sky` (top-to-bottom gradient stops), `glow` (the light
+# source), `far`/`mid`/`near` (layered terrain, back to front), `form`
+# (lit, shadow) for the neutral data marks, `rim` (edge light), `mote`
+# (ambient particles). Colour means something: the subject is warm, the
+# setting is cool, depth darkens.
+# --------------------------------------------------------------------------
+#: The NEUTRAL form every supporting mark wears in a world: a desaturated
+#: slate, lit and shadow. A world-tinted form (blue under the sea, lilac at
+#: dusk) sat within a few steps of the blue and teal accents, so the subject
+#: stopped standing out — the same "desaturated accent reads as disabled"
+#: failure REST exists to prevent. Farm keeps a sage of its own.
+ILLU_FORM = ((122, 128, 140), (80, 86, 100))
+
+WORLDS = {
+    "dusk": {       # sky over open land — the default world
+        "sky": [(0.0, (27, 31, 92)), (0.55, (106, 79, 163)),
+                (0.85, (243, 154, 107)), (1.0, (255, 208, 138))],
+        "glow": (255, 226, 168), "far": (59, 63, 110), "mid": (48, 42, 96),
+        "near": (42, 35, 96), "form": ILLU_FORM,
+        "rim": (207, 211, 245), "mote": (255, 255, 255),
+    },
+    "city": {       # a skyline at blue hour
+        "sky": [(0.0, (14, 18, 58)), (0.6, (58, 52, 128)),
+                (1.0, (232, 128, 112))],
+        "glow": (255, 196, 150), "far": (40, 44, 92), "mid": (30, 33, 74),
+        "near": (18, 20, 48), "form": ILLU_FORM,
+        "rim": (190, 205, 255), "mote": (255, 214, 150),
+    },
+    "ocean": {      # sky band above water that darkens with depth
+        "sky": [(0.0, (39, 182, 217)), (0.18, (15, 110, 168)),
+                (0.45, (7, 58, 112)), (1.0, (2, 6, 23))],
+        "glow": (200, 245, 255), "far": (42, 35, 80), "mid": (26, 21, 58),
+        "near": (18, 13, 36), "form": ILLU_FORM,
+        "rim": (93, 79, 176), "mote": (200, 235, 255),
+    },
+    "space": {      # stars and a planet's limb
+        "sky": [(0.0, (5, 6, 26)), (1.0, (20, 26, 74))],
+        "glow": (180, 190, 255), "far": (70, 72, 104), "mid": (118, 120, 150),
+        "near": (34, 36, 62), "form": ILLU_FORM,
+        "rim": (180, 190, 255), "mote": (255, 255, 255),
+    },
+    "farm": {       # golden hour over fields
+        "sky": [(0.0, (46, 58, 120)), (0.6, (236, 150, 98)),
+                (1.0, (255, 214, 140))],
+        "glow": (255, 230, 170), "far": (96, 88, 120), "mid": (122, 104, 70),
+        "near": (78, 64, 42), "form": ((132, 150, 138), (84, 100, 92)),
+        "rim": (255, 232, 180), "mote": (255, 240, 200),
+    },
+    "industry": {   # a factory yard at dusk, haze and sparks
+        "sky": [(0.0, (22, 24, 48)), (0.7, (92, 70, 96)),
+                (1.0, (214, 132, 96))],
+        "glow": (255, 170, 110), "far": (54, 52, 78), "mid": (38, 38, 60),
+        "near": (24, 24, 40), "form": ILLU_FORM,
+        "rim": (255, 190, 140), "mote": (255, 180, 120),
+    },
+}
+#: The subject's warm light on a lit face, and its shade, derived from the
+#: story's accent so there is still exactly ONE accent per story.
+ILLU_SHADE = 0.62          # shadow face = accent * this
+ILLU_RIM = 0.35            # rim light mixes this much white into the lit face
+
+
+def world(name: str) -> dict:
+    """A world's tokens, falling back to the default world."""
+    return WORLDS.get(name) or WORLDS["dusk"]
+
+
 #: A bar may never be thicker than this fraction of the frame's short side.
 #: The dataviz standard caps a bar at ~24px on a ~900px chart — 2.7%. At 1080
 #: that is 29px. The channel was drawing 165.

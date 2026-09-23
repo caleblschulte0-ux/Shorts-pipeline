@@ -170,6 +170,15 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
     """
     facts: dict = {}
     try:
+        from shared import style_arms as _style_arms
+        _st = _style_arms.read(mp4)
+        facts["style_arm"] = _st.get("style_arm") or "current"
+        if _st.get("style_arm") == "illustrated":
+            facts["illustrated_beats"] = len(_st.get("illustrated_beats") or [])
+            facts["fallback_beats"] = len(_st.get("fallback_beats") or [])
+    except Exception:  # noqa: BLE001
+        pass
+    try:
         segs = sc.get("segments") or []
         facts["n_beats"] = len(segs)
         kinds = [str(sg.get("viz") or
@@ -646,6 +655,10 @@ def main() -> int:
                "hook": sc.get("hook"), "closing": sc.get("closing"),
                "segments": [s.get("say") or s.get("topic")
                             for s in sc.get("segments", [])][:8]}
+        # which A/B look this render is (shared/style_arms.py) — recorded
+        # with the verdict so the arms can be compared; never a gate input
+        from shared import style_arms as _style_arms
+        ctx["style_arm"] = _style_arms.read(out).get("style_arm") or "current"
         # The policy — fail CLOSED on a publish run, SHOWRUNNER=off refused on
         # a publish run, a BLOCK is sovereign — moved to
         # `shared/showrunner_gate.py` so the trending channel (6 videos a day,

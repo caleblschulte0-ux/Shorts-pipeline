@@ -154,6 +154,10 @@ def run(mp4, *, slug: str, context: dict | None = None,
                     json.dumps(verdict, indent=2))
             except Exception:                            # noqa: BLE001
                 pass                     # a sidecar is a convenience, not state
+        # the A/B arm rides along into the durable record (a label, never
+        # a gate input: decide() below does not read it)
+        if isinstance(verdict, dict) and (context or {}).get("style_arm"):
+            verdict["style_arm"] = context["style_arm"]
         try:
             _sr.append_ledger(slug, verdict)   # rule 4: durable memory
         except Exception:                                # noqa: BLE001

@@ -13,3 +13,6 @@ requests>=2.31        # already in base; listed for standalone installs
 # if it or its system lib (libcairo2) is missing, the director falls back to
 # the pre-baked idle host PNG, so the render still completes.
 cairosvg>=2.7
+# pycairo draws the ILLUSTRATED arm (data_learning/illustrated.py, the A/B
+# test of the illustrated 2D look). Needs libcairo2-dev + pkg-config to build.
+pycairo>=1.25

@@ -2453,6 +2453,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     charts.HIGHLIGHT, charts.ACCENT = (
         _hex(c) for c in _look.accent(_look.accent_for(slug)))
     accent_ass = _hex_to_ass(charts.HIGHLIGHT)
+    # WHICH LOOK — the A/B arm, from the registry (shared/style_arms.py).
+    from shared import style_arms as _style_arms
+    _style = {"style_arm": _style_arms.choose(slug),
+              "illustrated_beats": [], "fallback_beats": []}
+    print(f"[studio] style arm: {_style['style_arm']}", flush=True)
     if voice is None:
         voice = theme["voice"]
 
@@ -2539,6 +2544,46 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             #
             # Cap 1200 frames (=40s) is a safety bound, not a rate limiter.
             dur = max(0.0, end - start)
+            # THE ILLUSTRATED ARM (shared/style_arms.py, docs/CHANNEL_LOOK.md
+            # §Worlds). The beat is ONE illustrated world when its claim has
+            # an illustrated drawing; otherwise it falls back to the current
+            # pictures below, and the fallback is recorded with its claim.
+            if _style["style_arm"] == "illustrated":
+                from data_learning import illustrated as _il
+                _rel, _ifn = _il.drawing_for(seg.insight)
+                _ipath, _ianc = None, []
+                if _ifn is not None:
+                    _ifb = _full_by(
+                        dur, CLOSING_STILL_TAIL
+                        if (windows and end - windows[-1][0] > 0.35)
+                        else MAX_STILL_TAIL)
+                    try:
+                        _ipath, _ianc = _il.render_build(
+                            seg.insight, chart_dir, f"{slug}_seg{i:02d}_il",
+                            frames=int(max(30, min(1800, _mfr.ceil(dur * 30)))),
+                            full_by=_ifb, draw=_ifn, t0=start,
+                            world=_il.world_for_story(st))
+                    except Exception as e:  # noqa: BLE001
+                        print(f"[studio] seg{i} illustrated skipped: {e}",
+                              flush=True)
+                if _ipath:
+                    seg.spans = [{"kind": "illustrated", "path": _ipath,
+                                  "anchors": _ianc, "t0": start, "t1": end,
+                                  "full_by": float(_ifb), "host_baked": True,
+                                  "world": _il.world_for_story(st),
+                                  "drawing": _ifn.__name__}]
+                    seg.chart_path = _ipath
+                    _style["illustrated_beats"].append(i)
+                    print(f"[studio] seg{i}: illustrated {_ifn.__name__} in "
+                          f"{_il.world_for_story(st)} ({dur:.1f}s)",
+                          flush=True)
+                    continue
+                _style["fallback_beats"].append(
+                    {"seg": i, "relationship": _rel,
+                     "why": "no illustrated drawing" if _ifn is None
+                     else "illustrated render failed"})
+                print(f"[studio] seg{i}: illustrated arm FELL BACK to the "
+                      f"current look (claim {_rel!r})", flush=True)
             kinds = _depiction_sequence(seg.insight, _kinds_used, dur)
             spans = _visual_spans(start, end, len(kinds))
             seg.spans = []
@@ -3416,6 +3461,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         out_path.with_suffix(".manifest.json").write_text(json.dumps(manifest))
     except Exception as e:  # noqa: BLE001
         print(f"[studio] manifest skipped: {e}", file=sys.stderr)
+    try:
+        _style_arms.sidecar(out_path).write_text(json.dumps(_style))
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] style sidecar skipped: {e}", file=sys.stderr)
 
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")
