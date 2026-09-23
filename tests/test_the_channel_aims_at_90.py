@@ -94,6 +94,17 @@ class ThePolishLoop(unittest.TestCase):
         self.assertIn("_rd.propose(slug, verdict, args.config)", code)
         self.assertIn("_undo()", code)
 
+    def test_each_cut_carries_its_own_arm(self):
+        """invasive-species-price-tag shipped illustrated with "current" in
+        every verdict row: the arm was read once, before the loop."""
+        code = _code(self.SRC)
+        loop = code.split("_q = _quality(")[1].split("grade_mechanics")[0]
+        i = loop.index("studio_render.render(slug, out, config_path=args.config)")
+        self.assertIn("ctx['style_arm'] = _style_arms.read(out).get('style_arm') or 'current'",
+                      loop[i:i + 300])
+        self.assertIn("ctx['style_arm'] = _arm_before", loop)
+        self.assertIn("_side.write_bytes(_side_keep)", loop)
+
     def test_polishing_respects_the_runs_clock(self):
         self.assertIn("_minutes_since(_RUN_T0) > _q['polish_budget_min']", _code(self.SRC))
 
