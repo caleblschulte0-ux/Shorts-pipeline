@@ -153,6 +153,26 @@ def _is_scale_mark(x, vmax):
     return any(abs(x / (m * mag) - round(x / (m * mag))) < 1e-9 for m in (1, 2, 5))
 
 
+def _mispaired(pairs, pts):
+    """A readout whose NUMBER is one row's value and whose LABEL names a
+    different row: "$1.05" over "2025 · $4.41" (coffee closing, 2026-09-23).
+    Returns the problem, or None."""
+    rows = [(str(l), float(v)) for l, v in pts]
+    for big, small in dict.fromkeys(pairs):
+        nums = [float(t.replace(",", "")) for t, _ in _units(big)]
+        named = [i for i, (l, _) in enumerate(rows) if l and l in small]
+        if not nums or not named:
+            continue
+        x = nums[0]
+        owners = [i for i, (_, v) in enumerate(rows)
+                  if any(abs(round(v / sc, 2) - round(x, 2)) < 1e-9
+                         for sc in (1.0, 1e3, 1e6, 1e9))]
+        if owners and not set(owners) & set(named):
+            return (f"prints {big!r} over {small!r} — that number is "
+                    f"{rows[owners[0]][0]}'s, not {rows[named[0]][0]}'s")
+    return None
+
+
 def _overlap(a, b) -> float:
     """Intersection of two (x0, y0, x1, y1) boxes over the smaller one."""
     ix = max(0.0, min(a[2], b[2]) - max(a[0], b[0]))
@@ -163,6 +183,20 @@ def _overlap(a, b) -> float:
 
 def _is_year(x: float) -> bool:
     return x == int(x) and 1600 <= x <= 2100
+
+
+_NUM_UNIT = re.compile(r"(\$?)(\d[\d,]*\.?\d*)\s*(%|percent|x\b|×)?", re.I)
+
+
+def _units(text: str) -> list:
+    """[(token, unit)] for every number in `text`; unit is '%', '$', 'x' or ''."""
+    out = []
+    for m in _NUM_UNIT.finditer(text or ""):
+        suf = (m.group(3) or "").lower()
+        unit = ("%" if suf in ("%", "percent") else "x" if suf in ("x", "×")
+                else "$" if m.group(1) else "")
+        out.append((m.group(2), unit))
+    return out
 
 
 def _contradicts(tok: str, said: set, raw=(), vmax: float = 100.0):
@@ -176,13 +210,25 @@ def _contradicts(tok: str, said: set, raw=(), vmax: float = 100.0):
         return None
     if x in said or _is_year(x) or _is_scale_mark(x, vmax):
         return None
+    # `said` may hold (value, unit) pairs: only a number in the SAME unit can
+    # contradict — "4.2x" (a ratio) is not a misprint of "$4.41" (a price).
+    unit = getattr(tok, "unit", None)
     d = len(tok.split(".", 1)[1]) if "." in tok else 0
     if any(abs(round(v / sc, d) - x) < 1e-9 for v in raw for sc in (1.0, 1e3, 1e6, 1e9)):
         return None
     for n in said:
+        if isinstance(n, tuple):
+            n, n_unit = n
+            if unit is not None and n_unit != unit:
+                continue
         if n > 0 and not _is_year(n) and 0 < abs(x - n) / n < 0.05:
             return n
     return None
+
+
+class _Tok(str):
+    """A printed number token that knows its unit."""
+    unit = None
 
 
 def _num_ok(tok, allowed, vmax=100.0):
@@ -286,7 +332,13 @@ def bit_problems(fn, pts) -> list[str]:
     return out
 
 
-def verify(fn, pts, say: str = "") -> list[str]:
+#: A number has to stay up long enough to READ. Brain hooks cycled a value
+#: every few frames and the judge wrote "a hook number that flickers too fast
+#: to register" (Amazon, 2026-09-23).
+MIN_DWELL_S = 0.7
+
+
+def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     """Every check a teacher scene passes. Empty list = usable. `say` is the
     beat's narration: a number the story itself states ("the 1930s") may be
     printed; the editorial gate has already held the narration to the data."""
@@ -298,6 +350,13 @@ def verify(fn, pts, say: str = "") -> list[str]:
     surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
     texts, hosts = [], []
     real = SS.text
+
+    real_ro = SS.fit_readout
+    pairs = []                         # (big, small) of every readout
+
+    def ro_spy(cr, big, small, *a, **k):
+        pairs.append((str(big), str(small)))
+        return real_ro(cr, big, small, *a, **k)
 
     low = []
     boxes = []                         # (text, box) visible in THIS frame
@@ -323,28 +382,43 @@ def verify(fn, pts, say: str = "") -> list[str]:
         # other helper is still a number on screen.
         fn.__globals__["text"] = spy
         SS.text = spy
+        fn.__globals__["fit_readout"] = ro_spy
         try:
             fn(cr, 3.0 + u * 10, u, rows,
                lambda role, x, fy, h, pace=True: hosts.append((role, x, fy, h)))
         finally:
             fn.__globals__["text"] = real
             SS.text = real
+            fn.__globals__["fit_readout"] = real_ro
 
     # Numbers are read at ELEVEN points in the beat, not three: a readout
     # that counts up between two data points printed "$3.24 · February 2025"
     # mid-glide, and u=0/0.5/1 all happened to land on real values.
     seen = []
+    shown, streak = {}, {}             # number text -> longest unbroken run
     try:
-        for k in range(11):
+        for k in range(41):
             texts.clear()
-            run(pts, k / 10)
+            run(pts, k / 40)
             seen += texts
+            now = {t_ for t_ in texts if re.search(r"\d", t_)}
+            streak = {t_: streak.get(t_, 0) + 1 for t_ in now}
+            for t_, c in streak.items():
+                shown[t_] = max(shown.get(t_, 0), c)
         final = list(texts)
     except Exception as e:  # noqa: BLE001
         return [f"crashed: {type(e).__name__}: {str(e)[:160]}"]
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
+    brief_ = [t_ for t_, c in shown.items() if c / 40 * secs < MIN_DWELL_S]
+    if brief_:
+        problems.append(f"shows {brief_[0]!r} for under {MIN_DWELL_S}s of a "
+                        f"~{secs:.0f}s scene — a number must stay up long "
+                        f"enough to read ({len(brief_)} such)")
+    mis = _mispaired(pairs, pts)
+    if mis:
+        problems.append(mis)
     if overlaps:
         a_, b_ = overlaps[0]
         problems.append(f"prints {b_!r} over {a_!r} — two pieces of text overlap "
@@ -367,9 +441,11 @@ def verify(fn, pts, say: str = "") -> list[str]:
     allowed = _allowed_numbers(pts)
     allowed |= {float(m.replace(",", "")) for m in re.findall(r"\d[\d,]*\.?\d*", say or "")}
     vmax = max((abs(v) for _, v in pts), default=100.0)
-    said = {float(m.replace(",", "")) for m in re.findall(r"\d[\d,]*\.?\d*", say or "")}
+    said = {(float(t.replace(",", "")), u) for t, u in _units(say)}
     for s in dict.fromkeys(seen):
-        for tok in re.findall(r"\d[\d,]*\.?\d*", s):
+        for tok0, unit in _units(s):
+            tok = _Tok(tok0)
+            tok.unit = unit
             if not _num_ok(tok, allowed, vmax):
                 problems.append(f"prints {s!r}, a number the data does not have")
                 break
@@ -515,7 +591,8 @@ def ask_brain(prompt: str, model: str | None = None,
     return _strip_fence(proc.stdout or "") if proc.returncode == 0 else None
 
 
-def author(title, topic, say, pts, unit="", attempts=3, log=print, brief=""):
+def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
+           secs: float = 10.0):
     """(scene_fn, code) for a verified brain-drawn scene, or (None, reason).
     `brief` adds the job on top of the rules: a closing, or a repair."""
     if os.environ.get("SCENE_AUTHOR", "on").lower() in ("0", "off", "false"):
@@ -530,7 +607,7 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief=""):
             return None, why
         try:
             fn = compile_scene(code)
-            problems = verify(fn, pts, say)
+            problems = verify(fn, pts, say, secs)
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
@@ -646,6 +723,9 @@ whole story, the contrast at its heart.
 """
 
 BRIEFS = {"hook": HOOK_BRIEF, "closing": CLOSING_BRIEF}
+#: How long each kind of scene is on screen, for the dwell check (a hook is
+#: ~3s of the cold open; a beat ~10s; a closing ~6s).
+SCENE_SECS = {"hook": 3.0, "closing": 6.0, "beat": 10.0}
 
 
 def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
@@ -693,7 +773,8 @@ def scene_for_bookend(story_cfg: dict, kind: str, insights: list, log=print):
     fn, got = author(story_cfg.get("title", ""), f"the {kind}: " + line,
                      _story_say(story_cfg), pts,
                      str(getattr(insights[idx], "unit", "") or ""), log=log,
-                     brief=_brief(kind, story_cfg) + siblings(story_cfg, kind))
+                     brief=_brief(kind, story_cfg) + siblings(story_cfg, kind),
+                     secs=SCENE_SECS[kind])
     if fn is None:
         log(f"[scene_author] no verified {kind}: {got}")
         return None
@@ -723,4 +804,5 @@ def redraw(story_cfg: dict, index, insight, prior_code: str, critique: str,
     if index in BRIEFS:
         brief = _brief(index, story_cfg) + brief
     return author(story_cfg.get("title", ""), topic, say, _pts(insight),
-                  str(getattr(insight, "unit", "") or ""), log=log, brief=brief)
+                  str(getattr(insight, "unit", "") or ""), log=log, brief=brief,
+                  secs=SCENE_SECS.get(index, SCENE_SECS["beat"]))

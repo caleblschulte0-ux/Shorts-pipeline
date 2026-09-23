@@ -137,6 +137,30 @@ class TheVerifierRefusesBadScenes(unittest.TestCase):
         self.assertIsNone(SA._contradicts("8.7", {9.1}, [8.7, 9.1]))   # a raw value
         self.assertIsNone(SA._contradicts("2020", {2019.0}, []))       # a year
 
+    def test_units_decide_what_can_contradict(self):
+        """ "4.2x" is the ratio 4.41/1.05, not a misprint of "$4.41"."""
+        from data_learning import scene_author as SA
+        said = {(float(t.replace(",", "")), u) for t, u in
+                SA._units("$4.41 a pound, up from $1.05. Prices rose 10,000%.")}
+        x = SA._Tok("4.2"); x.unit = "x"
+        self.assertIsNone(SA._contradicts(x, said, [], 5))
+        y = SA._Tok("10,100"); y.unit = "%"
+        self.assertEqual(SA._contradicts(y, said, [], 5), 10000.0)
+
+    def test_a_number_that_flickers_is_refused(self):
+        """ "a hook number that flickers too fast to register" """
+        code = GOOD_MIN.replace('lab, val = rows[-1]',
+                                'lab, val = rows[int(u * 40) % len(rows)]')
+        from data_learning import scene_author as SA
+        probs = SA.verify(SA.compile_scene(code), self.PTS, secs=3.0)
+        self.assertTrue(any("long enough to read" in p for p in probs))
+
+    def test_a_number_under_another_rows_label_is_refused(self):
+        """ "$1.05" headline over a "2025 · $4.41" label."""
+        code = GOOD_MIN.replace('fit_readout(cr, f"{val:.1f}", lab, 80, 520)',
+                                'fit_readout(cr, f"{rows[0][1]:.2f}", lab, 80, 520)')
+        self.assertTrue(any("not 2025's" in p for p in self._problems(code)))
+
     def test_a_sticker_mascot_is_refused(self):
         """The rubric: a bit (setup -> action -> payoff) and he MOVES."""
         code = GOOD_MIN.replace('host("point" if u < 0.5 else "cheer", 300 + 400 * u, 1500, 220)',
