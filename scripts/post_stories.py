@@ -136,12 +136,48 @@ def _human_body(cfg: dict) -> str:
     return "\n".join(p for p in parts if p)
 
 
+def _sources_block(cfg: dict) -> str:
+    """EVERY data source behind the story, in full: publisher, dataset, link
+    and access date, once each. The closing points here ("Sources in the
+    description") because a phone screen has room for one short line, and a
+    truncated citation is worse than a complete one a tap away."""
+    import glob as _glob
+    seen, out = set(), []
+    for seg in cfg.get("segments") or []:
+        f = (seg.get("params") or {}).get("file")
+        if not f:
+            continue
+        hits = _glob.glob(str(REPO / "data_learning" / "data" / "**" / f),
+                          recursive=True)
+        if not hits:
+            continue
+        try:
+            src = (json.loads(Path(hits[0]).read_text()).get("source") or {})
+        except Exception:  # noqa: BLE001 — a missing source is not an upload failure
+            continue
+        pub, name = src.get("publisher") or "", src.get("name") or ""
+        key = (pub, name, src.get("url"))
+        if not pub or key in seen:
+            continue
+        seen.add(key)
+        line = f"• {pub}" + (f" — {name}" if name else "")
+        if src.get("url"):
+            line += f" ({src['url']})"
+        if src.get("access_date"):
+            line += f", accessed {src['access_date']}"
+        out.append(line)
+    return ("Sources:\n" + "\n".join(out)) if out else ""
+
+
 def _desc_suffix(cfg: dict) -> str:
     """The non-prose tail appended to EVERY description (English and localized):
-    a hashtag block (<=15 so YouTube keeps them) + the CC-BY attribution."""
+    the full data sources, a hashtag block (<=15 so YouTube keeps them) + the
+    CC-BY attribution."""
     tags = _merged_tags(cfg)[:15]
     block = " ".join(f"#{t}" for t in tags)
-    return (f"\n\n{block}" if block else "") + f"\n\n{ATTRIBUTION}"
+    srcs = _sources_block(cfg)
+    return ((f"\n\n{srcs}" if srcs else "") + (f"\n\n{block}" if block else "")
+            + f"\n\n{ATTRIBUTION}")
 
 
 def _description(cfg: dict) -> str:
