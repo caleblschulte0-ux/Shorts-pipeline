@@ -407,6 +407,24 @@ def exit_code_for(buckets: dict) -> int:
     return 1
 
 
+_RUN_T0 = __import__("time").monotonic()
+
+
+def _minutes_since(t0: float) -> float:
+    import time
+    return (time.monotonic() - t0) / 60.0
+
+
+def _quality(channel: str) -> dict:
+    """The registry's quality target for this channel's stories. Never
+    raises: no target means the old behaviour — repair only on a block."""
+    try:
+        from shared import channel_registry as _cr
+        return _cr.quality(channel, "data_story")
+    except Exception:  # noqa: BLE001
+        return {"target": None, "polish_rounds": 0, "polish_budget_min": 0}
+
+
 #: Where `scene_repair` persists a repaired segment's {viz, perf}. The
 #: renderer honours it as `plan_locked` on every later run.
 _PLANS_DIR = REPO / "state" / "scene_plans"
@@ -723,21 +741,50 @@ def main() -> int:
         # this only gives it a better cut to judge. Bounded: a cut only ever
         # uploads on a SHIP verdict, so a repair that lands worse simply keeps
         # the video held, exactly as before.
+        #
+        # ...AND IT DOES NOT STOP AT THE PASS BAR (operator 2026-09-23: "We
+        # need to be building a system that consistently puts out 90s").
+        # A cut that SHIPS below the registry's quality target is repaired
+        # too, `polish_rounds` times, while the run's wall clock allows —
+        # the gate still decides everything, this only hands it better cuts.
         repairs = 0
-        while (blocked and repairs < args.repair
-               and (verdict or {}).get("score") is not None):
+        _q = _quality(args.channel)
+        while (verdict or {}).get("score") is not None:
+            _score = verdict["score"]
+            _under = _q["target"] is not None and _score < _q["target"]
+            _cap = max(args.repair, _q["polish_rounds"]) if blocked \
+                else _q["polish_rounds"]
+            if not (blocked or _under) or repairs >= _cap:
+                break
+            if not blocked and _minutes_since(_RUN_T0) > _q["polish_budget_min"]:
+                print(f"[{slug}] polish skipped: {_minutes_since(_RUN_T0):.0f} "
+                      f"min into the run, budget {_q['polish_budget_min']:.0f}",
+                      flush=True)
+                break
             repairs += 1
+            _undo = None
+            _plan_before = _plan_snapshot(slug)
             try:
-                from scripts import scene_repair as _sr2
-                # `propose` WRITES the plan file before the A/B is judged —
-                # keep what was there so a losing repair can be undone.
-                _plan_before = _plan_snapshot(slug)
-                plan = _sr2.propose(slug, verdict, apply_plan=True)
-                print(f"[{slug}] repair {repairs}/{args.repair}: seg "
-                      f"{plan.get('seg')} -> {plan.get('chosen')}", flush=True)
+                if ctx.get("style_arm") == "illustrated":
+                    # An illustrated video has no chart to swap: the brain
+                    # redraws the scene the judge named, from its words.
+                    from scripts import scene_redraw as _rd
+                    plan = _rd.propose(slug, verdict, args.config)
+                    _undo = plan["undo"]
+                    print(f"[{slug}] {'repair' if blocked else 'polish'} "
+                          f"{repairs}/{_cap}: redrew seg{plan['window']} "
+                          f"({plan['role']}) toward {_q['target']}", flush=True)
+                else:
+                    from scripts import scene_repair as _sr2
+                    # `propose` WRITES the plan file before the A/B is judged —
+                    # keep what was there so a losing repair can be undone.
+                    plan = _sr2.propose(slug, verdict, apply_plan=True)
+                    print(f"[{slug}] {'repair' if blocked else 'polish'} "
+                          f"{repairs}/{_cap}: seg {plan.get('seg')} -> "
+                          f"{plan.get('chosen')}", flush=True)
             except Exception as e:  # noqa: BLE001
                 print(f"[{slug}] repair {repairs} could not plan a fix: "
-                      f"{str(e)[:120]}", flush=True)
+                      f"{str(e)[:160]}", flush=True)
                 break
             # KEEP THE BEST CUT, NOT THE LAST ONE.
             #
@@ -765,8 +812,12 @@ def main() -> int:
             new_gate = _gate.run(out, slug=slug, context=ctx,
                                  will_upload=will_upload)
             _new_score = (new_gate.get("verdict") or {}).get("score")
+            # Ranked by (ships, score): a higher-scoring cut the gate BLOCKS
+            # never replaces one it ships — a polish round can only improve
+            # what goes out, never cost the slot.
             _better = (_new_score is not None and _prev_score is not None
-                       and _new_score > _prev_score)
+                       and (not new_gate["blocked"], _new_score)
+                       > (not blocked, _prev_score))
             if _better or _prev_score is None:
                 gate, blocked = new_gate, new_gate["blocked"]
                 verdict = new_gate["verdict"]
@@ -785,6 +836,8 @@ def main() -> int:
                 # ...and the plan that produced the losing cut goes with it,
                 # or the next run locks it in anyway (fusion, 2026-09-16).
                 _plan_restore(slug, _plan_before)
+                if _undo is not None:          # ...and so does a losing redraw
+                    _undo()
             if _keep and Path(_keep).exists():
                 Path(_keep).unlink(missing_ok=True)
 

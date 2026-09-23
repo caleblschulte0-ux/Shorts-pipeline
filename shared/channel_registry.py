@@ -183,6 +183,9 @@ def validate(reg) -> list[str]:
             for role in fmt.get("chatgpt_roles") or []:
                 if role not in KNOWN_ROLES:
                     problems.append(f"{cid}.{fid}: unknown role {role!r}")
+            if "quality" in fmt:
+                problems += [f"{cid}.{fid}: {m}"
+                             for m in quality_problems(fmt.get("quality"))]
             if "style_arms" in fmt:
                 from shared import style_arms as _arms
                 problems += [f"{cid}.{fid}: {m}"
@@ -271,6 +274,38 @@ def format_spec(cid: str, fid: str, reg=None) -> dict:
     if not isinstance(spec, dict):
         raise RegistryError(f"{cid}: no such format {fid!r}")
     return spec
+
+
+def quality_problems(q) -> list[str]:
+    """What is wrong with a format's `quality` block (empty = fine)."""
+    if not isinstance(q, dict):
+        return ["quality must be an object"]
+    out = []
+    t = q.get("target")
+    if not isinstance(t, int) or not 1 <= t <= 100:
+        out.append(f"quality.target must be an int 1..100, got {t!r}")
+    r = q.get("polish_rounds", 0)
+    if not isinstance(r, int) or not 0 <= r <= 5:
+        out.append(f"quality.polish_rounds must be an int 0..5, got {r!r}")
+    b = q.get("polish_budget_min", 0)
+    if not isinstance(b, (int, float)) or b < 0:
+        out.append(f"quality.polish_budget_min must be >= 0, got {b!r}")
+    return out
+
+
+def quality(cid: str, fid: str, reg=None) -> dict:
+    """{target, polish_rounds, polish_budget_min} for a format. No block (or
+    an invalid one) means no polishing: target None, 0 rounds — the gate's
+    own repair-on-block still runs."""
+    try:
+        q = format_spec(cid, fid, reg).get("quality")
+    except Exception:  # noqa: BLE001
+        q = None
+    if not isinstance(q, dict) or quality_problems(q):
+        return {"target": None, "polish_rounds": 0, "polish_budget_min": 0}
+    return {"target": int(q["target"]),
+            "polish_rounds": int(q.get("polish_rounds", 0)),
+            "polish_budget_min": float(q.get("polish_budget_min", 0))}
 
 
 def target_mix(cid: str, reg=None) -> dict:

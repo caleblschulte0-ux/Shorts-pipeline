@@ -82,7 +82,7 @@ class TestItAimsAtTheMeasuredFailure(SceneMetricsCase):
         and the judge's structured diagnosis is the right source."""
         for i in range(3):
             self.scene(i, gate="pass", fps=24.0)
-        v = {"weakest_scene": {"index": 1}}
+        v = {"weakest_scene": {"index": 2}}      # window 2 = beat 1
         self.assertEqual(sr.failing_scene(v, 3, slug=self.SLUG), 1)
 
     def test_a_structured_verdict_never_beats_a_measured_failure(self):
@@ -97,7 +97,7 @@ class TestItAimsAtTheMeasuredFailure(SceneMetricsCase):
 class TestItIsRobustToMissingOrJunkEvidence(SceneMetricsCase):
 
     def test_no_metrics_on_disk_falls_back_quietly(self):
-        v = {"weakest_scene": {"id": "segment_1"}}
+        v = {"weakest_scene": {"id": "segment_2"}}   # window 2 = beat 1
         self.assertEqual(sr.failing_scene(v, 3, slug=self.SLUG), 1)
 
     def test_a_corrupt_sidecar_is_skipped_not_fatal(self):
@@ -133,3 +133,27 @@ class TestProposePassesTheSlugThrough(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheJudgesSceneIdsAreWindowsNotBeats(unittest.TestCase):
+    """The judge names the scene by its FRAME LABEL, and the frame labels
+    count the render's windows: [hook, beat 0, ..., closing]. Read as beat
+    indices, every structured repair rebuilt the beat after the one named."""
+
+    def test_the_mapping(self):
+        n = 3
+        for sid, beat in (("hook", 0), ("seg0", 0), ("seg1", 0), ("seg2", 1),
+                          ("seg3", 2), ("seg4", 2)):
+            with self.subTest(sid=sid):
+                self.assertEqual(sr.failing_scene({"weakest_scene": {"id": sid}}, n), beat)
+        self.assertEqual(sr.window_role(0, n), "hook")
+        self.assertEqual(sr.window_role(2, n), "beat")
+        self.assertEqual(sr.window_role(4, n), "closing")
+
+    def test_the_labels_really_count_windows(self):
+        from scripts import showrunner_review as rv
+        wins = [[0, 3], [3, 10], [10, 20], [20, 30], [30, 36]]
+        labels = [lab for _, lab in rv._frame_plan(36.0, {"segment_windows": wins})]
+        self.assertIn("seg0:mid", labels)            # the hook window is seg0
+        self.assertIn("seg4:mid", labels)            # the closing is the last
+        self.assertNotIn("seg5:mid", labels)

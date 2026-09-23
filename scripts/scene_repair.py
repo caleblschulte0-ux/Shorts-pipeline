@@ -153,6 +153,40 @@ def measured_failures(slug: str, n_segs: int) -> list[tuple[int, float]]:
     return sorted(out, key=lambda t: t[1])
 
 
+def judged_window(verdict: dict) -> int | None:
+    """The WINDOW the judge named as weakest, or None.
+
+    The judge names scenes by the labels on the frames it is shown, and
+    `showrunner_review._frame_plan` writes those as `seg{i}` over the
+    render's `segment_windows` — which are [hook, beat 0, ..., closing].
+    So "seg1" is the FIRST beat and the last id is the closing. This used
+    to be read as a beat index: every structured repair rebuilt the beat
+    AFTER the one the judge named, and a weakest closing ("seg4" on a
+    three-beat story) fell through to prose parsing."""
+    ws = verdict.get("weakest_scene")
+    if not isinstance(ws, dict):
+        return None
+    sid = str(ws.get("id", "")).strip().lower()
+    if sid.startswith("hook"):
+        return 0
+    idx = ws.get("index")
+    if isinstance(idx, int) and idx >= 0:
+        return idx
+    m = re.search(r"(\d+)", sid)
+    return int(m.group(1)) if m else None
+
+
+def window_to_beat(k: int, n_segs: int) -> int:
+    """Window k -> the beat whose visual is on screen there. The hook plays
+    over beat 0 and the closing over the last beat."""
+    return max(0, min(n_segs - 1, k - 1))
+
+
+def window_role(k: int, n_segs: int) -> str:
+    """'hook', 'beat' or 'closing' for window k of a story with n_segs beats."""
+    return "hook" if k <= 0 else ("closing" if k > n_segs else "beat")
+
+
 def failing_scene(verdict: dict, n_segs: int, slug: str = "") -> int:
     """The scene to repair. PRIMARY source: the scene's OWN MEASUREMENT when
     a scene actually failed its temporal gate — that is evidence, and it is
@@ -168,21 +202,15 @@ def failing_scene(verdict: dict, n_segs: int, slug: str = "") -> int:
             print(f"[scene_repair] measured failure: seg{i} at {fps} "
                   f"effective fps — repairing the scene that FAILED", flush=True)
             return i
-    ws = verdict.get("weakest_scene")
-    if isinstance(ws, dict):
-        idx = ws.get("index")
-        if isinstance(idx, int) and 0 <= idx < n_segs:
-            return idx
-        sid = str(ws.get("id", ""))
-        m = re.search(r"(\d+)", sid)
-        if m and int(m.group(1)) < n_segs:
-            return int(m.group(1))
+    k = judged_window(verdict)
+    if k is not None:
+        return window_to_beat(k, n_segs)
     text = " ".join(verdict.get("auto_fails", []) or [])
     hits = [int(m) for m in re.findall(r"seg(\d+)", text)]
     if hits:
         print("[scene_repair] EMERGENCY fallback: no structured weakest_scene; "
               "parsed segment from prose", flush=True)
-        return max(set(hits), key=hits.count) % max(1, n_segs)
+        return window_to_beat(max(set(hits), key=hits.count), n_segs)
     print("[scene_repair] EMERGENCY fallback: no scene identified anywhere; "
           "defaulting to the final segment", flush=True)
     return n_segs - 1

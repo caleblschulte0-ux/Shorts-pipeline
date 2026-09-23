@@ -253,9 +253,15 @@
             "production_supervisor"
           ],
           "style_arms": {
-            "current": 1.0,
-            "illustrated": 0.0,
-            "note": "A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. illustrated stays 0 until the operator has seen three preview renders."
+            "current": 0.5,
+            "illustrated": 0.5,
+            "note": "A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. Raised 0 -> 0.5 on 2026-09-23 after the operator saw a 74 and ruled 'Don't ask if you can post a 74. Make a system that makes better videos': on the same judge that day the current look's one explainer story scored 43 (blocked, nothing posted) while illustrated renders scored 57-77 and the polish loop took one to 77 SHIP. A video whose every scene cannot be drawn and verified renders in the current look (one video, one look), and the retro compares the arms."
+          },
+          "quality": {
+            "target": 90,
+            "polish_rounds": 2,
+            "polish_budget_min": 170,
+            "note": "Operator 2026-09-23: 'We need to be building a system that consistently puts out 90s ... Make a system that makes better videos.' A cut that passes the gate below this target is still REPAIRED (the judge's weakest scene rebuilt, the video re-judged) up to polish_rounds times, keeping the best cut. The gate's pass bar does not move and nothing here can ship what it blocks. polish_budget_min is the run's wall clock after which polishing stops, so every slot still gets rendered."
           }
         }
       },

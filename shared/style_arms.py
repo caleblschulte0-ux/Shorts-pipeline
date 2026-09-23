@@ -5,7 +5,7 @@ on the mascot channel."* The split is POLICY, so it lives where every other
 piece of channel policy lives: `config/channel_registry.json`, as
 `style_arms` on the explainer's `data_story` format — a weight per arm.
 
-    "style_arms": {"current": 1.0, "illustrated": 0.0}
+    "style_arms": {"current": <weight>, "illustrated": <weight>}
 
 `choose(slug)` is deterministic per slug (a re-render of the same story is
 the same arm, so a held story that is repaired stays in its arm), and

@@ -369,7 +369,8 @@ class TestRepairKeepsTheBestCut(unittest.TestCase):
     def test_the_new_verdict_is_compared_before_it_is_adopted(self):
         b = self.body()
         self.assertIn("_better", b)
-        self.assertIn("> _prev_score", b)
+        # ranked (ships, score): a higher score never adopts a BLOCK over a SHIP
+        self.assertIn("> (not blocked, _prev_score)", b)
 
     def test_a_worse_repair_reverts_the_video(self):
         b = self.body()

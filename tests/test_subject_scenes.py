@@ -20,6 +20,7 @@ from __future__ import annotations
 import glob
 import itertools
 import json
+import math
 import re
 import sys
 import unittest
@@ -163,6 +164,39 @@ class EveryTeacherSceneTellsTheTruth(unittest.TestCase):
                 if r > 0.3:
                     held[fn.__name__] = round(r, 2)
         self.assertEqual(held, {}, f"scenes that hold still at their end: {held}")
+
+
+class NoFrameIsHeldWhileDataWalks(unittest.TestCase):
+    """temporal_craft is 14 of the 100 points, graded in code: 3/3 needs 24
+    effective fps, and the gate samples at 24fps — so 3/3 means NO held
+    frame. Every teacher froze for a sampled frame each time Data turned
+    round (71 held frames across the nine, one stride each); `walk` lifts
+    each step fastest exactly at the turn. Measured with the gate's own
+    detector over a full stride, both turnarounds, start to end of beat."""
+
+    @unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+    def test_no_teacher_holds_a_frame_over_a_stride(self):
+        from data_learning import scene_author as SA, subject_scenes as SS
+        for slug, fns in SS.TEACHERS.items():
+            for fn, pts in zip(fns, _beats(slug)):
+                with self.subTest(scene=fn.__name__):
+                    self.assertLessEqual(SA.held_ratio(fn, pts), SA.MAX_HELD)
+
+    def test_the_walk_never_stops(self):
+        from data_learning import subject_scenes as SS
+        dt = 1 / 24
+        for f in range(int(SS.PACE_PERIOD * 24) + 1):
+            t = f * dt
+            x0, y0 = SS.walk(540, 1500, t)
+            x1, y1 = SS.walk(540, 1500, t + dt)
+            self.assertGreater(math.hypot(x1 - x0, y1 - y0), 2.0, f"t={t:.2f}")
+
+    def test_a_walk_near_the_edge_is_not_pinned_to_it(self):
+        from data_learning import subject_scenes as SS
+        xs = [SS.walk(SS.W - 110, 1500, f / 24)[0] for f in range(82)]
+        self.assertLessEqual(max(xs), SS.W - SS.EDGE)
+        # pinned = clamped to one x for consecutive frames; a sine peak is not
+        self.assertEqual([i for i, (a, b) in enumerate(zip(xs, xs[1:])) if a == b], [])
 
 
 class TheRendererUsesThem(unittest.TestCase):

@@ -283,7 +283,7 @@ class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
 
     def test_the_hook_take_sits_on_the_lower_plate_not_the_chart(self):
         src = (_REPO / "data_learning" / "studio_render.py").read_text()
-        i = src.index("hchunks = _chunks(st.hook, 2)")
+        i = src.index("hchunks = _chunks(_dash(st.hook), 2)")
         blk = src[i:i + 2500]
         self.assertNotIn("pos(540,470)", blk, "the hook take is back on the chart's top rows")
         self.assertEqual(blk.count("\\pos(540,1734)"), 2)
