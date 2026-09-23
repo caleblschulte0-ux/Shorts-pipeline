@@ -144,26 +144,10 @@
   "starred": true
  },
  {
-  "sig": "cross-species-bridge",
-  "mechanic": "cross-species-bridge",
-  "concept": "a cow and a chicken funnel dot-streams toward a human silhouette, sized to how many human cases each source caused",
-  "code": "cow = subject_image('dairy cow')\nbird = subject_image('chicken')\nperson = subject_image('person silhouette')\ncx = (RX0 + RX1) // 2\ntop = RTOP + 30\nif cow is not None:\n    paste(cow, RX0 + 10, top, 260, 190)\nif bird is not None:\n    paste(bird, RX1 - 270, top, 260, 190)\npy_h = 210\nif person is not None:\n    pw = 190\n    py_h = int(pw * person.height / person.width)\n    paste(person, cx - pw // 2, RBOT - py_h - 30, pw, py_h)\nvtot = values[0] + values[1]\ntarget = (cx, RBOT - py_h - 30)\nsources = ((RX0 + 140, top + 200, values[0], WARN),\n           (RX1 - 140, top + 200, values[1], HIGHLIGHT))\nfor sx, sy, v, col in sources:\n    share = v / vtot\n    cnt = max(1, int(16 * share))\n    shown = max(1, int(cnt * reveal))\n    for i in range(shown):\n        t = clamp((i + 1) / cnt)\n        px = lerp(sx, target[0], t)\n        py = lerp(sy, target[1], t)\n        d.ellipse([px - 8, py - 8, px + 8, py + 8], fill=rgba(col, 220))\n    text(str(int(v)), sx, sy - 34, size=40, color=col, center=True)\ntext('human cases', cx, target[1] - 34, size=28, color=TEXT, center=True)",
-  "topic": "bird-flu-species-jump",
-  "starred": true
- },
- {
   "sig": "cell-tally-swarm",
   "mechanic": "cell-tally-swarm",
   "concept": "a human body silhouette fills with a growing swarm of tiny cell dots as a day-counter climbs from 0 to 100, tallying toward 30 trillion replaced cells",
   "code": "body = subject_image('human body silhouette outline')\ncx = (RX0 + RX1) // 2\nbw = 340\nbh = 760\nby = RTOP + 60\nif body is not None:\n    paste(body, cx - bw // 2, by, bw, bh)\nidx = clamp(reveal * (n - 1), 0.0, float(n - 1))\nlo = int(idx)\nhi = min(lo + 1, n - 1)\nt = idx - lo\nval = lerp(values[lo], values[hi], t)\nday = lerp(0, 100, idx / max(1, n - 1))\nfrac = clamp(val / vmax)\ndots = int(260 * frac)\nfor k in range(dots):\n    fx = (k * 2654435761) % 1000 / 1000.0\n    fy = (k * 40503 + 17) % 1000 / 1000.0\n    x = cx - bw // 2 + int(fx * bw)\n    y = by + int(fy * bh)\n    d.ellipse([x - 4, y - 4, x + 4, y + 4], fill=rgba(HIGHLIGHT, 200))\ntext('Day ' + str(int(day)), cx, by - 40, size=34, color=ACCENT, center=True)\ntext(str(round(val, 1)) + ' trillion cells replaced', cx, by + bh + 20, size=27, color=TEXT, center=True)\n",
-  "topic": "body-renewal-clock",
-  "starred": true
- },
- {
-  "sig": "scale-break-lifetime-ruler",
-  "mechanic": "scale-break-lifetime-ruler",
-  "concept": "a single ruler with a jagged scale-break: skin's renewal mark sits just past the start, neuron's mark lands far out near the ruler's end, dramatizing that one cell type is basically as old as the person",
-  "code": "skin_v = values[0]\nneuron_v = values[1] if n > 1 else values[0]\nry = RTOP + 520\nrx0 = RX0 + 40\nrx1 = RX1 - 40\ntext('DAYS TO FULLY RENEW', (rx0 + rx1) // 2, ry - 320, size=25, color=TEXT, center=True)\nd.line([rx0, ry, rx1, ry], fill=rgba(TEXT, 180), width=6)\nskin_x = rx0 + int((rx1 - rx0) * 0.12 * clamp(reveal * 2))\nskin_img = subject_image('human skin cell macro')\nif skin_img is not None:\n    paste(skin_img, skin_x - 60, ry - 220, 120, 120)\nd.ellipse([skin_x - 10, ry - 10, skin_x + 10, ry + 10], fill=rgba(ACCENT, 255))\ntext(labels[0], skin_x, ry + 20, size=25, color=ACCENT, center=True)\ntext(str(int(skin_v)) + ' days', skin_x, ry + 54, size=29, color=ACCENT, center=True)\nbx = rx0 + int((rx1 - rx0) * 0.22)\nfor k in range(3):\n    d.line([bx + k * 14, ry - 24, bx + k * 14 + 8, ry + 24], fill=rgba(WARN, 220), width=6)\nstage2 = clamp((reveal - 0.4) / 0.6)\nneuron_x = rx0 + int((rx1 - rx0) * (0.30 + 0.65 * stage2))\nneuron_img = subject_image('brain neuron cell illustration')\nif neuron_img is not None and stage2 > 0.05:\n    paste(neuron_img, neuron_x - 70, ry - 260, 140, 140)\nif stage2 > 0.02:\n    d.ellipse([neuron_x - 12, ry - 12, neuron_x + 12, ry + 12], fill=rgba(HIGHLIGHT, 255))\n    text(labels[1] if n > 1 else 'Neurons', neuron_x, ry + 20, size=25, color=HIGHLIGHT, center=True)\n    text(str(int(neuron_v)) + ' days (~80 yrs)', neuron_x, ry + 54, size=27, color=HIGHLIGHT, center=True)\n    text('almost as old as YOU', (rx0 + rx1) // 2, ry + 110, size=28, color=WARN, center=True)\n",
   "topic": "body-renewal-clock",
   "starred": true
  },
@@ -381,7 +365,7 @@
   "sig": "df7501763c55",
   "mechanic": "outbreak-radiate-count",
   "concept": "Four patient-zero silhouettes, one per disease, each ringed by its own orbiting cloud of infected silhouettes counted out to the exact R0 - measles visibly swarmed while flu barely has company.",
-  "code": "person = subject_image('person silhouette icon')\ncols = 2\nqw = (RX1 - RX0) // cols\nqh = (RBOT - RTOP) // 2\nfor i in range(n):\n    if reveal < (i + 0.2) / n:\n        continue\n    r_ = i // cols\n    c = i % cols\n    cx = RX0 + c * qw + qw // 2\n    cy = RTOP + r_ * qh + qh // 2\n    count = max(int(round(values[i])), 1)\n    grow = clamp((reveal - i / n) * n, 0, 1)\n    shown = int(round(count * grow))\n    if person is not None:\n        paste(person, cx - 30, cy - 40, 60, 80)\n    else:\n        d.ellipse([cx - 24, cy - 24, cx + 24, cy + 24], fill=rgba(HIGHLIGHT))\n    radius = 100\n    for k in range(shown):\n        ang = (k / count) * 2 * math.pi\n        px = cx + int(radius * math.cos(ang))\n        py = cy + int(radius * math.sin(ang) * 0.6)\n        if person is not None:\n            paste(person, px - 15, py - 20, 30, 40)\n        else:\n            d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(WARN))\n    text(labels[i], cx, cy - qh // 2 + 46, size=30, color=TEXT, center=True)\n    text(str(values[i]) + ' infected', cx, cy + qh // 2 - 60, size=32, color=WARN if i == 0 else ACCENT, center=True)",
+  "code": "person = subject_image('person silhouette icon')\ncols = 2\nqw = (RX1 - RX0) // cols\nqh = (RBOT - RTOP) // 2\nfor i in range(n):\n    if reveal < (i + 0.2) / n:\n        continue\n    r_ = i // cols\n    c = i % cols\n    cx = RX0 + c * qw + qw // 2\n    cy = RTOP + r_ * qh + qh // 2\n    count = max(int(round(values[i])), 1)\n    grow = clamp((reveal - i / n) * n, 0, 1)\n    shown = int(round(count * grow))\n    if person is not None:\n        paste(person, cx - 30, cy - 40, 60, 80)\n    else:\n        d.ellipse([cx - 24, cy - 24, cx + 24, cy + 24], fill=rgba(HIGHLIGHT))\n    radius = 100\n    spin = reveal * 2 * math.pi * 2.6\n    for k in range(shown):\n        ang = (k / count) * 2 * math.pi + spin\n        px = cx + int(radius * math.cos(ang))\n        py = cy + int(radius * math.sin(ang) * 0.6)\n        if person is not None:\n            paste(person, px - 15, py - 20, 30, 40)\n        else:\n            d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(WARN))\n    text(labels[i], cx, cy - qh // 2 + 46, size=30, color=TEXT, center=True)\n    text(str(values[i]) + ' infected', cx, cy + qh // 2 - 60, size=32, color=WARN if i == 0 else ACCENT, center=True)",
   "topic": "how many people one case infects",
   "starred": true
  },
@@ -642,30 +626,6 @@
   "code": "prog = clamp(reveal)\nphone = subject_image('ringing smartphone')\nn = len(values)\ngx0, gx1 = RX0 + 40, RX1 - 40\nbin_w = (gx1 - gx0) // n\nbase_y = RBOT - 80\ntop_y = RTOP + 140\nfor i in range(n):\n    bx0 = gx0 + i * bin_w\n    frac = clamp(values[i] / vmax) * prog\n    bh = int((base_y - top_y) * frac)\n    d.rectangle([bx0 + 10, base_y - bh, bx0 + bin_w - 10, base_y], outline=rgba(TEXT, 200), width=4)\n    n_phones = max(1, int(4 * frac))\n    for k in range(n_phones):\n        py = base_y - 20 - k * 60\n        if py >= base_y - bh:\n            if phone is not None:\n                paste(phone, bx0 + bin_w // 2 - 24, py - 40, 48, 48)\n    text(str(int(values[i])) + '%', bx0 + 10, base_y - bh - 40, size=26, color=WARN)\n    text(labels[i][:12], bx0 + 6, base_y + 14, size=18, color=TEXT)\ntext('52.8 BILLION ROBOCALLS IN 2024', RX0 + 10, RTOP + 40, size=28, color=TEXT)\n",
   "topic": "robocall category share of 2024 total",
   "moves": true,
-  "starred": false
- },
- {
-  "sig": "d4c3423a1421",
-  "mechanic": "peanut-rash-climb",
-  "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
-  "code": "prog = clamp(reveal)\npeanut = subject_image('peanut')\nn = len(values)\ngx0, gx1 = RX0 + 60, RX1 - 60\nbase_y = RBOT - 120\ntop_y = RTOP + 140\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    x = lerp(gx0, gx1, t)\n    frac = clamp(values[i] / vmax)\n    y = lerp(base_y, top_y, frac)\n    pts.append((x, y))\ntravel = prog * (n - 1)\nshow_n = max(1, int(travel) + 1)\nfor i in range(min(show_n, n)):\n    x, y = pts[i]\n    sz = int(70 + 60 * clamp(values[i] / vmax))\n    if peanut is not None:\n        paste(peanut, int(x) - sz // 2, int(y) - sz // 2, sz, sz)\n    wash_a = int(60 + 140 * clamp(values[i] / vmax))\n    d.ellipse([x - sz // 2, y - sz // 2, x + sz // 2, y + sz // 2], outline=rgba(WARN, wash_a), width=6)\n    text(labels[i], int(x) - 30, base_y + 30, size=26, color=TEXT)\n    text(str(values[i]) + '%', int(x) - 24, int(y) - sz // 2 - 40, size=28, color=WARN)\n    if i > 0:\n        px, py = pts[i - 1]\n        d.line([px, py, x, y], fill=rgba(HIGHLIGHT, 200), width=6)\nif n > 1:\n    seg_i = min(int(travel), n - 2)\n    seg_t = clamp(travel - seg_i)\n    hx = lerp(pts[seg_i][0], pts[seg_i + 1][0], seg_t)\n    hy = lerp(pts[seg_i][1], pts[seg_i + 1][1], seg_t)\n    pr = 14 + 6 * ((math.sin(prog * 2 * math.pi * 5) + 1) / 2)\n    d.ellipse([hx - pr, hy - pr, hx + pr, hy + pr], fill=rgba(WARN, 220))\ntext('CHILD PEANUT ALLERGY RATE', RX0 + 20, RTOP + 40, size=30, color=TEXT)\n",
-  "topic": "child peanut allergy rate rising over years",
-  "starred": false
- },
- {
-  "sig": "2bc871025250",
-  "mechanic": "peanut-shield-crack-duel",
-  "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
-  "code": "v0 = values[0]; v1 = values[-1]\nprog = clamp(reveal)\npeanut = subject_image('peanut')\nshield = subject_image('round shield icon')\nlx, rx = RX0 + 240, RX1 - 240\ncy = RTOP + 480\nsz = 260\nif shield is not None:\n    paste(shield, lx - sz // 2, cy - sz // 2, sz, sz)\n    paste(shield, rx - sz // 2, cy - sz // 2, sz, sz)\ncrack0 = clamp(v0 / 20.0) * prog\ncrack1 = clamp(v1 / 20.0) * prog\nd.line([lx - int(sz * crack0 / 2), cy - sz // 2, lx, cy], fill=rgba(WARN, 230), width=int(6 + 20 * crack0))\nd.line([rx - int(sz * crack1 / 2), cy - sz // 2, rx, cy], fill=rgba(WARN, 230), width=int(6 + 20 * crack1))\ndepth0 = clamp(v0 / 20.0)\ndepth1 = clamp(v1 / 20.0)\nfor k in range(3):\n    t = (prog * 3.6 + k / 3.0) % 1.0\n    ly = lerp(cy - sz - 60, cy - 130 + int(depth0 * sz * 0.6), t)\n    ry = lerp(cy - sz - 60, cy - 130 + int(depth1 * sz * 0.6), t)\n    lxk = lx + (k - 1) * 46\n    rxk = rx + (k - 1) * 46\n    if peanut is not None:\n        paste(peanut, int(lxk) - 22, int(ly) - 22, 44, 44)\n        paste(peanut, int(rxk) - 22, int(ry) - 22, 44, 44)\nn0 = max(1, int(4 * clamp(v0 / 14.0)))\nfor i in range(n0):\n    px = lx - 60 + i * 40\n    if peanut is not None:\n        paste(peanut, px, cy + 40, 50, 50)\nif peanut is not None:\n    paste(peanut, rx - 25, cy + 40, 50, 50)\ntext('avoided peanut: ' + str(v0) + '%', lx - 140, cy + sz // 2 + 40, size=26, color=WARN)\ntext('ate peanut early: ' + str(v1) + '%', rx - 150, cy + sz // 2 + 40, size=26, color=HIGHLIGHT)\n",
-  "topic": "LEAP trial: avoidance vs early exposure",
-  "starred": false
- },
- {
-  "sig": "722592d08395",
-  "mechanic": "robocall-tower-flood",
-  "concept": "a cell tower broadcasts rings that flood the frame with phone icons -- far fewer for 2016, nearly double for 2024",
-  "code": "v0 = values[0]; v1 = values[-1]\nprog = clamp(reveal)\ntower = subject_image('cell phone tower')\nphone = subject_image('ringing smartphone')\ntcx = RX0 + 140\ntcy = RTOP + 300\nif tower is not None:\n    paste(tower, tcx - 60, tcy - 160, 120, 220)\nfor k in range(3):\n    t = (prog * 3.0 + k / 3.0) % 1.0\n    rr = 40 + int(t * 260)\n    alpha = int(200 * (1 - t))\n    d.ellipse([tcx - rr, tcy - rr, tcx + rr, tcy + rr], outline=rgba(ACCENT, alpha), width=4)\nn0 = max(1, int(8 * clamp(v0 / 60.0) * prog))\nn1 = max(1, int(8 * clamp(v1 / 60.0) * prog))\ncols = 8\ngx0 = RX0 + 260\nfor i in range(n1):\n    r = i // cols\n    c = i % cols\n    px = gx0 + c * 90\n    py = RTOP + 220 + r * 110\n    tint = HIGHLIGHT if i < n0 else WARN\n    if phone is not None:\n        paste(phone, px, py, 60, 60)\n    d.ellipse([px - 4, py - 4, px + 64, py + 64], outline=rgba(tint, 180), width=3)\ntext(str(v0) + 'B calls (2016)', RX0 + 20, RBOT - 140, size=30, color=HIGHLIGHT)\ntext(str(v1) + 'B calls (2024)', RX0 + 20, RBOT - 90, size=34, color=WARN)\n",
-  "topic": "robocall volume 2016 vs 2024",
   "starred": false
  }
 ]
