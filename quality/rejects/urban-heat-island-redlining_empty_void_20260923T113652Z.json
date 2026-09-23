@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T113652Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start: two small pills sit in the lower middle and the top half of the frame is empty grid lines. seg2:mid: a thin two-pole gauge with a large empty area above and below it.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_and_misleading_depiction",
+  "visible_evidence": "seg2:start is a plain stacked 68/32 column whose 32% label nearly disappears. seg2:mid and seg2:end switch to two bare vertical poles on an axis captioned '36% apart', with the two share labels crowded above the bracket and most of the frame empty.",
+  "root_cause": "A share-of-a-whole claim (68% of residents live in the hottest pockets) was routed to a stock gap-gauge machine. The gauge treats the two parts of one whole as two separate measurements, so the '36% apart' headline says nothing the narration claims, and the gauge's thin layout leaves the frame empty.",
+  "repair_goal": "Show 68% as people in a city: a block of 100 resident figures or rooftops where 68 turn heat-red under treeless, paved squares and 32 stay cool under trees. Data walks into the hot section. Drop the '36% apart' gap framing, put every label in high-contrast ink, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

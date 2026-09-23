@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "python-mammal-collapse__4e32af3f",
+ "filed": "2026-09-23T11:36:43Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "python-mammal-collapse",
+ "current": {
+  "title": "Pythons Wiped Out 99% Of Raccoons In Parts Of The Everglades",
+  "hook": "One caught in 2023 was longer than a giraffe is tall.",
+  "closing": "The raccoons never stood a chance.",
+  "question": "Would you go looking for a 19-foot python? Be honest below.",
+  "segments": [
+   {
+    "topic": "pythons and Everglades mammals",
+    "say": "In parts of the Everglades, raccoon sightings dropped 99% after Burmese pythons moved in. Opossums fell 99%, deer 94%, bobcats 88%."
+   },
+   {
+    "topic": "pythons removed from the Everglades",
+    "say": "So Florida pays hunters to catch them. In summer 2024, they removed 343. By summer 2025, that number was 1,022 -- the problem is accelerating."
+   },
+   {
+    "topic": "how big pythons get",
+    "say": "One python caught in 2023 measured 19 feet -- about as long as a giraffe is tall. And that's still just one snake."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "pythons and Everglades mammals",
+   "say": "In parts of the Everglades, raccoon sightings dropped 99% after Burmese pythons moved in. Opossums fell 99%, deer 94%, bobcats 88%.",
+   "role": "1 · THE COLLAPSE",
+   "data": {
+    "file": "python_mammal_declines.json",
+    "unit": "percent",
+    "title": "Mammal sighting declines in Everglades National Park since pythons arrived",
+    "points": [
+     {
+      "label": "Raccoons",
+      "value": 99.3
+     },
+     {
+      "label": "Opossums",
+      "value": 98.9
+     },
+     {
+      "label": "Deer",
+      "value": 94.1
+     },
+     {
+      "label": "Bobcats",
+      "value": 87.5
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "pythons removed from the Everglades",
+   "say": "So Florida pays hunters to catch them. In summer 2024, they removed 343. By summer 2025, that number was 1,022 -- the problem is accelerating.",
+   "role": "2 · THE RESPONSE",
+   "data": {
+    "file": "python_removals_by_year.json",
+    "unit": "count",
+    "title": "Burmese pythons removed from the Florida Everglades, May-July",
+    "points": [
+     {
+      "label": "May-Jul 2024",
+      "value": 343
+     },
+     {
+      "label": "May-Jul 2025",
+      "value": 1022
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how big pythons get",
+   "say": "One python caught in 2023 measured 19 feet -- about as long as a giraffe is tall. And that's still just one snake.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "python_record_length_vs_giraffe.json",
+    "unit": "",
+    "title": "Record Florida python length vs. average giraffe height",
+    "points": [
+     {
+      "label": "Record python (2023)",
+      "value": 19
+     },
+     {
+      "label": "Average giraffe height",
+      "value": 18
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on a broad, unverifiable statistic rather than a single, concrete number."
+ ],
+ "reasons": [
+  "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on a broad, unverifiable statistic rather than a single, concrete number."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260923/python-mammal-collapse__4e32af3f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

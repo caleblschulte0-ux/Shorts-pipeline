@@ -1,0 +1,9 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20260923T113652Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: duplicate_ratio 0.469 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T113652Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Four places. seg1:start: the mascot covers the '72%' value. seg0:end: the mascot covers 'Use one regularly (few times/month+)'. seg3:start: 'Felt uncomfortable by something the bot said/did 34%' and 'No such incident 66%' are near-invisible grey on dark. seg3:end/seg4: 'Felt uncomfortabl",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_not_demonstration",
+  "visible_evidence": "seg3:start shows a plain stacked column with labels so faint they cannot be read, under the kicker 'NO SUCH INCIDENT IS 66% OF THE WHOLE'. It becomes a two-lane race by seg3:end, where two copies of Data stand on lines, one label is truncated, and the percentages are missing.",
+  "root_cause": "The story's key claim, that 34% were made uncomfortable and kept coming back, is drawn as a generic share column and then a stock race machine. Nothing in the picture is made of the subject (a chat, a conversation, discomfort), and the labels are low-contrast and truncated.",
+  "repair_goal": "Draw the 34% as the subject itself. For example, a grid of chat bubbles where 34% turn into an uneasy or red message, and most of those bubbles then send another message ('keep coming back'). Put full ink-coloured labels on the number, and give Data a bit: he recoils from a bad message, then watches the user keep typing."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

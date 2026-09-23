@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260923T113652Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:mid and seg1:end the whole lower half under the seesaw is empty dark space. In seg3:start the upper half above the short bars is empty, and in seg4:start about 200px sits empty between the speech bubble and the ruler.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:start: Data covers the \"60\" value label of the 1950s bar, which is the number the whole story rests on. Then seg1:mid and seg1:end cut to a generic seesaw that shows a mid-animation \"30.6\" and then \"57.4\" against \"0.9\" and then \"1.7\", with the bottom half of the frame empty.",
+  "root_cause": "The mascot is placed at the tip of the bar without checking what it hides. The seesaw is a stock balance machine with a subject-agnostic scale, and the viewer reads its counting-up values as the real numbers.",
+  "repair_goal": "Keep Data clear of every value label, or move the label. Replace the seesaw with a picture made of the pit stop: a 1950s car sitting in the box while a crew clock runs to 60s, next to a modern car that is in and out in 1.8s, run in real time side by side. Only final values may appear, never interpolated ones like 30.6 or 57.4."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

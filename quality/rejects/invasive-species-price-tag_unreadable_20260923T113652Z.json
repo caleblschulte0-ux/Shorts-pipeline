@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T113652Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start, seg4:mid and payoff@-0.4 the grey labels 'Classified as harmful invasive' and the pink 'Alien species established' are about 9px text on a 430px-wide frame, too small to read on a phone. In seg3:start the caption 'taken hold worldwide.' is faded almost into the background.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "wrong_claim_chart",
+  "visible_evidence": "seg1:start and seg1:mid show a thin pink line rising from $1.6B to $423B with no axis labels. The caption under it reads 'and back again', which the data contradicts because the cost only goes up. The top half of the frame is empty dark space.",
+  "root_cause": "A generic trend line with a template caption was used for a growth claim. Nothing shows 'quadrupled every decade', and the stray caption says the opposite of what the narration says.",
+  "repair_goal": "Replace it with a bespoke compounding picture: a bill or receipt that grows 4x per decade from 1970 to 2019 (stacked invoices, a snowballing tab). Remove 'and back again' and have Data do something that shows the 4x jump each decade."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

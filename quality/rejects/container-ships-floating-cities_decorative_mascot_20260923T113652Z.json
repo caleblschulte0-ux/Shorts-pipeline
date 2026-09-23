@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260923T113652Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In the hook frames through seg0:end, Data just walks along the bar tips. In seg1 he raises his arms on the axis. In seg3 he walks up the edge of the stacked column. In seg4 two copies of him stand in race lanes. None of it is a setup, action and payoff tied to ships or containers.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "chart_as_hook",
+  "visible_evidence": "From hook@0.3 to seg0:end the video is a plain horizontal bar chart titled \"largest container ship capacity by year\". The values 6600, 12500, 18000 and 24000 are printed without thousands separators, and Data walks along the bar tips. The first frame is a slow chart build, and nothing shows a ship or a box.",
+  "root_cause": "A rank or trend bar chart was used as the default for a claim with an obvious physical subject: ship size measured in stacked boxes. The hook shares that visual, so the video opens on a chart build.",
+  "repair_goal": "Replace the bars with container ships drawn to scale, each one stacked with boxes up to its capacity. Grow them 1996 \u2192 2006 \u2192 2013 \u2192 2019 so the 2019 ship dwarfs the 1996 one on screen. Open frame 1 on the 24,000-box ship already mid-load, and give Data a real bit, such as a crane operator dropping the last box."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

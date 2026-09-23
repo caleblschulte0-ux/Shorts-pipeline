@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260923T113652Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never does a setup->action->payoff bit. He stands on the 2023 bar (hook@0.3), shuffles along the 2022 bar (hook@1.5), points at the slider from a corner (seg1:start/mid), hangs on the pink bar and covers it (seg2:mid), stands on top of the $4.4 bubble (seg3:start/mid), and si",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "slow_chart_build_hook_missing_headline_number",
+  "visible_evidence": "From hook@0.3 to seg0:end the video opens on a plain horizontal bar chart growing slowly. Its rows stop at 2019-2023 ($1.1, $1.2, $2.5, $2.4, $1.9) under a header reading 'HIGHEST IN 2025', so the $4.41 record the title promises never appears. Bar lengths also do not track their labels mid-build: the 2023 $1.9 bar outruns the 2019 $1.1 bar by very little in hook@0.3. Data just stands on a bar.",
+  "root_cause": "The hook was given the stock rank-bars chart for the whole price series and cut off before the record year, so the first 2 seconds are a slow chart build with no subject and no payoff number.",
+  "repair_goal": "Open on the record itself: $4.41 visibly bursting past everything before it (for example, a coffee price tag or cup overflowing past a 2019 $1.05 marker within the first second), with Data reacting to it. Include 2025 in any series shown and make it the single accent."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

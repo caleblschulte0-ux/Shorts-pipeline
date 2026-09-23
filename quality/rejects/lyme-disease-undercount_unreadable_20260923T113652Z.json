@@ -1,0 +1,16 @@
+{
+ "slug": "lyme-disease-undercount",
+ "ts": "20260923T113652Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:start the caption 'climbing too. They' is dark on dark and nearly invisible. At seg0:start the big caption '30%' is dim navy on navy. At seg1:mid the label 'Officially reported to CDC' runs into the mascot.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start shows empty bar tracks with zero-length stubs, a tiny mascot at the far left and a mostly black frame. It then just redraws 29 vs 260 as plain bars, the same comparison seg2's scale already made.",
+  "root_cause": "The scene opens its bar chart at zero instead of on a finished demonstration, and it has no picture of its own. It repeats seg2's 29\u2192260 numbers as a generic horizontal bar chart.",
+  "repair_goal": "Show the 9x jump as the subject itself: a US county map where 29 high-risk counties light up, then spread to 260 as tick markers flood outward, filling the frame from the first frame. Data should do a real bit, like swatting ticks as counties light up, instead of walking along a bar."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

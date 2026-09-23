@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260923T113652Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start the mascot covers the 2004 value '27772'. In seg2:mid a cyan ellipse is drawn over '697,954', crossing the text. In seg2:start the kicker is cut off at 'ENTIRE COUNTRY OF...'. In seg4 the big '4' sits on top of the tile edges.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "At seg4:start through seg4:end, a square with three grey rounded tiles and a grey '4' sits under 'Soy, Mining, Logging & Other fits in Cattle Pasture' and '4 times over'. The mascot is a sliver at the frame's left edge, and the closing line sits in a UI speech-bubble box.",
+  "root_cause": "A generic 'fits N times' tile machine was pointed at the 80/20 split. It restates seg3 as an abstract ratio instead of landing the story's real payoff, the 750,000 km\u00b2 running total that keeps growing while yearly clearing falls.",
+  "repair_goal": "Replace the ending with a picture of the running total: yearly clearing slices shrink while the cumulative lost area keeps growing past France's outline. Put Data in the scene doing the reveal, drop the speech-bubble card, and make the closing line land on that motion."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
