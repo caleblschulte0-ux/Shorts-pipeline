@@ -1952,11 +1952,18 @@
       "duration_s": 36.7
     },
     "teen-vaping-crash-nicotine-pouches": {
-      "claimed_at": "2026-09-23T19:41:36.209615+00:00",
+      "url": "https://youtube.com/shorts/e0jORQcpHFw",
       "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
+      "at": "2026-09-23T19:41:46.055483+00:00",
       "publish_at": "2026-09-24T07:18:41Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "style_arm": "illustrated",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 78,
+      "duration_s": 50.3
     }
   },
   "uploads": [
@@ -2234,9 +2241,10 @@
       "claimed_at": "2026-09-23T19:41:36.209615+00:00",
       "title": "Teen Vaping Crashed 72%. Nicotine Found A New Door.",
       "publish_at": "2026-09-24T07:18:41Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "teen-vaping-crash-nicotine-pouches"
+      "url": "https://youtube.com/shorts/e0jORQcpHFw",
+      "state": "posted",
+      "slug": "teen-vaping-crash-nicotine-pouches",
+      "at": "2026-09-23T19:41:46.055483+00:00"
     }
   ]
 }
