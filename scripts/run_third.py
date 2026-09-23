@@ -1220,8 +1220,18 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             print(f"[scout] {st['shape'] or '?'}: {st['premise'][:90]!r} "
                   f"({len(members)} clips)", flush=True)
 
-        clusters = (scouted + vod_arcs
-                    + storyline.find_clusters(corpus, known))
+        # TAKE TURNS. The scout's proposals and the same-broadcast arcs are
+        # different bets — the scout guesses long arcs from titles, a VOD arc
+        # is one incident Twitch vouches for — and on 2026-09-23 the scout's
+        # three took all three candidate slots while 174 VOD arcs went
+        # unexamined. Alternate them, best first, then people clusters.
+        _mixed = []
+        for i in range(max(len(scouted), len(vod_arcs))):
+            if i < len(scouted):
+                _mixed.append(scouted[i])
+            if i < len(vod_arcs):
+                _mixed.append(vod_arcs[i])
+        clusters = _mixed + storyline.find_clusters(corpus, known)
         # One candidate per story. The scout and the VOD grouping will often
         # find the same broadcast; analysing it twice is minutes of whisper
         # and vision spent on nothing.
@@ -1272,7 +1282,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
 
         vod_expansions = 0
         max_vod = int(spec.get("story_max_vod_expansions", 2))
-        for cluster in clusters[:int(spec.get("story_max_clusters", 3))]:
+        # 6, not 3: three candidates cost 16 minutes on 2026-09-23 inside an
+        # 85-minute budget the whole run used 28 of. `_deadline_passed()`
+        # below still stops between candidates, and retries no longer re-run
+        # the story, so the cap cannot cost the day its other clips.
+        for cluster in clusters[:int(spec.get("story_max_clusters", 6))]:
             # THE STORY ARM IS THE RUN'S UNBOUNDED TAIL. Worst case it is
             # 3 clusters x 6 sources x 2 scene analyses = 36 whisper passes
             # and 36 Claude vision calls in ONE slot, each VOD expansion
@@ -1578,7 +1592,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
         # branch doesn't take, so the slot flows into the normal single-clip
         # path below. Event-driven and quality-gated by design: a forced
         # story on thin material is worse than a good clip.
+        # FIRST ATTEMPT ONLY. `main` retries a failed slot up to
+        # MAX_SLOT_ATTEMPTS times, and every retry re-entered this branch —
+        # so a story slot whose clip fallback failed paid for the whole story
+        # search again (16 minutes for three candidates on 2026-09-23). The
+        # story had its turn; a retry exists to find a clip.
         if pkg["capture"]["kind"] == "twitch_clip" and pkg.get("story_mode") \
+                and attempt == 1 \
                 and (led := _story_attempt(pkg, log, work, out_mp4,
                                            slug)) is not None:
             ledger_path = work / f"{slug}.ledger.json"

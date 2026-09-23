@@ -135,10 +135,9 @@ class TheStoryArmUsesThem(unittest.TestCase):
         """The scout's proposals come first (tests/test_story_scout.py);
         what this pins is that same-broadcast arcs still outrank the
         people piles that produced nothing."""
-        expr = " ".join(self.body.split("clusters = (", 1)[1]
-                        .split(")", 1)[0].split())
-        self.assertLess(expr.index("vod_arcs"),
-                        expr.index("storyline.find_clusters("))
+        self.assertLess(self.body.index("_mixed.append(vod_arcs[i])"),
+                        self.body.index("clusters = _mixed + "
+                                        "storyline.find_clusters("))
 
     def test_a_vod_arc_is_not_resplit_by_token_overlap(self):
         """Token subclustering splits people piles into events. Run over an

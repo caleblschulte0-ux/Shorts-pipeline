@@ -306,7 +306,16 @@ def validate_edl(edl: dict, durations: dict[str, float],
             # the ONLY editorial "no" in this function; everything below is
             # a malformed plan, which is a different problem with a
             # different fix
-            rs.append("director judged: not a story")
+            # KEEP THE REASON. The director is asked for
+            # {"is_story": false, "why_not": ...} and this recorded only the
+            # verdict. On 2026-09-23 it turned down all three of the scout's
+            # stories and the record could not say whether the footage
+            # didn't show them, the director was too strict, or the clips
+            # never loaded — three different fixes. "not a story" stays in
+            # the string: `plan_story` keys the editorial flag on it.
+            why_not = scrub_text(str(edl.get("why_not", "")).strip())[:200]
+            rs.append("director judged: not a story"
+                      + (f" — {why_not}" if why_not else ""))
             return None
         structure = str(edl.get("structure", ""))
         if structure not in STRUCTURES:
