@@ -7,10 +7,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 81.7,
+    "elapsed_seconds": 47.7,
     "package_path": "state/trending_packages/20260923/01_spacex-out-launches-the-world.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-133517_spacex_now_out_launches_every_other_coun.mp4",
+    "video_path": "output/daily_20260923-140239_spacex_now_out_launches_every_other_coun.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A solid two-line race whose whole payoff, India passing Japan, gets lost in a pile of overlapping flags and labels right when it happens.",
-    "elapsed_seconds": 102.9,
+    "error": "showrunner_block: showrunner BLOCK: A competent line race, but the whole story (the crossover) happens in a collided tangle of labels and flags at the right edge, and the video ends almost without a visible pass.",
+    "elapsed_seconds": 67.7,
     "package_path": "state/trending_packages/20260923/02_india-passed-japan-gdp.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-133639_india_just_passed_japan_in_gdp.mp4",
+    "video_path": "output/daily_20260923-140326_india_just_passed_japan_in_gdp.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,7 +62,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A solid two-line race whose whole payoff, India passing Japan, gets lost in a pile of overlapping flags and labels right when it happens.",
+      "reason": "showrunner BLOCK: A competent line race, but the whole story (the crossover) happens in a collided tangle of labels and flags at the right edge, and the video ends almost without a visible pass.",
       "score": 62
     },
     "blocked": true
@@ -75,10 +75,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 56 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=12.04s of 14.38s (~2.3s frozen)",
-    "elapsed_seconds": 79.0,
+    "elapsed_seconds": 45.0,
     "package_path": "state/trending_packages/20260923/03_byd-passed-tesla-ev-sales.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-133822_byd_passed_tesla_in_global_ev_sales.mp4",
+    "video_path": "output/daily_20260923-140434_byd_passed_tesla_in_global_ev_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -108,11 +108,11 @@
     "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 82.1,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.512 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 47.1,
     "package_path": "state/trending_packages/20260923/04_nones-passed-catholics.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-133941_non_religious_americans_just_passed_cath.mp4",
+    "video_path": "output/daily_20260923-140519_non_religious_americans_just_passed_cath.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +130,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.509 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.512 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
       "score": 5
     },
     "blocked": true
@@ -142,14 +142,14 @@
     "publish_at": "2026-09-23T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Captions overlap into unreadable text at mid1 and mid3, and the story beats are never illustrated: it is only gameplay and captions, with a near-empty dark stretch at mid2.",
-    "elapsed_seconds": 274.8,
+    "error": "showrunner_block: showrunner BLOCK: The Reddit card and gameplay hook are competent, but the story is almost never illustrated: one generic stock photo in 50s, a garbled caption, and a payoff that fades into a black void.",
+    "elapsed_seconds": 585.2,
     "package_path": "state/trending_packages/20260923/05_allergy-excuse-fundraiser-fraud.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-134107_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
+    "video_path": "output/daily_20260923-140657_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.933,
+      "duration": 50.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,17 +160,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.7
+      "loudness_lufs": -23.4
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "None"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Captions overlap into unreadable text at mid1 and mid3, and the story beats are never illustrated: it is only gameplay and captions, with a near-empty dark stretch at mid2.",
-      "score": 61
+      "reason": "showrunner BLOCK: The Reddit card and gameplay hook are competent, but the story is almost never illustrated: one generic stock photo in 50s, a garbled caption, and a payoff that fades into a black void.",
+      "score": 57
     },
     "blocked": true
   },
@@ -179,16 +179,16 @@
     "title": "He Returned The Same Machine Five Times",
     "format": "reddit",
     "publish_at": "2026-09-23T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/kHnGtjUP4Nc",
-    "error": null,
-    "elapsed_seconds": 242.9,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions Reddit story. No shot ever illustrates the returned machine or the serial-number reveal, and a grey line cuts across every frame.",
+    "elapsed_seconds": 559.3,
     "package_path": "state/trending_packages/20260923/06_same-serial-number-returns.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-134603_he_returned_the_same_machine_five_times.mp4",
+    "video_path": "output/daily_20260923-141736_he_returned_the_same_machine_five_times.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.333,
+      "duration": 52.133,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,116 +199,66 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -27.0
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "None of the frames show corrupt, garbled, smeared, gray/blank placeholders, or obvious render errors. No unsafe content is present. The content is clear and fits the described format of gameplay with "
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions Reddit story. No shot ever illustrates the returned machine or the serial-number reveal, and a grey line cuts across every frame.",
+      "score": 61
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "Battle for heavyweight crown begins as Alaska's Fat Bear Week opens",
-    "angle": "Alaska's annual Fat Bear Week pits the heaviest brown bears against each other, turning wildlife into a viral weight\u2011watching showdown.",
+    "topic": "meat recall",
+    "angle": null,
+    "publish_at": "2026-09-23T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'meat recall' refused by the writer: Trend is a USDA Class I meat recall (falsified inspection marks on beef/pork/goat, real illness/injury risk) - falls under the disaster/illness exclusion, not a",
+    "elapsed_seconds": 34.1,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "hormuz",
+    "angle": null,
     "publish_at": "2026-09-23T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Only generic Minecraft gameplay and captions. Not one story beat is illustrated, and it ends on a bare 'TIP.' over blown-out yellow lava, which is not a payoff.",
-    "elapsed_seconds": 215.9,
-    "title": "I Served a VIP Customer Who Tried to Destroy My Job",
-    "package_path": "state/trending_packages/20260923-135014_auto_battle_for_heavyweight_crown_begins_as_a.json",
-    "video_path": "output/daily_20260923-135014_battle_for_heavyweight_crown_begins_as_a.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 50.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Only generic Minecraft gameplay and captions. Not one story beat is illustrated, and it ends on a bare 'TIP.' over blown-out yellow lava, which is not a payoff.",
-      "score": 49
-    },
-    "blocked": true,
+    "error": "unfit_for_fiction: 'hormuz' refused by the writer: Trend is about an active Iran-U.S. war, military blockade, and diplomatic/political negotiations - falls under war/politics, which cannot seed a fictional story",
+    "elapsed_seconds": 30.7,
+    "unfit": true,
     "backfill": true
   },
   {
-    "topic": "Caught on camera: Gigantic moose seen roaming through Gardner - Boston 25 News",
-    "angle": "A massive moose wandered downtown Gardner, baffling residents and prompting a wildlife chase through city streets.",
+    "topic": "hilary duff",
+    "angle": null,
     "publish_at": "2026-09-23T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a clean, readable Reddit-story render, but after the post card it is 44 seconds of generic Minecraft parkour and captions with no shot illustrations, so none of the latte-karma story is actually shown.",
-    "elapsed_seconds": 308.7,
-    "title": "I Served a Free Latte to an Entitled Customer and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260923-135359_auto_caught_on_camera__gigantic_moose_seen_ro.json",
-    "video_path": "output/daily_20260923-135359_caught_on_camera__gigantic_moose_seen_ro.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is a clean, readable Reddit-story render, but after the post card it is 44 seconds of generic Minecraft parkour and captions with no shot illustrations, so none of the latte-karma story is actually shown.",
-      "score": 61
-    },
-    "blocked": true,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['ticket counter', 'already been scanned', 'sold them to a reseller', 'pulled up the entry log', 'Her face went white', 'security stepped up', 'permanent ban from every event']",
+    "elapsed_seconds": 187.3,
+    "title": "She Scammed Free Tickets And Got Caught",
+    "package_path": "state/trending_packages/20260923-143000_auto_hilary_duff.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "Waymo caught on camera driving through farmer's market in Denver - CBS News",
-    "angle": "Self\u2011driving Waymo cars rolled into a bustling Denver farmer\u2019s market, raising safety questions for autonomous fleets in public spaces.",
+    "topic": "jamaal williams",
+    "angle": null,
     "publish_at": "2026-09-23T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 55 column 16 (char 2334)",
-    "elapsed_seconds": 33.9,
-    "backfill": true
-  },
-  {
-    "topic": "Lightning strike caught on camera in St. John's Parish - WWLTV.com",
-    "angle": "A bolt slammed into St.\u202fJohn\u2019s Parish, captured on video, illustrating how sudden lightning can turn a quiet town into a disaster zone.",
-    "publish_at": "2026-09-23T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 25 column 6 (char 1499)",
-    "elapsed_seconds": 34.8,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['give him his corner back', 'bump 3 loyal members off the schedule', '5am on Tuesdays', 'confirmed it in writing', 'empty gym for 3 weeks straight', 'gave his old prime hours to the newer trainer', 'the schedule was full']",
+    "elapsed_seconds": 163.2,
+    "title": "My Fired Trainer Begged For His Old Spot Back",
+    "package_path": "state/trending_packages/20260923-143242_auto_jamaal_williams.json",
+    "quarantined": true,
     "backfill": true
   }
 ]

@@ -23,11 +23,15 @@
   "shots": [
     {
       "phrase": "The fundraiser fee was forty dollars",
-      "query": "school fundraiser table"
+      "query": "school fundraiser table",
+      "image_url": "https://pixabay.com/get/gbd2b1696c6bfa8d1ed7847e1ebf0ae0c1fa040d215e84ca5739cec7d58098bb9e7c09a75df4cdac24b72e0be0097296ddaba1694030a5c0b0927930f03e5792c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a refund for her son's sudden peanut allergy",
-      "query": "peanut allergy warning label"
+      "query": "peanut allergy warning label",
+      "image_url": "https://live.staticflickr.com/2844/12732455245_1667bb0f1c_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I run the PTA sign-up sheets",
@@ -36,7 +40,7 @@
       "pin_context": "parent teacher association meeting paperwork",
       "news_query": "PTA",
       "news_angle": "The PTA reviews sign-up sheets and discovers the mom's multiple fee waivers.",
-      "image_url": "https://live.staticflickr.com/7440/13879390115_ec5a277c85_b.jpg",
+      "image_url": "https://pixabay.com/get/gd8293c1e30971a8d493052edc36d540bdd6934234daa6ab0035906669a358fcd41246081fd807e1f0ce3d4a2bf44bbc2fc51f6a49a45175d2c3801fd06e49233_1280.jpg",
       "media_evidence": {
         "url": "https://live.staticflickr.com/7440/13879390115_ec5a277c85_b.jpg",
         "source_class": "unverified",
@@ -44,17 +48,22 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-23T14:25:08Z",
+        "verified_at": "2026-09-23T12:59:24Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a dairy intolerance to skip the bake sale shift",
-      "query": "school bake sale table"
+      "query": "school bake sale table",
+      "image_url": "https://pixabay.com/get/ga79b67b099bedbc4392533ebb8298a50c2d4a6eab573694c71391f74260f01a5f0e0fb0797aa7ca806b38b9100d6fc173fdfa8e57aca875512322c4c465b28f0_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a migraine to skip chaperoning",
-      "query": "person holding forehead headache"
+      "query": "person holding forehead headache",
+      "image_url": "https://pixabay.com/get/g882679da5b36bbf5bb884c072a9e5db3892ce0cf95c3c5a8479bfd6625e0bfa308416a4ba59572d3bbcc7fd8dbc8cf44faafe1a4176e3a50d0820109ca700b71_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the district's actual needs-based hardship fund",
@@ -63,7 +72,7 @@
       "pin_context": "school district needs-based hardship fund",
       "news_query": "needs-based hardship fund",
       "news_angle": "The needs-based hardship fund is meant for families who genuinely cannot afford the fundraiser fee.",
-      "image_url": "https://live.staticflickr.com/65535/53990130924_4e8e612a1b_b.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Tintic_School_District_office_building%2C_May_16.jpg",
       "media_evidence": {
         "url": "https://live.staticflickr.com/65535/53990130924_4e8e612a1b_b.jpg",
         "source_class": "unverified",
@@ -71,17 +80,22 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-23T14:25:09Z",
+        "verified_at": "2026-09-23T12:59:24Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the district audited every waiver on that sheet",
-      "query": "auditor reviewing paperwork"
+      "query": "auditor reviewing paperwork",
+      "image_url": "https://pixabay.com/get/gc2f42ab537f0f2f5e836a296e5ec995393b704aeaaced6cb87fb4898f611c425944acc52f20b478c7c4075799210408d4a33a523a1853417070cc9dfe8a13115_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "mailed her an invoice for eleven months of fees",
-      "query": "mailbox envelope invoice"
+      "query": "mailbox envelope invoice",
+      "image_url": "https://pixabay.com/get/g348e9bc1e494efd79f68d27b569eb3388c6f3c299bb526179337379cbd2b4ff4586022ace9d2ad7ff809610a7a70c97ca420b6c92cd720d755c96dbcaa949e75_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
