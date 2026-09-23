@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T175905Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3 through seg0:end Data stands on top of the bars, and in seg1:mid and seg1:end he just perches on top of the 72% bubble. In seg3:start and seg3:mid he stands beside the stacked column. Nothing he does is tied to a stat.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg3:start and seg3:mid the 34% 'felt uncomfortable' label, which is the key stat, is near-invisible grey text on a grey block. The kicker says 'NO SUCH INCIDENT IS 66% OF THE WHOLE', which puts the emphasis on the wrong part. In seg3:end the scene turns into two small mascots on lines in an empty dark field, with a truncated label.",
+  "root_cause": "The accent and the story subject point different ways. The pink accent went on 'no such incident', but the narration's subject is the 34% who were made uncomfortable. The generic stacked-share and line-race machines were used without any legibility or composition pass.",
+  "repair_goal": "Make the 34% the subject. Give it the accent and full-contrast ink, and draw it as something made of the subject: 34 of 100 chat bubbles turning sour or red while teens keep sending messages ('most keep coming back anyway'). Have Data react to the messages that turn red. Fill the frame, and never truncate or grey out the key label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

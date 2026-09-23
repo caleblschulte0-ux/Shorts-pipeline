@@ -1,0 +1,16 @@
+{
+ "slug": "python-mammal-collapse",
+ "ts": "20260923T175905Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start and seg3:start to seg3:end, two circles sit in the middle and roughly the top and bottom thirds are empty dark gradient. seg1 leaves the lower third empty too.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg1:mid and seg1:end show a target with unlabeled teal dots under 'all within 11.8%' and '4 of them, near enough identical', while the narration says 'fell 99%, deer'. Nothing shows a collapse, and no dot is named.",
+  "root_cause": "A generic 'cluster/similarity' machine was chosen for four declines of 88-99%. It turns the story (near-total wipeout) into a claim that the four are alike, which is not what the script says.",
+  "repair_goal": "Replace it with a depletion picture: four populations of animal silhouettes (raccoon, opossum, deer, bobcat) that vanish until 1%, 1%, 6% and 12% are left. Label each group. Keep Data reacting to the last survivors."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

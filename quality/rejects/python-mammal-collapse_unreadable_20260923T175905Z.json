@@ -1,0 +1,16 @@
+{
+ "slug": "python-mammal-collapse",
+ "ts": "20260923T175905Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg0:end, the mascot sits on top of the raccoons' '99.3%' label. In seg3:start, the grey caption '19 feet --' almost disappears into the background. The '19' inside the teal bubble is dark text with a doubled outline (seg3:mid). The source lines are microscopic (hook@0.3, seg3:start).",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg1:mid and seg1:end show a target with unlabeled teal dots under 'all within 11.8%' and '4 of them, near enough identical', while the narration says 'fell 99%, deer'. Nothing shows a collapse, and no dot is named.",
+  "root_cause": "A generic 'cluster/similarity' machine was chosen for four declines of 88-99%. It turns the story (near-total wipeout) into a claim that the four are alike, which is not what the script says.",
+  "repair_goal": "Replace it with a depletion picture: four populations of animal silhouettes (raccoon, opossum, deer, bobcat) that vanish until 1%, 1%, 6% and 12% are left. Label each group. Keep Data reacting to the last survivors."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

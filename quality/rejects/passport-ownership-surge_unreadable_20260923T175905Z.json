@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260923T175905Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start, seg3:mid and seg3:end the '68.1%' is dark navy text on the saturated blue circle and nearly vanishes at phone distance. In seg1:mid Data's head covers the bottom of the '48%' label.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "The New Jersey value '68.1%' is printed in dark navy on the bright blue circle (seg3:start/mid/end) and is barely legible. The 48% circle wears white text, so the two values do not match. Data just stands on top of the circle.",
+  "root_cause": "The value label takes a dark ink on the accent fill instead of the look's ink rule. The scene is a generic proportional-bubble chart and nothing is made of passports or states.",
+  "repair_goal": "Put high-contrast ink on the '68.1%' label (white, or placed outside the circle), and replace the bubbles with a subject-built picture: e.g. a row of 100 people where 68 hold passports in NJ vs 48 nationally. Give Data a bit such as handing out passports until the NJ row outruns the national row."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

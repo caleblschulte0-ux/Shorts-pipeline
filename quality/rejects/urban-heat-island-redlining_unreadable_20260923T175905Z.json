@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T175905Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end: 'clears it by 1.7' runs into '65-city average 8'. seg4:start: 'Formerly redli...' and 'neighborhoods (b...' are cut off. seg2:start: the header is cut off at 'OF TH...' and 'Live in lower-exposure blocks 32%' is almost invisible against the grey block. seg1:start: '65-city aver",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_relationship_machine",
+  "visible_evidence": "seg2:start is a stacked share column with a near-invisible 32% label and Data covering the split line. seg2:mid/end then switches to a two-needle gauge reading '36% apart', a number the narration never says and that means nothing for a 68/32 split of one population.",
+  "root_cause": "A part-of-a-whole share (68% of people studied) was drawn as a distance/gap machine. The machine invented a derived '68 minus 32 = 36% apart' claim, and the share column's rest label has no contrast.",
+  "repair_goal": "Show the 68% as a share of one crowd of city residents, e.g. 100 figures/blocks where 68 turn heat-red and lose their trees. Drop the '36% apart' gauge, give the 32% remainder a legible INK label, and keep Data off the boundary."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

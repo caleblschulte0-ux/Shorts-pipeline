@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260923T175905Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly perches: in hook@0.3 through seg0:end he stands on or slides along bars; in seg1:start and seg1:mid he stands in the bottom-right corner pointing at nothing; in seg2:end he hangs off a bar; in seg3 he sits on top of a circle; in seg4 he stands on the scale pan. None of",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "wrong_claim_depiction",
+  "visible_evidence": "seg1:start and seg1:mid show 'it never settled': an unlabeled pink zigzag whose points trend DOWNWARD on screen, over a range slider reading 'anywhere between $1.1 and $4.4' with a dot wobbling in the middle. The mascot stands in the corner pointing.",
+  "root_cause": "A range/uncertainty machine was picked for what is really a record-high climb. The picture says the price was random within a band, and the unlabeled zigzag even reads as falling. The narration says a climb from $1.05 to a record $4.41 through a series of shocks.",
+  "repair_goal": "Show the climb as a climb: $1.05 in 2019 rising to $4.41 in Feb 2025, with the shock jumps marked as visible steps, the record point landing as the payoff, and Data physically reacting to each jump."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

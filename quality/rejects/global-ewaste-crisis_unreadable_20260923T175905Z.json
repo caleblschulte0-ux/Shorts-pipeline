@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260923T175905Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid: the key label 'Met by e-waste recycling 1%' stays low-contrast grey on the dark ground. seg2:start: 'Properly recycled 22%' and 'Not properly recycled 78%' are nearly invisible. hook@2.2/seg0:end: the mascot covers the 2019 bar. seg1:start: a teal ring is drawn over '62M'. The ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "generic_chart_repeat_and_void",
+  "visible_evidence": "seg1:start replays the same year-bar chart as the hook and seg0. seg1:mid/end then switch to a sparse line with a projection cone and a 'the data stops here' rule, leaving most of the frame empty. Data only points from the top-left corner.",
+  "root_cause": "The 62M-tons / 82%-growth / 1.5M-garbage-trucks beat was drawn as a chart KIND, trend then projection, when the claim is a physical pile. The same series was shown twice and the truck image was never drawn.",
+  "repair_goal": "Replace the repeated chart with one physical depiction of the growing pile: a heap of discarded electronics, or a convoy of garbage trucks each worth a fixed tonnage, grows from the 2010 size to the 2022 size. Data acts inside it (loading the last truck or being buried by the pile), the frame is used edge to edge, and no line/bar repeat of the hook's data."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

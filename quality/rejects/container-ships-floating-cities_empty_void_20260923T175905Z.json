@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260923T175905Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end: the chart fills only a thin band at y 250-480, and the lower third of the frame is empty dark gradient. seg4:mid to payoff: the whole left half below the speech bubble is bare space.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_rehash_with_mismatched_numbers",
+  "visible_evidence": "seg1:mid and seg1:end show a thin lollipop timeline of the same 1996-2019 figures that the hook bar chart already showed. The headline counter (12,500, then 18,000) lags the caption (24,000). Data stands with his arms raised at the axis end, and the bottom 40% of the frame is empty.",
+  "root_cause": "The ship-size story is drawn twice as generic charts (bars, then a timeline) and never as ships. The counter animation is not synced to the narration, and the mascot has no act tied to the number.",
+  "repair_goal": "Replace seg1 with one bespoke depiction made of the subject: a ship hull loaded with container blocks that stacks from 6,600 to 12,500 to 24,000 as each year is spoken, with the hull growing in length. Sync the counter to the caption. Give Data a real act, such as craning boxes onto the deck and then being dwarfed by the 2019 ship. Fill the frame vertically."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T175905Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:start the caption 'taken hold worldwide.' is dim grey on a dark band and nearly disappears. In seg4 the labels 'Classified as harmful invasive' and 'Alien species established' are tiny grey or pink text that cannot be read on a phone. In seg4:end and payoff@-0.4 the mascot is jam",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid/end: a thin pink line runs along the lower third, with the words 'and back again' printed under it. That label is wrong because the cost never falls back. The upper two thirds of the frame are empty. Data just stands at the end of the line with his arms up.",
+  "root_cause": "The headline stat (quadrupling every decade to $423B) is drawn as a generic trend line with a mislabelled annotation, and the line is not scaled to fill the frame. The picture does not show what 'quadrupled every decade' means.",
+  "repair_goal": "Show the 4x growth per decade as something physical that fills the frame, for example a bill or invoice stack that quadruples at each decade mark from $1.6B up to $423B, and have Data get buried or pushed back by it. Remove the incorrect 'and back again' label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

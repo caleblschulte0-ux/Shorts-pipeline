@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260923T175905Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg4:mid to payoff@-0.4 shows a faint grey '4' over three empty grey tiles, captioned '4 times over'. It demonstrates nothing, and the tiles don't even show four of anything.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "From seg4:start to payoff@-0.4 there is a boxed grid of three plain grey rounded tiles with a faded '4' in the middle, the label 'Soy, Mining, Logging & Other fits in Cattle Pasture' and '4 times over'. The frame is static and Data is parked in the corner.",
+  "root_cause": "The closer was auto-derived as an 80/20 'fits N times' comparison. That isn't the story's claim (the cumulative loss keeps growing while the yearly rate falls), and it was drawn as generic empty tiles instead of anything made of forest, pasture or cattle.",
+  "repair_goal": "Replace the closer with a picture of the story's real punchline. Yearly clearing falls from 27,772 to 6,288 while cumulative loss keeps rising to ~750,000 km2: for example, a forest canopy whose cleared area keeps spreading even as each year's cut gets thinner, with 80% of it turning into pasture. Data should perform an action that lands 'the bill still grows'."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

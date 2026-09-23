@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260923T175905Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 is a title over an empty dark gradient, and hook@0.8/seg0:start show one small bar with the mascot in the lower-left, leaving about 80% of the frame blank.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "generic_chart_with_occlusion",
+  "visible_evidence": "seg4:start\u2013payoff@-0.4: a thin three-row horizontal bar chart (E-cigarettes 7.8%, Nicotine pouches 1.8%, Cigarettes 1.7%) under a big speech bubble plus a CTA. The mascot dances on top of the 'Nicotine pouches' label and then the 7.8% value, and the pouches bar (the story's subject) is a dim grey stub.",
+  "root_cause": "The payoff reuses a default bar chart instead of a picture of nicotine 'moving through a new door'. The accent goes on e-cigarettes rather than the pouches, which are the story's subject, and the mascot's placement ignores label bounding boxes.",
+  "repair_goal": "Replace it with a bespoke payoff: the vape cloud shrinking to 7.8% while a pouch tucked into a lip grows to 1.8% (accent on the pouch as the subject). Keep the mascot clear of every label, and let him do a setup\u2192action\u2192payoff bit (for example, waving away the cloud and then noticing the pouch)."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

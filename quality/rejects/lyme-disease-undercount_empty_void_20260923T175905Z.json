@@ -1,0 +1,16 @@
+{
+ "slug": "lyme-disease-undercount",
+ "ts": "20260923T175905Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:end about 80% of the frame is empty dark ground. There are only two tiny 'D' bar stubs labelled 'Today' and '30 years ago', a small mascot at the left edge, and nothing in the centre or right.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start and seg3:mid show a balance scale with numbers caught mid-tween ('16.9' vs '152', then '26.5' vs '238'), which invites a viewer to read fake values. seg3:end then cuts to a nearly empty bar chart: two 'D'-shaped stubs, 'Today' and '30 years ago' labels, no values, and a large dead void.",
+  "root_cause": "The scene reuses the same balance-scale machine as the hook, then falls back to a bar chart whose bars have not grown yet. The 29 -> 260 counties claim (9x more places) is 'spread across the map', but it was drawn as 'weight'. Its closing state is also unfinished, so the frame is empty.",
+  "repair_goal": "Show 29 -> 260 high-risk counties as SPREAD, not weight: a US county grid or map where 29 cells light up, then the lit area floods out to 260. Or use a tick-cluster field that multiplies 9x across the frame. Final values should be visible at full size, and Data should do a bit tied to it, such as stepping back as the lit region reaches his feet. No mid-tween numbers on screen, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

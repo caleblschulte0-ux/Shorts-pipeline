@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-23T13:39:38Z",
+ "updated": "2026-09-23T17:58:55Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -498,18 +498,6 @@
    "answer_path": "exchange/rewrites/20260922/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
-   "id": "landline-death-robocall-boom__0460d3b4",
-   "slug": "landline-death-robocall-boom",
-   "filed": "2026-09-22T11:08:33Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
-    "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
-   ],
-   "request": "exchange/rewrites/20260922/landline-death-robocall-boom__0460d3b4.request.json",
-   "answer_path": "exchange/rewrites/20260922/landline-death-robocall-boom__0460d3b4.answer.json"
-  },
-  {
    "id": "left-brain-right-brain-myth__e9ed048f",
    "slug": "left-brain-right-brain-myth",
    "filed": "2026-09-22T11:08:33Z",
@@ -942,6 +930,16 @@
    "answer_path": "exchange/rewrites/20260923/black-holes-in-galaxy__cf824ed9.answer.json"
   },
   {
+   "id": "blood-supply-three-percent__40fe030c",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-09-23T17:58:55Z",
+   "why": [
+    "premise: brain: States a low donation rate as an inherent shock without first establishing a specific contrary expectation (e.g., that donation is common or supply is comfortably met), so it reads as a stat dump rather than a reversal."
+   ],
+   "request": "exchange/rewrites/20260923/blood-supply-three-percent__40fe030c.request.json",
+   "answer_path": "exchange/rewrites/20260923/blood-supply-three-percent__40fe030c.answer.json"
+  },
+  {
    "id": "blood-type-rarity__b751ede5",
    "slug": "blood-type-rarity",
    "filed": "2026-09-23T00:49:11Z",
@@ -1335,16 +1333,16 @@
    "answer_path": "exchange/rewrites/20260923/kids-phones-getting-younger__e1fceca3.answer.json"
   },
   {
-   "id": "landline-death-robocall-boom__0460d3b4",
+   "id": "landline-death-robocall-boom__0460d3b4_r1",
    "slug": "landline-death-robocall-boom",
-   "filed": "2026-09-23T00:49:11Z",
+   "filed": "2026-09-23T17:58:55Z",
    "why": [
     "premise: no consequential number in the title or hook",
     "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
     "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
    ],
-   "request": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4.request.json",
-   "answer_path": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4.answer.json"
+   "request": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4_r1.request.json",
+   "answer_path": "exchange/rewrites/20260923/landline-death-robocall-boom__0460d3b4_r1.answer.json"
   },
   {
    "id": "left-brain-right-brain-myth__e9ed048f",
