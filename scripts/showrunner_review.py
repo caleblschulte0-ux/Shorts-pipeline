@@ -390,10 +390,16 @@ def _gray_stream(mp4: Path, fps: int, width: int):
     vf = f"fps={fps},scale={width}:-1,format=gray"
     head = subprocess.run(
         ["ffmpeg", "-loglevel", "error", "-i", str(mp4), "-vf", vf, "-frames:v", "1",
-         "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, check=True).stdout
+         "-f", "image2pipe", "-vcodec", "png", "-"], capture_output=True, check=True)
+    data = getattr(head, "stdout", b"") or b""
+    if not data:
+        # ffmpeg decoded nothing: no frames at all, which the callers report
+        # as "only 0 sampled frames" — an unmeasured probe, never a pass
+        yield (0, 0)
+        return
     from PIL import Image
     import io
-    with Image.open(io.BytesIO(head)) as im:
+    with Image.open(io.BytesIO(data)) as im:
         w, h = im.size
     yield (w, h)
     proc = subprocess.Popen(
