@@ -1,0 +1,21 @@
+{
+ "slug": "amazon-still-shrinking",
+ "ts": "20260923T133948Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:start Data's head covers the '27772' value label. At seg2:start a cyan ellipse is drawn through '697,954 left of 750,000'. At seg3:start 'Cattle Pasture 80%' and the 'Soy, Mining...' label are grey on navy and nearly vanish. At seg4 the grey '4' is printed on top of the tiles.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_depiction",
+  "visible_evidence": "seg4:start through payoff@-0.4 show a bordered panel holding only 3 rounded tiles with a grey '4' printed over them. The caption reads '4 times over' and the header says 'Soy, Mining, Logging & Other fits in Cattle Pasture'. That payoff says nothing about beef or the growing total, and the tile count contradicts the label.",
+  "root_cause": "A generic 'fits N times' machine was applied to the 20/80 share split. It produced a meaningless ratio and drew 3 of the 4 tiles, and the panel is a UI-widget card with the closing line in a speech box above it.",
+  "repair_goal": "Make the payoff the script's actual turn: yearly clearing falls (27,772 to 6,288) while cumulative loss keeps climbing to ~750,000 km\u00b2, drawn as a France-sized outline filling in. Drop the 'fits 4 times' grid, and keep Data doing a bit tied to that reveal instead of pointing from the corner."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

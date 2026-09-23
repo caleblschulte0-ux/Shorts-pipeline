@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T133948Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start and seg3:mid, the label 'Felt uncomfortable by something the bot said/did 34%' is dark grey on dark navy and nearly invisible. In hook@0.3 and seg0:start the mascot covers 'Use one every day' so it reads 'Use o... very day'. In seg1:start the mascot covers the 72% label. Fr",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg3:mid the pink 'No such incident 66%' section dominates, while the 34% 'felt uncomfortable' section, which the story is about, is a faded grey block with a near-invisible label. The kicker also says 'NO SUCH INCIDENT IS 66% OF THE WHOLE'.",
+  "root_cause": "The accent and the kicker went to the larger category rather than the subject of the claim, and the non-accent label uses a low-contrast rest tone that disappears on the ground.",
+  "repair_goal": "Put the single accent and a full-ink label on the 34% 'made them uncomfortable' share, rewrite the kicker around the 34%, and draw it as something made of the subject, such as chat bubbles where one in three turns red, with the mascot reacting to the uncomfortable one."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

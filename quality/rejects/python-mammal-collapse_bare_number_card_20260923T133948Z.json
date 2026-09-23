@@ -1,0 +1,16 @@
+{
+ "slug": "python-mammal-collapse",
+ "ts": "20260923T133948Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start to seg3:end is two circles holding \"19\" and \"18\" that simply get bigger. There is no python, no giraffe and no length. It is a big number on a blob.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "misleading_machine",
+  "visible_evidence": "In seg1:mid and seg1:end, dots drift around concentric rings under \"all within 11.8%\" and \"4 of them, near enough identical\". One dot flies off the target. Data stands to the side. The lower third is empty.",
+  "root_cause": "The relationship classifier read four near-total collapses (99.3/98.9/94.1/87.5%) as a 'similarity/cluster' claim. It picked a generic target machine that says the drops are alike, when the story is that these animals were wiped out. Nothing in the picture is made of raccoons, opossums, deer or bobcats.",
+  "repair_goal": "Replace the rings with a population-collapse depiction built from the animals themselves. Start with a field of 100 raccoon, opossum, deer and bobcat icons per row. Remove them as a python coils through each row until only 1, 1, 6 and 12 remain. Data should react on screen, for example by counting the survivors, and the emptied rows should fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

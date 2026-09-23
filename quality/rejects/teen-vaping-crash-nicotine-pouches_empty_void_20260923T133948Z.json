@@ -1,0 +1,16 @@
+{
+ "slug": "teen-vaping-crash-nicotine-pouches",
+ "ts": "20260923T133948Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid/seg1:end: a thin timeline across the middle, with the top third and bottom third of the frame empty. seg3:end: three near-empty bar stubs and labels in a mostly blank frame.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "story_not_demonstrated",
+  "visible_evidence": "seg3:start/mid is a teal tile grid, 'E-cigarettes 7.8%, each = 0.5%' (16 tiles = 8.0%, not 7.8%). seg3:end cuts to a plain ranked bar list with stub bars and no values. Nicotine pouches, the story's turn and the thing the title promises, are never shown as anything but a grey stub.",
+  "root_cause": "The scene draws the category the script calls the top seller (e-cigs) instead of the claim the video exists for: nicotine moved to a quieter door. The pouch number (1.8%) gets no picture of its own, and the scene falls back to a chart.",
+  "repair_goal": "Give the pouch a depiction made of its subject: the vape cloud shrinking from 27.5% while tins or pouches tuck in (1.8% as the pouch count), so the 'moved, not ended' claim is seen without reading. Fix the tile unit so the count matches 7.8%, and give Data a bit that swaps the vape for a pouch."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

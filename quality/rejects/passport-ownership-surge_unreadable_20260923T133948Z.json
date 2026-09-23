@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260923T133948Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start through seg3:end, the '68.1%' label is dark navy on the light-blue circle and its glyphs look doubled or smeared. At arm's length it reads as a blob. The source lines at seg1:mid and seg3 are microscopic.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:mid and seg3:end show two circles, New Jersey and the national average. Inside the NJ circle, '68.1%' is dark text on a light-blue fill with a doubled or smeared outline, so it is the least legible text in the video. Data just stands on top of the circle with his arms up.",
+  "root_cause": "The label is in INK on a light accent fill and seems to be drawn twice (stroke plus fill offset). The machine is generic: area circles would work for any comparison, and nothing about them is a map or a passport. The mascot is parked on the mark instead of acting.",
+  "repair_goal": "Make the NJ value text high-contrast and draw it once, with no duplicate stroke. Replace the circles with something made of the subject: a stack of passports, or a row of 100 people where 68 hold passports for NJ and 48 for the US, filling side by side. Give Data a bit, such as handing out passports until NJ hits 68."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "teen-ai-companion-boom",
+ "ts": "20260923T133948Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands on top of bubbles in seg1:mid and seg2:start and dances beside bars in hook@1.5 and seg0:end. He only interacts with the data once, circling 72% in seg1:start. In seg4 he is just a racer icon.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg3:mid the pink 'No such incident 66%' section dominates, while the 34% 'felt uncomfortable' section, which the story is about, is a faded grey block with a near-invisible label. The kicker also says 'NO SUCH INCIDENT IS 66% OF THE WHOLE'.",
+  "root_cause": "The accent and the kicker went to the larger category rather than the subject of the claim, and the non-accent label uses a low-contrast rest tone that disappears on the ground.",
+  "repair_goal": "Put the single accent and a full-ink label on the 34% 'made them uncomfortable' share, rewrite the kicker around the 34%, and draw it as something made of the subject, such as chat bubbles where one in three turns red, with the mascot reacting to the uncomfortable one."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

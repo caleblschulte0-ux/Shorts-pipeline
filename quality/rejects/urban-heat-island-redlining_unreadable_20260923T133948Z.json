@@ -1,0 +1,16 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260923T133948Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:end, 'clears it by 1.7' is printed on top of '65-city average 8'. At seg2:start the 'Live in lower-exposure blocks 32%' label is gray on gray and almost invisible. At seg4 the labels are cut to 'Formerly redli...' and 'neighborhoods (ba...'.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "misleading_claim_and_unreadable_label",
+  "visible_evidence": "seg2:start: the 32% label is gray on gray and cannot be read. seg2:end: two posts stand far apart on a ruler with the label '36% apart', as if 68% and 32% were positions on a scale. The top labels are crowded together, and Data just holds his arms up under a post.",
+  "root_cause": "The 68/32 share was drawn as a gap between two positions, so the picture now claims a '36% apart' difference that the story never states. The stacked column put the smaller share's label in a low-contrast color.",
+  "repair_goal": "Show 68% as parts of one whole made of the subject: a grid of 100 city blocks where 68 heat up red and lose their trees, and 32 stay shaded. Remove the '36% apart' line, put every label in full-contrast ink, and have Data walk from a shaded block into a hot one as the count reaches 68."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

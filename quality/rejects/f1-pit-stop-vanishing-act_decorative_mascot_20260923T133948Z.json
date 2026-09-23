@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260923T133948Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data slides along bar ends (hook@0.8 to hook@2.2), perches on top of bars (seg2:start, seg3:mid) and stands with his hands on his head (seg2:mid, seg2:end, seg3:end, seg4:end). He never does a bit tied to a pit stop, like jacking the car, changing a wheel or timing the stop.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "chart_hook_and_occluded_label",
+  "visible_evidence": "From hook@0.3 to seg1:start the opening is a four-row horizontal bar chart titled 'F1 pit stop time'. Three of the four bars are slivers. The value labels fade in from near-invisible, and at seg1:start Data parks on top of the '60' label, hiding the headline number.",
+  "root_cause": "The hook falls back to a rank bar chart for a 'duration collapsed' claim. The mascot's path is aimed at bar ends without checking what it covers there, so Data acts as a cursor and not a performer.",
+  "repair_goal": "Open on the pit stop itself: a 60-second clock or a stopwatch sweep that collapses to 1.8s while a car sits in a pit box, with Data swapping a wheel that turns into a blur. The first frame should read as motion plus the question. Keep every value label clear of the mascot's bounding box."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

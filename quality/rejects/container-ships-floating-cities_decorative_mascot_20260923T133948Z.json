@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260923T133948Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data slides along the bars at hook@0.3 and seg0:end, stands on the line at seg1:start and seg1:end, rides the edge of the bar at seg3:start through seg3:end, and stands on a track at seg4. He never does a bit about ships or cargo; he is only a position marker.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "generic_chart_no_metaphor",
+  "visible_evidence": "Frames hook@0.3 through seg0:end show a four-row horizontal bar chart titled 'largest container ship capacity by year', with Data standing on a bar. There is no ship, no box and no truck. The hook's '24,000 truckloads' is only a caption.",
+  "root_cause": "The ship-growth relationship fell back to the default ranked-bars chart, so the video opens on a slow chart build instead of the subject.",
+  "repair_goal": "Open on the ship itself: a hull whose deck fills with stacked containers to 6,600, then stretches and restacks to 12,500 and 24,000, with Data craning boxes on until the ship dwarfs a line of trucks. The number should be the stack, not a bar."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "invasive-species-price-tag",
+ "ts": "20260923T133948Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start and seg1:mid a thin pink line and a small mascot fill a narrow middle strip. The frame is nearly empty from the subtitle down to about y=380 and below y=530.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "weak_payoff_redundant_machine",
+  "visible_evidence": "seg4:start to payoff@-0.4 shows two copies of Data on lines labelled 3.5K and 37K next to a dotted finish line. The 3.5K racer barely moves, the labels are tiny, and a large speech bubble repeats the closing line. The payoff shows seg3's numbers again instead of landing the $423B bill.",
+  "root_cause": "The closing beat reuses seg3's dataset in a stock race machine with a duplicated mascot. It has no escalation, and the finish line means nothing for species counts.",
+  "repair_goal": "End on the bill: a $423B invoice or receipt the size of the frame that Data unrolls, with the total stamped on it. Or drop the race and let the 3.5K culprits visibly carry the whole cost. Put all labels at 28pt or larger in ink colour and cut the duplicate mascot."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

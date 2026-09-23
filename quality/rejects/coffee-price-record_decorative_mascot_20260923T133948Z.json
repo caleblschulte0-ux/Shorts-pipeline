@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260923T133948Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data parks in the bottom-right corner in the same pointing pose in seg1:mid and seg1:end. He perches on a bar in seg2:end and on a bubble in seg3:start/mid, then stands on the scale pan with hands on head in seg4. None of it is a setup-action-payoff bit that changes the number.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "misleading_depiction",
+  "visible_evidence": "seg1:mid/end: under the title 'how high coffee prices have climbed' a pink zig-zag path wanders DOWN and to the right. A pill slider reads 'anywhere between $1.1 and $4.4' with a red dot in the middle, and Data stands pointing in the corner, the same pose in both frames.",
+  "root_cause": "The 'it never settled' range/volatility machine was picked for a claim about a record CLIMB driven by shocks. The drawn path goes down while the narration says prices doubled, so the picture contradicts the line.",
+  "repair_goal": "Replace it with a depiction of prices climbing through shocks to a record, e.g. a coffee price level stepping UP in jolts from $1.05 (2019) to $4.41 (Feb 2025), with 2025 visibly the highest mark. Give Data a bit tied to each shock (bracing as each jump lands)."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
