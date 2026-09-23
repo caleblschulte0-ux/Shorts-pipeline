@@ -137,6 +137,9 @@ every teacher passes (`tests/test_subject_scenes.py`,
 - **A readout's number and its label are the same row** — "$1.05" over
   "2025 · $4.41" is refused — and a derived number only contradicts the
   narration in the SAME unit ("4.2x" is a ratio, not a misprint of $4.41).
+- **Data never covers text.** Text drawn before him must lie clear of
+  everywhere he can be — his body, widened by his walk. "Text is covered in
+  the hook" held an 83.
 - **The captions read over any scene.** Every scene darkens softly toward
   its foot (`caption_scrim`), under the narration — a fade, not a card.
   "Subtitles lost in clouds and bricks" held a 79.
