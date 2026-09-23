@@ -1912,6 +1912,30 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 56,
       "duration_s": 51.2
+    },
+    "f1-pit-stop-vanishing-act": {
+      "url": "https://youtube.com/shorts/Wne-eoIQXaU",
+      "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
+      "at": "2026-09-23T18:42:28.541844+00:00",
+      "publish_at": "2026-09-23T19:18:41Z",
+      "state": "posted",
+      "style_arm": "illustrated",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 39.0,
+      "hook": "inversion",
+      "topic_category": "records",
+      "ending_type": "escalation",
+      "depictions": [
+        "mechanic:pit-stop-timer-collapse",
+        "mechanic:reaction-blink-race",
+        "mechanic:pit-crew-swarm-count"
+      ],
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -2166,6 +2190,15 @@
       "state": "posted",
       "slug": "centenarian-population-boom",
       "at": "2026-09-22T11:50:48.229122+00:00"
+    },
+    {
+      "claimed_at": "2026-09-23T18:42:21.220930+00:00",
+      "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
+      "publish_at": "2026-09-23T19:18:41Z",
+      "url": "https://youtube.com/shorts/Wne-eoIQXaU",
+      "state": "posted",
+      "slug": "f1-pit-stop-vanishing-act",
+      "at": "2026-09-23T18:42:28.541844+00:00"
     }
   ]
 }
