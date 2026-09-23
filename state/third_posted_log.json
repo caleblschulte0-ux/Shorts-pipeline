@@ -8624,14 +8624,27 @@
       "ts": "2026-09-23T12:39:29.678819+00:00"
     },
     "clip-20260923-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/erobb221/clip/CharmingTalentedSnailKappaRoss-DSE-mNEl_dgCvhvQ",
-      "story_key": null,
-      "streamer": "erobb221",
+      "url": "https://youtube.com/shorts/SFj92KVDzaA",
       "title": "Erobb221: Ricky And Maynard's Street Fight Ends In The Wildest Way",
       "kind": "twitch_clip",
-      "ts": "2026-09-23T12:45:53.310468+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-23T12:46:00.618240+00:00",
+      "uploaded_at": "2026-09-23T12:46:00.618259+00:00",
+      "publish_at": "2026-09-24T03:30:00Z",
+      "source_url": "https://www.twitch.tv/erobb221/clip/CharmingTalentedSnailKappaRoss-DSE-mNEl_dgCvhvQ",
+      "streamer": "erobb221",
+      "series": "drama",
+      "hook": "RICKY AND MAYNARD'S STREET FIGHT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1615,
+      "banger": 0.85,
+      "cut": {
+        "start": 19.7,
+        "end": 59.5
+      },
+      "director_cut": true
     }
   }
 }

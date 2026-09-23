@@ -3,149 +3,6 @@
     {
       "date": "20260916",
       "dry_run": false,
-      "ts": "2026-09-16T15:31:21+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 100,
-        "with_retention": 89,
-        "with_curve": 15,
-        "fetched_at": "2026-09-16T13:39:37.807558+00:00"
-      },
-      "brain": {
-        "ok": 7,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260916-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: subject/action absent from the sharp region for ~5.0s-7.9s (three consecutive sampled frames show only dark sky/blurry l; vision: 13.6s frame is an extreme crop of only hair/blur, subject unre",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "emoji hints real emotion, vague",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "reaction to mystery box reveal",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Got The Worst Mystery Box Pull Possible"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.72,
-              "problems": [
-                "subject/action absent from the sharp region for ~5.0s-7.9s (three consecutive sampled frames show only dark sky/blurry l",
-                "13.6s frame is an extreme crop of only hair/blur, subject unreadable"
-              ]
-            }
-          },
-          "took_s": 207.6
-        },
-        {
-          "slug": "clip-20260916-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260916",
-      "dry_run": false,
       "ts": "2026-09-16T15:40:29+00:00",
       "feedback": {
         "snapshot": true,
@@ -5075,6 +4932,165 @@
             }
           },
           "took_s": 113.9
+        }
+      ]
+    },
+    {
+      "date": "20260923",
+      "dry_run": false,
+      "ts": "2026-09-23T12:46:00+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 86,
+        "with_curve": 14,
+        "fetched_at": "2026-09-23T08:46:08.474828+00:00"
+      },
+      "brain": {
+        "ok": 15,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260923-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260923-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (political talking heads, no visible even)",
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "excited reaction after apparent win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "political talking heads, no visible even",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 127.1
+        },
+        {
+          "slug": "clip-20260923-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260923-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260923-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "street fight, clear physical conflict",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "visible street fight, real punches landi",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Erobb221: Ricky And Maynard's Street Fight Ends In The Wildest Way"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "subject is quite small/distant in the back half (24.4s-33.0s frames), bordering on thin but still readable"
+              ]
+            }
+          },
+          "took_s": 390.9
+        },
+        {
+          "slug": "clip-20260923-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
