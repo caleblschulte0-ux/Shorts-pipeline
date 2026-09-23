@@ -329,10 +329,10 @@ class TestTheClosingTextClearsTheChart(unittest.TestCase):
                            "the CTA overlaps the question")
 
     def test_they_clear_the_sources_strip(self):
-        """Sources are an2 fs15 at y=1898, so they occupy ~1880..1898."""
+        """Sources are an2 fs24 at y=1898, so they occupy ~1874..1898."""
         _q, cta, _S = self.ys()
         self.assertIn("pos(540,1898)", self.SRC)
-        self.assertLess(cta + 34, 1880)
+        self.assertLess(cta + 34, 1874)
 
     def test_the_question_cannot_grow_to_three_lines(self):
         """A third line pushes its top back over the chart, so the wrap is

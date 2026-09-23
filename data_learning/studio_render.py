@@ -1096,6 +1096,30 @@ def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
             for k in range(n)]
 
 
+def _readable_punch(hex_color: str) -> str:
+    """A spoken-number punch colour that can be READ on the dark footer.
+    A story whose punch was a dark accent burned "6,288" in near-navy under
+    the caption ("a faint dark-navy '6,288' ... nearly disappears", the
+    judge, 2026-09-23). Too-dark colours are lifted toward white until the
+    relative luminance clears 0.45; bright colours pass unchanged."""
+    try:
+        h = str(hex_color).lstrip("#")
+        rgb = [int(h[i:i + 2], 16) for i in (0, 2, 4)]
+    except Exception:  # noqa: BLE001
+        return "#ffffff"
+
+    def lum(c):
+        v = [x / 255.0 for x in c]
+        v = [x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4 for x in v]
+        return 0.2126 * v[0] + 0.7152 * v[1] + 0.0722 * v[2]
+    k = 0.0
+    out = rgb
+    while lum(out) < 0.45 and k < 1.0:
+        k += 0.1
+        out = [int(round(c + (255 - c) * k)) for c in rgb]
+    return "#" + "".join(f"{c:02x}" for c in out)
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
                     accent: str = "&H4FD1F5&", hook_visual: bool = False) -> None:
     """Burn the hook, the kinetic captions and the closing into one ASS file.
@@ -1210,7 +1234,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Per spoken number: a pulsing marker ON the data point + the big punch.
     for e in events:
         ps, pe, p = e["ps"], e["pe"], e["punch"]
-        color = _hex_to_ass(p.get("color", "#ffffff"))
+        color = _hex_to_ass(_readable_punch(p.get("color", "#ffffff")))
         _a = e.get("anchor")
         if (e["xy"] and e["box"]
                 and not (isinstance(_a, dict) and _a.get("measured") is False)):
@@ -1303,7 +1327,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         cta = ("{\\an5\\move(540,1848,540,1836,0,900)\\fs54\\c&H" + acc
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
-        lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
+        # The steady CTA steps aside while a pulse copy plays: two copies at
+        # different scales printed "COMMENT BELOW ▼▼" (the judge, 2026-09-23).
+        _gaps, _t = [], cs
+        for _pt in sorted(p_ for p_ in _pulses if cs <= p_ < c1):
+            if _pt > _t:
+                _gaps.append((_t, _pt))
+            _t = max(_t, min(c1, _pt + CLOSING_PULSE_S))
+        if _t < c1:
+            _gaps.append((_t, c1))
+        for _k, (_a, _b) in enumerate(_gaps):
+            _c = cta if _k == 0 else cta.replace("\\fad(300,0)", "")
+            lines.append(f"Dialogue: 5,{_ass_time(_a)},{_ass_time(_b)},Cap,,0,0,0,,{_c}")
         # THE LAST BEAT OF THE VIDEO. The CTA gives one more push right at the
         # end — a real emphasis a viewer reads as "now", and the only thing
         # still changing in the final second.
@@ -1352,10 +1387,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         _no_date = [_re_src.sub("", _f).strip() for _f in _uniq]
         src = " · ".join(_no_date)
         if len(src) > _CH_SRC:
-            src = " · ".join(_re_name.sub("", _f).strip() for _f in _no_date)
+            _no_name = [_re_name.sub("", _f).strip() for _f in _no_date]
+            src = " · ".join(_no_name)
+            # ...then the publisher's NAME alone: "Mongabay / compiled from
+            # INPE and academic land-cover studies" cut the whole line off at
+            # "compiled fro…" (the judge, 2026-09-23).
+            if len(src) > _CH_SRC:
+                src = " · ".join(dict.fromkeys(
+                    _f.split(" / ")[0].split(" (")[0].strip() for _f in _no_name))
     if len(src) > _CH_SRC:
         src = src[:_CH_SRC - 1].rstrip(" ·") + "…"
-    src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
+    src_txt = ("{\\an2\\pos(540,1898)\\fs" + str(SRC_FS)
+               + "\\c&HD8E0EA&\\b0\\bord2\\shad0"
                "\\q2\\fad(200,0)}Sources: " + src)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
 
@@ -1417,8 +1460,15 @@ def _phrase_frac(sentence: str, phrase: str):
     return None
 
 
-#: Characters that fit 1040px at fs15 — ONE line of the sources strip.
-_CH_SRC = 132
+#: Characters that fit 1040px at fs24 — ONE line of the sources strip.
+#: It was fs15 (132 characters) and the judge kept failing it as
+#: "microscopic grey text you cannot read on a phone" on every closing.
+#: fs24 still fits the band (CTA ends 1870, the strip's baseline is 1898);
+#: the cost is the dataset names shedding sooner — every PUBLISHER is still
+#: named, the full provenance is in the dataset, the manifest and the
+#: upload description.
+SRC_FS = 24
+_CH_SRC = 80
 #: `, accessed 2026-09-08` — the first thing the sources strip sheds.
 _re_src = re.compile(r",\s*accessed\s+\S+\s*$")
 #: The LAST parenthetical, which is the dataset name in `Source.footer()`.
@@ -2452,7 +2502,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     # by being either.
     charts.HIGHLIGHT, charts.ACCENT = (
         _hex(c) for c in _look.accent(_look.accent_for(slug)))
-    accent_ass = _hex_to_ass(charts.HIGHLIGHT)
+    accent_ass = _hex_to_ass(_readable_punch(charts.HIGHLIGHT))
     # WHICH LOOK — the A/B arm, from the registry (shared/style_arms.py).
     from shared import style_arms as _style_arms
     _style = {"style_arm": _style_arms.choose(slug),
@@ -3340,11 +3390,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # so the bars sweep across bands that were dead.
                     _span = max(0.05, t1 - t0)
                     _k = (t1 - _close0) / _span
+                    # A SUBJECT SCENE is not replayed: its first frames are an
+                    # empty chalkboard or a map with no red line yet, and the
+                    # scene is alive to its last frame anyway (Data, steam,
+                    # heat). It carries on in the recap panel, on its own clock.
+                    _pts = (f"setpts=PTS-STARTPTS+{t0:.3f}/TB"
+                            if sp.get("kind") == "subject_scene" else
+                            f"setpts=(PTS-STARTPTS)*{_k:.5f}+{_close0:.3f}/TB")
                     fc.append(f"[{lab}]split=2[{lab}a][{lab}b]")
                     fc.append(
                         f"[{lab}b]crop={vw}:{_ch},"
                         f"scale={_rw}:{_rh},"
-                        f"setpts=(PTS-STARTPTS)*{_k:.5f}+{_close0:.3f}/TB"
+                        f"{_pts}"
                         f"[{lab}d]")
                     fc.append(
                         f"[{prev}][{lab}a]overlay=x={vx}:y={vy}:"

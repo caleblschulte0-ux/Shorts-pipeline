@@ -10,9 +10,11 @@ it budgeted for, in a comment right above the code:
 
     question  an5 fs42, <=2 lines   1690 .. 1800
     CTA       an5 fs54, 1 line      1802 .. 1870
-    sources   an2 fs15              1880 .. 1898
+    sources   an2 fs24              1874 .. 1898
 
-Eighteen pixels for the sources — which is one line at fs15. The strip is one
+(The strip was fs15 until 2026-09-23, when the judge's "microscopic ... you
+cannot read on a phone" moved it to fs24 and an 80-character budget.)
+Twenty-four pixels for the sources — which is one line at fs24. The strip is one
 ASS Dialogue with no wrap directive, so libass wraps it at the play width, and
 `an2` anchors the block at its BOTTOM: a wrapped citation grows UPWARD,
 straight through the CTA.
@@ -59,7 +61,11 @@ def _shorten(uniq):
         no_date = [sr._re_src.sub("", f).strip() for f in uniq]
         src = " · ".join(no_date)
         if len(src) > sr._CH_SRC:
-            src = " · ".join(sr._re_name.sub("", f).strip() for f in no_date)
+            no_name = [sr._re_name.sub("", f).strip() for f in no_date]
+            src = " · ".join(no_name)
+            if len(src) > sr._CH_SRC:
+                src = " · ".join(dict.fromkeys(
+                    f.split(" / ")[0].split(" (")[0].strip() for f in no_name))
     if len(src) > sr._CH_SRC:
         src = src[:sr._CH_SRC - 1].rstrip(" ·") + "…"
     return src
@@ -83,14 +89,12 @@ class ItFitsOneLine(unittest.TestCase):
     def test_it_sheds_the_DATE_before_the_dataset_name(self):
         """The name says WHICH series; the date is the least useful thing on
         screen and the longest."""
-        two = ["United States Environmental Protection Agency "
-               "(Greenhouse gas inventory), accessed 2026-09-08",
-               "International Energy Agency "
-               "(World energy balances), accessed 2026-09-08"]
+        two = ["World Bank (Coal use), accessed 2026-09-08",
+               "Energy Institute (Oil output), accessed 2026-09-08"]
         self.assertGreater(len(" · ".join(two)), sr._CH_SRC, "case too short")
         out = _shorten(two)
         self.assertNotIn("accessed", out)
-        self.assertIn("Greenhouse gas inventory", out)
+        self.assertIn("Coal use", out)
 
     def test_it_never_leaves_an_unclosed_bracket(self):
         """`split(",")[0]` — the shortcut — cuts inside "(Cashiers,
@@ -99,6 +103,18 @@ class ItFitsOneLine(unittest.TestCase):
             out = _shorten(uniq)
             self.assertEqual(out.count("("), out.count(")"),
                              f"unbalanced brackets in {out!r}")
+
+    def test_a_sentence_for_a_publisher_sheds_to_the_name(self):
+        amazon = ["INPE (Brazil's National Institute for Space Research) "
+                  "(Annual deforestation), accessed 2026-09-18",
+                  "Mongabay / compiled from INPE and academic land-cover "
+                  "studies (Cumulative loss), accessed 2026-09-18",
+                  "Yale School of the Environment (Drivers), accessed 2026-09-18"]
+        out = _shorten(amazon)
+        self.assertLessEqual(len(out), sr._CH_SRC, out)
+        self.assertFalse(out.endswith("…"), out)
+        for pub in ("INPE", "Mongabay", "Yale School of the Environment"):
+            self.assertIn(pub, out)
 
     def test_an_absurd_citation_still_ends_bounded(self):
         out = _shorten([f"Publisher {i} (Series {i}), accessed 2026-09-08"
