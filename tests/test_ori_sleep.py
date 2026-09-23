@@ -343,3 +343,32 @@ class ThePublisherGivesTheGateWhatItNeeds(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheMailboxJudgeCoversTheChannel(unittest.TestCase):
+    """When no judge can watch a film on publish night, the render is kept and
+    ChatGPT is asked (docs/REVIEW_MAILBOX.md) — the same route the explainer
+    and trending have, or a judge outage costs the channel its week."""
+
+    def test_post_ori_files_a_review_request_on_publish_runs(self):
+        src = (ROOT / "scripts" / "post_ori.py").read_text()
+        self.assertIn('ctx["mailbox"]', src)
+        self.assertLess(src.index('ctx["mailbox"]'), src.index("showrunner_gate.run("))
+        self.assertIn("if will_upload and", src[src.index('ctx["mailbox"]') - 800:src.index('ctx["mailbox"]')])
+
+    def test_the_claim_step_can_publish_a_sleep_film(self):
+        import claim_reviews
+        src = (ROOT / "scripts" / "claim_reviews.py").read_text()
+        self.assertIn('req.get("channel") == "curiosity"', src)
+        self.assertTrue(callable(claim_reviews._publish_curiosity))
+        wf = (ROOT / ".github" / "workflows" / "curiosity.yml").read_text()
+        self.assertIn("held-renders-${{ github.run_id }}", wf)
+        self.assertIn("output/held/*.jpg", wf)
+        self.assertIn("publish_review_media.sh", wf)
+        cw = (ROOT / ".github" / "workflows" / "claim_reviews.yml").read_text()
+        self.assertIn("YOUTUBE_TOKEN_JSON_CURIOSITY", cw)
+
+    def test_the_held_render_keeps_its_thumbnail_and_captions(self):
+        src = (ROOT / "shared" / "review_mailbox.py").read_text()
+        for side in (".jpg", ".srt", ".meta.json"):
+            self.assertIn(f'"{side}"', src)

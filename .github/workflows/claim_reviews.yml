@@ -111,6 +111,8 @@ jobs:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          # OpenRangeInteractive sleep films held by the mailbox
+          YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           # the uploader's auto-localization layer; absent keys degrade quietly
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

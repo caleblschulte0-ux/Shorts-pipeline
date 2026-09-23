@@ -187,6 +187,51 @@ def _publish_trending(req: dict, mp4: Path) -> str:
     return url
 
 
+def _publish_curiosity(req: dict, mp4: Path, verdict: dict, workdir: Path) -> str:
+    """An OpenRangeInteractive sleep film, kept with its thumbnail, captions
+    and chapters beside it in the same artifact. Claims the upload the way
+    post_ori does (a pending record before, a receipt after) so a crash in
+    between is reconciled by the next run, never guessed."""
+    from scripts import post_ori as po
+    from shared.uploaders import YouTubeUploader
+    slug = req["slug"]
+    ep = po.OS.load(slug)
+    log = po._load(po.LOG, {"posted": {}})
+    log.setdefault("posted", {})
+    prev = log["posted"].get(slug)
+    if isinstance(prev, dict) and prev.get("url"):
+        raise RuntimeError(f"{slug} is already posted: {prev['url']}")
+    v = req["video"]
+    stem = v["file"][:-4]
+    sides = {}
+    for ext in (".jpg", ".srt", ".meta.json"):
+        try:
+            sides[ext] = download_artifact(v["artifact_run_id"], v["artifact_name"], stem + ext,
+                                           workdir / (stem + ext))
+        except Exception as e:  # noqa: BLE001
+            print(f"[claim] {req['id']}: no {ext} beside the render ({e})", flush=True)
+    meta = json.loads(sides[".meta.json"].read_text()) if ".meta.json" in sides else {"chapters": []}
+    desc = po.description(ep, meta)
+    now = _now()
+    po._write(po.PENDING, {"slug": slug, "phase": "uploading", "title": ep["title"], "at": now,
+                           "via": JUDGE})
+    res = YouTubeUploader(channel=po.CHANNEL).upload(
+        file_path=mp4, title=ep["title"][:100], description=desc, tags=po.tags(ep),
+        publish_at=None, thumbnail=sides.get(".jpg"), category="27", audio_language="en",
+        captions_srt=sides.get(".srt"))
+    vid = (getattr(res, "raw", None) or {}).get("id")
+    url = f"https://www.youtube.com/watch?v={vid}" if vid else (getattr(res, "url", None) or str(res))
+    entry = {"url": url, "title": ep["title"], "at": now, "publish_at": None,
+             "duration": meta.get("duration"), "format": "sleep", "via": JUDGE,
+             "showrunner_score": verdict.get("score")}
+    po._write(po.PENDING, {"slug": slug, "phase": "uploaded", **entry})
+    log = po._load(po.LOG, {"posted": {}})
+    log.setdefault("posted", {})[slug] = entry
+    po._write(po.LOG, log)
+    po._write(po.PENDING, {})
+    return url
+
+
 def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
     """One request, start to finish. Returns the settlement record (also
     written beside the request when the request is settled)."""
@@ -218,6 +263,8 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
             raise RuntimeError(f"kept render hash {got[:10]} != request {req['video_sha256'][:10]}")
         if req.get("channel") == "trending":
             url = _publish_trending(req, mp4)
+        elif req.get("channel") == "curiosity":
+            url = _publish_curiosity(req, mp4, verdict, workdir)
         else:
             url = _publish_explainer(req, mp4, verdict)
     except Exception as e:  # noqa: BLE001
@@ -238,7 +285,8 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--channel", default="all", choices=["all", "explainer", "trending"])
+    ap.add_argument("--channel", default="all",
+                    choices=["all", "explainer", "trending", "curiosity"])
     ap.add_argument("--publish", action="store_true",
                     help="upload a shipped kept render (needs GITHUB_TOKEN + "
                          "the channel's YouTube secrets)")

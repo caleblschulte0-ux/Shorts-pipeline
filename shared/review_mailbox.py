@@ -172,7 +172,10 @@ def file_request(*, mp4: Path, slug: str, labeled, prompt: str, motion: dict,
         # 1. the kept render — an artifact the claim step can fetch by name
         held_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(mp4, held_dir / f"{rid}.mp4")
-        for side in (".manifest.json", ".showrunner.json"):
+        # sidecars a channel's claim step needs to publish exactly this render:
+        # the shorts' manifest and verdict, the sleep films' thumbnail,
+        # captions and chapters
+        for side in (".manifest.json", ".showrunner.json", ".jpg", ".srt", ".meta.json"):
             sp = mp4.with_suffix(side)
             if sp.exists():
                 shutil.copy2(sp, held_dir / f"{rid}{side}")

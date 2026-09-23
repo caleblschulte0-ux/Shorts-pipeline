@@ -204,6 +204,31 @@ jobs:
             output/ori_*.showrunner.json
           if-no-files-found: ignore
           retention-days: 30
+      # THE JUDGE OF LAST RESORT (docs/REVIEW_MAILBOX.md). A film nobody
+      # could watch is held by the gate AND kept here as an artifact, with
+      # its frames published to preview-renders and a review request filed
+      # for ChatGPT; claim_reviews.yml ships it later on a code-decided ship.
+      - name: Keep held renders for the mailbox judge
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: held-renders-${{ github.run_id }}
+          path: |
+            output/held/*.mp4
+            output/held/*.json
+            output/held/*.jpg
+            output/held/*.srt
+          retention-days: 14
+          if-no-files-found: ignore
+      - name: Publish review frames to preview-renders
+        if: always()
+        run: |
+          if [ -d output/review_media ]; then
+            bash scripts/publish_review_media.sh output/review_media || {
+              python3 scripts/claim_reviews.py --withdraw-stage output/review_media
+              exit 1
+            }
+          fi
       - name: Write next week's script
         if: always()
         continue-on-error: true
@@ -222,7 +247,8 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "curiosity: sleep film log + scripts [skip ci]" \
             state/curiosity_posted_log.json state/ori_pending.json \
-            state/showrunner_verdicts.jsonl data_learning/ori_episodes
+            state/showrunner_verdicts.jsonl data_learning/ori_episodes \
+            exchange/reviews
 
   # Cheap gate: on the cron, only spin up the heavy render job if there is
   # actually something un-posted to ship.

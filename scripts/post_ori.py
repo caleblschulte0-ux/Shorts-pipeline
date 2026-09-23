@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -151,7 +152,7 @@ def judge_context(ep: dict, meta: dict) -> dict:
     """What the showrunner reads beside the frames. Its context window is a
     few thousand characters, so a two-hour script travels as each chapter's
     opening lines — enough to check a frame against what is being said."""
-    return {"format": "sleep", "channel": CHANNEL, "aspect": "16:9",
+    return {"format": "sleep", "channel": CHANNEL, "aspect": "16:9", "slug": ep["slug"],
             "duration_s": meta.get("duration"), "chapters": meta.get("chapters") or [],
             "title": ep["title"], "era": ep["era"],
             "hook": ep["chapters"][0]["beats"][0]["say"],
@@ -189,8 +190,17 @@ def main() -> int:
 
     reasons = technical_floor(out, meta, cfg)
     from shared import showrunner_gate
-    gate = showrunner_gate.run(
-        out, slug=f"ori:{slug}", will_upload=will_upload, context=judge_context(ep, meta))
+    ctx = judge_context(ep, meta)
+    if will_upload and os.environ.get("REVIEW_MAILBOX", "1") not in ("0", "off"):
+        # THE JUDGE OF LAST RESORT (shared/review_mailbox.py). This only ADDS:
+        # if nobody can watch this film the gate still holds it, but the
+        # render (with its thumbnail, captions and chapters) is kept as an
+        # artifact and a review request is filed for ChatGPT;
+        # `scripts/claim_reviews.py` publishes it later on a code-decided ship.
+        rid = os.environ.get("GITHUB_RUN_ID", "")
+        ctx["mailbox"] = {"channel": CHANNEL, "run_id": rid,
+                          "artifact": f"held-renders-{rid or 'local'}"}
+    gate = showrunner_gate.run(out, slug=f"ori:{slug}", will_upload=will_upload, context=ctx)
     print(showrunner_gate.log(gate, slug=slug), flush=True)
     if gate.get("blocked"):
         reasons.append("showrunner: " + str(gate.get("reason") or "blocked"))
