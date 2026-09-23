@@ -162,8 +162,10 @@ jobs:
       - name: Fetch sleep music
         run: python3 scripts/fetch_music.py --only sleep
       - name: Make sure one script is ready
+        # 60 + 230 + 60 fits the job's 355 even on the worst day: an empty
+        # queue, a full two-hour render and the judge, then next week's script
         continue-on-error: true
-        timeout-minutes: 110
+        timeout-minutes: 60
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -259,7 +261,7 @@ jobs:
       - name: Write next week's script
         if: always()
         continue-on-error: true
-        timeout-minutes: 100
+        timeout-minutes: 60
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
