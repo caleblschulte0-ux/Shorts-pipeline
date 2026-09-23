@@ -102,6 +102,10 @@ def _parse(text: str) -> dict:
     return json.loads(text[a:b + 1])
 
 
+class NoBrain(RuntimeError):
+    """Nobody could answer at all — not a bad answer to retry, a dark run."""
+
+
 def _ask(system: str, user: str) -> str:
     """The brain chain without the mailbox (see module docstring)."""
     from shared import script_generator as sg
@@ -116,7 +120,7 @@ def _ask(system: str, user: str) -> str:
             return call(system, user, None)
         except Exception as e:                           # noqa: BLE001
             errs.append(f"{name}: {str(e)[:100]}")
-    raise RuntimeError("no brain answered: " + " | ".join(errs or ["none configured"]))
+    raise NoBrain("no brain answered: " + " | ".join(errs or ["none configured"]))
 
 
 def used_topics() -> set[str]:
@@ -191,6 +195,8 @@ def _with_retry(prompt_fn, check, ask, label):
     for attempt in (1, 2):
         try:
             out = _parse(ask(SYSTEM, prompt_fn(problems)))
+        except NoBrain:
+            raise
         except Exception as e:                           # noqa: BLE001
             print(f"[ori_author] {label} attempt {attempt}: {e}", flush=True)
             problems = f"\nYOUR LAST ANSWER COULD NOT BE READ AS JSON ({str(e)[:80]}). Return only JSON."
@@ -271,7 +277,12 @@ def main() -> int:
         if wrote >= want or tried >= want + MAX_EXTRA_TOPICS:
             break
         tried += 1
-        ep = author(t["topic"], t["era"])
+        try:
+            ep = author(t["topic"], t["era"])
+        except NoBrain as e:
+            # a dark brain costs one line, not a walk through the topic bank
+            print(f"[ori_author] {e}", flush=True)
+            break
         if ep is None:
             continue
         OS.EPISODES.mkdir(parents=True, exist_ok=True)
