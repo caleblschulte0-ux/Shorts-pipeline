@@ -243,9 +243,13 @@ def _text_surface(text: str, size: int, font: str = "PatrickHand-Regular.ttf",
 
 
 # ------------------------------------------------------------------ video
-def _scene_seed(slug: str, index: int) -> int:
+def _scene_seed(slug: str, index: int, spec: dict | None = None) -> int:
+    """Deterministic per beat; a scene's `variant` (set by the storyboard
+    review when a layout was found broken) picks a different one."""
     import hashlib
-    return int(hashlib.md5(f"{slug}:{index}".encode()).hexdigest()[:8], 16)
+    v = int((spec or {}).get("variant") or 0)
+    return int(hashlib.md5(f"{slug}:{index}:{v}".encode()).hexdigest()[:8], 16) if v else \
+        int(hashlib.md5(f"{slug}:{index}".encode()).hexdigest()[:8], 16)
 
 
 def _render_chunk(args) -> str:
@@ -259,7 +263,7 @@ def _render_chunk(args) -> str:
     def scene(i):
         sc = scenes.get(i)
         if sc is None:
-            sc = S.Scene(beats[i]["scene"], era, _scene_seed(slug, i))
+            sc = S.Scene(beats[i]["scene"], era, _scene_seed(slug, i, beats[i]["scene"]))
             scenes[i] = sc
             for j in list(scenes):
                 if j < i - 1:

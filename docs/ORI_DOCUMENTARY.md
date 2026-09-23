@@ -142,6 +142,28 @@ fire's stones, a cloud behind the title. So:
   since (`scripts/ci_commit_state.sh`); it restores only what the run
   changed now, with a real-git test.
 
+## The storyboard is looked at before the render (`data_learning/ori_storyboard.py`)
+
+His words, the morning after: *"it needs to be getting consistent 90s ...
+don't make a great video and then ruin it because of the judge ... you
+don't want to be like, oh, well, this hasn't been passing the judge, I'm
+just going to make the judge easier."* The 90+ verdicts in the ledger all
+have `craft 3` and `data_demo 5`; the sleep films sat at `craft 1`,
+`data_demo 3` — picture defects and pictures that do not show their words.
+Every one was learned after a two-hour render.
+
+So the same brain looks at the STORYBOARD first: every scene as a still,
+nine to a sheet with its passage, marked BROKEN or not and SHOWS THE WORDS
+0-2. Repairs are small and deterministic, escalating by round — another
+layout (`variant`), one prop fewer, another place — and a scene that does
+not show its passage gets one author call to re-specify it under the kit's
+vocabulary, kept only if it validates. Changed beats are looked at again,
+up to three rounds. A clean board is stamped with the kit's hash and not
+reviewed again until the kit changes; a judge that cannot look never blocks
+the film. The ledger is `state/ori_storyboard.jsonl`. The showrunner's
+verdict on the finished film is unchanged — this only moves defects to
+where fixing them is cheap.
+
 ## What the probes needed
 
 The probes used to hold every sampled frame in Python lists; a two-hour film

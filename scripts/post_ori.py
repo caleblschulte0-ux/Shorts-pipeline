@@ -186,6 +186,17 @@ def main() -> int:
     will_upload = not args.dry_run
     out = OUT / f"ori_{slug}.mp4"
     print(f"[ori] episode {slug}: {ep['title']}", flush=True)
+    # STORYBOARD FIRST (data_learning/ori_storyboard.py): the brain looks at
+    # every scene as a still and the small repairs happen here, in minutes,
+    # not after a two-hour render. The gate below is unchanged.
+    from data_learning import ori_storyboard as SB
+    if SB.judge_available():
+        rep = SB.polish(ep, write=True)
+        print(f"[ori] storyboard: {json.dumps({k: v for k, v in rep.items() if k != 'notes'})}", flush=True)
+        for n in rep.get("notes", [])[:40]:
+            print("   ", n, flush=True)
+    else:
+        print("[ori] storyboard: no judge available, rendering unreviewed", flush=True)
     meta = OS.render(ep, out)
 
     reasons = technical_floor(out, meta, cfg)

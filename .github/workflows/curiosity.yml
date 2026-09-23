@@ -273,7 +273,7 @@ jobs:
         run: |
           bash scripts/ci_commit_state.sh \
             "curiosity: sleep film log + scripts [skip ci]" \
-            state/curiosity_posted_log.json state/ori_pending.json \
+            state/curiosity_posted_log.json state/ori_pending.json state/ori_storyboard.jsonl \
             state/showrunner_verdicts.jsonl data_learning/ori_episodes \
             exchange/reviews
 
