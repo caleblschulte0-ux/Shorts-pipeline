@@ -647,7 +647,26 @@ def coffee_climb(cr, t, u, pts, host):
     cup(cr, 110, CT, 0.9)
     steam(cr, 110, CT - 120, t, 0.5 + 0.5 * clamp(price / max(r[1] for r in rows)))
     motes(cr, t, P["mist"], speed=14, a=0.18)
-    host("strain" if coins % 1 > 0.05 else "cheer", W - 110, CT, 240)
+    moving = abs(price - prev) > 1e-9 and f < 1
+    hx = W - 110 + stride(t) * 0.3
+    bag = (hx - 60, CT - 250)                 # the bag he holds up, tipped
+    sack(cr, bag[0], bag[1], 0.7)
+    if moving:                                # coins stream pan-ward, or back
+        top = (rx, ry + 200 - (int(coins) // 5) * 24)
+        up = price < prev                     # falling price: he scoops them back
+        for j in range(7):
+            q = (t * 2.4 + j / 7) % 1
+            q = 1 - q if up else q
+            x_ = bag[0] + (top[0] - bag[0]) * q
+            y_ = bag[1] + (top[1] - bag[1]) * q - 90 * math.sin(math.pi * q)
+            cr.set_source_rgba(*_c(P["coin"]))
+            cr.save()
+            cr.translate(x_, y_)
+            cr.scale(1, 0.45)
+            cr.arc(0, 0, 18, 0, 2 * math.pi)
+            cr.restore()
+            cr.fill()
+    host("hold_up" if moving else "cheer", hx, CT, 240, pace=False)
     fit_readout(cr, f"${shown:.2f}", f"a pound of arabica, {year}", 80, 520,
                 a=ease(seg(u, 0.0, 0.06)), size=150)
     text(cr, year, W - 80, 520, 64, look.INK, face="display", anchor="right",
@@ -720,7 +739,7 @@ def coffee_doubled(cr, t, u, pts, host):
     pound of beans, and Data tossing on the rest until it is this February's
     — the pile more than doubles in front of you."""
     rows = by_time([(str(l), float(v)) for l, v in pts[:2]])
-    coffee_climb(cr, t, clamp(0.5 + u * 0.5), rows, host)
+    coffee_climb(cr, t, u, rows, host)        # first half: 2024's pile
     (l0, v0), (l1, v1) = rows
     b = ease(seg(u, 0.8, 0.92))
     if b > 0 and v0:
@@ -787,6 +806,26 @@ def street(cr):
         cr.fill()
 
 
+def traffic(cr, t):
+    """Cars driving the street both ways — a city is never still."""
+    for k, (lane, v, col) in enumerate(((STREET_Y + 70, 260, P["truck"]),
+                                        (STREET_Y + 120, -220, P["brick_cool"]),
+                                        (STREET_Y + 70, 260, P["truck_cab"]))):
+        x = (k * 420 + t * v) % (W + 300) - 150
+        cr.set_source_rgba(*_c(col))
+        cr.rectangle(x - 70, lane - 34, 140, 34)
+        cr.fill()
+        cr.rectangle(x - 40, lane - 58, 80, 26)
+        cr.fill()
+        cr.set_source_rgba(*_c(P["glass"], 0.9))
+        cr.rectangle(x - 32, lane - 54, 64, 18)
+        cr.fill()
+        cr.set_source_rgba(*_c(P["cow_dark"]))
+        for wx in (-44, 44):
+            cr.arc(x + wx, lane, 14, 0, 2 * math.pi)
+            cr.fill()
+
+
 def heat_by_city(cr, t, u, pts, host):
     """Added heat by city: a street thermometer on a lamppost; the city name
     changes and the mercury rises to that city's added degrees."""
@@ -799,6 +838,7 @@ def heat_by_city(cr, t, u, pts, host):
                  hot=0.6, t=t)
     heat_shimmer(cr, t, 700, STREET_Y)
     street(cr)
+    traffic(cr, t)
     k = min(n - 1, int(u * n * 1.02))
     city, deg = rows[k]
     prev = rows[k - 1][1] if k else 0.0
@@ -827,11 +867,11 @@ def heat_by_city(cr, t, u, pts, host):
         cr.line_to(tx + 54, y)
         cr.stroke()
         text(cr, f"+{q}°", tx + 64, y + 10, 26, look.INK, anchor="left")
+    # he rides the mercury itself, city after city — climbing while it rises,
+    # hanging on and fanning himself while it holds
     rising = shown < deg - 0.05
-    if rising:     # he climbs the tube with the mercury
-        host("climb", tx - 96, t1 - mh + 150, 200, pace=False)
-    else:
-        host("strain", 330, STREET_Y + 10, 240)
+    host("climb" if rising else "strain", tx - 96, t1 - mh + 150, 200,
+         pace=False)
     fit_readout(cr, f"+{shown:.1f}°F", f"extra heat from pavement · {city}", 80, 520,
                 a=ease(seg(u, 0.0, 0.06)), size=140)
 
@@ -856,6 +896,7 @@ def heat_share(cr, t, u, pts, host):
                  hot=1.0 if hot else 0.0, t=t, trees=not hot)
     heat_shimmer(cr, t, 700, STREET_Y, a=0.22)
     street(cr)
+    traffic(cr, t)
     cr.set_source_rgba(*_c(look.INK, 0.6))
     cr.set_dash([14, 12])
     cr.set_line_width(4)
@@ -896,7 +937,7 @@ def heat_redlining(cr, t, u, pts, host):
         cr.move_to(mx, my + k * mh / 8)
         cr.line_to(mx + mw, my + k * mh / 8 + 10 * math.cos(k))
     cr.stroke()
-    text(cr, "RESIDENTIAL SECURITY MAP · 1937", mx + mw / 2, my + 60, 34,
+    text(cr, "RESIDENTIAL SECURITY MAP · 1930s", mx + mw / 2, my + 60, 34,
          P["paper_ink"], anchor="center", shadow=False)
     zx, zy, zw, zh = mx + 90, my + 300, 440, 380
     rl = ease(seg(u, 0.1, 0.35))
@@ -922,6 +963,15 @@ def heat_redlining(cr, t, u, pts, host):
             for j in range(1, 6):
                 cr.line_to(x + 14 * math.sin(t * 3 + j + k), y - j * 22)
             cr.stroke()
+    # HAZARDOUS on top of the heat, outlined so the glow cannot wash it out
+    cr.move_to(zx + zw / 2 - I.text_w(cr, "HAZARDOUS", 52, "display") / 2, zy + zh / 2 + 16)
+    I._face(cr, "display", 52)
+    cr.text_path("HAZARDOUS")
+    cr.set_source_rgba(1, 1, 1, 0.9 * rl)
+    cr.set_line_width(8)
+    cr.stroke_preserve()
+    cr.set_source_rgba(*_c(P["redline"], rl))
+    cr.fill()
     if 0 < rl < 1:   # he walks the line as it is drawn round the zone
         per = 2 * (zw + zh)
         d_ = per * rl
@@ -936,11 +986,15 @@ def heat_redlining(cr, t, u, pts, host):
         host("point", px_, py_ + 10, 180, pace=False)
     else:
         host("point", mx + mw - 120, my + mh + 20, 240)
+    if u < 0.45:     # the top of the frame carries the 1930s until the heat lands
+        fit_readout(cr, "1930s", "a map drew these lines", 80, 520,
+                    a=ease(seg(u, 0.0, 0.08)) * (1 - ease(seg(u, 0.38, 0.45))),
+                    rgb=look.INK, size=150)
     fit_readout(cr, f"+{vr:.0f}°F", "hotter today in the redlined blocks", 80, 520,
                 a=ease(seg(u, 0.45, 0.6)), size=150)
-    text(cr, f"+{vb:.0f}°F", mx + mw - 60, zy + 60, 60, P["paper_ink"], face="display",
+    text(cr, f"+{vb:.0f}°F", mx + mw - 60, zy + 80, 90, P["cow_dark"], face="display",
          anchor="right", alpha=ease(seg(u, 0.55, 0.7)), shadow=False)
-    text(cr, "next door", mx + mw - 60, zy + 110, 30, P["paper_ink"], anchor="right",
+    text(cr, "next door", mx + mw - 60, zy + 130, 36, P["cow_dark"], anchor="right",
          alpha=ease(seg(u, 0.55, 0.7)), shadow=False)
 
 

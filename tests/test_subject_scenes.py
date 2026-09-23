@@ -124,7 +124,9 @@ class EveryTeacherSceneTellsTheTruth(unittest.TestCase):
 
     def test_every_number_printed_is_the_datas(self):
         from data_learning import subject_scenes as SS
-        extra = {25.0, 50.0, 75.0, 1937.0} | {float(q) for q in range(0, 14, 2)}
+        # tank/thermometer ticks, and "1930s" — the redlining decade the story
+        # itself narrates ("Neighborhoods redlined back in the 1930s")
+        extra = {25.0, 50.0, 75.0, 1930.0} | {float(q) for q in range(0, 14, 2)}
         for slug, fns in SS.TEACHERS.items():
             for fn, pts in zip(fns, _beats(slug)):
                 allowed = _allowed(pts)

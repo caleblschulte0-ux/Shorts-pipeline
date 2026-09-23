@@ -1350,56 +1350,19 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             lines.append(f"Dialogue: 6,{_ass_time(_pt)},"
                          f"{_ass_time(min(c1, _pt + CLOSING_PULSE_S))},"
                          f"Cap,,0,0,0,,{pulse}")
-    # Dedupe + strip the 'Source:' prefix each footer already carries, so the
-    # line reads 'Sources: NOAA ...' ONCE — not 'Sources: Source: X · Source: X'
-    # (the duplicate the gate flagged when both segments share a publisher).
-    _uniq = []
-    for _f in st.sources:
-        _f = _f.strip()
-        if _f.lower().startswith("source:"):
-            _f = _f[len("source:"):].strip()
-        if _f and _f not in _uniq:
-            _uniq.append(_f)
-    src = " · ".join(_uniq)
-    # THE STRIP IS ONE LINE, AND THE CITATION HAS TO FIT IT.
+    # THE SOURCES LIVE IN THE DESCRIPTION; THE SCREEN SAYS WHERE.
     #
-    # `an2` anchors the block at its BOTTOM, so a line libass wraps grows
-    # UPWARD — straight through the CTA sitting at 1802..1870. The stack
-    # documented above budgets 1880..1898 for this, which is one line at
-    # fs15, and a three-source citation is four:
-    #
-    #     "the 'COMMENT BELOW ▼' CTA is drawn directly on top of the four-line
-    #      source citation, rendering both into unreadable mush at the bottom
-    #      of the screen"        self-checkout-cashier-jobs, 2026-09-09
-    #
-    # There is no room to give it: the foot band is 1683..1920 and the
-    # question and CTA already hold 180 of its 237 pixels. So the line is
-    # bounded instead, shedding the verbose part first — every publisher is
-    # still NAMED, which is what the strip is for; the full provenance
-    # (url, access date, officiality) lives in the dataset and the manifest,
-    # which is where anyone checking it would look.
-    # It sheds in order: the access date, then the dataset name, then it
-    # truncates. A footer is `{publisher} ({name}), accessed {date}`, so the
-    # date goes by pattern and the name is the LAST parenthetical — cutting at
-    # the first comma instead splits "(Cashiers, employment)" and leaves an
-    # unclosed bracket on screen.
-    if len(src) > _CH_SRC:
-        _no_date = [_re_src.sub("", _f).strip() for _f in _uniq]
-        src = " · ".join(_no_date)
-        if len(src) > _CH_SRC:
-            _no_name = [_re_name.sub("", _f).strip() for _f in _no_date]
-            src = " · ".join(_no_name)
-            # ...then the publisher's NAME alone: "Mongabay / compiled from
-            # INPE and academic land-cover studies" cut the whole line off at
-            # "compiled fro…" (the judge, 2026-09-23).
-            if len(src) > _CH_SRC:
-                src = " · ".join(dict.fromkeys(
-                    _f.split(" / ")[0].split(" (")[0].strip() for _f in _no_name))
-    if len(src) > _CH_SRC:
-        src = src[:_CH_SRC - 1].rstrip(" ·") + "…"
+    # The strip used to carry the citation itself, and the foot band has room
+    # for exactly one short line: at fs15 it was "microscopic grey text you
+    # cannot read on a phone", at fs24 inside an 80-character budget it was
+    # still "tiny ... cut off at 'compiled fro...'" (the judge, 2026-09-23),
+    # and it failed `unreadable` on videos that otherwise scored 74. The full
+    # citation — publisher, dataset, link, access date — now goes into the
+    # upload description (`post_stories._sources_block`), where nothing is
+    # truncated, and the screen carries one line a phone can read.
     src_txt = ("{\\an2\\pos(540,1898)\\fs" + str(SRC_FS)
-               + "\\c&HD8E0EA&\\b0\\bord2\\shad0"
-               "\\q2\\fad(200,0)}Sources: " + src)
+               + "\\c&HE8EEF4&\\b1\\bord2\\shad0"
+               "\\q2\\fad(200,0)}" + SRC_TEXT)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
 
     out.write_text(head + "\n".join(lines) + "\n")
@@ -1460,19 +1423,9 @@ def _phrase_frac(sentence: str, phrase: str):
     return None
 
 
-#: Characters that fit 1040px at fs24 — ONE line of the sources strip.
-#: It was fs15 (132 characters) and the judge kept failing it as
-#: "microscopic grey text you cannot read on a phone" on every closing.
-#: fs24 still fits the band (CTA ends 1870, the strip's baseline is 1898);
-#: the cost is the dataset names shedding sooner — every PUBLISHER is still
-#: named, the full provenance is in the dataset, the manifest and the
-#: upload description.
-SRC_FS = 24
-_CH_SRC = 80
-#: `, accessed 2026-09-08` — the first thing the sources strip sheds.
-_re_src = re.compile(r",\s*accessed\s+\S+\s*$")
-#: The LAST parenthetical, which is the dataset name in `Source.footer()`.
-_re_name = re.compile(r"\s*\([^()]*\)\s*$")
+#: The closing's one-line pointer to the full citation in the description.
+SRC_FS = 28
+SRC_TEXT = "Sources in the description"
 
 
 def _plan_events(st: story.Story, windows):
