@@ -3,305 +3,6 @@
     {
       "date": "20260917",
       "dry_run": false,
-      "ts": "2026-09-17T12:58:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 100,
-        "with_retention": 88,
-        "with_curve": 15,
-        "fetched_at": "2026-09-16T17:39:39.305532+00:00"
-      },
-      "brain": {
-        "ok": 44,
-        "fail": 1
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260917-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "RP heist vs security, visible outcome",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "security confrontation, chaotic yelling,",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Casino Security Shuts Down Clowns Trying To Shoot The Place Up"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "final three frames (15.3s-18.5s) show much less of the sharp picture than the rest of the clip, with large black dead-sp"
-              ]
-            }
-          },
-          "took_s": 234.6
-        },
-        {
-          "slug": "clip-20260917-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "garbage title, unclear content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "visible shocked reaction, vague trigger",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Got Warned Not To Do It... Then This Happened"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.88,
-              "problems": []
-            }
-          },
-          "took_s": 148.5
-        },
-        {
-          "slug": "clip-20260917-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "excited reunion reaction, no real stakes",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Joe Caine Returns And Buddha Immediately Has A Job For Him"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": []
-            }
-          },
-          "took_s": 170.3
-        },
-        {
-          "slug": "clip-20260917-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (commentary talk, no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "visible jury conflict, racial controvers",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "commentary talk, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 70.6
-        },
-        {
-          "slug": "clip-20260917-5",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (vague gossip chat, no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "emotional reaction, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "vague gossip chat, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 54.2
-        },
-        {
-          "slug": "clip-20260917-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "xqc/xqc-about-charact-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story"
-                },
-                {
-                  "cluster": "lacy",
-                  "outcome": "no_shared_event",
-                  "why": "5 analysed -> subclusters [1, 1, 1, 1, 1] over 3 date(s) \u2014 no two sources share an event, so no director call was made"
-                },
-                {
-                  "cluster": "lirik/lirik-charact-dark-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "vague novelty, no real stakes",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "Kai walks runway, visible novelty moment",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Walks In His First Ever Fashion Show"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "several frames after ~4s are very dark/underexposed, making the subject a hard-to-read silhouette",
-                "camera pulls back to a wide, dim shot for the back half of the clip so the subject reads small compared to the close hug"
-              ]
-            }
-          },
-          "took_s": 899.5
-        }
-      ]
-    },
-    {
-      "date": "20260917",
-      "dry_run": false,
       "ts": "2026-09-17T15:38:29+00:00",
       "feedback": {
         "snapshot": true,
@@ -5267,6 +4968,221 @@
             }
           },
           "took_s": 269.3
+        }
+      ]
+    },
+    {
+      "date": "20260924",
+      "dry_run": false,
+      "ts": "2026-09-24T13:58:18+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 105,
+        "with_retention": 83,
+        "with_curve": 14,
+        "fetched_at": "2026-09-24T12:29:36.818640+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260924-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Subject/players completely absent from the sharp region for ~3.5s-4.6s \u2014 frame shows only empty sky and rooftop with no ",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague one-word title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "routine 1v1 hoops, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Plaqueboymax Says It Don't Matter, Then Turns It Up"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.75,
+              "problems": [
+                "Subject/players completely absent from the sharp region for ~3.5s-4.6s \u2014 frame shows only empty sky and rooftop with no "
+              ]
+            }
+          },
+          "took_s": 243.7
+        },
+        {
+          "slug": "clip-20260924-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp region is only ~1/3 of canvas height (target ~3/4), leaving the driving action small and distant instead of fillin; vision: No person/reaction ever shown despite title promising Buddha's",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "recounts violent threat, life-changing m",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha Got Goosebumps And Said This Changed Everything For Him"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.65,
+              "problems": [
+                "Sharp region is only ~1/3 of canvas height (target ~3/4), leaving the driving action small and distant instead of fillin",
+                "No person/reaction ever shown despite title promising Buddha's goosebumps reaction \u2014 content is entirely distant gamepla",
+                "Captions render as broken/ungrammatical fragments (e.g. \"IT'S THERE'S NO\", \"I PLAYING THE\") that don't read as coherent "
+              ]
+            }
+          },
+          "took_s": 552.3
+        },
+        {
+          "slug": "clip-20260924-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague, possibly funny moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "physical scuffle, real yelling, chaotic ",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Absolutely Loses It And Goes Off On Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 191.4
+        },
+        {
+          "slug": "clip-20260924-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
