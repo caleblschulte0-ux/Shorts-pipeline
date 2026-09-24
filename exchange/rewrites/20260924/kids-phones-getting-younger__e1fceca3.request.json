@@ -1,0 +1,147 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "kids-phones-getting-younger__e1fceca3",
+ "filed": "2026-09-24T11:17:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "kids-phones-getting-younger",
+ "current": {
+  "title": "Smartphones Just Got a Lot Younger",
+  "hook": "Elementary schoolers are getting smartphones now.",
+  "closing": "The unboxing age keeps dropping. Ask any 8-year-old.",
+  "question": "How old were you when you got your first phone? Comment below.",
+  "segments": [
+   {
+    "topic": "8-year-olds who own a smartphone",
+    "say": "In 2015, just 11 percent of 8-year-olds had their own smartphone. By 2019 it was 19 percent, and by 2021 it hit 31 percent -- nearly tripling in six years."
+   },
+   {
+    "topic": "smartphone ownership by age",
+    "say": "By age 10, 42 percent of kids already have their own phone. By 12 it's 71 percent. By 14, 91 percent -- nine in 10 teenagers are carrying one."
+   },
+   {
+    "topic": "smartphone ownership among 8-12-year-olds",
+    "say": "Across ages 8 to 12, ownership nearly doubled -- 24 percent in 2015 to 43 percent in 2021. It didn't just arrive earlier for one kid. It arrived earlier for an entire generation."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "8-year-olds who own a smartphone",
+   "say": "In 2015, just 11 percent of 8-year-olds had their own smartphone. By 2019 it was 19 percent, and by 2021 it hit 31 percent -- nearly tripling in six years.",
+   "role": "1 · THE YOUNGEST KIDS",
+   "data": {
+    "file": "smartphone_ownership_age8_trend.json",
+    "unit": "percent",
+    "title": "Share of 8-year-olds who own a smartphone",
+    "points": [
+     {
+      "label": "2015",
+      "value": 11,
+      "period": "2015"
+     },
+     {
+      "label": "2019",
+      "value": 19,
+      "period": "2019"
+     },
+     {
+      "label": "2021",
+      "value": 31,
+      "period": "2021"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "smartphone ownership by age",
+   "say": "By age 10, 42 percent of kids already have their own phone. By 12 it's 71 percent. By 14, 91 percent -- nine in 10 teenagers are carrying one.",
+   "role": "2 · HOW FAST IT RAMPS",
+   "data": {
+    "file": "smartphone_ownership_by_age.json",
+    "unit": "percent",
+    "title": "Share of kids who own a smartphone, by age",
+    "points": [
+     {
+      "label": "Age 8",
+      "value": 31
+     },
+     {
+      "label": "Age 10",
+      "value": 42
+     },
+     {
+      "label": "Age 12",
+      "value": 71
+     },
+     {
+      "label": "Age 14",
+      "value": 91
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "smartphone ownership among 8-12-year-olds",
+   "say": "Across ages 8 to 12, ownership nearly doubled -- 24 percent in 2015 to 43 percent in 2021. It didn't just arrive earlier for one kid. It arrived earlier for an entire generation.",
+   "role": "3 · THE WHOLE GENERATION",
+   "data": {
+    "file": "tween_smartphone_ownership_2015_2021.json",
+    "unit": "percent",
+    "title": "Smartphone ownership among 8-to-12-year-olds",
+    "points": [
+     {
+      "label": "2015",
+      "value": 24
+     },
+     {
+      "label": "2021",
+      "value": 43
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/kids-phones-getting-younger__e1fceca3.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

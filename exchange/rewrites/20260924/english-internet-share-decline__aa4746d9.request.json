@@ -1,0 +1,146 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "english-internet-share-decline__aa4746d9",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "english-internet-share-decline",
+ "current": {
+  "title": "English Used To Be Most Of The Internet",
+  "hook": "You think the internet speaks English. Barely.",
+  "closing": "Half the internet still doesn't speak your language.",
+  "question": "What language do you think dominates the internet? Guess below.",
+  "segments": [
+   {
+    "topic": "English's share of web pages",
+    "say": "In 1998, 75 percent of web pages were in English. By 2005 that fell to 45 — the internet was going global."
+   },
+   {
+    "topic": "online content growth by language",
+    "say": "Here's why: from 2001 to 2011, English content grew 281 percent. Spanish grew 743. Arabic, 2,501 — everyone else caught up fast."
+   },
+   {
+    "topic": "English's share of websites today",
+    "say": "Today English leads at 55 percent of websites — but everything else combined makes up the other 45."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "English's share of web pages",
+   "say": "In 1998, 75 percent of web pages were in English. By 2005 that fell to 45 — the internet was going global.",
+   "role": "1 · THE OLD WEB",
+   "data": {
+    "file": "english_web_page_share.json",
+    "unit": "percent",
+    "title": "English-language share of web pages",
+    "points": [
+     {
+      "label": "1998",
+      "value": 75,
+      "period": "1998"
+     },
+     {
+      "label": "2005",
+      "value": 45,
+      "period": "2005"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "online content growth by language",
+   "say": "Here's why: from 2001 to 2011, English content grew 281 percent. Spanish grew 743. Arabic, 2,501 — everyone else caught up fast.",
+   "role": "2 · THE CATCH-UP",
+   "data": {
+    "file": "online_language_growth_2001_2011.json",
+    "unit": "percent growth",
+    "title": "Growth in online content by language, 2001-2011",
+    "points": [
+     {
+      "label": "Arabic",
+      "value": 2501
+     },
+     {
+      "label": "Russian",
+      "value": 1826
+     },
+     {
+      "label": "Chinese",
+      "value": 1277
+     },
+     {
+      "label": "Spanish",
+      "value": 743
+     },
+     {
+      "label": "English",
+      "value": 281
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "English's share of websites today",
+   "say": "Today English leads at 55 percent of websites — but everything else combined makes up the other 45.",
+   "role": "3 · THE LEAD TODAY",
+   "data": {
+    "file": "english_website_share_today.json",
+    "unit": "percent",
+    "title": "English's share of websites today vs every other language combined",
+    "points": [
+     {
+      "label": "English",
+      "value": 55
+     },
+     {
+      "label": "Every other language combined",
+      "value": 45
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/english-internet-share-decline__aa4746d9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

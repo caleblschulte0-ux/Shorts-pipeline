@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260924T111807Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The hook and seg0 are the same picture: the 10-block stack with one lit block, still there from hook@1.5 to seg0:end (t=1.5 to t=5.9s). Only Data's pose changes, and the video repeats the frozen hook for seg0.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "wrong_demonstration_and_repeated_frame",
+  "visible_evidence": "seg0:start and seg0:end show the same 10-block stack as the hook, with the header '2023 48%' and 'each block = 5%', but only ONE block is lit. That is 5%, not 48%. The narration says '5% in 1990 ... today 48%' and the stack never fills. The hook uses this same frame while its narration says 'New Jersey 68%'.",
+  "root_cause": "The block-stack machine was given the wrong fill value, or it never animated. It was reused unchanged for both the hook and seg0, so the header contradicts the picture and nothing moves for about 4.5s.",
+  "repair_goal": "Give the hook its own image: New Jersey's 68%, shown as 13-14 lit blocks against the national level. In seg0, start the stack at exactly one lit block labelled '1990: 5%', then build it up block by block to about 9.6 blocks with a '2023: 48%' label. Have Data stamp each block or climb as it rises, so the 10x jump is visible."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

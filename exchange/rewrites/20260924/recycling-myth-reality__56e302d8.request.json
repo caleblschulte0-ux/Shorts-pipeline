@@ -1,0 +1,142 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "recycling-myth-reality__56e302d8",
+ "filed": "2026-09-24T11:17:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "recycling-myth-reality",
+ "current": {
+  "title": "Why 'Just Recycle It' Barely Works",
+  "hook": "Recycling isn't doing what you think.",
+  "closing": "The label says recyclable. The landfill says otherwise.",
+  "question": "Guess: how much plastic actually gets recycled? Drop it below.",
+  "segments": [
+   {
+    "topic": "global plastic waste generated",
+    "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year."
+   },
+   {
+    "topic": "where plastic waste actually ends up",
+    "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump."
+   },
+   {
+    "topic": "recycling rate, today vs. 2060",
+    "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "global plastic waste generated",
+   "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year.",
+   "role": "1 · THE SCALE",
+   "data": {
+    "file": "plastic_waste_growth_2019_2060.json",
+    "unit": "million tons",
+    "title": "Global plastic waste generated",
+    "points": [
+     {
+      "label": "2019",
+      "value": 353,
+      "period": "2019"
+     },
+     {
+      "label": "2060 (projected)",
+      "value": 1014,
+      "period": "2060"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "where plastic waste actually ends up",
+   "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump.",
+   "role": "2 · WHERE IT GOES",
+   "data": {
+    "file": "plastic_waste_end_fate_2019.json",
+    "unit": "percent",
+    "title": "Where global plastic waste actually ends up",
+    "points": [
+     {
+      "label": "Recycled",
+      "value": 9
+     },
+     {
+      "label": "Incinerated",
+      "value": 19
+     },
+     {
+      "label": "Landfilled",
+      "value": 50
+     },
+     {
+      "label": "Mismanaged / dumped",
+      "value": 22
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "recycling rate, today vs. 2060",
+   "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix.",
+   "role": "3 · THE 'FIX'",
+   "data": {
+    "file": "plastic_recycling_rate_2019_vs_2060.json",
+    "unit": "percent",
+    "title": "Global plastic recycling rate: today vs. OECD's best case",
+    "points": [
+     {
+      "label": "2019",
+      "value": 9
+     },
+     {
+      "label": "2060 (projected)",
+      "value": 17
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/recycling-myth-reality__56e302d8.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,144 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "adhd-diagnosis-surge__684cfeea",
+ "filed": "2026-09-24T11:17:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "adhd-diagnosis-surge",
+ "current": {
+  "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+  "hook": "Way more kids have ADHD now. Here's why.",
+  "closing": "More labels. Still not enough help.",
+  "question": "Were you diagnosed as a kid, or later? Tell me below.",
+  "segments": [
+   {
+    "topic": "ADHD diagnosis rate",
+    "say": "In 2003, 7.8 percent of US kids had ever been diagnosed with ADHD. By 2022 it was 11.4 percent -- nearly 1 in 9 children."
+   },
+   {
+    "topic": "who's newly being caught",
+    "say": "Boys are still diagnosed more often -- 15 percent versus 8 percent for girls. But that gap used to be more than double. Girls are finally getting identified too."
+   },
+   {
+    "topic": "who actually gets treated",
+    "say": "Yet only 53.6 percent of diagnosed kids are actually on medication for it. More diagnoses didn't mean more kids getting help."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "ADHD diagnosis rate",
+   "say": "In 2003, 7.8 percent of US kids had ever been diagnosed with ADHD. By 2022 it was 11.4 percent -- nearly 1 in 9 children.",
+   "role": "1 · SETUP",
+   "data": {
+    "file": "adhd_diagnosis_trend.json",
+    "unit": "percent",
+    "title": "US children ever diagnosed with ADHD",
+    "points": [
+     {
+      "label": "2003",
+      "value": 7.8,
+      "period": "2003"
+     },
+     {
+      "label": "2007",
+      "value": 9.5,
+      "period": "2007"
+     },
+     {
+      "label": "2011",
+      "value": 11.0,
+      "period": "2011"
+     },
+     {
+      "label": "2022",
+      "value": 11.4,
+      "period": "2022"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "who's newly being caught",
+   "say": "Boys are still diagnosed more often -- 15 percent versus 8 percent for girls. But that gap used to be more than double. Girls are finally getting identified too.",
+   "role": "2 · THE SHIFT",
+   "data": {
+    "file": "adhd_diagnosis_by_sex.json",
+    "unit": "percent",
+    "title": "Children ever diagnosed with ADHD, by sex (2022)",
+    "points": [
+     {
+      "label": "Boys",
+      "value": 15
+     },
+     {
+      "label": "Girls",
+      "value": 8
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "who actually gets treated",
+   "say": "Yet only 53.6 percent of diagnosed kids are actually on medication for it. More diagnoses didn't mean more kids getting help.",
+   "role": "3 · THE GAP",
+   "data": {
+    "file": "adhd_medication_treatment_gap.json",
+    "unit": "percent",
+    "title": "Diagnosed children currently taking ADHD medication",
+    "points": [
+     {
+      "label": "Taking ADHD medication",
+      "value": 53.6
+     },
+     {
+      "label": "Not taking medication",
+      "value": 46.4
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/adhd-diagnosis-surge__684cfeea.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

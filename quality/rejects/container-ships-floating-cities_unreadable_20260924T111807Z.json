@@ -1,0 +1,21 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260924T111807Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At payoff@-0.4 the glowing YOURS container Data holds up sits on top of the 'TEU' in '24,000 TEU'. At seg1:end the '3.6x / the 1996 ship' label is faint grey-blue over the water and hard to read at arm's length.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unclear_depiction",
+  "visible_evidence": "At seg3:start the 80% is shown as crates inside odd wire-dome cages with ladders stacked on a pier. At seg3:end one crate on the dock is labeled 20% and four on a small red boat are labeled 80%. The cage/ladder objects read as garbled props, not cargo, and the boat is a tiny sliver at the frame edge.",
+  "root_cause": "The cargo prop has confusing dome/ladder parts, and the ship, which is the subject, is drawn small and pushed off-frame while the empty pier takes up half the frame.",
+  "repair_goal": "Put a big container ship in the middle of the frame and have 8 of 10 clean cargo boxes/containers slide onto it while 2 peel off to a truck or plane. Drop the cage/ladder props, shrink the flat pier, and keep the 80%/20% labels in ink, clear of the marks."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

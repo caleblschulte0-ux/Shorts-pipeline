@@ -1754,7 +1754,7 @@
     },
     {
       "slug": "recycling-myth-reality",
-      "directed_at": "2026-08-14",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "environment",
       "hook_type": "inversion",
@@ -1768,7 +1768,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "Just Recycle It",
-      "notes": "Updated 2026-09-22: seg3 mechanic corrected to what's actually in niche.config.json (plastic-sluice-split replaced the earlier recycling-bin-fill-duel; this entry had drifted out of sync). Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), plastic-sluice-split closes on real bottles forking at OECD's own best-case rate (17%) -- most of the chute still piles onto the landfill heap, so even the optimistic future doesn't rescue the label. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Re-verified again 2026-09-23 (later same-day pre-render pass): scenes/data/copy still unchanged, validate_scenes.py 12/12 PASS. Also deduped the viz_mechanics.json library in this pass (2 stale/duplicate rows removed, outbreak-radiate-count synced to its live motion-fixed code) -- library hygiene, unrelated to this slug.",
+      "notes": "Updated 2026-09-22: seg3 mechanic corrected to what's actually in niche.config.json (plastic-sluice-split replaced the earlier recycling-bin-fill-duel; this entry had drifted out of sync). Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), plastic-sluice-split closes on real bottles forking at OECD's own best-case rate (17%) -- most of the chute still piles onto the landfill heap, so even the optimistic future doesn't rescue the label. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Re-verified again 2026-09-23 (later same-day pre-render pass): scenes/data/copy still unchanged, validate_scenes.py 12/12 PASS. Also deduped the viz_mechanics.json library in this pass (2 stale/duplicate rows removed, outbreak-radiate-count synced to its live motion-fixed code) -- library hygiene, unrelated to this slug. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -2116,7 +2116,7 @@
     },
     {
       "slug": "measles-ninety-five-rule",
-      "directed_at": "2026-08-16",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "body",
       "hook_type": "shock_stat",
@@ -2129,7 +2129,7 @@
         "viz:trend"
       ],
       "ending_type": "consequence",
-      "notes": "First ledger entry for this slug. Seg1 and seg3 had no depiction before this pass. Outbreak-radiate-count swarms a measles patient-zero with 15 radiating silhouettes against flu's lone extra case, making R0 viscerally comparable before the existing forty-kids grid lands the 92.5%-vs-95% gap; seg3 switched to the classic trend line (was undirected) since a year-by-year case count is a clean escalation that doesn't need an invented mechanic, and keeps the video from repeating the person-icon layout a third time. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS.",
+      "notes": "First ledger entry for this slug. Seg1 and seg3 had no depiction before this pass. Outbreak-radiate-count swarms a measles patient-zero with 15 radiating silhouettes against flu's lone extra case, making R0 viscerally comparable before the existing forty-kids grid lands the 92.5%-vs-95% gap; seg3 switched to the classic trend line (was undirected) since a year-by-year case count is a clean escalation that doesn't need an invented mechanic, and keeps the video from repeating the person-icon layout a third time. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -2825,7 +2825,7 @@
     },
     {
       "slug": "peanut-allergy-guideline-flip",
-      "directed_at": "2026-08-21",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "health",
       "hook_type": "inversion",
@@ -2839,7 +2839,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "The Advice Was Backwards",
-      "notes": "No prior analytics for this slug. Bet: peanut-rash-climb shows the tripling allergy rate the old advice was supposed to prevent, peanut-shield-crack-duel makes the LEAP trial's reversal visceral (avoidance shield shatters, early-exposure shield barely scratched), and the before/after comparison closes on the 43% drop -- landing the inversion on 'the cure was doing the opposite of the caution' rather than a plain stat recap. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS.",
+      "notes": "No prior analytics for this slug. Bet: peanut-rash-climb shows the tripling allergy rate the old advice was supposed to prevent, peanut-shield-crack-duel makes the LEAP trial's reversal visceral (avoidance shield shatters, early-exposure shield barely scratched), and the before/after comparison closes on the 43% drop -- landing the inversion on 'the cure was doing the opposite of the caution' rather than a plain stat recap. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -2875,7 +2875,7 @@
     },
     {
       "slug": "landline-death-robocall-boom",
-      "directed_at": "2026-08-21",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "tech",
       "hook_type": "shock_stat",
@@ -2889,7 +2889,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Why That Matters",
-      "notes": "No prior analytics for this slug. Bet: the landline-death trend sets up the vacuum, robocall-phone-swarm-sort turns the 52.8 billion 2024 robocalls into a sorted flood by type (telemarketing/scam/etc) instead of a pie label, robocall-tower-flood closes on the 2016-vs-2024 near-doubling so the ending explains the behavior change (screening unknown numbers) as a direct consequence of the volume, not a vibe. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). hook_text corrected 2026-09-23: niche.config.json had already been sharpened to a curiosity-gap hook (\"Why does every unknown number feel like a scam call now?\") per HOOK DOCTRINE, but this ledger entry still recorded the older declarative hook (\"Nobody has a landline anymore...\") -- fixed to match what actually ships. Scenes/data otherwise unchanged; validate_scenes.py 12/12 PASS.",
+      "notes": "No prior analytics for this slug. Bet: the landline-death trend sets up the vacuum, robocall-phone-swarm-sort turns the 52.8 billion 2024 robocalls into a sorted flood by type (telemarketing/scam/etc) instead of a pie label, robocall-tower-flood closes on the 2016-vs-2024 near-doubling so the ending explains the behavior change (screening unknown numbers) as a direct consequence of the volume, not a vibe. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). hook_text corrected 2026-09-23: niche.config.json had already been sharpened to a curiosity-gap hook (\"Why does every unknown number feel like a scam call now?\") per HOOK DOCTRINE, but this ledger entry still recorded the older declarative hook (\"Nobody has a landline anymore...\") -- fixed to match what actually ships. Scenes/data otherwise unchanged; validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,

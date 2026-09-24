@@ -1,0 +1,142 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "kelp-forest-sea-star-collapse__a63835cd",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "kelp-forest-sea-star-collapse",
+ "current": {
+  "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
+  "hook": "A mystery disease wiped out billions of sea stars in 2013.",
+  "closing": "No sea stars, no kelp, no forest. One disease did all that.",
+  "question": "Did you know one disease could take down a whole forest? Tell me below.",
+  "segments": [
+   {
+    "topic": "sea stars wiped out by disease",
+    "say": "In 2013, a mystery wasting disease killed billions of sunflower sea stars almost overnight -- up to 99% of them, gone within two years."
+   },
+   {
+    "topic": "urchins take over without their main predator",
+    "say": "Sea stars used to keep purple urchins in check. Without them, urchin numbers exploded -- up more than 10,000% along the North Coast."
+   },
+   {
+    "topic": "California's kelp forests disappear",
+    "say": "Those urchins mowed down the kelp forest the whole ecosystem depends on. California's north coast lost 96% of its kelp canopy in just a few years."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "sea stars wiped out by disease",
+   "say": "In 2013, a mystery wasting disease killed billions of sunflower sea stars almost overnight -- up to 99% of them, gone within two years.",
+   "role": "1 · THE DIE-OFF",
+   "data": {
+    "file": "seastar_wasting_population.json",
+    "unit": "percent",
+    "title": "Sunflower sea star population, before vs. after the 2013 wasting-disease outbreak",
+    "points": [
+     {
+      "label": "Before 2013",
+      "value": 100
+     },
+     {
+      "label": "After the outbreak",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "urchins take over without their main predator",
+   "say": "Sea stars used to keep purple urchins in check. Without them, urchin numbers exploded -- up more than 10,000% along the North Coast.",
+   "role": "2 · THE EXPLOSION",
+   "data": {
+    "file": "purple_urchin_population_index.json",
+    "unit": "percent",
+    "title": "Purple sea urchin population index, California's North Coast",
+    "points": [
+     {
+      "label": "Before 2014",
+      "value": 100
+     },
+     {
+      "label": "Since 2014",
+      "value": 10100
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "California's kelp forests disappear",
+   "say": "Those urchins mowed down the kelp forest the whole ecosystem depends on. California's north coast lost 96% of its kelp canopy in just a few years.",
+   "role": "3 · THE COLLAPSE",
+   "data": {
+    "file": "california_kelp_canopy_loss.json",
+    "unit": "percent",
+    "title": "Bull kelp canopy, California's north coast",
+    "points": [
+     {
+      "label": "Pre-2014 canopy",
+      "value": 100
+     },
+     {
+      "label": "Canopy now",
+      "value": 4
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: blocked before vision review: duplicate_ratio 0.513 > 0.45 (phase-1 ceiling) — too many held frames"
+ ],
+ "reasons": [
+  "judge: blocked before vision review: duplicate_ratio 0.513 > 0.45 (phase-1 ceiling) — too many held frames"
+ ],
+ "judge": {
+  "ts": "2026-09-24T11:14:34+00:00",
+  "score": 14,
+  "one_line": "blocked before vision review: duplicate_ratio 0.513 > 0.45 (phase-1 ceiling) — too many held frames",
+  "problems": [
+   "duplicate_ratio 0.513 > 0.45 (phase-1 ceiling) — too many held frames"
+  ],
+  "fixes": [
+   "raise real motion per output frame (see temporal thresholds)"
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/kelp-forest-sea-star-collapse__a63835cd.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

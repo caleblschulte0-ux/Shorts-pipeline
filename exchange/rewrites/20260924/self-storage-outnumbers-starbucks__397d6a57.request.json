@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "self-storage-outnumbers-starbucks__397d6a57",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "self-storage-outnumbers-starbucks",
+ "current": {
+  "title": "There Are More Storage Units Than Starbucks In America",
+  "hook": "America built more of one than the other.",
+  "closing": "We didn't run out of space. We ran out of closets.",
+  "question": "How much stuff do you have in storage right now? Tell me below.",
+  "segments": [
+   {
+    "topic": "storage units vs. America's chains",
+    "say": "There are about 66,000 self-storage facilities across America. Starbucks has roughly 16,800 stores. Four storage units for every coffee shop."
+   },
+   {
+    "topic": "storage vs. 3 biggest chains combined",
+    "say": "Stack storage against Starbucks, McDonald's, and Subway combined — 50,600 locations — and self-storage still wins alone, by 15,000 buildings."
+   },
+   {
+    "topic": "why we built all of it",
+    "say": "In 1984 there were about 6,600 storage facilities. Today there are 66,000. We didn't run out of coffee shops — we ran out of closets."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "storage units vs. America's chains",
+   "say": "There are about 66,000 self-storage facilities across America. Starbucks has roughly 16,800 stores. Four storage units for every coffee shop.",
+   "role": "1 · THE COUNT",
+   "data": {
+    "file": "storage_vs_chains_rank.json",
+    "unit": "thousand",
+    "title": "US locations by chain/industry, 2025 (thousands)",
+    "points": [
+     {
+      "label": "Self-Storage Facilities",
+      "value": 66
+     },
+     {
+      "label": "Subway",
+      "value": 20.1
+     },
+     {
+      "label": "Starbucks",
+      "value": 16.8
+     },
+     {
+      "label": "McDonald's",
+      "value": 13.7
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "storage vs. 3 biggest chains combined",
+   "say": "Stack storage against Starbucks, McDonald's, and Subway combined — 50,600 locations — and self-storage still wins alone, by 15,000 buildings.",
+   "role": "2 · THE SPLIT",
+   "data": {
+    "file": "storage_vs_chains_share.json",
+    "unit": "percent",
+    "title": "Storage facilities vs. three biggest US chains combined (percent of total)",
+    "points": [
+     {
+      "label": "Self-Storage Facilities",
+      "value": 57
+     },
+     {
+      "label": "3 Biggest Chains Combined",
+      "value": 43
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "why we built all of it",
+   "say": "In 1984 there were about 6,600 storage facilities. Today there are 66,000. We didn't run out of coffee shops — we ran out of closets.",
+   "role": "3 · THE REASON",
+   "data": {
+    "file": "storage_facility_growth_trend.json",
+    "unit": "thousand",
+    "title": "US self-storage facility count (thousands)",
+    "points": [
+     {
+      "label": "1984",
+      "value": 6.6,
+      "period": "1984"
+     },
+     {
+      "label": "2000",
+      "value": 30,
+      "period": "2000"
+     },
+     {
+      "label": "2012",
+      "value": 48.5,
+      "period": "2012"
+     },
+     {
+      "label": "2020",
+      "value": 61,
+      "period": "2020"
+     },
+     {
+      "label": "2025",
+      "value": 66,
+      "period": "2025"
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/self-storage-outnumbers-starbucks__397d6a57.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

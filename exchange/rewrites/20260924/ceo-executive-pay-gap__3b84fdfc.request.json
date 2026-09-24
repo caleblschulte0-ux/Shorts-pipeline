@@ -1,0 +1,144 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "ceo-executive-pay-gap__3b84fdfc",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "ceo-executive-pay-gap",
+ "current": {
+  "title": "The Gap Between CEO Pay And Your Pay Exploded",
+  "hook": "CEOs didn't always make this much.",
+  "closing": "Monday morning. Your whole year, gone.",
+  "question": "Does that ratio surprise you? Tell me below.",
+  "segments": [
+   {
+    "topic": "CEO-to-worker pay ratio, 1965-2024",
+    "say": "In 1965, a CEO made about 21 times what a typical worker earned. By 2000 that ratio hit 398 to 1. It's since cooled to 281 to 1, still enormous."
+   },
+   {
+    "topic": "pay growth since 1978: CEOs vs. workers",
+    "say": "Since 1978, CEO pay has climbed 1,085 percent. Typical worker pay? Just 24 percent, barely enough to keep pace with inflation."
+   },
+   {
+    "topic": "days to earn your whole year",
+    "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "CEO-to-worker pay ratio, 1965-2024",
+   "say": "In 1965, a CEO made about 21 times what a typical worker earned. By 2000 that ratio hit 398 to 1. It's since cooled to 281 to 1, still enormous.",
+   "role": "1 · THE CLIMB",
+   "data": {
+    "file": "ceo_worker_pay_ratio_trend.json",
+    "unit": "count",
+    "title": "CEO-to-typical-worker compensation ratio (ratio to 1)",
+    "points": [
+     {
+      "label": "1965",
+      "value": 21,
+      "period": "1965"
+     },
+     {
+      "label": "1978",
+      "value": 31,
+      "period": "1978"
+     },
+     {
+      "label": "2000",
+      "value": 398,
+      "period": "2000"
+     },
+     {
+      "label": "2024",
+      "value": 281,
+      "period": "2024"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "pay growth since 1978: CEOs vs. workers",
+   "say": "Since 1978, CEO pay has climbed 1,085 percent. Typical worker pay? Just 24 percent, barely enough to keep pace with inflation.",
+   "role": "2 · THE GAP",
+   "data": {
+    "file": "ceo_vs_worker_pay_growth.json",
+    "unit": "percent",
+    "title": "Compensation growth since 1978: CEOs vs. typical workers (percent)",
+    "points": [
+     {
+      "label": "CEO pay growth",
+      "value": 1085
+     },
+     {
+      "label": "Typical worker pay growth",
+      "value": 24
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "days to earn your whole year",
+   "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk.",
+   "role": "3 · THE MATH",
+   "data": {
+    "file": "days_to_earn_your_year.json",
+    "unit": "count",
+    "title": "Days for a CEO to earn a typical worker's full-year pay (days)",
+    "points": [
+     {
+      "label": "Days in a year",
+      "value": 365
+     },
+     {
+      "label": "Days for a CEO to earn it",
+      "value": 1.3
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/ceo-executive-pay-gap__3b84fdfc.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

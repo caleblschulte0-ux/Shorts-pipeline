@@ -1,0 +1,134 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "lyme-disease-undercount__4a1837e8",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "lyme-disease-undercount",
+ "current": {
+  "title": "The CDC Says Lyme Disease Is 16x More Common Than Reported",
+  "hook": "Blame the ticks -- they've spread into 45% of the country.",
+  "closing": "Check for ticks. Your backyard is bigger news than you think.",
+  "question": "Ever found a tick on yourself? Tell me where below.",
+  "segments": [
+   {
+    "topic": "ticks that spread Lyme disease",
+    "say": "In 1998, ticks that spread Lyme disease were found in 30% of US counties. Today, it's 45% -- climate change keeps giving them new ground."
+   },
+   {
+    "topic": "reported Lyme disease cases",
+    "say": "So official Lyme cases should be climbing too. They are -- but only 30,000 a year get reported. The CDC's real estimate is 476,000."
+   },
+   {
+    "topic": "counties at high risk for Lyme disease",
+    "say": "Three decades ago, just 29 counties counted as high-risk. Now it's 260 -- 9 times more places where one tick bite can wreck your year."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "ticks that spread Lyme disease",
+   "say": "In 1998, ticks that spread Lyme disease were found in 30% of US counties. Today, it's 45% -- climate change keeps giving them new ground.",
+   "role": "1 · THE SPREAD",
+   "data": {
+    "file": "lyme_tick_county_coverage.json",
+    "unit": "percent",
+    "title": "Share of US counties with Lyme-carrying blacklegged ticks",
+    "points": [
+     {
+      "label": "1998",
+      "value": 30,
+      "period": "1998"
+     },
+     {
+      "label": "2024",
+      "value": 45,
+      "period": "2024"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "reported Lyme disease cases",
+   "say": "So official Lyme cases should be climbing too. They are -- but only 30,000 a year get reported. The CDC's real estimate is 476,000.",
+   "role": "2 · THE UNDERCOUNT",
+   "data": {
+    "file": "lyme_reported_vs_estimated.json",
+    "unit": "count",
+    "title": "Lyme disease cases: officially reported vs. CDC's real estimate",
+    "points": [
+     {
+      "label": "Officially reported to CDC",
+      "value": 30000
+     },
+     {
+      "label": "CDC's real estimate",
+      "value": 476000
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "counties at high risk for Lyme disease",
+   "say": "Three decades ago, just 29 counties counted as high-risk. Now it's 260 -- 9 times more places where one tick bite can wreck your year.",
+   "role": "3 · THE RISK",
+   "data": {
+    "file": "lyme_high_risk_counties.json",
+    "unit": "count",
+    "title": "US counties with high-incidence Lyme risk",
+    "points": [
+     {
+      "label": "30 years ago",
+      "value": 29
+     },
+     {
+      "label": "Today",
+      "value": 260
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It relies on multiple numbers (16x and 45%) instead of a single consequential, verifiable figure."
+ ],
+ "reasons": [
+  "premise: brain: It relies on multiple numbers (16x and 45%) instead of a single consequential, verifiable figure."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/lyme-disease-undercount__4a1837e8.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

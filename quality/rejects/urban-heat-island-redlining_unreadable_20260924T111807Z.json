@@ -1,0 +1,21 @@
+{
+ "slug": "urban-heat-island-redlining",
+ "ts": "20260924T111807Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:end the annotation 'clears it by 1.7' is printed on top of '65-city average 8'. At seg1:start the mascot covers the NYC '9.7' value. At seg2:start the '32%' label is almost invisible gray on gray. At seg3:end the '5 Formerly redlined neighborhoods' and '0 Non-redlined' labels are",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:end the 'clears it by 1.7' callout is drawn over the '65-city average 8' label on the hurdle bar, so both read as garbled text. At seg1:start the mascot sits on top of the 9.7 value label at the end of the NYC bar.",
+  "root_cause": "The callout and the hurdle label are placed in the same band just above the crossbar, with no collision check. The mascot's position ignores where the value labels sit.",
+  "repair_goal": "Put the 'clears it by 1.7' callout on the far side of the dimension arrow from the '65-city average 8' label, or move the average label below the crossbar, so the two text boxes never intersect. Keep the mascot out of the value-label column on the bar race."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

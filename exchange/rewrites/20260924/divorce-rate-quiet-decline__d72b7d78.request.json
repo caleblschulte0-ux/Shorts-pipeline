@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "divorce-rate-quiet-decline__d72b7d78",
+ "filed": "2026-09-24T11:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "divorce-rate-quiet-decline",
+ "current": {
+  "title": "Everyone Assumes Divorce Is Rising. It Isn't.",
+  "hook": "You've been told half of marriages fail.",
+  "closing": "Waiting turned out to be the plot twist.",
+  "question": "How old were your parents when they got married? Tell me below.",
+  "segments": [
+   {
+    "topic": "US divorce rate",
+    "say": "In 1990, the US recorded 4.7 divorces for every 1,000 people. By 2022, that had fallen to 2.4 — roughly half, and still dropping."
+   },
+   {
+    "topic": "age at first marriage",
+    "say": "One big reason: people wait. The median age women first marry climbed from 23.9 to 28.6 over that same stretch — nearly five extra years to actually know the person first."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "US divorce rate",
+   "say": "In 1990, the US recorded 4.7 divorces for every 1,000 people. By 2022, that had fallen to 2.4 — roughly half, and still dropping.",
+   "role": "1 · THE MYTH",
+   "data": {
+    "file": "divorce_rate_trend.json",
+    "unit": "rate per 1,000 population",
+    "title": "US divorce rate (per 1,000 population)",
+    "points": [
+     {
+      "label": "1990",
+      "value": 4.7,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 4.0,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 3.6,
+      "period": "2010"
+     },
+     {
+      "label": "2019",
+      "value": 2.7,
+      "period": "2019"
+     },
+     {
+      "label": "2022",
+      "value": 2.4,
+      "period": "2022"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "age at first marriage",
+   "say": "One big reason: people wait. The median age women first marry climbed from 23.9 to 28.6 over that same stretch — nearly five extra years to actually know the person first.",
+   "role": "2 · THE REASON",
+   "data": {
+    "file": "marriage_age_women_trend.json",
+    "unit": "years",
+    "title": "Median age at first marriage, women",
+    "points": [
+     {
+      "label": "1990",
+      "value": 23.9,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 25.1,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 26.1,
+      "period": "2010"
+     },
+     {
+      "label": "2018",
+      "value": 27.8,
+      "period": "2018"
+     },
+     {
+      "label": "2024",
+      "value": 28.6,
+      "period": "2024"
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/divorce-rate-quiet-decline__d72b7d78.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

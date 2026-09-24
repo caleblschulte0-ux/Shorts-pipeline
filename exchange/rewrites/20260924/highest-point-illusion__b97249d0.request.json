@@ -1,0 +1,148 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "highest-point-illusion__b97249d0",
+ "filed": "2026-09-24T11:17:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "highest-point-illusion",
+ "current": {
+  "title": "Everest Isn't the Highest Point on Earth",
+  "hook": "Everest wins on a technicality. Two, actually.",
+  "closing": "So next time someone says Everest is the highest point on Earth, ask them: highest from where?",
+  "question": "Which mountain would you call the real winner? Tell me below.",
+  "segments": [
+   {
+    "topic": "highest peaks above sea level",
+    "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses."
+   },
+   {
+    "topic": "mountain height from its own base",
+    "say": "So start at each mountain's real base. Mauna Kea runs 10,211 meters from the Pacific floor to its peak - taller than Everest. Only 4,207 of it is above water."
+   },
+   {
+    "topic": "distance from Earth's center",
+    "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "highest peaks above sea level",
+   "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses.",
+   "role": "1 · THE LEADERBOARD",
+   "data": {
+    "file": "peaks_above_sea_level.json",
+    "unit": "meters",
+    "title": "Highest peaks above sea level (meters)",
+    "points": [
+     {
+      "label": "Everest",
+      "value": 8849
+     },
+     {
+      "label": "K2",
+      "value": 8611
+     },
+     {
+      "label": "Kangchenjunga",
+      "value": 8586
+     },
+     {
+      "label": "Lhotse",
+      "value": 8516
+     },
+     {
+      "label": "Makalu",
+      "value": 8485
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "mountain height from its own base",
+   "say": "So start at each mountain's real base. Mauna Kea runs 10,211 meters from the Pacific floor to its peak - taller than Everest. Only 4,207 of it is above water.",
+   "role": "2 · FROM THE BOTTOM",
+   "data": {
+    "file": "mountain_height_from_base.json",
+    "unit": "meters",
+    "title": "Mountain height measured from its own base (meters)",
+    "points": [
+     {
+      "label": "Mauna Kea, ocean floor to summit",
+      "value": 10211
+     },
+     {
+      "label": "Everest, sea level to summit",
+      "value": 8849
+     },
+     {
+      "label": "Mauna Kea, the part above water",
+      "value": 4207
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "distance from Earth's center",
+   "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
+   "role": "3 · THE REAL WINNER",
+   "data": {
+    "file": "summit_beyond_a_round_earth.json",
+    "unit": "kilometers",
+    "title": "How far a summit sticks out past a perfectly round Earth (kilometers)",
+    "points": [
+     {
+      "label": "Chimborazo, Ecuador",
+      "value": 13.4
+     },
+     {
+      "label": "Everest, Nepal/China",
+      "value": 11.3
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause."
+ ],
+ "answer_path": "exchange/rewrites/20260924/highest-point-illusion__b97249d0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
