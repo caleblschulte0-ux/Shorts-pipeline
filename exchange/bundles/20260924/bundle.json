@@ -370,73 +370,73 @@
           "shot_index": 0,
           "phrase": "badge-and-app system that logged every arrival",
           "query": "employee badge scanner",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "convinced the team was stealing company time",
           "query": "office wall clock",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "logging every swipe and every fifteen-minute lunch",
           "query": "phone time tracking app",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "payroll ran a companywide punctuality report",
           "query": "spreadsheet report desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "clocked my manager arriving forty minutes late",
           "query": "empty office chair morning",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "slipping out early every Friday for his gym class",
           "query": "gym bag office locker",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "HR didn't need my testimony, just the export",
           "query": "hr office meeting",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "the first person written up under his own policy",
           "query": "written warning paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
+        "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
         "time-tracking-app-catches-the-boss-s0-82117fc9595a",
         "time-tracking-app-catches-the-boss-s1-8cc2a0c2efe5",
         "time-tracking-app-catches-the-boss-s2-f051ba9ef970",
         "time-tracking-app-catches-the-boss-s3-fb181c2a3491",
         "time-tracking-app-catches-the-boss-s4-a4b648100a80",
-        "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
         "time-tracking-app-catches-the-boss-s6-eaab08b094fa",
         "time-tracking-app-catches-the-boss-s7-0dc8c9a3fdd6"
       ]
@@ -450,15 +450,15 @@
           "shot_index": 0,
           "phrase": "incognito compliance walkthrough at a hardware store",
           "query": "hardware store aisle",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "checking aisle safety hours before the real inspection team was due",
           "query": "warehouse safety inspection",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -471,29 +471,29 @@
           "shot_index": 3,
           "phrase": "she started filming",
           "query": "phone recording video",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "posting it for her twelve thousand followers",
           "query": "social media phone screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "recognized my badge instantly",
           "query": "id badge lanyard",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "whether corporate's hazard inspection was going well",
           "query": "store manager clipboard",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
@@ -505,23 +505,52 @@
       ],
       "media_health": {
         "strong": 1,
-        "weak": 1,
-        "missing": 6,
+        "weak": 7,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.125,
       "requested": [
         "mystery-auditor-mistaken-for-staff-s0-ccb3362dd770",
         "mystery-auditor-mistaken-for-staff-s1-6b63a132b56d",
+        "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
         "mystery-auditor-mistaken-for-staff-s3-0079f643dcaf",
         "mystery-auditor-mistaken-for-staff-s4-9e33cb734136",
         "mystery-auditor-mistaken-for-staff-s5-72d87bb7b7d1",
-        "mystery-auditor-mistaken-for-staff-s6-538bf9a6243a",
-        "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e"
+        "mystery-auditor-mistaken-for-staff-s6-538bf9a6243a"
       ]
     }
   ],
   "requests": [
+    {
+      "request_id": "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
+      "safe_request_id": "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
+      "drive_filename": "20260924__time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0.png",
+      "prompt_sha256": "ddac632c3bb53674ce1d360a6c38dd9b416dec4cea10ad914cd19967d524f69c",
+      "checkpoint_path": "exchange/bundles/20260924/media-progress/time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0.json",
+      "slug": "time-tracking-app-catches-the-boss",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: gym bag office locker. It accompanies the narration: \"slipping out early every Friday for his gym class\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "generic stand-in \u2014 line names friday but the media does not",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
     {
       "request_id": "time-tracking-app-catches-the-boss-s0-82117fc9595a",
       "safe_request_id": "time-tracking-app-catches-the-boss-s0-82117fc9595a",
@@ -544,9 +573,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s1-8cc2a0c2efe5",
@@ -570,9 +601,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s2-f051ba9ef970",
@@ -596,9 +629,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s3-fb181c2a3491",
@@ -622,9 +657,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s4-a4b648100a80",
@@ -648,35 +685,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
-      "safe_request_id": "time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0",
-      "drive_filename": "20260924__time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0.png",
-      "prompt_sha256": "ddac632c3bb53674ce1d360a6c38dd9b416dec4cea10ad914cd19967d524f69c",
-      "checkpoint_path": "exchange/bundles/20260924/media-progress/time-tracking-app-catches-the-boss-s5-ef5d4a51dcc0.json",
-      "slug": "time-tracking-app-catches-the-boss",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: gym bag office locker. It accompanies the narration: \"slipping out early every Friday for his gym class\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s6-eaab08b094fa",
@@ -700,9 +713,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "time-tracking-app-catches-the-boss-s7-0dc8c9a3fdd6",
@@ -726,9 +741,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s0-ccb3362dd770",
@@ -752,9 +769,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s1-6b63a132b56d",
@@ -778,9 +797,39 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
+    },
+    {
+      "request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
+      "safe_request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
+      "drive_filename": "20260924__mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.png",
+      "prompt_sha256": "92951e6f887ef5dfab7135365d7b480c74539be4c1183b4c28c1152f925dccd5",
+      "checkpoint_path": "exchange/bundles/20260924/media-progress/mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.json",
+      "slug": "mystery-auditor-mistaken-for-staff",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tile grout aisle. It accompanies the narration: \"not knowing which aisle had grout sealant\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s3-0079f643dcaf",
@@ -804,9 +853,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s4-9e33cb734136",
@@ -830,9 +881,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s5-72d87bb7b7d1",
@@ -856,9 +909,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "mystery-auditor-mistaken-for-staff-s6-538bf9a6243a",
@@ -870,32 +925,6 @@
       "shot_index": 6,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: store manager clipboard. It accompanies the narration: \"whether corporate's hazard inspection was going well\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
-      "safe_request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
-      "drive_filename": "20260924__mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.png",
-      "prompt_sha256": "92951e6f887ef5dfab7135365d7b480c74539be4c1183b4c28c1152f925dccd5",
-      "checkpoint_path": "exchange/bundles/20260924/media-progress/mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.json",
-      "slug": "mystery-auditor-mistaken-for-staff",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: tile grout aisle. It accompanies the narration: \"not knowing which aisle had grout sealant\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
