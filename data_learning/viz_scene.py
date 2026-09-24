@@ -2155,7 +2155,11 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     lo, hi = min(vals), max(vals)
     bx0, by0, bx1, by1 = box
     ground = by1 - 150
-    e = settle(reveal)
+    # PACED ON THE BEAT, not the build curve: a hook's reveal bursts to
+    # near-full in its first moment and the rest of the beat was one
+    # arrival creeping in (coffee hook, 2026-09-24). The line grows year by
+    # year at a steady pace and is complete with room to be read.
+    e = min(1.0, beat_clock(reveal) / 0.82)
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
@@ -4647,7 +4651,12 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     ground = by1 - 170
-    e = max(0.0, min(1.0, reveal))
+    # PACED ON THE BEAT, not the build curve. As a hook, `reveal` burst to
+    # 2025 in the first second and the next six seconds were the last slab
+    # settling by fractions of a pixel: 75-88% held frames in the coffee
+    # hook (2026-09-24). The first year's load is on screen at frame one —
+    # the cold open is a picture — and the years land on him one by one.
+    e = min(1.0, beat_clock(reveal) / 0.82)
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
