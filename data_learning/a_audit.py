@@ -146,6 +146,38 @@ def audit_one(build, insight, frames: int = 24) -> dict:
             pass
         return real_text(self, xy, text, fill, font, anchor, *a, **k)
 
+    # ART DRAWN OVER A LABEL. Data is not the only thing that lands on text:
+    # a tray row falling through "2021 $2.55" (coffee hook, 2026-09-24) was
+    # a rounded rectangle and an icon, invisible to a check that only knew
+    # about the mascot. Every opaque shape or image drawn AFTER a label on the
+    # same canvas is measured against it.
+    real_shapes = {n: getattr(ImageDraw.ImageDraw, n)
+                   for n in ("rectangle", "rounded_rectangle", "ellipse", "polygon")}
+
+    def _shape(name):
+        real = real_shapes[name]
+
+        def draw(self, xy, *a, **k):
+            try:
+                fill = k.get("fill", a[1] if name == "rounded_rectangle" and len(a) > 1
+                             else (a[0] if a and name != "rounded_rectangle" else None))
+                alpha = (fill[3] / 255.0) if isinstance(fill, tuple) and len(fill) == 4 \
+                    else (1.0 if fill is not None else 0.0)
+                if self.im.size == (W, H) and alpha >= 0.6:
+                    pts = list(xy)
+                    if pts and isinstance(pts[0], (tuple, list)):
+                        xs = [p[0] for p in pts]
+                        ys = [p[1] for p in pts]
+                    else:
+                        xs, ys = pts[0::2], pts[1::2]
+                    ev.append((state["frame"], "art",
+                               (min(xs), min(ys), max(xs), max(ys),
+                                id(getattr(self, "_image", None) or self))))
+            except Exception:  # noqa: BLE001
+                pass
+            return real(self, xy, *a, **k)
+        return draw
+
     def host(*a, **k):
         img = real_host(*a, **k)
         if img is not None:
@@ -157,6 +189,13 @@ def audit_one(build, insight, frames: int = 24) -> dict:
 
     def comp(self, im, dest=(0, 0), source=(0, 0)):
         try:
+            if (not im.info.get("__data__") and self.size == (W, H)
+                    and im.size != (W, H)):
+                bb = im.getchannel("A").point(lambda v: 255 if v > 150 else 0).getbbox()
+                if bb:
+                    x, y = dest[0], dest[1]
+                    ev.append((state["frame"], "art",
+                               (x + bb[0], y + bb[1], x + bb[2], y + bb[3], id(self))))
             if im.info.get("__data__") and self.size == (W, H):
                 x, y = dest[0], dest[1]
                 # his body, not the transparent margin of the sprite
@@ -188,6 +227,8 @@ def audit_one(build, insight, frames: int = 24) -> dict:
         return out
 
     ImageDraw.ImageDraw.text = text
+    for _n in real_shapes:
+        setattr(ImageDraw.ImageDraw, _n, _shape(_n))
     Image.Image.alpha_composite = comp
     Image.Image.save = save
     vs.scene_host = host
@@ -205,6 +246,8 @@ def audit_one(build, insight, frames: int = 24) -> dict:
             return _judge(ev, imgs)
     finally:
         ImageDraw.ImageDraw.text = real_text
+        for _n, _f in real_shapes.items():
+            setattr(ImageDraw.ImageDraw, _n, _f)
         Image.Image.alpha_composite = real_comp
         Image.Image.save = real_save
         vs.scene_host = real_host
@@ -239,6 +282,7 @@ def _hides(tb, hb) -> bool:
 
 def _judge(ev, imgs) -> dict:
     covered, clipped, faint, collide, truncated = set(), set(), set(), set(), set()
+    overdrawn = set()
     texts_so_far: dict = {}
     for frame, kind, p in ev:
         if kind == "text":
@@ -268,6 +312,12 @@ def _judge(ev, imgs) -> dict:
                 c = _glyph_contrast(im, bb, rgb)
                 if c is not None and c < MIN_CONTRAST:
                     faint.add(s)
+        elif kind == "art":                 # a shape or image over a label
+            for s, bb, alpha, *_rest in texts_so_far.get(frame, []):
+                if _rest[1:] and _rest[1] != p[4]:
+                    continue
+                if alpha >= VISIBLE_ALPHA and _hides(bb, p[:4]):
+                    overdrawn.add(s)
         else:                               # Data lands on top of what is drawn
             for s, bb, alpha, *_rest in texts_so_far.get(frame, []):
                 if _rest[1:] and len(p) > 4 and _rest[1] != p[4]:
@@ -276,7 +326,7 @@ def _judge(ev, imgs) -> dict:
                     covered.add(s)
     return {"covered": sorted(covered), "clipped": sorted(clipped),
             "faint": sorted(faint), "collide": sorted(collide),
-            "truncated": sorted(truncated)}
+            "truncated": sorted(truncated), "overdrawn": sorted(overdrawn)}
 
 
 #: STRESS SHAPES. One dataset per machine found three defects; the same
@@ -350,7 +400,8 @@ def audit(frames: int = 12, workers: int | None = None,
             results = list(ex.map(_audit_index, jobs))
     out = {}
     for name, r in results:
-        if r and (r.get("error") or any(r.get(k) for k in ("covered", "clipped", "faint", "collide", "truncated"))):
+        if r and (r.get("error") or any(r.get(k) for k in ("covered", "clipped", "faint", "collide", "truncated",
+                                    "overdrawn"))):
             out[name] = r
     return out
 

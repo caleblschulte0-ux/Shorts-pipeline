@@ -2155,7 +2155,11 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     lo, hi = min(vals), max(vals)
     bx0, by0, bx1, by1 = box
     ground = by1 - 150
-    e = settle(reveal)
+    # PACED ON THE BEAT, not the build curve: a hook's reveal bursts to
+    # near-full in its first moment and the rest of the beat was one
+    # arrival creeping in (coffee hook, 2026-09-24). The line grows year by
+    # year at a steady pace and is complete with room to be read.
+    e = min(1.0, beat_clock(reveal) / 0.82)
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
@@ -4647,7 +4651,12 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     ground = by1 - 170
-    e = max(0.0, min(1.0, reveal))
+    # PACED ON THE BEAT, not the build curve. As a hook, `reveal` burst to
+    # 2025 in the first second and the next six seconds were the last slab
+    # settling by fractions of a pixel: 75-88% held frames in the coffee
+    # hook (2026-09-24). The first year's load is on screen at frame one —
+    # the cold open is a picture — and the years land on him one by one.
+    e = min(1.0, beat_clock(reveal) / 0.82)
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
@@ -4671,7 +4680,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     n_slabs = max(1, int(slabs_f))
     drop = slabs_f - n_slabs                 # 0..1: the next slab's arrival
     host = scene_host("hoist_stack", reveal, insight, "burden")
-    mh = int(min(560, (by1 - by0) * 0.38))
+    mh = int(min(640, (by1 - by0) * 0.46))     # the hero is big
     mw = int(host.width * mh / host.height) if host is not None else 280
     # He SINKS as it gets heavier — the knees give, so the load descends on him
     # rather than the frame just gaining bricks at the top.
@@ -4683,24 +4692,54 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # 0-470 space — about a tenth of the way down the sprite — so anchoring the
     # stack to the image's top edge left a visible gap between him and the
     # thing he is supposed to be holding up.
-    sw, sh, gap = int(mw * 1.55), 34, 7
+    # THE LOAD IS MADE OF THE SUBJECT when the icon library has it: rows of
+    # coffee cups on a coffee story, not grey slabs with "what he's
+    # carrying" doing the picture's work (the judge, coffee-price-record,
+    # 2026-09-24: "make the hook load coffee sacks, not generic slabs").
+    from . import icons as _ic
+    _gp = _ic.icon_png(str(getattr(insight, "topic", "") or ""), 128)
+    _glyph = None
+    if _gp:
+        try:
+            _glyph = _PImg.open(_gp).convert("RGBA")
+        except Exception:  # noqa: BLE001
+            _glyph = None
+    sw, sh, gap = int(mw * 1.55), (58 if _glyph is not None else 34), 7
     hands_y = hy + int(mh * 0.095)
+    # the full load (8 slabs, with his deepest sink) stays clear of the
+    # headline at the top of the box
+    _room = (ground - mh + 70 + int(mh * 0.095)) - (by0 + 130)
+    if 8 * (sh + gap) > _room:
+        sh = max(22, int(_room / 8) - gap)
     for k in range(n_slabs + (1 if drop > 0.02 else 0)):
         sy = hands_y - sh - k * (sh + gap)
         falling = k == n_slabs
         if falling:                          # three slab-heights above, landing
-            sy -= int((1.0 - settle(drop)) * (sh + gap) * 3.5)
+            # ...but never from above the headline's band: early in a hook a
+            # tray row dropped straight through "2021 $2.55" (showrunner,
+            # 2026-09-24). The year and price have a band nothing crosses.
+            _lift = min((sh + gap) * 3.5, max(0, sy - (by0 + 150)))
+            sy -= int((1.0 - settle(drop)) * _lift)
         top_one = k == n_slabs - 1 and not (drop > 0.02)
+        _a = int(240 * (min(1.0, drop * 3) if falling else 1.0))
         d.rounded_rectangle([int(cx - sw // 2), sy, int(cx + sw // 2), sy + sh],
                             radius=9,
                             fill=_rgba(color if (falling or top_one) else REST,
-                                       int(240 * (min(1.0, drop * 3) if falling else 1.0))),
+                                       _a if _glyph is None else int(_a * 0.45)),
                             outline=_rgba(charts.CARD, 255), width=3)
+        if _glyph is not None:
+            _gs = sh - 8
+            _nx = max(1, int((sw - 12) // (_gs + 6)))
+            _x0 = int(cx - (_nx * (_gs + 6) - 6) / 2)
+            _g = _fit(_glyph, _gs, _gs)
+            for _j in range(_nx):
+                canvas.alpha_composite(_g, (_x0 + _j * (_gs + 6), int(sy + 4)))
     _s = f"{lab}   {charts._ulabel(shown_v, unit, group=True)}"
     _f, _s = fit_text(d, _s, 76, (bx1 - bx0) - 60)
     d.text((cx, by0 + 58), _s, font=_f, fill=_rgba(color, 255), anchor="mm")
-    d.text((cx, ground + 52), "what he's carrying", font=_pil_font(38),
-           fill=_rgba(TEXT, 200), anchor="mm")
+    if _glyph is None:        # the icons say what the load is; words only
+        d.text((cx, ground + 118), "what he's carrying", font=_pil_font(38),
+               fill=_rgba(TEXT, 200), anchor="mm")
     return (v, "art", cx, hy - 18)
 
 
