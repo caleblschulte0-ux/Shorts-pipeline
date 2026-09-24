@@ -1,0 +1,20 @@
+{
+  "key": "beaver_population_recovery",
+  "title": "North American beaver population (millions)",
+  "unit": "million",
+  "geography": "North America",
+  "time_coverage": "pre-1600s, ~1900, today",
+  "source": {
+    "name": "Beaver population history and management",
+    "publisher": "USDA Animal and Plant Health Inspection Service (APHIS)",
+    "url": "https://www.aphis.usda.gov/sites/default/files/baker-and-hill-beaver-chapter.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Pre-colonial North American beaver population is widely cited in ecological literature as 60-400 million, with substantial uncertainty since it is extrapolated from a handful of regional studies; 100 million is used here as a commonly-cited representative figure for the low end of that range. The fur-trade crash to roughly 100,000 individuals by the early 1900s is well documented. Current population estimates commonly range 10-15 million after decades of trapping limits and reintroduction; 12 million is used as the midpoint.",
+  "points": [
+    {"label": "1600s (pre fur trade)", "value": 100, "period": "1600s"},
+    {"label": "1900", "value": 0.1, "period": "1900"},
+    {"label": "Today", "value": 12, "period": "2026"}
+  ]
+}

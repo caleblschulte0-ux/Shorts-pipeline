@@ -1,0 +1,19 @@
+{
+  "key": "space_travel_era_split",
+  "title": "When everyone who has ever reached space got there",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "1961-2025",
+  "source": {
+    "name": "Astronaut/space-traveler registry",
+    "publisher": "Association of Space Explorers, as reported by Space.com",
+    "url": "https://www.space.com/space-exploration/launches-spacecraft/blue-origin-launches-6-tourists-on-suborbital-trip-from-texas-including-750th-person-ever-to-fly-into-space",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Derived split of the same cumulative registry figures used in cumulative_space_travelers.json: approximately 560 of the 750 people who have ever reached space did so before 2020 (in the program's first 59 years); the other 190 did so from 2020 through mid-2025 (roughly 5 years) as the commercial spaceflight era took off. 190/750 = 25.3%, rounded to 25% in narration.",
+  "points": [
+    {"label": "Before 2020 (59 years)", "value": 560},
+    {"label": "Since 2020 (~5 years)", "value": 190}
+  ]
+}

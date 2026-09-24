@@ -1,0 +1,19 @@
+{
+  "key": "wildfire_burn_severity_beaver",
+  "title": "Relative wildfire burn severity, with vs. without beaver dams",
+  "unit": "index",
+  "geography": "Western United States",
+  "time_coverage": "2020 study (five wildfires)",
+  "source": {
+    "name": "Smokey the Beaver: beaver-dammed riparian corridors stay green during wildfire throughout the western United States",
+    "publisher": "Fairfax, E. & Whittle, A. (2020), Ecological Applications (Ecological Society of America)",
+    "url": "https://esajournals.onlinelibrary.wiley.com/doi/10.1002/eap.2225",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Peer-reviewed study analyzing satellite imagery across five Western US wildfires found that riparian corridors with beaver dams burned roughly three times less severely than similar corridors without beaver dams, because the dams keep streamside vegetation irrigated and green even in drought. Index values here (1 = least burned, 3 = most burned) represent that reported multiple, not an official government metric.",
+  "points": [
+    {"label": "With beaver dams", "value": 1},
+    {"label": "Without beaver dams", "value": 3}
+  ]
+}

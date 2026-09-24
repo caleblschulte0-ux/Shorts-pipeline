@@ -1,0 +1,20 @@
+{
+  "key": "space_tourist_company_flights",
+  "title": "Paying/private passengers flown to space, by provider",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2021-2025",
+  "source": {
+    "name": "Commercial human spaceflight tallies",
+    "publisher": "Forbes, compiling Blue Origin and Virgin Galactic flight records",
+    "url": "https://www.forbes.com/sites/michaelgoldstein/2026/05/24/25-years-after-first-private-astronaut-will-space-tourism-ever-fly/",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Blue Origin: 92 space tourists flown on New Shepard since crewed flights began in 2021 (Forbes, 2026-05-24). Virgin Galactic: 23 space tourists flown in 22 years of the program (same source). SpaceX: at least 24 fully private/civilian passengers flown via Crew Dragon on Inspiration4 (2021, 4 people), Polaris Dawn (2024, 4 people), Fram2 (2025, 4 people) and three Axiom Space missions (Ax-1 through Ax-3, 4 people each) -- tallied from individually reported missions (Wikipedia: Crew Dragon Resilience, Polaris Dawn, Axiom Mission pages), not a single published total.",
+  "points": [
+    {"label": "Blue Origin (since 2021)", "value": 92},
+    {"label": "SpaceX private missions", "value": 24},
+    {"label": "Virgin Galactic (22 years)", "value": 23}
+  ]
+}

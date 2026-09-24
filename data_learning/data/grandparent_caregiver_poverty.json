@@ -1,0 +1,19 @@
+{
+  "key": "grandparent_caregiver_poverty",
+  "title": "Poverty rate: grandparents raising grandchildren vs. the national child poverty rate (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2021-2023",
+  "source": {
+    "name": "American Community Survey / Current Population Survey poverty statistics",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/topics/income-poverty/poverty.html",
+    "officiality": "official",
+    "access_date": "2026-09-24"
+  },
+  "notes": "18.3% of grandparents who are responsible for their coresident grandchildren lived in poverty in 2021, per Census Bureau American Community Survey data (as reported by outlets including Fox News' coverage of the Census figure). 15.1% is the Census Bureau's 3-year-average official child poverty rate for 2021-2023, used here as the general comparison point. The two measures use different populations (grandparent caregivers vs. all children) but both are official Census Bureau poverty statistics.",
+  "points": [
+    {"label": "Grandparents raising grandchildren", "value": 18.3},
+    {"label": "US child poverty rate (avg)", "value": 15.1}
+  ]
+}

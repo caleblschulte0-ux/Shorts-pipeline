@@ -1,0 +1,19 @@
+{
+  "key": "beaver_dam_water_storage",
+  "title": "Water stored: one beaver dam vs. an Olympic swimming pool (million gallons)",
+  "unit": "million gallons",
+  "geography": "Pacific Northwest (Columbia Basin study)",
+  "time_coverage": "current",
+  "source": {
+    "name": "Beaver Pond Storage Study",
+    "publisher": "Washington State Department of Ecology",
+    "url": "https://ecology.wa.gov/blog/december-2015/beaver-reintroduction-a-watershed-success",
+    "officiality": "official",
+    "access_date": "2026-09-24"
+  },
+  "notes": "An Ecology-funded study measuring 29 beaver ponds across 12 complexes in the Columbia Basin found an average beaver dam stores about 1.1 million gallons (3.5 acre-feet) of surface water. An Olympic-size swimming pool (50m x 25m x 2m, the FINA-standard competition volume) holds approximately 660,000 US gallons -- a widely cited standard conversion, included here for scale, not as a government-sourced figure.",
+  "points": [
+    {"label": "One beaver dam", "value": 1.1},
+    {"label": "An Olympic pool", "value": 0.66}
+  ]
+}

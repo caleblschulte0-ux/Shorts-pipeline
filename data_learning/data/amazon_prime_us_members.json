@@ -1,0 +1,19 @@
+{
+  "key": "amazon_prime_us_members",
+  "title": "Amazon Prime US members (millions)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2015 vs 2024",
+  "source": {
+    "name": "Amazon Prime US membership tracking",
+    "publisher": "Consumer Intelligence Research Partners (CIRP)",
+    "url": "https://www.nbcnews.com/tech/tech-news/amazon-prime-now-has-54-million-u-s-members-report-n505216",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "CIRP counts everyone in a household with access to a Prime membership, not just the paying subscriber. 2015 figure (54 million) reported by NBC News; 2024 figure (180 million, as of March 2024) reported by Bloomberg/Yahoo Finance covering the same CIRP tracking series (https://finance.yahoo.com/news/amazon-prime-memberships-us-gain-175715711.html).",
+  "points": [
+    {"label": "2015", "value": 54, "period": "2015"},
+    {"label": "2024", "value": 180, "period": "2024"}
+  ]
+}
