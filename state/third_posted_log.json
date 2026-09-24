@@ -8908,6 +8908,24 @@
       "rejected_by": "qa",
       "rejected_why": "vision: From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l; vision: Sharp region across most of the clip is a thin, low-contrast strip rather than filling ~3/4 of the canvas \u2014 the subject ; vision: 3.6s frame is a near-blank dark/",
       "ts": "2026-09-24T15:56:58.967722+00:00"
+    },
+    "rejected-smoggygenerousfriseefungineer-mgf7bkvecn5ff9mk": {
+      "source_url": "https://www.twitch.tv/agent00/clip/SmoggyGenerousFriseeFUNgineer-MgF7bKVEcN5fF9MK",
+      "streamer": "agent00",
+      "title": "Agent confirms Emily is a gamer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (casual chat, no visible event)",
+      "ts": "2026-09-24T17:35:50.668182+00:00"
+    },
+    "rejected-expensivevastherringampenergycherry-dgof6gem8khgtomp": {
+      "source_url": "https://www.twitch.tv/silky/clip/ExpensiveVastHerringAMPEnergyCherry-DGOf6gem8KhgtOmp",
+      "streamer": "silky",
+      "title": "Silky Becomes The Driver For 'Lazer Airlines'",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp in-focus picture fills only roughly a third of the canvas height instead of the ~three-quarters target \u2014 the crop ; vision: In the 10.1s-13.2s segment the subject (backpack, walking away, back to camera) is small and far within that already-thi; vision: Caption text ('a black truck', '",
+      "ts": "2026-09-24T17:39:49.410082+00:00"
     }
   }
 }
