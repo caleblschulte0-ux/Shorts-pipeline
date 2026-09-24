@@ -1,5 +1,5 @@
 """OpenRangeInteractive sleep films — an EPISODE script to a finished
-two-hour 1920x1080 video.
+20-30 minute 1920x1080 video.
 
 WHY THIS FORMAT (operator, 2026-09-23). *"the niche we really want to lean
 into ... is like that going to sleep niche ... I put this on, turn my phone
@@ -61,11 +61,12 @@ SENTENCE_GAP = 0.7           # a breath between sentences — sleep narration is
 BEAT_GAP = 1.9               # a longer rest when the picture changes
 CHAPTER_GAP = 6.0            # music alone between chapters
 XFADE = 1.2                  # scenes dissolve into each other; nothing cuts
-MIN_WORDS, MAX_WORDS = 11000, 16000     # ~85 minutes to ~2 hours at this pace
+MIN_WORDS, MAX_WORDS = 2400, 4000       # ~18 to ~30 minutes at this pace
 # Measured in CI, 2026-09-24 (run #15): 19,611 words narrated to 149.1 min —
-# 131 words a minute WITH the gaps — and that film could not be drawn and
-# judged inside the render slot. 16,000 is ~2h02; the author aims lower.
-MIN_CHAPTERS, MAX_CHAPTERS = 8, 20
+# 131 words a minute WITH the gaps. The operator's ruling that evening, on
+# the 114-minute medieval film: "114 Mins is to long shoot for like 20-30
+# mins". 4,000 words is ~30 minutes; the author aims at 25.
+MIN_CHAPTERS, MAX_CHAPTERS = 3, 8
 BEAT_WORDS = (20, 190)
 TITLE_MAX = 100
 MUSIC_GAIN = 0.55            # after the bed's own -24 LUFS: ~10 dB under the voice

@@ -2,9 +2,9 @@
 """Write the next OpenRangeInteractive SLEEP FILM script.
 
 Keeps `data_learning/ori_episodes/` stocked so the weekly film never stops
-for want of a script. A two-hour script (~14,500 words) is not one answer, so
+for want of a script. A 25-minute script (~3,300 words) is not one answer, so
 it is written the way a person would write it: an OUTLINE first (title,
-thumbnail, era, 10-13 chapters with what each covers), then EACH CHAPTER in
+thumbnail, era, 4-6 chapters with what each covers), then EACH CHAPTER in
 its own call, told what came before so the story flows. Every chapter is run
 through the same scene and length checks the renderer uses
 (`ori_sleep.validate`, `doodle.scene.validate`) and sent back ONCE with the
@@ -45,7 +45,7 @@ os.environ.setdefault("CLAUDE_CLI_TIMEOUT", "600")
 SUFFIX = "Cozy History for Sleep"
 
 SYSTEM = """You write narration for OpenRangeInteractive, a YouTube channel of \
-two-hour history stories people fall asleep to. The voice is warm, slow and \
+20-30 minute history stories people fall asleep to. The voice is warm, slow and \
 gentle; the listener is lying in the dark, often not watching. Every passage \
 you write is shown as a simple hand-drawn cartoon scene that YOU describe in a \
 fixed vocabulary. Return ONLY one JSON object, no prose, no code fences."""
@@ -113,7 +113,7 @@ def _ask(system: str, user: str) -> str:
     """The brain chain without the mailbox (see module docstring)."""
     from shared import script_generator as sg
     errs = []
-    # the strongest writer first: a two-hour story is not a caption
+    # the strongest writer first: a half-hour story is not a caption
     order = {"claude_cli": 0, "anthropic": 1, "gemini": 2, "groq": 3}
     chain = sorted((c for c in sg._LLM_CHAIN if c[0] in order), key=lambda c: order[c[0]])
     for name, env, call in chain:
@@ -181,8 +181,11 @@ def _outline_problems(o: dict, era: str) -> list[str]:
 # in the 230-minute step. So: a word target for the whole film, chapter
 # bounds derived from the chapter count, and a hard cap per chapter that
 # keeps the total under OS.MAX_WORDS whatever the brain does.
-TARGET_WORDS = 14500       # ~110 minutes at the measured 131 words a minute
-CHAPTERS = (10, 13)
+# The operator, 2026-09-24, on the 114-minute medieval film: "114 Mins is
+# to long shoot for like 20-30 mins". 3,300 words is ~25 minutes at the
+# measured 131 words a minute.
+TARGET_WORDS = 3300
+CHAPTERS = (4, 6)
 
 
 def chapter_words(n: int) -> tuple[int, int, int, int]:
@@ -190,9 +193,9 @@ def chapter_words(n: int) -> tuple[int, int, int, int]:
     the brain is asked for, and the bounds a chapter is held to."""
     target = TARGET_WORDS // max(1, n)
     cap = OS.MAX_WORDS // max(1, n)
-    ask_lo = max(700, target - 150)
-    ask_hi = min(1400, target + 150, cap - 50)
-    return ask_lo, ask_hi, max(600, ask_lo - 100), min(cap, ask_hi + 150)
+    ask_lo = max(350, target - 100)
+    ask_hi = min(900, target + 100, cap - 30)
+    return ask_lo, ask_hi, max(300, ask_lo - 60), min(cap, ask_hi + 100)
 
 
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot

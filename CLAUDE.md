@@ -264,8 +264,9 @@ and the takeover went on asking for a retired format with everything green.
   on 2026-08-06 — long-form was three days from uploading a video the
   2026-08-05 ruling had switched off everywhere except that one file.
 - **OpenRangeInteractive (curiosity) publishes SLEEP FILMS** (2026-09-23,
-  `docs/ORI_DOCUMENTARY.md`): one two-hour history story a week to fall
-  asleep to, every frame drawn by code in the hand-drawn cartoon look the
+  `docs/ORI_DOCUMENTARY.md`): one 20-30 minute history story a week to fall
+  asleep to (his words, 2026-09-24, on a 114-minute film: *"114 Mins is to
+  long shoot for like 20-30 mins"*), every frame drawn by code in the hand-drawn cartoon look the
   operator pointed at (`data_learning/doodle`), fail-closed behind the
   showrunner. Scripts live in `data_learning/ori_episodes/`, written by
   `scripts/ori_author.py`; `scripts/post_ori.py` publishes. Every scene

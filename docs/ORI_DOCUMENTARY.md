@@ -1,8 +1,10 @@
 # OpenRangeInteractive — the sleep films
 
 **What ships:** once a week (`curiosity.yml`, Friday 19:00 UTC, plus
-`clock.yml` re-firing a missed slot), one **two-hour** 1920x1080 history
-story to fall asleep to, drawn entirely by code in a hand-drawn cartoon
+`clock.yml` re-firing a missed slot), one **20-30 minute** 1920x1080 history
+story to fall asleep to (the operator, 2026-09-24, on the 114-minute
+medieval film: *"114 Mins is to long shoot for like 20-30 mins"*; it was
+two hours until then), drawn entirely by code in a hand-drawn cartoon
 style, uploaded to the OpenRangeInteractive channel **only if the
 fail-closed showrunner passes it**.
 
@@ -473,6 +475,15 @@ only as a hand edit is not a rule. So:
   then the film rules — runs on every script before it is rendered, so a
   script written under yesterday's rules is brought to today's in code:
   the medieval script took 18 such repairs, the stone-age one none.
+
+- **20-30 minutes, not two hours** (his words, 2026-09-24 evening, on the
+  114-minute film: *"114 Mins is to long shoot for like 20-30 mins"*).
+  `TARGET_WORDS` 3,300 (~25 min at the measured pace), 4-6 chapters,
+  `MIN_WORDS`/`MAX_WORDS` 2,400-4,000, 3-8 chapters at the renderer. The
+  Roman run in flight (a 114-minute film) was cancelled and redispatched at
+  the new length; the two two-hour scripts left the shelf. The whole loop
+  is a quarter the size now: a run should author in ~20 min, board in a
+  few, narrate in ~10, draw in ~20 and judge inside the hour.
 
 ## Any topic: the era is found or the refusal is honest
 
