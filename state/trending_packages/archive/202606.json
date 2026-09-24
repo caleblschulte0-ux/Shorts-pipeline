@@ -15880,5 +15880,603 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260625": {
+    "01_gracie-giraffe-escape-texas.json": {
+      "version": 1,
+      "slug": "gracie-giraffe-escape-texas",
+      "title": "A Giraffe Named Gracie Escaped a Texas Ranch \u2014 and Vanished",
+      "hashtags": [
+        "giraffe",
+        "gracie",
+        "texas",
+        "escapedanimal",
+        "ontheloose",
+        "realcounty",
+        "wildlife",
+        "oddnews",
+        "animals",
+        "manhunt",
+        "fyp",
+        "viral"
+      ],
+      "script": "A giraffe is loose? In Real County, Texas, a giraffe named Gracie strolled right off a ranch \u2014 and now authorities are asking the public to help find a 14-foot animal that is somehow hiding in plain sight. Think about how absurd that search is. You can't exactly tuck a giraffe behind a bush. Officials are warning people: do not chase her, do not corner her, just call it in if you spot that long neck over the treeline. A spooked giraffe can run 30 miles an hour and kick hard enough to kill a lion. So somewhere in the Texas hill country, the tallest fugitive alive is on the run. How do you even lose a giraffe in the first place?",
+      "shots": [
+        {
+          "phrase": "A giraffe is loose",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "a giraffe named Gracie strolled right off a ranch",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe ranch",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "help find a 14-foot animal",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe full body",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "tuck a giraffe behind a bush",
+          "query": "texas hill country brush",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "do not chase her, do not corner her",
+          "query": "sheriff search",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "that long neck over the treeline",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe neck trees",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "can run 30 miles an hour",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe running",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "the tallest fugitive alive is on the run",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe walking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How do you even lose a giraffe",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Giraffe-closeup-head.jpg",
+          "query": "giraffe",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A giraffe is loose",
+          "text": "GIRAFFE LOOSE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "named Gracie",
+          "text": "GRACIE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "14-foot animal",
+          "text": "14 FEET",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "30 miles an hour",
+          "text": "30 MPH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "tallest fugitive alive",
+          "text": "ON THE RUN",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_two-million-bees-semi-texas.json": {
+      "version": 1,
+      "slug": "two-million-bees-semi-texas",
+      "title": "A Truck Flipped and Released 2 Million Bees Onto a Texas Road",
+      "hashtags": [
+        "bees",
+        "texas",
+        "swarm",
+        "honeybees",
+        "truckcrash",
+        "oddnews",
+        "beekeeper",
+        "stayindoors",
+        "insects",
+        "caughtoncamera",
+        "fyp",
+        "viral"
+      ],
+      "script": "2 million bees loose? In Texas, a semi truck hauling beehives flipped on a highway and unleashed an estimated two million honeybees into the open air at once. Police did the only sane thing and told everyone nearby to stay indoors, windows shut, while the air itself turned into a living, buzzing cloud. Beekeepers in full suits rushed in to corral the swarm before it scattered for good. One wrong move near two million stressed-out bees is a trip to the hospital. Picture a traffic jam where the hazard isn't cars \u2014 it's a stinging fog you can't drive through. So what do you even do when the road is full of two million angry bees?",
+      "shots": [
+        {
+          "phrase": "2 million bees loose",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "bee swarm",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "a semi truck hauling beehives flipped on a highway",
+          "query": "overturned semi truck",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "two million honeybees into the open air",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "honeybee swarm sky",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "told everyone nearby to stay indoors",
+          "query": "police road closure",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the air itself turned into a living, buzzing cloud",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "swarm of bees",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Beekeepers in full suits rushed in",
+          "query": "beekeeper suit",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "near two million stressed-out bees",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "angry bees closeup",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a stinging fog you can't drive through",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "bee swarm road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the road is full of two million angry bees",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_Bees_Swarm_%288159050858%29.jpg",
+          "query": "bees",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "2 million bees loose",
+          "text": "2,000,000 BEES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "flipped on a highway",
+          "text": "TRUCK FLIPPED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "stay indoors",
+          "text": "STAY INSIDE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "trip to the hospital",
+          "text": "DON'T MOVE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "two million angry bees",
+          "text": "ANGRY SWARM",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_skateboard-california-florida-record.json": {
+      "version": 1,
+      "slug": "skateboard-california-florida-record",
+      "title": "He Skateboarded From California to Florida in 39 Days",
+      "hashtags": [
+        "skateboard",
+        "worldrecord",
+        "guinnessworldrecord",
+        "endurance",
+        "skateboarding",
+        "crosscountry",
+        "record",
+        "longboard",
+        "insane",
+        "fyp",
+        "viral",
+        "challenge"
+      ],
+      "script": "Skateboarding across America? One guy just rode a skateboard from California all the way to Florida \u2014 roughly 3,000 miles \u2014 in 39 days, chasing his own Guinness World Record. Do the math: that's pushing a skateboard the length of a country, every single day, on highways, through heat, on a board the size of a cutting board. His feet did what most people's cars do on a road trip. By the end he'd worn through wheels, dodged traffic, and turned a kid's toy into an endurance machine. Most of us can't skate to the corner store without eating pavement. So could you push a skateboard 3,000 miles without quitting on day one?",
+      "shots": [
+        {
+          "phrase": "Skateboarding across America",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboarder",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "rode a skateboard from California",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboard road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "roughly 3,000 miles",
+          "query": "usa map route",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "in 39 days",
+          "query": "calendar days",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "on a board the size of a cutting board",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboard deck",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "worn through wheels, dodged traffic",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboard wheels",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "turned a kid's toy into an endurance machine",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboarder highway",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "could you push a skateboard 3,000 miles",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skateboarding_kickflip.jpg",
+          "query": "skateboarder",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Skateboarding across America",
+          "text": "3,000 MILES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "in 39 days",
+          "text": "39 DAYS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "World Record",
+          "text": "WORLD RECORD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "endurance machine",
+          "text": "NONSTOP",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "without quitting on day one",
+          "text": "COULD YOU?",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "04_seattle-dim-sum-world-record.json": {
+      "version": 1,
+      "slug": "seattle-dim-sum-world-record",
+      "title": "830 People Ate Dim Sum Together and Broke a World Record",
+      "hashtags": [
+        "dimsum",
+        "seattle",
+        "worldrecord",
+        "guinnessworldrecord",
+        "food",
+        "dumplings",
+        "record",
+        "foodie",
+        "chinatown",
+        "brunch",
+        "fyp",
+        "viral"
+      ],
+      "script": "830 people, one brunch? In Seattle, a single neighborhood packed 830 people around tables to eat dim sum at the same time \u2014 and smashed a Guinness World Record for the largest dim sum gathering ever. Picture it: hundreds of bamboo steamers, clouds of dumpling steam, 830 pairs of chopsticks moving at once. Judges had to actually count every seated eater and verify everyone was served the real thing \u2014 no empty baskets allowed. It's part block party, part world record, part the best-smelling crowd on earth. Somehow nobody fought over the last shrimp dumpling. So how do you even feed 830 people dim sum before it goes cold?",
+      "shots": [
+        {
+          "phrase": "830 people, one brunch",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "dim sum table",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "packed 830 people around tables",
+          "query": "large crowd banquet",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "eat dim sum at the same time",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "dim sum",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "hundreds of bamboo steamers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "bamboo steamer dumplings",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "clouds of dumpling steam",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "steaming dumplings",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "count every seated eater",
+          "query": "banquet hall crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the best-smelling crowd on earth",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "dim sum feast",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "feed 830 people dim sum before it goes cold",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dim_Sum_Breakfast.jpg",
+          "query": "dim sum",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "830 people, one brunch",
+          "text": "830 PEOPLE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Guinness World Record",
+          "text": "WORLD RECORD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "largest dim sum gathering",
+          "text": "BIGGEST EVER",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "last shrimp dumpling",
+          "text": "LAST ONE!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "before it goes cold",
+          "text": "STILL HOT?",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_tennessee-woman-500k-scratch-off.json": {
+      "version": 1,
+      "slug": "tennessee-woman-500k-scratch-off",
+      "title": "She Stopped for Gas and Left With $500,000",
+      "hashtags": [
+        "lottery",
+        "scratchoff",
+        "winner",
+        "jackpot",
+        "tennessee",
+        "ohio",
+        "luck",
+        "500000",
+        "gasstation",
+        "oddnews",
+        "fyp",
+        "viral"
+      ],
+      "script": "$500,000 from a detour? A Tennessee woman pulled off at an Ohio gas station on her way to a family reunion, grabbed a scratch-off on a whim, and walked out half a million dollars richer. One random stop. One impulse ticket. A 500,000 dollar payout. She wasn't even supposed to be there \u2014 the reunion was the plan; the jackpot was an accident. Most people scratch those tickets and win enough for another ticket. She scratched hers and won a house. Imagine explaining to your family why you're late: you stopped for gas and became rich. So would you have even bought the ticket?",
+      "shots": [
+        {
+          "phrase": "$500,000 from a detour",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lottery_ticket_of_the_Northern_lottery_in_Vietnam.jpg",
+          "query": "scratch off lottery ticket",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "pulled off at an Ohio gas station",
+          "query": "gas station",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "grabbed a scratch-off on a whim",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lottery_ticket_of_the_Northern_lottery_in_Vietnam.jpg",
+          "query": "lottery ticket",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A 500,000 dollar payout",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lottery_ticket_of_the_Northern_lottery_in_Vietnam.jpg",
+          "query": "lottery jackpot",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "the jackpot was an accident",
+          "query": "family reunion",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "She scratched hers and won a house",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lottery_ticket_of_the_Northern_lottery_in_Vietnam.jpg",
+          "query": "scratch ticket coin",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "you stopped for gas and became rich",
+          "query": "gas pump",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "would you have even bought the ticket",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lottery_ticket_of_the_Northern_lottery_in_Vietnam.jpg",
+          "query": "lottery ticket",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "$500,000 from a detour",
+          "text": "$500,000",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "on a whim",
+          "text": "ONE WHIM",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "500,000 dollar payout",
+          "text": "HALF A MILLION",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "won a house",
+          "text": "WON A HOUSE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "became rich",
+          "text": "INSTANT RICH",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "06_huntley-illinois-tornado-chicago.json": {
+      "version": 1,
+      "slug": "huntley-illinois-tornado-chicago",
+      "title": "A Tornado Touched Down in the Chicago Suburbs",
+      "hashtags": [
+        "tornado",
+        "chicago",
+        "illinois",
+        "huntley",
+        "severeweather",
+        "storm",
+        "weather",
+        "funnelcloud",
+        "breaking",
+        "midwest",
+        "fyp",
+        "viral"
+      ],
+      "script": "A tornado near Chicago? Storms tore across the Chicago suburbs this week, and near Huntley, Illinois a funnel actually touched down \u2014 video caught debris getting ripped up and spun through the air. Towns like Streamwood, Bartlett, and Hanover Park got hammered with straight-line winds that snapped trees and tore off roofs. This is the part of a storm where seconds matter: the sky goes still, then green, then the wind hits like a wall. Forecasters had warned people to get to a basement and stay there. A tornado in the suburbs doesn't care about your fence or your car. So when the funnel is half a mile away, where do you actually go?",
+      "shots": [
+        {
+          "phrase": "A tornado near Chicago",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+          "query": "tornado funnel",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Storms tore across the Chicago suburbs",
+          "query": "storm clouds suburb",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a funnel actually touched down",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+          "query": "tornado touchdown",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "debris getting ripped up and spun through the air",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+          "query": "tornado debris",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "straight-line winds that snapped trees",
+          "query": "storm damage trees",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the sky goes still, then green",
+          "query": "green storm sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the wind hits like a wall",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+          "query": "tornado wind",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "get to a basement and stay there",
+          "query": "storm shelter basement",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "where do you actually go",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/F5_tornado_Elie_Manitoba_2007.jpg",
+          "query": "tornado",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A tornado near Chicago",
+          "text": "TORNADO!",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a funnel actually touched down",
+          "text": "TOUCHDOWN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "snapped trees and tore off roofs",
+          "text": "DESTRUCTION",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "seconds matter",
+          "text": "SECONDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "get to a basement",
+          "text": "TAKE COVER",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    }
   }
 }

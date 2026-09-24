@@ -1,16 +1,16 @@
 [
   {
-    "topic": "SpaceX Now Out-Launches Every Other Country",
-    "title": "SpaceX Now Out-Launches Every Other Country",
+    "topic": "Nvidia Overtook Apple In Market Value",
+    "title": "Nvidia Overtook Apple In Market Value",
     "format": "graph_race",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "publish_at": "2026-09-24T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 65.8,
-    "package_path": "state/trending_packages/20260923/01_spacex-out-launches-the-world.json",
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable crossover race with a real payoff (Nvidia overtakes in 2024), but the hook is a slow 2016 build and one end label is crossed by its own line.",
+    "elapsed_seconds": 106.2,
+    "package_path": "state/trending_packages/20260924/01_nvidia-passed-apple-market-cap.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-152914_spacex_now_out_launches_every_other_coun.mp4",
+    "video_path": "output/daily_20260924-112202_nvidia_overtook_apple_in_market_value.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +28,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: A clean, readable crossover race with a real payoff (Nvidia overtakes in 2024), but the hook is a slow 2016 build and one end label is crossed by its own line.",
+      "score": 78
     },
     "blocked": true
   },
   {
-    "topic": "India Just Passed Japan In GDP",
-    "title": "India Just Passed Japan In GDP",
+    "topic": "Bitcoin And Silver Keep Trading The Lead",
+    "title": "Bitcoin And Silver Keep Trading The Lead",
     "format": "graph_race",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "publish_at": "2026-09-24T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race builds well but the payoff (India overtaking Japan) is unreadable: the flags and labels pile on top of each other right at the crossover.",
-    "elapsed_seconds": 84.2,
-    "package_path": "state/trending_packages/20260923/02_india-passed-japan-gdp.json",
+    "error": "showrunner_block: showrunner BLOCK: The title promises the lead keeps changing hands, but silver stays #1 in every frame. The payoff contradicts the hook.",
+    "elapsed_seconds": 103.1,
+    "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-153020_india_just_passed_japan_in_gdp.mp4",
+    "video_path": "output/daily_20260924-112348_bitcoin_and_silver_keep_trading_the_lead.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,23 +62,57 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The race builds well but the payoff (India overtaking Japan) is unreadable: the flags and labels pile on top of each other right at the crossover.",
-      "score": 66
+      "reason": "showrunner BLOCK: The title promises the lead keeps changing hands, but silver stays #1 in every frame. The payoff contradicts the hook.",
+      "score": 61
     },
     "blocked": true
   },
   {
-    "topic": "BYD Passed Tesla In Global EV Sales",
-    "title": "BYD Passed Tesla In Global EV Sales",
+    "topic": "US Oil Production Passed Saudi Arabia's",
+    "title": "US Oil Production Passed Saudi Arabia's",
     "format": "graph_race",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "publish_at": "2026-09-24T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 56 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=12.04s of 14.38s (~2.3s frozen)",
-    "elapsed_seconds": 64.3,
-    "package_path": "state/trending_packages/20260923/03_byd-passed-tesla-ev-sales.json",
+    "error": "showrunner_block: showrunner BLOCK: This is a clean, readable race chart that lands the crossover story, but the key 2016 crossing frame stacks both labels and flags on top of each other.",
+    "elapsed_seconds": 101.9,
+    "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-153144_byd_passed_tesla_in_global_ev_sales.mp4",
+    "video_path": "output/daily_20260924-112532_us_oil_production_passed_saudi_arabia_s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a clean, readable race chart that lands the crossover story, but the key 2016 crossing frame stacks both labels and flags on top of each other.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Obesity Passed Underweight Worldwide",
+    "title": "Obesity Passed Underweight Worldwide",
+    "format": "graph_race",
+    "publish_at": "2026-09-24T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/cwfIQwqJ164",
+    "error": null,
+    "elapsed_seconds": 105.6,
+    "package_path": "state/trending_packages/20260924/04_obesity-passed-underweight-worldwide.json",
+    "source": "brain",
+    "video_path": "output/daily_20260924-112713_obesity_passed_underweight_worldwide.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,61 +129,40 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: max_dup_run 56 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=12.04s of 14.38s (~2.3s frozen)",
-      "score": 5
+      "blocked": false,
+      "reason": "",
+      "score": 74
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "Non-Religious Americans Just Passed Catholics",
-    "title": "Non-Religious Americans Just Passed Catholics",
-    "format": "graph_race",
-    "publish_at": "2026-09-23T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.512 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 66.8,
-    "package_path": "state/trending_packages/20260923/04_nones-passed-catholics.json",
-    "source": "brain",
-    "video_path": "output/daily_20260923-153248_non_religious_americans_just_passed_cath.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.512 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Faked A Fourth Excuse. I Had The Paperwork.",
-    "title": "She Faked A Fourth Excuse. I Had The Paperwork.",
+    "topic": "He Wanted Every Minute Logged. So I Logged His.",
+    "title": "He Wanted Every Minute Logged. So I Logged His.",
     "format": "reddit",
-    "publish_at": "2026-09-23T16:00:00Z",
+    "publish_at": "2026-09-24T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Gameplay under captions with no story illustrations; the middle goes caption-less and near-black (mid2), and mid3's caption overlaps itself.",
-    "elapsed_seconds": 441.7,
-    "package_path": "state/trending_packages/20260923/05_allergy-excuse-fundraiser-fraud.json",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['convinced the team was stealing company time', 'logging every swipe and every fifteen-minute lunch', 'payroll ran a companywide punctuality report', 'clocked my manager arriving forty minutes late', 'slipping out early every Friday for his gym class', \"HR didn't need my testimony, just the export\", 'the first person written up under his own policy']",
+    "elapsed_seconds": 31.6,
+    "package_path": "state/trending_packages/20260924/05_time-tracking-app-catches-the-boss.json",
     "source": "brain",
-    "video_path": "output/daily_20260923-153356_she_faked_a_fourth_excuse__i_had_the_pap.mp4",
+    "quarantined": true
+  },
+  {
+    "topic": "She Screamed To Get Me Fired. I Audit This Store.",
+    "title": "She Screamed To Get Me Fired. I Audit This Store.",
+    "format": "reddit",
+    "publish_at": "2026-09-24T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/wljnpkxUY1M",
+    "error": null,
+    "elapsed_seconds": 221.5,
+    "package_path": "state/trending_packages/20260924/06_mystery-auditor-mistaken-for-staff.json",
+    "source": "brain",
+    "video_path": "output/daily_20260924-112934_she_screamed_to_get_me_fired__i_audit_th.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.733,
+      "duration": 50.233,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,64 +173,121 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.6
+      "loudness_lufs": -22.5
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Brown bear caught on camera at Kolsay Lakes National Park - Qazinform",
+    "angle": "A massive brown bear wanders onto a popular trail, startling hikers and sparking immediate safety warnings.",
+    "publish_at": "2026-09-24T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable Reddit-story render, but the story beats are only narrated over generic Minecraft gameplay with no illustration of the croissant, the manager or the promotion.",
+    "elapsed_seconds": 228.2,
+    "title": "I Stole a Croissant, Got a Raise",
+    "package_path": "state/trending_packages/20260924-113324_auto_brown_bear_caught_on_camera_at_kolsay_la.json",
+    "video_path": "output/daily_20260924-113324_brown_bear_caught_on_camera_at_kolsay_la.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.467,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Gameplay under captions with no story illustrations; the middle goes caption-less and near-black (mid2), and mid3's caption overlaps itself.",
-      "score": 57
+      "reason": "showrunner BLOCK: A clean, readable Reddit-story render, but the story beats are only narrated over generic Minecraft gameplay with no illustration of the croissant, the manager or the promotion.",
+      "score": 61
     },
-    "blocked": true
+    "blocked": true,
+    "backfill": true
   },
   {
-    "topic": "pltr",
-    "angle": null,
-    "publish_at": "2026-09-23T16:00:00Z",
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "A rare Blanding's turtle uses a brand\u2011new wildlife tunnel, highlighting a creative fix for road\u2011kill hotspots.",
+    "publish_at": "2026-09-24T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['camera feed', 'shared drive', 'locked out of payroll', 'alarm system reset', 'screaming that nothing worked', 'begging the owner to restore']",
-    "elapsed_seconds": 159.8,
-    "title": "I gave my control-obsessed manager exactly what she asked for",
-    "package_path": "state/trending_packages/20260923-154508_auto_pltr.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['free latte', 'ruin my shift', 'slipped a note', 'manager\u2019s direct line', 'called the manager']",
+    "elapsed_seconds": 27.0,
+    "title": "I Gave a Free Latte to a Threatening Customer and Got a Tip",
+    "package_path": "state/trending_packages/20260924-113712_auto_endangered_blanding_s_turtle_caught_on_c.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "meat recall",
-    "angle": null,
-    "publish_at": "2026-09-23T17:30:00Z",
+    "topic": "A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret",
+    "angle": "Scientists found a fossilized blood\u2011vessel network in a T.\u202frex rib, offering a glimpse into dinosaur physiology.",
+    "publish_at": "2026-09-24T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'meat recall' refused by the writer: the trend is a USDA Class I recall over mislabeled meat tied to real risk of serious illness or death, which falls under the banned disaster/illness seed catego",
-    "elapsed_seconds": 38.0,
-    "unfit": true,
+    "error": "showrunner_block: showrunner BLOCK: The story ends on a half-sentence ('ONLY THING THEY') and a captionless lava frame. It is 44s of generic parkour gameplay with no illustration of any beat.",
+    "elapsed_seconds": 158.2,
+    "title": "I Served a Customer Who Said My Coffee Was Poisoned and Got Sweet Revenge",
+    "package_path": "state/trending_packages/20260924-113741_auto_a_broken_rib_from_the_world_s_largest_t_.json",
+    "video_path": "output/daily_20260924-113741_a_broken_rib_from_the_world_s_largest_t_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.833,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story ends on a half-sentence ('ONLY THING THEY') and a captionless lava frame. It is 44s of generic parkour gameplay with no illustration of any beat.",
+      "score": 57
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "micron stock price",
-    "angle": null,
-    "publish_at": "2026-09-23T19:00:00Z",
+    "topic": "'Pok\u00e9 Theft' Masked men caught on camera stealing $15k from new Stokesdale shop - wfmynews2.com",
+    "angle": "Masked thieves swiped $15,000 worth of Pok\u00e9mon merchandise on camera, turning a hobby shop into a crime scene.",
+    "publish_at": "2026-09-24T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 5 column 3 (char 1148)",
-    "elapsed_seconds": 36.2,
-    "backfill": true
-  },
-  {
-    "topic": "you can see everything",
-    "angle": null,
-    "publish_at": "2026-09-23T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['making a documentary about rude employees', 'give her whatever she asks for', 'rang up the 500 dollar model', 'wrapped it in a garbage bag', 'called the store voicemail', 'screaming into a dead line', 'camera still rolling']",
-    "elapsed_seconds": 132.2,
-    "title": "I Gave The Documentary Customer Exactly What She Asked",
-    "package_path": "state/trending_packages/20260923-154831_auto_you_can_see_everything.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['swipe a $12', 'my secret plan', \"register's loud beep\", \"manager's stunned face\", 'complimentary muffins']",
+    "elapsed_seconds": 29.3,
+    "title": "I Made the Entitled Patron Pay for the Whole Diner",
+    "package_path": "state/trending_packages/20260924-114019_auto__pok\u00e9_theft__masked_men_caught_on_camera.json",
     "quarantined": true,
     "backfill": true
   }

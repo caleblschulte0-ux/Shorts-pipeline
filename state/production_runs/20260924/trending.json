@@ -1,0 +1,23 @@
+{
+  "date": "20260924",
+  "channel": "trending",
+  "schema": "production-channel-outcome/v1",
+  "expected": 6,
+  "previously_uploaded": 0,
+  "rendered_or_attempted": 10,
+  "uploaded": 2,
+  "quarantined": 3,
+  "failed": 5,
+  "failed_by_stage": {
+    "showrunner_block": 5
+  },
+  "failed_by_format": {
+    "graph_race": 3,
+    "unknown": 2
+  },
+  "status": "repair_required",
+  "video_urls": [
+    "https://youtube.com/shorts/cwfIQwqJ164",
+    "https://youtube.com/shorts/wljnpkxUY1M"
+  ]
+}
