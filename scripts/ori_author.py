@@ -80,6 +80,9 @@ single scene shown while it is spoken. Return:
 {{"beats": [{{"say": "80-140 words of narration", "scene": SCENE}}]}}
 
 NARRATION RULES — a chapter that breaks one is thrown away:
+- The words choose the picture: each beat's narration says WHERE it is (inside a
+  home, the square, the river, the grove...) and the scene matches it; the chapter
+  visits several places, and a passage about the street is drawn in the street.
 - {words_lo}-{words_hi} words in the chapter. Slow, second-person, present tense
   where it suits ("You pull the fur closer..."), soft sensory detail, no drama,
   no cliffhangers, no jokes that jolt. Short, flowing sentences.
@@ -225,6 +228,15 @@ def _mark_beats(beats) -> list[int]:
     return out
 
 
+def _place_tally(chapters) -> dict:
+    out: dict = {}
+    for ch in chapters or []:
+        for b in (ch.get("beats") if isinstance(ch, dict) else None) or []:
+            if isinstance(b, dict) and isinstance(b.get("scene"), dict):
+                out[b["scene"].get("setting")] = out.get(b["scene"].get("setting"), 0) + 1
+    return out
+
+
 def _picture_tally(chapters) -> dict:
     """How often each (setting, shot) picture has been used so far."""
     tally = {}
@@ -251,10 +263,49 @@ def _tally_note(tally: dict, so_far: int) -> str:
             "for this chapter.")
 
 
-def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: bool = False) -> list[str]:
+def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: bool = False,
+                      final: bool = False) -> list[str]:
     if not isinstance(beats, list) or not beats:
         return ["no beats"]
     bad, total = [], 0
+    # the words decide the place (run #18's judge, see PLACE_WORDS)
+    for j, b in enumerate(beats):
+        if not isinstance(b, dict) or not isinstance(b.get("scene"), dict):
+            continue
+        cls = place_class(b.get("say", ""))
+        options = place_settings(cls, era)
+        if options and b["scene"].get("setting") not in options:
+            bad.append(f"beat {j + 1}: the words are about the {cls} but the picture is "
+                       f"{b['scene'].get('setting')}: use one of {', '.join(options)}")
+    # ...and inside a class the era draws with several settings, no one of
+    # them takes the lot: the indoor beats of a film alternate between the
+    # hut and the villa rather than all landing in the hut
+    if before is not None:
+        by_class: dict = {}
+        for ch in list(before) + [{"beats": beats}]:
+            for b in (ch.get("beats") if isinstance(ch, dict) else None) or []:
+                if isinstance(b, dict) and isinstance(b.get("scene"), dict):
+                    cls = place_class(b.get("say", ""))
+                    opts = place_settings(cls, era)
+                    if len(opts) > 1 and b["scene"].get("setting") in opts:
+                        by_class.setdefault(cls, []).append(b["scene"].get("setting"))
+        for cls, sts in by_class.items():
+            opts = place_settings(cls, era)
+            cap = -(-len(sts) // len(opts)) + 1
+            for name in set(sts):
+                if sts.count(name) > cap and name in {b["scene"].get("setting") for b in beats
+                                                        if isinstance(b, dict) and isinstance(b.get("scene"), dict)}:
+                    others = [o for o in opts if o != name]
+                    bad.append(f"{name} holds {sts.count(name)} of the film's {len(sts)} {cls} beats so far: "
+                               f"use {' or '.join(others)} for some of this chapter's")
+    # a sleep film ends in the dark: the last third of the last chapter is
+    # night (run #18's judge: "the ending brightens back to sunset instead
+    # of settling into night")
+    if final:
+        for j, b in enumerate(beats):
+            if j >= len(beats) - max(1, len(beats) // 3) and isinstance(b, dict) \
+                    and isinstance(b.get("scene"), dict) and b["scene"].get("time") != "night":
+                bad.append(f"beat {j + 1}: the film ends in deep night, not {b['scene'].get('time')}")
     if opening:
         # the hook: the film opens on a wide establishing picture of the place
         first = beats[0].get("scene") if isinstance(beats[0], dict) else None
@@ -311,7 +362,7 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
     if marks:
         places = [beats[j]["scene"].get("setting") for j in marks
                   if isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)]
-        if len(places) == 3 and len(set(places)) < 2:
+        if len(places) == 3 and len(set(places)) < 2 and not all(_pinned_single(beats[j], era) for j in marks):
             bad.append(f"the chapter stands in {places[0]} at its quarter, half and end (beats "
                        f"{', '.join(str(j + 1) for j in marks)}): a chapter moves — take one of those beats "
                        f"somewhere else")
@@ -337,7 +388,8 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
         prev_beats = prev.get("beats") or []
         last = prev_beats[-1].get("scene") if prev_beats and isinstance(prev_beats[-1], dict) else None
         first = beats[0].get("scene") if isinstance(beats[0], dict) else None
-        if isinstance(last, dict) and isinstance(first, dict) and last.get("setting") == first.get("setting"):
+        if (isinstance(last, dict) and isinstance(first, dict) and last.get("setting") == first.get("setting")
+                and not _pinned_single(beats[0], era)):
             bad.append(f"beat 1 opens in {first.get('setting')}, where the previous chapter closed: a new chapter "
                        f"opens on a new place")
         # the whole film, not just this chapter: the second film's judge
@@ -347,12 +399,24 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
         prior = _picture_tally(before)
         so_far = sum(prior.values())
         n_all = so_far + len(beats)
-        for k, n in looks.items():
-            total = prior.get(k, 0) + n
+        # the film-wide look cap counts only the beats the words did not
+        # place: a city film whose only city is the forum has forum beats
+        # in both shots, and the pair rule plus the chapter's own look
+        # share keep them varied
+        prior_free = _picture_tally([{"beats": [b for b in (ch.get("beats") if isinstance(ch, dict) else None) or []
+                                                if not _pinned_single(b, era)]} for ch in before])
+        looks_free: dict = {}
+        for b in beats:
+            sc_ = b.get("scene") if isinstance(b, dict) else None
+            if isinstance(sc_, dict) and not _pinned_single(b, era):
+                k_ = (sc_.get("setting"), S.shot_of(sc_))
+                looks_free[k_] = looks_free.get(k_, 0) + 1
+        for k, n in looks_free.items():
+            total = prior_free.get(k, 0) + n
             if total > int(FILM_LOOK_SHARE * n_all) + 1:
                 bad.append(f"{k[0]} ({k[1]} shot) would be {total} of the film's {n_all} "
                            f"pictures so far: use it for at most "
-                           f"{max(0, int(FILM_LOOK_SHARE * n_all) + 1 - prior.get(k, 0))} "
+                           f"{max(0, int(FILM_LOOK_SHARE * n_all) + 1 - prior_free.get(k, 0))} "
                            f"beats in this chapter")
         # ...and at the three judged moments of every chapter so far, no one
         # place holds more than MARK_SHARE: the cave mouth stood at the
@@ -363,9 +427,11 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
             bb = ch.get("beats") if isinstance(ch, dict) else None
             if isinstance(bb, list):
                 mark_places += [bb[j]["scene"].get("setting") for j in _mark_beats(bb)
-                                if isinstance(bb[j], dict) and isinstance(bb[j].get("scene"), dict)]
+                                if isinstance(bb[j], dict) and isinstance(bb[j].get("scene"), dict)
+                                and not _pinned_single(bb[j], era)]
         here = [beats[j]["scene"].get("setting") for j in _mark_beats(beats)
-                if isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)]
+                if isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)
+                and not _pinned_single(beats[j], era)]
         allm = mark_places + here
         for setting in set(here):
             n = allm.count(setting)
@@ -374,11 +440,16 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
                            f"(each chapter's quarter, half and end): use it at fewer of this chapter's "
                            f"(beats {', '.join(str(j + 1) for j in _mark_beats(beats))})")
         places_prior = {}
-        for (setting, _shot), n in prior.items():
-            places_prior[setting] = places_prior.get(setting, 0) + n
+        for ch in before:
+            for b in (ch.get("beats") if isinstance(ch, dict) else None) or []:
+                if isinstance(b, dict) and isinstance(b.get("scene"), dict) and not _pinned_single(b, era):
+                    st_ = b["scene"].get("setting")
+                    places_prior[st_] = places_prior.get(st_, 0) + 1
         places_here = {}
-        for (setting, _shot), n in looks.items():
-            places_here[setting] = places_here.get(setting, 0) + n
+        for b in beats:
+            if isinstance(b, dict) and isinstance(b.get("scene"), dict) and not _pinned_single(b, era):
+                st_ = b["scene"].get("setting")
+                places_here[st_] = places_here.get(st_, 0) + 1
         for setting, n in places_here.items():
             total = places_prior.get(setting, 0) + n
             if total > int(FILM_PLACE_SHARE * n_all) + 1:
@@ -458,7 +529,16 @@ def mend_scene(scene: dict, era: str) -> str | None:
         if pose not in P.POSES or pose not in P.ACTIONS[action]["poses"]:
             c["pose"] = P.ACTIONS[action]["poses"][0]
             did.append(f"pose {pose} -> {c['pose']} for {action}")
-    did += take_outdoors(scene, era)
+    did += take_outdoors(scene, era) + bring_indoors(scene, era)
+    if scene.get("setting") in PLACE_SETTINGS["city"]:
+        names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
+        if "campfire" in names and "brazier" in S.PROPS and era in S.PROPS["brazier"].eras and "brazier" not in names:
+            scene["props"] = [("brazier" if (q if isinstance(q, str) else q.get("name")) == "campfire" else q)
+                              for q in scene["props"]]
+            if S.validate(scene, era):
+                scene["props"] = [("campfire" if q == "brazier" else q) for q in scene["props"]]
+            else:
+                did.append("campfire -> brazier (a square)")
     bad = S.validate(scene, era)
     if not bad:
         return ", ".join(did) if did else None
@@ -480,8 +560,15 @@ def mend_scene(scene: dict, era: str) -> str | None:
         interior = bool(st and st.interior)
         # one light first, then two (a wide night needs a fire AND a torch);
         # a hearth is a fireplace, so it is never lit outdoors
-        order = ([["hearth"], ["candle"], ["oil_lamp"], ["stove"], ["campfire"], ["brazier"], ["torch"]]
+        urban = scene.get("setting") in PLACE_SETTINGS["city"]
+        order = ([["hearth"], ["brazier"], ["candle"], ["oil_lamp"], ["stove"], ["hearth", "candle"],
+                  ["brazier", "oil_lamp"]]
                  if interior else
+                 # a square is lit by torches and braziers (run #18's storyboard:
+                 # "a campfire sits in the lane", "a campfire in the road")
+                 [["brazier"], ["torch"], ["brazier", "torch"], ["torch", "brazier"], ["gas_lamp"],
+                  ["campfire"], ["campfire", "torch"]]
+                 if urban else
                  [["campfire"], ["torch"], ["brazier"], ["cauldron"], ["campfire", "torch"],
                   ["campfire", "cauldron"], ["brazier", "torch"]])
         names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props", [])]
@@ -702,17 +789,23 @@ def mend_idle(beats, era: str, log=print) -> int:
     return n
 
 
-def mend_beats(beats, era: str, log=print) -> int:
-    """mend_scene over a chapter's beats, then the crowd, then the idle;
-    returns how many scenes changed."""
+def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> int:
+    """mend_scene over a chapter's beats — the place the words name first,
+    the final chapter's night, then the scene, the crowd, the idle; returns
+    how many scenes changed."""
     n = 0
     if not isinstance(beats, list):
         return 0
     for j, b in enumerate(beats):
         if isinstance(b, dict) and isinstance(b.get("scene"), dict):
+            placed = mend_place(b, era, used=used)
+            night = None
+            if final and j >= len(beats) - max(1, len(beats) // 3) and b["scene"].get("time") != "night":
+                night = f"{b['scene'].get('time')} -> night (the film ends in the dark)"
+                b["scene"]["time"] = "night"
             did = mend_scene(b["scene"], era)
             crowd = uncrowd_scene(b["scene"], era, seeds=(1000 + j,))
-            did = ", ".join(x for x in (did, crowd) if x)
+            did = ", ".join(x for x in (placed, night, did, crowd) if x)
             if did:
                 n += 1
                 log(f"[ori_author] mended beat {j + 1}: {did}")
@@ -805,8 +898,9 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                      "Its FIRST beat is a wide establishing shot of the place (shot \"wide\"), "
                      "with the title drawn over it — the picture the film opens on.")
         final = ("- This is the LAST chapter: let the night grow deep and quiet, and end "
-                 "with the people asleep and the listener invited to sleep too. Its last "
-                 "outdoor scenes use time \"dawn\" — the sky pales as the film ends."
+                 "with the people asleep and the listener invited to sleep too. Every scene "
+                 "in its last third is time \"night\" — the film ends in the dark and never "
+                 "brightens toward morning."
                  if i == len(chs) - 1 else "")
         tally = _picture_tally(out_chapters)
         final = "\n".join(x for x in (final, _tally_note(tally, sum(tally.values()))) if x)
@@ -818,10 +912,11 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                 final=final, vocab=vocab, problems=pr),
             lambda r, before=before, i=i: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
                                                             check_lo, check_hi, before=before,
-                                                            opening=(i == 0)),
+                                                            opening=(i == 0), final=(i == len(chs) - 1)),
             ask, f"{topic!r} chapter {i + 1}",
             mend=lambda r, before=before, i=i: (
-                mend_beats(r.get("beats") if isinstance(r, dict) else None, era),
+                mend_beats(r.get("beats") if isinstance(r, dict) else None, era, final=(i == len(chs) - 1),
+                           used=_place_tally(before)),
                 # the film-level rules too (a place owning the judged moments,
                 # the film's caps): repaired in code here, before the brain
                 # is asked again, exactly as repair_film does on a whole film
@@ -847,6 +942,104 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
     return ep
 
 
+# THE WORDS DECIDE THE PLACE. Run #18's judge (the first full verdict on a
+# fresh topic, 66, BLOCK): "the supper chapter opens on a beach", "a Roman
+# street scene in an olive grove", "the finale is an empty sunset shore
+# instead of Rome falling asleep" — every one a beat the repair or the
+# storyboard had moved to a "nearby" landscape with no regard for what its
+# words describe. So a passage's words name a CLASS of place, and a beat
+# is held to it: an indoor passage stays indoors, a city passage in the
+# era's city settings, the river by the river. A move to satisfy a picture
+# rule happens INSIDE the class or not at all.
+PLACE_WORDS = (
+    ("interior", ("inside", "indoors", "roof", "room", "hearth", "table", "bed", "blanket", "lamp", "candle",
+                  "doorway", "kitchen", "corridor", "chamber", "floor", "pallet", "shutter", "bench", "stool",
+                  "loom")),
+    # not "city" or "town": in a film about Rome they name the topic, and
+    # "across the city, a household settles" is indoors. Not "cart": the
+    # sound of carts comes through the shutters
+    ("city", ("street", "square", "forum", "lane", "alley", "market", "stall", "gate", "watchman", "cobble",
+              "bakery", "baker", "oven", "shop", "tavern", "inn", "crowd", "seller", "plaza", "courtyard")),
+    ("river", ("river", "stream", "brook", "ford")),
+    ("lake", ("lake", "pond", "mere")),
+    ("sea", ("sea", "shore", "beach", "tide", "wave", "surf", "sail", "boat", "harbour", "harbor", "quay")),
+    ("grove", ("olive", "grove", "orchard", "vineyard")),
+    ("forest", ("forest", "wood", "trees", "pine")),
+    ("mountains", ("mountain", "peak", "hills", "hill", "cliff", "ridge")),
+    ("snow", ("snow", "ice", "frozen", "frost")),
+    ("farm", ("farm", "barn", "yard", "pasture", "meadow", "field", "furrow", "plough", "plow")),
+    ("cave", ("cave",)),
+    ("desert", ("desert", "dune", "sand")),
+)
+PLACE_SETTINGS = {
+    "interior": ("hut_inside", "villa_inside", "cottage_inside", "parlour_inside", "mudbrick_inside",
+                 "tavern_inside", "cave_inside"),
+    "city": ("forum", "street", "market_square", "village", "castle", "harbour"),
+    "river": ("riverbank", "nile_bank"), "lake": ("lakeshore",), "sea": ("seashore", "harbour"),
+    "grove": ("olive_grove",), "forest": ("forest",), "mountains": ("mountains",), "snow": ("snowfield",),
+    "farm": ("farmyard", "field"), "cave": ("cave_mouth", "cave_inside"), "desert": ("desert",),
+}
+
+
+def place_class(say: str) -> str | None:
+    """The class of place a passage's words describe, or None when they
+    name none. The class with the most words wins; a tie goes to the one
+    named first in the text ("Inside... the table... beyond the door the
+    street is quiet" is indoors)."""
+    low = re.sub(r"[^a-z ]+", " ", (say or "").lower())
+    words = [_stem(w) for w in low.split()]
+    best, best_n, best_pos = None, 0, 10 ** 9
+    for cls, keys in PLACE_WORDS:
+        n, pos = 0, 10 ** 9
+        for i, w in enumerate(words):
+            if w in keys:
+                n += 1
+                pos = min(pos, i)
+        # a tie goes to whichever the text names first: "around a plain
+        # table ... bread, olives" is at the table, not in the grove
+        if n > best_n or (n == best_n and n and pos < best_pos):
+            best, best_n, best_pos = cls, n, pos
+    return best
+
+
+_PLACE_KEYS = {k for _cls, _keys in PLACE_WORDS for k in _keys}
+
+
+def _stem(w: str) -> str:
+    """The place word a form of it stands for ('waves' -> 'wave', 'lanes'
+    -> 'lane', 'shutters' -> 'shutter'), else the word itself. Exact forms
+    only — a prefix match made 'village' an interior through 'villa'."""
+    if w in _PLACE_KEYS:
+        return w
+    for suf, add in (("s", ""), ("es", ""), ("ies", "y"), ("ing", ""), ("ed", ""), ("ing", "e"), ("ed", "e")):
+        if w.endswith(suf) and len(w) - len(suf) >= 3:
+            base = w[: -len(suf)] + add
+            if base in _PLACE_KEYS:
+                return base
+    return w
+
+
+def _pinned_single(b, era: str) -> bool:
+    """True when the beat's words name a class of place and the beat is in
+    one of the era's settings for it: the WORDS put it there, so it does
+    not count against the film-wide place caps (a Roman city film whose
+    only city is the forum cannot 'take the rest elsewhere'; a film that
+    is mostly indoors is mostly indoors). Variety inside the class is the
+    balance rule's job; variety across the film is what the words visit."""
+    if not isinstance(b, dict) or not isinstance(b.get("scene"), dict):
+        return False
+    opts = place_settings(place_class(b.get("say", "")), era)
+    return bool(opts) and b["scene"].get("setting") in opts
+
+
+def place_settings(cls: str | None, era: str) -> list[str]:
+    """The era's settings for a class of place, or [] when the words name
+    none or the era cannot draw it (a city in the Stone Age)."""
+    if cls is None:
+        return []
+    return [n for n in PLACE_SETTINGS.get(cls, ()) if n in S.SETTINGS and era in S.SETTINGS[n].eras]
+
+
 # words in a passage that pin it to its place: a beat whose words say the
 # cave is not moved out of the cave to satisfy a picture rule
 SETTING_WORDS = {
@@ -866,6 +1059,72 @@ def _words_pin(say: str, setting: str) -> bool:
     return any(w in low for w in SETTING_WORDS.get(setting, ()))
 
 
+# what cannot stand indoors, and what stands in for a light brought inside
+OUTDOOR_ONLY = ("tree", "pine", "bush", "rock", "reeds", "cart", "cow", "sheep", "chicken", "deer", "goat", "well",
+                "column", "temple", "olive", "palm", "hut", "cottage", "barn", "timber_house", "villa", "mammoth",
+                "wolf", "tent", "canoe", "ship", "carriage", "mooring_post", "obelisk", "pyramid", "wheat", "stall",
+                "mudbrick_house", "terrace", "gas_lamp", "reed_boat", "fish_rack", "hide_rack", "crates")
+INDOOR_STAND_IN = {"campfire": ("hearth", "brazier", "stove"), "torch": ("candle", "oil_lamp"),
+                   "cauldron": ("pot",)}
+
+
+def bring_indoors(scene: dict, era: str) -> list[str]:
+    """The mirror of take_outdoors: a scene whose setting is (now) an
+    interior loses its scenery, animals and vehicles, and an open fire
+    becomes the era's hearth or brazier (run #18's judge: "an open campfire
+    burns on an indoor floor, right beside a sleeper")."""
+    st = S.SETTINGS.get(scene.get("setting"))
+    if st is None or not st.interior:
+        return []
+    cave = scene.get("setting") in S.EARTH_FLOORS       # a fire on the cave or hut floor stays
+    notes, keep = [], []
+    names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
+    for q in scene.get("props") or []:
+        name = q if isinstance(q, str) else q.get("name")
+        if name in OUTDOOR_ONLY:
+            notes.append(f"dropped {name}")
+        elif name in INDOOR_STAND_IN and not cave:
+            swap = next((n for n in INDOOR_STAND_IN[name] if n in S.PROPS and era in S.PROPS[n].eras
+                         and n not in names), None)
+            if swap:
+                keep.append(swap); names.append(swap)
+                notes.append(f"{name} -> {swap}")
+            else:
+                notes.append(f"dropped {name}")
+        else:
+            keep.append(q)
+    if notes:
+        scene["props"] = keep
+    return notes
+
+
+def mend_place(beat: dict, era: str, used=None) -> str | None:
+    """Put a beat where its words say it is: the least-used of the era's
+    settings for the words' class of place, with the props that cannot
+    come along swapped or dropped and the light the new place needs lit.
+    Returns what was done, or None when the picture already agrees with
+    the words (or the words name nowhere the era can draw)."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    options = place_settings(place_class(beat.get("say", "")), era)
+    if not options or sc.get("setting") in options:
+        return None
+    used = used or {}
+    old = sc.get("setting")
+    sc["setting"] = min(options, key=lambda n: (used.get(n, 0), options.index(n)))
+    notes = take_outdoors(sc, era) + bring_indoors(sc, era)
+    st = S.SETTINGS.get(sc["setting"])
+    if st is not None and st.interior and sc.get("weather") not in (None, "clear"):
+        sc["weather"] = "clear"
+    if S.validate(sc, era):
+        inner = mend_scene(sc, era)
+        if inner:
+            notes.append(inner)
+    return f"{old} -> {sc['setting']} (the words say {place_class(beat.get('say', ''))})" + \
+        (": " + ", ".join(notes) if notes else "")
+
+
 def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[str]:
     """Hold a whole script to the picture rules, deterministically, and fix
     what the brain left: a chapter standing in one place at its three judged
@@ -880,14 +1139,16 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
     import collections
     from data_learning import ori_sleep as OS
     era = ep["era"]
-    keep = ("picture", "of the film", "new place", "crowded", "moves", "judged moments")
+    keep = ("picture", "of the film", "new place", "crowded", "moves", "judged moments", "the words are about",
+            "ends in deep night", "beats so far")
 
     def problems():
         out = []
         for i, c in enumerate(ep["chapters"]):
             if only_chapter is not None and i != only_chapter:
                 continue
-            for x in _chapter_problems(c["beats"], era, 0, 10 ** 6, before=ep["chapters"][:i]):
+            for x in _chapter_problems(c["beats"], era, 0, 10 ** 6, before=ep["chapters"][:i],
+                                       final=(i == len(ep["chapters"]) - 1)):
                 if any(k in x for k in keep):
                     out.append((i, x))
         return out
@@ -922,9 +1183,28 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
     def scene_ok(i, j):
         return fit(i, j) >= CROWD_SHRINK
 
-    def candidates():
+    def candidates(say: str = "", old_setting: str | None = None, indoors_around: bool = False):
+        """Where a beat may move: inside the class of place its words name;
+        when they name none, an interior stays an interior and a landscape
+        stays a landscape (run #18: a meal 'winding down' moved from the
+        hut to a grassland because its words named no place)."""
         used = collections.Counter(b["scene"].get("setting") for c in ep["chapters"] for b in c["beats"])
-        near = [n for n in NEAR_SETTINGS if n in S.SETTINGS and era in S.SETTINGS[n].eras]
+        cls = place_class(say)
+        if cls is not None:
+            near = place_settings(cls, era)
+            if not near:
+                return []                   # the words name a place the era cannot draw: leave it
+        else:
+            # no place named: the same kind of place first (an interior's
+            # other interiors), the open landscapes after
+            same = (place_settings("interior", era)
+                    if old_setting in S.SETTINGS and S.SETTINGS[old_setting].interior else [])
+            land = [n for n in NEAR_SETTINGS if n in S.SETTINGS and era in S.SETTINGS[n].eras]
+            if indoors_around and same:
+                # "an old woman sits up beside a restless child", between two
+                # indoor beats, does not go up a mountain for a picture rule
+                return sorted(same, key=lambda n: used[n])
+            return sorted(same, key=lambda n: used[n]) + sorted(land, key=lambda n: used[n])
         return sorted(near, key=lambda n: used[n])
 
     def own_problems(k):
@@ -941,12 +1221,18 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         old = json.loads(json.dumps(sc))
         before = severity()
         guarded = own_problems(guard) if guard is not None else None
-        for alt in candidates():
+        bb = ep["chapters"][i]["beats"]
+        around = [bb[k]["scene"].get("setting") for k in (j - 1, j + 1) if 0 <= k < len(bb)]
+        indoors_around = bool(around) and all(a in S.SETTINGS and S.SETTINGS[a].interior for a in around)
+        for alt in candidates(b.get("say", ""), old.get("setting"), indoors_around):
             if alt == old.get("setting"):
                 continue
             sc["setting"] = alt
             sc["props"] = [q for q in sc.get("props", []) if (q if isinstance(q, str) else q["name"]) != "cave_painting"]
             take_outdoors(sc, era)                  # the hearth does not come along
+            bring_indoors(sc, era)                  # ...and the cart stays outside
+            if S.SETTINGS[alt].interior and sc.get("weather") not in (None, "clear"):
+                sc["weather"] = "clear"
             if S.validate(sc, era):
                 mend_scene(sc, era)                 # a wide night wants its second light
             if (not S.validate(sc, era) and scene_ok(i, j) and severity() < before
@@ -992,7 +1278,17 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         marks = _mark_beats(beats)
         done = None
         m = re.search(r"beat (\d+)", p)
-        if "crowded" in p and m:
+        if ("the words are about" in p or "ends in deep night" in p) and m:
+            j = int(m.group(1)) - 1
+            bt = beats[j]
+            if "ends in deep night" in p:
+                bt["scene"]["time"] = "night"
+                mend_scene(bt["scene"], era)
+                done = f"{ep['chapters'][i]['title']} beat {j + 1}: night (the film ends in the dark)"
+            else:
+                did = mend_place(bt, era, used=_place_tally(ep["chapters"]))
+                done = f"{ep['chapters'][i]['title']} beat {j + 1}: {did}" if did else None
+        elif "crowded" in p and m:
             j = int(m.group(1)) - 1
             done = try_drop(i, j) or try_move(i, j) or try_shot(i, j)
         elif "moves" in p or "judged moments" in p:
@@ -1023,6 +1319,13 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
                     done = try_move(i, j)
                     if done:
                         break
+            if not done and "shot)" in p:
+                # a (setting, shot) cap is also answered by the other shot
+                for j in order:
+                    if beats[j]["scene"].get("setting") == setting:
+                        done = try_shot(i, j)
+                        if done:
+                            break
         if not done:
             log(f"[ori_author] repair_film could not fix (no move, drop or shot change here lowers it — "
                 f"the words may pin those beats): {p[:120]}")
@@ -1044,8 +1347,10 @@ def mend_film(ep: dict, log=print) -> list[str]:
     and never by hand (run #16: six daylight scenes the old motion table
     had called alive)."""
     notes = []
-    for i, c in enumerate(ep.get("chapters") or []):
-        mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)))
+    chs = ep.get("chapters") or []
+    for i, c in enumerate(chs):
+        mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)),
+                   final=(i == len(chs) - 1), used=_place_tally(chs[:i]))
     notes += repair_film(ep, log=log)
     return notes
 

@@ -485,6 +485,47 @@ only as a hand edit is not a rule. So:
   is a quarter the size now: a run should author in ~20 min, board in a
   few, narrate in ~10, draw in ~20 and judge inside the hour.
 
+- **Run #18 (the first 25-minute film, "What did ordinary Romans do after
+  dark?"): 66, BLOCK — the first full vision verdict on a fresh topic.**
+  The whole loop took 1h29 (author 19 min, storyboard 22, narration and
+  drawing ~35, judge ~10). The auto-fail was junk imagery, and every
+  instance was WORDS AND PICTURE DIVERGING: "the supper chapter opens on a
+  beach" for *the household gathers under one low roof*, a Roman street in
+  an olive grove, the watchman crossing "an open grass field", "the finale
+  is an empty sunset shore instead of Rome falling asleep". The repair and
+  the storyboard had been moving beats to "nearby" landscapes to satisfy
+  picture caps with no regard for what the words describe. So, as code:
+  - **The words decide the place** (`place_class`, `PLACE_WORDS`,
+    `PLACE_SETTINGS`): a passage names a class of place — indoors, the
+    city, the river, the lake, the sea, the grove, the forest, the
+    mountains, the snow, the farm, the cave, the desert — and its beat is
+    held to the era's settings for that class (a rule in
+    `_chapter_problems`, a mend in `mend_place`, and every move in
+    `repair_film` and the storyboard's `_next_setting`/`respec` stays
+    inside the class). Exact word forms only: a prefix match made
+    "village" an interior through "villa"; "city" and "town" are the
+    film's topic, not the shot's place; a tie goes to whichever the text
+    names first (*around a plain table ... bread, olives* is at the
+    table). A beat the words place does not count against the film-wide
+    place caps — a Roman film whose only city is the forum cannot "take
+    the rest elsewhere" — and inside a class with several settings a
+    balance rule alternates them. A beat with no place words keeps its
+    kind of place, and between two indoor beats it stays indoors.
+  - **The film ends in the dark**: the last third of the last chapter is
+    night (the prompt asked for dawn; the judge saw it "brighten back to
+    sunset").
+  - **A campfire does not burn in a built room** (`validate`; a cave or
+    hut floor keeps its fire, `EARTH_FLOORS`), and one written into a
+    villa or cottage becomes the era's hearth or brazier (`bring_indoors`);
+    a square is lit by torches and braziers, not "a campfire in the road".
+  - **The doorway shows the night at night** (`settings._outside`) and
+    the water's glints go under whoever stands on the bank.
+  Replayed on the Roman script, the mend moved 45 beats to where their
+  words put them and then settled (a second pass changes nothing).
+  Not built, named by the judge: a bakery with a domed oven, a door with
+  a bar, a jug, a tray — the kit has no such props, and the storyboard
+  editor's "no X visible" notes are mostly these.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

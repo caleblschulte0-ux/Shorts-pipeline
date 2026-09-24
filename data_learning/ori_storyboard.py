@@ -185,11 +185,20 @@ def review_sheet(sheet: Path, group: list[dict], judge) -> dict[int, dict]:
 
 
 # ------------------------------------------------------------------ repairs
-def _next_setting(setting: str, era: str, avoid=()) -> str | None:
-    """The next outdoor setting of the era that is not one of `avoid` (the
+def _next_setting(setting: str, era: str, avoid=(), say: str = "") -> str | None:
+    """The next setting of the era that is not one of `avoid` (the
     neighbouring beats' settings: a repair that made the same picture as the
-    beat before it put the shelf in breach of the author's own rule)."""
-    names = [k for k, v in S.SETTINGS.items() if era in v.eras and not v.interior]
+    beat before it put the shelf in breach of the author's own rule) — and
+    inside the class of place the words name (run #18's judge: a Roman
+    street scene moved to an olive grove). Words that name a place the era
+    has only one setting for leave the beat where it is."""
+    import ori_author as A
+    cls = A.place_class(say)
+    names = A.place_settings(cls, era) if cls else None
+    if names is None or not names:
+        if cls is not None:
+            return None
+        names = [k for k, v in S.SETTINGS.items() if era in v.eras and not v.interior]
     if setting not in names or len(names) < 2:
         return None
     i = names.index(setting)
@@ -200,7 +209,7 @@ def _next_setting(setting: str, era: str, avoid=()) -> str | None:
     return None
 
 
-def repair_broken(spec: dict, era: str, round_: int, avoid=()) -> str | None:
+def repair_broken(spec: dict, era: str, round_: int, avoid=(), say: str = "") -> str | None:
     """A small deterministic change, escalating by round: another layout,
     one prop fewer, another place. Returns what was done, or None when
     nothing more can be tried. The result always validates."""
@@ -220,13 +229,20 @@ def repair_broken(spec: dict, era: str, round_: int, avoid=()) -> str | None:
                 spec.clear(); spec.update(old)
         spec["variant"] = int(spec.get("variant") or 0) + 1
         return "variant"
-    nxt = _next_setting(spec.get("setting"), era, avoid)
+    nxt = _next_setting(spec.get("setting"), era, avoid, say=say)
     if nxt:
+        import ori_author as A
         spec["setting"] = nxt
         spec["props"] = [p for p in spec.get("props", [])
                          if S.PROPS.get(p if isinstance(p, str) else p["name"]) is not None and
                          (S.PROPS[p if isinstance(p, str) else p["name"]].settings is None or
                           nxt in S.PROPS[p if isinstance(p, str) else p["name"]].settings)]
+        A.take_outdoors(spec, era)
+        A.bring_indoors(spec, era)
+        if S.SETTINGS[nxt].interior and spec.get("weather") not in (None, "clear"):
+            spec["weather"] = "clear"
+        if S.validate(spec, era):
+            A.mend_scene(spec, era)
         if not S.validate(spec, era):
             return f"setting -> {nxt}"
         spec.clear(); spec.update(old)
@@ -246,6 +262,11 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapte
     except Exception as e:                                # noqa: BLE001
         return None if not isinstance(e, A.NoBrain) else None
     if not isinstance(new, dict) or S.validate(new, era):
+        return None
+    # the words decide the place: a respec that leaves the class of place
+    # the passage names is put back inside it (run #18's judge)
+    A.mend_place({"say": fb.get("say", ""), "scene": new}, era)
+    if S.validate(new, era):
         return None
     if chapter_beats is not None:
         # the author's own picture rules still hold: a respec that makes the
@@ -344,7 +365,7 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
                     chb = ep["chapters"][fb["chapter"]]["beats"]
                     avoid = {chb[j]["scene"].get("setting") for j in (fb["beat"] - 1, fb["beat"] + 1)
                              if 0 <= j < len(chb)}
-                    did = repair_broken(fb["scene"], ep["era"], r, avoid=avoid)
+                    did = repair_broken(fb["scene"], ep["era"], r, avoid=avoid, say=fb.get("say", ""))
                 if did:
                     report["repaired"] += 1
                     report["notes"].append(f"beat {fb['index']} r{r}: {f['why'] or 'does not show the words'} -> {did}")

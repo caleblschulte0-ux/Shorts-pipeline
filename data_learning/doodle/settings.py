@@ -254,7 +254,18 @@ def _dunes(cr, r, y0, seed):
         ink.fill_stroke(cr, pts, c, lw=4, amp=2, seed=seed + k, shadow=shade(c, 0.9), shadow_dir=(1, 0.3))
 
 
-def _interior(cr, name, seed, r):
+def _outside(time: str):
+    """What shows through a door or a window: the sky's horizon colour and
+    the ground under it, at THIS time of day (run #18's judge: "the
+    doorway shows a bright daytime hill in night/candle scenes")."""
+    sky = rgb(SKY[time][-1][1])
+    k = {"day": 1.0, "dawn": 0.8, "dusk": 0.45, "night": 0.18}[time]
+    ground = ink.mix(rgb("#8fb35f"), rgb("#101a33"), 1 - k)
+    tree = ink.mix(rgb("#8fa27a"), rgb("#101a33"), 1 - k)
+    return sky, ground, tree
+
+
+def _interior(cr, name, seed, r, time: str = "night"):
     if name == "cave_inside":
         cr.set_source_rgba(*rgb("#4a4038"))
         cr.paint()
@@ -282,15 +293,16 @@ def _interior(cr, name, seed, r):
                         lw=0, amp=0)
         ink.line(cr, [(-10, H * 0.5), (W + 10, H * 0.5)], lw=10, ink=rgb("#e8d9b8"), amp=0.6, seed=seed)
         ink.line(cr, [(-10, H * 0.5 + 24), (W + 10, H * 0.5 + 24)], lw=3, ink=rgb("#e8d9b8"), amp=0.6, seed=seed + 1)
-        # a doorway to a sunlit courtyard
+        # a doorway to the courtyard, at this hour
+        sky, ground, tree = _outside(time)
         dx = r.choice([380, 1000, 1500])
         ink.fill_stroke(cr, [(dx - 120, H * 0.8), (dx - 120, 200), (dx + 120, 200), (dx + 120, H * 0.8)],
                         rgb("#c9b08a"), lw=8, amp=0.8, seed=seed + 2)
         ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, 220), (dx + 100, 220), (dx + 100, H * 0.8)],
-                        rgb("#a9c4e0"), lw=0, amp=0)
+                        sky, lw=0, amp=0)
         ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, H * 0.62), (dx + 100, H * 0.62), (dx + 100, H * 0.8)],
-                        rgb("#8fb35f"), lw=0, amp=0)
-        ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), rgb("#8fa27a"), lw=3,
+                        ground, lw=0, amp=0)
+        ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), tree, lw=3,
                         amp=1, seed=seed + 5)
         ink.line(cr, [(dx + 30, H * 0.62), (dx + 30, H * 0.58)], lw=6, ink=rgb("#6f5a44"), amp=0)
     elif name == "mudbrick_inside":
@@ -348,9 +360,9 @@ def _interior(cr, name, seed, r):
         for x in (140, 700, 1260, 1800):
             ink.line(cr, [(x, -10), (x, H * 0.8)], lw=20, ink=rgb("#6d4b2d"), amp=0.8, seed=x)
         ink.line(cr, [(-10, 150), (W + 10, 150)], lw=22, ink=rgb("#6d4b2d"), amp=0.8, seed=7)
-        # a small window showing the sky outside
+        # a small window showing the sky outside, at this hour
         wx = r.choice([420, 980, 1500])
-        ink.fill_stroke(cr, [(wx - 90, 280), (wx + 90, 280), (wx + 90, 470), (wx - 90, 470)], rgb("#27365e"),
+        ink.fill_stroke(cr, [(wx - 90, 280), (wx + 90, 280), (wx + 90, 470), (wx - 90, 470)], _outside(time)[0],
                         lw=8, amp=0.8, seed=seed)
         ink.line(cr, [(wx, 280), (wx, 470)], lw=7, ink=rgb("#6d4b2d"), amp=0)
         ink.line(cr, [(wx - 90, 375), (wx + 90, 375)], lw=7, ink=rgb("#6d4b2d"), amp=0)
@@ -408,7 +420,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     gy = H * GROUND_Y
     facts = {"ground_y": gy, "water": None}
     if st.interior:
-        _interior(cr, name, seed, r)
+        _interior(cr, name, seed, r, time)
         _ground(cr, st.ground, gy, seed + 1)
         return facts
     _sky(cr, time if weather not in ("rain",) else ("night" if time == "night" else "dusk"))

@@ -18,6 +18,7 @@ Four promises, each a test class:
     write a broken one; the publisher's floor and the judge's context are
     what the gate needs.
 """
+import inspect
 import json
 import random
 import subprocess
@@ -61,7 +62,7 @@ class EveryNameResolves(unittest.TestCase):
         for name, st in self.ST.SETTINGS.items():
             for era in st.eras:
                 for time in self.ST.TIMES:
-                    self._draw(_scene(setting=name, time=time, props=["hearth" if era == "medieval" else "campfire"],
+                    self._draw(_scene(setting=name, time=time, props=[_fire_for(name, era)],
                                       shot="close", weather="clear" if st.interior else "rain"), era)
 
     def test_every_weather_draws(self):
@@ -127,9 +128,8 @@ class EveryNameResolves(unittest.TestCase):
             voc = self.S.vocabulary(era)
             sets = re.search(r"setting: one of ([^(]+)\(", voc).group(1)
             for name in [x.strip() for x in sets.split(",") if x.strip()]:
-                fire = "hearth" if era == "medieval" else "campfire"
-                self.assertEqual(self.S.validate(_scene(setting=name, props=[fire], shot="close"), era),
-                                 [], name)
+                self.assertEqual(self.S.validate(_scene(setting=name, props=[_fire_for(name, era)], shot="close"),
+                                                 era), [], name)
             props = re.search(r"props: 0-\d+ of ([^(]+)\(", voc).group(1)
             for name in [x.strip() for x in props.split(",") if x.strip()]:
                 self.assertIn(era, self.PR.PROPS[name].eras)
@@ -216,6 +216,19 @@ class MotionIsMeasuredWithTheGatesOwnProbe(unittest.TestCase):
                 continue
             checked += 1
             self._assert_alive(spec, era)
+
+
+def _fire_for(setting: str, era: str) -> str:
+    """The light a fixture scene burns: a campfire outdoors and on a cave
+    floor, the era's hearth or lamp in a built room (a campfire does not
+    burn on an indoor floor since run #18)."""
+    from data_learning.doodle import scene as S
+    st = S.SETTINGS[setting]
+    if st.interior and setting not in S.EARTH_FLOORS:
+        for name in ("hearth", "brazier", "candle", "oil_lamp", "stove", "gas_lamp"):
+            if name in S.PROPS and era in S.PROPS[name].eras:
+                return name
+    return "campfire"
 
 
 def _episode(chapters=8, beats=3):
@@ -935,10 +948,13 @@ class ThePictureIsReadable(unittest.TestCase):
                beat(say, [idle()], setting="forest")]
         ep = {"slug": "a-test", "era": "medieval", "chapters": [{"title": "One", "beats": prev}, {"title": "Two", "beats": cur}]}
         notes = A.repair_film(ep, log=lambda *_: None, only_chapter=1)
-        self.assertTrue(any("One beat 2" in x for x in notes), notes)
+        # since run #18 the words decide the place: a beat whose words put
+        # it in the village square is not asked to open somewhere else, and
+        # nothing moves against its words
         self.assertEqual(cur[0]["scene"]["setting"], "village")
         self.assertEqual([x for x in A._chapter_problems(cur, "medieval", 0, 10 ** 6, before=[ep["chapters"][0]])
                           if "new place" in x], [])
+        self.assertFalse(any("Two beat 1" in x and "shot" not in x for x in notes), notes)
         # a pinned place the layout cannot move is let go before anything is dropped
         pinned = {"setting": "village", "time": "night", "weather": "clear", "shot": "wide",
                   "cast": [{"who": "man", "pose": "stand", "action": "talk", "at": "center"},
@@ -1040,6 +1056,106 @@ class ThePictureIsReadable(unittest.TestCase):
                             g = (abs(p["x"] - f["x"]) - S.PROPS[fire].width * f["s"] / 2) / R
                             self.assertLessEqual(g, 4.0, f"{p['action']} is {g:.1f} heads from the {fire} "
                                                          f"({setting}, {shot}, seed {seed})")
+
+    def test_run_eighteen_the_words_decide_the_place_and_the_film_ends_in_the_dark(self):
+        # run #18 (the first full verdict on a fresh topic: 66, BLOCK, junk
+        # imagery): "the supper chapter opens on a beach" for 'the household
+        # gathers under one low roof', "a Roman street in an olive grove",
+        # "the finale is an empty sunset shore instead of Rome falling
+        # asleep", "an open campfire burns on an indoor floor beside a
+        # sleeper", "the doorway shows a bright daytime hill at night",
+        # "water sparkle strokes drawn across the fisherman"
+        import ori_author as A
+        from data_learning import ori_storyboard as SB
+        from data_learning.doodle import settings as ST
+        S = self.S
+        self.assertEqual(A.place_class("the household gathers under one low roof for supper"), "interior")
+        self.assertEqual(A.place_class("a watchman crosses the empty square, shutters closing"), "city")
+        self.assertEqual(A.place_class("Down by the river a boatman ties the last rope"), "river")
+        self.assertIsNone(A.place_class("The fire has burned low and the families gather close"))
+        self.assertEqual(A.place_settings("city", "ancient"), ["forum"])
+        self.assertEqual(A.place_settings("city", "stone_age"), [])
+        # a beat whose words are indoors, drawn on a beach: flagged, and mended indoors with its props swapped
+        say = "The household gathers under one low roof for supper, a lamp on the table. " + " ".join(["word"] * 20)
+        beat = {"say": say, "scene": {"setting": "seashore", "time": "dusk", "weather": "clear", "shot": "close",
+                                      "cast": [{"who": "man", "pose": "sit", "action": "eat"}],
+                                      "props": ["campfire", "rock", "table"]}}
+        bad = A._chapter_problems([beat] * 3, "ancient", 0, 10 ** 6)
+        self.assertTrue(any("the words are about the interior" in x for x in bad), bad)
+        did = A.mend_place(beat, "ancient")
+        self.assertTrue(did and "seashore ->" in did, did)
+        self.assertTrue(S.SETTINGS[beat["scene"]["setting"]].interior)
+        names = [(q if isinstance(q, str) else q["name"]) for q in beat["scene"]["props"]]
+        if beat["scene"]["setting"] not in S.EARTH_FLOORS:
+            self.assertNotIn("campfire", names)      # a built room has a hearth; a hut floor keeps its fire
+        self.assertNotIn("rock", names); self.assertIn("table", names)
+        self.assertEqual(S.validate(beat["scene"], "ancient"), [])
+        self.assertEqual([x for x in A._chapter_problems([beat] * 3, "ancient", 0, 10 ** 6)
+                          if "the words are about" in x], [])
+        # a city passage in the Stone Age names nowhere the kit draws: left alone
+        cave = {"say": "Through the streets of the town the crowd goes home from the market.",
+                "scene": _scene(setting="cave_mouth")}
+        self.assertIsNone(A.mend_place(cave, "stone_age"))
+        # a move to satisfy a picture rule stays inside the class
+        indoors = [{"say": say, "scene": {"setting": "hut_inside", "time": "night", "weather": "clear",
+                                          "shot": "close", "cast": [{"who": "man", "pose": "sit", "action": "eat"}],
+                                          "props": ["candle", "table"]}} for _ in range(8)]
+        ep = {"slug": "a-test", "era": "ancient", "chapters": [{"title": "One", "beats": indoors}]}
+        A.repair_film(ep, log=lambda *_: None)
+        for b in indoors:
+            self.assertTrue(S.SETTINGS[b["scene"]["setting"]].interior, b["scene"]["setting"])
+        # a campfire does not burn indoors, and the mend swaps it for the era's fire
+        camp = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "child", "pose": "lie", "action": "sleep"}], "props": ["campfire", "bed"]}
+        self.assertTrue(any("indoor floor" in x for x in S.validate(camp, "ancient")))
+        self.assertTrue(A.mend_scene(camp, "ancient"))
+        self.assertEqual(S.validate(camp, "ancient"), [])
+        self.assertNotIn("campfire", camp["props"])
+        # the last third of the last chapter is night
+        last = [{"say": say, "scene": dict(indoors[0]["scene"], time="dusk")} for _ in range(6)]
+        self.assertTrue(any("ends in deep night" in x for x in A._chapter_problems(last, "ancient", 0, 10 ** 6, final=True)))
+        A.mend_beats(last, "ancient", log=lambda *_: None, final=True)
+        self.assertEqual([b["scene"]["time"] for b in last[-2:]], ["night", "night"])
+        self.assertEqual([x for x in A._chapter_problems(last, "ancient", 0, 10 ** 6, final=True)
+                          if "deep night" in x], [])
+        # the storyboard's own setting changes keep to the words' class too
+        self.assertIsNone(SB._next_setting("forum", "ancient", say="the watchman crosses the square"))
+        self.assertEqual(SB._next_setting("hut_inside", "ancient", say="inside, by the table"), "villa_inside")
+        self.assertIn(SB._next_setting("grassland", "ancient", say="the fire burned low"), ("forest", "riverbank",
+                                                                                            "lakeshore", "seashore",
+                                                                                            "mountains", "snowfield",
+                                                                                            "forum", "olive_grove"))
+        # the doorway shows the night at night, and the glints go under the people
+        import cairo
+        import numpy as np
+        def doorway(time):
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+            cr = cairo.Context(surf)
+            ST.draw_still(cr, "villa_inside", time, "clear", 3)
+            surf.flush()
+            a = np.frombuffer(surf.get_data(), dtype=np.uint8).reshape(S.H, S.W, 4)[:, :, :3].astype(int)
+            return a[230:600].mean(axis=2).mean(axis=0).min()      # the darkest column: the doorway
+        self.assertLess(doorway("night"), doorway("day") - 40, "the doorway looks the same at night")
+        # the glints stay after the light pass (before it, a night river
+        # measures frozen) and are clipped away from whoever stands in front
+        src = inspect.getsource(S.Scene.draw)
+        self.assertGreater(src.index("settings.glints"), src.index("self._light(cr, t)"))
+        shore = {"setting": "seashore", "time": "night", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "man", "pose": "stand", "action": "idle", "at": "center"}], "props": []}
+        sc = S.Scene(shore, "ancient", 3)
+        (lo, hi, top, bot), = sc._figure_holes()
+        def px(tt):
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+            sc.frame(tt, surf); surf.flush()
+            return np.frombuffer(surf.get_data(), dtype=np.uint8).reshape(S.H, S.W, 4)[:, :, :3].astype(int)
+        a, b = px(0.0), px(0.7)
+        changed = (a != b).any(axis=2)
+        self.assertGreater(int(changed.sum()), 200, "the water stopped moving")
+        band = sc.facts["water"]
+        inside = changed[int(band[1]):int(band[2]), int(lo):int(hi)]
+        outside = changed[int(band[1]):int(band[2]), :].sum() - inside.sum()
+        self.assertGreater(int(outside), 200)
+        self.assertLessEqual(int(inside.sum()), int(outside) * 0.05 + 2, "glints drawn across the figure")
 
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in

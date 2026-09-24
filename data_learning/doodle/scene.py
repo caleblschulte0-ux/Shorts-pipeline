@@ -70,6 +70,7 @@ def shot_of(spec: dict) -> str:
 # needs a total of 2. The numbers are why: a fire at night throws sparks
 # against the dark and makes the walls flicker; the same fire at noon is a
 # small orange shape on bright grass and barely registers.
+EARTH_FLOORS = ("cave_inside", "hut_inside")     # interiors where an open fire on the floor is the hearth
 STRONG_ACTIONS = ("chop", "wave")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 
@@ -246,6 +247,13 @@ def validate(spec, era: str) -> list[str]:
             bad.append(f"props[{i}] {p['name']!r} only belongs in {', '.join(pr.settings)}")
         if p.get("at") is not None and p.get("at") not in SLOTS:
             bad.append(f"props[{i}].at {p.get('at')!r} is not one of {sorted(SLOTS)}")
+    if not bad and st is not None and st.interior and spec.get("setting") not in EARTH_FLOORS:
+        # a fire on a cave or hut floor is the Stone Age's hearth; a built room has one
+        for i, p in enumerate(pl):
+            if p.get("name") == "campfire":
+                bad.append(f"props[{i}] a campfire does not burn on an indoor floor (run #18's judge: 'an open "
+                           f"campfire burns on an indoor floor, right beside a sleeper'): use a hearth, brazier, "
+                           f"candle, oil lamp or stove")
     if not bad and not is_living(spec):
         bad.append("nothing in this scene moves enough to read as alive: add a campfire, brazier or "
                    "cauldron at dusk or night (close shot), a hearth, a candle or oil lamp indoors, "
@@ -838,7 +846,42 @@ class Scene:
             settings._snow(cr, t, self.seed)
         if self.lit:
             self._light(cr, t)
-        settings.glints(cr, self.facts, self.time, t, self.seed)
+        # the glints are light, so they come after the light pass (drawn
+        # before it, the night ambient dims them below the gate's notice and
+        # a river at night measures frozen) — but they are the WATER's, so
+        # they are clipped away from everybody standing in front of it
+        # (run #18's judge: "water sparkle strokes are drawn across the
+        # fisherman's body", "a white streak crosses the figure's head")
+        if self.facts.get("water"):
+            cr.save()
+            cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)
+            cr.rectangle(0, 0, W, H)
+            for lo, hi, top, bot in self._figure_holes():
+                cr.rectangle(lo, top, hi - lo, bot - top)
+            cr.clip()
+            settings.glints(cr, self.facts, self.time, t, self.seed)
+            cr.restore()
+
+    def _figure_holes(self) -> list[tuple[float, float, float, float]]:
+        """Each person's footprint as (lo, hi, top, bottom), the x-spans
+        merged where they touch so the even-odd clip never re-admits an
+        overlap."""
+        spans_ = []
+        for f in self.lay["people"]:
+            R = people.R0 * f["s"] * people.WHO[f["who"]]["size"]
+            lo, hi = figure_extent(f["pose"], R, f.get("action", "idle"), f.get("item"))
+            if f["facing"] == "left":
+                lo, hi = -hi, -lo
+            spans_.append((f["x"] + lo - 0.1 * R, f["x"] + hi + 0.1 * R, f["y"] - 5.6 * R, f["y"] + 0.4 * R))
+        spans_.sort()
+        merged: list = []
+        for lo, hi, top, bot in spans_:
+            if merged and lo <= merged[-1][1]:
+                m = merged[-1]
+                merged[-1] = (m[0], max(m[1], hi), min(m[2], top), max(m[3], bot))
+            else:
+                merged.append((lo, hi, top, bot))
+        return merged
 
     def frame(self, t: float, surf: cairo.ImageSurface | None = None) -> cairo.ImageSurface:
         surf = surf or cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
