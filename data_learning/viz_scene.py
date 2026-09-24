@@ -4344,6 +4344,8 @@ def fit_centred_lines(d, text: str, size: int, x: int, box,
     The label is the claim's subject; two readable lines beat one tiny one
     and both beat "Prevention & manag"."""
     f, out = fit_centred(d, text, size, x, box, min_size=min_size)
+    if "\n" in out:                    # fit_text already wrapped it
+        return [(f, ln) for ln in out.split("\n")]
     words = str(text).split()
     if f.size > min_size or len(words) < 2:
         return [(f, out)]
@@ -4442,8 +4444,10 @@ def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26,
     cut = text
     while cut and d.textlength(cut + "…", font=f) > max_w:
         cut = cut[:-1]
-    if _re.search(r"\d", text) and _re.search(r"\d", text[len(cut):]):
-        return f, text                  # a clipped digit is worse than a tight fit
+    if (_re.search(r"\d", text[len(cut):])
+            and sum(c.isalpha() for c in text) <= 4):
+        return f, text      # a VALUE ("$1.46M") is never cut; a name with a
+                            # year in it ("2019 (two-dose era)") still may be
     return f, (cut + "…") if cut else text
 
 
@@ -4497,8 +4501,9 @@ def draw_fitted(d, xy, text: str, size: int, max_w: int, fill, anchor="mm",
         if best:
             f, lines = _pil_font(best[0]), best[1]
         else:
-            f, t1 = fit_text(d, text, size, max_w, min_size=min_size)
-            lines = [t1]
+            _ff, _ft = fit_text(d, text, size, max_w, min_size=min_size)
+            d.text(xy, _ft, font=_ff, fill=fill, anchor=anchor)
+            return d.textbbox(xy, _ft, font=_ff, anchor=anchor)
     h_ = [d.textbbox((0, 0), ln, font=f, anchor="lm") for ln in lines]
     lh = max(b_[3] - b_[1] for b_ in h_) + spacing
     x, y = xy

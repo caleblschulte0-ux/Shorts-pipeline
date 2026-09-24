@@ -232,6 +232,11 @@ def _glyph_contrast(im, bb, rgb):
     return abs(_lum(rgb) - bg)
 
 
+def _hides(tb, hb) -> bool:
+    from data_learning import charts
+    return charts.hides(tb, hb)
+
+
 def _judge(ev, imgs) -> dict:
     covered, clipped, faint, collide, truncated = set(), set(), set(), set(), set()
     texts_so_far: dict = {}
@@ -267,8 +272,7 @@ def _judge(ev, imgs) -> dict:
             for s, bb, alpha, *_rest in texts_so_far.get(frame, []):
                 if _rest[1:] and len(p) > 4 and _rest[1] != p[4]:
                     continue                # a different canvas (the probe)
-                area = max(1.0, (bb[2] - bb[0]) * (bb[3] - bb[1]))
-                if alpha >= VISIBLE_ALPHA and _inter(bb, p[:4]) / area > COVER_FRAC:
+                if alpha >= VISIBLE_ALPHA and _hides(bb, p[:4]):
                     covered.add(s)
     return {"covered": sorted(covered), "clipped": sorted(clipped),
             "faint": sorted(faint), "collide": sorted(collide),
@@ -436,9 +440,8 @@ def audit_chart(insight, frames: int = 12) -> dict:
                 for z, hb in hosts:
                     if z <= t.get_zorder():
                         continue
-                    ix = max(0.0, min(bb.x1, hb.x1) - max(bb.x0, hb.x0))
-                    iy = max(0.0, min(bb.y1, hb.y1) - max(bb.y0, hb.y0))
-                    if ix * iy / area > COVER_FRAC:
+                    if charts.hides((bb.x0, bb.y0, bb.x1, bb.y1),
+                                    (hb.x0, hb.y0, hb.x1, hb.y1)):
                         covered.add(s)
         except Exception:  # noqa: BLE001 — auditing must never break a render
             pass

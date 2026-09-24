@@ -607,11 +607,17 @@ def _zoom_for_height(fig, img_h_px: float, max_h_frac: float) -> float:
     return max(0.05, float(max_h_frac) * 72.0 * fh_in / max(1.0, float(img_h_px)))
 
 
-def _cover(tb, hb) -> float:
-    """Share of text box `tb` under host box `hb` (display coords)."""
-    ix = max(0.0, min(tb.x1, hb[2]) - max(tb.x0, hb[0]))
-    iy = max(0.0, min(tb.y1, hb[3]) - max(tb.y0, hb[1]))
-    return ix * iy / max(1.0, tb.width * tb.height)
+def hides(tb, hb) -> bool:
+    """Does box `hb` (Data) make the label in box `tb` unreadable? Both are
+    (x0, y0, x1, y1). A quarter of the AREA, or a slab of its WIDTH across
+    most of its height: "Semaglutide" with "Sem" under his body was 24% of
+    the box and 31% of the word (a_audit, 2026-09-24) — three letters gone
+    is a word gone. THE one definition: `_clear_host` moves him by it and
+    `a_audit` measures by it, so the fix and the test cannot disagree."""
+    w, h = max(1.0, tb[2] - tb[0]), max(1.0, tb[3] - tb[1])
+    ix = max(0.0, min(tb[2], hb[2]) - max(tb[0], hb[0]))
+    iy = max(0.0, min(tb[3], hb[3]) - max(tb[1], hb[1]))
+    return ix * iy / (w * h) > 0.25 or (ix >= min(0.15 * w, 48.0) and iy >= 0.4 * h)
 
 
 def _clear_host(fig) -> None:
@@ -655,14 +661,14 @@ def _clear_host(fig) -> None:
             for _shrink in range(3):
                 hb0 = h.get_window_extent(r)
                 box = (hb0.x0, hb0.y0, hb0.x1, hb0.y1)
-                if not any(_cover(bb, box) > 0.25 for bb in under):
+                if not any(hides((bb.x0, bb.y0, bb.x1, bb.y1), box) for bb in under):
                     break
                 moved = None
                 for dx, dy in steps:
                     b = (box[0] + dx, box[1] + dy, box[2] + dx, box[3] + dy)
                     if b[0] < 0 or b[1] < 0 or b[2] > fw or b[3] > fh:
                         continue
-                    if not any(_cover(bb, b) > 0.25 for bb in under):
+                    if not any(hides((bb.x0, bb.y0, bb.x1, bb.y1), b) for bb in under):
                         moved = (dx, dy)
                         break
                 if moved is not None:
