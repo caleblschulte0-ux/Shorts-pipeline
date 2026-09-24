@@ -1,0 +1,16 @@
+{
+ "slug": "coffee-price-record",
+ "ts": "20260924T144038Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end the '$2' and '$4.41' lane labels are dark gray on a dark navy background and nearly vanish at arm's length. In seg3:mid, '$4.41' is dark text with a heavy outline on hot pink and reads as smeared. In seg4:start the CTA caption is faded gray and hard to read.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg3:end: the key values '$2' and '$4.41' next to the racing mascots are drawn in near-background dark gray, so the doubling claim's numbers can't be read. seg3:start/mid swap to a bubble chart in a different typeface with a muddy outlined '$4.41'.",
+  "root_cause": "The race-lane value labels fade in from REST/background tone and are still at low opacity when the scene cuts. The bubble composer uses a heavy stroke on dark ink over the accent fill, which breaks the INK-on-ground rule.",
+  "repair_goal": "Show the lane values in full-contrast INK (the accent only on the subject's $4.41) from the moment the racers start. Drop the outlined text style on the bubble. Better still, replace the two bubbles with the lane race alone, so seg3 is one readable demonstration of $2 to $4.41 more than doubling."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

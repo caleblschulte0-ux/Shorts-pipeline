@@ -2889,7 +2889,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Why That Matters",
-      "notes": "No prior analytics for this slug. Bet: the landline-death trend sets up the vacuum, robocall-phone-swarm-sort turns the 52.8 billion 2024 robocalls into a sorted flood by type (telemarketing/scam/etc) instead of a pie label, robocall-tower-flood closes on the 2016-vs-2024 near-doubling so the ending explains the behavior change (screening unknown numbers) as a direct consequence of the volume, not a vibe. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). hook_text corrected 2026-09-23: niche.config.json had already been sharpened to a curiosity-gap hook (\"Why does every unknown number feel like a scam call now?\") per HOOK DOCTRINE, but this ledger entry still recorded the older declarative hook (\"Nobody has a landline anymore...\") -- fixed to match what actually ships. Scenes/data otherwise unchanged; validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
+      "notes": "No prior ledger entries for this topic. Bet: causal chain from cord-cutting to caller-ID chaos -- the wireless-only trend chart (classic fallback, mascot riding the line) sets up why any number can flash on your screen, phones sorting into share-of-52.8B bins names the categories, then a broadcasting tower flooding the frame with a scaled phone-count contrasts 29.3B (2016) against 52.8B (2024) so the growth is counted, not just labeled.",
       "timeline": [
         {
           "t": 0,
@@ -4004,6 +4004,206 @@
           "t": 31,
           "event": "payoff",
           "detail": "closing: the last footprint is still up there"
+        }
+      ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "inversion",
+      "hook_text": "Recycling isn't doing what you think.",
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "No prior ledger entries for this topic. Bet: build one unbroken chain from scale (mountain of waste growing toward 2060) to fate (donut chart of where it goes) to the supposed fix (a sluice of real bottles forking into recycled-vs-landfill, drain-share method so the fork widens/narrows with the actual rate) -- each beat sharpens the same myth instead of three disconnected facts. Closing plays the irony (label vs landfill) rather than restating the 9%.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'Recycling isn't doing what you think' over the waste pile beginning to rise"
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "trash-mountain-rise: pile grows from 353M tons (2019) toward 1,014M tons (2060), person silhouette pinned for scale"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "donut share: 9% recycled, 50% landfilled, 22% mismanaged, 19% incinerated"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "plastic-sluice-split: bottles fork at the split point, only 9% (today) vs 17% (2060 best case) peel into the recycling bin"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing: 'the label says recyclable, the landfill says otherwise'"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "guess-the-real-rate question"
+        }
+      ]
+    },
+    {
+      "slug": "measles-ninety-five-rule",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "stake",
+      "hook_text": "One number decides whether measles comes back.",
+      "words_first_10s": 18,
+      "scene_changes_before_5s": 4,
+      "depictions": [
+        "mechanic:outbreak-radiate-count",
+        "mechanic:forty-kids-three-gaps",
+        "viz:trend"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The One Number",
+      "notes": "No prior ledger entries for this topic. Bet: make the 2.5-point gap physically countable -- 4 diseases radiate their exact R0 in infected silhouettes (measles visibly swarmed vs flu's lone dot), then the same 40-kid grid shows the gap between the 95% measles needs and the 92.5% the US has is exactly 1 kid, then the case-count trend shows what that 1 kid costs. Fixed a mismatch: the closing line said 'three in forty' while the mechanic's own concept and math (38 needed vs 37 covered, of 40) say one -- corrected to 'One in forty will do' so the payoff matches what's on screen.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'One number decides whether measles comes back'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "outbreak-radiate-count: measles (15), chickenpox (11), polio (6), flu (1.3) each ringed by their exact infected count"
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "forty-kids-three-gaps: 40-kid grid, 37 lit (92.5% actual) vs 38 needed (95%) -- one kid short"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "trend: US cases 285 (2024) -> 2,289 (2025) -> 2,566 (2026 so far), worst since elimination in 2000"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing: 'measles doesn't need many open doors, one in forty will do'"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "did-you-get-both-shots question"
+        }
+      ]
+    },
+    {
+      "slug": "peanut-allergy-guideline-flip",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "inversion",
+      "hook_text": "The peanut allergy advice was backwards the whole time.",
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:peanut-rash-climb",
+        "mechanic:peanut-shield-crack-duel",
+        "viz:comparison"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "No prior ledger entries for this topic. Bet: run the reversal as two duels of the same subject (peanuts) against different defenses -- first climbing a rash-red trend line as avoidance-era allergy rates triple, then literally cracking a shield harder the more a group avoided peanut (13.7% shattered) versus barely scratching one that ate it early (1.9%) -- so the mechanism (avoidance causes it) is shown, not told, before the after-guidelines comparison lands the 43% drop.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'The peanut allergy advice was backwards the whole time'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "peanut-rash-climb: allergy rate climbs 0.4% (1997) -> 0.8% (2002) -> 1.4% (2008)"
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "peanut-shield-crack-duel: avoidance shield shatters at 13.7%, early-exposure shield barely cracks at 1.9%"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "comparison: post-guideline allergy rate 0.79% -> 0.45%, a 43% drop"
+        },
+        {
+          "t": 31,
+          "event": "payoff",
+          "detail": "closing: 'sometimes the cure is just... eating the thing'"
+        },
+        {
+          "t": 34,
+          "event": "cta",
+          "detail": "did-your-family-avoid-peanuts question"
+        }
+      ]
+    },
+    {
+      "slug": "landline-death-robocall-boom",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "question",
+      "hook_text": "Why does every unknown number feel like a scam call now?",
+      "words_first_10s": 17,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "viz:trend",
+        "mechanic:robocall-phone-swarm-sort",
+        "mechanic:robocall-tower-flood"
+      ],
+      "ending_type": "consequence",
+      "franchise": null,
+      "notes": "No prior ledger entries for this topic. Bet: causal chain from cord-cutting to caller-ID chaos -- the wireless-only trend chart (classic fallback, mascot riding the line) sets up why any number can flash on your screen, phones sorting into share-of-52.8B bins names the categories, then a broadcasting tower flooding the frame with a scaled phone-count contrasts 29.3B (2016) against 52.8B (2024) so the growth is counted, not just labeled.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'Why does every unknown number feel like a scam call now?'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "trend: wireless-only adults 24.9% (2010) -> 73.2% (2022) -> 76% (2024)"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "robocall-phone-swarm-sort: phones sort into 4 bins by share of 52.8B robocalls -- 36% telemarketing, 22% scam"
+        },
+        {
+          "t": 23,
+          "event": "visual_swap",
+          "detail": "robocall-tower-flood: tower floods the frame with scaled phone counts, 29.3B (2016) vs 52.8B (2024)"
+        },
+        {
+          "t": 31,
+          "event": "payoff",
+          "detail": "closing: 'your phone still rings, most of the time it isn't for you'"
+        },
+        {
+          "t": 34,
+          "event": "cta",
+          "detail": "do-you-answer-unknown-numbers question"
         }
       ]
     }
