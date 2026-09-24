@@ -475,7 +475,14 @@ exports.handler = async function (event) {
       const session = { tok: tok.access_token, open_id: tok.open_id, name: creator.creator_nickname || u.display_name || "TikTok user",
                         user: creator.creator_username || u.display_name || "tiktok", avatar: creator.creator_avatar_url || u.avatar_url || "/app-assets/img/avatar.svg",
                         exp: Date.now() + 1000 * Math.min(Number(tok.expires_in || 3600), 86400) };
-      return redirect("/app/", { "Set-Cookie": setCookie("sm_session", sign(session), 86400) });
+      // Not a 302: Netlify carries the callback's query string (the code,
+      // the state) onto a redirect's target, and the app's address must be
+      // clean. A refresh page lands on exactly the address it names.
+      return {
+        statusCode: 200,
+        headers: Object.assign({}, BASE_HEADERS, { "Set-Cookie": setCookie("sm_session", sign(session), 86400) }),
+        body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${SITE}/app/"><title>Connecting | Shorts Media</title></head><body style="background:#09090c;color:#eee;font:16px system-ui;padding:40px">Connected. Taking you back to Shorts Media…</body></html>`,
+      };
     }
 
     if (path === "/app/disconnect") {
