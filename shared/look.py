@@ -61,6 +61,20 @@ FONT_DIR = REPO / "assets" / "fonts"
 INK = (242, 245, 250)          # primary: the thing being said
 INK_2 = (150, 162, 184)        # secondary: labels, axis names
 INK_3 = (92, 103, 128)         # muted: sources, grid, chrome
+#: Text INSIDE a light mark (a value printed in the gold highlight bar). White
+#: on gold measured a luminance gap of ~40 — "342" on the staircase's lit
+#: step was the audit's one faint value (data_learning/a_audit.py).
+INK_ON_LIGHT = (13, 16, 48)
+
+
+def ink_on(fill) -> tuple:
+    """The ink for text sitting ON a fill: INK on anything dark, INK_ON_LIGHT
+    on anything light. `fill` is an (r, g, b) tuple or a '#rrggbb' string."""
+    if isinstance(fill, str):
+        h = fill.lstrip("#")
+        fill = tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+    r, g, b = [float(c) for c in fill[:3]]
+    return INK_ON_LIGHT if (0.2126 * r + 0.7152 * g + 0.0722 * b) > 150 else INK
 
 # --------------------------------------------------------------------------
 # GROUND — deep indigo, seeded from flat2d.PALETTE so the channels match.

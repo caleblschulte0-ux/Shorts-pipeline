@@ -451,6 +451,19 @@ def _classify(insight) -> str:
         # Without the reversal test a series that wandered up and down and
         # happened to end high would be drawn as a clean climb, which is a
         # picture of a story the data does not tell.
+        # ...BUT A SERIES THAT ENDS AT ITS ALL-TIME EXTREME, having covered
+        # most of its range to get there, went somewhere. Coffee: $1.05 ->
+        # $2.55 -> $1.95 -> $4.41, "the highest price ever recorded", has two
+        # reversals and came back VOLATILE; the spotlight drew a wandering
+        # line under "how high prices have climbed" and the showrunner read
+        # it as a fall (2026-09-24). "Wandered and happened to end high"
+        # nets little of its range and still lands in VOLATILE below.
+        span = max(values) - min(values)
+        if span > 0 and abs(values[-1] - values[0]) >= 0.6 * span:
+            if values[-1] == max(values) and net > 0:
+                return BURDEN if _MONEY.search(text) else GROWTH
+            if values[-1] == min(values) and net < 0:
+                return DECLINE
         if rev >= max(2, len(values) // 3):
             return VOLATILE
         if net >= 0.15:

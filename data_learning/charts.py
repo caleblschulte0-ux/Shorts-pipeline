@@ -261,6 +261,10 @@ def _ulabel(v: float, unit: str, group: bool = False) -> str:
     if u in ("percent", "%", "rate", "pct"):
         return n + "%"
     if u in ("dollars", "dollar", "usd", "$"):
+        # CENTS ARE THE NUMBER under $100: "$4.41 a pound" printed "$4.4"
+        # against a script that says four forty-one (showrunner, 2026-09-24)
+        if abs(v) < 100 and not float(v).is_integer():
+            return f"${v:,.2f}"
         return "$" + n
     # "thousand dollars" is how FRED publishes median home price: the value is
     # 449 and the thing on screen has to read $449K, not 449.
@@ -607,6 +611,82 @@ def _zoom_for_height(fig, img_h_px: float, max_h_frac: float) -> float:
     return max(0.05, float(max_h_frac) * 72.0 * fh_in / max(1.0, float(img_h_px)))
 
 
+def hides(tb, hb) -> bool:
+    """Does box `hb` (Data) make the label in box `tb` unreadable? Both are
+    (x0, y0, x1, y1). A quarter of the AREA, or a slab of its WIDTH across
+    most of its height: "Semaglutide" with "Sem" under his body was 24% of
+    the box and 31% of the word (a_audit, 2026-09-24) — three letters gone
+    is a word gone. THE one definition: `_clear_host` moves him by it and
+    `a_audit` measures by it, so the fix and the test cannot disagree."""
+    w, h = max(1.0, tb[2] - tb[0]), max(1.0, tb[3] - tb[1])
+    ix = max(0.0, min(tb[2], hb[2]) - max(tb[0], hb[0]))
+    iy = max(0.0, min(tb[3], hb[3]) - max(tb[1], hb[1]))
+    return ix * iy / (w * h) > 0.25 or (ix >= min(0.15 * w, 48.0) and iy >= 0.4 * h)
+
+
+def _clear_host(fig) -> None:
+    """DATA NEVER STANDS ON A LABEL — the last thing done to every card frame.
+
+    He is placed on his datum by each chart, which knows its data and not
+    its text, so across the A look he covered labels in half the chart kinds
+    ("'11.7%' split by the mascot's legs", "straddles the 2013 and 2006 rows,
+    hiding the row bar and its label" — the judge, for weeks; measured by
+    data_learning/a_audit.py in trend, rank, comparison, race, pictograph).
+    Here, with every artist drawn, any host that covers a label beneath him
+    is moved the SMALLEST distance that clears every label and keeps him in
+    frame; if no spot clears, he is made smaller and it tries again. He stays
+    by his datum; the label stays readable. Never raises."""
+    try:
+        from matplotlib.offsetbox import AnnotationBbox
+        from matplotlib.text import Text
+        # extents need a renderer, not a full draw: savefig draws once
+        # anyway, and a second full draw per frame made every card ~40%
+        # slower to render
+        r = fig.canvas.get_renderer()
+        hosts = [h for h in fig.findobj(AnnotationBbox)
+                 if h.get_visible() and h.get_zorder() >= HOST_Z]
+        if not hosts:
+            return
+        texts = []
+        for t in fig.findobj(Text):
+            if not t.get_visible() or not t.get_text().strip():
+                continue
+            if t.get_alpha() is not None and t.get_alpha() < 0.35:
+                continue
+            bb = t.get_window_extent(r)
+            if bb.width >= 2 and bb.height >= 2:
+                texts.append((t.get_zorder(), bb))
+        fw, fh = fig.bbox.width, fig.bbox.height
+        steps = sorted({(dx, dy) for dx in range(-480, 481, 24)
+                        for dy in range(-240, 481, 24)},
+                       key=lambda d: (d[0] ** 2 + d[1] ** 2, abs(d[0])))
+        for h in hosts:
+            under = [bb for z, bb in texts if z < h.get_zorder()]
+            for _shrink in range(3):
+                hb0 = h.get_window_extent(r)
+                box = (hb0.x0, hb0.y0, hb0.x1, hb0.y1)
+                if not any(hides((bb.x0, bb.y0, bb.x1, bb.y1), box) for bb in under):
+                    break
+                moved = None
+                for dx, dy in steps:
+                    b = (box[0] + dx, box[1] + dy, box[2] + dx, box[3] + dy)
+                    if b[0] < 0 or b[1] < 0 or b[2] > fw or b[3] > fh:
+                        continue
+                    if not any(hides((bb.x0, bb.y0, bb.x1, bb.y1), b) for bb in under):
+                        moved = (dx, dy)
+                        break
+                if moved is not None:
+                    ax = h.axes
+                    px, py = ax.transData.transform(h.xybox)
+                    h.xybox = tuple(ax.transData.inverted().transform(
+                        (px + moved[0], py + moved[1])))
+                    break
+                ob = h.offsetbox
+                ob.set_zoom(ob.get_zoom() * 0.8)     # smaller, then look again
+    except Exception:  # noqa: BLE001 — a nudge must never cost a frame
+        pass
+
+
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08),
                max_h_frac: float | None = None):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
@@ -700,6 +780,32 @@ def _ordered_items(insight: Insight) -> list:
     if insight.baseline:
         items = items + [insight.baseline]
     return items
+
+
+def capped_items(insight: Insight, n: int = 5) -> list:
+    """At most `n` items to draw — WITHOUT CUTTING OFF THE END OF A SERIES.
+
+    `capped_items(insight, 5)` on a seven-year trend kept 2019-2023 and
+    threw away 2024 and 2025: the coffee story's "$4.41, a record" never
+    appeared, and the hook drew the 2021-2023 dip under a claim that the
+    price "climbed" (showrunner, 2026-09-24). A ranking keeps its top `n`; a
+    series in time order keeps its first and last and thins the middle, the
+    way `viz_scene._series_points` always has. The baseline, when there is
+    one, is always kept."""
+    import re as _re_c
+    items = list(insight.items)
+    base = insight.baseline if insight.kind != "trend" else None
+    room = n - (1 if base else 0)
+    chrono = insight.kind == "trend" or (
+        len(items) > 2 and all(_re_c.match(r"^\s*(1[89]|20)\d\d\b", str(p.label))
+                               for p in items)
+        and [str(p.label) for p in items] == sorted(str(p.label) for p in items))
+    if len(items) > room >= 2 and chrono:
+        step = (len(items) - 1) / (room - 1)
+        items = [items[int(round(i * step))] for i in range(room)]
+    else:
+        items = items[:max(1, room)]
+    return items + ([base] if base else [])
 
 
 def _card_base():
@@ -2079,7 +2185,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     Twemoji (icons.icon_for); falls back to a coloured cap dot when none match."""
     from matplotlib.offsetbox import OffsetImage, AnnotationBbox
     from . import icons as _icons
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
@@ -2348,7 +2454,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     alternative to the illustrated diorama (no images)."""
     import math as _m
     from matplotlib.patches import Circle
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     n = len(items)
     ax = fig.add_axes([0.04, 0.08, 0.92, 0.68])
@@ -2461,7 +2567,12 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # struck through", coffee-price-record, 2026-09-23).
         ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor=GRID,
                             linewidth=1.5, alpha=1.0, zorder=3))
-        fs = max(16, min(46, r * 2.0))
+        # THE NUMBER IS SIZED TO THE CIRCLE IT IS IN, AS IT IS NOW. Sized to
+        # the FINISHED radius, "$4.4" in dark ink spilled past the small
+        # pink disc onto the navy ground for the whole inflation — "drawn
+        # as doubled, ghosted glyphs in dark ink on pink" (showrunner,
+        # 2026-09-24). It grows with the bubble instead.
+        fs = max(10, min(46, r * max(t, 0.05) * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
         # which is right for a BAR — the label sits at the tip and lands as
@@ -3709,7 +3820,7 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
         return None
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     vmax = max(vals)
     cx, cy = W // 2, 760
@@ -3824,7 +3935,12 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
     hops = 0
     while insight.kind in FULLFRAME_RENDERERS and hops < 3:
-        res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
+        from . import viz_scene as _vs_hook
+        _vs_hook._HOOK_LEAD = bool(hook_lead)     # machines open built, too
+        try:
+            res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
+        finally:
+            _vs_hook._HOOK_LEAD = False
         if res is not None:
             return res
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
@@ -3868,6 +3984,7 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             grip_path.append({"f": f, **_ATTACH_FRAME[-1]})
         if f == frames:
             anchors = _anchors_from(fig, ax, specs)
+        _clear_host(fig)
         fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
         plt.close(fig)
     _TOUR_LIVE = False

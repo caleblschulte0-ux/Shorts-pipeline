@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import hashlib as _hashlib
 import math as _math
+import re as _re
 import re
 from pathlib import Path
 
@@ -46,6 +47,16 @@ from . import charts
 from . import charts as _c
 from .charts import (REST, SUBTLE, TEXT, WARN, _fullframe,
                      _ordered_items, _pil_font, _rgba, _sci, _vfmt)
+from shared import look as _look
+
+
+def _look_rgb(hex_color: str) -> tuple:
+    h = str(hex_color).lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def _look_hex(rgb) -> str:
+    return "#%02x%02x%02x" % tuple(int(c) for c in rgb[:3])
 
 
 def __getattr__(name):
@@ -1304,7 +1315,11 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         # On the SAME curve as the tip. This had its own ease-out, so the
         # largest text on the card stopped changing before the pans did — the
         # identical defect one line away from where it was just fixed.
-        shown_v = val * ease
+        # THE NUMBER IS THE DATA'S FROM THE FIRST FRAME; the pans do the
+        # moving. Counting up printed "24.0M · 2022" mid-tip when 2022 was
+        # 25.8M — a value the data does not have, under a label that claims
+        # it (the same defect B's readouts were fixed for, 2026-09-23).
+        shown_v = val
         # BOTH TEXTS ARE FITTED TO THE ROOM THE PAN ACTUALLY HAS. Centred on
         # a pan 350px from the middle, a 72pt "2,609,874" and a 44pt
         # "Prevention & management" both ran past the frame edge, and the
@@ -1552,7 +1567,9 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(TEXT, 185), anchor="mm")
     host = scene_host("point", reveal, insight, "road")
     if host is not None:
-        mh = 300
+        # no taller than the room between the road and the year labels:
+        # at 300px his head covered the last year (a_audit: "2022")
+        mh = int(max(180, min(300, road_y + 14 - (_axis_y + 66))))
         mw = int(host.width * mh / host.height)
         # He drives on the road at the RIGHT, clear of the year labels that
         # now run under the axis across the middle of the frame.
@@ -1755,10 +1772,19 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
             d.line([(px, _sy), (px, _sy + 24)], fill=_rgba(WARN, 70), width=7)
     d.rounded_rectangle([far_x, deck_y - 26, x1, deck_y + 34], radius=8,
                         fill=_rgba(WARN, 235))
-    d.text((x1, deck_y - 76), f"{getattr(base, 'label', 'target')}  "
-           f"{charts._ulabel(bv, unit)}", font=_pil_font(36),
-           fill=_rgba(WARN, 240), anchor="rm")
-    d.text((x0, deck_y - 52), charts._ulabel(v, unit), font=_pil_font(46),
+    # ABOVE HIS HEAD, pinned over the far bank. At deck height he walked
+    # into it whenever the deck got close to the bank (a_audit: "Target
+    # 77.9" under him at 78%), and a long target name did the same from
+    # further out. A leader drops from it to the bank it names.
+    _ty = deck_y - 300 - 40
+    _tb = draw_fitted(d, (x1, _ty), f"{getattr(base, 'label', 'target')}  "
+                      f"{charts._ulabel(bv, unit)}", 40, int((x1 - x0) * 0.62),
+                      _rgba(WARN, 240), anchor="rd", min_size=28)
+    d.line([((far_x + x1) // 2, _tb[3] + 10), ((far_x + x1) // 2, deck_y - 34)],
+           fill=_rgba(WARN, 150), width=4)
+    # UNDER the built deck, where Data never stands: above it, a short deck
+    # early in the build put him straight on top of it (a_audit: "76")
+    d.text((x0 + 14, deck_y + 96), charts._ulabel(v, unit), font=_pil_font(46),
            fill=_rgba(color, 245), anchor="lm")
     na = max(0.0, min(1.0, (reveal - 0.4) / 0.3))
     # the measured gap, drawn across the gap
@@ -1903,16 +1929,24 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, ly],
                             radius=tube_w // 2, fill=_rgba(WARN, 90))
         d.line([(cx - 120, ly), (cx + 120, ly)], fill=_rgba(WARN, 235), width=8)
-        d.text((cx + 136, ly), f"{getattr(base, 'label', 'limit')}  "
-               f"{charts._ulabel(limit, unit)}", font=_pil_font(34),
-               fill=_rgba(WARN, 235), anchor="lm")
-    e = settle(reveal)
+        draw_fitted(d, (cx + 136, ly), f"{getattr(base, 'label', 'limit')}  "
+                    f"{charts._ulabel(limit, unit)}", 38, bx1 - 24 - (cx + 136),
+                    _rgba(WARN, 235), anchor="lm", min_size=26)
+    # TWO decisive moves, not one long glide: the mercury climbs, THEN the
+    # reading is called out along a leader. The number is the data's from
+    # the moment it shows (it used to count up through values the data does
+    # not have), so the second move is what keeps the tail from freezing.
+    e = settle(min(1.0, reveal / 0.7))
+    e2 = settle(max(0.0, min(1.0, (reveal - 0.55) / 0.45)))
     fy = int(bot - (bot - top) * (abs(v) / top_v) * e)
     d.rounded_rectangle([cx - tube_w // 2 + 14, fy, cx + tube_w // 2 - 14, bot],
                         radius=(tube_w - 28) // 2, fill=_rgba(color, 245))
     d.ellipse([cx - 70, bot - 26, cx + 70, bot + 114], fill=_rgba(color, 245))
-    d.text((cx - 136, fy), charts._ulabel(v * e, unit, group=True),
-           font=_pil_font(52), fill=_rgba(color, 255), anchor="rm")
+    if e2 > 0:
+        lx = int(cx - tube_w // 2 - 8 - 100 * e2)
+        d.line([(cx - tube_w // 2 - 8, fy), (lx, fy)], fill=_rgba(color, 255), width=6)
+        d.text((lx - 18 - int(60 * (1 - e2)), fy), charts._ulabel(v, unit, group=True),
+               font=_pil_font(64), fill=_rgba(color, int(255 * e2)), anchor="rm")
     host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
                       reveal, insight, "thermometer")
     if host is not None:
@@ -2069,7 +2103,12 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
-    lab = getattr(items[min(int(round(pos)), len(items) - 1)], "label", "")
+    _k = min(int(round(pos)), len(items) - 1)
+    lab = getattr(items[_k], "label", "")
+    # The PICTURE glides between years; the LINE prints the year it names
+    # and that year's own value. Printing `v` beside `lab` put "2020  316"
+    # on screen when 316 is a point between two years that no source said.
+    shown_v = vals[_k]
     frac = (v - lo) / ((hi - lo) or 1.0)
     n_wait = max(1, int(round(1 + frac * 11)))
     from . import icons as _ic
@@ -2129,7 +2168,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
             d.rounded_rectangle([x, y, x + sz, y + sz],
                                 radius=max(2, int(sz * 0.22)),
                                 fill=_rgba(REST, 235))
-    _s = f"{lab}   {charts._ulabel(v, unit, group=True)} waiting"
+    _s = f"{lab}   {charts._ulabel(shown_v, unit, group=True)} waiting"
     _f, _s = fit_text(d, _s, 62, (bx1 - bx0) - 60)
     d.text(((bx0 + bx1) // 2, by0 + 78), _s, font=_f,
            fill=_rgba(color, 255), anchor="mm")
@@ -2276,9 +2315,9 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
         px = int(hx + 20 + t_ * 150)
         py = int(hy + 12 + t_ * t_ * (by1 - 130 - hy))
         particle(d, _st["particle"], px, py, 10, _rgba(REST, 205))
-    cur = top_v - (top_v - kept_v) * e
+    # the drain moves; the sentence states what the data says is left
     d.text((cx, by0 + 66),
-           f"{charts._ulabel(cur, unit, group=True)} left of "
+           f"{charts._ulabel(kept_v, unit, group=True)} left of "
            f"{charts._ulabel(top_v, unit, group=True)}",
            font=_pil_font(58), fill=_rgba(color, 255), anchor="mm")
     fa = max(0.0, min(1.0, (reveal - 0.6) / 0.3))
@@ -2422,9 +2461,11 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
                                 fill=_rgba(color if i == 0 else REST, 240))
         _binf, _bint = fit_text(d, _label_of(p), 32, max(70, int(bw) - 10),
                                 min_size=20)
-        d.text((bxc, bin_bot + 44), _bint, font=_binf,
-               fill=_rgba(TEXT, 230), anchor="mm")
-        d.text((bxc, bin_bot + 92), f"{share * 100:.0f}%", font=_pil_font(42),
+        d.text((bxc, bin_bot + 22), _bint, font=_binf,
+               fill=_rgba(TEXT, 230), anchor="ma")
+        _lb = d.textbbox((bxc, bin_bot + 22), _bint, font=_binf, anchor="ma")
+        d.text((bxc, max(bin_bot + 92, _lb[3] + 34)), f"{share * 100:.0f}%",
+               font=_pil_font(42),
                fill=_rgba(color if i == 0 else REST, int(255 * a)),
                anchor="mm")
     for k in range(10):
@@ -2452,7 +2493,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     consequence, which is that the whole line runs at that number and not at
     the average of them.
     """
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     if len(items) < 3:
         return None
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
@@ -3464,6 +3505,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     fill_by, overlap = 0.90, 1.4
     slot = fill_by / max(1, n)
     ty = bot
+    landed = bot                      # top of the blocks that have LANDED
     for k in range(n):
         a = max(0.0, min(1.0, (e - k * slot) / (slot * overlap)))
         if a <= 0.0:
@@ -3482,12 +3524,18 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
         ty = min(ty, by) if k else by
+        if a >= 1.0:
+            landed = by
     host = scene_host("cheer", reveal, insight, "tower")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
+        # ON WHAT HAS LANDED, at the corner: riding the block still in the
+        # air lifted him 3.5 block-heights above the stack and into the
+        # beat title (a_audit, close values). The next block drops beside
+        # him onto the stack, not through him.
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx - mw // 2), int(ty - mh + 8)))
+                               (int(cx + bw // 2 - mw * 0.6), int(landed - mh + 8)))
     _s = (f"{getattr(star, 'label', '')}   "
           f"{charts._ulabel(v, unit, group=True)}")
     _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
@@ -3546,10 +3594,14 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
                         radius=15, fill=_rgba(WARN, 250))
     # Pinned to the FRAME. Hung off the bar, both labels ran off the edge —
     # "US average 5.9 yrs" became "US averag" and his own value "1.3 yrs".
-    d.text((bx1 - 24, bar_y - 34),
-           f"{getattr(base, 'label', 'baseline')}  "
-           f"{charts._ulabel(bv, unit)}", font=_pil_font(36),
-           fill=_rgba(WARN, 240), anchor="rm")
+    # ...and kept to the RIGHT of where he lands: a long baseline name
+    # ("65-city national average") ran back across the centre and he landed
+    # on it (a_audit, stress data). Two lines before it gets that wide.
+    draw_fitted(d, (bx1 - 24, bar_y - 30),
+                f"{getattr(base, 'label', 'baseline')}  "
+                f"{charts._ulabel(bv, unit)}", 36,
+                max(200, (bx1 - 24) - (_cx + 150)), _rgba(WARN, 240),
+                anchor="rd", min_size=26)
     # HE RUNS AT IT AND JUMPS IT.
     #
     # The first version slid him up to his value over the whole visual. The
@@ -3602,9 +3654,10 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
                width=10)
     d.text((bx0 + 24, val_y - 34), charts._ulabel(v, unit),
            font=_pil_font(42), fill=_rgba(color, 245), anchor="lm")
-    d.text(((bx0 + bx1) // 2, by0 + 58),
-           f"{getattr(star, 'label', '')}   {charts._ulabel(v, unit)}",
-           font=_pil_font(70), fill=_rgba(color, 255), anchor="mm")
+    _hf, _ht = fit_text(d, f"{getattr(star, 'label', '')}   {charts._ulabel(v, unit)}",
+                        70, (bx1 - bx0) - 60, min_size=34)
+    d.text(((bx0 + bx1) // 2, by0 + 58), _ht, font=_hf,
+           fill=_rgba(color, 255), anchor="mm")
     _by = abs(abs(v) - abs(bv))
     _margin = f"clears it by {charts._ulabel(_by, unit)}" if cleared \
         else f"{charts._ulabel(_by, unit)} short of it"
@@ -3791,7 +3844,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
     the trunk by construction — which is the honest version of the claim a
     stacked chart makes in words and this makes in geometry.
     """
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     if len(items) < 2:
         return None
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
@@ -3832,8 +3885,10 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
         # that would not.
         _f, _s = fit_text(d, str(getattr(p, "label", "")), 28,
                           max(60, int(w) - 8), min_size=18)
-        d.text((bxm, bot + 70), _s, font=_f,
-               fill=_rgba(TEXT, int(195 * a)), anchor="mm")
+        # hangs BELOW its share: centred, a name wrapped to three lines
+        # grew up into the "22%" above it (a_audit, long names)
+        d.text((bxm, bot + 54), _s, font=_f,
+               fill=_rgba(TEXT, int(195 * a)), anchor="ma")
         last = (bxm, split_y + 90)
         x += w + 12
     # PRODUCT IN THE PIPES. A split that appears and then holds measured a
@@ -4076,8 +4131,10 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
                    anchor="mm")
         _kf, _kt = fit_text(d, str(getattr(p, "label", "")), 28,
                             max(46, int(w) - 6), min_size=16)
-        d.text((int(sx + w / 2), bot + 32), _kt,
-               font=_kf, fill=_rgba(TEXT, int(200 * na)), anchor="mm")
+        # hangs from the ground line: centred, a wrapped name grew up past
+        # it and Data stood on it
+        d.text((int(sx + w / 2), bot + 16), _kt,
+               font=_kf, fill=_rgba(TEXT, int(200 * na)), anchor="ma")
         if lead:
             tall_xy = (int(sx + w / 2), sy)
     # Data at the foot of the tallest, small enough that the height means
@@ -4122,8 +4179,10 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     x0 = bx0 + 80
     # Steps rise as the reveal walks along them, so the staircase BUILDS.
     e = max(0.0, min(1.0, reveal))
-    shown = e * n
-    top_xy = None
+    # The last step is BUILT at 87% of the beat, so its value — the number
+    # the beat is about — is on screen, under his feet, for the tail.
+    shown = min(float(n), e * n * 1.15)
+    top_xy = stand_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
         a = max(0.0, min(1.0, shown - i))
         if a <= 0.0:
@@ -4145,24 +4204,37 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
             # covered as he reached it: "'12500' reads '1 0'", "'6600'
             # reads '6 0'" (showrunner, 2026-09-22). Inside the step his
             # feet stop at the edge and the number is always clear of them.
-            if h >= STAIR_VALUE_ROOM:
+            # A STEP'S VALUE ARRIVES WITH THE STEP: printed while the step
+            # was still rising it sat beside him, and his body (wider than
+            # a step on a 12-year series) covered it (a_audit, close data).
+            if h >= STAIR_VALUE_ROOM and a >= 1.0:
                 _vf, _vt = fit_text(d, charts._ulabel(v, unit), 34,
                                     max(44, int(w) - 12), min_size=20)
-                d.text((int(sx + w / 2), sy + 36), _vt, font=_vf,
-                       fill=_rgba(TEXT, 235), anchor="mm")
+                # ink chosen by the step it sits on: white on the lit step
+                # was unreadable (a_audit)
+                _ink = _look.ink_on(_look_rgb(color if i == n - 1 else REST))
+                d.text((int(sx + w / 2), sy + 44), _vt, font=_vf,
+                       fill=_rgba(_look_hex(_ink), 235), anchor="mm")
             _tf, _tt = fit_text(d, str(getattr(p, "label", "")), 30,
                                 max(44, int(w) - 6), min_size=16)
-            d.text((int(sx + w / 2), bot + 34), _tt, font=_tf,
-                   fill=_rgba(TEXT, 190), anchor="mm")
+            d.text((int(sx + w / 2), bot + 18), _tt, font=_tf,
+                   fill=_rgba(TEXT, 190), anchor="ma")    # hangs; may wrap
             top_xy = (int(sx + w / 2), sy)
+            if a >= 1.0 or stand_xy is None:
+                # He stands on the last step that is BUILT. On the one
+                # still rising he stood below the step before it and his
+                # body covered its value (a_audit, close values). He hops
+                # up when the step arrives — one decisive move a step.
+                stand_xy = top_xy
     host = scene_host("climb", reveal, insight, "staircase")
+    top_xy = stand_xy or top_xy
     if host is not None and top_xy is not None:
         mh = int(min(STAIR_HOST_H, (bot - top) * 0.34))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(
             _fit(host, mw, mh),
             (int(min(max(top_xy[0] - mw // 2, 8), W - mw - 8)),
-             int(top_xy[1] - mh + 10)))
+             int(top_xy[1] - mh)))      # feet ON the edge, not into the value
     return (vals[-1], "art", top_xy[0], top_xy[1]) if top_xy else None
 
 
@@ -4279,6 +4351,8 @@ def fit_centred_lines(d, text: str, size: int, x: int, box,
     The label is the claim's subject; two readable lines beat one tiny one
     and both beat "Prevention & manag"."""
     f, out = fit_centred(d, text, size, x, box, min_size=min_size)
+    if "\n" in out:                    # fit_text already wrapped it
+        return [(f, ln) for ln in out.split("\n")]
     words = str(text).split()
     if f.size > min_size or len(words) < 2:
         return [(f, out)]
@@ -4289,7 +4363,42 @@ def fit_centred_lines(d, text: str, size: int, x: int, box,
             fit_centred(d, text[cut:].strip(), size, x, box, min_size=min_size)]
 
 
-def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26):
+#: Below this a label is shrunk only after wrapping it has failed.
+READ_FLOOR = 28
+
+
+def _wrap_to(d, text: str, max_w: int, hi: int, lo: int):
+    """(font, "two\\nlines") — balanced two lines, else three greedy — at the
+    largest size in hi..lo that fits `max_w`; None when nothing does."""
+    toks = _re.findall(r"[^ \-/]+[ \-/]?", text.strip())
+    if len(toks) < 2:
+        return None
+    for sz in range(int(hi), int(lo) - 1, -2):
+        f = _pil_font(sz)
+        best = None
+        for c in range(1, len(toks)):
+            a_, b_ = "".join(toks[:c]).rstrip(), "".join(toks[c:]).strip()
+            if max(d.textlength(a_, font=f), d.textlength(b_, font=f)) <= max_w:
+                bal = abs(len(a_) - len(b_))
+                if best is None or bal < best[0]:
+                    best = (bal, a_ + "\n" + b_)
+        if best:
+            return f, best[1]
+        lines, cur = [], ""
+        for t in toks:
+            if cur and d.textlength((cur + t).rstrip(), font=f) > max_w:
+                lines.append(cur.rstrip())
+                cur = t
+            else:
+                cur += t
+        lines.append(cur.rstrip())
+        if len(lines) <= 3 and all(d.textlength(x, font=f) <= max_w for x in lines):
+            return f, "\n".join(lines)
+    return None
+
+
+def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26,
+             wrap: bool = True):
     """The largest font at or below `size` that keeps `text` inside `max_w`.
 
     Machines centre their headline with `anchor="mm"` at a fixed x, which
@@ -4310,18 +4419,112 @@ def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26):
     nobody can read is not a rescue either.
     """
     size = max(min_size, int(size))
-    while size > min_size:
-        f = _pil_font(size)
+    # SHRINK, THEN WRAP, THEN SHRINK FURTHER. A long name squeezed onto one
+    # line down to 16-20px fitted and was illegible on a phone ("Greater Los
+    # Angeles metro" under a tower, 2026-09-24). Above READ_FLOOR one line is
+    # best; at the floor, two or three lines beat a smaller one.
+    floor = max(min_size, min(size, READ_FLOOR))
+    for sz in range(size, floor - 1, -2):
+        f = _pil_font(sz)
         if d.textlength(text, font=f) <= max_w:
             return f, text
-        size -= 2
+    if wrap and "\n" not in text:
+        got = _wrap_to(d, text, max_w, max(floor, int(size * 0.85)), floor)
+        if got:
+            return got
+    for sz in range(floor - 2, min_size - 1, -2):
+        f = _pil_font(sz)
+        if d.textlength(text, font=f) <= max_w:
+            return f, text
     f = _pil_font(min_size)
-    if d.textlength(text, font=f) <= max_w:
-        return f, text
+    if wrap and "\n" not in text and floor > min_size:
+        got = _wrap_to(d, text, max_w, floor - 2, min_size)
+        if got:
+            return got
+    short = compact_numbers(text)
+    if short != text:
+        for sz in range(max(min_size, int(size)), min_size - 1, -2):
+            f2 = _pil_font(sz)
+            if d.textlength(short, font=f2) <= max_w:
+                return f2, short
+        text = short
     cut = text
     while cut and d.textlength(cut + "…", font=f) > max_w:
         cut = cut[:-1]
+    if (_re.search(r"\d", text[len(cut):])
+            and sum(c.isalpha() for c in text) <= 4):
+        return f, text      # a VALUE ("$1.46M") is never cut; a name with a
+                            # year in it ("2019 (two-dose era)") still may be
     return f, (cut + "…") if cut else text
+
+
+def compact_numbers(text: str) -> str:
+    """Every run of 4+ digits (with its commas and decimals) as K/M/B/T at
+    three significant figures: "19378262" -> "19.4M", "$1,460,000" ->
+    "$1.46M". Years (1000..2100 with no separators) are left alone."""
+    def one(m):
+        raw = m.group(0)
+        try:
+            v = float(raw.replace(",", ""))
+        except ValueError:
+            return raw
+        if "," not in raw and "." not in raw and 1000 <= v <= 2100:
+            return raw
+        for div, suf in ((1e12, "T"), (1e9, "B"), (1e6, "M"), (1e3, "K")):
+            if abs(v) >= div:
+                q = v / div
+                return (f"{q:.3g}" if abs(q) < 1000 else f"{q:.0f}") + suf
+        return raw
+    return _re.sub(r"\d[\d,]{3,}(?:\.\d+)?", one, text)
+
+
+def draw_fitted(d, xy, text: str, size: int, max_w: int, fill, anchor="mm",
+                min_size: int = 26, spacing: int = 6):
+    """Draw `text` inside `max_w`: one line if it fits at `min_size` or more,
+    else TWO lines broken at a word, and only then `fit_text`'s last resort.
+    A label that runs over the frame edge or under Data is the judge's
+    `unreadable`; one that ellipsises ("Formerly redli…") is the same
+    complaint in smaller type. The block is centred on `xy` vertically for
+    an "*m" anchor, hangs below it for "*a", and grows upward for "*d".
+    Returns the (x0, y0, x1, y1) it occupied."""
+    text = str(text)
+    f = None
+    for sz in range(int(size), min_size - 1, -2):
+        f = _pil_font(sz)
+        if d.textlength(text, font=f) <= max_w:
+            lines = [text]
+            break
+    else:
+        words, lines = text.split(), [text]
+        best = None
+        for k in range(1, len(words)):
+            a_, b_ = " ".join(words[:k]), " ".join(words[k:])
+            for sz in range(int(size), min_size - 1, -2):
+                f2 = _pil_font(sz)
+                if max(d.textlength(a_, font=f2), d.textlength(b_, font=f2)) <= max_w:
+                    if best is None or sz > best[0]:
+                        best = (sz, [a_, b_])
+                    break
+        if best:
+            f, lines = _pil_font(best[0]), best[1]
+        else:
+            _ff, _ft = fit_text(d, text, size, max_w, min_size=min_size)
+            d.text(xy, _ft, font=_ff, fill=fill, anchor=anchor)
+            return d.textbbox(xy, _ft, font=_ff, anchor=anchor)
+    h_ = [d.textbbox((0, 0), ln, font=f, anchor="lm") for ln in lines]
+    lh = max(b_[3] - b_[1] for b_ in h_) + spacing
+    x, y = xy
+    total = lh * len(lines) - spacing
+    v = anchor[1] if len(anchor) > 1 else "m"
+    y0 = y - total / 2 if v == "m" else (y if v in "at" else y - total)
+    boxes = []
+    for i, ln in enumerate(lines):
+        yy = y0 + i * lh + (lh - spacing) / 2
+        a2 = anchor[0] + "m"
+        d.text((x, yy), ln, font=f, fill=fill, anchor=a2)
+        boxes.append(d.textbbox((x, yy), ln, font=f, anchor=a2))
+    return (min(b_[0] for b_ in boxes), min(b_[1] for b_ in boxes),
+            max(b_[2] for b_ in boxes), max(b_[3] for b_ in boxes))
 
 
 def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
@@ -4352,7 +4555,12 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
     v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
-    lab = getattr(items[min(int(round(pos)), len(items) - 1)], "label", "")
+    _k = min(int(round(pos)), len(items) - 1)
+    lab = getattr(items[_k], "label", "")
+    # The PICTURE glides between years; the LINE prints the year it names
+    # and that year's own value. Printing `v` beside `lab` put "2020  316"
+    # on screen when 316 is a point between two years that no source said.
+    shown_v = vals[_k]
     frac = (v - lo) / ((hi - lo) or 1.0)
     # The slab is the LOAD: its thickness is the value against the range, so
     # the picture is the increase. The exact figure is in the line above.
@@ -4378,7 +4586,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
                             radius=9,
                             fill=_rgba(color if k == n_slabs - 1 else REST, 240),
                             outline=_rgba(charts.CARD, 255), width=3)
-    _s = f"{lab}   {charts._ulabel(v, unit, group=True)}"
+    _s = f"{lab}   {charts._ulabel(shown_v, unit, group=True)}"
     _f, _s = fit_text(d, _s, 76, (bx1 - bx0) - 60)
     d.text((cx, by0 + 58), _s, font=_f, fill=_rgba(color, 255), anchor="mm")
     d.text((cx, ground + 52), "what he's carrying", font=_pil_font(38),
@@ -4470,7 +4678,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     nx, ny = cx + _math.cos(ang) * (R - 40), cy + _math.sin(ang) * (R - 40)
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
     d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
-    shown = v * e
+    shown = v                    # the needle sweeps; the number is the data's
     d.text((cx, cy + 118), charts._ulabel(shown, unit, group=True),
            font=_pil_font(104), fill=_rgba(color, 255), anchor="mm")
     _gf, _gl = fit_text(d, str(getattr(star, "label", "")), 42,
@@ -4743,7 +4951,7 @@ def draw_orbit(d, box, insight, reveal):
     if not orbit_is_honest(insight):
         return None
     import math as _m
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     vmax = max(vals)
     cx, cy = _cx(box), (box[1] + box[3]) // 2
@@ -5327,7 +5535,7 @@ def object_scene(insight) -> dict:
     """A ranking of REAL THINGS: one `object` per item (its own label as the
     photo subject) in a ground-row. render_scene turns this into big vertical
     rows with a real photo of each thing — the 'show me what it looks like' viz."""
-    items = list(insight.items)[:5]
+    items = list(insight.items)[:5]     # `item:{i}` is an index: never thinned
     els = [{"type": "object", "region": "ground-row",
             "subject": (p.label or "").strip(),
             "data": {"value_from": f"item:{i}"}}
@@ -5616,6 +5824,11 @@ def _as_anchor(an):
         return None
 
 
+#: Set by `charts.render_story_build(..., hook_lead=True)` around a machine
+#: that carries the cold open (see render_scene).
+_HOOK_LEAD = False
+
+
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
@@ -5774,6 +5987,13 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         # ease front-loaded the build so the last ~40% barely moved, which read
         # as a ~4s dead hold. Steady growth keeps visible motion the whole beat.
         r = 1.0 if f == frames else f / frames
+        if _HOOK_LEAD and f < frames:
+            # THE COLD OPEN STARTS WITH A PICTURE. A machine carrying the hook
+            # built from nothing, so at 1s the judge saw "an almost empty
+            # gradient with a slow bar build" (container ships, 2026-09-24).
+            # The same curve the card charts already use: a third built on
+            # frame one, a burst, then the steady draw to the exact end state.
+            r = charts.hook_reveal(r)
         global _BEAT_PHASE
         _BEAT_PHASE = f / max(1, frames)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
