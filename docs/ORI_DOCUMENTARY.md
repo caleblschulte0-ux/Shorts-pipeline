@@ -431,6 +431,22 @@ only as a hand edit is not a rule. So:
   scene occupies is the second measure, and a place the brain pinned
   (`at`) is let go before anything is dropped.
 
+- **The fifth fresh-topic run authored (49 minutes, the first ever) and
+  then could not finish rendering.** The outline prompt said "14-16
+  chapters" and each chapter was asked for 1,000-1,400 words — up to 2h50
+  of narration — and the brain wrote 16 chapters, 190 beats, 19,611 words:
+  a 149-minute film. Measured in that run: storyboard 34 min (3 rounds, 376
+  repairs on 190 beats), narration 62 min in one process, and the drawing
+  still going at the step's 230-minute clock. No verdict, no film. Three
+  rules came out of it, all code: the film is sized to the slot BEFORE a
+  chapter is written (`TARGET_WORDS` 14,500 at the measured 131 words a
+  minute, 10-13 chapters, per-chapter bounds derived from the count with a
+  hard cap that keeps the total under `MAX_WORDS`, now 16,000 ≈ 2h02);
+  the narration is spoken in a process pool a chapter at a time and written
+  in order; and the storyboard polish has a 45-minute wall clock beside its
+  call count. The 190-beat script came off the shelf — the weekly cron
+  would otherwise have picked a film that cannot finish.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
@@ -455,7 +471,7 @@ oracle: same answers, no memory.
 
 - Every name the validator accepts draws; every name it refuses is refused
   by name; another era's props are refused; a still scene is refused.
-- 11,000–22,000 narrated words, 8–20 chapters (the author aims at 14–16 chapters of 1,000–1,400 words, about two hours), 20–190 words a beat; the
+- 11,000–16,000 narrated words, 8–20 chapters (the author asks for 10–13 chapters sized from a 14,500-word target, about 110 minutes, with a per-chapter cap that keeps the total under 16,000 whatever the brain writes), 20–190 words a beat; the
   thumbnail is a close doodle scene with 2–4 words.
 - A short episode renders end to end with a stand-in voice: video, audio,
   captions, chapters, a 1920x1080 thumbnail.

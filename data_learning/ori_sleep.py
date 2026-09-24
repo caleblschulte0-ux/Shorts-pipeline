@@ -61,7 +61,10 @@ SENTENCE_GAP = 0.7           # a breath between sentences — sleep narration is
 BEAT_GAP = 1.9               # a longer rest when the picture changes
 CHAPTER_GAP = 6.0            # music alone between chapters
 XFADE = 1.2                  # scenes dissolve into each other; nothing cuts
-MIN_WORDS, MAX_WORDS = 11000, 22000     # ~85 minutes to ~2h50 at this pace
+MIN_WORDS, MAX_WORDS = 11000, 16000     # ~85 minutes to ~2 hours at this pace
+# Measured in CI, 2026-09-24 (run #15): 19,611 words narrated to 149.1 min —
+# 131 words a minute WITH the gaps — and that film could not be drawn and
+# judged inside the render slot. 16,000 is ~2h02; the author aims lower.
 MIN_CHAPTERS, MAX_CHAPTERS = 8, 20
 BEAT_WORDS = (20, 190)
 TITLE_MAX = 100
@@ -165,13 +168,38 @@ class Beat:
     lines: list = field(default_factory=list)     # (t0, t1, sentence)
 
 
-def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None) -> list[Beat]:
+_WORKER_VOICE = None
+
+
+def _voice_init(factory):
+    """Each narration worker loads the voice once (Kokoro is ~350 MB)."""
+    global _WORKER_VOICE
+    _WORKER_VOICE = factory()
+
+
+def _say_beat(text: str) -> list:
+    """A beat's sentences spoken in a worker: [(sentence, audio), ...]."""
+    return [(sent, _WORKER_VOICE.say(sent)) for sent in sentences(text)]
+
+
+def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None,
+            workers: int = 1, voice_factory=None) -> list[Beat]:
     """Speak the whole script into one 24 kHz mono wav, written as it goes
     (two hours of float audio does not belong in memory), and time every
-    sentence. Returns the beats with their timings."""
+    sentence. Returns the beats with their timings.
+
+    With `workers` > 1 the sentences are spoken in a process pool, a chapter
+    at a time so no more than a chapter of float audio waits in memory, and
+    written in order: measured in CI (run #15), one process spoke 149 min of
+    narration in 62 min, the whole judge's budget. `voice` given (a fake in
+    the tests) always narrates in this process."""
     import numpy as np
     import soundfile as sf
-    v = voice or Voice()
+    pool = None
+    if voice is None and workers > 1:
+        pool = ProcessPoolExecutor(max_workers=workers, initializer=_voice_init,
+                                   initargs=(voice_factory or Voice,))
+    v = voice or (None if pool else Voice())
     beats: list[Beat] = []
     t = 0.0
     k = 0
@@ -186,11 +214,15 @@ def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None
         for ci, ch in enumerate(ep["chapters"]):
             if ci:
                 silence(CHAPTER_GAP)
-            for b in ch["beats"]:
+            if pool is not None:
+                spoken = list(pool.map(_say_beat, [b["say"] for b in ch["beats"]]))
+            else:
+                spoken = None
+            for bi, b in enumerate(ch["beats"]):
                 bt = Beat(chapter=ci, index=k, text=b["say"], scene=b["scene"], start=t)
                 k += 1
-                for si, sent in enumerate(sentences(b["say"])):
-                    a = v.say(sent)
+                said = spoken[bi] if spoken is not None else [(sent, v.say(sent)) for sent in sentences(b["say"])]
+                for si, (sent, a) in enumerate(said):
                     peak = float(np.max(np.abs(a))) if len(a) else 0.0
                     if peak > 0:
                         a = a * min(1.0, 0.89 / peak)
@@ -207,6 +239,8 @@ def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None
             if stop:
                 break
         silence(4.0)
+    if pool is not None:
+        pool.shutdown()
     for a, b in zip(beats, beats[1:]):
         a.end = b.start
     beats[-1].end = t
@@ -506,7 +540,7 @@ def render(ep: dict, out: Path, *, max_seconds: float | None = None,
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         print(f"[ori_sleep] narrating {ep['slug']} ...", flush=True)
-        beats = narrate(ep, work / "narration.wav", max_seconds=max_seconds, voice=voice)
+        beats = narrate(ep, work / "narration.wav", max_seconds=max_seconds, voice=voice, workers=workers)
         total = beats[-1].end
         print(f"[ori_sleep] {len(beats)} scenes, {total / 60:.1f} min — drawing with {workers} workers",
               flush=True)

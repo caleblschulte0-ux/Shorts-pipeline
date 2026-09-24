@@ -2,9 +2,9 @@
 """Write the next OpenRangeInteractive SLEEP FILM script.
 
 Keeps `data_learning/ori_episodes/` stocked so the weekly film never stops
-for want of a script. A two-hour script (~14,000 words) is not one answer, so
+for want of a script. A two-hour script (~14,500 words) is not one answer, so
 it is written the way a person would write it: an OUTLINE first (title,
-thumbnail, era, 12-15 chapters with what each covers), then EACH CHAPTER in
+thumbnail, era, 10-13 chapters with what each covers), then EACH CHAPTER in
 its own call, told what came before so the story flows. Every chapter is run
 through the same scene and length checks the renderer uses
 (`ori_sleep.validate`, `doodle.scene.validate`) and sent back ONCE with the
@@ -63,7 +63,7 @@ Return:
   "tags": ["10-14 lowercase tags, include history for sleep, sleep story, relaxing history"],
   "chapters": [{{"title": "short chapter title", "covers": "2-3 sentences: exactly what this chapter tells"}}]
 }}
-14-16 chapters. The first opens gently (welcome, settle in, where and when we are).
+{chapters_lo}-{chapters_hi} chapters. The first opens gently (welcome, settle in, where and when we are).
 The arc is ONE evening-to-night or one day-to-night, so light moves from dusk to
 deep night as the film goes on, and the last chapter winds down to sleep.
 Only well-established history; where scholars are unsure, say so gently.
@@ -170,9 +170,29 @@ def _outline_problems(o: dict, era: str) -> list[str]:
         bad.append("thumbnail_text must be 2-4 words")
     bad += ["thumbnail_scene: " + x for x in S.validate(o["thumbnail_scene"], era)]
     n = len(o["chapters"])
-    if not (14 <= n <= 16):
-        bad.append(f"{n} chapters (14-16)")
+    if not (CHAPTERS[0] <= n <= CHAPTERS[1]):
+        bad.append(f"{n} chapters ({CHAPTERS[0]}-{CHAPTERS[1]})")
     return bad
+
+
+# The film is sized to the render slot BEFORE a chapter is written. Run #15
+# (2026-09-24) was told "14-16 chapters of 1,000-1,400 words" — up to 2h50 —
+# wrote 19,611 words, and its 149-minute film could not be drawn and judged
+# in the 230-minute step. So: a word target for the whole film, chapter
+# bounds derived from the chapter count, and a hard cap per chapter that
+# keeps the total under OS.MAX_WORDS whatever the brain does.
+TARGET_WORDS = 14500       # ~110 minutes at the measured 131 words a minute
+CHAPTERS = (10, 13)
+
+
+def chapter_words(n: int) -> tuple[int, int, int, int]:
+    """(ask_lo, ask_hi, check_lo, check_hi) for a film of n chapters: what
+    the brain is asked for, and the bounds a chapter is held to."""
+    target = TARGET_WORDS // max(1, n)
+    cap = OS.MAX_WORDS // max(1, n)
+    ask_lo = max(700, target - 150)
+    ask_hi = min(1400, target + 150, cap - 50)
+    return ask_lo, ask_hi, max(600, ask_lo - 100), min(cap, ask_hi + 150)
 
 
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
@@ -731,12 +751,13 @@ def era_for(topic: str, ask=_ask) -> str | None:
 
 def author(topic: str, era: str, ask=_ask) -> dict | None:
     vocab = S.vocabulary(era)
-    o = _with_retry(lambda pr: OUTLINE.format(topic=topic, era=era, suffix=SUFFIX, vocab=vocab) + pr,
+    o = _with_retry(lambda pr: OUTLINE.format(topic=topic, era=era, suffix=SUFFIX, vocab=vocab,
+                                              chapters_lo=CHAPTERS[0], chapters_hi=CHAPTERS[1]) + pr,
                     lambda o: _outline_problems(o, era), ask, f"{topic!r} outline")
     if o is None:
         return None
     chs = o["chapters"]
-    words_lo, words_hi = 1000, 1400
+    words_lo, words_hi, check_lo, check_hi = chapter_words(len(chs))
     out_chapters = []
     prev_text = ""
     for i, ch in enumerate(chs):
@@ -757,7 +778,7 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                 covers=ch.get("covers", ""), prev=prev, words_lo=words_lo, words_hi=words_hi,
                 final=final, vocab=vocab, problems=pr),
             lambda r, before=before, i=i: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
-                                                            words_lo - 100, words_hi + 200, before=before,
+                                                            check_lo, check_hi, before=before,
                                                             opening=(i == 0)),
             ask, f"{topic!r} chapter {i + 1}",
             mend=lambda r, before=before, i=i: (

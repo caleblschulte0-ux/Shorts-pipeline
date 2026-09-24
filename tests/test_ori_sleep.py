@@ -249,6 +249,56 @@ class FakeVoice:
         return (0.1 * np.sin(np.arange(n) * 2 * np.pi * 220 / 24000)).astype(np.float32)
 
 
+class TheFilmFitsTheSlot(unittest.TestCase):
+    """Run #15 (2026-09-24): the author was asked for 14-16 chapters of
+    1,000-1,400 words — up to 2h50 — wrote 19,611 words, and the 149-minute
+    film could not be drawn and judged in the 230-minute step. The film is
+    sized to the slot before a chapter is written, and the narration is
+    spoken in parallel."""
+
+    def test_the_outline_is_sized_to_the_render_slot(self):
+        import ori_author as A
+        from data_learning import ori_sleep as OS
+        for n in range(A.CHAPTERS[0], A.CHAPTERS[1] + 1):
+            ask_lo, ask_hi, check_lo, check_hi = A.chapter_words(n)
+            self.assertLessEqual(n * check_hi, OS.MAX_WORDS, f"{n} chapters at the cap overflow the film")
+            self.assertGreaterEqual(n * ask_lo, OS.MIN_WORDS, f"{n} chapters at the floor are too short")
+            self.assertLess(ask_lo, ask_hi); self.assertLessEqual(check_lo, ask_lo); self.assertLessEqual(ask_hi, check_hi)
+        self.assertLessEqual(A.CHAPTERS[1] * (A.TARGET_WORDS // A.CHAPTERS[1]), OS.MAX_WORDS)
+        o = {"slug": "a-b", "title": "A curious question about a quiet night | " + A.SUFFIX,
+             "thumbnail_text": "NO FIRE?", "thumbnail_scene": _scene(setting="grassland", shot="wide",
+                                                                      props=["campfire", "torch"]),
+             "description": "d", "chapters": [{"title": f"c{i}", "covers": "x"} for i in range(16)]}
+        self.assertTrue(any("chapters" in x for x in A._outline_problems(o, "stone_age")),
+                        "sixteen chapters were accepted")
+        o["chapters"] = o["chapters"][:12]
+        self.assertEqual([x for x in A._outline_problems(o, "stone_age") if "chapters" in x], [])
+        self.assertIn(f"{A.CHAPTERS[0]}-{A.CHAPTERS[1]} chapters",
+                      A.OUTLINE.format(topic="t", era="e", suffix="s", vocab="v",
+                                       chapters_lo=A.CHAPTERS[0], chapters_hi=A.CHAPTERS[1]))
+        # and the renderer refuses what the slot cannot hold
+        ep = _episode(chapters=12)
+        for ch in ep["chapters"]:
+            for b in ch["beats"]:
+                b["say"] = " ".join(["word"] * 150)
+        ep["chapters"][0]["beats"] = ep["chapters"][0]["beats"] * 60
+        self.assertGreater(sum(len(b["say"].split()) for c in ep["chapters"] for b in c["beats"]), OS.MAX_WORDS)
+        self.assertTrue(any("narrated words" in x for x in OS.validate(ep)))
+
+    def test_the_narration_is_spoken_in_parallel_and_written_in_order(self):
+        from data_learning import ori_sleep as OS
+        ep = _episode(chapters=3)
+        with tempfile.TemporaryDirectory() as td:
+            one = OS.narrate(ep, Path(td) / "one.wav", voice=FakeVoice())
+            many = OS.narrate(ep, Path(td) / "many.wav", workers=2, voice_factory=FakeVoice)
+            import soundfile as sf
+            a, _ = sf.read(str(Path(td) / "one.wav")); b, _ = sf.read(str(Path(td) / "many.wav"))
+        self.assertEqual(len(one), len(many))
+        self.assertEqual([(x.start, x.end, x.text) for x in one], [(x.start, x.end, x.text) for x in many])
+        self.assertEqual([x.lines for x in one], [x.lines for x in many])
+        self.assertEqual(len(a), len(b))
+
+
 class TheEpisodeContract(unittest.TestCase):
     def test_a_short_script_is_refused_for_length(self):
         from data_learning import ori_sleep as OS
@@ -302,7 +352,7 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
                     "slug": "a-quiet-stone-age-night", "title": "What Did Early Humans Do at Night? | Cozy History for Sleep",
                     "thumbnail_text": "NO FIRE?", "description": "Calm.", "tags": ["history for sleep"],
                     "thumbnail_scene": {"setting": "cave_mouth", "time": "night", "props": ["campfire"]},
-                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(14)]})
+                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(12)]})
             n = int(user.split("Chapter ")[1].split(" of")[0])
             # a real chapter is a sequence of DIFFERENT pictures; one picture
             # nine times is what the author refuses
@@ -322,8 +372,8 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
         ask, calls = self._fake_ask()
         ep = ori_author.author("What did early humans do at night?", "stone_age", ask=ask)
         self.assertIsNotNone(ep)
-        self.assertEqual(len(ep["chapters"]), 14)
-        self.assertEqual(calls["n"], 15)
+        self.assertEqual(len(ep["chapters"]), 12)
+        self.assertEqual(calls["n"], 13)
         from data_learning import ori_sleep as OS
         self.assertEqual(OS.validate(ep), [])
 
@@ -344,7 +394,7 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
                     "slug": "a-peasant-night", "title": "What Did Peasants Do After Dark? | Cozy History for Sleep",
                     "thumbnail_text": "NO CANDLES", "description": "Calm.", "tags": ["history for sleep"],
                     "thumbnail_scene": {"setting": "village", "time": "night", "props": ["campfire"]},
-                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(14)]})
+                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(12)]})
             n = int(user.split("Chapter ")[1].split(" of")[0])
             scenes = []
             places = ("cottage_inside", "village", "field", "forest", "riverbank")
@@ -368,7 +418,7 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
         self.assertIsNotNone(ep, "mending should have carried every chapter")
         from data_learning import ori_sleep as OS
         self.assertEqual(OS.validate(ep), [])
-        self.assertEqual(calls["n"], 15, "one call per chapter: the mend did the rest")
+        self.assertEqual(calls["n"], 13, "one call per chapter: the mend did the rest")
         self.assertEqual(ori_author.repair_film(ep, log=lambda *_: None), [], "and the film holds the rules")
 
     def test_a_chapter_that_stays_broken_sinks_the_episode(self):
