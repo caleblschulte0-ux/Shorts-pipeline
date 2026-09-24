@@ -1,0 +1,1929 @@
+{
+ "slug": "what-did-romans-do-after-dark",
+ "title": "What Did Romans Do After Dark? | Cozy History for Sleep",
+ "thumbnail_text": "NO LIGHTS AFTER DARK?",
+ "thumbnail_scene": {
+  "setting": "hut_inside",
+  "time": "night",
+  "weather": "clear",
+  "shot": "close",
+  "cast": [
+   {
+    "who": "elder",
+    "pose": "sit",
+    "action": "warm_hands",
+    "mood": "worried",
+    "at": "center"
+   }
+  ],
+  "props": [
+   "candle"
+  ]
+ },
+ "description": "Step gently into ancient Rome as the sun goes down and the ordinary business of the day gives way to lamplight, quiet meals, and the distant rumble of night carts through empty streets. We drift through a Roman evening — a simple supper, a cautious glance toward the dark alleys, the night watch making their rounds — before settling into the hush before dawn. There is no rush here, only the slow unwinding of a very old kind of night. Let the lamps burn low, and let yourself fall asleep.",
+ "tags": [
+  "ancient rome",
+  "roman history",
+  "ancient history",
+  "history for sleep",
+  "sleep story",
+  "relaxing history",
+  "bedtime history",
+  "history documentary",
+  "rome at night",
+  "sleep documentary",
+  "calm history",
+  "ambient history"
+ ],
+ "era": "ancient",
+ "chapters": [
+  {
+   "title": "Welcome to Rome at Dusk",
+   "beats": [
+    {
+     "say": "You find yourself standing at the edge of a great open square in the middle of Rome, nearly two thousand years ago. Pale stone columns rise against a sky sliding from gold into grey. The sun is dropping low behind rooftops and hills. Soon this place will belong to the dark completely — the way it always did here, before anyone thought to light a street.",
+     "scene": {
+      "setting": "forum",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "basket",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "column",
+       "temple",
+       "torch",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Inside a quiet home nearby, a woman sits close to a small flame, mending cloth with a bone needle. There is no other light. Just this one steady candle, cupped against the draft. Evening has always meant this kind of narrowing — the world shrinking down to the small circle a single flame can reach.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ]
+     }
+    },
+    {
+     "say": "Out in the square, the last errands of the day are finishing. A man carries a torch low at his side, its flame bending in the evening air. A woman crosses toward home with something wrapped and carried close. Soon the columns behind them will be just shapes, and the torch will be the brightest thing in sight.",
+     "scene": {
+      "setting": "forum",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "bundle",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire",
+       "column"
+      ]
+     }
+    },
+    {
+     "say": "In another home, a small fire glows in a shallow brazier, and a family has gathered close around it. An old man feeds it another scrap of kindling. A child leans in toward the warmth. This is probably how most evenings went — not lit brightly, but lit just enough, by people who knew exactly how much light they needed.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "feed_fire",
+        "mood": "content",
+        "item": "stick",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "warm_hands",
+        "mood": "happy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "brazier",
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Along the river that runs through the city, the water has turned the color of the sky, grey and gold together. An old man walks home along the bank, leaning on a stick. A child follows close behind, carrying a basket. We think the river was a kind of clock here — its fading light told people it was time to go in.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "walk",
+        "action": "hold",
+        "mood": "calm",
+        "item": "stick",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "basket",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "reeds",
+       "rock"
+      ]
+     }
+    },
+    {
+     "say": "Back inside, a family sits down to a simple evening meal by candlelight — bread, a little wine, whatever the day provided. There was no need for more. A meal like this, eaten slowly in a small pool of light, was probably how most nights in Rome actually ended, however grand the city looked by day.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content",
+        "item": "bread"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "drink",
+        "mood": "calm",
+        "item": "cup"
+       }
+      ],
+      "props": [
+       "candle",
+       "table",
+       "amphora"
+      ]
+     }
+    },
+    {
+     "say": "Outside again, the square has gone nearly empty. A lone figure stands holding a torch near a low fire kept burning through the night, watching over the quiet street. Most people have already gone inside. The stone that felt so vast in daylight now feels small, wrapped close around this one small point of light.",
+     "scene": {
+      "setting": "forum",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "calm",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "column",
+       "temple",
+       "torch",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "In a home nearby, an old woman speaks softly to a child curled beside her, the two of them lit by a brazier's glow and one small candle. We don't know exactly what stories were told on nights like this, only that they probably were — old, familiar, comforting, the kind repeated because they always worked.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "look_up",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "brazier",
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Later still, the square lies quiet under a sky gone fully dark. A torch burns low near the old stone columns, and a small fire glows beside it. Almost everyone has gone in for the night now. Rome sleeps the way any city sleeps — a little unevenly, a little watchfully, but sleeping all the same.",
+     "scene": {
+      "setting": "forum",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "column",
+       "temple",
+       "torch",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "In a small room lit by one candle, a child yawns, eyes heavy, curled at the edge of a bed. The day is finished. There is nothing left to do now but rest, the way there was nothing left to do once the light went, for nearly everyone who ever lived here.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "By now the whole household has settled — a man asleep, a woman resting close beside the last of the candlelight, a child already gone quiet under a blanket. Outside, the city has gone dark and still around them. This is where we begin: an ordinary Roman evening, closing gently, the same way evenings have always closed.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "sleepy",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed",
+       "brazier"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Evening Meal",
+   "beats": [
+    {
+     "say": "The day's work is done, and the household gathers under one low roof. A man carries in the last tools, the fields' smell still on him. A small oil lamp is lit against the dark. Supper is near — plain, warm, and, for a family like this, ordinary.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "content",
+        "item": "bundle",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, a light rain has begun to fall, and someone hurries to gather the last basket of olives before dark. It will sit on the table tonight beside the bread — plain fare, the kind eaten by most Roman families most evenings, rain or clear.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "focused",
+        "item": "basket",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "olive",
+       "basket"
+      ]
+     }
+    },
+    {
+     "say": "Inside, close to a small fire, a woman stirs a simple pot — grain, perhaps some greens, whatever the season allows. This is the cena, the main meal of a Roman day, and for most families it looked nothing like the grand feasts later writers remembered. It was small, warm, and eaten close together.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "stir",
+        "mood": "focused",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "sleepy",
+        "item": "bowl",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "campfire",
+       "cauldron",
+       "bench"
+      ]
+     }
+    },
+    {
+     "say": "Not far from home, a girl kneels at the water's edge, filling a jug for the evening. Carrying water was simply one more small task before the meal — the sort of quiet errand that filled countless ordinary evenings, in countless households, all across the empire.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "girl",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "calm",
+        "item": "basket",
+        "at": "center"
+       }
+      ],
+      "props": [],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Around a plain table, the family eats together — bread, olives, maybe a little cheese if the season allows it. This, historians think, is far closer to how most Romans actually ate most nights: simple food, eaten by hand, nothing like the couches and courses of the wealthy.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content",
+        "item": "bread",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "sleepy",
+        "item": "bread",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "table",
+       "candle",
+       "bench"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The wine, when there is any, is poured thin, mixed with water the way ordinary people drank it. You can imagine the slow, unhurried way a cup is lifted here — no reason to rush a meal that marks the quiet close of the day.",
+     "scene": {
+      "setting": "forest",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "drink",
+        "mood": "calm",
+        "item": "cup",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Someone older leans in to talk while the meal winds down, voice low and unhurried — a bit of news, maybe, or an old story worn soft from telling. Nobody hurries an evening like this one. There is nowhere else to be, and nothing waiting but sleep.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "A child yawns, blinking more than chewing now, warm and full and close to the small flame. Meals this plain still shaped the rhythm of an ordinary Roman day — work, then food, then rest — followed the same way whether a household was rich or, far more often, simply getting by.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "item": "bread",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle",
+       "table",
+       "bench"
+      ]
+     }
+    },
+    {
+     "say": "When the food is gone, what little is left is cleared away carefully — nothing wasted in a household that watches its stores. Bowls are stacked, the table wiped by hand. It is a small, familiar ritual, repeated quietly every evening in homes like this one, all across the city.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bowl",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "table",
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Someone banks the fire lower for the night, feeding it just enough to hold a little warmth. Beyond the door, the street has likely gone quiet — oil for lamps was costly, and most people did not stay up long once true dark settled in.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "feed_fire",
+        "mood": "calm",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "brazier",
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The child has drifted off first, curled close to the last of the fire's warmth. The woman sits a moment longer, cup in hand, watching sleep settle gently over the room. It is a quiet, unremarkable end to an unremarkable evening — which, in its own way, is exactly the point.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "content",
+        "item": "cup",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "bed",
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "The lamp is trimmed low, its flame shrinking to one small, steady point of light. There is no need to put it out fully — just enough glow left to see by, if anyone stirs. This, too, is simply how an evening closed, without ceremony, for most families of ancient Rome.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "By the time the last light is out, the household has gone still, much as it always does. A full stomach, a small fire, a family close together — this was the quiet center of an ordinary Roman day, repeated in countless homes, long before anyone thought to write any of it down.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "warm_hands",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Streets Grow Loud",
+   "beats": [
+    {
+     "say": "During the day, Rome's streets belonged to people, not wheels. A long-standing law kept heavy carts and wagons outside the city while the sun was up. Grain, stone, timber, wine—all of it waited at the gates until dark, and by daylight you could cross the forum without watching for iron-rimmed wheels underfoot.",
+     "scene": {
+      "setting": "forest",
+      "time": "day",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "wave",
+        "mood": "focused",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "item": "bundle",
+        "mood": "worried",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "cart",
+       "barrel"
+      ]
+     }
+    },
+    {
+     "say": "As light faded, carters gathered at the gates with their oxen and mules, waiting for the signal to enter. This was the hour the city changed hands—daylight Rome, quiet and walkable, giving way to a Rome that worked through the night.",
+     "scene": {
+      "setting": "grassland",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "focused",
+        "item": "bundle",
+        "at": "left"
+       },
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "point",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire",
+       "cart",
+       "cow"
+      ]
+     }
+    },
+    {
+     "say": "Then the wheels began. Iron rims ground against paving stones, a low grinding roar rolling down one street and into the next. Cart after cart came through the dark, carrying stone, oil, and grain—the ordinary weight of a growing city, moved while most eyes were closed.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "stone"
+       }
+      ],
+      "props": [
+       "cart",
+       "campfire",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Inside the houses nearby, people lay listening. The sound came up through shuttered windows and thin walls, impossible to shut out. You could hear a load being pulled close by, then further off, then another cart taking its place. Sleep came late in a city like this, if it came at all.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "idle",
+        "mood": "worried",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "hug_self",
+        "mood": "worried",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "An old woman might sit up beside a restless child, murmuring that the sound was only carts, only deliveries, nothing to fear. It was a common scene, repeated in home after home—the rumble outside simply part of living in Rome, unwelcome but familiar.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "idle",
+        "mood": "worried",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "bed",
+       "candle"
+      ]
+     }
+    },
+    {
+     "say": "One writer of the time, a poet named Juvenal, complained in his own verses that a wealthy man could sleep in peace while an ordinary Roman lay awake for wagons and shouting carters half the night. We can't know how much he exaggerated, but the streets he described were real.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "worried"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "Drivers called to each other in the dark, warning of a tight turn or a blocked lane. Rome's streets were narrow, built for walking, and two wagons could barely pass. Getting a night's deliveries through without a wreck took skill, patience, and more shouting than anyone in bed wanted to hear.",
+     "scene": {
+      "setting": "grassland",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "worried",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "focused",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "cart",
+       "torch",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Outside the city, in the groves and farmland that fed Rome, carts were loaded before dusk—olives, grain, wine jars stacked and tied. Farmers waved their loads off toward the gates, knowing the road was slow and the wait was long, saved for the hours after dark when the streets stood open.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "day",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "wave",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "olive",
+       "cart",
+       "basket"
+      ]
+     }
+    },
+    {
+     "say": "By full dark, the gates stood open and the line moved in. Carts entered one by one, wheels catching every uneven stone, the sound echoing off shops and homes stacked close together. From an upper room, it might have seemed the whole city was made of sound alone.",
+     "scene": {
+      "setting": "grassland",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "bundle",
+        "at": "center"
+       },
+       {
+        "who": "elder",
+        "pose": "walk",
+        "action": "point",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "cart",
+       "campfire",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Not everyone minded it. Some Romans grew so used to the noise that they slept straight through it, the way a river town stops hearing its own water. Others simply waited, listening, until the worst of the traffic passed and a thinner quiet returned before morning.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "look_up",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Near dawn, the carts thinned out. The last few made their way through as the sky began to lighten, drivers tired, animals slower now. Gatekeepers watched the final loads pass before the doors closed to wheels again for the day. The grinding sound faded, street by street.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "dawn",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "wave",
+        "mood": "calm",
+        "item": "torch",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "sleepy",
+        "item": "bundle",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "cart",
+       "torch",
+       "column"
+      ]
+     }
+    },
+    {
+     "say": "By the time the sun was fully up, the streets belonged to people again—walkers, sellers, children, the ordinary hum of daytime. The noise of the night before had already begun to fade from memory, ready to happen again once the light went down.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "basket"
+       },
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "play",
+        "mood": "happy"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "column",
+       "campfire",
+       "torch"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "Best to Stay Indoors",
+   "beats": [
+    {
+     "say": "As dusk settles over the forum, the last sellers pack away their stalls. Baskets are stacked, tables wiped clean, coins counted quickly. There is no street lighting in this city — once the sun goes down, the roads will hold almost no light of their own. People hurry now, eager to be inside before dark.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "focused",
+        "item": "basket"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "worried",
+        "item": "bundle"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "worried"
+       }
+      ],
+      "props": [
+       "stall",
+       "campfire",
+       "torch"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Anyone still out after nightfall walks quickly, close to the walls. The alleys twist and narrow, and without any light of your own, a pothole or a loose stone underfoot can turn an ankle in the dark. Robbers and drunks are the greater danger — people probably told stories of both, and most believed them enough to stay home.",
+     "scene": {
+      "setting": "grassland",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "worried",
+        "at": "left"
+       }
+      ],
+      "props": []
+     }
+    },
+    {
+     "say": "Inside a modest home, a family bars the door with a heavy plank. It is a small routine repeated every evening — check the latch, feed the fire, settle in for the night. Once the door is shut, it stays shut. Nobody in the household would think to wander back out into those dark, uneven streets.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "item": "stick",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "calm",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "campfire",
+       "woodpile"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a wealthier house nearby, a woman sits close to a small oil lamp, mending a torn hem by its low, steady light. The flame is precious after dark — oil is not cheap, and every household rations it carefully. Still, even here, nobody considers stepping outside once the lamps are lit.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "By the hearth, an elder speaks quietly to a child curled close beside her. She tells him, gently, why the streets turn dangerous after sundown — not to frighten him, just to explain the family's oldest rule. He listens, warm and drowsy, already trusting the walls around him more than anything outside them.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "By full night, the forum stands nearly empty — a place that hummed with thousands only hours before now holds just shadow and silence. A stray dog crosses the open space, unbothered, the only living thing brave enough to be out. For ordinary Romans of this era, this hour belongs to nobody at all.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [],
+      "props": [
+       "dog",
+       "campfire",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Across the city, whole households settle down together for the night, sometimes in a single room, for warmth and for company as much as safety. A candle burns low near the beds. There is comfort simply in numbers, in knowing that everyone under the roof is exactly where they should be.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Later, under the emperor Augustus, something begins to change. Rome forms official night watchmen, called the vigiles, tasked with guarding against fire and theft after dark. At dusk, one sets out from his station, lantern in hand, cloak pulled close, ready for a long walk through streets most people are only just leaving.",
+     "scene": {
+      "setting": "forum",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "column",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Through the empty lanes, the watchman moves slowly, torch held high, checking doorways and watching for the telltale flicker of a fire starting somewhere it shouldn't. He is not there to walk you home, exactly — but knowing someone is out there, watching for smoke, is its own kind of comfort.",
+     "scene": {
+      "setting": "forest",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "hold",
+        "mood": "calm",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Inside the small house, the family sleeps on, unaware of exactly who passes outside, but somehow reassured all the same. The idea that the city now has eyes open in the dark — even just a few — makes the night feel a little less lawless than it once did.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": []
+     }
+    },
+    {
+     "say": "In the villa, the child stirs briefly, half-woken by some sound outside. The elder beside her murmurs that it is only the watch passing by, nothing more, and settles the blanket back over her shoulder. The oil lamp gutters low, almost out, and the child sleeps again.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center"
+       },
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "calm",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "bed"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The candle finally burns down to nothing, and the little house goes dark and quiet. Outside, the watchman's steps fade into the distance, and Rome's long, careful night continues on, one lamp and one bolted door at a time, the way it will again tomorrow.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Those Still Awake",
+   "beats": [
+    {
+     "say": "Somewhere near the market, a baker is already awake while the rest of the street sleeps. The little oven has held its heat since midnight, and he works the dough slowly in a wide bowl, folding it over itself again and again in the glow. Bread cannot hurry, so neither does he. He simply keeps at it, patient, until the loaves are ready to rise.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "stir",
+        "mood": "focused",
+        "item": "bowl",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "brazier",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, by the glow of the ovens, a man carries a tray of shaped loaves toward the coals, his steps careful and unhurried. No one else is out at this hour. The street beyond the fire's light sits dark and empty, and the whole city seems to be holding its breath, waiting for a morning that has not come yet.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bread",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "stall"
+      ]
+     }
+    },
+    {
+     "say": "In a quiet house across town, a woman sits close to a small lamp, mending a torn seam by its light. Her daughter sits near her, eyes heavy, watching the needle rather than sleeping, while her husband dozes lightly in his chair nearby. The stitches continue anyway, small and careful, in and out, the only motion in the room.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center_left"
+       },
+       {
+        "who": "girl",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In another home, an old woman works wool by a single candle, twisting it steadily between her fingers into thread. It is slow, careful work, the kind that asks for patience more than strength. She does not mind the hour. The house is quiet, the flame is close, and there is nowhere else she needs to be.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit_on",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back at the ovens, the baker feeds the fire again, laying in another piece of wood and watching the light climb. The heat presses warm against his hands and face. He has done this so many nights that his hands know the fire better than his eyes do, finding the right place without needing to look.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "stick"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The woman with the needle pauses to check her work, holding the cloth up toward the lamp. The tear is nearly closed now, the stitches even and small. She lowers it back into her lap and keeps going, unhurried, the way this kind of mending always has to be done.",
+     "scene": {
+      "setting": "snowfield",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "content",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Nearby, a child has fallen asleep on a low bed while her mother keeps sewing by the same small flame. The mother glances over now and then but does not stop her work. The needle moves quietly in and out, and the only other sound in the room is the child's slow, even breathing.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "sew",
+        "mood": "calm",
+        "item": "needle",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "At the ovens, the first loaves are finally ready, and the baker lifts one gently to check it, turning it over in his hands. It is still dark outside, though somewhere past the rooftops the sky may already be softening. He sets the bread with the others to cool before turning back to shape the next batch.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "content",
+        "item": "bread",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The old woman sets the wool down for a moment and leans forward to feed her own small fire, adding a thin stick to keep it going. The flame settles and brightens briefly. She watches it for a moment, warms her hands, then picks the wool back up and returns to her steady twisting.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "feed_fire",
+        "mood": "calm",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In a small house nearby, a different woman keeps stitching by her own low flame, though her daughter is fully asleep now, curled close beside her. A younger child sits nearby too, heavy-eyed, fighting sleep a little longer. The woman glances at them both, content, and keeps the needle moving without hurry.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "sew",
+        "mood": "content",
+        "item": "needle",
+        "at": "left"
+       },
+       {
+        "who": "girl",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed",
+       "basket"
+      ]
+     }
+    },
+    {
+     "say": "In the last hour before light, the old woman finally sets the wool aside, and the candle burns low beside her. Across the city, the baker's ovens still glow, and rows of new bread wait for a morning that has not quite come. Not everyone sleeps through the night. Some people simply keep at their quiet work until it does.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit_on",
+        "action": "hold",
+        "mood": "sleepy",
+        "item": "bundle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 2
+     }
+    }
+   ]
+  },
+  {
+   "title": "The City Falls Asleep",
+   "beats": [
+    {
+     "say": "The last stallholders pull their shutters closed, and a watchman crosses the empty square, torch held low, the small fire beside the closed gate burning down to embers. The carts that clattered through all evening have gone quiet, their wheels fading into the dark side streets. Soon there will be nothing left moving here but the lamplight, and then, one by one, not even that.",
+     "scene": {
+      "setting": "forum",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "column",
+       "cart",
+       "campfire",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Down by the river, a boatman ties the last rope and lets the current settle. The water moves black and slow past the mooring posts, carrying the day's noise away with it. He sits a moment on the bank, listening to nothing in particular, before he too turns toward home and sleep.",
+     "scene": {
+      "setting": "lakeshore",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a small hut at the edge of town, a mother banks the fire low and lays a blanket over her child, who is already drifting. The room smells of smoke and warm straw. Outside, the night presses close and quiet against the walls, and inside, everything that needed doing today has been done.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a villa nearby, a man carries a small lantern down a dim corridor toward his bed, one hand cupped around the flame. The house has gone still around him — no footsteps, no voices, just the soft catch of light and his own tired breath. He sets it down beside a candle burned low, and lets his eyes close.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Further off, where the city meets the sea, the waves keep their own slow rhythm against the sand, indifferent to Rome and its hours. No boats go out tonight. The shore lies pale and empty under a sky thick with stars, and the sound of the water is the only voice left awake.",
+     "scene": {
+      "setting": "seashore",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "rock"
+      ]
+     }
+    },
+    {
+     "say": "Out among the olive trees, a shepherd feeds the last of his small fire and pulls his cloak tighter. His sheep are settled in a loose huddle nearby, and his dog lies close against his side. He watches the coals a while longer, not because he needs the warmth, but because it is a comfortable thing to watch.",
+     "scene": {
+      "setting": "olive_grove",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "feed_fire",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "campfire",
+       "sheep",
+       "dog",
+       "olive"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "By a quiet lake outside the city, an old man stands at the water's edge, looking up at how the stars sit doubled — once in the sky, once on the still surface below. He does not stay long. It is only that some nights ask to be looked at before you turn in.",
+     "scene": {
+      "setting": "seashore",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back in the hut, the child has stopped stirring, one small hand still curled around the edge of the blanket. The mother sits beside her a little longer than she needs to, watching her breathe, before she banks the coals and lies down herself. The hut holds its warmth a long while after the fire is nearly out.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "idle",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "bed",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Across the city, the old woman finally lets the wool fall still in her lap. The candle beside her has burned down to almost nothing, its light no bigger now than a coin. She looks at it a moment, then leans back, and lets the dark come in around her the way it has come for everyone else tonight.",
+     "scene": {
+      "setting": "villa_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "sleepy",
+        "item": "bundle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Before the sun is properly up, a few fishermen push their boats out past the shallows, the water pale and the air still cool with night. They do not hurry. The city behind them is only just beginning to grey at the edges, and the streets are still mostly asleep.",
+     "scene": {
+      "setting": "seashore",
+      "time": "dawn",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "calm",
+        "item": "rod",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [],
+      "variant": 2
+     }
+    },
+    {
+     "say": "The river carries the first light quietly along, the way it has carried everything else tonight — the lamps, the carts, the low fires, the tired voices. Rome will wake soon enough, the way it always does. But not yet. For now, everything is still, and there is nothing left to do but close your eyes and let the night finish on its own.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "reeds"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "sources": [],
+ "topic": "What did ordinary Romans do after dark?",
+ "added": "2026-09-24T20:09",
+ "authored_by": "ori_author",
+ "storyboard": {
+  "kit": "8968d52877fa",
+  "clean": false,
+  "reviewed_at": "2026-09-24T20:31",
+  "rounds": 3,
+  "repaired": 136
+ }
+}
