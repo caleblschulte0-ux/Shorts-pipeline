@@ -180,7 +180,8 @@ IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyon
 FILM_LOOK_SHARE = 0.2      # ... and at most one in five of the whole film's
 FILM_PLACE_SHARE = 0.25
 CROWD_SHRINK = 0.8
-MARK_SHARE = 0.3           # no one setting at more than three in ten of the film's judged moments         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
+MARK_SHARE = 0.3
+MAX_FILM_REPAIRS = 40      # repair_film steps per script; each is the smallest change that lowers the count           # no one setting at more than three in ten of the film's judged moments         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
 
 
 def _mark_beats(beats) -> list[int]:
@@ -480,6 +481,182 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
     return ep
 
 
+# words in a passage that pin it to its place: a beat whose words say the
+# cave is not moved out of the cave to satisfy a picture rule
+SETTING_WORDS = {
+    "cave_mouth": ("cave",), "cave_inside": ("cave",), "riverbank": ("river", "stream", "bank"),
+    "lakeshore": ("lake",), "seashore": ("sea", "shore", "beach", "tide"), "forest": ("forest", "wood", "trees"),
+    "snowfield": ("snow",), "mountains": ("mountain", "peak", "hills"), "grassland": ("grass", "steppe", "plain"),
+    "field": ("field",), "village": ("village",), "castle": ("castle",), "harbour": ("harbour", "harbor", "quay"),
+    "desert": ("desert", "dune"), "nile_bank": ("nile", "river"), "forum": ("forum", "market"),
+    "olive_grove": ("olive", "grove"), "street": ("street",), "market_square": ("market", "square"),
+    "farmyard": ("farm", "yard", "barn"),
+}
+NEAR_SETTINGS = ("grassland", "forest", "riverbank", "mountains")   # a night's walk from anywhere outdoors
+
+
+def _words_pin(say: str, setting: str) -> bool:
+    low = (say or "").lower()
+    return any(w in low for w in SETTING_WORDS.get(setting, ()))
+
+
+def repair_film(ep: dict, log=print) -> list[str]:
+    """Hold a whole script to the picture rules, deterministically, and fix
+    what the brain left: a chapter standing in one place at its three judged
+    moments, one place owning too many of those moments, a scene too crowded
+    for its shot, two neighbouring beats that are the same picture. Each fix
+    is the smallest change that lowers the problem count — drop the last
+    inessential prop, or move one beat to the least-used nearby place — and a
+    beat whose words name its place is never moved. This is what the operator
+    meant by "a system that makes good videos, not one good video": a rule the
+    author cannot hold on its own output is a rule that lives as a hand edit
+    to one script, and that is not a rule. Returns the notes of what changed."""
+    import collections
+    from data_learning import ori_sleep as OS
+    era = ep["era"]
+    keep = ("picture", "of the film", "new place", "crowded", "moves", "judged moments")
+
+    def problems():
+        out = []
+        for i, c in enumerate(ep["chapters"]):
+            for x in _chapter_problems(c["beats"], era, 0, 10 ** 6, before=ep["chapters"][:i]):
+                if any(k in x for k in keep):
+                    out.append((i, x))
+        return out
+
+    def flat_index(i, j):
+        return sum(len(c["beats"]) for c in ep["chapters"][:i]) + j
+
+    def fit(i, j):
+        """How well the scene fits, the worse of the render's own seed and
+        the rule's fixed seed — so a repair satisfies the rule that raised
+        the problem AND the picture that will be drawn."""
+        sc = ep["chapters"][i]["beats"][j]["scene"]
+        if S.validate(sc, era):
+            return -1.0
+        natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+        worst = 9.0
+        for seed in (OS._scene_seed(ep["slug"], flat_index(i, j), sc), 1000 + j):
+            lay = S.layout(sc, seed)
+            worst = min(worst, -1.0 if lay["collisions"] else lay["scale"] / natural)
+        return worst
+
+    def scene_ok(i, j):
+        return fit(i, j) >= CROWD_SHRINK
+
+    def candidates():
+        used = collections.Counter(b["scene"].get("setting") for c in ep["chapters"] for b in c["beats"])
+        near = [n for n in NEAR_SETTINGS if n in S.SETTINGS and era in S.SETTINGS[n].eras]
+        return sorted(near, key=lambda n: used[n])
+
+    def try_move(i, j):
+        b = ep["chapters"][i]["beats"][j]
+        sc = b["scene"]
+        if _words_pin(b.get("say", ""), sc.get("setting")):
+            return None
+        old = json.loads(json.dumps(sc))
+        before = len(problems())
+        for alt in candidates():
+            if alt == old.get("setting"):
+                continue
+            sc["setting"] = alt
+            sc["props"] = [q for q in sc.get("props", []) if (q if isinstance(q, str) else q["name"]) != "cave_painting"]
+            if scene_ok(i, j) and len(problems()) < before:
+                return f"{ep['chapters'][i]['title']} beat {j + 1}: {old.get('setting')} -> {alt}"
+            sc.clear(); sc.update(old)
+        return None
+
+    def try_drop(i, j):
+        """Uncrowd one scene: drop inessential props from the last while each
+        drop makes it fit better, then widen the shot if it still does not
+        fit — the whole thing counted as one step, because a crowd of five
+        props is rarely one prop too many."""
+        sc = ep["chapters"][i]["beats"][j]["scene"]
+        old = json.loads(json.dumps(sc))
+        before = len(problems())
+        dropped = []
+        while fit(i, j) < CROWD_SHRINK:
+            props = list(sc.get("props", []))
+            best = None
+            for k in range(len(props) - 1, -1, -1):
+                name = props[k] if isinstance(props[k], str) else props[k]["name"]
+                pr = S.PROPS.get(name)
+                if pr is None or pr.living or pr.light:
+                    continue
+                was = fit(i, j)
+                sc["props"] = props[:k] + props[k + 1:]
+                now = fit(i, j)
+                if now > was + 1e-6:
+                    best = name
+                    break
+                sc["props"] = props
+            if best is None:
+                break
+            dropped.append(best)
+        if fit(i, j) < CROWD_SHRINK and S.shot_of(sc) == "close":
+            # widen — and a wide night needs a second light, so a torch goes
+            # up by the camp if the fire alone is not enough to read as alive
+            sc["shot"] = "wide"
+            if S.validate(sc, era) and "torch" not in sc.get("props", []):
+                sc["props"] = list(sc.get("props", [])) + ["torch"]
+            if fit(i, j) < CROWD_SHRINK or S.validate(sc, era):
+                sc["shot"] = old.get("shot", "close")
+                sc["props"] = [q for q in sc.get("props", []) if q != "torch" or "torch" in old.get("props", [])]
+            else:
+                dropped.append("the close shot (widened" + (", a torch lit" if "torch" not in old.get("props", []) else "") + ")")
+        if scene_ok(i, j) and len(problems()) < before and dropped:
+            return f"{ep['chapters'][i]['title']} beat {j + 1}: dropped {', '.join(dropped)}"
+        sc.clear(); sc.update(old)
+        return None
+
+    notes = []
+    skipped = set()          # a problem nothing here can fix (its beats' words pin them): say so once, move on
+    for _ in range(MAX_FILM_REPAIRS):
+        ap = [(i, p) for i, p in problems() if (i, p) not in skipped]
+        if not ap:
+            break
+        i, p = ap[0]
+        beats = ep["chapters"][i]["beats"]
+        marks = _mark_beats(beats)
+        done = None
+        m = re.search(r"beat (\d+)", p)
+        if "crowded" in p and m:
+            j = int(m.group(1)) - 1
+            done = try_drop(i, j) or try_move(i, j)
+        elif "moves" in p or "judged moments" in p:
+            for j in (marks[1], marks[0], marks[2]) if len(marks) == 3 else marks:
+                done = try_move(i, j)
+                if done:
+                    break
+        elif "back to back" in p:
+            m2 = re.search(r"beats (\d+) and", p)
+            j = int(m2.group(1)) if m2 else 0
+            done = try_move(i, j) or try_move(i, j - 1)
+        elif "new place" in p:
+            done = try_move(i, 0)
+        else:
+            # "<setting> would be N of the film's ..." or "N of M beats are the
+            # same picture (<setting>, <shot> shot)": move a beat of that place,
+            # a non-judged one first so the chapter's marks are not disturbed
+            m3 = re.search(r"same picture \((\w+),", p)
+            setting = m3.group(1) if m3 else p.split(" ")[0]
+            order = [j for j in range(len(beats)) if j not in marks] + list(marks)
+            for j in order:
+                if beats[j]["scene"].get("setting") == setting:
+                    done = try_move(i, j)
+                    if done:
+                        break
+        if not done:
+            log(f"[ori_author] repair_film could not fix (the words pin those beats): {p[:120]}")
+            skipped.add((i, p))
+            continue
+        notes.append(done)
+        log(f"[ori_author] repair_film: {done}")
+    if notes:
+        ep.pop("storyboard", None)          # the board must look again
+    return notes
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--count", type=int, default=None)
@@ -518,6 +695,7 @@ def main() -> int:
             break
         if ep is None:
             continue
+        repair_film(ep)
         OS.EPISODES.mkdir(parents=True, exist_ok=True)
         path = OS.EPISODES / f"{ep['slug']}.json"
         path.write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n")

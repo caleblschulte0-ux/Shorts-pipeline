@@ -287,7 +287,12 @@ and the takeover went on asking for a retired format with everything green.
   the direction of something."* So: no status reports to him until the
   verdicts are consistently 80 or better; the only interruption allowed is
   a real question of direction. `docs/ORI_DOCUMENTARY.md` keeps the per-run
-  record instead.
+  record instead. And, an hour later: *"remember we're making a system
+  that makes good videos not making one good video."* A rule that only
+  lives as a hand edit to the shelf's one script is not a rule; every
+  editorial rule is code the author enforces on its own output
+  (`ori_author.repair_film`), and the proof is a SECOND topic authored and
+  judged end to end in CI, never the first script polished by hand.
 
 Trending's formats are `reddit_story` (gameplay + post card + TTS) and
 `graph_race` (animated chart); `text_card` is retired. **Those are the

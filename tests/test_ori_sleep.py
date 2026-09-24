@@ -721,6 +721,39 @@ class ThePictureIsReadable(unittest.TestCase):
         same[marks[1]]["scene"] = _scene(setting="forest", shot="close")
         self.assertEqual([b for b in A._chapter_problems(same, "stone_age", 0, 99999) if "chapter moves" in b], [])
 
+    def test_repair_film_holds_a_script_to_the_rules_without_a_hand(self):
+        # "a system that makes good videos, not one good video": the author
+        # fixes its own output — a chapter standing in one place at its three
+        # judged moments, a crowded scene — and never moves a beat whose
+        # words name its place
+        import ori_author as A
+        say = " ".join(["word"] * 30)
+        beats = [{"say": say, "scene": _scene(setting="cave_mouth", shot=("close" if j % 2 else "wide"),
+                                              cast=[{"who": "man", "pose": "sit", "action": "warm_hands"}],
+                                              props=["campfire", "torch"])} for j in range(6)]
+        beats[0]["say"] = "Their home is the mouth of a wide, shallow cave. " + say
+        crowd = {"say": say, "scene": _scene(setting="cave_mouth", shot="close",
+                                              cast=[{"who": "man", "pose": "lie", "action": "sleep"},
+                                                    {"who": "woman", "pose": "lie", "action": "sleep"},
+                                                    {"who": "elder", "pose": "sit_on", "action": "idle"}],
+                                              props=["campfire", "wolf", "bedroll", "woodpile", "stones"])}
+        ep = {"slug": "a-test", "era": "stone_age", "chapters": [{"title": "One", "beats": beats + [crowd]}]}
+        before = [x for x in A._chapter_problems(ep["chapters"][0]["beats"], "stone_age", 0, 10 ** 6)
+                  if "moves" in x or "crowded" in x]
+        self.assertTrue(before)
+        notes = A.repair_film(ep, log=lambda *_: None)
+        self.assertTrue(notes, "nothing was repaired")
+        after = [x for x in A._chapter_problems(ep["chapters"][0]["beats"], "stone_age", 0, 10 ** 6)
+                 if "moves" in x or "crowded" in x]
+        self.assertLess(len(after), len(before))
+        self.assertEqual(ep["chapters"][0]["beats"][0]["scene"]["setting"], "cave_mouth",
+                         "the beat whose words say 'cave' stayed in the cave")
+        # the shelf's script needs nothing: the rules already hold there
+        from data_learning import ori_sleep as OS
+        for f in sorted(OS.EPISODES.glob("*.json")):
+            shelf = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(A.repair_film(shelf, log=lambda *_: None), [], f.name)
+
     def test_a_chapter_opens_on_a_new_place(self):
         import ori_author as A
         _beat = lambda **kw: {"say": "words", "scene": _scene(**kw)}

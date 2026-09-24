@@ -344,6 +344,30 @@ fire in the tent, a beard read as "a brown prop across the face", a fire
   mountains' open sky) and three crowded wide cave scenes lost a rack or a
   tent; the beat whose words say "the mouth of a wide, shallow cave" stayed.
 
+### A system, not a video (2026-09-24)
+
+His words, after the ninth run: *"remember we're making a system that makes
+good videos not making one good video."* Everything above that had landed
+as a hand edit to the shelf's one script — a beat moved to the mountains, a
+rack dropped from a crowded wide — was one-video work, and a rule that lives
+only as a hand edit is not a rule. So:
+
+- **`ori_author.repair_film`** holds a whole script to the picture rules,
+  deterministically: a chapter standing in one place at its three judged
+  moments, one place owning too many of those moments, a scene too crowded
+  for its shot, neighbours that are the same picture. Each fix is the
+  smallest change that lowers the problem count — drop inessential props
+  from the last while each drop fits better, widen the shot (lighting a
+  torch if a wide night needs it), or move one beat to the least-used
+  nearby place — and a beat whose words name its place (`SETTING_WORDS`) is
+  never moved. It runs on every script the author writes and again in
+  `post_ori` before the storyboard. Replayed on the run-#9 script it makes
+  the same eight changes the hand had made, and leaves the one whose words
+  pin it, saying so.
+- **The proof is a second topic.** `curiosity.yml` takes `author_topic`
+  (and `author_era`): the run authors a fresh script, repairs it, boards it,
+  renders it and judges it — the whole system on a topic nobody polished.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

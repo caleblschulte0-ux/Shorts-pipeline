@@ -39,6 +39,14 @@ on:
         description: 'space-separated slugs (blank = un-posted, config order)'
         required: false
         default: ''
+      author_topic:
+        description: 'sleep: author a NEW script on this topic first and judge it (any topic; the era is inferred, or give author_era)'
+        required: false
+        default: ''
+      author_era:
+        description: 'sleep: era for author_topic (blank = inferred from the words)'
+        required: false
+        default: ''
       expected_channel:
         description: 'channel guard override (blank = OpenRangeInteractive)'
         required: false
@@ -170,7 +178,20 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-        run: python scripts/ori_author.py --if-empty
+        run: |
+          if [ -n "${{ inputs.author_topic }}" ]; then
+            # the system test: a fresh topic, authored, repaired, boarded
+            # and judged in one run — never the shelf's first script polished
+            ERA="${{ inputs.author_era }}"
+            python scripts/ori_author.py --topic "${{ inputs.author_topic }}" ${ERA:+--era "$ERA"} \
+              | tee /tmp/ori_author.log
+            NEW="$(grep -o 'wrote data_learning/ori_episodes/[^ ]*\.json' /tmp/ori_author.log | tail -1 \
+                   | sed 's#.*/##; s#\.json$##')"
+            [ -n "$NEW" ] && echo "ORI_NEW_SLUG=$NEW" >> "$GITHUB_ENV"
+            [ -n "$NEW" ] || { echo "::error::author_topic given but no script was written"; exit 1; }
+          else
+            python scripts/ori_author.py --if-empty
+          fi
       - name: Render, judge, publish
         timeout-minutes: 230
         env:
@@ -184,6 +205,10 @@ jobs:
         run: |
           ARGS=""
           SLUG="$(echo "${{ inputs.slugs }}" | awk '{print $1}')"
+          [ -z "$SLUG" ] && SLUG="${ORI_NEW_SLUG:-}"
+          if [ -n "${{ inputs.author_topic }}" ] && [ -z "$SLUG" ]; then
+            echo "::error::author_topic was given but no new script exists to judge"; exit 1
+          fi
           [ -n "$SLUG" ] && ARGS="$ARGS --slug $SLUG"
           # A cron firing has no inputs and publishes; a dispatch publishes
           # only when the operator ticks enable_publish.
