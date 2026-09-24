@@ -6,11 +6,11 @@
     "publish_at": "2026-09-24T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video promises that bitcoin and silver keep swapping the lead, but silver is #1 in every frame. The payoff contradicts the title, and the tip labels collide at the one near-miss.",
-    "elapsed_seconds": 112.7,
+    "error": "showrunner_block: showrunner BLOCK: The title promises the lead keeps swapping, but Silver leads every single frame, so the race has no swap and the payoff proves the hook false.",
+    "elapsed_seconds": 91.8,
     "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-173344_bitcoin_and_silver_keep_trading_the_lead.mp4",
+    "video_path": "output/daily_20260924-175249_bitcoin_and_silver_keep_trading_the_lead.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video promises that bitcoin and silver keep swapping the lead, but silver is #1 in every frame. The payoff contradicts the title, and the tip labels collide at the one near-miss.",
-      "score": 66
+      "reason": "showrunner BLOCK: The title promises the lead keeps swapping, but Silver leads every single frame, so the race has no swap and the payoff proves the hook false.",
+      "score": 57
     },
     "blocked": true
   },
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-24T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-line race that makes the overtake clear, but the crossover itself (2016) is a pile of overlapping labels and flags, and the hook opens as a slow chart build.",
-    "elapsed_seconds": 105.3,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-country line race with a real crossover payoff, but the crossover frame itself is a label pile-up and the hook is a slow chart build.",
+    "elapsed_seconds": 92.8,
     "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-173537_us_oil_production_passed_saudi_arabia_s.mp4",
+    "video_path": "output/daily_20260924-175421_us_oil_production_passed_saudi_arabia_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,46 +62,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable two-line race that makes the overtake clear, but the crossover itself (2016) is a pile of overlapping labels and flags, and the hook opens as a slow chart build.",
+      "reason": "showrunner BLOCK: A clean, readable two-country line race with a real crossover payoff, but the crossover frame itself is a label pile-up and the hook is a slow chart build.",
       "score": 78
     },
     "blocked": true
   },
   {
-    "topic": "Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam",
-    "angle": "A rock legend plays piano for a legion of rescued moon bears, highlighting wildlife rescue efforts in Vietnam.",
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
+    "angle": "Maine\u2019s new wildlife tunnel lets a rare Blanding\u2019s turtle safely cross a busy road, highlighting innovative conservation tech.",
     "publish_at": "2026-09-24T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam' refused by the writer: The prompt references a real person and event, which is prohibited.",
-    "elapsed_seconds": 0.7,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Researchers discover two brand\u2011new snail species in Montenegro, underscoring that even Europe still hides hidden biodiversity.",
-    "publish_at": "2026-09-24T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Expecting value: line 42 column 16 (char 2119)",
-    "elapsed_seconds": 34.0,
-    "backfill": true
-  },
-  {
-    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
-    "angle": "A rare video shows an endangered Blanding\u2019s turtle safely navigating a newly built wildlife tunnel, proving engineered solutions can save species.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The whole video is unrelated Minecraft parkour under a mismatched espresso story; no shot ever shows the story, captions overlap into gibberish, one frame is blown out, and it ends on a static yellow cave with no payoff.",
-    "elapsed_seconds": 217.7,
-    "title": "I Fixed the Broken Espresso Machine and Got a Secret Tip",
-    "package_path": "state/trending_packages/20260924-173810_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260924-173810_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "error": "showrunner_block: showrunner BLOCK: All captions and gameplay: none of the six segments has a story illustration, the ending falls into dark stone footage, and a horizontal seam line crosses every frame.",
+    "elapsed_seconds": 207.2,
+    "title": "I turned a furious latte thief into a five\u2011star hero",
+    "package_path": "state/trending_packages/20260924-175615_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260924-175615_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.4,
+      "duration": 48.0,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -112,7 +91,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.3
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -121,23 +100,73 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The whole video is unrelated Minecraft parkour under a mismatched espresso story; no shot ever shows the story, captions overlap into gibberish, one frame is blown out, and it ends on a static yellow cave with no payoff.",
-      "score": 44
+      "reason": "showrunner BLOCK: All captions and gameplay: none of the six segments has a story illustration, the ending falls into dark stone footage, and a horizontal seam line crosses every frame.",
+      "score": 57
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Scientists find two tiny new snails with shells that close like doors",
+    "angle": "Researchers in Montenegro discover two micro\u2011snail species whose door\u2011like shells could inspire new biomimetic designs.",
+    "publish_at": "2026-09-24T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['out of almond milk', 'slipped a tiny note', 'free drink', 'credit card on the table', 'never returned']",
+    "elapsed_seconds": 26.9,
+    "title": "I Served a VIP Customer Who Thought He Owned the Cafe",
+    "package_path": "state/trending_packages/20260924-175941_auto_scientists_find_two_tiny_new_snails_with.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Smash-and-grab caught on camera at First Class Sneaks - FOX 5 Atlanta",
+    "angle": "A bold smash\u2011and\u2011grab at a high\u2011end sneaker shop is filmed live, exposing how quickly thieves exploit crowded retail spaces.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is just gameplay with captions: no illustration ever shows the break-in, the safe or the trapped thief, so the story is only heard and never seen.",
+    "elapsed_seconds": 227.5,
+    "title": "I Trapped a Sneaker Thief Inside My Own Safe",
+    "package_path": "state/trending_packages/20260924-180009_auto_smash_and_grab_caught_on_camera_at_first.json",
+    "video_path": "output/daily_20260924-180009_smash_and_grab_caught_on_camera_at_first.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is just gameplay with captions: no illustration ever shows the break-in, the safe or the trapped thief, so the story is only heard and never seen.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
     "topic": "A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret",
-    "angle": "A fracture in the massive T. rex \u2018Scotty\u2019 reveals a fossilized blood\u2011vessel network, offering a rare glimpse into dinosaur physiology.",
+    "angle": "Scientists uncover a hidden vascular network in a T. rex rib, offering rare insight into dinosaur blood flow.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['expired two weeks ago', 'taste of reality', 'bitter coffee', 'salt', 'complimentary pastry', 'No freebies without proof']",
-    "elapsed_seconds": 27.2,
-    "title": "I Served the Customer Who Said Free Coffee",
-    "package_path": "state/trending_packages/20260924-174147_auto_a_broken_rib_from_the_world_s_largest_t_.json",
-    "quarantined": true,
+    "error": "unfit_for_fiction: 'A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret' refused by the writer: The provided trend is about a dinosaur fossil, not a workplace setting, so it cannot be used for the story format.",
+    "elapsed_seconds": 1.1,
+    "unfit": true,
     "backfill": true
   }
 ]
