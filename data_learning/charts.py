@@ -607,6 +607,76 @@ def _zoom_for_height(fig, img_h_px: float, max_h_frac: float) -> float:
     return max(0.05, float(max_h_frac) * 72.0 * fh_in / max(1.0, float(img_h_px)))
 
 
+def _cover(tb, hb) -> float:
+    """Share of text box `tb` under host box `hb` (display coords)."""
+    ix = max(0.0, min(tb.x1, hb[2]) - max(tb.x0, hb[0]))
+    iy = max(0.0, min(tb.y1, hb[3]) - max(tb.y0, hb[1]))
+    return ix * iy / max(1.0, tb.width * tb.height)
+
+
+def _clear_host(fig) -> None:
+    """DATA NEVER STANDS ON A LABEL — the last thing done to every card frame.
+
+    He is placed on his datum by each chart, which knows its data and not
+    its text, so across the A look he covered labels in half the chart kinds
+    ("'11.7%' split by the mascot's legs", "straddles the 2013 and 2006 rows,
+    hiding the row bar and its label" — the judge, for weeks; measured by
+    data_learning/a_audit.py in trend, rank, comparison, race, pictograph).
+    Here, with every artist drawn, any host that covers a label beneath him
+    is moved the SMALLEST distance that clears every label and keeps him in
+    frame; if no spot clears, he is made smaller and it tries again. He stays
+    by his datum; the label stays readable. Never raises."""
+    try:
+        from matplotlib.offsetbox import AnnotationBbox
+        from matplotlib.text import Text
+        # extents need a renderer, not a full draw: savefig draws once
+        # anyway, and a second full draw per frame made every card ~40%
+        # slower to render
+        r = fig.canvas.get_renderer()
+        hosts = [h for h in fig.findobj(AnnotationBbox)
+                 if h.get_visible() and h.get_zorder() >= HOST_Z]
+        if not hosts:
+            return
+        texts = []
+        for t in fig.findobj(Text):
+            if not t.get_visible() or not t.get_text().strip():
+                continue
+            if t.get_alpha() is not None and t.get_alpha() < 0.35:
+                continue
+            bb = t.get_window_extent(r)
+            if bb.width >= 2 and bb.height >= 2:
+                texts.append((t.get_zorder(), bb))
+        fw, fh = fig.bbox.width, fig.bbox.height
+        steps = sorted({(dx, dy) for dx in range(-480, 481, 24)
+                        for dy in range(-240, 481, 24)},
+                       key=lambda d: (d[0] ** 2 + d[1] ** 2, abs(d[0])))
+        for h in hosts:
+            under = [bb for z, bb in texts if z < h.get_zorder()]
+            for _shrink in range(3):
+                hb0 = h.get_window_extent(r)
+                box = (hb0.x0, hb0.y0, hb0.x1, hb0.y1)
+                if not any(_cover(bb, box) > 0.25 for bb in under):
+                    break
+                moved = None
+                for dx, dy in steps:
+                    b = (box[0] + dx, box[1] + dy, box[2] + dx, box[3] + dy)
+                    if b[0] < 0 or b[1] < 0 or b[2] > fw or b[3] > fh:
+                        continue
+                    if not any(_cover(bb, b) > 0.25 for bb in under):
+                        moved = (dx, dy)
+                        break
+                if moved is not None:
+                    ax = h.axes
+                    px, py = ax.transData.transform(h.xybox)
+                    h.xybox = tuple(ax.transData.inverted().transform(
+                        (px + moved[0], py + moved[1])))
+                    break
+                ob = h.offsetbox
+                ob.set_zoom(ob.get_zoom() * 0.8)     # smaller, then look again
+    except Exception:  # noqa: BLE001 — a nudge must never cost a frame
+        pass
+
+
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08),
                max_h_frac: float | None = None):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
@@ -3824,7 +3894,12 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
     hops = 0
     while insight.kind in FULLFRAME_RENDERERS and hops < 3:
-        res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
+        from . import viz_scene as _vs_hook
+        _vs_hook._HOOK_LEAD = bool(hook_lead)     # machines open built, too
+        try:
+            res = FULLFRAME_RENDERERS[insight.kind](insight, out_dir, slug, frames)
+        finally:
+            _vs_hook._HOOK_LEAD = False
         if res is not None:
             return res
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
@@ -3868,6 +3943,7 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             grip_path.append({"f": f, **_ATTACH_FRAME[-1]})
         if f == frames:
             anchors = _anchors_from(fig, ax, specs)
+        _clear_host(fig)
         fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
         plt.close(fig)
     _TOUR_LIVE = False

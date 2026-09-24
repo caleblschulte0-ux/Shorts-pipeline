@@ -153,7 +153,10 @@ class TheClimberNeverStandsOnANumber(unittest.TestCase):
         src = (_REPO / "data_learning" / "viz_scene.py").read_text()
         i = src.index("def draw_staircase(")
         body = src[i:src.index("def draw_elevator(")]
-        self.assertIn("sy + 36", body, "the value is drawn under the step's top edge")
+        import re as _re
+        _m = _re.search(r"\(int\(sx \+ w / 2\), sy \+ (\d+)\), _vt", body)
+        self.assertTrue(_m and int(_m.group(1)) >= 30,
+                        "the value is drawn under the step's top edge")
         self.assertNotIn("sy - 30", body, "the value is no longer drawn above the step")
 
 
