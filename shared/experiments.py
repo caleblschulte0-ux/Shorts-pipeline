@@ -109,7 +109,8 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
              min_days: int = DEFAULT_MIN_DAYS,
              min_samples: int = DEFAULT_MIN_SAMPLES,
              proposal_file: str = "", channel: str = "",
-             format: str = "", now: str = "") -> dict:
+             format: str = "", actual_structure: str = "",
+             now: str = "") -> dict:
     """Start the clock on a change that just shipped."""
     if direction not in DIRECTIONS:
         raise ValueError(f"direction must be one of {DIRECTIONS}")
@@ -120,9 +121,14 @@ def register(hypothesis: str, *, change: str, metric: str, direction: str,
         "change": change,
         # Scope. Without these the sample counter would credit any video on
         # any channel, and the experiment would "finish" without ever having
-        # been tested.
+        # been tested. `actual_structure` is the OUTPUT of a slot, not its
+        # assignment (e.g. Third's story slot falls back to a plain clip
+        # when no genuine arc exists) — scoping on it, not on `format`,
+        # stops a fallback from being counted as a sample of the thing the
+        # experiment is testing.
         "channel": channel,
         "format": format,
+        "actual_structure": actual_structure,
         "files": files or [],
         "metric": metric,
         "direction": direction,
@@ -300,20 +306,27 @@ def summary() -> dict:
 def eligible_videos(exp: dict, videos: list[dict]) -> list[dict]:
     """Videos that actually ran UNDER this experiment.
 
-    Three filters, all necessary. Counting everything would let an
+    Four filters, all necessary. Counting everything would let an
     experiment on the trending channel be concluded by explainer uploads,
     or by videos published before the change even shipped — which is not a
     test of anything.
 
-      published_at > started_at   the change was live when it rendered
-      channel matches             a different channel is a different world
-      format matches (if scoped)  a reddit_story does not test a graph tweak
+      published_at > started_at        the change was live when it rendered
+      channel matches                  a different channel is a different world
+      format matches (if scoped)       a reddit_story does not test a graph tweak
+      actual_structure matches (if scoped)
+                                        what the slot actually PRODUCED, not
+                                        what it was assigned — a slot that
+                                        fell back (e.g. Third's story slot
+                                        with no genuine arc found) is not a
+                                        sample of the thing under test
     """
     started = _parse(exp.get("started_at") or "")
     if not started:
         return []
     want_channel = (exp.get("channel") or "").strip()
     want_format = (exp.get("format") or "").strip()
+    want_structure = (exp.get("actual_structure") or "").strip()
     out = []
     for v in videos or []:
         pub = _parse(v.get("published_at") or "")
@@ -322,6 +335,8 @@ def eligible_videos(exp: dict, videos: list[dict]) -> list[dict]:
         if want_channel and str(v.get("_channel") or "") != want_channel:
             continue
         if want_format and str(v.get("format") or v.get("_fmt") or "") != want_format:
+            continue
+        if want_structure and str(v.get("actual_structure") or "") != want_structure:
             continue
         out.append(v)
     return out

@@ -1,0 +1,30 @@
+{
+  "experiments": [
+    {
+      "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
+      "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
+      "change": "Registered the already-live story-vs-clip split as a tracked experiment (state/third_packages/default_clip.json story_count=1; scripts/run_third.py date-seeded story-slot assignment with genuine-arc fallback, run_third.py:2522-2546). No change to the six-post target or any quality gate. Scoped on actual_structure (shared/experiments.py) so a slot that fell back to a plain clip is never counted as a story sample.",
+      "channel": "third",
+      "format": "",
+      "actual_structure": "story",
+      "files": [
+        "state/third_packages/default_clip.json",
+        "scripts/run_third.py",
+        "state/analytics_third/latest.json",
+        "shared/experiments.py"
+      ],
+      "metric": "third.ab_experiment.story.median_vph (mature 24h+, vs the clip arm on the same measure)",
+      "direction": "up",
+      "baseline": 0.03,
+      "guardrail": "third channel-wide average_view_percentage (mature, retention-eligible)",
+      "guardrail_baseline": 79.4,
+      "min_days": 28,
+      "min_samples": 25,
+      "started_at": "2026-09-24T05:14:45Z",
+      "status": "running",
+      "samples_seen": 0,
+      "proposal_file": "doctor:66364106b455",
+      "readout": null
+    }
+  ]
+}
