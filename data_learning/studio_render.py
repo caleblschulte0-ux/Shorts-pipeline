@@ -2415,9 +2415,11 @@ def _depiction_sequence(insight, used: set, dur: float,
     # fallback rotates, because there one bar chart is much like another.
     cands = machines + _rotate(fallback) + ([] if _icon_spent else _icons[:1])
 
-    def _pick(want_family, avoid_used):
+    def _pick(want_family, avoid_used, icons_ok=True):
         for c in cands:
             if c in seq:
+                continue
+            if not icons_ok and c in REPEATED_ICON_KINDS:
                 continue
             if c in REPEATED_ICON_KINDS and any(
                     k in REPEATED_ICON_KINDS for k in seq):
@@ -2430,7 +2432,23 @@ def _depiction_sequence(insight, used: set, dur: float,
         return None
 
     while len(seq) < n:
-        want = "figure" if _family(seq[-1]) == "chart" else "chart"
+        # A FIGURE WHEREVER ONE EXISTS. Alternation came from the operator's
+        # "you don't have to do a fucking chart every time" — it pushed a
+        # chart toward a figure. Read both ways it also pushed a figure
+        # toward a CHART: coffee's tray stack cut to plain bars while
+        # `staircase` and `balance` were right there for the same claim, and
+        # the showrunner said so on every render (2026-09-24). A chart only
+        # comes in when no figure is left, and a repeated-icon grid stays the
+        # LAST resort, after charts (tests/test_one_thing_repeated_is_rare).
+        want = "figure"
+        c = (_pick(want, True, icons_ok=False) or _pick(want, False, icons_ok=False)
+             or _pick("chart", True) or _pick("chart", False))
+        if c is not None:
+            if (len(seq) == 1 and _opens_on_a_machine(kind)
+                    and c not in machines and dur <= SUBJECT_HOLD_MAX):
+                break
+            seq.append(c)
+            continue
         # Alternate family AND stay novel; then give up novelty (another beat's
         # kind still beats a third chart in a row); then give up alternation
         # rather than return a short sequence.
@@ -2438,8 +2456,32 @@ def _depiction_sequence(insight, used: set, dur: float,
              or _pick(None, True) or _pick(None, False))
         if c is None:
             break
+        # A PICTURE MADE OF THE SUBJECT IS NOT TRADED FOR A PLAIN CHART.
+        # When the beat opens on a machine and the only thing left to cut
+        # to is a chart, and the beat is short enough that one visual is
+        # not a hold (the pacing ruling's 13s), the machine keeps the beat.
+        # The showrunner, on every local coffee-price-record render
+        # (2026-09-24): "the coffee-cup waffle ... is abandoned for two plain
+        # bars", "the tray-stack is the only real idea ... the video falls
+        # back to bar charts". A long beat still cuts, and a chart still
+        # hands on to a figure — this only stops the downgrade.
+        if (len(seq) == 1 and _opens_on_a_machine(kind)
+                and c not in machines and dur <= SUBJECT_HOLD_MAX):
+            break
         seq.append(c)
     return seq
+
+
+#: The longest one subject-made picture may carry a beat on its own. The
+#: pacing ruling's ceiling for a single visual (tests/test_edit_pacing.py).
+SUBJECT_HOLD_MAX = 13.0
+
+
+def _opens_on_a_machine(kind: str) -> bool:
+    """Is this depiction a picture made of the subject (a data machine, a
+    scene, a brain mechanic) rather than a chart?"""
+    k = str(kind or "")
+    return k in _SCENE_TOKENS or k in ("scene", "mechanic")
 
 
 #: Config segments whose `scene` was written by the renderer this run —
