@@ -1,145 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260916",
-      "dry_run": false,
-      "ts": "2026-09-16T15:40:29+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 100,
-        "with_retention": 89,
-        "with_curve": 15,
-        "fetched_at": "2026-09-16T13:39:37.807558+00:00"
-      },
-      "brain": {
-        "ok": 8,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260916-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-2",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "reaction implied, unclear cause",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "hysterical laughing reaction to explicit",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Clix Slips Up And Says Way Too Much On A Work Call"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 251.9
-        },
-        {
-          "slug": "clip-20260916-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260916-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20260917",
       "dry_run": false,
       "ts": "2026-09-17T12:58:11+00:00",
@@ -5091,6 +4952,321 @@
           "slug": "clip-20260923-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260924",
+      "dry_run": false,
+      "ts": "2026-09-24T12:29:27+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 105,
+        "with_retention": 83,
+        "with_curve": 14,
+        "fetched_at": "2026-09-24T08:46:13.337793+00:00"
+      },
+      "brain": {
+        "ok": 41,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260924-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (crude hypothetical chat, no real event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear what happened",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "crude hypothetical chat, no real event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 78.2
+        },
+        {
+          "slug": "clip-20260924-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (vague chatter, no clear event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "vague chatter, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 44.7
+        },
+        {
+          "slug": "clip-20260924-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "just excited chat, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha Gets So Hyped Carmella Is Back On The Server"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "caption text shows a faint ghosted/doubled duplicate ('Yeah yeah') at 0.6s, looks like a rendering artifact",
+                "footage is dark night driving with the car small and distant in several frames (6.8s-14.3s), giving a repetitive/low-ene"
+              ]
+            }
+          },
+          "took_s": 192.6
+        },
+        {
+          "slug": "clip-20260924-4",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat reveals his custom one-of-one Wolverine suit, then debuts it at his ComplexCon appearance, where the Wolverine",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Buddha gets told his coin will 'pump beyond the multiverse,' then loses $800 the very next day when Tony rugpulls him li",
+                    "shape": "multi_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Talk of Jynxzi having a secret girlfriend surfaces on Stableronaldo's stream, then days later Jynxzi himself refuses to ",
+                    "shape": "multi_streamer",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 183,
+                "candidates": 276,
+                "pool": 1337,
+                "pool_with_vod": 1265,
+                "arc_sizes": [
+                  2,
+                  6,
+                  3,
+                  2,
+                  2,
+                  2,
+                  3,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:kaicenat/kaicenat-announcement-cenat-2026w39",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The scout's chain doesn't hold up against the footage. C170 is Kai reacting to an in-game character-customiza"
+                },
+                {
+                  "cluster": "scout:buddha/buddha-beyond-buddha-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The scout's premise requires the same coin to link both clips \u2014 the pump promise from the suited NPCs in the "
+                },
+                {
+                  "cluster": "northernlion@vod2880264709",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "scout:jynxzi+stableronaldo/jynxzi-stableronaldo-anoth-girlfr",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two sources are not sequential events days apart \u2014 they capture the same simultaneous exchange. Source 2'"
+                }
+              ]
+            }
+          },
+          "took_s": 2272.7
+        },
+        {
+          "slug": "clip-20260924-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp video content fills only a thin horizontal band in the middle of the canvas; large solid black bars (not blurred p; vision: The band itself is split into two narrow side-by-side webcam t",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague chat banter, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Kept Calling It Easy Until Someone Stopped Him"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.75,
+              "problems": [
+                "Sharp video content fills only a thin horizontal band in the middle of the canvas; large solid black bars (not blurred p",
+                "The band itself is split into two narrow side-by-side webcam tiles, shrinking each subject further"
+              ]
+            }
+          },
+          "took_s": 188.6
+        },
+        {
+          "slug": "clip-20260924-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "vague hygiene comment, no visible reacti",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "chore talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Threatens To Cut Him Off Over The Gym"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": []
+            }
+          },
+          "took_s": 269.3
         }
       ]
     }

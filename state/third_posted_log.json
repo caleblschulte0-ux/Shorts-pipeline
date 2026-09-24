@@ -8796,14 +8796,27 @@
       "ts": "2026-09-24T12:22:03.300994+00:00"
     },
     "clip-20260924-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/TangentialTsundereLlamaCeilingCat-9Y1NptkyTT-pnRWF",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/oOqGL1YsxXY",
       "title": "Kaicenat: Kai Cenat Threatens To Cut Him Off Over The Gym",
       "kind": "twitch_clip",
-      "ts": "2026-09-24T12:29:20.444464+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-24T12:29:27.906558+00:00",
+      "uploaded_at": "2026-09-24T12:29:27.906578+00:00",
+      "publish_at": "2026-09-25T00:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TangentialTsundereLlamaCeilingCat-9Y1NptkyTT-pnRWF",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "KAI THREATENS TO CUT HIM OFF",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2070,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.2,
+        "end": 29.4
+      },
+      "director_cut": true
     }
   }
 }
