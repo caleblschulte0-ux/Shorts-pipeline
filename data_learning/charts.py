@@ -2572,7 +2572,11 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # pink disc onto the navy ground for the whole inflation — "drawn
         # as doubled, ghosted glyphs in dark ink on pink" (showrunner,
         # 2026-09-24). It grows with the bubble instead.
-        fs = max(10, min(46, r * max(t, 0.05) * 2.0))
+        # ONE SIZE, THE FINAL ONE, FROM THE FIRST FRAME. Text re-set at a new
+        # size every frame encodes as "doubled and smeared ... while the
+        # circle grows" (showrunner, 2026-09-24, after it was made to track
+        # the radius). The disc grows under a label that holds still.
+        fs = max(22, min(46, r * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
         # which is right for a BAR — the label sits at the tip and lands as
@@ -2589,8 +2593,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # coffee-price-record, 2026-09-24). It never goes below 22pt, and
         # while it is bigger than its disc it wears the light ink of the
         # ground it spills onto, not the dark ink of a disc it has outgrown.
-        _outgrown = fs < 22
-        fs = max(fs, 22)
+        _outgrown = r * t * 2.0 < fs * 0.9       # the disc cannot hold it yet
         tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center",
                      va="center", color=(TEXT if _outgrown else _ink_on(color)),
                      fontproperties=_num_face(int(fs)),
