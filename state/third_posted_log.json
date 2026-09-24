@@ -8858,6 +8858,34 @@
         "end": 14.0
       },
       "director_cut": true
+    },
+    "rejected-credulousbigtardigradebabyrage-ctlh0gpjzeg1h354": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CredulousBigTardigradeBabyRage-ctlh0gpjZEG1h354",
+      "streamer": "xqc",
+      "title": "Xqc Can't Believe What JP Just Did",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is a thin strip (roughly 20% of canvas height), not the ~75% target \u2014 picture reads as tiny and far away, n; vision: Subject (streamer facecam) is a tiny bubble in the corner of a busy inventory/menu screen, unreadable on a phone; vision: Captions are garbled/nonsensical (\"SEEDS",
+      "ts": "2026-09-24T15:39:41.484973+00:00"
+    },
+    "rejected-grossbittercrowhassanchop-y1l0fw70niaectyp": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/GrossBitterCrowHassanChop-y1L0Fw70NIAEcTyp",
+      "streamer": "ohnepixel",
+      "title": "T1",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine gameplay, no clear event)",
+      "ts": "2026-09-24T15:40:50.616634+00:00"
+    },
+    "clip-20260924-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/NaiveDoubtfulWitchPicoMause-8LTxde6ZwQTXXO9V",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Loses It After This Biker Hits Her Mirror And Runs A Red Light",
+      "kind": "twitch_clip",
+      "ts": "2026-09-24T15:45:11.850722+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
