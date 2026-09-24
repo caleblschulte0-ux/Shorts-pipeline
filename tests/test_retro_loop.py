@@ -164,6 +164,33 @@ class TestSampleAdvancement(ExperimentCase):
                                   "format": "text_card"}] * 9})
         self.assertEqual(ex.all_experiments()[0]["samples_seen"], 0)
 
+    def test_a_fallback_actual_structure_does_not_count(self):
+        """Third's story slot falls back to a plain clip when no genuine
+        arc exists. Scoping on `actual_structure` (what a slot actually
+        produced) must exclude that fallback from counting as a sample of
+        the story arm — without it a slot that NEVER produces a real story
+        can still "finish" the experiment on fallback clips alone."""
+        self._exp(channel="third", format="", actual_structure="story")
+        ex.advance({"third": [
+            {"published_at": iso(1), "actual_structure": "story"},
+            {"published_at": iso(2), "actual_structure": "clip"},
+            {"published_at": iso(3), "actual_structure": "clip"},
+        ]})
+        self.assertEqual(ex.all_experiments()[0]["samples_seen"], 1)
+
+    def test_unscoped_actual_structure_counts_everything(self):
+        """No `actual_structure` scope (the default) must keep counting
+        every video the channel/format filters allow — this is a pure
+        addition, not a behavior change for existing experiments."""
+        self._exp()
+        ex.advance({"trending": [
+            {"published_at": iso(1), "format": "graph_race",
+             "actual_structure": "story"},
+            {"published_at": iso(2), "format": "graph_race",
+             "actual_structure": "clip"},
+        ]})
+        self.assertEqual(ex.all_experiments()[0]["samples_seen"], 2)
+
     def test_advance_is_idempotent(self):
         self._exp()
         pool = {"trending": [{"published_at": iso(1), "format": "graph_race"}]}
