@@ -8747,13 +8747,62 @@
       "director_cut": true
     },
     "clip-20260924-4": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-304ff1fc77661a29",
-      "streamer": "emiru",
+      "url": "https://youtube.com/shorts/37b8joUZjEQ",
       "title": "Her Stalker Bought a New PC Just to Keep Harassing Her",
       "kind": "story",
-      "ts": "2026-09-24T12:16:03.537693+00:00",
+      "ts": "2026-09-24T12:16:12.634209+00:00",
+      "uploaded_at": "2026-09-24T12:16:12.634227+00:00",
+      "publish_at": "2026-09-24T21:30:00Z",
+      "story_key": "story-304ff1fc77661a29",
+      "member_keys": [
+        "https://www.twitch.tv/emiru/clip/WiseSilkyTurnipBudStar-PVJfGrQxRLwF9OXU",
+        "https://www.twitch.tv/emiru/clip/WiseSilkyTurnipBudStar-PVJfGrQxRLwF9OXU",
+        "https://www.twitch.tv/emiru/clip/WiseSilkyTurnipBudStar-PVJfGrQxRLwF9OXU"
+      ],
+      "streamer": "emiru",
+      "who": [
+        "emiru"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 57.2,
+      "narrative_score": 80,
+      "revision_count": 0,
+      "used_vod_expansion": false,
+      "used_narration": false,
+      "context_overlay_count": 0,
+      "replay_count": 0
+    },
+    "rejected-delightfulfancycockroachpetezarolltie-6fa8pqhnd_adehye": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/DelightfulFancyCockroachPeteZarollTie-6Fa8pqhNd_aDeHYE",
+      "streamer": "sodapoppin",
+      "title": "Special Olympus",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (rant about addon, no visible event)",
+      "ts": "2026-09-24T12:17:41.798732+00:00"
+    },
+    "rejected-resilientsavageayeayepermasmug-iuqyfzlv16y0sh7n": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/ResilientSavageAyeayePermaSmug-IuQyfzlv16Y0Sh7N",
+      "streamer": "jasontheween",
+      "title": "Jasontheween Kept Calling It Easy Until Someone Stopped Him",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp video content fills only a thin horizontal band in the middle of the canvas; large solid black bars (not blurred p; vision: The band itself is split into two narrow side-by-side webcam tiles, shrinking each subject further",
+      "ts": "2026-09-24T12:22:03.300994+00:00"
+    },
+    "clip-20260924-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TangentialTsundereLlamaCeilingCat-9Y1NptkyTT-pnRWF",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Threatens To Cut Him Off Over The Gym",
+      "kind": "twitch_clip",
+      "ts": "2026-09-24T12:29:20.444464+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
