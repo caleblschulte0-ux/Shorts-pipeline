@@ -128,6 +128,32 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         self.assertEqual(sc["setting"], "cave_mouth", "an invalid answer must not replace the scene")
         self.assertGreaterEqual(int(sc.get("variant", 0)), 1, "it falls back to the small repair")
 
+    def test_the_polish_has_a_wall_clock_so_a_slow_brain_cannot_eat_the_render(self):
+        # MAX_RESPECS bounds the COUNT of brain calls; a slow brain at four
+        # minutes a call is still hours. Past the budget: no brain call, no
+        # new round, the rest repaired deterministically, and the report
+        # says so
+        ep = _ep()
+        calls = []
+        t = [0.0]
+        clock = lambda: t[0]
+        def ask(sy, u):
+            calls.append(u)
+            t[0] += 1000.0                          # a slow brain
+            return json.dumps({"setting": "grassland", "time": "night", "weather": "clear", "shot": "close",
+                               "cast": [{"who": "man", "pose": "sit", "action": "eat"}], "props": ["campfire"]})
+        judge = _judge_flagging({0: (False, 1), 1: (False, 1), 2: (False, 1)}, [])
+        rep = self.SB.polish(ep, judge=judge, ask=ask, work=self.work / "wclock", rounds=3,
+                             budget_s=1500.0, clock=clock)
+        self.assertLessEqual(len(calls), 2, "the brain was asked past the budget")
+        self.assertIn("out of time", rep["skipped"] or "")
+        self.assertEqual(rep["rounds"], 1, "a new round started past the budget")
+        # within budget, nothing changes
+        ep2 = _ep(); calls.clear(); t[0] = 0.0
+        rep2 = self.SB.polish(ep2, judge=_judge_flagging({0: (False, 1)}, []), ask=ask, work=self.work / "wclock2",
+                              rounds=1, budget_s=10 ** 6, clock=clock)
+        self.assertIsNone(rep2["skipped"])
+
     def test_a_scene_graded_one_on_its_words_is_respecified_too_and_the_calls_are_capped(self):
         # the seventh film's judge: chapters "never show the activity the
         # narration describes" while the storyboard had graded every scene

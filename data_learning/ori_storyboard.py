@@ -31,6 +31,7 @@ import json
 import os
 import sys
 import tempfile
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -49,6 +50,7 @@ PER_SHEET = 9                    # 3 x 3 tiles, each 640 x 360 — readable, one
 ROUNDS = 3
 SHOWS_MIN = 1          # a scene graded this or lower on showing its words is re-specified
 MAX_RESPECS = 60       # author calls per polish, so a strict judge cannot cost a whole render slot
+BUDGET_S = 45 * 60     # ...and a wall clock on the whole polish, because a count does not bound a slow brain
 TILE_W, TILE_H = 640, 360
 
 PROMPT = """You are the STORYBOARD EDITOR of a hand-drawn sleep film (round-headed \
@@ -269,11 +271,17 @@ def _log(row: dict) -> None:
 
 
 def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: int = ROUNDS,
-           write: bool = False, path: Path | None = None) -> dict:
+           write: bool = False, path: Path | None = None, budget_s: float = BUDGET_S, clock=time.monotonic) -> dict:
     """Review every scene, repair what is flagged, review the repairs. Mutates
     `ep` in place; writes it back when `write`. Never raises past a judge
     failure — a render must not wait on a storyboard nobody could read.
-    Returns a report {reviewed, flagged, repaired, rounds, clean, skipped}."""
+    Returns a report {reviewed, flagged, repaired, rounds, clean, skipped}.
+
+    The polish has a WALL CLOCK (`budget_s`): past it no further brain call
+    is made and no further round is started — what is left is repaired
+    deterministically or left as the author wrote it, and the report says
+    "out of time". A count cap (MAX_RESPECS) does not bound a slow brain,
+    and the render slot behind this pass is the film."""
     stamp = ep.get("storyboard") or {}
     sha = kit_sha()
     if stamp.get("clean") and stamp.get("kit") == sha and not os.environ.get("ORI_STORYBOARD_FORCE"):
@@ -289,9 +297,20 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
     beats = flat_beats(ep)
     todo = beats
     respecs = 0
+    deadline = clock() + budget_s
+
+    def out_of_time():
+        if clock() < deadline:
+            return False
+        if report["skipped"] is None:
+            report["skipped"] = f"out of time after {int(budget_s // 60)} min: the rest is repaired without a brain"
+        return True
+
     with tempfile.TemporaryDirectory() as td:
         wd = Path(work or td)
         for r in range(1, rounds + 1):
+            if r > 1 and out_of_time():
+                break
             findings: dict[int, dict] = {}
             try:
                 for sheet, group in sheets(ep, todo, wd / f"r{r}"):
@@ -316,7 +335,7 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
             for fb in flagged:
                 f = findings[fb["index"]]
                 did = None
-                if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS:
+                if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS and not out_of_time():
                     respecs += 1
                     did = respec(fb, ep["era"], f["why"], ask,
                                  chapter=(ep["chapters"][fb["chapter"]].get("title") or ""),
