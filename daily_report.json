@@ -6,11 +6,11 @@
     "publish_at": "2026-09-25T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, moving race chart whose title promises repeated lead swaps that never happen: Silver is #1 in every frame and ends at double Bitcoin.",
-    "elapsed_seconds": 117.5,
+    "error": "showrunner_block: showrunner BLOCK: The title promises the lead keeps changing hands, but Silver leads from the first frame to the last and the ending card says '#1 Silver', so the video's own data contradicts its headline.",
+    "elapsed_seconds": 94.3,
     "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-213331_bitcoin_and_silver_keep_trading_the_lead.mp4",
+    "video_path": "output/daily_20260924-222047_bitcoin_and_silver_keep_trading_the_lead.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,26 +28,48 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, moving race chart whose title promises repeated lead swaps that never happen: Silver is #1 in every frame and ends at double Bitcoin.",
-      "score": 70
+      "reason": "showrunner BLOCK: The title promises the lead keeps changing hands, but Silver leads from the first frame to the last and the ending card says '#1 Silver', so the video's own data contradicts its headline.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "US Oil Production Passed Saudi Arabia's",
-    "title": "US Oil Production Passed Saudi Arabia's",
-    "format": "graph_race",
+    "topic": "snake",
+    "angle": "A massive python slithered into a London suburb, prompting a city\u2011wide road shutdown and a dramatic rescue by a passerby.",
     "publish_at": "2026-09-25T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Fnp2Z0lif18",
-    "error": null,
-    "elapsed_seconds": 111.0,
-    "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
-    "source": "brain",
-    "video_path": "output/daily_20260924-213528_us_oil_production_passed_saudi_arabia_s.mp4",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 111)",
+    "elapsed_seconds": 81.7,
+    "backfill": true
+  },
+  {
+    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
+    "angle": "A lone white Nissan 350Z has been frozen in the same Tokyo street\u2011view spot for years, turning the city\u2019s map into a bizarre time\u2011capsule mystery.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['parked in my numbered spot', 'silver sedan sitting exactly on my line', 'complained to the office 9 times', 'folder of proof stretching back', 'handed over 3 years of dated photos', 'tow truck hooked his sedan', 'listed the car for sale by Friday']",
+    "elapsed_seconds": 166.2,
+    "title": "My Neighbor Stole My Spot For 3 Years",
+    "package_path": "state/trending_packages/20260924-222522_auto_my_weird_new_hobby__wandering_around_tok.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
+    "angle": "A trail\u2011camera set up by a Florida homeowner captured a wild monkey roaming the neighborhood, sparking a viral wildlife\u2011oddity.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The whole body is bare parkour gameplay with small captions. The story's null segments mean no beat (the demand, the install, the monkey on camera) is ever shown, and the video ends on a dim stone corridor with 'TIME.' as its payoff.",
+    "elapsed_seconds": 497.6,
+    "title": "I Installed His Camera Exactly Where He Demanded",
+    "package_path": "state/trending_packages/20260924-222758_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
+    "video_path": "output/daily_20260924-222758_monkey_spotted_on_florida_man_s_trail_ca.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 14.375,
+      "duration": 44.3,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,59 +80,58 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
+      "blocked": true,
+      "reason": "showrunner BLOCK: The whole body is bare parkour gameplay with small captions. The story's null segments mean no beat (the demand, the install, the monkey on camera) is ever shown, and the video ends on a dim stone corridor with 'TIME.' as its payoff.",
+      "score": 57
     },
-    "channel": "default"
-  },
-  {
-    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
-    "angle": "A camera captures a rare Blanding\u2019s turtle navigating a newly built tunnel, a hopeful sign for a species on the brink.",
-    "publish_at": "2026-09-25T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 109)",
-    "elapsed_seconds": 34.4,
+    "blocked": true,
     "backfill": true
   },
   {
     "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Two newly discovered snail species in Montenegro snap shut like miniature doors, a rare defense that could inspire bio\u2011engineered seals.",
+    "angle": "Researchers in Montenegro uncovered two brand\u2011new snail species whose doors\u2011like shells snap shut, highlighting hidden biodiversity in Europe.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 109)",
-    "elapsed_seconds": 35.0,
-    "backfill": true
-  },
-  {
-    "topic": "A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret",
-    "angle": "A cracked rib in the massive T. rex \u2018Scotty\u2019 contains fossilised blood vessels, offering a glimpse into dinosaur physiology.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['dragged her son past the rope line', 'touch the giant rib bone replica', 'no touching, no exceptions', 'hit the silent alarm under the counter', 'security gate dropped, sealing the whole hall', '2 guards arrived within 90 seconds', '$250 damage citation']",
-    "elapsed_seconds": 141.0,
-    "title": "I Locked Down the Museum on an Entitled Mom",
-    "package_path": "state/trending_packages/20260924-214003_auto_a_broken_rib_from_the_world_s_largest_t_.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
-    "angle": "A Tokyo Street View rabbit\u2011hole reveals the same white Nissan 350Z parked in the exact spot for years, turning the city into a live time\u2011capsule.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['wasting company time', 'mislabeled shipping addresses', 'banned all internet use during breaks', 'forty seven packages shipped out', 'cost the company twelve thousand dollars', 'pulled every employee into a meeting', 'written up for the loss']",
-    "elapsed_seconds": 192.0,
-    "title": "My Manager Banned My Break Hobby, Then Regretted It",
-    "package_path": "state/trending_packages/20260924-214317_auto_my_weird_new_hobby__wandering_around_tok.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable, always-moving reddit story, but the whole thing is captions over unrelated Minecraft parkour; no story beat is shown on screen, and the payoff lands on a generic room.",
+    "elapsed_seconds": 317.3,
+    "title": "I Gave Her Exactly The Free Lock She Demanded",
+    "package_path": "state/trending_packages/20260924-223611_auto_scientists_find_two_tiny_new_snails_with.json",
+    "video_path": "output/daily_20260924-223611_scientists_find_two_tiny_new_snails_with.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, readable, always-moving reddit story, but the whole thing is captions over unrelated Minecraft parkour; no story beat is shown on screen, and the payoff lands on a generic room.",
+      "score": 65
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
