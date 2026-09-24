@@ -1,0 +1,20 @@
+{
+  "key": "cumulative_space_travelers",
+  "title": "Cumulative number of people who have ever reached space",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "1961-2025",
+  "source": {
+    "name": "Astronaut/space-traveler registry",
+    "publisher": "Association of Space Explorers, as reported by Space.com",
+    "url": "https://www.space.com/space-exploration/launches-spacecraft/blue-origin-launches-6-tourists-on-suborbital-trip-from-texas-including-750th-person-ever-to-fly-into-space",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "1961: Yuri Gagarin, the first person in space. 2020: approximately 560 people had reached space in the prior 59 years (widely reported figure, e.g. Astronomy.com; the 600th person reached space in November 2021 per PBS NewsHour). 2025: the 750th person reached space on June 29, 2025 via Blue Origin's NS-33 flight, per the Association of Space Explorers' registry as reported by Space.com.",
+  "points": [
+    {"label": "1961", "value": 1, "period": "1961"},
+    {"label": "2020", "value": 560, "period": "2020"},
+    {"label": "2025", "value": 750, "period": "2025"}
+  ]
+}

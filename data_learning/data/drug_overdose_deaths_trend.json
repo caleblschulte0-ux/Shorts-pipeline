@@ -1,0 +1,20 @@
+{
+  "key": "drug_overdose_deaths_trend",
+  "title": "US drug overdose deaths per year (thousands)",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "1999-2024",
+  "source": {
+    "name": "Drug Overdose Deaths in the United States",
+    "publisher": "U.S. CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/products/databriefs/db549.htm",
+    "officiality": "official",
+    "access_date": "2026-09-24"
+  },
+  "notes": "1999: 16,849 drug overdose deaths, the NCHS baseline year commonly used in trend analyses (NCHS Data Brief 428). 2022: 107,941 deaths, the historical peak (NCHS Data Brief 491 / CDC reporting). 2024: 79,384 deaths, the most recent final data available (NCHS Data Brief 549), down from the 2022 peak but still nearly 5x the 1999 level.",
+  "points": [
+    {"label": "1999", "value": 16.849, "period": "1999"},
+    {"label": "2022", "value": 107.941, "period": "2022"},
+    {"label": "2024", "value": 79.384, "period": "2024"}
+  ]
+}

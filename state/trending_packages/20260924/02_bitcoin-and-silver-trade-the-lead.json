@@ -1,0 +1,42 @@
+{
+  "format": "graph_race",
+  "slug": "bitcoin-and-silver-trade-the-lead",
+  "title": "Bitcoin And Silver Keep Trading The Lead",
+  "hook": "They Keep Swapping The Lead",
+  "y_label": "Market capitalization ($ billions)",
+  "duration": 13,
+  "source": "Total market value of circulating bitcoin vs the world's above-ground investable silver stock at spot price, approximate figures compiled from CoinDesk/CoinMarketCap/The Block/Phemex reporting. Bitcoin passed silver's market cap in March 2024 (~$1.4T) and again in November 2024 (~$1.77T, becoming the 8th-largest asset); silver's 2025 price surge then pushed its own market cap to roughly $6.1T, well back ahead of bitcoin's ~$1.75T, before silver eased to about $3.6T (bitcoin ~$1.7T) by September 2026.",
+  "years": [2016, 2018, 2020, 2021, 2022, 2024, 2025, 2026],
+  "series": [
+    {
+      "name": "Bitcoin",
+      "color": "#f7931a",
+      "icon": "Bitcoin",
+      "values": [15, 65, 540, 830, 320, 1730, 1750, 1705]
+    },
+    {
+      "name": "Silver",
+      "color": "#c0c0c0",
+      "values": [952, 840, 1456, 1288, 1344, 1700, 2800, 3640]
+    }
+  ],
+  "hashtags": [
+    "bitcoin",
+    "silver",
+    "cryptocurrency",
+    "preciousmetals",
+    "btc",
+    "commodities",
+    "investing",
+    "cryptomarket",
+    "silverprice",
+    "finance",
+    "stockmarket",
+    "wallstreet",
+    "hardassets",
+    "markets",
+    "trading"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto"
+}

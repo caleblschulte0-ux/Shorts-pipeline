@@ -1,0 +1,19 @@
+{
+  "key": "retail_store_closures",
+  "title": "US retail store closures tracked per year",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2023 vs 2024",
+  "source": {
+    "name": "US Store Tracker — retail store openings and closures",
+    "publisher": "Coresight Research",
+    "url": "https://coresight.com/research/us-and-uk-store-tracker-extra-store-openings-and-closures-2023-review-and-2024-outlook/",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Coresight Research tracks major-retailer store closures announced in the US. 2023: 4,913 stores closed. 2024: 7,327 stores closed, reported by trade press (e.g. chaindrugreview.com, credaily.com) as roughly 58% higher than 2023 -- the two independently reported totals imply a slightly different percentage (about 49%), a normal discrepancy between preliminary and revised tracker counts; both raw counts are reported directly by Coresight and are used here as-is.",
+  "points": [
+    {"label": "2023", "value": 4913, "period": "2023"},
+    {"label": "2024", "value": 7327, "period": "2024"}
+  ]
+}

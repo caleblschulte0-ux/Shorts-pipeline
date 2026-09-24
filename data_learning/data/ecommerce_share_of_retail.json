@@ -1,0 +1,20 @@
+{
+  "key": "ecommerce_share_of_retail",
+  "title": "E-commerce as a share of total US retail sales (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2000-2025 (annual, 2025 is Q3)",
+  "source": {
+    "name": "E-Commerce Retail Sales as a Percent of Total Sales (ECOMPCTSA)",
+    "publisher": "U.S. Census Bureau, via Federal Reserve Bank of St. Louis (FRED)",
+    "url": "https://fred.stlouisfed.org/series/ECOMPCTSA",
+    "officiality": "official",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Census Bureau Quarterly Retail E-Commerce Sales, seasonally adjusted, published via FRED. 2000 and 2010 are full-year figures (commonly cited as 3.86% and 4.4% of total retail sales respectively); 2025 is the Q3 2025 reading (16.4%), the most recent available at authoring time.",
+  "points": [
+    {"label": "2000", "value": 3.86, "period": "2000"},
+    {"label": "2010", "value": 4.4, "period": "2010"},
+    {"label": "2025", "value": 16.4, "period": "2025"}
+  ]
+}

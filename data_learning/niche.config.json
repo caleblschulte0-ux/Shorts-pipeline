@@ -29115,6 +29115,243 @@
      "say": "It's not even across the map, though. New Jersey alone sits at 68% -- 20 points above the national average."
     }
    ]
+  },
+  {
+   "slug": "online-shopping-store-toll",
+   "title": "Online Shopping Just Hit 16% Of Everything We Buy",
+   "hook": "Your last package closed a store somewhere.",
+   "closing": "Free shipping isn't free. Somebody's storefront is paying for it.",
+   "question": "Do you shop online or in person more? Comment your answer.",
+   "caption": "Online shopping just hit 16.4% of every retail dollar spent in America. Amazon Prime membership exploded from 54 million to 180 million US shoppers in under a decade -- and physical stores are paying the price, with closures jumping from 4,913 to 7,327 in a single year. Do you shop online or in person more? Comment your answer.",
+   "hashtags": [
+    "ecommerce",
+    "onlineshopping",
+    "retail",
+    "amazonprime",
+    "storeclosures",
+    "shopping",
+    "tech",
+    "economy",
+    "consumertrends",
+    "digitalshopping",
+    "retailapocalypse",
+    "dataviz",
+    "statistics",
+    "technology"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ecommerce_share_of_retail",
+     "params": {
+      "file": "ecommerce_share_of_retail.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SHIFT",
+     "topic": "online shopping's share of retail sales",
+     "say": "Online shopping was just 3.86 percent of retail in 2000. By 2010 it barely moved to 4.4 percent. Today it's 16.4 percent -- nearly all that growth happened in the last 15 years."
+    },
+    {
+     "source": "offline",
+     "key": "amazon_prime_us_members",
+     "params": {
+      "file": "amazon_prime_us_members.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY",
+     "topic": "why online shopping grew: Amazon Prime membership",
+     "say": "Here's why: Amazon Prime grew from 54 million US members in 2015 to 180 million by 2024. Free 2-day shipping stopped feeling optional -- so more of what we buy just moved online."
+    },
+    {
+     "source": "offline",
+     "key": "retail_store_closures",
+     "params": {
+      "file": "retail_store_closures.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "store closures from online shopping",
+     "say": "The result: 4,913 stores closed in 2023. In 2024 that jumped to 7,327 -- thousands more empty storefronts in a single year."
+    }
+   ]
+  },
+  {
+   "slug": "space-travel-acceleration",
+   "title": "How Did Space Travel Get 4 Times More Common?",
+   "hook": "Getting to space just stopped being rare.",
+   "closing": "And this is just the warm-up act for space travel.",
+   "question": "Would you ever want to go to space? Tell me why.",
+   "caption": "1 in 4 people who have ever reached space got there in just the last five years. Blue Origin alone has flown 92 paying passengers since 2021 -- nearly four times what Virgin Galactic managed in 22 years. Would you ever want to go to space? Tell me why.",
+   "hashtags": [
+    "spacetravel",
+    "astronauts",
+    "spacetourism",
+    "blueorigin",
+    "virgingalactic",
+    "spacex",
+    "nasa",
+    "space",
+    "spaceexploration",
+    "science",
+    "commercialspace",
+    "newshepard",
+    "spacefacts",
+    "dataviz"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cumulative_space_travelers",
+     "params": {
+      "file": "cumulative_space_travelers.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "how many people have reached space",
+     "say": "By 2020, just 560 people had ever reached space in 59 years. By 2025, that number hit 750 -- 190 new space travelers added in barely 5 years."
+    },
+    {
+     "source": "offline",
+     "key": "space_tourist_company_flights",
+     "params": {
+      "file": "space_tourist_company_flights.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · WHY",
+     "topic": "why more space travelers: commercial space companies",
+     "say": "Why the jump? Blue Origin alone has flown 92 paying passengers since 2021. SpaceX's private missions have flown about 24. Virgin Galactic managed just 23 in 22 years."
+    },
+    {
+     "source": "offline",
+     "key": "space_travel_era_split",
+     "params": {
+      "file": "space_travel_era_split.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SHIFT",
+     "topic": "the shift in space travel since 2020",
+     "say": "Add it up and 25 percent of everyone who's ever reached space got there in just the last five years. Space travel isn't rare anymore -- it's just getting started."
+    }
+   ]
+  },
+  {
+   "slug": "beaver-ecosystem-comeback",
+   "title": "Beavers Crashed To 100,000. Now There Are 12 Million.",
+   "hook": "We nearly wiped out nature's best firefighter.",
+   "closing": "Turns out the 'pest' flooding your yard might be a firefighter.",
+   "question": "Have you ever seen a real beaver dam up close? I want to know.",
+   "caption": "Beavers were hunted down to just 100,000 in North America by 1900 -- from tens of millions before the fur trade. Now they're back to about 12 million, and scientists found land near their dams burns 3 times less in wildfires. Have you ever seen a real beaver dam up close? I want to know.",
+   "hashtags": [
+    "beavers",
+    "wildlife",
+    "conservation",
+    "ecosystem",
+    "wildfire",
+    "drought",
+    "nature",
+    "rewilding",
+    "ecology",
+    "naturefacts",
+    "biodiversity",
+    "environment",
+    "dataviz",
+    "sciencefacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "beaver_population_recovery",
+     "params": {
+      "file": "beaver_population_recovery.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CRASH",
+     "topic": "beavers crashed to near extinction, now rebounding",
+     "say": "Beavers once numbered around 100 million across North America. Fur trappers crashed that to just 100,000 by 1900. Today they're back to about 12 million -- still a fraction of what once was."
+    },
+    {
+     "source": "offline",
+     "key": "wildfire_burn_severity_beaver",
+     "params": {
+      "file": "wildfire_burn_severity_beaver.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY IT MATTERS",
+     "topic": "why it matters: beavers as nature's firefighter",
+     "say": "Here's why that matters: a peer-reviewed study found streams without beaver dams burned 3 times worse in wildfires than streams with them. Beaver ponds act like natural firebreaks."
+    },
+    {
+     "source": "offline",
+     "key": "beaver_dam_water_storage",
+     "params": {
+      "file": "beaver_dam_water_storage.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SCALE",
+     "topic": "how much water beavers store per dam",
+     "say": "A single beaver dam can hold 1.1 million gallons of water -- more than an Olympic swimming pool. That stored water keeps the land green enough to survive drought and fire."
+    }
+   ]
+  },
+  {
+   "slug": "hidden-foster-system",
+   "title": "2.6 Million Kids Are Raised By A System No One Runs",
+   "hook": "It's nearly 8 times bigger than official foster care.",
+   "closing": "Somebody's grandma is quietly doing the government's job for free.",
+   "question": "Did a grandparent ever step in to raise you? Share your story.",
+   "caption": "2.6 million American kids are being raised by grandparents or other relatives right now -- nearly 8 times more than the 343,077 kids in the official foster care system. It's quietly absorbing the fallout of the overdose crisis, and it's costing these grandparents: 18.3% of them live in poverty. Did a grandparent ever step in to raise you? Share your story.",
+   "hashtags": [
+    "grandparents",
+    "kinshipcare",
+    "fostercare",
+    "family",
+    "grandfamilies",
+    "opioidcrisis",
+    "demographics",
+    "society",
+    "familylife",
+    "census",
+    "publichealth",
+    "parenting",
+    "dataviz",
+    "statistics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "kinship_care_vs_foster_care",
+     "params": {
+      "file": "kinship_care_vs_foster_care.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE HIDDEN SYSTEM",
+     "topic": "the hidden foster system: kids raised by grandparents",
+     "say": "2.6 million kids are being raised by grandparents or other relatives right now. Compare that to the official foster care system: just 343,077 kids. This unofficial safety net is nearly 8 times bigger."
+    },
+    {
+     "source": "offline",
+     "key": "drug_overdose_deaths_trend",
+     "params": {
+      "file": "drug_overdose_deaths_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHY",
+     "topic": "why grandparents are stepping into foster care's gap",
+     "say": "Here's why: drug overdose deaths went from 16,849 a year in 1999 to a peak of 107,941 in 2022. Even after easing to 79,384 in 2024, that's still far higher than it used to be -- and grandparents are catching the fallout."
+    },
+    {
+     "source": "offline",
+     "key": "grandparent_caregiver_poverty",
+     "params": {
+      "file": "grandparent_caregiver_poverty.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "the cost to grandparents doing foster care's job",
+     "say": "It comes at a cost: 18.3 percent of grandparents raising grandchildren live in poverty, compared with 15.1 percent of kids nationally. They're absorbing a crisis with less money, not more."
+    }
+   ]
   }
  ],
  "videos": [

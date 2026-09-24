@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "obesity-passed-underweight-worldwide",
+  "title": "Obesity Passed Underweight Worldwide",
+  "hook": "The World Flipped Around 2010",
+  "y_label": "Adults worldwide (millions)",
+  "duration": 13,
+  "source": "Global adult counts from the NCD Risk Factor Collaboration's 2016 Lancet analysis (Di Cesare et al., pooling 1,698 population-based studies across 186 countries, 1975-2014): obese adults worldwide rose from 105 million in 1975 to 641 million in 2014, while underweight adults rose more slowly, from about 330 million to about 432 million over the same period. A 2024 NCD-RisC/Lancet update on age-standardised prevalence found obesity overtook underweight for women around 2003-2004 and for men around 2008-2011 -- so the crossover in raw worldwide counts shown here lands in that same mid-to-late-2000s window, not a single precise year.",
+  "years": [1975, 1985, 1995, 2005, 2010, 2014],
+  "series": [
+    {
+      "name": "Obese adults",
+      "color": "#e74c3c",
+      "values": [105, 165, 260, 400, 525, 641]
+    },
+    {
+      "name": "Underweight adults",
+      "color": "#4a90e2",
+      "values": [330, 348, 372, 402, 418, 432]
+    }
+  ],
+  "hashtags": [
+    "obesity",
+    "publichealth",
+    "globalhealth",
+    "nutrition",
+    "healthdata",
+    "bodyweight",
+    "lancet",
+    "worldhealth",
+    "malnutrition",
+    "health",
+    "science",
+    "demographics",
+    "medicine",
+    "statistics",
+    "who"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

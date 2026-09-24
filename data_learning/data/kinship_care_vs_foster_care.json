@@ -1,0 +1,19 @@
+{
+  "key": "kinship_care_vs_foster_care",
+  "title": "Kids raised by relatives vs. kids in the official foster care system (thousands)",
+  "unit": "thousand",
+  "geography": "United States",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "State of Grandfamilies / Kinship Care data (children raised by grandparents or other relatives), compared with the federal foster care count",
+    "publisher": "Generations United (compiling U.S. Census Bureau / AECF KIDS COUNT data), and the Administration for Children and Families (AFCARS Report #30)",
+    "url": "https://www.gu.org/explore-our-topics/grandfamilies/",
+    "officiality": "secondary",
+    "access_date": "2026-09-24"
+  },
+  "notes": "Generations United reports about 2.6 million children live in households headed by grandparents, other relatives, or close family friends (kinship/grandfamilies), synthesizing Census Bureau and AECF KIDS COUNT data. For comparison, AFCARS Report #30 (Children's Bureau, Administration for Children and Families, HHS) counted 343,077 children in the official, licensed foster care system nationwide on September 30, 2023 (https://acf.gov/cb/report/afcars-report-30). These are different systems measured differently (informal kinship care vs. the licensed foster system) but both are the best available national counts of each.",
+  "points": [
+    {"label": "Raised by grandparents/relatives", "value": 2600},
+    {"label": "In the official foster care system", "value": 343}
+  ]
+}
