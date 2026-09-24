@@ -9018,14 +9018,27 @@
       "ts": "2026-09-24T23:36:08.311508+00:00"
     },
     "clip-20260924-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/EvilAntsyLadiesMikeHogu-_1uOjVdBaf8dOnA3",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/pSuCqssccXs",
       "title": "Kaicenat: Kai Cenat Gets Called A Murderer, Then A 'Seat Sniffer'",
       "kind": "twitch_clip",
-      "ts": "2026-09-24T23:39:04.629820+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-24T23:39:11.924522+00:00",
+      "uploaded_at": "2026-09-24T23:39:11.924542+00:00",
+      "publish_at": "2026-09-25T09:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/EvilAntsyLadiesMikeHogu-_1uOjVdBaf8dOnA3",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "HE CALLED HIM A SEAT SNIFFER",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1702,
+      "banger": 0.5,
+      "cut": {
+        "start": 21.5,
+        "end": 48.7
+      },
+      "director_cut": true
     }
   }
 }
