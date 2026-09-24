@@ -1,0 +1,41 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "time-tracking-app-catches-the-boss",
+  "title": "He Wanted Every Minute Logged. So I Logged His.",
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "reddit",
+    "redditstories",
+    "karma",
+    "officestory",
+    "hr",
+    "storytime",
+    "truestory",
+    "justice",
+    "worklife",
+    "management",
+    "satisfying",
+    "corporate",
+    "9to5"
+  ],
+  "script": "My manager rolled out a badge-and-app system that logged every arrival, departure, and bathroom break to the exact minute, because he was convinced the team was stealing company time. I complied down to the second, logging every swipe and every fifteen-minute lunch like scripture, since the app synced straight to the building's own badge readers and nobody told it to skip management. Three weeks in, payroll ran a companywide punctuality report to justify the new policy, and the same system that clocked my perfect ten-hour days also clocked my manager arriving forty minutes late four days a week and slipping out early every Friday for his gym class. HR didn't need my testimony, just the export. The rule that was supposed to catch us stayed exactly as strict as he wrote it, and he became the first person written up under his own policy.",
+  "shots": [
+    {"phrase": "badge-and-app system that logged every arrival", "query": "employee badge scanner"},
+    {"phrase": "convinced the team was stealing company time", "query": "office wall clock"},
+    {"phrase": "logging every swipe and every fifteen-minute lunch", "query": "phone time tracking app"},
+    {"phrase": "payroll ran a companywide punctuality report", "query": "spreadsheet report desk"},
+    {"phrase": "clocked my manager arriving forty minutes late", "query": "empty office chair morning"},
+    {"phrase": "slipping out early every Friday for his gym class", "query": "gym bag office locker"},
+    {"phrase": "HR didn't need my testimony, just the export", "query": "hr office meeting"},
+    {"phrase": "the first person written up under his own policy", "query": "written warning paperwork"}
+  ],
+  "punches": [
+    {"phrase": "stealing company time", "text": "TIME THEFT ACCUSATION", "color": "#ffaa30"},
+    {"phrase": "logging every swipe and every fifteen-minute lunch", "text": "LOGGED EVERYTHING", "color": "#ffaa30"},
+    {"phrase": "clocked my manager arriving forty minutes late", "text": "HE WAS LATE TOO", "color": "#ff3030"},
+    {"phrase": "the first person written up under his own policy", "text": "WRITTEN UP FIRST", "color": "#50ff80"}
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
