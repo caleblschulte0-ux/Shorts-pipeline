@@ -1,4 +1,185 @@
-{
-  "skipped": true,
-  "recent_posts": 2
-}
+[
+  {
+    "topic": "Bitcoin And Silver Keep Trading The Lead",
+    "title": "Bitcoin And Silver Keep Trading The Lead",
+    "format": "graph_race",
+    "publish_at": "2026-09-24T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The title promises repeated lead swaps, but Silver leads in every frame and the payoff crowns Silver by 2x, so the video disproves its own hook.",
+    "elapsed_seconds": 113.1,
+    "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
+    "source": "brain",
+    "video_path": "output/daily_20260924-153330_bitcoin_and_silver_keep_trading_the_lead.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The title promises repeated lead swaps, but Silver leads in every frame and the payoff crowns Silver by 2x, so the video disproves its own hook.",
+      "score": 70
+    },
+    "blocked": true
+  },
+  {
+    "topic": "US Oil Production Passed Saudi Arabia's",
+    "title": "US Oil Production Passed Saudi Arabia's",
+    "format": "graph_race",
+    "publish_at": "2026-09-24T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-line race with a real crossover story, but at the crossover itself (mid2, 2016) the labels and flags pile on top of each other.",
+    "elapsed_seconds": 110.3,
+    "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
+    "source": "brain",
+    "video_path": "output/daily_20260924-153523_us_oil_production_passed_saudi_arabia_s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, readable two-line race with a real crossover story, but at the crossover itself (mid2, 2016) the labels and flags pile on top of each other.",
+      "score": 83
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Wanted Every Minute Logged. So I Logged His.",
+    "title": "He Wanted Every Minute Logged. So I Logged His.",
+    "format": "reddit",
+    "publish_at": "2026-09-24T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Efkltqg68HI",
+    "error": null,
+    "elapsed_seconds": 438.5,
+    "package_path": "state/trending_packages/20260924/05_time-tracking-app-catches-the-boss.json",
+    "source": "brain",
+    "video_path": "output/daily_20260924-153715_he_wanted_every_minute_logged__so_i_logg.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.933,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Brown bear caught on camera at Kolsay Lakes National Park - Qazinform",
+    "angle": "A massive brown bear wanders onto a popular trail, sparking safety warnings for hikers and a viral wildlife video.",
+    "publish_at": "2026-09-24T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['demanded a free latte', 'tossed a $5 bill', 'called my supervisor', 'blushed and handed over', 'left smiling']",
+    "elapsed_seconds": 80.6,
+    "title": "I Turned an Entitled Customer\u2019s Free Latte Into $50",
+    "package_path": "state/trending_packages/20260924-154459_auto_brown_bear_caught_on_camera_at_kolsay_la.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "A rare Blanding's turtle safely crosses a highway thanks to a newly installed wildlife tunnel, highlighting conservation tech.",
+    "publish_at": "2026-09-24T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean Reddit card and readable captions, but the whole story is told only in words over generic Minecraft gameplay, and no beat of the latte revenge is ever shown.",
+    "elapsed_seconds": 162.5,
+    "title": "My $12 Latte Revenge Got the Whole Cafe Shut Down",
+    "package_path": "state/trending_packages/20260924-154606_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260924-154606_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.933,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean Reddit card and readable captions, but the whole story is told only in words over generic Minecraft gameplay, and no beat of the latte revenge is ever shown.",
+      "score": 61
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret",
+    "angle": "Scotty\u2019s broken rib reveals a hidden network of ancient blood vessels, reshaping how paleontologists view dinosaur physiology.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret' refused by the writer: The provided trend is scientific news, not a workplace or universal premise setting.",
+    "elapsed_seconds": 0.5,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "Scientists find two tiny new snails with shells that close like doors",
+    "angle": "Discovery of two micro\u2011snail species in Montenegro shows even Europe hides secret fauna, with doors\u2011like shells that could inspire biomimicry.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['free sandwich', 'slammed his tray', 'handwritten note', 'tiny bricks', 'five\u2011star review']",
+    "elapsed_seconds": 41.7,
+    "title": "I Turned a Complaining Customer into a Free Lunch",
+    "package_path": "state/trending_packages/20260924-154852_auto_scientists_find_two_tiny_new_snails_with.json",
+    "quarantined": true,
+    "backfill": true
+  }
+]
