@@ -45,6 +45,40 @@ from data_learning import studio_render as sr  # noqa: E402
 from data_learning import viz_scene as vs  # noqa: E402
 
 
+
+def _longest_still_run(job):
+    """Render one machine and return its longest run of near-identical
+    frames by the cadence gate's own detector (None if it would not draw).
+    Module level so a worker process can run it."""
+    import tempfile
+    import numpy as np
+    from PIL import Image
+    from data_learning import charts
+    name, attr, ins, frames = job
+    ins.scene = getattr(vs, attr)(ins)
+    if not ins.scene:
+        return None
+
+    def _block_max(a, b):
+        return max(np.abs(a[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]
+                          - b[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]).mean()
+                   for r in range(12) for c in range(12))
+    with tempfile.TemporaryDirectory() as td:
+        charts.FULLFRAME_RENDERERS["scene"](ins, Path(td), name, frames)
+        fs = sorted(Path(td).glob(name + "*.png"))
+        if len(fs) < 5:
+            return None
+        arr = [np.asarray(Image.open(f).convert("L").resize((192, 192)),
+                          dtype=np.float32) for f in fs]
+    run = best = 0
+    for k in range(len(arr) - 1):
+        if _block_max(arr[k], arr[k + 1]) < 6.0:
+            run += 1
+            best = max(best, run)
+        else:
+            run = 0
+    return best
+
 class _Pt:
     def __init__(self, label, value):
         self.label, self.value = label, value
@@ -644,30 +678,22 @@ class MotionMustBeVISIBLE(unittest.TestCase):
                  ("wheel", vs.wheel_scene,
                   _ins([(str(2016 + k), v) for k, v in
                         enumerate([10, 60, 12, 58, 11, 62, 13, 59])]), None))
-        worst = {}
+        # Measured in PARALLEL, one machine per core: forty machines at 120
+        # frames each took twelve minutes serially — half of CI's whole
+        # budget for one test. The measurement itself is unchanged.
+        import os
+        from concurrent.futures import ProcessPoolExecutor
+        jobs = []
         for name, build, ins, base in cases:
             if base:
                 ins.baseline = DataPoint(label=base[0], value=float(base[1]))
-            ins.scene = build(ins)
-            if not ins.scene:
-                continue
-            with tempfile.TemporaryDirectory() as td:
-                charts.FULLFRAME_RENDERERS["scene"](
-                    ins, Path(td), name, FRAMES)
-                fs = sorted(Path(td).glob(name + "*.png"))
-                if len(fs) < 5:
-                    continue
-                arr = [np.asarray(Image.open(f).convert("L").resize((192, 192)),
-                                  dtype=np.float32) for f in fs]
-                run = best = 0
-                for k in range(len(arr) - 1):
-                    if _block_max(arr[k], arr[k + 1]) < 6.0:
-                        run += 1
-                        best = max(best, run)
-                    else:
-                        run = 0
-                if best > CEILING:
-                    worst[name] = best
+            # by NAME on viz_scene: the builders are closures and do not pickle
+            attr = next(k for k, v in vars(vs).items() if v is build)
+            jobs.append((name, attr, ins, FRAMES))
+        with ProcessPoolExecutor(max_workers=max(1, min(4, os.cpu_count() or 1))) as ex:
+            runs = list(ex.map(_longest_still_run, jobs))
+        worst = {name: best for (name, *_), best in zip(jobs, runs)
+                 if best is not None and best > CEILING}
         self.assertEqual(worst, {}, f"machines that hold still: {worst}")
 
 

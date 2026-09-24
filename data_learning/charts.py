@@ -778,6 +778,32 @@ def _ordered_items(insight: Insight) -> list:
     return items
 
 
+def capped_items(insight: Insight, n: int = 5) -> list:
+    """At most `n` items to draw — WITHOUT CUTTING OFF THE END OF A SERIES.
+
+    `capped_items(insight, 5)` on a seven-year trend kept 2019-2023 and
+    threw away 2024 and 2025: the coffee story's "$4.41, a record" never
+    appeared, and the hook drew the 2021-2023 dip under a claim that the
+    price "climbed" (showrunner, 2026-09-24). A ranking keeps its top `n`; a
+    series in time order keeps its first and last and thins the middle, the
+    way `viz_scene._series_points` always has. The baseline, when there is
+    one, is always kept."""
+    import re as _re_c
+    items = list(insight.items)
+    base = insight.baseline if insight.kind != "trend" else None
+    room = n - (1 if base else 0)
+    chrono = insight.kind == "trend" or (
+        len(items) > 2 and all(_re_c.match(r"^\s*(1[89]|20)\d\d\b", str(p.label))
+                               for p in items)
+        and [str(p.label) for p in items] == sorted(str(p.label) for p in items))
+    if len(items) > room >= 2 and chrono:
+        step = (len(items) - 1) / (room - 1)
+        items = [items[int(round(i * step))] for i in range(room)]
+    else:
+        items = items[:max(1, room)]
+    return items + ([base] if base else [])
+
+
 def _card_base():
     import matplotlib
     matplotlib.use("Agg")
@@ -2155,7 +2181,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     Twemoji (icons.icon_for); falls back to a coloured cap dot when none match."""
     from matplotlib.offsetbox import OffsetImage, AnnotationBbox
     from . import icons as _icons
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
@@ -2424,7 +2450,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     alternative to the illustrated diorama (no images)."""
     import math as _m
     from matplotlib.patches import Circle
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     n = len(items)
     ax = fig.add_axes([0.04, 0.08, 0.92, 0.68])
@@ -3785,7 +3811,7 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
         return None
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
-    items = _ordered_items(insight)[:5]
+    items = capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     vmax = max(vals)
     cx, cy = W // 2, 760

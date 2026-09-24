@@ -2493,7 +2493,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     consequence, which is that the whole line runs at that number and not at
     the average of them.
     """
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     if len(items) < 3:
         return None
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
@@ -3505,6 +3505,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     fill_by, overlap = 0.90, 1.4
     slot = fill_by / max(1, n)
     ty = bot
+    landed = bot                      # top of the blocks that have LANDED
     for k in range(n):
         a = max(0.0, min(1.0, (e - k * slot) / (slot * overlap)))
         if a <= 0.0:
@@ -3523,12 +3524,18 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
         ty = min(ty, by) if k else by
+        if a >= 1.0:
+            landed = by
     host = scene_host("cheer", reveal, insight, "tower")
     if host is not None:
         mh = 190
         mw = int(host.width * mh / host.height)
+        # ON WHAT HAS LANDED, at the corner: riding the block still in the
+        # air lifted him 3.5 block-heights above the stack and into the
+        # beat title (a_audit, close values). The next block drops beside
+        # him onto the stack, not through him.
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx - mw // 2), int(ty - mh + 8)))
+                               (int(cx + bw // 2 - mw * 0.6), int(landed - mh + 8)))
     _s = (f"{getattr(star, 'label', '')}   "
           f"{charts._ulabel(v, unit, group=True)}")
     _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
@@ -3837,7 +3844,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
     the trunk by construction — which is the honest version of the claim a
     stacked chart makes in words and this makes in geometry.
     """
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     if len(items) < 2:
         return None
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
@@ -4944,7 +4951,7 @@ def draw_orbit(d, box, insight, reveal):
     if not orbit_is_honest(insight):
         return None
     import math as _m
-    items = _ordered_items(insight)[:5]
+    items = charts.capped_items(insight, 5)
     vals = [max(0.0001, p.value) for p in items]
     vmax = max(vals)
     cx, cy = _cx(box), (box[1] + box[3]) // 2
@@ -5528,7 +5535,7 @@ def object_scene(insight) -> dict:
     """A ranking of REAL THINGS: one `object` per item (its own label as the
     photo subject) in a ground-row. render_scene turns this into big vertical
     rows with a real photo of each thing — the 'show me what it looks like' viz."""
-    items = list(insight.items)[:5]
+    items = list(insight.items)[:5]     # `item:{i}` is an index: never thinned
     els = [{"type": "object", "region": "ground-row",
             "subject": (p.label or "").strip(),
             "data": {"value_from": f"item:{i}"}}

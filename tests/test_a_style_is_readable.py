@@ -191,5 +191,41 @@ class TheNumberOnScreenIsTheData(unittest.TestCase):
         self.assertEqual(bad, {})
 
 
+class ASeriesKeepsItsEnd(unittest.TestCase):
+    """Five of seven years drawn must include the LAST: the coffee story's
+    record ($4.41, 2025) was sliced off by `[:5]` and the hook drew a dip
+    under the word "climbed"."""
+
+    def _ins(self, kind, pairs):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x", access_date="2026-09-24")
+        return Insight(kind=kind, topic="t", main_insight="m",
+                       items=[DataPoint(label=a, value=b) for a, b in pairs],
+                       source=src, unit="dollars", highlight_label=pairs[-1][0])
+
+    def test_a_trend_keeps_its_first_and_last_year(self):
+        from data_learning import charts
+        coffee = [("2019", 1.05), ("2020", 1.2), ("2021", 2.55), ("2022", 2.4),
+                  ("2023", 1.95), ("2024", 3.3), ("2025", 4.41)]
+        for kind in ("trend", "comparison"):
+            got = [p.label for p in charts.capped_items(self._ins(kind, coffee), 5)]
+            self.assertEqual(len(got), 5)
+            self.assertEqual((got[0], got[-1]), ("2019", "2025"), kind)
+
+    def test_a_ranking_keeps_its_top(self):
+        from data_learning import charts
+        ranked = [("Tokyo", 37), ("Delhi", 32), ("Shanghai", 29), ("Dhaka", 23),
+                  ("Cairo", 22), ("Lima", 11), ("Oslo", 1)]
+        got = [p.label for p in charts.capped_items(self._ins("rank", ranked), 5)]
+        self.assertEqual(got, ["Tokyo", "Delhi", "Shanghai", "Dhaka", "Cairo"])
+
+    def test_no_renderer_slices_the_first_five_any_more(self):
+        import re
+        for f in ("data_learning/charts.py", "data_learning/viz_scene.py"):
+            src = (ROOT / f).read_text()
+            self.assertEqual(re.findall(r"_ordered_items\(insight\)\[:5\]", src), [], f)
+
+
 if __name__ == "__main__":
     unittest.main()
