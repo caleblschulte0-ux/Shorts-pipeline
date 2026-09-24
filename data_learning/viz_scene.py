@@ -1677,7 +1677,7 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     # same frame, 55% held (2026-09-24). Each pull now snaps the end out
     # over most of its own window, evenly spaced along the beat.
     _tp = min(1.0, reveal / 0.9) * TAPE_PULLS
-    _k = min(TAPE_PULLS, int(_tp))
+    _k = min(TAPE_PULLS, int(_math.floor(_tp)))
     _yank = settle(min(1.0, (_tp - _k) / 0.7)) if _k < TAPE_PULLS else 0.0
     x1 = int(lo + (hi - lo) * (min(TAPE_PULLS, _k + _yank) / TAPE_PULLS))
     d.rounded_rectangle([lo, y - 22, max(x1, lo + 6), y + 22], radius=10,
@@ -1959,9 +1959,11 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, ly],
                             radius=tube_w // 2, fill=_rgba(WARN, 90))
         d.line([(cx - 120, ly), (cx + 120, ly)], fill=_rgba(WARN, 235), width=8)
-        draw_fitted(d, (cx + 136, ly), f"{getattr(base, 'label', 'limit')}  "
-                    f"{charts._ulabel(limit, unit)}", 38, bx1 - 24 - (cx + 136),
-                    _rgba(WARN, 235), anchor="lm", min_size=26)
+        # LEFT of the tube: Data rides up the right side on his bracket and
+        # would climb straight over it (a_audit, 2026-09-24)
+        draw_fitted(d, (cx - 136, ly), f"{getattr(base, 'label', 'limit')}  "
+                    f"{charts._ulabel(limit, unit)}", 38, (cx - 136) - (bx0 + 24),
+                    _rgba(WARN, 235), anchor="rm", min_size=26)
     # TWO decisive moves, not one long glide: the mercury climbs, THEN the
     # reading is called out along a leader. The number is the data's from
     # the moment it shows (it used to count up through values the data does
@@ -1984,10 +1986,14 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([cx - tube_w // 2 + 14, fy - 4, cx + tube_w // 2 - 14,
                              fy + 26], radius=14, fill=_rgba(TEXT, 250))
     if e2 > 0:
-        lx = int(cx - tube_w // 2 - 8 - 100 * e2)
-        d.line([(cx - tube_w // 2 - 8, fy), (lx, fy)], fill=_rgba(color, 255), width=6)
-        d.text((lx - 18 - int(60 * (1 - e2)), fy), charts._ulabel(v, unit, group=True),
-               font=_pil_font(64), fill=_rgba(color, int(255 * e2)), anchor="rm")
+        # THE READING IS IN THE BULB, where a thermometer shows it: never
+        # beside the limit, never under Data, and fitted, so a seven-digit
+        # figure stays in the glass (a_audit: '1,184,242' clipped)
+        _rf, _rt = fit_text(d, charts._ulabel(v, unit, group=True),
+                            int(70 + 20 * e2), 190, min_size=30)
+        d.text((cx, bot + 60), _rt, font=_rf,
+               fill=_rgba(_look_hex(_look.ink_on(_look_rgb(color))), int(255 * e2)),
+               anchor="mm")
     host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
                       reveal, insight, "thermometer")
     if host is not None:
@@ -2218,7 +2224,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
         if y < by0 + 190:
             break
         if k == n_wait:                      # walking in from the far edge
-            x = int(x + (bx1 - x) * (1.0 - settle(arrive)))
+            x = int(x + (bx1 - sz - 12 - x) * (1.0 - settle(arrive)))
         if glyph is not None:
             canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
