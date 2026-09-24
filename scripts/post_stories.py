@@ -209,6 +209,10 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
         from shared import style_arms as _style_arms
         _st = _style_arms.read(mp4)
         facts["style_arm"] = _st.get("style_arm") or "current"
+        if isinstance(_st.get("tts"), dict):     # which voice narrated it
+            facts["tts"] = _st["tts"].get("engine")
+            if _st["tts"].get("why_not_elevenlabs"):
+                facts["tts_why_not_elevenlabs"] = _st["tts"]["why_not_elevenlabs"]
         if _st.get("style_arm") == "illustrated":
             facts["illustrated_beats"] = len(_st.get("illustrated_beats") or [])
             facts["fallback_beats"] = len(_st.get("fallback_beats") or [])

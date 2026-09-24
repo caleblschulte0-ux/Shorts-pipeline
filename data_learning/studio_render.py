@@ -532,6 +532,67 @@ def _speechify_try(text: str, out_wav: Path, key: str, voice: str, model: str):
         return False, str(e)[:180]
 
 
+#: Which engine voiced the last narration, and why a preferred one was not
+#: used. Recorded on the video (its style sidecar -> the posted log) so a day
+#: that silently fell back to the local voice is visible, not assumed.
+TTS_USED = {"engine": None, "why_not_elevenlabs": None}
+_ELEVEN_DEAD = None       # the reason ElevenLabs is off for the rest of the run
+
+
+def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
+    """Synthesize ONE line with ElevenLabs -> WAV (operator, 2026-09-24: "this
+    should start trying to use ElevenLabs when it can"). Raw 24kHz PCM, the
+    same rate the Kokoro path and the pitch filter assume. False — with the
+    reason in `_ELEVEN_DEAD` for anything that will not fix itself this run
+    (no key, unauthorized, quota) — and the caller falls through."""
+    global _ELEVEN_DEAD
+    import os
+    import urllib.error
+    import urllib.request
+    key = os.environ.get("ELEVENLABS_API_KEY", "").strip()
+    if not key:
+        _ELEVEN_DEAD = "ELEVENLABS_API_KEY is not set"
+        return False
+    if _ELEVEN_DEAD:
+        return False
+    voice = os.environ.get("ELEVENLABS_VOICE_ID", "").strip() or "pNInz6obpgDQGcFmaJgB"
+    model = os.environ.get("ELEVENLABS_MODEL", "").strip() or "eleven_multilingual_v2"
+    req = urllib.request.Request(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=pcm_24000",
+        data=json.dumps({"text": text, "model_id": model,
+                         "voice_settings": {"stability": 0.45,
+                                            "similarity_boost": 0.8}}).encode(),
+        headers={"xi-api-key": key, "Content-Type": "application/json",
+                 "Accept": "audio/pcm"}, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            pcm = r.read()
+    except urllib.error.HTTPError as e:
+        body = ""
+        try:
+            body = e.read().decode("utf-8", "replace")[:200]
+        except Exception:  # noqa: BLE001
+            pass
+        why = f"HTTP {e.code} {body}".strip()
+        if e.code in (401, 402, 403, 429) or "quota" in body.lower():
+            _ELEVEN_DEAD = why              # it will not fix itself this run
+        print(f"[tts] elevenlabs failed: {why}", file=sys.stderr)
+        return False
+    except Exception as e:  # noqa: BLE001
+        print(f"[tts] elevenlabs failed: {str(e)[:160]}", file=sys.stderr)
+        return False
+    if len(pcm) < 2000:
+        print("[tts] elevenlabs returned no audio", file=sys.stderr)
+        return False
+    import wave
+    with wave.open(str(out_wav), "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(24000)
+        w.writeframes(pcm)
+    return True
+
+
 def _speechify_wav(text: str, out_wav: Path) -> bool:
     """Synthesize ONE line with Speechify -> WAV. Tries the requested model
     (default simba-3.2), then falls back through valid API models so a bad model
@@ -605,11 +666,26 @@ def synth_narration(sentences, workdir: Path, voice: str):
     import os
     import soundfile as sf
 
-    # Speechify first (if a key is set) — whole-video, so the voice never
-    # switches mid-clip: if ANY line fails (quota/error) we throw the batch away
-    # and re-synth everything on the local Kokoro voice.
+    # ElevenLabs first, then Speechify, then the local Kokoro voice — each
+    # WHOLE-VIDEO, so the voice never switches mid-clip: if ANY line fails the
+    # batch is thrown away and the next engine voices everything.
     wavs, windows, t = [], [], 0.0
-    if os.environ.get("SPEECHIFY_API_KEY"):
+    TTS_USED.update(engine=None, why_not_elevenlabs=None)
+    for i, sent in enumerate(sentences):
+        w = workdir / f"s{i}.wav"
+        if not _elevenlabs_wav(_tts_text(sent), w):
+            wavs, windows, t = [], [], 0.0
+            break
+        d = _dur(w) + 0.12
+        windows.append((t, t + d)); t += d; wavs.append(w)
+    if wavs:
+        TTS_USED["engine"] = "elevenlabs"
+        print(f"[tts] elevenlabs ({len(wavs)} lines)", flush=True)
+    else:
+        TTS_USED["why_not_elevenlabs"] = _ELEVEN_DEAD or "a line failed to synthesize"
+        print(f"[tts] ElevenLabs NOT used: {TTS_USED['why_not_elevenlabs']}",
+              flush=True)
+    if not wavs and os.environ.get("SPEECHIFY_API_KEY"):
         ok = True
         for i, sent in enumerate(sentences):
             w = workdir / f"s{i}.wav"
@@ -619,12 +695,14 @@ def synth_narration(sentences, workdir: Path, voice: str):
             d = _dur(w) + 0.12
             windows.append((t, t + d)); t += d; wavs.append(w)
         if ok and wavs:
+            TTS_USED["engine"] = "speechify"
             print(f"[tts] speechify {os.environ.get('SPEECHIFY_MODEL','simba-3.2')} "
                   f"({len(wavs)} lines)", flush=True)
         else:
             wavs, windows, t = [], [], 0.0          # reset -> Kokoro below
 
     if not wavs:
+        TTS_USED["engine"] = "kokoro"
         from kokoro_onnx import Kokoro
         k = Kokoro(str(KOKORO_MODEL), str(KOKORO_VOICES))
         # Validate the themed voice once; fall back to the house voice if the id
@@ -3676,6 +3754,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     except Exception as e:  # noqa: BLE001
         print(f"[studio] manifest skipped: {e}", file=sys.stderr)
     try:
+        _style["tts"] = dict(TTS_USED)          # which voice, and why not ElevenLabs
         _style_arms.sidecar(out_path).write_text(json.dumps(_style))
     except Exception as e:  # noqa: BLE001
         print(f"[studio] style sidecar skipped: {e}", file=sys.stderr)

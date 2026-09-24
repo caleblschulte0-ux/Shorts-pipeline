@@ -316,11 +316,15 @@ jobs:
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          ELEVEN: ${{ secrets.ELEVENLABS_API_KEY }}
         run: |
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
           [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_EXPLAINER"; missing=1; }
           [ $missing -ne 0 ] && exit 1
+          # Not required — the narration falls back — but said out loud: the
+          # operator wants ElevenLabs used whenever it can be.
+          [ -z "$ELEVEN" ] && echo "::warning::ELEVENLABS_API_KEY is not set — narration will use Speechify/Kokoro, not ElevenLabs"
           echo "Secrets present."
 
       - name: Install Claude Code CLI (brain for the forge + showrunner)
@@ -538,6 +542,12 @@ jobs:
           # when the key is present and falls back to the local Kokoro voice the
           # moment it errors/quota-limits. Voice + model overridable via repo
           # vars; default model simba-3.2 ("3.2").
+          # ElevenLabs narration FIRST when it can (operator, 2026-09-24);
+          # Speechify, then the local Kokoro voice, when it cannot. The engine
+          # used and why ElevenLabs was not is recorded on every video.
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ vars.ELEVENLABS_VOICE_ID }}
+          ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
           SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
           SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
