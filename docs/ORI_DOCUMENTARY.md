@@ -378,6 +378,20 @@ only as a hand edit is not a rule. So:
   know dropped, the shot brought close. Three attempts instead of two, and
   the brain sees only what is left. The hook subtitle is bigger and white.
 
+- **Actions the judge can name from the picture** (run #10, 78: "the game
+  is never shown", "the knapping is never shown", "held sticks rise out of
+  heads like antennae", "a bowl covers the man's face"). The knapper's
+  hammerstone rises to the shoulder and comes down on a bigger core with a
+  flake in the air on each strike; a child at play swings the stick between
+  chest and knee and tosses a pale pebble up and catches it; a held stick is
+  a staff from the hand to the ground; food comes to the front of the chin,
+  never over the mouth; and the look-up keeps its hands down — every raised
+  arm tried (straight up, behind, at the brow, stretched past the crown)
+  read as something else — so the tipped head and open mouth say it, and a
+  figure lying on its back says it best. The storyboard editor is asked to
+  NAME the missing activity when it grades a scene under 2, so the respec
+  has something to aim at.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

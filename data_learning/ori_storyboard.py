@@ -62,7 +62,9 @@ another, a body or head crossed by a limb/tool/prop, something cut off by the \
 frame edge, something floating where it cannot be (a painting in the sky), a \
 malformed limb or hand, an animal or person that reads as dead/upside down, \
 unreadable clutter. A calm, sparse picture is NOT broken.
-  why          one short line naming the defect (empty if not broken)
+  why          one short line naming the defect — or, when shows_words is \
+under 2, the ACTIVITY the words describe that the frame does not show \
+(e.g. "no knapping: the man only sits"); empty only when nothing is wrong
   shows_words  2 = the frame shows the place, time and THE ACTIVITY the words \
 describe (name it to yourself first: sewing, knapping, a game, looking up, \
 carrying wood, feeding the fire, sleeping) and a viewer who had not heard \

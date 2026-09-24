@@ -572,21 +572,29 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertIn((False, True), sides, "no seed put one on each side")
 
     def test_looking_up_reads_from_across_the_room(self):
-        # the fifth film's judge could not see "looking up" in a sky chapter
-        # where every figure did it: it was two dots moved a finger's width.
-        # Now the head tips back and a hand goes to the brow
+        # the fifth film's judge could not see "looking up" in two dots moved
+        # a finger's width; every raised arm since read as a hand at the cheek
+        # or "an antenna". What says it now: the head tipped up and back, the
+        # face at the crown, and — lying down — the figure on its back with
+        # its face to the sky and an arm raised at it
+        import cairo
         R = 40.0
         sk = self.P.skeleton("stand", R, 0.0)
-        nx, ny = sk["neck"]
-        (fx, fy), _ = self.P.hand_targets("look_up", sk, R, 0.0, 0.0)
-        self.assertLess(fy, ny - 0.5 * R)          # the hand is above the shoulders
-        (rx, ry), _ = self.P.hand_targets("idle", sk, R, 0.0, 0.0)
-        self.assertGreater(ry, fy + R)
         hx, hy = sk["head"]
         ux, uy = self.P.head_of(sk, R, "look_up")
-        self.assertLess(uy, hy)                    # the head goes up and back
-        self.assertGreater(ux, hx)
+        self.assertLess(uy, hy - 0.15 * R)             # the head goes up
+        self.assertGreater(ux, hx + 0.2 * R)           # and back-tilted, so forward
         self.assertEqual(self.P.head_of(sk, R, "idle"), (hx, hy))
+        front, _ = self.P.hand_targets("look_up", sk, R, 0.0, 0.0)
+        self.assertGreater(front[1], sk["neck"][1])    # and no arm rises past the head
+        def frame(action):
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 700, 500)
+            cr = cairo.Context(surf)
+            cr.set_source_rgb(0.1, 0.1, 0.2); cr.paint()
+            self.P.draw(cr, who="girl", era="stone_age", seed=3, pose="lie", action=action, x=350,
+                        ground_y=460, scale=1.4, t=0.3)
+            return bytes(surf.get_data())
+        self.assertNotEqual(frame("look_up"), frame("sleep"), "lying and looking up is its own picture")
 
     def test_a_painting_needs_a_wall(self):
         # the third film's judge: "cave-painting animals float in the open night sky"

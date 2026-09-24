@@ -211,7 +211,9 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     if action in ("eat", "drink"):
         k = (math.sin(c / 3.0 + ph) + 1) / 2          # 0 at lap, 1 at mouth
         k = k ** 2
-        mouth = (sk["head"][0] + 0.55 * R, sk["head"][1] + 0.5 * R)
+        # beside the chin, not over the mouth: a bowl at the mouth "covers
+        # the man's face" (the ninth film's storyboard)
+        mouth = (sk["head"][0] + 1.0 * R, sk["head"][1] + 0.8 * R)
         lap = (nx + 1.0 * R, ny + 1.4 * R)
         return ((lap[0] + (mouth[0] - lap[0]) * k, lap[1] + (mouth[1] - lap[1]) * k),
                 (nx + 0.8 * R, ny + 1.5 * R))
@@ -223,10 +225,11 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         k = math.sin(c / 4.0 + ph) * 0.08 * R
         return ((nx + 1.55 * R, ny + 0.2 * R + k), rest_b)
     if action == "play":
-        # a stick swung high and low, both hands in it
+        # a stick swung between chest and knee, both hands in it — swung
+        # high it rose out of the head "like an antenna" (the ninth film)
         k = math.sin(c / 1.1 + ph)
-        return ((nx + 0.9 * R + k * 0.5 * R, ny + 0.2 * R - k * 0.9 * R),
-                (nx + 0.6 * R + k * 0.4 * R, ny + 0.45 * R - k * 0.7 * R))
+        return ((nx + 1.1 * R + k * 0.4 * R, ny + 1.0 * R - k * 0.45 * R),
+                (nx + 0.8 * R + k * 0.35 * R, ny + 1.2 * R - k * 0.35 * R))
     if action == "feed_fire":
         # a branch pushed low toward the flames and drawn back
         k = (math.sin(c / 2.6 + ph) + 1) / 2
@@ -240,8 +243,11 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         k = math.sin(c / 0.9 + ph)
         return ((nx + 0.7 * R + k * 0.35 * R, ny - 1.25 * R), rest_b)
     if action == "knap":
+        # the hammerstone rises to shoulder height and comes down on the core
+        # in the lap — a swing big enough to read (the ninth film: "the woman
+        # knapping flint is never shown")
         k = abs(math.sin(c / 1.6 + ph))
-        return ((nx + 1.05 * R, ny + 0.6 * R + k * 0.75 * R), (nx + 1.0 * R, ny + 1.55 * R))
+        return ((nx + 1.15 * R, ny + 0.15 * R + k * 1.2 * R), (nx + 1.0 * R, ny + 1.55 * R))
     if action == "gather":
         k = (math.sin(c / 3.2 + ph) + 1) / 2
         return ((nx + 1.3 * R, sk["hip"][1] + (0.9 - 0.3 * k) * R), rest_b)
@@ -268,17 +274,12 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         # arms crossed on the chest, each hand at the other shoulder
         return ((nx - 0.05 * R, ny + 0.55 * R), (nx + 0.5 * R, ny + 0.6 * R))
     if action == "look_up":
-        # an arm raised straight at the sky, pointing — the fifth film's
-        # judge could not see "looking up" in two dots moved a finger's
-        # width, and the seventh could not see it in a hand at the brow
-        # either. An arm at the sky reads from across the room
-        k = (math.sin(c / 2.6 + ph) + 1) / 2
-        # forward AND up, so the arm passes beside the face, not over it
-        # the front arm, stretched (see draw), points forward and up past the
-        # head: a head this big is taller than a natural arm, an arm straight
-        # up crossed the face, one raised behind vanished behind the head,
-        # and a hand that stops at the cheek reads as a hand at the cheek
-        return ((nx + 1.55 * R + k * 0.08 * R, ny - 2.75 * R - k * 0.12 * R), rest_b)
+        # hands down. Every raised arm was tried — straight up crossed the
+        # face, behind vanished, at the brow read as a hand at the cheek,
+        # stretched past the crown read as "an antenna" (the ninth film) —
+        # so the head tipped well back and the open mouth say it, and a
+        # figure lying on its back says it best (see _draw_lying)
+        return rest_f, rest_b
     raise KeyError(f"action {action!r} has no hands")
 
 
@@ -425,8 +426,10 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
                              (tx + px * 0.16 * R, ty + py * 0.16 * R),
                              (tx - px * 0.16 * R, ty - py * 0.16 * R)], rgb("#8d8d86"), lw=lw * 0.7, amp=0)
     elif name == "stick":
-        ink.line(cr, [(hx - 0.2 * R, hy - 0.5 * R), (hx + 0.35 * R, hy + 1.0 * R)], lw=lw * 0.8,
-                 ink=rgb("#6b4a2e"), amp=0)
+        # a staff: from a little above the hand down toward the ground, so
+        # it never rises past the head (local y=0 is the ground)
+        ink.line(cr, [(hx - 0.1 * R, hy - 0.45 * R), (hx + 0.3 * R, max(hy + 1.6 * R, min(0.0, hy + 3.0 * R)))],
+                 lw=lw * 0.8, ink=rgb("#6b4a2e"), amp=0)
     elif name == "torch":
         # held out in front and leaning away, like the spear: the flame
         # sits forward of the face and above it (the storyboard judge:
@@ -516,8 +519,6 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     sh_b = (nx - 0.22 * R, ny + 0.28 * R)
     ua, la = 0.95 * R, 0.9 * R
     ua_b, la_b = ua, la
-    if action == "look_up":
-        ua, la = ua * 1.8, la * 1.8            # a pointing arm, stretched at the sky, clear of the head
 
     if pose == "sit_on":
         _seat(cr, lk, sk["hip"], R, lw)
@@ -579,12 +580,6 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                  ink=rgb("#4b3524") if lk["era"] in ("medieval", "victorian", "early_modern") else rgb("#9c7d4a"),
                  amp=0)
 
-    if action == "look_up":
-        # the pointing arm is drawn BEFORE the head, so it rises from behind
-        # the shoulder and shows past the crown instead of crossing the face
-        e, h = _ik(*sh_f, *front, ua, la, 1)
-        ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
-        ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
     # head (with hood/scarf) + hair + face
     if lk["hood"] or lk["scarf"]:
         hood_c = shade(lk["cloth"], 0.9)
@@ -649,21 +644,35 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
             ink.line(cr, [(sx, ky - 0.22 * R), (sx + 0.12 * R, ky - 0.08 * R)], lw=1.4, amp=0)
     elif action == "knap":
         core = rgb("#7d7a74")
-        ink.fill_stroke(cr, ink.blob_pts(nx + 1.0 * R, ny + 1.55 * R, 0.34 * R, 0.26 * R, seed + 8, 0.12, 8),
+        ink.fill_stroke(cr, ink.blob_pts(nx + 1.0 * R, ny + 1.55 * R, 0.5 * R, 0.36 * R, seed + 8, 0.12, 8),
                         core, lw=lw * 0.7, amp=0.8, seed=seed + 8, shadow=shade(core), shadow_dir=(1, 1))
         for k in range(5):
             fx = 1.3 * R + k * 0.28 * R + (seed % 5) * 0.03 * R
             ink.fill_stroke(cr, [(fx, -0.02 * R), (fx + 0.16 * R, -0.03 * R), (fx + 0.07 * R, -0.16 * R)],
                             rgb("#8e8a84"), lw=1.6, amp=0)
+        # a flake in the air on each strike, falling
+        kk = abs(math.sin(2 * math.pi * t / 1.6 + ph))
+        if kk < 0.35:
+            u = kk / 0.35
+            fx, fy = nx + 1.45 * R + u * 0.5 * R, ny + 1.3 * R + u * 0.9 * R
+            ink.fill_stroke(cr, [(fx, fy), (fx + 0.18 * R, fy - 0.04 * R), (fx + 0.08 * R, fy - 0.2 * R)],
+                            rgb("#a8a49c"), lw=1.6, amp=0)
 
-    # front arm + held item (a look-up's arm was drawn under the head above)
+    if action == "play":
+        # the game: a pebble tossed up off the stick and caught, so a viewer
+        # who did not hear the words sees a game and not two children with
+        # sticks (the ninth film: "the stick-and-stone game is never shown")
+        u = (t / 1.1 + ph / (2 * math.pi)) % 1.0
+        px = nx + 1.3 * R + u * 0.3 * R
+        py = ny + 0.9 * R - math.sin(math.pi * u) * 2.2 * R
+        ink.fill_stroke(cr, ink.ellipse_pts(px, py, 0.24 * R, 0.2 * R, 8), rgb("#d8d2c8"), lw=lw * 0.7, amp=0)
+    # front arm + held item
     bend = -1 if action in ("wave", "yawn") else 1
-    if action != "look_up":
-        e, h = _ik(*sh_f, *front, ua, la, bend)
-        if held != "none":
-            _item(cr, held, h[0], h[1], R, t, lw)
-        ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
-        ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
+    e, h = _ik(*sh_f, *front, ua, la, bend)
+    if held != "none":
+        _item(cr, held, h[0], h[1], R, t, lw)
+    ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
     if action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish", "hug_self", "knap", "eat",
                   "drink", "play"):
         e2, h2 = _ik(*sh_b, *back, ua, la, bend)
