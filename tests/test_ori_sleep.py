@@ -331,7 +331,7 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
         import ori_author
         ask, calls = self._fake_ask(broken_chapter=5)
         self.assertIsNone(ori_author.author("x", "stone_age", ask=ask))
-        self.assertEqual(calls["n"], 1 + 4 + 2)     # outline, four good chapters, two tries at the fifth
+        self.assertEqual(calls["n"], 1 + 4 + 3)     # outline, four good chapters, three tries at the fifth
 
 
 class ThePublisherGivesTheGateWhatItNeeds(unittest.TestCase):
@@ -753,6 +753,28 @@ class ThePictureIsReadable(unittest.TestCase):
         for f in sorted(OS.EPISODES.glob("*.json")):
             shelf = json.loads(f.read_text(encoding="utf-8"))
             self.assertEqual(A.repair_film(shelf, log=lambda *_: None), [], f.name)
+
+    def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
+        # the first fresh-topic run: chapter 1 rejected twice for "nothing in
+        # this scene moves enough" and the author gave up. The smallest valid
+        # light is added in code; a hearth is never lit outdoors; a prop the
+        # kit does not know is dropped
+        import ori_author as A
+        sc = {"setting": "village", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "man", "pose": "stand", "action": "carry"}], "props": ["cart"]}
+        did = A.mend_scene(sc, "medieval")
+        self.assertTrue(did and "lit" in did, did)
+        self.assertEqual(self.S.validate(sc, "medieval"), [])
+        self.assertNotIn("hearth", sc["props"])
+        sc2 = {"setting": "cottage_inside", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "woman", "pose": "sit", "action": "sew"}], "props": ["table", "spaceship"]}
+        did2 = A.mend_scene(sc2, "medieval")
+        self.assertIn("dropped spaceship", did2)
+        self.assertEqual(self.S.validate(sc2, "medieval"), [])
+        fine = _scene(setting="grassland", shot="close", cast=[{"who": "man", "pose": "sit", "action": "eat"}])
+        self.assertIsNone(A.mend_scene(fine, "stone_age"))
+        beats = [{"say": "words", "scene": dict(sc, props=["cart"])}, {"say": "words", "scene": fine}]
+        self.assertEqual(A.mend_beats(beats, "medieval", log=lambda *_: None), 1)
 
     def test_a_chapter_opens_on_a_new_place(self):
         import ori_author as A

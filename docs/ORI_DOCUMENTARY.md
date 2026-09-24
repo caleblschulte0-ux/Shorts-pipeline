@@ -368,6 +368,16 @@ only as a hand edit is not a rule. So:
   (and `author_era`): the run authors a fresh script, repairs it, boards it,
   renders it and judges it — the whole system on a topic nobody polished.
 
+- **The first fresh-topic run failed at the author**, not the judge:
+  chapter 1 of "What did medieval peasants do after dark?" was rejected
+  twice for *"nothing in this scene moves enough"* and the author gave up.
+  A motion rule handed back to a brain twice is not a system. `mend_scene`
+  fixes what code can fix before the brain is asked again: the plainest
+  light the setting and era allow (one, then two — a wide night needs a fire
+  and a torch; a hearth is never lit outdoors), a prop the kit does not
+  know dropped, the shot brought close. Three attempts instead of two, and
+  the brain sees only what is left. The hook subtitle is bigger and white.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

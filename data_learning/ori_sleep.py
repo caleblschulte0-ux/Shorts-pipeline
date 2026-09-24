@@ -280,7 +280,8 @@ def _render_chunk(args) -> str:
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     a = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
     b = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
-    texts = [(c["t0"], c["t1"], c["x"], c["y"], _text_surface(c["text"], c["size"], band=c.get("band", False)))
+    texts = [(c["t0"], c["t1"], c["x"], c["y"], _text_surface(c["text"], c["size"], band=c.get("band", False),
+                                                            color=c.get("color", (248, 240, 222))))
              for c in captions if c["t1"] > t0 and c["t0"] < t1]
     i = lo
     for n in range(n0, n1):
@@ -323,7 +324,10 @@ def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     # is and invites the listener in — the hook the judge grades
     tail = ep["title"].split("|")[1].strip() if "|" in ep["title"] else ""
     if tail:
-        out.append(dict(text=tail, size=44, t0=1.8, t1=10.0, x=118, y=232, band=True))
+        # big and bright: at 44px in the band's grey it was "small and
+        # low-contrast on the purple sky" to the ninth film's judge
+        out.append(dict(text=tail, size=60, t0=1.8, t1=10.0, x=118, y=236, band=True,
+                        color=(255, 250, 236)))
     seen = set()
     for bt in beats:
         if bt.chapter not in seen and bt.chapter > 0:

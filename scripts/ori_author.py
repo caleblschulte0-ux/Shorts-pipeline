@@ -366,9 +366,93 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
     return bad
 
 
-def _with_retry(prompt_fn, check, ask, label):
+def mend_scene(scene: dict, era: str) -> str | None:
+    """The smallest deterministic change that makes a scene the brain wrote
+    valid: a scene where nothing moves gets the era's plainest light (a
+    fire outdoors, a hearth or a candle indoors, a torch), a prop the kit
+    does not know is dropped, a pose the action cannot take becomes one it
+    can. The first fresh-topic run failed here — chapter 1 rejected twice
+    for "nothing in this scene moves enough" and the author gave up — and a
+    system that hands a motion rule back to a brain twice and stops is not
+    a system. Returns what was done, or None when the scene was fine or
+    nothing here can mend it."""
+    if not isinstance(scene, dict):
+        return None
+    bad = S.validate(scene, era)
+    if not bad:
+        return None
+    did = []
+    # a prop the kit does not have, or not in this era/setting: drop it
+    props = [q for q in scene.get("props", []) if isinstance(q, (str, dict))]
+    keep = []
+    for q in props:
+        name = q if isinstance(q, str) else q.get("name")
+        pr = S.PROPS.get(name)
+        if pr is None or era not in pr.eras or (pr.settings and scene.get("setting") not in pr.settings):
+            did.append(f"dropped {name}")
+        else:
+            keep.append(q)
+    if len(keep) != len(props):
+        scene["props"] = keep
+    # nothing moves: add the plainest light this setting and era allow
+    if any("moves enough" in x for x in S.validate(scene, era)):
+        st = S.SETTINGS.get(scene.get("setting"))
+        interior = bool(st and st.interior)
+        # one light first, then two (a wide night needs a fire AND a torch);
+        # a hearth is a fireplace, so it is never lit outdoors
+        order = ([["hearth"], ["candle"], ["oil_lamp"], ["stove"], ["campfire"], ["brazier"], ["torch"]]
+                 if interior else
+                 [["campfire"], ["torch"], ["brazier"], ["cauldron"], ["campfire", "torch"],
+                  ["campfire", "cauldron"], ["brazier", "torch"]])
+        names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props", [])]
+        lit = None
+        for group in order:
+            adds = []
+            for name in group:
+                pr = S.PROPS.get(name)
+                if pr is None or era not in pr.eras or (pr.settings and scene.get("setting") not in pr.settings):
+                    adds = None
+                    break
+                if name not in names:
+                    adds.append(name)
+            if not adds:
+                continue
+            saved = scene.get("props", [])
+            scene["props"] = list(saved) + adds
+            if not any("moves enough" in x for x in S.validate(scene, era)):
+                lit = adds
+                break
+            scene["props"] = saved
+        if lit:
+            did.append("lit " + " and ".join(f"a {n}" for n in lit))
+        else:
+            # still: bring the shot in close, where a fire counts for more
+            if S.shot_of(scene) != "close":
+                scene["shot"] = "close"
+                if any("moves enough" in x for x in S.validate(scene, era)):
+                    scene.pop("shot", None)
+                else:
+                    did.append("brought the shot close")
+    return ", ".join(did) if did and not S.validate(scene, era) else (", ".join(did) if did else None)
+
+
+def mend_beats(beats, era: str, log=print) -> int:
+    """mend_scene over a chapter's beats; returns how many scenes changed."""
+    n = 0
+    if not isinstance(beats, list):
+        return 0
+    for j, b in enumerate(beats):
+        if isinstance(b, dict) and isinstance(b.get("scene"), dict):
+            did = mend_scene(b["scene"], era)
+            if did:
+                n += 1
+                log(f"[ori_author] mended beat {j + 1}: {did}")
+    return n
+
+
+def _with_retry(prompt_fn, check, ask, label, mend=None):
     problems = ""
-    for attempt in (1, 2):
+    for attempt in (1, 2, 3):
         try:
             out = _parse(ask(SYSTEM, prompt_fn(problems)))
         except NoBrain:
@@ -377,6 +461,8 @@ def _with_retry(prompt_fn, check, ask, label):
             print(f"[ori_author] {label} attempt {attempt}: {e}", flush=True)
             problems = f"\nYOUR LAST ANSWER COULD NOT BE READ AS JSON ({str(e)[:80]}). Return only JSON."
             continue
+        if mend is not None and isinstance(out, dict):
+            mend(out)                      # the deterministic fixes first; the brain sees only what is left
         bad = check(out)
         if not bad:
             return out
@@ -462,7 +548,8 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
             lambda r, before=before, i=i: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
                                                             words_lo - 100, words_hi + 200, before=before,
                                                             opening=(i == 0)),
-            ask, f"{topic!r} chapter {i + 1}")
+            ask, f"{topic!r} chapter {i + 1}",
+            mend=lambda r: mend_beats(r.get("beats") if isinstance(r, dict) else None, era))
         if res is None:
             return None
         out_chapters.append({"title": ch.get("title", f"Chapter {i + 1}"), "beats": res["beats"]})
