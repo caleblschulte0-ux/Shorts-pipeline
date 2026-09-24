@@ -15,7 +15,7 @@
     },
     "win": {
       "n": 8,
-      "median_vph": 0.075
+      "median_vph": 0.07
     },
     "drama": {
       "n": 8,
@@ -41,7 +41,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 1.99
+      "median_vph": 1.96
     }
   }
 }
