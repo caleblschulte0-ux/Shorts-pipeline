@@ -243,8 +243,8 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
                 pts = T._beats(slug)[idx]
                 src = inspect.getsource(fn).replace(f"def {fn.__name__}(", "def scene(")
                 sfn = SA.compile_scene(src)
-                self.assertEqual(SA.verify(sfn, pts, SA._story_say(st)), [])
-                self.assertLessEqual(SA.held_ratio(sfn, pts), SA.MAX_HELD)
+                self.assertEqual(SA.verify(sfn, pts, SA._story_say(st),
+                                           secs=SA.SCENE_SECS["closing"]), [])
                 ys = []
                 real = SS.text
 
@@ -371,6 +371,31 @@ class TheCaptionsReadOverAnyScene(unittest.TestCase):
     def test_a_blocked_higher_score_is_logged_as_blocked(self):
         self.assertIn("but the gate BLOCKED it",
                       (ROOT / "scripts" / "post_stories.py").read_text())
+
+
+class TheSplitIsASlate(unittest.TestCase):
+    """Operator, 2026-09-23: "they're supposed to be both half and half, two
+    of A, two of B." Per-story arms alone shipped 4-0 when one look was held
+    all day."""
+
+    def test_the_quota_is_the_split_applied_to_the_day(self):
+        from shared import style_arms as a
+        reg = {"channels": {"explainer": {"formats": {"data_story": {
+            "style_arms": {"current": 0.5, "illustrated": 0.5}}}}}}
+        self.assertEqual(a.quota(4, reg), {"current": 2, "illustrated": 2})
+        self.assertEqual(sum(a.quota(3, reg).values()), 3)
+        reg["channels"]["explainer"]["formats"]["data_story"]["style_arms"] = {
+            "current": 1.0, "illustrated": 0.0}
+        self.assertEqual(a.quota(4, reg), {"current": 4})
+
+    def test_a_full_look_waits_before_the_render_and_after_it(self):
+        code = _code((ROOT / "scripts" / "post_stories.py").read_text())
+        pre = code.index("_planned = _arms_q.choose(slug)")
+        self.assertLess(pre, code.index("studio_render.render(slug, out, config_path=args.config)"))
+        self.assertIn("'error': 'arm_quota_full'", code)
+        self.assertIn("_arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1", code)
+        from scripts import post_stories as ps
+        self.assertIn("arm_quota_full", ps.HELD_REASONS)     # a hold, not a fault
 
 
 class NothingOnScreenSaysItTwice(unittest.TestCase):

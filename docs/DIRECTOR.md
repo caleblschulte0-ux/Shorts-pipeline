@@ -30,7 +30,7 @@ and scores seven dimensions. Weighted total, plus hard auto-fail triggers.
 | 4 | **Visual craft** | 12 | Clean, intentional, "professional YouTube channel" — not empty black voids, not crude splatter graphics, not amateur layout. Composition uses the frame. |
 | 5 | **Pace & motion** | 8 | Always something moving with purpose. No dead holds, no 4+ seconds of the same static frame. |
 | 6 | **Payoff / retention** | 8 | Builds to a punchline or "whoa" and lands it; earns the swipe-through to the end. |
-| 7 | **Temporal craft (cadence)** | 14 | Motion is genuinely smooth at the export rate — no judder, no low-fps source duplicated into a 30fps timeline, no frozen tails. **Graded in CODE, not by the model:** the reviewer measures the effective unique-frame rate (a block-max cadence detector that tells a smoothly-but-locally animating frame apart from a held one) — a laggy video cannot score its way to a pass on pretty stills. |
+| 7 | **Temporal craft (cadence)** | 14 | Motion is genuinely smooth at the export rate — no judder, no low-fps source duplicated into a 30fps timeline, no frozen tails. **A deliberate hold is not a defect**: the grade counts judder (still runs of 1-3 samples between moving frames), not stillness. Decisive motion beats constant motion (operator, 2026-09-23) — holds are bounded by the frozen-stretch ceiling and `dead_air`, never by the grade. **Graded in CODE, not by the model:** the reviewer measures the effective unique-frame rate (a block-max cadence detector that tells a smoothly-but-locally animating frame apart from a held one) — a laggy video cannot score its way to a pass on pretty stills. |
 
 **Passing score: ≥ 70.** Below that, the video is **blocked**.
 

@@ -76,6 +76,23 @@ def choose(slug: str, reg: dict | None = None) -> str:
     return next(iter(w))
 
 
+def quota(per_day: int, reg: dict | None = None) -> dict:
+    """{arm: videos a day} — the split applied to the SLATE, not only to the
+    queue. Assigning arms per story was not enough: the old look was held by
+    the gate all day, so the new look filled every slot and "50/50" shipped
+    4-0 (operator, 2026-09-23: "two of A, two of B"). Largest remainder, so
+    the counts always add up to per_day."""
+    w = weights(reg)
+    total = sum(w.values()) or 1.0
+    raw = {a: per_day * w[a] / total for a in w}
+    out = {a: int(v) for a, v in raw.items()}
+    for a in sorted(raw, key=lambda a: (raw[a] - out[a], a), reverse=True):
+        if sum(out.values()) >= per_day:
+            break
+        out[a] += 1
+    return out
+
+
 def sidecar(mp4: Path) -> Path:
     return Path(mp4).with_suffix(".style.json")
 

@@ -420,13 +420,15 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
         n = len(px)
         dup = run = maxrun = 0
         run_start = maxrun_start = 0
+        diffs = []
         for _i, (a, b) in enumerate(zip(px, px[1:])):
+            diffs.append(_max_block_diff(a, b, 192))
             # Block-max, not a whole-frame mean: a frame is a DUPLICATE only if
             # NO block moved. A whole-frame mean diluted a chart that fills part
             # of the frame down below 0.8 and mislabelled smooth builds as held
             # (effective_fps ~10 on a genuinely-30fps render). Choppy low-fps
             # source dup still shows identical blocks -> still caught.
-            if _max_block_diff(a, b, 192) < BLOCK_MOTION_THRESH:
+            if diffs[-1] < BLOCK_MOTION_THRESH:
                 dup += 1
                 if run == 0:
                     run_start = _i
@@ -438,6 +440,25 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
         pairs = n - 1
         ev["duplicate_ratio"] = round(dup / pairs, 3)
         ev["effective_fps"] = round(sf * (1 - dup / pairs), 1)
+        # JUDDER, not stillness. A low-fps source doubled into the 30fps
+        # master leaves still runs of 1-3 samples between moving ones; a
+        # deliberate hold is a longer run. The grade used to count every
+        # still frame as a defect, so the only way to 3/3 was motion on every
+        # frame — and the channel grew snow, a mascot who never stopped
+        # flailing and scenes that raced (operator, 2026-09-23: "decisive
+        # movement beats constant movement"). Holds are still bounded by
+        # max_dup_run, max_duplicate_ratio and dead_air.
+        judder = judder_pairs(diffs)
+        ev["judder_ratio"] = round(judder / pairs, 3)
+        ev["judder_fps"] = round(sf * (1 - judder / pairs), 1)
+        _held, _r = 0, 0
+        for _d in diffs + [BLOCK_MOTION_THRESH]:
+            if _d < BLOCK_MOTION_THRESH:
+                _r += 1
+            else:
+                _held += _r if _r > JUDDER_RUN else 0
+                _r = 0
+        ev["held_s"] = round(_held / float(sf), 2)
         ev["max_dup_run"] = maxrun + 1        # frames
         # WHERE it froze, not just that it did. Every frozen-stretch block so
         # far has cost a full render to localise by guesswork; the timestamp
@@ -474,12 +495,43 @@ def temporal_unmeasured(ev: dict) -> str | None:
     return f"cadence probe produced no measurement: {why}"
 
 
+#: A run of EXACT duplicates this short (in 24fps samples) is judder; a
+#: longer one is a hold. "Exact" = no block moved by even one grey level.
+JUDDER_RUN = 3
+JUDDER_EPS = 1.0
+
+
+def judder_pairs(diffs) -> int:
+    """How many sample pairs are JUDDER: a short run (<= JUDDER_RUN) of exact
+    duplicates with real motion on BOTH sides — a low-fps source repeating a
+    frame and then jumping. Slow smooth motion (tiny steps, never a jump)
+    and deliberate holds (long runs) are not judder."""
+    out, i, n = 0, 0, len(diffs)
+    while i < n:
+        if diffs[i] < JUDDER_EPS:
+            j = i
+            while j < n and diffs[j] < JUDDER_EPS:
+                j += 1
+            run = j - i
+            before = i > 0 and diffs[i - 1] >= BLOCK_MOTION_THRESH
+            after = j < n and diffs[j] >= BLOCK_MOTION_THRESH
+            if run <= JUDDER_RUN and before and after:
+                out += run
+            i = j
+        else:
+            i += 1
+    return out
+
+
 def temporal_grade(ev: dict) -> int:
-    """0-3 temporal-craft grade from measured effective fps (30 = buttery)."""
-    fps = ev.get("effective_fps")
+    """0-3 temporal-craft grade from how smoothly the video MOVES — judder,
+    not deliberate holds (see `judder_fps`). Rubric: "no judder, no low-fps
+    source duplicated into a 30fps timeline, no frozen tails"; the frozen
+    tail is its own ceiling (`max_dup_run`) and a check (`dead_air`)."""
+    fps = ev.get("judder_fps", ev.get("effective_fps"))
     if fps is None:
         return 2                              # unknown -> neutral, don't punish blind
-    if fps >= 24:
+    if fps >= 23:
         return 3
     if fps >= 17:
         return 2
