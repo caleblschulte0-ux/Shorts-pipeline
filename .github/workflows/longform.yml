@@ -70,6 +70,18 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -q ffmpeg
+      - name: System libs
+        run: |
+          # The hosted runner ships a Microsoft apt repo whose signing key
+          # intermittently breaks; drop it so apt-get update cannot fail on it.
+          sudo rm -f /etc/apt/sources.list.d/microsoft*.list                      /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
+          sudo apt-get update -qq || sudo apt-get update -qq || true
+          # libcairo2-dev + pkg-config: build deps of pycairo, which
+          # data_learning/requirements.txt has pulled in since #432. Without
+          # them pip's metadata build for pycairo fails and the whole install
+          # dies before a single story is forged (every run since 2026-09-23).
+          sudo apt-get install -y -q libcairo2-dev pkg-config
+
       - name: Install Python deps
         run: |
           pip install --upgrade pip
