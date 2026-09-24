@@ -2,12 +2,12 @@
   "mature_hours": 72.0,
   "content_series": {
     "chaos": {
-      "n": 37,
+      "n": 36,
       "median_vph": 0.01
     },
     "wholesome": {
-      "n": 12,
-      "median_vph": 0.155
+      "n": 13,
+      "median_vph": 0.16
     },
     "fail": {
       "n": 11,
@@ -41,7 +41,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 1.93
+      "median_vph": 1.85
     }
   }
 }
