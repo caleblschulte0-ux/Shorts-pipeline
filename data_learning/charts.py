@@ -2584,13 +2584,15 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # "equal-size blobs that only reveal numbers at the very end".
         # Fade with the inflation instead, complete by a third of the way in.
         _balpha = max(0.0, min(1.0, (t - 0.05) / 0.28))
-        # ...but NOT BEFORE IT CAN BE READ: a number at 10pt in a disc still
+        # ...AT A SIZE THAT CAN BE READ. A number at 10pt in a disc still
         # inflating was "a tiny, dark, garbled smear ('$4.4l')" (showrunner,
-        # coffee-price-record, 2026-09-24). It appears at a readable size.
-        if fs < 22:
-            _balpha = 0.0
+        # coffee-price-record, 2026-09-24). It never goes below 22pt, and
+        # while it is bigger than its disc it wears the light ink of the
+        # ground it spills onto, not the dark ink of a disc it has outgrown.
+        _outgrown = fs < 22
+        fs = max(fs, 22)
         tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center",
-                     va="center", color=_ink_on(color),
+                     va="center", color=(TEXT if _outgrown else _ink_on(color)),
                      fontproperties=_num_face(int(fs)),
                      zorder=4, alpha=_balpha)
         # THE LABEL FITS ITS BUBBLE'S SLOT AND STAYS ON THE CARD. Centred
