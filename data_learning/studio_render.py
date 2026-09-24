@@ -1972,7 +1972,7 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
                 "slider_scene", "density_scene", "nest_scene",
                 "chairs_scene", "hourglass_scene", "trophies_scene",
-                "basket_scene")
+                "basket_scene", "hole_scene", "copies_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1990,6 +1990,7 @@ _SCENE_TOKENS = {t: t for t in (
     "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
     "slider_scene", "density_scene", "nest_scene", "chairs_scene",
     "hourglass_scene", "trophies_scene", "basket_scene",
+    "hole_scene", "copies_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -2071,11 +2072,13 @@ _MACHINES = {
     # and both REFUSE what they cannot say — the tape needs two magnitudes it
     # can lay end to end, the nest only draws a ratio between 1.5x and 150x —
     # so a duel they do not fit falls straight through to the other three.
-    "duel":        ("balance_scene", "race_scene", "tape_scene",
+    "duel":        ("hole_scene", "copies_scene",
+                    "balance_scene", "race_scene", "tape_scene",
                     "nest_scene", "units_scene"),
     # a then and a NOW -> the subject itself growing: a stack gaining blocks,
     # a tank filling, or the two weighed against each other
-    "before_after": ("tower_scene", "fill_vessel", "balance_scene",
+    "before_after": ("hole_scene", "copies_scene",
+                     "tower_scene", "fill_vessel", "balance_scene",
                      "units_scene"),
     # rising -> a climb he has to make, or a total built block by block
     "growth":      ("staircase_scene", "tower_scene", "timeline"),
@@ -2107,7 +2110,8 @@ _MACHINES = {
     # it barely moved, and that IS the finding
     "stable":      ("road_scene",),
     # the SIZE of a change, drawn as distance
-    "delta":       ("tape_scene", "tower_scene", "fill_vessel"),
+    "delta":       ("hole_scene", "copies_scene",
+                    "tape_scene", "tower_scene", "fill_vessel"),
     # how far SHORT of a line it falls
     "gap":         ("bridge_scene", "hurdle_scene"),
     # where the middle of a spread sits
@@ -2147,7 +2151,7 @@ _MACHINES = {
     # the same square, packed differently — the box must NOT also scale
     "density":     ("density_scene", "rate_scene"),
     # how many of the small one fit in the big one, tiled by AREA
-    "scale":       ("nest_scene", "skyline_scene"),
+    "scale":       ("copies_scene", "nest_scene", "skyline_scene"),
     # more claimants than there are places, drawn as people left standing
     "scarcity":    ("chairs_scene", "queue_scene"),
     # a length of TIME, as sand that will not stop falling
@@ -2180,6 +2184,13 @@ _MACHINES = {
 # growth beats and `tower` took none, because a fixed order plus a per-story
 # `used` set means the runner-up only ever appears when a story has two beats
 # of the same relationship. Four machines were effectively dead.
+# A picture MADE OF THE SUBJECT that only draws when the WORDS say it — "cut",
+# "double" — leads its relationship whatever the rotation says: its builder
+# refuses every pair it is not about, so leading costs the pair nothing, and
+# when it does draw it is the one picture of the thing rather than of two
+# numbers (the judge, 2026-09-24: "the 11M-bag hole ... is never shown").
+_CLAIM_LED = ("hole_scene", "copies_scene")
+
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
@@ -2203,6 +2214,11 @@ def _machines_for(insight) -> tuple:
                 str(getattr(insight, "topic", "") or _r).encode()
             ).hexdigest()[:8], 16) % len(out)
             out = out[_k:] + out[:_k]
+        # ...and only when it DOES draw: a claim-led machine that refuses
+        # this pair is not offered at all, so it never sits at the head of
+        # a list it cannot serve.
+        out = ([k for k in _CLAIM_LED if k in out and _buildable(k, insight)]
+               + [k for k in out if k not in _CLAIM_LED])
         # FREQUENCY and RATE co-occur with everything else: a count per day
         # that is also climbing is two true things at once, and a belt or a
         # dial beside a staircase is a fair second way to show the same beat.

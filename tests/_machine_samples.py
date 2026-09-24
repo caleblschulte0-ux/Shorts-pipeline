@@ -63,4 +63,8 @@ SAMPLES = {
  "hourglass": mk([("San Jose",11.3),("Detroit",2.4)],"years"),
  "trophies": mk([("Djokovic",24),("Nadal",22),("Federer",20)]),
  "basket": mk([("1999",34),("2026",19)]),
+ "hole": mk([("September estimate",45.4),("Revised estimate",34.4)],"million",
+            topic="why coffee supply keeps shrinking"),
+ "copies": mk([("February 2024",2.0),("February 2025",4.41)],"usd",
+              topic="how much coffee prices have doubled"),
 }

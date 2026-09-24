@@ -558,6 +558,10 @@ class MotionMustBeVISIBLE(unittest.TestCase):
             i.unit = "percent"
             return i
 
+        def _topic(i, t):
+            i.topic = t
+            return i
+
         def _block_max(a, b):
             return max(np.abs(a[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]
                               - b[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]).mean()
@@ -685,7 +689,16 @@ class MotionMustBeVISIBLE(unittest.TestCase):
                   ("Limit", 100)),
                  ("wheel", vs.wheel_scene,
                   _ins([(str(2016 + k), v) for k, v in
-                        enumerate([10, 60, 12, 58, 11, 62, 13, 59])]), None))
+                        enumerate([10, 60, 12, 58, 11, 62, 13, 59])]), None),
+                 # made of the subject: a cut and a multiple (2026-09-24)
+                 ("hole", vs.hole_scene,
+                  _topic(_ins([("September estimate", 45.4),
+                               ("Revised estimate", 34.4)]),
+                         "why coffee supply keeps shrinking"), None),
+                 ("copies", vs.copies_scene,
+                  _topic(_ins([("February 2024", 2.0),
+                               ("February 2025", 4.41)]),
+                         "how much coffee prices have doubled"), None))
         # Measured in PARALLEL, one machine per core: forty machines at 120
         # frames each took twelve minutes serially — half of CI's whole
         # budget for one test. The measurement itself is unchanged.
