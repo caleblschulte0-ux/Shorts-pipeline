@@ -2020,6 +2020,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 45.6
+    },
+    "urban-heat-island-redlining": {
+      "claimed_at": "2026-09-24T11:11:20.445000+00:00",
+      "title": "Your City Is Secretly 8 Degrees Hotter Than It Should Be",
+      "publish_at": "2026-09-24T23:12:53Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -2328,6 +2335,14 @@
       "state": "posted",
       "slug": "amazon-still-shrinking",
       "at": "2026-09-24T10:56:53.262091+00:00"
+    },
+    {
+      "claimed_at": "2026-09-24T11:11:20.445000+00:00",
+      "title": "Your City Is Secretly 8 Degrees Hotter Than It Should Be",
+      "publish_at": "2026-09-24T23:12:53Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "urban-heat-island-redlining"
     }
   ]
 }
