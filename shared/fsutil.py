@@ -157,3 +157,20 @@ def load_state_json(path: str | Path, default, *, expect_type: type | None = Non
         f"git checkout <good-commit> -- <path>) and re-run. A genuinely "
         f"missing file would have returned the default — only corruption "
         f"refuses.")
+
+
+def frames_in_order(paths) -> list:
+    """Frame files in FRAME order, by the number in their name.
+
+    Renders are written `name_build%02d.png`, and `%02d` stops being two
+    digits at 100: a plain `sorted()` puts `_build100` between `_build10`
+    and `_build11`. A beat is ~240 frames, so every string-sorted list of
+    them was scrambled past the first hundred — `fs[-1]` was frame 99, not
+    the last, and a motion measurement compared frames that were never
+    neighbours (found 2026-09-24). Ties and names with no digits keep their
+    string order."""
+    import re as _re
+    def key(p):
+        m = _re.findall(r"\d+", Path(p).stem)
+        return (int(m[-1]) if m else -1, str(p))
+    return sorted(paths, key=key)

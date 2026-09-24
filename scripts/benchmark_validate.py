@@ -84,7 +84,8 @@ def validate_story(slug: str, story_cfg: dict, cfg: dict, req: dict,
             except Exception as e:  # noqa: BLE001
                 _set(f"{tag}.renders", False, str(e)[:120])
                 continue
-            fs = sorted((tdp / "b").glob(f"{slug}_{i}_build*.png"))
+            from shared.fsutil import frames_in_order
+            fs = frames_in_order((tdp / "b").glob(f"{slug}_{i}_build*.png"))
             attach_p = tdp / "b" / f"{slug}_{i}_attach.json"
             attach = (json.loads(attach_p.read_text())
                       if attach_p.exists() else {})

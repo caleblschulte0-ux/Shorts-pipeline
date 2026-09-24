@@ -232,7 +232,8 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
     """BLIND code score for one scene candidate: cadence (effective fps via the
     real reviewer detector), frame fullness, label anchors, contact coverage."""
     from PIL import Image
-    fs = sorted(build_dir.glob(f"{tag}_build*.png"))
+    from shared.fsutil import frames_in_order
+    fs = frames_in_order(build_dir.glob(f"{tag}_build*.png"))
     if not fs:
         return {"score": 0.0, "detail": "no frames"}
     # fullness of the mid frame (empty_void proxy)
@@ -320,7 +321,8 @@ def vision_rank(bdir: Path, survivors: list[dict], claim: str) -> dict | None:
         labeled = []
         for c in survivors:
             tag = c["tag"]
-            fs = sorted(bdir.glob(f"{tag}_build*.png"))
+            from shared.fsutil import frames_in_order
+            fs = frames_in_order(bdir.glob(f"{tag}_build*.png"))
             for pick, ph in ((0, "start"), (len(fs) // 2, "mid"),
                              (len(fs) - 1, "end")):
                 if fs:

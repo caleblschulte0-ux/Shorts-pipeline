@@ -527,7 +527,8 @@ def void_chart(insight, frames: int = 12) -> list:
     from data_learning import charts, studio_render as R
     with tempfile.TemporaryDirectory() as td:
         charts.render_story_build(insight, Path(td), "v", frames=frames)
-        fs = sorted(Path(td).glob("v_build*.png"))
+        from shared.fsutil import frames_in_order
+        fs = frames_in_order(Path(td).glob("v_build*.png"))
         out = []
         for f in (0.25, 0.55, 0.85):
             p = fs[min(len(fs) - 1, int(f * len(fs)))]

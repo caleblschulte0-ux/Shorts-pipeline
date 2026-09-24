@@ -140,7 +140,8 @@ class TheTailACTUALLYMoves(unittest.TestCase):
                                                  frames=self.FRAMES,
                                                  full_by=0.78)
                 self.assertIsNotNone(p, kind)
-                fs = sorted(Path(td).glob(f"{kind}_build*.png"))
+                from shared.fsutil import frames_in_order
+                fs = frames_in_order(Path(td).glob(f"{kind}_build*.png"))
                 imgs = [np.asarray(Image.open(f).convert("L")
                                    .resize((192, 192)), dtype=np.float32)
                         for f in fs]
