@@ -261,6 +261,10 @@ def _ulabel(v: float, unit: str, group: bool = False) -> str:
     if u in ("percent", "%", "rate", "pct"):
         return n + "%"
     if u in ("dollars", "dollar", "usd", "$"):
+        # CENTS ARE THE NUMBER under $100: "$4.41 a pound" printed "$4.4"
+        # against a script that says four forty-one (showrunner, 2026-09-24)
+        if abs(v) < 100 and not float(v).is_integer():
+            return f"${v:,.2f}"
         return "$" + n
     # "thousand dollars" is how FRED publishes median home price: the value is
     # 449 and the thing on screen has to read $449K, not 449.
@@ -2563,7 +2567,12 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # struck through", coffee-price-record, 2026-09-23).
         ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor=GRID,
                             linewidth=1.5, alpha=1.0, zorder=3))
-        fs = max(16, min(46, r * 2.0))
+        # THE NUMBER IS SIZED TO THE CIRCLE IT IS IN, AS IT IS NOW. Sized to
+        # the FINISHED radius, "$4.4" in dark ink spilled past the small
+        # pink disc onto the navy ground for the whole inflation — "drawn
+        # as doubled, ghosted glyphs in dark ink on pink" (showrunner,
+        # 2026-09-24). It grows with the bubble instead.
+        fs = max(10, min(46, r * max(t, 0.05) * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
         # which is right for a BAR — the label sits at the tip and lands as

@@ -149,7 +149,10 @@ class UnitsTravelWithTheNumber(unittest.TestCase):
                                   (11.3, "years", "11.3 yrs"),
                                   (6.72, "percent", "6.7%"),
                                   (1500, "dollars", "$1500"),
-                                  (3.2, "ratio", "3.2x")):
+                                  (3.2, "ratio", "3.2x"),
+                                  # cents are the number under $100
+                                  (4.41, "dollars", "$4.41"),
+                                  (2.0, "dollars", "$2")):
             self.assertEqual(ch._ulabel(value, unit), want)
 
     def test_an_unknown_unit_degrades_to_a_bare_number(self):

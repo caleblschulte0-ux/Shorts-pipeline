@@ -711,6 +711,19 @@ class BatchOneRelationships(unittest.TestCase):
                                                  50.1])), rel.STABLE)
         self.assertEqual(sr._MACHINES["stable"], ("road_scene",))
 
+    def test_a_record_reached_through_turbulence_is_a_climb(self):
+        """Coffee, $1.05 -> $2.55 -> $1.95 -> $4.41 "the highest ever": two
+        reversals, and it came back VOLATILE, so the hook drew a wandering
+        line under "climbed" and the judge read a fall (2026-09-24). Ending
+        at the all-time extreme having covered most of the range is going
+        somewhere; a zig-zag that merely ends high is still volatile."""
+        self.assertEqual(rel.classify(self._ser([1.05, 1.2, 2.55, 2.4, 1.95,
+                                                 3.3, 4.41])), rel.GROWTH)
+        self.assertEqual(rel.classify(self._ser([90, 60, 70, 40, 55, 20])),
+                         rel.DECLINE)
+        self.assertEqual(rel.classify(self._ser([10, 90, 20, 85, 15, 80])),
+                         rel.VOLATILE)
+
     def test_a_turn_is_not_a_zigzag(self):
         """One way, then the other, and it STUCK — there is a moment where it
         changed its mind, which a swinging series does not have."""
