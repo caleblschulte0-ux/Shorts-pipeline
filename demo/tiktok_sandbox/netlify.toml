@@ -1,0 +1,26 @@
+# Shorts Media — the TikTok Sandbox demo on the registered domain.
+# Added beside the site's original files, which are untouched: this file's
+# rules only shadow the two paths the demo needs (the app and the
+# registered callback) and leave every original page as it was.
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "zisi"
+
+[[redirects]]
+  from = "/auth/tiktok/callback/*"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/app/*"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/app"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true

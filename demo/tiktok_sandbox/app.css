@@ -1,0 +1,281 @@
+/* Shorts Media /app/ — sandbox demonstration of the TikTok integration.
+   The live site sends `script-src 'none'`, so there is no JavaScript here.
+   Every state change is a real navigation (links, GET forms) or pure CSS:
+   :checked + :has() for the Direct Post rules, animations for the status page.
+   Loaded after /assets/site.css and only adds to it. */
+
+.app{--tt-red:#fe2c55;--tt-ink:#161823;--field:#0d0d12;--grey-btn:#24242c;--warn:#ffb4c3}
+
+/* ---------- chrome ---------- */
+html:has(body.app){scroll-padding-top:130px}
+.sandbox-banner{margin:0;padding:7px 16px;text-align:center;font-size:13.5px;font-weight:650;color:#ffc9d4;background:rgba(255,49,95,.11);border-top:1px solid rgba(255,49,95,.30)}
+.app .navlinks a{display:inline}
+.app a:focus-visible,.app button:focus-visible,.app input:focus-visible,.app select:focus-visible,.app textarea:focus-visible,.app video:focus-visible{outline:3px solid var(--accent2);outline-offset:3px}
+.app-shell{padding-bottom:34px}
+.app-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 28px}
+.app-footer .small{margin:6px 0 0;max-width:640px}
+.app-footer nav{display:flex;gap:18px;flex-wrap:wrap}
+.app-footer nav a{color:var(--muted);text-decoration:none;font-size:14px}
+
+/* ---------- app bar + account ---------- */
+.appbar{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:28px}
+.appbar-label{font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent2);font-weight:800}
+.acct{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.acct-pill{display:flex;align-items:center;gap:11px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 16px 5px 5px}
+.acct-pill img,.avatar{width:40px;height:40px;border-radius:50%;display:block;flex:none}
+.acct-name{display:block;font-weight:750;font-size:15px;line-height:1.25}
+.acct-handle{display:block;font-size:13px;color:var(--muted);line-height:1.25}
+.acct-status{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:750;color:var(--ok);padding-left:13px;margin-left:3px;border-left:1px solid var(--line)}
+.acct-status-off{color:var(--soft);border:0;padding:0;margin:0}
+.live-dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+
+/* ---------- buttons ---------- */
+.btn-quiet{min-height:42px;font-size:14.5px;color:var(--muted)}
+.btn-quiet:hover,.btn-quiet:focus-visible{color:var(--text)}
+.btn-tiktok{gap:10px;min-height:52px;padding:0 24px;font-size:16.5px;background:var(--tt-red);border-color:var(--tt-red);color:#fff}
+.btn-tiktok:hover{filter:brightness(1.07)}
+.btn-wide{width:100%;min-height:54px;font-size:17px}
+button.btn{font-weight:750;color:var(--text)}
+button.btn-tiktok{color:#fff}
+
+/* ---------- headings ---------- */
+.app-h1{font-size:clamp(32px,3.4vw,42px);line-height:1.08;letter-spacing:-.035em;margin:0 0 10px}
+.app-h2{font-size:24px;line-height:1.15;letter-spacing:-.02em;margin:0 0 14px}
+.page-head{margin-bottom:24px}
+.page-head .eyebrow,.dash-head .eyebrow{margin-bottom:10px}
+.page-lead{margin:0;max-width:720px}
+.dash-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;margin-bottom:24px}
+.dash-head p{margin:0;max-width:640px}
+.dash-cta{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.dash-cta .small{margin:0;max-width:330px}
+.flash{display:flex;gap:10px;align-items:center;border:1px solid rgba(101,214,158,.35);background:rgba(101,214,158,.08);color:#d4f2e2;border-radius:12px;padding:11px 15px;font-size:14.5px;margin:0 0 22px}
+.flash::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+
+/* ---------- video library ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+@media(max-width:960px){.vgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.vcard{display:flex;flex-direction:column;background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:16px;overflow:hidden;color:inherit;text-decoration:none;transition:border-color .15s ease,transform .15s ease}
+a.vcard:hover,a.vcard:focus-visible{border-color:var(--tt-red);transform:translateY(-2px)}
+.vthumb{position:relative;aspect-ratio:3/4;background:#07080f;overflow:hidden}
+.vthumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.78);color:#fff;font-size:12.5px;font-weight:750;padding:3px 8px;border-radius:6px}
+.lock{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(9,9,12,.58);color:#e8e8ee;font-size:14px;font-weight:750;text-align:center;padding:12px}
+.lock svg{width:30px;height:30px}
+.vbody{display:flex;flex-direction:column;gap:9px;padding:14px 15px 16px;flex:1}
+.vtitle{font-weight:750;font-size:15.5px;line-height:1.3}
+.vsub{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--soft)}
+.cta{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:10px;font-weight:800;font-size:14px}
+.cta svg{width:16px;height:16px}
+.cta-post{background:var(--tt-red);color:#fff}
+.cta-draft{background:var(--text);color:#09090c}
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px;background:#23232c;color:var(--muted);white-space:nowrap}
+.badge-ready{background:rgba(37,244,238,.10);color:var(--accent2)}
+.badge-locked{background:#23232c;color:var(--soft)}
+.badge-processing{background:rgba(255,196,87,.13);color:#ffc457}
+.badge-processing::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;animation:sm-pulse 1.4s ease-in-out infinite}
+.badge-draft{background:rgba(167,139,250,.15);color:#c9bbff}
+
+/* ---------- recent activity ---------- */
+.recent{margin-bottom:34px}
+.activity{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.activity-item{display:flex;gap:16px;align-items:center;background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:16px;padding:12px 18px 12px 12px}
+.activity-thumb{width:64px;height:auto;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:9px;flex:none;background:#000;display:block}
+.activity-body{flex:1;min-width:0}
+.activity-meta{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:7px;font-size:14px;color:var(--muted)}
+.activity-meta b{color:var(--text)}
+.activity-body .small{margin:7px 0 0}
+
+/* ---------- composer (Direct Post) and draft upload ---------- */
+.composer-cols{display:grid;grid-template-columns:minmax(260px,340px) minmax(0,1fr);gap:40px;align-items:start}
+@media(max-width:880px){.composer-cols{grid-template-columns:1fr}}
+.composer-preview{position:sticky;top:128px}
+@media(max-width:880px){.composer-preview{position:static;max-width:340px}}
+.preview{width:100%;aspect-ratio:9/16;background:#000;border-radius:14px;border:1px solid var(--line);display:block;object-fit:contain}
+.preview-frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);aspect-ratio:9/16;background:#000}
+.preview-frame img{width:100%;height:100%;object-fit:cover;display:block}
+.video-title{margin:12px 0 0;font-weight:750;line-height:1.3}
+.check-line{display:flex;gap:8px;align-items:flex-start;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.check-line::before{content:"✓";color:var(--ok);font-weight:900}
+.flabel,.composer legend{display:block;font-weight:750;font-size:15px;margin:0 0 8px;padding:0;color:var(--text)}
+.field{margin:0 0 22px;padding:0;border:0;min-width:0}
+.hint{margin:7px 0 0;font-size:13.5px;color:var(--soft)}
+.app .composer textarea{margin-top:0;min-height:138px;font-size:15.5px;line-height:1.5}
+.app .composer select{margin-top:0;appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:44px;font-size:15.5px;background:var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b9b9c4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center}
+.app .composer select:has(option[value=""]:checked){color:var(--soft)}
+.app .composer option{color:var(--text);background:#141419}
+.app .composer option:disabled{color:#6f6f7a}
+.post-account{display:flex;align-items:center;gap:13px;padding:12px 16px;margin:0 0 22px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.post-account img{width:48px;height:48px;border-radius:50%;flex:none}
+.post-account-label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--accent2)}
+.panel{border:1px solid var(--line);border-radius:14px;background:var(--surface);padding:4px 16px}
+
+/* switches and tick boxes (real checkboxes, restyled) */
+.switch-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+.switch-row:last-child{border-bottom:0}
+.switch-row>label,.switch-text{flex:1;min-width:0}
+.switch-row label{font-size:15.5px;font-weight:650;cursor:pointer}
+.why{margin:3px 0 0;font-size:13px;color:var(--soft);font-weight:400}
+.app input.switch{appearance:none;-webkit-appearance:none;width:50px;height:28px;margin:0;padding:0;border-radius:999px;background:#3a3a46;border:1px solid #4b4b58;position:relative;cursor:pointer;flex:none;transition:background .15s ease}
+.app input.switch::before{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .15s ease}
+.app input.switch:checked{background:var(--tt-red);border-color:var(--tt-red)}
+.app input.switch:checked::before{transform:translateX(22px)}
+.app input.switch:disabled{background:#26262e;border-color:#33333c;cursor:not-allowed}
+.app input.switch:disabled::before{background:#55555f}
+.switch-row.is-disabled label{color:#6f6f7a;cursor:not-allowed}
+.switch-row.is-disabled .why{color:#9a9aa6}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+.check-row label{font-size:15.5px;font-weight:650;cursor:pointer}
+.app input.tick-box{appearance:none;-webkit-appearance:none;width:22px;height:22px;margin:2px 0 0;padding:0;border-radius:6px;border:1.5px solid #5a5a66;background:var(--field);position:relative;cursor:pointer;flex:none}
+.app input.tick-box:checked{background:var(--tt-red);border-color:var(--tt-red)}
+.app input.tick-box:checked::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+
+/* commercial content disclosure */
+.disclose-panel{display:none;padding:2px 0 12px}
+.disclose-notice{margin:4px 0 6px;padding:10px 13px;border-radius:10px;font-size:14px;background:#17171d;border:1px solid var(--line);color:var(--muted)}
+.label-line{display:none;margin:8px 0 0;padding:10px 13px;border-radius:10px;font-size:14px;font-weight:700;background:rgba(37,244,238,.07);border:1px solid rgba(37,244,238,.25);color:#bdfbf9}
+
+/* declaration + post */
+.submit-area{border-top:1px solid var(--line);padding-top:18px}
+.declaration{margin:0 0 12px;font-size:14.5px;color:var(--muted)}
+.declaration a{color:var(--text);font-weight:700}
+.decl-branded{display:none}
+.post-wrap{cursor:not-allowed}
+.app .btn-post{display:flex;width:100%;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 20px;border-radius:12px;font-size:17.5px;font-weight:800;background:var(--grey-btn);color:#6f6f7a;border:1px solid #34343e;pointer-events:none;cursor:not-allowed;transition:background .15s ease,color .15s ease}
+.btn-post svg{width:19px;height:19px}
+.reason,.reason-ready{display:none;margin:10px 0 0;font-size:14px;text-align:center}
+.reason{color:var(--warn)}
+.reason-ready{color:var(--ok);font-weight:700}
+.post-note{margin:8px 0 0;font-size:13.5px;color:var(--soft);text-align:center}
+.cancel-row{display:flex;justify-content:center;margin-top:16px}
+.cancel-row .btn{min-width:140px}
+
+/* The Direct Post rules, as CSS.
+   E (branded content in effect) = disclosure on AND Branded content ticked.
+   Ready = privacy chosen in the select that is showing AND (disclosure off OR
+   at least one of Your brand / Branded content ticked). */
+.composer:has(#disclose:checked) .disclose-panel{display:block}
+.composer:has(#disclose:checked):not(:has(#your-brand:checked)):not(:has(#branded-content:checked)) .disclose-notice{color:var(--warn);border-color:rgba(255,49,95,.35);background:rgba(255,49,95,.07)}
+.composer:has(#your-brand:checked):not(:has(#branded-content:checked)) .label-promo{display:block}
+.composer:has(#branded-content:checked) .label-paid{display:block}
+.privacy-branded{display:none}
+.composer:has(#disclose:checked):has(#branded-content:checked) .privacy-standard{display:none}
+.composer:has(#disclose:checked):has(#branded-content:checked) .privacy-branded{display:block}
+.composer:has(#disclose:checked):has(#branded-content:checked) .decl-music{display:none}
+.composer:has(#disclose:checked):has(#branded-content:checked) .decl-branded{display:block}
+
+.composer:not(:has(#disclose:checked)):has(#privacy option[value=""]:checked) .reason-privacy,
+.composer:not(:has(#branded-content:checked)):has(#privacy option[value=""]:checked) .reason-privacy{display:block}
+.composer:has(#disclose:checked):has(#branded-content:checked):has(#privacy-branded option[value=""]:checked) .reason-branded-privacy{display:block}
+.composer:has(#disclose:checked):not(:has(#your-brand:checked)):not(:has(#branded-content:checked)) .reason-disclosure{display:block}
+
+.composer:not(:has(#disclose:checked)):has(#privacy option:not([value=""]):checked) .post-wrap,
+.composer:has(#disclose:checked):has(#your-brand:checked):not(:has(#branded-content:checked)):has(#privacy option:not([value=""]):checked) .post-wrap,
+.composer:has(#disclose:checked):has(#branded-content:checked):has(#privacy-branded option:not([value=""]):checked) .post-wrap{cursor:auto}
+.app .composer:not(:has(#disclose:checked)):has(#privacy option:not([value=""]):checked) .btn-post,
+.app .composer:has(#disclose:checked):has(#your-brand:checked):not(:has(#branded-content:checked)):has(#privacy option:not([value=""]):checked) .btn-post,
+.app .composer:has(#disclose:checked):has(#branded-content:checked):has(#privacy-branded option:not([value=""]):checked) .btn-post{background:var(--tt-red);border-color:var(--tt-red);color:#fff;pointer-events:auto;cursor:pointer}
+.composer:not(:has(#disclose:checked)):has(#privacy option:not([value=""]):checked) .reason-ready,
+.composer:has(#disclose:checked):has(#your-brand:checked):not(:has(#branded-content:checked)):has(#privacy option:not([value=""]):checked) .reason-ready,
+.composer:has(#disclose:checked):has(#branded-content:checked):has(#privacy-branded option:not([value=""]):checked) .reason-ready{display:block}
+
+/* draft upload */
+.note-box{padding:13px 15px;border-radius:12px;border:1px dashed #3a3a46;background:var(--surface);color:var(--muted);font-size:15px}
+.next-steps{margin:0;padding:14px 18px 14px 38px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--muted)}
+.next-steps li{margin:6px 0}
+.next-steps b{color:var(--text)}
+
+/* ---------- status pages ---------- */
+.status-card{max-width:740px;margin:0 auto;background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:20px;padding:28px 30px 30px}
+.status-top{display:flex;gap:22px;align-items:flex-start}
+.status-thumb{width:112px;height:auto;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:12px;flex:none;border:1px solid var(--line);display:block}
+.status-top .eyebrow{margin-bottom:8px}
+.status-h1{display:grid;font-size:clamp(28px,3vw,36px);line-height:1.1;letter-spacing:-.03em;margin:0 0 8px}
+.status-h1>span{grid-area:1/1}
+.status-title{margin:0 0 12px;font-weight:700;color:var(--muted)}
+.mini-acct{display:flex;align-items:center;gap:10px}
+.mini-acct img{width:36px;height:36px;border-radius:50%}
+.progress{height:6px;border-radius:999px;background:#23232c;overflow:hidden;margin:24px 0 0}
+.progress span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--tt-red),var(--accent2))}
+.steps{list-style:none;margin:22px 0 20px;padding:0;display:grid;gap:15px}
+.step{display:flex;align-items:center;gap:14px;font-size:17px;font-weight:650}
+.dot{position:relative;width:30px;height:30px;border-radius:50%;flex:none;border:2px solid #3a3a46;display:grid;place-items:center}
+.spin{position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--tt-red);border-right-color:transparent;border-bottom-color:transparent;animation:sm-spin .8s linear infinite}
+.tick{width:8px;height:14px;margin-top:-3px;border:solid #07130d;border-width:0 3px 3px 0;transform:rotate(45deg);opacity:0}
+.step-done .dot{background:var(--ok);border-color:var(--ok)}
+.step-done .tick{opacity:1}
+.step-done .spin{display:none}
+.status-note{border:1px solid var(--line);border-radius:14px;background:#121218;padding:15px 17px}
+.status-note p{margin:0}
+.status-note .small{margin-top:9px}
+.status-actions{margin-top:22px}
+
+/* posting timeline (~9 s). Later steps, the notice and Done use
+   visibility, so they are absent from the accessibility tree until shown. */
+.posting .progress span{width:0;animation:sm-grow 6.8s cubic-bezier(.3,.1,.3,1) forwards}
+.posting .s1 .spin{animation:sm-spin .8s linear infinite,sm-off .01s linear 3s forwards}
+.posting .s1 .tick{animation:sm-fade .2s ease 3s both}
+.posting .s1 .dot{animation:sm-dot-done .2s ease 3s forwards}
+.posting .s2{visibility:hidden;animation:sm-show .01s linear 3s forwards,sm-fade .35s ease 3s both}
+.posting .s2 .spin{animation:sm-spin .8s linear infinite,sm-off .01s linear 6.8s forwards}
+.posting .s2 .tick{animation:sm-fade .2s ease 6.8s both}
+.posting .s2 .dot{animation:sm-dot-done .2s ease 6.8s forwards}
+.posting .s3{visibility:hidden;animation:sm-show .01s linear 6.8s forwards,sm-fade .35s ease 6.8s both}
+.posting .t-progress{animation:sm-hide .01s linear 6.8s forwards}
+.posting .t-done{visibility:hidden;animation:sm-show .01s linear 6.8s forwards}
+.posting .status-note{visibility:hidden;animation:sm-show .01s linear 7.6s forwards,sm-fade .4s ease 7.6s both}
+.posting .done-link{visibility:hidden;animation:sm-show .01s linear 9s forwards}
+
+@keyframes sm-spin{to{transform:rotate(360deg)}}
+/* Both ends hold the same value: Chromium keeps a visible->hidden fill visible. */
+@keyframes sm-show{from,to{visibility:visible}}
+@keyframes sm-hide{from,to{visibility:hidden}}
+@keyframes sm-fade{from{opacity:0}to{opacity:1}}
+@keyframes sm-off{to{opacity:0}}
+@keyframes sm-dot-done{to{background:var(--ok);border-color:var(--ok)}}
+@keyframes sm-grow{to{width:100%}}
+@keyframes sm-pulse{50%{opacity:.35}}
+
+/* ---------- disconnected ---------- */
+.center-card{max-width:640px;margin:10px auto 0;background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:20px;padding:32px}
+.center-card p{color:var(--muted)}
+.center-card .actions{margin-top:22px}
+
+/* ---------- simulated TikTok consent screen ---------- */
+.consent-stage{display:flex;flex-direction:column;align-items:center;padding:34px 16px 56px;background:radial-gradient(circle at 50% 30%,rgba(255,255,255,.04),transparent 34rem)}
+.sim-label{margin:0 0 16px;padding:6px 14px;border-radius:999px;border:1px dashed rgba(255,255,255,.28);font-size:13.5px;font-weight:700;color:#e4e4ea;background:rgba(255,255,255,.04);text-align:center}
+.tt-sheet{width:min(500px,100%);background:#fff;color:var(--tt-ink);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.65);padding:24px 30px 22px;font-family:"TikTok Sans","Proxima Nova",Arial,system-ui,sans-serif}
+.tt-brand{display:flex;align-items:center;justify-content:center;gap:7px;font-weight:800;font-size:19px;letter-spacing:-.01em}
+.tt-brand svg{width:22px;height:22px}
+.tt-icons{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px 0 14px}
+.tt-icons img{width:64px;height:64px;border-radius:14px;display:block}
+.tt-icons .tt-mark{width:64px;height:64px;border-radius:14px;background:#000;color:#fff;display:grid;place-items:center}
+.tt-icons .tt-mark svg{width:34px;height:34px}
+.tt-link{width:40px;border-top:2px dotted rgba(22,24,35,.3)}
+.tt-h1{font-size:21px;line-height:1.3;text-align:center;letter-spacing:-.01em;margin:0 0 12px;font-weight:800;color:var(--tt-ink)}
+.tt-user{display:flex;align-items:center;justify-content:center;gap:9px;font-size:14px;color:rgba(22,24,35,.75);margin:0 0 16px}
+.tt-user img{width:28px;height:28px;border-radius:50%}
+.tt-user b{color:var(--tt-ink)}
+.tt-scopes-title{font-size:14px;font-weight:700;margin:0 0 4px;color:rgba(22,24,35,.75)}
+.tt-scopes{list-style:none;margin:0;padding:0}
+.tt-scope{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(22,24,35,.10)}
+.tt-scope::before{content:"";width:20px;height:20px;flex:none;margin-top:1px;border-radius:50%;background:var(--tt-ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") no-repeat center}
+.tt-scope-name{font-weight:700;font-size:15px;line-height:1.35}
+.tt-scope-why{font-size:13.5px;color:rgba(22,24,35,.68);margin-top:2px;line-height:1.45}
+.tt-scope-meta{font-size:12.5px;color:rgba(22,24,35,.55);margin-top:5px}
+.app .tt-sheet code{background:#f1f1f2;border:1px solid #e3e3e6;color:var(--tt-ink);font-size:12.5px;border-radius:4px;padding:1px 6px}
+.tt-fine{font-size:12.5px;color:rgba(22,24,35,.6);margin:12px 0 0;line-height:1.5;border-top:1px solid rgba(22,24,35,.10);padding-top:12px}
+.tt-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.tt-actions form{margin:0}
+.app .tt-btn{width:100%;min-height:48px;border-radius:4px;font-size:16px;font-weight:700;padding:0 14px;cursor:pointer}
+.app .tt-cancel{background:#fff;color:var(--tt-ink);border:1px solid rgba(22,24,35,.2)}
+.app .tt-cancel:hover{background:#f6f6f7}
+.app .tt-authorize{background:var(--tt-red);color:#fff;border:1px solid var(--tt-red)}
+.app .tt-authorize:hover{filter:brightness(1.06)}
+.tt-redirect{font-size:12px;color:rgba(22,24,35,.55);text-align:center;margin:14px 0 0;overflow-wrap:anywhere}
+.consent-after{max-width:500px;text-align:center;margin:16px 0 0}
+
+@media(max-width:600px){
+  .status-top{flex-direction:column}
+  .status-card,.center-card{padding:22px}
+  .tt-sheet{padding:20px}
+}

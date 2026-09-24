@@ -96,3 +96,4 @@ state/curiosity_media_ledger.json
 # search. To deliberately ship one for an outage, populate it with
 # scripts/prefetch_media.py and `git add -f`.
 data_learning/stock_cache/
+demo/tiktok_sandbox/config.json

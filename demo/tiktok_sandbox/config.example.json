@@ -1,0 +1,5 @@
+{
+  "client_key": "<sandbox client key from developers.tiktok.com>",
+  "client_secret": "<sandbox client secret>",
+  "redirect_uri": "https://shorts-media.netlify.app/auth/tiktok/callback/"
+}
