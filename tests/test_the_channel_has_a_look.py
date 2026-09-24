@@ -281,7 +281,7 @@ class EveryStringOnTheCardIsMEASURED(unittest.TestCase):
         return fig, plt
 
     def _footer_text(self, fig):
-        return [t for t in fig.texts if t.get_position()[1] < 0.06]
+        return [t for t in fig.texts if t.get_position()[1] < 0.03]
 
     def test_no_text_on_the_card_crosses_the_right_edge(self):
         fig, plt = self._card(self.LONG)
@@ -301,8 +301,10 @@ class EveryStringOnTheCardIsMEASURED(unittest.TestCase):
         try:
             ft = self._footer_text(fig)
             self.assertTrue(ft, "the source line vanished entirely")
-            self.assertLess(ft[0].get_fontsize(), 11,
-                            "it did not shrink, so it must be clipping")
+            from data_learning import charts as C
+            self.assertTrue(ft[0].get_fontsize() < C.FOOTER_PT
+                            or "\n" in ft[0].get_text(),
+                            "it neither wrapped nor shrank, so it must be clipping")
             self.assertNotIn("\u2026", ft[0].get_text(),
                              "truncated when shrinking would have fitted it")
             self.assertIn("UNEP", ft[0].get_text(),
@@ -331,7 +333,8 @@ class EveryStringOnTheCardIsMEASURED(unittest.TestCase):
         try:
             ft = self._footer_text(fig)
             self.assertTrue(ft)
-            self.assertEqual(ft[0].get_fontsize(), 11)
+            from data_learning import charts as C
+            self.assertEqual(ft[0].get_fontsize(), C.FOOTER_PT)
         finally:
             plt.close(fig)
 

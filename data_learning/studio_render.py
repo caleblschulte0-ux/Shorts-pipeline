@@ -549,7 +549,10 @@ def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
     import os
     import urllib.error
     import urllib.request
-    key = os.environ.get("ELEVENLABS_API_KEY", "").strip()
+    # The operator saved the secret as ELEVEN_LABS_API_KEY; both spellings
+    # are the same key, and a mismatch cost a whole day of Speechify.
+    key = (os.environ.get("ELEVENLABS_API_KEY", "").strip()
+           or os.environ.get("ELEVEN_LABS_API_KEY", "").strip())
     if not key:
         _ELEVEN_DEAD = "ELEVENLABS_API_KEY is not set"
         return False
@@ -915,24 +918,6 @@ def _ellipse_path_abs(cx: float, cy: float, rx: float, ry: float) -> str:
             f"b {cx + kx:.0f} {cy - ry:.0f} {cx + rx:.0f} {cy - ky:.0f} {cx + rx:.0f} {cy:.0f} "
             f"b {cx + rx:.0f} {cy + ky:.0f} {cx + kx:.0f} {cy + ry:.0f} {cx:.0f} {cy + ry:.0f} "
             f"b {cx - kx:.0f} {cy + ry:.0f} {cx - rx:.0f} {cy + ky:.0f} {cx - rx:.0f} {cy:.0f}")
-
-
-def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
-    """ASS \\p1 path: a rounded rectangle (a speech bubble) with a downward
-    tail at tail_x pointing to `tip`. Used \\pos(0,0) + absolute coords."""
-    tlx, tly = tip
-    p = [
-        f"m {x0 + r} {y0}", f"l {x1 - r} {y0}",
-        f"b {x1} {y0} {x1} {y0} {x1} {y0 + r}",   # TR
-        f"l {x1} {y1 - r}",
-        f"b {x1} {y1} {x1} {y1} {x1 - r} {y1}",   # BR
-        f"l {tail_x + 34} {y1}", f"l {tlx} {tly}", f"l {tail_x - 34} {y1}",
-        f"l {x0 + r} {y1}",
-        f"b {x0} {y1} {x0} {y1} {x0} {y1 - r}",   # BL
-        f"l {x0} {y0 + r}",
-        f"b {x0} {y0} {x0} {y0} {x0 + r} {y0}",   # TL
-    ]
-    return " ".join(p)
 
 
 def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
@@ -1379,21 +1364,14 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         _pulses.append(_t)
         _t += CLOSING_MAX_GAP
     ls = _pulses[0] if _pulses else cs
-    bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
-              "\\fad(250,0)\\p1}"
-              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
-              + "{\\p0}")
-    if closing_scene:
-        # The closing is a full-bleed scene of its own: the line sits on the
-        # sky it keeps clear (y 140..480), outlined like every caption — no
-        # bordered card. The showrunner named the card a UI widget.
-        quip = ("{\\an5\\pos(540,308)\\fs62\\c&HFFFFFF&\\b1\\bord5\\3c&H000000&"
-                "\\shad0\\fad(300,0)}" + _wrap(st.closing, 22))
-    else:
-        lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,"
-                     f"{bubble}")
-        quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
-                "\\fad(300,0)}" + _wrap(st.closing, 20))
+    # NO BORDERED CARD, IN EITHER LOOK. The line sits on the band it keeps
+    # clear (y 140..480 — the recap is laid out below it, see
+    # `recap_geometry`), outlined like every caption. The showrunner named
+    # the speech-bubble card a UI widget on B's closing and then again on
+    # A's: "the payoff line sits in a UI-style speech-bubble card"
+    # (coffee-price-record, 2026-09-24). CHANNEL_LOOK: there is no card.
+    quip = ("{\\an5\\pos(540,308)\\fs62\\c&HFFFFFF&\\b1\\bord5\\3c&H000000&"
+            "\\shad0\\fad(300,0)}" + _wrap(st.closing, 22))
     lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{quip}")
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")

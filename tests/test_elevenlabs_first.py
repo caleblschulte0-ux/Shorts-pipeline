@@ -40,7 +40,8 @@ class ElevenLabsWav(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp())
 
     def test_no_key_says_so(self):
-        with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": ""}):
+        with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "",
+                                          "ELEVEN_LABS_API_KEY": ""}):
             self.assertFalse(R._elevenlabs_wav("hello", self.tmp / "a.wav"))
         self.assertIn("ELEVENLABS_API_KEY is not set", R._ELEVEN_DEAD)
 
@@ -89,7 +90,24 @@ class TheChainAndTheRecord(unittest.TestCase):
 
     def test_the_publishing_workflow_passes_the_key(self):
         wf = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
-        self.assertIn("ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}", wf)
+        # The operator saved it as ELEVEN_LABS_API_KEY; either name works.
+        for name in ("explainer.yml", "preview_explainer.yml"):
+            wf = (ROOT / ".github" / "workflows" / name).read_text()
+            self.assertIn("ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY"
+                          " || secrets.ELEVEN_LABS_API_KEY }}", wf, name)
+
+    def test_the_operators_spelling_of_the_key_is_read(self):
+        seen = {}
+
+        def fake(req, timeout=0):
+            seen["hdr"] = dict(req.headers)
+            return _Resp(b"\x01\x00" * 2400)
+        R._ELEVEN_DEAD = ""
+        with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "",
+                                          "ELEVEN_LABS_API_KEY": "k2"}), \
+                mock.patch("urllib.request.urlopen", fake):
+            self.assertTrue(R._elevenlabs_wav("hi", Path(tempfile.mkdtemp()) / "a.wav"))
+        self.assertEqual(seen["hdr"].get("Xi-api-key"), "k2")
 
 
 if __name__ == "__main__":

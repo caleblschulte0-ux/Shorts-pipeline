@@ -269,10 +269,12 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         self.assertIn('closing_scene=bool(_style.get("closing_scene"))', src)
         fn = inspect.getsource(__import__(
             "data_learning.studio_render", fromlist=["x"]).build_story_ass)
-        self.assertIn("if closing_scene:", fn)
-        # the bubble is only drawn on the else branch
-        tail = fn.split("if closing_scene:")[1]
-        self.assertLess(tail.index("else:"), tail.index("{bubble}"))
+        # There is no bubble card on EITHER branch now (2026-09-24): the
+        # judge called it a UI widget on A's closing too. The quip is an
+        # outlined caption on the band the recap keeps clear.
+        self.assertNotIn("{bubble}", fn)
+        self.assertNotIn("_round_rect_tail", fn)
+        self.assertIn("\\\\pos(540,308)", fn)
 
     def test_a_brain_hook_is_asked_for_the_hook_line_and_saved(self):
         from data_learning import scene_author as SA

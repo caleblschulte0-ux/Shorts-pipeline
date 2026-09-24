@@ -1016,6 +1016,12 @@ def _fit_text_to(fig, text: str, frac_w: float, size: int) -> str:
         return text
 
 
+#: The source line's size on the card, and the size below which it is cut
+#: rather than shrunk further. In points on the card figure.
+FOOTER_PT = 16
+FOOTER_FLOOR_PT = 11
+
+
 def _footer(fig, insight: Insight):
     """The source line, on the page margin.
 
@@ -1043,18 +1049,42 @@ def _footer(fig, insight: Insight):
     even at the floor gets an ellipsis, and it keeps its head — the
     publisher, which is the part that identifies the source.
     """
+    # READ ON A PHONE. At 11pt, shrinking to 8, in the chrome ink it was
+    # "tiny grey text on navy that can't be read on a phone" — the judge's
+    # `unreadable` on every local coffee-price-record verdict (2026-09-24).
+    # Same rules at a readable scale: FOOTER_PT, two lines before any
+    # shrinking, FOOTER_FLOOR_PT before any cut, and the secondary ink.
     import matplotlib.font_manager as _fm
     _band = (1.0 - 2 * HEAD_X)
+    _room = _band * fig.get_size_inches()[0] * 72.0
     _txt = insight.source.footer()
-    _size = 11
-    for _size in range(11, 7, -1):
-        if _measure_pts(fig, _txt, _fm.FontProperties(size=_size)) \
-                <= _band * fig.get_size_inches()[0] * 72.0:
+
+    def _fits(t, sz):
+        return all(_measure_pts(fig, ln, _fm.FontProperties(size=sz)) <= _room
+                   for ln in t.split("\n"))
+
+    def _two(t):
+        cut = t.rfind(", accessed")
+        if cut <= 0:
+            sp = [i for i, ch in enumerate(t) if ch == " "]
+            if not sp:
+                return t
+            cut = min(sp, key=lambda i: abs(i - len(t) / 2))
+            return t[:cut] + "\n" + t[cut + 1:]
+        return t[:cut] + "\n" + t[cut + 2:]
+    _size, _out = FOOTER_PT, _txt
+    for _size in range(FOOTER_PT, FOOTER_FLOOR_PT - 1, -1):
+        if _fits(_txt, _size):
+            _out = _txt
+            break
+        if _fits(_two(_txt), _size):
+            _out = _two(_txt)
             break
     else:
-        _txt = _fit_text_to(fig, _txt, _band, _size)
-    fig.text(HEAD_X, 0.042, _txt, ha="left", fontsize=_size,
-             color=_hex(_look.INK_3))
+        _size = FOOTER_FLOOR_PT
+        _out = _fit_text_to(fig, _txt, _band, _size)
+    fig.text(HEAD_X, 0.018, _out, ha="left", va="bottom", fontsize=_size,
+             color=_hex(_look.INK_2), linespacing=1.15)
 
 
 def _measure_pts(fig, text: str, fp) -> float:
@@ -2572,7 +2602,11 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # pink disc onto the navy ground for the whole inflation — "drawn
         # as doubled, ghosted glyphs in dark ink on pink" (showrunner,
         # 2026-09-24). It grows with the bubble instead.
-        fs = max(10, min(46, r * max(t, 0.05) * 2.0))
+        # ONE SIZE, THE FINAL ONE, FROM THE FIRST FRAME. Text re-set at a new
+        # size every frame encodes as "doubled and smeared ... while the
+        # circle grows" (showrunner, 2026-09-24, after it was made to track
+        # the radius). The disc grows under a label that holds still.
+        fs = max(22, min(46, r * 2.0))
         # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
         # `_lblalpha` holds every label at alpha 0 until 80% of the build,
         # which is right for a BAR — the label sits at the tip and lands as
@@ -2589,8 +2623,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # coffee-price-record, 2026-09-24). It never goes below 22pt, and
         # while it is bigger than its disc it wears the light ink of the
         # ground it spills onto, not the dark ink of a disc it has outgrown.
-        _outgrown = fs < 22
-        fs = max(fs, 22)
+        _outgrown = r * t * 2.0 < fs * 0.9       # the disc cannot hold it yet
         tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center",
                      va="center", color=(TEXT if _outgrown else _ink_on(color)),
                      fontproperties=_num_face(int(fs)),

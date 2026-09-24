@@ -149,7 +149,7 @@ jobs:
           # ElevenLabs narration FIRST when it can (operator, 2026-09-24);
           # Speechify, then the local Kokoro voice, when it cannot. The engine
           # used and why ElevenLabs was not is recorded on every video.
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY || secrets.ELEVEN_LABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ vars.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
