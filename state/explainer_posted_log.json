@@ -2034,6 +2034,20 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 48.7
+    },
+    "coffee-price-record": {
+      "url": "https://youtube.com/shorts/D0TN-3tSOWA",
+      "title": "Coffee Just Hit $4.41 A Pound \u2014 A Record",
+      "at": "2026-09-24T14:40:19.198224+00:00",
+      "publish_at": "2026-09-24T15:33:37Z",
+      "state": "posted",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "ELEVENLABS_API_KEY is not set",
+      "n_beats": 3,
+      "story_structure": "scene+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 51.2
     }
   },
   "uploads": [
@@ -2351,6 +2365,15 @@
       "state": "posted",
       "slug": "urban-heat-island-redlining",
       "at": "2026-09-24T11:11:26.527657+00:00"
+    },
+    {
+      "claimed_at": "2026-09-24T14:40:11.737161+00:00",
+      "title": "Coffee Just Hit $4.41 A Pound \u2014 A Record",
+      "publish_at": "2026-09-24T15:33:37Z",
+      "url": "https://youtube.com/shorts/D0TN-3tSOWA",
+      "state": "posted",
+      "slug": "coffee-price-record",
+      "at": "2026-09-24T14:40:19.198224+00:00"
     }
   ]
 }
