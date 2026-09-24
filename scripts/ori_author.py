@@ -469,7 +469,11 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
         worst = 9.0
         for seed in seeds:
             lay = S.layout(scene, seed)
-            worst = min(worst, -1.0 if lay["collisions"] else lay["scale"] / natural)
+            # a scene that still collides scores below any that fits, and
+            # FEWER collisions is progress — a close shot holding two houses
+            # and a cow needs three drops, and the first two fix nothing on
+            # their own
+            worst = min(worst, -float(len(lay["collisions"])) if lay["collisions"] else lay["scale"] / natural)
         return worst
     if fit() >= CROWD_SHRINK:
         return None
@@ -492,6 +496,19 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
         if best is None:
             break
         dropped.append(best)
+    # then a person: the rule itself says "drop a prop or a person", and a
+    # crowd of four drawn at 60% reads worse than three at full size. From
+    # the back of the cast, never the first (the words are about somebody)
+    while fit() < CROWD_SHRINK and len(scene.get("cast") or []) > 1:
+        cast = list(scene["cast"])
+        was = fit()
+        scene["cast"] = cast[:-1]
+        if fit() > was + 1e-6:
+            gone = cast[-1]
+            dropped.append(f"the {gone.get('who', 'person')} at the back")
+        else:
+            scene["cast"] = cast
+            break
     if fit() < CROWD_SHRINK and S.shot_of(scene) == "close":
         scene["shot"] = "wide"
         if S.validate(scene, era) and "torch" not in scene.get("props", []):
@@ -718,7 +735,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         worst = 9.0
         for seed in (OS._scene_seed(ep["slug"], flat_index(i, j), sc), 1000 + j):
             lay = S.layout(sc, seed)
-            worst = min(worst, -1.0 if lay["collisions"] else lay["scale"] / natural)
+            worst = min(worst, -float(len(lay["collisions"])) if lay["collisions"] else lay["scale"] / natural)
         return worst
 
     def scene_ok(i, j):
@@ -746,6 +763,22 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
             sc.clear(); sc.update(old)
         return None
 
+    def try_shot(i, j):
+        """The other shot, for a beat whose words pin its place: the
+        same-picture rule itself says "change the setting OR the shot"."""
+        if j < 0:
+            return None
+        sc = ep["chapters"][i]["beats"][j]["scene"]
+        old = json.loads(json.dumps(sc))
+        before = severity()
+        sc["shot"] = "close" if S.shot_of(sc) == "wide" else "wide"
+        if S.validate(sc, era):
+            mend_scene(sc, era)                    # a wide night wants its second light
+        if not S.validate(sc, era) and scene_ok(i, j) and severity() < before:
+            return f"{ep['chapters'][i]['title']} beat {j + 1}: {old.get('setting')} {S.shot_of(old)} -> {S.shot_of(sc)} shot"
+        sc.clear(); sc.update(old)
+        return None
+
     def try_drop(i, j):
         before = severity()
         sc = ep["chapters"][i]["beats"][j]["scene"]
@@ -757,7 +790,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         return None
 
     notes = []
-    skipped = set()          # a problem nothing here can fix (its beats' words pin them): say so once, move on
+    skipped = set()          # a problem nothing here can fix: say so once, honestly, and move on
     for _ in range(MAX_FILM_REPAIRS):
         ap = [(i, p) for i, p in problems() if (i, p) not in skipped]
         if not ap:
@@ -769,7 +802,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         m = re.search(r"beat (\d+)", p)
         if "crowded" in p and m:
             j = int(m.group(1)) - 1
-            done = try_drop(i, j) or try_move(i, j)
+            done = try_drop(i, j) or try_move(i, j) or try_shot(i, j)
         elif "moves" in p or "judged moments" in p:
             for j in (marks[1], marks[0], marks[2]) if len(marks) == 3 else marks:
                 done = try_move(i, j)
@@ -778,7 +811,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         elif "back to back" in p:
             m2 = re.search(r"beats (\d+) and", p)
             j = int(m2.group(1)) if m2 else 0
-            done = try_move(i, j) or try_move(i, j - 1)
+            done = try_move(i, j) or try_move(i, j - 1) or try_shot(i, j) or try_shot(i, j - 1)
         elif "new place" in p:
             done = try_move(i, 0)
         else:
@@ -794,7 +827,8 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
                     if done:
                         break
         if not done:
-            log(f"[ori_author] repair_film could not fix (the words pin those beats): {p[:120]}")
+            log(f"[ori_author] repair_film could not fix (no move, drop or shot change here lowers it — "
+                f"the words may pin those beats): {p[:120]}")
             skipped.add((i, p))
             continue
         notes.append(done)

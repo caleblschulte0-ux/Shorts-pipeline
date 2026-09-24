@@ -402,6 +402,19 @@ only as a hand edit is not a rule. So:
   film-level rules are repaired in code before the brain is asked again.
   A chapter with all three faults costs one brain call in the test.
 
+- **The third fresh-topic run failed at chapter 3**, and the log lied about
+  why: four wide shots "drawn at 60% size" and two same-picture pairs, all
+  written off as *"the words pin those beats"*. A prop drop, a person drop
+  or a shot change touches no word. `uncrowd_scene` drops the last props
+  from a cast of four now (the rule's own words: "drop a prop or a
+  person"), and counts FEWER collisions as progress — a close shot holding
+  two houses and a cow needed three drops and the first two fixed nothing
+  alone, so the greedy pass stopped at the first. `repair_film` has a shot
+  flip (`try_shot`, with the wide night's second light) for a pair whose
+  words pin the place, because the rule itself says "change the setting OR
+  the shot". Measured over 400 random medieval scenes: 7 left crowded
+  before, none after. And the "could not fix" line names the true reason.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

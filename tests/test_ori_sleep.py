@@ -806,6 +806,42 @@ class ThePictureIsReadable(unittest.TestCase):
             shelf = json.loads(f.read_text(encoding="utf-8"))
             self.assertEqual(A.repair_film(shelf, log=lambda *_: None), [], f.name)
 
+    def test_a_crowd_of_people_and_a_pinned_pair_are_repaired_without_touching_the_words(self):
+        # the third fresh-topic run (medieval, chapter 3) died with four wide
+        # shots "drawn at 60% size" and two same-picture pairs, every one
+        # logged as "the words pin those beats" — but no prop drop, person
+        # drop or shot change touches the words. The rule itself says "drop
+        # a prop or a person, or widen the shot" and "change the setting or
+        # the shot": the author now does all three
+        import ori_author as A
+        who = ["man", "woman", "child", "elder"]
+        four = [{"who": w, "pose": "stand", "action": "talk"} for w in who]
+        sc = {"setting": "farmyard", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": json.loads(json.dumps(four)), "props": ["campfire", "torch", "barn", "cart", "cow", "sheep"]}
+        did = A.uncrowd_scene(sc, "medieval", seeds=(1000,))
+        self.assertTrue(did, "a wide farmyard at 76% was left crowded")
+        self.assertEqual(self.S.validate(sc, "medieval"), [])
+        # a close shot holding two houses and a cow: no single drop fixes
+        # the collision, so fewer collisions has to count as progress
+        sc2 = {"setting": "field", "time": "night", "weather": "clear", "shot": "close",
+               "cast": json.loads(json.dumps(four)),
+               "props": ["campfire", "timber_house", "cottage", "woodpile", "cow"]}
+        self.assertTrue(A.uncrowd_scene(sc2, "medieval", seeds=(1005,)))
+        self.assertFalse(self.S.layout(sc2, 1005)["collisions"])
+        self.assertIn("campfire", sc2["props"])
+        # two neighbours whose words both name the farm, same shot: the
+        # setting is pinned, so the shot changes
+        say = "Out in the farmyard the family gathers by the barn. " + " ".join(["word"] * 30)
+        beats = [{"say": say, "scene": {"setting": "farmyard", "time": "night", "weather": "clear",
+                                        "shot": "close", "cast": [dict(four[0])], "props": ["campfire"]}}
+                 for _ in range(2)]
+        ep = {"slug": "a-test", "era": "medieval", "chapters": [{"title": "One", "beats": beats}]}
+        notes = A.repair_film(ep, log=lambda *_: None)
+        self.assertTrue(any("shot" in n for n in notes), notes)
+        self.assertEqual({b["scene"]["setting"] for b in beats}, {"farmyard"}, "the words pin the place")
+        self.assertNotEqual(self.S.shot_of(beats[0]["scene"]), self.S.shot_of(beats[1]["scene"]))
+        self.assertEqual([x for x in A._chapter_problems(beats, "medieval", 0, 10 ** 6) if "back to back" in x], [])
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid
