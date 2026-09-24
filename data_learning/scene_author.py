@@ -62,9 +62,9 @@ def _remaining() -> float:
 
 #: The kit the brain may call — the reference's own vocabulary.
 KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
-             "cow", "truck", "sack", "cup", "steam", "motes", "birds",
+             "cow", "truck", "sack", "cup", "steam", "birds",
              "dawn_sky", "cafe", "rowhouse", "street", "traffic",
-             "heat_shimmer", "shape_path", "stride", "walk", "sway", "step_through", "landed", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
+             "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
              "seg", "W", "H", "P", "_c", "scar_path", "SCAR", "FOREST_Y",
              "STREET_Y", "_TREES", "forest_floor", "FRANCE")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
@@ -264,46 +264,70 @@ def _num_ok(tok, allowed, vmax=100.0):
 #: "a red caption drawn over the mascot and a tree" (Amazon, 2026-09-23).
 CAPTION_Y = 1540
 
-#: temporal_craft is 3/3 only at 24 effective fps — sampled at 24fps, that
-#: is NO held frame. Every teacher measures 0-1 held frames per stride.
-MAX_HELD = 0.03
+#: MOTION IS MEASURED THE WAY THE JUDGE NOW GRADES IT: judder (still runs of
+#: 1-3 samples between moving frames — a low-fps source), the longest hold,
+#: and how much of the scene is still. A deliberate hold is fine; the old
+#: check refused ANY held frame, and everything built to pass it — specks
+#: drifting over every frame, a mascot pacing and waving nonstop, scenes
+#: racing — is what the operator called "snow" and "flailing" (2026-09-23).
+MAX_JUDDER = 0.04
+MAX_HOLD_S = 1.8          # the judge's frozen-stretch ceiling is 45 samples
+MAX_STILL = 0.45          # ...and its duplicate-ratio ceiling
 
 
-def held_ratio(fn, pts, fps: int = 24, secs: float | None = None) -> float:
-    """The share of frame pairs the showrunner's own detector calls HELD,
-    over one full stride of Data's walk (both turnarounds) while the beat
-    plays from start to end.
-
-    Rendered exactly as `subject_scenes.render_build` renders — a 30fps
-    clock from t=0, Data's pose looping over 120 frames — then SAMPLED at
-    the gate's 24fps. An earlier version drew at 24fps with a 24-frame
-    pose loop, measured 2 held frames across every teacher, and the real
-    render of the same scenes held 11: the pose only changes every other
-    render frame, and at a turnaround that was the whole difference."""
+def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
+    """{judder, max_hold_s, still} for a scene, rendered as `render_build`
+    renders it — a 30fps clock from t=0, Data's acts on the act clock —
+    and sampled at the judge's 24fps with the judge's own detector."""
     import cairo
     from PIL import Image
     from scripts import showrunner_review as sr
     surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
-    # TWO strides, u over the whole of it: at one stride u ran three times
-    # faster than in a real beat, and a Data crossing the scene while pacing
-    # cancelled his own walk on the back-stride — a stillness no real beat has.
-    secs = secs or 2 * SS.PACE_PERIOD
-    total = int(secs * 30)                    # the render's own frame count
-    n = int(secs * fps)
+    total, n = int(secs * 30), int(secs * fps)
+    clock: dict = {}
     px = []
     for k in range(n):
         f = min(total - 1, int(round(k * 30 / fps)))
         cr = cairo.Context(surf)
         t = f / 30.0
         fn(cr, t, f / max(1, total - 1), pts,
-           lambda role, x, fy, h, pace=True, _cr=cr, _f=f, _t=t: SS.place_host(
-               _cr, role, (_f % 120) / 120.0, None, x, fy, h, _t, pace))
+           lambda role, x, fy, h, pace=False, _cr=cr, _f=f, _t=t: SS.place_host(
+               _cr, role, SS.act_phase(clock, role, _f), None, x, fy, h, _t, pace))
         surf.flush()
         im = Image.frombuffer("RGBA", (SS.W, SS.H), bytes(surf.get_data()),
                               "raw", "BGRA", 0, 1)
         px.append(list(im.convert("L").resize((192, 341)).getdata()))
-    return sum(sr._max_block_diff(a, b, 192) < sr.BLOCK_MOTION_THRESH
-               for a, b in zip(px, px[1:])) / (len(px) - 1)
+    diffs = [sr._max_block_diff(a, b, 192) for a, b in zip(px, px[1:])]
+
+    def _runs(flags):
+        out, r = [], 0
+        for f_ in flags:
+            if f_:
+                r += 1
+            elif r:
+                out.append(r)
+                r = 0
+        return out + ([r] if r else [])
+    still = [d < sr.BLOCK_MOTION_THRESH for d in diffs]
+    pairs = max(1, len(diffs))
+    return {"judder": sr.judder_pairs(diffs) / pairs,
+            "max_hold_s": max(_runs(still), default=0) / float(fps),
+            "still": sum(still) / pairs}
+
+
+def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
+    m = motion_profile(fn, pts, secs=secs)
+    out = []
+    if m["judder"] > MAX_JUDDER:
+        out.append(f"it judders: {m['judder']:.0%} of frames are 1-3-frame stalls "
+                   f"between moves (allowed {MAX_JUDDER:.0%}) — move smoothly or hold")
+    if m["max_hold_s"] > MAX_HOLD_S:
+        out.append(f"it freezes for {m['max_hold_s']:.1f}s (allowed {MAX_HOLD_S}s) — "
+                   f"a hold is fine, a frozen stretch is not")
+    if m["still"] > MAX_STILL:
+        out.append(f"it is still {m['still']:.0%} of the time (allowed "
+                   f"{MAX_STILL:.0%}) — the story has to keep arriving")
+    return out
 
 
 #: The rubric's mascot anchor (docs/DIRECTOR.md): "Data is IN the scene
@@ -331,7 +355,7 @@ def bit_problems(fn, pts) -> list[str]:
     for k in range(11):
         u = k / 10
         fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
-           lambda role, x, fy, h, pace=True: calls.append((role, x, fy)))
+           lambda role, x, fy, h, pace=False: calls.append((role, x, fy)))
     if not calls:
         return []                        # "host not called" is reported above
     out = []
@@ -404,7 +428,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         fn.__globals__["text"] = spy
         SS.text = spy
         fn.__globals__["fit_readout"] = ro_spy
-        def host(role, x, fy, h, pace=True):
+        def host(role, x, fy, h, pace=False):
             hosts.append((role, x, fy, h))
             # Where Data can be while he performs: his body, widened by his
             # walk and lifted by his step when he paces.
@@ -496,10 +520,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     if sorted(t for t in final if re.search(r"\d", t)) != \
             sorted(t for t in texts if re.search(r"\d", t)):
         problems.append("the numbers change when the data's order changes")
-    held = held_ratio(fn, pts)
-    if held > MAX_HELD:
-        problems.append(f"it holds still: {held:.0%} of frames held at the gate's "
-                        f"scale over one stride (allowed {MAX_HELD:.0%})")
+    problems += motion_problems(fn, pts, secs)
     return problems
 
 
@@ -513,7 +534,7 @@ function:
 
 cr is a pycairo Context for the whole frame; t is seconds since the beat began; \
 u is the beat's progress 0..1; pts is the beat's sourced data as [(label, value)]; \
-host(role, x, foot_y, height, pace=True) draws the mascot Data standing with his \
+host(role, x, foot_y, height, pace=False) draws the mascot Data standing with his \
 feet at (x, foot_y). role is one of {roles}.
 
 THE RULES — every one is checked by code before your scene is used:
@@ -539,11 +560,21 @@ the thing the number is made of; point, cheer, shock and think are only \
 the setup and the reaction. A Data who waves beside the data is marked \
 down every time. Call host(...) every \
 frame, height 180-240.
-5. Nothing is ever still: keep something big moving through the whole beat \
-(motes, birds, traffic, steam, falling items). Use pace=True (the default) so \
-Data walks while he presents; when he must hold a spot (riding, hanging on, \
-tracing) pass pace=False and add sway(t) to his position — a Data who is \
-the only mover and stands still is a frozen frame at the gate.
+5. DECISIVE motion, not constant motion. The story moves when the story \
+moves: the subject changes, arrives, falls, fills — then HOLDS a beat so it \
+can be read — then the next thing happens. Holds of up to ~1.5s are good; \
+nothing may freeze longer than that, and the scene must not be mostly \
+still. Keep speeds calm enough to follow (things crossing the frame take \
+a second or more; nothing flickers back and forth). NEVER draw a particle \
+overlay — no snow, dust, motes, sparkles, bokeh or rain drifting across the \
+frame: it reads as a glitch on every second of the video. Data stands where \
+you put him and moves when you move him — his acts play once when his role \
+changes, then he holds; don't jiggle him.
+7. The object the number is ABOUT is the HERO of the frame: big (a third of \
+the frame or more), centred in the upper-middle, the first thing the eye \
+lands on. If the idea is a vape cloud turning into a nicotine pouch, that \
+cloud and that pouch fill the frame — Data and the setting support it, \
+they never shrink it into a corner.
 6. No imports; use only these names: {kit}, math, cairo, look, fit_size, \
 INK, INK_2, WARN, and these builtins: {builtins}. _c(rgb, alpha) makes a cairo colour. Colours: tuples (r, g, b) 0..255, or P[...] palette keys: \
 {palette}.

@@ -374,7 +374,8 @@ def duplicate_of(title: str, posted_titles) -> str | None:
 
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
 # designed; it is not a fault and must never be reported as one.
-HELD_REASONS = {"editorial_hold", "showrunner_block", "duplicate_hold"}
+HELD_REASONS = {"editorial_hold", "showrunner_block", "duplicate_hold",
+                "arm_quota_full"}
 
 
 def classify_results(results: list[dict]) -> dict:
@@ -579,6 +580,23 @@ def main() -> int:
     # — different videos, same day, 8/4. Count what already went out today
     # and shrink this run's budget by it. `--force` re-posts are exempt: an
     # operator explicitly re-shipping a fixed video is not a scheduling bug.
+    # THE A/B SPLIT IS A SLATE, not a coin per story (shared/style_arms.py
+    # quota): with 4 a day at 50/50 the day is 2 of each look. Per story
+    # alone, the look the gate held all day simply lost its slots to the
+    # other one and "50/50" shipped 4-0.
+    from shared import style_arms as _arms_q
+    _day_cap = args.max_per_run
+    _arm_quota = _arms_q.quota(_day_cap) if _day_cap else {}
+    _today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    _arm_done: dict = {}
+    for _e in log["posted"].values():
+        if str(_e.get("at", "")).startswith(_today):
+            _a = _e.get("style_arm") or "current"
+            _arm_done[_a] = _arm_done.get(_a, 0) + 1
+    if _arm_quota:
+        print(f"[post_stories] today's looks: quota {_arm_quota}, "
+              f"posted {_arm_done or {}}", flush=True)
+
     if args.max_per_run and not args.force:
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         posted_today = sum(
@@ -669,6 +687,13 @@ def main() -> int:
         if args.max_per_run and posted >= args.max_per_run:
             print(f"[{slug}] slate full ({posted}/{args.max_per_run} posted)")
             continue
+        if _arm_quota and not args.force:
+            _planned = _arms_q.choose(slug)
+            if _arm_done.get(_planned, 0) >= _arm_quota.get(_planned, 0):
+                print(f"[{slug}] {_planned} look's slots are full today "
+                      f"({_arm_done.get(_planned, 0)}/{_arm_quota.get(_planned, 0)})"
+                      f" — kept for another day", flush=True)
+                continue
         if attempts >= attempt_cap:
             print(f"[{slug}] deferred to next run — {attempts} attempts made "
                   f"for {posted} post(s), attempt cap {attempt_cap} reached",
@@ -885,6 +910,18 @@ def main() -> int:
                             "error": "showrunner_block"})
             continue
 
+        # the look it ACTUALLY rendered in (a new-look story whose scenes
+        # could not all be drawn renders in the current look) takes a slot
+        # of THAT look — and waits for another day if those are full
+        _arm_now = ctx.get("style_arm") or "current"
+        if (_arm_quota and not args.force
+                and _arm_done.get(_arm_now, 0) >= _arm_quota.get(_arm_now, 0)):
+            print(f"[{slug}] passed, but it rendered in the {_arm_now} look and "
+                  f"those slots are full today — not posting it today",
+                  flush=True)
+            results.append({"slug": slug, "ok": False, "error": "arm_quota_full"})
+            continue
+
         if frozen:
             print(f"[{slug}] rendered + reviewed OK, but PUBLISH FROZEN — not "
                   f"uploading. Re-run with --publish to release.", flush=True)
@@ -1015,6 +1052,7 @@ def main() -> int:
         # here and the end of the run would otherwise cost a duplicate upload.
         _persist_posted_log_now(args.log, slug)
         posted += 1                     # the slate counts THIS, not attempts
+        _arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1
         results.append({"slug": slug, "ok": True, "url": url})
 
     # ------------------------------------------------------------------ #

@@ -102,8 +102,6 @@ def fit_readout(cr, big, small, x, y, anchor="left", a=1.0, rgb=None,
 _R = random.Random(5)
 _TREES = [(_R.uniform(-40, W + 40), _R.uniform(0, 1), _R.uniform(0.75, 1.25))
           for _ in range(64)]
-_MOTES = [(_R.uniform(0, W), _R.uniform(0, H), _R.uniform(1.5, 4), _R.uniform(0.3, 1))
-          for _ in range(90)]
 
 
 def tree(cr, x, base, s, lit, shade, trunk, lean=0.0, a=1.0):
@@ -293,40 +291,16 @@ def act_for(scene_key, role: str) -> str:
     return _ACTS[key]
 
 
-def sway(t, r=16.0, period=0.9):
-    """(dx, dy) for a Data who holds his spot — hanging on, riding, tracing.
-    A circle, so its speed never drops to zero the way any back-and-forth
-    does at its ends; in the real render a hanging Data was the only mover
-    and every held stretch was his."""
-    w = 2 * math.pi * t / period
-    return r * math.cos(w), r * math.sin(w)
-
-
-def place_host(cr, role, phase, insight, x, fy, h, t, pace=True):
-    """Put Data in the scene at (x, fy), walking his stride — unless the
-    scene has him doing something precise (climbing, tracing, riding),
-    when he holds his line."""
+def place_host(cr, role, phase, insight, x, fy, h, t, pace=False):
+    """Put Data in the scene at (x, fy). He stands where the scene puts him
+    and moves when the scene moves him: pacing is opt-in, not a default.
+    (He used to walk back and forth through every scene and it read as
+    random motion — operator, 2026-09-23: "decisive movement beats constant
+    movement".)"""
     if pace:
         x, fy = walk(x, fy, t)
     return I._host(cr, act_for(_SCENE_KEY, role), phase, insight, "scene",
                    clamp(x, EDGE, W - EDGE), fy, h)
-
-
-def motes(cr, t, rgb, speed=24, a=0.22):
-    """The air is never still: pollen, dust, mist or steam drifting across the
-    whole frame. Sized and paced to REGISTER at the showrunner's scale (a
-    192px-wide frame, a block must change by 6 grey levels): faint 2px motes
-    drifting at 20px/s left every finished scene 40-96% held frames."""
-    # the reference's deep-sea snow streams at 120-1020 px/s; slow drift
-    # does not register at the gate's 24fps sampling at all
-    sp = math.copysign(max(abs(speed) * 3.2, 200.0), speed or 1)
-    for x, y, r, k in _MOTES:
-        yy = (y + t * sp * k) % H
-        xx = x + 26 * math.sin(t * 1.3 + k * 9)
-        glow(cr, xx, yy, r * 5.0, rgb, min(0.5, a * 1.6 * k))
-        cr.set_source_rgba(*_c(rgb, min(0.75, a * 2.6 * k)))
-        cr.arc(xx, yy, r * 2.2, 0, 2 * math.pi)
-        cr.fill()
 
 
 def birds(cr, t, y0=520, n=5, rgb=(30, 26, 60)):
@@ -404,9 +378,11 @@ def amazon_clearing(cr, t, u, pts, host):
             tree(cr, xx, base, 0.9 * sc, P["leaf"], P["leaf_shade"], P["trunk"],
                  lean=0.02 * math.sin(t * 1.3 + i))
     birds(cr, t)
-    motes(cr, t, P["mist"])
     fx = (felled + batch * fb) / max(1, len(stand)) * W
-    host("climb" if val > 12000 else "strain", clamp(fx + 90, 120, W - 120),
+    # he fights the big years, hauls in the small ones, and at the end stops
+    # to look at what one year of "falling" clearing still takes
+    host("shock" if u > 0.86 else ("climb" if val > 12000 else "strain"),
+         clamp(fx + 90, 120, W - 120),
          FOREST_Y + 250, 230)                  # above the caption band
     fit_readout(cr, f"{int(val):,} km²", f"of rainforest cleared in {year}",
                 80, 520, a=ease(seg(u, 0.0, 0.08)))
@@ -478,15 +454,15 @@ def amazon_bill_grows(cr, t, u, pts, host):
         rx_ = cx + math.cos(a_) * R * (k_now + 0.06)
         ry_ = cy + math.sin(a_) * R * (k_now + 0.06) * 0.62
         tree(cr, rx_, ry_, 0.55, P["leaf"], P["leaf_shade"], P["trunk"],
-             lean=0.25 + 0.2 * math.sin(t * 3 + q))
-    motes(cr, t, P["dust"], speed=-60, a=0.35)
+             lean=0.08 + 0.92 * fb, a=1 - 0.6 * ease(seg(fb, 0.7, 1.0)))
+        # each year's ring fells the trees at its edge: one decisive fall a
+        # year, not a forest jiggling forever
     birds(cr, t)
     ang = math.radians(48)                        # he is shoved by the rim
     ex = cx + math.cos(ang) * R * max(0.3, k_now)
     ey = cy + math.sin(ang) * R * max(0.3, k_now) * 0.62
-    wx, lift = walk(ex, ey + 40, t, amp=70.0)   # he paces the rim he holds
     host("point" if run < 0.12 else ("strain" if run < 1 else "shock"),
-         ex + 40 + (wx - clamp(ex, EDGE + 70, W - EDGE - 70)), lift, 220, pace=False)
+         ex + 40, ey + 40, 220)       # shoved outward as the rim advances
     # ONE headline, and it SHRINKS: the first year's clearing while the rings
     # begin, the latest year's once they are laid. Every year in between is
     # a ring, not a readout — eight numbers in six seconds were each on
@@ -559,18 +535,37 @@ def amazon_vs_france(cr, t, u, pts, host):
             cr.arc(cx + math.cos(ang) * r, cy + 150 + math.sin(ang) * r * 0.3,
                    14 * (1 - dust) + 4, 0, 2 * math.pi)
             cr.fill()
-    motes(cr, t, P["dust"], speed=10, a=0.3)
+    # the land France does NOT cover, traced out — the "bigger than France"
+    # claim as a line drawn round what is left over
+    tr = ease(seg(u, 0.6, 0.86))
+    if tr > 0:
+        ring = []
+        for k in range(97):
+            a_ = k / 96 * 2 * math.pi
+            r_ = R * (1 + 0.06 * math.sin(a_ * 5 + 0.4) + 0.03 * math.sin(a_ * 11))
+            ring.append((cx + r_ * math.cos(a_), cy + r_ * math.sin(a_) * 0.62))
+        m_ = max(2, int(len(ring) * tr))
+        cr.set_source_rgba(*_c(P["accent2"]))
+        cr.set_line_width(10)
+        cr.set_line_cap(cairo.LINE_CAP_ROUND)
+        cr.move_to(*ring[0])
+        for q in ring[1:m_]:
+            cr.line_to(*q)
+        cr.stroke()
+        glow(cr, *ring[m_ - 1], 40, P["accent2"], 0.9)
     if u > 0.40:            # he drives the flag into France, then reacts
-        host("strain" if u < 0.85 else "cheer", cx + 30, fy - 8, 190)
+        host("strain" if u < 0.86 else "cheer", cx + 30, fy - 8, 190)
+        sink = 80 * ease(seg(u, 0.42, 0.6))      # the pole goes in, blow by blow
+        top = fy - 230 + sink
         cr.set_source_rgba(*_c(look.INK))
         cr.set_line_width(5)
         cr.move_to(cx + 90, fy - 8)
-        cr.line_to(cx + 90, fy - 150)
+        cr.line_to(cx + 90, top)
         cr.stroke()
         cr.set_source_rgba(*_c(P["flag"]))
-        cr.move_to(cx + 90, fy - 150)
-        cr.line_to(cx + 160, fy - 132 + 5 * math.sin(t * 6))
-        cr.line_to(cx + 90, fy - 114)
+        cr.move_to(cx + 90, top)
+        cr.line_to(cx + 160, top + 18)
+        cr.line_to(cx + 90, top + 36)
         cr.close_path()
         cr.fill()
     else:
@@ -640,11 +635,9 @@ def amazon_where_it_goes(cr, t, u, pts, host):
         cr.arc(tx - 40 + (k % 3) * 26 + (k // 3) * 13, cy + 90 - (k // 3) * 22, 13,
                0, 2 * math.pi)
         cr.fill()
-    motes(cr, t, P["dust"], speed=12, a=0.25)
-    if lead:   # he rides the lead cow: its walk is already his stride
-        dx, dy = sway(t)
-        host("hold_up" if u < 0.85 else "cheer", lead[0] - 4 + dx, lead[1] - 20 + dy,
-             180, pace=False)      # the reins while the herd spreads
+    if lead:   # he rides the lead cow: its walk is his motion
+        host("hold_up" if u < 0.85 else "cheer", lead[0] - 4, lead[1] - 20,
+             180)                  # the reins while the herd spreads
     else:
         host("strain", x0 + 60, cy, 180)   # driving the first cows in
     fit_readout(cr, f"{int(round(share * 100))}%", f"becomes {lp.lower()}", 80, 470,
@@ -737,7 +730,12 @@ def sack(cr, x, y, s=1.0, a=1.0, label=True):
     cr.line_to(30, -96)
     cr.curve_to(44, -86, 54, -40, 46, 0)
     cr.close_path()
-    cr.fill()
+    cr.fill_preserve()
+    # a dark edge: a beige sack on beige dry soil was one mush of colour —
+    # hard to count by eye, invisible in grey when it moved
+    cr.set_source_rgba(*_c(P["sack_ink"], a))
+    cr.set_line_width(6)
+    cr.stroke()
     cr.set_source_rgba(*_c(P["sack_shade"], a))
     cr.move_to(10, 0)
     cr.curve_to(40, -30, 44, -80, 30, -96)
@@ -805,7 +803,7 @@ def coffee_climb(cr, t, u, pts, host):
     whole = int(coins)
     top = max(r[1] for r in rows) / 0.25 or 1.0
     # he paces beside the scale, and steps back as the pile outgrows him
-    hx, hy = walk(W - 110 - 220 * clamp(coins / top), CT, t, amp=60)
+    hx, hy = W - 150 - 220 * clamp(coins / top), CT   # he backs off as it piles
     hand = (hx - 40, hy - 170)                 # Data's hand
     for c in range(whole + 1):
         a = 1.0 if c < whole else coins - whole
@@ -840,7 +838,6 @@ def coffee_climb(cr, t, u, pts, host):
         cr.fill()
     cup(cr, 110, CT, 0.9)
     steam(cr, 110, CT - 120, t, 0.5 + 0.5 * clamp(price / max(r[1] for r in rows)))
-    motes(cr, t, P["mist"], speed=14, a=0.18)
     moving = abs(price - prev) > 1e-9 and f < 1
     bag = (hx - 60, hy - 250)                 # the bag he holds up, tipped
     sack(cr, bag[0], bag[1], 0.7)
@@ -899,6 +896,9 @@ def coffee_drought(cr, t, u, pts, host):
     total = int(round(before))
     keep = int(round(after))
     lost = ease(seg(u, 0.35, 0.8))
+    # the lost sacks go ONE AT A TIME — each drops and crumbles in its own
+    # moment — instead of the whole top sinking 60px over four seconds
+    drop = seg(u, 0.35, 0.86) * max(1, total - keep)
     idx = 0
     per_row = [11, 10, 9, 7, 5, 3]
     for r_, cnt in enumerate(per_row):
@@ -908,15 +908,15 @@ def coffee_drought(cr, t, u, pts, host):
             x = 540 - (cnt - 1) * 38 + c * 76
             y = 1440 - r_ * 74
             gone = idx >= keep
-            a = 1.0 - (lost if gone else 0.0)
-            sack(cr, x, y + (60 * lost if gone else 0), 0.8, a=a, label=False)
-            if gone and 0 < lost < 1:
-                cr.set_source_rgba(*_c(P["dust"], 0.5 * (1 - lost)))
-                cr.arc(x, y - 30 - 80 * lost, 20 + 30 * lost, 0, 2 * math.pi)
+            pj = seg(drop - (total - 1 - idx), 0.0, 0.6) if gone else 0.0
+            pj = pj * pj                          # it FALLS — gravity, not a glide
+            sack(cr, x, y + 420 * pj, 0.8, a=1.0 - pj, label=False)
+            if gone and 0 < pj < 1:              # it bursts as it goes
+                cr.set_source_rgba(*_c(P["dust"], 0.6 * (1 - pj)))
+                cr.arc(x, y - 20 + 120 * pj, 20 + 50 * pj, 0, 2 * math.pi)
                 cr.fill()
             idx += 1
     heat_shimmer(cr, t, 900, 1600, a=0.22)
-    motes(cr, t, P["dust"], speed=-20, a=0.3)
     # his bit: he points at the pile, climbs it to hold up the top sacks as
     # they crumble, and lands in shock on what is left
     climb = ease(seg(u, 0.1, 0.55))
@@ -1058,9 +1058,7 @@ def heat_by_city(cr, t, u, pts, host):
     # he rides the mercury itself, city after city — climbing while it rises,
     # hanging on and fanning himself while it holds
     rising = shown < deg - 0.05
-    dx, dy = sway(t)
-    host("climb" if rising else "strain", tx - 96 + dx, t1 - mh + 150 + dy, 200,
-         pace=False)
+    host("climb" if rising else "strain", tx - 96, t1 - mh + 150, 200)
     fit_readout(cr, f"+{say_deg:.1f}°F", f"extra heat from pavement · {say_city}", 80, 520,
                 a=ease(seg(u, 0.0, 0.06)), size=140)
 
@@ -1146,8 +1144,11 @@ def heat_redlining(cr, t, u, pts, host):
             ph = (t * 0.45 + k / 16) % 1
             x = zx + 30 + (k * 53) % (zw - 60)
             y = zy + zh - ph * (zh + 320)
-            cr.set_source_rgba(*_c(P["heat"], 0.9 * ht * (1 - ph)))
-            cr.set_line_width(7)
+            # bold and dark enough to read against the paper: thin orange on
+            # beige was invisible in grey, to the eye at a glance as much as
+            # to the gate's detector
+            cr.set_source_rgba(*_c(P["redline"], 0.95 * ht * (1 - ph)))
+            cr.set_line_width(12)
             cr.move_to(x, y)
             for j in range(1, 6):
                 cr.line_to(x + 14 * math.sin(t * 3 + j + k), y - j * 22)
@@ -1172,8 +1173,7 @@ def heat_redlining(cr, t, u, pts, host):
             px_, py_ = zx + zw - (d_ - zw - zh), zy + zh
         else:
             px_, py_ = zx, zy + zh - (d_ - 2 * zw - zh)
-        dx, dy = sway(t)                       # he steps as he traces
-        host("strain", px_ + dx, py_ + 10 + dy, 180, pace=False)  # dragging the line
+        host("strain", px_, py_ + 10, 180)     # dragging the line round the zone
     else:                # then he fans the heat rising off the old zone
         host("hold_up" if (ht < 0.9 or u < 0.88) else "shock", mx + mw - 120,
              min(my + mh + 20, 1520), 240)
@@ -1269,12 +1269,29 @@ def caption_scrim(cr):
     cr.fill()
 
 
+#: How long one of Data's acts takes to play, in seconds. An act is an arc
+#: (set up, do it, land it); it plays ONCE when his role changes and then
+#: holds its last pose until the story gives him the next thing to do. It
+#: used to loop every four seconds for the whole beat — arms going all the
+#: time, which read as flailing.
+ACT_S = 1.1
+
+
+def act_phase(clock: dict, role: str, f: int, fps: int = 30) -> float:
+    """The act's clock 0..1 at frame f: it restarts when `role` changes and
+    holds at 1 once the act has played."""
+    if clock.get("role") != role:
+        clock["role"], clock["start"] = role, f
+    return min(1.0, (f - clock["start"]) / (ACT_S * fps))
+
+
 def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
+    clock: dict = {}
     for f in range(frames):
         cr = cairo.Context(surf)
 
-        def host(role, x, fy, h, pace=True, _cr=cr, _f=f):
-            place_host(_cr, role, (_f % 120) / 120.0, insight, x, fy, h,
+        def host(role, x, fy, h, pace=False, _cr=cr, _f=f):
+            place_host(_cr, role, act_phase(clock, role, _f), insight, x, fy, h,
                        _f / 30.0, pace)
         scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
         caption_scrim(cr)

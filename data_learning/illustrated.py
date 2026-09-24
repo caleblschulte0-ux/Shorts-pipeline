@@ -18,7 +18,7 @@ inside it. It is an arm of the existing renderer, not a fork:
     it never adds a quantity;
   * colour comes from `shared/look.py` only — the world's tokens, the story's
     ONE accent on the subject, text in INK;
-  * nothing is ever still: clouds drift, motes stream, light pulses, so the
+  * nothing is ever still: clouds drift, one mover crosses, light pulses, so the
     cadence gate never sees a freeze (`tests/test_the_illustrated_arm.py`
     measures it with the gate's own detector on every world x drawing).
 
@@ -293,8 +293,6 @@ def wrap2(cr, s, size, max_w, face="bold", floor=22):
 # --------------------------------------------------------------- worlds ---
 
 _RND = random.Random(11)
-_MOTES = [(_RND.uniform(0, W), _RND.uniform(0, H), _RND.uniform(1.2, 3.4),
-           _RND.uniform(0.3, 1.0), _RND.uniform(0, 6.28)) for _ in range(160)]
 _STARS = [(_RND.uniform(0, W), _RND.uniform(0, H * 0.8), _RND.uniform(0.7, 2.4),
            _RND.uniform(0, 6.28)) for _ in range(260)]
 _TOWERS = [(_RND.uniform(0, W), _RND.uniform(160, 520), _RND.uniform(60, 130))
@@ -475,9 +473,9 @@ def world_ground(cr, name, t):
 
 
 def world_air(cr, name, t):
-    """Ambient motes drifting IN FRONT of everything: the air is never still.
+    """The world's one strong mover, IN FRONT of everything.
 
-    Each world also carries ONE strong mover — bubbles in the ocean, embers
+    Each world carries ONE strong mover — bubbles in the ocean, embers
     over industry, a meteor in space, birds over land — because faint drift
     alone measured as frozen: ocean and industry both held a 52-frame still
     run once the data had built (`tests/test_the_illustrated_arm.py`)."""
@@ -520,17 +518,11 @@ def world_air(cr, name, t):
             cr.line_to(bx, by)
             cr.line_to(bx + 22, by - flap)
             cr.stroke()
-    for x, y, r, a, ph in _MOTES:
-        if name == "ocean":
-            yy = (y - t * 60 * a) % H        # bubbles rise
-        elif name == "space":
-            continue
-        else:
-            yy = (y + t * 22 * a) % H
-        xx = x + 14 * math.sin(t * 0.8 + ph)
-        cr.set_source_rgba(*_c(w["mote"], 0.18 * a))
-        cr.arc(xx, yy, r, 0, 2 * math.pi)
-        cr.fill()
+    # No speck layer over the world. 160 drifting motes in front of every
+    # frame read as SNOW on every second of every video (operator,
+    # 2026-09-23: "a bug that happened to affect every video ... snow
+    # overlay on every video on every second of it"). The world's one
+    # strong mover above is its motion.
 
 
 def _fish(cr, x, y, s, d, rgb, a=1.0):

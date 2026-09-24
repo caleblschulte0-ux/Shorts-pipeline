@@ -110,16 +110,21 @@ Every rule below is a check the verifier runs on a brain scene AND a test
 every teacher passes (`tests/test_subject_scenes.py`,
 `tests/test_the_brain_draws_the_scene.py`), and each came from a render:
 
-- **No held frame.** temporal_craft is 3/3 only at 24 effective fps, and the
-  gate samples at 24 — so 3/3 means none. A sine walk crawls into each
-  turn; `walk()` is a constant-speed walk that turns sharply, and lifts
-  each step fastest exactly at the turn. A Data who holds a spot (riding,
-  hanging on, tracing) gets `sway()`, a circle, whose speed never drops to
-  zero. Measured the way the real render is made — a 30fps clock, his pose
-  looping over 120 frames, sampled at the gate's 24 — over a whole stride
-  (`scene_author.held_ratio`, ceiling `MAX_HELD`): 71 held frames across
-  the teachers became 0. (A 24fps harness said 2 while the real render of
-  the same scenes held 11; measure on the render's own clock.)
+- **Decisive motion, not constant motion** (operator, 2026-09-23: "decisive
+  movement beats constant movement"). The judge used to count every still
+  frame as a defect, so 3/3 meant motion on every frame — and the channel
+  grew specks drifting over every second ("snow"), a mascot pacing and
+  waving nonstop, and scenes that raced. Now temporal craft grades JUDDER
+  (short exact-duplicate stalls between jumps: a low-fps source), and holds
+  are bounded only by the frozen-stretch ceiling (~1.9s), the still-ratio
+  ceiling and `dead_air`. Scenes move when the story moves and hold so it
+  can be read; the verifier measures judder, the longest hold (<= 1.8s) and
+  the still share (<= 45%) on the render's own clock. Data's acts play ONCE
+  when his role changes and then hold (`act_phase`); he paces only when a
+  scene asks him to. There is no particle layer anywhere.
+- **The hero is BIG.** The object the number is about takes a third of the
+  frame or more, upper-middle — the vape cloud turning into a nicotine pouch
+  was the best idea in its video and took 5% of the screen.
 - **Data has a BIT.** At least two acts over the beat and 150px of travel
   that is his own, not pacing (`bit_problems`). The rubric asks for
   "setup → action → payoff"; the story whose teachers failed this is the

@@ -43,7 +43,6 @@ GOOD_MIN = '''
 def scene(cr, t, u, pts, host):
     rows = by_time([(str(l), float(v)) for l, v in pts])
     vgrad(cr, [(0.0, (30, 30, 60)), (1.0, (10, 10, 20))], 0, H)
-    motes(cr, t, P["dust"], speed=-40, a=0.4)
     heat_shimmer(cr, t, 600, 1500, a=0.3)
     lab, val = rows[-1]
     fit_readout(cr, f"{val:.1f}", lab, 80, 520)
@@ -105,11 +104,10 @@ class TheVerifierRefusesBadScenes(unittest.TestCase):
         self.assertTrue(any("order" in p for p in self._problems(code)))
 
     def test_a_still_scene_is_refused(self):
-        code = GOOD_MIN.replace('    motes(cr, t, P["dust"], speed=-40, a=0.4)\n', "") \
-                       .replace('    heat_shimmer(cr, t, 600, 1500, a=0.3)\n', "") \
+        code = GOOD_MIN.replace('    heat_shimmer(cr, t, 600, 1500, a=0.3)\n', "") \
                        .replace('300 + 400 * u, 1500, 220)',
                                 '540, 1500, 220, pace=False)')
-        self.assertTrue(any("holds still" in p for p in self._problems(code)))
+        self.assertTrue(any(("freezes" in p or "still" in p) for p in self._problems(code)))
 
     def test_a_count_up_wearing_the_next_label_is_refused(self):
         """ "$3.24 · February 2025" — a glide between two data points,

@@ -138,49 +138,40 @@ class EveryTeacherSceneTellsTheTruth(unittest.TestCase):
                             self.assertTrue(_num_ok(tok, allowed, extra),
                                             f"{fn.__name__} printed {s!r}")
 
-    def test_the_end_of_every_scene_still_moves(self):
-        from data_learning import subject_scenes as SS
-        from scripts import showrunner_review as sr
-        from PIL import Image
-        import cairo as _c
-        held = {}
-        for slug, fns in SS.TEACHERS.items():
-            for fn, pts in zip(fns, _beats(slug)):
-                surf = _c.ImageSurface(_c.FORMAT_ARGB32, SS.W, SS.H)
-                px = []
-                for f in range(24):
-                    cr = _c.Context(surf)
-                    t = 12.0 + f / 24.0
-                    fn(cr, t, 0.9 + f / 240.0, pts,
-                       lambda role, x, fy, h, pace=True, _cr=cr, _f=f, _t=t: SS.place_host(
-                           _cr, role, (_f % 24) / 24.0, None, x, fy, h, _t, pace))
-                    surf.flush()
-                    im = Image.frombuffer("RGBA", (SS.W, SS.H), bytes(surf.get_data()),
-                                          "raw", "BGRA", 0, 1)
-                    px.append(list(im.convert("L").resize((192, 341)).getdata()))
-                d = [sr._max_block_diff(a, b, 192) < sr.BLOCK_MOTION_THRESH
-                     for a, b in zip(px, px[1:])]
-                r = sum(d) / len(d)
-                if r > 0.3:
-                    held[fn.__name__] = round(r, 2)
-        self.assertEqual(held, {}, f"scenes that hold still at their end: {held}")
 
 
-class NoFrameIsHeldWhileDataWalks(unittest.TestCase):
-    """temporal_craft is 14 of the 100 points, graded in code: 3/3 needs 24
-    effective fps, and the gate samples at 24fps — so 3/3 means NO held
-    frame. Every teacher froze for a sampled frame each time Data turned
-    round (71 held frames across the nine, one stride each); `walk` lifts
-    each step fastest exactly at the turn. Measured with the gate's own
-    detector over a full stride, both turnarounds, start to end of beat."""
+class MotionIsDecisiveNotConstant(unittest.TestCase):
+    """Operator, 2026-09-23: "decisive movement beats constant movement".
+    The old rule refused ANY held frame and bred snow, a pacing, flailing
+    mascot and racing scenes. Scenes now move when the story moves and hold
+    so it can be read: no judder (short stalls between jumps), no freeze
+    longer than the judge's ceiling, not mostly still. Measured on the
+    render's own clock with the judge's own detector."""
 
     @unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
-    def test_no_teacher_holds_a_frame_over_a_stride(self):
+    def test_every_teacher_moves_decisively(self):
         from data_learning import scene_author as SA, subject_scenes as SS
         for slug, fns in SS.TEACHERS.items():
             for fn, pts in zip(fns, _beats(slug)):
                 with self.subTest(scene=fn.__name__):
-                    self.assertLessEqual(SA.held_ratio(fn, pts), SA.MAX_HELD)
+                    self.assertEqual(SA.motion_problems(fn, pts), [])
+
+    def test_a_hold_is_not_judder(self):
+        from scripts import showrunner_review as sr
+        m = sr.BLOCK_MOTION_THRESH + 3
+        self.assertEqual(sr.judder_pairs([m, 0, m, 0, m, 0, m]), 3)   # a 12fps stutter
+        self.assertEqual(sr.judder_pairs([m] + [0] * 20 + [m]), 0)    # a held beat
+        self.assertEqual(sr.judder_pairs([2, 0, 2, 0.5, 3]), 0)       # a slow creep
+        self.assertEqual(sr.temporal_grade({"judder_fps": 24.0, "effective_fps": 15}), 3)
+
+    def test_nothing_jiggles_or_snows(self):
+        from data_learning import subject_scenes as SS
+        import inspect
+        src = inspect.getsource(SS)
+        self.assertFalse(hasattr(SS, "motes"))
+        self.assertFalse(hasattr(SS, "sway"))
+        self.assertNotIn("(_f % 120)", src)          # no looping pose clock
+        self.assertIn("pace=False", inspect.signature(SS.place_host).__str__())
 
     def test_the_walk_never_stops(self):
         from data_learning import subject_scenes as SS
