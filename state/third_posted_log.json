@@ -9007,6 +9007,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no visible event, routine building talk)",
       "ts": "2026-09-24T22:24:14.828942+00:00"
+    },
+    "rejected-philanthropicsinglecasettemcat-dquieshl8vxl9imq": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/PhilanthropicSingleCasetteMcaT-dQUIeShL8vXl9iMq",
+      "streamer": "ludwig",
+      "title": "holy moly",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (routine LoL spectating, no clear payoff)",
+      "ts": "2026-09-24T23:36:08.311508+00:00"
+    },
+    "clip-20260924-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/EvilAntsyLadiesMikeHogu-_1uOjVdBaf8dOnA3",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Called A Murderer, Then A 'Seat Sniffer'",
+      "kind": "twitch_clip",
+      "ts": "2026-09-24T23:39:04.629820+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
