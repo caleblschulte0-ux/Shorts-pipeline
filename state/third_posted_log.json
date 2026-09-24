@@ -8980,6 +8980,15 @@
       "rejected_by": "qa",
       "rejected_why": "vision: Sharp region is a thin strip (~35% of canvas height, not ~75%) showing a full desktop/browser screenshot, not a cropped-; vision: Within that thin strip the actual subject (streamer's face) is a tiny inset thumbnail, unreadable at phone size in most ; vision: Several frames (3.4s-5.9s) show ",
       "ts": "2026-09-24T20:32:04.061010+00:00"
+    },
+    "rejected-relentlessprecioustapirthunbeast-vfbb2u8h1qojaynz": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/RelentlessPreciousTapirThunBeast-VFBb2u8h1qojAYNz",
+      "streamer": "pokimane",
+      "title": "Pokimane Tries On Her Fit And It Fits Perfectly",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is a thin horizontal strip (roughly a third of the canvas height), not the ~three-quarters fill the house s; vision: Within that already-small sharp strip, half the width is consumed by the stream chat log screenshot, leaving the actual ",
+      "ts": "2026-09-24T21:39:22.302538+00:00"
     }
   }
 }
