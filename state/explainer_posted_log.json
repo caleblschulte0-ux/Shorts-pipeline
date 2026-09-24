@@ -1978,6 +1978,32 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 77,
       "duration_s": 41.2
+    },
+    "container-ships-floating-cities": {
+      "url": "https://youtube.com/shorts/jzd7jGqyaAI",
+      "title": "Why Container Ships Turned Into Floating Cities (3 Charts)",
+      "at": "2026-09-24T10:37:34.248488+00:00",
+      "publish_at": "2026-09-24T11:12:53Z",
+      "state": "posted",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "ELEVENLABS_API_KEY is not set",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 83,
+      "duration_s": 49.8,
+      "hook": "shock_stat",
+      "topic_category": "records",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:growing-ship-container-stack",
+        "mechanic:ocean-fleet-swarm",
+        "mechanic:globe-shipping-lane-wrap"
+      ],
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -2268,6 +2294,15 @@
       "state": "posted",
       "slug": "teen-ai-companion-boom",
       "at": "2026-09-23T20:08:48.102170+00:00"
+    },
+    {
+      "claimed_at": "2026-09-24T10:37:28.577896+00:00",
+      "title": "Why Container Ships Turned Into Floating Cities (3 Charts)",
+      "publish_at": "2026-09-24T11:12:53Z",
+      "url": "https://youtube.com/shorts/jzd7jGqyaAI",
+      "state": "posted",
+      "slug": "container-ships-floating-cities",
+      "at": "2026-09-24T10:37:34.248488+00:00"
     }
   ]
 }
