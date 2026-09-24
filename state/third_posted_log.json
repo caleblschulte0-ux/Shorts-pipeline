@@ -8989,6 +8989,24 @@
       "rejected_by": "qa",
       "rejected_why": "vision: Sharp region is a thin horizontal strip (roughly a third of the canvas height), not the ~three-quarters fill the house s; vision: Within that already-small sharp strip, half the width is consumed by the stream chat log screenshot, leaving the actual ",
       "ts": "2026-09-24T21:39:22.302538+00:00"
+    },
+    "rejected-brightcheerfuleggpeanutbutterjellytime-ptlnzqyfi7krpgy6": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/BrightCheerfulEggPeanutButterJellyTime-ptLNzqYFi7krPgY6",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin on his accolades",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (WoW gameplay banter, no event)",
+      "ts": "2026-09-24T22:21:51.229374+00:00"
+    },
+    "rejected-wisehelpfulplumageyee-hs5zaru9evkjqlnt": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/WiseHelpfulPlumageYee-Hs5ZarU9evKJQLNt",
+      "streamer": "caseoh_",
+      "title": "sucks",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no visible event, routine building talk)",
+      "ts": "2026-09-24T22:24:14.828942+00:00"
     }
   }
 }
