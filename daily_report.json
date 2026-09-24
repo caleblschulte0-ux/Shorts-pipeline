@@ -3,14 +3,14 @@
     "topic": "Bitcoin And Silver Keep Trading The Lead",
     "title": "Bitcoin And Silver Keep Trading The Lead",
     "format": "graph_race",
-    "publish_at": "2026-09-24T20:30:00Z",
+    "publish_at": "2026-09-25T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The whole video promises the lead keeps swapping, but Silver is #1 in every frame. The hook is false and the ending contradicts it.",
-    "elapsed_seconds": 114.2,
+    "error": "showrunner_block: showrunner BLOCK: The video promises the lead keeps swapping, but silver leads in every frame, so the payoff breaks the hook.",
+    "elapsed_seconds": 118.2,
     "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-193324_bitcoin_and_silver_keep_trading_the_lead.mp4",
+    "video_path": "output/daily_20260924-202804_bitcoin_and_silver_keep_trading_the_lead.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The whole video promises the lead keeps swapping, but Silver is #1 in every frame. The hook is false and the ending contradicts it.",
-      "score": 66
+      "reason": "showrunner BLOCK: The video promises the lead keeps swapping, but silver leads in every frame, so the payoff breaks the hook.",
+      "score": 61
     },
     "blocked": true
   },
@@ -37,14 +37,14 @@
     "topic": "US Oil Production Passed Saudi Arabia's",
     "title": "US Oil Production Passed Saudi Arabia's",
     "format": "graph_race",
-    "publish_at": "2026-09-24T20:30:00Z",
+    "publish_at": "2026-09-25T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A competent but generic two-line race: the hook is a static title plus a caption box, the crossover moment is buried under colliding labels, and the payoff is a small '#1 United States' tag.",
-    "elapsed_seconds": 108.5,
+    "error": "showrunner_block: showrunner BLOCK: A clean, correct race, but the overtake it exists for is an unreadable pile of labels and the ending barely lands.",
+    "elapsed_seconds": 111.9,
     "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-193518_us_oil_production_passed_saudi_arabia_s.mp4",
+    "video_path": "output/daily_20260924-203002_us_oil_production_passed_saudi_arabia_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,44 +62,36 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A competent but generic two-line race: the hook is a static title plus a caption box, the crossover moment is buried under colliding labels, and the payoff is a small '#1 United States' tag.",
+      "reason": "showrunner BLOCK: A clean, correct race, but the overtake it exists for is an unreadable pile of labels and the ending barely lands.",
       "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Two brand\u2011new snail species discovered in Montenegro reveal a door\u2011like shell snap that could inspire bio\u2011inspired engineering.",
-    "publish_at": "2026-09-24T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['tip was too small', 'decaf', 'extra hot water', 'angry customer', 'five-star review']",
-    "elapsed_seconds": 62.2,
-    "title": "I Served a Free Latte to an Entitled Customer and Got a Five-Star Review",
-    "package_path": "state/trending_packages/20260924-193755_auto_scientists_find_two_tiny_new_snails_with.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
     "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
-    "angle": "A rare Blanding\u2019s turtle safely navigates a purpose\u2011built tunnel, highlighting a novel conservation solution for fragmented habitats.",
+    "angle": "A rare video shows a Blanding\u2019s turtle navigating a newly built underground tunnel, a breakthrough for wildlife\u2011friendly road design.",
     "publish_at": "2026-09-25T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is plain gameplay plus captions with no story illustrations, and the captions collide at mid1. The petty-revenge beats are never shown, and the title has nothing to do with the turtle topic.",
-    "elapsed_seconds": 209.9,
-    "title": "I Served the Entitled Customer Her Own Free Latte",
-    "package_path": "state/trending_packages/20260924-193824_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260924-193824_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The Reddit hook is clean and the pace never stalls, but nearly every beat is bare gameplay: only one story illustration shows up in the whole video, so the cause-and-effect of the falsified inspection is told only in captions.",
+    "elapsed_seconds": 351.1,
+    "title": "My Foreman Ordered Me To Falsify An Inspection",
+    "package_path": "state/trending_packages/20260924-203344_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260924-203344_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 38.967,
+      "duration": 52.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
       "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
+      "black_spans": [
+        [
+          12.3667,
+          12.8
+        ]
+      ],
+      "black_frac": 0.0083,
       "freeze_spans": [],
       "freeze_frac": 0.0,
       "silence_spans": [],
@@ -108,31 +100,31 @@
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is plain gameplay plus captions with no story illustrations, and the captions collide at mid1. The petty-revenge beats are never shown, and the title has nothing to do with the turtle topic.",
-      "score": 57
+      "reason": "showrunner BLOCK: The Reddit hook is clean and the pace never stalls, but nearly every beat is bare gameplay: only one story illustration shows up in the whole video, so the cause-and-effect of the falsified inspection is told only in captions.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "A Florida man captured the bizarre moment his dog encountered a blue land crab gripping a knife blade in his backyard. #Florida #dog #crab #funny - facebook.com",
-    "angle": "A backyard showdown goes viral as a dog meets a blue crab wielding a knife, underscoring how odd wildlife\u2011human clashes can explode online.",
-    "publish_at": null,
+    "topic": "Scientists find two tiny new snails with shells that close like doors",
+    "angle": "Researchers in Montenegro uncover two brand\u2011new snail species whose door\u2011like shells could inspire biomimetic engineering.",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is gameplay plus captions only: not one story beat is illustrated, and the payoff (a machete left on the counter) is lost against unrelated parkour.",
-    "elapsed_seconds": 350.9,
-    "title": "I Followed Store Policy And She Regretted It",
-    "package_path": "state/trending_packages/20260924-194305_auto_a_florida_man_captured_the_bizarre_momen.json",
-    "video_path": "output/daily_20260924-194305_a_florida_man_captured_the_bizarre_momen.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a generic Reddit-story-over-gameplay cut with no story illustrations, a caption that overlaps itself mid-video, a near-empty sky frame at the payoff, and a malicious-compliance story unrelated to its snail topic.",
+    "elapsed_seconds": 374.6,
+    "title": "My Manager Told Me To Follow Policy Exactly",
+    "package_path": "state/trending_packages/20260924-203902_auto_scientists_find_two_tiny_new_snails_with.json",
+    "video_path": "output/daily_20260924-203902_scientists_find_two_tiny_new_snails_with.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.8,
+      "duration": 51.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -152,23 +144,88 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is gameplay plus captions only: not one story beat is illustrated, and the payoff (a machete left on the counter) is lost against unrelated parkour.",
-      "score": 65
+      "reason": "showrunner BLOCK: This is a generic Reddit-story-over-gameplay cut with no story illustrations, a caption that overlaps itself mid-video, a near-empty sky frame at the payoff, and a malicious-compliance story unrelated to its snail topic.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam",
-    "angle": "Legendary pianist plays for 150 rescued moon bears, turning a wildlife sanctuary into a surreal concert hall that\u2019s boosting adoptions.",
+    "topic": "A broken rib from the world\u2019s largest T. rex hid a 66-million-year-old secret",
+    "angle": "The fractured rib of \u2018Scotty\u2019 the T. rex reveals a fossilized blood\u2011vessel network, offering the first glimpse at dinosaur circulatory systems.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['scanning badges at the front gate', 'walk her boyfriend straight past me', 'turned him away in front of the whole line', 'screamed that I was fired', 'handed it to the board president', 'read her own memo out loud', 'lost 3000 dollars that night']",
-    "elapsed_seconds": 167.6,
-    "title": "I followed her no-exceptions rule to the letter",
-    "package_path": "state/trending_packages/20260924-194859_auto_rick_wakeman_performs_piano_concert_to_1.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: This is a pure gameplay-plus-captions reddit story with no beat illustrations. The fossil, the shove and the pressure sensor are never shown, and the climax (37-46s) loses its captions too.",
+    "elapsed_seconds": 360.9,
+    "title": "I Warned Her Not To Touch The Fossil",
+    "package_path": "state/trending_packages/20260924-204513_auto_a_broken_rib_from_the_world_s_largest_t_.json",
+    "video_path": "output/daily_20260924-204513_a_broken_rib_from_the_world_s_largest_t_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.967,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a pure gameplay-plus-captions reddit story with no beat illustrations. The fossil, the shove and the pressure sensor are never shown, and the climax (37-46s) loses its captions too.",
+      "score": 61
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
+    "angle": "A rabbit\u2011hole Google Maps dive reveals a mysterious white Nissan 350Z that\u2019s been parked in the exact spot for years, sparking a viral urban\u2011exploration craze.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is a competent Reddit-card-plus-gameplay template, but the story is never shown: there are no beat illustrations, the back half is murky night footage, and the payoff lands only as a caption word.",
+    "elapsed_seconds": 307.5,
+    "title": "He Demanded A Free Upgrade, I Gave Him One",
+    "package_path": "state/trending_packages/20260924-205119_auto_my_weird_new_hobby__wandering_around_tok.json",
+    "video_path": "output/daily_20260924-205119_my_weird_new_hobby__wandering_around_tok.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a competent Reddit-card-plus-gameplay template, but the story is never shown: there are no beat illustrations, the back half is murky night footage, and the payoff lands only as a caption word.",
+      "score": 65
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
