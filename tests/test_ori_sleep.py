@@ -624,7 +624,11 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertEqual(lay["collisions"], [])
         labels = {sp["label"] for sp in self.S.spans(lay)}
         self.assertIn("mammoth", labels, "a solid back prop takes room like anything else")
-        self.assertNotIn("tent", labels, "scenery does not")
+        self.assertIn("tent", labels, "a tent is a structure: a fire in front of it read as a fire in it")
+        spec2 = {"setting": "grassland", "time": "night", "weather": "clear", "shot": "wide",
+                 "props": ["campfire", "barn"]}
+        lay2 = self.S.layout(spec2, 22)
+        self.assertNotIn("barn", {sp["label"] for sp in self.S.spans(lay2)}, "scenery does not")
 
     def test_the_title_sits_on_a_band(self):
         # "a cloud sits behind the title word"

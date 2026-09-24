@@ -135,14 +135,14 @@ def hearth(cr, x, y, s, t, seed):
 def torch_base(cr, x, y, s, t, seed):
     """A torch on a post driven into the ground, flame at about head height
     — it stands anywhere, so it never floats where there is no wall."""
-    top = y - 260 * s
+    top = y - 200 * s
     ink.line(cr, [(x, y), (x + 4 * s, top + 40 * s)], lw=10 * s, ink=WOOD_D, amp=0.8, seed=seed)
     ink.line(cr, [(x + 2 * s, top + 90 * s), (x + 6 * s, top)], lw=9 * s, ink=WOOD, amp=0)
     ink.line(cr, [(x - 16 * s, top + 60 * s), (x + 22 * s, top + 60 * s)], lw=5 * s, amp=0)
 
 
 def torch_wall(cr, x, y, s, t, seed):
-    top = y - 260 * s
+    top = y - 200 * s
     flame(cr, x + 6 * s, top + 4 * s, 46 * s, t, seed, glow_r=4.0, glow_a=0.3)
     embers(cr, x + 6 * s, top - 30 * s, s, t, seed, n=24, spread=30, rise=170)
 
@@ -1084,7 +1084,7 @@ PROPS = {
     # mid, not back: a torch on the back line put its flame inside the tree
     # canopies ("the tree looks like it is on fire"); among the people it
     # stands plainly in front of them
-    "torch": Prop(torch_wall, 60, "mid", ALL, living=True, light=True, height=260, base=torch_base),
+    "torch": Prop(torch_wall, 60, "mid", ALL, living=True, light=True, height=200, base=torch_base),
     "candle": Prop(candle, 60, "front", LATER, living=True, light=True, height=75, base=candle_base),
     "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", ALL, base=pot_base),

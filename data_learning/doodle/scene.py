@@ -268,7 +268,7 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, 
 # back-layer props with a body: a deer standing "behind" the fire in the
 # same place reads as a deer in the fire, so they take room like anything
 # else. Trees, tents and walls stay scenery.
-SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "fish_rack", "hide_rack", "torch",
+SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "tent", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
               "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
 
@@ -385,7 +385,10 @@ def layout(spec: dict, seed: int) -> dict:
 # it (a cook with her pot between the fire and the cave opening), it moves
 # a little before anyone is drawn smaller
 FOCAL_SHIFTS = (0.0, -0.12, 0.12, -0.24, 0.24)
-SMALL_PROP = 200                 # narrower than this (stones, a basket) reads fine in the mouth of the cave
+SMALL_PROP = 200
+TREE_KEEP = 60                   # half-width of a tree-line trunk-and-canopy column, at scale 1
+TREE_TALL = 440                  # a prop tree's height at scale 1 (tree 400, pine 420, both with a canopy)
+TOP_ROOM = 40                    # a prop tree's crown stays this far inside the top edge                 # narrower than this (stones, a basket) reads fine in the mouth of the cave
 SCENERY_K = 1.35                 # a tree's scale against the shot's: about twice a standing figure
 
 
@@ -399,6 +402,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     placed = []
     taken = []                      # (lo, hi) in world x, everything that must not overlap
     blocked = []                    # ground the SETTING owns: no PERSON is drawn in front of it
+    # the setting's trees: a back prop (a tent, a rack) or a tall one (a torch)
+    # keeps off their trunks and canopies — "a tree trunk drawn through the
+    # tent", "a torch flame at the top of the pine" (the eighth film's board)
+    trees = [(x - TREE_KEEP * ts, x + TREE_KEEP * ts) for x, _kind, ts, _ty in
+             settings.tree_line(spec.get("setting"), seed, shot)]
     if spec.get("setting") == "cave_mouth":
         # the fifth film's judge: dark hair and a beard against the black of
         # the opening left "a floating white mask". A fire or a curled wolf
@@ -406,7 +414,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         _, mx, ow = settings.cave_opening(seed, shot)
         blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
 
-    def clash(lo, hi, head=None, keep_off=False):
+    def clash(lo, hi, head=None, keep_off=False, off_trees=False):
         """How much (lo, hi) overlaps what is taken. `head` is a person's
         head column: THAT is what must stay off ground the setting owns —
         an arm or a pot over the dark opening still reads, a face does not.
@@ -414,6 +422,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         seventh film's judge saw "a tipi drawn inside the cave mouth" and a
         wolf there as "an unclear grey blob" — only a light reads against it."""
         c = sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in taken)
+        if off_trees:
+            c += sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in trees)
         if head is not None:
             hlo, hhi = head
             c += sum(max(0.0, min(hhi, b["hi"]) - max(hlo, b["lo"]) - MARGIN) for b in blocked)
@@ -421,8 +431,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked)
         return c
 
-    def free(lo, hi, head=None, keep_off=False):
-        return clash(lo, hi, head, keep_off) <= 0
+    def free(lo, hi, head=None, keep_off=False, off_trees=False):
+        return clash(lo, hi, head, keep_off, off_trees) <= 0
 
     def put(lo, hi):
         taken.append((lo, hi))
@@ -444,7 +454,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     def head_span(x, R):
         return x - 1.25 * R, x + 1.25 * R
 
-    def settle(x, span_of, lo_lim, hi_lim, head_of=None, keep_off=False):
+    def settle(x, span_of, lo_lim, hi_lim, head_of=None, keep_off=False, off_trees=False):
         """Slide x away from the focal thing, then toward it, until its span
         is clear of everything placed; the least-crowded x if nothing is."""
         d = -1 if x < focal_x else 1
@@ -461,7 +471,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     if (sign > 0 and hi > hi_lim) or (sign < 0 and lo < lo_lim):
                         break
                     continue
-                c = clash(lo, hi, head_of(cand) if head_of else None, keep_off)
+                c = clash(lo, hi, head_of(cand) if head_of else None, keep_off, off_trees)
                 if c <= 0:
                     return cand
                 if best_c is None or c < best_c:
@@ -489,10 +499,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # the near edge of the water band (settings._water): back props stand
     # on the far shore, above it, a little smaller — not in the water
     far_shore = None
-    if water == "river":
-        far_shore = gy - 120 - 8
-    elif water == "lake":
-        far_shore = gy - 170 - 8
+    if water in ("river", "lake"):
+        far_shore = gy - settings.WATER_BAND[water][0] - 8
     elif water == "sea":
         far_shore = H * 0.58 - 8            # the sea runs to the horizon; things stand across the bay
 
@@ -509,6 +517,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         if pr.layer == "back" and far_shore is not None:
             ps *= 0.8
             py = far_shore
+        if pr.layer == "back" and pr.solid_width:
+            # a prop tree stays inside the frame: at 2.77 its canopy was
+            # "cut off by the top edge" in every close forest scene
+            ps = min(ps, (py - TOP_ROOM) / TREE_TALL)
         return pr, ps, py, pr.width * ps
 
     if focal:
@@ -581,13 +593,15 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             scenery = pr.layer == "back" and p["name"] not in SOLID_BACK
             tw = pr.solid_width * ps if (scenery and pr.solid_width) else w   # what takes room
             keep_off = not pr.light and pr.width >= SMALL_PROP   # a light, or something small, may be in the cave mouth
+            off_trees = pr.layer == "back" or bool(pr.height)     # stands at the tree line, or reaches its canopy
             cands = ([0.12, 0.88, 0.28, 0.72, 0.5, 0.06, 0.94] if pr.layer == "back"
                      else [0.4, 0.6, 0.5, 0.08, 0.92, 0.2, 0.8, 0.33, 0.67])
             x = None
             for cnd in cands:
                 if not (EDGE <= W * cnd - w / 2 and W * cnd + w / 2 <= W - EDGE):
                     continue
-                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2, keep_off=keep_off):
+                if (scenery and not pr.solid_width) or free(W * cnd - tw / 2, W * cnd + tw / 2, keep_off=keep_off,
+                                                          off_trees=off_trees):
                     x = W * cnd
                     if pr.layer == "back" and not all(abs(W * cnd - q["x"]) > 250 for q in placed
                                                       if q["layer"] == "back"):
@@ -595,7 +609,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                         continue
                     break
             if x is None and (not scenery or pr.solid_width):
-                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE, keep_off=keep_off)
+                x = settle(W * cands[0], lambda xx: (xx - tw / 2, xx + tw / 2), EDGE, W - EDGE, keep_off=keep_off,
+                       off_trees=off_trees)
             if x is None:
                 x = W * r.uniform(max(0.1, w / 2 / W), min(0.9, 1 - w / 2 / W))
         if pr.layer != "back" or p["name"] in SOLID_BACK:

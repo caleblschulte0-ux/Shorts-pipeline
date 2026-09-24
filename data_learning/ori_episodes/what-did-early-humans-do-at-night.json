@@ -3771,7 +3771,7 @@
     {
      "say": "There is nothing more to see tonight. The fire is fed. The cave is warm. The people are safe and asleep, all of them, in their heap under the painted horse, and the wolf-dog is asleep at the door, and the valley is quiet from the river to the ice. Let your own breathing slow to match theirs. Let the pillow take your head, the way the grass takes theirs. You have walked a long way today too, whatever your day was. You are allowed to stop.",
      "scene": {
-      "setting": "cave_inside",
+      "setting": "cave_mouth",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -3779,28 +3779,17 @@
        {
         "who": "woman",
         "pose": "lie",
-        "action": "sleep",
-        "mood": "sleepy",
-        "at": "left"
-       },
-       {
-        "who": "man",
-        "pose": "lie",
-        "action": "sleep",
-        "mood": "sleepy",
-        "at": "center"
+        "action": "sleep"
        },
        {
         "who": "child",
         "pose": "lie",
-        "action": "sleep",
-        "mood": "sleepy",
-        "at": "center_right"
+        "action": "sleep"
        }
       ],
       "props": [
        "campfire",
-       "cave_painting",
+       "torch",
        "wolf",
        "bedroll"
       ],
@@ -3849,12 +3838,5 @@
     }
    ]
   }
- ],
- "storyboard": {
-  "kit": "ab7456f98627",
-  "clean": false,
-  "reviewed_at": "2026-09-23T21:23",
-  "rounds": 3,
-  "repaired": 19
- }
+ ]
 }

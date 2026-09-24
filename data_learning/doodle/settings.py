@@ -121,15 +121,13 @@ def _milky_way(cr, r):
     x1, y1 = W + r.uniform(-200, 200), r.uniform(H * 0.1, H * 0.45)
     if r.random() < 0.5:
         y0, y1 = y1, y0
-    for k in range(3):
-        cr.save()
-        cr.set_line_width(180 - k * 50)
-        cr.set_line_cap(1)
-        cr.set_source_rgba(0.85, 0.88, 1.0, 0.07 + k * 0.025)
-        cr.move_to(x0, y0)
-        cr.line_to(x1, y1)
-        cr.stroke()
-        cr.restore()
+    # soft haze: many faint glows along the band, never a hard-edged bar
+    # (the first cut was three stroked lines and read as a grey stripe)
+    for _ in range(90):
+        u = r.random()
+        gx = x0 + (x1 - x0) * u
+        gy_ = y0 + (y1 - y0) * u + r.gauss(0, 40)
+        ink.glow(cr, gx, gy_, r.uniform(90, 170), (0.85, 0.88, 1.0), r.uniform(0.03, 0.06))
     for _ in range(420):
         u = r.random()
         x = x0 + (x1 - x0) * u
@@ -358,16 +356,49 @@ def _interior(cr, name, seed, r):
         ink.line(cr, [(wx - 90, 375), (wx + 90, 375)], lw=7, ink=rgb("#6d4b2d"), amp=0)
 
 
+# the water band, (top, bottom) above the ground line: the near bank is a
+# clear strip of ground, so a fire by the river is on the bank, not "drawn on
+# top of the river" (the eighth film's storyboard)
+WATER_BAND = {"river": (190, 100), "lake": (230, 110), "sea": (230, 110)}
+
+
 def _water(cr, kind, gy, seed):
     """The still body of the water; its flow is drawn in ambient()."""
-    top = gy - 120 if kind == "river" else gy - 170
-    bot = gy - 40 if kind == "river" else gy - 60
+    top = gy - WATER_BAND[kind][0]
+    bot = gy - WATER_BAND[kind][1]
     c = rgb("#5b9bc0")
     pts = [(-40, top), (W * 0.4, top + 10), (W + 40, top - 6), (W + 40, bot), (W * 0.5, bot + 12), (-40, bot)]
     if kind == "sea":
         pts = [(-40, H * 0.58), (W + 40, H * 0.58), (W + 40, bot), (W * 0.5, bot + 15), (-40, bot)]
     ink.fill_stroke(cr, pts, c, lw=4.5, amp=2, seed=seed, shadow=shade(c, 0.88), shadow_dir=(0, -1))
     return top, bot
+
+
+def tree_line(name: str, seed: int, shot: str = "wide") -> list[tuple[float, str, float, float]]:
+    """The setting's own trees as (x, kind, scale, base y), a pure function
+    of (name, seed, shot): drawn by draw_still and read by the layout. The
+    tree line is nearer in a close shot, so the trees are bigger and fewer:
+    at one size for every shot a seated woman was "about as tall as the
+    trees" (the sixth film's judge)."""
+    st = SETTINGS.get(name)
+    if st is None:
+        return []
+    r = random.Random(seed * 7 + 11)
+    tk = CLOSE_TREES if shot == "close" else 1.0
+    out = []
+    if name == "nile_bank":
+        for k in range(int(5 / tk) + 1):
+            out.append((k * 430 * tk + r.uniform(-60, 60), "palm", 0.75 * tk, H * st.horizon + 30))
+    elif name == "olive_grove":
+        for k in range(int(6 / tk) + 1):
+            out.append((k * 360 * tk + r.uniform(-70, 70), "olive", 0.7 * tk, H * 0.72))
+    elif name == "forest":
+        for k in range(int(9 / tk) + 1):
+            out.append((k * 230 * tk + r.uniform(-40, 40), "pine" if k % 2 else "tree", 0.75 * tk, H * 0.72))
+    elif name == "snowfield":
+        for k in range(int(6 / tk) + 1):
+            out.append((k * 360 * tk + r.uniform(-60, 60), "snow_pine", 0.65 * tk, H * 0.71))
+    return out
 
 
 def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "wide") -> dict:
@@ -421,25 +452,21 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
         from .props import pyramid
         for k, (fx, sc) in enumerate(((0.18, 0.55), (0.42, 0.75), (0.7, 0.45))):
             pyramid(cr, W * fx + r.uniform(-60, 60), H * st.horizon + 40, sc, 0.0, seed + k)
-    # the tree line is nearer in a close shot, so the trees are bigger and
-    # fewer: at one size for every shot a seated woman was "about as tall
-    # as the trees" (the sixth film's judge)
-    tk = CLOSE_TREES if shot == "close" else 1.0
-    if name == "nile_bank":
-        from .props import palm
-        for k in range(int(5 / tk) + 1):
-            palm(cr, k * 430 * tk + r.uniform(-60, 60), H * st.horizon + 30, 0.75 * tk, 0.0, seed + k)
-    if name == "olive_grove":
-        from .props import olive
-        for k in range(int(6 / tk) + 1):
-            olive(cr, k * 360 * tk + r.uniform(-70, 70), H * 0.72, 0.7 * tk, 0.0, seed + k)
-    if name in ("forest",):
-        for k in range(int(9 / tk) + 1):
-            x = k * 230 * tk + r.uniform(-40, 40)
-            (pine if k % 2 else tree)(cr, x, H * 0.72, 0.75 * tk, 0.0, seed + k)
-    if name == "snowfield":
-        for k in range(int(6 / tk) + 1):
-            pine(cr, k * 360 * tk + r.uniform(-60, 60), H * 0.71, 0.65 * tk, 0.0, seed + k, snow=True)
+    # the tree line is data (tree_line): the layout reads the same list, so
+    # a tent is never placed on a trunk and a torch never in a canopy
+    for k, (x, kind, ts, ty) in enumerate(tree_line(name, seed, shot)):
+        if kind == "palm":
+            from .props import palm
+            palm(cr, x, ty, ts, 0.0, seed + k)
+        elif kind == "olive":
+            from .props import olive
+            olive(cr, x, ty, ts, 0.0, seed + k)
+        elif kind == "snow_pine":
+            pine(cr, x, ty, ts, 0.0, seed + k, snow=True)
+        elif kind == "pine":
+            pine(cr, x, ty, ts, 0.0, seed + k)
+        else:
+            tree(cr, x, ty, ts, 0.0, seed + k)
     if name == "village":
         from .props import cottage_base
         for k in range(3):
@@ -565,19 +592,23 @@ def _flow(cr, kind, top, bot, t, seed, time):
     """Water that runs: rows of light ripple dashes carried along by the
     current (a river) or rolling in (lake/sea), each dash a clear mark."""
     r = random.Random(seed + 11)
-    hl = (1, 1, 1, 0.75) if time != "night" else (0.8, 0.88, 1.0, 0.6)
-    rows = 6
-    speed = 55 if kind == "river" else 22
+    # bright, thick, quick: the current is what keeps a riverbank alive when
+    # nothing else moves, and it has to read at a glance — measured with the
+    # gate's probe, a river whose ripples were a shade dimmer sat under its
+    # block threshold once the band moved by half a block row
+    hl = (1, 1, 1, 0.8) if time != "night" else (0.85, 0.92, 1.0, 0.8)
+    rows = 9
+    speed = 120 if kind == "river" else 40
     for i in range(rows):
         y = top + (bot - top) * (i + 0.6) / rows
-        spacing = r.uniform(180, 260)
+        spacing = r.uniform(150, 220)
         off = r.uniform(0, spacing)
-        L = r.uniform(50, 90) * (0.6 + 0.4 * i / rows)
+        L = r.uniform(60, 100) * (0.6 + 0.4 * i / rows)
         x = -spacing + (off + t * speed * (0.7 + 0.3 * i / rows)) % spacing
         while x < W + spacing:
             cr.move_to(x, y)
             cr.curve_to(x + L * 0.3, y - 5, x + L * 0.7, y + 5, x + L, y)
-            cr.set_line_width(7)
+            cr.set_line_width(9)
             cr.set_line_cap(cairo.LINE_CAP_ROUND)
             cr.set_source_rgba(*hl)
             cr.stroke()
@@ -600,11 +631,11 @@ def glints(cr, facts: dict, time: str, t: float, seed: int):
     kind, top, bot = w
     r = random.Random(seed + 13)
     gl = (1, 0.97, 0.85) if time in ("day", "dawn", "dusk") else (0.88, 0.94, 1.0)
-    for k in range(110 if kind == "sea" else 70):
+    for k in range(130 if kind == "sea" else 110):
         gx = r.uniform(0, W)
         gy = r.uniform(top + 8, bot - 8)
-        w_ = r.uniform(16, 34)
-        v = ink.vnoise(t, 5.0 + (k % 5), seed * 31 + k)
+        w_ = r.uniform(20, 40)
+        v = ink.vnoise(t, 7.0 + (k % 5), seed * 31 + k)
         if v > 0.1:
             a = min(1.0, (v - 0.1) * 1.6)
             ink.fill_stroke(cr, ink.ellipse_pts(gx, gy, w_, w_ * 0.24, 10), (gl[0], gl[1], gl[2], a),

@@ -217,7 +217,7 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
                 (nx + 0.8 * R, ny + 1.5 * R))
     if action == "carry":
         # in both arms, in front, at the waist
-        return ((nx + 0.95 * R, ny + 1.0 * R), (nx + 0.7 * R, ny + 1.15 * R))
+        return ((nx + 0.95 * R, ny + 1.35 * R), (nx + 0.7 * R, ny + 1.5 * R))
     if action == "point":
         # short of a straight arm, so the elbow bends
         k = math.sin(c / 4.0 + ph) * 0.08 * R
@@ -625,9 +625,11 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         # under the chin, not across the mouth, and a shade lighter than the
         # hair — the fourth film's judge read a beard as "a black wedge
         # across the face"
-        bpts = [(hcx - 0.35 * R, hcy + 0.62 * R), (hcx + 0.98 * R, hcy + 0.5 * R),
-                (hcx + 0.72 * R, hcy + 1.08 * R), (hcx + 0.12 * R, hcy + 1.22 * R),
-                (hcx - 0.3 * R, hcy + 0.95 * R)]
+        # a fringe along the jaw, below the mouth: the filled wedge under the
+        # chin was read by two storyboard rounds as "a brown prop drawn
+        # across the seated man's face"
+        bpts = [(hcx - 0.2 * R, hcy + 0.9 * R), (hcx + 0.45 * R, hcy + 0.82 * R), (hcx + 0.95 * R, hcy + 0.62 * R),
+                (hcx + 0.8 * R, hcy + 0.95 * R), (hcx + 0.35 * R, hcy + 1.18 * R), (hcx - 0.15 * R, hcy + 1.1 * R)]
         ink.fill_stroke(cr, bpts, ink.mix(lk["hair"], HEAD, 0.3), lw=lw * 0.7, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
     if cold and action != "sleep":

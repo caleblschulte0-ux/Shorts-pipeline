@@ -181,14 +181,22 @@ def review_sheet(sheet: Path, group: list[dict], judge) -> dict[int, dict]:
 
 
 # ------------------------------------------------------------------ repairs
-def _next_setting(setting: str, era: str) -> str | None:
+def _next_setting(setting: str, era: str, avoid=()) -> str | None:
+    """The next outdoor setting of the era that is not one of `avoid` (the
+    neighbouring beats' settings: a repair that made the same picture as the
+    beat before it put the shelf in breach of the author's own rule)."""
     names = [k for k, v in S.SETTINGS.items() if era in v.eras and not v.interior]
     if setting not in names or len(names) < 2:
         return None
-    return names[(names.index(setting) + 1) % len(names)]
+    i = names.index(setting)
+    for k in range(1, len(names)):
+        cand = names[(i + k) % len(names)]
+        if cand not in avoid:
+            return cand
+    return None
 
 
-def repair_broken(spec: dict, era: str, round_: int) -> str | None:
+def repair_broken(spec: dict, era: str, round_: int, avoid=()) -> str | None:
     """A small deterministic change, escalating by round: another layout,
     one prop fewer, another place. Returns what was done, or None when
     nothing more can be tried. The result always validates."""
@@ -208,7 +216,7 @@ def repair_broken(spec: dict, era: str, round_: int) -> str | None:
                 spec.clear(); spec.update(old)
         spec["variant"] = int(spec.get("variant") or 0) + 1
         return "variant"
-    nxt = _next_setting(spec.get("setting"), era)
+    nxt = _next_setting(spec.get("setting"), era, avoid)
     if nxt:
         spec["setting"] = nxt
         spec["props"] = [p for p in spec.get("props", [])
@@ -312,7 +320,10 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
                                  chapter=(ep["chapters"][fb["chapter"]].get("title") or ""),
                                  chapter_beats=ep["chapters"][fb["chapter"]]["beats"])
                 if did is None:
-                    did = repair_broken(fb["scene"], ep["era"], r)
+                    chb = ep["chapters"][fb["chapter"]]["beats"]
+                    avoid = {chb[j]["scene"].get("setting") for j in (fb["beat"] - 1, fb["beat"] + 1)
+                             if 0 <= j < len(chb)}
+                    did = repair_broken(fb["scene"], ep["era"], r, avoid=avoid)
                 if did:
                     report["repaired"] += 1
                     report["notes"].append(f"beat {fb['index']} r{r}: {f['why'] or 'does not show the words'} -> {did}")

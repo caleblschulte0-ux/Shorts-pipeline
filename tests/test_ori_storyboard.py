@@ -173,6 +173,15 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         self.assertGreaterEqual(int(sc.get("variant", 0)), 1, "fell back to the small repair")
         self.assertEqual(rep["repaired"], 1)
 
+    def test_the_third_round_repair_does_not_copy_a_neighbours_place(self):
+        # run #9's board moved a broken beat to the setting of the beat before
+        # it, and the shelf was in breach of the author's own rule
+        nxt = self.SB._next_setting("cave_mouth", "stone_age", avoid=())
+        self.assertIsNotNone(nxt)
+        alt = self.SB._next_setting("cave_mouth", "stone_age", avoid={nxt})
+        self.assertNotEqual(alt, nxt)
+        self.assertIsNotNone(alt)
+
     def test_a_clean_board_is_stamped_and_not_reviewed_again_for_the_same_kit(self):
         ep = _ep(3)
         calls = []

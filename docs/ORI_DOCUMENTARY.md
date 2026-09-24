@@ -300,6 +300,32 @@ note names a real thing, so every note moved the film, not the judge:
   away from any town looks like, and it tells one open-sky night from the
   next.
 
+### The eighth film (70, SHIP, craft 1): the board found the cost of the nearer world
+
+Run #9 carried the nearer world and the tree line, and its storyboard
+flagged ten scenes in round one: a prop tree's canopy cut off by the top
+edge (2.77 was too tall), a torch flame "at the top of the pine" and a fire
+"floating in the pine" (the flame at canopy height, and a snow peak read
+as a pine), a tree trunk through a tent, a tent behind a fire read as a
+fire in the tent, a beard read as "a brown prop across the face", a fire
+"on top of the river". Every one is a rule now:
+
+- **The tree line is data** (`settings.tree_line`, a pure function of
+  setting, seed and shot), drawn by the still and read by the layout: a
+  back prop or a tall one keeps off the trunks and canopies (`TREE_KEEP`).
+- **A prop tree stays inside the frame** (`TREE_TALL`, `TOP_ROOM`); the
+  torch is shorter (200) so its flame sits below the canopies and peaks;
+  the tent is a structure (`SOLID_BACK`) that nothing stands in front of.
+- **The beard is a fringe along the jaw**, not a wedge under the chin; a
+  carried load rides at the waist.
+- **The water band sits back from the bank** (`WATER_BAND`), and the
+  current is brisker and brighter with more glints: measured with the
+  gate's probe the moved band had split the ripples across two block rows
+  and a night river fell to 0.46 duplicate frames; it is 0.00 now, at dusk
+  and by day too.
+- **A round-three repair never copies a neighbour's place**, and the
+  Milky Way is soft haze rather than a stroked bar.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
