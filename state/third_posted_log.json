@@ -8668,6 +8668,70 @@
         "end": 6.8
       },
       "director_cut": true
+    },
+    "rejected-yummynimblesoymilkkappaross-os_cza9fw9k4h1o7": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/YummyNimbleSoymilkKappaRoss-os_cza9FW9K4H1O7",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Beats Tyler1 After Chat Said He Couldn't Do It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is only a thin horizontal strip (~20% of canvas height) with massive blurred padding above and below, not t; vision: Streamer and chessboard action are tiny within that thin strip, hard to read on a phone",
+      "ts": "2026-09-24T11:26:24.962386+00:00"
+    },
+    "rejected-hothonorablelorisfunrun-5-lapcyu8knccpl8": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/HotHonorableLorisFunRun-5-LaPCyu8KnCCpL8",
+      "streamer": "jynxzi",
+      "title": "squirt",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (crude hypothetical chat, no real event)",
+      "ts": "2026-09-24T11:29:06.718245+00:00"
+    },
+    "rejected-suaveonerouskleetakenrg-us7dut39khadwcjh": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/SuaveOnerousKleeTakeNRG-US7dUt39KhaDWcjH",
+      "streamer": "sodapoppin",
+      "title": "Wtf retail",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague reaction, no visible event)",
+      "ts": "2026-09-24T11:32:00.368741+00:00"
+    },
+    "rejected-bluedarkminkfeelsbadman-bqj6exe7vnxiredb": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/BlueDarkMinkFeelsBadMan-BqJ6exE7VnXIREdB",
+      "streamer": "jasontheween",
+      "title": "FRIGGIN EASY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague chatter, no clear event)",
+      "ts": "2026-09-24T11:32:45.097220+00:00"
+    },
+    "rejected-tastyoddmanateemau5-sm7w4igyq-grn93g": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TastyOddManateeMau5-Sm7W4igyq-gRn93G",
+      "streamer": "jynxzi",
+      "title": ".....",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just opinion talk, no event)",
+      "ts": "2026-09-24T11:33:59.336335+00:00"
+    },
+    "rejected-sassybelovedscallioncclamchamp-zexlh19ybnt--n5j": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SassyBelovedScallionCclamChamp-zEXLH19yBnt--n5J",
+      "streamer": "kaicenat",
+      "title": "6/10",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just rating game, no event)",
+      "ts": "2026-09-24T11:35:07.358962+00:00"
+    },
+    "clip-20260924-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/ClumsyAggressiveSwordTF2John-SB75Xw6QnNgr_WZd",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
+      "kind": "twitch_clip",
+      "ts": "2026-09-24T11:38:11.878746+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
