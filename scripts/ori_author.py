@@ -178,7 +178,8 @@ def _outline_problems(o: dict, era: str) -> list[str]:
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
 IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyone idle
 FILM_LOOK_SHARE = 0.2      # ... and at most one in five of the whole film's
-FILM_PLACE_SHARE = 0.25    # ... and no one SETTING, whatever the shot, past a quarter of the film
+FILM_PLACE_SHARE = 0.25
+CROWD_SHRINK = 0.8         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
 
 
 def _picture_tally(chapters) -> dict:
@@ -245,6 +246,19 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
     if peopled and len(idle) > max(1, int(len(peopled) * IDLE_SHARE)):
         bad.append(f"{len(idle)} of {len(peopled)} peopled beats show everyone idle: give the people the "
                    f"action the words describe (sew, knap, feed_fire, play, talk, carry, eat, look_up...)")
+    # a scene the layout can only fit by drawing everyone small is a scene
+    # with too much in it: the eighth film's judge saw "a sleeper's head
+    # right next to the fire's base at the tiny render size". Ask the
+    # layout (fast, deterministic) and send the crowd back to the author
+    for j, b in enumerate(beats):
+        sc = b.get("scene") if isinstance(b, dict) else None
+        if not isinstance(sc, dict) or S.validate(sc, era):
+            continue
+        lay = S.layout(sc, 1000 + j)
+        natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+        if lay["scale"] < natural * CROWD_SHRINK - 1e-6:
+            bad.append(f"beat {j + 1} is too crowded for its {S.shot_of(sc)} shot (drawn at "
+                       f"{int(100 * lay['scale'] / natural)}% size to fit): drop a prop or a person, or widen the shot")
     prev = None
     for j, b in enumerate(beats):
         sc = b.get("scene") if isinstance(b, dict) else None

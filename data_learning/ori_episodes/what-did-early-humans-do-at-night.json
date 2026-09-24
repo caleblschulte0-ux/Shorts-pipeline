@@ -2486,7 +2486,7 @@
     {
      "say": "He feeds the fire, quietly, pushing the ends of the branches in toward the heart of it. He does it without thinking, the way you might pull a blanket up. Then he sits and watches the flames take hold, and listens to the others breathing. His wife is asleep beside him, one arm flung out over the child. Her breath is slow and even. He sits for a long time doing nothing at all, and there is no better word for it than peace.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "forest",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -2506,8 +2506,7 @@
       ],
       "props": [
        "campfire",
-       "bedroll",
-       "stones"
+       "bedroll"
       ]
      }
     },

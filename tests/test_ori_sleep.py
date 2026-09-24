@@ -696,6 +696,20 @@ class ThePictureIsReadable(unittest.TestCase):
                        if "picture" in x or "of the film" in x]
                 self.assertEqual(bad, [], f"{f.name}: {c['title']}")
 
+    def test_a_crowded_scene_goes_back_to_the_author(self):
+        import ori_author as A
+        crowd = {"say": "words", "scene": _scene(setting="cave_mouth", shot="close",
+                                                  cast=[{"who": "man", "pose": "lie", "action": "sleep"},
+                                                        {"who": "woman", "pose": "lie", "action": "sleep"},
+                                                        {"who": "elder", "pose": "sit_on", "action": "idle"}],
+                                                  props=["campfire", "wolf", "bedroll", "woodpile", "stones"])}
+        bad = A._chapter_problems([crowd], "stone_age", 0, 99999)
+        self.assertTrue(any("too crowded" in b for b in bad), bad)
+        calm = {"say": "words", "scene": _scene(setting="grassland", shot="close",
+                                                 cast=[{"who": "man", "pose": "sit", "action": "warm_hands"}],
+                                                 props=["campfire"])}
+        self.assertEqual([b for b in A._chapter_problems([calm], "stone_age", 0, 99999) if "crowded" in b], [])
+
     def test_a_chapter_opens_on_a_new_place(self):
         import ori_author as A
         _beat = lambda **kw: {"say": "words", "scene": _scene(**kw)}

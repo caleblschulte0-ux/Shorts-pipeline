@@ -326,6 +326,13 @@ fire in the tent, a beard read as "a brown prop across the face", a fire
 - **A round-three repair never copies a neighbour's place**, and the
   Milky Way is soft haze rather than a stroked bar.
 
+- **A crowded scene goes back to the author.** `_chapter_problems` runs
+  the layout (fast, deterministic) and refuses a beat the layout can only
+  fit by drawing everyone under `CROWD_SHRINK` of natural size — "a
+  sleeper's head right next to the fire's base at the tiny render size" is
+  a scene with too much in it, not a drawing defect. The shelf's one such
+  beat moved to the forest.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
