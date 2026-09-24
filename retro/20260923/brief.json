@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260923",
-  "generated_at": "2026-09-23T23:30:54Z",
+  "generated_at": "2026-09-24T00:30:56Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -1430,10 +1430,17 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "b366a43",
-    "commits_since": "2026-09-22",
+    "head": "a40b682",
+    "commits_since": "2026-09-23",
     "commit_count": 50,
     "commits": [
+      "a40b682 exchange: phase A bundle for 20260924 [skip ci]",
+      "f1e9f73 Explainer: no snow, decisive motion, a big hero, and a real 2-and-2 A/B (#443)",
+      "ff1e772 claim: mailbox verdicts 2026-09-23T23:51Z [skip ci]",
+      "36c73ad claim: mailbox verdicts 2026-09-23T23:47Z [skip ci]",
+      "db08503 exchange: phase A bundle for 20260923 [skip ci]",
+      "6121707 third: keep the director's reason, give VOD arcs a turn, stop retries repeating the story (#442)",
+      "d920bcf retro: brief + triage for 20260923 [skip ci]",
       "b366a43 claim: mailbox verdicts 2026-09-23T22:47Z [skip ci]",
       "73ac680 exchange: phase A bundle for 20260923 [skip ci]",
       "e78be6a Explainer: Data performs more than he presents (#441)",
@@ -1466,14 +1473,7 @@
       "9c008e5 claim: mailbox verdicts 2026-09-23T16:48Z [skip ci]",
       "523d6a6 daily: 2026-09-23 report + state [skip ci]",
       "397a87d claim: mailbox verdicts 2026-09-23T15:47Z [skip ci]",
-      "fbc819d exchange: phase A bundle for 20260923 [skip ci]",
-      "d879eb9 Explainer: aim at 90 \u2014 a polish loop, the defects it found, and the illustrated arm live at 50/50 (#437)",
-      "a9f5265 explainer: update posted log + analytics [skip ci]",
-      "ca3c8e4 third: analytics [skip ci]",
-      "5bb6139 third: update posted log + analytics [skip ci]",
-      "bfb31b0 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "7a0868a watchdog: chatgpt task verdicts 20260923 [skip ci]",
-      "f5ba44c trending: auto-resume after a paused day [skip ci]"
+      "fbc819d exchange: phase A bundle for 20260923 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",

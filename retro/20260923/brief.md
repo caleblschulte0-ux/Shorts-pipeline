@@ -1,6 +1,6 @@
 # Retro — 20260923
 
-generated 2026-09-23T23:30:54Z · 5 video(s) posted today
+generated 2026-09-24T00:30:56Z · 5 video(s) posted today
 
 ## trending
 
@@ -66,6 +66,6 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Repo
 
-- HEAD b366a43, 50 commit(s) since 2026-09-22
+- HEAD a40b682, 50 commit(s) since 2026-09-23
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
