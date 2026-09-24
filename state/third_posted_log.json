@@ -8817,6 +8817,34 @@
         "end": 29.4
       },
       "director_cut": true
+    },
+    "rejected-optimisticcrunchyjalapenoossloth--btqcgh7yuv0wqoy": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/OptimisticCrunchyJalapenoOSsloth--bTqCGH7YuV0wQOy",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Says It Don't Matter, Then Turns It Up",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Subject/players completely absent from the sharp region for ~3.5s-4.6s \u2014 frame shows only empty sky and rooftop with no ",
+      "ts": "2026-09-24T13:41:04.336125+00:00"
+    },
+    "rejected-bittertalentedcheddarlitty-ajemqrhpkzi1xziz": {
+      "source_url": "https://www.twitch.tv/buddha/clip/BitterTalentedCheddarLitty-AjemqrHPkZI1XzIZ",
+      "streamer": "buddha",
+      "title": "Buddha Got Goosebumps And Said This Changed Everything For Him",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is only ~1/3 of canvas height (target ~3/4), leaving the driving action small and distant instead of fillin; vision: No person/reaction ever shown despite title promising Buddha's goosebumps reaction \u2014 content is entirely distant gamepla; vision: Captions render as broken/ungram",
+      "ts": "2026-09-24T13:52:17.822528+00:00"
+    },
+    "clip-20260924-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DrabColorfulStorkRalpherZ-38C_lmVJsk2osIpR",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Absolutely Loses It And Goes Off On Him",
+      "kind": "twitch_clip",
+      "ts": "2026-09-24T13:58:11.716447+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
