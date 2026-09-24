@@ -3,292 +3,6 @@
     {
       "date": "20260917",
       "dry_run": false,
-      "ts": "2026-09-17T15:38:29+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 103,
-        "with_retention": 86,
-        "with_curve": 14,
-        "fetched_at": "2026-09-17T13:42:20.697955+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260917-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Cinna Caught It All On Stream",
-              "raw": "lol",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 305.1
-        },
-        {
-          "slug": "clip-20260917-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260917-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260917",
-      "dry_run": false,
-      "ts": "2026-09-17T15:45:23+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 103,
-        "with_retention": 86,
-        "with_curve": 14,
-        "fetched_at": "2026-09-17T13:42:20.697955+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260917-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260917-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Cinna Caught It All On Stream",
-              "raw": "lol",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 270.7
-        },
-        {
-          "slug": "clip-20260917-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260917-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260917",
-      "dry_run": false,
       "ts": "2026-09-17T19:03:44+00:00",
       "feedback": {
         "snapshot": true,
@@ -5178,6 +4892,317 @@
             }
           },
           "took_s": 191.4
+        },
+        {
+          "slug": "clip-20260924-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260924",
+      "dry_run": false,
+      "ts": "2026-09-24T15:45:19+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 105,
+        "with_retention": 83,
+        "with_curve": 14,
+        "fetched_at": "2026-09-24T13:58:28.194404+00:00"
+      },
+      "brain": {
+        "ok": 12,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260924-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (routine gameplay, no clear event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title too vague to judge",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "routine gameplay, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 69.1
+        },
+        {
+          "slug": "clip-20260924-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.7,
+              "why": "biker hits mirror, runs light",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "biker hits mirror, runs light",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Loses It After This Biker Hits Her Mirror And Runs A Red Light"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": []
+            }
+          },
+          "took_s": 268.8
+        },
+        {
+          "slug": "clip-20260924-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260924",
+      "dry_run": false,
+      "ts": "2026-09-24T15:56:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 105,
+        "with_retention": 83,
+        "with_curve": 14,
+        "fetched_at": "2026-09-24T15:45:29.288524+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260924-1",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l; vision: Sharp region across most of the clip is a thin, low-contrast s",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague setup talk, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha And The Brickbois Photo Goes Wrong When Martin Gets Thrown Out"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.65,
+              "problems": [
+                "From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l",
+                "Sharp region across most of the clip is a thin, low-contrast strip rather than filling ~3/4 of the canvas \u2014 the subject ",
+                "3.6s frame is a near-blank dark/blue blur with no discernible subject, reading like a broken or empty frame"
+              ]
+            }
+          },
+          "took_s": 277.5
+        },
+        {
+          "slug": "clip-20260924-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260924-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20260924-6",

@@ -8899,6 +8899,15 @@
         "end": 54.7
       },
       "director_cut": true
+    },
+    "rejected-observantyawningwallabymrdestructoid-sfnn3getjjqlg5pa": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ObservantYawningWallabyMrDestructoid-sFnN3GetjjQlg5pa",
+      "streamer": "buddha",
+      "title": "Buddha And The Brickbois Photo Goes Wrong When Martin Gets Thrown Out",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l; vision: Sharp region across most of the clip is a thin, low-contrast strip rather than filling ~3/4 of the canvas \u2014 the subject ; vision: 3.6s frame is a near-blank dark/",
+      "ts": "2026-09-24T15:56:58.967722+00:00"
     }
   }
 }
