@@ -554,7 +554,7 @@ exports.handler = async function (event) {
     if (said.indexOf("unaudited_client_can_only_post_to_private_accounts") === 0) {
       // A sandbox rule, in words a person can act on.
       return page(problem(user, "Your TikTok account needs to be private for this",
-                          "While Shorts Media is in TikTok's sandbox, TikTok only lets it post to an account set to "
+                          "While Shorts Media is in TikTok's sandbox, TikTok only lets it post to an account set to " +
                           "Private. In TikTok: Settings and privacy › Privacy › Private account. Then post again."));
     }
     return page(problem(user, "Something went wrong", said));
