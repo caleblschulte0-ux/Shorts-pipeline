@@ -3,7 +3,7 @@
 | series | n | median VPH |
 |---|---|---|
 | chaos | 37 | 0.01 |
-| wholesome | 12 | 0.155 |
+| wholesome | 12 | 0.15 |
 | fail | 11 | 0.02 |
 | win | 8 | 0.07 |
 | drama | 8 | 0.04 |
@@ -16,4 +16,4 @@ Excluded from the content-mix comparison (unclassified / non-series structure):
 
 | label | n | median VPH |
 |---|---|---|
-| unknown | 1 | 1.93 |
+| unknown | 1 | 1.87 |
