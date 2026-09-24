@@ -416,6 +416,7 @@ jobs:
         if: steps.preflight.outputs.skip == ''
         continue-on-error: true
         env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVEN_LABS_API_KEY }}   # shared/elevenlabs.py: the paid voice, tried first (the secret is ELEVEN_LABS_API_KEY)
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           # Per-channel tokens. Each one corresponds to a channel slug

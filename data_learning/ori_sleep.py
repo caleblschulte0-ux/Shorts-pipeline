@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import functools
 import os
 import random
 import re
@@ -54,6 +55,7 @@ FONTS = REPO / "assets" / "fonts"
 MUSIC = PKG / "music" / "sleep"
 W, H, FPS = 1920, 1080, 24
 SR = 24000
+EL_WORKERS = 3               # concurrent ElevenLabs requests: every paid plan allows three
 
 VOICE = os.environ.get("ORI_VOICE", "bm_george")   # low, unhurried British narrator
 SPEED = 0.82
@@ -200,6 +202,16 @@ def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None
     if voice is None and workers > 1:
         pool = ProcessPoolExecutor(max_workers=workers, initializer=_voice_init,
                                    initargs=(voice_factory or Voice,))
+    try:
+        return _narrate(ep, wav, max_seconds, voice, pool)
+    finally:
+        if pool is not None:
+            pool.shutdown(cancel_futures=True)   # a voice that fails mid-film leaves no workers behind
+
+
+def _narrate(ep: dict, wav: Path, max_seconds, voice, pool) -> list[Beat]:
+    import numpy as np
+    import soundfile as sf
     v = voice or (None if pool else Voice())
     beats: list[Beat] = []
     t = 0.0
@@ -240,8 +252,6 @@ def narrate(ep: dict, wav: Path, *, max_seconds: float | None = None, voice=None
             if stop:
                 break
         silence(4.0)
-    if pool is not None:
-        pool.shutdown()
     for a, b in zip(beats, beats[1:]):
         a.end = b.start
     beats[-1].end = t
@@ -541,7 +551,27 @@ def render(ep: dict, out: Path, *, max_seconds: float | None = None,
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         print(f"[ori_sleep] narrating {ep['slug']} ...", flush=True)
-        beats = narrate(ep, work / "narration.wav", max_seconds=max_seconds, voice=voice, workers=workers)
+        beats, voice_used = None, VOICE
+        if voice is None:
+            # ElevenLabs first (the operator's paid voice, shared/elevenlabs.py),
+            # the WHOLE film or none of it: a line it cannot speak re-narrates
+            # everything with Kokoro, so the voice never changes mid-film
+            from shared import elevenlabs as EL
+            lines = [x for ch in ep["chapters"] for b in ch["beats"] for x in sentences(b["say"])]
+            if EL.available("curiosity") and EL.can_afford(lines):
+                try:
+                    beats = narrate(ep, work / "narration.wav", max_seconds=max_seconds,
+                                    voice=None if workers > 1 else EL.Voice("curiosity"),
+                                    workers=min(workers, EL_WORKERS),
+                                    voice_factory=functools.partial(EL.Voice, "curiosity"))
+                    voice_used = "elevenlabs:" + EL.voice_for("curiosity")["voice_id"]
+                except Exception as e:           # noqa: BLE001 — any failure: the whole film on Kokoro
+                    print(f"[ori_sleep] ElevenLabs could not narrate the film ({str(e)[:160]}); "
+                          f"re-narrating it all with Kokoro", flush=True)
+                    beats = None
+        if beats is None:
+            beats = narrate(ep, work / "narration.wav", max_seconds=max_seconds, voice=voice, workers=workers)
+        print(f"[ori_sleep] voice: {voice_used}", flush=True)
         total = beats[-1].end
         print(f"[ori_sleep] {len(beats)} scenes, {total / 60:.1f} min — drawing with {workers} workers",
               flush=True)
@@ -561,7 +591,7 @@ def render(ep: dict, out: Path, *, max_seconds: float | None = None,
     chapters[0]["t"] = 0.0
     meta = {"slug": ep["slug"], "title": ep["title"], "duration": round(probe_duration(out), 2),
             "chapters": chapters, "scenes": len(beats), "era": ep["era"],
-            "words": sum(_words(b.text) for b in beats), "voice": VOICE,
+            "words": sum(_words(b.text) for b in beats), "voice": voice_used,
             "music": sorted(p.name for p in MUSIC.glob("*.mp3")) if MUSIC.is_dir() else [],
             "sources": ep.get("sources") or []}
     out.with_suffix(".meta.json").write_text(json.dumps(meta, indent=2) + "\n")

@@ -123,8 +123,14 @@ def _synth_edge(sentences, workdir: Path):
 
 
 def synth_narration(sentences, workdir: Path, voice: str):
-    """Per-sentence wavs -> one narration track + (start, end) windows."""
-    if KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
+    """Per-sentence wavs -> one narration track + (start, end) windows.
+    ElevenLabs first (shared/elevenlabs.py, all lines or none), then Kokoro,
+    then edge-tts."""
+    from shared import elevenlabs as EL
+    outs = [workdir / f"s{i}.wav" for i in range(len(sentences))]
+    if EL.speak_all([_tts_text(x) for x in sentences], "explainer", outs):
+        wavs = outs
+    elif KOKORO_MODEL.exists() and KOKORO_VOICES.exists():
         wavs = _synth_kokoro(sentences, workdir, voice)
     else:
         print("[longform] Kokoro models missing — falling back to edge-tts "

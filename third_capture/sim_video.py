@@ -187,13 +187,15 @@ def compose_sim(pkg: dict, out_path: Path) -> dict:
             inputs = ["-i", str(bed)]
             delays, idx = [], 2
             voice = pkg.get("voice", "en-US-ChristopherNeural")
-            for key, at in (("hook", 0.3), ("payoff", dur - 3.3)):
-                line = pkg["script"].get(key)
-                if not line:
-                    continue
+            spoken = [(key, at, pkg["script"].get(key).format(peak=f"{growth ** 12.0:.1f}"))
+                      for key, at in (("hook", 0.3), ("payoff", dur - 3.3)) if pkg["script"].get(key)]
+            # ElevenLabs first (shared/elevenlabs.py), both lines or neither
+            from shared import elevenlabs as EL
+            eleven = EL.speak_all([x[2] for x in spoken], "third", [tmp / f"vo_{x[0]}.mp3" for x in spoken])
+            for key, at, text in spoken:
                 p = tmp / f"vo_{key}.mp3"
-                asyncio.run(_tts(line.format(
-                    peak=f"{growth ** 12.0:.1f}"), p, voice))
+                if not eleven:
+                    asyncio.run(_tts(text, p, voice))
                 inputs += ["-i", str(p)]
                 ms = int(at * 1000)
                 delays.append(f"[{idx}:a]adelay={ms}|{ms}[v{idx}]")

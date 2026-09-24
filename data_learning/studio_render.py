@@ -605,11 +605,19 @@ def synth_narration(sentences, workdir: Path, voice: str):
     import os
     import soundfile as sf
 
-    # Speechify first (if a key is set) — whole-video, so the voice never
-    # switches mid-clip: if ANY line fails (quota/error) we throw the batch away
-    # and re-synth everything on the local Kokoro voice.
+    # ElevenLabs first (the operator's paid voice, shared/elevenlabs.py), then
+    # Speechify, then Kokoro — each one whole-video, so the voice never
+    # switches mid-clip: if ANY line fails (quota/error) the batch is thrown
+    # away and the next voice re-synths everything.
     wavs, windows, t = [], [], 0.0
-    if os.environ.get("SPEECHIFY_API_KEY"):
+    from shared import elevenlabs as EL
+    outs = [workdir / f"s{i}.wav" for i in range(len(sentences))]
+    if EL.speak_all([_tts_text(x) for x in sentences], "explainer", outs):
+        for w in outs:
+            d = _dur(w) + 0.12
+            windows.append((t, t + d)); t += d; wavs.append(w)
+        print(f"[tts] elevenlabs ({len(wavs)} lines)", flush=True)
+    if not wavs and os.environ.get("SPEECHIFY_API_KEY"):
         ok = True
         for i, sent in enumerate(sentences):
             w = workdir / f"s{i}.wav"

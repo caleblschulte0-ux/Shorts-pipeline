@@ -374,9 +374,15 @@ async def _tts(text, out, voice):
 
 
 def make_audio(beats, tmp, voice):
+    # ElevenLabs first (shared/elevenlabs.py) — every beat or none, so the
+    # voice never changes mid-clip — then edge-tts
+    from shared import elevenlabs as EL
+    paths = [tmp / f"vo_{i}.mp3" for i in range(len(beats))]
+    eleven = EL.speak_all([b.vo for b in beats], "third", paths)
     for i, b in enumerate(beats):
-        p = tmp / f"vo_{i}.mp3"
-        asyncio.run(_tts(b.vo, p, voice))
+        p = paths[i]
+        if not eleven:
+            asyncio.run(_tts(b.vo, p, voice))
         dur = float(subprocess.check_output(
             ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
              "-of", "csv=p=0", str(p)]).decode().strip())

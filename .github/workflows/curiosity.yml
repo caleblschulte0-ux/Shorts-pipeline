@@ -200,6 +200,7 @@ jobs:
       - name: Render, judge, publish
         timeout-minutes: 230
         env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVEN_LABS_API_KEY }}   # shared/elevenlabs.py: the paid voice, tried first (the secret is ELEVEN_LABS_API_KEY)
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           YOUTUBE_EXPECTED_CHANNEL: ${{ inputs.expected_channel || vars.CURIOSITY_EXPECTED_CHANNEL || 'OpenRangeInteractive' }}

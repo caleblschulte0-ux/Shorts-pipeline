@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 5,
-  "revision_note": "Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
+  "revision": 6,
+  "revision_note": "Operator, 2026-09-24: \"i have a elevn labs account that i pay for how do we hook that up\". Each channel gains a `voice.elevenlabs` block (voice_id, model, stability, similarity_boost, style, speed) read by shared/elevenlabs.py, which every narration path tries first with its old voice as the whole-video fallback. Counts and mixes are unchanged from revision 5 (explainer 4/day, third 6/day, curiosity disabled here and published as the gated sleep film, trending 4 graph_race + 2 reddit_story, text_card retired).",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -216,6 +216,16 @@
       "no_repeat_days": 6,
       "failure_policy": {
         "on_short_slate": "chatgpt_takeover_authoring"
+      },
+      "voice": {
+        "elevenlabs": {
+          "voice_id": "pNInz6obpgDQGcFmaJgB",
+          "model": "eleven_multilingual_v2",
+          "stability": 0.4,
+          "similarity_boost": 0.75,
+          "style": 0.2,
+          "note": "Adam, an ElevenLabs premade voice: punchy for Shorts. Any id from `python -m shared.elevenlabs voices` works."
+        }
       }
     },
     "explainer": {
@@ -302,6 +312,16 @@
         "on_no_chatgpt": "ship_the_deterministic_words",
         "showrunner": "fails_closed_on_publish",
         "note": "The showrunner veto is sovereign here and this channel publishes NOTHING without a verdict. That gate is not registry-configurable on purpose."
+      },
+      "voice": {
+        "elevenlabs": {
+          "voice_id": "nPczCjzI2devNBz1zQrb",
+          "model": "eleven_multilingual_v2",
+          "stability": 0.5,
+          "similarity_boost": 0.75,
+          "style": 0.1,
+          "note": "Brian, an ElevenLabs premade voice: a clear, confident narrator for the data stories."
+        }
       }
     },
     "curiosity": {
@@ -379,7 +399,18 @@
       "failure_policy": {
         "on_empty_queue": "chatgpt_queue_stocking"
       },
-      "disabled_note": "Long-form is not publishing right now (operator, 2026-08-05). Flip `enabled` back to true to resume; the alarm and every slate resolve from this field, so nothing else needs editing."
+      "disabled_note": "Long-form is not publishing right now (operator, 2026-08-05). Flip `enabled` back to true to resume; the alarm and every slate resolve from this field, so nothing else needs editing.",
+      "voice": {
+        "elevenlabs": {
+          "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+          "model": "eleven_multilingual_v2",
+          "stability": 0.65,
+          "similarity_boost": 0.75,
+          "style": 0.0,
+          "speed": 0.9,
+          "note": "George, an ElevenLabs premade voice: a warm, unhurried storyteller for the sleep films."
+        }
+      }
     },
     "third": {
       "id": "third",
@@ -434,6 +465,16 @@
       "allowed_editorial_mutations": [],
       "failure_policy": {
         "on_no_brain": "safe_raw_clip_title"
+      },
+      "voice": {
+        "elevenlabs": {
+          "voice_id": "nPczCjzI2devNBz1zQrb",
+          "model": "eleven_multilingual_v2",
+          "stability": 0.45,
+          "similarity_boost": 0.75,
+          "style": 0.15,
+          "note": "Brian, an ElevenLabs premade voice."
+        }
       }
     }
   }

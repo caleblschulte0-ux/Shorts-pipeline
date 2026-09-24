@@ -125,11 +125,16 @@ def normalize_for_tts(text: str) -> str:
     return s
 
 
-def tts(text: str, out: Path) -> None:
-    """Synthesize narration. Prefers Gemini TTS (free tier, far more human
-    and style-controllable) when GEMINI_API_KEY is set; falls back to local
-    Kokoro, then edge-tts, so a render never hard-fails on a rate limit."""
+def tts(text: str, out: Path, channel: str = "trending") -> None:
+    """Synthesize narration. ElevenLabs first (the operator's paid voice,
+    shared/elevenlabs.py) when ELEVENLABS_API_KEY is set; then Gemini TTS
+    (free tier) when GEMINI_API_KEY is; then local Kokoro, then edge-tts, so
+    a render never hard-fails on a rate limit. One call is one video's whole
+    narration, so the voice cannot change mid-clip."""
     text = normalize_for_tts(text)
+    from shared import elevenlabs as EL
+    if EL.speak_all([text], channel, [out]):
+        return
     if os.environ.get("GEMINI_API_KEY"):
         try:
             _tts_gemini(text, out)

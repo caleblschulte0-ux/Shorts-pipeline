@@ -146,6 +146,7 @@ jobs:
 
       - name: Build + upload long-form
         env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVEN_LABS_API_KEY }}   # shared/elevenlabs.py: the paid voice, tried first (the secret is ELEVEN_LABS_API_KEY)
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           YOUTUBE_EXPECTED_CHANNEL: short_explainer67
