@@ -78,7 +78,10 @@ function page(body, extra) {
 }
 
 function redirect(to, extra) {
-  return { statusCode: 302, headers: Object.assign({ Location: to, "Cache-Control": "no-store" }, extra || {}), body: "" };
+  // Absolute, so nothing between here and the browser can carry the
+  // callback's query string (the code, the state) onto the app's address.
+  const where = /^https?:/.test(to) ? to : SITE + to;
+  return { statusCode: 302, headers: Object.assign({ Location: where, "Cache-Control": "no-store" }, extra || {}), body: "" };
 }
 
 async function tt(path, token, body, method) {
@@ -193,7 +196,7 @@ function draftPage(user, video) {
     <h1 class="app-h1">Send to your TikTok inbox as a draft</h1>
     <p class="muted page-lead">The video goes to your TikTok inbox. You finish the caption and settings in the TikTok app; nothing is published by this step.</p>
   </div>
-  <form class="composer" action="/app/drafting" method="post">
+  <form class="composer draft" action="/app/drafting" method="post">
     <input type="hidden" name="video" value="${esc(video.id)}">
     <div class="composer-cols">
       <div class="composer-preview">
@@ -447,6 +450,9 @@ exports.handler = async function (event) {
       const url = "https://www.tiktok.com/v2/auth/authorize/?" + new URLSearchParams({
         client_key: CONFIG.client_key, scope: SCOPES, response_type: "code",
         redirect_uri: CONFIG.redirect_uri, state,
+        // The consent screen every time: a user who authorized before is
+        // otherwise waved through, and the review has to SEE the scopes.
+        disable_auto_auth: "1",
       }).toString();
       return redirect(url, { "Set-Cookie": setCookie("sm_state", state, 600) });
     }
@@ -544,6 +550,13 @@ exports.handler = async function (event) {
 
     return redirect("/app/");
   } catch (e) {
-    return page(problem(user, "Something went wrong", String(e && e.message || e)));
+    const said = String(e && e.message || e);
+    if (said.indexOf("unaudited_client_can_only_post_to_private_accounts") === 0) {
+      // A sandbox rule, in words a person can act on.
+      return page(problem(user, "Your TikTok account needs to be private for this",
+                          "While Shorts Media is in TikTok's sandbox, TikTok only lets it post to an account set to "
+                          "Private. In TikTok: Settings and privacy › Privacy › Private account. Then post again."));
+    }
+    return page(problem(user, "Something went wrong", said));
   }
 };

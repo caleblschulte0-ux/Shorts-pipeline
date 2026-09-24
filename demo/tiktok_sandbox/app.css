@@ -279,3 +279,7 @@ a.vcard:hover,a.vcard:focus-visible{border-color:var(--tt-red);transform:transla
   .status-card,.center-card{padding:22px}
   .tt-sheet{padding:20px}
 }
+
+/* The draft form has no privacy choice to make: its one button is live. */
+.app .composer.draft .btn-post{background:var(--tt-red);border-color:var(--tt-red);color:#fff;pointer-events:auto;cursor:pointer}
+.composer.draft .post-wrap{cursor:auto}
