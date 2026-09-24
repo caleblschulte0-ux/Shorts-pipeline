@@ -316,7 +316,7 @@ jobs:
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
-          ELEVEN: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVEN: ${{ secrets.ELEVENLABS_API_KEY || secrets.ELEVEN_LABS_API_KEY }}
         run: |
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
@@ -324,7 +324,7 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           # Not required — the narration falls back — but said out loud: the
           # operator wants ElevenLabs used whenever it can be.
-          [ -z "$ELEVEN" ] && echo "::warning::ELEVENLABS_API_KEY is not set — narration will use Speechify/Kokoro, not ElevenLabs"
+          [ -z "$ELEVEN" ] && echo "::warning::ELEVENLABS_API_KEY (or ELEVEN_LABS_API_KEY) is not set — narration will use Speechify/Kokoro, not ElevenLabs"
           echo "Secrets present."
 
       - name: Install Claude Code CLI (brain for the forge + showrunner)
@@ -545,7 +545,7 @@ jobs:
           # ElevenLabs narration FIRST when it can (operator, 2026-09-24);
           # Speechify, then the local Kokoro voice, when it cannot. The engine
           # used and why ElevenLabs was not is recorded on every video.
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY || secrets.ELEVEN_LABS_API_KEY }}
           ELEVENLABS_VOICE_ID: ${{ vars.ELEVENLABS_VOICE_ID }}
           ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}

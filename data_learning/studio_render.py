@@ -549,7 +549,10 @@ def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
     import os
     import urllib.error
     import urllib.request
-    key = os.environ.get("ELEVENLABS_API_KEY", "").strip()
+    # The operator saved the secret as ELEVEN_LABS_API_KEY; both spellings
+    # are the same key, and a mismatch cost a whole day of Speechify.
+    key = (os.environ.get("ELEVENLABS_API_KEY", "").strip()
+           or os.environ.get("ELEVEN_LABS_API_KEY", "").strip())
     if not key:
         _ELEVEN_DEAD = "ELEVENLABS_API_KEY is not set"
         return False
