@@ -842,6 +842,59 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertNotEqual(self.S.shot_of(beats[0]["scene"]), self.S.shot_of(beats[1]["scene"]))
         self.assertEqual([x for x in A._chapter_problems(beats, "medieval", 0, 10 ** 6) if "back to back" in x], [])
 
+    def test_the_idle_the_daylight_and_the_pinned_opening_are_mended_in_code(self):
+        # the fourth fresh-topic run (13 of 14 chapters, then the clock):
+        # two brain calls lost to "everyone idle", one to a daylight scene
+        # no fire could light, one to a chapter opening where the last
+        # closed with words that pin it
+        import ori_author as A
+        # idle: the words say what they do; a fire says warm_hands; two say talk
+        def beat(say, cast, props=("campfire",), setting="grassland"):
+            return {"say": say, "scene": {"setting": setting, "time": "night", "weather": "clear", "shot": "close",
+                                          "cast": cast, "props": list(props)}}
+        idle = lambda who="man", pose="stand": {"who": who, "pose": pose, "action": "idle"}
+        beats = [beat("She sits and sews by the light.", [idle("woman", "sit")]),
+                 beat("They eat their supper of pottage.", [idle(), idle("woman")]),
+                 beat("The children play in the yard.", [idle("child")]),
+                 beat("A quiet moment.", [idle()]),
+                 beat("Two neighbours, and a long evening.", [idle(), idle("elder")], props=("cauldron",)),
+                 beat("He works.", [{"who": "man", "pose": "stand", "action": "carry"}])]
+        n = A.mend_idle(beats, "medieval", log=lambda *_: None)
+        self.assertGreaterEqual(n, 3)
+        acts = [b["scene"]["cast"][0]["action"] for b in beats]
+        self.assertEqual(acts[0], "sew"); self.assertEqual(acts[1], "eat"); self.assertEqual(acts[2], "play")
+        for b in beats:
+            self.assertEqual(self.S.validate(b["scene"], "medieval"), [], b["say"])
+        self.assertEqual([x for x in A._chapter_problems(beats, "medieval", 0, 10 ** 6) if "idle" in x], [])
+        self.assertEqual(A.action_for_words("nothing here", beats[4]["scene"]), "talk")
+        self.assertEqual(A.action_for_words("nothing here", beats[3]["scene"]), "warm_hands")
+        # daylight where no fire counts: dusk, then the lights again
+        day = {"setting": "field", "time": "day", "weather": "clear", "shot": "wide",
+               "cast": [{"who": "man", "pose": "stand", "action": "hoe"}], "props": ["wheat"]}
+        did = A.mend_scene(day, "medieval")
+        self.assertTrue(did and "day ->" in did, did)
+        self.assertEqual(self.S.validate(day, "medieval"), [])
+        # a chapter that opens where the last closed, its own words pinning
+        # the village: the previous chapter's last beat moves instead
+        say = " ".join(["word"] * 30)
+        prev = [beat(say, [idle()], setting="grassland"), beat(say, [idle()], setting="village")]
+        cur = [beat("Back in the village square, " + say, [idle()], setting="village"),
+               beat(say, [idle()], setting="forest")]
+        ep = {"slug": "a-test", "era": "medieval", "chapters": [{"title": "One", "beats": prev}, {"title": "Two", "beats": cur}]}
+        notes = A.repair_film(ep, log=lambda *_: None, only_chapter=1)
+        self.assertTrue(any("One beat 2" in x for x in notes), notes)
+        self.assertEqual(cur[0]["scene"]["setting"], "village")
+        self.assertEqual([x for x in A._chapter_problems(cur, "medieval", 0, 10 ** 6, before=[ep["chapters"][0]])
+                          if "new place" in x], [])
+        # a pinned place the layout cannot move is let go before anything is dropped
+        pinned = {"setting": "village", "time": "night", "weather": "clear", "shot": "wide",
+                  "cast": [{"who": "man", "pose": "stand", "action": "talk", "at": "center"},
+                           {"who": "woman", "pose": "stand", "action": "talk", "at": "center_left"}],
+                  "props": ["campfire", "torch", {"name": "cottage", "at": "center"}]}
+        did = A.uncrowd_scene(pinned, "medieval", seeds=(1000,))
+        self.assertTrue(did, "a pinned crowd was left")
+        self.assertFalse(self.S.layout(pinned, 1000)["collisions"])
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

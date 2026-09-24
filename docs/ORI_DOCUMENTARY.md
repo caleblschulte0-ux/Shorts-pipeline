@@ -415,6 +415,22 @@ only as a hand edit is not a rule. So:
   the shot". Measured over 400 random medieval scenes: 7 left crowded
   before, none after. And the "could not fix" line names the true reason.
 
+- **The fourth fresh-topic run reached chapter 13 of 14 and hit the
+  author step's sixty-minute clock.** Fourteen chapters at four to six
+  minutes a brain call never fit in sixty; the step has 120 now. The
+  retries it spent are code too: `mend_idle` gives an idle cast the action
+  its words describe (`ACTION_WORDS`: sew, eat, play, feed_fire, look_up...;
+  a fire says warm_hands, two people say talk) until the idle share holds;
+  a daylight scene no fire can light goes to dusk, then night, and tries
+  again; a chapter that opens where the last one closed, its own words
+  pinning the place, moves the previous chapter's last beat instead; and
+  `uncrowd_scene` measures "fits better" on a gradient — the layout draws
+  in steps (100, 92, 84, 76%), so two drops that each leave a wide at 76%
+  and together reach 92% looked like no progress one at a time, which is
+  what left a beat-1 wide at 76% three chapters running. The ground the
+  scene occupies is the second measure, and a place the brain pinned
+  (`at`) is let go before anything is dropped.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

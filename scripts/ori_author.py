@@ -446,7 +446,21 @@ def mend_scene(scene: dict, era: str) -> str | None:
             scene["props"] = saved
         if lit:
             did.append("lit " + " and ".join(f"a {n}" for n in lit))
-        else:
+        elif scene.get("time") in ("day", "dawn"):
+            # a film about the night: daylight where no fire counts goes
+            # to dusk, then night, and the lights are tried again (the
+            # fourth fresh-topic run: "nothing in this scene moves" on a
+            # beat the mend had left alone)
+            was = scene.get("time")
+            for t in ("dusk", "night"):
+                scene["time"] = t
+                inner = mend_scene(scene, era)
+                if not any("moves enough" in x for x in S.validate(scene, era)):
+                    did.append(f"{was} -> {t}" + (f", {inner}" if inner else ""))
+                    break
+            else:
+                scene["time"] = was
+        if not lit and any("moves enough" in x for x in S.validate(scene, era)):
             # still: bring the shot in close, where a fire counts for more
             if S.shot_of(scene) != "close":
                 scene["shot"] = "close"
@@ -459,27 +473,57 @@ def mend_scene(scene: dict, era: str) -> str | None:
 
 def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
     """Make a crowded scene fit at CROWD_SHRINK of natural size: drop
-    inessential props from the last while each drop fits better, then widen
-    the shot (lighting a torch if a wide night needs one). Judged by the
-    worse of the given seeds. Returns what was done, or None."""
+    inessential props from the last while each drop fits better, then a
+    person from the back of the cast, then widen the shot (lighting a torch
+    if a wide night needs one). Judged by the worse of the given seeds.
+    Returns what was done, or None.
+
+    "Fits better" is measured on a GRADIENT, not the shrink step alone: the
+    layout draws in steps (100, 92, 84, 76...%), so two drops that each
+    leave a wide at 76% and together bring it to 92% look like no progress
+    one at a time — the fourth fresh-topic run left a beat-1 wide at 76%
+    three chapters running for exactly that. The ground the scene occupies
+    is the second measure, so a drop that frees room counts even when the
+    step has not moved yet."""
     def fit():
         if S.validate(scene, era):
-            return -1.0
+            return (-1.0, 0.0)
         natural = 2.05 if S.shot_of(scene) == "close" else 1.25
-        worst = 9.0
+        worst = (9.0, 0.0)
         for seed in seeds:
             lay = S.layout(scene, seed)
             # a scene that still collides scores below any that fits, and
             # FEWER collisions is progress — a close shot holding two houses
             # and a cow needs three drops, and the first two fix nothing on
             # their own
-            worst = min(worst, -float(len(lay["collisions"])) if lay["collisions"] else lay["scale"] / natural)
+            room = -sum(max(0.0, sp["hi"] - sp["lo"]) for sp in S.spans(lay) if not sp.get("ground"))
+            worst = min(worst, ((-float(len(lay["collisions"])) if lay["collisions"] else lay["scale"] / natural),
+                                room))
         return worst
-    if fit() >= CROWD_SHRINK:
+
+    def crowded():
+        return fit()[0] < CROWD_SHRINK
+
+    def better(now, was):
+        return now[0] > was[0] + 1e-6 or (now[0] >= was[0] - 1e-6 and now[1] > was[1] + 1e-6)
+
+    if not crowded():
         return None
     old = json.loads(json.dumps(scene))
     dropped = []
-    while fit() < CROWD_SHRINK:
+    # a place the brain pinned (`at`) is a place the layout cannot move: let
+    # it choose, and see whether that alone makes room
+    pinned = [c for c in scene.get("cast") or [] if isinstance(c, dict) and c.get("at")]
+    pinned += [q for q in scene.get("props") or [] if isinstance(q, dict) and q.get("at")]
+    if pinned:
+        was = fit()
+        for c in pinned:
+            c.pop("at", None)
+        if better(fit(), was):
+            dropped.append("the fixed places")
+        else:
+            scene.clear(); scene.update(json.loads(json.dumps(old)))
+    while crowded():
         props = list(scene.get("props", []))
         best = None
         for k in range(len(props) - 1, -1, -1):
@@ -489,7 +533,7 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
                 continue
             was = fit()
             scene["props"] = props[:k] + props[k + 1:]
-            if fit() > was + 1e-6:
+            if better(fit(), was):
                 best = name
                 break
             scene["props"] = props
@@ -499,33 +543,109 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
     # then a person: the rule itself says "drop a prop or a person", and a
     # crowd of four drawn at 60% reads worse than three at full size. From
     # the back of the cast, never the first (the words are about somebody)
-    while fit() < CROWD_SHRINK and len(scene.get("cast") or []) > 1:
+    while crowded() and len(scene.get("cast") or []) > 1:
         cast = list(scene["cast"])
         was = fit()
         scene["cast"] = cast[:-1]
-        if fit() > was + 1e-6:
+        if better(fit(), was):
             gone = cast[-1]
             dropped.append(f"the {gone.get('who', 'person')} at the back")
         else:
             scene["cast"] = cast
             break
-    if fit() < CROWD_SHRINK and S.shot_of(scene) == "close":
+    if crowded() and S.shot_of(scene) == "close":
         scene["shot"] = "wide"
         if S.validate(scene, era) and "torch" not in scene.get("props", []):
             scene["props"] = list(scene.get("props", [])) + ["torch"]
-        if fit() < CROWD_SHRINK or S.validate(scene, era):
+        if crowded() or S.validate(scene, era):
             scene["shot"] = old.get("shot", "close")
             scene["props"] = [q for q in scene.get("props", []) if q != "torch" or "torch" in old.get("props", [])]
         else:
             dropped.append("the close shot (widened" + (", a torch lit" if "torch" not in old.get("props", []) else "") + ")")
-    if fit() >= CROWD_SHRINK and dropped:
+    if not crowded() and dropped:
         return "dropped " + ", ".join(dropped)
     scene.clear(); scene.update(old)
     return None
 
 
+# what a beat's words say its people are DOING, for a cast the brain left
+# idle: the first action whose words appear wins; a fire in the scene and
+# nothing in the words is warm_hands; two people and nothing else is talk
+ACTION_WORDS = (
+    ("sew", ("sew", "mend", "stitch", "spin", "weav", "knit", "needle", "darn")),
+    ("eat", ("eat", "supper", "meal", "bread", "pottage", "stew", "feast", "dine", "porridge", "bowl")),
+    ("drink", ("drink", "ale", "cup", "sip", "wine", "beer", "mead")),
+    ("feed_fire", ("fire", "hearth", "ember", "log", "kindl", "flame", "bank")),
+    ("stir", ("stir", "cook", "pot", "cauldron", "broth", "simmer")),
+    ("carry", ("carry", "carri", "haul", "fetch", "bring", "bundle", "water", "wood", "load")),
+    ("chop", ("chop", "split", "axe", "hew")),
+    ("play", ("play", "game", "dice", "toss", "children", "child", "chase", "laugh")),
+    ("sleep", ("sleep", "asleep", "slumber", "doze", "bed", "lie down", "lay down")),
+    ("look_up", ("star", "sky", "moon", "heaven", "look up", "gaze")),
+    ("talk", ("talk", "stor", "tale", "tell", "speak", "gossip", "sing", "song", "pray", "chant", "whisper",
+              "voice", "word", "conversation", "murmur")),
+    ("gather", ("gather", "pick", "collect", "forage", "herb")),
+    ("hug_self", ("cold", "shiver", "chill", "frost", "huddle")),
+    ("yawn", ("yawn", "tired", "weary", "drows")),
+    ("warm_hands", ("warm", "glow", "heat")),
+)
+
+
+def action_for_words(say: str, scene: dict) -> str | None:
+    """The action a beat's words describe, or the plain one its picture
+    allows: warm_hands at a fire, talk between two people. None when the
+    scene has no people."""
+    cast = [c for c in (scene.get("cast") or []) if isinstance(c, dict)]
+    if not cast:
+        return None
+    low = (say or "").lower()
+    for action, words in ACTION_WORDS:
+        if any(w in low for w in words):
+            return action
+    names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
+    if any(n in ("campfire", "hearth", "brazier", "stove") for n in names):
+        return "warm_hands"
+    return "talk" if len(cast) > 1 else "look_up"
+
+
+def mend_idle(beats, era: str, log=print) -> int:
+    """A chapter whose people mostly stand about is given the actions its
+    words describe, idle beat by idle beat, until the idle share holds —
+    the fourth fresh-topic run lost two brain calls to "4 of 12 peopled
+    beats show everyone idle". The first person in the cast takes the
+    action and the pose the kit allows for it; the others keep theirs.
+    Returns how many beats changed."""
+    from data_learning.doodle import people as P
+    peopled = [b for b in beats if isinstance(b, dict) and isinstance(b.get("scene"), dict)
+               and b["scene"].get("cast")]
+    def idle():
+        return [b for b in peopled if all(isinstance(c, dict) and c.get("action", "idle") in ("idle", "hold")
+                                          for c in b["scene"]["cast"])]
+    n = 0
+    for b in list(idle()):
+        if len(idle()) <= max(1, int(len(peopled) * IDLE_SHARE)):
+            break
+        action = action_for_words(b.get("say", ""), b["scene"])
+        if action is None or action not in P.ACTIONS:
+            continue
+        c = next(c for c in b["scene"]["cast"] if isinstance(c, dict))
+        before = json.loads(json.dumps(c))
+        c["action"] = action
+        if c.get("pose", "stand") not in P.ACTIONS[action]["poses"]:
+            c["pose"] = P.ACTIONS[action]["poses"][0]
+        if action == "sleep":
+            c["pose"] = "lie"
+        if S.validate(b["scene"], era):
+            c.clear(); c.update(before)
+            continue
+        n += 1
+        log(f"[ori_author] mended beat {beats.index(b) + 1}: the {c.get('who', 'person')} now {action}s")
+    return n
+
+
 def mend_beats(beats, era: str, log=print) -> int:
-    """mend_scene over a chapter's beats; returns how many scenes changed."""
+    """mend_scene over a chapter's beats, then the crowd, then the idle;
+    returns how many scenes changed."""
     n = 0
     if not isinstance(beats, list):
         return 0
@@ -537,6 +657,7 @@ def mend_beats(beats, era: str, log=print) -> int:
             if did:
                 n += 1
                 log(f"[ori_author] mended beat {j + 1}: {did}")
+    n += mend_idle(beats, era, log=log)
     return n
 
 
@@ -746,19 +867,27 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         near = [n for n in NEAR_SETTINGS if n in S.SETTINGS and era in S.SETTINGS[n].eras]
         return sorted(near, key=lambda n: used[n])
 
-    def try_move(i, j):
+    def own_problems(k):
+        return len(_chapter_problems(ep["chapters"][k]["beats"], era, 0, 10 ** 6, before=ep["chapters"][:k]))
+
+    def try_move(i, j, guard=None):
+        """Move beat j of chapter i to the least-used nearby place. `guard`
+        names a chapter outside the repaired one whose own problem count
+        may not rise for it."""
         b = ep["chapters"][i]["beats"][j]
         sc = b["scene"]
         if _words_pin(b.get("say", ""), sc.get("setting")):
             return None
         old = json.loads(json.dumps(sc))
         before = severity()
+        guarded = own_problems(guard) if guard is not None else None
         for alt in candidates():
             if alt == old.get("setting"):
                 continue
             sc["setting"] = alt
             sc["props"] = [q for q in sc.get("props", []) if (q if isinstance(q, str) else q["name"]) != "cave_painting"]
-            if scene_ok(i, j) and severity() < before:
+            if (scene_ok(i, j) and severity() < before
+                    and (guard is None or own_problems(guard) <= guarded)):
                 return f"{ep['chapters'][i]['title']} beat {j + 1}: {old.get('setting')} -> {alt}"
             sc.clear(); sc.update(old)
         return None
@@ -813,7 +942,12 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
             j = int(m2.group(1)) if m2 else 0
             done = try_move(i, j) or try_move(i, j - 1) or try_shot(i, j) or try_shot(i, j - 1)
         elif "new place" in p:
+            # beat 1 first; when its words pin it, the previous chapter's
+            # LAST beat moves instead (the fourth fresh-topic run: a chapter
+            # opening in the village its words name, after a village close)
             done = try_move(i, 0)
+            if not done and i > 0 and ep["chapters"][i - 1]["beats"]:
+                done = try_move(i - 1, len(ep["chapters"][i - 1]["beats"]) - 1, guard=i - 1)
         else:
             # "<setting> would be N of the film's ..." or "N of M beats are the
             # same picture (<setting>, <shot> shot)": move a beat of that place,

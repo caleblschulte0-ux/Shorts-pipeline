@@ -170,10 +170,14 @@ jobs:
       - name: Fetch sleep music
         run: python3 scripts/fetch_music.py --only sleep
       - name: Make sure one script is ready
-        # 60 + 230 + 60 fits the job's 355 even on the worst day: an empty
-        # queue, a full two-hour render and the judge, then next week's script
+        # 120 for the author (fourteen chapters at four to six minutes a
+        # brain call, plus retries — run #14 reached chapter 13 at the old
+        # 60); a two-hour render is ~100 and the judge under 60, so the
+        # ordinary day fits the job's 355 with room. Only a full-length
+        # author AND a render at its 230 ceiling would not, and that day is
+        # the job's timeout, not this step's
         continue-on-error: true
-        timeout-minutes: 60
+        timeout-minutes: 120      # fourteen chapters at four to six minutes a brain call, plus retries
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
