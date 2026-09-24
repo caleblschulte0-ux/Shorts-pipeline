@@ -4914,7 +4914,11 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     # rather than sliding at a constant rate like a loading bar.
     e = settle(reveal)
     runner = scene_host("cheer", reveal, insight, "race")
-    rh = int(max(96, min(170, lane_h * 0.86)))
+    # THE HERO FILLS ITS LANE. Capped at 170px, a two-runner duel put two
+    # small figures in a frame that was otherwise void (coffee's "$2 vs
+    # $4.41", 2026-09-24). A lane that is 600px tall carries a runner that
+    # size.
+    rh = int(max(96, min(380, lane_h * (0.86 if n > 3 else 0.62))))
     rw = int(runner.width * rh / runner.height) if runner is not None else rh
     # the finish line
     for k in range(0, int(bot - top), 26):
@@ -4964,13 +4968,22 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         else:
             d.ellipse([px - 26, cy - 26, px + 26, cy + 26], fill=_rgba(col, 235))
         na = max(0.0, min(1.0, (reveal - 0.25) / 0.35))
-        vf = _pil_font(44)
-        vtxt = charts._ulabel(v, unit)
+        vf = _pil_font(int(max(44, min(92, rh * 0.36))))
+        vtxt = compact_numbers(charts._ulabel(v, unit))
         vw = d.textbbox((0, 0), vtxt, font=vf)[2]
+        # ...and never so big it has nowhere to go: ahead of the runner or
+        # behind it, clear of the names' gutter
+        _room = max(x1 - (px + rw // 2 + 16), (px - rw // 2 - 16) - (x0 + 8))
+        if vw > _room:
+            vf, vtxt = fit_text(d, vtxt, vf.size, max(80, int(_room)), min_size=30)
+            vw = d.textbbox((0, 0), vtxt, font=vf)[2]
         # Ahead of the runner, unless that would cross the finish line — then
         # it rides behind them instead. A runner near the line is exactly the
         # one whose number the viewer most wants to read.
-        _vcol = legible(col) if lead else SUBTLE
+        # A NUMBER WEARS INK. SUBTLE is for names; a value is the data, and
+        # "'$2' ... dim grey on dark navy" was the judge's unreadable at
+        # seg3:end on every coffee verdict (2026-09-24).
+        _vcol = legible(col) if lead else TEXT
         if px + rw // 2 + 16 + vw < x1:
             d.text((px + rw // 2 + 16, cy), vtxt, font=vf,
                    fill=_rgba(_vcol, int(255 * na)), anchor="lm")
