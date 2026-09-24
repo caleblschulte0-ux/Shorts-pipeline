@@ -1,0 +1,18 @@
+{
+ "bundle_id": "877f68661f3f2e23b2db760d7c43374e7751c0e434f2e7783858103c20768888",
+ "bundle_path": "exchange/bundles/20260924/bundle.json",
+ "bundle_present": true,
+ "checked_at": "2026-09-24T10:16:06+00:00",
+ "date": "20260924",
+ "deadline_central": 5,
+ "deadline_passed": true,
+ "done_present": false,
+ "has_contract": false,
+ "headline": "bundle present for 20260924 (15 media request(s))",
+ "n_requests": 15,
+ "ok": true,
+ "schema": "phase-a-readiness/v1",
+ "status": "ready",
+ "takeover_claimed_at": "",
+ "takeover_present": false
+}
