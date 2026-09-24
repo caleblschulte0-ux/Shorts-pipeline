@@ -8962,6 +8962,24 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (routine gameplay, checking for cheating )",
       "ts": "2026-09-24T19:37:22.181033+00:00"
+    },
+    "rejected-cooperativezanypotprchase-xbo7uxjoaumngisy": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/CooperativeZanyPotPRChase-Xbo7uXjoAUmNgiSy",
+      "streamer": "zackrawrr",
+      "title": "olympus cult",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 27/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-09-24T20:29:07.301513+00:00"
+    },
+    "rejected-drabroundledplanking-t8ph_cwrqvrjaj2l": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/DrabRoundLEDPlanking-t8ph_cWrqvrJAj2l",
+      "streamer": "erobb221",
+      "title": "Erobb221 Is Stunned By These 'Links' And Needs Answers",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is a thin strip (~35% of canvas height, not ~75%) showing a full desktop/browser screenshot, not a cropped-; vision: Within that thin strip the actual subject (streamer's face) is a tiny inset thumbnail, unreadable at phone size in most ; vision: Several frames (3.4s-5.9s) show ",
+      "ts": "2026-09-24T20:32:04.061010+00:00"
     }
   }
 }
