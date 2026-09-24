@@ -6,11 +6,11 @@
     "publish_at": "2026-09-24T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video promises 'they keep swapping the lead', but silver leads in every frame and bitcoin never passes it, so the payoff contradicts the hook.",
-    "elapsed_seconds": 106.4,
+    "error": "showrunner_block: showrunner BLOCK: The whole video promises the lead keeps swapping, but Silver is #1 in every frame. The hook is false and the ending contradicts it.",
+    "elapsed_seconds": 114.2,
     "package_path": "state/trending_packages/20260924/02_bitcoin-and-silver-trade-the-lead.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-190659_bitcoin_and_silver_keep_trading_the_lead.mp4",
+    "video_path": "output/daily_20260924-193324_bitcoin_and_silver_keep_trading_the_lead.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,7 +28,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video promises 'they keep swapping the lead', but silver leads in every frame and bitcoin never passes it, so the payoff contradicts the hook.",
+      "reason": "showrunner BLOCK: The whole video promises the lead keeps swapping, but Silver is #1 in every frame. The hook is false and the ending contradicts it.",
       "score": 66
     },
     "blocked": true
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-24T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest line race with a real crossover, but the hook badge gives away the ending and the crossing moment is a pile of overlapping labels and flags.",
-    "elapsed_seconds": 97.9,
+    "error": "showrunner_block: showrunner BLOCK: A competent but generic two-line race: the hook is a static title plus a caption box, the crossover moment is buried under colliding labels, and the payoff is a small '#1 United States' tag.",
+    "elapsed_seconds": 108.5,
     "package_path": "state/trending_packages/20260924/03_us-oil-passed-saudi-arabia.json",
     "source": "brain",
-    "video_path": "output/daily_20260924-190845_us_oil_production_passed_saudi_arabia_s.mp4",
+    "video_path": "output/daily_20260924-193518_us_oil_production_passed_saudi_arabia_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,25 +62,38 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest line race with a real crossover, but the hook badge gives away the ending and the crossing moment is a pile of overlapping labels and flags.",
-      "score": 78
+      "reason": "showrunner BLOCK: A competent but generic two-line race: the hook is a static title plus a caption box, the crossover moment is buried under colliding labels, and the payoff is a small '#1 United States' tag.",
+      "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
-    "angle": "A rare Blanding\u2019s turtle navigates a brand\u2011new tunnel, highlighting a creative solution to road\u2011kill hotspots.",
+    "topic": "Scientists find two tiny new snails with shells that close like doors",
+    "angle": "Two brand\u2011new snail species discovered in Montenegro reveal a door\u2011like shell snap that could inspire bio\u2011inspired engineering.",
     "publish_at": "2026-09-24T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A generic petty-revenge story read over looping Minecraft parkour: no story beat is ever illustrated and the ending fades out on empty gameplay with no punchline.",
-    "elapsed_seconds": 201.3,
-    "title": "My Latte Revenge on the Entitled Customer",
-    "package_path": "state/trending_packages/20260924-191054_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260924-191054_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['tip was too small', 'decaf', 'extra hot water', 'angry customer', 'five-star review']",
+    "elapsed_seconds": 62.2,
+    "title": "I Served a Free Latte to an Entitled Customer and Got a Five-Star Review",
+    "package_path": "state/trending_packages/20260924-193755_auto_scientists_find_two_tiny_new_snails_with.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - fox23maine.com",
+    "angle": "A rare Blanding\u2019s turtle safely navigates a purpose\u2011built tunnel, highlighting a novel conservation solution for fragmented habitats.",
+    "publish_at": "2026-09-25T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is plain gameplay plus captions with no story illustrations, and the captions collide at mid1. The petty-revenge beats are never shown, and the title has nothing to do with the turtle topic.",
+    "elapsed_seconds": 209.9,
+    "title": "I Served the Entitled Customer Her Own Free Latte",
+    "package_path": "state/trending_packages/20260924-193824_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260924-193824_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.9,
+      "duration": 38.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -91,7 +104,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.5
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -100,26 +113,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A generic petty-revenge story read over looping Minecraft parkour: no story beat is ever illustrated and the ending fades out on empty gameplay with no punchline.",
+      "reason": "showrunner BLOCK: This is plain gameplay plus captions with no story illustrations, and the captions collide at mid1. The petty-revenge beats are never shown, and the title has nothing to do with the turtle topic.",
       "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Two micro\u2011snail species with door\u2011like shells were discovered in Montenegro, proving Europe still hides unknown critters.",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "topic": "A Florida man captured the bizarre moment his dog encountered a blue land crab gripping a knife blade in his backyard. #Florida #dog #crab #funny - facebook.com",
+    "angle": "A backyard showdown goes viral as a dog meets a blue crab wielding a knife, underscoring how odd wildlife\u2011human clashes can explode online.",
+    "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is only gameplay and captions: no shot ever shows the cafe, the scam or the shutdown, and a horizontal seam line runs through every frame.",
-    "elapsed_seconds": 168.2,
-    "title": "I Turned a Greedy Regular\u2019s Free Latte Scam Into a Cafe Shutdown",
-    "package_path": "state/trending_packages/20260924-191407_auto_scientists_find_two_tiny_new_snails_with.json",
-    "video_path": "output/daily_20260924-191407_scientists_find_two_tiny_new_snails_with.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is gameplay plus captions only: not one story beat is illustrated, and the payoff (a machete left on the counter) is lost against unrelated parkour.",
+    "elapsed_seconds": 350.9,
+    "title": "I Followed Store Policy And She Regretted It",
+    "package_path": "state/trending_packages/20260924-194305_auto_a_florida_man_captured_the_bizarre_momen.json",
+    "video_path": "output/daily_20260924-194305_a_florida_man_captured_the_bizarre_momen.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 43.4,
+      "duration": 44.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -130,7 +143,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.2
+      "loudness_lufs": -24.5
     },
     "qa": {
       "ok": true,
@@ -139,71 +152,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is only gameplay and captions: no shot ever shows the cafe, the scam or the shutdown, and a horizontal seam line runs through every frame.",
-      "score": 57
+      "reason": "showrunner BLOCK: This is gameplay plus captions only: not one story beat is illustrated, and the payoff (a machete left on the counter) is lost against unrelated parkour.",
+      "score": 65
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Weird News - Jamaica Star",
-    "angle": "Jamaica\u2019s oddball headline roundup includes a town that renamed its main street after a local legend, sparking tourist curiosity.",
+    "topic": "Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam",
+    "angle": "Legendary pianist plays for 150 rescued moon bears, turning a wildlife sanctuary into a surreal concert hall that\u2019s boosting adoptions.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['stealing my tip jar', 'hyper\u2011caffeinated experimental beans', 'massive latte for a regular', 'eyes widened', 'pure electricity']",
-    "elapsed_seconds": 30.6,
-    "title": "I Served My Manager His Own Toxic Espresso",
-    "package_path": "state/trending_packages/20260924-191655_auto_weird_news___jamaica_star.json",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['scanning badges at the front gate', 'walk her boyfriend straight past me', 'turned him away in front of the whole line', 'screamed that I was fired', 'handed it to the board president', 'read her own memo out loud', 'lost 3000 dollars that night']",
+    "elapsed_seconds": 167.6,
+    "title": "I followed her no-exceptions rule to the letter",
+    "package_path": "state/trending_packages/20260924-194859_auto_rick_wakeman_performs_piano_concert_to_1.json",
     "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "Why is the liver so weirdly regenerative?",
-    "angle": "New research reveals why the liver can regrow after injury, opening doors for breakthrough medical therapies.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is bare gameplay plus captions with no story illustrations, and the first beat after the hook drops into a near-black empty frame.",
-    "elapsed_seconds": 132.8,
-    "title": "I Served a Free Latte and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260924-191726_auto_why_is_the_liver_so_weirdly_regenerative.json",
-    "video_path": "output/daily_20260924-191726_why_is_the_liver_so_weirdly_regenerative.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.033,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [
-        [
-          2.5,
-          4.16667
-        ],
-        [
-          4.6,
-          5.9
-        ]
-      ],
-      "black_frac": 0.0644,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is bare gameplay plus captions with no story illustrations, and the first beat after the hook drops into a near-black empty frame.",
-      "score": 57
-    },
-    "blocked": true,
     "backfill": true
   }
 ]
