@@ -492,16 +492,22 @@
       "history": []
     },
     "66364106b455": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260924",
-      "because": "Picked up in this run: extended shared/experiments.py register()/eligible_videos() with actual_structure scoping (fallback clips no longer count as story samples) and registered the story-vs-clip experiment (id 20260924-third-story-arm-slot-beats-mature-clip-baseline-on) at the proposed thresholds \u2014 min_days=28, min_samples=25, metric=median views_per_hour vs the clip arm's current 0.03 baseline, guardrail=channel average_view_percentage baseline 79.4. Does not touch the six-post target or any quality gate.",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260817",
           "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260924",
+          "because": "Picked up in this run: extended shared/experiments.py register()/eligible_videos() with actual_structure scoping (fallback clips no longer count as story samples) and registered the story-vs-clip experiment (id 20260924-third-story-arm-slot-beats-mature-clip-baseline-on) at the proposed thresholds \u2014 min_days=28, min_samples=25, metric=median views_per_hour vs the clip arm's current 0.03 baseline, guardrail=channel average_view_percentage baseline 79.4. Does not touch the six-post target or any quality gate."
         }
-      ]
+      ],
+      "commit": "f61ef2b"
     },
     "87d632368528": {
       "verdict": "later",
