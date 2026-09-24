@@ -1,0 +1,1782 @@
+{
+ "slug": "what-londoners-did-after-dark",
+ "title": "What Did Londoners Do After Dark? | Cozy History for Sleep",
+ "thumbnail_text": "WHAT LIT THE DARK?",
+ "thumbnail_scene": {
+  "setting": "parlour_inside",
+  "time": "night",
+  "weather": "clear",
+  "shot": "close",
+  "cast": [
+   {
+    "who": "old_woman",
+    "pose": "sit",
+    "action": "knap",
+    "mood": "content",
+    "item": "needle",
+    "at": "center_left"
+   },
+   {
+    "who": "child",
+    "pose": "lie",
+    "action": "sleep",
+    "mood": "sleepy",
+    "at": "center_right"
+   }
+  ],
+  "props": [
+   "hearth",
+   "candle",
+   "chair",
+   "clock"
+  ]
+ },
+ "description": "Settle in for a slow walk through a Victorian London evening, from the last lamplighter's rounds to the hush of deep night. We drift past parlours warmed by hearth-light, streets glowing gas-lamp gold, and the quiet footsteps of a night constable on his beat. There is no rush here, only the soft turning of one ordinary day into rest, the way it happened for millions of Londoners a century and a half ago. Let the fog, the candlelight, and the far-off clocks carry you gently toward sleep.",
+ "tags": [
+  "history for sleep",
+  "sleep story",
+  "relaxing history",
+  "victorian london",
+  "victorian era",
+  "london history",
+  "gaslight london",
+  "bedtime history",
+  "cozy history",
+  "sleep documentary",
+  "ambient history",
+  "history documentary",
+  "relaxing narration",
+  "sleep sounds history"
+ ],
+ "era": "victorian",
+ "chapters": [
+  {
+   "title": "Settling Into the Evening",
+   "beats": [
+    {
+     "say": "The gas lamps come alive one by one down a London street, a lamplighter touching flame to flame with his long pole. A soft rain has begun, pattering on cobblestones still warm from the day. Carts rattle toward home, voices grow quieter, and the sky above the rooftops deepens toward violet. This is when the city begins to settle, not into silence, but into something gentler, room by room, street by street.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "point",
+        "mood": "focused",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Inside one of the terraced houses, the parlour glows with firelight. A woman sits close to the hearth, needle moving steadily through cloth, while a child plays quietly on the rug nearby. The clock on the shelf ticks softly, and the smell of coal smoke and warm bread drifts from the next room. Out on the street the rain goes on, but in here it barely reaches the ear.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "calm",
+        "item": "needle",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "play",
+        "mood": "happy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back outside, the costermongers are packing away their stalls before the rain thickens. A man lifts a basket onto his shoulder, while a woman gathers the last bundles of cloth to carry home. The street that was loud with calling voices all afternoon is thinning now, cart by cart, until only the wet shine of the cobbles is left behind.",
+     "scene": {
+      "setting": "street",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "focused",
+        "item": "basket",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "focused",
+        "item": "bundle",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "cart",
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down by the river, fog sits low over the water, softening the shapes of moored barges. A man stands at the embankment wall, watching the last light fade behind the warehouses on the far bank. The Thames moves slowly here, unhurried, carrying the evening along with it the way it has carried every evening before this one.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "fog",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds",
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "By candlelight in a quiet parlour, an elder settles into a chair to tell a story, voice low and unhurried. A child sits nearby, looking up, listening the way children do when a story is more interesting than sleep. The candle gutters gently, and the fire behind them settles lower, filling the room with its warm, orange hush.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "content",
+        "item": null,
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "look_up",
+        "mood": "happy",
+        "item": null,
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "hearth",
+       "chair"
+      ]
+     }
+    },
+    {
+     "say": "Outside again, the street is nearly empty now. Rain falls steadily under the gas lamps, and a man walks home carrying a lantern, its small flame swaying with each step. The wet cobbles hold the light in long, trembling reflections. Somewhere a door closes, a bolt slides home, and one more house turns its face away from the night.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp",
+       "chimney_pot"
+      ]
+     }
+    },
+    {
+     "say": "In another kitchen, a woman stands at the hearth, stirring a pot of something simple for supper. Steam curls up past her face, warm against the evening chill. The fire's glow is the only light needed just now, and the small sound of the spoon against the pot feels like its own kind of quiet.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "stir",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "stove"
+      ]
+     }
+    },
+    {
+     "say": "Later, the river lies dark and still, boats resting at their moorings under a clear sky. An elder stands near the water's edge, unhurried, watching the current catch what little light remains. The city's noise has thinned to almost nothing out here, just water moving softly against wood and stone.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back in the parlour, a child grows sleepy, yawning against the arm of a chair while a woman gathers a blanket close around small shoulders. The fire has burned down to a low, steady glow. Nothing more needs to happen tonight than this, the slow settling of a house, and a child drifting toward sleep.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "hold",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Out on the street, the shops have shut their shutters, and rain falls thin and quiet under the gas lamps. There is nowhere left to be. The city that rushed all day has folded itself down into doorways and lit windows, waiting for the dark to finish arriving.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "And in one more parlour, an elder leans forward to feed the fire a last piece of coal, content to watch it catch. This is where our evening begins, not with anything happening, but with London, house by house, letting the day go. We will follow it further into the dark, from here.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Lamplighter's Round",
+   "beats": [
+    {
+     "say": "By the mid-Victorian years, a lamplighter is out with his long pole, touching one gas lamp after another down the wet street. Rain beads softly on his coat. He does not hurry. Post by post, the light climbs ahead of him, small and steady, and the pavement begins to shine.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "item": "rod",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down along the river, fog is settling over the water. Someone tending the embankment lamps lights each one in turn, and the new flame does not cut through the mist so much as glow softly inside it, a small warm circle hanging above the dark, slow-moving Thames.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center_left"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In a small brick watch-house near the bridge, an old man keeps a low fire in the hearth and a candle on the sill. He is not on duty tonight. He simply sits, warming his hands, listening to the rain ease outside, content to let the evening pass quietly around him.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "warm_hands",
+        "mood": "content",
+        "item": "cup",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ]
+     }
+    },
+    {
+     "say": "Across the park, the walks are nearly empty now. A keeper moves along the gravel path with his own pole, lighting the lamps that line it one by one. Rain falls lightly through the bare branches overhead, and each new lamp holds its small flame steady against the wet dark.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "torch",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "By the ornamental lake, a woman walks home with a child at her side, unhurried. Lamplight from the path has begun to lie in long soft lines across the still water. The child looks up at the glow rather than down at the water, and neither of them speaks.",
+     "scene": {
+      "setting": "lakeshore",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "hold",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "content",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Near a busy corner, a boy who sweeps the crossing crouches by a small coal fire to warm his hands between errands. A lamplighter passes behind him without pausing, pole lifted, touching the corner lamp alight. Neither looks at the other. Both are simply getting through the evening in their own way.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "warm_hands",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "item": "rod",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "On a lane at the edge of town, a drover is still moving a small string of cattle toward the morning market, a lantern swinging from his free hand. Rain has softened the road to mud. He talks low and even to the animals, in no particular hurry to arrive before dawn.",
+     "scene": {
+      "setting": "street",
+      "time": "dawn",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "cow",
+       "cow"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Further along the river, a bargeman ties up for the night while the fog thickens around him. A string of lamps on the far bank glows through it in faint, doubled smears of light. He works by feel more than sight now, and does not mind it.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "fog",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "content",
+        "item": "bundle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In the lamplighters' own small shed, off duty, two of them sit together over a single candle, a kettle warming nearby, comparing which streets are done and which remain. Their coats are still damp. There is no hurry in the talk, only the quiet accounting of a round nearly finished.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "content",
+        "at": "center_left"
+       },
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "drink",
+        "mood": "calm",
+        "item": "cup",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "candle",
+       "stove"
+      ]
+     }
+    },
+    {
+     "say": "At the edge of the heath, where the last houses give way to trees, a father and daughter walk home from a visit, rain pattering on the leaves above them. No lamps reach this far. They simply know the path by habit, unbothered by the dark closing in around them.",
+     "scene": {
+      "setting": "forest",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "hold",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "center_left"
+       },
+       {
+        "who": "girl",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "calm",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "tree",
+       "bush"
+      ]
+     }
+    },
+    {
+     "say": "Back by the park lake, two children pause at the rail before bed, watching one last lamp's reflection tremble on the black water. The fog has thickened enough now to soften every edge in sight. Neither speaks. It is simply a nice thing to look at before going in.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "girl",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Along the river, and in a hundred streets and parks beyond it, the same small ritual keeps happening at once, in rain and fog alike, until the whole city stands lit from end to end. The dark has not been driven back tonight, only gently held a little further off.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "Suppers and Parlour Evenings",
+   "beats": [
+    {
+     "say": "A soft rain has started in the back streets, blurring the gas lamps into a gentle glow. Families hurry home, collars turned up, baskets held close. One by one, doors on the narrow terrace open and close, each spilling a moment of gold light onto wet cobbles. Supper is not far off now.",
+     "scene": {
+      "setting": "street",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "basket",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "happy",
+        "item": "bundle",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "gas_lamp",
+       "terrace",
+       "cottage"
+      ]
+     }
+    },
+    {
+     "say": "Inside one of these small homes, the family has gathered close around the hearth. The fire does two jobs tonight, warming the room and lighting it, since there is no other lamp lit yet. A pot hangs over the flames, and the smell of a simple supper fills the low room. The children sit near the warmth, waiting, while their mother stirs slowly, in no hurry at all.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "stir",
+        "mood": "content"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "warm_hands",
+        "mood": "calm"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "happy",
+        "item": "bowl"
+       },
+       {
+        "who": "girl",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "happy",
+        "item": "bowl"
+       }
+      ],
+      "props": [
+       "hearth",
+       "cauldron",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a front parlour nearby, a woman sits close to a single candle, mending a shirt by its small light. Her needle moves slowly, in and out, unhurried as the evening itself. The rest of the room has gone dim and soft around her, the candle holding just enough light for her hands and nothing more. It is quiet work, the kind that asks for patience rather than speed.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back in the small terraced house, the father reads a little of the day's paper aloud by the firelight, his voice low and even, more for company than for news. The others listen without quite listening, the way people do near the end of a long day, letting the words drift past like the warmth from the fire. Nobody minds if he pauses tonight.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "calm",
+        "item": "needle",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In a slightly larger parlour nearby, a family sits together at the table for a simple supper, bread and a little cheese, perhaps something warm from the hearth behind them. Nobody talks much. There is the soft clink of a spoon against a bowl, the settling creak of the fire, and the plain comfort of being fed together, the evening now fully closed in around the house.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content",
+        "item": "bowl",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content",
+        "item": "bread",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "table",
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "A few doors down, in a humbler home, a mother kneels to feed the fire another small piece of coal, careful to make it last. Her child carries in the last of the wood, stacking it close by the door so it is easy to reach later. This fire has more work than most tonight, since it is the only light in the house, and the only warmth besides each other.",
+     "scene": {
+      "setting": "forest",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In another front room nearby, an elderly woman has stopped even pretending to read, her book resting closed in her lap. The room has gone warm and heavy with the day, and her eyes keep drifting shut for a moment before opening again. She does not fight it. In houses like this, all across the city, the evening is beginning to soften into something closer to rest.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "chair",
+       "hearth",
+       "bookshelf"
+      ]
+     }
+    },
+    {
+     "say": "Outside, the rain has settled into a steady patter on the cobbles. A lamplighter moves along the empty street with his long pole and small torch, checking each gas lamp in turn, though most of the street's real light is already behind curtains now, in front of hearths. Few people are still out. The houses have taken the evening in, and the street belongs mostly to the rain.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ]
+     }
+    },
+    {
+     "say": "Back inside, in a parlour warmed by its own small fire, two children play a quiet game on the floor near the hearth, moving little carved pieces between them without much talk. Their parents sit close by, half watching, half simply resting. Nothing about the evening asks to be hurried. The fire settles now and then with a soft shift of embers, and the game goes on a little longer.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "girl",
+        "pose": "crouch",
+        "action": "play",
+        "mood": "focused",
+        "item": "stone",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "play",
+        "mood": "happy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Here in this small room, the fire is banked low and the candle trimmed to its last inch. The day is done, supper eaten, and the house settles into its familiar hush, warm and dim, waiting for sleep.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Streets Come Alive",
+   "beats": [
+    {
+     "say": "Farther along, past the hushed houses, a different evening is only just beginning. Gaslight flares along the wet pavement, and outside the playhouse a small crowd gathers beneath dripping umbrellas. Carriages line the curb, lamps glowing gold in the rain. Doors swing wide, spilling light and voices onto the street, warm with the promise of the show about to start.",
+     "scene": {
+      "setting": "street",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "item": "lantern",
+        "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "bundle",
+        "mood": "happy"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "gas_lamp",
+       "carriage"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Near the theatre door, a boy waits with a burning torch, ready to light the way home for anyone who pays him a penny. He stamps his feet against the cold and calls out softly to passersby, his flame the brightest thing on the whole wet street.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "hold",
+        "item": "torch",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "torch",
+       "gas_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Step inside the gin palace and the darkness disappears entirely. Mirrors and polished glass catch every flame from the hearth, throwing light back a hundred times over. The room is loud and warm, full of talk and laughter, a bright little world tucked behind an ordinary street door.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "happy",
+        "at": "center_left"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "drink",
+        "item": "cup",
+        "mood": "happy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle",
+       "table"
+      ]
+     }
+    },
+    {
+     "say": "Down by the river, the night smells of salt and smoke. Oyster stalls line the embankment, lit by hanging lamps, and an old woman crouches behind hers, shucking shells quickly for anyone with a coin. Barges drift past on the black water, their lanterns small and steady in the dark.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "crouch",
+        "action": "gather",
+        "item": "basket",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "barrel",
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "A little further on, a child stands very still at the water's edge, watching the reflections of the city lights ripple and break apart on the surface. The noise of the streets feels far away here, softened by the slow, steady sound of the river moving past.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "idle",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds",
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Around the corner, a music hall throws its doors open between acts, and for a moment the street fills with laughter and the tail end of a song. People spill out to catch their breath in the rain, sharing a joke before the doors close again and pull them back inside.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "happy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "wave",
+        "mood": "happy",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "happy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "On the corner, a chestnut seller stirs the coals of a small brazier fire, turning the shells until they blacken and split. The smell drifts down the street, warm against the cold rain, and a man stops to buy a paper twist of them, cupping the heat in his hands.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "warm_hands",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Not everyone stops. A family walks briskly past the glowing gin palace windows, coats pulled tight, heading home before the rain gets heavier. The children glance sideways at the bright glass and the noise within, curious but tired, already thinking of their own warm bed waiting somewhere ahead.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "bundle",
+        "mood": "focused",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "point",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ]
+     }
+    },
+    {
+     "say": "Back at the river, the barges rock gently at their moorings, ropes creaking in the dark. From here, the noise of the theatres and the gin palaces softens into a low hum, carried off across the water, until it sounds almost like the city itself is settling in for the night.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "hold",
+        "item": "lantern",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "reeds",
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Further from the lights, the street sellers are beginning to pack away for the night. An old man ties down his cart, blowing on cold fingers, while somewhere behind him a last burst of laughter drifts out from a doorway before it, too, fades into the quiet, steady rain.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "warm_hands",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "By the time the last playbill is taken down and the final lamps are dimmed, the lively part of the city has had its turn. The rain keeps falling softly over empty pavements, washing the noise away, and somewhere beyond all of it, the ordinary streets are already settling back into their familiar hush.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "Nightwatch and the Quiet Hours",
+   "beats": [
+    {
+     "say": "Picture him now: a constable in a long dark coat, walking his beat at the same unhurried pace he has kept for hours, rain drifting under the gas lamps. He is one of thousands doing this same round across the city tonight, part of a police force established some decades before, built to keep watch while London sleeps.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "He tries each door as he passes, a firm push against the handle, checking that the ironmonger's is bolted, that the baker's shutters are fastened. Rain patters on the cobbles and drips from the shop awnings. Most nights nothing is wrong here, and that, quietly, is the whole point of walking this way.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In a parlour a few streets off, a family bank the last of the fire, arranging coals so a low heat will keep till morning. The room glows small and orange. A father settles a blanket, a mother closes a cupboard door softly. Outside their window, unseen, the same constable is only just passing.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "stick"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bookshelf"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a poorer room nearby, a single candle burns close to its end. A child breathes evenly on a narrow bed while an old woman stays sitting up a while longer, watching the flame lean and steady. She will pinch it out soon, once she trusts the sleep will hold.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down at the river, the water moves black and slow past moored barges and coal wharves. Rain dimples the surface in rings that widen and vanish. A lone waterman ties off a rope for the night, glancing at the far bank where a scatter of lights still shows, small and steady, before he too turns for home.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp",
+       "barrel"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back among the streets, a coster is packing away his stall by lamplight, covering unsold vegetables with a damp cloth against the weather. He nods to the passing constable, the kind of small, wordless exchange that happens a hundred times a night between people keeping their own kind of watch.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "content",
+        "item": "basket"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "wave",
+        "mood": "calm",
+        "item": "lantern"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Further out, where the streets thin and give way to fields, a small city dairy is closing for the night. Cows stand settled in their stalls, a dog dozes by the gate, and a farmhand gathers the last of the loose hay before latching the barn against the weather.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "cow",
+       "dog"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In another small room, an old woman sits by her hearth long after the household has gone up to bed, feeding it one last stick before she banks it low. She has never quite trusted sleep to come easily, and the fire, dimming steadily, keeps her company until it does.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "feed_fire",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "On the street corner, two constables cross paths and pause just long enough to trade a word, comparing notes on a quiet round. One carries a wooden rattle at his belt, ready to summon help if it is ever needed, though most nights it stays silent in his pocket.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ]
+     }
+    },
+    {
+     "say": "The river keeps moving beneath the rain, barges rocking gently at their ropes, and somewhere along the docks a watchman holds his own lantern steady, keeping an eye on cargo that will not be touched again until first light.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In one more small room, a child stirs and half-wakes, and a mother, still half-asleep herself, reaches over without needing to open her eyes fully, settling a blanket back into place until the small shifting quiets again.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "hold",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "By the time the constable's steps have faded down the last street, one final candle guttering in some small room is pinched out between careful fingers, and the whole city, lamp by lamp, door by door, has finally gone still.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 3
+     }
+    }
+   ]
+  },
+  {
+   "title": "Into the Dark, Into Sleep",
+   "beats": [
+    {
+     "say": "Rain falls soft and fine over the street as the lamplighter makes his slow round, pole in hand, touching flame to wick until each gas lamp catches and glows steady against the wet dark. You watch the light spread down the row, one small circle at a time, holding back the coming night.",
+     "scene": {
+      "setting": "street",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "gas_lamp"
+      ]
+     }
+    },
+    {
+     "say": "Down at the river, the water moves black and quiet under a low fog. A few barges sit tied for the night, ropes creaking gently at their posts, and a waterman finishes his flask before turning in for the dark hours ahead. The city's noise has thinned to almost nothing here, just the soft slap of water against old stone.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "fog",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "drink",
+        "mood": "content",
+        "item": "cup",
+        "at": "center_left"
+       }
+      ],
+      "props": [],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In a small back room, a woman kneels before the hearth and banks the fire low, raking the embers into a careful heap that will hold its heat until morning. The room glows warm and orange a moment longer before it dims. She rests a hand on the mantel and lets herself feel, at last, how tired the whole day has made her.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Out past the last houses, the park lies dark and hushed under a gentle rain. No one walks there now; only a dog lies curled beneath a tree, waiting for its family to call it home. The grass holds the wet, clean smell that comes after a long warm day, and everything is still.",
+     "scene": {
+      "setting": "grassland",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "tree",
+       "dog"
+      ]
+     }
+    },
+    {
+     "say": "Back in the square, the rain has eased to a mist, and the gas lamps stand their quiet watch over empty cobblestones. A carriage passes once, wheels rattling softly, then the street settles again, holding only the small pool of light beneath each lamp.",
+     "scene": {
+      "setting": "street",
+      "time": "night",
+      "weather": "rain",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "gas_lamp",
+       "carriage"
+      ]
+     }
+    },
+    {
+     "say": "In a small room upstairs, a child is already asleep, one arm flung above the pillow, breathing slow and even. A single candle burns low on the table beside the bed, its flame small and patient, watching over the quiet room until someone comes, gently, to pinch it out.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "candle",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Along the embankment, the gas lamps throw long ribbons of light across the black water, trembling faintly with the current. An elder walks slow and unhurried along the path, cane tapping softly on the stone, in no particular rush to be anywhere but home.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "calm",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In the parlour, an old woman sits close by the hearth, finishing the last stitches of her needlework before setting it aside for the night. The fire has burned down to a soft red glow, enough to warm her hands and nothing more. She yawns once, folds the cloth, and lets her eyes close for a moment in the warmth.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "sleepy",
+        "item": "needle"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Elsewhere in the house, a man settles onto his bed, boots off, coat hung by the door, and lies back with one long, slow breath. The fire in the next room has gone to embers, its glow just reaching under the door, faint and orange, the last warmth of the day easing him toward sleep.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "High above the rooftops, the gas lamps burn on alone in the soft rain, small and steady over a city that has finally gone still, every fire banked, every candle out, every door closed for the night. Somewhere below, everyone is asleep, and it is time now, for you too, to close your eyes and let the quiet carry you all the way down into sleep.",
+     "scene": {
+      "setting": "parlour_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  }
+ ],
+ "sources": [],
+ "topic": "What did Victorian Londoners do after dark?",
+ "added": "2026-09-24T22:38",
+ "authored_by": "ori_author",
+ "storyboard": {
+  "kit": "a2e01e908139",
+  "clean": false,
+  "reviewed_at": "2026-09-24T22:57",
+  "rounds": 3,
+  "repaired": 157
+ }
+}
