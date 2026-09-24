@@ -38,16 +38,14 @@
       "news_angle": "A customer demanded the aisle for grout sealant, prompting the narrator to offer to find an employee.",
       "image_url": "https://live.staticflickr.com/65535/51628997204_96278d6625_b.jpg",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "hardware store building material aisle",
-        "resolved_by": "entity_media",
-        "source_class": "unverified",
-        "title": "grout sealant",
         "url": "https://live.staticflickr.com/65535/51628997204_96278d6625_b.jpg",
-        "verified_at": "2026-09-24T09:58:37Z",
-        "width": 0
+        "source_class": "unverified",
+        "provider": "live.staticflickr.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-24T10:10:57Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -75,16 +73,14 @@
       "news_angle": "The store manager recognized the narrator's audit badge during the confrontation.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/SANDF_Insignia_Internal_Audit_Practioner_badge_embossed.png",
       "media_evidence": {
-        "content_type": "image/png",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "state inspector identification badge corporate",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "audit badge",
         "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/SANDF_Insignia_Internal_Audit_Practioner_badge_embossed.png",
-        "verified_at": "2026-09-24T09:58:49Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-09-24T10:10:58Z",
+        "resolved_by": "verify_shot_urls"
       }
     }
   ],

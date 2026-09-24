@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260924/DONE",
   "counts": {
     "packages": 6,
-    "requests": 14,
+    "requests": 15,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -465,7 +465,7 @@
           "phrase": "not knowing which aisle had grout sealant",
           "query": "tile grout aisle",
           "has_media": true,
-          "verdict": "strong"
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
@@ -504,19 +504,20 @@
         }
       ],
       "media_health": {
-        "strong": 2,
-        "weak": 0,
+        "strong": 1,
+        "weak": 1,
         "missing": 6,
         "unknown": 0
       },
-      "strong_fraction": 0.25,
+      "strong_fraction": 0.125,
       "requested": [
         "mystery-auditor-mistaken-for-staff-s0-ccb3362dd770",
         "mystery-auditor-mistaken-for-staff-s1-6b63a132b56d",
         "mystery-auditor-mistaken-for-staff-s3-0079f643dcaf",
         "mystery-auditor-mistaken-for-staff-s4-9e33cb734136",
         "mystery-auditor-mistaken-for-staff-s5-72d87bb7b7d1",
-        "mystery-auditor-mistaken-for-staff-s6-538bf9a6243a"
+        "mystery-auditor-mistaken-for-staff-s6-538bf9a6243a",
+        "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e"
       ]
     }
   ],
@@ -884,6 +885,34 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
+      "safe_request_id": "mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e",
+      "drive_filename": "20260924__mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.png",
+      "prompt_sha256": "92951e6f887ef5dfab7135365d7b480c74539be4c1183b4c28c1152f925dccd5",
+      "checkpoint_path": "exchange/bundles/20260924/media-progress/mystery-auditor-mistaken-for-staff-s2-da8a5ce0bd9e.json",
+      "slug": "mystery-auditor-mistaken-for-staff",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tile grout aisle. It accompanies the narration: \"not knowing which aisle had grout sealant\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
