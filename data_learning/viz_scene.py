@@ -4715,7 +4715,11 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
         sy = hands_y - sh - k * (sh + gap)
         falling = k == n_slabs
         if falling:                          # three slab-heights above, landing
-            sy -= int((1.0 - settle(drop)) * (sh + gap) * 3.5)
+            # ...but never from above the headline's band: early in a hook a
+            # tray row dropped straight through "2021 $2.55" (showrunner,
+            # 2026-09-24). The year and price have a band nothing crosses.
+            _lift = min((sh + gap) * 3.5, max(0, sy - (by0 + 150)))
+            sy -= int((1.0 - settle(drop)) * _lift)
         top_one = k == n_slabs - 1 and not (drop > 0.02)
         _a = int(240 * (min(1.0, drop * 3) if falling else 1.0))
         d.rounded_rectangle([int(cx - sw // 2), sy, int(cx + sw // 2), sy + sh],

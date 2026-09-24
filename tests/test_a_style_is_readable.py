@@ -116,6 +116,20 @@ class TheAuditSeesWhatItClaims(unittest.TestCase):
               (0, "data", (90, 60, 260, 320, 2))]
         self.assertEqual(A._judge(ev, {})["covered"], [])
 
+    def test_a_shape_drawn_over_a_label_is_caught(self):
+        """Not only Data lands on text: a tray row fell through "2021 $2.55"
+        in the coffee hook (2026-09-24). Art drawn after a label, on the
+        same canvas, is measured against it; art drawn before is its
+        background."""
+        from data_learning import a_audit as A
+        after = [(0, "text", ("2021  $2.55", (300, 100, 700, 160), 1.0, (9, 9, 9), 7)),
+                 (0, "art", (250, 120, 800, 180, 7))]
+        before = [after[1], after[0]]
+        elsewhere = [after[0], (0, "art", (250, 120, 800, 180, 8))]
+        self.assertEqual(A._judge(after, {})["overdrawn"], ["2021  $2.55"])
+        self.assertEqual(A._judge(before, {})["overdrawn"], [])
+        self.assertEqual(A._judge(elsewhere, {})["overdrawn"], [])
+
     def test_an_ellipsis_is_reported(self):
         from data_learning import a_audit as A
         ev = [(0, "text", ("Formerly redli…", (0, 0, 90, 30), 1.0, (9, 9, 9), 1))]
