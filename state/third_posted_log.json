@@ -8926,6 +8926,15 @@
       "rejected_by": "qa",
       "rejected_why": "vision: Sharp in-focus picture fills only roughly a third of the canvas height instead of the ~three-quarters target \u2014 the crop ; vision: In the 10.1s-13.2s segment the subject (backpack, walking away, back to camera) is small and far within that already-thi; vision: Caption text ('a black truck', '",
       "ts": "2026-09-24T17:39:49.410082+00:00"
+    },
+    "rejected-expensivespoopycocoaceilingcat-4y3elwn3c1q-8xqd": {
+      "source_url": "https://www.twitch.tv/alinity/clip/ExpensiveSpoopyCocoaCeilingCat-4Y3ELWN3c1q-8XqD",
+      "streamer": "alinity",
+      "title": "Alinity Tries To Explain Where It Hurts And Even She's Confused",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp middle region is itself soft/out of focus around 4.6s-7.2s (eyebrow/eye/lips shots look blurry, not just the paddi; vision: Several frames crop to hair/shoulder/hand/stomach with no face visible (0.7s, 2.0s, 3.3s, 15.0s), losing the subject for; vision: Framing is inconsistent \u2014 altern",
+      "ts": "2026-09-24T18:00:20.632210+00:00"
     }
   }
 }
