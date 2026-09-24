@@ -260,13 +260,16 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         return ((nx + 0.9 * R + k * 0.6 * R, ny + 1.25 * R - k * 0.35 * R),
                 (nx + 0.85 * R, ny + 1.4 * R))
     if action == "chop":
+        # the hands well forward: at 1.0 R the axe head passed through the
+        # face at the top of the swing (the medieval storyboard: "axe handle
+        # and head cross the man's face"); tests hold the gap
         k = abs(math.sin(c / 2.4 + ph))
         y = ny - 0.9 * R + k * 2.4 * R
-        return ((nx + 1.0 * R, y), (nx + 0.8 * R, y + 0.1 * R))
+        return ((nx + 1.35 * R, y), (nx + 1.1 * R, y + 0.1 * R))
     if action == "hoe":
         k = abs(math.sin(c / 2.8 + ph))
         y = ny + 0.2 * R + k * 0.9 * R
-        return ((nx + 0.95 * R, y), (nx + 0.55 * R, y - 0.4 * R))
+        return ((nx + 1.55 * R, y), (nx + 1.15 * R, y - 0.4 * R))
     if action == "fish":
         k = math.sin(c / 4.5 + ph) * 0.1 * R
         return ((nx + 1.25 * R, ny + 0.7 * R + k), (nx + 1.0 * R, ny + 0.85 * R + k))
@@ -465,7 +468,8 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
                              (hx + 0.7 * R, hy - 0.8 * R), (hx + 0.35 * R, hy - 0.85 * R)],
                         rgb("#9a9a94"), lw=lw * 0.7, amp=0)
     elif name == "hoe":
-        ink.line(cr, [(hx - 0.8 * R, hy - 1.0 * R), (hx + 0.9 * R, hy + 1.7 * R)], lw=lw * 0.9,
+        # the top of the handle stays in front of the face, never across it
+        ink.line(cr, [(hx - 0.4 * R, hy - 1.4 * R), (hx + 0.9 * R, hy + 1.7 * R)], lw=lw * 0.9,
                  ink=rgb("#6b4a2e"), amp=0)
         ink.fill_stroke(cr, [(hx + 0.8 * R, hy + 1.6 * R), (hx + 1.25 * R, hy + 1.45 * R),
                              (hx + 1.2 * R, hy + 1.75 * R)], rgb("#8e8e88"), lw=lw * 0.6, amp=0)

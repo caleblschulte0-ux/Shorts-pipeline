@@ -71,6 +71,7 @@ def shot_of(spec: dict) -> str:
 # against the dark and makes the walls flicker; the same fire at noon is a
 # small orange shape on bright grass and barely registers.
 STRONG_ACTIONS = ("chop", "wave")
+FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 
 
 def _fire_strength(name, time, shot, interior):
@@ -159,9 +160,18 @@ def motion_strength(spec: dict) -> int:
         if c.get("item") in LIGHT_ITEMS:
             score += _fire_strength("torch", time, shot, st.interior)
         if shot == "close" and time in ("day", "dawn") and not st.interior:
-            if c.get("action") in STRONG_ACTIONS or c.get("pose") == "walk":
+            # Measured 2026-09-24 against the showrunner's OWN duplicate-frame
+            # detector (4 s clips, one figure, a tree): chop 0.137 dup / run 5,
+            # wave 0.179 / 4, hoe 0.463 / 18 — and a WALKER 0.75-1.0 / 96: legs
+            # swing on the spot, and at a child's size in a close shot the
+            # detector calls every frame a duplicate. Run #16's medieval film
+            # was blocked at 11:36 for exactly that (43 s frozen), on a scene
+            # this table had called alive. eat 0.78 / 44, yawn 0.62 / 60 and
+            # stir 0.93 / 49 sit at or over the gate's 45-frame ceiling, so
+            # they count for nothing here either.
+            if c.get("action") in STRONG_ACTIONS:
                 score += 2
-            elif c.get("action") in ("hoe", "yawn", "eat", "drink", "stir"):
+            elif c.get("action") == "hoe":
                 score += 1
         elif shot == "close" and c.get("pose") == "walk" and lit and not st.interior:
             # measured: a walker under a street lamp at night 0.19; the same
@@ -240,7 +250,7 @@ def validate(spec, era: str) -> list[str]:
         bad.append("nothing in this scene moves enough to read as alive: add a campfire, brazier or "
                    "cauldron at dusk or night (close shot), a hearth, a candle or oil lamp indoors, "
                    "a river/lake/sea at dusk or night (the sea by day too), rain, or (in daylight, "
-                   "close shot) someone walking, chopping or waving")
+                   "close shot) someone chopping or waving")
     return bad
 
 
@@ -372,12 +382,20 @@ def layout(spec: dict, seed: int) -> dict:
     # one composition in 16 of 42 samples)
     rot = seed % len(SLOT_SETS)
     sets = SLOT_SETS[rot:] + SLOT_SETS[:rot]
+    # whoever acts at the fire is put beside it — but closer to the fire is
+    # never smaller: at each size the adjacent arrangement is tried first
+    # and the plain slots second, so a cook keeps her natural size (the
+    # test that held it) and a hand-warmer sits by the hearth wherever
+    # both fit
+    adj = ((True, False) if any(isinstance(c, dict) and c.get("action") in FIRE_ACTIONS
+                                for c in spec.get("cast") or []) else (False,))
     for k in SHRINK:
         for shift in FOCAL_SHIFTS:
             for slots in sets:
-                lay = _layout(spec, seed, k, slots, shift)
-                if not lay["collisions"]:
-                    return lay
+                for fire_adjacent in adj:
+                    lay = _layout(spec, seed, k, slots, shift, fire_adjacent)
+                    if not lay["collisions"]:
+                        return lay
     return lay
 
 
@@ -392,7 +410,8 @@ TOP_ROOM = 40                    # a prop tree's crown stays this far inside the
 SCENERY_K = 1.35                 # a tree's scale against the shot's: about twice a standing figure
 
 
-def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: float = 0.0) -> dict:
+def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: float = 0.0,
+            fire_adjacent: bool = True) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
     pl = _prop_list(spec)
@@ -626,8 +645,17 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # each other. The judge's first note on the first film: "sleepers are
     # drawn lying in the fire".
     slots_auto = list(slots_auto or SLOT_SETS[0])
-    figs = []
-    for i, c in enumerate(cast):
+    # whoever is DOING something at the fire is placed first and tries the
+    # slots nearest it: measured before this, a woman warming her hands
+    # landed 6 to 15 heads from the hearth while an idle child stood a head
+    # away, and the storyboard editor's commonest note on the medieval film
+    # was "sits away from the hearth" / "no hands held out to the fire"
+    at_fire = bool(fire_adjacent and focal and (PROPS[focal["name"]].light or PROPS[focal["name"]].living))
+    order = sorted(range(len(cast)),
+                   key=lambda i: 0 if (at_fire and cast[i].get("action") in FIRE_ACTIONS) else 1)
+    figs: list = [None] * len(cast)
+    for i in order:
+        c = cast[i]
         R = people.R0 * s * people.WHO[c["who"]]["size"]
         pose = c.get("pose", "stand")
         if c.get("at"):
@@ -638,7 +666,24 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # jumping to the far slot instead put a cook at the frame edge
             # with her pot outside it
             x = None
+            if at_fire and c.get("action") in FIRE_ACTIONS:
+                # right beside the fire, on whichever side has room: the
+                # fire's own half-width plus this figure's, and a hand's gap
+                fp = placed[0]
+                half = PROPS[fp["name"]].width * fp["s"] / 2
+                for side in ((1, -1) if (seed + i) % 2 else (-1, 1)):
+                    facing = "right" if side < 0 else "left"
+                    lo0, hi0 = fig_span(c, 0.0, facing, R)
+                    cand = focal_x + side * (half + (hi0 if side > 0 else -lo0) + 0.35 * R)
+                    got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
+                                 head_of=lambda xx: head_span(xx, R))
+                    lo, hi = fig_span(c, got, facing, R)
+                    if lo >= EDGE and hi <= W - EDGE and free(lo, hi, head_span(got, R)):
+                        x = got
+                        break
             for k in range(len(slots_auto)):
+                if x is not None:
+                    break
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
                 got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
@@ -653,9 +698,9 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                 x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
                            head_of=lambda xx: head_span(xx, R))
         put(*fig_span(c, x, facing, R))
-        figs.append(dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
-                         mood=c.get("mood", "calm"), item=c.get("item"), x=x,
-                         y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101))
+        figs[i] = dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
+                       mood=c.get("mood", "calm"), item=c.get("item"), x=x,
+                       y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101)
 
     # a pot or cauldron belongs in front of whoever is stirring it; a bedroll
     # goes under whoever is lying down
@@ -828,7 +873,7 @@ def vocabulary(era: str) -> str:
         "EVERY scene must move enough to read as alive. It passes if it has ANY of: "
         "a river/lake/seashore setting; rain; a hearth or a candle (interiors); a "
         "campfire or cauldron at dusk or night in a CLOSE shot, or a campfire inside a "
-        "cave or hut; or, in daylight close shots, someone walking, chopping or waving. "
+        "cave or hut; or, in daylight close shots, someone chopping or waving. "
         "Helpers that count for half: a torch, a wide-shot campfire or cauldron at "
         "dusk/night. A daytime fire alone does NOT pass.",
     ])

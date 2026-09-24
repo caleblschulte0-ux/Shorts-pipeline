@@ -362,15 +362,13 @@
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "calm",
-        "item": "stick",
-        "at": "left"
+        "item": "stick"
        },
        {
         "who": "woman",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy",
-        "at": "right"
+        "mood": "sleepy"
        }
       ],
       "props": [
@@ -407,7 +405,9 @@
         "at": "right"
        }
       ],
-      "props": [],
+      "props": [
+       "torch"
+      ],
       "variant": 1
      }
     },
@@ -490,7 +490,7 @@
      "say": "At the edge of the trees, a woman gathers the last fallen wood into a bundle before turning for home, a child walking close beside her. Deadwood like this was free for anyone to take, and gathering it on the way back from the fields saved a separate trip later. The trees here are not deep woods, more a fringe at the border of the cultivated land, and people moved along that edge often — for wood, for berries, for grazing animals. Already the light under the branches is dimmer than it is out in the open fields nearby.",
      "scene": {
       "setting": "grassland",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -512,7 +512,8 @@
       ],
       "props": [
        "tree",
-       "bush"
+       "bush",
+       "campfire"
       ]
      }
     },
@@ -709,14 +710,12 @@
         "pose": "walk",
         "action": "carry",
         "mood": "sleepy",
-        "item": "torch",
-        "at": "center"
+        "item": "torch"
        }
       ],
       "props": [
        "campfire",
-       "cottage",
-       "timber_house"
+       "cottage"
       ]
      }
     },
@@ -756,7 +755,7 @@
      "say": "The fields empty slowly at the end of the day. You can feel it in your legs, that particular tiredness that comes from bending and lifting since morning. A man and a woman walk the last stretch of the path together, tools slung over a shoulder, a basket balanced on a hip. Neither one hurries. There is nowhere left to be but home, and home is close now, its low roof just visible past the last furrow. The light is still gold, still warm, but it is beginning to lean long across the ground, the way it does right before it starts to go.",
      "scene": {
       "setting": "field",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -765,20 +764,19 @@
         "pose": "walk",
         "action": "carry",
         "mood": "content",
-        "item": "hoe",
-        "at": "left"
+        "item": "hoe"
        },
        {
         "who": "woman",
         "pose": "walk",
         "action": "carry",
         "mood": "content",
-        "item": "basket",
-        "at": "right"
+        "item": "basket"
        }
       ],
       "props": [
-       "wheat"
+       "wheat",
+       "campfire"
       ]
      }
     },
@@ -786,7 +784,7 @@
      "say": "Before the door comes the yard, and before rest comes one more small round of work. The animals that spent the day out get brought in close for the night — a cow settled at its stall, chickens gathered up from wherever they have wandered. It probably felt less like chore and more like habit, the kind of task hands do without much thought. Predators are more confident after dark, and a family's animals were often its whole savings on four legs. Bringing them in close was simply how the day was allowed to end safely.",
      "scene": {
       "setting": "market_square",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -805,7 +803,8 @@
        }
       ],
       "props": [
-       "cow"
+       "cow",
+       "campfire"
       ],
       "variant": 1
      }
@@ -921,8 +920,8 @@
        }
       ],
       "props": [
-       "hearth",
-       "candle"
+       "campfire",
+       "torch"
       ],
       "variant": 2
      }
@@ -940,29 +939,25 @@
         "pose": "sit",
         "action": "eat",
         "mood": "content",
-        "item": "bread",
-        "at": "left"
+        "item": "bread"
        },
        {
         "who": "woman",
         "pose": "sit",
         "action": "eat",
         "mood": "content",
-        "item": "bowl",
-        "at": "center"
+        "item": "bowl"
        },
        {
         "who": "child",
         "pose": "sit",
         "action": "drink",
         "mood": "happy",
-        "item": "cup",
-        "at": "right"
+        "item": "cup"
        }
       ],
       "props": [
-       "hearth",
-       "table"
+       "hearth"
       ],
       "variant": 1
      }
@@ -1011,7 +1006,7 @@
        }
       ],
       "props": [
-       "hearth",
+       "campfire",
        "dog"
       ],
       "variant": 1
@@ -1068,7 +1063,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "campfire"
       ],
       "variant": 1
      }
@@ -1120,7 +1115,7 @@
     {
      "say": "As dusk settles over the village, small windows begin to glow, one by one. Inside almost every house, someone is coaxing a fire back to life, since a hearth fire is the only real light and warmth this world has once the sun goes down. Wood is never wasted here. A woman crosses the yard with an armful gathered earlier in the day, walking it home before the light is gone. Every fire in this house will be watched through the whole night, fed only a little at a time, because fuel is precious and does not replace itself.",
      "scene": {
-      "setting": "cottage_inside",
+      "setting": "mountains",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -1134,8 +1129,8 @@
        }
       ],
       "props": [
-       "hearth",
-       "candle"
+       "campfire",
+       "torch"
       ],
       "variant": 1
      }
@@ -1194,7 +1189,7 @@
     {
      "say": "Back inside, as full dark comes on, an elder kneels by the hearth and feeds it, one small piece at a time. The fire is never built up high in the evening; that would burn through the night's fuel in an hour and leave the house cold before dawn. Instead it is coaxed along, banked low and steady, glowing rather than blazing. You learn, over time, to read a fire like a familiar face, knowing from its color and sound how much more it needs. This small orange light is the only light in the room.",
      "scene": {
-      "setting": "cottage_inside",
+      "setting": "mountains",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1209,7 +1204,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "campfire"
       ],
       "variant": 3
      }
@@ -1301,8 +1296,8 @@
        }
       ],
       "props": [
-       "candle",
-       "hearth"
+       "torch",
+       "campfire"
       ],
       "variant": 2
      }
@@ -1320,20 +1315,18 @@
         "pose": "stand",
         "action": "hold",
         "mood": "focused",
-        "item": "bundle",
-        "at": "center_left"
+        "item": "bundle"
        },
        {
         "who": "woman",
         "pose": "walk",
         "action": "wave",
-        "mood": "happy",
-        "at": "right"
+        "mood": "happy"
        }
       ],
       "props": [
        "stall",
-       "candle"
+       "torch"
       ]
      }
     },
@@ -1464,7 +1457,7 @@
     {
      "say": "Inside, the pot hangs low over the hearth, and someone crouches close to stir it a final time before it is served. The smell of pottage fills the small room — grain, perhaps a little onion or cabbage, whatever the season and the stores allow. It has cooked slowly most of the afternoon, needing only this last attention. There is nothing elaborate about it; a simple grain-and-vegetable stew was the ordinary evening food for most households of this period, filling rather than fine. Still, after a day of work, its warmth and familiar smell are enough to make the room feel, for a moment, entirely content.",
      "scene": {
-      "setting": "cottage_inside",
+      "setting": "mountains",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -1478,9 +1471,8 @@
        }
       ],
       "props": [
-       "hearth",
-       "cauldron",
-       "bench"
+       "campfire",
+       "cauldron"
       ]
      }
     },
@@ -2359,9 +2351,8 @@
        }
       ],
       "props": [
-       "hearth",
-       "candle",
-       "table"
+       "campfire",
+       "torch"
       ],
       "variant": 1
      }
@@ -2453,7 +2444,7 @@
      "say": "Word of the wider world reached most people this way, carried in on foot by someone who had recently stood in a market square, listening to arguments over prices, catching rumor of a poor harvest two valleys over, or news of who had married whom. A market was where such things changed hands as freely as goods did. A neighbor gathering a bundle of purchases was also gathering, without quite meaning to, every piece of talk worth repeating later, around someone else's fire, in some village he had not yet reached.",
      "scene": {
       "setting": "market_square",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -2462,13 +2453,12 @@
         "pose": "walk",
         "action": "carry",
         "mood": "focused",
-        "item": "bundle",
-        "at": "center"
+        "item": "bundle"
        }
       ],
       "props": [
        "stall",
-       "cart"
+       "campfire"
       ]
      }
     },
@@ -2667,7 +2657,7 @@
      "say": "In many medieval towns and villages, evening arrived first as a sound rather than a color in the sky — a bell rung out from a tower, calling the day to its close. People probably heard it from wherever they happened to be: bent over the last furrow, driving a slow cart home, calling in a stray animal from the hedge. It was known, in French, as the couvre-feu — cover fire — and it is where our word curfew comes from, though it meant something gentler then. It was less an order than a reminder that a fire, somewhere ahead, was waiting to be settled for the night.",
      "scene": {
       "setting": "forest",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -2680,7 +2670,9 @@
         "at": "center"
        }
       ],
-      "props": [],
+      "props": [
+       "campfire"
+      ],
       "variant": 1
      }
     },
@@ -4132,12 +4124,5 @@
  "sources": [],
  "topic": "What did medieval peasants do after dark?",
  "added": "2026-09-24T14:41",
- "authored_by": "ori_author",
- "storyboard": {
-  "kit": "474a73d2c6cf",
-  "clean": false,
-  "reviewed_at": "2026-09-24T15:08",
-  "rounds": 3,
-  "repaired": 352
- }
+ "authored_by": "ori_author"
 }

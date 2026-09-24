@@ -447,6 +447,33 @@ only as a hand edit is not a rule. So:
   call count. The 190-beat script came off the shelf — the weekly cron
   would otherwise have picked a film that cannot finish.
 
+- **The sixth fresh-topic run rendered in the slot and was BLOCKED by the
+  code gate at 11:36** (run #16: 13 chapters, 157 beats, 114 min; storyboard
+  27 min, narration 44, drawing 88; score 9 = the pre-gate, the vision judge
+  never asked). 43 seconds frozen on a daylight close shot of a woman
+  gathering wood with a child walking beside her — a scene the motion
+  table called alive because somebody was walking. Measured against the
+  gate's OWN detector with the real probe: a walker swings its legs on the
+  spot and at a child's size in a close shot every frame is a duplicate
+  (0.75-1.0, run 96); chop 0.14/5 and wave 0.18/4 pass; eat 0.78/44, yawn
+  0.62/60 and stir 0.93/49 sit at the 45-frame ceiling. So in daylight only
+  chopping and waving count (hoe +1), and `mend_scene` takes such a scene to
+  dusk with a fire, which measures 0.0. The storyboard editor still flagged
+  106 of 157 after three rounds, and its notes became code too: whoever
+  feeds, warms or stirs is placed BESIDE the fire (measured before: a woman
+  warming her hands 6-15 heads from the hearth while an idle child stood
+  one head away) and the cast keeps its order; a beat moved outdoors leaves
+  its hearth, bed and table behind (`take_outdoors`: hearth -> campfire, a
+  candle -> a torch), and a brain-written hearth in a field is mended the
+  same way; the axe and the hoe clear the face through the whole swing
+  (a test holds the gap at 0.1 R; it was -0.06 R and -0.79 R).
+  Closer to the fire is never smaller: at each size the adjacent
+  arrangement is tried first and the plain slots second, so the cook keeps
+  her natural size. And `mend_film` — every scene mend, the crowd, the idle,
+  then the film rules — runs on every script before it is rendered, so a
+  script written under yesterday's rules is brought to today's in code:
+  the medieval script took 18 such repairs, the stone-age one none.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

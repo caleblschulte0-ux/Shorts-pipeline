@@ -191,11 +191,11 @@ def main() -> int:
     # not after a two-hour render. The gate below is unchanged.
     from data_learning import ori_storyboard as SB
     import ori_author as A
-    notes = A.repair_film(ep)
+    notes = A.mend_film(ep)
     if notes:
         (OS.EPISODES / f"{ep['slug']}.json").write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n",
                                                         encoding="utf-8")
-        print(f"[post_ori] repair_film changed {len(notes)} scene(s)", flush=True)
+        print(f"[post_ori] mend_film changed {len(notes)} scene(s)", flush=True)
     if SB.judge_available():
         rep = SB.polish(ep, write=True)
         print(f"[ori] storyboard: {json.dumps({k: v for k, v in rep.items() if k != 'notes'})}", flush=True)

@@ -386,6 +386,41 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
     return bad
 
 
+# furniture that only exists indoors: a hearth is a fireplace, a bed a bed.
+# The medieval storyboard flagged "hearth stands in an open field" four
+# times — twice from the brain, twice from a repair that moved an indoor
+# beat outdoors with its furniture
+INDOOR_ONLY = ("hearth", "stove", "bed", "bench", "table", "chair", "bookshelf", "clock", "candle", "oil_lamp",
+               "cave_painting")
+OUTDOOR_STAND_IN = {"hearth": "campfire", "stove": "campfire", "candle": "torch", "oil_lamp": "torch"}
+
+
+def take_outdoors(scene: dict, era: str) -> list[str]:
+    """Swap or drop the indoor furniture of a scene whose setting is (now)
+    outdoors: hearth -> campfire, a candle -> a torch, the rest dropped.
+    Returns the notes; [] when nothing was indoors."""
+    st = S.SETTINGS.get(scene.get("setting"))
+    if st is None or st.interior:
+        return []
+    notes, keep = [], []
+    names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
+    for q in scene.get("props") or []:
+        name = q if isinstance(q, str) else q.get("name")
+        if name in INDOOR_ONLY:
+            swap = OUTDOOR_STAND_IN.get(name)
+            pr = S.PROPS.get(swap) if swap else None
+            if swap and pr is not None and era in pr.eras and swap not in names:
+                keep.append(swap); names.append(swap)
+                notes.append(f"{name} -> {swap}")
+            else:
+                notes.append(f"dropped {name}")
+        else:
+            keep.append(q)
+    if notes:
+        scene["props"] = keep
+    return notes
+
+
 def mend_scene(scene: dict, era: str) -> str | None:
     """The smallest deterministic change that makes a scene the brain wrote
     valid: a scene where nothing moves gets the era's plainest light (a
@@ -420,6 +455,7 @@ def mend_scene(scene: dict, era: str) -> str | None:
         if pose not in P.POSES or pose not in P.ACTIONS[action]["poses"]:
             c["pose"] = P.ACTIONS[action]["poses"][0]
             did.append(f"pose {pose} -> {c['pose']} for {action}")
+    did += take_outdoors(scene, era)
     bad = S.validate(scene, era)
     if not bad:
         return ", ".join(did) if did else None
@@ -907,7 +943,10 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
                 continue
             sc["setting"] = alt
             sc["props"] = [q for q in sc.get("props", []) if (q if isinstance(q, str) else q["name"]) != "cave_painting"]
-            if (scene_ok(i, j) and severity() < before
+            take_outdoors(sc, era)                  # the hearth does not come along
+            if S.validate(sc, era):
+                mend_scene(sc, era)                 # a wide night wants its second light
+            if (not S.validate(sc, era) and scene_ok(i, j) and severity() < before
                     and (guard is None or own_problems(guard) <= guarded)):
                 return f"{ep['chapters'][i]['title']} beat {j + 1}: {old.get('setting')} -> {alt}"
             sc.clear(); sc.update(old)
@@ -993,6 +1032,21 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
     return notes
 
 
+def mend_film(ep: dict, log=print) -> list[str]:
+    """Every deterministic repair the author knows, on a whole script: each
+    scene mended (a light, a dropped prop, the furniture left indoors), each
+    chapter uncrowded and given the actions its words describe, then the
+    film-level picture rules. Run on every script before it is rendered, so
+    a script written under yesterday's rules is brought to today's in code
+    and never by hand (run #16: six daylight scenes the old motion table
+    had called alive)."""
+    notes = []
+    for i, c in enumerate(ep.get("chapters") or []):
+        mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)))
+    notes += repair_film(ep, log=log)
+    return notes
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--count", type=int, default=None)
@@ -1031,7 +1085,7 @@ def main() -> int:
             break
         if ep is None:
             continue
-        repair_film(ep)
+        mend_film(ep)
         OS.EPISODES.mkdir(parents=True, exist_ok=True)
         path = OS.EPISODES / f"{ep['slug']}.json"
         path.write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n")

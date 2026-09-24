@@ -945,6 +945,99 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertTrue(did, "a pinned crowd was left")
         self.assertFalse(self.S.layout(pinned, 1000)["collisions"])
 
+    def test_run_sixteen_a_walker_is_not_motion_a_hearth_stays_indoors_and_a_tool_clears_the_face(self):
+        # run #16 (2026-09-24): the medieval film was BLOCKED by the code gate
+        # at 11:36 — 43 s frozen on a daylight close shot the motion table had
+        # called alive because a child was "walking". Measured against the
+        # gate's own detector: a walker on the spot is 0.75-1.0 duplicate;
+        # chop and wave are 0.14 and 0.18. And the storyboard's notes:
+        # "hearth stands in an open field" (a repair moved an indoor beat
+        # outdoors with its furniture), "axe handle and head cross the face"
+        import math
+        import ori_author as A
+        from data_learning.doodle import people as P
+        S = self.S
+        day = {"setting": "grassland", "time": "day", "weather": "clear", "shot": "close",
+               "cast": [{"who": "woman", "pose": "crouch", "action": "gather", "item": "bundle", "at": "left"},
+                        {"who": "child", "pose": "walk", "action": "idle", "at": "right"}],
+               "props": ["tree", "bush"]}
+        self.assertTrue(any("moves enough" in x for x in S.validate(day, "medieval")),
+                        "a walker on the spot still counts as motion")
+        chop = dict(day, cast=[{"who": "man", "pose": "stand", "action": "chop"}])
+        self.assertEqual(S.validate(chop, "medieval"), [])
+        did = A.mend_scene(day, "medieval")
+        self.assertTrue(did and "day ->" in did, did)
+        self.assertEqual(S.validate(day, "medieval"), [])
+        # a beat moved outdoors leaves the hearth behind (a campfire stands in)
+        sc = {"setting": "grassland", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}], "props": ["hearth", "bed", "table"]}
+        notes = A.take_outdoors(sc, "medieval")
+        self.assertIn("hearth -> campfire", notes)
+        self.assertNotIn("hearth", sc["props"]); self.assertNotIn("bed", sc["props"]); self.assertIn("campfire", sc["props"])
+        self.assertEqual(A.take_outdoors({"setting": "cottage_inside", "props": ["hearth"]}, "medieval"), [])
+        say = " ".join(["word"] * 30)
+        beats = [{"say": say, "scene": {"setting": "cottage_inside", "time": "night", "weather": "clear", "shot": "close",
+                                        "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}],
+                                        "props": ["hearth", "bed"]}} for _ in range(6)]
+        ep = {"slug": "a-test", "era": "medieval", "chapters": [{"title": "One", "beats": beats}]}
+        A.repair_film(ep, log=lambda *_: None)
+        for b in beats:
+            st = S.SETTINGS[b["scene"]["setting"]]
+            names = [(q if isinstance(q, str) else q["name"]) for q in b["scene"]["props"]]
+            if not st.interior:
+                self.assertNotIn("hearth", names, "a hearth went outdoors")
+                self.assertNotIn("bed", names)
+            self.assertEqual(S.validate(b["scene"], "medieval"), [])
+        # the axe and the hoe never cross the face, anywhere in the swing
+        R = 80.0
+        def gap(p, a, b):
+            (px, py), (ax, ay), (bx, by) = p, a, b
+            dx, dy = bx - ax, by - ay
+            L = dx * dx + dy * dy
+            u = 0 if L == 0 else max(0.0, min(1.0, ((px - ax) * dx + (py - ay) * dy) / L))
+            return math.hypot(px - (ax + u * dx), py - (ay + u * dy)) - R
+        for action, item in (("chop", "axe"), ("hoe", "hoe")):
+            worst = 9e9
+            for i in range(60):
+                t = i * 0.05
+                sk = P.skeleton("stand", R, t, 0.0)
+                head = P.head_of(sk, R, action)
+                (hx, hy), _ = P.hand_targets(action, sk, R, t, 0.0)
+                if item == "axe":
+                    seg = ((hx - 0.2 * R, hy + 0.5 * R), (hx + 0.35 * R, hy - 1.1 * R))
+                    for q in ((hx + 0.25 * R, hy - 1.15 * R), (hx + 0.75 * R, hy - 1.25 * R),
+                              (hx + 0.7 * R, hy - 0.8 * R), (hx + 0.35 * R, hy - 0.85 * R)):
+                        worst = min(worst, math.hypot(q[0] - head[0], q[1] - head[1]) - R)
+                else:
+                    seg = ((hx - 0.4 * R, hy - 1.4 * R), (hx + 0.9 * R, hy + 1.7 * R))
+                worst = min(worst, gap(head, *seg))
+            self.assertGreaterEqual(worst, 0.1 * R, f"the {item} crosses the face ({worst / R:.2f} R)")
+
+    def test_whoever_acts_at_the_fire_is_drawn_beside_it(self):
+        # measured before: a woman warming her hands 6-15 heads from the
+        # hearth while an idle child stood one head away; the storyboard's
+        # commonest note. Whoever feeds, warms or stirs takes the nearest slot
+        from data_learning.doodle import people as P
+        S = self.S
+        for setting, fire in (("cottage_inside", "hearth"), ("grassland", "campfire")):
+            for shot in ("close", "wide"):
+                for seed in (1000, 1001, 1002, 1005):
+                    sp = {"setting": setting, "time": "night", "weather": "clear", "shot": shot,
+                          "cast": [{"who": "child", "pose": "stand", "action": "idle"},
+                                   {"who": "woman", "pose": "sit", "action": "warm_hands"},
+                                   {"who": "man", "pose": "sit", "action": "feed_fire"}],
+                          "props": [fire, "torch"] if shot == "wide" and setting == "grassland" else [fire]}
+                    lay = S.layout(sp, seed)
+                    self.assertEqual(lay["collisions"], [])
+                    f = next(q for q in lay["props"] if q["name"] == fire)
+                    self.assertEqual([p["who"] for p in lay["people"]], ["child", "woman", "man"], "cast order kept")
+                    for p in lay["people"]:
+                        if p["action"] in S.FIRE_ACTIONS:
+                            R = P.R0 * p["s"] * P.WHO[p["who"]]["size"]
+                            g = (abs(p["x"] - f["x"]) - S.PROPS[fire].width * f["s"] / 2) / R
+                            self.assertLessEqual(g, 4.0, f"{p['action']} is {g:.1f} heads from the {fire} "
+                                                         f"({setting}, {shot}, seed {seed})")
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid
