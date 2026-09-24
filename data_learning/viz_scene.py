@@ -425,6 +425,18 @@ _SCENE_HOST_CACHE: dict = {}
 #: a scene never goes through it: `render_scene` owns its own loop.
 _BEAT_PHASE = None
 
+
+def beat_clock(reveal: float) -> float:
+    """LINEAR time through the beat, 0..1 — for pacing a machine's moves.
+
+    `reveal` is the BUILD curve: eased, and flat at 1.0 for the tail so the
+    finished picture can be read. A machine that paces its moves on it has
+    nothing left to move in the last fifth of the beat, and those frames are
+    what the gate counts as held (thermometer: 70%, 2026-09-24). The host
+    already reads this clock for the same reason. Falls back to `reveal`
+    outside render_scene."""
+    return _BEAT_PHASE if _BEAT_PHASE is not None else reveal
+
 #: WHAT A MACHINE ASKS FOR, and what it may be given.
 #:
 #: A machine picks a ROLE, not a pose. The role is a contract about the
@@ -1660,7 +1672,14 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     # the fix and the more honest motion: each pull moves the end a visible
     # distance at once, which is the DISCRETE arrival every machine that
     # passes the gate has.
-    x1 = int(lo + (hi - lo) * (_math.floor(e * TAPE_PULLS) / TAPE_PULLS))
+    # ...and each yank is SEEN, at an even pace. Quantised on `settle` the
+    # pulls bunched into the first seconds and the rest of the beat was the
+    # same frame, 55% held (2026-09-24). Each pull now snaps the end out
+    # over most of its own window, evenly spaced along the beat.
+    _tp = min(1.0, reveal / 0.9) * TAPE_PULLS
+    _k = min(TAPE_PULLS, int(_tp))
+    _yank = settle(min(1.0, (_tp - _k) / 0.7)) if _k < TAPE_PULLS else 0.0
+    x1 = int(lo + (hi - lo) * (min(TAPE_PULLS, _k + _yank) / TAPE_PULLS))
     d.rounded_rectangle([lo, y - 22, max(x1, lo + 6), y + 22], radius=10,
                         fill=_rgba(color, 235))
     for k in range(0, max(1, (x1 - lo) // 46)):
@@ -1880,14 +1899,21 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
     n = len(vals)
     xs = [bx0 + 70 + (bx1 - bx0 - 140) * k / (n - 1) for k in range(n)]
     ys = [bot - (bot - top) * ((v - lo) / span) for v in vals]
-    e = settle(reveal)
-    k_end = max(1, int(e * (n - 1)))
-    pts = [(int(x), int(y)) for x, y in zip(xs[:k_end + 1], ys[:k_end + 1])]
+    # HE RIDES IT: the car's position runs continuously along the track at
+    # a steady pace, and the track is laid up to where he is. Built in whole
+    # steps on `settle`, he jumped vertex to vertex and waited, and the
+    # machine measured 58% held (2026-09-24).
+    pos = min(1.0, reveal / 0.9) * (n - 1)
+    k_end = max(1, min(n - 1, int(_math.ceil(pos))))
+    k0 = min(n - 2, int(pos))
+    f = pos - k0
+    cx_ = int(xs[k0] + (xs[k0 + 1] - xs[k0]) * f)
+    cy_ = int(ys[k0] + (ys[k0 + 1] - ys[k0]) * f)
+    pts = [(int(x), int(y)) for x, y in zip(xs[:k0 + 1], ys[:k0 + 1])] + [(cx_, cy_)]
     if len(pts) >= 2:
         d.line(pts, fill=_rgba(color, 255), width=13, joint="curve")
-        for x, y in pts:                       # the rails' supports
+        for x, y in pts[:-1]:                  # the rails' supports
             d.line([(x, y + 8), (x, bot + 30)], fill=_rgba(TEXT, 45), width=4)
-    cx_, cy_ = pts[-1]
     host = scene_host("cheer" if ys[k_end] < ys[max(0, k_end - 1)]
                       else "shock", reveal, insight, "reversal")
     if host is not None:
@@ -1898,7 +1924,8 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, by0 + 58),
            f"{charts._ulabel(lo, unit)}  to  {charts._ulabel(hi, unit)}",
            font=_pil_font(64), fill=_rgba(color, 255), anchor="mm")
-    d.text(((bx0 + bx1) // 2, bot + 88), "and back again",
+    # not "and back again": that claims a return the series may not make
+    d.text(((bx0 + bx1) // 2, bot + 88), "up and down the whole way",
            font=_pil_font(40), fill=_rgba(TEXT, 215), anchor="mm")
     return (vals[k_end], "art", cx_, cy_)
 
@@ -1920,10 +1947,13 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     top, bot = max(by0 + 220, 360), by1 - 190
-    tube_w = 96
+    # THE HERO IS BIG. A 96px tube was a thread down the middle of the
+    # frame, and its mercury changed so few pixels a frame that the gate
+    # measured the rise as a still image (70% held, 2026-09-24).
+    tube_w = 156
     d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, bot],
                         radius=tube_w // 2, fill=_rgba(TEXT, 55))
-    d.ellipse([cx - 84, bot - 40, cx + 84, bot + 128], fill=_rgba(TEXT, 55))
+    d.ellipse([cx - 130, bot - 60, cx + 130, bot + 180], fill=_rgba(TEXT, 55))
     if limit:
         ly = int(bot - (bot - top) * (abs(limit) / top_v))
         d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, ly],
@@ -1936,12 +1966,23 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     # reading is called out along a leader. The number is the data's from
     # the moment it shows (it used to count up through values the data does
     # not have), so the second move is what keeps the tail from freezing.
-    e = settle(min(1.0, reveal / 0.7))
-    e2 = settle(max(0.0, min(1.0, (reveal - 0.55) / 0.45)))
+    # The climb is PACED, in surges, across most of the beat — the heat
+    # rising — and not one `settle` glide that was over in the first third
+    # and left the rest of the beat a still image (70% held, 2026-09-24).
+    _clk = beat_clock(reveal)
+    e = min(1.0, _clk / 0.8)          # an even climb, on real time
+    e2 = settle(max(0.0, min(1.0, (_clk - 0.74) / 0.22)))
     fy = int(bot - (bot - top) * (abs(v) / top_v) * e)
     d.rounded_rectangle([cx - tube_w // 2 + 14, fy, cx + tube_w // 2 - 14, bot],
                         radius=(tube_w - 28) // 2, fill=_rgba(color, 245))
-    d.ellipse([cx - 70, bot - 26, cx + 70, bot + 114], fill=_rgba(color, 245))
+    d.ellipse([cx - 110, bot - 40, cx + 110, bot + 160], fill=_rgba(color, 245))
+    # THE MENISCUS: the bright lip of the column, riding its top. It is what
+    # the eye tracks on a real thermometer, and its two hard edges are what
+    # the gate's detector can see move — without it the climb measured as
+    # held frames once the number stopped counting (2026-09-24).
+    if fy < bot - 30:
+        d.rounded_rectangle([cx - tube_w // 2 + 14, fy - 4, cx + tube_w // 2 - 14,
+                             fy + 26], radius=14, fill=_rgba(TEXT, 250))
     if e2 > 0:
         lx = int(cx - tube_w // 2 - 8 - 100 * e2)
         d.line([(cx - tube_w // 2 - 8, fy), (lx, fy)], fill=_rgba(color, 255), width=6)
@@ -1952,8 +1993,17 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     if host is not None:
         mh = 220
         mw = int(host.width * mh / host.height)
+        # HE RIDES THE READING. On a bracket fixed to the meniscus, the heat
+        # lifts him: contact, cause and effect, and a big shape that moves on
+        # every frame of the climb. Parked at the foot of the tube he was a
+        # bystander, and the climb alone is too slow a change for the gate
+        # to see (a slow rise measured 72% held frames, 2026-09-24).
+        bx_ = cx + tube_w // 2 - 6
+        by_ = min(fy + 10, bot - 40)
+        d.rounded_rectangle([bx_, by_, bx_ + mw + 30, by_ + 16], radius=8,
+                            fill=_rgba(TEXT, 230))
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx + 150), int(bot - mh + 40)))
+                               (int(bx_ + 22), int(by_ - mh + 6)))
     _sf, _sl = fit_text(d, str(getattr(star, "label", "")), 44,
                         max(200, bx1 - bx0 - 60), min_size=26)
     d.text((cx, by0 + 58), _sl, font=_sf, fill=_rgba(TEXT, 230), anchor="mm")
@@ -2123,7 +2173,14 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     # queue at whatever fitted across and left the middle of a 1480-tall box
     # empty — the picture of a backlog has to be able to get LONGER, so it
     # wraps, the way a real queue folds back on itself.
-    n_wait = max(1, int(round(1 + frac * 29)))
+    # THE NEXT PERSON WALKS IN. Whole people switched on as the count
+    # passed them and nothing else moved once the number stopped counting
+    # through values the data does not have — 64% held frames measured
+    # 2026-09-24. The arrival is the growth: the newest one walks in from
+    # the edge to their place in the line as the value climbs toward them.
+    wait_f = 1.0 + frac * 29.0
+    n_wait = max(1, int(wait_f))
+    arrive = wait_f - n_wait
     host = scene_host("point", reveal, insight, "queue")
     mh = 280
     mw = int(host.width * mh / host.height) if host is not None else 170
@@ -2151,7 +2208,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     cols = max(3, int(avail_w // (sz + 12)))
     rowh = sz + 34
     first_top = ground - sz
-    for k in range(n_wait):
+    for k in range(n_wait + (1 if arrive > 0.02 else 0)):
         gx, gy = k % cols, k // cols
         # rows fold back the way a queue does, so the tail is beside the head
         if gy % 2:
@@ -2160,6 +2217,8 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
         y = first_top - gy * rowh
         if y < by0 + 190:
             break
+        if k == n_wait:                      # walking in from the far edge
+            x = int(x + (bx1 - x) * (1.0 - settle(arrive)))
         if glyph is not None:
             canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
@@ -2249,7 +2308,9 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
             continue                       # stopped at the pinch
         wv = full * (vals[idx] / vmax)
         px = cx + ((k * 37 % 11) / 10.0 - 0.5) * max(6.0, wv * 0.55)
-        particle(d, _st["particle"], px, py, 9, _rgba(charts.CARD, 215))
+        # BIG ENOUGH TO SEE: 9px in the card colour was invisible to the eye
+        # and to the gate, which measured the machine 80% held (2026-09-24)
+        particle(d, _st["particle"], px, py, 20, _rgba(TEXT, 235))
     na = max(0.0, min(1.0, (reveal - 0.5) / 0.28))
     if na > 0.0:
         d.text((int(cx - full / 2 - 40), wy), "here", font=_pil_font(48),
@@ -2673,16 +2734,32 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
     x0 = (bx0 + bx1) / 2 - cw * cols / 2
     y0 = top
     lucky = (n - 1) // 2                   # deterministic, not drawn at random
-    opened = int(settle(reveal) * n)
+    # ONE DOOR AT A TIME, AT A STEADY PACE, AND EACH ONE SWINGS. Doors that
+    # switched from shut to open on `settle` crowded the openings into the
+    # first seconds and then waited, 64% of frames unchanged (2026-09-24).
+    # The pace is the point of this machine — how long it takes — so it is
+    # even, and the door being opened is seen opening.
+    t_open = min(1.0, reveal / 0.92) * n
+    opened = int(t_open)
     for i in range(n):
         c, rr = i % cols, i // cols
         x, y = x0 + c * cw, y0 + rr * ch
         rect = [int(x + 6), int(y + 6), int(x + cw - 6), int(y + ch - 6)]
+        swing = max(0.0, min(1.0, t_open - i))
         if i == lucky and opened > i:
             d.rounded_rectangle(rect, radius=8, fill=_rgba(color, 245))
         elif opened > i:
             d.rounded_rectangle(rect, radius=8, fill=_rgba(charts.CARD, 255),
                                 outline=_rgba(TEXT, 90), width=4)
+        elif swing > 0.0:
+            # the doorway behind, and the door folding back on its hinge
+            d.rounded_rectangle(rect, radius=8,
+                                fill=_rgba(color if i == lucky else charts.CARD, 255),
+                                outline=_rgba(TEXT, 90), width=4)
+            dw = int((rect[2] - rect[0]) * (1.0 - settle(swing)))
+            if dw > 4:
+                d.rounded_rectangle([rect[0], rect[1], rect[0] + dw, rect[3]],
+                                    radius=8, fill=_rgba(REST, 230))
         else:
             d.rounded_rectangle(rect, radius=8, fill=_rgba(REST, 210))
             d.ellipse([int(x + cw - 30), int(y + ch / 2 - 6),
@@ -2735,14 +2812,27 @@ def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
         fr = [i / (n - 1) for i in range(n)]
     xs = [bx0 + 70 + (bx1 - bx0 - 200) * f for f in fr]
     ys = [bot - (bot - top) * ((v - lo) / span) for v in vals]
-    e = settle(reveal)
-    shown = 1 + int(e * (n - 2))           # never reveals past the measured end
-    d.line([(xs[i], ys[i]) for i in range(shown + 1)],
-           fill=_rgba(color, 245), width=10, joint="curve")
+    # THE PEN DRAWS THE MEASURED LINE, continuously, on real time — it
+    # used to appear a whole segment at a time and the gaps between were
+    # held frames; and the cone's breathing ran off the saturated reveal,
+    # so the tail froze (48% held, 2026-09-24).
+    _clk = beat_clock(reveal)
+    _pen = min(1.0, _clk / 0.4) * (n - 2)  # never past the measured end
+    shown = max(1, min(n - 2, int(_pen)))
+    _line_xy = [(xs[i], ys[i]) for i in range(shown + 1)]
+    if shown < n - 2:
+        _f = _pen - shown
+        _line_xy.append((xs[shown] + (xs[shown + 1] - xs[shown]) * _f,
+                     ys[shown] + (ys[shown + 1] - ys[shown]) * _f))
+    d.line(_line_xy, fill=_rgba(color, 245), width=10, joint="curve")
+    if shown < n - 2:                     # the nib, so the drawing is seen
+        _nx, _ny = _line_xy[-1]
+        d.ellipse([_nx - 22, _ny - 22, _nx + 22, _ny + 22],
+                  fill=_rgba(TEXT, 245), outline=_rgba(color, 255), width=6)
     for i in range(shown + 1):
         d.ellipse([xs[i] - 11, ys[i] - 11, xs[i] + 11, ys[i] + 11],
                   fill=_rgba(color, 250))
-    fa = max(0.0, min(1.0, (reveal - 0.55) / 0.4))
+    fa = settle(max(0.0, min(1.0, (_clk - 0.4) / 0.3)))
     if fa > 0.0:
         # the cone: it starts at the last MEASURED point and opens outward
         sx, sy = xs[-2], ys[-2]
@@ -2756,15 +2846,15 @@ def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
         d.line([(sx, sy), (ex, ey)], fill=_rgba(color, 200), width=7)
         # The tip breathes through the range it is claiming — the picture is
         # a spread of outcomes, and a still dot at the end is a prediction.
-        by_ = ey + w * fa * 0.62 * _math.sin(reveal * 8.0)
-        d.ellipse([ex - 15, by_ - 15, ex + 15, by_ + 15],
-                  outline=_rgba(color, 240), width=7)
+        by_ = ey + w * fa * 0.62 * _math.sin(_clk * 14.0)
+        d.ellipse([ex - 26, by_ - 26, ex + 26, by_ + 26],
+                  outline=_rgba(color, 240), width=9)
         for kk in range(5):
-            t_ = (reveal * 1.7 + kk / 5.0) % 1.0
+            t_ = (_clk * 2.4 + kk / 5.0) % 1.0
             px_ = sx + (ex - sx) * t_
             py_ = sy + (ey - sy) * t_
-            d.ellipse([px_ - 8, py_ - 8, px_ + 8, py_ + 8],
-                      fill=_rgba(color, 150))
+            d.ellipse([px_ - 13, py_ - 13, px_ + 13, py_ + 13],
+                      fill=_rgba(color, 190))
         d.text((int(xs[-1]), int(by0 + 210)),
                f"{labs[-1]}: about {charts._ulabel(vals[-1], unit)}",
                font=_pil_font(38), fill=_rgba(color, int(245 * fa)),
@@ -4564,7 +4654,16 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     frac = (v - lo) / ((hi - lo) or 1.0)
     # The slab is the LOAD: its thickness is the value against the range, so
     # the picture is the increase. The exact figure is in the line above.
-    n_slabs = max(1, int(round(1 + frac * 7)))
+    # THE NEWEST SLAB IS DROPPING ONTO HIM. `n_slabs` used to switch whole
+    # slabs on and off, and the only thing that moved between years was the
+    # number — which counted through values the data does not have. Printed
+    # honestly, the machine held still for 88% of a hook (duplicate_ratio
+    # 0.464, temporal gate, 2026-09-24). Now the load arrives: each slab
+    # falls from above as the value climbs toward it, and lifts off again
+    # where the value dips. The motion IS the change in the number.
+    slabs_f = 1.0 + frac * 7.0
+    n_slabs = max(1, int(slabs_f))
+    drop = slabs_f - n_slabs                 # 0..1: the next slab's arrival
     host = scene_host("hoist_stack", reveal, insight, "burden")
     mh = int(min(560, (by1 - by0) * 0.38))
     mw = int(host.width * mh / host.height) if host is not None else 280
@@ -4580,11 +4679,16 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # thing he is supposed to be holding up.
     sw, sh, gap = int(mw * 1.55), 34, 7
     hands_y = hy + int(mh * 0.095)
-    for k in range(n_slabs):
+    for k in range(n_slabs + (1 if drop > 0.02 else 0)):
         sy = hands_y - sh - k * (sh + gap)
+        falling = k == n_slabs
+        if falling:                          # three slab-heights above, landing
+            sy -= int((1.0 - settle(drop)) * (sh + gap) * 3.5)
+        top_one = k == n_slabs - 1 and not (drop > 0.02)
         d.rounded_rectangle([int(cx - sw // 2), sy, int(cx + sw // 2), sy + sh],
                             radius=9,
-                            fill=_rgba(color if k == n_slabs - 1 else REST, 240),
+                            fill=_rgba(color if (falling or top_one) else REST,
+                                       int(240 * (min(1.0, drop * 3) if falling else 1.0))),
                             outline=_rgba(charts.CARD, 255), width=3)
     _s = f"{lab}   {charts._ulabel(shown_v, unit, group=True)}"
     _f, _s = fit_text(d, _s, 76, (bx1 - bx0) - 60)

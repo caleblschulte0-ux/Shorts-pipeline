@@ -50,6 +50,7 @@ def _longest_still_run(job):
     """Render one machine and return its longest run of near-identical
     frames by the cadence gate's own detector (None if it would not draw).
     Module level so a worker process can run it."""
+    import re
     import tempfile
     import numpy as np
     from PIL import Image
@@ -65,19 +66,25 @@ def _longest_still_run(job):
                    for r in range(12) for c in range(12))
     with tempfile.TemporaryDirectory() as td:
         charts.FULLFRAME_RENDERERS["scene"](ins, Path(td), name, frames)
-        fs = sorted(Path(td).glob(name + "*.png"))
+        # NUMERIC order. Frames are named `%02d`, so past 99 a string sort
+        # put `_build100` between `_build10` and `_build11` and this test
+        # compared frames that are not neighbours: the "motion" it saw was
+        # the jump between them (found 2026-09-24).
+        from shared.fsutil import frames_in_order
+        fs = frames_in_order(Path(td).glob(name + "*.png"))
         if len(fs) < 5:
             return None
         arr = [np.asarray(Image.open(f).convert("L").resize((192, 192)),
                           dtype=np.float32) for f in fs]
-    run = best = 0
+    run = best = dup = 0
     for k in range(len(arr) - 1):
         if _block_max(arr[k], arr[k + 1]) < 6.0:
             run += 1
+            dup += 1
             best = max(best, run)
         else:
             run = 0
-    return best
+    return best, dup / max(1, len(arr) - 1)
 
 class _Pt:
     def __init__(self, label, value):
@@ -573,6 +580,7 @@ class MotionMustBeVISIBLE(unittest.TestCase):
         # catches a machine that is grossly still, not one that is marginal.
         FRAMES = 120
         CEILING = 35
+        DUP_CEILING = 0.45      # the gate's own max_duplicate_ratio (phase 1)
         # EVERY machine, not a sample of them. The case list below started as
         # four and grew batch by batch, which meant a machine was only ever
         # measured if somebody remembered to add it — and on 2026-09-07 a
@@ -692,9 +700,18 @@ class MotionMustBeVISIBLE(unittest.TestCase):
             jobs.append((name, attr, ins, FRAMES))
         with ProcessPoolExecutor(max_workers=max(1, min(4, os.cpu_count() or 1))) as ex:
             runs = list(ex.map(_longest_still_run, jobs))
-        worst = {name: best for (name, *_), best in zip(jobs, runs)
-                 if best is not None and best > CEILING}
+        worst = {name: r[0] for (name, *_), r in zip(jobs, runs)
+                 if r is not None and r[0] > CEILING}
         self.assertEqual(worst, {}, f"machines that hold still: {worst}")
+        # AND NOT TOO OFTEN. The gate also refuses a render whose held frames
+        # pass `max_duplicate_ratio` (0.45, phase 1). A machine can pass the
+        # run test with many short holds; burden did, at 0.88 of a hook,
+        # once its number stopped counting through invented values, and
+        # the coffee render was blocked at 0.464 (2026-09-24). A machine is
+        # held under the gate's own ratio with margin.
+        held = {name: round(r[1], 2) for (name, *_), r in zip(jobs, runs)
+                if r is not None and r[1] > DUP_CEILING}
+        self.assertEqual(held, {}, f"machines mostly holding still: {held}")
 
 
 class BatchOneRelationships(unittest.TestCase):

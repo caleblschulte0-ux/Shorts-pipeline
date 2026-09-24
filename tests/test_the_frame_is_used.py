@@ -136,7 +136,8 @@ class ANumberIsDEMONSTRATEDNotStated(unittest.TestCase):
                      "elements": [{"type": "timeline_axis", "region": "full"}]}
         with tempfile.TemporaryDirectory() as td:
             charts.FULLFRAME_RENDERERS["scene"](ins, Path(td), "t", 4)
-            fs = sorted(Path(td).glob("*.png"))
+            from shared.fsutil import frames_in_order
+            fs = frames_in_order(Path(td).glob("*.png"))
             self.assertTrue(fs, "the scene rendered nothing")
             return Image.open(fs[-1]).convert("RGBA")
 

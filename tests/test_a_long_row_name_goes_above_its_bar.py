@@ -37,7 +37,8 @@ def _frame(pairs):
                   source=SRC, unit="percent", highlight_label=pairs[0][0])
     out = Path(tempfile.mkdtemp())
     charts.render_story_build(ins, out, "r", frames=4, full_by=1.0)
-    f = sorted(out.glob("r*.png"))[-1]
+    from shared.fsutil import frames_in_order
+    f = frames_in_order(out.glob("r*.png"))[-1]
     return np.asarray(Image.open(f).convert("RGBA"))[..., 3] > 8
 
 

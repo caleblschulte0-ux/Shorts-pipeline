@@ -66,7 +66,8 @@ class TheColdOpenStartsWithAPicture(unittest.TestCase):
                 with tempfile.TemporaryDirectory() as td:
                     charts.render_story_build(ins, Path(td), "h", frames=40,
                                               hook_lead=True)
-                    fs = sorted(Path(td).glob("h*.png"))
+                    from shared.fsutil import frames_in_order
+                    fs = frames_in_order(Path(td).glob("h*.png"))
                     self.assertLessEqual(
                         A.empty_share(Image.open(fs[1]).convert("RGB")), 0.4)
 
