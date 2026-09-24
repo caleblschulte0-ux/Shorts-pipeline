@@ -1,72 +1,134 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 9,
+  "decorative_mascot": {
+   "count": 17,
    "stories": {
-    "us_oil_production_passed_saudi_arabia_s": 3,
-    "bitcoin_and_silver_keep_trading_the_lead": 4,
-    "endangered_blanding_s_turtle_caught_on_c": 1,
-    "scientists_find_two_tiny_new_snails_with": 1
+    "teen-ai-companion-boom": 4,
+    "lyme-disease-undercount": 3,
+    "python-mammal-collapse": 3,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "coffee-price-record": 2,
+    "invasive-species-price-tag": 1,
+    "teen-vaping-crash-nicotine-pouches": 2
    },
    "timestamps": [
-    "2026-09-24T19:10:23+00:00",
-    "2026-09-24T19:35:18+00:00",
-    "2026-09-24T19:37:07+00:00",
-    "2026-09-24T19:41:51+00:00",
-    "2026-09-24T20:30:02+00:00",
-    "2026-09-24T20:31:54+00:00",
-    "2026-09-24T20:44:09+00:00",
-    "2026-09-24T21:35:28+00:00",
-    "2026-09-24T22:22:21+00:00"
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:34:54+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:40:33+00:00",
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T18:51:59+00:00",
+    "2026-09-23T18:56:53+00:00",
+    "2026-09-23T19:05:24+00:00",
+    "2026-09-23T19:26:41+00:00",
+    "2026-09-23T19:41:34+00:00",
+    "2026-09-23T20:08:39+00:00"
    ],
    "examples": [
-    "unreadable: At mid2 (2016), the lines cross and 'Saudi Arabia 10.2M' and 'United States 10.2M' stack almost touching. The US flag sits on top of the Saudi flag and the dot, so the key crossing moment ",
-    "unreadable: The source line at the bottom is cut off in every frame (\"...above-ground investa...\"). In mid4 the Silver 1742.4B and Bitcoin 1730.8B tip labels sit on top of each other where the lines m",
-    "unreadable: At mid2 (2016) the 'Saudi Arabia 10.2M' and 'United States 10.2M' tip labels and flags sit on top of each other. At payoff@-0.4 the flags are clipped at the right edge. Axis tick labels an"
+    "decorative_mascot: In hook@0.3 through seg0:end Data stands on top of the bars, and in seg1:mid and seg1:end he just perches on top of the 72% bubble. In seg3:start and seg3:mid he stands beside the s",
+    "empty_void: In seg3:end most of the frame is empty dark space, with two tiny mascots on hairlines and a dotted rail. In seg1:mid the middle of the frame holds only small bubbles, with large empty area",
+    "unreadable: In seg3:start and seg3:mid the label 'Felt uncomfortable by something the bot said/did 34%' is dark grey on dark grey and disappears. In hook@0.3 and seg0:start the mascot covers 'Use one "
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 3,
+   "count": 7,
    "stories": {
-    "why_is_the_liver_so_weirdly_regenerative": 1,
-    "us_oil_production_passed_saudi_arabia_s": 1,
-    "scientists_find_two_tiny_new_snails_with": 1
+    "python-mammal-collapse": 2,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "coffee-price-record": 2,
+    "invasive-species-price-tag": 1
    },
    "timestamps": [
-    "2026-09-24T19:19:35+00:00",
-    "2026-09-24T19:37:07+00:00",
-    "2026-09-24T20:44:09+00:00"
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T18:51:59+00:00",
+    "2026-09-23T18:56:53+00:00",
+    "2026-09-23T19:05:24+00:00"
    ],
    "examples": [
-    "empty_void: mid0 (t=2.50s) is an almost entirely black frame with only a tiny white crosshair in the middle, with no caption and nothing else on screen. hook@1.5 is also dominated by large black tunne",
-    "empty_void: The lower third of every frame is black apart from the year counter and a faint source line (mid0, mid3). The chart area sits on flat black, and the right side of the plot is empty in hook",
-    "empty_void: In payoff@-1.8, about 85% of the frame is flat cyan sky gradient with only a few cloud blocks and the caption"
+    "empty_void: seg2:mid: the top third and the area under the axis are empty dark ground around two thin poles. hook@0.3: the frame is empty below the four paw prints except a faint caption.",
+    "empty_void: In seg2:start and seg3:start to seg3:end, two circles sit in the middle and roughly the top and bottom thirds are empty dark gradient. seg1 leaves the lower third empty too.",
+    "empty_void: In seg2:mid the frame is mostly empty dark gradient: two small stubs sit at the bottom and the whole upper two-thirds is blank. seg1:mid leaves a big blank area left of the 48% bar above t"
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 7,
+   "stories": {
+    "python-mammal-collapse": 1,
+    "passport-ownership-surge": 1,
+    "f1-pit-stop-vanishing-act": 1,
+    "invasive-species-price-tag": 2,
+    "teen-vaping-crash-nicotine-pouches": 1,
+    "urban-heat-island-redlining": 1
+   },
+   "timestamps": [
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:58:52+00:00",
+    "2026-09-23T18:30:12+00:00",
+    "2026-09-23T19:05:24+00:00",
+    "2026-09-23T19:13:02+00:00",
+    "2026-09-23T19:34:47+00:00",
+    "2026-09-23T19:46:35+00:00"
+   ],
+   "examples": [
+    "unreadable: The source lines at the bottom of seg0:mid, seg1:start and seg3 are microscopic. 'each = 5%' at hook@0.3 is low-contrast grey on navy. The '19' in the seg3 bubble looks doubled or ghosted.",
+    "unreadable: In seg3:start, seg3:mid and seg3:end the '68.1%' is dark navy text on the saturated blue circle and nearly vanishes at phone distance. In seg1:mid Data's head covers the bottom of the '48%",
+    "unreadable: At seg1:start the number '9 s' and the caption under it are ghosted and blend into the sunset. The caption is illegible on a phone. At hook@2.2 the old '60 s' label is still fading out as "
+   ],
+   "recurred_after_fix": false
+  },
+  "bare_number": {
+   "count": 3,
+   "stories": {
+    "python-mammal-collapse": 2,
+    "coffee-price-record": 1
+   },
+   "timestamps": [
+    "2026-09-23T17:46:41+00:00",
+    "2026-09-23T17:53:41+00:00",
+    "2026-09-23T18:56:53+00:00"
+   ],
+   "examples": [
+    "bare_number_card: seg3:start to seg3:end shows a teal circle reading '19' next to a grey circle reading '18'. It is two numbers on blobs, and nothing shows that a python is longer than a giraffe is ta",
+    "bare_number_card: seg3:start to seg3:end is two circles reading 19 and 18 on a plain background. seg2:start is the same with 1022 and 343.",
+    "bare_number_card: seg3:start and seg3:mid are just '$4.4' on a pink circle next to '$2' on a grey circle. Only the circle size changes; nothing shows the price doubling."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 3,
    "min": 1,
    "max": 3
   },
   "data_demo": {
-   "median": 1,
+   "median": 3,
    "min": 1,
    "max": 4
   },
   "mascot": {
-   "median": 4,
-   "min": 4,
-   "max": 4
+   "median": 2,
+   "min": 1,
+   "max": 3
   },
   "craft": {
    "median": 2,
    "min": 1,
-   "max": 2
+   "max": 3
   },
   "pace": {
    "median": 2,
@@ -79,31 +141,31 @@
    "max": 2
   },
   "temporal_craft": {
-   "median": 3,
-   "min": 3,
+   "median": 2,
+   "min": 1,
    "max": 3
   }
  },
  "scores": [
+  35,
+  35,
+  30,
+  26,
+  48,
+  74,
+  78,
+  79,
+  43,
+  38,
+  34,
+  34,
+  79,
   66,
   78,
-  57,
-  57,
-  57,
-  66,
-  74,
-  57,
+  78,
+  39,
   65,
-  61,
-  74,
-  61,
-  61,
-  61,
-  65,
-  70,
-  87,
-  57,
-  57,
+  77,
   65
  ]
 }

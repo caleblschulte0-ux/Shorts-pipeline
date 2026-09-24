@@ -3,21 +3,33 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **5**
-- succeeded: **0**
-- quarantined (off-topic imagery): **1**
+- succeeded: **1**
+- quarantined (off-topic imagery): **0**
 - failed: **4**
 
-## Quarantined (off-topic imagery — fix & re-author)
-- **My Weird New Hobby: Wandering Around Tokyo on Google Maps**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['parked in my numbered spot', 'silver sedan sitting exactly on my line', 'complained to the office 9 times', 'folder of proof stretching back', 'handed over 3 years of dated photos', 'tow truck hooked his sedan', 'listed the car for sale by Friday']
+## Posted
+- **Bitcoin And Silver Keep Trading The Lead**
+  - topic: Bitcoin And Silver Keep Trading The Lead
+  - publishes: `2026-09-25T13:00:00Z`
+  - https://youtube.com/shorts/h4Cyjizj29E
+  - took: 119.1s
 
 ## Failed
-- **Bitcoin And Silver Keep Trading The Lead**
-  - error: `showrunner_block: showrunner BLOCK: The title promises the lead keeps changing hands, but Silver leads from the first frame to the last and the ending card says '#1 Silver', so the video's own data contradicts its headline.`
-- **snake**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 111)`
-- **Monkey spotted on Florida man's trail cam - FOX 35 Orlando**
-  - error: `showrunner_block: showrunner BLOCK: The whole body is bare parkour gameplay with small captions. The story's null segments mean no beat (the demand, the install, the monkey on camera) is ever shown, and the video ends on a dim stone corridor with 'TIME.' as its payoff.`
-- **Scientists find two tiny new snails with shells that close like doors**
-  - error: `showrunner_block: showrunner BLOCK: A clean, readable, always-moving reddit story, but the whole thing is captions over unrelated Minecraft parkour; no story beat is shown on screen, and the payoff lands on a generic room.`
+- **gavin newsom**
+  - error: `unfit_for_fiction: 'gavin newsom' refused by the writer: Trend is political content, cannot be used for story setting`
+- **dengue fever**
+  - error: `unfit_for_fiction: 'dengue fever' refused by the writer: The trend involves an illness outbreak, which is prohibited for story creation.`
+- **pedro martinez**
+  - error: `unfit_for_fiction: 'pedro martinez' refused by the writer: Trend centers on a real athlete's diagnosed injury (grade 3 ankle sprain) and a real sports match result, which falls under the banned injury/real-event categor`
+- **devonta smith injury**
+  - error: `unfit_for_fiction: 'devonta smith injury' refused by the writer: trend is sports injury news (hamstring/stinger injuries) - injury topics cannot seed a story per rule 1`
 
+
+## Format scoreboard (A/B/C test)
+
+| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
+|---|---|---|---|---|---|---|---|---|
+| graph_race | 44 | 148 | 3.4 | 0.02 | 65.8 | 1 | 0 | 0 |
+| reddit_story | 25 | 15 | 0.6 | 0.0 | 11.4 | 0 | 0 | 0 |
+
+matched 69 videos to packages, 0 unmatched (pre-A/B/C uploads)
