@@ -710,6 +710,17 @@ class ThePictureIsReadable(unittest.TestCase):
                                                  props=["campfire"])}
         self.assertEqual([b for b in A._chapter_problems([calm], "stone_age", 0, 99999) if "crowded" in b], [])
 
+    def test_a_chapter_moves(self):
+        import ori_author as A
+        say = " ".join(["word"] * 40)
+        same = [{"say": say, "scene": _scene(setting="cave_mouth", shot=("close" if j % 2 else "wide"))}
+                for j in range(6)]
+        bad = A._chapter_problems(same, "stone_age", 0, 99999)
+        self.assertTrue(any("a chapter moves" in b for b in bad), bad)
+        marks = A._mark_beats(same)
+        same[marks[1]]["scene"] = _scene(setting="forest", shot="close")
+        self.assertEqual([b for b in A._chapter_problems(same, "stone_age", 0, 99999) if "chapter moves" in b], [])
+
     def test_a_chapter_opens_on_a_new_place(self):
         import ori_author as A
         _beat = lambda **kw: {"say": "words", "scene": _scene(**kw)}

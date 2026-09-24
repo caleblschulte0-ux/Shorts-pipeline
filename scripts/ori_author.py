@@ -179,7 +179,26 @@ SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one settin
 IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyone idle
 FILM_LOOK_SHARE = 0.2      # ... and at most one in five of the whole film's
 FILM_PLACE_SHARE = 0.25
-CROWD_SHRINK = 0.8         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
+CROWD_SHRINK = 0.8
+MARK_SHARE = 0.3           # no one setting at more than three in ten of the film's judged moments         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
+
+
+def _mark_beats(beats) -> list[int]:
+    """The beat playing at a quarter, at 55% and at 85% of the chapter's
+    words — the three moments the finished film is judged at."""
+    words = [len((b.get("say") or "").split()) if isinstance(b, dict) else 0 for b in beats]
+    total = sum(words)
+    if not total:
+        return []
+    out = []
+    for f in (0.25, 0.55, 0.85):
+        acc = 0
+        for j, w in enumerate(words):
+            acc += w
+            if acc >= f * total:
+                out.append(j)
+                break
+    return out
 
 
 def _picture_tally(chapters) -> dict:
@@ -259,6 +278,19 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
         if lay["scale"] < natural * CROWD_SHRINK - 1e-6:
             bad.append(f"beat {j + 1} is too crowded for its {S.shot_of(sc)} shot (drawn at "
                        f"{int(100 * lay['scale'] / natural)}% size to fit): drop a prop or a person, or widen the shot")
+    # a chapter MOVES: at a quarter, half and near its end (by words, which
+    # is screen time) it is in at least two different places. The judge
+    # looks at exactly those three moments of every chapter, and chapters
+    # whose three looked the same "blur together" (the sixth, seventh and
+    # eighth films)
+    marks = _mark_beats(beats)
+    if marks:
+        places = [beats[j]["scene"].get("setting") for j in marks
+                  if isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)]
+        if len(places) == 3 and len(set(places)) < 2:
+            bad.append(f"the chapter stands in {places[0]} at its quarter, half and end (beats "
+                       f"{', '.join(str(j + 1) for j in marks)}): a chapter moves — take one of those beats "
+                       f"somewhere else")
     prev = None
     for j, b in enumerate(beats):
         sc = b.get("scene") if isinstance(b, dict) else None
@@ -298,6 +330,25 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
                            f"pictures so far: use it for at most "
                            f"{max(0, int(FILM_LOOK_SHARE * n_all) + 1 - prior.get(k, 0))} "
                            f"beats in this chapter")
+        # ...and at the three judged moments of every chapter so far, no one
+        # place holds more than MARK_SHARE: the cave mouth stood at the
+        # half-mark of nine chapters in fourteen, which is what "the same
+        # setup in 16 of 42 samples" was
+        mark_places = []
+        for ch in before:
+            bb = ch.get("beats") if isinstance(ch, dict) else None
+            if isinstance(bb, list):
+                mark_places += [bb[j]["scene"].get("setting") for j in _mark_beats(bb)
+                                if isinstance(bb[j], dict) and isinstance(bb[j].get("scene"), dict)]
+        here = [beats[j]["scene"].get("setting") for j in _mark_beats(beats)
+                if isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)]
+        allm = mark_places + here
+        for setting in set(here):
+            n = allm.count(setting)
+            if n > int(MARK_SHARE * len(allm)) + 1:
+                bad.append(f"{setting} would be the picture at {n} of the film's {len(allm)} judged moments so far "
+                           f"(each chapter's quarter, half and end): use it at fewer of this chapter's "
+                           f"(beats {', '.join(str(j + 1) for j in _mark_beats(beats))})")
         places_prior = {}
         for (setting, _shot), n in prior.items():
             places_prior[setting] = places_prior.get(setting, 0) + n

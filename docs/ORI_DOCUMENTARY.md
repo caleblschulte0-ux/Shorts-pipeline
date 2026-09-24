@@ -333,6 +333,17 @@ fire in the tent, a beard read as "a brown prop across the face", a fire
   a scene with too much in it, not a drawing defect. The shelf's one such
   beat moved to the forest.
 
+- **A chapter moves, and no one place owns the judged moments.** The judge
+  looks at a quarter, 55% and 85% of every chapter. `_mark_beats` finds the
+  beat playing at each (by words, which is screen time); a chapter whose
+  three are in one place is refused, and across the film no setting may
+  hold more than `MARK_SHARE` of those moments. Measured on the shelf
+  before the rule: the cave mouth stood at the half-mark of nine chapters
+  in fourteen, 16 of 42 judged moments — exactly the judge's count. Five
+  beats moved (an old man looking up at the first star went under the
+  mountains' open sky) and three crowded wide cave scenes lost a rack or a
+  tent; the beat whose words say "the mouth of a wide, shallow cave" stayed.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

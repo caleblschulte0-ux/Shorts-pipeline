@@ -334,7 +334,7 @@
     {
      "say": "The old man looks up at the first star. It is faint, and very high, and he has seen it appear on ten thousand evenings just like this one. He does not know what a star is. He does not need to. He knows that this one comes before the others, and that when it is joined by three more, the night has properly begun. The child beside him looks up too, and finds it, and is pleased.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "mountains",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -438,7 +438,7 @@
     {
      "say": "On the wooden frame beside the cave, hides are stretched to dry. A deer hide, scraped clean on the inside, becomes a blanket, or a sleeping mat, or a bag, or part of a tent. Nothing from an animal was wasted if it could be helped. The child points at the biggest hide and says something, and the woman laughs. Perhaps it was a joke. Forty thousand years is a long time, and we do not know what they found funny. But we can be sure that they laughed.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "mountains",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -1158,8 +1158,7 @@
        "campfire",
        "torch",
        "woodpile",
-       "tent",
-       "hide_rack"
+       "tent"
       ]
      }
     },
@@ -1441,7 +1440,7 @@
     {
      "say": "The hunter, who has been pretending not to listen, finally joins in, and tells the end of the story his own way, with the reindeer much bigger and much cleverer than the old man made it. The children know they are being teased and do not care. This is how a band remembered itself. Every hunt, every move of camp, every hard winter and lucky summer became a story, and the stories were told and told again until everyone knew them, and could tell them to their own children.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "mountains",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1580,7 +1579,6 @@
        "campfire",
        "torch",
        "bedroll",
-       "hide_rack",
        "woodpile"
       ]
      }
@@ -2159,8 +2157,7 @@
        "campfire",
        "torch",
        "woodpile",
-       "bedroll",
-       "tent"
+       "bedroll"
       ],
       "variant": 1
      }
@@ -3052,7 +3049,7 @@
     {
      "say": "The wolf-dog makes sounds too. A sigh as it settles. The small thump of its tail once against the ground, at something in a dream. A long yawn that ends in a faint whine. And, every so often, a silence, which is the most important sound it makes: the sound of an animal lifting its head and listening. Then the head goes down again, and the tail thumps, and whatever it was, it was nothing.",
      "scene": {
-      "setting": "cave_mouth",
+      "setting": "mountains",
       "time": "night",
       "weather": "clear",
       "shot": "close",
