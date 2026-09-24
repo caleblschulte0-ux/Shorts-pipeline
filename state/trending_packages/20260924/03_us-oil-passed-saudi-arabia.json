@@ -6,19 +6,43 @@
   "y_label": "Crude oil production (million barrels per day)",
   "duration": 13,
   "source": "EIA crude oil production estimates, approximate annual averages. The US became the world's largest crude producer in 2018, overtaking Saudi Arabia and Russia, and by 2025 was producing about 13.6 million barrels/day versus Saudi Arabia's roughly 9.5 million barrels/day (EIA, Reuters, Wolf Street).",
-  "years": [2008, 2012, 2015, 2018, 2021, 2023, 2025],
+  "years": [
+    2008,
+    2012,
+    2015,
+    2018,
+    2021,
+    2023,
+    2025
+  ],
   "series": [
     {
       "name": "United States",
       "color": "#4a90e2",
       "icon": "US",
-      "values": [5.0, 6.5, 9.4, 11.0, 11.2, 12.9, 13.6]
+      "values": [
+        5.0,
+        6.5,
+        9.4,
+        11.0,
+        11.2,
+        12.9,
+        13.6
+      ]
     },
     {
       "name": "Saudi Arabia",
       "color": "#2ecc71",
       "icon": "SA",
-      "values": [9.3, 9.8, 10.2, 10.3, 9.1, 9.6, 9.51]
+      "values": [
+        9.3,
+        9.8,
+        10.2,
+        10.3,
+        9.1,
+        9.6,
+        9.51
+      ]
     }
   ],
   "hashtags": [

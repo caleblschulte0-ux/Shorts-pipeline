@@ -21,20 +21,94 @@
   ],
   "script": "I was doing an incognito compliance walkthrough at a hardware store in a borrowed vest so I wouldn't stand out, checking aisle safety hours before the real inspection team was due. A customer decided I was the worst employee alive for not knowing which aisle had grout sealant, and when I calmly offered to find someone who actually worked there, she started filming, announcing to her camera that she was getting me fired and posting it for her twelve thousand followers. The store manager walked over mid-rant, recognized my badge instantly, and asked, loudly enough for her phone to catch it, whether corporate's hazard inspection was going well. She lowered the phone but never took the video down, and it stayed up three days before someone in her own comments recognized the audit badge and asked why she was trying to get a state inspector fired. Corporate's report never mentioned her name once. Her followers did.",
   "shots": [
-    {"phrase": "incognito compliance walkthrough at a hardware store", "query": "hardware store aisle"},
-    {"phrase": "checking aisle safety hours before the real inspection team was due", "query": "warehouse safety inspection"},
-    {"phrase": "not knowing which aisle had grout sealant", "query": "tile grout aisle"},
-    {"phrase": "she started filming", "query": "phone recording video"},
-    {"phrase": "posting it for her twelve thousand followers", "query": "social media phone screen"},
-    {"phrase": "recognized my badge instantly", "query": "id badge lanyard"},
-    {"phrase": "whether corporate's hazard inspection was going well", "query": "store manager clipboard"},
-    {"phrase": "recognized the audit badge", "query": "close up id badge"}
+    {
+      "phrase": "incognito compliance walkthrough at a hardware store",
+      "query": "hardware store aisle"
+    },
+    {
+      "phrase": "checking aisle safety hours before the real inspection team was due",
+      "query": "warehouse safety inspection"
+    },
+    {
+      "phrase": "not knowing which aisle had grout sealant",
+      "query": "tile grout aisle",
+      "pin_query": "grout sealant",
+      "pin_context": "hardware store building material aisle",
+      "news_query": "grout sealant",
+      "news_angle": "A customer demanded the aisle for grout sealant, prompting the narrator to offer to find an employee.",
+      "image_url": "https://live.staticflickr.com/65535/51628997204_96278d6625_b.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "hardware store building material aisle",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "grout sealant",
+        "url": "https://live.staticflickr.com/65535/51628997204_96278d6625_b.jpg",
+        "verified_at": "2026-09-24T09:58:37Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "she started filming",
+      "query": "phone recording video"
+    },
+    {
+      "phrase": "posting it for her twelve thousand followers",
+      "query": "social media phone screen"
+    },
+    {
+      "phrase": "recognized my badge instantly",
+      "query": "id badge lanyard"
+    },
+    {
+      "phrase": "whether corporate's hazard inspection was going well",
+      "query": "store manager clipboard"
+    },
+    {
+      "phrase": "recognized the audit badge",
+      "query": "close up id badge",
+      "pin_query": "audit badge",
+      "pin_context": "state inspector identification badge corporate",
+      "news_query": "audit badge",
+      "news_angle": "The store manager recognized the narrator's audit badge during the confrontation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/87/SANDF_Insignia_Internal_Audit_Practioner_badge_embossed.png",
+      "media_evidence": {
+        "content_type": "image/png",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "state inspector identification badge corporate",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "audit badge",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/SANDF_Insignia_Internal_Audit_Practioner_badge_embossed.png",
+        "verified_at": "2026-09-24T09:58:49Z",
+        "width": 0
+      }
+    }
   ],
   "punches": [
-    {"phrase": "worst employee alive", "text": "WORST EMPLOYEE EVER", "color": "#ffaa30"},
-    {"phrase": "getting me fired", "text": "TRYING TO GET ME FIRED", "color": "#ff3030"},
-    {"phrase": "recognized my badge instantly", "text": "WRONG PERSON, LADY", "color": "#ffaa30"},
-    {"phrase": "Corporate's report never mentioned her name once", "text": "SHE MADE HERSELF FAMOUS", "color": "#50ff80"}
+    {
+      "phrase": "worst employee alive",
+      "text": "WORST EMPLOYEE EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "getting me fired",
+      "text": "TRYING TO GET ME FIRED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "recognized my badge instantly",
+      "text": "WRONG PERSON, LADY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Corporate's report never mentioned her name once",
+      "text": "SHE MADE HERSELF FAMOUS",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"

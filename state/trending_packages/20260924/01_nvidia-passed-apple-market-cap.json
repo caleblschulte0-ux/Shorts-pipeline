@@ -6,19 +6,46 @@
   "y_label": "Market capitalization ($ billions)",
   "duration": 13,
   "source": "Public equity market capitalization, NASDAQ: NVDA vs NASDAQ: AAPL, approximate period closes compiled from CNBC/Reuters/Forbes/MacRumors reporting. Nvidia first passed Apple in market cap on June 5, 2024 ($3.02T vs $2.99T), passed it again on Nov 5, 2024 ($3.43T vs $3.4T), crossed $4T on July 9, 2025, and stood at roughly $5.42T vs Apple's $4.92T as of Sept 23, 2026.",
-  "years": [2016, 2018, 2020, 2022, 2023, 2024, 2025, 2026],
+  "years": [
+    2016,
+    2018,
+    2020,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
   "series": [
     {
       "name": "Nvidia",
       "color": "#76b900",
       "icon": "Nvidia",
-      "values": [53, 84, 322, 359, 1223, 3660, 4000, 5420]
+      "values": [
+        53,
+        84,
+        322,
+        359,
+        1223,
+        3660,
+        4000,
+        5420
+      ]
     },
     {
       "name": "Apple",
       "color": "#a2aaad",
       "icon": "Apple",
-      "values": [617, 748, 2255, 2066, 2994, 3500, 3800, 4920]
+      "values": [
+        617,
+        748,
+        2255,
+        2066,
+        2994,
+        3500,
+        3800,
+        4920
+      ]
     }
   ],
   "hashtags": [
