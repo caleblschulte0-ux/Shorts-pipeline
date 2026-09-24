@@ -146,6 +146,12 @@ jobs:
         env:
           # Optional media keys (hook photo / b-roll) — each provider stays
           # silent if unset; the render still works. No YouTube secrets.
+          # ElevenLabs narration FIRST when it can (operator, 2026-09-24);
+          # Speechify, then the local Kokoro voice, when it cannot. The engine
+          # used and why ElevenLabs was not is recorded on every video.
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          ELEVENLABS_VOICE_ID: ${{ vars.ELEVENLABS_VOICE_ID }}
+          ELEVENLABS_MODEL: ${{ vars.ELEVENLABS_MODEL }}
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
