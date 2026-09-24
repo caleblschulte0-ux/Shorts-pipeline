@@ -8935,6 +8935,15 @@
       "rejected_by": "qa",
       "rejected_why": "vision: Sharp middle region is itself soft/out of focus around 4.6s-7.2s (eyebrow/eye/lips shots look blurry, not just the paddi; vision: Several frames crop to hair/shoulder/hand/stomach with no face visible (0.7s, 2.0s, 3.3s, 15.0s), losing the subject for; vision: Framing is inconsistent \u2014 altern",
       "ts": "2026-09-24T18:00:20.632210+00:00"
+    },
+    "rejected-chillyshynostrilmorecowbell-z4ybkvyurfp9ueqs": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ChillyShyNostrilMoreCowbell-z4yBKvyURfP9uEQs",
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel This Guy's Past Caught Up To Him During The NoPixel Riot",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp region is a thin horizontal strip (~25-30% of canvas height) instead of filling roughly three-quarters \u2014 framing l; vision: Streamer's face and the game/stats overlay are both small within that thin strip, hard to read on a phone",
+      "ts": "2026-09-24T19:14:24.502573+00:00"
     }
   }
 }
