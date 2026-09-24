@@ -8878,14 +8878,27 @@
       "ts": "2026-09-24T15:40:50.616634+00:00"
     },
     "clip-20260924-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/NaiveDoubtfulWitchPicoMause-8LTxde6ZwQTXXO9V",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/JcDEfAGzfGw",
       "title": "Lacy Loses It After This Biker Hits Her Mirror And Runs A Red Light",
       "kind": "twitch_clip",
-      "ts": "2026-09-24T15:45:11.850722+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-24T15:45:19.385495+00:00",
+      "uploaded_at": "2026-09-24T15:45:19.385515+00:00",
+      "publish_at": "2026-09-25T08:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/NaiveDoubtfulWitchPicoMause-8LTxde6ZwQTXXO9V",
+      "streamer": "lacy",
+      "series": "rage",
+      "hook": "HE HIT HER MIRROR THEN RAN",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1669,
+      "banger": 0.7,
+      "cut": {
+        "start": 17.6,
+        "end": 54.7
+      },
+      "director_cut": true
     }
   }
 }
