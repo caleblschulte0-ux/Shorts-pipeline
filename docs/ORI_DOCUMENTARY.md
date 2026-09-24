@@ -392,6 +392,16 @@ only as a hand edit is not a rule. So:
   NAME the missing activity when it grades a scene under 2, so the respec
   has something to aim at.
 
+- **The second fresh-topic run failed at chapter 2** — three attempts on a
+  held `candle` the kit does not draw, a crowded scene, and the cottage at
+  all three judged moments. Every one is deterministic: `mend_scene` puts
+  down what cannot be held and fixes a pose or mood the kit does not know;
+  `uncrowd_scene` (shared with `repair_film`) drops props while each drop
+  fits better and widens with a torch; and `repair_film` now runs on each
+  chapter as it is written, with the earlier chapters as context, so the
+  film-level rules are repaired in code before the brain is asked again.
+  A chapter with all three faults costs one brain call in the test.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

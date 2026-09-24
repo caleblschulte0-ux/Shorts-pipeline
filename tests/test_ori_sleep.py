@@ -327,6 +327,50 @@ class TheAuthorDropsRatherThanShipsBroken(unittest.TestCase):
         from data_learning import ori_sleep as OS
         self.assertEqual(OS.validate(ep), [])
 
+    def test_a_flawed_chapter_is_mended_in_code_rather_than_sent_back(self):
+        # the second fresh-topic run: chapter 2 failed three attempts on a held
+        # 'candle' the kit does not draw, a crowded scene, and one place at all
+        # the judged moments — every one a deterministic fix. The brain's
+        # answer is mended and repaired before it is checked, so a chapter
+        # like this costs ONE call, not three and the film
+        import ori_author
+        calls = {"n": 0}
+        say = " ".join(["gentle"] * 110)
+
+        def ask(system, user):
+            calls["n"] += 1
+            if user.startswith("Plan one episode"):
+                return json.dumps({
+                    "slug": "a-peasant-night", "title": "What Did Peasants Do After Dark? | Cozy History for Sleep",
+                    "thumbnail_text": "NO CANDLES", "description": "Calm.", "tags": ["history for sleep"],
+                    "thumbnail_scene": {"setting": "village", "time": "night", "props": ["campfire"]},
+                    "chapters": [{"title": f"Part {i}", "covers": "a calm part"} for i in range(14)]})
+            n = int(user.split("Chapter ")[1].split(" of")[0])
+            scenes = []
+            places = ("cottage_inside", "village", "field", "forest", "riverbank")
+            for j in range(9):
+                # the cottage at every judged moment (beats 3, 6, 8 of nine
+                # equal beats), a held candle, and one crowded scene
+                setting = "cottage_inside" if j in (2, 5, 7) else places[(j + n) % 5]
+                sc = {"setting": setting, "time": "night", "shot": "close",
+                      "cast": [{"who": "woman", "pose": "sit", "action": "sew", "item": "candle"}],
+                      "props": ["hearth"] if setting == "cottage_inside" else ["campfire"]}
+                if j == 1:
+                    sc["cast"] = [{"who": "woman", "pose": "sit", "action": "sew"},
+                                  {"who": "man", "pose": "sit_on", "action": "eat"},
+                                  {"who": "child", "pose": "lie", "action": "sleep"}]
+                    sc["props"] = sc["props"] + ["table", "chair", "bookshelf", "bedroll", "woodpile"]
+                scenes.append(sc)
+            if n == 1:
+                scenes[0] = {"setting": "village", "time": "night", "shot": "wide", "props": ["campfire", "torch"]}
+            return json.dumps({"beats": [{"say": say, "scene": sc} for sc in scenes]})
+        ep = ori_author.author("What did medieval peasants do after dark?", "medieval", ask=ask)
+        self.assertIsNotNone(ep, "mending should have carried every chapter")
+        from data_learning import ori_sleep as OS
+        self.assertEqual(OS.validate(ep), [])
+        self.assertEqual(calls["n"], 15, "one call per chapter: the mend did the rest")
+        self.assertEqual(ori_author.repair_film(ep, log=lambda *_: None), [], "and the film holds the rules")
+
     def test_a_chapter_that_stays_broken_sinks_the_episode(self):
         import ori_author
         ask, calls = self._fake_ask(broken_chapter=5)
