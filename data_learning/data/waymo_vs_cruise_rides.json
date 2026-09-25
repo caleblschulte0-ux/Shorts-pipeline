@@ -1,0 +1,19 @@
+{
+  "key": "waymo_vs_cruise_rides",
+  "title": "Weekly robotaxi rides: Waymo (2025) vs. Cruise (shut down)",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Robotaxi industry status: GM/Cruise wind-down vs. Waymo ride figures",
+    "publisher": "GM investor announcement and Waymo ride figures, via Reuters/TechCrunch reporting",
+    "url": "https://www.reuters.com/business/autos-transportation/gm-stop-funding-robotaxi-unit-cruise-2024-12-10/",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "GM announced in December 2024 it would stop funding Cruise's robotaxi development and wind the driverless ride-hailing business down entirely, after Cruise had already suspended all driverless operations in October 2023 following a pedestrian-dragging incident. Waymo, by contrast, was providing about 200,000 paid rides a week in early 2025.",
+  "points": [
+    {"label": "Waymo, weekly rides (early 2025)", "value": 200000},
+    {"label": "Cruise, weekly rides (after Dec 2024 shutdown)", "value": 0}
+  ]
+}

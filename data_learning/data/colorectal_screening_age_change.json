@@ -1,0 +1,19 @@
+{
+  "key": "colorectal_screening_age_change",
+  "title": "Recommended colorectal cancer screening starting age",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "Before 2021 vs. 2021-present",
+  "source": {
+    "name": "Colorectal Cancer: Screening",
+    "publisher": "U.S. Preventive Services Task Force",
+    "url": "https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/colorectal-cancer-screening",
+    "officiality": "official",
+    "access_date": "2026-09-25"
+  },
+  "notes": "In May 2021, the USPSTF lowered its recommended age to begin colorectal cancer screening for average-risk adults from 50 to 45, citing rising incidence in younger adults. The American Cancer Society had already recommended starting at 45 since 2018.",
+  "points": [
+    {"label": "Old guideline (before 2021)", "value": 50},
+    {"label": "Current guideline (2021-present)", "value": 45}
+  ]
+}

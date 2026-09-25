@@ -1,0 +1,19 @@
+{
+  "key": "cicada_brood_cycle_lengths",
+  "title": "Life cycle length: Brood XIX vs. Brood XIII periodical cicadas",
+  "unit": "years",
+  "geography": "United States (Midwest and Southeast)",
+  "time_coverage": "2024 emergence",
+  "source": {
+    "name": "Periodical Cicada Information",
+    "publisher": "University of Connecticut (Cicadas.uconn.edu, Cooley/Simon lab)",
+    "url": "https://cicadas.uconn.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "Brood XIX is a 13-year periodical cicada brood; Brood XIII is a 17-year brood. Both broods were due to emerge in spring 2024, marking the first time they emerged together since 1803 -- the rarest overlap among periodical cicada broods.",
+  "points": [
+    {"label": "Brood XIX (13-year cicadas)", "value": 13},
+    {"label": "Brood XIII (17-year cicadas)", "value": 17}
+  ]
+}

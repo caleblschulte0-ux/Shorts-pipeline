@@ -1,0 +1,20 @@
+{
+  "key": "colorectal_risk_by_birth_year",
+  "title": "Colon and rectal cancer risk, born ~1990 vs. born ~1950",
+  "unit": "multiple",
+  "geography": "United States",
+  "time_coverage": "Birth cohorts ~1950 vs. ~1990",
+  "source": {
+    "name": "Colorectal Cancer Key Statistics, citing Bailey et al., JNCI 2017",
+    "publisher": "American Cancer Society",
+    "url": "https://www.cancer.org/cancer/types/colon-rectal-cancer/about/key-statistics.html",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "A widely cited 2017 study in the Journal of the National Cancer Institute (Bailey et al.), summarized by the American Cancer Society, found adults born around 1990 face roughly double the risk of colon cancer and about quadruple the risk of rectal cancer compared with adults born around 1950 -- shown here as a risk multiple relative to the 1950 birth cohort (baseline = 1x).",
+  "points": [
+    {"label": "Born ~1990: colon cancer risk", "value": 2},
+    {"label": "Born ~1990: rectal cancer risk", "value": 4}
+  ],
+  "baseline": {"label": "Born ~1950 (baseline risk)", "value": 1}
+}

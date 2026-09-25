@@ -1,0 +1,19 @@
+{
+  "key": "cicada_double_emergence_gap",
+  "title": "Years between Brood XIX / Brood XIII double emergences",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "1803, 2024, 2245",
+  "source": {
+    "name": "Periodical Cicada Information",
+    "publisher": "University of Connecticut (Cicadas.uconn.edu, Cooley/Simon lab)",
+    "url": "https://cicadas.uconn.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "Because 13 and 17 are both prime numbers, their emergence years only coincide once every 13 x 17 = 221 years. The last joint emergence of Brood XIX and Brood XIII was 1803; the 2024 emergence was the first repeat since then; the next is due in 2245.",
+  "points": [
+    {"label": "Years since the last double emergence (1803-2024)", "value": 221},
+    {"label": "Years until the next one (2024-2245)", "value": 221}
+  ]
+}

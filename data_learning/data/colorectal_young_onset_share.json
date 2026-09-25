@@ -1,0 +1,19 @@
+{
+  "key": "colorectal_young_onset_share",
+  "title": "Share of colorectal cancer cases diagnosed under age 55",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1995-2019",
+  "source": {
+    "name": "Colorectal Cancer Facts & Figures 2023-2025",
+    "publisher": "American Cancer Society",
+    "url": "https://www.cancer.org/research/cancer-facts-statistics/colorectal-cancer-facts-figures.html",
+    "officiality": "official",
+    "access_date": "2026-09-25"
+  },
+  "notes": "The American Cancer Society reports the share of colorectal cancer cases diagnosed in patients younger than 55 rose from 11% in 1995 to 20% in 2019 -- nearly doubling in under 25 years, even as overall colorectal cancer rates fell in older adults over the same period thanks to screening.",
+  "points": [
+    {"label": "1995", "value": 11, "period": "1995"},
+    {"label": "2019", "value": 20, "period": "2019"}
+  ]
+}

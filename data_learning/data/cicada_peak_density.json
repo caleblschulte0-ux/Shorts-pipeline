@@ -1,0 +1,19 @@
+{
+  "key": "cicada_peak_density",
+  "title": "Periodical cicadas per acre: peak habitat vs. typical woodland",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024 emergence",
+  "source": {
+    "name": "Periodical Cicada Information",
+    "publisher": "University of Connecticut (Cicadas.uconn.edu, Cooley/Simon lab), density figures as reported in USDA Forest Service extension materials",
+    "url": "https://cicadas.uconn.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "Entomologists estimate peak periodical cicada densities can reach up to about 1.5 million individuals per acre in prime habitat, versus roughly a few thousand per acre in an average wooded area -- part of why entomologists estimated the combined 2024 Brood XIX / Brood XIII emergence produced hundreds of billions, potentially over a trillion, cicadas across the two broods' combined range of roughly 16 states.",
+  "points": [
+    {"label": "Peak density, prime habitat", "value": 1500000},
+    {"label": "Typical wooded acre", "value": 3000}
+  ]
+}
