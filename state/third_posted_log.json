@@ -9236,13 +9236,36 @@
       "director_cut": true
     },
     "clip-20260925-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidAbstemiousOysterBCouch-azv4BHRGIi-D_i5I",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/DydB_bVa5pU",
       "title": "Stableronaldo Had The Reaction Time Of A Brick In This Shootout",
       "kind": "twitch_clip",
-      "ts": "2026-09-25T12:57:13.684963+00:00",
+      "ts": "2026-09-25T12:57:20.603296+00:00",
+      "uploaded_at": "2026-09-25T12:57:20.603313+00:00",
+      "publish_at": "2026-09-26T03:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidAbstemiousOysterBCouch-azv4BHRGIi-D_i5I",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "REACTION TIME OF A BRICK",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1591,
+      "banger": 0.55,
+      "cut": {
+        "start": 4.2,
+        "end": 22.0
+      },
+      "director_cut": true
+    },
+    "clip-20260925-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/extraemily/clip/BeautifulDeafPanMVGame-q0bCz7ZE2U06uqSc",
+      "story_key": null,
+      "streamer": "extraemily",
+      "title": "Extraemily Got Suffocated By 'Friendly Londoners' Then Said This",
+      "kind": "twitch_clip",
+      "ts": "2026-09-25T13:01:35.966521+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
