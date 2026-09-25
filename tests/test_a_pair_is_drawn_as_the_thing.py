@@ -87,6 +87,35 @@ class TheMultipleIsCopies(unittest.TestCase):
         self.assertFalse(vs.copies_scene(ins))
 
 
+class ThePictureOfTheThingOpensTheBeat(unittest.TestCase):
+    """Coffee, 2026-09-25: "the middle falls back to bar and bubble charts
+    with Data perched" — the copies scene was there, half a beat late."""
+
+    def test_a_chart_beat_opens_on_the_claim_led_machine(self):
+        ins = mk([("February 2024", 2.0), ("February 2025", 4.41)], "usd",
+                 topic=DOUBLE)
+        ins.kind = "bubbles"
+        seq = sr._depiction_sequence(ins, set(), 13.0)
+        self.assertEqual(seq[0], "copies_scene")
+
+    def test_an_icon_grid_gives_way_and_is_not_kept(self):
+        ins = mk([("September Estimate", 45.4), ("Revised Estimate", 34.4)],
+                 "million", topic=CUT)
+        ins.kind = "scene"
+        ins.scene = {"title": True, "elements": [
+            {"type": "unit_figures", "region": "full", "subject": CUT}]}
+        seq = sr._depiction_sequence(ins, set(), 13.0)
+        self.assertEqual(seq[0], "hole_scene")
+        self.assertNotIn("scene", seq)
+
+    def test_a_used_machine_does_not_lead_twice(self):
+        ins = mk([("February 2024", 2.0), ("February 2025", 4.41)], "usd",
+                 topic=DOUBLE)
+        ins.kind = "bubbles"
+        seq = sr._depiction_sequence(ins, {"copies_scene"}, 13.0)
+        self.assertEqual(seq[0], "bubbles")
+
+
 class NeitherIsAFieldOfIcons(unittest.TestCase):
     """Operator, 2026-09-22: a crowd of one thing is used very sparingly.
     The hole is ONE object; the copies are at most five."""

@@ -2354,7 +2354,22 @@ def _depiction_sequence(insight, used: set, dur: float,
     """
     kind = str(getattr(insight, "kind", "") or "")
     n = max(1, min(cap or MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
-    seq = [kind]
+    # A PICTURE OF THE THING OPENS THE BEAT, NOT A CHART OF IT. When the
+    # beat's own kind is a chart and a claim-led machine (the cut, the
+    # multiple) draws this pair, the machine goes first and the chart
+    # becomes a fallback. Coffee, 2026-09-25: "the middle falls back to bar
+    # and bubble charts with Data perched" — the copies scene was there,
+    # half a beat late, after a bubble chart said the same number worse.
+    # A field of one repeated icon gives way too — the operator's "very,
+    # very sparingly" — and is dropped rather than kept as a fallback: its
+    # spec lives on `insight.scene`, which the machine's builder overwrites.
+    _grid = kind == "scene" and is_repeated_icon(
+        kind, getattr(insight, "scene", None))
+    _lead = None
+    if _family(kind) == "chart" or _grid:
+        _lead = next((m for m in _machines_for(insight)
+                      if m in _CLAIM_LED and m not in used), None)
+    seq = [_lead or kind]
     if n == 1:
         return seq
     # RELATIONSHIP FIRST, chart as the fallback — in two TIERS, because the
@@ -2362,16 +2377,19 @@ def _depiction_sequence(insight, used: set, dur: float,
     # it. Rotating one flat list put a chart ahead of the machine that actually
     # said the thing, which is the whole philosophy inverted by a line of
     # variety code.
-    machines = [c for c in _machines_for(insight) if c != kind]
-    fallback = []
+    machines = [c for c in _machines_for(insight) if c not in seq]
+    fallback = [kind] if (_lead and not _grid) else []
     for c in list(_alt_candidates_for(insight)) + list(
             _ALT_DEPICTION.get(kind, ())):
         if c not in machines and c not in fallback:
             fallback.append(c)
-    def _usable(seq):
-        return [c for c in seq
-                if c and c != kind and c not in _ASSERTS_A_WHOLE
-                and _buildable(c, insight)]
+    _first = seq[0]
+
+    def _usable(cs):
+        return [c for c in cs
+                if c and c != _first and c not in _ASSERTS_A_WHOLE
+                and not (_lead and _grid and c == kind)
+                and (c == kind or _buildable(c, insight))]
 
     machines, fallback = _usable(machines), _usable(fallback)
     # A repeated-icon grid is the LAST thing offered, and not at all once
@@ -2438,7 +2456,7 @@ def _depiction_sequence(insight, used: set, dur: float,
         c = (_pick(want, True, icons_ok=False) or _pick(want, False, icons_ok=False)
              or _pick("chart", True) or _pick("chart", False))
         if c is not None:
-            if (len(seq) == 1 and _opens_on_a_machine(kind)
+            if (len(seq) == 1 and _opens_on_a_machine(seq[0])
                     and c not in machines and dur <= SUBJECT_HOLD_MAX):
                 break
             seq.append(c)
@@ -2459,7 +2477,7 @@ def _depiction_sequence(insight, used: set, dur: float,
         # bars", "the tray-stack is the only real idea ... the video falls
         # back to bar charts". A long beat still cuts, and a chart still
         # hands on to a figure — this only stops the downgrade.
-        if (len(seq) == 1 and _opens_on_a_machine(kind)
+        if (len(seq) == 1 and _opens_on_a_machine(seq[0])
                 and c not in machines and dur <= SUBJECT_HOLD_MAX):
             break
         seq.append(c)
