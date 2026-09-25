@@ -593,6 +593,9 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
             print(f"[rewrites] APPLIED ChatGPT words to {req['slug']}", flush=True)
     if changed and not dry_run:
         tmp = config_path.with_suffix(".json.tmp")
-        tmp.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+        # in the file's own indent, or one rewrite is a 29,000-line diff
+        _m = re.search(r"\n( +)\"", config_path.read_text())
+        tmp.write_text(json.dumps(cfg, indent=len(_m.group(1)) if _m else 2,
+                                  ensure_ascii=False) + "\n")
         os.replace(tmp, config_path)
     return report

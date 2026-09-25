@@ -309,9 +309,15 @@ def _learned_prior() -> dict:
             n = len(rws)
             if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
                 continue
-            wsum = sum(w for _, w in rws) or 1.0
-            mean_r = sum(r * w for r, w in rws) / wsum   # engagement-weighted
-            eff = 1.0 + (mean_r - 1.0) * (n / (n + K))
+            # The MEDIAN clip, not the mean. The docstring promises "a lucky
+            # single clip barely moves it", and a mean does not keep that
+            # promise: on 2026-09-25 plaqueboymax (median 12 views, one clip
+            # at 71) out-ranked jasontheween (median 44) because a single
+            # lucky clip lifted the average while jasontheween's two brand-
+            # new zeros dragged his down. The direction test caught it.
+            import statistics as _st
+            mid_r = _st.median(r for r, _ in rws)
+            eff = 1.0 + (mid_r - 1.0) * (n / (n + K))
             mult = max(0.70, min(1.40, eff))
             if abs(mult - 1.0) >= 0.02:  # skip no-op entries
                 prior[streamer] = round(mult, 3)

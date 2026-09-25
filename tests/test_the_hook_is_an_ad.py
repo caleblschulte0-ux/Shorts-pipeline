@@ -115,6 +115,31 @@ class TheSharpener(unittest.TestCase):
         self.assertEqual(b.calls, [])
 
 
+class SavingAHookDoesNotRewriteTheFile(unittest.TestCase):
+    """The config is 29,000 lines and several writers touch it. Saved back
+    at a different indent, one sharpened hook was a diff of every line."""
+
+    def test_the_render_save_keeps_the_files_indent(self):
+        import tempfile
+        from data_learning import studio_render as sr
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "cfg.json"
+            cfg = {"stories": [{"slug": "s", "hook": "old", "segments": []}]}
+            p.write_text(json.dumps(cfg, indent=1) + "\n")
+            before = p.read_text().splitlines()
+            sr._PERSISTED.append("s")
+            sr._save_persisted_mechanics(
+                p, {"slug": "s", "hook": "new", "hook_was": "old",
+                    "segments": []}, "s")
+            after = p.read_text().splitlines()
+            self.assertIn('   "hook": "new",', after)
+            import difflib
+            changed = [ln for ln in difflib.unified_diff(before, after, n=0)
+                       if ln[:1] in "+-" and ln[:3] not in ("+++", "---")]
+            # the hook line, `hook_was` added, and the comma JSON moves
+            self.assertLessEqual(len(changed), 6, changed)
+
+
 class ItIsWiredIn(unittest.TestCase):
     def test_the_renderer_sharpens_and_persists(self):
         src = (ROOT / "data_learning" / "studio_render.py").read_text()

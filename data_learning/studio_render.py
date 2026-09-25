@@ -2568,8 +2568,15 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
                 if story_cfg.get(k) is not None:
                     st_[k] = story_cfg[k]
             break
+        # IN THE FILE'S OWN INDENT. The config is written by several hands
+        # (the forge, the mailbox, this) and it is 29,000 lines; writing it
+        # back at a different indent turned one saved hook into a diff of
+        # every line in the file.
+        _raw = Path(config_path).read_text()
+        _m = re.search(r"\n( +)\"", _raw)
+        _ind = len(_m.group(1)) if _m else 2
         Path(config_path).write_text(
-            json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+            json.dumps(cfg, indent=_ind, ensure_ascii=False) + "\n")
         print(f"[studio] persisted rendered mechanic(s) for '{slug}' to "
               f"{Path(config_path).name}", flush=True)
     except Exception as e:  # noqa: BLE001
