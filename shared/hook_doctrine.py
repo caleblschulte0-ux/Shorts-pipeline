@@ -155,6 +155,21 @@ def evidence(story_cfg: dict) -> tuple[set, set]:
     return allowed, label_words
 
 
+def scale_facts(story_cfg: dict) -> list:
+    """TRUE size comparisons this story's own data supports
+    (`shared/scale_refs`) — the only outside names a hook may borrow."""
+    from shared import rewrite_mailbox as rm
+    from shared import scale_refs as sr
+    rows = []
+    for seg in story_cfg.get("segments") or []:
+        d = rm._dataset(seg) or {}
+        for p in d.get("points") or []:
+            if p.get("value") is not None:
+                rows.append((float(p["value"]), d.get("unit", ""),
+                             p.get("label", "")))
+    return sr.comparisons(rows)
+
+
 def _story_words(story_cfg: dict) -> str:
     return " ".join([story_cfg.get("title") or "", story_cfg.get("hook") or "",
                      story_cfg.get("caption") or "",
@@ -201,11 +216,21 @@ def problems(line: str, story_cfg: dict, allowed: set, label_words: set) -> list
     return out
 
 
-def _prompt(story_cfg: dict, n: int) -> str:
+def _facts_text(facts: list) -> str:
+    return "\n".join(
+        f"  - {f['value']:,g} {f['unit']}"
+        + (f" ({f['label']})" if f.get("label") else "")
+        + f" is {f['phrase']}" for f in facts)
+
+
+def _prompt(story_cfg: dict, n: int, facts: list | None = None) -> str:
     lines = [f"TITLE: {story_cfg.get('title', '')}",
              f"CURRENT HOOK (too soft): {story_cfg.get('hook', '')}"]
     for i, seg in enumerate(story_cfg.get("segments") or []):
         lines.append(f"BEAT {i + 1}: {seg.get('say', '')}")
+    if facts:
+        lines.append("TRUE SIZE COMPARISONS (checked — you may use these, "
+                     "and no other comparison):\n" + _facts_text(facts))
     return (DOCTRINE + "\n" + "\n".join(lines) +
             f"\n\nWrite {n} different hooks for THIS story, strongest first. "
             "Use only numbers that appear in the beats above. Return STRICT "
@@ -249,7 +274,8 @@ factual claim is supported>], "why": {{"<n>": "<one line, for the ones you \
 refused>"}}}}"""
 
 
-def verified(cands: list, story_cfg: dict, brain) -> list:
+def verified(cands: list, story_cfg: dict, brain,
+             facts: list | None = None) -> list:
     """The candidates whose every FACT the story's own narration supports,
     in their original order. Fails CLOSED: no brain, no verdict, nothing
     changes — a soft hook is a missed click, a false one is a lie."""
@@ -258,6 +284,9 @@ def verified(cands: list, story_cfg: dict, brain) -> list:
     say = "\n".join([str(story_cfg.get("title") or "")] +
                     [str(s.get("say") or "")
                      for s in story_cfg.get("segments") or []])
+    if facts:
+        say += ("\nALSO TRUE (checked reference sizes):\n"
+                + _facts_text(facts))
     raw = brain(_VERIFY.format(
         say=say, cands="\n".join(f"{i + 1}. {c}" for i, c in enumerate(cands))))
     m = re.search(r"\{.*\}", str(raw or ""), re.S)
@@ -287,8 +316,14 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
     if was["score"] >= BAR:
         return None
     allowed, label_words = evidence(story_cfg)
+    facts = scale_facts(story_cfg)
+    for f in facts:                 # a checked comparison may be said
+        label_words |= {w.lower() for w in re.findall(r"[A-Za-z]+", f["said"])}
+        m = re.search(r"more than (\d+) times", f["phrase"])
+        if m:
+            allowed.add(float(m.group(1)))
     passed = []
-    for cand in _ask(_prompt(story_cfg, n), brain):
+    for cand in _ask(_prompt(story_cfg, n, facts), brain):
         why = problems(cand, story_cfg, allowed, label_words)
         if why:
             log(f"[hook] refused {cand!r}: {'; '.join(why)}")
@@ -298,7 +333,7 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
             passed.append((p, cand))
     passed.sort(key=lambda t: -t[0])          # stable: brain order breaks ties
     top = [c for _, c in passed[:3]]
-    true = verified(top, story_cfg, brain)
+    true = verified(top, story_cfg, brain, facts)
     for c in top:
         if c not in true:
             log(f"[hook] refused {c!r}: a fact the story does not support")
