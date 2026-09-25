@@ -269,7 +269,7 @@ def is_reference_line(values) -> bool:
     return (hi - lo) <= FLAT_SERIES_TOL * hi
 
 
-CREDIT_MAX_CHARS = 78
+CREDIT_MAX_CHARS = 96
 
 
 def credit_line(source: str) -> str:
@@ -296,9 +296,56 @@ def credit_line(source: str) -> str:
     head = s.split(";")[0]
     head = re.split(r",\s*(?=[a-z0-9])", head)[0]     # drop lowercase clauses
     head = head.strip(" .,;—-")
-    if len(head) > CREDIT_MAX_CHARS:
-        head = head[:CREDIT_MAX_CHARS - 1].rstrip(" .,;—-") + "…"
+    # A CREDIT IS NEVER CUT MID-THOUGHT. This used to cut at 78 characters
+    # with an ellipsis, so the frame read "US per-capita meat availability
+    # (boneless/retail-weight basis), USDA Economic…" and the judge wrote
+    # "the source line is cut off with '...' in every frame" on all three
+    # graph races of 2026-09-25; another cut landed inside a bracket, "IMF
+    # World Economic Outlook (nominal GDP". Pulling organisation names out
+    # of free text was tried and rejected: it confidently printed "American
+    # Society for Metabolic". The source's own words, whole, are safer.
+    head = re.split(r":\s|(?<=[a-z]{3})\.\s+", head)[0].strip(" .,;—-")
+    if len(head) <= CREDIT_MAX_CHARS and _balanced(head):
+        return f"Source: {head}" if head else ""
+    head = _trim_words(head)
     return f"Source: {head}" if head else ""
+
+
+_TRAILING = {"of", "for", "and", "&", "the", "on", "a", "an", "by", "in", "to",
+             "from", "with", "vs", "or"}
+
+
+def _balanced(t: str) -> bool:
+    return t.count("(") == t.count(")") and t.count("[") == t.count("]")
+
+
+def _trim_words(t: str) -> str:
+    """Whole words only, bracketed asides dropped, and no ellipsis: a credit
+    that ends on "USDA Economic…" reads as broken, one that ends on a whole
+    word reads as a credit."""
+    t = re.sub(r"\s*\([^)]*\)", "", t)
+    t = re.sub(r"\s*\([^)]*$", "", t).strip(" .,;:—-")
+    words = t.split()
+    cut = False
+    while words and len(" ".join(words)) > CREDIT_MAX_CHARS:
+        words.pop()
+        cut = True
+    # A trimmed credit ends on the last NAMED word: "...Research Institute",
+    # not "...Research Institute homeschool".
+    if cut:
+        k = max((i for i, w in enumerate(words) if w[:1].isupper()),
+                default=-1)
+        if k >= 0 and len(" ".join(words[:k + 1])) >= 0.6 * len(" ".join(words)):
+            words = words[:k + 1]
+    def _dangles(w: str) -> bool:
+        return (w.lower().strip(",;") in _TRAILING or w.endswith((",", ";"))
+                or not re.search(r"[A-Za-z0-9]", w)
+                or w.endswith(("'s", "’s"))           # "Eli Lilly's" — whose what?
+                or (w.count("'") % 2 == 1 and not re.search(r"\w'\w|s'$", w))
+                or w.count('"') % 2 == 1)
+    while words and _dangles(words[-1]):
+        words.pop()
+    return " ".join(words).strip(" .,;:—-")
 
 
 def _spec_data_problems(spec: dict) -> list[str]:
@@ -577,6 +624,66 @@ def _interp(years, values, x):
     return values[-1]
 
 
+YEAR_TRACK = (0.24, 0.76)  # the year counter's travel, figure x, start -> end
+YEAR_TRACK_Y = 0.101
+RIGHT_PAD_PX = 24          # the leader's tip dot, whole, inside the plot
+BURST_S = 0.7              # the crossover ring's one expanding burst
+
+
+def year_ticks(years) -> list[int]:
+    """ONE tick step for the whole race, chosen from its full span.
+
+    `MaxNLocator` re-chose its step every frame as the x camera opened, so
+    the axis read 1972/1975/1978, then decades, then 1980/1995/2010 — "the
+    x-axis ticks rescale unevenly ... which looks jumpy" (c-sections race,
+    2026-09-25). A fixed step only ever ADDS ticks as the camera opens, and
+    never labels a year past the data."""
+    y0, y1 = float(years[0]), float(years[-1])
+    span = max(1.0, y1 - y0)
+    step = next((st for st in (1, 2, 5, 10, 20, 25, 50, 100, 200, 500)
+                 if span / st <= 6), 1000)
+    first = int(math.ceil(y0 / step) * step)
+    return list(range(first, int(math.floor(y1)) + 1, step))
+
+
+def pass_caption(leader: str, passed: str) -> str:
+    """"Chicken passes Beef", "C-Sections pass Vaginal Births"."""
+    word = str(leader).split()[-1] if str(leader).split() else ""
+    plural = (word.lower().endswith("s") and not word.lower().endswith("ss")
+              and len(word) > 3)
+    return f"{leader} {'pass' if plural else 'passes'} {passed}"
+
+
+def lead_change(years, series) -> dict | None:
+    """Where the FINAL leader took the lead for the last time: the moment a
+    "X passed Y" race exists to show.
+
+    The judge on chicken-vs-beef, 2026-09-25: "the payoff is a small '#1
+    Chicken' caption with no highlight of the crossover year". Returns the
+    crossing's x (interpolated between the two samples it falls between —
+    it is where the drawn lines visibly cross, nothing more), the value
+    there, the leader and the series it passed. None when the leader led
+    throughout: then there is no pass to mark, and none is invented."""
+    if len(series) < 2 or len(years) < 2:
+        return None
+    lead = max(series, key=lambda s: s["values"][-1])
+    best = None
+    for o in series:
+        if o is lead:
+            continue
+        d = [a - b for a, b in zip(lead["values"], o["values"])]
+        for k in range(len(d) - 1, 0, -1):
+            if d[k - 1] <= 0 < d[k]:
+                t = -d[k - 1] / (d[k] - d[k - 1])
+                x = years[k - 1] + t * (years[k] - years[k - 1])
+                if best is None or x > best["x"]:
+                    best = {"x": float(x), "y": float(_interp(years,
+                                                              lead["values"], x)),
+                            "leader": lead["name"], "passed": o["name"]}
+                break
+    return best
+
+
 def race_duration(spec: dict) -> float:
     """How long the race runs, in seconds.
 
@@ -608,7 +715,8 @@ def render(spec: dict, out: str | Path, *,
     import matplotlib.font_manager as fm
     import matplotlib.image as mpimg
     from matplotlib.offsetbox import AnnotationBbox, OffsetImage
-    from matplotlib.ticker import FuncFormatter, MaxNLocator
+    from matplotlib.lines import Line2D
+    from matplotlib.ticker import FixedLocator, FuncFormatter
 
     W, H = int(size[0]), int(size[1])
     # biggest truthful numbers on screen: 11.5 "(millions)" -> 11.5M
@@ -693,6 +801,17 @@ def render(spec: dict, out: str | Path, *,
         cam_bot = None           # ...and its FLOOR, which only ever drops
         cam_x = None             # ...and the x camera, which only opens out
         extra: list = []         # per-frame figure-level artists to recycle
+        ticks = year_ticks(years)
+        cross = lead_change(years, series)
+        cross_f = None           # the frame the lead changed hands on
+        # A share reads as "57%", not "57": the unit was only on the axis
+        # name, rotated, in 15px grey.
+        # the credit is fitted by MEASURED width, not a character count
+        credit_size = 15
+        while credit and credit_size > 11 and \
+                _text_px(fig, credit, credit_size) > W * 0.92:
+            credit_size -= 1
+        unit = "%" if re.search(r"%|\bpercent", y_label, re.I) else ""
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
         for f in range(n_frames + hold):
             p = _race_ease(min(1.0, f / max(1, n_frames - 1)))
@@ -799,7 +918,12 @@ def render(spec: dict, out: str | Path, *,
             _seen_lo = min(min(t[3]) for t in tips)
             _want_bot = _look.frame_the_data(_seen_lo, cam_top)
             cam_bot = _want_bot if cam_bot is None else min(cam_bot, _want_bot)
-            ax.set_xlim(years[0], cam_x)
+            # THE TIP GETS ROOM. The x camera ends exactly on the last year,
+            # which put the leader's dot ON the right spine and half of it
+            # outside the axes — "the tip markers are clipped at the right
+            # edge of the frame" (chicken race, payoff, 2026-09-25).
+            x_hi = cam_x + (cam_x - years[0]) * (RIGHT_PAD_PX / ax_w_px)
+            ax.set_xlim(years[0], x_hi)
             ax.set_ylim(cam_bot, cam_top)
             # ...AND THE AXIS NAME HAS TO FIT. The Boeing race shipped
             # "Commercial aircraft delivered (count" — clipped mid-word by
@@ -811,7 +935,7 @@ def render(spec: dict, out: str | Path, *,
                           color="#9aa4b2", fontsize=15)
             ax.yaxis.set_major_formatter(
                 FuncFormatter(lambda v, _: _fmt_compact(v)))
-            ax.xaxis.set_major_locator(MaxNLocator(5, integer=True))
+            ax.xaxis.set_major_locator(FixedLocator(ticks))
             ax.xaxis.set_major_formatter(
                 FuncFormatter(lambda v, _: str(int(round(v)))))
             for spine in ("top", "right"):
@@ -820,6 +944,49 @@ def render(spec: dict, out: str | Path, *,
                 ax.spines[spine].set_color("#3a4252")
             ax.tick_params(colors="#9aa4b2", labelsize=14)
             ax.grid(axis="y", color="#141a26", linewidth=1)
+
+            # THE PASS IS MARKED WHERE IT HAPPENS, AND STAYS MARKED.
+            #
+            # A "X passed Y" race is about one moment, and it went by with
+            # nothing on it: "at 2013 the tip labels and markers overlap
+            # exactly as chicken passes beef, which is the moment the video
+            # exists to show", and "no highlight of the crossing point"
+            # (chicken 79 and c-sections 74, 2026-09-25). A ring bursts out
+            # of the crossing when the pen reaches it, then a dashed line and
+            # a ring hold the spot for the rest of the race, captioned in the
+            # headroom — which `cam_top` keeps empty of tips by construction
+            # — so the caption never lands on the labels crowding the tip.
+            if cross is not None and cur >= cross["x"]:
+                if cross_f is None:
+                    cross_f = f
+                lead_c = next(s_["color"] for s_ in series
+                              if s_["name"] == cross["leader"])
+                cx, cy = cross["x"], cross["y"]
+                cap_y = cam_top - (cam_top - cam_bot) * 0.075
+                ax.plot([cx, cx], [cam_bot, cap_y], color="white", alpha=0.32,
+                        linewidth=2, linestyle=(0, (4, 4)), zorder=2)
+                ax.plot([cx], [cy], "o", markersize=26, markerfacecolor="none",
+                        markeredgecolor="white", markeredgewidth=3, zorder=4.5)
+                bt = (f - cross_f) / (fps * BURST_S)
+                if bt < 1.0:
+                    ax.plot([cx], [cy], "o", markersize=26 + 130 * bt,
+                            markerfacecolor="none", markeredgecolor=lead_c,
+                            markeredgewidth=4, alpha=(1.0 - bt) ** 1.5,
+                            zorder=4.4, clip_on=False)
+                if not (hook and f < HOOK_S * fps):
+                    cap = pass_caption(cross["leader"], cross["passed"])
+                    csize = 18
+                    while csize > 12 and _text_px(fig, cap, csize) > ax_w_px * 0.62:
+                        csize -= 1
+                    half = (_text_px(fig, cap, csize) / 2 + 14) / ax_w_px \
+                        * (x_hi - years[0])
+                    cap_x = min(max(cx, years[0] + half), x_hi - half)
+                    ax.text(cap_x, cap_y, cap, color=lead_c, fontsize=csize,
+                            fontweight="bold", ha="center", va="center",
+                            zorder=6, bbox=dict(boxstyle="round,pad=0.35",
+                                                facecolor="#000000",
+                                                edgecolor=lead_c,
+                                                linewidth=1.6, alpha=0.9))
 
             # Tip icon + value label, at DE-CLUTTERED y positions: when the
             # lines converge (everyone collapsing to near-zero) the raw tip
@@ -845,7 +1012,7 @@ def render(spec: dict, out: str | Path, *,
             for rank, (cv, s, _xs, _ys) in enumerate(tips):
                 ly = placed[rank]
                 art = icons.get(s["name"])
-                label = f"{s['name']}  {_fmt_compact(cv)}"
+                label = f"{s['name']}  {_fmt_compact(cv)}{unit}"
                 iw = 0.0 if art is None else _icon_width(art, TIP_ICON_PX,
                                                          TIP_ICON_MAX_W)
                 # WITHOUT AN ICON THE TIP STILL CARRIES THE MARKER DOT. The
@@ -865,7 +1032,7 @@ def render(spec: dict, out: str | Path, *,
                 # seconds before the flag tripped — visible in the 2016 frame
                 # of the disaster-costs chart as "Disaster cost that".
                 # ...against the CURRENT x window, now that it moves.
-                span = (cam_x - years[0]) or 1.0
+                span = (x_hi - years[0]) or 1.0
                 avail = (1.0 - (cur - years[0]) / span) * ax_w_px
                 # MEASURED, NOT COUNTED. `len(label) * 9.4` is the same
                 # character-count-as-width guess `shared.fit_title` exists
@@ -932,13 +1099,26 @@ def render(spec: dict, out: str | Path, *,
                 fig.text(KEY_X_NAME, ly, f"{rank + 1}. {s['name']}",
                          color=s["color"], ha="left", va="center",
                          fontsize=17, fontweight="bold")
-                fig.text(KEY_X_VALUE, ly, _fmt_compact(cv), color="white",
+                fig.text(KEY_X_VALUE, ly, _fmt_compact(cv) + unit, color="white",
                          ha="right", va="center", fontsize=19,
                          fontweight="bold")
                 ly -= KEY_STEP
 
-            # big year counter under the chart
-            fig.text(0.5, 0.140, str(int(round(cur))), color="white",
+            # THE YEAR RIDES A TIMELINE. It sat centred and still, which left
+            # the pen tip as the frame's only moving thing — and the x camera
+            # FOLLOWS the pen, so the tip is stationary on screen. On a slow
+            # stretch the only change in the frame was the year's last digit
+            # turning over every third frame: the c-sections race measured
+            # 0.425 duplicate frames against a 0.45 ceiling, and its middle
+            # read `#..#...#..#` to the cadence gate. A counter that travels
+            # a track as the years pass says where we are in time, and moves
+            # on every frame the race moves.
+            yx = YEAR_TRACK[0] + (YEAR_TRACK[1] - YEAR_TRACK[0]) * p
+            for _x1, _c in ((0.94, "#1f2633"), (yx, "#9aa4b2")):
+                extra.append(fig.add_artist(Line2D(
+                    [0.06, _x1], [YEAR_TRACK_Y] * 2, transform=fig.transFigure,
+                    color=_c, linewidth=3, solid_capstyle="round")))
+            fig.text(yx, 0.140, str(int(round(cur))), color="white",
                      ha="center", va="center", fontproperties=year_font)
             if in_hold:
                 lead = tips[0][1]
@@ -957,7 +1137,7 @@ def render(spec: dict, out: str | Path, *,
                          alpha=0.25 + 0.75 * ease)
             if credit:
                 fig.text(0.5, 0.030, credit, color="#8b93a1", ha="center",
-                         va="center", fontsize=15)
+                         va="center", fontsize=credit_size)
 
             if hook and f < HOOK_S * fps:
                 # The hook used to sit at 0.79 — right on top of the key
