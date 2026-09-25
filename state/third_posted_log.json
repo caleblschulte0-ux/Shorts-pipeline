@@ -9259,14 +9259,45 @@
       "director_cut": true
     },
     "clip-20260925-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/extraemily/clip/BeautifulDeafPanMVGame-q0bCz7ZE2U06uqSc",
-      "story_key": null,
-      "streamer": "extraemily",
+      "url": "https://youtube.com/shorts/TbF1VSVWkVk",
       "title": "Extraemily Got Suffocated By 'Friendly Londoners' Then Said This",
       "kind": "twitch_clip",
-      "ts": "2026-09-25T13:01:35.966521+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-25T13:01:43.097949+00:00",
+      "uploaded_at": "2026-09-25T13:01:43.097965+00:00",
+      "publish_at": "2026-09-26T05:00:00Z",
+      "source_url": "https://www.twitch.tv/extraemily/clip/BeautifulDeafPanMVGame-q0bCz7ZE2U06uqSc",
+      "streamer": "extraemily",
+      "series": "chaos",
+      "hook": "THEY PUT A SHEET OVER HER FACE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6658,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 22.9
+      },
+      "director_cut": true
+    },
+    "rejected-boldlaconicclipsmompeopleschamp-2dm0p0ndylkztk6j": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/BoldLaconicClipsmomPeoplesChamp-2DM0p0nDYLkZTk6j",
+      "streamer": "summit1g",
+      "title": "Summit calls Payo stupid and laughs at little man ppc",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (casual chat, no visible event)",
+      "ts": "2026-09-25T13:04:04.854905+00:00"
+    },
+    "rejected-differentunsightlybananaomgscoots-0hcml12_qi73a7ql": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DifferentUnsightlyBananaOMGScoots-0HcmL12_Qi73a7qL",
+      "streamer": "jynxzi",
+      "title": "chris",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just rambling, no visible event)",
+      "ts": "2026-09-25T13:05:00.401215+00:00"
     }
   }
 }

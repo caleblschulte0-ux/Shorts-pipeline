@@ -3,223 +3,6 @@
     {
       "date": "20260918",
       "dry_run": false,
-      "ts": "2026-09-18T15:14:31+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 106,
-        "with_retention": 84,
-        "with_curve": 13,
-        "fetched_at": "2026-09-18T13:05:05.680677+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260918-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "one word, no context given",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "runway walk, crowd hugs, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat's Chat Goes Wild Over This 'Aw' Moment"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.62,
-              "problems": [
-                "several frames (8.8s-28.8s) are very dark/low-contrast, making the subject hard to distinguish from the background",
-                "18.8s is a wide establishing shot where the subject is tiny and distant"
-              ]
-            }
-          },
-          "took_s": 213.5
-        },
-        {
-          "slug": "clip-20260918-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp region is a thin horizontal strip (~10% of canvas height), far below the ~75% target \u2014 framing looks reposted/uncr; vision: Within that thin strip only HUD/minimap elements are visible, ",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague drama title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "routine gameplay callouts, no clear payo",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Summit1G Was About To Teabag This Guy When The Bus Showed Up"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.85,
-              "problems": [
-                "Sharp region is a thin horizontal strip (~10% of canvas height), far below the ~75% target \u2014 framing looks reposted/uncr",
-                "Within that thin strip only HUD/minimap elements are visible, no clear view of the player action or subject to read on a"
-              ]
-            }
-          },
-          "took_s": 265.3
-        },
-        {
-          "slug": "clip-20260918-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague single-word title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "vague talk, unclear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Finally Shows Everyone The Mall Concert Space Nobody's Seen"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "several frames around 9.0s-11.4s crop the subject's head above the frame during the walking beat, leaving only torso/hoo"
-              ]
-            }
-          },
-          "took_s": 145.2
-        },
-        {
-          "slug": "clip-20260918-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260918",
-      "dry_run": false,
       "ts": "2026-09-18T15:21:37+00:00",
       "feedback": {
         "snapshot": true,
@@ -5044,6 +4827,232 @@
             }
           },
           "took_s": 252.0
+        }
+      ]
+    },
+    {
+      "date": "20260925",
+      "dry_run": false,
+      "ts": "2026-09-25T13:05:00+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 106,
+        "with_retention": 85,
+        "with_curve": 13,
+        "fetched_at": "2026-09-25T08:46:22.683963+00:00"
+      },
+      "brain": {
+        "ok": 27,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260925-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "opinion take, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "just praising someone, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Explains Why He Thinks Capped Is The GOAT"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.55,
+              "problems": [
+                "Sharp+blurred picture only fills roughly the top third of the canvas; the bottom half-to-two-thirds of most frames is fl",
+                "In-game 'quit' confirmation dialog appears mid-clip (4.0s), which reads as an accidental/irrelevant UI capture rather th"
+              ]
+            }
+          },
+          "took_s": 211.9
+        },
+        {
+          "slug": "clip-20260925-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260925-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "reaction but unclear what to",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "shooting exchange, mediocre editing/paci",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Had The Reaction Time Of A Brick In This Shootout"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "Sharp/in-focus band only fills roughly a third of the canvas height per frame (thin strip with heavy blurred padding abo"
+              ]
+            }
+          },
+          "took_s": 252.6
+        },
+        {
+          "slug": "clip-20260925-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "street interaction, real reaction likely",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "prank suffocation gag, funny reveal",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Extraemily Got Suffocated By 'Friendly Londoners' Then Said This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 262.5
+        },
+        {
+          "slug": "clip-20260925-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (just rambling, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "just rambling, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 55.5
+        },
+        {
+          "slug": "clip-20260925-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
