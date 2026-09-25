@@ -1944,7 +1944,7 @@
         "https://www.twitch.tv/buddha/clip/DistinctPatientWormWOOP-ugvV1kgUf40w2d4y"
       ],
       "published_versions": [],
-      "last_updated": "2026-09-24"
+      "last_updated": "2026-09-25"
     },
     "jynxzi-stableronaldo-anoth-girlfriend-2026w36": {
       "event_id": "jynxzi-stableronaldo-anoth-girlfriend-2026w36",
@@ -1991,6 +1991,71 @@
         "story-304ff1fc77661a29"
       ],
       "last_updated": "2026-09-24"
+    },
+    "cinna-cinna-count-2026w36": {
+      "event_id": "cinna-cinna-count-2026w36",
+      "people": [
+        "cinna"
+      ],
+      "actions": [
+        "cinna",
+        "count",
+        "gift",
+        "milestone"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/cinna/clip/YummyCalmDadNerfBlueBlaster-XAG45PAgfWnhftfC",
+        "https://www.twitch.tv/cinna/clip/KindRudeYakANELE-Vj1NkVVZbt6YtYse",
+        "https://www.twitch.tv/cinna/clip/CrepuscularElatedDonutPJSalt-WqgSn9TW8QO0aYYv"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-25"
+    },
+    "emiru-dragon-emiru-2026w38": {
+      "event_id": "emiru-dragon-emiru-2026w38",
+      "people": [
+        "emiru"
+      ],
+      "actions": [
+        "dragon",
+        "emiru",
+        "freez",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/emiru/clip/WiseSilkyTurnipBudStar-PVJfGrQxRLwF9OXU",
+        "https://www.twitch.tv/emiru/clip/BoxyFilthyDinosaurBigBrother-c-VMXy8iE1jWkU_g",
+        "https://www.twitch.tv/emiru/clip/ImportantAgreeableGuanacoBIRB-xzDrO6WrNYI2eykO"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-25"
+    },
+    "sodapoppin-about-address-2026w38": {
+      "event_id": "sodapoppin-about-address-2026w38",
+      "people": [
+        "sodapoppin"
+      ],
+      "actions": [
+        "about",
+        "address",
+        "affectionately",
+        "bald"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/sodapoppin/clip/KindSpeedyPonyRickroll-bJFn2Ku1fML9h_Hp",
+        "https://www.twitch.tv/sodapoppin/clip/SuaveOnerousKleeTakeNRG-US7dUt39KhaDWcjH"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-25"
     }
   }
 }

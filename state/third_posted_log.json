@@ -9068,13 +9068,126 @@
       "ts": "2026-09-25T11:42:09.165224+00:00"
     },
     "clip-20260925-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/FancyTameStorkPicoMause-xsN8gmhiDFty6UNd",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/6UbssTr1vtM",
       "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-09-25T11:44:32.190537+00:00",
+      "ts": "2026-09-25T11:44:38.840233+00:00",
+      "uploaded_at": "2026-09-25T11:44:38.840251+00:00",
+      "publish_at": "2026-09-25T18:30:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/FancyTameStorkPicoMause-xsN8gmhiDFty6UNd",
+      "streamer": "xqc",
+      "series": "jumpscare",
+      "hook": "JEAN PAUL JUST JUMPSCARED HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3851,
+      "banger": 0.68,
+      "cut": {
+        "start": 13.0,
+        "end": 25.0
+      },
+      "director_cut": true
+    },
+    "rejected-squarepluckysalamanderpastathat-mkmrrdcnbueikvul": {
+      "source_url": "https://www.twitch.tv/silky/clip/SquarePluckySalamanderPastaThat-mkMRrDcNbueiKvul",
+      "streamer": "silky",
+      "title": "AIMBOT AIM WTF",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine gameplay, no clear event)",
+      "ts": "2026-09-25T11:45:37.391800+00:00"
+    },
+    "rejected-clip_01m3amyjx4dasfp3gxzs23th3x": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M3AMYJX4DASFP3GXZS23TH3X",
+      "streamer": "adinross",
+      "title": "Adinross: Adin Ross Says It's Funny How This Beef Came Full Circle",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "audio dead for 3.8s at 5.6s; vision: Sharp region is a full desktop/browser screen-capture shrunk to a thin strip \u2014 text, tweets, and the webcam face are all; vision: Several frames (0.8s-4.2s, 5.9s) show mostly black/empty screen content with nothing readable happening; vision: Framing looks repost",
+      "ts": "2026-09-25T11:49:40.058472+00:00"
+    },
+    "rejected-rockyoriginalwoodcocktwitchraid-9m2ee_ncoevauaht": {
+      "source_url": "https://www.twitch.tv/lirik/clip/RockyOriginalWoodcockTwitchRaid-9M2Ee_ncOevauAhT",
+      "streamer": "lirik",
+      "title": "HUH",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (explicit nudity, inappropriate for chann)",
+      "ts": "2026-09-25T11:51:02.364442+00:00"
+    },
+    "rejected-temperedcooperativeherringpmstwin-abnroq_ki1nhqnhd": {
+      "source_url": "https://www.twitch.tv/cinna/clip/TemperedCooperativeHerringPMSTwin-aBnrOQ_kI1nhQNHd",
+      "streamer": "cinna",
+      "title": "not much of a getaway",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (GTA RP gameplay narration, no real event)",
+      "ts": "2026-09-25T11:52:33.952253+00:00"
+    },
+    "rejected-evilpowerfulkuduohmydog-zwy3sspt3sswmkkx": {
+      "source_url": "https://www.twitch.tv/xqc/clip/EvilPowerfulKuduOhMyDog-zWy3SSpt3SSwMkKX",
+      "streamer": "xqc",
+      "title": "Mr Lang takes a trip down memory lane",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (menu/phone reading, no visible event)",
+      "ts": "2026-09-25T11:54:25.944479+00:00"
+    },
+    "rejected-spineyvenomousswanunsane-bmffpndqs8jrmg57": {
+      "source_url": "https://www.twitch.tv/moistcr1tikal/clip/SpineyVenomousSwanUnSane-BmFFPnDqS8jrMG57",
+      "streamer": "moistcr1tikal",
+      "title": "The Ironmouse Worm",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (menu browsing, no real event)",
+      "ts": "2026-09-25T11:55:42.914026+00:00"
+    },
+    "rejected-superspunkytarofunrun-hi_68ggoqhxxdxn9": {
+      "source_url": "https://www.twitch.tv/koil/clip/SuperSpunkyTaroFunRun-hI_68gGoQHxXdxn9",
+      "streamer": "koil",
+      "title": "a",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling chat, no real event)",
+      "ts": "2026-09-25T11:57:14.049590+00:00"
+    },
+    "rejected-wanderingpluckygoatuwot-qxrqfnymdreavs4b": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/WanderingPluckyGoatUWot-qxRQfNyMDrEaVS4b",
+      "streamer": "zackrawrr",
+      "title": "Zackrawrr On Adin Ross Being Totally Okay With This",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: sharp region is a thin horizontal strip (roughly 1/5 of the canvas height), far below the ~75% target \u2014 streamer webcam ; vision: framing reads as reposted/uncropped rather than edited \u2014 action is lost in a sea of blurred padding above and below",
+      "ts": "2026-09-25T12:00:46.287603+00:00"
+    },
+    "rejected-cleanprettiestwrenchrlytho-gxszsln9-aomws_8": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/CleanPrettiestWrenchRlyTho-gXsZsLN9-AOmwS_8",
+      "streamer": "northernlion",
+      "title": "dan mention",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (confused rambling, no visible event)",
+      "ts": "2026-09-25T12:27:57.361999+00:00"
+    },
+    "rejected-blightedbetterpiedogface-ab9v6lfpojcbjsbf": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/BlightedBetterPieDogFace-aB9V6lfpoJcbJsBF",
+      "streamer": "pokimane",
+      "title": "hu",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine setup talk about lighting contro)",
+      "ts": "2026-09-25T12:29:02.124352+00:00"
+    },
+    "clip-20260925-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PhilanthropicTacitTireDatBoi-_CBe9Xi65jDZTFIQ",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Panics And Accidentally Leaks His Own IP",
+      "kind": "twitch_clip",
+      "ts": "2026-09-25T12:33:06.700529+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
