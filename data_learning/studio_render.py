@@ -1212,6 +1212,24 @@ def _full_by(span: float, tail: float = MAX_STILL_TAIL) -> float:
     return float(max(READ_BY, 1.0 - tail / span))
 
 
+#: Each of the last beat's pictures before the closing keeps at least this
+#: long, or the payoff shares its span as before.
+PAYOFF_MIN_SPAN = 3.0
+
+
+def payoff_spans(s0: float, s1: float, close0: float,
+                 n: int) -> list[tuple[float, float]]:
+    """The last beat's spans when it runs into the closing: the first n-1
+    share [s0, close0), the last is [close0, s1). Falls back to an even split
+    when there is only one picture or not enough time before the closing."""
+    n = max(1, int(n))
+    if (n < 2 or not (s0 < close0 < s1)
+            or (close0 - s0) < PAYOFF_MIN_SPAN * (n - 1)
+            or (s1 - close0) < 1.0):
+        return _visual_spans(s0, s1, n)
+    return _visual_spans(s0, close0, n - 1) + [(close0, s1)]
+
+
 def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
     """Split one beat's display window into ``n`` consecutive spans.
 
@@ -3104,6 +3122,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     kinds = [_open] + [k for k in kinds if k != _open]
                     kinds = kinds[:max(1, len(kinds))]
             spans = _visual_spans(start, end, len(kinds))
+            # THE PAYOFF IS A NEW PICTURE. The last beat's window runs to the
+            # end of the closing, so its last visual started mid-beat and the
+            # closing replayed it shrunk under the takeaway: "seg4 shows the
+            # same frame seg3 ended on, so the payoff adds nothing new to
+            # see" (Waymo, 2026-09-25). The beat's other pictures now share
+            # the time BEFORE the closing, and its last one — the claim-led
+            # machine, when there is one (see the reordering above) — opens
+            # AT the closing.
+            if i == last_i and lead_payoff and windows:
+                spans = payoff_spans(start, end, windows[-1][0], len(kinds))
             seg.spans = []
             _orig_kind = seg.insight.kind
 
@@ -3822,7 +3850,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # these frames was leaving empty anyway. Nothing overlaps,
                 # nothing dims, and the frame finally uses its bottom.
                 _close0 = windows[-1][0] if windows else t1
-                if t1 - _close0 > 0.35 and t0 < _close0:
+                if t1 - _close0 > 0.35 and t0 < _close0 + 0.05:
                     _rg = recap_geometry(vw, vh)
                     _rw, _rh, _rx, _ry = _rg["rw"], _rg["rh"], _rg["rx"], _rg["ry"]
                     _ch = _rg["crop_h"]           # centred trim: no offsets
@@ -3856,9 +3884,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # 200,000 against 0" (Waymo, 2026-09-25). A figure's
                     # final state IS its claim, so its recap starts with the
                     # claim already showing and keeps arriving.
-                    _from = recap_replay_from(sp.get("kind"),
-                                              float(sp.get("full_by", 1.0)),
-                                              _span)
+                    # a picture that STARTS at the closing is not a recap —
+                    # nobody has seen it yet, so it plays from its own start
+                    _from = (0.0 if t0 >= _close0 - 0.05 else
+                             recap_replay_from(sp.get("kind"),
+                                               float(sp.get("full_by", 1.0)),
+                                               _span))
                     _kk = (t1 - _close0) / max(0.05, _span - _from)
                     _pts = (f"setpts=PTS-STARTPTS+{t0:.3f}/TB"
                             if sp.get("kind") == "subject_scene" else
