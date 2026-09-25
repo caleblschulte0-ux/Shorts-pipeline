@@ -413,3 +413,109 @@ class ACrossoverRaceRunsShort(unittest.TestCase):
         s = self._spec([80, 70, 60, 50, 40, 30, 20],
                        [5, 20, 60, 150, 300, 600, 900])
         self.assertEqual(C.race_duration(C.normalize(s)), 13.0)
+
+
+class TheCreditIsNeverCutMidThought(unittest.TestCase):
+    """"The source line is cut off with '...' in every frame" — all three
+    graph races of 2026-09-25. Held against every real spec on record."""
+
+    def _all_sources(self):
+        import glob
+        import json
+        seen = set()
+        for f in glob.glob(str(ROOT / "state" / "trending_packages" / "**" /
+                               "*.json"), recursive=True):
+            try:
+                p = json.loads(Path(f).read_text())
+            except Exception:  # noqa: BLE001
+                continue
+            if isinstance(p, dict) and p.get("format") == "graph_race" \
+                    and p.get("source") and p["source"] not in seen:
+                seen.add(p["source"])
+                yield p["source"]
+
+    def test_no_real_credit_ends_in_an_ellipsis_or_an_open_bracket(self):
+        import re
+        n = 0
+        for src in self._all_sources():
+            got = cr.credit_line(src)
+            n += 1
+            self.assertNotIn("…", got, src)
+            self.assertNotIn("...", got, src)
+            self.assertTrue(cr._balanced(got), got)
+            self.assertFalse(re.search(r"[+/&,]$|'s$", got), got)
+            self.assertLessEqual(len(got), len("Source: ") + cr.CREDIT_MAX_CHARS)
+        self.assertGreater(n, 20)
+
+    def test_the_chicken_credit_names_its_publisher(self):
+        got = cr.credit_line(
+            "US per-capita meat availability (boneless/retail-weight basis), "
+            "USDA Economic Research Service Charts of Note and Food "
+            "Availability data series: chicken's per-capita availability "
+            "first passed beef's in 2010")
+        self.assertIn("USDA Economic Research Service", got)
+        self.assertNotIn("(", got)
+
+
+class TheYearAxisKeepsOneStep(unittest.TestCase):
+    """"The x-axis ticks rescale unevenly (1976/1984/1992/2000 at mid2, then
+    decades), which looks jumpy" — c-sections, 2026-09-25."""
+
+    def test_one_step_inside_the_data(self):
+        t = cr.year_ticks([1970, 1980, 1990, 2000, 2010, 2020, 2023])
+        self.assertEqual(t, [1970, 1980, 1990, 2000, 2010, 2020])
+        t = cr.year_ticks([1999, 2007, 2012, 2021, 2024])
+        self.assertEqual(len({b - a for a, b in zip(t, t[1:])}), 1)
+        self.assertLessEqual(t[-1], 2024)
+        self.assertLessEqual(len(t), 6)
+
+    def test_the_renderer_no_longer_rechooses_it_per_frame(self):
+        src = (ROOT / "engines" / "chart_race.py").read_text()
+        self.assertNotIn("MaxNLocator(", src)
+        self.assertIn("FixedLocator(ticks)", src)
+
+
+class ThePassIsMarked(unittest.TestCase):
+    YEARS = [1970, 1980, 1990, 2000, 2010, 2020, 2023]
+
+    def test_the_chicken_pass_is_found_between_its_samples(self):
+        got = cr.lead_change(self.YEARS, [
+            {"name": "Beef", "values": [84, 72, 64, 64, 57, 55, 58]},
+            {"name": "Chicken", "values": [27, 32, 42, 54, 58, 65, 68]}])
+        self.assertEqual((got["leader"], got["passed"]), ("Chicken", "Beef"))
+        self.assertTrue(2000 < got["x"] < 2010)
+
+    def test_a_leader_that_never_trailed_gets_no_invented_pass(self):
+        self.assertIsNone(cr.lead_change(self.YEARS, [
+            {"name": "A", "values": [90, 91, 92, 93, 94, 95, 96]},
+            {"name": "B", "values": [10, 20, 30, 40, 50, 60, 70]}]))
+
+    def test_the_last_pass_is_the_one_marked(self):
+        got = cr.lead_change([1, 2, 3, 4, 5], [
+            {"name": "A", "values": [1, 5, 1, 1, 9]},
+            {"name": "B", "values": [3, 3, 3, 3, 3]}])
+        self.assertTrue(4 < got["x"] < 5)
+
+    def test_the_caption_agrees_with_its_subject(self):
+        self.assertEqual(cr.pass_caption("Chicken", "Beef"),
+                         "Chicken passes Beef")
+        self.assertEqual(cr.pass_caption("C-Sections", "Vaginal Births"),
+                         "C-Sections pass Vaginal Births")
+
+
+class TheYearTravels(unittest.TestCase):
+    """The x camera follows the pen, so the tip is still on screen; on a slow
+    stretch the year's last digit was the only thing moving and the
+    c-sections race measured 0.425 duplicate frames (ceiling 0.45). With the
+    year riding a track: 0.14 on all three 2026-09-25 specs."""
+
+    def test_the_counter_is_placed_by_progress(self):
+        import ast
+        src = (ROOT / "engines" / "chart_race.py").read_text()
+        tree = ast.parse(src)
+        self.assertLess(cr.YEAR_TRACK[0], cr.YEAR_TRACK[1])
+        placed = [n for n in ast.walk(tree)
+                  if isinstance(n, ast.Call) and getattr(n.func, "attr", "") == "text"
+                  and n.args and isinstance(n.args[0], ast.Name)
+                  and n.args[0].id == "yx"]
+        self.assertTrue(placed, "the year counter must be drawn at `yx`")
