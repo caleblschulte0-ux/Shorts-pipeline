@@ -751,7 +751,7 @@ class Scene:
         self.lay = layout(spec, seed)
         self.still = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(self.still)
-        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec))
+        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec), era=era)
         for layer in ("back", "mid", "front"):
             for p in self.lay["props"]:
                 if p["layer"] != layer:

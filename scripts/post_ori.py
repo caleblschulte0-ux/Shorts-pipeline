@@ -201,6 +201,15 @@ def main() -> int:
         print(f"[ori] storyboard: {json.dumps({k: v for k, v in rep.items() if k != 'notes'})}", flush=True)
         for n in rep.get("notes", [])[:40]:
             print("   ", n, flush=True)
+        # the storyboard's respecs are the brain's answers, so they are held
+        # to the same rules: run #21 rewrote 55 of the London film's scenes
+        # AFTER the mend and put back the farmyard cows, two street
+        # campfires and a cottage in the street the mend had removed
+        again = A.mend_film(ep)
+        if again:
+            (OS.EPISODES / f"{ep['slug']}.json").write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n",
+                                                            encoding="utf-8")
+            print(f"[post_ori] mend_film after the storyboard changed {len(again)} scene(s)", flush=True)
     else:
         print("[ori] storyboard: no judge available, rendering unreviewed", flush=True)
     meta = OS.render(ep, out)

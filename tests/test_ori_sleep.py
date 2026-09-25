@@ -1199,6 +1199,52 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertLessEqual(so, OS.MAX_WORDS)
         self.assertGreaterEqual(so, OS.MIN_WORDS)
 
+    def test_run_twenty_one_the_storyboard_is_mended_too_and_the_film_stays_home(self):
+        # run #21 (London, the first ElevenLabs film): 65 again with the
+        # same notes, because the storyboard rewrote 55 scenes AFTER the mend
+        # and put back a farmyard (with cows) for a place-less beat, street
+        # campfires, a cottage in a street and a doubled gas lamp; and every
+        # lakeshore drew an alpine range behind a London park
+        import cairo
+        from unittest import mock
+        import ori_author as A
+        import post_ori
+        from data_learning.doodle import settings as ST
+        S = self.S
+        src = inspect.getsource(post_ori.main)
+        self.assertLess(src.index("SB.polish(ep"), src.rindex("A.mend_film(ep)"), "no mend after the storyboard")
+        say_city = "The lamplighter walks the street. " + " ".join(["word"] * 30)
+        say_home = "A parlour, a table, a candle. " + " ".join(["word"] * 30)
+        free = "Somebody is humming quietly as the evening goes on. " + " ".join(["word"] * 30)
+        ep = {"slug": "t", "era": "victorian", "chapters": [{"title": "One", "beats": [
+            {"say": say_city, "scene": {"setting": "street", "time": "night", "weather": "clear", "shot": "wide",
+                                        "cast": [], "props": ["gas_lamp", "torch"]}},
+            {"say": say_home, "scene": {"setting": "parlour_inside", "time": "night", "weather": "clear",
+                                        "shot": "close", "cast": [], "props": ["hearth"]}},
+            {"say": say_city, "scene": {"setting": "street", "time": "night", "weather": "clear", "shot": "close",
+                                        "cast": [], "props": ["gas_lamp", "cottage", "gas_lamp"]}},
+            {"say": free, "scene": {"setting": "farmyard", "time": "night", "weather": "clear", "shot": "wide",
+                                    "cast": [], "props": ["torch", "campfire", "cow"]}},
+        ]}]}
+        self.assertEqual(A.film_home(ep)[0], "city")
+        A.mend_film(ep, log=lambda *_: None)
+        beats = ep["chapters"][0]["beats"]
+        self.assertIn(beats[3]["scene"]["setting"], ("street", "parlour_inside"), "a place-less beat left home")
+        self.assertNotIn("cow", beats[3]["scene"]["props"])
+        props = beats[2]["scene"]["props"]
+        self.assertNotIn("cottage", props)
+        self.assertEqual(props.count("gas_lamp"), 1)
+        for b in beats:
+            if b["scene"]["setting"] == "street":
+                self.assertNotIn("campfire", b["scene"]["props"])
+            self.assertEqual(S.validate(b["scene"], "victorian"), [])
+        # a Victorian lake has roofs behind it, a Stone Age one the mountains
+        for era, want in (("victorian", 0), ("stone_age", 1)):
+            with mock.patch.object(ST, "_mountains") as m:
+                surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+                ST.draw_still(cairo.Context(surf), "lakeshore", "night", "clear", 3, era=era)
+                self.assertEqual(m.call_count, want, era)
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

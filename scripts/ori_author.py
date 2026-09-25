@@ -836,7 +836,7 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
     for j, b in enumerate(beats):
         if isinstance(b, dict) and isinstance(b.get("scene"), dict):
             placed = mend_place(b, era, used=used)
-            strays = drop_stray_animals(b, era)
+            strays = drop_stray_animals(b, era) + drop_out_of_place(b, era)
             if strays:
                 placed = ", ".join(x for x in (placed, *strays) if x)
             night = None
@@ -1023,6 +1023,7 @@ PLACE_WORDS = (
     ("cave", ("cave",)),
     ("desert", ("desert", "dune", "sand")),
 )
+PLACE_WORDS_BY_CLASS = dict(PLACE_WORDS)
 PLACE_SETTINGS = {
     "interior": ("hut_inside", "villa_inside", "cottage_inside", "parlour_inside", "mudbrick_inside",
                  "tavern_inside", "cave_inside"),
@@ -1160,6 +1161,32 @@ ANIMAL_WORDS = {
 }
 
 
+RURAL = ("cottage", "hut", "barn", "tent", "wheat", "reeds", "mammoth", "hide_rack", "fish_rack")
+
+
+def drop_out_of_place(beat: dict, era: str) -> list[str]:
+    """A thatched cottage or a barn does not stand in a city street (run
+    #21's judge: "remove thatched cottages from urban scenes"), and a prop
+    listed twice is drawn once."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return []
+    notes, keep, seen = [], [], set()
+    city = sc.get("setting") in PLACE_SETTINGS["city"]
+    for q in sc.get("props") or []:
+        name = q if isinstance(q, str) else q.get("name")
+        if city and name in RURAL:
+            notes.append(f"dropped the {name} (not in a street)")
+        elif name in seen:
+            notes.append(f"dropped a second {name}")
+        else:
+            seen.add(name)
+            keep.append(q)
+    if notes:
+        sc["props"] = keep
+    return notes
+
+
 def drop_stray_animals(beat: dict, era: str) -> list[str]:
     sc = beat.get("scene") if isinstance(beat, dict) else None
     if not isinstance(sc, dict):
@@ -1180,6 +1207,31 @@ def drop_stray_animals(beat: dict, era: str) -> list[str]:
     if notes:
         sc["props"] = keep
     return notes
+
+
+def film_home(ep: dict) -> list[str]:
+    """The film's home: its two most-named classes of place. A beat whose
+    words name no place stays in one of them (run #21's judge: "limit every
+    scene's backdrop to Victorian London" — a place-less London beat was
+    re-specified onto a farmyard, and the farmyard brought cows)."""
+    import collections
+    n = collections.Counter(place_class(b.get("say", "")) for c in ep.get("chapters") or []
+                            for b in c.get("beats") or [] if isinstance(b, dict))
+    n.pop(None, None)
+    return [cls for cls, _ in n.most_common(2) if place_settings(cls, ep.get("era", ""))]
+
+
+def mend_home(beat: dict, era: str, home: list[str], used=None) -> str | None:
+    """Move a place-less beat that has left the film's home back into it."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict) or not home or place_class(beat.get("say", "")) is not None:
+        return None
+    allowed = [n for cls in home for n in place_settings(cls, era)]
+    if sc.get("setting") in allowed:
+        return None
+    st = S.SETTINGS.get(sc.get("setting"))
+    cls = next((c for c in home if st is not None and bool(st.interior) == (c == "interior")), home[0])
+    return mend_place({"say": " ".join(PLACE_WORDS_BY_CLASS[cls][:1]), "scene": sc}, era, used=used)
 
 
 def mend_place(beat: dict, era: str, used=None) -> str | None:
@@ -1280,9 +1332,12 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
                 return []                   # the words name a place the era cannot draw: leave it
         else:
             # no place named: the same kind of place first (an interior's
-            # other interiors), the open landscapes after
+            # other interiors), then the film's home, the open landscapes last
             same = (place_settings("interior", era)
                     if old_setting in S.SETTINGS and S.SETTINGS[old_setting].interior else [])
+            home_sets = [n for cls in film_home(ep) for n in place_settings(cls, era) if n not in same]
+            if home_sets:
+                return sorted(same, key=lambda n: used[n]) + sorted(home_sets, key=lambda n: used[n])
             land = [n for n in NEAR_SETTINGS if n in S.SETTINGS and era in S.SETTINGS[n].eras]
             if indoors_around and same:
                 # "an old woman sits up beside a restless child", between two
@@ -1439,7 +1494,13 @@ def mend_film(ep: dict, log=print) -> list[str]:
         first["scene"]["shot"] = "wide"
         mend_scene(first["scene"], ep["era"])
         notes.append("chapter 1 beat 1: the opening shot is wide")
+    home = film_home(ep)
     for i, c in enumerate(chs):
+        for j, b in enumerate(c.get("beats") or []):
+            did = mend_home(b, ep["era"], home, used=_place_tally(chs))
+            if did:
+                notes.append(f"chapter {i + 1}: beat {j + 1}: {did} (the film's home is {' and '.join(home)})")
+                log(f"[ori_author] {notes[-1]}")
         mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)),
                    final=(i == len(chs) - 1), used=_place_tally(chs[:i]))
     notes += repair_film(ep, log=log)

@@ -526,6 +526,32 @@ only as a hand edit is not a rule. So:
   a bar, a jug, a tray — the kit has no such props, and the storyboard
   editor's "no X visible" notes are mostly these.
 
+- **Run #19 (Victorian London, 65) and run #21 (the same script re-rendered,
+  the first film narrated by ElevenLabs, 65 again).** The same notes twice:
+  cows in a terrace street, mountains behind a London lake, a forest
+  campfire in the parlour chapter, a bonfire for the playhouse crowd, a
+  lamplighter in open countryside. The second time explained the first:
+  the storyboard rewrote 55 scenes AFTER `mend_film` and put the mended
+  mistakes back — a place-less beat re-specified onto a farmyard (the cows
+  came with it), two street campfires, a cottage in a street, a doubled gas
+  lamp. So `post_ori` runs `mend_film` again after the storyboard; a film
+  has a HOME (`film_home`, its two most-named classes of place) and a beat
+  whose words name no place stays in it (`mend_home`, and `repair_film`'s
+  moves prefer it to open landscapes); rural buildings leave city streets
+  and a prop listed twice is drawn once (`drop_out_of_place`); animals stay
+  only where the words name them (a drover's cattle stay); a room's fire
+  moved into a street becomes the era's street light; and a Victorian or
+  early-modern lake or river has a skyline behind it, not an alpine range
+  (`settings.CITY_ERAS`). Place words gained the lamplighter, the
+  constable, the playhouse, gaslight, the Nile, the Thames and "water";
+  "lamp" left the room and "boat" left the sea.
+  Run #20 (Egypt) never rendered: a new balance rule fought the Nile
+  passages' own words for three attempts (it now skips word-pinned beats
+  and waits for six), and a 900-word first chapter was refused in a film
+  with room for it (the chapter bounds now run on the film's remaining
+  budget). NOT BUILT, named by the judge: a lamplighter's pole reaching a
+  lamp, a playhouse front, a constable's helmet.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

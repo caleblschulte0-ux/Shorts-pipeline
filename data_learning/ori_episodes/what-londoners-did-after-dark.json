@@ -59,7 +59,7 @@
       "setting": "street",
       "time": "dusk",
       "weather": "rain",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
@@ -89,16 +89,14 @@
         "pose": "sit",
         "action": "sew",
         "mood": "content",
-        "item": "needle",
-        "at": "center_left"
+        "item": "needle"
        },
        {
         "who": "child",
         "pose": "crouch",
         "action": "play",
         "mood": "happy",
-        "item": "stick",
-        "at": "right"
+        "item": "stick"
        }
       ],
       "props": [
@@ -307,8 +305,7 @@
        }
       ],
       "props": [
-       "gas_lamp",
-       "cottage"
+       "gas_lamp"
       ],
       "variant": 1
      }
@@ -390,7 +387,7 @@
     {
      "say": "In a small brick watch-house near the bridge, an old man keeps a low fire in the hearth and a candle on the sill. He is not on duty tonight. He simply sits, warming his hands, listening to the rain ease outside, content to let the evening pass quietly around him.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "parlour_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -413,7 +410,7 @@
     {
      "say": "Across the park, the walks are nearly empty now. A keeper moves along the gravel path with his own pole, lighting the lamps that line it one by one. Rain falls lightly through the bare branches overhead, and each new lamp holds its small flame steady against the wet dark.",
      "scene": {
-      "setting": "farmyard",
+      "setting": "street",
       "time": "dusk",
       "weather": "rain",
       "shot": "close",
@@ -487,7 +484,7 @@
        }
       ],
       "props": [
-       "campfire",
+       "torch",
        "gas_lamp"
       ],
       "variant": 3
@@ -511,7 +508,6 @@
        }
       ],
       "props": [
-       "cow",
        "cow"
       ],
       "variant": 1
@@ -535,7 +531,6 @@
        }
       ],
       "props": [
-       "gas_lamp",
        "gas_lamp"
       ],
       "variant": 3
@@ -649,7 +644,6 @@
        }
       ],
       "props": [
-       "gas_lamp",
        "gas_lamp"
       ],
       "variant": 2
@@ -694,8 +688,7 @@
       ],
       "props": [
        "gas_lamp",
-       "terrace",
-       "cottage"
+       "terrace"
       ]
      }
     },
@@ -1079,7 +1072,6 @@
        }
       ],
       "props": [
-       "table",
        "basket",
        "gas_lamp"
       ],
@@ -1168,7 +1160,7 @@
        }
       ],
       "props": [
-       "campfire",
+       "torch",
        "gas_lamp"
       ],
       "variant": 4
@@ -1341,16 +1333,14 @@
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "focused",
-        "item": "stick",
-        "at": "center_left"
+        "item": "stick"
        },
        {
         "who": "woman",
         "pose": "stand",
         "action": "hold",
         "mood": "calm",
-        "item": "bundle",
-        "at": "center_right"
+        "item": "bundle"
        }
       ],
       "props": [
@@ -1658,14 +1648,14 @@
     {
      "say": "Out past the last houses, the park lies dark and hushed under a gentle rain. No one walks there now; only a dog lies curled beneath a tree, waiting for its family to call it home. The grass holds the wet, clean smell that comes after a long warm day, and everything is still.",
      "scene": {
-      "setting": "grassland",
+      "setting": "parlour_inside",
       "time": "night",
-      "weather": "rain",
+      "weather": "clear",
       "shot": "wide",
       "cast": [],
       "props": [
-       "tree",
-       "dog"
+       "dog",
+       "hearth"
       ]
      }
     },
@@ -1791,12 +1781,5 @@
  "sources": [],
  "topic": "What did Victorian Londoners do after dark?",
  "added": "2026-09-24T22:38",
- "authored_by": "ori_author",
- "storyboard": {
-  "kit": "a2e01e908139",
-  "clean": false,
-  "reviewed_at": "2026-09-25T02:14",
-  "rounds": 3,
-  "repaired": 151
- }
+ "authored_by": "ori_author"
 }

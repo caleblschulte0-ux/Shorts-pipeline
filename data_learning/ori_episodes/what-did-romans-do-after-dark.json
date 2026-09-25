@@ -520,7 +520,7 @@
     {
      "say": "Someone older leans in to talk while the meal winds down, voice low and unhurried — a bit of news, maybe, or an old story worn soft from telling. Nobody hurries an evening like this one. There is nowhere else to be, and nothing waiting but sleep.",
      "scene": {
-      "setting": "grassland",
+      "setting": "forum",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -546,7 +546,7 @@
       ],
       "props": [
        "torch",
-       "campfire"
+       "brazier"
       ],
       "variant": 2
      }
@@ -830,7 +830,7 @@
     {
      "say": "An old woman might sit up beside a restless child, murmuring that the sound was only carts, only deliveries, nothing to fear. It was a common scene, repeated in home after home—the rumble outside simply part of living in Rome, unwelcome but familiar.",
      "scene": {
-      "setting": "mountains",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1575,7 +1575,7 @@
     {
      "say": "The old woman sets the wool down for a moment and leans forward to feed her own small fire, adding a thin stick to keep it going. The flame settles and brightens briefly. She watches it for a moment, warms her hands, then picks the wool back up and returns to her steady twisting.",
      "scene": {
-      "setting": "mountains",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1598,7 +1598,7 @@
     {
      "say": "In a small house nearby, a different woman keeps stitching by her own low flame, though her daughter is fully asleep now, curled close beside her. A younger child sits nearby too, heavy-eyed, fighting sleep a little longer. The woman glances at them both, content, and keeps the needle moving without hurry.",
      "scene": {
-      "setting": "grassland",
+      "setting": "forum",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1629,7 +1629,7 @@
       "props": [
        "torch",
        "basket",
-       "campfire"
+       "brazier"
       ]
      }
     },
