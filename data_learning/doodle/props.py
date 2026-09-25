@@ -846,14 +846,29 @@ def mammoth(cr, x, y, s, t, seed):
 
 
 def wolf(cr, x, y, s, t, seed):
-    """A dog/wolf curled asleep by the fire: a round body that breathes,
+    """A wolf curled asleep by the fire: a round body that breathes,
     head on its paws, ears down, tail tucked and flicking. (The first
     draft's head bump, ear and tail read to the judge as "an animal upside
     down with its legs in the air".)"""
-    c = rgb("#8d8479")
+    _curled(cr, x, y, s, t, seed, rgb("#8d8479"), texture="fur", ears_up=False, muzzle=None)
+
+
+def dog(cr, x, y, s, t, seed):
+    """A dog curled asleep: the wolf's pose in a warm coat with a pale muzzle
+    and chest and ears pricked up. In the wolf's grey with its fur speckle
+    the Egypt film's judge saw "an unreadable grey speckled blob beside the
+    bed (a dog? stones?)"."""
+    _curled(cr, x, y, s, t, seed, rgb("#b07a45"), texture=None, ears_up=True, muzzle=rgb("#f0e2c8"))
+
+
+def _curled(cr, x, y, s, t, seed, c, texture=None, ears_up=False, muzzle=None):
     br = math.sin(t * 2 * math.pi / 4.2 + seed) * 2.5 * s          # breathing
+    kw = dict(texture=texture, tex_alpha=0.35) if texture else {}
     ink.fill_stroke(cr, ink.ellipse_pts(x - 10 * s, y - 40 * s - br, 88 * s, 40 * s + br, 24), c, lw=5 * s,
-                    amp=1.2, seed=seed, shadow=shade(c), shadow_dir=(0, 1), texture="fur", tex_alpha=0.35)
+                    amp=1.2, seed=seed, shadow=shade(c), shadow_dir=(0, 1), **kw)
+    if muzzle is not None:
+        ink.fill_stroke(cr, ink.ellipse_pts(x + 52 * s, y - 22 * s - br, 26 * s, 18 * s, 14), muzzle, lw=0,
+                        amp=0)                                          # a pale chest
     # tail tucked along the belly, its tip flicking
     f = math.sin(t * 2 * math.pi / 3.0 + seed) * 6 * s
     ink.line(cr, [(x - 92 * s, y - 30 * s), (x - 128 * s, y - 22 * s), (x - 118 * s, y - 8 * s + f),
@@ -864,11 +879,16 @@ def wolf(cr, x, y, s, t, seed):
         ink.fill_stroke(cr, ink.ellipse_pts(hx + dx * s, y - 8 * s, 19 * s, 9 * s, 12), c, lw=4 * s, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 36 * s, 27 * s, 20), c, lw=5 * s, amp=1, seed=seed + 1,
                     shadow=shade(c), shadow_dir=(0, 1))
-    ink.fill_stroke(cr, ink.ellipse_pts(hx + 34 * s, hy + 6 * s, 16 * s, 11 * s, 12), c, lw=4 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 34 * s, hy + 6 * s, 16 * s, 11 * s, 12), muzzle or c, lw=4 * s,
+                    amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(hx + 46 * s, hy + 6 * s, 5 * s, 4 * s, 8), ink.INK, lw=0, amp=0)
-    for dx in (-22, -4):                                            # ears laid back
-        ink.fill_stroke(cr, [(hx + dx * s, hy - 22 * s), (hx + (dx - 14) * s, hy - 36 * s),
-                             (hx + (dx + 6) * s, hy - 30 * s)], c, lw=3.5 * s, amp=0)
+    for dx in (-22, -4):
+        if ears_up:                                                 # a dog's ears, pricked
+            ink.fill_stroke(cr, [(hx + dx * s, hy - 20 * s), (hx + (dx + 4) * s, hy - 46 * s),
+                                 (hx + (dx + 14) * s, hy - 22 * s)], c, lw=3.5 * s, amp=0)
+        else:                                                       # ears laid back
+            ink.fill_stroke(cr, [(hx + dx * s, hy - 22 * s), (hx + (dx - 14) * s, hy - 36 * s),
+                                 (hx + (dx + 6) * s, hy - 30 * s)], c, lw=3.5 * s, amp=0)
     ink.line(cr, [(hx + 8 * s, hy - 2 * s), (hx + 22 * s, hy - 4 * s)], lw=3 * s, amp=0)   # closed eye
 
 
@@ -1102,7 +1122,7 @@ PROPS = {
     "deer": Prop(deer, 280, "back", BOTH),
     "mammoth": Prop(mammoth, 720, "back", STONE_AGE),   # the trunk and tusks reach far in front of the body
     "wolf": Prop(wolf, 270, "mid", STONE_AGE),
-    "dog": Prop(wolf, 270, "mid", LATER),
+    "dog": Prop(dog, 270, "mid", LATER),
     "sheep": Prop(sheep, 200, "mid", LATER),
     "cow": Prop(cow, 330, "back", LATER),
     "chicken": Prop(chicken, 90, "front", LATER),

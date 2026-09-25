@@ -957,7 +957,7 @@
     {
      "say": "Inside, by the low light of an oil lamp, an older priest sits with a boy and traces star groups painted across the ceiling beams. Thirty-six of these decan stars circle the year, he explains, each rising a little earlier than the one before, so that watching them is almost like reading a clock written across the sky itself.",
      "scene": {
-      "setting": "mudbrick_inside",
+      "setting": "grassland",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -978,7 +978,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "torch",
+       "campfire"
       ],
       "variant": 1
      }
@@ -1041,7 +1042,7 @@
     {
      "say": "Inside a small home, an old woman sits with a lamp burning low and begins the story people tell of the night sky: that Nut, the sky itself, swallows the sun each evening as it sets, carrying it through her body until dawn, when she gives it back to the world new and warm again.",
      "scene": {
-      "setting": "mudbrick_inside",
+      "setting": "mountains",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1156,7 +1157,7 @@
     {
      "say": "Inside, by the coals of a small brazier, a woman stirs a pot while her child eats close beside her, the morning warmth settling over the room. The night's stars and the story of Nut already feel far away, folded into the ordinary comfort of a new day beginning.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "dawn",
       "weather": "clear",
       "shot": "close",

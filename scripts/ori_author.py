@@ -225,10 +225,39 @@ MARK_SHARE = 0.3
 MAX_FILM_REPAIRS = 40      # repair_film steps per script; each is the smallest change that lowers the count           # no one setting at more than three in ten of the film's judged moments         # a scene the layout must draw smaller than this fraction of natural size is too crowded    # ... and no one SETTING, whatever the shot, past a quarter of the film
 
 
+WORDS_PER_SECOND = 2.6        # spoken, before the gaps (measured: 131 words a minute WITH them)
+
+
+def _mark_windows(beats, pad: float = 0.06) -> list[list[int]]:
+    """For each judged moment, EVERY beat playing within `pad` of it: the
+    voice's real pace is not known when the script is written (ElevenLabs
+    read the Egypt film slower than the estimate, and the judge's 85% frame
+    was the beat after the one the rule checked), so a moment near a beat
+    boundary is judged on both beats."""
+    spans, t = [], 0.0
+    for b in beats:
+        say = (b.get("say") or "") if isinstance(b, dict) else ""
+        d = len(say.split()) / WORDS_PER_SECOND + len(OS.sentences(say)) * OS.SENTENCE_GAP + OS.BEAT_GAP
+        spans.append((t, t + d)); t += d
+    if not t:
+        return []
+    return [[j for j, (a, b) in enumerate(spans) if a / t <= f + pad and b / t >= f - pad]
+            for f in (0.25, 0.55, 0.85)]
+
+
 def _mark_beats(beats) -> list[int]:
     """The beat playing at a quarter, at 55% and at 85% of the chapter's
-    words — the three moments the finished film is judged at."""
-    words = [len((b.get("say") or "").split()) if isinstance(b, dict) else 0 for b in beats]
+    running TIME — the three moments the finished film is judged at. Time,
+    not words: every sentence carries a breath and every beat a rest
+    (OS.SENTENCE_GAP, OS.BEAT_GAP), so a chapter of many short beats runs
+    longer than its words say, and by words the Egypt film's rule checked
+    the desert beat while the judge looked at the room after it."""
+    def secs(b):
+        if not isinstance(b, dict):
+            return 0.0
+        say = b.get("say") or ""
+        return len(say.split()) / WORDS_PER_SECOND + len(OS.sentences(say)) * OS.SENTENCE_GAP + OS.BEAT_GAP
+    words = [secs(b) for b in beats]
     total = sum(words)
     if not total:
         return []
@@ -279,7 +308,7 @@ def _tally_note(tally: dict, so_far: int) -> str:
 
 
 def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: bool = False,
-                      final: bool = False) -> list[str]:
+                      final: bool = False, title: str = "") -> list[str]:
     if not isinstance(beats, list) or not beats:
         return ["no beats"]
     bad, total = [], 0
@@ -320,6 +349,25 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
                     others = [o for o in opts if o != name]
                     bad.append(f"{name} holds {sts.count(name)} of the film's {len(sts)} {cls} beats so far: "
                                f"use {' or '.join(others)} for some of this chapter's")
+    # a chapter whose TITLE names a place is drawn there at its judged
+    # moments (the Egypt film's judge: "the 'Watching the Stars' chapter
+    # never shows a sky" — its quarter and end beats were story beats told
+    # indoors). The words of those beats decide their place, so this goes
+    # back to the brain: the beats at a quarter, a half and the end are the
+    # ones the title is about
+    if title:
+        tcls = place_class(title)
+        opts = place_settings(tcls, era)
+        marks_ = _mark_beats(beats)
+        wins = _mark_windows(beats)
+        if opts and len(marks_) == 3 and len(wins) == 3:
+            inside = [w for w in wins if w and all(isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)
+                                                  and beats[j]["scene"].get("setting") in opts for j in w)]
+            if len(inside) < 2:
+                near = sorted({j + 1 for w in wins for j in w})
+                bad.append(f"the chapter is titled {title!r} but its judged moments (around beats "
+                           f"{', '.join(str(j) for j in near)}) are not there: write at least two of those "
+                           f"stretches about the {tcls} and draw them in {' or '.join(opts[:4])}")
     # a sleep film ends in the dark: the last third of the last chapter is
     # night (run #18's judge: "the ending brightens back to sunset instead
     # of settling into night")
@@ -958,7 +1006,8 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
                 final=final, vocab=vocab, problems=pr),
             lambda r, before=before, i=i: _chapter_problems(r.get("beats") if isinstance(r, dict) else None, era,
                                                             check_lo, check_hi, before=before,
-                                                            opening=(i == 0), final=(i == len(chs) - 1)),
+                                                            opening=(i == 0), final=(i == len(chs) - 1),
+                                                            title=ch.get("title", "")),
             ask, f"{topic!r} chapter {i + 1}",
             mend=lambda r, before=before, i=i: (
                 mend_beats(r.get("beats") if isinstance(r, dict) else None, era, final=(i == len(chs) - 1),
@@ -1021,6 +1070,8 @@ PLACE_WORDS = (
     ("snow", ("snow", "ice", "frozen", "frost")),
     ("farm", ("farm", "barn", "yard", "pasture", "meadow", "field", "furrow", "plough", "plow")),
     ("cave", ("cave",)),
+    # the open sky: a passage (or a chapter) about the stars is outdoors
+    ("sky", ("star", "sky", "moon", "constellation", "decan", "heaven", "stargazing", "stargaze")),
     ("desert", ("desert", "dune", "sand")),
 )
 PLACE_WORDS_BY_CLASS = dict(PLACE_WORDS)
@@ -1031,6 +1082,11 @@ PLACE_SETTINGS = {
     "river": ("riverbank", "nile_bank"), "lake": ("lakeshore",), "sea": ("seashore", "harbour"),
     "grove": ("olive_grove",), "forest": ("forest",), "mountains": ("mountains",), "snow": ("snowfield",),
     "farm": ("farmyard", "field"), "cave": ("cave_mouth", "cave_inside"), "desert": ("desert",),
+    "sky": ("desert", "grassland", "mountains", "riverbank", "nile_bank", "lakeshore", "seashore", "field",
+            "snowfield", "forum", "olive_grove", "harbour", "farmyard", "cave_mouth",
+            # every outdoor place shows the night sky: the sky class keeps
+            # the stars OUT OF ROOMS (run #22), it does not pick a landscape
+            "forest", "village", "market_square", "street", "castle"),
 }
 
 

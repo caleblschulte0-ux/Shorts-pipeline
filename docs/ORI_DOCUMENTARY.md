@@ -552,6 +552,25 @@ only as a hand edit is not a rule. So:
   budget). NOT BUILT, named by the judge: a lamplighter's pole reaching a
   lamp, a playhouse front, a constable's helmet.
 
+- **Run #22 (Egypt, a fresh topic end to end, 74, BLOCK; 24.0 minutes,
+  narrated by ElevenLabs).** The first film inside the 20-30 minute ruling,
+  and the judge called it "calm, consistent ... a good opening and ending".
+  Blocked because the chapter titled "Watching the Stars" was indoors at
+  its judged moments. The words-decide-place rule could not see it: "star",
+  "sky" and "moon" named no class of place, and the chapter's marks were
+  computed by beat count while the judge samples by TIME. So there is a
+  `sky` class, and it may be drawn at any outdoor place, because it keeps
+  the stars out of rooms rather than choosing a landscape. A chapter whose
+  TITLE names a place must show it at two of its three judged moments.
+  Those moments are checked against every beat playing near them
+  (`_mark_windows`), because the voice's pace is only an estimate and the
+  judge's 85% frame was the beat after the one the rule computed. The
+  lying stargazer lost its raised arm (read as "a stick from the head",
+  like every raised arm before it). The Egyptian dog is its own drawing:
+  warm coat, ears up, pale muzzle. The storyboard had called the grey
+  wolf-shaped one "flat and dark and reads as dead". Also named, not yet
+  built: keep the first chapter outdoors until the lamp chapter begins.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

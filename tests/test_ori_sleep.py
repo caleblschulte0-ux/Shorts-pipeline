@@ -798,14 +798,18 @@ class ThePictureIsReadable(unittest.TestCase):
             # the two-hour scripts left the shelf on 2026-09-24 (the ruling:
             # 20-30 minutes); the author writes the next one in CI
             self.skipTest("no episode on the shelf: the author writes the next one")
-        n = 0
         for f in files:
             ep = json.loads(f.read_text(encoding="utf-8"))
             self.assertEqual(OS.validate(ep), [], f.name)
+            n = 0
             for c in ep["chapters"]:
-                for b in c["beats"]:
-                    lay = self.S.layout(b["scene"], 1000 + n)
-                    self.assertEqual(lay["collisions"], [], f"{f.name}: {c['title']}: {b['say'][:60]}")
+                for j, b in enumerate(c["beats"]):
+                    # the seed the render draws it with, and the author's
+                    # rule seed (as repair_film checks) — not a counter
+                    # across files, which moved whenever any script changed
+                    for seed in (OS._scene_seed(ep["slug"], n, b["scene"]), 1000 + j):
+                        lay = self.S.layout(b["scene"], seed)
+                        self.assertEqual(lay["collisions"], [], f"{f.name}: {c['title']}: {b['say'][:60]}")
                     n += 1
             # and the whole film obeys the author's own picture rules
             import ori_author as A
@@ -1244,6 +1248,50 @@ class ThePictureIsReadable(unittest.TestCase):
                 surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
                 ST.draw_still(cairo.Context(surf), "lakeshore", "night", "clear", 3, era=era)
                 self.assertEqual(m.call_count, want, era)
+
+    def test_run_twenty_two_a_chapter_is_where_its_title_says(self):
+        # run #22 (Egypt, 74): a chapter titled "Watching the Stars" was
+        # judged at three moments and two of them were indoors; a lying
+        # stargazer's raised arm read as "a stick from the head"; a wolf in
+        # a house read as a grey speckled blob. The judged moments are
+        # checked against every beat NEAR them, because the voice's pace is
+        # only an estimate and the judge's 85% frame was the next beat
+        import cairo
+        from unittest import mock
+        import ori_author as A
+        from data_learning.doodle import people as P
+        from data_learning.doodle import props as PR
+        S = self.S
+        self.assertEqual(A.place_class("Watching the Stars"), "sky")
+        say = " ".join(["the night goes quietly on"] * 8)
+        sky = {"setting": "desert", "time": "night", "weather": "clear", "shot": "wide", "cast": [],
+               "props": ["campfire"]}
+        room = {"setting": "hut_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
+                "props": ["oil_lamp"]}
+        beats = [{"say": say, "scene": dict(sky if j in (2, 6, 9) else room)} for j in range(12)]
+        wins = A._mark_windows(beats)
+        self.assertEqual(len(wins), 3)
+        for w, j in zip(wins, A._mark_beats(beats)):
+            self.assertIn(j, w)
+        bad = A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Watching the Stars")
+        self.assertTrue(any("is titled" in b for b in bad), bad)
+        for w in wins:
+            for j in w:
+                beats[j]["scene"] = dict(sky)
+        bad = A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Watching the Stars")
+        self.assertEqual([b for b in bad if "is titled" in b], [])
+        self.assertEqual([b for b in A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Chapter One")
+                          if "is titled" in b], [])
+        # a stargazer lies with the face up and no arm
+        surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 400, 400)
+        with mock.patch.object(P, "_ik") as ik:
+            P._draw_lying(cairo.Context(surf), P.look("man", "egypt", 1), 20, 0.0, 2, "calm", 1,
+                          looking_up=True)
+        self.assertEqual(ik.call_count, 0, "a raised arm is back on the stargazer")
+        # a dog is a dog: warm coat, ears up, and it resolves
+        self.assertIn("dog", PR.PROPS)
+        self.assertIsNot(PR.PROPS["dog"].draw, PR.PROPS["wolf"].draw)
+        PR.PROPS["dog"].draw(cairo.Context(surf), 200, 300, 1.0, 0.0, 1)
 
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in

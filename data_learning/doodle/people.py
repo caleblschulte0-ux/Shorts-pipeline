@@ -721,15 +721,11 @@ def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False):
                     amp=1.1, seed=seed + 2)
     ink.fill_stroke(cr, hair, lk["hair"], lw=lw * 0.8, amp=0.8, seed=seed + 3)
     if looking_up:
-        # face to the sky: eyes and an open mouth at the top of the head,
-        # and an arm out of the blanket pointing up at what it sees
+        # face to the sky: eyes and an open mouth at the top of the head.
+        # No raised arm: the Egypt film's judge read it as "a figure lying
+        # flat with a stick jutting from its head", like every raised arm
+        # before it (see hand_targets' look_up)
         _face_up(cr, head[0], head[1], R, t, seed, lw)
-        k = (math.sin(t * 2 * math.pi / 2.6) + 1) / 2
-        sh = (-0.9 * R, -1.2 * R)
-        hand = (-0.2 * R + k * 0.1 * R, -3.3 * R - k * 0.15 * R)
-        e, h = _ik(*sh, *hand, 1.2 * R, 1.1 * R, 1)
-        ink.line(cr, [sh, e, h], lw=lw, amp=0)
-        ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
         return
     _face(cr, head[0], head[1], R, "sleepy", t, seed)
     # Zzz: letters drifting up and fading, a slow loop
