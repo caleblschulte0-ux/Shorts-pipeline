@@ -311,6 +311,33 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         self.assertIn("The bill still grows.", asked["p"])
 
 
+class TheClosingLandsWhatTheStoryBuiltTo(unittest.TestCase):
+    """The closing drew the FIRST beat's data, the hook's own numbers, so
+    the payoff restated the hook ("the closing reuses the 2004/2024 figures
+    from the hook", amazon-still-shrinking, 2026-09-24)."""
+
+    def _index(self, kind):
+        from data_learning import scene_author as SA
+        seen = {}
+
+        def fake_author(title, topic, say, pts, unit="", **kw):
+            seen["pts"] = pts
+            return (lambda *a: None), "code"
+        story = {"title": "t", "hook": "h", "closing": "c",
+                 "segments": [{"say": "a"}, {"say": "b"}, {"say": "c"}]}
+        ins = [mock.Mock(items=[mock.Mock(label=str(2000 + k), value=float(k))],
+                         unit="") for k in range(3)]
+        with mock.patch.object(SA, "author", fake_author):
+            SA.scene_for_bookend(story, kind, ins, log=lambda m: None)
+        return story[f"{kind}_data"]
+
+    def test_the_hook_draws_the_first_beat(self):
+        self.assertEqual(self._index("hook"), 0)
+
+    def test_the_closing_draws_the_last_beat(self):
+        self.assertEqual(self._index("closing"), 2)
+
+
 class DataDoesNotRepeatAGesture(unittest.TestCase):
     """The same role in two scenes of one video resolved to the same
     animator — the hands-on-head pose three times in one video."""

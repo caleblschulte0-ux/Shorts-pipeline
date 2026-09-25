@@ -541,6 +541,12 @@ def scene_host(action: str, phase: float, insight=None, kind: str = ""):
     # None, i.e. NO MASCOT — which is what happens wherever libcairo2 is not
     # installed, including the `tests` CI job. It cost five machines their
     # host there while every one of them was fine locally.
+    # NEVER A CELEBRATION OVER BAD NEWS: a cheer for a rebound, a reaction
+    # for a record drought (`data_learning/tone.py`). One place, because
+    # every host in both looks — machines, subject scenes, brain scenes —
+    # is posed through this function.
+    from data_learning import tone as _tone
+    action = _tone.honest_role(action, insight)
     role, action = action, scene_act(action, insight, kind)
     # HIS CLOCK IS THE BEAT, NOT THE BUILD.
     #

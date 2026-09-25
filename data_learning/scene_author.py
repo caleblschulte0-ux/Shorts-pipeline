@@ -610,9 +610,12 @@ def _sigs():
 
 CLOSING_BRIEF = """THIS IS THE CLOSING, not a beat. It lands the story's last \
 line as ONE picture made of the subject: "{closing}". Show that line \
-HAPPENING — both halves of it if it has two — as a callback to the world the \
-story opened in, using the numbers in pts. Keep y 140..480 free of any text: \
-the closing line is drawn there over your sky. Data's act is the payoff.
+HAPPENING — both halves of it if it has two — in the world the story opened \
+in, using the numbers in pts: they are what the story BUILT TO, its last \
+finding. Never restate the hook's contrast; the viewer has seen it. Keep y \
+140..480 free of any text: the closing line is drawn there over your sky. \
+Data's act is the payoff, and it fits the news — a reaction to a loss, \
+never a celebration of it.
 
 """
 
@@ -831,9 +834,17 @@ def scene_for_bookend(story_cfg: dict, kind: str, insights: list, log=print):
     line = (story_cfg.get(kind) or "").strip()
     if not line:
         return None
-    # The opening beat's data: the hook teases where the story goes and the
-    # closing calls back to where it began. A beat with no data is skipped.
-    for idx, ins in enumerate(insights):
+    # The HOOK draws the opening beat's data: it teases where the story
+    # goes. The CLOSING draws the LAST beat's: it lands what the story built
+    # to. Both used to take the first beat, so the payoff restated the
+    # hook — "the closing reuses the 2004/2024 figures from the hook ... a
+    # soft payoff" (amazon-still-shrinking, 2026-09-24) while "the 750k-km²
+    # France reveal in seg2 is the stronger punchline". A beat with no data
+    # is skipped.
+    order = (range(len(insights) - 1, -1, -1) if kind == "closing"
+             else range(len(insights)))
+    for idx in order:
+        ins = insights[idx]
         pts = _pts(ins)
         if pts:
             break
