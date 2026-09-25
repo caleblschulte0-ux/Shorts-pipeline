@@ -3009,6 +3009,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             if (i == last_i and lead_payoff and len(kinds) > 1
                     and kinds[0] in _CLAIM_LED):
                 kinds = kinds[1:] + kinds[:1]
+            # THE COLD OPEN IS NEVER A CHART WHEN A PICTURE CAN CARRY IT.
+            # Beat 0's first visual IS the hook (`lead_hook`), and in the
+            # current look it was the beat's own chart: "a slow bar-chart
+            # build with a small kicker title and no reason to stay", "a
+            # slowly growing chart bubble with the mascot standing on it"
+            # (waymo, kelp — 2026-09-25, scores 39-48). The first machine
+            # that can draw this beat opens it; the chart, if it still has
+            # a slot, comes after.
+            if i == 0 and lead_hook and kinds and _family(kinds[0]) == "chart":
+                _open = next((m for m in _machines_for(seg.insight)
+                              if m not in _kinds_used
+                              and _family(m) == "figure"
+                              and m not in REPEATED_ICON_KINDS
+                              and _buildable(m, seg.insight)), None)
+                if _open:
+                    kinds = [_open] + [k for k in kinds if k != _open]
+                    kinds = kinds[:max(1, len(kinds))]
             spans = _visual_spans(start, end, len(kinds))
             seg.spans = []
             _orig_kind = seg.insight.kind

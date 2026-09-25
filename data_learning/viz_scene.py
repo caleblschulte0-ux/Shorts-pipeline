@@ -4848,6 +4848,8 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # 2026-09-24: "make the hook load coffee sacks, not generic slabs").
     from . import icons as _ic
     _gp = _ic.icon_png(str(getattr(insight, "topic", "") or ""), 128)
+    if _gp and not icon_depicts(str(getattr(insight, "topic", "") or "")):
+        _gp = None
     _glyph = None
     if _gp:
         try:
@@ -5753,9 +5755,13 @@ _CUT_WORDS = re.compile(
 _MULTIPLE_WORDS = re.compile(
     r"\b(doubl\w*|tripl\w*|quadrupl\w*|twice|times|\d+(\.\d+)?x|"
     r"more than (double|triple|twice))\b", re.I)
-_LATER_LABEL = re.compile(r"\b(revised|now|current|latest|after|today)\b",
+_LATER_LABEL = re.compile(r"\b(revised|now|current|latest|after|today|since)\b",
                           re.I)
-HOLE_MIN, HOLE_MAX = 0.05, 0.80          # the fraction lost that reads as a bite
+_EARLIER_LABEL = re.compile(r"\b(before|pre|prior|was|originally|initial)\b",
+                            re.I)
+# up to 99.5% lost: a collapse ("99% of the sea stars") is the most dramatic
+# cut there is — the whole thing breaks away and a sliver is left standing
+HOLE_MIN, HOLE_MAX = 0.05, 0.995
 COPIES_MIN, COPIES_MAX = 1.5, 5.0        # a multiple you can count on screen
 
 
@@ -5789,6 +5795,11 @@ def _then_now(insight):
         return items[1], items[0]
     if later == [False, True]:
         return items[0], items[1]
+    earlier = [bool(_EARLIER_LABEL.search(lb)) for lb in labels]
+    if earlier == [True, False]:
+        return items[0], items[1]
+    if earlier == [False, True]:
+        return items[1], items[0]
     return None
 
 
@@ -5808,10 +5819,50 @@ def _subject_glyph(insight, px: int = 512):
     p = _ic.icon_png(subj, px)
     if not p:
         return None
+    if not icon_depicts(subj):
+        return None
     try:
         return _PImg.open(p).convert("RGBA")
     except Exception:  # noqa: BLE001
         return None
+
+
+_ICON_OK: dict = {}
+
+
+def icon_depicts(subject: str) -> bool:
+    """Does the icon the library maps `subject` to actually SHOW it?
+
+    The library matches on keywords: "sea stars" comes back as a wave,
+    "California's kelp forests" as a land tree — and CLAUDE.md names that
+    exact substitution ("never stand a land tree in for kelp") as the
+    junk_imagery the showrunner fails a video for. The trending panels have
+    always had the brain look at every image first (`shared/shot_relevance`);
+    the machines that draw WITH the subject (the cut, the copies, the stair
+    of cups, the weights) now ask the same question, once per subject. With
+    no brain available the answer is yes, exactly as before.
+    """
+    key = str(subject or "").strip().lower()
+    if key in _ICON_OK:
+        return _ICON_OK[key]
+    ok = True
+    try:
+        from shared import shot_relevance as _rel
+        if _rel.enabled():
+            from . import icons as _ic
+            png = _ic.icon_png(subject, 128)
+            if png:
+                v = _rel.judge_panels([(0, Path(png), str(subject))],
+                                      title=str(subject))
+                if v and v.get(0, {}).get("depicts") is False:
+                    ok = False
+                    print(f"[viz] icon for {subject!r} does not depict it "
+                          f"({v[0].get('why', '')[:80]}) — drawn without it",
+                          flush=True)
+    except Exception:  # noqa: BLE001 — a check that cannot run keeps the icon
+        ok = True
+    _ICON_OK[key] = ok
+    return ok
 
 
 def hole_fraction(insight):

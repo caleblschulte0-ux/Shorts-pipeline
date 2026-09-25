@@ -145,6 +145,50 @@ class AfterThePictureOfTheThingNoGenericRestatement(unittest.TestCase):
         self.assertNotIn("units_scene", seq)
 
 
+class TheIconMustDepictTheSubject(unittest.TestCase):
+    """'California's kelp forests' maps to a land tree — the junk_imagery
+    CLAUDE.md names. The machines that draw WITH the subject ask the brain
+    first, once per subject."""
+
+    def setUp(self):
+        vs._ICON_OK.clear()
+
+    def tearDown(self):
+        vs._ICON_OK.clear()
+
+    def test_a_wrong_icon_is_not_drawn(self):
+        from unittest import mock
+        from shared import shot_relevance as R
+        ins = mk([("Pre-2014 canopy", 100), ("Canopy now", 4)], "percent",
+                 topic="California's kelp forests disappear")
+        with mock.patch.object(R, "enabled", lambda: True), \
+                mock.patch.object(R, "judge_panels",
+                                  lambda *a, **k: {0: {"depicts": False,
+                                                       "why": "a land tree"}}):
+            self.assertIsNone(vs._subject_glyph(ins))
+            self.assertFalse(vs.hole_scene(ins))
+
+    def test_no_brain_keeps_the_icon(self):
+        from unittest import mock
+        from shared import shot_relevance as R
+        with mock.patch.object(R, "enabled", lambda: False):
+            self.assertTrue(vs.icon_depicts("coffee"))
+
+
+class ACollapseIsACut(unittest.TestCase):
+    def test_ninety_nine_percent_gone_is_drawn(self):
+        ins = mk([("Before 2013", 100.0), ("After the outbreak", 1.0)],
+                 "percent", topic="sea stars wiped out by disease")
+        self.assertAlmostEqual(vs.hole_fraction(ins), 0.99, 6)
+        self.assertLessEqual(vs.HOLE_MIN, 0.99)
+        self.assertLessEqual(0.99, vs.HOLE_MAX)
+
+    def test_since_and_before_read_as_now_and_then(self):
+        ins = mk([("Since 2014", 10100.0), ("Before 2014", 100.0)], "count")
+        then, now = vs._then_now(ins)
+        self.assertEqual((then.label, now.label), ("Before 2014", "Since 2014"))
+
+
 class NeitherIsAFieldOfIcons(unittest.TestCase):
     """Operator, 2026-09-22: a crowd of one thing is used very sparingly.
     The hole is ONE object; the copies are at most five."""
