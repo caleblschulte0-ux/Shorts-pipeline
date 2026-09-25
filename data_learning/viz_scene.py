@@ -5745,36 +5745,54 @@ def draw_hole(d, canvas, box, insight, color, reveal, unit=""):
     ox, oy = bx1 - S - 30, by0 + 170
     big = _fit(glyph, S, S)
     bb = big.getchannel("A").getbbox() or (0, 0, S, S)
-    cut = int(bb[2] - f * (bb[2] - bb[0]))           # the lost piece is the right side
+    # CUT BY AREA, not by width. Cut by width, a quarter of a cup's box is
+    # mostly its handle, and the judge read an 11M-of-45M loss as "a thin
+    # sliver" (2026-09-25). The cut is where the ink to its right is the
+    # lost share of all the ink.
+    _cols = [sum(1 for v in big.getchannel("A").crop((x, 0, x + 1, S)).getdata()
+                 if v > 40) for x in range(S)]
+    _tot = sum(_cols) or 1
+    _acc, cut = 0, bb[2]
+    for x in range(S - 1, -1, -1):
+        _acc += _cols[x]
+        if _acc >= f * _tot:
+            cut = x
+            break
     kept = big.crop((0, 0, cut, S))
     piece = big.crop((cut, 0, S, S))
     # 0.00-0.30  whole, then a crack runs down the cut line
     # 0.30-0.45  the piece pulls away from the rest
     # 0.45-0.75  it falls, turning, and is gone
     # 0.75-1.00  its outline stays, marching, with the loss written in it
-    crack = min(1.0, max(0.0, (t - 0.10) / 0.20))
-    part = settle(min(1.0, max(0.0, (t - 0.30) / 0.15)))
-    fall = min(1.0, max(0.0, (t - 0.45) / 0.30))
-    gone = t >= 0.75
+    # EARLY: the narration says the new number in its first half, so the
+    # frame has to be showing it by then ("34.4M never appears", 2026-09-25).
+    crack = min(1.0, max(0.0, (t - 0.04) / 0.14))
+    part = settle(min(1.0, max(0.0, (t - 0.18) / 0.10)))
+    fall = min(1.0, max(0.0, (t - 0.28) / 0.27))
+    gone = t >= 0.30
     canvas.alpha_composite(kept, (ox, oy))
     # the missing piece's ghost and its dashed outline, once it has left
     gx0, gy0 = ox + cut, oy + bb[1]
     gx1, gy1 = ox + bb[2], oy + bb[3]
     if fall > 0:
-        ghost = piece.copy()
-        ghost.putalpha(ghost.getchannel("A").point(lambda v: int(v * 0.16)))
+        # the HOLE is the piece's own silhouette in the accent, so the gap
+        # reads as a missing piece of the thing rather than a thin outline
+        ghost = _PImg.new("RGBA", piece.size, _rgba(color, 255))
+        ghost.putalpha(piece.getchannel("A").point(
+            lambda v, k=min(1.0, fall * 2): int(v * 0.30 * k)))
         canvas.alpha_composite(ghost, (ox + cut, oy))
         _dashed_rect(d, gx0 + 6, gy0, gx1, gy1,
                      fill=_rgba(color, int(230 * min(1.0, fall * 2))),
                      width=6, off=int(t * 400))
     if fall < 1.0:
-        dx = int(26 * part + 60 * fall)
-        dy = int(900 * fall * fall)
+        # it drops and fades INSIDE the frame — no half sprite at the edge
+        dx = int(26 * part + 40 * fall)
+        dy = int(380 * fall * fall)
         pc = piece
         if fall > 0:
             pc = piece.rotate(-28 * fall, resample=_PImg.BICUBIC, expand=False)
             pc.putalpha(pc.getchannel("A").point(
-                lambda v, k=1.0 - fall: int(v * k)))
+                lambda v, k=max(0.0, 1.0 - fall * 1.4): int(v * k)))
         canvas.alpha_composite(pc, (ox + cut + dx, min(by1, oy + dy)))
     _gx = (gx0 + gx1) // 2
     if 0 < crack and part < 0.05:                    # the crack running down
