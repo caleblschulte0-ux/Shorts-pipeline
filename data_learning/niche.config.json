@@ -20482,7 +20482,11 @@
      "role": "2 · WHERE IT GOES",
      "topic": "where plastic waste actually ends up",
      "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump.",
-     "viz": "share"
+     "scene": {
+      "mechanic": "plastic-fate-river",
+      "concept": "one continuous stream of plastic waste forks into four proportionally-widthed channels, bottles flowing down each into a pile that fills to its share of the whole",
+      "code": "prog = clamp(reveal)\nbottle = subject_image('plastic bottle icon')\nn = len(values)\ngx0, gx1 = RX0 + 20, RX1 - 20\ntotal_w = gx1 - gx0\ntop_y = RTOP + 130\nd.rectangle([gx0, top_y - 26, gx1, top_y + 26], fill=rgba(REST, 200))\ntext('ALL PLASTIC WASTE', (gx0 + gx1) // 2, top_y - 66, size=26, color=TEXT, center=True)\nxs = [gx0]\nfor v in values:\n    xs.append(xs[-1] + total_w * (v / 100.0))\nbase_y = RBOT - 90\nfor i in range(n):\n    cx0, cx1 = xs[i], xs[i + 1]\n    cx = (cx0 + cx1) / 2\n    d.polygon([(cx0, top_y + 26), (cx1, top_y + 26), (cx1 - 8, base_y), (cx0 + 8, base_y)],\n               outline=rgba(REST, 140), width=3)\n    flow_n = max(1, int(round(values[i] / 8)))\n    for k in range(flow_n):\n        t = (reveal * 1.6 + i * 0.11 + k / flow_n) % 1.0\n        fy = lerp(top_y + 30, base_y - 10, t)\n        fx = lerp(cx0 + 14, cx1 - 14, 0.5 + 0.3 * math.sin(t * 6.28 + i))\n        if bottle is not None:\n            paste(bottle, int(fx) - 16, int(fy) - 18, 32, 36)\n        else:\n            d.ellipse([fx - 8, fy - 8, fx + 8, fy + 8], fill=rgba(HIGHLIGHT, 200))\n    pile_h = int(90 * clamp(values[i] / 60.0) * prog)\n    d.rectangle([cx0 + 6, base_y - pile_h, cx1 - 6, base_y],\n                fill=rgba(HIGHLIGHT if i == 0 else WARN, 210))\n    text(str(int(values[i])) + '%', cx, base_y - pile_h - 34, size=28, color=TEXT, center=True)\n    text(labels[i][:12], cx, base_y + 14, size=16, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -21476,10 +21480,14 @@
       "file": "us_measles_cases_by_year.json"
      },
      "insight_type": "trend",
-     "viz": "trend",
      "role": "3 · WHAT 2.5 POINTS COSTS",
      "topic": "US measles cases per year",
-     "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000."
+     "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000.",
+     "scene": {
+      "mechanic": "measles-outbreak-swarm",
+      "concept": "each year's case count erupts as a swirling swarm of red spot markers along a rising path -- the swarm barely visible in 2021-2024, exploding by 2026",
+      "code": "prog = clamp(reveal)\nvirus = subject_image('measles rash red spot icon')\nn = len(values)\ngx0, gx1 = RX0 + 70, RX1 - 70\ngy0, gy1 = RBOT - 160, RTOP + 220\nshow_n = max(1, int(round(n * prog)))\npts = []\nfor i in range(n):\n    t = i / max(1, n - 1)\n    x = lerp(gx0, gx1, t)\n    frac = clamp(math.sqrt(values[i]) / math.sqrt(vmax))\n    y = lerp(gy0, gy1, frac)\n    pts.append((x, y))\nfor i in range(min(show_n, n)):\n    x, y = pts[i]\n    local = clamp((prog * n) - i, 0.0, 1.0)\n    count = max(4, int(6 + 30 * clamp(values[i] / vmax)))\n    spin = reveal * 2 * math.pi * (1.3 + i * 0.12)\n    radius = 22 + 36 * local\n    for k in range(count):\n        ang = (k / count) * 2 * math.pi + spin\n        px = x + radius * math.cos(ang)\n        py = y + radius * math.sin(ang) * 0.65\n        if virus is not None:\n            paste(virus, int(px) - 11, int(py) - 11, 22, 22)\n        else:\n            d.ellipse([px - 6, py - 6, px + 6, py + 6], fill=rgba(WARN, 220))\n    if i > 0:\n        px0, py0 = pts[i - 1]\n        d.line([px0, py0, x, y], fill=rgba(REST, 160), width=4)\n    text(labels[i], int(x) - 30, gy0 + 46, size=20, color=TEXT)\n    text(fmt(values[i]), int(x) - 26, int(y) - radius - 34, size=24,\n         color=WARN if i >= n - 2 else TEXT)\ntext('MEASLES CASES, US, BY YEAR', RX0 + 10, RTOP + 60, size=26, color=TEXT)\n"
+     }
     }
    ]
   },
@@ -22889,7 +22897,11 @@
      "role": "3 · CONSEQUENCE",
      "topic": "what happened after guidelines flipped",
      "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban.",
-     "viz": "comparison"
+     "scene": {
+      "mechanic": "allergy-marker-drain",
+      "concept": "a dense grid of red allergy-alert markers -- one guideline flip later, 43% of them drain off the bottom of the frame, the rest left wobbling in place",
+      "code": "prog = clamp(reveal)\nmark = subject_image('red allergy alert icon')\nv0, v1 = values[0], values[-1]\ncount0 = max(6, int(round(v0 * 100)))\ncount1 = max(3, int(round(v1 * 100)))\ngx0, gx1 = RX0 + 40, RX1 - 40\ngy0 = RTOP + 210\ncols = 10\ncell = (gx1 - gx0) / cols\nrow_h = 54\ncleared = clamp(prog * 1.3)\nn_gone = int(round((count0 - count1) * cleared))\nremaining = max(count1, count0 - n_gone)\nfor idx in range(count0):\n    alive = idx < remaining\n    r_ = idx // cols\n    c = idx % cols\n    cx = gx0 + c * cell + cell / 2\n    cy = gy0 + r_ * row_h\n    if not alive:\n        prog_gone = clamp((cleared * count0 - idx) / max(1, count0 - remaining))\n        cy = cy + prog_gone * 700\n        if cy > RBOT + 40:\n            continue\n    else:\n        cy = cy + 10 * math.sin(reveal * 6.28 * 3 + idx)\n    sz = 20\n    if mark is not None:\n        paste(mark, int(cx - sz / 2), int(cy - sz / 2), sz, sz)\n    else:\n        d.ellipse([cx - 8, cy - 8, cx + 8, cy + 8], fill=rgba(WARN, 220))\ntext('BEFORE: ' + fmt(v0), RX0 + 10, RTOP + 130, size=24, color=WARN)\ntext('AFTER: ' + fmt(v1), RX0 + 10, RTOP + 168, size=24, color=HIGHLIGHT)\ntext('-43% ALLERGY RATE', (RX0 + RX1) // 2, RBOT - 60, size=30, color=HIGHLIGHT, center=True)\n"
+     }
     }
    ]
   },
@@ -22928,7 +22940,11 @@
      "role": "1 · SETUP",
      "topic": "the death of the landline",
      "say": "By 2024, 76% of US adults lived without a landline at all -- up from just 25% in 2010. Your phone number isn't tied to an address anymore. It's just... you.",
-     "viz": "trend"
+     "scene": {
+      "mechanic": "cord-fray-cellswarm",
+      "concept": "a landline cord thins year by year as the wireless-only share climbs, cellphone icons swarming off the fraying point until the cord is nearly gone",
+      "code": "prog = clamp(reveal)\ncell = subject_image('cell phone icon')\nn = len(values)\ngx0, gx1 = RX0 + 60, RX1 - 60\ngy = RTOP + 420\nseg_w = (gx1 - gx0) / max(1, n - 1)\nshow_n = max(1, int(round(n * prog)) + 1)\nfor i in range(min(show_n, n) - 1):\n    x0 = gx0 + i * seg_w\n    x1 = gx0 + (i + 1) * seg_w\n    frac0 = clamp(values[i] / 100.0)\n    frac1 = clamp(values[i + 1] / 100.0)\n    local = clamp((prog * (n - 1)) - i, 0, 1)\n    xE = lerp(x0, x1, local)\n    w = int(lerp(lerp(16, 3, frac0), lerp(16, 3, frac1), local))\n    d.line([x0, gy, xE, gy], fill=rgba(TEXT, 230), width=max(2, w))\nfor i in range(min(show_n, n)):\n    x = gx0 + i * seg_w\n    frac = clamp(values[i] / 100.0)\n    fly_n = max(2, int(3 + 10 * frac))\n    spin = reveal * 2 * math.pi * (1.4 + i * 0.1)\n    rad = 30 + 55 * frac\n    for k in range(fly_n):\n        ang = (k / fly_n) * 2 * math.pi + spin\n        px = x + rad * math.cos(ang)\n        py = gy - 90 + rad * math.sin(ang) * 0.5\n        if cell is not None:\n            paste(cell, int(px) - 13, int(py) - 20, 26, 40)\n        else:\n            d.ellipse([px - 8, py - 8, px + 8, py + 8], fill=rgba(HIGHLIGHT, 220))\n    text(labels[i], int(x) - 24, gy + 40, size=22, color=TEXT)\n    text(fmt(values[i]), int(x) - 34, gy - 170, size=26, color=WARN)\ntext('CUTTING THE CORD', RX0 + 10, RTOP + 60, size=28, color=TEXT)\n"
+     }
     },
     {
      "source": "offline",
