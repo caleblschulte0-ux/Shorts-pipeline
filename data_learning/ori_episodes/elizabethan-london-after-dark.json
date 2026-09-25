@@ -146,7 +146,8 @@
       ],
       "props": [
        "timber_house",
-       "cauldron"
+       "cauldron",
+       "stall"
       ]
      }
     },
@@ -382,7 +383,8 @@
        "campfire",
        "well",
        "torch"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -445,7 +447,8 @@
        "stall",
        "campfire",
        "torch"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -570,7 +573,8 @@
       "props": [
        "hearth",
        "candle"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -621,7 +625,7 @@
     {
      "say": "Beyond the wall, the fields lie open under the same soft rain. Someone with business outside the city hurries along a muddy track, aware the gate will not open again until morning. Missing it means a night spent outside, under a hedge or at some farmhouse door — reason enough for most people to plan their evenings around it.",
      "scene": {
-      "setting": "farmyard",
+      "setting": "harbour",
       "time": "dusk",
       "weather": "rain",
       "shot": "close",
@@ -669,7 +673,8 @@
       ],
       "props": [
        "hearth"
-      ]
+      ],
+      "fire": "low"
      }
     }
    ]
@@ -694,7 +699,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 1
      }
@@ -1089,7 +1095,8 @@
        "hearth",
        "candle"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1231,7 +1238,8 @@
        "candle",
        "table"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1312,7 +1320,8 @@
       "props": [
        "hearth",
        "candle"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1362,7 +1371,7 @@
     {
      "say": "You come in from the last cold air, and the door drops its bar behind you. The room is small and low-beamed, one space for cooking, working, and sleep. Someone rakes the coals down low, saving what wood is left, and the house settles for the night.",
      "scene": {
-      "setting": "tavern_inside",
+      "setting": "forest",
       "time": "dusk",
       "weather": "clear",
       "shot": "wide",
@@ -1383,10 +1392,11 @@
        }
       ],
       "props": [
-       "hearth",
-       "table"
+       "campfire",
+       "torch"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1407,7 +1417,8 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 3
      }
@@ -1438,7 +1449,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1548,7 +1560,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bed"
       ],
       "variant": 1
      }
@@ -1733,7 +1746,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1755,7 +1769,7 @@
     {
      "say": "In one house, a mother draws a blanket over a sleeping child, then sits a moment by the low hearth glow before it fades. She is only allowing herself these last few quiet minutes before she, too, lies down to rest.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1847,7 +1861,8 @@
        "candle",
        "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1901,8 +1916,10 @@
       ],
       "props": [
        "hearth",
-       "bed"
-      ]
+       "bed",
+       "candle"
+      ],
+      "fire": "low"
      }
     }
    ]

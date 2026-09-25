@@ -609,6 +609,27 @@ only as a hand edit is not a rule. So:
   a bellman's hand bell, a city gate being barred, market stalls being
   packed away.
 
+- **Run #25 (medieval villagers, a fresh topic, 74, BLOCK): the first
+  verdict with `narration_at_frame`.** The judge now quotes the line that
+  is actually playing, and its notes are concrete and fair: every one is a
+  picture that disagrees with its own words, which is what the rules are
+  for. "Beyond the fields ... a lake lies flat" was drawn as a field: the
+  words after beyond, past, behind or away from name where the scene is
+  NOT. "In the farmyard" named no place, because exact-form matching did not
+  know the word, so the cow went to a market square and floated there.
+  `farmyard` is a farm word now. A market square whose words said "the
+  stalls stand empty" had none: `add_named_props` adds one prop the words
+  name when it fits (stall, barn, cart, table, bed, loom, woodpile). "The
+  embers glow low beneath ash" was a roaring fire: a scene may say
+  `"fire": "low"`, drawn as a banked bed of embers (`props.banked`), set
+  from the words by `mend_fire`, and measured with the gate's own probe. It
+  keeps full motion credit only indoors at a close shot (0.17 held frames),
+  and elsewhere it is a helper (0.41 and 0.54). A crouched elder feeding
+  the hearth read as "standing with a cane": `feed_fire` now holds a
+  `branch` pushed forward and down into the fire with a glowing end,
+  instead of a staff from hand to ground. NOT BUILT, named by the judge: a
+  lord's hall set (stone walls, a long table, banners).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

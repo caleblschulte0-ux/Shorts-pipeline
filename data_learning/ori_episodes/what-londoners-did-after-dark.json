@@ -71,7 +71,8 @@
        }
       ],
       "props": [
-       "gas_lamp"
+       "gas_lamp",
+       "cart"
       ],
       "variant": 4
      }
@@ -285,7 +286,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -812,7 +814,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 3
      }
@@ -920,7 +923,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -942,7 +946,8 @@
       "props": [
        "hearth",
        "candle"
-      ]
+      ],
+      "fire": "low"
      }
     }
    ]
@@ -1243,7 +1248,8 @@
        }
       ],
       "props": [
-       "gas_lamp"
+       "gas_lamp",
+       "cart"
       ],
       "variant": 2
      }
@@ -1347,7 +1353,8 @@
        "hearth",
        "bookshelf"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1372,7 +1379,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "bed"
       ],
       "variant": 1
      }
@@ -1445,7 +1453,9 @@
         "at": "center"
        }
       ],
-      "props": [],
+      "props": [
+       "barn"
+      ],
       "variant": 4
      }
     },
@@ -1466,7 +1476,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bed"
       ],
       "variant": 4
      }
@@ -1642,7 +1653,8 @@
        "hearth",
        "candle"
       ],
-      "variant": 4
+      "variant": 4,
+      "fire": "low"
      }
     },
     {
@@ -1690,7 +1702,8 @@
       ],
       "props": [
        "candle",
-       "bed"
+       "bed",
+       "table"
       ],
       "variant": 1
      }
@@ -1737,7 +1750,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 5
+      "variant": 5,
+      "fire": "low"
      }
     },
     {
@@ -1756,9 +1770,11 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bed"
       ],
-      "variant": 3
+      "variant": 3,
+      "fire": "low"
      }
     },
     {
@@ -1770,9 +1786,11 @@
       "shot": "wide",
       "cast": [],
       "props": [
-       "hearth"
+       "hearth",
+       "candle"
       ],
-      "variant": 4
+      "variant": 4,
+      "fire": "low"
      }
     }
    ]

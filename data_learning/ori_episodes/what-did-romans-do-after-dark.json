@@ -306,7 +306,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "bed"
       ],
       "variant": 1
      }
@@ -488,7 +489,8 @@
       ],
       "props": [
        "candle",
-       "brazier"
+       "brazier",
+       "table"
       ],
       "variant": 1
      }
@@ -601,7 +603,8 @@
       ],
       "props": [
        "candle",
-       "brazier"
+       "brazier",
+       "table"
       ],
       "variant": 2
      }
@@ -1793,9 +1796,10 @@
        "campfire",
        "sheep",
        "dog",
-       "olive"
+       "torch"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1874,7 +1878,7 @@
     {
      "say": "Before the sun is properly up, a few fishermen push their boats out past the shallows, the water pale and the air still cool with night. They do not hurry. The city behind them is only just beginning to grey at the edges, and the streets are still mostly asleep.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "forum",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1911,7 +1915,8 @@
       "shot": "close",
       "cast": [],
       "props": [
-       "reeds"
+       "reeds",
+       "cart"
       ]
      }
     }

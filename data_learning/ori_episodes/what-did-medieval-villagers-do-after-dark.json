@@ -90,7 +90,7 @@
     {
      "say": "In the farmyard, a small fire has been lit against the evening chill, and a child feeds it twigs while the animals are counted in one by one. Sheep and a milk cow settle into the pen, and a dog circles once before lying down nearby. Everything that grazes is nearly home.",
      "scene": {
-      "setting": "market_square",
+      "setting": "farmyard",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -202,7 +202,8 @@
       "props": [
        "hearth",
        "candle"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -275,7 +276,8 @@
       "props": [
        "hearth",
        "cauldron"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -318,7 +320,8 @@
       "props": [
        "hearth",
        "bed"
-      ]
+      ],
+      "fire": "low"
      }
     }
    ]
@@ -450,7 +453,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 2
      }
@@ -514,7 +518,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 2
      }
@@ -623,7 +628,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     }
    ]
@@ -694,8 +700,10 @@
       "props": [
        "campfire",
        "barn",
-       "sheep"
-      ]
+       "sheep",
+       "torch"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -892,7 +900,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -915,7 +924,8 @@
        "torch",
        "campfire"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     }
    ]
@@ -997,7 +1007,7 @@
     {
      "say": "The elder leans in and offers the first riddle, voice low and playful, meant to be turned over slowly. A child's eyes widen, working it through in silence. Riddles like this have passed from hand to hand for longer than anyone can say, kept only in memory, since paper was too precious to spare for such small delights.",
      "scene": {
-      "setting": "cottage_inside",
+      "setting": "market_square",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1018,8 +1028,8 @@
        }
       ],
       "props": [
-       "candle",
-       "hearth"
+       "torch",
+       "campfire"
       ]
      }
     },
@@ -1251,7 +1261,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1274,7 +1285,8 @@
       "props": [
        "campfire",
        "torch"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1296,7 +1308,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1318,8 +1331,10 @@
       ],
       "props": [
        "barn",
-       "campfire"
-      ]
+       "campfire",
+       "woodpile"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1391,7 +1406,8 @@
       "props": [
        "hearth",
        "bed"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1422,7 +1438,8 @@
        "torch",
        "campfire"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1451,7 +1468,8 @@
       "props": [
        "hearth",
        "bed"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1466,7 +1484,8 @@
        "torch",
        "campfire"
       ],
-      "variant": 3
+      "variant": 3,
+      "fire": "low"
      }
     }
    ]
@@ -1505,7 +1524,8 @@
        "hearth",
        "candle"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1540,7 +1560,8 @@
       ],
       "props": [
        "campfire",
-       "well"
+       "well",
+       "stall"
       ],
       "variant": 1
      }
@@ -1586,9 +1607,11 @@
       "props": [
        "campfire",
        "barn",
-       "cow"
+       "cow",
+       "torch"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1620,15 +1643,17 @@
       ],
       "props": [
        "hearth",
-       "bed"
+       "bed",
+       "candle"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
      "say": "Beyond the fields, where the ground dips low, a lake lies flat and silver under the stars, hardly a ripple moving across it. From here the village is only a dark huddle of rooftops in the distance, every one of them settling, at last, into stillness and sleep.",
      "scene": {
-      "setting": "field",
+      "setting": "lakeshore",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1684,7 +1709,8 @@
       "props": [
        "hearth"
       ],
-      "variant": 3
+      "variant": 3,
+      "fire": "low"
      }
     },
     {
@@ -1750,12 +1776,5 @@
  "sources": [],
  "topic": "What did medieval villagers do after dark?",
  "added": "2026-09-25T09:59",
- "authored_by": "ori_author",
- "storyboard": {
-  "kit": "cef82680ca3c",
-  "clean": false,
-  "reviewed_at": "2026-09-25T10:16",
-  "rounds": 3,
-  "repaired": 140
- }
+ "authored_by": "ori_author"
 }

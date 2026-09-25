@@ -1396,6 +1396,62 @@ class ThePictureIsReadable(unittest.TestCase):
             sk = P.skeleton("stand", seen[0][2], 0.0)
             self.assertTrue(all(y > sk["neck"][1] + 0.5 * seen[0][2] for y in ys), (action, ys, sk["neck"]))
 
+    def test_run_twenty_five_the_words_decide_the_lake_the_stalls_and_the_embers(self):
+        # run #25 (medieval, 74), the first with the judge hearing the line at
+        # each frame: "beyond the fields ... a lake" drawn as a field; "in the
+        # farmyard" naming no place; a market square whose stalls the words
+        # named had none; "embers glow low under ash" drawn as a full fire; and
+        # an elder feeding the hearth read as "standing with a cane"
+        import cairo
+        from unittest import mock
+        import ori_author as A
+        from data_learning.doodle import people as P
+        from data_learning.doodle import props as PR
+        S = self.S
+        self.assertEqual(A.place_class("Beyond the fields, where the ground dips low, a lake lies flat."), "lake")
+        self.assertEqual(A.place_class("Out past the last cottages, the fields lie open."), "farm")
+        self.assertEqual(A.place_class("In the farmyard, a small fire has been lit."), "farm")
+        sq = {"say": "In the market square, the stalls stand empty and shuttered.",
+              "scene": {"setting": "market_square", "time": "night", "weather": "clear", "shot": "close",
+                        "cast": [], "props": ["campfire", "well"]}}
+        self.assertIn("stall", A.add_named_props(sq, "medieval"))
+        self.assertIn("stall", sq["scene"]["props"])
+        self.assertEqual(S.validate(sq["scene"], "medieval"), [])
+        self.assertIsNone(A.add_named_props(sq, "medieval"), "a named prop was added twice")
+        low = {"say": "The last embers glow low beneath their blanket of ash.",
+               "scene": {"setting": "cottage_inside", "time": "night", "weather": "clear", "shot": "close",
+                         "cast": [], "props": ["hearth"]}}
+        self.assertTrue(A.mend_fire(low))
+        self.assertEqual(low["scene"]["fire"], "low")
+        self.assertEqual(S.validate(low["scene"], "medieval"), [])
+        lit = {"say": "The fire crackles and leaps.", "scene": dict(low["scene"])}
+        A.mend_fire(lit)
+        self.assertNotIn("fire", lit["scene"])
+        self.assertTrue(S.validate(dict(low["scene"], fire="roaring"), "medieval"))
+        # a banked fire outdoors or wide is a helper, not a full motion source
+        # (measured with the gate's own probe: 0.41 and 0.54 held frames)
+        out = {"setting": "grassland", "time": "night", "weather": "clear", "shot": "close", "cast": [],
+               "props": ["campfire"]}
+        self.assertLess(S.motion_strength(dict(out, fire="low")), S.motion_strength(out))
+        self.assertEqual(S.motion_strength(low["scene"]), S.motion_strength(dict(low["scene"], fire=None)))
+        # the banked fire is what gets drawn
+        with mock.patch.object(PR, "banked", wraps=PR.banked) as bk:
+            sc = S.Scene(low["scene"], "medieval", 7)
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+            sc.draw(cairo.Context(surf), 0.5)
+        self.assertEqual(bk.call_count, 1)
+        # feeding a fire, the branch goes forward and DOWN from the hand (a
+        # staff from hand to ground read as a cane)
+        self.assertEqual(P.ACTIONS["feed_fire"]["item"], "branch")
+        lines = []
+        with mock.patch.object(P.ink, "line", lambda cr, pts, **k: lines.append(pts)), \
+                mock.patch.object(P.ink, "dot", lambda *a, **k: None):
+            P._item(None, "branch", 0.0, -100.0, 20.0, 0.0, 3.0)
+        (x0, y0), (x1, y1) = lines[0][0], lines[0][-1]
+        self.assertGreater(x1 - x0, 20.0)
+        self.assertGreater(y1, y0)
+        self.assertLess(y1, 0.0, "the branch reaches the ground like a cane")
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

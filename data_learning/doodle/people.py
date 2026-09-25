@@ -69,7 +69,7 @@ OUTFIT = {
 
 POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
 MOODS = ("calm", "happy", "sleepy", "worried", "surprised", "content", "focused")
-ITEMS = ("none", "spear", "stick", "torch", "bowl", "fish", "stone", "axe",
+ITEMS = ("none", "spear", "stick", "branch", "torch", "bowl", "fish", "stone", "axe",
          "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle")
 
 # action -> poses it can be done in (validation), and the item it implies
@@ -95,7 +95,7 @@ ACTIONS = {
     "hug_self": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
     "look_up": dict(poses=("stand", "sit", "sit_on", "lie"), item=None),
     "play": dict(poses=("stand", "crouch"), item="stick"),
-    "feed_fire": dict(poses=("sit", "sit_on", "crouch"), item="stick"),
+    "feed_fire": dict(poses=("sit", "sit_on", "crouch"), item="branch"),
 }
 
 
@@ -437,6 +437,15 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
         # it never rises past the head (local y=0 is the ground)
         ink.line(cr, [(hx - 0.1 * R, hy - 0.45 * R), (hx + 0.3 * R, max(hy + 1.6 * R, min(0.0, hy + 3.0 * R)))],
                  lw=lw * 0.8, ink=rgb("#6b4a2e"), amp=0)
+    elif name == "branch":
+        # a branch pushed forward and DOWN into the fire, its end glowing.
+        # Fed with the old staff (upright from hand to ground) a crouched
+        # elder read as "standing with a cane, away from the hearth" (the
+        # medieval film's judge)
+        ink.line(cr, [(hx - 0.35 * R, hy - 0.25 * R), (hx + 1.3 * R, hy + 0.75 * R)],
+                 lw=lw * 0.8, ink=rgb("#6b4a2e"), amp=0)
+        glow = 0.6 + 0.4 * math.sin(2 * math.pi * t / 1.3)
+        ink.dot(cr, hx + 1.3 * R, hy + 0.75 * R, 0.12 * R, (1.0, 0.55, 0.2, glow))
     elif name == "torch":
         # held out in front and leaning away, like the spear: the flame
         # sits forward of the face and above it (the storyboard judge:

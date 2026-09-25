@@ -573,6 +573,62 @@ def take_outdoors(scene: dict, era: str) -> list[str]:
     return notes
 
 
+# words that say the fire is BANKED: a bed of embers, not flames
+LOW_FIRE_WORDS = ("ember", "banked", "bank the", "banks the", "under ash", "beneath ash", "of ash",
+                  "burned down", "burnt down", "burned low", "burns low", "burning low", "dying fire",
+                  "last of the fire", "glow of the coals", "coals")
+
+
+# things the words name that the kit can draw: a market square whose words
+# say "the stalls stand empty and shuttered" had none (the medieval film)
+PROP_WORDS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", "carts", "wagon"),
+              "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs")}
+
+
+def add_named_props(beat: dict, era: str) -> str | None:
+    """Add at most one prop the words name and the scene lacks, when it can
+    stand there (the scene still validates and is not crowded)."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    words = set(re.findall(r"[a-z]+", (beat.get("say") or "").lower()))
+    have = {p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []}
+    for prop, forms in PROP_WORDS.items():
+        if prop in have or prop not in S.PROPS or not words & set(forms):
+            continue
+        before = list(sc.get("props") or [])
+        sc["props"] = before + [prop]
+        natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+        lay = S.layout(sc, 1000) if not S.validate(sc, era) else None
+        if lay is None or lay["collisions"] or lay["scale"] < natural * CROWD_SHRINK - 1e-6:
+            sc["props"] = before
+            continue
+        return f"added the {prop} the words name"
+    return None
+
+
+def mend_fire(beat: dict) -> str | None:
+    """A beat whose words bank the fire draws it banked (the medieval
+    film's judge: "the narration says embers glow low under ash, and a full
+    fire is drawn"); one whose words do not, draws it burning."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []]
+    if not any(n in S.BANKABLE for n in names):
+        if sc.get("fire") is not None:
+            sc.pop("fire")
+        return None
+    low = any(w in (beat.get("say") or "").lower() for w in LOW_FIRE_WORDS)
+    if low and sc.get("fire") != "low":
+        sc["fire"] = "low"
+        return "the fire is banked (the words say so)"
+    if not low and sc.get("fire") == "low":
+        sc.pop("fire")
+        return "the fire burns (the words do not bank it)"
+    return None
+
+
 def mend_scene(scene: dict, era: str) -> str | None:
     """The smallest deterministic change that makes a scene the brain wrote
     valid: a scene where nothing moves gets the era's plainest light (a
@@ -888,9 +944,11 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             if final and j >= len(beats) - max(1, len(beats) // 3) and b["scene"].get("time") != "night":
                 night = f"{b['scene'].get('time')} -> night (the film ends in the dark)"
                 b["scene"]["time"] = "night"
+            fire = mend_fire(b)
+            named = add_named_props(b, era)
             did = mend_scene(b["scene"], era)
             crowd = uncrowd_scene(b["scene"], era, seeds=(1000 + j,))
-            did = ", ".join(x for x in (placed, night, did, crowd) if x)
+            did = ", ".join(x for x in (placed, night, fire, named, did, crowd) if x)
             if did:
                 n += 1
                 log(f"[ori_author] mended beat {j + 1}: {did}")
@@ -1075,7 +1133,7 @@ PLACE_WORDS = (
     ("forest", ("forest", "wood", "trees", "pine")),
     ("mountains", ("mountain", "peak", "hills", "hill", "cliff", "ridge")),
     ("snow", ("snow", "ice", "frozen", "frost")),
-    ("farm", ("farm", "barn", "yard", "pasture", "meadow", "field", "furrow", "plough", "plow")),
+    ("farm", ("farmyard", "farm", "barn", "yard", "pasture", "meadow", "field", "furrow", "plough", "plow")),
     ("cave", ("cave",)),
     # the open sky: a passage (or a chapter) about the stars is outdoors
     ("sky", ("star", "sky", "moon", "constellation", "decan", "heaven", "stargazing", "stargaze")),
@@ -1103,7 +1161,15 @@ def place_class(say: str) -> str | None:
     named first in the text ("Inside... the table... beyond the door the
     street is quiet" is indoors)."""
     low = re.sub(r"[^a-z ]+", " ", (say or "").lower())
-    words = [_stem(w) for w in low.split()]
+    raw = low.split()
+    # "beyond the fields ... a lake lies flat": the words after beyond,
+    # past, behind or away from name where the scene is NOT (the medieval
+    # film drew that lake as a field)
+    away = set()
+    for i, w in enumerate(raw):
+        if w in ("beyond", "past", "behind") or (w in ("away", "far") and i + 1 < len(raw) and raw[i + 1] == "from"):
+            away.update(range(i + 1, min(len(raw), i + 5)))
+    words = [_stem(w) if i not in away else "" for i, w in enumerate(raw)]
     best, best_n, best_pos = None, 0, 10 ** 9
     for cls, keys in PLACE_WORDS:
         n, pos = 0, 10 ** 9

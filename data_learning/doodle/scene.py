@@ -72,6 +72,8 @@ def shot_of(spec: dict) -> str:
 # small orange shape on bright grass and barely registers.
 EARTH_FLOORS = ("cave_inside", "hut_inside")     # interiors where an open fire on the floor is the hearth
 STRONG_ACTIONS = ("chop", "wave")
+BANKABLE = ("hearth", "campfire")        # drawn as banked embers when the scene says "fire": "low"
+FIRES = (None, "low")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 
 
@@ -152,6 +154,10 @@ def motion_strength(spec: dict) -> int:
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
             k = _fire_strength(p["name"], time, shot, st.interior)
+            if spec.get("fire") == "low" and p["name"] in BANKABLE and not (st.interior and shot == "close"):
+                # measured 2026-09-25 (real probe, 4 s, the fire alone): banked
+                # hearth close 0.17, hut wide 0.54, campfire close outdoors 0.41
+                k = min(k, 1)
             if fog and p["name"] in ("cauldron", "brazier"):
                 k = max(0, k - 1)     # measured: a cauldron 0.06 clear / 0.34 in fog; a brazier 0.18 / 0.47
             score += k
@@ -203,6 +209,8 @@ def validate(spec, era: str) -> list[str]:
         bad.append(f"weather {spec.get('weather')!r} is not one of {WEATHER}")
     if st is not None and st.interior and spec.get("weather", "clear") not in ("clear",):
         bad.append("an interior scene has no weather — use weather 'clear'")
+    if spec.get("fire") not in FIRES:
+        bad.append(f"fire {spec.get('fire')!r} is not one of {FIRES}")
     if spec.get("shot", "close") not in SHOTS:
         bad.append(f"shot {spec.get('shot')!r} is not one of {SHOTS}")
     cast = spec.get("cast") or []
@@ -281,7 +289,7 @@ _EXTENT = {
 ACTION_REACH = {"point": 1.9, "carry": 1.8, "wave": 1.2, "play": 1.8, "feed_fire": 2.2, "stir": 1.9,
                 "fish": 3.9, "hoe": 2.4, "chop": 1.8, "gather": 1.7, "talk": 1.3, "warm_hands": 1.6,
                 "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3}
-ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
+ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
               "bundle": 1.8, "basket": 1.2, "lantern": 1.0}
 # back-layer props with a body: a deer standing "behind" the fire in the
 # same place reads as a deer in the fire, so they take room like anything
@@ -748,6 +756,7 @@ class Scene:
         self.time = spec["time"]
         self.weather = spec.get("weather", "clear")
         self.setting = spec["setting"]
+        self.low_fire = spec.get("fire") == "low"
         self.lay = layout(spec, seed)
         self.still = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(self.still)
@@ -820,6 +829,14 @@ class Scene:
         cr.paint()
         cr.set_operator(cairo.OPERATOR_OVER)
 
+    def _prop(self, cr, p, t):
+        if self.low_fire and p["name"] in BANKABLE:
+            from .props import banked
+            banked(cr, p["x"], p["y"] - (12 * p["s"] if p["name"] == "hearth" else 0), p["s"], t, p["seed"],
+                   size=62.0 if p["name"] == "hearth" else 78.0)
+            return
+        PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])
+
     def draw(self, cr, t: float):
         cr.set_operator(cairo.OPERATOR_SOURCE)
         cr.set_source_surface(self.still, 0, 0)
@@ -831,7 +848,7 @@ class Scene:
         for layer in ("back", "mid"):
             for p in lay["props"]:
                 if p["layer"] == layer and p["name"] not in STILL:
-                    PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])
+                    self._prop(cr, p, t)
         for f in sorted(lay["people"], key=lambda f: f["y"]):
             people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
                         action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
@@ -839,7 +856,7 @@ class Scene:
                         cold=self.weather in ("frost", "snow"))
         for p in lay["props"]:
             if p["layer"] == "front" and p["name"] not in STILL:
-                PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])
+                self._prop(cr, p, t)
         if self.weather == "rain":
             settings._rain(cr, t, self.seed)
         elif self.weather == "snow":

@@ -132,6 +132,20 @@ def hearth(cr, x, y, s, t, seed):
     embers(cr, x, y - 60 * s, s, t, seed, n=22, spread=60, rise=130)
 
 
+def banked(cr, x, y, s, t, seed, size=62.0):
+    """A fire banked for the night: a low flame and a bed of embers that
+    breathe, a few slow sparks. The medieval film's judge: "the narration
+    says embers glow low under ash, and a full fire is drawn". It still
+    moves enough to read as alive; only the size and the sparks drop."""
+    r = random.Random(seed + 5)
+    for k in range(7):
+        ex = x + (k - 3) * 11 * s + r.uniform(-3, 3) * s
+        glow = 0.55 + 0.45 * math.sin(2 * math.pi * t / (1.6 + 0.3 * k) + k)
+        ink.dot(cr, ex, y - 8 * s, (7 + 3 * glow) * s, (1.0, 0.45 + 0.25 * glow, 0.15, 0.55 + 0.4 * glow))
+    flame(cr, x, y - 10 * s, size * 0.45 * s, t, seed, glow_r=3.0, glow_a=0.3)
+    embers(cr, x, y - 30 * s, s, t, seed, n=8, spread=40, rise=90)
+
+
 def torch_base(cr, x, y, s, t, seed):
     """A torch on a post driven into the ground, flame at about head height
     — it stands anywhere, so it never floats where there is no wall."""
