@@ -9298,6 +9298,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (just rambling, no visible event)",
       "ts": "2026-09-25T13:05:00.401215+00:00"
+    },
+    "clip-20260925-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BrightMistyKumquatTakeNRG-3KRysltHi8w6dOEL",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Has The Craziest Reaction To RMS",
+      "kind": "twitch_clip",
+      "ts": "2026-09-25T13:36:36.695912+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
