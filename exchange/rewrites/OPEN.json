@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-25T13:01:05Z",
+ "updated": "2026-09-25T13:56:57Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -1323,16 +1323,6 @@
    "answer_path": "exchange/rewrites/20260923/invasive-species-price-tag__5dd628a5.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__a63835cd",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-09-23T13:39:38Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of viewer expectation and the hook is unrelated to the stated 96% kelp loss figure."
-   ],
-   "request": "exchange/rewrites/20260923/kelp-forest-sea-star-collapse__a63835cd.request.json",
-   "answer_path": "exchange/rewrites/20260923/kelp-forest-sea-star-collapse__a63835cd.answer.json"
-  },
-  {
    "id": "kids-phones-getting-younger__e1fceca3",
    "slug": "kids-phones-getting-younger",
    "filed": "2026-09-23T00:49:12Z",
@@ -1505,16 +1495,6 @@
    ],
    "request": "exchange/rewrites/20260923/parker-solar-probe-speed-record__ac875350.request.json",
    "answer_path": "exchange/rewrites/20260923/parker-solar-probe-speed-record__ac875350.answer.json"
-  },
-  {
-   "id": "passport-ownership-surge__926cfa86",
-   "slug": "passport-ownership-surge",
-   "filed": "2026-09-23T13:39:38Z",
-   "why": [
-    "judge: This is a stack of generic machines and charts with a mascot perched on them, and the numbers contradict each other: the hook says 48% while the VO says New Jersey, and the scale says 22.1M while the VO says 27.3M."
-   ],
-   "request": "exchange/rewrites/20260923/passport-ownership-surge__926cfa86.request.json",
-   "answer_path": "exchange/rewrites/20260923/passport-ownership-surge__926cfa86.answer.json"
   },
   {
    "id": "peanut-allergy-guideline-flip__d2045db9",
@@ -2141,16 +2121,6 @@
    "answer_path": "exchange/rewrites/20260924/insect-planet__be913ed4.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__a63835cd",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-09-24T11:18:00Z",
-   "why": [
-    "judge: blocked before vision review: duplicate_ratio 0.513 > 0.45 (phase-1 ceiling) — too many held frames"
-   ],
-   "request": "exchange/rewrites/20260924/kelp-forest-sea-star-collapse__a63835cd.request.json",
-   "answer_path": "exchange/rewrites/20260924/kelp-forest-sea-star-collapse__a63835cd.answer.json"
-  },
-  {
    "id": "kids-phones-getting-younger__e1fceca3",
    "slug": "kids-phones-getting-younger",
    "filed": "2026-09-24T11:17:59Z",
@@ -2313,16 +2283,6 @@
    ],
    "request": "exchange/rewrites/20260924/parker-solar-probe-speed-record__ac875350.request.json",
    "answer_path": "exchange/rewrites/20260924/parker-solar-probe-speed-record__ac875350.answer.json"
-  },
-  {
-   "id": "passport-ownership-surge__926cfa86",
-   "slug": "passport-ownership-surge",
-   "filed": "2026-09-24T11:18:00Z",
-   "why": [
-    "judge: The opening stack shows 1 lit block under a '48%' header, and the hook and seg0 reuse that same frozen frame. After that the video cycles through a scale, bars and circles, with Data just standing on top of each."
-   ],
-   "request": "exchange/rewrites/20260924/passport-ownership-surge__926cfa86.request.json",
-   "answer_path": "exchange/rewrites/20260924/passport-ownership-surge__926cfa86.answer.json"
   },
   {
    "id": "peanut-allergy-guideline-flip__d2045db9",
@@ -2899,24 +2859,24 @@
    "answer_path": "exchange/rewrites/20260925/insect-planet__be913ed4.answer.json"
   },
   {
-   "id": "iss-sixteen-sunrises__fa370a02",
+   "id": "iss-sixteen-sunrises__63a893c5",
    "slug": "iss-sixteen-sunrises",
-   "filed": "2026-09-25T11:56:25Z",
+   "filed": "2026-09-25T13:56:57Z",
    "why": [
-    "judge: The title promises 16 sunrises, but the number 16 never appears on screen: 15s of a static speed race, then bubbles and a ruler ending on a meaningless '1,347 apart'."
+    "judge: The video never shows its own title: the '16 sunrises' payoff is replaced by a meaningless '1,347 apart' ruler, and the speed hook is two static numbers with duplicated mascots."
    ],
-   "request": "exchange/rewrites/20260925/iss-sixteen-sunrises__fa370a02.request.json",
-   "answer_path": "exchange/rewrites/20260925/iss-sixteen-sunrises__fa370a02.answer.json"
+   "request": "exchange/rewrites/20260925/iss-sixteen-sunrises__63a893c5.request.json",
+   "answer_path": "exchange/rewrites/20260925/iss-sixteen-sunrises__63a893c5.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__a63835cd",
+   "id": "kelp-forest-sea-star-collapse__88acf100",
    "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-09-25T11:56:25Z",
+   "filed": "2026-09-25T13:56:56Z",
    "why": [
-    "judge: Recycled bubble charts and a text-only urchin 'race' with a perched mascot. No sea star, urchin or kelp ever appears, so the ecological chain reaction is never shown."
+    "premise: brain: The premise relies on vague expectations and multiple numbers rather than a single, clear, verifiable figure tied to a reversed viewer belief."
    ],
-   "request": "exchange/rewrites/20260925/kelp-forest-sea-star-collapse__a63835cd.request.json",
-   "answer_path": "exchange/rewrites/20260925/kelp-forest-sea-star-collapse__a63835cd.answer.json"
+   "request": "exchange/rewrites/20260925/kelp-forest-sea-star-collapse__88acf100.request.json",
+   "answer_path": "exchange/rewrites/20260925/kelp-forest-sea-star-collapse__88acf100.answer.json"
   },
   {
    "id": "kids-phones-getting-younger__e1fceca3",
@@ -2927,16 +2887,6 @@
    ],
    "request": "exchange/rewrites/20260925/kids-phones-getting-younger__e1fceca3.request.json",
    "answer_path": "exchange/rewrites/20260925/kids-phones-getting-younger__e1fceca3.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-09-25T13:01:05Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague hook rather than a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20260925/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20260925/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "landline-death-robocall-boom__8f868915_r1",
@@ -3052,16 +3002,6 @@
    "answer_path": "exchange/rewrites/20260925/muscle-loss-after-30__a6d6cd11.answer.json"
   },
   {
-   "id": "oceanic-shark-collapse__7abc9718",
-   "slug": "oceanic-shark-collapse",
-   "filed": "2026-09-25T13:01:05Z",
-   "why": [
-    "premise: brain: The premise states a statistic without subverting a viewer expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.request.json",
-   "answer_path": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.answer.json"
-  },
-  {
    "id": "online-shopping-store-toll__8cec60b2",
    "slug": "online-shopping-store-toll",
    "filed": "2026-09-25T11:56:25Z",
@@ -3092,14 +3032,14 @@
    "answer_path": "exchange/rewrites/20260925/parker-solar-probe-speed-record__ac875350.answer.json"
   },
   {
-   "id": "passport-ownership-surge__926cfa86",
+   "id": "passport-ownership-surge__6574af21",
    "slug": "passport-ownership-surge",
-   "filed": "2026-09-25T11:56:25Z",
+   "filed": "2026-09-25T13:56:56Z",
    "why": [
-    "judge: All generic machines and charts: the hook stack contradicts its own 48% label, the seg1 gauge is a bare number with a cropped title, and Data perches instead of performing."
+    "judge: This reads as a run of generic charts and machines (a block stack that contradicts its own 48% header, a gauge, a scale, bubbles), with a cropped title and a mascot who only perches on things."
    ],
-   "request": "exchange/rewrites/20260925/passport-ownership-surge__926cfa86.request.json",
-   "answer_path": "exchange/rewrites/20260925/passport-ownership-surge__926cfa86.answer.json"
+   "request": "exchange/rewrites/20260925/passport-ownership-surge__6574af21.request.json",
+   "answer_path": "exchange/rewrites/20260925/passport-ownership-surge__6574af21.answer.json"
   },
   {
    "id": "peanut-allergy-guideline-flip__d2045db9",

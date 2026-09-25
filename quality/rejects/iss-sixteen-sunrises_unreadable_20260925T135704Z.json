@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T135704Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start and seg2:mid: the kicker is cut off at 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T\u2026'. seg0:start and hook@1.5: the mascot covers the end of the 'Commercial jet cruising speed (km/h)' label. seg4:start: the faded 'ISS: minutes between sunrises 93' line is pressed against the 1",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "claim_not_depicted",
+  "visible_evidence": "seg3:end and seg4 show a ruler between two posts labelled '1,347 apart' (1440 minus 93). The title's claim, 16 sunrises a day, is never drawn. No sun rises, no station laps the Earth, nothing counts to 16.",
+  "root_cause": "A generic gap machine was used on a ratio claim (1440/93 \u2248 16). It subtracts the two values, which gives a number that means nothing to the viewer, and it drops the story's actual payoff.",
+  "repair_goal": "Draw the ISS looping around a small Earth while one ground day goes by, and flash a sunrise on the terminator line each lap. Count sunrises 1\u202616 as the ground clock passes 24h once. Put Data at the terminator so he winces or puts on sunglasses at each sunrise, speeding up as they pile up, and end on '16'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

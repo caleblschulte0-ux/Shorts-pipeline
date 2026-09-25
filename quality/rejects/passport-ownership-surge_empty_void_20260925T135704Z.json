@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260925T135704Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:start/mid: the bottom ~40% of the frame is empty gradient under the gauge. seg3:start: two small circles float in a mostly empty frame between the title and a source line at the bottom.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:start-end: a gauge arc counts 1.4% to 47.6% under a title cut off at both edges. It is labelled 2023 even though the line is about 1990 to today, and the mascot perches on top of the title and hides \"WHO\".",
+  "root_cause": "The 5%-to-48% jump was sent to a generic radial-gauge chart. Nothing in the scene is made of passports or people, the 1990 baseline is never drawn, and the title layout was not measured against the frame width.",
+  "repair_goal": "Show 1990 against today as a physical fill made of the subject: a crowd or a row of 20 passport booklets where 1 is stamped in 1990 and then ~10 get stamped one by one as the year counts to today. Have Data do the stamping, one stamp per booklet. Fit the title inside the safe margins and keep the mascot clear of the text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

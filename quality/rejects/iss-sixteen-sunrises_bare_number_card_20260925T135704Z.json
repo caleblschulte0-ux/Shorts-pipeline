@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T135704Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: hook@0.3 to seg0:end: '900' and '27.6K' sit as big numbers over thin baselines. The 30x gap is never drawn: the second mascot slides a little toward the dotted line, but no distance, streak or lap shows the speed.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "claim_not_depicted",
+  "visible_evidence": "seg3:end and seg4 show a ruler between two posts labelled '1,347 apart' (1440 minus 93). The title's claim, 16 sunrises a day, is never drawn. No sun rises, no station laps the Earth, nothing counts to 16.",
+  "root_cause": "A generic gap machine was used on a ratio claim (1440/93 \u2248 16). It subtracts the two values, which gives a number that means nothing to the viewer, and it drops the story's actual payoff.",
+  "repair_goal": "Draw the ISS looping around a small Earth while one ground day goes by, and flash a sunrise on the terminator line each lap. Count sunrises 1\u202616 as the ground clock passes 24h once. Put Data at the terminator so he winces or puts on sunglasses at each sunrise, speeding up as they pile up, and end on '16'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

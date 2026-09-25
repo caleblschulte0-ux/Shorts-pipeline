@@ -1,0 +1,16 @@
+{
+ "slug": "waymo-robotaxi-surge",
+ "ts": "20260925T135704Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid: the frame is emptied mid-beat to one small 2020 slab plus the mascot, with about 80% dead gradient. seg1:mid/seg1:end: the whole bottom third below the scale base is empty",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_contradicted_by_picture",
+  "visible_evidence": "seg2:start shows 4 city icons in the column labelled 3 and 5 in the column labelled 5. At seg2:mid the whole chart is wiped to a lone 2020 slab. At seg2:end the column labelled 5 holds 8 city icons",
+  "root_cause": "the icon count is tied to the column's height and not to the number of cities, and the build replays from empty partway through the beat",
+  "repair_goal": "Show exactly 1, 3, then 5 named cities (Phoenix, SF, LA, Austin, Atlanta) lighting up on a map or skyline row, one at a time on the beat, never emptying the frame. Data should light each city as it arrives"
+ },
+ "scene_plan": {},
+ "scenes": []
+}
