@@ -371,6 +371,33 @@ def _clean(t: str) -> str:
     return t.strip().replace("{", "(").replace("}", ")").upper()
 
 
+CARD_POP = 0.18     # the card starts this much smaller...
+CARD_PUSH = 0.035   # ...then grows this much more across the title
+
+
+def card_scale_expr(card_w: int, title_end: float) -> str:
+    """ffmpeg width expression (eval=frame) for the post card: it eases up to
+    full size in ~0.4s, then pushes in slowly until the title ends.
+
+    Monotonic on purpose — no overshoot, nothing that swings back. A
+    time-driven oscillator in a render path is the retired camera shake's
+    signature (`tests/test_camera_float.py`), and a card that wobbles into
+    place would be that shake in a smaller box."""
+    te = max(0.5, float(title_end))
+    return (f"trunc({int(card_w)}*(1+{CARD_PUSH}*t/{te:.2f}"
+            f"-{CARD_POP}*exp(-9*t))/2)*2")
+
+
+def _card_height(card, card_w: int) -> int:
+    """The card's height at `card_w` wide, so it can grow about its centre."""
+    try:
+        from PIL import Image
+        with Image.open(card) as im:
+            return int(round(card_w * im.height / max(1, im.width)))
+    except Exception:  # noqa: BLE001
+        return 0
+
+
 def _karaoke_ass(words: list[base.Word], path: Path, start_after: float,
                  total: float) -> None:
     """Anton karaoke captions: the chunk stays on screen while the currently
@@ -503,10 +530,19 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
                 f"color=white@0.28:t=fill[bg];")
         else:
             bg_chain += "[bg0]null[bg];"
+        # THE CARD ARRIVES AND KEEPS COMING. It sat still from frame 0 to
+        # the end of the title: "the post card holds statically over the
+        # gameplay for the first ~2.5s", "the hook is a static post card"
+        # (every reddit_story verdict, 2026-09-25). It now eases in from 82%
+        # and pushes in slowly while the title is read — anchored
+        # on its own centre, so it grows in place.
+        card_h = _card_height(card, card_w)
         graph = bg_chain + (
-            f"[3:v]scale={card_w}:-1,format=rgba,"
+            f"[3:v]format=rgba,"
+            f"scale=w='{card_scale_expr(card_w, title_end)}':h=-2:eval=frame,"
             f"fade=t=out:st={fade_st:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS[card];"
-            f"[bg][card]overlay=(W-w)/2:220:enable='lt(t,{title_end:.2f})'[bv];"
+            f"[bg][card]overlay=x='(W-w)/2':y='220+({card_h}-h)/2':"
+            f"enable='lt(t,{title_end:.2f})'[bv];"
             f"[bv]subtitles='{_esc(caps)}':fontsdir='{_esc(Path(FONT_DIR))}'[v]"
         )
 
