@@ -2324,6 +2324,30 @@ def _machines_for(insight) -> tuple:
         return ()
 
 
+#: Pictures whose whole message is "compare these heights". Two of them in
+#: one beat read as one picture drawn twice.
+HEIGHT_KINDS = frozenset({"bars", "pictorial_race", "rank", "comparison",
+                          "stack", "scale_stack", "staircase_scene",
+                          "tower_scene", "skyline_scene"})
+#: ...and the scene elements that draw the same thing.
+HEIGHT_ELEMENTS = frozenset({"bar", "stack", "tower", "staircase", "skyline"})
+
+
+def _is_heights(kind: str, insight=None) -> bool:
+    """Is this depiction a comparison of heights? An authored `scene` is,
+    when every element that carries data is a bar, a stack or a machine that
+    draws one (Waymo's opening scene was a single `tower`)."""
+    if kind in HEIGHT_KINDS:
+        return True
+    if kind == "scene" and insight is not None:
+        els = [e for e in ((getattr(insight, "scene", None) or {})
+                           .get("elements") or [])
+               if isinstance(e, dict)
+               and e.get("type") not in ("caption", "number", "object")]
+        return bool(els) and all(e.get("type") in HEIGHT_ELEMENTS for e in els)
+    return False
+
+
 def _family(kind: str) -> str:
     """A chart, or a figure. The distinction the VIEWER makes.
 
@@ -2524,9 +2548,14 @@ def _depiction_sequence(insight, used: set, dur: float,
     # fallback rotates, because there one bar chart is much like another.
     cands = machines + _rotate(fallback) + ([] if _icon_spent else _icons[:1])
 
-    def _pick(want_family, avoid_used, icons_ok=True):
+    _shown_heights = any(_is_heights(k, insight if k == kind else None)
+                         for k in seq)
+
+    def _pick(want_family, avoid_used, icons_ok=True, new_shape=False):
         for c in cands:
             if c in seq:
+                continue
+            if new_shape and _shown_heights and _is_heights(c):
                 continue
             if not icons_ok and c in REPEATED_ICON_KINDS:
                 continue
@@ -2555,8 +2584,20 @@ def _depiction_sequence(insight, used: set, dur: float,
         # same balance-scale machine is used for both seg0 and seg3", "seg3
         # repeats seg0's scale machine, so two of five beats look the same".
         # The coffee ruling above is about UNUSED figures, which still win.
+        #
+        # ...AND A SECOND PICTURE OF THE SAME HEIGHTS IS A RESTATEMENT. A
+        # stack then stairs, or vertical bars then horizontal ones, is the
+        # same bar-height comparison drawn twice: "a plain three-bar chart;
+        # it repeats what the hook stack already showed" (Waymo), "the same
+        # largest-ship data twice, first as vertical bars and then as
+        # horizontal bars" (container ships). A different SHAPE of picture
+        # is tried first; heights again only when nothing else can draw it.
+        # (Among UNSHOWN pictures only: a new shape never buys a repeat of
+        # another beat's figure — the rule above still holds.)
         want = "figure"
-        c = (_pick(want, True, icons_ok=False) or _pick("chart", True)
+        c = (_pick(want, True, icons_ok=False, new_shape=True)
+             or _pick("chart", True, new_shape=True)
+             or _pick(want, True, icons_ok=False) or _pick("chart", True)
              or _pick(want, False, icons_ok=False) or _pick("chart", False))
         if c is not None:
             if (len(seq) == 1 and _opens_on_a_machine(seq[0])

@@ -180,3 +180,35 @@ class TheRecapKeepsTheClaim(unittest.TestCase):
         src = (ROOT / "data_learning" / "studio_render.py").read_text()
         self.assertIn("recap_replay_from(sp.get(\"kind\")", src)
         self.assertIn("trim=start=", src)
+
+
+class ASecondPictureIsANewShape(unittest.TestCase):
+    """"a plain three-bar chart; it repeats what the hook stack already
+    showed" (Waymo), "the same largest-ship data twice, first as vertical
+    bars and then as horizontal bars" (container ships)."""
+
+    def _ins(self, kind):
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count",
+                 topic="how many robotaxi rides waymo gives every week")
+        ins.kind = kind
+        if kind == "scene":
+            ins.scene = {"title": True,
+                         "elements": [{"type": "tower", "region": "full"}]}
+        return ins
+
+    def test_after_a_stack_the_beat_does_not_draw_heights_again(self):
+        from data_learning import studio_render as sr
+        for kind in ("scene", "bars"):
+            ins = self._ins(kind)
+            seq = sr._depiction_sequence(ins, set(), 11.1)
+            self.assertTrue(sr._is_heights(seq[0], ins), seq)
+            for k in seq[1:]:
+                self.assertFalse(sr._is_heights(k), (kind, seq))
+
+    def test_a_scene_is_heights_only_when_it_draws_heights(self):
+        from data_learning import studio_render as sr
+        ins = self._ins("scene")
+        self.assertTrue(sr._is_heights("scene", ins))
+        ins.scene = {"elements": [{"type": "balance"}]}
+        self.assertFalse(sr._is_heights("scene", ins))
