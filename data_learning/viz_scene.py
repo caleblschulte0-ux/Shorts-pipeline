@@ -1277,6 +1277,41 @@ def balance_tilt(a: float, b: float, limit: float = 26.0) -> float:
     return float(limit * _math.tanh(_math.log(a / b)))
 
 
+_NOT_A_COUNT = re.compile(
+    r"%|percent|usd|\$|eur|gbp|£|€|price|rate|share|°|deg|\bkg\b|\blbs?\b|"
+    r"ton|\bkm\b|mile|hour|year|day|minute|second|ratio|index|score", re.I)
+
+
+def is_count(values, unit: str = "", exact_max: int = 12) -> bool:
+    """True when every value is a small whole count a pile can show exactly."""
+    try:
+        vs = [abs(float(v or 0)) for v in values]
+    except (TypeError, ValueError):
+        return False
+    return bool(vs) and max(vs) <= exact_max and max(vs) > 0 \
+        and all(v.is_integer() for v in vs) \
+        and not _NOT_A_COUNT.search(str(unit or ""))
+
+
+def piece_counts(values, unit: str = "", most: int = 6,
+                 exact_max: int = 12) -> list[int]:
+    """How many pieces (icons, weights) show each value.
+
+    A PILE OF PIECES IS READ AS A COUNT. The staircase stacked city icons to
+    fill each step's height and the balance loaded six blocks on the bigger
+    pan, whatever the numbers were — so Waymo's "1 / 3 / 5 cities" showed
+    0, 4 and 8 icons, which the showrunner called "a visible data error"
+    four renders running (2026-09-25). When the values ARE small whole
+    counts of something, the pieces are exactly that many. Otherwise they
+    are a proportion, never more than `most`, and never zero for a non-zero
+    value."""
+    vs = [abs(float(v or 0)) for v in values]
+    if is_count(values, unit, exact_max):
+        return [int(v) for v in vs]
+    big = max(vs) if vs and max(vs) > 0 else 1.0
+    return [max(1 if v > 0 else 0, int(round(most * v / big))) for v in vs]
+
+
 def draw_balance(d, canvas, box, value, other, label, other_label, color,
                  reveal, unit="", cutout=None):
     """A SET OF SCALES: two pans, tipping by how the numbers actually compare.
@@ -1303,15 +1338,14 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # final frame is the true tilt and the true numbers, as before.
     t = beat_clock(reveal)
     big = max(abs(value), abs(other)) or 1.0
-    nL = max(1, int(round(6 * abs(value) / big)))
-    nR = max(1, int(round(6 * abs(other) / big)))
+    nL, nR = piece_counts([value, other], unit)
     order = []
     for k in range(max(nL, nR)):
         if k < nL:
             order.append(0)
         if k < nR:
             order.append(1)
-    step = 0.80 / len(order)
+    step = 0.80 / max(1, len(order))
     landed = [0, 0]
     falling = []                     # (side, index on its pan, 0..1 of the fall)
     for j, side in enumerate(order):
@@ -4411,9 +4445,27 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     # "a bar chart with Data perched on the top bar" — the judge's words on
     # every coffee render, 2026-09-24/25. Height is still the value, and
     # the value is still printed on the step; the stack is what it is made of.
+    #
+    # ...AND A STACK IS READ AS A COUNT. Filling each step to its height
+    # drew 0, 4 and 8 city icons over "1 / 3 / 5 cities" (Waymo, 2026-09-25,
+    # "a visible data error"). When the values are whole counts the stack
+    # is exactly the value, sized so the tallest fits; otherwise each step
+    # carries ONE emblem of what it is made of, which counts nothing.
     _glyph = _subject_glyph(insight, 128)
     _gs = int(min(78, max(0, w - 22)))
-    _gi = _fit(_glyph, _gs, _gs) if (_glyph is not None and _gs >= 30) else None
+    _exact = is_count(vals, getattr(insight, "unit", "") or "")
+    _counts = piece_counts(vals, getattr(insight, "unit", "") or "")
+    if _exact and _glyph is not None:
+        _room = []
+        for _i, _v in enumerate(vals):
+            if _counts[_i] <= 0:
+                continue
+            _fr = 0.12 + 0.88 * ((_v - lo) / span)
+            # the value sits centred 44px under the step's top edge
+            _hh = (bot - top) * _fr - max(STAIR_VALUE_ROOM, 72) - 6
+            _room.append(_hh / _counts[_i] - 4)
+        _gs = int(min(_gs, min(_room) if _room else _gs))
+    _gi = _fit(_glyph, _gs, _gs) if (_glyph is not None and _gs >= 22) else None
     for i, (p, v) in enumerate(zip(items, vals)):
         a = max(0.0, min(1.0, shown - i))
         if a <= 0.0:
@@ -4429,12 +4481,20 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
                             fill=_rgba(color if i == n - 1 else REST,
                                        int(235 * a)))
         if _gi is not None:
-            # stacked from the floor up, stopping short of the value's room
             _gx = int(sx + (w - _gs) / 2)
             _gy = bot - _gs - 6
-            while _gy >= sy + STAIR_VALUE_ROOM - 6:
+            if _exact:
+                # exactly the count, from the floor up, as the step rises
+                # rising, the count builds as the step does; built, it stops
+                # short of the value printed under the top edge
+                _lim = sy + max(STAIR_VALUE_ROOM, 72) - 4 if a >= 1.0 else sy - 2
+                for _k in range(_counts[i]):
+                    if _gy < _lim:
+                        break
+                    canvas.alpha_composite(_gi, (_gx, int(_gy)))
+                    _gy -= _gs + 4
+            elif _gy >= sy + STAIR_VALUE_ROOM - 6:
                 canvas.alpha_composite(_gi, (_gx, int(_gy)))
-                _gy -= _gs + 4
         if a > 0.6:
             # THE VALUE IS INSIDE THE STEP, UNDER ITS TOP EDGE. It used to
             # sit 30px ABOVE the step — exactly where the climber's feet

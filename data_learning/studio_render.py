@@ -2519,9 +2519,15 @@ def _depiction_sequence(insight, used: set, dur: float,
         # the showrunner said so on every render (2026-09-24). A chart only
         # comes in when no figure is left, and a repeated-icon grid stays the
         # LAST resort, after charts (tests/test_one_thing_repeated_is_rare).
+        #
+        # ...BUT A FIGURE ANOTHER BEAT ALREADY SHOWED IS A REPEAT, and an
+        # unshown chart beats it. Waymo, four renders on 2026-09-25: "the
+        # same balance-scale machine is used for both seg0 and seg3", "seg3
+        # repeats seg0's scale machine, so two of five beats look the same".
+        # The coffee ruling above is about UNUSED figures, which still win.
         want = "figure"
-        c = (_pick(want, True, icons_ok=False) or _pick(want, False, icons_ok=False)
-             or _pick("chart", True) or _pick("chart", False))
+        c = (_pick(want, True, icons_ok=False) or _pick("chart", True)
+             or _pick(want, False, icons_ok=False) or _pick("chart", False))
         if c is not None:
             if (len(seq) == 1 and _opens_on_a_machine(seq[0])
                     and c not in machines and dur <= SUBJECT_HOLD_MAX):
