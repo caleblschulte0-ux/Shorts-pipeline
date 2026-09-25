@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T130113Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end, 'ISS: minutes between sunrises 93' is a ghosted grey line sitting under the Earth label, and '1,347 apart' is dim grey on navy. The seg3:start eyebrow is cut off ('SUNRISES T\u2026'). In hook@0.3, 'Commercial jet cruising speed (km/h' runs into the mascot.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:start, seg1:mid and seg1:end are the same frame as the hook: '900' and '27.6K' in text on two thin baselines with an idle mascot on each. The 30x speed gap is never drawn, and the layout sits unchanged for about 18 seconds.",
+  "root_cause": "The speed comparison is set as two labelled numbers instead of a machine where speed becomes motion, so no geometry carries the ratio. Reusing the same layout from the hook to the end of seg1 makes it a long static hold.",
+  "repair_goal": "Show speed as motion: a jet and the ISS crossing the same stretch, where the ISS covers ~30 of the jet's lengths (or laps a globe) while the jet barely moves. Have Data chase or ride the ISS and fall behind, and cut away before 6s so the hook shows something different."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

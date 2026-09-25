@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-25T11:56:26Z",
+ "updated": "2026-09-25T13:01:05Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -2929,6 +2929,16 @@
    "answer_path": "exchange/rewrites/20260925/kids-phones-getting-younger__e1fceca3.answer.json"
   },
   {
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-09-25T13:01:05Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague hook rather than a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20260925/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20260925/lab-grown-diamond-price-collapse__147039f2.answer.json"
+  },
+  {
    "id": "landline-death-robocall-boom__8f868915_r1",
    "slug": "landline-death-robocall-boom",
    "filed": "2026-09-25T11:56:22Z",
@@ -3040,6 +3050,16 @@
    ],
    "request": "exchange/rewrites/20260925/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20260925/muscle-loss-after-30__a6d6cd11.answer.json"
+  },
+  {
+   "id": "oceanic-shark-collapse__7abc9718",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-09-25T13:01:05Z",
+   "why": [
+    "premise: brain: The premise states a statistic without subverting a viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.request.json",
+   "answer_path": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.answer.json"
   },
   {
    "id": "online-shopping-store-toll__8cec60b2",

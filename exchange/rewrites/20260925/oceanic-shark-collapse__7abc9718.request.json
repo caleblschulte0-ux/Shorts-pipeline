@@ -1,0 +1,163 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "oceanic-shark-collapse__7abc9718",
+ "filed": "2026-09-25T13:01:05Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "oceanic-shark-collapse",
+ "current": {
+  "title": "The Ocean Lost 71% Of Its Sharks Since 1970",
+  "hook": "Nobody saw the ocean's sharks disappearing.",
+  "closing": "Apex predator. Zero say in its own survival.",
+  "question": "Did you know sharks were disappearing this fast? Tell me below.",
+  "segments": [
+   {
+    "topic": "shark and ray abundance",
+    "say": "In 1970, oceanic sharks and rays were near their historic numbers. Fifty years later, 71% of them are gone -- wiped out mostly where nobody was watching."
+   },
+   {
+    "topic": "decline by species",
+    "say": "The worst hit was the oceanic whitetip: down 98%, from one of the most common sharks in the ocean to a rare sighting. Hammerheads dropped 80% right behind it."
+   },
+   {
+    "topic": "extinction risk today",
+    "say": "So today, three out of every four of these species are threatened with extinction. Not because sharks are fragile -- because for fifty years, almost nothing limited how many boats could catch them."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "shark and ray abundance",
+   "say": "In 1970, oceanic sharks and rays were near their historic numbers. Fifty years later, 71% of them are gone -- wiped out mostly where nobody was watching.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "oceanic_shark_abundance_index.json",
+    "unit": "index",
+    "title": "Global oceanic shark and ray abundance (index, 1970=100)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 100,
+      "period": "1970"
+     },
+     {
+      "label": "1980",
+      "value": 88,
+      "period": "1980"
+     },
+     {
+      "label": "1990",
+      "value": 70,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 50,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 35,
+      "period": "2010"
+     },
+     {
+      "label": "2018",
+      "value": 29,
+      "period": "2018"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "decline by species",
+   "say": "The worst hit was the oceanic whitetip: down 98%, from one of the most common sharks in the ocean to a rare sighting. Hammerheads dropped 80% right behind it.",
+   "role": "2 · NOT EQUAL",
+   "data": {
+    "file": "oceanic_shark_species_decline.json",
+    "unit": "percent",
+    "title": "Population decline by species since 1970 (percent)",
+    "points": [
+     {
+      "label": "Oceanic whitetip shark",
+      "value": 98
+     },
+     {
+      "label": "Scalloped hammerhead",
+      "value": 80
+     },
+     {
+      "label": "Shortfin mako shark",
+      "value": 60
+     },
+     {
+      "label": "Blue shark",
+      "value": 40
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "extinction risk today",
+   "say": "So today, three out of every four of these species are threatened with extinction. Not because sharks are fragile -- because for fifty years, almost nothing limited how many boats could catch them.",
+   "role": "3 · THE RISK",
+   "data": {
+    "file": "oceanic_shark_extinction_risk_share.json",
+    "unit": "percent",
+    "title": "Share of oceanic shark & ray species threatened with extinction",
+    "points": [
+     {
+      "label": "Threatened with extinction",
+      "value": 75
+     },
+     {
+      "label": "Not currently threatened",
+      "value": 25
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise states a statistic without subverting a viewer expectation, failing the required reversal criterion."
+ ],
+ "reasons": [
+  "premise: brain: The premise states a statistic without subverting a viewer expectation, failing the required reversal criterion."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

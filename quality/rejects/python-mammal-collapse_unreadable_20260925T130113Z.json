@@ -1,0 +1,16 @@
+{
+ "slug": "python-mammal-collapse",
+ "ts": "20260925T130113Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:end the sub-label '3.0x in one year' is small grey text on blue-grey water and almost disappears at phone distance. At seg3:start the caption '19 feet \u2014' is faint and ghosted against the dark ground.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "weak_payoff_repetition",
+  "visible_evidence": "seg4:start to seg4:end repeats '19 ft record python (2023)' and adds '1 ft longer than average giraffe height', which seg3 had just shown. The python lies flat on dirt and its head covers the raccoon on the log (seg4:end). Data only raises his arms and waves.",
+  "root_cause": "The closing scene restates the giraffe comparison instead of paying off the title's claim that 99% of raccoons were wiped out. Nothing new happens, and the raccoon, the subject of the line 'the raccoons never stood a chance', is hidden behind the snake.",
+  "repair_goal": "Make the closing land the title's claim with a new image. The 19 ft python coils around the log and the last lone raccoon from seg0 blinks out, or the snake's shadow covers the glowing '1 in 100' raccoon. Keep that raccoon clear of any overlap. Swap the repeated '1 ft longer' label for a callback to 99%, and give Data a reaction tied to the raccoon's fate."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

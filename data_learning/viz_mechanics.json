@@ -627,5 +627,13 @@
   "topic": "robocall category share of 2024 total",
   "moves": true,
   "starred": false
+ },
+ {
+  "sig": "9554c93f3475",
+  "mechanic": "robocall-phone-pile-sort",
+  "concept": "ringing phones physically fall and pile up into four heaps, one per robocall category, stack height counting out each share of 2024's 52.8 billion calls -- no bar, just phones landing on phones",
+  "code": "prog = clamp(reveal)\nphone = subject_image('ringing smartphone')\nn = len(values)\ngx0, gx1 = RX0 + 60, RX1 - 60\ncol_w = (gx1 - gx0) // n\nground_y = RBOT - 140\ntop_cap = RTOP + 200\nmax_stack = 9\niw, ih = 64, 64\nfor i in range(n):\n    cx = gx0 + i * col_w + col_w // 2\n    frac = clamp(values[i] / vmax)\n    stack_n = max(1, round(frac * max_stack * prog))\n    for k in range(stack_n):\n        jitter = int(14 * math.sin(k * 2.4 + i))\n        py = ground_y - 6 - k * 46\n        if py < top_cap:\n            break\n        arrive = clamp(prog * (stack_n + 2) - k, 0, 1)\n        drop = int((1 - arrive) * 260)\n        if phone is not None:\n            paste(phone, cx - iw // 2 + jitter, py - drop, iw, ih)\n    fall_t = (reveal * 2.3 + i / n) % 1.0\n    fy = lerp(top_cap - 80, ground_y - stack_n * 46, fall_t)\n    if phone is not None:\n        paste(phone, cx - 20 + int(10 * math.sin(fall_t * 6)), int(fy) - 20, 40, 40)\n    text(str(int(values[i])) + '%', cx, ground_y - stack_n * 46 - 46, size=32, color=WARN, center=True)\n    text(labels[i][:14], cx, ground_y + 30, size=20, color=TEXT, center=True)\ntext('52.8 BILLION ROBOCALLS IN 2024', RX0 + 10, RTOP + 60, size=28, color=TEXT)\n",
+  "topic": "robocall category share of 2024 total",
+  "starred": false
  }
 ]
