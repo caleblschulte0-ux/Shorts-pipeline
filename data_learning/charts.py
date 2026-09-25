@@ -3580,6 +3580,10 @@ def _sci(v: float) -> str:
     return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
+#: Fraction of the timeline's span by which its dot reaches the headline
+#: point; the rest of the span holds the payoff on screen.
+TIMELINE_ARRIVE = 0.75
+
 _MONTHS = {m: i for i, m in enumerate(
     ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct",
      "nov", "dec"), 1)}
@@ -3680,7 +3684,11 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
         d.text(((W - (tb[2] - tb[0])) // 2, 300), title, font=title_font,
                fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
         d.line([(x0, axis_y), (x1, axis_y)], fill=(120, 140, 170, 255), width=6)
-        mx = x0 + r * frac * (x1 - x0)
+        # THE DOT ARRIVES WITH A QUARTER OF THE SPAN TO SPARE. With dated
+        # data the headline point is the END of the axis, so the dot reached
+        # it on the last frame and the cut came before anyone saw it: "the
+        # Feb 2025 200,000 point is never drawn on the timeline" (Waymo).
+        mx = x0 + min(1.0, r / TIMELINE_ARRIVE) * frac * (x1 - x0)
         if have_periods:
             # the ticks ARE the data's years — never a quartile that a moving
             # year label can land on ("a ghost '2019' sits on the '2008' tick")

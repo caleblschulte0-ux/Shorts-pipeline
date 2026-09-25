@@ -5316,9 +5316,15 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         elif runner is not None:
             im = runner
             if not lead:
+                # ONLY THE LEADER CELEBRATES. Every ghosted runner wore the
+                # leader's cheer, so the shut-down rival cheered at 0 — "the
+                # Cruise mascot celebrates its own shutdown" (Waymo). The
+                # field idles; a runner at nothing reacts to it.
+                im = scene_host("shock" if v == 0 else "idle", reveal,
+                                insight, "race") or runner
                 # The field is ghosted so the leader reads instantly; without
                 # it five identical sprites are a crowd, not a ranking.
-                im = runner.copy()
+                im = im.copy()
                 im.putalpha(im.getchannel("A").point(lambda a: int(a * 0.62)))
             canvas.alpha_composite(_fit(im, rw, rh),
                                    (int(px - rw // 2), int(cy - rh // 2)))
