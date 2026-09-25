@@ -2063,6 +2063,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 46.2
+    },
+    "space-travel-acceleration": {
+      "url": "https://youtube.com/shorts/k5e6o0lVOLM",
+      "title": "How Did Space Travel Get 4 Times More Common?",
+      "at": "2026-09-25T11:09:53.635893+00:00",
+      "publish_at": "2026-09-25T17:09:28Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 429 {\"detail\":{\"type\":\"rate_limit_error\",\"code\":\"concurrent_limit_exceeded\",\"message\":\"Too many concurrent requests. Your current subscription is associated with a maximum of 3 concurrent requests (runnin",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 50.8
     }
   },
   "uploads": [
@@ -2398,6 +2416,15 @@
       "state": "posted",
       "slug": "lyme-disease-undercount",
       "at": "2026-09-25T10:16:38.649831+00:00"
+    },
+    {
+      "claimed_at": "2026-09-25T11:09:45.971966+00:00",
+      "title": "How Did Space Travel Get 4 Times More Common?",
+      "publish_at": "2026-09-25T17:09:28Z",
+      "url": "https://youtube.com/shorts/k5e6o0lVOLM",
+      "state": "posted",
+      "slug": "space-travel-acceleration",
+      "at": "2026-09-25T11:09:53.635893+00:00"
     }
   ]
 }
