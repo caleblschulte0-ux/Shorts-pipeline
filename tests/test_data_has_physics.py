@@ -582,8 +582,15 @@ class MotionMustBeVISIBLE(unittest.TestCase):
         # in isolation is stricter than reality, because in the finished video
         # the host, the captions and the closing all contribute motion. This
         # catches a machine that is grossly still, not one that is marginal.
-        FRAMES = 120
-        CEILING = 35
+        # AT PRODUCTION PACE. 120 frames is 1.6x faster than a real beat, and
+        # a motion that clears the detector at that speed can fall under it
+        # at the real one: on 2026-09-25 the balance measured fine here and
+        # 89% held at 240 frames, and a coffee render was blocked at 0.512
+        # by exactly the machines this test was passing. 192 frames is an
+        # 8-second beat sampled the way the gate samples it (24fps), so the
+        # gate's own numbers apply directly: a 45-frame run, a 0.45 ratio.
+        FRAMES = 192
+        CEILING = 45
         DUP_CEILING = 0.45      # the gate's own max_duplicate_ratio (phase 1)
         # EVERY machine, not a sample of them. The case list below started as
         # four and grew batch by batch, which meant a machine was only ever
