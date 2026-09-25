@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260918",
-      "dry_run": false,
-      "ts": "2026-09-18T23:15:03+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 106,
-        "with_retention": 84,
-        "with_curve": 13,
-        "fetched_at": "2026-09-18T15:21:48.324320+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260918-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260918-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20260919",
       "dry_run": false,
       "ts": "2026-09-19T14:32:58+00:00",
@@ -5045,6 +4993,58 @@
             }
           },
           "took_s": 129.0
+        },
+        {
+          "slug": "clip-20260925-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260925",
+      "dry_run": false,
+      "ts": "2026-09-25T21:32:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 107,
+        "with_retention": 85,
+        "with_curve": 13,
+        "fetched_at": "2026-09-25T14:04:04.661286+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20260925-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260925-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260925-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260925-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260925-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20260925-6",
