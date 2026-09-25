@@ -2048,6 +2048,21 @@
       "story_structure": "scene+auto+auto",
       "narrative_score": 66,
       "duration_s": 51.2
+    },
+    "lyme-disease-undercount": {
+      "url": "https://youtube.com/shorts/rdFZ6zBicJM",
+      "title": "The CDC Says Lyme Disease Is 16x More Common Than Reported",
+      "at": "2026-09-25T10:16:38.649831+00:00",
+      "publish_at": "2026-09-25T11:09:28Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "elevenlabs",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 46.2
     }
   },
   "uploads": [
@@ -2374,6 +2389,15 @@
       "state": "posted",
       "slug": "coffee-price-record",
       "at": "2026-09-24T14:40:19.198224+00:00"
+    },
+    {
+      "claimed_at": "2026-09-25T10:16:32.822493+00:00",
+      "title": "The CDC Says Lyme Disease Is 16x More Common Than Reported",
+      "publish_at": "2026-09-25T11:09:28Z",
+      "url": "https://youtube.com/shorts/rdFZ6zBicJM",
+      "state": "posted",
+      "slug": "lyme-disease-undercount",
+      "at": "2026-09-25T10:16:38.649831+00:00"
     }
   ]
 }
