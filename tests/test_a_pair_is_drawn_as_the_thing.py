@@ -189,6 +189,24 @@ class ACollapseIsACut(unittest.TestCase):
         self.assertEqual((then.label, now.label), ("Before 2014", "Since 2014"))
 
 
+class AMonthAndAYearIsAPointInTime(unittest.TestCase):
+    """Waymo's weekly rides, 'Oct 2023 / Aug 2024 / Feb 2025', came back
+    `dominance` and were drawn as a skyline (2026-09-25)."""
+
+    def test_month_quarter_and_season_dates_are_a_series(self):
+        from data_learning import relationships as rel
+        for labels in (["Oct 2023", "Aug 2024", "Feb 2025"],
+                       ["Q1 2020", "Q2 2020", "Q3 2020"],
+                       ["Summer 2019", "Summer 2021", "Summer 2023"]):
+            ins = mk([(l, float(k + 1) * 10) for k, l in enumerate(labels)])
+            self.assertTrue(rel.is_time_series(ins), labels)
+
+    def test_places_are_still_not(self):
+        from data_learning import relationships as rel
+        ins = mk([("Tokyo", 37.4), ("Delhi", 9.2), ("Cairo", 7.8)])
+        self.assertFalse(rel.is_time_series(ins))
+
+
 class NeitherIsAFieldOfIcons(unittest.TestCase):
     """Operator, 2026-09-22: a crowd of one thing is used very sparingly.
     The hole is ONE object; the copies are at most five."""

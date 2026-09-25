@@ -177,9 +177,26 @@ def is_time_series(insight) -> bool:
     labels = _labels(insight)
     if len(labels) < 3:
         return False
-    yrs = sum(1 for l in labels
-              if len(l) <= 7 and l[:4].isdigit() and 1800 <= int(l[:4]) <= 2200)
+    yrs = sum(1 for l in labels if _is_date_label(l))
     return yrs >= max(3, len(labels) * 0.6)
+
+
+#: A month, quarter, half or season with its year: one point in time, as
+#: surely as a bare year is. "Oct 2023 / Aug 2024 / Feb 2025" is Waymo's
+#: weekly rides GROWING, and read as three unrelated items it came back
+#: `dominance` and was drawn as a skyline of three towers (2026-09-25).
+_DATED = re.compile(
+    r"^(jan|feb|mar|apr|may|jun|jul|aug|sep|sept|oct|nov|dec)[a-z]*\.?\s+"
+    r"(1[89]|2[01])\d\d$"
+    r"|^(q[1-4]|h[12])\s+(1[89]|2[01])\d\d$"
+    r"|^(spring|summer|fall|autumn|winter)\s+(1[89]|2[01])\d\d$", re.I)
+
+
+def _is_date_label(label) -> bool:
+    l = str(label).strip()
+    if len(l) <= 7 and l[:4].isdigit() and 1800 <= int(l[:4]) <= 2200:
+        return True
+    return bool(_DATED.match(l))
 
 
 def _turned(values: list) -> bool:
