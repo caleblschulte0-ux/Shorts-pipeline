@@ -246,6 +246,32 @@ def fit_size(cr, s, size, max_w, face="bold", floor=22):
     return size
 
 
+def _ground_under(cr, x, y, w, h):
+    """Mean luminance (0-255) of what is already painted under a box, or
+    None when the target cannot be read. A 12x4 sample: cheap per label."""
+    try:
+        surf = cr.get_target()
+        surf.flush()
+        sw, sh = surf.get_width(), surf.get_height()
+        stride = surf.get_stride()
+        buf = surf.get_data()
+        tot = n = 0
+        for i in range(12):
+            for j in range(4):
+                px = int(x + (i + 0.5) * w / 12)
+                py = int(y + (j + 0.5) * h / 4)
+                if 0 <= px < sw and 0 <= py < sh:
+                    o = py * stride + px * 4          # BGRA, premultiplied
+                    b_, g_, r_, a_ = buf[o], buf[o + 1], buf[o + 2], buf[o + 3]
+                    if a_ == 0:
+                        continue
+                    tot += 0.2126 * r_ + 0.7152 * g_ + 0.0722 * b_
+                    n += 1
+        return tot / n if n else None
+    except Exception:  # noqa: BLE001 — unreadable target: keep the ink
+        return None
+
+
 def text(cr, s, x, y, size, rgb=look.INK, face="bold", anchor="left",
          alpha=1.0, shadow=True):
     """Draw `s` with its baseline at y. Returns its (x0, y0, x1, y1) box."""
@@ -255,13 +281,29 @@ def text(cr, s, x, y, size, rgb=look.INK, face="bold", anchor="left",
         x -= ext.x_advance / 2
     elif anchor == "right":
         x -= ext.x_advance
+    # THE INK IS CHOSEN AGAINST WHAT IS ACTUALLY UNDER IT. A label's colour
+    # was picked for the palette, not for the pixels behind it: "'3.6x the
+    # 1996 ship' is pale blue on blue water and barely visible", "the white
+    # caption ... is low-contrast against the pale sky" (the judge,
+    # 2026-09-24). The ground under the text box is sampled; if the chosen
+    # ink is too close to it, the ink that reads there is used instead, and
+    # the outline takes the opposite tone.
+    out_rgb = (0.02, 0.03, 0.08)
+    bg = _ground_under(cr, x + ext.x_bearing, y + ext.y_bearing,
+                       ext.width, ext.height)
+    if bg is not None:
+        lt = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]
+        if abs(lt - bg) < 95:
+            rgb = look.INK if bg < 128 else look.INK_ON_LIGHT
+            if bg >= 128:
+                out_rgb = (0.97, 0.97, 1.0)
     if shadow and alpha > 0:
         # A DARK OUTLINE, not just a drop shadow: grey values over an orange
         # sky and a number over a pale sun were "faint ... nearly disappears"
         # in the first previews. An outline reads on any part of any world.
         cr.move_to(x, y)
         cr.text_path(s)
-        cr.set_source_rgba(0.02, 0.03, 0.08, 0.78 * alpha)
+        cr.set_source_rgba(*out_rgb, 0.78 * alpha)
         cr.set_line_width(max(3.0, min(9.0, size * 0.13)))
         cr.set_line_join(cairo.LINE_JOIN_ROUND)
         cr.stroke()
