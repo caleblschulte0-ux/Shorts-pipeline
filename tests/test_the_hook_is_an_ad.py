@@ -19,7 +19,11 @@ if str(ROOT) not in sys.path:
 from shared import hook_doctrine as H  # noqa: E402
 
 CFG = json.loads((ROOT / "data_learning" / "niche.config.json").read_text())
-COFFEE = next(s for s in CFG["stories"] if s["slug"] == "coffee-price-record")
+# The hook is PINNED: a render persists its sharpened hook into the config,
+# and a test that read the live one stopped being about a soft hook.
+COFFEE = dict(next(s for s in CFG["stories"]
+                   if s["slug"] == "coffee-price-record"),
+              hook="Your coffee habit is about to get pricier.")
 
 
 class TheScoreKnowsAnAdFromAFact(unittest.TestCase):

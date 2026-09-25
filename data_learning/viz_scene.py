@@ -5875,7 +5875,7 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     g = _fit(glyph, s, s)
     x0 = bx0 + 60
     y_then = by0 + 190
-    y_now = y_then + s + 120
+    y_now = y_then + s + 60          # clear of Data, who stands below
     slots = [x0 + k * (s + 24) for k in range(n)]
     # the THEN one: on screen from frame one
     canvas.alpha_composite(g, (x0, y_then))
@@ -5894,12 +5894,23 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
         cx = int(x0 + (slots[k] - x0) * e2)
         cy = int(y_then + (y_now - y_then) * e1)
         frac = min(1.0, r - k)
-        img = g if frac >= 0.999 else g.crop((0, 0, max(1, int(s * frac)), s))
-        canvas.alpha_composite(img, (cx, cy))
+        if frac >= 0.999:
+            canvas.alpha_composite(g, (cx, cy))
+        else:
+            # A PART-CUP, not a hard crop: the whole cup faint, and the
+            # fraction of it solid ("draw the 0.2 as a partly filled cup",
+            # the judge, 2026-09-25) — so 2.2 reads as two and a bit of a
+            # third, never as a broken icon.
+            ghost = g.copy()
+            ghost.putalpha(ghost.getchannel("A").point(lambda v: int(v * 0.22)))
+            canvas.alpha_composite(ghost, (cx, cy))
+            canvas.alpha_composite(g.crop((0, 0, max(1, int(s * frac)), s)),
+                                   (cx, cy))
         if u >= 1.0:
             landed += 1
     host = scene_host("point", reveal, insight, "copies")
-    mh = int(min(560, (by1 - by0) * 0.38))
+    # below the cups and their label, never beside the last one
+    mh = int(min(500, (by1 - by0) * 0.33))
     if host is not None:
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
@@ -5909,21 +5920,22 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, tl, 48, W - (s + 100))
     d.text((x0 + s + 30, y_then + s // 2), _s, font=_f,
            fill=_rgba(TEXT, 235), anchor="lm")
+    # each row wears its OWN label: NOW sits under the copies it names
     head = f"{getattr(now_p, 'label', '')}  {charts._ulabel(b, unit, group=True)}"
-    _f, _s = fit_text(d, head, 72, W - 60)
-    d.text(((bx0 + bx1) // 2, by0 + 58), _s, font=_f,
-           fill=_rgba(color, 255), anchor="mm")
+    _f, _s = fit_text(d, head, 56, W - 120)
+    d.text((x0, y_now + s + 22), _s, font=_f,
+           fill=_rgba(color, 255), anchor="lt")
     if landed == n:
         pop = min(1.0, (t - (0.08 + n * span)) / 0.06) if t < 1 else 1.0
         # one beat of emphasis every second, not a constant wobble
         pulse = 1.0 + 0.10 * max(0.0, _math.sin(_math.pi * ((t * 6) % 1.0))) \
             * (1 if int(t * 6) % 2 == 0 else 0)
         txt = f"×{r:.1f}".replace(".0", "")
-        _f4, _s4 = fit_text(d, txt, int(180 * pop * pulse) or 20,
-                            W // 2, wrap=False)
-        d.text((x0, y_now + s + 60), _s4, font=_f4, fill=_rgba(color, 255),
-               anchor="lt")
-    return (b, "art", (bx0 + bx1) // 2, by0 + 58)
+        _f4, _s4 = fit_text(d, txt, int(150 * pop * pulse) or 20,
+                            W - 60, wrap=False)
+        d.text(((bx0 + bx1) // 2, by0 + 80), _s4, font=_f4,
+               fill=_rgba(color, 255), anchor="mm")
+    return (b, "art", x0 + 200, y_now + s + 50)
 
 
 _MACHINE_DRAW.update({"hole": draw_hole, "copies": draw_copies})

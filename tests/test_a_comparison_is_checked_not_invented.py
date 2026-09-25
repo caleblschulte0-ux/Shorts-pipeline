@@ -19,7 +19,10 @@ from shared import hook_doctrine as H  # noqa: E402
 from shared import scale_refs as S     # noqa: E402
 
 CFG = json.loads((ROOT / "data_learning" / "niche.config.json").read_text())
-AMAZON = next(s for s in CFG["stories"] if s["slug"] == "amazon-still-shrinking")
+# pinned soft: production persists a sharpened hook into the config
+AMAZON = dict(next(s for s in CFG["stories"]
+                   if s["slug"] == "amazon-still-shrinking"),
+              hook="The clearing is dropping. The damage isn't.")
 
 
 class TheArithmeticIsTrue(unittest.TestCase):
