@@ -48,7 +48,7 @@
     {
      "say": "You arrive as the market square begins to empty, the low sun turning the packed earth gold. All day it has hummed with voices, but now stallholders are folding away bread and bolts of cloth, tying baskets shut. Nearby, a food-seller's coals glow, and a torch is lit against the dark. The city that never seemed to stop is starting, gently, to slow down.",
      "scene": {
-      "setting": "harbour",
+      "setting": "market_square",
       "time": "dusk",
       "weather": "clear",
       "shot": "wide",
@@ -204,7 +204,7 @@
     {
      "say": "A short walk away, a tavern is filling with warmer light and quieter talk. A man sits with a cup of ale, a woman leans in mid-story, an old woman on the bench beside them listens with a small, private smile. Evenings like this were among the ordinary comforts of the city after work ended.",
      "scene": {
-      "setting": "harbour",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -233,8 +233,8 @@
        }
       ],
       "props": [
-       "torch",
-       "campfire"
+       "candle",
+       "hearth"
       ],
       "variant": 3
      }
@@ -365,7 +365,7 @@
     {
      "say": "Outside, the market square lies empty under a clear night sky, the stalls silent, the well still. A torch burns low, and the day's last coals are dying to grey. Frost is beginning to touch the cobbles. The city that was full of noise by day has, for now, gone almost entirely quiet.",
      "scene": {
-      "setting": "harbour",
+      "setting": "market_square",
       "time": "night",
       "weather": "frost",
       "shot": "close",
@@ -421,7 +421,7 @@
     {
      "say": "A bellman crosses the square as the light fails, ringing the hour. This is curfew, an old habit nobody quite remembers starting. Stallholders gather their wares and apprentices set down their tools as the day's noise folds away. You feel the change before you notice it — footsteps quicken, voices drop low, the square empties toward home.",
      "scene": {
-      "setting": "harbour",
+      "setting": "market_square",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -451,7 +451,7 @@
     {
      "say": "Inside a nearby tavern, the last cups are drained as the bell's sound reaches through the walls. A keeper moves between the tables, gentle but firm, asking the room to finish up. Nobody argues much. Chairs scrape back, cloaks are gathered, and the warm room begins to empty into the cooling dark outside.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "tavern_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -546,7 +546,7 @@
     {
      "say": "Inside a small house, a family bars their own door, dropping a wooden latch into place. It echoes the larger gesture at the gates — keeping trouble on the far side of a solid door. A single candle burns low on the table. A locked house is harder to rob, and a shut door keeps a stray spark from wandering in on the wind.",
      "scene": {
-      "setting": "tavern_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -576,7 +576,7 @@
     {
      "say": "Back at the tavern, the keeper banks the fire down before turning in, raking ash gently over the last embers so nothing flares in the night. Fire was the old city's quiet fear, more than any thief — narrow streets, timber houses packed close, and a single spark enough to take a whole row of homes.",
      "scene": {
-      "setting": "harbour",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -590,7 +590,7 @@
        }
       ],
       "props": [
-       "torch"
+       "candle"
       ],
       "variant": 2
      }
@@ -654,7 +654,7 @@
     {
      "say": "Back inside the tavern, the last candle gutters and goes out, leaving only the faint red of the banked fire. The room is empty now, benches pushed in, the door barred against the dark. Somewhere across the city the same small ending happens again and again — a latch dropped, a flame smothered — until London has settled itself for the night.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -811,9 +811,9 @@
     {
      "say": "A link-boy stands under the inn's sign, his torch hissing faintly in the damp air, waiting to be hired. He is young, and the work suits someone quick and unbothered by the dark. A man steps out, counts a penny into the boy's palm, and the two set off together across the rain-slicked square.",
      "scene": {
-      "setting": "harbour",
+      "setting": "tavern_inside",
       "time": "night",
-      "weather": "rain",
+      "weather": "clear",
       "shot": "close",
       "cast": [
        {
@@ -832,7 +832,9 @@
         "at": "right"
        }
       ],
-      "props": []
+      "props": [
+       "hearth"
+      ]
      }
     },
     {
@@ -1294,7 +1296,7 @@
     {
      "say": "Behind them, the tavern keeper moves through the emptied room, snuffing the candles one by one and raking the coals to a low red glow that will hold until morning. The tables stand bare now, the small warm world of an hour ago folded back into rest.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1316,14 +1318,14 @@
     {
      "say": "Across the city, one small light after another goes the same way, tavern by tavern, house by house, until each is only a memory of warmth behind a shuttered window. Along the river, what few lights remain lie trembling on the black water, and London simply, gently, runs out of reasons to stay awake.",
      "scene": {
-      "setting": "market_square",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
       "cast": [],
       "props": [
-       "campfire",
-       "torch"
+       "hearth",
+       "candle"
       ],
       "variant": 1
      }
@@ -1716,7 +1718,7 @@
     {
      "say": "In the tavern, the last fire is banked low for the night. The innkeeper stacks ash carefully over the embers, leaving just enough heat to greet the morning. The room, so loud only hours ago, holds nothing now but a soft, cooling hearth.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1805,7 +1807,7 @@
     {
      "say": "An old woman sits a while longer on the riverbank, looking up at whatever stars the clouds allow. She has sat like this many nights before, in no hurry to go in. The water keeps moving past her, unhurried, the same as ever.",
      "scene": {
-      "setting": "lakeshore",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1827,7 +1829,7 @@
     {
      "say": "Back in the tavern, one last patron has fallen asleep in his chair by the dying fire, cup still in hand. No one wakes him. The innkeeper lets him be, and the light in the room settles into embers and shadow.",
      "scene": {
-      "setting": "market_square",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1842,8 +1844,8 @@
        }
       ],
       "props": [
-       "torch",
-       "campfire"
+       "candle",
+       "hearth"
       ],
       "variant": 2
      }

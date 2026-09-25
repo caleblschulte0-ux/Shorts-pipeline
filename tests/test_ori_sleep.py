@@ -453,6 +453,37 @@ class ThePublisherGivesTheGateWhatItNeeds(unittest.TestCase):
         self.assertIn("SLEEP FILM", d)
         self.assertIn("mascot=4", d)
 
+    def test_the_judge_hears_the_line_spoken_at_each_frame_it_samples(self):
+        # the Elizabethan film (74): its final chapter tours the sleeping
+        # city, and the judge — given only each chapter's opening line —
+        # graded a harbour and a riverbank whose own words said harbour and
+        # riverbank against "you watch the last candle pinched out"
+        import post_ori
+        import showrunner_review as SR
+        from data_learning import ori_sleep as OS
+        B = OS.Beat
+        beats, t = [], 0.0
+        for ci in range(6):
+            for k in range(12):
+                beats.append(B(chapter=ci, index=k, text=f"Chapter {ci} passage {k} is here. More words.",
+                               scene={}, start=t))
+                t += 20.0
+        chapters = [{"t": ci * 240.0, "label": f"c{ci}"} for ci in range(6)]
+        lines = OS.judged_lines(beats, chapters, t)
+        self.assertEqual(len(lines), 18)
+        # 55% of chapter 5's 240 s is 132 s in: passage 6 (120-140 s)
+        self.assertEqual(lines["seg5:mid"], "Chapter 5 passage 6 is here.")
+        # the labels are the judge's own (its sampling of a chaptered video)
+        plan = [lab for _t, lab in SR._frame_plan(t, {"chapters": chapters})]
+        for lab in lines:
+            self.assertIn(lab, plan)
+        ep = _episode(chapters=6, beats=12)
+        ep["chapters"] = [dict(c, title="A long chapter title of the usual length") for c in ep["chapters"]]
+        long = {k: "x" * 160 for k in lines}
+        ctx = post_ori.judge_context(ep, {"duration": t, "chapters": chapters, "moments": long})
+        self.assertEqual(ctx["narration_at_frame"], long)
+        self.assertLess(len(json.dumps(ctx, indent=0)), 6000, "the lines would be cut off")
+
     def test_the_floor_refuses_a_short_film(self):
         import post_ori
         with tempfile.TemporaryDirectory() as td:
@@ -1294,7 +1325,8 @@ class ThePictureIsReadable(unittest.TestCase):
         # a whole film asking "The Bell That Shut the Gates" (city words) to
         # stand in a market square; a city or cave title promises no side
         self.assertIsNone(A.title_side("The Bell That Shut the Gates", "early_modern"))
-        self.assertIsNone(A.title_side("Evenings at the Tavern", "early_modern"))
+        # a tavern is a room (run #24), so its title promises indoors, never the street
+        self.assertEqual(A.title_side("Evenings at the Tavern", "early_modern"), "indoors")
         self.assertEqual(A.title_side("Sleep by the River", "egypt"), "outdoors")
         self.assertEqual(A.title_side("By the Hearth", "medieval"), "indoors")
         # and it is soft: the last attempt is kept when it is all that is left,
@@ -1319,6 +1351,50 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertIn("dog", PR.PROPS)
         self.assertIsNot(PR.PROPS["dog"].draw, PR.PROPS["wolf"].draw)
         PR.PROPS["dog"].draw(cairo.Context(surf), 200, 300, 1.0, 0.0, 1)
+
+    def test_run_twenty_four_the_words_name_the_place_and_a_light_is_carried_low(self):
+        # run #24 (Elizabethan London, 74): "the market square begins to
+        # empty" was drawn on the quay (both are city places); the keeper
+        # banking the tavern fire was out in the street ("tavern" was a city
+        # word); and a watchman waved with his lantern over his face
+        import cairo
+        from unittest import mock
+        import ori_author as A
+        from data_learning.doodle import people as P
+        S = self.S
+        sq = {"say": "You arrive as the market square begins to empty.",
+              "scene": {"setting": "harbour", "time": "dusk", "weather": "clear", "shot": "wide", "cast": [],
+                        "props": ["torch"]}}
+        A.mend_place(sq, "early_modern")
+        self.assertEqual(sq["scene"]["setting"], "market_square")
+        quay = {"say": "At the harbour, the ships rest against their moorings.",
+                "scene": {"setting": "harbour", "time": "night", "weather": "clear", "shot": "wide", "cast": [],
+                          "props": ["torch", "ship"]}}
+        self.assertIsNone(A.mend_place(quay, "early_modern"), "a named place was moved")
+        self.assertEqual(A.place_class("Back at the tavern, the keeper banks the fire."), "interior")
+        inn = {"say": "Back at the tavern, the keeper banks the fire.",
+               "scene": {"setting": "harbour", "time": "night", "weather": "clear", "shot": "close",
+                         "cast": [{"who": "man", "pose": "crouch", "action": "feed_fire"}], "props": ["torch"]}}
+        A.mend_place(inn, "early_modern")
+        self.assertEqual(inn["scene"]["setting"], "tavern_inside")
+        self.assertEqual(S.validate(inn["scene"], "early_modern"), [])
+        # a lantern stays below the shoulders whatever the free hand does
+        seen = []
+        real = P._item
+        def spy(cr, name, hx, hy, R, t, lw, facing_up=False):
+            seen.append((name, hy, R))
+            return real(cr, name, hx, hy, R, t, lw, facing_up)
+        surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 600, 600)
+        for action in ("wave", "talk", "point", "yawn"):
+            seen.clear()
+            with mock.patch.object(P, "_item", spy):
+                for t in (0.0, 0.3, 0.6):
+                    P.draw(cairo.Context(surf), who="man", era="early_modern", seed=3, pose="stand",
+                           action=action, x=300, ground_y=560, scale=1.0, t=t, item="lantern")
+            ys = [hy for n, hy, _R in seen if n == "lantern"]
+            self.assertTrue(ys, action)
+            sk = P.skeleton("stand", seen[0][2], 0.0)
+            self.assertTrue(all(y > sk["neck"][1] + 0.5 * seen[0][2] for y in ys), (action, ys, sk["neck"]))
 
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in

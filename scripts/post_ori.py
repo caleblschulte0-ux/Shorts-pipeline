@@ -155,9 +155,12 @@ def judge_context(ep: dict, meta: dict) -> dict:
     return {"format": "sleep", "channel": CHANNEL, "aspect": "16:9", "slug": ep["slug"],
             "duration_s": meta.get("duration"), "chapters": meta.get("chapters") or [],
             "title": ep["title"], "era": ep["era"],
-            "hook": ep["chapters"][0]["beats"][0]["say"],
-            "script": [{"chapter": c["title"],
-                        "opening": c["beats"][0]["say"][:180]} for c in ep["chapters"]]}
+            "hook": ep["chapters"][0]["beats"][0]["say"][:240],
+            "chapters_titles": [c["title"] for c in ep["chapters"]],
+            # the words spoken at each frame it samples, keyed by its own
+            # frame labels — what its "at that moment" directive needs
+            "narration_at_frame": meta.get("moments") or {
+                f"seg{i}:start": c["beats"][0]["say"][:180] for i, c in enumerate(ep["chapters"])}}
 
 
 def main() -> int:

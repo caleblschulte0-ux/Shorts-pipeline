@@ -166,7 +166,8 @@ def _format_directive(ctx: dict) -> str:
             "the place and time and invite the listener in (a title over an "
             "inviting scene) — a jolt or a blank opening fails it. "
             "data_demo: grade whether each scene SHOWS what the narration "
-            "says at that moment (the script is in the context): the right "
+            "says at that moment (narration_at_frame in the context gives the line "
+            "spoken at each sampled frame, by its label): the right "
             "era and place, the people doing the activity described. "
             "junk_imagery is present if a scene contradicts or is unrelated "
             "to its line (wrong era, a modern object, the wrong activity) "
@@ -989,7 +990,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             motion=json.dumps({**motion, "temporal": temporal}),
             format_directive=_format_directive(ctx),
             rubric=_rubric()[:6000],
-            ctx=json.dumps(ctx, indent=0)[:3000])
+            # a sleep film's context carries the line spoken at each of its
+            # ~18 sampled frames, which does not fit the shorts budget
+            ctx=json.dumps(ctx, indent=0)[:(6000 if str(ctx.get("format") or "").lower() == "sleep" else 3000)])
         try:
             grades, backend = _judge(prompt, labeled)
         except Exception as judge_err:  # noqa: BLE001

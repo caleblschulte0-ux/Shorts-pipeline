@@ -534,6 +534,34 @@ def thumbnail(ep: dict, out: Path) -> Path:
     return out
 
 
+JUDGED = ((0.25, "start"), (0.55, "mid"), (0.85, "end"))   # the showrunner's samples of each chapter
+
+
+def judged_lines(beats, chapters, duration: float) -> dict:
+    """The words being spoken at each moment the showrunner looks at, keyed
+    as it labels its frames (seg<i>:start|mid|end). Its directive asks
+    whether each scene shows what the narration says AT THAT MOMENT, and it
+    was given each chapter's opening line only — so the Elizabethan film's
+    final chapter, which tours the sleeping city, was graded against "you
+    watch the last candle pinched out" at a harbour and a riverbank whose
+    own words said harbour and riverbank."""
+    starts = [float(c["t"]) for c in chapters]
+    out = {}
+    for i, s0 in enumerate(starts):
+        s1 = starts[i + 1] if i + 1 < len(starts) else duration
+        for f, tag in JUDGED:
+            t = s0 + f * (s1 - s0)
+            b = None
+            for x in beats:
+                if x.start <= t:
+                    b = x
+                else:
+                    break
+            if b is not None:
+                out[f"seg{i}:{tag}"] = sentences(b.text)[0][:160] if sentences(b.text) else b.text[:160]
+    return out
+
+
 def probe_duration(p: Path) -> float:
     r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
                         str(p)], capture_output=True, text=True)
@@ -589,8 +617,10 @@ def render(ep: dict, out: Path, *, max_seconds: float | None = None,
             seen.add(b.chapter)
             chapters.append({"t": round(b.start, 2), "label": ep["chapters"][b.chapter]["title"]})
     chapters[0]["t"] = 0.0
-    meta = {"slug": ep["slug"], "title": ep["title"], "duration": round(probe_duration(out), 2),
+    duration = round(probe_duration(out), 2)
+    meta = {"slug": ep["slug"], "title": ep["title"], "duration": duration,
             "chapters": chapters, "scenes": len(beats), "era": ep["era"],
+            "moments": judged_lines(beats, chapters, duration),
             "words": sum(_words(b.text) for b in beats), "voice": voice_used,
             "music": sorted(p.name for p in MUSIC.glob("*.mp3")) if MUSIC.is_dir() else [],
             "sources": ep.get("sources") or []}

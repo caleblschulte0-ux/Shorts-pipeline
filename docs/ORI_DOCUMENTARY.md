@@ -586,6 +586,29 @@ only as a hand edit is not a rule. So:
   It is a pre-check of what the judge might see, not a gate, and losing a
   whole film to it is worse than letting the judge judge.
 
+- **Run #24 (Elizabethan London, the re-run, 74, BLOCK).** It rendered, and
+  the notes were five. (1) The final chapter's harbour and riverside frames
+  "contradict 'you watch the last candle pinched out'". That line is the
+  chapter's OPENING, and the frames' own words said harbour and riverbank:
+  the judge had only ever been given each chapter's first 180 characters,
+  while its directive asks whether a scene shows what is said AT THAT
+  MOMENT. The render now records the line spoken at each of the 18 frames
+  the judge samples (`ori_sleep.judged_lines`, keyed by its own frame
+  labels), and `post_ori` hands them over as `narration_at_frame`, with the
+  showrunner's context budget raised for sleep films only so they are not
+  cut. That is the judge's input made true, not its bar lowered; every rule
+  and threshold is unchanged. This has probably been behind "the pictures
+  do not match the words" in most runs since the first. (2) "The market
+  square begins to empty" was drawn on the quay, because both are city
+  places and the least-used one won. A setting the words NAME now wins
+  within its class. (3) "Back at the tavern, the keeper banks the fire" was
+  drawn in the street, because "tavern" and "inn" were city words; they
+  are rooms (`tavern_inside`) now. (4) A watchman waved with his lantern
+  over his face: a carried light (`people.LOW_HELD`) now stays at the side,
+  and the gesture moves to the other hand. (5) NOT BUILT, named by the judge:
+  a bellman's hand bell, a city gate being barred, market stalls being
+  packed away.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

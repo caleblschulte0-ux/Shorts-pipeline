@@ -1058,12 +1058,12 @@ PLACE_WORDS = (
     # street" and was drawn in a room
     ("interior", ("inside", "indoors", "roof", "room", "hearth", "table", "bed", "blanket", "candle",
                   "doorway", "kitchen", "corridor", "chamber", "floor", "pallet", "shutter", "bench", "stool",
-                  "loom", "parlour", "parlor", "library", "nursery", "bedroom")),
+                  "loom", "parlour", "parlor", "library", "tavern", "inn", "alehouse", "nursery", "bedroom")),
     # not "city" or "town": in a film about Rome they name the topic, and
     # "across the city, a household settles" is indoors. Not "cart": the
     # sound of carts comes through the shutters
     ("city", ("street", "square", "forum", "lane", "alley", "market", "stall", "gate", "watchman", "cobble",
-              "bakery", "baker", "oven", "shop", "tavern", "inn", "crowd", "seller", "plaza", "courtyard",
+              "bakery", "baker", "oven", "shop", "crowd", "seller", "plaza", "courtyard",
               "lamplighter", "constable", "policeman", "playhouse", "theatre", "theater", "pavement",
               "gaslight", "gaslit", "cab", "omnibus")),
     # the Nile is a river; a boat or a sail belongs to whatever water the
@@ -1221,7 +1221,7 @@ SETTING_WORDS = {
     "field": ("field",), "village": ("village",), "castle": ("castle",), "harbour": ("harbour", "harbor", "quay"),
     "desert": ("desert", "dune"), "nile_bank": ("nile", "river"), "forum": ("forum", "market"),
     "olive_grove": ("olive", "grove"), "street": ("street",), "market_square": ("market", "square"),
-    "farmyard": ("farm", "yard", "barn"),
+    "farmyard": ("farm", "yard", "barn"), "tavern_inside": ("tavern", "inn", "alehouse"),
 }
 NEAR_SETTINGS = ("grassland", "forest", "riverbank", "mountains")   # a night's walk from anywhere outdoors
 
@@ -1363,7 +1363,14 @@ def mend_place(beat: dict, era: str, used=None) -> str | None:
     if not isinstance(sc, dict):
         return None
     options = place_settings(place_class(beat.get("say", "")), era)
-    if not options or sc.get("setting") in options:
+    if not options:
+        return None
+    # the words may name the very place: "the market square" is the square,
+    # not the quay that shares its class (the Elizabethan film's hook)
+    named = [n for n in options if _words_pin(beat.get("say", ""), n)]
+    if named and sc.get("setting") not in named and not _words_pin(beat.get("say", ""), sc.get("setting")):
+        return _move(beat, era, named, used, f"the words say {named[0].replace('_', ' ')}")
+    if sc.get("setting") in options:
         return None
     return _move(beat, era, options, used, f"the words say {place_class(beat.get('say', ''))}")
 

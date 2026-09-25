@@ -191,6 +191,10 @@ def head_of(sk: dict, R: float, action: str) -> tuple[float, float]:
     return hx, hy
 
 
+# what is carried at the side whatever the free hand is doing
+LOW_HELD = ("lantern", "torch")
+
+
 def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     """(front_hand, back_hand) targets in local coords for an action at t."""
     nx, ny = sk["neck"]
@@ -519,6 +523,11 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     sk["head"] = head_of(sk, R, action)
     front, back = hand_targets(action, sk, R, t, ph)
     nx, ny = sk["neck"]
+    if held in LOW_HELD and front[1] < ny + 0.5 * R:
+        # a light is carried low: a gesture that lifts the hand goes to the
+        # other hand (the Elizabethan film's judge: "the lantern drawn over
+        # the man's face" — a watchman waving with the lantern in that hand)
+        front, back = (nx + 0.42 * R, sk["hip"][1] - 0.05 * R), front
     sh_f = (nx + 0.22 * R, ny + 0.28 * R)
     sh_b = (nx - 0.22 * R, ny + 0.28 * R)
     ua, la = 0.95 * R, 0.9 * R
