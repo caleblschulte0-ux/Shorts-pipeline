@@ -1,0 +1,1877 @@
+{
+ "slug": "what-did-ancient-egyptians-do-after-dark",
+ "title": "What Did Ancient Egyptians Do After Dark? | Cozy History for Sleep",
+ "thumbnail_text": "WHAT LIT THE NIGHT?",
+ "thumbnail_scene": {
+  "setting": "nile_bank",
+  "time": "night",
+  "weather": "clear",
+  "shot": "close",
+  "cast": [
+   {
+    "who": "elder",
+    "pose": "sit_on",
+    "action": "feed_fire",
+    "mood": "calm",
+    "item": "stick",
+    "at": "center"
+   }
+  ],
+  "props": [
+   "campfire",
+   "reeds",
+   "palm"
+  ]
+ },
+ "description": "Settle in for a slow drift back to the banks of the Nile, thousands of years ago, as the sun sets over Egypt and the day's work quiets down. We'll wander gently through oil lamps and evening meals, family stories about the gods, the priests who watched the stars to mark the hours of the night, and the tired sentries who kept a soft, steady watch until dawn. Nothing here is urgent — just a warm, dim world settling into sleep the way it did for the people who lived it. Let your eyes close whenever they're ready; the story will still be here.",
+ "tags": [
+  "history for sleep",
+  "sleep story",
+  "relaxing history",
+  "ancient egypt",
+  "egypt history",
+  "sleep documentary",
+  "history documentary",
+  "relaxing sleep story",
+  "bedtime history",
+  "nile river",
+  "ancient egyptians",
+  "history for insomnia",
+  "calm history"
+ ],
+ "era": "egypt",
+ "chapters": [
+  {
+   "title": "Evening on the Nile",
+   "beats": [
+    {
+     "say": "You settle in along the banks of the Nile, thousands of years ago, as the worst of the day's heat finally breaks. Farmers wade in from the fields and fishermen turn their reed boats toward the shore, the water catching the last gold light. The whole valley seems to slow down together, breathing out.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "basket"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bundle"
+       },
+       {
+        "who": "child",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "reed_boat",
+       "palm"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down at the water's edge, one fisherman lingers a little longer, pulling in his line unhurried while the reeds sway around his boat. The sky is turning from gold to soft rose. There is probably no reason to rush; the fish will keep till morning, and the light is too gentle to leave yet.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "fish",
+        "mood": "content",
+        "item": "rod"
+       }
+      ],
+      "props": [
+       "reed_boat",
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside a mudbrick home nearby, a woman stirs a small pot of stew as the light fades outside. Beside her, a little clay lamp burns steady on the table, spreading a soft glow across the room. It is a small, ordinary moment, repeated in countless homes up and down the river tonight.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "stir",
+        "mood": "calm",
+        "item": "bowl",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "pot",
+       "table"
+      ]
+     }
+    },
+    {
+     "say": "Back along the bank, two children are in no hurry to be called inside. They chase each other through the shallows, laughing, feet slapping the wet mud, while the reeds bend and rustle around them. For a little while longer, the water is still warm from the day's sun.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "play",
+        "mood": "happy",
+        "at": "center_left"
+       },
+       {
+        "who": "girl",
+        "pose": "crouch",
+        "action": "play",
+        "mood": "happy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "As true dark settles over the valley, an elder waves the last fisherman home, pointing him toward the safe stretch of shore. Behind them the Nile has turned black and glassy, holding a scatter of early stars on its surface, patient and slow, as it always has been.",
+     "scene": {
+      "setting": "seashore",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "point",
+        "mood": "calm"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "sleepy",
+        "item": "rod"
+       }
+      ],
+      "props": [
+       "reed_boat",
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside, a family sits close around a small brazier, sharing bread and a simple meal by its glow. Nobody speaks in a hurry. The warmth gathers in the room the way it must have gathered in homes like this one for thousands of years, plain and steady and enough.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "content",
+        "item": "bread"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, a man makes his way home along the dark bank, a basket balanced against his hip. The river murmurs beside him, unseen now but still there, and somewhere ahead a small light waits in a doorway. His steps are slow; there is nowhere left to be tonight.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "basket",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds",
+       "palm"
+      ]
+     }
+    },
+    {
+     "say": "By lamp light, an old woman mends a bit of linen, her needle moving slowly, unhurried by the hour. Beside her, a child yawns, eyes heavy, waiting to be sent to bed. The lamp gutters gently, and the room smells of warm oil and the last of the evening's bread.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "table",
+       "basket"
+      ]
+     }
+    },
+    {
+     "say": "Down at the water, a man ties the last reed boat fast for the night, moving slowly in the dark. The river lies still and wide, carrying faint moonlight along its surface, and the palms along the bank have gone quiet, their leaves barely stirring in the cooling air.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "hold",
+        "mood": "focused",
+        "item": "bundle"
+       }
+      ],
+      "props": [
+       "reed_boat",
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "In one small room, a mother sits beside her sleeping child, watching the lamp flame settle low. The little one has already drifted off, worn out from the day, breathing slow and even. She stays a while longer, in no rush to leave the quiet of the room.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Out along the river, the whole valley has gone soft and quiet, homes glowing faintly here and there in the dark. The Nile keeps moving, patient as it always has, carrying the night gently past the sleeping fields and the still, dark water. For now, there is nowhere else to be.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "lantern"
+       }
+      ],
+      "props": [
+       "mudbrick_house",
+       "torch",
+       "reed_boat",
+       "reeds"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Lighting the Lamps",
+   "beats": [
+    {
+     "say": "Inside the home, someone kneels beside a small clay lamp, tipping in a little oil until it pools soft and shining at the bottom. A twist of linen waits nearby, ready to become a wick. You can almost smell the oil, faint and warm. A child watches nearby, quiet with the wonder of it.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "stir",
+        "item": "bowl",
+        "mood": "focused",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Careful hands roll the strip of linen between finger and thumb, twisting it into a slender wick. It settles into the oil, drinking it up slowly. In a moment, struck alight, this small thread of cloth will be the only thing standing between this room and the full dark outside.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "item": "bundle",
+        "mood": "focused"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In a simple reed-and-mud hut, a family draws close around one small lamp. Its light barely reaches the walls, but nobody minds; they only need it to reach each other. An elder speaks softly, unhurried, and the rest lean in to listen, faces gentle in the low, flickering glow.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm",
+        "item": "lantern",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "idle",
+        "mood": "focused",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Outside, along the riverbank, the settlement has gone quiet and dim. Here and there a single small light glows behind a doorway, faint against the wide dark of the valley. Most households use their oil sparingly; a lamp left burning too long is oil that will not be there tomorrow.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "bundle",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "Close beside the lamp, someone mends a worn piece of cloth, the needle catching the little light with each slow stitch. It is enough to work by, if you sit near enough and do not ask for more. The glow moves gently with the flame, small and steady and kind.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "sew",
+        "item": "needle",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In another small hut, two children play quietly near the lamp, careful to stay within its reach. Their mother sits close by, watching more than working now that the light is low. Games slow down after dark; there is only so much a small flame will let you see.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "play",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "girl",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Someone walks the last stretch home along the water's edge, a torch held low and steady. The flame gutters faintly in the night air but does not go out. Ahead, a familiar doorway waits, its own small light already glowing, patient, promising warmth and rest inside.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back inside the hut, a mother lifts the lamp gently, checking how much oil remains. There is only a little left, so she sets it down near where the family sits, close enough for all to share its small circle of light. Nothing here is wasted, not even the glow itself.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "at": "center_left"
+       },
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Near the lamp, a child yawns, eyes growing heavy in its soft, wavering light. The flame dips and rises, dips and rises, and the small shadows on the walls seem to breathe along with it. Sleep is not far now, gentle as the light that watches over it.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "Down by the water, someone lingers a moment longer, a small lantern resting in their lap. The river moves on quietly in the dark, giving back tiny glints of the flame. Soon they will carry the light back inside, but for now, it is enough to sit here.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "hold",
+        "item": "lantern",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside, the family settles down for the night, the lamp burning low beside them, its flame small and unhurried. One by one, eyes close. The little light will not last much longer, and that is all right; it has done what it needed to, gently, for one more evening.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "bed"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Supper and Old Stories",
+   "beats": [
+    {
+     "say": "As the worst of the day's heat lifts, you carry supper outside to the riverbank, where the air is cooler — bread still warm, a jug of beer, maybe a little fish or a handful of onions from the day's work. Families most likely ate this way most evenings, close together in the open air, the water moving quietly beside them.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "bread",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "drink",
+        "item": "cup",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "reeds"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "There is little ceremony to it. You eat with your hands, passing the loaf around, and beer is poured without being asked twice — thick and mild, probably more food than drink. The meal is plain and eaten slowly, while the light over the water turns soft and orange, then fades.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "drink",
+        "item": "cup",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "eat",
+        "item": "bread",
+        "mood": "happy",
+        "at": "right"
+       }
+      ],
+      "props": [],
+      "variant": 2
+     }
+    },
+    {
+     "say": "For a moment you sit a little apart, the last of your cup still in hand, and watch the river carry the day's color away downstream. The water is unhurried tonight, as it usually is here. It is a small, quiet pause before the stories begin, asking nothing of you at all.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "drink",
+        "item": "cup",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "sleepy",
+        "at": "center_left"
+       }
+      ],
+      "props": [],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Once the meal is cleared, an elder settles in among the family and begins, as elders probably did most nights, with an old story about the gods. The children lean in, already a little drowsy from the day's warmth. These are less lessons than familiar songs, telling how the gods quarreled, and loved, and set the world in order.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "focused",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Someone slips back inside for a moment to bank the oven for morning, and the little oil lamp throws a low, steady light across the mudbrick wall. Outside, the elder's voice carries on without pause. You think of how many nights this same story has been told in this same small room, by this same gentle light.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "stir",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Back by the water, the story turns to the sun god's long journey — how he sails his boat across the sky by day, and at night crosses through the dark below the world, holding off a great serpent so that morning can come again. The river before you seems to carry that same journey in miniature, dark and patient, into the night.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "point",
+        "mood": "focused",
+        "item": "torch"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "worried"
+       }
+      ],
+      "props": [
+       "reed_boat",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "The elder's hands move as the tale turns, pushing a boat forward, driving a serpent back, and a child's eyes go wide, then heavy, then wide again — caught between wanting to know what happens next and wanting to close them. No one can know the exact words used in a telling like this, only that stories much like it were carried for generations.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "focused",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "basket"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down at the water's edge, one of the children has stopped listening altogether, curled up small against the cool evening air, eyes finally giving in to sleep. The river goes on being the river, patient about it, the same dark line it has been every night of this child's short life. No one wakes the child; there will be more of the story tomorrow.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "One by one the others quiet too, the elder's voice softening to something closer to a murmur, less about being heard now than about simply continuing. Someone draws a fold of cloth over a small sleeping shoulder. The story keeps going anyway, unhurried, the way it always has, whether or not everyone by the water is still quite awake to hear the end.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "hold",
+        "item": "bundle",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center_right"
+       }
+      ],
+      "props": [],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Inside, the lamp is carried back to its place near the sleeping mats, its light small and steady against the dark. The last low words of the story drift in from outside and settle over the room like something familiar and safe. Sleep tonight comes not from silence but from a voice that has been telling the same gentle, old truths for as long as anyone can remember.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "lantern",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "bed"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Watching the Stars",
+   "beats": [
+    {
+     "say": "Beyond the mudbrick walls, past the last dark field, a priest leads a few companions into the open desert night. Their small fire holds back the chill. He tips his head back and finds a certain star just clearing the horizon. This, he tells them, is a decan, one of the stars the temples watch to mark the hours as they pass toward dawn.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "focused",
+        "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Inside, by the low light of an oil lamp, an older priest sits with a boy and traces star groups painted across the ceiling beams. Thirty-six of these decan stars circle the year, he explains, each rising a little earlier than the one before, so that watching them is almost like reading a clock written across the sky itself.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "look_up",
+        "mood": "focused",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down at the river's edge a woman sits with her child, watching stars scatter and tremble on the moving water. She points out one bright point rippling near the reeds and says the sky is doubled here, once above and once below, and that the same slow stars are keeping time in both.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "point",
+        "mood": "calm",
+        "at": "center_left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "look_up",
+        "mood": "content",
+        "at": "center_right"
+       }
+      ],
+      "props": []
+     }
+    },
+    {
+     "say": "Back in the desert, near the fire, the priest points again as a second decan lifts clear of the sand. Another hour has turned, he says, and the men beside him nod, quiet and unhurried, watching the dark line of the horizon for whatever star comes next.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "at": "right"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Inside a small home, an old woman sits with a lamp burning low and begins the story people tell of the night sky: that Nut, the sky itself, swallows the sun each evening as it sets, carrying it through her body until dawn, when she gives it back to the world new and warm again.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "lie",
+        "action": "look_up",
+        "mood": "calm"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "look_up",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down where the river meets the darkening sky, a family stands together and watches the sun sink low over the water, the light going gold and then red along the reeds. This, the old stories say, is Nut opening her mouth to take the sun in for the night.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hug_self",
+        "mood": "calm"
+       },
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "reeds",
+       "palm"
+      ]
+     }
+    },
+    {
+     "say": "By the lamp inside, a child asks, quietly, whether the sun is afraid in the dark. The old woman shakes her head and says the sun is never truly lost, only resting inside the sky, safe as anything can be, until it is time to be born again.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "worried",
+        "at": "left"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "At the river at first light, a man and a woman stand watching the sky pale along the water, waiting for the sun to rise. When it finally lifts clear of the horizon, they say quietly that this is the sun being born from Nut once more, the same as every morning before it.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "point",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside, by the coals of a small brazier, a woman stirs a pot while her child eats close beside her, the morning warmth settling over the room. The night's stars and the story of Nut already feel far away, folded into the ordinary comfort of a new day beginning.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dawn",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "stir",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content",
+        "item": "bread"
+       }
+      ],
+      "props": [
+       "brazier"
+      ]
+     }
+    },
+    {
+     "say": "Out in the desert once more, alone by his fire, the priest sits with a flat stone marked with lines and points, checking his count of the night's decans against what he has carved there before, patient and careful, the way this watching has always been done.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "point",
+        "mood": "focused",
+        "item": "stone"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Inside, near the lamp, the old woman finishes her telling as the children settle lower onto their mats. Every night, she says, is the same slow crossing, and every morning the same quiet return, the way it has always gone and always will.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "look_up",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In the small room, the lamp burns down to almost nothing as a child drifts toward sleep. Somewhere outside, past the walls, another decan is climbing the dark, keeping its same old watch over a night that is, once again, settling gently toward morning.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "calm",
+        "item": "lantern"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Watchmen in the Dark",
+   "beats": [
+    {
+     "say": "Beyond the last houses, the desert stretches pale and cold under a hard frost. A guard walks the boundary path, torch held low, his dog trotting beside him. Near a small fire, another watchman warms his hands and says nothing. The night is long, and they are used to it.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "frost",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "stick"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "warm_hands",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Down at the riverbank, fog drifts low over the water, blurring the reed boats tied up for the night. Two guards walk the path where the fields meet the river, more from habit than alarm. One points toward a shape in the mist — only a heron, settling back down.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "fog",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "surprised",
+        "item": "spear",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "item": "torch",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside the storeroom, a guard holds up a small lantern and checks the rows of grain jars and sealed baskets. Everything sits where it should, undisturbed since the evening count. He touches one basket out of habit, then turns back toward the door and the cooler air outside.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "drink",
+        "mood": "focused",
+        "item": "lantern",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "candle",
+       "jar",
+       "basket"
+      ]
+     }
+    },
+    {
+     "say": "At the edge of the open ground, a guard crouches by a low campfire and feeds it a few twigs. The flames barely rise, just enough to keep the chill off his hands. He listens for anything out of place, and hears only the fire and, far off, the sleeping village.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Somewhere past the walls, a dog begins to bark, sharp and sudden in the stillness. A guard straightens by his small fire, hand tightening on his spear, and listens. The barking trails into a few tired grumbles, then quiet again. He lets his shoulders drop. Only a jackal, probably.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "worried",
+        "item": "spear",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In the small guard hut, off-duty watchmen doze by a low candle, its flame trembling with each breath of wind through the doorway. One stirs, feeds a stick to the little brazier, then settles back into sleep. Outside, footsteps pass slowly, unhurried, just another circuit of the walls.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "feed_fire",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle",
+       "brazier",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "From a low mound at the village's edge, two guards look out past the fields toward the desert beyond. Little separates the sown land from the sand out here, just a line the eye can barely find at night. A small fire keeps them company, more comfort than defense.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "focused",
+        "item": "torch",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire",
+       "rock"
+      ]
+     }
+    },
+    {
+     "say": "Down by the water, a guard sits a while, feet resting near the bank, listening to the current slide past in the dark. It says the same thing it always does — nothing, steady, unconcerned with watchmen or worry. He breathes out slowly, and the night settles a little further into him.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Near midnight, out past the walls, one watch trades places with the next. A tired guard hands his torch to a fresher one, murmurs that all was quiet, and turns toward home. The new watchman lifts the flame higher and begins the same slow round his friend has just finished.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "sleepy",
+        "item": "torch",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "item": "torch",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "torch"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In a second storeroom near the granary, another guard checks the oil jars by the light of a small lamp, making sure the seals are unbroken. He counts them quietly, moving his lips without sound, the way he always does. Satisfied, he sets the lamp down and steps back out into the cold.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp",
+       "candle",
+       "jar"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The hours pass slowly and much the same. Guards walk their rounds, pause, listen, walk again. Nothing happens, and nothing is expected to. Out past the fields, the desert holds its cold silence, and the stars turn overhead exactly as they have every night before this one.",
+     "scene": {
+      "setting": "desert",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "rock"
+      ]
+     }
+    },
+    {
+     "say": "By the riverbank, the water keeps its own quiet watch, moving the same way it has all night, all year, always. A guard glances toward it once, finds it unchanged, and turns back to the path. Somewhere behind him, the village sleeps on, safe in its ordinary, uneventful dark.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "reeds"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Sleep by the River",
+   "beats": [
+    {
+     "say": "Inside the mudbrick house, a woman leans close to the oil lamp, trimming its wick so the flame settles into a small, steady glow. The evening meal is long finished, and the room has grown quiet, ready now for sleep.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "feed_fire",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "In a simpler home nearby, a family spreads out their sleeping mats. A man carries a bundle of folded cloth to where his wife will lie, she rests against it with her arms around herself, and their child stands nearby, already yawning in the fading light.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "hug_self",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, along the riverbank, the Nile moves the same slow way it always has, catching the last color from the sky. A man walks the path once more, staff in hand, glancing toward the water before turning home for the night.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "point",
+        "mood": "calm",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds",
+       "palm"
+      ]
+     }
+    },
+    {
+     "say": "By lamplight, an elder sits beside a child's low bed, finishing some small, quiet story before sleep. The words come slower now, more breath than sound, and the child's eyes have already fallen closed, headrest smooth beneath a still cheek.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "bed",
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "In the hut, a man and woman lie down together on their mats, the brazier's last coals glowing dim and orange in the corner. She pulls a woven cover over her shoulder and closes her eyes, letting the warmth carry her toward sleep.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "brazier"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Down at the river, the water keeps moving in the dark, unseen but constant, sliding past the reeds exactly as it has every night before this one, and will again tomorrow, long after everyone here has stopped watching it.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [],
+      "props": [
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Inside the mudbrick house, the whole family lies still now, heads resting on their smooth wooden headrests. The oil lamp burns low in the corner, its light shrinking to a small orange point before softening further into near dark.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "bed",
+       "oil_lamp"
+      ]
+     }
+    },
+    {
+     "say": "Across the village, in another home, a man and woman lie close together with their child curled between them, the family dog settled near their feet. The embers fade to almost nothing now, and the room grows dark and still around them.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "dog",
+       "brazier"
+      ]
+     }
+    },
+    {
+     "say": "By the water, the reed boats sit tied and motionless for the night, rocking only slightly where the current brushes past them. The Nile carries on unseen in the darkness, patient and unhurried, asking nothing of anyone tonight.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [],
+      "props": [
+       "reed_boat",
+       "reeds"
+      ]
+     }
+    },
+    {
+     "say": "Back in the mudbrick house, the woman leans toward the oil lamp one last time and lets her breath put it out. Darkness settles gently over the sleeping room, soft and complete, the day finally, fully finished.",
+     "scene": {
+      "setting": "mudbrick_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "stir",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "oil_lamp"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In the quiet hut, a child sleeps curled small beneath a blanket, one hand resting near the family dog. Nothing moves now but the slow, even rise and fall of breathing, steady in the dark.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "dog",
+       "bed",
+       "brazier"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, the Nile keeps flowing gently in the dark, exactly as it will tonight, long after this story has ended. You can let your eyes close now too, resting easy, the river moving quietly on without you, all night long.",
+     "scene": {
+      "setting": "nile_bank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "reeds",
+       "palm"
+      ]
+     }
+    }
+   ]
+  }
+ ],
+ "sources": [],
+ "topic": "What did ancient Egyptians do after dark?",
+ "added": "2026-09-25T03:39",
+ "authored_by": "ori_author"
+}
