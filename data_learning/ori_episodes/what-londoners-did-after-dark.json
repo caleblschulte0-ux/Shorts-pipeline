@@ -58,12 +58,12 @@
      "scene": {
       "setting": "street",
       "time": "dusk",
-      "weather": "clear",
-      "shot": "wide",
+      "weather": "rain",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
+        "pose": "stand",
         "action": "point",
         "mood": "focused",
         "item": "torch",
@@ -73,13 +73,13 @@
       "props": [
        "gas_lamp"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
      "say": "Inside one of the terraced houses, the parlour glows with firelight. A woman sits close to the hearth, needle moving steadily through cloth, while a child plays quietly on the rug nearby. The clock on the shelf ticks softly, and the smell of coal smoke and warm bread drifts from the next room. Out on the street the rain goes on, but in here it barely reaches the ear.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -88,22 +88,25 @@
         "who": "woman",
         "pose": "sit",
         "action": "sew",
-        "mood": "calm",
-        "item": "needle"
+        "mood": "content",
+        "item": "needle",
+        "at": "center_left"
        },
        {
         "who": "child",
         "pose": "crouch",
         "action": "play",
-        "mood": "happy"
+        "mood": "happy",
+        "item": "stick",
+        "at": "right"
        }
       ],
       "props": [
        "hearth",
-       "candle",
-       "table"
+       "clock",
+       "candle"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
@@ -116,7 +119,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
         "mood": "focused",
         "item": "basket"
@@ -133,7 +136,7 @@
        "cart",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -153,10 +156,9 @@
        }
       ],
       "props": [
-       "reeds",
        "campfire"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -231,8 +233,7 @@
        }
       ],
       "props": [
-       "hearth",
-       "stove"
+       "hearth"
       ]
      }
     },
@@ -253,15 +254,16 @@
        }
       ],
       "props": [
-       "reeds"
+       "reeds",
+       "rock"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
      "say": "Back in the parlour, a child grows sleepy, yawning against the arm of a chair while a woman gathers a blanket close around small shoulders. The fire has burned down to a low, steady glow. Nothing more needs to happen tonight than this, the slow settling of a house, and a child drifting toward sleep.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -285,20 +287,28 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
      "say": "Out on the street, the shops have shut their shutters, and rain falls thin and quiet under the gas lamps. There is nowhere left to be. The city that rushed all day has folded itself down into doorways and lit windows, waiting for the dark to finish arriving.",
      "scene": {
       "setting": "street",
-      "time": "night",
-      "weather": "clear",
-      "shot": "wide",
-      "cast": [],
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hug_self",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
       "props": [
        "gas_lamp",
-       "torch"
+       "cottage"
       ],
       "variant": 1
      }
@@ -306,7 +316,7 @@
     {
      "say": "And in one more parlour, an elder leans forward to feed the fire a last piece of coal, content to watch it catch. This is where our evening begins, not with anything happening, but with London, house by house, letting the day go. We will follow it further into the dark, from here.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -316,13 +326,14 @@
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "content",
+        "item": "stone",
         "at": "center"
        }
       ],
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 3
      }
     }
    ]
@@ -335,12 +346,12 @@
      "scene": {
       "setting": "street",
       "time": "dusk",
-      "weather": "clear",
+      "weather": "rain",
       "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "focused",
         "item": "rod",
@@ -348,10 +359,9 @@
        }
       ],
       "props": [
-       "gas_lamp",
-       "torch"
+       "gas_lamp"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
@@ -359,20 +369,20 @@
      "scene": {
       "setting": "riverbank",
       "time": "dusk",
-      "weather": "clear",
-      "shot": "wide",
+      "weather": "fog",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
-        "action": "point",
-        "mood": "calm",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
         "item": "lantern",
-        "at": "center_left"
+        "at": "center"
        }
       ],
       "props": [
-       "campfire"
+       "gas_lamp"
       ],
       "variant": 3
      }
@@ -403,24 +413,23 @@
     {
      "say": "Across the park, the walks are nearly empty now. A keeper moves along the gravel path with his own pole, lighting the lamps that line it one by one. Rain falls lightly through the bare branches overhead, and each new lamp holds its small flame steady against the wet dark.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "farmyard",
       "time": "dusk",
-      "weather": "clear",
-      "shot": "wide",
+      "weather": "rain",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
-        "action": "carry",
+        "pose": "stand",
+        "action": "point",
         "mood": "focused",
         "item": "torch",
-        "at": "center_right"
+        "at": "center"
        }
       ],
       "props": [
-       "hearth"
-      ],
-      "variant": 2
+       "gas_lamp"
+      ]
      }
     },
     {
@@ -450,7 +459,7 @@
       "props": [
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 4
      }
     },
     {
@@ -470,7 +479,7 @@
        },
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "focused",
         "item": "rod",
@@ -478,10 +487,10 @@
        }
       ],
       "props": [
-       "gas_lamp",
-       "torch"
+       "campfire",
+       "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -520,15 +529,16 @@
         "who": "man",
         "pose": "crouch",
         "action": "gather",
-        "mood": "content",
+        "mood": "focused",
         "item": "bundle",
         "at": "center"
        }
       ],
       "props": [
+       "gas_lamp",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -537,28 +547,29 @@
       "setting": "street",
       "time": "night",
       "weather": "clear",
-      "shot": "wide",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "drink",
         "mood": "content",
+        "item": "cup",
         "at": "center_left"
        },
        {
         "who": "man",
         "pose": "sit_on",
-        "action": "drink",
-        "mood": "calm",
-        "item": "cup",
+        "action": "point",
+        "mood": "focused",
         "at": "center_right"
        }
       ],
       "props": [
        "torch",
        "gas_lamp"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -596,7 +607,7 @@
      "scene": {
       "setting": "lakeshore",
       "time": "night",
-      "weather": "clear",
+      "weather": "fog",
       "shot": "close",
       "cast": [
        {
@@ -615,9 +626,9 @@
        }
       ],
       "props": [
-       "campfire"
+       "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -630,17 +641,18 @@
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
-        "action": "carry",
+        "pose": "stand",
+        "action": "hold",
         "mood": "focused",
-        "item": "lantern",
+        "item": "torch",
         "at": "center"
        }
       ],
       "props": [
+       "gas_lamp",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 2
      }
     }
    ]
@@ -750,7 +762,7 @@
       "props": [
        "candle"
       ],
-      "variant": 1
+      "variant": 4
      }
     },
     {
@@ -780,16 +792,16 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 5
      }
     },
     {
      "say": "In a slightly larger parlour nearby, a family sits together at the table for a simple supper, bread and a little cheese, perhaps something warm from the hearth behind them. Nobody talks much. There is the soft clink of a spoon against a bowl, the settling creak of the fire, and the plain comfort of being fed together, the evening now fully closed in around the house.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "parlour_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "wide",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
@@ -807,10 +819,9 @@
        }
       ],
       "props": [
-       "table",
        "hearth"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -840,13 +851,13 @@
       "props": [
        "campfire"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
      "say": "In another front room nearby, an elderly woman has stopped even pretending to read, her book resting closed in her lap. The room has gone warm and heavy with the day, and her eyes keep drifting shut for a moment before opening again. She does not fight it. In houses like this, all across the city, the evening is beginning to soften into something closer to rest.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -861,8 +872,7 @@
       ],
       "props": [
        "chair",
-       "hearth",
-       "bookshelf"
+       "hearth"
       ]
      }
     },
@@ -872,12 +882,12 @@
       "setting": "street",
       "time": "night",
       "weather": "rain",
-      "shot": "wide",
+      "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
-        "action": "carry",
+        "pose": "stand",
+        "action": "hold",
         "mood": "focused",
         "item": "torch",
         "at": "center"
@@ -885,7 +895,8 @@
       ],
       "props": [
        "gas_lamp"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -908,7 +919,8 @@
         "who": "child",
         "pose": "crouch",
         "action": "play",
-        "mood": "happy",
+        "mood": "content",
+        "item": "stone",
         "at": "right"
        }
       ],
@@ -975,10 +987,9 @@
        }
       ],
       "props": [
-       "gas_lamp",
-       "carriage"
+       "gas_lamp"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1009,7 +1020,7 @@
        "torch",
        "gas_lamp"
       ],
-      "variant": 2
+      "variant": 5
      }
     },
     {
@@ -1024,18 +1035,20 @@
         "who": "man",
         "pose": "stand",
         "action": "talk",
-        "mood": "happy"
+        "mood": "happy",
+        "item": "cup",
+        "at": "left"
        },
        {
         "who": "woman",
         "pose": "stand",
         "action": "drink",
         "item": "cup",
-        "mood": "happy"
+        "mood": "happy",
+        "at": "right"
        }
       ],
       "props": [
-       "hearth",
        "candle",
        "table"
       ]
@@ -1056,13 +1069,21 @@
         "item": "basket",
         "mood": "focused",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "point",
+        "mood": "content",
+        "at": "right"
        }
       ],
       "props": [
-       "barrel",
+       "table",
+       "basket",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1082,10 +1103,9 @@
        }
       ],
       "props": [
-       "reeds",
        "campfire"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1121,7 +1141,7 @@
       "props": [
        "gas_lamp"
       ],
-      "variant": 2
+      "variant": 5
      }
     },
     {
@@ -1135,7 +1155,7 @@
        {
         "who": "elder",
         "pose": "crouch",
-        "action": "feed_fire",
+        "action": "stir",
         "mood": "focused",
         "at": "left"
        },
@@ -1148,9 +1168,10 @@
        }
       ],
       "props": [
+       "campfire",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 4
      }
     },
     {
@@ -1174,7 +1195,7 @@
         "pose": "walk",
         "action": "point",
         "mood": "sleepy",
-        "at": "center"
+        "at": "center_right"
        }
       ],
       "props": [
@@ -1192,25 +1213,24 @@
       "cast": [
        {
         "who": "man",
-        "pose": "crouch",
+        "pose": "sit_on",
         "action": "hold",
         "item": "lantern",
-        "mood": "calm",
+        "mood": "sleepy",
         "at": "left"
        },
        {
         "who": "old_woman",
-        "pose": "sit_on",
-        "action": "yawn",
+        "pose": "lie",
+        "action": "sleep",
         "mood": "sleepy",
         "at": "right"
        }
       ],
       "props": [
-       "reeds",
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
@@ -1223,16 +1243,17 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "stand",
-        "action": "warm_hands",
-        "mood": "sleepy",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "focused",
+        "item": "bundle",
         "at": "center"
        }
       ],
       "props": [
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
@@ -1255,7 +1276,7 @@
        "gas_lamp",
        "torch"
       ],
-      "variant": 1
+      "variant": 4
      }
     }
    ]
@@ -1283,7 +1304,7 @@
       "props": [
        "gas_lamp"
       ],
-      "variant": 1
+      "variant": 2
      }
     },
     {
@@ -1304,7 +1325,7 @@
        }
       ],
       "props": [],
-      "variant": 2
+      "variant": 5
      }
     },
     {
@@ -1320,13 +1341,16 @@
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "focused",
-        "item": "stick"
+        "item": "stick",
+        "at": "center_left"
        },
        {
         "who": "woman",
         "pose": "stand",
         "action": "hold",
-        "mood": "calm"
+        "mood": "calm",
+        "item": "bundle",
+        "at": "center_right"
        }
       ],
       "props": [
@@ -1373,17 +1397,17 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "crouch",
         "action": "hold",
         "mood": "focused",
         "at": "center"
        }
       ],
       "props": [
-       "gas_lamp",
-       "barrel"
+       "barrel",
+       "gas_lamp"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1412,7 +1436,7 @@
       "props": [
        "gas_lamp"
       ],
-      "variant": 2
+      "variant": 5
      }
     },
     {
@@ -1431,16 +1455,14 @@
         "at": "center"
        }
       ],
-      "props": [
-       "dog"
-      ],
-      "variant": 2
+      "props": [],
+      "variant": 4
      }
     },
     {
      "say": "In another small room, an old woman sits by her hearth long after the household has gone up to bed, feeding it one last stick before she banks it low. She has never quite trusted sleep to come easily, and the fire, dimming steadily, keeps her company until it does.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1456,7 +1478,7 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1485,7 +1507,8 @@
       ],
       "props": [
        "gas_lamp"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -1506,13 +1529,13 @@
        }
       ],
       "props": [],
-      "variant": 2
+      "variant": 4
      }
     },
     {
      "say": "In one more small room, a child stirs and half-wakes, and a mother, still half-asleep herself, reaches over without needing to open her eyes fully, settling a blanket back into place until the small shifting quiets again.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "parlour_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1535,7 +1558,7 @@
       "props": [
        "candle"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1558,7 +1581,7 @@
        "torch",
        "gas_lamp"
       ],
-      "variant": 3
+      "variant": 6
      }
     }
    ]
@@ -1585,7 +1608,8 @@
       ],
       "props": [
        "gas_lamp"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -1606,13 +1630,13 @@
        }
       ],
       "props": [],
-      "variant": 3
+      "variant": 6
      }
     },
     {
      "say": "In a small back room, a woman kneels before the hearth and banks the fire low, raking the embers into a careful heap that will hold its heat until morning. The room glows warm and orange a moment longer before it dims. She rests a hand on the mantel and lets herself feel, at last, how tired the whole day has made her.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1628,7 +1652,7 @@
        "hearth",
        "candle"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1677,7 +1701,8 @@
       "props": [
        "candle",
        "bed"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
@@ -1700,7 +1725,7 @@
       "props": [
        "campfire"
       ],
-      "variant": 3
+      "variant": 6
      }
     },
     {
@@ -1722,7 +1747,7 @@
       "props": [
        "hearth"
       ],
-      "variant": 2
+      "variant": 5
      }
     },
     {
@@ -1741,10 +1766,9 @@
        }
       ],
       "props": [
-       "hearth",
-       "bed"
+       "hearth"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1758,7 +1782,7 @@
       "props": [
        "hearth"
       ],
-      "variant": 1
+      "variant": 4
      }
     }
    ]
@@ -1767,5 +1791,12 @@
  "sources": [],
  "topic": "What did Victorian Londoners do after dark?",
  "added": "2026-09-24T22:38",
- "authored_by": "ori_author"
+ "authored_by": "ori_author",
+ "storyboard": {
+  "kit": "a2e01e908139",
+  "clean": false,
+  "reviewed_at": "2026-09-25T02:14",
+  "rounds": 3,
+  "repaired": 151
+ }
 }
