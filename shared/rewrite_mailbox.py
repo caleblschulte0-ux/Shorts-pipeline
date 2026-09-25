@@ -594,8 +594,8 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
     if changed and not dry_run:
         tmp = config_path.with_suffix(".json.tmp")
         # in the file's own indent, or one rewrite is a 29,000-line diff
-        _m = re.search(r"\n( +)\"", config_path.read_text())
-        tmp.write_text(json.dumps(cfg, indent=len(_m.group(1)) if _m else 2,
+        from shared.fsutil import file_indent
+        tmp.write_text(json.dumps(cfg, indent=file_indent(config_path),
                                   ensure_ascii=False) + "\n")
         os.replace(tmp, config_path)
     return report

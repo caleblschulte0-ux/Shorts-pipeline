@@ -106,7 +106,8 @@ def propose(slug: str, verdict: dict, config_path: Path, log=print) -> dict:
         story_cfg[f"{role}_scene"], story_cfg[f"{role}_data"] = got, idx
     else:
         story_cfg["segments"][beat]["illustrated_scene"] = got
-    config_path.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+    from shared.fsutil import write_json_if_changed
+    write_json_if_changed(config_path, cfg, ensure_ascii=False)
 
     def undo() -> None:
         """Put this story back exactly as it was. Never raises."""

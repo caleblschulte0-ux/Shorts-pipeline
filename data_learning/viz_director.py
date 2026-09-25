@@ -694,8 +694,8 @@ def grade_mechanics(story_cfg: dict, depictions, config_path=None) -> int:
                         if isinstance(b.get("scene"), dict) and b["scene"].get("grade"):
                             a["scene"] = b["scene"]
                     break
-                with open(cp, "w", encoding="utf-8") as fh:
-                    fh.write(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+                from shared.fsutil import write_json_if_changed
+                write_json_if_changed(cp, cfg, ensure_ascii=False)
             except Exception as e:  # noqa: BLE001
                 print(f"[director] config grade skipped: {e}", flush=True)
         print(f"[director] graded {graded} mechanic(s) for "
