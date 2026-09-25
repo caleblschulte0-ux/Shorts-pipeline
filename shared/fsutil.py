@@ -51,7 +51,7 @@ def file_indent(path: str | Path, default: int = 2) -> int:
             head = fh.read(4096)
         m = re.search(r"\n( +)\"", head)
         return len(m.group(1)) if m else default
-    except OSError:
+    except (OSError, UnicodeDecodeError):     # missing or junk: the default
         return default
 
 
