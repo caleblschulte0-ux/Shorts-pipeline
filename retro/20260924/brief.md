@@ -1,16 +1,19 @@
 # Retro — 20260924
 
-generated 2026-09-24T23:30:55Z · 7 video(s) posted today
+generated 2026-09-25T00:30:57Z · 12 video(s) posted today
 
 ## trending
 
 | video | age | views | vph | vs same age |
 |---|---|---|---|---|
-| Obesity Passed Underweight Worldwide | 0.9h | 0 | 0.0 | — · too young to judge |
+| Obesity Passed Underweight Worldwide | 10.6h | 2 | 0.1887 | — · no comparable history |
+| She Screamed To Get Me Fired. I Audit This S | 9.1h | 0 | 0.0 | — · no comparable history |
+| Nvidia Overtook Apple In Market Value | 9.1h | 0 | 0.0 | — · no comparable history |
+| He Wanted Every Minute Logged. So I Logged H | 7.6h | 0 | 0.0 | — · no comparable history |
 
-- 7d: 22 videos, median 0.0 views
-- 30d: 68 videos, median 1.0 views
-- thin data (<5): 6-24h, 0-6h
+- 7d: 23 videos, median 0.0 views
+- 30d: 69 videos, median 1.0 views
+- thin data (<5): 6-24h
 
 ## explainer
 
@@ -36,12 +39,15 @@ _nothing published today_
 
 | video | age | views | vph | vs same age |
 |---|---|---|---|---|
-| Kaicenat: Kai Cenat Insists He's A Gamer, Th | 15.4h | 2 | 0.1299 | p80 · top quartile |
-| Erobb221: Ricky And Maynard's Street Fight E | 12.4h | 0 | 0.0 | p30 · middling |
-| Clix Hits The Pump Shot Nobody Can Explain | 10.9h | 0 | 0.0 | p30 · middling |
+| Kaicenat: Kai Cenat Insists He's A Gamer, Th | 23.4h | 2 | 0.0855 | — · no comparable history |
+| Erobb221: Ricky And Maynard's Street Fight E | 20.4h | 0 | 0.0 | — · no comparable history |
+| Clix Hits The Pump Shot Nobody Can Explain | 18.9h | 2 | 0.1058 | — · no comparable history |
+| Buddha Gets So Hyped Carmella Is Back On The | 3.9h | 3 | 0.7692 | — · no comparable history |
+| Her Stalker Bought a New PC Just to Keep Har | 2.4h | 0 | 0.0 | — · no comparable history |
 
-- 7d: 33 videos, median 14.0 views
-- 30d: 105 videos, median 10.0 views
+- 7d: 32 videos, median 12.5 views
+- 30d: 104 videos, median 9.0 views
+- thin data (<5): 0-6h, 6-24h, 4w+
 
 ## What you owe today
 
@@ -50,7 +56,7 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 0.76d, 0 samples, needs 28d / 25 samples · 0.8/28 days elapsed — too early to read
+    - 0.8d, 1 samples, needs 28d / 25 samples · 0.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
@@ -68,11 +74,11 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 - consecutive failures: 0
 - exchange: {"media": {"fulfilled": 0, "self_filled": 15, "unfilled": 0, "refused": 0}, "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 6}, "done_marker": false, "authored": {"promoted": 0, "rejecte
-- slots: {"target": 6, "shipped": 0, "held": 4, "backfilled": 4, "short": 6, "held_reasons": ["showrunner_block: showrunner BLOCK: The title promises the lead keeps changing hands, but Silver leads from the fi
-- showrunner: {"recent": 40, "blocks": 36, "avg_score": 65.0}
+- slots: {"target": 6, "shipped": 1, "held": 0, "backfilled": 4, "short": 5, "held_reasons": []}
+- showrunner: {"recent": 40, "blocks": 35, "avg_score": 65.2}
 
 ## Repo
 
-- HEAD 340f78f, 50 commit(s) since 2026-09-23
+- HEAD b19396c, 50 commit(s) since 2026-09-24
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.

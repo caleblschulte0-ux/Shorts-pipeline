@@ -2,19 +2,17 @@
 
 ## Health
 
-- 6 trending slot(s) ended with no video, after 4 retry(ies)
+- 5 trending slot(s) ended with no video, after 4 retry(ies)
 
 ## Channels (mature videos only)
 
-- **trending**: 1 video(s) at ~24h, median 0.0 views _(thin)_
-    - best: Africa's Population Passed Europe's (0.5063 vph)
-    - worst: Electric Cars Just Outsold Diesel Worldwide (0.0 vph)
+- **trending**: nothing in the 24h window yet
 - **explainer**: 1 video(s) at ~24h, median 45.0 views _(thin)_
     - best: Why Is America Growing 4 Times More 100-Year-Olds? (7.9006 vph)
     - worst: Sugar Content Revealed (0.0 vph)
 - **curiosity**: nothing in the 24h window yet
-- **third**: 2 video(s) at ~24h, median 25.0 views _(thin)_
-    - best: Jynxzi Got Warned Not To Do It... Then This Happened (8.1983 vph)
+- **third**: 4 video(s) at ~24h, median 1.0 views _(thin)_
+    - best: Jynxzi Got Warned Not To Do It... Then This Happened (7.8201 vph)
     - worst: Deshaefrost Reveals Her Wild Backup Plan If Streaming Fails  (0.0 vph)
 
 ## Experiments
@@ -23,4 +21,4 @@
 
 ## Needs Caleb
 
-- 6 trending slot(s) ended with no video, after 4 retry(ies)
+- 5 trending slot(s) ended with no video, after 4 retry(ies)
