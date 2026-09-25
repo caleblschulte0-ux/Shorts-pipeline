@@ -1350,22 +1350,30 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         d.rounded_rectangle([px - pan_w // 2, py + 78, px + pan_w // 2, py + 118],
                             radius=18, fill=_rgba(col, 235))
         side = 0 if (px, py) == (lx, ly) else 1
-        _bw, _bh = 60, 30
+        _bw, _bh = (60, 58) if cutout is not None else (60, 30)
+        _g = _fit(cutout, _bw, _bh) if cutout is not None else None
+
+        def _weight(bx_, by_, alpha):
+            if _g is not None:
+                gk = _g
+                if alpha < 235:
+                    gk = _g.copy()
+                    gk.putalpha(gk.getchannel("A").point(
+                        lambda v, a=alpha: int(v * a / 255)))
+                canvas.alpha_composite(gk, (int(bx_), int(by_)))
+            else:
+                d.rounded_rectangle([bx_, by_, bx_ + _bw, by_ + _bh], radius=7,
+                                    fill=_rgba(col, alpha))
         for k in range(landed[side]):
             r_, c_ = divmod(k, 3)
-            bx_ = px - 96 + c_ * 66
-            by_ = py + 78 - (r_ + 1) * (_bh + 4)
-            d.rounded_rectangle([bx_, by_, bx_ + _bw, by_ + _bh], radius=7,
-                                fill=_rgba(col, 235))
+            _weight(px - 96 + c_ * 66, py + 78 - (r_ + 1) * (_bh + 4), 235)
         for (fs, fi, fu) in falling:
             if fs != side:
                 continue
             r_, c_ = divmod(fi, 3)
-            bx_ = px - 96 + c_ * 66
             by_ = py + 78 - (r_ + 1) * (_bh + 4)
             by_ -= int((1.0 - fu * fu) * 420)       # dropping in from above
-            d.rounded_rectangle([bx_, by_, bx_ + _bw, by_ + _bh], radius=7,
-                                fill=_rgba(col, int(235 * min(1.0, fu * 3))))
+            _weight(px - 96 + c_ * 66, by_, int(235 * min(1.0, fu * 3)))
         # The numbers are up almost immediately. They used to fade in over
         # reveal 0.2-0.7, which left the first fifth of the visual as a nearly
         # level beam with two empty pans — a frame that tells you nothing while
@@ -1415,7 +1423,7 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         canvas.alpha_composite(
             _fit(host, mw, mh),
             (int(min(max(hx - mw // 2, 8), W - mw - 8)),
-             int(hy + 78 - mh - _rows * 34)))
+             int(hy + 78 - mh - _rows * (_bh + 4))))
     return (value, "art", int(lx), int(ly + 98))
 
 
@@ -5989,15 +5997,22 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
         if u <= 0:
             continue
         u = min(1.0, u)
-        # DOWN out of the first one, then ACROSS to its place: two decisive
-        # moves, and never through the words beside it
-        e1 = settle(min(1.0, u / 0.5))
-        e2 = settle(max(0.0, (u - 0.5) / 0.5))
-        cx = int(x0 + (slots[k] - x0) * e2)
-        cy = int(y_then + (y_now - y_then) * e1)
+        # IN FROM THE RIGHT, ALONG ITS OWN ROW. Sliding out of the first
+        # cup, each copy passed through the ones already landed — "the second
+        # 2025 cup ... cross-fades through itself" (the judge, 2026-09-25) —
+        # and a drop from above ran through the THEN cup. The row fills left
+        # to right, so everything to a copy's right is still empty.
+        cx = int(slots[k] + (1.0 - settle(u)) * (bx1 - slots[k]))
+        cy = y_now
         frac = min(1.0, r - k)
+        _fade = min(1.0, u * 3.0)
         if frac >= 0.999:
-            canvas.alpha_composite(g, (cx, cy))
+            gk = g
+            if _fade < 1.0:
+                gk = g.copy()
+                gk.putalpha(gk.getchannel("A").point(
+                    lambda v, a=_fade: int(v * a)))
+            canvas.alpha_composite(gk, (cx, cy))
         else:
             # A PART-CUP, not a hard crop: the whole cup faint, and the
             # fraction of it solid ("draw the 0.2 as a partly filled cup",
@@ -6685,8 +6700,14 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 rv = _resolve((el.get("data") or {}).get("vs_from"), insight)
                 if not (lv and rv):
                     continue
+                # the weights are the SUBJECT when the icon library has it:
+                # coffee on a coffee story, not grey blocks ("make the scale
+                # weights coffee sacks", the judge, 2026-09-25)
+                if "_bal_glyph" not in cuts:
+                    cuts["_bal_glyph"] = _subject_glyph(insight, 128)
                 an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
-                                  _lead_color(insight), lr, insight.unit)
+                                  _lead_color(insight), lr, insight.unit,
+                                  cutout=cuts["_bal_glyph"])
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "unit_figures":

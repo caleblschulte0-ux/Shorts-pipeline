@@ -2938,6 +2938,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 print(f"[studio] seg{i}: illustrated arm FELL BACK to the "
                       f"current look (claim {_rel!r})", flush=True)
             kinds = _depiction_sequence(seg.insight, _kinds_used, dur)
+            # THE VIDEO ENDS ON THE PICTURE OF THE THING. The last visual of
+            # the last beat is what spans the closing (`lead_payoff`), so a
+            # claim-led machine that opened the beat handed the payoff to its
+            # generic follow-up: coffee ended on "an empty generic tile box,
+            # so the 'more than double' payoff never lands" (the judge,
+            # 2026-09-25) while the cups sat half a beat earlier.
+            if (i == last_i and lead_payoff and len(kinds) > 1
+                    and kinds[0] in _CLAIM_LED):
+                kinds = kinds[1:] + kinds[:1]
             spans = _visual_spans(start, end, len(kinds))
             seg.spans = []
             _orig_kind = seg.insight.kind
