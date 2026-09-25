@@ -349,9 +349,25 @@ def _dated_pair(labels) -> bool:
     "Commute in 2019 vs 2026, in hours" is one subject at two dates, and two
     hourglasses says it is two different waits.
     """
-    return sum(1 for l in labels
-               if len(l) <= 7 and l[:4].isdigit()
-               and 1800 <= int(l[:4]) <= 2200) == 2
+    if sum(1 for l in labels
+           if len(l) <= 7 and l[:4].isdigit()
+           and 1800 <= int(l[:4]) <= 2200) == 2:
+        return True
+    # THE SAME WORDS AT TWO DATES. "February 2024" vs "February 2025" is
+    # one subject a year apart, and it came back `duel` — two things on a
+    # set of scales — because the test above only knew a bare year (coffee,
+    # 2026-09-25). Two labels that are identical once their one year is
+    # taken out, with different years, are a then-and-now. "Brazil 2025"
+    # vs "Vietnam 2025" is not: the words differ and the year does not.
+    labs = [str(l) for l in labels]
+    if len(labs) != 2:
+        return False
+    yrs = [re.findall(r"\b(1[89]\d\d|2[01]\d\d)\b", l) for l in labs]
+    if not all(len(y) == 1 for y in yrs) or yrs[0] == yrs[1]:
+        return False
+    rest = [re.sub(r"\s+", " ", l.replace(y[0], "")).strip().lower()
+            for l, y in zip(labs, yrs)]
+    return rest[0] == rest[1]
 
 
 def _looks_like_calendar_years(values) -> bool:

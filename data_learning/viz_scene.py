@@ -4378,6 +4378,14 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     # the beat is about — is on screen, under his feet, for the tail.
     shown = min(float(n), e * n * 1.15)
     top_xy = stand_xy = None
+    # THE STEPS ARE MADE OF THE SUBJECT when the icon library has it: each
+    # step is a stack of it (cups on a coffee story). Plain columns read as
+    # "a bar chart with Data perched on the top bar" — the judge's words on
+    # every coffee render, 2026-09-24/25. Height is still the value, and
+    # the value is still printed on the step; the stack is what it is made of.
+    _glyph = _subject_glyph(insight, 128)
+    _gs = int(min(78, max(0, w - 22)))
+    _gi = _fit(_glyph, _gs, _gs) if (_glyph is not None and _gs >= 30) else None
     for i, (p, v) in enumerate(zip(items, vals)):
         a = max(0.0, min(1.0, shown - i))
         if a <= 0.0:
@@ -4392,6 +4400,13 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([sx + 6, sy, int(sx + w - 6), bot], radius=10,
                             fill=_rgba(color if i == n - 1 else REST,
                                        int(235 * a)))
+        if _gi is not None:
+            # stacked from the floor up, stopping short of the value's room
+            _gx = int(sx + (w - _gs) / 2)
+            _gy = bot - _gs - 6
+            while _gy >= sy + STAIR_VALUE_ROOM - 6:
+                canvas.alpha_composite(_gi, (_gx, int(_gy)))
+                _gy -= _gs + 4
         if a > 0.6:
             # THE VALUE IS INSIDE THE STEP, UNDER ITS TOP EDGE. It used to
             # sit 30px ABOVE the step — exactly where the climber's feet
@@ -6002,7 +6017,8 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
         # 2025 cup ... cross-fades through itself" (the judge, 2026-09-25) —
         # and a drop from above ran through the THEN cup. The row fills left
         # to right, so everything to a copy's right is still empty.
-        cx = int(slots[k] + (1.0 - settle(u)) * (bx1 - slots[k]))
+        # ...from just inside the frame's right edge, never beyond it
+        cx = int(slots[k] + (1.0 - settle(u)) * max(0, bx1 - s - slots[k]))
         cy = y_now
         frac = min(1.0, r - k)
         _fade = min(1.0, u * 3.0)
@@ -6042,17 +6058,14 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, head, 56, W - 120)
     d.text((x0, y_now + s + 22), _s, font=_f,
            fill=_rgba(color, 255), anchor="lt")
-    if t > 0.86:                       # counting the copies off, one sweep
-        _sx = x0 + (t - 0.86) / 0.14 * (slots[-1] + s - x0)
-        d.rectangle([_sx - 22, y_now, _sx + 22, y_now + s],
-                    fill=_rgba(color, 60))
     if landed == n:
-        pop = min(1.0, (t - (0.08 + n * span)) / 0.06) if t < 1 else 1.0
-        # one beat of emphasis every second, not a constant wobble
+        # FULL SIZE, IN THE ACCENT, THE MOMENT THE LAST COPY LANDS — it grew
+        # in from nothing, which read as a late afterthought (the judge,
+        # 2026-09-25) — then one beat of emphasis a second.
         pulse = 1.0 + 0.10 * max(0.0, _math.sin(_math.pi * ((t * 6) % 1.0))) \
             * (1 if int(t * 6) % 2 == 0 else 0)
         txt = f"×{r:.1f}".replace(".0", "")
-        _f4, _s4 = fit_text(d, txt, int(150 * pop * pulse) or 20,
+        _f4, _s4 = fit_text(d, txt, int(150 * pulse),
                             W - 60, wrap=False)
         d.text(((bx0 + bx1) // 2, by0 + 80), _s4, font=_f4,
                fill=_rgba(color, 255), anchor="mm")
