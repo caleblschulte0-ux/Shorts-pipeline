@@ -9,17 +9,17 @@
 
 ## Failed
 - **Chicken Quietly Passed Beef In America**
-  - error: `showrunner_block: showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.`
+  - error: `showrunner_block: showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of each other right at the crossover, which is the moment the video exists for.`
 - **He Had A Master Key. I Had An AirTag.**
-  - error: `showrunner_block: showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.`
+  - error: `showrunner_block: showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: none of the AirTag-catches-thief beats is illustrated, and the payoff is a stock money emoji.`
 - **I Traced The Robocalls. The FTC Did The Rest.**
-  - error: `showrunner_block: showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.`
-- **google**
-  - error: `showrunner_block: showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.`
-- **snake**
-  - error: `showrunner_block: showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.`
-- **cornell**
-  - error: `unfit_for_fiction: 'cornell' refused by the writer: Trend is a real-person political/campus controversy (protest crowds, antisemitism dispute) with no usable neutral setting - politics is a banned seed topic`
-- **steve gleason**
-  - error: `unfit_for_fiction: 'steve gleason' refused by the writer: Trend is about Hurricane Katrina disaster deaths and Steve Gleason's ALS illness diagnosis, both banned categories (disaster/death/illness) that cannot seed a f`
+  - error: `showrunner_block: showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile, and a 'past due bills' photo held for the last 10 seconds, so the tracing and shutdown beats are never shown.`
+- **will smith**
+  - error: `unfit_for_fiction: 'will smith' refused by the writer: The trend centers on a real physical assault (the Oscars slap) and real celebrities' reactions to violence at a public event, which falls under the violence exc`
+- **rays vs phillies**
+  - error: `unfit_for_fiction: 'rays vs phillies' refused by the writer: trend is a real sports injury (Arraez's ankle injury) - injury-related news cannot seed a story per rule 1`
+- **braves vs marlins**
+  - error: `showrunner_block: showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: one blank clip-art phone used twice and nothing for the scan, the security, the list or the gift-card payoff.`
+- **mexico vs colombia**
+  - error: `showrunner_block: showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people icon, missing captions, and a grey seam line across every frame.`
 

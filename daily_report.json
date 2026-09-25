@@ -6,11 +6,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.",
-    "elapsed_seconds": 64.3,
+    "error": "showrunner_block: showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of each other right at the crossover, which is the moment the video exists for.",
+    "elapsed_seconds": 74.3,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-213352_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-221712_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.",
-      "score": 83
+      "reason": "showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of each other right at the crossover, which is the moment the video exists for.",
+      "score": 78
     },
     "blocked": true
   },
@@ -40,14 +40,14 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.",
-    "elapsed_seconds": 471.1,
+    "error": "showrunner_block: showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: none of the AirTag-catches-thief beats is illustrated, and the payoff is a stock money emoji.",
+    "elapsed_seconds": 435.5,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-213459_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-221943_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.1,
+      "duration": 50.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,17 +58,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -25.9
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.",
-      "score": 57
+      "reason": "showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: none of the AirTag-catches-thief beats is illustrated, and the payoff is a stock money emoji.",
+      "score": 61
     },
     "blocked": true
   },
@@ -79,14 +79,14 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.",
-    "elapsed_seconds": 454.5,
+    "error": "showrunner_block: showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile, and a 'past due bills' photo held for the last 10 seconds, so the tracing and shutdown beats are never shown.",
+    "elapsed_seconds": 535.5,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-214409_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-222707_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.167,
+      "duration": 45.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,7 +97,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -23.1
     },
     "qa": {
       "ok": true,
@@ -106,64 +106,47 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.",
-      "score": 57
+      "reason": "showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile, and a 'past due bills' photo held for the last 10 seconds, so the tracing and shutdown beats are never shown.",
+      "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "google",
+    "topic": "will smith",
     "angle": null,
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.",
-    "elapsed_seconds": 539.4,
-    "title": "I Followed The Manual And He Got Fired",
-    "package_path": "state/trending_packages/20260925-215338_auto_google.json",
-    "video_path": "output/daily_20260925-215338_google.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 43.4,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.",
-      "score": 57
-    },
-    "blocked": true,
+    "error": "unfit_for_fiction: 'will smith' refused by the writer: The trend centers on a real physical assault (the Oscars slap) and real celebrities' reactions to violence at a public event, which falls under the violence exc",
+    "elapsed_seconds": 32.3,
+    "unfit": true,
     "backfill": true
   },
   {
-    "topic": "snake",
+    "topic": "rays vs phillies",
     "angle": null,
     "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.",
-    "elapsed_seconds": 389.6,
-    "title": "I Exposed My Neighbor's Illegal Pet Snake",
-    "package_path": "state/trending_packages/20260925-220234_auto_snake.json",
-    "video_path": "output/daily_20260925-220234_snake.mp4",
+    "error": "unfit_for_fiction: 'rays vs phillies' refused by the writer: trend is a real sports injury (Arraez's ankle injury) - injury-related news cannot seed a story per rule 1",
+    "elapsed_seconds": 30.5,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "braves vs marlins",
+    "angle": null,
+    "publish_at": "2026-09-26T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: one blank clip-art phone used twice and nothing for the scan, the security, the list or the gift-card payoff.",
+    "elapsed_seconds": 456.6,
+    "title": "I Scanned His Ticket and Ended His Scam",
+    "package_path": "state/trending_packages/20260925-223936_auto_braves_vs_marlins.json",
+    "video_path": "output/daily_20260925-223936_braves_vs_marlins.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.467,
+      "duration": 47.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -183,32 +166,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.",
-      "score": 57
+      "reason": "showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: one blank clip-art phone used twice and nothing for the scan, the security, the list or the gift-card payoff.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "cornell",
-    "angle": null,
-    "publish_at": "2026-09-26T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'cornell' refused by the writer: Trend is a real-person political/campus controversy (protest crowds, antisemitism dispute) with no usable neutral setting - politics is a banned seed topic",
-    "elapsed_seconds": 29.8,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "steve gleason",
+    "topic": "mexico vs colombia",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'steve gleason' refused by the writer: Trend is about Hurricane Katrina disaster deaths and Steve Gleason's ALS illness diagnosis, both banned categories (disaster/death/illness) that cannot seed a f",
-    "elapsed_seconds": 30.9,
-    "unfit": true,
+    "error": "showrunner_block: showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people icon, missing captions, and a grey seam line across every frame.",
+    "elapsed_seconds": 522.8,
+    "title": "He Demanded The Remote, I Gave Him A Dead One",
+    "package_path": "state/trending_packages/20260925-224634_auto_mexico_vs_colombia.json",
+    "video_path": "output/daily_20260925-224634_mexico_vs_colombia.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.367,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people icon, missing captions, and a grey seam line across every frame.",
+      "score": 57
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
