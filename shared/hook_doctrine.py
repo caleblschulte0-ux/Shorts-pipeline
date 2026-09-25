@@ -140,12 +140,21 @@ def punch(line: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def evidence(story_cfg: dict) -> tuple[set, set]:
-    """(every quantity the data can back, every word its labels use)."""
+    """(the quantities the HOOK may say, every word the story's labels use).
+
+    THE HOOK IS SPOKEN OVER THE FIRST BEAT'S PICTURE — the cold open is
+    drawn from segment 0's data in both looks — so its number must be one
+    that picture shows. A sharpened hook said "750,000 square kilometers"
+    over a picture of 27,772 (amazon-still-shrinking, 2026-09-25): "line up
+    the hook caption with the number on screen". Names may come from any
+    beat; numbers only from the first.
+    """
     from shared import rewrite_mailbox as rm
     allowed: set = set()
     label_words: set = set()
-    for seg in story_cfg.get("segments") or []:
-        allowed |= rm._allowed_for(seg)
+    for k, seg in enumerate(story_cfg.get("segments") or []):
+        if k == 0:
+            allowed |= rm._allowed_for(seg)
         d = rm._dataset(seg) or {}
         for p in d.get("points") or []:
             label_words |= {w.lower() for w in re.findall(
@@ -161,13 +170,20 @@ def scale_facts(story_cfg: dict) -> list:
     from shared import rewrite_mailbox as rm
     from shared import scale_refs as sr
     rows = []
-    for seg in story_cfg.get("segments") or []:
+    for seg in (story_cfg.get("segments") or [])[:1]:     # the hook's picture
         d = rm._dataset(seg) or {}
         for p in d.get("points") or []:
             if p.get("value") is not None:
                 rows.append((float(p["value"]), d.get("unit", ""),
                              p.get("label", "")))
     return sr.comparisons(rows)
+
+
+def _opening_words(story_cfg: dict) -> str:
+    """What is already SAID over the opening: the old hook and beat one."""
+    segs = story_cfg.get("segments") or []
+    return " ".join([story_cfg.get("hook") or "",
+                     str(segs[0].get("say") or "") if segs else ""])
 
 
 def _story_words(story_cfg: dict) -> str:
@@ -194,7 +210,7 @@ def problems(line: str, story_cfg: dict, allowed: set, label_words: set) -> list
         out.append("too long")
     # a number must be in the data, or already said by this story's own
     # narration — a hook may repeat what the video goes on to prove
-    bad = rm._quantities_ok(s, allowed, _story_words(story_cfg))
+    bad = rm._quantities_ok(s, allowed, _opening_words(story_cfg))
     if bad:
         out.append(f"numbers not in the data: {bad}")
     # `_entities_ok` forgives a sentence's first word, because a rewritten
@@ -233,7 +249,9 @@ def _prompt(story_cfg: dict, n: int, facts: list | None = None) -> str:
                      "and no other comparison):\n" + _facts_text(facts))
     return (DOCTRINE + "\n" + "\n".join(lines) +
             f"\n\nWrite {n} different hooks for THIS story, strongest first. "
-            "Use only numbers that appear in the beats above. Return STRICT "
+            "The hook is spoken over BEAT 1's picture, so any number in it "
+            "must be one BEAT 1 says — the viewer has to see it on screen. "
+            "Return STRICT "
             'JSON: {"hooks": [str, ...]}')
 
 
