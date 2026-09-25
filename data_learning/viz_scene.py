@@ -3839,8 +3839,11 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     _shown = v if e >= fill_by else min(abs(v), landed_k * per)
     if then_p is not None:
         _shown = max(_shown, float(getattr(then_p, "value", 0) or 0))
-    _s = (f"{getattr(star, 'label', '')}   "
-          f"{charts._ulabel(_shown, unit, group=True)}")
+    # ...and the DATE arrives with the value: "Feb 2025 120,000" while the
+    # count passed through was a date against a value it never had (Waymo,
+    # 2026-09-25). A running count carries no date.
+    _s = (f"{getattr(star, 'label', '')}   " if e >= fill_by else "") + \
+        charts._ulabel(_shown, unit, group=True)
     if then_p is not None:
         # both ends, true in every frame while the stack builds between them
         _tv = float(getattr(then_p, "value", 0) or 0)
@@ -5211,10 +5214,22 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         name_f = _pil_font(_sz)
         if all(d.textlength(t, font=name_f) <= _budget for t in _names):
             break
+    # LONG NAMES GO ABOVE THEIR LANE. Squeezed into the gutter, "Cruise,
+    # weekly rides (after Dec 2024 shutdown)" printed at 22px — "both side
+    # labels are tiny and low-contrast" (Waymo, 2026-09-25). With room above
+    # each lane (three lanes or fewer) the name gets the frame's width.
+    names_above = _sz < 30 and n <= 3
+    if names_above:
+        _budget = int(bx1 - bx0) - 110    # stops short of the finish line
+        for _sz in range(44, 27, -2):
+            name_f = _pil_font(_sz)
+            if all(d.textlength(t, font=name_f) <= _budget for t in _names):
+                break
     _names = [fit_text(d, t, _sz, _budget, min_size=_sz)[1] for t in _names]
     name_w = max((d.textbbox((0, 0), t, font=name_f)[2] for t in _names),
                  default=0)
-    x0 = int(bx0 + min(max(name_w + 40, 200), (bx1 - bx0) * 0.42))
+    x0 = (int(bx0 + 40) if names_above else
+          int(bx0 + min(max(name_w + 40, 200), (bx1 - bx0) * 0.42)))
     x1 = int(bx1 - 40)                   # the finish line
     # Ease so the field surges out of the blocks and settles into its order,
     # rather than sliding at a constant rate like a loading bar.
@@ -5266,14 +5281,24 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         d.line([(x0, cy + rh // 2 - 2), (x1, cy + rh // 2 - 2)],
                fill=_rgba(TEXT, 40), width=4)
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
+        # EVERY RUNNER IN FRAME, AT BOTH ENDS. A runner at 0 stood centred
+        # ON the start line, over the end of its own name ("the grey mascot
+        # cuts off the Cruise label ('...shutdow')"), and the leader ran half
+        # out of the frame at the finish (Waymo, 2026-09-25).
+        px = max(px, x0 + rw // 2 + 6)
+        px = min(px, x1 - rw // 2 - 6)
         lead = (i == _lead_i)
         col = color if lead else REST
         # A NAME IS TYPE, AND TYPE WEARS INK. Drawn in `col` it inherited the
         # MARK's colour, and the mark for a non-leader is `look.REST` —
         # 2.05:1 on the ground. So every runner's name except the leader's was
         # a smudge, which is half of what a ranking is for.
-        d.text((x0 - 22, cy), _names[i], font=name_f, anchor="rm",
-               fill=_rgba(legible(col) if lead else SUBTLE, 240))
+        if names_above:
+            d.text((x0, int(cy - rh // 2 - 14)), _names[i], font=name_f,
+                   anchor="ls", fill=_rgba(legible(col) if lead else TEXT, 240))
+        else:
+            d.text((x0 - 22, cy), _names[i], font=name_f, anchor="rm",
+                   fill=_rgba(legible(col) if lead else SUBTLE, 240))
         if _objs is not None:
             px = min(px, x1 - rw // 2 - 6)     # it stops AT the line, in frame
             im = _objs[i]

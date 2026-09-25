@@ -3580,6 +3580,36 @@ def _sci(v: float) -> str:
     return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
+_MONTHS = {m: i for i, m in enumerate(
+    ("jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct",
+     "nov", "dec"), 1)}
+
+
+def _period_year(p):
+    """A data point's time as a (fractional) year, or None.
+
+    A bare year was the only thing read, so Waymo's "2023-10" / "Oct 2023"
+    points had no time at all and the timeline fell back to a number line
+    with "Feb 2025" riding the dot past 100K (2026-09-25). Months and
+    quarters now read as fractions of their year."""
+    per = getattr(p, "period", None)
+    v = _num_or_none(per)
+    if v is not None:
+        return v
+    for text in (per, getattr(p, "label", None)):
+        t = str(text or "").strip().lower()
+        m = re.fullmatch(r"((?:1[89]|20)\d\d)-(\d{1,2})(?:-\d{1,2})?", t)
+        if m and 1 <= int(m.group(2)) <= 12:
+            return int(m.group(1)) + (int(m.group(2)) - 1) / 12.0
+        m = re.fullmatch(r"([a-z]{3})[a-z]*\.?\s+((?:1[89]|20)\d\d)", t)
+        if m and m.group(1) in _MONTHS:
+            return int(m.group(2)) + (_MONTHS[m.group(1)] - 1) / 12.0
+        m = re.fullmatch(r"q([1-4])\s+((?:1[89]|20)\d\d)", t)
+        if m:
+            return int(m.group(2)) + (int(m.group(1)) - 1) / 4.0
+    return None
+
+
 @_fullframe("timeline")
 def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """A horizontal time / number line with era ticks; a glowing marker DOT
@@ -3592,7 +3622,7 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     items = _ordered_items(insight)
     vp = getattr(insight, "viz_params", {}) or {}
     star = max(items, key=lambda p: p.value)
-    periods = [_num_or_none(getattr(p, "period", None)) for p in items]
+    periods = [_period_year(p) for p in items]
     have_periods = len(periods) >= 2 and all(v is not None for v in periods)
     lo = _num_or_none(vp.get("timeline_start"))
     hi = _num_or_none(vp.get("timeline_end"))
@@ -3656,7 +3686,10 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
             # year label can land on ("a ghost '2019' sits on the '2008' tick")
             for p, per in zip(items, periods):
                 tx = _xat(per)
-                lbl = str(int(per)) if float(per).is_integer() else _sci(per)
+                # a month or a quarter is named as the data names it ("Oct
+                # 2023"), never as a decimal year
+                lbl = (str(int(per)) if float(per).is_integer()
+                       else str(getattr(p, "label", "") or _sci(per)))
                 lb = d.textbbox((0, 0), lbl, font=tick_font)
                 d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 58), lbl,
                        font=tick_font, fill=(165, 180, 199, 255))
@@ -3711,12 +3744,16 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
         d.text(((W - (vb[2] - vb[0])) // 2, 420), _say, font=num_font,
                fill=_rgba(HIGHLIGHT, int(255 * na)),
                stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-        if not have_periods:
+        if not have_periods and r >= 0.98:
+            # THE LABEL LANDS WITH THE DOT. It rode the dot from a third of
+            # the way along, so "Feb 2025" sat over 100K and 112K on its way
+            # to 200K (Waymo, 2026-09-25) — a date against a value it never
+            # had.
             sb = d.textbbox((0, 0), foot, font=lab_font)
             sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
             d.text((sx, axis_y + 78), foot, font=lab_font,
-                   fill=(248, 250, 252, int(255 * na)),
-                   stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
+                   fill=(248, 250, 252, 255),
+                   stroke_width=3, stroke_fill=(5, 8, 15, 255))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, []
 
