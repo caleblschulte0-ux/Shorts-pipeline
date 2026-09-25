@@ -236,6 +236,27 @@ Forecast language over a run of measurements is just a writer being loose.
 | `record` | `trophies_scene`, `units_scene` | one cup, one title. Refuses above 30 — too many to count is not a shelf. |
 | `buying_power` | `basket_scene`, `units_scene` | two baskets filled from the same note. The price is never the story; what is left in the basket is. |
 
+### Batch 7 — made of the subject (2026-09-24)
+
+The judge on a two-number beat, coffee-price-record: *"the 11M-bag drought
+hole, the core shock of the story, is never shown; the seesaw barely tilts"*,
+and *"show 'more than double' physically"*. Scales, lanes and a tape are all
+pictures of two NUMBERS. These two are pictures of the THING.
+
+| relationship | machines | the picture |
+|---|---|---|
+| `duel`, `before_after`, `delta` | `hole_scene` | the subject's icon, big, and the share that was LOST cracks off it and falls away, leaving a dashed outline with the loss written under it. Cut by width across the object's own extent, so a quarter lost is a quarter gone. One object, never a field (operator, 2026-09-22, on repeated icons). |
+| `duel`, `before_after`, `delta`, `scale` | `copies_scene` | one THEN, and copies of it dropping out of it until there are NOW of them; the last copy is cut to the fraction, so 2.2 is two and a fifth. At most five. |
+
+Both are **claim-led** (`studio_render._CLAIM_LED`): they head their
+relationship's list whatever the rotation says, but only when their builder
+accepts the beat — so they never sit at the head of a list they cannot draw.
+And they refuse a lot, on purpose: the pair must be a THEN and a NOW (years,
+or exactly one label saying "revised" / "after" / "now"), never a projection,
+the words must say cut or double, and the icon library must have the
+subject. Measured on the live catalogue before the then/now rule: the claim
+words alone handed "fossil vs clean power" a cup with a bite out of it.
+
 ### Batch 6 — the unit says what kind of quantity this is
 
 Measured over the 1,104 live datasets on 2026-09-08, **`duration` classified

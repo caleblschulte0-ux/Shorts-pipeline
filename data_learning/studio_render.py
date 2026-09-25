@@ -1972,7 +1972,7 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
                 "slider_scene", "density_scene", "nest_scene",
                 "chairs_scene", "hourglass_scene", "trophies_scene",
-                "basket_scene")
+                "basket_scene", "hole_scene", "copies_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1990,6 +1990,7 @@ _SCENE_TOKENS = {t: t for t in (
     "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
     "slider_scene", "density_scene", "nest_scene", "chairs_scene",
     "hourglass_scene", "trophies_scene", "basket_scene",
+    "hole_scene", "copies_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -2071,11 +2072,13 @@ _MACHINES = {
     # and both REFUSE what they cannot say — the tape needs two magnitudes it
     # can lay end to end, the nest only draws a ratio between 1.5x and 150x —
     # so a duel they do not fit falls straight through to the other three.
-    "duel":        ("balance_scene", "race_scene", "tape_scene",
+    "duel":        ("hole_scene", "copies_scene",
+                    "balance_scene", "race_scene", "tape_scene",
                     "nest_scene", "units_scene"),
     # a then and a NOW -> the subject itself growing: a stack gaining blocks,
     # a tank filling, or the two weighed against each other
-    "before_after": ("tower_scene", "fill_vessel", "balance_scene",
+    "before_after": ("hole_scene", "copies_scene",
+                     "tower_scene", "fill_vessel", "balance_scene",
                      "units_scene"),
     # rising -> a climb he has to make, or a total built block by block
     "growth":      ("staircase_scene", "tower_scene", "timeline"),
@@ -2107,7 +2110,8 @@ _MACHINES = {
     # it barely moved, and that IS the finding
     "stable":      ("road_scene",),
     # the SIZE of a change, drawn as distance
-    "delta":       ("tape_scene", "tower_scene", "fill_vessel"),
+    "delta":       ("hole_scene", "copies_scene",
+                    "tape_scene", "tower_scene", "fill_vessel"),
     # how far SHORT of a line it falls
     "gap":         ("bridge_scene", "hurdle_scene"),
     # where the middle of a spread sits
@@ -2147,7 +2151,7 @@ _MACHINES = {
     # the same square, packed differently — the box must NOT also scale
     "density":     ("density_scene", "rate_scene"),
     # how many of the small one fit in the big one, tiled by AREA
-    "scale":       ("nest_scene", "skyline_scene"),
+    "scale":       ("copies_scene", "nest_scene", "skyline_scene"),
     # more claimants than there are places, drawn as people left standing
     "scarcity":    ("chairs_scene", "queue_scene"),
     # a length of TIME, as sand that will not stop falling
@@ -2180,6 +2184,13 @@ _MACHINES = {
 # growth beats and `tower` took none, because a fixed order plus a per-story
 # `used` set means the runner-up only ever appears when a story has two beats
 # of the same relationship. Four machines were effectively dead.
+# A picture MADE OF THE SUBJECT that only draws when the WORDS say it — "cut",
+# "double" — leads its relationship whatever the rotation says: its builder
+# refuses every pair it is not about, so leading costs the pair nothing, and
+# when it does draw it is the one picture of the thing rather than of two
+# numbers (the judge, 2026-09-24: "the 11M-bag hole ... is never shown").
+_CLAIM_LED = ("hole_scene", "copies_scene")
+
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
@@ -2203,6 +2214,11 @@ def _machines_for(insight) -> tuple:
                 str(getattr(insight, "topic", "") or _r).encode()
             ).hexdigest()[:8], 16) % len(out)
             out = out[_k:] + out[:_k]
+        # ...and only when it DOES draw: a claim-led machine that refuses
+        # this pair is not offered at all, so it never sits at the head of
+        # a list it cannot serve.
+        out = ([k for k in _CLAIM_LED if k in out and _buildable(k, insight)]
+               + [k for k in out if k not in _CLAIM_LED])
         # FREQUENCY and RATE co-occur with everything else: a count per day
         # that is also climbing is two true things at once, and a belt or a
         # dial beside a staircase is a fair second way to show the same beat.
@@ -2338,7 +2354,22 @@ def _depiction_sequence(insight, used: set, dur: float,
     """
     kind = str(getattr(insight, "kind", "") or "")
     n = max(1, min(cap or MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
-    seq = [kind]
+    # A PICTURE OF THE THING OPENS THE BEAT, NOT A CHART OF IT. When the
+    # beat's own kind is a chart and a claim-led machine (the cut, the
+    # multiple) draws this pair, the machine goes first and the chart
+    # becomes a fallback. Coffee, 2026-09-25: "the middle falls back to bar
+    # and bubble charts with Data perched" — the copies scene was there,
+    # half a beat late, after a bubble chart said the same number worse.
+    # A field of one repeated icon gives way too — the operator's "very,
+    # very sparingly" — and is dropped rather than kept as a fallback: its
+    # spec lives on `insight.scene`, which the machine's builder overwrites.
+    _grid = kind == "scene" and is_repeated_icon(
+        kind, getattr(insight, "scene", None))
+    _lead = None
+    if _family(kind) == "chart" or _grid:
+        _lead = next((m for m in _machines_for(insight)
+                      if m in _CLAIM_LED and m not in used), None)
+    seq = [_lead or kind]
     if n == 1:
         return seq
     # RELATIONSHIP FIRST, chart as the fallback — in two TIERS, because the
@@ -2346,16 +2377,19 @@ def _depiction_sequence(insight, used: set, dur: float,
     # it. Rotating one flat list put a chart ahead of the machine that actually
     # said the thing, which is the whole philosophy inverted by a line of
     # variety code.
-    machines = [c for c in _machines_for(insight) if c != kind]
-    fallback = []
+    machines = [c for c in _machines_for(insight) if c not in seq]
+    fallback = [kind] if (_lead and not _grid) else []
     for c in list(_alt_candidates_for(insight)) + list(
             _ALT_DEPICTION.get(kind, ())):
         if c not in machines and c not in fallback:
             fallback.append(c)
-    def _usable(seq):
-        return [c for c in seq
-                if c and c != kind and c not in _ASSERTS_A_WHOLE
-                and _buildable(c, insight)]
+    _first = seq[0]
+
+    def _usable(cs):
+        return [c for c in cs
+                if c and c != _first and c not in _ASSERTS_A_WHOLE
+                and not (_lead and _grid and c == kind)
+                and (c == kind or _buildable(c, insight))]
 
     machines, fallback = _usable(machines), _usable(fallback)
     # A repeated-icon grid is the LAST thing offered, and not at all once
@@ -2422,7 +2456,7 @@ def _depiction_sequence(insight, used: set, dur: float,
         c = (_pick(want, True, icons_ok=False) or _pick(want, False, icons_ok=False)
              or _pick("chart", True) or _pick("chart", False))
         if c is not None:
-            if (len(seq) == 1 and _opens_on_a_machine(kind)
+            if (len(seq) == 1 and _opens_on_a_machine(seq[0])
                     and c not in machines and dur <= SUBJECT_HOLD_MAX):
                 break
             seq.append(c)
@@ -2443,7 +2477,7 @@ def _depiction_sequence(insight, used: set, dur: float,
         # bars", "the tray-stack is the only real idea ... the video falls
         # back to bar charts". A long beat still cuts, and a chart still
         # hands on to a figure — this only stops the downgrade.
-        if (len(seq) == 1 and _opens_on_a_machine(kind)
+        if (len(seq) == 1 and _opens_on_a_machine(seq[0])
                 and c not in machines and dur <= SUBJECT_HOLD_MAX):
             break
         seq.append(c)
@@ -2547,12 +2581,20 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
                 if b.get("illustrated_scene"):          # a verified brain scene
                     a["illustrated_scene"] = b["illustrated_scene"]
             for k in ("closing_scene", "closing_data",     # its bookends
-                      "hook_scene", "hook_data"):
+                      "hook_scene", "hook_data",
+                      "hook", "hook_was"):                  # a sharpened hook
                 if story_cfg.get(k) is not None:
                     st_[k] = story_cfg[k]
             break
+        # IN THE FILE'S OWN INDENT. The config is written by several hands
+        # (the forge, the mailbox, this) and it is 29,000 lines; writing it
+        # back at a different indent turned one saved hook into a diff of
+        # every line in the file.
+        _raw = Path(config_path).read_text()
+        _m = re.search(r"\n( +)\"", _raw)
+        _ind = len(_m.group(1)) if _m else 2
         Path(config_path).write_text(
-            json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+            json.dumps(cfg, indent=_ind, ensure_ascii=False) + "\n")
         print(f"[studio] persisted rendered mechanic(s) for '{slug}' to "
               f"{Path(config_path).name}", flush=True)
     except Exception as e:  # noqa: BLE001
@@ -2615,6 +2657,25 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     print(f"[studio] style arm: {_style['style_arm']}", flush=True)
     if voice is None:
         voice = theme["voice"]
+
+    # THE FIRST SENTENCE IS AN AD (operator, 2026-09-25: "our intros need to
+    # be 2000s ... LimeWire type shit ... real clickbaity. And not like
+    # scammy"). Every story in the queue — not only the new ones the forge
+    # writes — gets its hook rewritten here when it does not clear the bar,
+    # before a word is spoken, and the rewrite is persisted so it happens
+    # once. Numbers from the data, no outside names: `shared/hook_doctrine`.
+    import os as _os_h
+    if _os_h.environ.get("HOOK_SHARPEN", "on").lower() not in ("0", "off", "false"):
+        try:
+            from shared import hook_doctrine as _hd
+            _new_hook = _hd.sharpen(
+                story_cfg, log=lambda m: print(f"[studio] {m}", flush=True))
+            if _new_hook:
+                story_cfg.setdefault("hook_was", story_cfg.get("hook", ""))
+                story_cfg["hook"] = _new_hook
+                _PERSISTED.append(slug)
+        except Exception as e:  # noqa: BLE001 — a soft hook beats no video
+            print(f"[studio] hook sharpen skipped: {e}", flush=True)
 
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)

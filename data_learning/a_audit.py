@@ -51,8 +51,9 @@ def cases():
     from data_learning.sources.base import DataPoint, Source
     src = Source(name="X", publisher="Y", url="https://x", access_date="2026-09-24")
 
-    def ins(pairs, unit="count", base=None):
-        i = Insight(kind="scene", topic="largest container ship capacity by year",
+    def ins(pairs, unit="count", base=None,
+            topic="largest container ship capacity by year"):
+        i = Insight(kind="scene", topic=topic,
                     main_insight="m",
                     items=[DataPoint(label=str(a), value=float(b)) for a, b in pairs],
                     source=src, unit=unit, highlight_label=str(pairs[0][0]))
@@ -90,6 +91,12 @@ def cases():
         ("trophies", vs.trophies_scene, ins([("Djokovic", 24), ("Nadal", 22),
                                              ("Federer", 20)])),
         ("basket", vs.basket_scene, ins([("1999", 34), ("2026", 19)])),
+        ("hole", vs.hole_scene, ins([("September estimate", 45.4),
+                                     ("Revised estimate", 34.4)],
+                                    topic="why coffee supply keeps shrinking")),
+        ("copies", vs.copies_scene, ins([("February 2024", 2.0),
+                                         ("February 2025", 4.41)],
+                                        topic="how much coffee prices have doubled")),
         ("bridge", vs.bridge_scene, ins([("Now", 76)], base=("Target", 100))),
         ("burden", vs.burden_scene, ins([(str(2016 + k), 22.0 + k * 1.6)
                                          for k in range(8)])),
