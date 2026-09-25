@@ -212,3 +212,109 @@ class ASecondPictureIsANewShape(unittest.TestCase):
         self.assertTrue(sr._is_heights("scene", ins))
         ins.scene = {"elements": [{"type": "balance"}]}
         self.assertFalse(sr._is_heights("scene", ins))
+
+
+class ADateOnlyMeetsItsOwnValue(unittest.TestCase):
+    """Waymo re-render (66): "the header reads 'Oct 2023 10,000 → Feb 2025
+    100,000/120,000/140,000' while the counter ticks", and on the timeline
+    "the 'Feb 2025' label sits at the 100K point, which was August 2024"."""
+
+    def test_a_running_count_carries_no_date(self):
+        t = TheTowerTellsTheTruthWhileItBuilds()
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count")
+        mid = " | ".join(t._texts(ins, 0.6))
+        self.assertNotIn("Feb 2025", mid)
+        self.assertIn("Oct 2023", mid)
+
+    def test_months_and_quarters_are_times(self):
+        from data_learning import charts as C
+        from data_learning.sources.base import DataPoint as D
+        self.assertAlmostEqual(
+            C._period_year(D(label="Oct 2023", value=1.0, period="2023-10")),
+            2023.75)
+        self.assertAlmostEqual(
+            C._period_year(D(label="Aug 2024", value=1.0)), 2024 + 7 / 12)
+        self.assertAlmostEqual(
+            C._period_year(D(label="Q3 2024", value=1.0)), 2024.5)
+        self.assertIsNone(
+            C._period_year(D(label="September Estimate", value=1.0)))
+
+    def test_the_timeline_draws_waymo_on_its_dates(self):
+        """Dated data gets the dated timeline (stems at their months), not a
+        0..224K number line with the last date riding the dot."""
+        import tempfile
+        from data_learning import charts as C
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count", topic="waymo rides a week")
+        for p, per in zip(ins.items, ("2023-10", "2024-08", "2025-02")):
+            p.period = per
+        drawn = []
+        real = ImageDraw.ImageDraw.text
+
+        def spy(self_, xy, text, *a, **k):
+            drawn.append(str(text))
+            return real(self_, xy, text, *a, **k)
+
+        with tempfile.TemporaryDirectory() as td, \
+                mock.patch.object(ImageDraw.ImageDraw, "text", spy), \
+                mock.patch.object(C, "_host_pose", lambda *a, **k: None):
+            C._render_timeline(ins, Path(td), "t", frames=4)
+        self.assertIn("Oct 2023", drawn)
+        self.assertIn("Aug 2024", drawn)
+
+
+class TheRaceKeepsEveryoneReadableAndInFrame(unittest.TestCase):
+    """"the grey mascot cuts off the Cruise label ('...shutdow'), and both
+    side labels are tiny and low-contrast" (Waymo re-render, 66)."""
+
+    NAMES = ("Waymo, weekly rides (early 2025)",
+             "Cruise, weekly rides (after Dec 2024 shutdown)")
+
+    def _draw(self, reveal=1.0):
+        runner = Image.new("RGBA", (100, 200), (40, 200, 180, 255))
+        ins = mk([(self.NAMES[0], 200000), (self.NAMES[1], 0)], "count",
+                 topic="waymo against cruise")
+        img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 255))
+        d = ImageDraw.Draw(img)
+        texts, sprites = [], []
+        rt, rc = d.text, img.alpha_composite
+
+        def t_spy(xy, text, *a, **k):
+            texts.append((xy, str(text), k.get("font"), k.get("anchor")))
+            return rt(xy, text, *a, **k)
+
+        def c_spy(im, dest=(0, 0), *a, **k):
+            if im.size[1] > 150:
+                sprites.append((dest, im.size))
+            return rc(im, dest, *a, **k)
+
+        d.text, img.alpha_composite = t_spy, c_spy
+        with mock.patch.object(vs, "scene_host", lambda *a, **k: runner), \
+                mock.patch.object(vs, "_race_objects", lambda items: None):
+            vs.draw_race(d, img, (vs.RX0, vs.RTOP, vs.RX1, vs.RBOT),
+                         vs.drawable_insight(ins), charts.HIGHLIGHT,
+                         reveal, "count")
+        return texts, sprites
+
+    def test_long_names_are_whole_and_large(self):
+        texts, _ = self._draw()
+        for name in self.NAMES:
+            hit = [t for t in texts if t[1] == name]
+            self.assertTrue(hit, name)
+            self.assertGreaterEqual(hit[0][2].size, 30)
+
+    def test_no_runner_leaves_the_frame_or_sits_on_a_name(self):
+        texts, sprites = self._draw()
+        names = [t for t in texts if t[1] in self.NAMES]
+        self.assertTrue(sprites)
+        boxes = []
+        for (nx, ny), t, f, anchor in names:
+            l, tp, r, b = f.getbbox(t, anchor=anchor or "la")
+            boxes.append((nx + l, ny + tp, nx + r, ny + b))
+        for (x, y), (w, h) in sprites:
+            self.assertGreaterEqual(x, vs.RX0)
+            self.assertLessEqual(x + w, vs.RX1)
+            for (a0, b0, a1, b1) in boxes:
+                overlap = not (x + w <= a0 or a1 <= x or y + h <= b0 or b1 <= y)
+                self.assertFalse(overlap, ((x, y, w, h), (a0, b0, a1, b1)))
