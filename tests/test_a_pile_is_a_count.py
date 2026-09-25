@@ -318,3 +318,40 @@ class TheRaceKeepsEveryoneReadableAndInFrame(unittest.TestCase):
             for (a0, b0, a1, b1) in boxes:
                 overlap = not (x + w <= a0 or a1 <= x or y + h <= b0 or b1 <= y)
                 self.assertFalse(overlap, ((x, y, w, h), (a0, b0, a1, b1)))
+
+
+class TheStackIsMadeOfTheSubject(unittest.TestCase):
+    """"Generic blocks, each worth 20K, stack up ... the blocks could be
+    anything" (Waymo re-render). Each block carries ONE emblem of what it
+    is made of; "robotaxi" had no icon at all."""
+
+    def test_a_robotaxi_is_a_taxi(self):
+        from data_learning import icons
+        got = icons.icon_png("how many robotaxi rides waymo gives every week", 64)
+        self.assertIsNotNone(got)
+        self.assertIn("1f695", str(got))
+        self.assertIsNone(icons.icon_png("cabinet makers", 64))
+
+    def test_every_landed_block_carries_one_emblem(self):
+        glyph = Image.new("RGBA", (128, 128), (250, 0, 250, 255))
+        ins = mk([("Oct 2023", 1), ("Aug 2024", 3), ("Feb 2025", 5)], "cities",
+                 topic="cities waymo serves")
+        img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 255))
+        stamps = []
+        real = img.alpha_composite
+
+        def spy(im, dest=(0, 0), *a, **k):
+            px = im.getpixel((im.size[0] // 2, im.size[1] // 2))
+            if px[:3] == (250, 0, 250):
+                stamps.append(dest)
+            return real(im, dest, *a, **k)
+
+        img.alpha_composite = spy
+        with mock.patch.object(vs, "_subject_glyph", lambda *a, **k: glyph), \
+                mock.patch.object(vs, "scene_host", lambda *a, **k: None):
+            vs._MACHINE_DRAW["tower"](ImageDraw.Draw(img), img,
+                                      (vs.RX0, vs.RTOP, vs.RX1, vs.RBOT),
+                                      vs.drawable_insight(ins),
+                                      charts.HIGHLIGHT, 1.0, "cities")
+        self.assertEqual(len(stamps), 5)
+        self.assertEqual(len({x for x, _y in stamps}), 1)   # one per block

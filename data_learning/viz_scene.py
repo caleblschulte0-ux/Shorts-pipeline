@@ -3793,6 +3793,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     ty = bot
     landed = bot                      # top of the blocks that have LANDED
     landed_k = 0                      # ...and how many
+    _tg = _subject_glyph(insight, 128)
     for k in range(n):
         a = max(0.0, min(1.0, (e - k * slot) / (slot * overlap)))
         if a <= 0.0:
@@ -3812,6 +3813,19 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                                        (color if k == n - 1 else REST), _al),
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
+        if _tg is not None and bh >= 34:
+            # THE BLOCK IS MADE OF THE SUBJECT: one emblem per block, so the
+            # stack is taxis, each worth `per` ("generic blocks, each worth
+            # 20K ... could be anything", Waymo, 2026-09-25). One per block,
+            # never a row: a row would read as a count the legend denies.
+            _gz = int(min(bh - 10, 110))
+            _gi = _fit(_tg, _gz, _gz)
+            if a < 1.0:
+                _gi = _gi.copy()
+                _gi.putalpha(_gi.getchannel("A").point(
+                    lambda v_, a_=min(1.0, a * 2.2): int(v_ * a_)))
+            canvas.alpha_composite(_gi, (int(cx - _gi.width / 2),
+                                         int(by + (bh - _gi.height) / 2)))
         _nf = then_u - k if then_p is not None else 0.0
         if 0.0 < _nf < 1.0:
             # the part of this block the THEN already had, from its bottom

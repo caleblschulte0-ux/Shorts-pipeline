@@ -73,6 +73,9 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("coffee", "caffeine", "espresso"), "2615"),
     (("flight", "plane", "airline", "air travel", "aviation", "jet",
       "jetliner"), "2708"),
+    # a ride-hail story is about the TAXI, and "robotaxi" matched nothing:
+    # Waymo's rides beat drew blocks that "could be anything" (2026-09-25)
+    (("robotaxi", "taxi", "rideshare", "cab"), "1f695"),
     (("car", "auto", "vehicle", "ev"), "1f697"),
     # "degree" is NOT a graduation key. In this catalogue a degree is almost
     # always a temperature — "8 degrees hotter", "degrees of warming" — and
