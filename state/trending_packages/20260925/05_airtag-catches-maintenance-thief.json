@@ -36,7 +36,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T17:49:05Z",
+        "verified_at": "2026-09-25T18:13:50Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -56,7 +56,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/svg+xml",
-        "verified_at": "2026-09-25T17:49:06Z",
+        "verified_at": "2026-09-25T18:13:50Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -95,9 +95,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T17:49:06Z",
+        "verified_at": "2026-09-25T18:13:50Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "master key",
+      "pin_context": "building security key universal access",
+      "news_query": "master key",
+      "news_angle": "The suspect used a master key that opened every door in the building to steal packages."
     },
     {
       "phrase": "selling whatever looked expensive on a resale app",
@@ -115,7 +119,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T17:49:06Z",
+        "verified_at": "2026-09-25T18:13:51Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "small claims judgment",
