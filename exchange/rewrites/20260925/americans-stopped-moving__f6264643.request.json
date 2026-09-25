@@ -1,0 +1,167 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "americans-stopped-moving__f6264643",
+ "filed": "2026-09-25T11:56:21Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "americans-stopped-moving",
+ "current": {
+  "title": "Americans Stopped Moving. Here's Why.",
+  "hook": "Nobody's moving anymore. Here's the data.",
+  "closing": "We didn't get more content. We got more stuck.",
+  "question": "How many years have you lived in the same place? Tell me below.",
+  "segments": [
+   {
+    "topic": "share of Americans who moved",
+    "say": "In the 1950s, 1 in 5 Americans moved every single year. By 2023 that fell below 1 in 10 — the lowest rate ever recorded."
+   },
+   {
+    "topic": "mortgage lock-in",
+    "say": "Part of it is math. Most homeowners are sitting on a mortgage under 4 percent, while a new one costs almost 7 — moving means trading a cheap loan for a pricier one."
+   },
+   {
+    "topic": "workers needing a license",
+    "say": "Then there's the paperwork. In the 1950s, about 5 percent of jobs needed a license. Today it's roughly 25 — and it often doesn't transfer across state lines."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "share of Americans who moved",
+   "say": "In the 1950s, 1 in 5 Americans moved every single year. By 2023 that fell below 1 in 10 — the lowest rate ever recorded.",
+   "role": "1 · THE COLLAPSE",
+   "data": {
+    "file": "us_mobility_rate_by_year.json",
+    "unit": "percent",
+    "title": "Share of Americans who moved in the past year",
+    "points": [
+     {
+      "label": "1950",
+      "value": 20.0,
+      "period": "1950"
+     },
+     {
+      "label": "1970",
+      "value": 18.0,
+      "period": "1970"
+     },
+     {
+      "label": "1990",
+      "value": 17.0,
+      "period": "1990"
+     },
+     {
+      "label": "2010",
+      "value": 12.5,
+      "period": "2010"
+     },
+     {
+      "label": "2023",
+      "value": 8.0,
+      "period": "2023"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "mortgage lock-in",
+   "say": "Part of it is math. Most homeowners are sitting on a mortgage under 4 percent, while a new one costs almost 7 — moving means trading a cheap loan for a pricier one.",
+   "role": "2 · THE MATH",
+   "data": {
+    "file": "mortgage_lock_in_rate_gap.json",
+    "unit": "percent",
+    "title": "Existing mortgage rate vs. a new mortgage rate today",
+    "points": [
+     {
+      "label": "Existing mortgage (most homeowners)",
+      "value": 3.8
+     },
+     {
+      "label": "New mortgage today",
+      "value": 6.9
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "workers needing a license",
+   "say": "Then there's the paperwork. In the 1950s, about 5 percent of jobs needed a license. Today it's roughly 25 — and it often doesn't transfer across state lines.",
+   "role": "3 · THE PAPERWORK",
+   "data": {
+    "file": "occupational_licensing_share.json",
+    "unit": "percent",
+    "title": "Share of US workers who need a government license to work",
+    "points": [
+     {
+      "label": "1950",
+      "value": 5.0,
+      "period": "1950"
+     },
+     {
+      "label": "1970",
+      "value": 10.0,
+      "period": "1970"
+     },
+     {
+      "label": "1990",
+      "value": 15.0,
+      "period": "1990"
+     },
+     {
+      "label": "2010",
+      "value": 20.0,
+      "period": "2010"
+     },
+     {
+      "label": "2023",
+      "value": 25.0,
+      "period": "2023"
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/americans-stopped-moving__f6264643.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

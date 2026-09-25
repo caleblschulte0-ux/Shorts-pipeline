@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T115633Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg0:start and seg1:mid the label 'Commercial jet cruising speed (km/h)' runs into the mascot and reads '(km/h'. The kicker in seg3:start is cut to 'MINUTES BETWEEN SUNRISES T...'. The ISS mascot is clipped by the right edge in seg0:end.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "payoff_not_demonstrated",
+  "visible_evidence": "The narration says 'happens 16 times' (seg3:mid, seg3:end), but the screen shows a 1440 bubble next to a small 93 bubble, then a ruler with one label. The ending (seg4) lands on '1,347 apart', a subtraction that means nothing. The number 16 never appears on screen.",
+  "root_cause": "The scene draws two period values as a size comparison or difference, when the claim is a count: 1440 / 93 \u2248 16 sunrises in one day.",
+  "repair_goal": "Show a 24-hour day as a strip or clock face. Have the ISS lap it and flash a sunrise at each 93-minute tick, so 16 suns pile up and a counter reaches 16, next to a single sunrise for someone on the ground. Data can count them off or duck each flash. Drop the '1,347 apart' ending."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

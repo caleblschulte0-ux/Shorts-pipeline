@@ -1,0 +1,152 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "sand-mining-crisis__eb97e4fb",
+ "filed": "2026-09-25T11:56:20Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "sand-mining-crisis",
+ "current": {
+  "title": "The World Is Quietly Running Out Of Sand",
+  "hook": "We're mining sand faster than nature makes it.",
+  "closing": "Somehow, the beach is the crisis.",
+  "question": "Did you know sand could run out? Comment below.",
+  "segments": [
+   {
+    "topic": "sand extraction",
+    "say": "We're now mining 50 billion tonnes of sand and gravel a year, five times what we mined back in 1970. It's the second most extracted material on Earth, after water."
+   },
+   {
+    "topic": "extraction vs nature's pace",
+    "say": "But rivers only replace about 13 billion tonnes of sand a year. So we're pulling it out roughly four times faster than the planet can put it back."
+   },
+   {
+    "topic": "who's driving demand",
+    "say": "China alone pours about 51 percent of the world's cement, which is mostly sand and gravel. One country's construction boom is emptying riverbeds and beaches on every continent."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "sand extraction",
+   "say": "We're now mining 50 billion tonnes of sand and gravel a year, five times what we mined back in 1970. It's the second most extracted material on Earth, after water.",
+   "role": "1 · THE DEMAND",
+   "data": {
+    "file": "sand_extraction_growth.json",
+    "unit": "billion tonnes",
+    "title": "Global sand and gravel extraction per year",
+    "points": [
+     {
+      "label": "1970",
+      "value": 9.6,
+      "period": "1970"
+     },
+     {
+      "label": "1994",
+      "value": 20.5,
+      "period": "1994"
+     },
+     {
+      "label": "2020",
+      "value": 50,
+      "period": "2020"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "extraction vs nature's pace",
+   "say": "But rivers only replace about 13 billion tonnes of sand a year. So we're pulling it out roughly four times faster than the planet can put it back.",
+   "role": "2 · THE CATCH",
+   "data": {
+    "file": "sand_extraction_vs_replenishment.json",
+    "unit": "billion tonnes",
+    "title": "Sand mined vs. sand naturally replaced by rivers, per year",
+    "points": [
+     {
+      "label": "Mined per year",
+      "value": 50
+     },
+     {
+      "label": "Naturally replenished per year",
+      "value": 13
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "who's driving demand",
+   "say": "China alone pours about 51 percent of the world's cement, which is mostly sand and gravel. One country's construction boom is emptying riverbeds and beaches on every continent.",
+   "role": "3 · WHO'S BUYING IT",
+   "data": {
+    "file": "cement_production_share_country.json",
+    "unit": "percent",
+    "title": "Share of world cement production, by country",
+    "points": [
+     {
+      "label": "China",
+      "value": 51
+     },
+     {
+      "label": "India",
+      "value": 8
+     },
+     {
+      "label": "Vietnam",
+      "value": 4
+     },
+     {
+      "label": "United States",
+      "value": 2
+     },
+     {
+      "label": "Rest of world",
+      "value": 35
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/sand-mining-crisis__eb97e4fb.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

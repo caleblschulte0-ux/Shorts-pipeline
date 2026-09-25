@@ -1,0 +1,144 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "online-shopping-store-toll__8cec60b2",
+ "filed": "2026-09-25T11:56:25Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "online-shopping-store-toll",
+ "current": {
+  "title": "Online Shopping Just Hit 16% Of Everything We Buy",
+  "hook": "Your last package closed a store somewhere.",
+  "closing": "Free shipping isn't free. Somebody's storefront is paying for it.",
+  "question": "Do you shop online or in person more? Comment your answer.",
+  "segments": [
+   {
+    "topic": "online shopping's share of retail sales",
+    "say": "Online shopping was just 3.86 percent of retail in 2000. By 2010 it barely moved to 4.4 percent. Today it's 16.4 percent -- nearly all that growth happened in the last 15 years."
+   },
+   {
+    "topic": "why online shopping grew: Amazon Prime membership",
+    "say": "Here's why: Amazon Prime grew from 54 million US members in 2015 to 180 million by 2024. Free 2-day shipping stopped feeling optional -- so more of what we buy just moved online."
+   },
+   {
+    "topic": "store closures from online shopping",
+    "say": "The result: 4,913 stores closed in 2023. In 2024 that jumped to 7,327 -- thousands more empty storefronts in a single year."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "online shopping's share of retail sales",
+   "say": "Online shopping was just 3.86 percent of retail in 2000. By 2010 it barely moved to 4.4 percent. Today it's 16.4 percent -- nearly all that growth happened in the last 15 years.",
+   "role": "1 · THE SHIFT",
+   "data": {
+    "file": "ecommerce_share_of_retail.json",
+    "unit": "percent",
+    "title": "E-commerce as a share of total US retail sales (percent)",
+    "points": [
+     {
+      "label": "2000",
+      "value": 3.86,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 4.4,
+      "period": "2010"
+     },
+     {
+      "label": "2025",
+      "value": 16.4,
+      "period": "2025"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why online shopping grew: Amazon Prime membership",
+   "say": "Here's why: Amazon Prime grew from 54 million US members in 2015 to 180 million by 2024. Free 2-day shipping stopped feeling optional -- so more of what we buy just moved online.",
+   "role": "2 · WHY",
+   "data": {
+    "file": "amazon_prime_us_members.json",
+    "unit": "million",
+    "title": "Amazon Prime US members (millions)",
+    "points": [
+     {
+      "label": "2015",
+      "value": 54,
+      "period": "2015"
+     },
+     {
+      "label": "2024",
+      "value": 180,
+      "period": "2024"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "store closures from online shopping",
+   "say": "The result: 4,913 stores closed in 2023. In 2024 that jumped to 7,327 -- thousands more empty storefronts in a single year.",
+   "role": "3 · THE COST",
+   "data": {
+    "file": "retail_store_closures.json",
+    "unit": "count",
+    "title": "US retail store closures tracked per year",
+    "points": [
+     {
+      "label": "2023",
+      "value": 4913,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 7327,
+      "period": "2024"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It does not clearly reverse a specific viewer expectation and relies only on a vague statistic without a consequential hook."
+ ],
+ "reasons": [
+  "premise: brain: It does not clearly reverse a specific viewer expectation and relies only on a vague statistic without a consequential hook."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/online-shopping-store-toll__8cec60b2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

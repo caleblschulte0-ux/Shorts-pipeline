@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T115633Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In the race (hook@0.3 to seg1:end) the two copies of Data sit next to the numbers and bob while the ISS copy slides against the right edge. In seg3:start and seg3:mid he stands on top of the 1440 bubble, and in seg4 he walks along a ruler. None of these is a setup, action and payo",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "payoff_not_demonstrated",
+  "visible_evidence": "The narration says 'happens 16 times' (seg3:mid, seg3:end), but the screen shows a 1440 bubble next to a small 93 bubble, then a ruler with one label. The ending (seg4) lands on '1,347 apart', a subtraction that means nothing. The number 16 never appears on screen.",
+  "root_cause": "The scene draws two period values as a size comparison or difference, when the claim is a count: 1440 / 93 \u2248 16 sunrises in one day.",
+  "repair_goal": "Show a 24-hour day as a strip or clock face. Have the ISS lap it and flash a sunrise at each 93-minute tick, so 16 suns pile up and a counter reaches 16, next to a single sunrise for someone on the ground. Data can count them off or duck each flash. Drop the '1,347 apart' ending."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

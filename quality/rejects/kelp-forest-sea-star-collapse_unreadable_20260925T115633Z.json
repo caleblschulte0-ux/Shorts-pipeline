@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20260925T115633Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start, seg2:mid and seg2:end the mascot covers the label, so it reads 'Before 201'. The source line is cut off with '...' in hook@0.3 and seg0:mid. '10.1K%' is an awkward way to show 10,000%.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_and_bare_text_demo",
+  "visible_evidence": "seg2:start through seg2:end show 'Before 201' clipped behind a cheering mascot, and '100%' vs '10.1K%' as text on two thin lines. Two identical arms-up mascots stand in for the urchins. No urchins appear, and nothing shows the explosion of urchin numbers.",
+  "root_cause": "A generic two-lane race machine uses the mascot as the marker, so the 10,000% jump is carried by a number label instead of the subject. The mascot sprite overlaps the left label column.",
+  "repair_goal": "Draw the urchin explosion from urchins themselves: one purple urchin (the baseline) multiplying into a carpet of about 100 urchins that floods the seafloor and fills the frame. Label it '10,000%' in full. Keep every label clear of the mascot, and give Data one reaction bit, such as being pushed aside by the swarm."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "space-travel-acceleration",
+ "ts": "20260925T115633Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:mid the falling blue tokens run over the label, so 'Blue Origin' reads as 'Blue O_igin'. In seg4:mid and seg4:end the '25%' is dark navy on a purple sunset, and its tiny subline 'of all of it \u2014 and only warming up' sits on the horizon and disappears. In hook@0.3 the grey '560 in ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_and_stock_machine",
+  "visible_evidence": "seg2:start puts '24 + 23' in the headline while the narration says 'has flown 92' and the left pan is empty. In seg2:mid the falling token stream crosses the 'Blue Origin (since 2021)' label. Data stands on the right pan and hides the token stack under him (seg2:end).",
+  "root_cause": "A generic balance-scale machine with a token emitter whose path runs through the headline text. The headline follows the other side's number instead of the one being spoken, and the mascot is placed on top of the data.",
+  "repair_goal": "Route the Blue Origin token stream so it never crosses any text, and show '92' in the headline while '92' is spoken. Move Data off the pan, for example have him drop the 92 capsules in by hand, so both stacks are visible. Better still, replace the scale with a subject-made picture, such as three launch pads each firing its own passenger capsules, so Blue Origin's 92 visibly outnumber the other two's 47 combined."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

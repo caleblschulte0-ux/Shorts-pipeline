@@ -1,0 +1,16 @@
+{
+ "slug": "lyme-disease-undercount",
+ "ts": "20260925T115633Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start through seg1:end the headline 'TICKS THAT SPREAD LYME DISEASE' is clipped at both frame edges (the T and the last E are cut off). At seg1:end the mascot's head covers 'SPREAD'. The grey '16' in seg2:mid and seg2:end is low-contrast on the slate tiles.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_chart_repeat",
+  "visible_evidence": "seg1:start to seg1:end show a generic arc gauge counting 9.5% to 44.7%, labelled '2024'. It repeats the 45% that the seg0 balance already delivered. The all-caps headline is clipped at both frame edges, and at seg1:end the mascot sits on top of the headline text.",
+  "root_cause": "The layout falls back to a gauge chart for a claim seg0 already proved. The headline is not measured against the frame width, and the mascot's path along the arc does not avoid the title area.",
+  "repair_goal": "Replace the gauge with a depiction made of the subject: a US county map, or county tiles that ticks crawl across, spreading from 30% to 45% coverage and showing 'new ground' from climate change. Measure the title to fit inside safe margins and keep the mascot out of text areas."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "landline-death-robocall-boom__8f868915_r1",
+ "filed": "2026-09-25T11:56:22Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "landline-death-robocall-boom",
+ "current": {
+  "title": "America Basically Killed The Landline",
+  "hook": "Why does every unknown number feel like a scam call now?",
+  "closing": "Your phone still rings. Most of the time, it isn't for you.",
+  "question": "Do you still answer numbers you don't recognize? Tell me below.",
+  "segments": [
+   {
+    "topic": "the death of the landline",
+    "say": "By 2024, 76% of US adults lived without a landline at all -- up from just 25% in 2010. Your phone number isn't tied to an address anymore. It's just... you."
+   },
+   {
+    "topic": "what filled the vacuum",
+    "say": "Which means anyone can flash any number on your screen. Of the 52.8 billion robocalls Americans got in 2024, 36% were telemarketing and 22% were straight-up scams."
+   },
+   {
+    "topic": "how big robocalling got",
+    "say": "That's nearly 200 robocalls for every adult in the country, almost double 2016's 29.3 billion. Which is exactly why you let unknown numbers go straight to voicemail now."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "the death of the landline",
+   "say": "By 2024, 76% of US adults lived without a landline at all -- up from just 25% in 2010. Your phone number isn't tied to an address anymore. It's just... you.",
+   "role": "1 · SETUP",
+   "data": {
+    "file": "wireless_only_adults_trend.json",
+    "unit": "percent",
+    "title": "Share of US adults with no landline (wireless-only)",
+    "points": [
+     {
+      "label": "2010",
+      "value": 24.9,
+      "period": "2010"
+     },
+     {
+      "label": "2014",
+      "value": 44.1,
+      "period": "2014"
+     },
+     {
+      "label": "2022",
+      "value": 73.2,
+      "period": "2022"
+     },
+     {
+      "label": "2024",
+      "value": 76,
+      "period": "2024"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "what filled the vacuum",
+   "say": "Which means anyone can flash any number on your screen. Of the 52.8 billion robocalls Americans got in 2024, 36% were telemarketing and 22% were straight-up scams.",
+   "role": "2 · THE TURN",
+   "data": {
+    "file": "robocall_type_breakdown_2024.json",
+    "unit": "percent",
+    "title": "US robocalls in 2024, by category",
+    "points": [
+     {
+      "label": "Telemarketing",
+      "value": 36
+     },
+     {
+      "label": "Alerts & reminders",
+      "value": 25
+     },
+     {
+      "label": "Scam calls",
+      "value": 22
+     },
+     {
+      "label": "Payment reminders",
+      "value": 16
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how big robocalling got",
+   "say": "That's nearly 200 robocalls for every adult in the country, almost double 2016's 29.3 billion. Which is exactly why you let unknown numbers go straight to voicemail now.",
+   "role": "3 · CONSEQUENCE",
+   "data": {
+    "file": "robocall_volume_2016_vs_2024.json",
+    "unit": "billion calls",
+    "title": "Total US robocalls per year, 2016 vs. 2024",
+    "points": [
+     {
+      "label": "2016",
+      "value": 29.3
+     },
+     {
+      "label": "2024",
+      "value": 52.8
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook",
+  "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
+  "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook",
+  "premise: title reads as a searchable noun phrase, not a premise: 'America Basically Killed The Landline'",
+  "beats: seg1: the line's headline number (5.28e+10) is 234,666,667x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/landline-death-robocall-boom__8f868915_r1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

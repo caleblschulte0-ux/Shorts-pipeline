@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T115633Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: hook@0.3, seg0:end, seg1:start, seg1:mid and seg1:end are almost the same frame: the same 900 vs 27.6K race for about 15s. Only the mascot wiggles and the captions change, so two beats look identical.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "payoff_not_demonstrated",
+  "visible_evidence": "The narration says 'happens 16 times' (seg3:mid, seg3:end), but the screen shows a 1440 bubble next to a small 93 bubble, then a ruler with one label. The ending (seg4) lands on '1,347 apart', a subtraction that means nothing. The number 16 never appears on screen.",
+  "root_cause": "The scene draws two period values as a size comparison or difference, when the claim is a count: 1440 / 93 \u2248 16 sunrises in one day.",
+  "repair_goal": "Show a 24-hour day as a strip or clock face. Have the ISS lap it and flash a sunrise at each 93-minute tick, so 16 suns pile up and a counter reaches 16, next to a single sunrise for someone on the ground. Data can count them off or duck each flash. Drop the '1,347 apart' ending."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

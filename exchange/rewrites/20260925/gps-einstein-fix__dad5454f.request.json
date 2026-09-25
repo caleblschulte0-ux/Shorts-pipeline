@@ -1,0 +1,149 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "gps-einstein-fix__dad5454f",
+ "filed": "2026-09-25T11:56:21Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "gps-einstein-fix",
+ "current": {
+  "title": "Every GPS Satellite Is Set to the Wrong Time on Purpose",
+  "hook": "Every GPS satellite lies about the time. Deliberately.",
+  "closing": "Einstein's homework, running in your pocket, all day, every day.",
+  "question": "Did you know your phone runs on relativity? Tell me below.",
+  "segments": [
+   {
+    "topic": "how a satellite clock drifts",
+    "say": "20,200 kilometers up, gravity is weaker, so a satellite clock ticks 45 microseconds fast every day. Its 14,000 kilometer-per-hour speed drags 7 back. Net gain: 38 microseconds."
+   },
+   {
+    "topic": "GPS error without the fix",
+    "say": "Sounds like nothing. But light travels 300,000 kilometers a second, so a few millionths of a second is real distance. Left uncorrected, your position slides 10 kilometers off in a day."
+   },
+   {
+    "topic": "GPS accuracy, corrected vs not",
+    "say": "So every satellite launches with its clock deliberately set slow. That one fix is why your phone puts you inside 4.9 meters instead of 10,000."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how a satellite clock drifts",
+   "say": "20,200 kilometers up, gravity is weaker, so a satellite clock ticks 45 microseconds fast every day. Its 14,000 kilometer-per-hour speed drags 7 back. Net gain: 38 microseconds.",
+   "role": "1 · TWO CLOCKS, ONE ORBIT",
+   "data": {
+    "file": "gps_clock_relativity_shift.json",
+    "unit": "microseconds per day",
+    "title": "How much a GPS satellite clock drifts each day (microseconds per day)",
+    "points": [
+     {
+      "label": "Weaker gravity speeds it up",
+      "value": 45
+     },
+     {
+      "label": "Net gain, every day",
+      "value": 38
+     },
+     {
+      "label": "Orbital speed slows it down",
+      "value": 7
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "GPS error without the fix",
+   "say": "Sounds like nothing. But light travels 300,000 kilometers a second, so a few millionths of a second is real distance. Left uncorrected, your position slides 10 kilometers off in a day.",
+   "role": "2 · WHERE IT GOES WRONG",
+   "data": {
+    "file": "gps_position_error_growth.json",
+    "unit": "kilometers",
+    "title": "GPS position error if relativity were ignored (kilometers)",
+    "points": [
+     {
+      "label": "1 hour",
+      "value": 0.4,
+      "period": "1 hour"
+     },
+     {
+      "label": "6 hours",
+      "value": 2.5,
+      "period": "6 hours"
+     },
+     {
+      "label": "12 hours",
+      "value": 5.0,
+      "period": "12 hours"
+     },
+     {
+      "label": "24 hours",
+      "value": 10.0,
+      "period": "24 hours"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "GPS accuracy, corrected vs not",
+   "say": "So every satellite launches with its clock deliberately set slow. That one fix is why your phone puts you inside 4.9 meters instead of 10,000.",
+   "role": "3 · THE FIX",
+   "data": {
+    "file": "gps_accuracy_with_and_without_fix.json",
+    "unit": "meters",
+    "title": "How far off your position is, with and without the relativity fix (meters)",
+    "points": [
+     {
+      "label": "With the fix, typical phone",
+      "value": 4.9
+     },
+     {
+      "label": "Without it, after one day",
+      "value": 10000
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/gps-einstein-fix__dad5454f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

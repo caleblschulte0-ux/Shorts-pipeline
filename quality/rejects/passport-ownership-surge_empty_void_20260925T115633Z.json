@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260925T115633Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:mid/end the lower ~40% of the frame is empty dark ground below the gauge. In seg3:start two small circles float in a mostly empty frame.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:start\u2013end: a thin ring gauge ticks 3.5%\u219247.7% with a giant number in the middle. The title is cropped at both edges, Data stands on the rim blocking 'WHO', the bottom 40% of the frame is empty, and the label reads '2023' while the narration says 'Today'.",
+  "root_cause": "The scene fell back to a generic progress-gauge chart for a 5%\u219248% growth claim. The title was not measured to the frame width, and the mascot was placed on the arc with no action.",
+  "repair_goal": "Redraw the 5%\u219248% growth as something made of passports: a crowd of 20 people, each 5% of Americans, with a passport landing in the hands of 1 person (1990) and then almost 10 (today), and Data handing them out. Fit the title inside the safe margins, keep the mascot clear of the text, and fill the lower frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
