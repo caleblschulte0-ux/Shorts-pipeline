@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260924",
+  "updated": "20260925",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -529,10 +529,16 @@
       ]
     },
     "f6aa3e1f1c66": {
-      "verdict": "doing",
-      "date": "20260818",
-      "because": "Verified the numbers independently against state/analytics_explainer/latest.json: n=34 superlative-titled videos median 50.1% AVP vs n=97 others median 29.1% AVP, matches the report exactly. Real signal worth acting on, but a formal 28-day cohort experiment with age-banded comparison is a bigger build than one triage session -- queuing for a dedicated build pass rather than rushing a shallow version.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260925",
+      "because": "Built: post_stories.py reserves one explainer slot/day for the next unposted superlative-titled story ahead of plain queue order (_reserve_superlative_slot), tags every posted-log entry with experiment_arm/actual_structure=superlative_topic|other_topic, and the 28-day/25-sample experiment is registered in retro/state/experiments.json (id 20260925-superlative-*, baseline 29.1% AVP, guardrail explainer.narrative_score median 61). No cadence or quality-bar change. Marking in_progress until the readout closes it.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260818",
+          "because": "Verified the numbers independently against state/analytics_explainer/latest.json: n=34 superlative-titled videos median 50.1% AVP vs n=97 others median 29.1% AVP, matches the report exactly. Real signal worth acting on, but a formal 28-day cohort experiment with age-banded comparison is a bigger build than one triage session -- queuing for a dedicated build pass rather than rushing a shallow version."
+        }
+      ]
     },
     "1207ec562569": {
       "verdict": "done",
