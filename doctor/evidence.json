@@ -2635,8 +2635,8 @@
     }
   ],
   "recent_commits": [
-    "42f442e 2026-09-25 A: cut/multiple drawn as the subject (hole, copies) + clickbait hooks that stay true (#453)",
-    "1b859f4 2026-09-25 claim: mailbox verdicts 2026-09-25T04:47Z [skip ci]"
+    "9c3a8b7 2026-09-25 exchange: phase A bundle for 20260925 [skip ci]",
+    "640cda3 2026-09-25 The brain is told how to draw a share: one whole, split (#462)"
   ],
   "channel_performance": {
     "trending": {
@@ -2741,32 +2741,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 104,
+      "videos": 106,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 7.82,
+          "vph": 7.44,
           "views": 1356
         },
         {
-          "title": "Jasontheween Rages After Ron Ruins His New Car Intro",
-          "vph": 2.04,
-          "views": 57
+          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
+          "vph": 1.95,
+          "views": 107
         },
         {
           "title": "Chat Could Not Handle This Caseoh Moment",
-          "vph": 1.81,
-          "views": 216
+          "vph": 1.7,
+          "views": 218
         },
         {
-          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
-          "vph": 1.74,
-          "views": 80
+          "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
+          "vph": 1.65,
+          "views": 21
         },
         {
-          "title": "Jynxzi Has No Idea What He's Looking At \ud83d\ude2d",
-          "vph": 1.72,
-          "views": 136
+          "title": "Jasontheween Rages After Ron Ruins His New Car Intro",
+          "vph": 1.6,
+          "views": 59
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2864,7 +2864,7 @@
       "title": "Test the existing superlative doctrine against the finance-heavy explainer queue",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "9d5a03472328",
