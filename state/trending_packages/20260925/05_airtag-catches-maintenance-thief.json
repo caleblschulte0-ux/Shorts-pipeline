@@ -32,7 +32,7 @@
       "pin_context": "Apple AirTag Bluetooth tracker product",
       "news_query": "AirTag",
       "news_angle": "A hidden Apple AirTag was zip\u2011tied to the bottom of a package to track the thief inside the apartment building.",
-      "image_url": "https://pixabay.com/get/gc2f51e2a8c3df6a70a803b1fd29031e6d90bf539cc649a9b2d80d55072d48d69ec48f3a3acde980e06e105a37a51c9597f0b350943573f56f2414b6458b2ada2_1280.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
         "source_class": "open_or_licensed",
@@ -42,32 +42,23 @@
         "content_type": "image/svg+xml",
         "verified_at": "2026-09-25T10:08:04Z",
         "resolved_by": "verify_shot_urls"
-      },
-      "media_origin": "self_fill"
+      }
     },
     {
       "phrase": "The tracker sat still for two hours in a unit on the third floor",
-      "query": "apartment building hallway",
-      "image_url": "https://pixabay.com/get/g6803c48052346e884a6f975ddf8e988fb0735f5fa8a95e537a2daefb9877cac92ffdd7d01c92d52fa72259310578eb940cdfeeb1ec981184570727dce694bfc1_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "apartment building hallway"
     },
     {
       "phrase": "the building's own maintenance closet",
-      "query": "maintenance closet tools",
-      "image_url": "https://pixabay.com/get/gbe509d2273ef2dfa000f626df6de8d9ce97a4be11ef19fba2d39d19f4bf293efb55214965e57a176376ece35edf3eac80bbac1fee1881f3b781bc579630e513b_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "maintenance closet tools"
     },
     {
       "phrase": "forwarded the location history straight to the property manager",
-      "query": "phone screen map app",
-      "image_url": "https://pixabay.com/get/ge3d64ad7036d973cbf1ff9b0d1287636e4be9a444c7d11d8fd07cf6b23afb7882838e52e2c03f36bacd1beb7f150e96377a44e240428c97b7da3a6af728d960e_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "phone screen map app"
     },
     {
       "phrase": "a master key to every door in the building",
-      "query": "master key keyring",
-      "image_url": "https://pixabay.com/get/g95b9dc6f29b1685c7cc8fa4740e2c98b16d54a4f5e0592c510334eb5ef62d4c763b95cfed9716db6d3f06963677ad885b759964fb44cdcfd31bd0e167a365ea0_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "master key keyring"
     },
     {
       "phrase": "selling whatever looked expensive on a resale app",
@@ -75,9 +66,7 @@
     },
     {
       "phrase": "paying back eleven other tenants through a small claims judgment",
-      "query": "small claims courtroom",
-      "image_url": "https://pixabay.com/get/g173f95e6cba07ac29fc3864d8dfd685a5c82618a09b28d35319c53a06f9001c9c46710dd348ad72cf05bad8485305b82a8115184c9b4e07b29102dc5d1b6437e_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "small claims courtroom"
     }
   ],
   "punches": [

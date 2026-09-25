@@ -1,39 +1,5 @@
 [
   {
-    "topic": "Manga Just Buried Superhero Comics In America",
-    "title": "Manga Just Buried Superhero Comics In America",
-    "format": "graph_race",
-    "publish_at": "2026-09-25T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/YbvF7Tuy2Gc",
-    "error": null,
-    "elapsed_seconds": 120.7,
-    "package_path": "state/trending_packages/20260925/01_manga-buried-superhero-comics.json",
-    "source": "brain",
-    "video_path": "output/daily_20260925-120108_manga_just_buried_superhero_comics_in_am.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "channel": "default"
-  },
-  {
     "topic": "Chicken Quietly Passed Beef In America",
     "title": "Chicken Quietly Passed Beef In America",
     "format": "graph_race",
@@ -44,7 +10,7 @@
     "elapsed_seconds": 81.4,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-120308_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-133357_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -74,11 +40,11 @@
     "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 9.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 80.2,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 9.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 82.7,
     "package_path": "state/trending_packages/20260925/03_homeschool-passed-catholic-school.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-120430_homeschooling_just_passed_catholic_schoo.mp4",
+    "video_path": "output/daily_20260925-133519_homeschooling_just_passed_catholic_schoo.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,7 +62,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 9.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 9.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 14
     },
     "blocked": true
@@ -108,11 +74,11 @@
     "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 80.3,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 78.1,
     "package_path": "state/trending_packages/20260925/04_brazil-csections-passed-vaginal-births.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-120550_c_sections_just_passed_natural_births_in.mp4",
+    "video_path": "output/daily_20260925-133641_c_sections_just_passed_natural_births_in.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +96,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 14
     },
     "blocked": true
@@ -142,14 +108,14 @@
     "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a caption-only gameplay loop. Not one shot illustrates the AirTag-versus-master-key story, so the narrative never gets shown on screen.",
-    "elapsed_seconds": 224.4,
+    "error": "showrunner_block: showrunner BLOCK: This is almost entirely Minecraft gameplay with captions: one generic hallway still in 53 seconds, so the thief-and-AirTag story is never shown, and a grey seam line cuts across every frame.",
+    "elapsed_seconds": 237.9,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-120736_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-133803_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.733,
+      "duration": 53.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,17 +126,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.1
+      "loudness_lufs": -26.2
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "None"
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a caption-only gameplay loop. Not one shot illustrates the AirTag-versus-master-key story, so the narrative never gets shown on screen.",
-      "score": 57
+      "reason": "showrunner BLOCK: This is almost entirely Minecraft gameplay with captions: one generic hallway still in 53 seconds, so the thief-and-AirTag story is never shown, and a grey seam line cuts across every frame.",
+      "score": 61
     },
     "blocked": true
   },
@@ -181,14 +147,14 @@
     "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The screen is almost all Subway Surfers with captions. In about 45 seconds of narration, only one shot (the FTC building photo) shows anything from the robocall story, so nothing on screen tells it.",
-    "elapsed_seconds": 226.0,
+    "error": "showrunner_block: showrunner BLOCK: Most of this story plays over gameplay alone. Only 2 of about 8 beats get an illustration, so the robocall trace and the FTC payoff are never shown, and the ending lands on gears and clouds.",
+    "elapsed_seconds": 194.0,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-121120_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-134200_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.867,
+      "duration": 48.833,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +165,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.1
+      "loudness_lufs": -23.7
     },
     "qa": {
       "ok": true,
@@ -208,90 +174,77 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The screen is almost all Subway Surfers with captions. In about 45 seconds of narration, only one shot (the FTC building photo) shows anything from the robocall story, so nothing on screen tells it.",
-      "score": 65
+      "reason": "showrunner BLOCK: Most of this story plays over gameplay alone. Only 2 of about 8 beats get an illustration, so the robocall trace and the FTC payoff are never shown, and the ending lands on gears and clouds.",
+      "score": 62
     },
     "blocked": true
   },
   {
-    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "A wildlife underpass on I-70 is proving a highway\u2011to\u2011habitat lifeline as dozens of elk, deer and coyotes safely cross under traffic.",
+    "topic": "Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch",
+    "angle": "A golden retriever tasked with guarding a construction site hilariously quits, sparking a viral debate on canine work ethics.",
     "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['stealing my tip', 'taste of his own medicine', 'cash register', 'free latte', 'roof']",
-    "elapsed_seconds": 26.7,
-    "title": "I Caught My Caf\u00e9 Manager Stealing My Tip and Served Him a Free Latte",
-    "package_path": "state/trending_packages/20260925-121451_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
+    "error": "showrunner_block: showrunner BLOCK: Only one of six story beats is illustrated. The rest is bare Minecraft parkour under captions, so the petty-revenge payoff is told but never shown.",
+    "elapsed_seconds": 192.3,
+    "title": "I Guarded the Espresso Machine and Got a Free Payday",
+    "package_path": "state/trending_packages/20260925-134533_auto_golden_retriever_had_one_job__he_failed_.json",
+    "video_path": "output/daily_20260925-134533_golden_retriever_had_one_job__he_failed_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.867,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Only one of six story beats is illustrated. The rest is bare Minecraft parkour under captions, so the petty-revenge payoff is told but never shown.",
+      "score": 61
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
+    "angle": "Footage from I-70\u2019s wildlife underpass shows elk, bears, and coyotes safely crossing, proving the costly tunnel\u2019s success.",
+    "publish_at": "2026-09-25T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['biggest client', 'free upgrade', 'sealed box', 'never opened', 'complaint form', 'signed it', 'my boss stared']",
+    "elapsed_seconds": 29.0,
+    "title": "I handed the demanding client a mystery box and got sweet karma",
+    "package_path": "state/trending_packages/20260925-134840_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
     "quarantined": true,
     "backfill": true
   },
   {
     "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
-    "angle": "An endangered Blanding\u2019s turtle successfully navigated a new Maine tunnel, highlighting a rare conservation win.",
-    "publish_at": "2026-09-25T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are never illustrated: it is bare Minecraft gameplay with sparse captions, and at mid5 two captions pile on top of each other so neither can be read.",
-    "elapsed_seconds": 169.1,
-    "title": "I Served the Entitled Customer Her Own Free Latte",
-    "package_path": "state/trending_packages/20260925-121518_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260925-121518_endangered_blanding_s_turtle_caught_on_c.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 48.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are never illustrated: it is bare Minecraft gameplay with sparse captions, and at mid5 two captions pile on top of each other so neither can be read.",
-      "score": 57
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
-    "angle": "A lone monkey was caught on a Florida homeowner\u2019s trail camera, sparking a bizarre cross\u2011state wildlife mystery.",
+    "angle": "A rare Blanding\u2019s turtle uses a newly built Maine tunnel, offering hope for the endangered species\u2019 migration safety.",
     "publish_at": "2026-09-25T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['swapped her order', '$50 pastry', 'receipt for the pastry', 'bitter taste', 'entitlement']",
-    "elapsed_seconds": 26.6,
-    "title": "I Served a Free Latte and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260925-121807_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "Caught on Camera: Startled deer runs into West Virginia elementary school gym - WOWK 13 News",
-    "angle": "A startled deer burst into a West Virginia school gym during lunch, forcing an emergency evacuation and viral footage.",
-    "publish_at": "2026-09-25T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is just blurry Minecraft parkour with captions: no beat of the coffee/laptop revenge story is ever shown, and the hook opens on a garbled gameplay HUD artifact.",
-    "elapsed_seconds": 158.9,
-    "title": "I Served a Free Coffee to a Laptop\u2011Smashing Customer",
-    "package_path": "state/trending_packages/20260925-121834_auto_caught_on_camera__startled_deer_runs_int.json",
-    "video_path": "output/daily_20260925-121834_caught_on_camera__startled_deer_runs_int.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is gameplay plus captions and nothing else. The hook is a blown-out yellow smear, and no shot ever shows the latte, the note, the ruined machine or the revenge, so the story is never demonstrated.",
+    "elapsed_seconds": 271.1,
+    "title": "I Served a Free Latte and Got Sweet Revenge",
+    "package_path": "state/trending_packages/20260925-134908_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260925-134908_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.567,
+      "duration": 44.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -302,7 +255,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.7
+      "loudness_lufs": -26.6
     },
     "qa": {
       "ok": true,
@@ -311,10 +264,21 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is just blurry Minecraft parkour with captions: no beat of the coffee/laptop revenge story is ever shown, and the hook opens on a garbled gameplay HUD artifact.",
-      "score": 61
+      "reason": "showrunner BLOCK: This is gameplay plus captions and nothing else. The hook is a blown-out yellow smear, and no shot ever shows the latte, the note, the ruined machine or the revenge, so the story is never demonstrated.",
+      "score": 49
     },
     "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "'Fake delivery driver' burglary scheme caught on camera at Milpitas home - ABC7 Bay Area",
+    "angle": "A fake delivery driver dupes homeowners with a bogus package, only to be filmed stealing their valuables in a brazen burglary.",
+    "publish_at": "2026-09-25T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: \"'Fake delivery driver' burglary scheme caught on camera at Milpitas home - ABC7 Bay Area\" refused by the writer: Trend is a crime/burglary story (real victims, real police case) - not usable as a setting per the no crime-victims rule.",
+    "elapsed_seconds": 27.7,
+    "unfit": true,
     "backfill": true
   }
 ]
