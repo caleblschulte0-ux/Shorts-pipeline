@@ -153,10 +153,35 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
         for i in sorted(replaced):
             print(f"      shot panel {i} REPLACED — re-searched as "
                   f"{(pkg['shots'][i].get('query') or '')!r}", flush=True)
-        for d in dropped_again:
-            print(f"      shot panel {d['index']} stays EMPTY — replacement "
-                  f"rejected too: {d['why'][:80]}", flush=True)
         out.update(replaced)
+        # THE LAST RESORT: the object the line names, from the icon library
+        # (funnel/icon_panel.py). A gap is better than a lie, and the thing
+        # itself is better than a gap — on 2026-09-25 every generator was
+        # down and five stories shipped as bare gameplay under captions.
+        from funnel import icon_panel as _ip
+        for d in dropped_again:
+            i = d["index"]
+            sh = (pkg.get("shots") or [])[i]
+            icon = _ip.icon_panel([sh.get("query"), sh.get("phrase"),
+                                   sh.get("pin_query")],
+                                  workdir / f"icon_panel_{i:02d}.png")
+            if icon is not None:
+                try:
+                    # fitted directly: an icon is ours, not the attested
+                    # asset `_panel_for` verifies against the shot's hash
+                    with Image.open(icon) as im:
+                        panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
+                                             method=Image.Resampling.LANCZOS)
+                    dest = workdir / f"shot_panel_{i:02d}.jpg"
+                    panel.save(dest, "JPEG", quality=92)
+                    out[i] = dest
+                    print(f"      shot panel {i} -> ICON of what it names "
+                          f"(no source depicted the line)", flush=True)
+                    continue
+                except Exception:  # noqa: BLE001
+                    pass
+            print(f"      shot panel {i} stays EMPTY — replacement "
+                  f"rejected too: {d['why'][:80]}", flush=True)
     except Exception as exc:  # noqa: BLE001 — a relevance check must never kill a render
         print(f"      shot relevance check skipped: {type(exc).__name__}: "
               f"{str(exc)[:90]}", flush=True)
