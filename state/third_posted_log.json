@@ -9202,6 +9202,25 @@
         "end": 21.5
       },
       "director_cut": true
+    },
+    "rejected-moralracytraycopythis--fauf0hb0nq5j4q1": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/MoralRacyTrayCopyThis--fauF0HB0nQ5J4Q1",
+      "streamer": "summit1g",
+      "title": "Summit1G Turns Into A Sheep And Can't Stop Laughing About It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: sharp gameplay region is a thin horizontal strip (roughly 20% of canvas height, not ~75%) with the streamer webcam and i; vision: the sheep transformation / reaction is unreadable at this scale on a phone screen",
+      "ts": "2026-09-25T12:47:09.592731+00:00"
+    },
+    "clip-20260925-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/SnappyCourteousParrotAMPEnergyCherry-8WFBpaKQInAjgofh",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
+      "kind": "twitch_clip",
+      "ts": "2026-09-25T12:50:34.982337+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
