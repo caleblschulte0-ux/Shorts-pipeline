@@ -2366,6 +2366,24 @@ def _is_heights(kind: str, insight=None) -> bool:
     return False
 
 
+#: Scene element types whose machine also exists as a scene token.
+_ELEMENT_TOKEN = {"race_track": "race_scene"}
+
+
+def scene_machine_tokens(insight) -> set:
+    """The machine tokens an authored scene already draws ("balance" ->
+    `balance_scene`), so no other beat picks the same machine again."""
+    if insight is None or str(getattr(insight, "kind", "")) != "scene":
+        return set()
+    out = set()
+    for el in ((getattr(insight, "scene", None) or {}).get("elements") or []):
+        t = el.get("type") if isinstance(el, dict) else None
+        tok = _ELEMENT_TOKEN.get(t) or (f"{t}_scene" if t else None)
+        if tok and tok in _SCENE_TOKENS:
+            out.add(tok)
+    return out
+
+
 def _family(kind: str) -> str:
     """A chart, or a figure. The distinction the VIEWER makes.
 
@@ -2917,6 +2935,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         _kinds_used: set = {str(getattr(sg, "insight", None)
                                 and sg.insight.kind or "")
                             for sg in st.segments}
+        # ...AND WHAT EACH AUTHORED SCENE IS BUILT FROM. Beat 1 picked the
+        # scales while beat 2's own scene was a balance — "seg2 and seg3 both
+        # use the same seesaw back-to-back" (Waymo, 2026-09-25). A scene
+        # counted only as "scene", so its machine was invisible here.
+        for sg in st.segments:
+            _kinds_used |= scene_machine_tokens(getattr(sg, "insight", None))
         disp_start: dict = {}                 # per-seg chart DISPLAY start (s0)
         disp_end: dict = {}                   # per-seg chart DISPLAY end (s1)
         for i, seg in enumerate(st.segments):

@@ -138,7 +138,9 @@ class TheTowerTellsTheTruthWhileItBuilds(unittest.TestCase):
         done = " | ".join(self._texts(ins, 1.0))
         self.assertIn("Feb 2025   200,000", done)
         self.assertNotIn("Feb 2025   200,000", early)
-        self.assertIn("10,000", early)          # the then is named throughout
+        # while it counts, the header is the running count alone
+        self.assertRegex(early, r"(^| )\d{2,3},000( |$)")
+        self.assertNotIn("200,000", early)
 
     def test_on_the_cold_open_it_still_builds_across_the_whole_beat(self):
         """hook_reveal bursts to 3/4 by 22% of the span; an 11s opening
@@ -224,8 +226,13 @@ class ADateOnlyMeetsItsOwnValue(unittest.TestCase):
         ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
                   ("Feb 2025", 200000)], "count")
         mid = " | ".join(t._texts(ins, 0.6))
+        # while it counts, the header is only the count — "Oct 2023 10,000
+        # -> 120,000" still read as a mismatched date and value
         self.assertNotIn("Feb 2025", mid)
-        self.assertIn("Oct 2023", mid)
+        self.assertNotIn("Oct 2023", mid)
+        done = " | ".join(t._texts(ins, 1.0))
+        self.assertIn("Oct 2023", done)
+        self.assertIn("Feb 2025", done)
 
     def test_months_and_quarters_are_times(self):
         from data_learning import charts as C
@@ -355,3 +362,24 @@ class TheStackIsMadeOfTheSubject(unittest.TestCase):
                                       charts.HIGHLIGHT, 1.0, "cities")
         self.assertEqual(len(stamps), 5)
         self.assertEqual(len({x for x, _y in stamps}), 1)   # one per block
+
+
+class AnAuthoredScenesMachineCountsAsShown(unittest.TestCase):
+    """"seg2 and seg3 both use the same seesaw back-to-back" (Waymo): beat 1
+    picked the scales while beat 2's own scene was a balance."""
+
+    def test_a_scene_names_the_machines_it_draws(self):
+        from data_learning import studio_render as sr
+        ins = mk([("Waymo", 200000), ("Cruise", 0)], "count")
+        ins.kind = "scene"
+        ins.scene = {"elements": [{"type": "balance"},
+                                  {"type": "race_track"},
+                                  {"type": "caption"}]}
+        self.assertEqual(sr.scene_machine_tokens(ins),
+                         {"balance_scene", "race_scene"})
+        ins.kind = "bars"
+        self.assertEqual(sr.scene_machine_tokens(ins), set())
+
+    def test_the_master_seeds_the_used_set_with_them(self):
+        src = (ROOT / "data_learning" / "studio_render.py").read_text()
+        self.assertIn("_kinds_used |= scene_machine_tokens(", src)
