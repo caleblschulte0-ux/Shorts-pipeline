@@ -116,7 +116,14 @@ jobs:
     # cancelled at the ~15-minute mark regardless of what their diffs
     # touched, which is what a timeout that's merely too tight looks like
     # — not a hang in any one PR's code. Bumped to give real margin.
-    timeout-minutes: 25
+    #
+    # 25 -> 35 (2026-09-25): the suite was ~20 minutes, and the motion test
+    # now measures every machine at PRODUCTION pace (192 frames, the gate's
+    # own sampling) instead of 1.6x faster — the 120-frame version passed
+    # machines that the gate then blocked a render for. That is ~3 more
+    # minutes of honest measurement, and 25 left none of the margin the
+    # note above was about.
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

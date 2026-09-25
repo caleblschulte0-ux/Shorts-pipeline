@@ -1285,13 +1285,47 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     cx = (bx0 + bx1) // 2
     pivot_y = by0 + int((by1 - by0) * 0.38)
     arm = int(min((bx1 - bx0) * 0.36, 350))
-    # Level, then settle into the true tilt — the tip IS the reveal, so the
-    # element animates for the whole span without anything decorative added.
+    # THE WEIGHT IS LOADED, ONE PIECE AT A TIME, AND THE BEAM ANSWERS EACH.
     #
-    # See `settle`: linear-ish and still moving at the end. A cubic-out here
-    # left a 6-second visual's back half a fraction of a degree from still.
-    ease = settle(reveal)
-    ang = _math.radians(balance_tilt(value, other) * ease)
+    # The tip used to be one smooth `settle` from level to the true angle.
+    # At production pace (a 6.6s beat is ~200 frames) that is a fraction of
+    # a degree a frame — 89% of the frames measured as held by the cadence
+    # gate's own detector (2026-09-25), on the machine that leads more beats
+    # than any other. Now each side's value arrives as blocks that DROP into
+    # its pan, alternating, evenly across the beat; the beam tips to the
+    # loaded share after each landing and rocks as the last one lands. The
+    # final frame is the true tilt and the true numbers, as before.
+    t = beat_clock(reveal)
+    big = max(abs(value), abs(other)) or 1.0
+    nL = max(1, int(round(6 * abs(value) / big)))
+    nR = max(1, int(round(6 * abs(other) / big)))
+    order = []
+    for k in range(max(nL, nR)):
+        if k < nL:
+            order.append(0)
+        if k < nR:
+            order.append(1)
+    step = 0.80 / len(order)
+    landed = [0, 0]
+    falling = []                     # (side, index on its pan, 0..1 of the fall)
+    for j, side in enumerate(order):
+        u = (t - 0.04 - j * step) / (step * 0.9)
+        idx = landed[side] + sum(1 for f in falling if f[0] == side)
+        if u >= 1.0:
+            landed[side] += 1
+        elif u > 0.0:
+            falling.append((side, idx, u))
+    # The beam only ever leans the TRUE way, further as the load arrives —
+    # tipping by the running totals put the lighter side down for a moment
+    # whenever its block landed first, a picture of the opposite claim.
+    tilt = balance_tilt(value, other) * settle(sum(landed) / len(order))
+    # the rock after each landing: a quick damped swing, not a drift
+    last = max([0.04 + (j + 1) * step * 0.9 + j * step * 0.1
+                for j in range(len(order)) if (t - 0.04 - j * step) / (step * 0.9) >= 1.0]
+               or [0.0])
+    since = max(0.0, t - last)
+    tilt += 4.0 * _math.exp(-since * 40) * _math.cos(since * 90)
+    ang = _math.radians(tilt)
     dx, dy = _math.cos(ang) * arm, _math.sin(ang) * arm
     # HEAVY SIDE GOES DOWN. The first version had the signs the other way and
     # drew $449K riding UP over $270K — a picture that states the opposite of
@@ -1315,6 +1349,31 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         pan_w = 210
         d.rounded_rectangle([px - pan_w // 2, py + 78, px + pan_w // 2, py + 118],
                             radius=18, fill=_rgba(col, 235))
+        side = 0 if (px, py) == (lx, ly) else 1
+        _bw, _bh = (60, 58) if cutout is not None else (60, 30)
+        _g = _fit(cutout, _bw, _bh) if cutout is not None else None
+
+        def _weight(bx_, by_, alpha):
+            if _g is not None:
+                gk = _g
+                if alpha < 235:
+                    gk = _g.copy()
+                    gk.putalpha(gk.getchannel("A").point(
+                        lambda v, a=alpha: int(v * a / 255)))
+                canvas.alpha_composite(gk, (int(bx_), int(by_)))
+            else:
+                d.rounded_rectangle([bx_, by_, bx_ + _bw, by_ + _bh], radius=7,
+                                    fill=_rgba(col, alpha))
+        for k in range(landed[side]):
+            r_, c_ = divmod(k, 3)
+            _weight(px - 96 + c_ * 66, py + 78 - (r_ + 1) * (_bh + 4), 235)
+        for (fs, fi, fu) in falling:
+            if fs != side:
+                continue
+            r_, c_ = divmod(fi, 3)
+            by_ = py + 78 - (r_ + 1) * (_bh + 4)
+            by_ -= int((1.0 - fu * fu) * 420)       # dropping in from above
+            _weight(px - 96 + c_ * 66, by_, int(235 * min(1.0, fu * 3)))
         # The numbers are up almost immediately. They used to fade in over
         # reveal 0.2-0.7, which left the first fifth of the visual as a nearly
         # level beam with two empty pans — a frame that tells you nothing while
@@ -1358,9 +1417,13 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         mh = 230
         mw = int(host.width * mh / host.height)
         hx, hy = (lx, ly) if hi else (rx, ry)
+        # he rides ON TOP of the weights he is standing for, so they are
+        # never hidden behind him
+        _rows = (landed[0 if hi else 1] + 2) // 3
         canvas.alpha_composite(
             _fit(host, mw, mh),
-            (int(min(max(hx - mw // 2, 8), W - mw - 8)), int(hy + 78 - mh)))
+            (int(min(max(hx - mw // 2, 8), W - mw - 8)),
+             int(hy + 78 - mh - _rows * (_bh + 4))))
     return (value, "art", int(lx), int(ly + 98))
 
 
@@ -1521,7 +1584,9 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     # the wrong claim, because the finding is that time passes steadily and
     # the number does not change.
     for k in range(-1, 16):
-        x = bx0 + 40 + ((k * 96) - reveal * 96 * 15) % (bx1 - bx0 - 80)
+        # on the BEAT clock: `reveal` is flat for the tail, so the road
+        # stopped under a moving car (58% held at production pace)
+        x = bx0 + 40 + ((k * 96) - beat_clock(reveal) * 96 * 24) % (bx1 - bx0 - 80)
         d.rounded_rectangle([int(x), road_y + 38, int(x + 62), road_y + 54],
                             radius=8, fill=_rgba(charts.CARD, 210))
     mid = sum(vals) / len(vals)
@@ -2429,7 +2494,11 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
     surplus = inflow - outflow
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    e = settle(reveal)
+    # ON THE BEAT'S OWN CLOCK: the wave and the flow ran on `reveal`, which
+    # is flat for the tail, so both stopped — 72% of frames held at
+    # production pace (2026-09-25). Water and pipes do not stop.
+    _bt = beat_clock(reveal)
+    e = settle(_bt)
     top, bot = max(by0 + 290, 440), by1 - 190
     tw = int(min((bx1 - bx0) * 0.44, 420))
     vmax = max(inflow, outflow) or 1.0
@@ -2445,7 +2514,7 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
         # perfectly flat is a contradiction the eye notices before the mind
         # does — and it measured as a 38-frame frozen run besides.
         x_l, x_r = cx - tw // 2 + 11, cx + tw // 2 - 11
-        wave = [(x, ly + 9 * _math.sin(x / 46.0 + reveal * 9.0))
+        wave = [(x, ly + 9 * _math.sin(x / 46.0 + _bt * 60.0))
                 for x in range(x_l, x_r + 1, 12)]
         d.polygon(wave + [(x_r, ly + 26), (x_l, ly + 26)],
                   fill=_rgba(net_col, 240))
@@ -2459,14 +2528,17 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
                              max(x_in, x_out), y + th // 2],
                             radius=th // 2, fill=_rgba(col, 235))
         for k in range(9):
-            t_ = (reveal * 2.2 + k / 9.0) % 1.0
+            t_ = (_bt * 8.0 + k / 9.0) % 1.0
             px = int(x_out + (x_in - x_out) * t_)
             r_ = max(6, min(10, th // 3))
             d.ellipse([px - r_, y - r_, px + r_, y + r_],
                       fill=_rgba(charts.CARD, 215))
-        txt = f"{lab[:14]}  {charts._ulabel(val, unit, group=True)}"
+        txt = f"{lab}  {charts._ulabel(val, unit, group=True)}"
         tx = min(x_in, x_out) if not right else max(x_in, x_out)
-        d.text((tx, y - th // 2 - 34), txt, font=lab_f,
+        # never sliced: fitted to the frame (it printed "Prevention & man")
+        _lf, txt = fit_text(d, txt, 34, int(bx1 - bx0 - 60), min_size=24,
+                            wrap=False)
+        d.text((tx, y - th // 2 - 34), txt, font=_lf,
                fill=_rgba(col, 245), anchor="lm" if not right else "rm")
 
     _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, REST, in_lab, inflow, False)
@@ -2749,7 +2821,7 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
     # first seconds and then waited, 64% of frames unchanged (2026-09-24).
     # The pace is the point of this machine — how long it takes — so it is
     # even, and the door being opened is seen opening.
-    t_open = min(1.0, reveal / 0.92) * n
+    t_open = min(1.0, beat_clock(reveal) / 0.92) * n   # doors swing all beat
     opened = int(t_open)
     for i in range(n):
         c, rr = i % cols, i // cols
@@ -3167,7 +3239,9 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     # It went unnoticed because the nest's coverage depends on the DATA (the
     # tile count follows the ratio) and `test_every_machine_fills_its_box`
     # renders one sample per machine. It is now measured across the band.
-    side = int(min((bx1 - bx0) * 0.92, (by1 - by0) * 0.78))
+    # room left under the square for Data — standing inside it he covered
+    # the very tiles he is pointing at
+    side = int(min((bx1 - bx0) * 0.92, (by1 - by0) * 0.55))
     top = max(by0 + 150, 300)
     e = settle(reveal)
     # Tiles ACROSS is ceil(sqrt(ratio)), because the claim is about AREA —
@@ -3177,14 +3251,28 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     total = max(1, int(round(ratio)))
     across = max(1, int(_math.ceil(_math.sqrt(total))))
     cell = side / across
-    shown = int(total * e)
-    for k in range(shown):
+    # EACH TILE DROPS INTO ITS PLACE, one after another across the beat, and
+    # then a band sweeps the tiles as they are counted. Popping them in on
+    # `settle(reveal)` measured 68% held frames at production pace
+    # (2026-09-25): for "2.2 times" that is two events in a 9-second beat.
+    t = beat_clock(reveal)
+    win = 0.80 / total
+    for k in range(total):
+        u = (t - 0.04 - k * win) / (win * 0.9)
+        if u <= 0:
+            continue
+        u = min(1.0, u)
         gx, gy = k % across, k // across
         x = cx - side / 2 + gx * cell
-        y = top + gy * cell
+        # from the square's own top edge — never up into the title band
+        y = top + gy * cell - (1.0 - u * u) * (gy * cell)
         d.rounded_rectangle([x + 2, y + 2, x + cell - 2, y + cell - 2],
                             radius=max(2, int(cell * 0.16)),
-                            fill=_rgba(REST, 225))
+                            fill=_rgba(REST, int(225 * min(1.0, u * 2))))
+    if t > 0.84:
+        bx_ = cx - side / 2 + (t - 0.84) / 0.16 * side
+        d.rectangle([bx_ - 26, top + 4, bx_ + 26, top + side - 4],
+                    fill=_rgba(color, 70))
     # The container is drawn LAST. Under the tiles it vanished at full
     # reveal, and the thing they are supposed to fit inside is half the claim.
     d.rounded_rectangle([cx - side // 2, top, cx + side // 2, top + side],
@@ -3201,11 +3289,10 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
     host = scene_host("point", reveal, insight, "nest")
     if host is not None:
-        mh = 170
+        mh = int(min(380, (by1 - by0) * 0.26))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(bx0 + 12, cx - side // 2 - mw - 20)),
-                                int(top + side - mh)))
+                               (int(bx0 + 12), int(by1 - mh - 10)))
     return (big_v, "art", cx, top + side // 2)
 
 
@@ -3466,17 +3553,24 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
             break
     cols = max(1, int(row_w // (cw * 1.16)))
     cell_w, cell_h = cw * 1.16, cw * 1.52
-    e = settle(reveal)
+    e = settle(beat_clock(reveal))   # a cup lands every so often, all beat
     for i, (p, v) in enumerate(zip(items, vals)):
         y = top + i * rowh
         col = color if i == 0 else REST
         _f, _t = fit_text(d, _label_of(p), 34, 300 - 48, min_size=18)
         d.text((bx0 + 24, y + rowh * 0.42), _t,
                font=_f, fill=_rgba(TEXT, 230), anchor="lm")
-        shown = int(round(v * max(0.0, min(1.0, e * n - i))))
-        for k in range(shown):
+        # EACH CUP IS SET DOWN, not switched on: the one arriving drops in
+        # from above its place. Popping them in one per frame measured 61%
+        # held at production pace (2026-09-25).
+        exact = v * max(0.0, min(1.0, e * n - i))
+        shown = int(exact)
+        arriving = exact - shown
+        for k in range(shown + (1 if arriving > 0.02 else 0)):
             x = x0 + (k % cols) * cell_w
             cy_ = y + 10 + (k // cols) * cell_h
+            if k == shown:
+                cy_ -= (1.0 - arriving * arriving) * cell_h * 1.4
             # bowl, rim, stem, base — at any size, unmistakably a trophy
             d.pieslice([x, cy_, x + cw, cy_ + cw * 1.15], 0, 180,
                        fill=_rgba(col, 240))
@@ -3496,7 +3590,7 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
     host = scene_host("cheer", reveal, insight, "trophies")
     if host is not None:
-        mh = 160
+        mh = int(min(300, (by1 - by0) * 0.2))
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(bx0 + 30), int(by1 - mh)))
@@ -3518,7 +3612,7 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     if vmax <= 0:
         return None
     bx0, by0, bx1, by1 = box
-    e = settle(reveal)
+    e = settle(beat_clock(reveal))   # the goods keep landing all beat
     n = 2
     # The baskets were 350px tall starting at y=470, so everything this
     # machine draws finished by y=930 and the bottom third of the frame was
@@ -3545,7 +3639,7 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
         rh = (bh - 60) / rows
         for k in range(shown):
             gx, gy = k % cols, k // cols
-            wob = 4.0 * _math.sin(reveal * 6.5 + k * 0.8)
+            wob = 4.0 * _math.sin(beat_clock(reveal) * 40.0 + k * 0.8)
             gxp = x + 45 + gx * cw + wob
             gyp = top + bh - 34 - gy * rh
             d.rounded_rectangle([gxp, gyp - rh + 12, gxp + cw - 10, gyp],
@@ -3955,7 +4049,8 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
     cx = (bx0 + bx1) // 2
     trunk_w = int((bx1 - bx0) * 0.17)
     split_y = int(top + (bot - top) * 0.34)
-    e = settle(reveal)
+    _bt = beat_clock(reveal)     # flow runs all beat (a 65-frame freeze on `reveal`)
+    e = settle(_bt)
     d.rounded_rectangle([cx - trunk_w // 2, top, cx + trunk_w // 2, split_y],
                         radius=12, fill=_rgba(TEXT, 70))
     span = (bx1 - bx0) - 120
@@ -4004,7 +4099,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
             _mid.append(_x + _w // 2)
             _x += _w + 12
         for k in range(12):
-            t_ = (reveal * 1.7 + k / 12.0) % 1.0
+            t_ = (_bt * 7.0 + k / 12.0) % 1.0
             j = k % len(_mid)
             if t_ < 0.45:
                 px = cx
@@ -4834,8 +4929,23 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
         d.text((cx + _math.cos(_ta) * (R + 30), cy + _math.sin(_ta) * (R + 30)),
                charts._ulabel(_val, unit, group=True), font=_pil_font(34),
                fill=_rgba(TEXT, 200), anchor=_anc)
-    e = settle(reveal)
-    ang = _math.radians(a0 + sweep * (abs(v) / vmax) * e)
+    # THE IGNITION SWEEP. A dial that creeps to 23% moves a quarter of a
+    # degree a frame at production pace — 77% of its frames measured as held
+    # (2026-09-25). A real gauge, switched on, swings to the stop and back
+    # before it reads: to full scale, down past the reading, and settles on
+    # it. Big, decisive, and it ends on the true value.
+    t = beat_clock(reveal)
+    frac = abs(v) / vmax
+    if t < 0.30:                                  # up to the stop
+        f = settle(t / 0.30)
+    elif t < 0.62:                                # down past the reading
+        u = (t - 0.30) / 0.32
+        f = 1.0 + (frac * 0.82 - 1.0) * settle(u)
+    else:                                         # settling onto it
+        u = (t - 0.62) / 0.38
+        f = frac + (frac * 0.82 - frac) * _math.exp(-u * 4.0) \
+            * _math.cos(u * 14.0)
+    ang = _math.radians(a0 + sweep * max(0.0, min(1.0, f)))
     nx, ny = cx + _math.cos(ang) * (R - 40), cy + _math.sin(ang) * (R - 40)
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
     d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
@@ -5795,7 +5905,7 @@ def draw_hole(d, canvas, box, insight, color, reveal, unit=""):
         canvas.alpha_composite(ghost, (ox + cut, oy))
         _dashed_rect(d, gx0 + 6, gy0, gx1, gy1,
                      fill=_rgba(color, int(230 * min(1.0, fall * 2))),
-                     width=6, off=int(t * 400))
+                     width=6, off=int(t * 2600))   # a march you can see
     if fall < 1.0:
         # it drops and fades INSIDE the frame — no half sprite at the edge
         dx = int(26 * part + 40 * fall)
@@ -5880,22 +5990,29 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     # the THEN one: on screen from frame one
     canvas.alpha_composite(g, (x0, y_then))
     # each copy lifts out of it and drops into its place, one at a time
-    span = 0.70 / n
+    span = 0.80 / n
     landed = 0
     for k in range(n):
         u = (t - (0.08 + k * span)) / (span * 0.85)
         if u <= 0:
             continue
         u = min(1.0, u)
-        # DOWN out of the first one, then ACROSS to its place: two decisive
-        # moves, and never through the words beside it
-        e1 = settle(min(1.0, u / 0.5))
-        e2 = settle(max(0.0, (u - 0.5) / 0.5))
-        cx = int(x0 + (slots[k] - x0) * e2)
-        cy = int(y_then + (y_now - y_then) * e1)
+        # IN FROM THE RIGHT, ALONG ITS OWN ROW. Sliding out of the first
+        # cup, each copy passed through the ones already landed — "the second
+        # 2025 cup ... cross-fades through itself" (the judge, 2026-09-25) —
+        # and a drop from above ran through the THEN cup. The row fills left
+        # to right, so everything to a copy's right is still empty.
+        cx = int(slots[k] + (1.0 - settle(u)) * (bx1 - slots[k]))
+        cy = y_now
         frac = min(1.0, r - k)
+        _fade = min(1.0, u * 3.0)
         if frac >= 0.999:
-            canvas.alpha_composite(g, (cx, cy))
+            gk = g
+            if _fade < 1.0:
+                gk = g.copy()
+                gk.putalpha(gk.getchannel("A").point(
+                    lambda v, a=_fade: int(v * a)))
+            canvas.alpha_composite(gk, (cx, cy))
         else:
             # A PART-CUP, not a hard crop: the whole cup faint, and the
             # fraction of it solid ("draw the 0.2 as a partly filled cup",
@@ -5925,6 +6042,10 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, head, 56, W - 120)
     d.text((x0, y_now + s + 22), _s, font=_f,
            fill=_rgba(color, 255), anchor="lt")
+    if t > 0.86:                       # counting the copies off, one sweep
+        _sx = x0 + (t - 0.86) / 0.14 * (slots[-1] + s - x0)
+        d.rectangle([_sx - 22, y_now, _sx + 22, y_now + s],
+                    fill=_rgba(color, 60))
     if landed == n:
         pop = min(1.0, (t - (0.08 + n * span)) / 0.06) if t < 1 else 1.0
         # one beat of emphasis every second, not a constant wobble
@@ -6579,8 +6700,14 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 rv = _resolve((el.get("data") or {}).get("vs_from"), insight)
                 if not (lv and rv):
                     continue
+                # the weights are the SUBJECT when the icon library has it:
+                # coffee on a coffee story, not grey blocks ("make the scale
+                # weights coffee sacks", the judge, 2026-09-25)
+                if "_bal_glyph" not in cuts:
+                    cuts["_bal_glyph"] = _subject_glyph(insight, 128)
                 an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
-                                  _lead_color(insight), lr, insight.unit)
+                                  _lead_color(insight), lr, insight.unit,
+                                  cutout=cuts["_bal_glyph"])
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "unit_figures":
