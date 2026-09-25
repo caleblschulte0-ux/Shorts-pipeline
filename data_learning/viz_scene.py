@@ -5029,6 +5029,29 @@ def settle(reveal: float) -> float:
     return 0.72 * r + 0.28 * (1.0 - (1.0 - r) ** 2)
 
 
+def _race_objects(items):
+    """One confirmed icon per runner, or None. All the same object is not a
+    race of things (two coffee cups), so it needs at least two different."""
+    from . import icons as _ic
+    paths, cps = [], set()
+    for p in items:
+        lab = str(getattr(p, "label", "") or "")
+        cp = _ic.emoji_codepoint(lab)
+        if not cp:
+            return None
+        png = _ic.icon_png(lab, 256)
+        if not png or not icon_depicts(lab):
+            return None
+        paths.append(png)
+        cps.add(cp)
+    if len(cps) < 2:
+        return None
+    try:
+        return [_PImg.open(pp).convert("RGBA") for pp in paths]
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     """A RACE: rank becomes position, and the gap becomes literal distance.
 
@@ -5079,7 +5102,10 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     x1 = int(bx1 - 40)                   # the finish line
     # Ease so the field surges out of the blocks and settles into its order,
     # rather than sliding at a constant rate like a loading bar.
-    e = settle(reveal)
+    # the field runs the WHOLE beat and crosses the line as it ends — on
+    # `reveal` it had finished by full_by and, with objects for runners
+    # instead of animated Datas, the tail held still (0.47 at 192 frames)
+    e = settle(beat_clock(reveal))
     runner = scene_host("cheer", reveal, insight, "race")
     # THE HERO FILLS ITS LANE. Capped at 170px, a two-runner duel put two
     # small figures in a frame that was otherwise void (coffee's "$2 vs
@@ -5087,6 +5113,15 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     # size.
     rh = int(max(96, min(380, lane_h * (0.86 if n > 3 else 0.62))))
     rw = int(runner.width * rh / runner.height) if runner is not None else rh
+    # THE THINGS RACE, NOT COPIES OF DATA. "The closing race uses two Data
+    # clones as generic runners" (coffee), "'900' vs '27.6K' as bare numbers
+    # with two copies of Data" (ISS, 2026-09-25). When every runner's own
+    # label is an object the icon library draws — and the brain agrees it
+    # depicts it — the jet races the space station, and Data rides the one
+    # in front.
+    _objs = _race_objects(items)
+    if _objs is not None:
+        rw = rh
     # the finish line
     for k in range(0, int(bot - top), 26):
         d.rectangle([x1, top + k, x1 + 14, top + min(k + 13, int(bot - top))],
@@ -5123,7 +5158,21 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         # a smudge, which is half of what a ranking is for.
         d.text((x0 - 22, cy), _names[i], font=name_f, anchor="rm",
                fill=_rgba(legible(col) if lead else SUBTLE, 240))
-        if runner is not None:
+        if _objs is not None:
+            px = min(px, x1 - rw // 2 - 6)     # it stops AT the line, in frame
+            im = _objs[i]
+            if not lead:
+                im = im.copy()
+                im.putalpha(im.getchannel("A").point(lambda a: int(a * 0.62)))
+            canvas.alpha_composite(_fit(im, rw, rh),
+                                   (int(px - rw // 2), int(cy - rh // 2)))
+            if lead and runner is not None:
+                _dh = int(rh * 0.62)
+                _dw = int(runner.width * _dh / runner.height)
+                canvas.alpha_composite(
+                    _fit(runner, _dw, _dh),
+                    (int(px - _dw // 2), int(max(top - 40, cy - rh // 2 - _dh + 18))))
+        elif runner is not None:
             im = runner
             if not lead:
                 # The field is ghosted so the leader reads instantly; without
