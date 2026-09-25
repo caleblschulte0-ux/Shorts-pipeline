@@ -558,7 +558,11 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
            # the package on disk, so a kept render can be published later
            # with THIS package's description/tags (scripts/claim_reviews.py)
            "package": pkg.get("_path") or result.get("package_path"),
+           # a reddit_story shot's line is its `phrase`: read without it,
+           # the judge was handed eight nulls and reported "the segments
+           # array is all null" as if the story had no pictures (2026-09-25)
            "segments": [s.get("say") or s.get("text") or s.get("caption")
+                        or s.get("phrase")
                         for s in (pkg.get("shots") or [])][:8]}
     if will_upload and os.environ.get("REVIEW_MAILBOX", "1") not in ("0", "off"):
         # THE JUDGE OF LAST RESORT (shared/review_mailbox.py): only ADDS.
