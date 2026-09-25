@@ -4378,6 +4378,14 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     # the beat is about — is on screen, under his feet, for the tail.
     shown = min(float(n), e * n * 1.15)
     top_xy = stand_xy = None
+    # THE STEPS ARE MADE OF THE SUBJECT when the icon library has it: each
+    # step is a stack of it (cups on a coffee story). Plain columns read as
+    # "a bar chart with Data perched on the top bar" — the judge's words on
+    # every coffee render, 2026-09-24/25. Height is still the value, and
+    # the value is still printed on the step; the stack is what it is made of.
+    _glyph = _subject_glyph(insight, 128)
+    _gs = int(min(78, max(0, w - 22)))
+    _gi = _fit(_glyph, _gs, _gs) if (_glyph is not None and _gs >= 30) else None
     for i, (p, v) in enumerate(zip(items, vals)):
         a = max(0.0, min(1.0, shown - i))
         if a <= 0.0:
@@ -4392,6 +4400,13 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([sx + 6, sy, int(sx + w - 6), bot], radius=10,
                             fill=_rgba(color if i == n - 1 else REST,
                                        int(235 * a)))
+        if _gi is not None:
+            # stacked from the floor up, stopping short of the value's room
+            _gx = int(sx + (w - _gs) / 2)
+            _gy = bot - _gs - 6
+            while _gy >= sy + STAIR_VALUE_ROOM - 6:
+                canvas.alpha_composite(_gi, (_gx, int(_gy)))
+                _gy -= _gs + 4
         if a > 0.6:
             # THE VALUE IS INSIDE THE STEP, UNDER ITS TOP EDGE. It used to
             # sit 30px ABOVE the step — exactly where the climber's feet
