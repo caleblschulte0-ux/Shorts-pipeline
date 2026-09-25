@@ -1,48 +1,97 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 9,
+  "empty_void": {
+   "count": 8,
    "stories": {
-    "us_oil_production_passed_saudi_arabia_s": 3,
-    "bitcoin_and_silver_keep_trading_the_lead": 4,
-    "endangered_blanding_s_turtle_caught_on_c": 1,
-    "scientists_find_two_tiny_new_snails_with": 1
+    "rotten_tomatoes": 1,
+    "he_had_a_master_key__i_had_an_airtag_": 2,
+    "mbappe": 1,
+    "i_traced_the_robocalls__the_ftc_did_the_": 3,
+    "snake": 1
    },
    "timestamps": [
-    "2026-09-24T19:10:23+00:00",
-    "2026-09-24T19:35:18+00:00",
-    "2026-09-24T19:37:07+00:00",
-    "2026-09-24T19:41:51+00:00",
-    "2026-09-24T20:30:02+00:00",
-    "2026-09-24T20:31:54+00:00",
-    "2026-09-24T20:44:09+00:00",
-    "2026-09-24T21:35:28+00:00",
-    "2026-09-24T22:22:21+00:00"
+    "2026-09-25T19:54:02+00:00",
+    "2026-09-25T20:35:15+00:00",
+    "2026-09-25T21:02:49+00:00",
+    "2026-09-25T21:42:48+00:00",
+    "2026-09-25T21:50:22+00:00",
+    "2026-09-25T21:50:22+00:00",
+    "2026-09-25T22:07:54+00:00",
+    "2026-09-25T22:34:37+00:00"
    ],
    "examples": [
-    "unreadable: At mid2 (2016), the lines cross and 'Saudi Arabia 10.2M' and 'United States 10.2M' stack almost touching. The US flag sits on top of the Saudi flag and the dot, so the key crossing moment ",
-    "unreadable: The source line at the bottom is cut off in every frame (\"...above-ground investa...\"). In mid4 the Silver 1742.4B and Bitcoin 1730.8B tip labels sit on top of each other where the lines m",
-    "unreadable: At mid2 (2016) the 'Saudi Arabia 10.2M' and 'United States 10.2M' tip labels and flags sit on top of each other. At payoff@-0.4 the flags are clipped at the right edge. Axis tick labels an"
+    "empty_void: In mid1, mid2 and mid4 the top half of the frame is a dark navy gradient with one small flat icon in the middle. Most of that half is empty.",
+    "empty_void: mid3 (t=32.26s) is mostly black with a few dim blue shapes on the left, and mid1/mid2 are dark murky gameplay filling the whole frame with no story picture",
+    "empty_void: The top half of mid1/mid2/mid3 is a flat dark navy panel holding one small generic emoji, so about 40% of that area is wasted."
    ],
    "recurred_after_fix": false
   },
-  "empty_void": {
-   "count": 3,
+  "other": {
+   "count": 6,
    "stories": {
-    "why_is_the_liver_so_weirdly_regenerative": 1,
-    "us_oil_production_passed_saudi_arabia_s": 1,
-    "scientists_find_two_tiny_new_snails_with": 1
+    "chicken_quietly_passed_beef_in_america": 3,
+    "google": 1,
+    "brendan_beck": 1,
+    "mexico_vs_colombia": 1
    },
    "timestamps": [
-    "2026-09-24T19:19:35+00:00",
-    "2026-09-24T19:37:07+00:00",
-    "2026-09-24T20:44:09+00:00"
+    "2026-09-25T20:28:45+00:00",
+    "2026-09-25T20:54:39+00:00",
+    "2026-09-25T21:09:36+00:00",
+    "2026-09-25T21:34:57+00:00",
+    "2026-09-25T22:18:26+00:00",
+    "2026-09-25T22:54:04+00:00"
    ],
    "examples": [
-    "empty_void: mid0 (t=2.50s) is an almost entirely black frame with only a tiny white crosshair in the middle, with no caption and nothing else on screen. hook@1.5 is also dominated by large black tunne",
-    "empty_void: The lower third of every frame is black apart from the year counter and a faint source line (mid0, mid3). The chart area sits on flat black, and the right side of the plot is empty in hook",
-    "empty_void: In payoff@-1.8, about 85% of the frame is flat cyan sky gradient with only a few cloud blocks and the caption"
+    "unreadable: mid4 (t=5.60s): at the crossing, the 'Chicken 60' and 'Beef 56' tip labels are stacked on top of each other and on the pulse ring and arrow, so 'Beef 56' is partly covered. mid3 (t=4.83s):",
+    "unreadable: hook@2.2 (t=2.20s): the post card fades over busy gameplay and the title 'My Boss's Budget Cut Killed His Own Demo' is ghosted and illegible. A thin horizontal seam line also runs across t",
+    "unreadable: mid0: the AI shift board's text is garbled and can't be read; a hard horizontal seam line runs across the gameplay at mid-frame in hook@0.3, mid2, mid3 and mid5"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 5,
+   "stories": {
+    "rotten_tomatoes": 1,
+    "mbappe": 1,
+    "i_traced_the_robocalls__the_ftc_did_the_": 2,
+    "mexico_vs_colombia": 1
+   },
+   "timestamps": [
+    "2026-09-25T19:54:02+00:00",
+    "2026-09-25T21:02:49+00:00",
+    "2026-09-25T21:50:22+00:00",
+    "2026-09-25T22:34:37+00:00",
+    "2026-09-25T22:54:04+00:00"
+   ],
+   "examples": [
+    "dead_air: The top panel shows the same static blank blue phone icon at mid1 (10.06s) and mid2 (17.62s), so two beats are visually identical. Only the gameplay below moves.",
+    "dead_air: mid1 (t=11.5s) and mid2 (t=20.6s) show the same two-person silhouette nine seconds apart, over two different beats ('stormed in' vs 'shoved past the line'), so two beats look identical in th",
+    "dead_air: The top half repeats the same static blank-phone illustration at mid0 and mid3, so two beats look identical. Gameplay keeps moving underneath (longest_static_s 0.0), but the story half has n"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 5,
+   "stories": {
+    "google": 1,
+    "brendan_beck": 1,
+    "snake": 1,
+    "i_traced_the_robocalls__the_ftc_did_the_": 1,
+    "mexico_vs_colombia": 1
+   },
+   "timestamps": [
+    "2026-09-25T20:54:39+00:00",
+    "2026-09-25T21:09:36+00:00",
+    "2026-09-25T22:07:54+00:00",
+    "2026-09-25T22:34:37+00:00",
+    "2026-09-25T22:54:04+00:00"
+   ],
+   "examples": [
+    "junk_imagery: mid3 (t=27.54s): a generic microscope emoji is the illustration for 'EVERY SCREEN WENT' black. It has nothing to do with screens, a demo or overheating, so it is an off-topic icon.",
+    "junk_imagery: mid1: a generic desktop-computer icon illustrates 'pulled three servers' (restaurant staff read as computer servers); mid0: AI shift board with garbled fake text ('Yonop', scribbled cell",
+    "junk_imagery: mid3 and mid4 show a generic red paw-print clip-art on a dark gradient, standing in for a snake story. Paw prints do not fit a snake at all."
    ],
    "recurred_after_fix": false
   }
@@ -56,7 +105,7 @@
   "data_demo": {
    "median": 1,
    "min": 1,
-   "max": 4
+   "max": 3
   },
   "mascot": {
    "median": 4,
@@ -64,12 +113,12 @@
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 1,
    "min": 1,
    "max": 2
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 1,
    "max": 2
   },
@@ -85,25 +134,25 @@
   }
  },
  "scores": [
-  78,
-  57,
   57,
   57,
   66,
-  74,
-  57,
-  65,
-  61,
-  74,
-  61,
-  61,
-  61,
-  65,
   70,
-  87,
+  57,
+  66,
+  57,
+  53,
+  53,
+  61,
+  83,
   57,
   57,
-  65,
-  70
+  57,
+  57,
+  78,
+  61,
+  53,
+  61,
+  57
  ]
 }
