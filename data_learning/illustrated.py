@@ -272,6 +272,41 @@ def _ground_under(cr, x, y, w, h):
         return None
 
 
+#: While a frame is being drawn, text is COLLECTED here and painted last
+#: (`text_layer`). None outside a frame loop: text draws immediately.
+_TEXT_LAYER = None
+
+
+class text_layer:
+    """Every label drawn inside this block is painted AFTER the art.
+
+    Props and Data were drawn over the numbers they were there to show: "the
+    mascot and the crane beam cover the '25.8M boxes' headline", "a falling
+    log passes over the headline number", "the YOURS box overlaps the TEU"
+    (the judge, 2026-09-24). Each was a draw-order accident in one scene; the
+    rule that ends all of them is that nothing is drawn on top of text.
+    The ink check then samples the finished picture, not a half-drawn one.
+    """
+
+    def __init__(self, cr):
+        self.cr = cr
+
+    def __enter__(self):
+        global _TEXT_LAYER
+        self._prev, _TEXT_LAYER = _TEXT_LAYER, []
+        return self
+
+    def __exit__(self, *exc):
+        global _TEXT_LAYER
+        pending, _TEXT_LAYER = _TEXT_LAYER, self._prev
+        for m, args in pending or []:
+            self.cr.save()
+            self.cr.set_matrix(m)
+            _draw_text(self.cr, *args)
+            self.cr.restore()
+        return False
+
+
 def text(cr, s, x, y, size, rgb=look.INK, face="bold", anchor="left",
          alpha=1.0, shadow=True):
     """Draw `s` with its baseline at y. Returns its (x0, y0, x1, y1) box."""
@@ -281,6 +316,19 @@ def text(cr, s, x, y, size, rgb=look.INK, face="bold", anchor="left",
         x -= ext.x_advance / 2
     elif anchor == "right":
         x -= ext.x_advance
+    if _TEXT_LAYER is not None:
+        # with the transform in force NOW — a scene that translated or
+        # scaled before its label must get it back when the label is painted
+        _TEXT_LAYER.append((cr.get_matrix(),
+                            (s, x, y, size, rgb, face, alpha, shadow)))
+        return (x + ext.x_bearing, y + ext.y_bearing,
+                x + ext.x_bearing + ext.width, y + ext.y_bearing + ext.height)
+    return _draw_text(cr, s, x, y, size, rgb, face, alpha, shadow)
+
+
+def _draw_text(cr, s, x, y, size, rgb, face, alpha, shadow):
+    _face(cr, face, size)
+    ext = cr.text_extents(s)
     # THE INK IS CHOSEN AGAINST WHAT IS ACTUALLY UNDER IT. A label's colour
     # was picked for the palette, not for the pixels behind it: "'3.6x the
     # 1996 ship' is pale blue on blue water and barely visible", "the white
@@ -289,8 +337,12 @@ def text(cr, s, x, y, size, rgb=look.INK, face="bold", anchor="left",
     # ink is too close to it, the ink that reads there is used instead, and
     # the outline takes the opposite tone.
     out_rgb = (0.02, 0.03, 0.08)
-    bg = _ground_under(cr, x + ext.x_bearing, y + ext.y_bearing,
-                       ext.width, ext.height)
+    # in DEVICE pixels: a scene may have scaled or moved the canvas
+    _dx0, _dy0 = cr.user_to_device(x + ext.x_bearing, y + ext.y_bearing)
+    _dx1, _dy1 = cr.user_to_device(x + ext.x_bearing + ext.width,
+                                   y + ext.y_bearing + ext.height)
+    bg = _ground_under(cr, min(_dx0, _dx1), min(_dy0, _dy1),
+                       abs(_dx1 - _dx0), abs(_dy1 - _dy0))
     if bg is not None:
         lt = 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]
         if abs(lt - bg) < 95:
@@ -966,16 +1018,17 @@ def render_build(insight, out_dir: Path, name: str, frames: int = 90,
         reveal = min(1.0, (f + 1) / max(1.0, frames * full_by))
         phase = (f + 1) / frames
         cr = cairo.Context(surf)
-        world_back(cr, world, t)
-        world_ground(cr, world, t)
-        _title(cr, insight, a=seg(f, 0, 6))
-        got = draw(cr, insight, world, t, reveal, phase)
-        if got is None:
-            return None, []
-        (hx, hy), anc, role = got[:3]
-        _host(cr, role, phase, insight, kind, hx, hy + 4,
-              got[3] if len(got) > 3 else HOST_H)
-        world_air(cr, world, t)
+        with text_layer(cr):
+            world_back(cr, world, t)
+            world_ground(cr, world, t)
+            _title(cr, insight, a=seg(f, 0, 6))
+            got = draw(cr, insight, world, t, reveal, phase)
+            if got is None:
+                return None, []
+            (hx, hy), anc, role = got[:3]
+            _host(cr, role, phase, insight, kind, hx, hy + 4,
+                  got[3] if len(got) > 3 else HOST_H)
+            world_air(cr, world, t)
         if f == frames - 1:
             anchors = anc
         surf.flush()

@@ -1293,7 +1293,8 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
         def host(role, x, fy, h, pace=False, _cr=cr, _f=f):
             place_host(_cr, role, act_phase(clock, role, _f), insight, x, fy, h,
                        _f / 30.0, pace)
-        scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
+        with I.text_layer(cr):          # labels are painted last, on top
+            scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
         caption_scrim(cr)
         surf.flush()
         surf.write_to_png(str(out_dir / f"{name}_build{f + 1:02d}.png"))
