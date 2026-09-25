@@ -9,17 +9,17 @@
 
 ## Failed
 - **Chicken Quietly Passed Beef In America**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest two-line race whose crossover is unreadable because the labels collide, and the hook card gives the ending away while hiding the chart for the first two seconds.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.`
 - **He Had A Master Key. I Had An AirTag.**
-  - error: `showrunner_block: showrunner BLOCK: About 30 seconds of the middle is dark gameplay with no story illustration, so the AirTag chase is never shown, only captioned.`
+  - error: `showrunner_block: showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.`
 - **I Traced The Robocalls. The FTC Did The Rest.**
-  - error: `showrunner_block: showrunner BLOCK: The story beats are clear, but the illustrations are generic emoji-style icons (a blank phone, a chair, a cash stack) that demonstrate nothing, one beat has no illustration at all, and the payoff is a static cash icon that holds unchanged.`
+  - error: `showrunner_block: showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.`
 - **google**
-  - error: `showrunner_block: showrunner BLOCK: The Reddit-story narrative works, but its illustrations are generic emoji, including an irrelevant microscope at the climax, and there is a visible seam line and a ghosted title card.`
-- **mbappe**
-  - error: `showrunner_block: showrunner BLOCK: This is a plain post card over gameplay with one generic emoji reused across beats. None of the cause and effect is shown, and it ends on the word 'AFTER.'`
-- **brendan beck**
-  - error: `showrunner_block: showrunner BLOCK: The illustrations misread the story (a computer monitor for restaurant 'servers', a garbled AI board) and vanish for most of it, so the malicious-compliance payoff is never shown — only Minecraft plus captions.`
-- **france football**
-  - error: `showrunner_block: showrunner BLOCK: Only one of 8 story beats is illustrated; the rest is bare parkour gameplay with captions, so nothing on screen shows the bar confrontation.`
+  - error: `showrunner_block: showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.`
+- **snake**
+  - error: `showrunner_block: showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.`
+- **cornell**
+  - error: `unfit_for_fiction: 'cornell' refused by the writer: Trend is a real-person political/campus controversy (protest crowds, antisemitism dispute) with no usable neutral setting - politics is a banned seed topic`
+- **steve gleason**
+  - error: `unfit_for_fiction: 'steve gleason' refused by the writer: Trend is about Hurricane Katrina disaster deaths and Steve Gleason's ALS illness diagnosis, both banned categories (disaster/death/illness) that cannot seed a f`
 

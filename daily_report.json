@@ -6,11 +6,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race whose crossover is unreadable because the labels collide, and the hook card gives the ending away while hiding the chart for the first two seconds.",
-    "elapsed_seconds": 60.2,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.",
+    "elapsed_seconds": 64.3,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-202745_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-213352_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest two-line race whose crossover is unreadable because the labels collide, and the hook card gives the ending away while hiding the chart for the first two seconds.",
-      "score": 70
+      "reason": "showrunner BLOCK: A clean, readable two-line race with a clear overtake payoff, but the tip labels collide exactly at the crossover moment.",
+      "score": 83
     },
     "blocked": true
   },
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: About 30 seconds of the middle is dark gameplay with no story illustration, so the AirTag chase is never shown, only captioned.",
-    "elapsed_seconds": 390.5,
+    "error": "showrunner_block: showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.",
+    "elapsed_seconds": 471.1,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-202957_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-213459_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 54.1,
@@ -62,12 +62,12 @@
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: About 30 seconds of the middle is dark gameplay with no story illustration, so the AirTag chase is never shown, only captioned.",
+      "reason": "showrunner BLOCK: The title card makes a good hook, but the first 20 seconds of the story are captions over gameplay with no illustrations, and the payoff is a stock gavel over a mostly black frame.",
       "score": 57
     },
     "blocked": true
@@ -79,11 +79,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are clear, but the illustrations are generic emoji-style icons (a blank phone, a chair, a cash stack) that demonstrate nothing, one beat has no illustration at all, and the payoff is a static cash icon that holds unchanged.",
-    "elapsed_seconds": 577.8,
+    "error": "showrunner_block: showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.",
+    "elapsed_seconds": 454.5,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-203629_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-214409_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 53.167,
@@ -106,8 +106,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are clear, but the illustrations are generic emoji-style icons (a blank phone, a chair, a cash stack) that demonstrate nothing, one beat has no illustration at all, and the payoff is a static cash icon that holds unchanged.",
-      "score": 66
+      "reason": "showrunner BLOCK: The top half of the story is mostly flat placeholder icons on dark voids, and the blank phone appears twice, so the tracing-to-shutdown story never plays out on screen.",
+      "score": 57
     },
     "blocked": true
   },
@@ -117,14 +117,14 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The Reddit-story narrative works, but its illustrations are generic emoji, including an irrelevant microscope at the climax, and there is a visible seam line and a ghosted title card.",
-    "elapsed_seconds": 463.0,
-    "title": "My Boss's Budget Cut Killed His Own Demo",
-    "package_path": "state/trending_packages/20260925-204805_auto_google.json",
-    "video_path": "output/daily_20260925-204805_google.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.",
+    "elapsed_seconds": 539.4,
+    "title": "I Followed The Manual And He Got Fired",
+    "package_path": "state/trending_packages/20260925-215338_auto_google.json",
+    "video_path": "output/daily_20260925-215338_google.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.233,
+      "duration": 43.4,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -135,7 +135,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.6
+      "loudness_lufs": -24.5
     },
     "qa": {
       "ok": true,
@@ -144,104 +144,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The Reddit-story narrative works, but its illustrations are generic emoji, including an irrelevant microscope at the climax, and there is a visible seam line and a ghosted title card.",
+      "reason": "showrunner BLOCK: The reddit hook is clean, but the middle half is captions over unrelated parkour, and the payoff lands on a static stock worker emoji, so the story's twist is never shown.",
       "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "mbappe",
+    "topic": "snake",
     "angle": null,
     "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a plain post card over gameplay with one generic emoji reused across beats. None of the cause and effect is shown, and it ends on the word 'AFTER.'",
-    "elapsed_seconds": 490.2,
-    "title": "I Followed The Rule And Shut Down The Shop",
-    "package_path": "state/trending_packages/20260925-205559_auto_mbappe.json",
-    "video_path": "output/daily_20260925-205559_mbappe.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.",
+    "elapsed_seconds": 389.6,
+    "title": "I Exposed My Neighbor's Illegal Pet Snake",
+    "package_path": "state/trending_packages/20260925-220234_auto_snake.json",
+    "video_path": "output/daily_20260925-220234_snake.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.633,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is a plain post card over gameplay with one generic emoji reused across beats. None of the cause and effect is shown, and it ends on the word 'AFTER.'",
-      "score": 53
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "brendan beck",
-    "angle": null,
-    "publish_at": "2026-09-26T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The illustrations misread the story (a computer monitor for restaurant 'servers', a garbled AI board) and vanish for most of it, so the malicious-compliance payoff is never shown \u2014 only Minecraft plus captions.",
-    "elapsed_seconds": 407.6,
-    "title": "She Rewrote My Schedule So I Followed It Exactly",
-    "package_path": "state/trending_packages/20260925-210355_auto_brendan_beck.json",
-    "video_path": "output/daily_20260925-210355_brendan_beck.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.833,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The illustrations misread the story (a computer monitor for restaurant 'servers', a garbled AI board) and vanish for most of it, so the malicious-compliance payoff is never shown \u2014 only Minecraft plus captions.",
-      "score": 53
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "france football",
-    "angle": null,
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Only one of 8 story beats is illustrated; the rest is bare parkour gameplay with captions, so nothing on screen shows the bar confrontation.",
-    "elapsed_seconds": 472.2,
-    "title": "The Entitled Regular I Banned Before Kickoff",
-    "package_path": "state/trending_packages/20260925-211050_auto_france_football.json",
-    "video_path": "output/daily_20260925-211050_france_football.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 51.733,
+      "duration": 49.467,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -261,10 +183,32 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Only one of 8 story beats is illustrated; the rest is bare parkour gameplay with captions, so nothing on screen shows the bar confrontation.",
-      "score": 61
+      "reason": "showrunner BLOCK: The story beats (snake, microchip, $400 fine, tenant meeting) are never shown. The only illustration is a generic paw-print clip-art that fits the wrong animal, floating in a dark half-empty panel.",
+      "score": 57
     },
     "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "cornell",
+    "angle": null,
+    "publish_at": "2026-09-26T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'cornell' refused by the writer: Trend is a real-person political/campus controversy (protest crowds, antisemitism dispute) with no usable neutral setting - politics is a banned seed topic",
+    "elapsed_seconds": 29.8,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "steve gleason",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'steve gleason' refused by the writer: Trend is about Hurricane Katrina disaster deaths and Steve Gleason's ALS illness diagnosis, both banned categories (disaster/death/illness) that cannot seed a f",
+    "elapsed_seconds": 30.9,
+    "unfit": true,
     "backfill": true
   }
 ]

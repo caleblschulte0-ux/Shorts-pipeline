@@ -9,7 +9,8 @@
   "quarantined": 0,
   "failed": 7,
   "failed_by_stage": {
-    "showrunner_block": 7
+    "showrunner_block": 5,
+    "infra_error": 2
   },
   "failed_by_format": {
     "graph_race": 1,
