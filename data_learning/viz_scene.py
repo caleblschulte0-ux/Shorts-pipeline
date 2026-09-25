@@ -6058,17 +6058,14 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, head, 56, W - 120)
     d.text((x0, y_now + s + 22), _s, font=_f,
            fill=_rgba(color, 255), anchor="lt")
-    if t > 0.86:                       # counting the copies off, one sweep
-        _sx = x0 + (t - 0.86) / 0.14 * (slots[-1] + s - x0)
-        d.rectangle([_sx - 22, y_now, _sx + 22, y_now + s],
-                    fill=_rgba(color, 60))
     if landed == n:
-        pop = min(1.0, (t - (0.08 + n * span)) / 0.06) if t < 1 else 1.0
-        # one beat of emphasis every second, not a constant wobble
+        # FULL SIZE, IN THE ACCENT, THE MOMENT THE LAST COPY LANDS — it grew
+        # in from nothing, which read as a late afterthought (the judge,
+        # 2026-09-25) — then one beat of emphasis a second.
         pulse = 1.0 + 0.10 * max(0.0, _math.sin(_math.pi * ((t * 6) % 1.0))) \
             * (1 if int(t * 6) % 2 == 0 else 0)
         txt = f"×{r:.1f}".replace(".0", "")
-        _f4, _s4 = fit_text(d, txt, int(150 * pop * pulse) or 20,
+        _f4, _s4 = fit_text(d, txt, int(150 * pulse),
                             W - 60, wrap=False)
         d.text(((bx0 + bx1) // 2, by0 + 80), _s4, font=_f4,
                fill=_rgba(color, 255), anchor="mm")
