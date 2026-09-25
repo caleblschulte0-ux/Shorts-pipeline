@@ -140,6 +140,25 @@ class TheTowerTellsTheTruthWhileItBuilds(unittest.TestCase):
         self.assertNotIn("Feb 2025   200,000", early)
         self.assertIn("10,000", early)          # the then is named throughout
 
+    def test_on_the_cold_open_it_still_builds_across_the_whole_beat(self):
+        """hook_reveal bursts to 3/4 by 22% of the span; an 11s opening
+        stack finished at 3.7s and held (Waymo re-render, 52)."""
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count")
+        mid = charts.hook_reveal(0.5)
+        self.assertGreater(mid, 0.8)                 # the burst is real
+        try:
+            vs._HOOK_LEAD, vs._BEAT_PHASE = True, 0.5
+            half = " | ".join(self._texts(ins, mid))
+        finally:
+            vs._HOOK_LEAD, vs._BEAT_PHASE = False, None
+        self.assertNotIn("Feb 2025   200,000", half)
+
+    def test_the_now_is_not_named_below_the_then(self):
+        ins = mk([("2020", 1), ("2023", 3), ("2025", 5)], "cities")
+        early = " | ".join(self._texts(ins, 0.05))
+        self.assertNotIn("2025   1", early)
+
     def test_a_then_smaller_than_a_block_keeps_the_framing(self):
         ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
                   ("Feb 2025", 200000)], "count")
