@@ -1,0 +1,20 @@
+{
+  "key": "waymo_cities_served",
+  "title": "US cities with Waymo driverless robotaxi service",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2020-2025",
+  "source": {
+    "name": "Waymo service area announcements",
+    "publisher": "Waymo, via company blog and news coverage",
+    "url": "https://waymo.com/blog/",
+    "officiality": "secondary",
+    "access_date": "2026-09-25"
+  },
+  "notes": "Waymo launched fully driverless service in Phoenix, AZ in 2020, added San Francisco (2022) and Los Angeles (2023-2024), then Austin and Atlanta in 2025 -- five US metro areas with public driverless robotaxi service.",
+  "points": [
+    {"label": "2020", "value": 1, "period": "2020"},
+    {"label": "2023", "value": 3, "period": "2023"},
+    {"label": "2025", "value": 5, "period": "2025"}
+  ]
+}

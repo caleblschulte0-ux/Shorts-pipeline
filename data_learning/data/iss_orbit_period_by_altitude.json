@@ -1,0 +1,20 @@
+{
+  "key": "iss_orbit_period_by_altitude",
+  "title": "Orbital period by altitude (minutes)",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "Current orbital mechanics",
+  "source": {
+    "name": "Space Station Facts and Figures",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+    "officiality": "official",
+    "access_date": "2026-09-25"
+  },
+  "notes": "The ISS orbits at about 400 km altitude with a period of about 93 minutes (NASA). GPS satellites orbit at about 20,200 km altitude with a roughly 12-hour (720-minute) period. Geostationary satellites orbit at about 35,786 km with a period matching Earth's rotation, 24 hours (1,440 minutes) -- which is why they appear to hover over one spot. Higher altitude means a longer orbital period (Kepler's third law).",
+  "points": [
+    {"label": "ISS (about 400 km up)", "value": 93},
+    {"label": "GPS satellites (about 20,200 km up)", "value": 720},
+    {"label": "Geostationary satellites (about 35,786 km up)", "value": 1440}
+  ]
+}

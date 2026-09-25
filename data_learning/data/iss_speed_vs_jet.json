@@ -1,0 +1,19 @@
+{
+  "key": "iss_speed_vs_jet",
+  "title": "Cruising speed: ISS orbit vs. a commercial jet",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "Current (steady-state ISS orbit)",
+  "source": {
+    "name": "Space Station Facts and Figures",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+    "officiality": "official",
+    "access_date": "2026-09-25"
+  },
+  "notes": "NASA lists the ISS's orbital speed at roughly 17,500 mph (about 27,600 km/h), circling Earth about every 90 minutes. A typical commercial jet cruises around 560 mph (about 900 km/h) -- the ISS moves roughly 30 times faster. Values converted here to km/h for on-screen consistency.",
+  "points": [
+    {"label": "ISS orbital speed (km/h)", "value": 27600},
+    {"label": "Commercial jet cruising speed (km/h)", "value": 900}
+  ]
+}

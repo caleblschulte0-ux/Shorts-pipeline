@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "manga-buried-superhero-comics",
+  "title": "Manga Just Buried Superhero Comics In America",
+  "hook": "Manga Buried Comics",
+  "y_label": "US graphic novel units sold (millions)",
+  "duration": 13,
+  "source": "US print graphic-novel unit sales compiled from NPD BookScan data as reported by ICv2, Comics Beat and Anime News Network: the manga category grew from low single-digit millions of units in the late 2010s to roughly 9 million in 2020 and 24.4 million in 2021 (up over 160% in one year, driven by the anime-streaming boom), while adult superhero graphic novels stayed roughly flat in the high single-digit millions over the same span.",
+  "years": [2016, 2018, 2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {
+      "name": "Manga",
+      "color": "#ff4d6d",
+      "values": [2, 2.5, 3, 9.4, 24.4, 26, 22]
+    },
+    {
+      "name": "Superhero Comics",
+      "color": "#3d5afe",
+      "values": [7, 7, 6, 7, 9, 9, 8]
+    }
+  ],
+  "hashtags": [
+    "manga",
+    "comics",
+    "superheroes",
+    "graphicnovels",
+    "anime",
+    "publishing",
+    "popculture",
+    "booksales",
+    "bookmarket",
+    "comicbooks",
+    "otaku",
+    "bookstagram",
+    "trending"
+  ],
+  "music_vibe": "cinematic"
+}

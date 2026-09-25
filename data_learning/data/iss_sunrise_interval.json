@@ -1,0 +1,19 @@
+{
+  "key": "iss_sunrise_interval",
+  "title": "Minutes between sunrises: ISS vs. Earth's surface",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "Current orbital mechanics",
+  "source": {
+    "name": "Space Station Facts and Figures",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/international-space-station/space-station-facts-and-figures/",
+    "officiality": "official",
+    "access_date": "2026-09-25"
+  },
+  "notes": "Because the ISS completes an orbit roughly every 93 minutes, it also passes from night into day about that often -- producing about 16 sunrises (and 16 sunsets) in one 24-hour period, versus 1 on the ground. 24 hours (1,440 minutes) divided by about 93 minutes per orbit is approximately 15.5, commonly rounded to about 16 sunrises a day (NASA).",
+  "points": [
+    {"label": "ISS: minutes between sunrises", "value": 93},
+    {"label": "Earth's surface: minutes between sunrises", "value": 1440}
+  ]
+}

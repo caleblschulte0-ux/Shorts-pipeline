@@ -29362,6 +29362,249 @@
      "say": "It comes at a cost: 18.3 percent of grandparents raising grandchildren live in poverty, compared with 15.1 percent of kids nationally. They're absorbing a crisis with less money, not more."
     }
    ]
+  },
+  {
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "hook": "How many sunrises do you see in a day?",
+   "closing": "Even in space, you can't dodge a 24-hour day.",
+   "question": "How many hours of daylight did you get today? Tell me below.",
+   "caption": "The ISS orbits Earth every 93 minutes at 27,600 km/h -- about 30 times faster than a jet. That means its crew sees roughly 16 sunrises every single day. How many hours of daylight did YOU get today? 👇",
+   "hashtags": [
+    "iss",
+    "spacestation",
+    "nasa",
+    "astronauts",
+    "orbitalmechanics",
+    "spacefacts",
+    "orbit",
+    "science",
+    "spaceexploration",
+    "didyouknow",
+    "mindblown",
+    "astronomy",
+    "physics",
+    "sciencefacts",
+    "space"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "iss_speed_vs_jet",
+     "params": {
+      "file": "iss_speed_vs_jet.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE SPEED",
+     "topic": "how fast the ISS orbits compared to a jet",
+     "say": "The ISS circles Earth at 27,600 kilometers an hour -- about 30 times faster than a commercial jet's 900. That speed isn't for show: it's exactly what keeps the station from falling into the ground."
+    },
+    {
+     "source": "offline",
+     "key": "iss_orbit_period_by_altitude",
+     "params": {
+      "file": "iss_orbit_period_by_altitude.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "2 · WHY ALTITUDE MATTERS",
+     "topic": "why the ISS orbit period is so short",
+     "say": "So why so fast? Altitude decides orbital speed: the ISS orbits every 93 minutes, GPS satellites take 720, and geostationary satellites take a full 1,440 -- exactly matching Earth's spin."
+    },
+    {
+     "source": "offline",
+     "key": "iss_sunrise_interval",
+     "params": {
+      "file": "iss_sunrise_interval.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE PAYOFF",
+     "topic": "how many sunrises the ISS sees in a day",
+     "say": "Each 93-minute lap flips the station from night to day, so a new sunrise comes every 93 minutes. On the ground that same cycle takes 1,440 minutes. Up there, it happens 16 times a day."
+    }
+   ]
+  },
+  {
+   "slug": "colon-cancer-screening-drop",
+   "title": "Colon Cancer Screening Age Just Dropped From 50 To 45",
+   "hook": "Colon cancer used to skip people under 50.",
+   "closing": "Doctors moved the age. Maybe put it on your calendar too.",
+   "question": "Do you know your recommended screening age? Tell me below.",
+   "caption": "1 in 5 colorectal cancer cases are now diagnosed before age 55 -- double the share from 1995. That's why doctors dropped the recommended screening age from 50 to 45. Do you know your number? 👇",
+   "hashtags": [
+    "colorectalcancer",
+    "coloncancer",
+    "cancerscreening",
+    "youngonset",
+    "publichealth",
+    "healthdata",
+    "oncology",
+    "preventivecare",
+    "guidelines",
+    "cancerawareness",
+    "screening",
+    "health",
+    "didyouknow",
+    "sciencefacts",
+    "wellness"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "colorectal_young_onset_share",
+     "params": {
+      "file": "colorectal_young_onset_share.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SHIFT",
+     "topic": "how colon cancer diagnoses under 55 keep climbing",
+     "say": "In 1995, just 11 percent of colorectal cancer cases were found in people under 55. By 2019, that hit 20 percent -- nearly double, and the line hasn't flattened yet."
+    },
+    {
+     "source": "offline",
+     "key": "colorectal_screening_age_change",
+     "params": {
+      "file": "colorectal_screening_age_change.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY THE AGE MOVED",
+     "topic": "why the colon cancer screening age dropped to 45",
+     "say": "So screening moved to catch it: the recommended starting age used to be 50. Since 2021 it's 45 -- five years earlier, aimed right at this younger wave."
+    },
+    {
+     "source": "offline",
+     "key": "colorectal_risk_by_birth_year",
+     "params": {
+      "file": "colorectal_risk_by_birth_year.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHO'S AT RISK",
+     "topic": "colon cancer risk for people born decades apart",
+     "say": "But the risk itself changed too: if you were born in 1990, you carry 2 times the colon cancer risk of someone born in 1950 -- and 4 times the rectal cancer risk. Genetics didn't shift. Something else did."
+    }
+   ]
+  },
+  {
+   "slug": "cicada-double-brood-2024",
+   "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
+   "hook": "Trillions of bugs just synced their calendars.",
+   "closing": "So... will you still be around in 2245?",
+   "question": "Which cicada brood year were you born into? Tell me below.",
+   "caption": "Two periodical cicada broods -- one on a 13-year clock, one on a 17-year clock -- emerged together in 2024 for the first time since 1803. Do the math (13 x 17 = 221) and you'll see why it won't happen again until 2245. Which brood year were you born into? 👇",
+   "hashtags": [
+    "cicadas",
+    "cicadabroods",
+    "periodicalcicadas",
+    "entomology",
+    "insects",
+    "nature",
+    "naturefacts",
+    "broodxix",
+    "broodxiii",
+    "sciencefacts",
+    "didyouknow",
+    "wildlife",
+    "biology",
+    "quirkyfacts",
+    "naturewonders"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cicada_brood_cycle_lengths",
+     "params": {
+      "file": "cicada_brood_cycle_lengths.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · TWO CLOCKS",
+     "topic": "the two cicada broods and their different clocks",
+     "say": "Brood XIX runs on a 13-year clock. Brood XIII runs on 17. Both cicada broods were due to emerge in 2024 -- and for once, they emerged together."
+    },
+    {
+     "source": "offline",
+     "key": "cicada_double_emergence_gap",
+     "params": {
+      "file": "cicada_double_emergence_gap.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY SO RARE",
+     "topic": "why cicada broods only line up every 221 years",
+     "say": "So why is that rare? 13 times 17 equals 221, so these cicada broods only line up every 221 years. The last time was 1803. The next time is 2245."
+    },
+    {
+     "source": "offline",
+     "key": "cicada_peak_density",
+     "params": {
+      "file": "cicada_peak_density.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE SWARM",
+     "topic": "how many cicadas per acre when both broods swarm together",
+     "say": "Add it up: prime habitat can hit 1,500,000 cicadas per acre, next to just 3,000 in an average wooded acre. Across both cicada broods' range, that's easily hundreds of billions of bugs singing at once."
+    }
+   ]
+  },
+  {
+   "slug": "waymo-robotaxi-surge",
+   "title": "Waymo Went From 10,000 Robotaxi Rides A Week To 200,000",
+   "hook": "Driverless cars just quietly became normal.",
+   "closing": "The robotaxi race isn't close anymore. It's just Waymo.",
+   "question": "Would you get in a car with no driver? Tell me below.",
+   "caption": "Waymo went from 10,000 paid robotaxi rides a week in 2023 to 200,000 by 2025 -- while its biggest rival, Cruise, got shut down entirely. Would you get in a car with no driver? 👇",
+   "hashtags": [
+    "waymo",
+    "robotaxi",
+    "selfdrivingcars",
+    "autonomousvehicles",
+    "driverless",
+    "futuretech",
+    "ai",
+    "technology",
+    "cruise",
+    "techfacts",
+    "innovation",
+    "transportation",
+    "didyouknow",
+    "sciencefacts",
+    "futureoftransport"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "waymo_weekly_rides_growth",
+     "params": {
+      "file": "waymo_weekly_rides_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SCALE",
+     "topic": "how many robotaxi rides waymo gives every week",
+     "say": "In October 2023, Waymo gave 10,000 robotaxi rides a week. By August 2024 that was 100,000. By February 2025, 200,000 -- the same company, 20 times bigger in 16 months."
+    },
+    {
+     "source": "offline",
+     "key": "waymo_cities_served",
+     "params": {
+      "file": "waymo_cities_served.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHERE",
+     "topic": "how many cities waymo's robotaxi service now covers",
+     "say": "So it spread fast: one city in 2020, three by 2023, five by 2025 -- Phoenix, San Francisco, LA, Austin, and Atlanta. Each new city compounds the rides, it doesn't just add to them."
+    },
+    {
+     "source": "offline",
+     "key": "waymo_vs_cruise_rides",
+     "params": {
+      "file": "waymo_vs_cruise_rides.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE RIVAL",
+     "topic": "waymo's robotaxi rides against its rival cruise",
+     "say": "But its biggest rival didn't make it: GM shut Cruise's robotaxi business down in December 2024. Waymo isn't winning a robotaxi race anymore -- it might be the only one still running."
+    }
+   ]
   }
  ],
  "videos": [
