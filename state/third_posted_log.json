@@ -9039,6 +9039,43 @@
         "end": 48.7
       },
       "director_cut": true
+    },
+    "rejected-gloriousstrangeicecreammikehogu-ucrvnanj2f7umn8a": {
+      "source_url": "https://www.twitch.tv/buddha/clip/GloriousStrangeIcecreamMikeHogu-uCRVnaNj2F7uMn8a",
+      "streamer": "buddha",
+      "title": "Mr C shows Lang the hidden casino room",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (gameplay walk-talk, no casino shown)",
+      "ts": "2026-09-25T11:35:45.292450+00:00"
+    },
+    "rejected-clip_01m3b3b5jwmpzt0287asrjmbq6": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M3B3B5JWMPZT0287ASRJMBQ6",
+      "streamer": "adinross",
+      "title": "dzfbdfbdb",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static browsing, no visible event)",
+      "ts": "2026-09-25T11:39:16.594680+00:00"
+    },
+    "rejected-cooperativeglutenfreejuicepanicbasket-e3ddwfrlzyc8vqvg": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CooperativeGlutenFreeJuicePanicBasket-E3DdWfRLZYC8VQvg",
+      "streamer": "jynxzi",
+      "title": "big dog",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay, inside joke about skin)",
+      "ts": "2026-09-25T11:42:09.165224+00:00"
+    },
+    "clip-20260925-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/FancyTameStorkPicoMause-xsN8gmhiDFty6UNd",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-09-25T11:44:32.190537+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
