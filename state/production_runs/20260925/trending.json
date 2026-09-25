@@ -1,0 +1,21 @@
+{
+  "date": "20260925",
+  "channel": "trending",
+  "schema": "production-channel-outcome/v1",
+  "expected": 6,
+  "previously_uploaded": 0,
+  "rendered_or_attempted": 10,
+  "uploaded": 0,
+  "quarantined": 2,
+  "failed": 8,
+  "failed_by_stage": {
+    "showrunner_block": 8
+  },
+  "failed_by_format": {
+    "graph_race": 4,
+    "reddit": 2,
+    "unknown": 2
+  },
+  "status": "repair_required",
+  "video_urls": []
+}
