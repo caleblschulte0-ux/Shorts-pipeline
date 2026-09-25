@@ -4,13 +4,13 @@
     "title": "Manga Just Buried Superhero Comics In America",
     "format": "graph_race",
     "publish_at": "2026-09-25T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean crossover race with a real 'whoa' in 2020-2021, but the first 5 seconds are a flat line, the ending shows Manga falling from its peak, and edge-clipped labels and footer make it unreadable in places.",
-    "elapsed_seconds": 78.8,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/YbvF7Tuy2Gc",
+    "error": null,
+    "elapsed_seconds": 120.7,
     "package_path": "state/trending_packages/20260925/01_manga-buried-superhero-comics.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-113354_manga_just_buried_superhero_comics_in_am.mp4",
+    "video_path": "output/daily_20260925-120108_manga_just_buried_superhero_comics_in_am.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +27,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean crossover race with a real 'whoa' in 2020-2021, but the first 5 seconds are a flat line, the ending shows Manga falling from its peak, and edge-clipped labels and footer make it unreadable in places.",
+      "blocked": false,
+      "reason": "",
       "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Chicken Quietly Passed Beef In America",
     "title": "Chicken Quietly Passed Beef In America",
     "format": "graph_race",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 45.1,
+    "elapsed_seconds": 81.4,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-113513_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-120308_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -71,14 +71,14 @@
     "topic": "Homeschooling Just Passed Catholic Schools",
     "title": "Homeschooling Just Passed Catholic Schools",
     "format": "graph_race",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 9.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 44.2,
+    "elapsed_seconds": 80.2,
     "package_path": "state/trending_packages/20260925/03_homeschool-passed-catholic-school.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-113558_homeschooling_just_passed_catholic_schoo.mp4",
+    "video_path": "output/daily_20260925-120430_homeschooling_just_passed_catholic_schoo.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -105,14 +105,14 @@
     "topic": "C-Sections Just Passed Natural Births In Brazil",
     "title": "C-Sections Just Passed Natural Births In Brazil",
     "format": "graph_race",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 45.0,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 7.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 80.3,
     "package_path": "state/trending_packages/20260925/04_brazil-csections-passed-vaginal-births.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-113642_c_sections_just_passed_natural_births_in.mp4",
+    "video_path": "output/daily_20260925-120550_c_sections_just_passed_natural_births_in.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +130,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 7.8 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 14
     },
     "blocked": true
@@ -139,17 +139,17 @@
     "topic": "He Had A Master Key. I Had An AirTag.",
     "title": "He Had A Master Key. I Had An AirTag.",
     "format": "reddit",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is 48 seconds of dark Geometry Dash filler with captions, and no picture ever shows the master key, the AirTag or the catch, so the story is never shown.",
-    "elapsed_seconds": 166.4,
+    "error": "showrunner_block: showrunner BLOCK: This is a caption-only gameplay loop. Not one shot illustrates the AirTag-versus-master-key story, so the narrative never gets shown on screen.",
+    "elapsed_seconds": 224.4,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-113752_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-120736_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.567,
+      "duration": 48.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,17 +160,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -26.1
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "None"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is 48 seconds of dark Geometry Dash filler with captions, and no picture ever shows the master key, the AirTag or the catch, so the story is never shown.",
-      "score": 53
+      "reason": "showrunner BLOCK: This is a caption-only gameplay loop. Not one shot illustrates the AirTag-versus-master-key story, so the narrative never gets shown on screen.",
+      "score": 57
     },
     "blocked": true
   },
@@ -178,17 +178,17 @@
     "topic": "I Traced The Robocalls. The FTC Did The Rest.",
     "title": "I Traced The Robocalls. The FTC Did The Rest.",
     "format": "reddit",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: About 50 seconds of plain Subway Surfers with captions: after the hook card, nothing on screen shows the robocall-tracing story, and the ending has no payoff.",
-    "elapsed_seconds": 260.6,
+    "error": "showrunner_block: showrunner BLOCK: The screen is almost all Subway Surfers with captions. In about 45 seconds of narration, only one shot (the FTC building photo) shows anything from the robocall story, so nothing on screen tells it.",
+    "elapsed_seconds": 226.0,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-114045_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-121120_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.133,
+      "duration": 49.867,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,47 +199,47 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -22.1
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: About 50 seconds of plain Subway Surfers with captions: after the hook card, nothing on screen shows the robocall-tracing story, and the ending has no payoff.",
-      "score": 53
+      "reason": "showrunner BLOCK: The screen is almost all Subway Surfers with captions. In about 45 seconds of narration, only one shot (the FTC building photo) shows anything from the robocall story, so nothing on screen tells it.",
+      "score": 65
     },
     "blocked": true
   },
   {
     "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Footage from Colorado\u2019s I\u201170 wildlife underpass shows elk, bears and a family of coyotes safely crossing the highway.",
-    "publish_at": "2026-09-25T13:00:00Z",
+    "angle": "A wildlife underpass on I-70 is proving a highway\u2011to\u2011habitat lifeline as dozens of elk, deer and coyotes safely cross under traffic.",
+    "publish_at": "2026-09-25T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['he quoted my biggest mistake', 'I slipped a fake report into the office printer', 'the printer spewed out a glittering confession pag', \"the manager's face turned pale when the paper flew\", 'the whole office erupted in laughter']",
-    "elapsed_seconds": 60.0,
-    "title": "When the boss read my secret notes out loud",
-    "package_path": "state/trending_packages/20260925-114523_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['stealing my tip', 'taste of his own medicine', 'cash register', 'free latte', 'roof']",
+    "elapsed_seconds": 26.7,
+    "title": "I Caught My Caf\u00e9 Manager Stealing My Tip and Served Him a Free Latte",
+    "package_path": "state/trending_packages/20260925-121451_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
-    "angle": "A Tokyo Street View rabbit\u2011hole reveals a mysterious white Nissan 350Z parked in the same spot for months, sparking a viral hunt for hidden time\u2011capsules.",
-    "publish_at": "2026-09-25T14:30:00Z",
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "An endangered Blanding\u2019s turtle successfully navigated a new Maine tunnel, highlighting a rare conservation win.",
+    "publish_at": "2026-09-25T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is pure gameplay plus captions with no story shots at all. The $5K tip, the manager's grab and the refund payoff are never shown, and the ending fades out on 'FOR ITSELF.' over amethyst.",
-    "elapsed_seconds": 103.4,
-    "title": "I Turned My Manager\u2019s $5K Tip Into a Refund",
-    "package_path": "state/trending_packages/20260925-114550_auto_my_weird_new_hobby__wandering_around_tok.json",
-    "video_path": "output/daily_20260925-114550_my_weird_new_hobby__wandering_around_tok.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The story beats are never illustrated: it is bare Minecraft gameplay with sparse captions, and at mid5 two captions pile on top of each other so neither can be read.",
+    "elapsed_seconds": 169.1,
+    "title": "I Served the Entitled Customer Her Own Free Latte",
+    "package_path": "state/trending_packages/20260925-121518_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260925-121518_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 36.9,
+      "duration": 48.5,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -250,7 +250,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.3
+      "loudness_lufs": -22.8
     },
     "qa": {
       "ok": true,
@@ -259,39 +259,39 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is pure gameplay plus captions with no story shots at all. The $5K tip, the manager's grab and the refund payoff are never shown, and the ending fades out on 'FOR ITSELF.' over amethyst.",
+      "reason": "showrunner BLOCK: The story beats are never illustrated: it is bare Minecraft gameplay with sparse captions, and at mid5 two captions pile on top of each other so neither can be read.",
       "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Researchers in Montenegro uncovered two brand\u2011new snail species whose door\u2011like shells snap shut, a bizarre twist on mollusk evolution.",
-    "publish_at": "2026-09-25T16:00:00Z",
+    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
+    "angle": "A lone monkey was caught on a Florida homeowner\u2019s trail camera, sparking a bizarre cross\u2011state wildlife mystery.",
+    "publish_at": "2026-09-25T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['viral complaint', 'manager\u2019s ear', 'hot water', 'empty register', 'smiling barista']",
-    "elapsed_seconds": 34.9,
-    "title": "I Served the Rude Customer a Free Latte He\u2019d Never Forget",
-    "package_path": "state/trending_packages/20260925-114737_auto_scientists_find_two_tiny_new_snails_with.json",
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['swapped her order', '$50 pastry', 'receipt for the pastry', 'bitter taste', 'entitlement']",
+    "elapsed_seconds": 26.6,
+    "title": "I Served a Free Latte and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260925-121807_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
     "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
-    "angle": "A trail\u2011camera set up by a Florida homeowner captures a curious monkey prowling his backyard, baffling neighbors.",
-    "publish_at": "2026-09-25T17:30:00Z",
+    "topic": "Caught on Camera: Startled deer runs into West Virginia elementary school gym - WOWK 13 News",
+    "angle": "A startled deer burst into a West Virginia school gym during lunch, forcing an emergency evacuation and viral footage.",
+    "publish_at": "2026-09-25T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is only narrated: every beat is generic parkour gameplay with small captions and no illustrations, so the petty-revenge story is never shown on screen.",
-    "elapsed_seconds": 201.3,
-    "title": "I Served an Entitled Customer a Free Latte... Then Turned the Tables",
-    "package_path": "state/trending_packages/20260925-114810_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
-    "video_path": "output/daily_20260925-114810_monkey_spotted_on_florida_man_s_trail_ca.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is just blurry Minecraft parkour with captions: no beat of the coffee/laptop revenge story is ever shown, and the hook opens on a garbled gameplay HUD artifact.",
+    "elapsed_seconds": 158.9,
+    "title": "I Served a Free Coffee to a Laptop\u2011Smashing Customer",
+    "package_path": "state/trending_packages/20260925-121834_auto_caught_on_camera__startled_deer_runs_int.json",
+    "video_path": "output/daily_20260925-121834_caught_on_camera__startled_deer_runs_int.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.3,
+      "duration": 45.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -302,7 +302,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -25.7
     },
     "qa": {
       "ok": true,
@@ -311,7 +311,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story is only narrated: every beat is generic parkour gameplay with small captions and no illustrations, so the petty-revenge story is never shown on screen.",
+      "reason": "showrunner BLOCK: This is just blurry Minecraft parkour with captions: no beat of the coffee/laptop revenge story is ever shown, and the hook opens on a garbled gameplay HUD artifact.",
       "score": 61
     },
     "blocked": true,
