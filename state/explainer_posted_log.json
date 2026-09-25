@@ -2081,6 +2081,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 50.8
+    },
+    "colon-cancer-screening-drop": {
+      "url": "https://youtube.com/shorts/WNL4fCAfc_8",
+      "title": "Colon Cancer Screening Age Just Dropped From 50 To 45",
+      "at": "2026-09-25T11:56:18.456570+00:00",
+      "publish_at": "2026-09-25T23:09:28Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 429 {\"detail\":{\"type\":\"rate_limit_error\",\"code\":\"concurrent_limit_exceeded\",\"message\":\"Too many concurrent requests. Your current subscription is associated with a maximum of 3 concurrent requests (runnin",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 50.0
     }
   },
   "uploads": [
@@ -2425,6 +2443,15 @@
       "state": "posted",
       "slug": "space-travel-acceleration",
       "at": "2026-09-25T11:09:53.635893+00:00"
+    },
+    {
+      "claimed_at": "2026-09-25T11:56:13.322698+00:00",
+      "title": "Colon Cancer Screening Age Just Dropped From 50 To 45",
+      "publish_at": "2026-09-25T23:09:28Z",
+      "url": "https://youtube.com/shorts/WNL4fCAfc_8",
+      "state": "posted",
+      "slug": "colon-cancer-screening-drop",
+      "at": "2026-09-25T11:56:18.456570+00:00"
     }
   ]
 }
