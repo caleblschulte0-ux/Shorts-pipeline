@@ -36,7 +36,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T15:11:42Z",
+        "verified_at": "2026-09-25T16:12:00Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -50,16 +50,14 @@
       "media_origin": "self_fill",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "content_type": "image/svg+xml",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "Apple Bluetooth tracker accessory",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "AirTag",
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-09-25T15:11:55Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/svg+xml",
+        "verified_at": "2026-09-25T16:12:00Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -97,7 +95,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T15:11:43Z",
+        "verified_at": "2026-09-25T16:12:00Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -117,7 +115,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T15:11:43Z",
+        "verified_at": "2026-09-25T16:12:00Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "small claims judgment",
