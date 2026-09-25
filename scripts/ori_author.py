@@ -201,6 +201,21 @@ def chapter_words(n: int) -> tuple[int, int, int, int]:
     return ask_lo, ask_hi, max(300, ask_lo - 60), min(cap, ask_hi + 100)
 
 
+def chapter_words_left(so_far: int, left: int, ask_lo: int, ask_hi: int, check_lo: int) -> tuple:
+    """(ask_lo, ask_hi, check_lo, check_hi) for the next chapter of a film
+    that has written `so_far` words with `left` chapters to go (this one
+    included): the ask aims the rest of the film at TARGET_WORDS, the cap
+    keeps it under OS.MAX_WORDS with room for the floor of every later
+    chapter, and the floor keeps it over OS.MIN_WORDS."""
+    later = left - 1
+    target = (TARGET_WORDS - so_far) // max(1, left)
+    cap = OS.MAX_WORDS - so_far - later * check_lo
+    floor = max(check_lo, OS.MIN_WORDS - so_far - later * min(cap, 1400))
+    a_lo = max(floor, min(ask_lo, target - 100))
+    a_hi = max(a_lo + 50, min(ask_hi, target + 100, cap - 30))
+    return a_lo, a_hi, floor, max(floor, cap)
+
+
 SAME_LOOK_SHARE = 0.5      # at most half a chapter's beats may share one setting+shot
 IDLE_SHARE = 0.3           # at most three in ten peopled beats may show everyone idle
 FILM_LOOK_SHARE = 0.2      # ... and at most one in five of the whole film's
@@ -287,10 +302,17 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
                 if isinstance(b, dict) and isinstance(b.get("scene"), dict):
                     cls = place_class(b.get("say", ""))
                     opts = place_settings(cls, era)
-                    if len(opts) > 1 and b["scene"].get("setting") in opts:
+                    # a beat whose words name its exact setting ("the Nile")
+                    # is where the words put it: balance is for the free ones
+                    # (run #20 died on the balance rule demanding a Nile
+                    # passage move to a generic riverbank, three times)
+                    if (len(opts) > 1 and b["scene"].get("setting") in opts
+                            and not _words_pin(b.get("say", ""), b["scene"].get("setting"))):
                         by_class.setdefault(cls, []).append(b["scene"].get("setting"))
         for cls, sts in by_class.items():
             opts = place_settings(cls, era)
+            if len(sts) < 6:
+                continue                    # too few to call unbalanced
             cap = -(-len(sts) // len(opts)) + 1
             for name in set(sts):
                 if sts.count(name) > cap and name in {b["scene"].get("setting") for b in beats
@@ -469,6 +491,13 @@ INDOOR_ONLY = ("hearth", "stove", "bed", "bench", "table", "chair", "bookshelf",
 OUTDOOR_STAND_IN = {"hearth": "campfire", "stove": "campfire", "candle": "torch", "oil_lamp": "torch"}
 
 
+def _street_light(era: str, have=()) -> str | None:
+    for name in ("gas_lamp", "brazier", "torch"):
+        if name in S.PROPS and era in S.PROPS[name].eras and name not in have:
+            return name
+    return None
+
+
 def take_outdoors(scene: dict, era: str) -> list[str]:
     """Swap or drop the indoor furniture of a scene whose setting is (now)
     outdoors: hearth -> campfire, a candle -> a torch, the rest dropped.
@@ -482,6 +511,10 @@ def take_outdoors(scene: dict, era: str) -> list[str]:
         name = q if isinstance(q, str) else q.get("name")
         if name in INDOOR_ONLY:
             swap = OUTDOOR_STAND_IN.get(name)
+            if swap == "campfire" and scene.get("setting") in PLACE_SETTINGS["city"]:
+                # a street's light is a lamp or a brazier (run #19: "an open
+                # bonfire in the middle of a cobbled street")
+                swap = _street_light(era, names)
             pr = S.PROPS.get(swap) if swap else None
             if swap and pr is not None and era in pr.eras and swap not in names:
                 keep.append(swap); names.append(swap)
@@ -532,13 +565,17 @@ def mend_scene(scene: dict, era: str) -> str | None:
     did += take_outdoors(scene, era) + bring_indoors(scene, era)
     if scene.get("setting") in PLACE_SETTINGS["city"]:
         names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
-        if "campfire" in names and "brazier" in S.PROPS and era in S.PROPS["brazier"].eras and "brazier" not in names:
-            scene["props"] = [("brazier" if (q if isinstance(q, str) else q.get("name")) == "campfire" else q)
-                              for q in scene["props"]]
-            if S.validate(scene, era):
-                scene["props"] = [("campfire" if q == "brazier" else q) for q in scene["props"]]
-            else:
-                did.append("campfire -> brazier (a square)")
+        if "campfire" in names:
+            before = list(scene["props"])
+            for light in ("brazier", "gas_lamp", "torch"):
+                if light not in S.PROPS or era not in S.PROPS[light].eras or light in names:
+                    continue
+                scene["props"] = [(light if (q if isinstance(q, str) else q.get("name")) == "campfire" else q)
+                                  for q in before]
+                if not S.validate(scene, era):
+                    did.append(f"campfire -> {light} (a street)")
+                    break
+                scene["props"] = before
     bad = S.validate(scene, era)
     if not bad:
         return ", ".join(did) if did else None
@@ -566,8 +603,8 @@ def mend_scene(scene: dict, era: str) -> str | None:
                  if interior else
                  # a square is lit by torches and braziers (run #18's storyboard:
                  # "a campfire sits in the lane", "a campfire in the road")
-                 [["brazier"], ["torch"], ["brazier", "torch"], ["torch", "brazier"], ["gas_lamp"],
-                  ["campfire"], ["campfire", "torch"]]
+                 [["brazier"], ["gas_lamp"], ["torch"], ["brazier", "torch"], ["gas_lamp", "torch"],
+                  ["torch", "brazier"], ["campfire"], ["campfire", "torch"]]
                  if urban else
                  [["campfire"], ["torch"], ["brazier"], ["cauldron"], ["campfire", "torch"],
                   ["campfire", "cauldron"], ["brazier", "torch"]])
@@ -799,6 +836,9 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
     for j, b in enumerate(beats):
         if isinstance(b, dict) and isinstance(b.get("scene"), dict):
             placed = mend_place(b, era, used=used)
+            strays = drop_stray_animals(b, era)
+            if strays:
+                placed = ", ".join(x for x in (placed, *strays) if x)
             night = None
             if final and j >= len(beats) - max(1, len(beats) // 3) and b["scene"].get("time") != "night":
                 night = f"{b['scene'].get('time')} -> night (the film ends in the dark)"
@@ -889,10 +929,16 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
     if o is None:
         return None
     chs = o["chapters"]
-    words_lo, words_hi, check_lo, check_hi = chapter_words(len(chs))
+    words_lo0, words_hi0, check_lo0, check_hi0 = chapter_words(len(chs))
     out_chapters = []
     prev_text = ""
     for i, ch in enumerate(chs):
+        # the FILM has the budget, not the chapter: a long chapter makes the
+        # later ones shorter (run #20 lost its first chapter three times for
+        # writing 900 words against a 666-word cap in a film with room for it)
+        so_far = sum(len((b.get("say") or "").split()) for c in out_chapters for b in c["beats"])
+        left = len(chs) - i
+        words_lo, words_hi, check_lo, check_hi = chapter_words_left(so_far, left, words_lo0, words_hi0, check_lo0)
         prev = (f"The previous chapter ended: \"{prev_text[-600:]}\"" if prev_text
                 else "This is the opening chapter: welcome the listener gently and set the scene. "
                      "Its FIRST beat is a wide establishing shot of the place (shot \"wide\"), "
@@ -952,17 +998,23 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
 # era's city settings, the river by the river. A move to satisfy a picture
 # rule happens INSIDE the class or not at all.
 PLACE_WORDS = (
-    ("interior", ("inside", "indoors", "roof", "room", "hearth", "table", "bed", "blanket", "lamp", "candle",
+    # not "lamp": run #19's hook said "gas lamps lit one by one down a rainy
+    # street" and was drawn in a room
+    ("interior", ("inside", "indoors", "roof", "room", "hearth", "table", "bed", "blanket", "candle",
                   "doorway", "kitchen", "corridor", "chamber", "floor", "pallet", "shutter", "bench", "stool",
-                  "loom")),
+                  "loom", "parlour", "parlor", "library", "nursery", "bedroom")),
     # not "city" or "town": in a film about Rome they name the topic, and
     # "across the city, a household settles" is indoors. Not "cart": the
     # sound of carts comes through the shutters
     ("city", ("street", "square", "forum", "lane", "alley", "market", "stall", "gate", "watchman", "cobble",
-              "bakery", "baker", "oven", "shop", "tavern", "inn", "crowd", "seller", "plaza", "courtyard")),
-    ("river", ("river", "stream", "brook", "ford")),
+              "bakery", "baker", "oven", "shop", "tavern", "inn", "crowd", "seller", "plaza", "courtyard",
+              "lamplighter", "constable", "policeman", "playhouse", "theatre", "theater", "pavement",
+              "gaslight", "gaslit", "cab", "omnibus")),
+    # the Nile is a river; a boat or a sail belongs to whatever water the
+    # passage names (run #20: a Nile passage mended onto the seashore)
+    ("river", ("river", "stream", "brook", "ford", "nile", "canal", "thames", "embankment", "water")),
     ("lake", ("lake", "pond", "mere")),
-    ("sea", ("sea", "shore", "beach", "tide", "wave", "surf", "sail", "boat", "harbour", "harbor", "quay")),
+    ("sea", ("sea", "shore", "beach", "tide", "wave", "surf", "harbour", "harbor", "quay")),
     ("grove", ("olive", "grove", "orchard", "vineyard")),
     ("forest", ("forest", "wood", "trees", "pine")),
     ("mountains", ("mountain", "peak", "hills", "hill", "cliff", "ridge")),
@@ -1095,6 +1147,38 @@ def bring_indoors(scene: dict, era: str) -> list[str]:
             keep.append(q)
     if notes:
         scene["props"] = keep
+    return notes
+
+
+# an animal is drawn in a street or a room only when the words name it
+# (run #19's judge: "cows on a rainy London street at night, which the
+# lamplighter and constable lines never mention")
+ANIMAL_WORDS = {
+    "cow": ("cow", "cattle", "ox", "oxen", "calf"), "sheep": ("sheep", "flock", "lamb", "ewe"),
+    "chicken": ("chicken", "hen", "rooster", "cockerel"), "goat": ("goat", "kid"), "deer": ("deer", "stag"),
+    "dog": ("dog", "hound", "puppy"), "wolf": ("wolf", "wolves"), "mammoth": ("mammoth",),
+}
+
+
+def drop_stray_animals(beat: dict, era: str) -> list[str]:
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return []
+    setting = sc.get("setting")
+    st = S.SETTINGS.get(setting)
+    if st is None or not (st.interior or setting in PLACE_SETTINGS["city"]):
+        return []
+    words = {_stem(w) for w in re.sub(r"[^a-z ]+", " ", (beat.get("say") or "").lower()).split()} | \
+        set(re.sub(r"[^a-z ]+", " ", (beat.get("say") or "").lower()).split())
+    notes, keep = [], []
+    for q in sc.get("props") or []:
+        name = q if isinstance(q, str) else q.get("name")
+        if name in ANIMAL_WORDS and not (set(ANIMAL_WORDS[name]) & words):
+            notes.append(f"dropped the {name} (the words never mention it)")
+        else:
+            keep.append(q)
+    if notes:
+        sc["props"] = keep
     return notes
 
 
@@ -1348,6 +1432,13 @@ def mend_film(ep: dict, log=print) -> list[str]:
     had called alive)."""
     notes = []
     chs = ep.get("chapters") or []
+    first = (chs[0].get("beats") or [None])[0] if chs else None
+    if isinstance(first, dict) and isinstance(first.get("scene"), dict) and S.shot_of(first["scene"]) != "wide":
+        # the film's first picture is a wide establishing shot, whatever a
+        # mend did to it (run #19's script lost it moving the hook outdoors)
+        first["scene"]["shot"] = "wide"
+        mend_scene(first["scene"], ep["era"])
+        notes.append("chapter 1 beat 1: the opening shot is wide")
     for i, c in enumerate(chs):
         mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)),
                    final=(i == len(chs) - 1), used=_place_tally(chs[:i]))

@@ -1157,6 +1157,48 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertGreater(int(outside), 200)
         self.assertLessEqual(int(inside.sum()), int(outside) * 0.05 + 2, "glints drawn across the figure")
 
+    def test_runs_nineteen_and_twenty_animals_lamps_the_nile_and_the_films_budget(self):
+        # run #19 (Victorian London, 65): cows on a night street the words
+        # never mention; the hook "gas lamps lit one by one down a rainy
+        # street" drawn in a room. Run #20 (Egypt) never rendered: the
+        # balance rule demanded the Nile beats move to a generic riverbank
+        # while their words pinned them to the Nile, and a 900-word first
+        # chapter was refused against a 666-word cap in a film with room
+        import ori_author as A
+        from data_learning import ori_sleep as OS
+        self.assertEqual(A.place_class("the lamplighter walks the rainy street and the gas lamps are lit"), "city")
+        self.assertEqual(A.place_class("a constable walks his beat past the playhouse"), "city")
+        self.assertEqual(A.place_class("boats drift down the Nile at dusk"), "river")
+        self.assertEqual(A.place_class("in the parlour the family sits down to supper"), "interior")
+        street = {"say": "The lamplighter walks the street.", "scene": {"setting": "street", "time": "night",
+                  "weather": "rain", "shot": "wide", "cast": [], "props": ["gas_lamp", "cow", "sheep"]}}
+        self.assertEqual(len(A.drop_stray_animals(street, "victorian")), 2)
+        self.assertEqual(street["scene"]["props"], ["gas_lamp"])
+        drove = {"say": "A drover brings his cattle down the street.", "scene": dict(street["scene"],
+                 props=["gas_lamp", "cow"])}
+        self.assertEqual(A.drop_stray_animals(drove, "victorian"), [])
+        field = {"say": "Quiet grass.", "scene": {"setting": "grassland", "time": "night", "weather": "clear",
+                 "shot": "close", "cast": [], "props": ["campfire", "sheep"]}}
+        self.assertEqual(A.drop_stray_animals(field, "victorian"), [], "animals in a field need no licence")
+        # the balance rule leaves word-pinned beats alone
+        nile = "The Nile runs slow and dark past the reeds. " + " ".join(["word"] * 40)
+        beats = [{"say": nile, "scene": {"setting": "nile_bank", "time": "night", "weather": "clear",
+                  "shot": ("close" if j % 2 else "wide"), "cast": [{"who": "man", "pose": "sit", "action": "fish"}],
+                  "props": ["campfire", "torch"]}} for j in range(8)]
+        self.assertEqual([x for x in A._chapter_problems(beats, "egypt", 0, 10 ** 6, before=[])
+                          if "beats so far" in x], [])
+        # the film has the budget: a long first chapter is accepted and the rest shrink
+        lo, hi, clo, _chi = A.chapter_words(6)
+        first = A.chapter_words_left(0, 6, lo, hi, clo)
+        self.assertLessEqual(first[2], 900); self.assertGreaterEqual(first[3], 900)
+        so = 900
+        for i in range(1, 6):
+            b = A.chapter_words_left(so, 6 - i, lo, hi, clo)
+            self.assertLessEqual(so + b[3] + (5 - i) * clo, OS.MAX_WORDS)
+            so += b[1]
+        self.assertLessEqual(so, OS.MAX_WORDS)
+        self.assertGreaterEqual(so, OS.MIN_WORDS)
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

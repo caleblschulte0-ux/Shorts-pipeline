@@ -56,10 +56,10 @@
     {
      "say": "The gas lamps come alive one by one down a London street, a lamplighter touching flame to flame with his long pole. A soft rain has begun, pattering on cobblestones still warm from the day. Carts rattle toward home, voices grow quieter, and the sky above the rooftops deepens toward violet. This is when the city begins to settle, not into silence, but into something gentler, room by room, street by street.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "street",
       "time": "dusk",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
@@ -71,7 +71,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "gas_lamp"
       ],
       "variant": 2
      }
@@ -89,15 +89,13 @@
         "pose": "sit",
         "action": "sew",
         "mood": "calm",
-        "item": "needle",
-        "at": "center_left"
+        "item": "needle"
        },
        {
         "who": "child",
         "pose": "crouch",
         "action": "play",
-        "mood": "happy",
-        "at": "center_right"
+        "mood": "happy"
        }
       ],
       "props": [
@@ -121,16 +119,14 @@
         "pose": "stand",
         "action": "carry",
         "mood": "focused",
-        "item": "basket",
-        "at": "left"
+        "item": "basket"
        },
        {
         "who": "woman",
         "pose": "crouch",
         "action": "gather",
         "mood": "focused",
-        "item": "bundle",
-        "at": "right"
+        "item": "bundle"
        }
       ],
       "props": [
@@ -295,13 +291,14 @@
     {
      "say": "Out on the street, the shops have shut their shutters, and rain falls thin and quiet under the gas lamps. There is nowhere left to be. The city that rushed all day has folded itself down into doorways and lit windows, waiting for the dark to finish arriving.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "street",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
       "cast": [],
       "props": [
-       "hearth"
+       "gas_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -336,7 +333,7 @@
     {
      "say": "By the mid-Victorian years, a lamplighter is out with his long pole, touching one gas lamp after another down the wet street. Rain beads softly on his coat. He does not hurry. Post by post, the light climbs ahead of him, small and steady, and the pavement begins to shine.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "street",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -351,7 +348,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "gas_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -359,7 +357,7 @@
     {
      "say": "Down along the river, fog is settling over the water. Someone tending the embankment lamps lights each one in turn, and the new flame does not cut through the mist so much as glow softly inside it, a small warm circle hanging above the dark, slow-moving Thames.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "riverbank",
       "time": "dusk",
       "weather": "clear",
       "shot": "wide",
@@ -374,7 +372,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "campfire"
       ],
       "variant": 3
      }
@@ -428,7 +426,7 @@
     {
      "say": "By the ornamental lake, a woman walks home with a child at her side, unhurried. Lamplight from the path has begun to lie in long soft lines across the still water. The child looks up at the glow rather than down at the water, and neither of them speaks.",
      "scene": {
-      "setting": "lakeshore",
+      "setting": "riverbank",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -458,7 +456,7 @@
     {
      "say": "Near a busy corner, a boy who sweeps the crossing crouches by a small coal fire to warm his hands between errands. A lamplighter passes behind him without pausing, pole lifted, touching the corner lamp alight. Neither looks at the other. Both are simply getting through the evening in their own way.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "street",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -480,7 +478,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "gas_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -491,7 +490,7 @@
       "setting": "street",
       "time": "dawn",
       "weather": "rain",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
@@ -535,7 +534,7 @@
     {
      "say": "In the lamplighters' own small shed, off duty, two of them sit together over a single candle, a kettle warming nearby, comparing which streets are done and which remain. Their coats are still damp. There is no hurry in the talk, only the quiet accounting of a round nearly finished.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "street",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -557,8 +556,8 @@
        }
       ],
       "props": [
-       "candle",
-       "stove"
+       "torch",
+       "gas_lamp"
       ]
      }
     },
@@ -595,7 +594,7 @@
     {
      "say": "Back by the park lake, two children pause at the rail before bed, watching one last lamp's reflection tremble on the black water. The fog has thickened enough now to soften every edge in sight. Neither speaks. It is simply a nice thing to look at before going in.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "lakeshore",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -616,7 +615,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "campfire"
       ],
       "variant": 1
      }
@@ -787,26 +786,24 @@
     {
      "say": "In a slightly larger parlour nearby, a family sits together at the table for a simple supper, bread and a little cheese, perhaps something warm from the hearth behind them. Nobody talks much. There is the soft clink of a spoon against a bowl, the settling creak of the fire, and the plain comfort of being fed together, the evening now fully closed in around the house.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
         "pose": "sit",
         "action": "eat",
         "mood": "content",
-        "item": "bowl",
-        "at": "left"
+        "item": "bowl"
        },
        {
         "who": "woman",
         "pose": "sit",
         "action": "eat",
         "mood": "content",
-        "item": "bread",
-        "at": "right"
+        "item": "bread"
        }
       ],
       "props": [
@@ -1027,16 +1024,14 @@
         "who": "man",
         "pose": "stand",
         "action": "talk",
-        "mood": "happy",
-        "at": "center_left"
+        "mood": "happy"
        },
        {
         "who": "woman",
         "pose": "stand",
         "action": "drink",
         "item": "cup",
-        "mood": "happy",
-        "at": "center_right"
+        "mood": "happy"
        }
       ],
       "props": [
@@ -1073,10 +1068,10 @@
     {
      "say": "A little further on, a child stands very still at the water's edge, watching the reflections of the city lights ripple and break apart on the surface. The noise of the streets feels far away here, softened by the slow, steady sound of the river moving past.",
      "scene": {
-      "setting": "street",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "child",
@@ -1153,7 +1148,7 @@
        }
       ],
       "props": [
-       "campfire"
+       "gas_lamp"
       ],
       "variant": 1
      }
@@ -1243,10 +1238,10 @@
     {
      "say": "By the time the last playbill is taken down and the final lamps are dimmed, the lively part of the city has had its turn. The rain keeps falling softly over empty pavements, washing the noise away, and somewhere beyond all of it, the ordinary streets are already settling back into their familiar hush.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "street",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "woman",
@@ -1257,7 +1252,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "gas_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -1270,7 +1266,7 @@
     {
      "say": "Picture him now: a constable in a long dark coat, walking his beat at the same unhurried pace he has kept for hours, rain drifting under the gas lamps. He is one of thousands doing this same round across the city tonight, part of a police force established some decades before, built to keep watch while London sleeps.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "street",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1285,7 +1281,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "gas_lamp"
       ],
       "variant": 1
      }
@@ -1296,12 +1292,12 @@
       "setting": "street",
       "time": "night",
       "weather": "rain",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "look_up",
         "mood": "focused",
         "item": "lantern",
         "at": "center"
@@ -1436,7 +1432,6 @@
        }
       ],
       "props": [
-       "cow",
        "dog"
       ],
       "variant": 2
@@ -1546,7 +1541,7 @@
     {
      "say": "By the time the constable's steps have faded down the last street, one final candle guttering in some small room is pinched out between careful fingers, and the whole city, lamp by lamp, door by door, has finally gone still.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "street",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1560,7 +1555,8 @@
        }
       ],
       "props": [
-       "candle"
+       "torch",
+       "gas_lamp"
       ],
       "variant": 3
      }
@@ -1687,7 +1683,7 @@
     {
      "say": "Along the embankment, the gas lamps throw long ribbons of light across the black water, trembling faintly with the current. An elder walks slow and unhurried along the path, cane tapping softly on the stone, in no particular rush to be anywhere but home.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1702,7 +1698,7 @@
        }
       ],
       "props": [
-       "hearth"
+       "campfire"
       ],
       "variant": 3
      }
@@ -1771,12 +1767,5 @@
  "sources": [],
  "topic": "What did Victorian Londoners do after dark?",
  "added": "2026-09-24T22:38",
- "authored_by": "ori_author",
- "storyboard": {
-  "kit": "a2e01e908139",
-  "clean": false,
-  "reviewed_at": "2026-09-24T22:57",
-  "rounds": 3,
-  "repaired": 157
- }
+ "authored_by": "ori_author"
 }

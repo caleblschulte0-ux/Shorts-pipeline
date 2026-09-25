@@ -442,7 +442,7 @@
     {
      "say": "Not far from home, a girl kneels at the water's edge, filling a jug for the evening. Carrying water was simply one more small task before the meal — the sort of quiet errand that filled countless ordinary evenings, in countless households, all across the empire.",
      "scene": {
-      "setting": "forest",
+      "setting": "riverbank",
       "time": "dusk",
       "weather": "clear",
       "shot": "wide",
@@ -496,7 +496,7 @@
     {
      "say": "The wine, when there is any, is poured thin, mixed with water the way ordinary people drank it. You can imagine the slow, unhurried way a cup is lifted here — no reason to rush a meal that marks the quiet close of the day.",
      "scene": {
-      "setting": "forest",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1169,10 +1169,10 @@
     {
      "say": "By the hearth, an elder speaks quietly to a child curled close beside her. She tells him, gently, why the streets turn dangerous after sundown — not to frighten him, just to explain the family's oldest rule. He listens, warm and drowsy, already trusting the walls around him more than anything outside them.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "elder",
@@ -1874,7 +1874,7 @@
     {
      "say": "Before the sun is properly up, a few fishermen push their boats out past the shallows, the water pale and the air still cool with night. They do not hurry. The city behind them is only just beginning to grey at the edges, and the streets are still mostly asleep.",
      "scene": {
-      "setting": "seashore",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1908,7 +1908,7 @@
       "setting": "riverbank",
       "time": "night",
       "weather": "clear",
-      "shot": "wide",
+      "shot": "close",
       "cast": [],
       "props": [
        "reeds"
