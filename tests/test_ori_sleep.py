@@ -1264,24 +1264,51 @@ class ThePictureIsReadable(unittest.TestCase):
         S = self.S
         self.assertEqual(A.place_class("Watching the Stars"), "sky")
         say = " ".join(["the night goes quietly on"] * 8)
-        sky = {"setting": "desert", "time": "night", "weather": "clear", "shot": "wide", "cast": [],
+        sky = {"setting": "desert", "time": "night", "weather": "clear", "shot": "close", "cast": [],
                "props": ["campfire"]}
         room = {"setting": "hut_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
                 "props": ["oil_lamp"]}
-        beats = [{"say": say, "scene": dict(sky if j in (2, 6, 9) else room)} for j in range(12)]
+        import copy
+        beats = [{"say": say, "scene": copy.deepcopy(sky if j in (2, 6, 9) else room)} for j in range(12)]
         wins = A._mark_windows(beats)
         self.assertEqual(len(wins), 3)
         for w, j in zip(wins, A._mark_beats(beats)):
             self.assertIn(j, w)
         bad = A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Watching the Stars")
         self.assertTrue(any("is titled" in b for b in bad), bad)
-        for w in wins:
-            for j in w:
-                beats[j]["scene"] = dict(sky)
-        bad = A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Watching the Stars")
-        self.assertEqual([b for b in bad if "is titled" in b], [])
+        # the place-less beats are moved outdoors in code, preferring home
+        notes = A.mend_title(beats, "Watching the Stars", "egypt", home=["river"])
+        self.assertTrue(notes)
+        self.assertEqual([b for b in A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Watching the Stars")
+                          if "is titled" in b], [])
+        self.assertTrue(all(beats[j]["scene"]["setting"] in ("riverbank", "nile_bank") for w in wins for j in w
+                            if j not in (2, 6, 9)), [b["scene"]["setting"] for b in beats])
+        for b in beats:
+            self.assertEqual(S.validate(b["scene"], "egypt"), [])
         self.assertEqual([b for b in A._chapter_problems(beats, "egypt", 0, 10 ** 6, title="Chapter One")
                           if "is titled" in b], [])
+        # words that pin a beat indoors are never moved: that goes to the brain
+        pinned = [{"say": "Inside the room, by the candle, " + say, "scene": copy.deepcopy(room)} for _ in range(12)]
+        self.assertEqual(A.mend_title(pinned, "Watching the Stars", "egypt"), [])
+        # the side of the door, not the exact place: the Elizabethan run lost
+        # a whole film asking "The Bell That Shut the Gates" (city words) to
+        # stand in a market square; a city or cave title promises no side
+        self.assertIsNone(A.title_side("The Bell That Shut the Gates", "early_modern"))
+        self.assertIsNone(A.title_side("Evenings at the Tavern", "early_modern"))
+        self.assertEqual(A.title_side("Sleep by the River", "egypt"), "outdoors")
+        self.assertEqual(A.title_side("By the Hearth", "medieval"), "indoors")
+        # and it is soft: the last attempt is kept when it is all that is left,
+        # never before, and never alongside a hard problem
+        out = {"beats": []}
+        calls = []
+        def ask(*_a):
+            calls.append(1)
+            return json.dumps(out)
+        self.assertIs(A._with_retry(lambda pr: "", lambda r: ["the chapter is titled 'X' but ..."], ask, "t")
+                      is not None, True)
+        self.assertEqual(len(calls), 3)
+        self.assertIsNone(A._with_retry(lambda pr: "", lambda r: ["the chapter is titled 'X' but ...",
+                                                                   "beat 2 is too crowded"], ask, "t"))
         # a stargazer lies with the face up and no arm
         surf = cairo.ImageSurface(cairo.FORMAT_RGB24, 400, 400)
         with mock.patch.object(P, "_ik") as ik:

@@ -570,6 +570,21 @@ only as a hand edit is not a rule. So:
   warm coat, ears up, pale muzzle. The storyboard had called the grey
   wolf-shaped one "flat and dark and reads as dead". Also named, not yet
   built: keep the first chapter outdoors until the lamp chapter begins.
+  Run #23 (Elizabethan London, a fresh topic) never rendered, and the
+  fault was that title rule. "The Bell That Shut the Gates" read as a city
+  title, so the brain was told three times to stand in a market square
+  while its words were on the Thames and in a tavern, and the film was
+  dropped. The rule is now about the SIDE OF THE DOOR, which is the
+  contradiction the judge saw: a sky, river or forest title promises
+  outdoors, a room title promises indoors, and a city or cave title
+  promises neither (a tavern is a city word; a cave has an inside).
+  Place-less beats at the judged moments are moved in code (`mend_title`,
+  run inside `repair_film`, which now also scores the rule so it never
+  undoes the move). Only words that pin a beat to the wrong side go back to
+  the brain. The rule is also SOFT (`SOFT` in `_with_retry`): a last attempt
+  whose only remaining problem is the title is kept, and says so in the log.
+  It is a pre-check of what the judge might see, not a gate, and losing a
+  whole film to it is worse than letting the judge judge.
 
 ## Any topic: the era is found or the refusal is honest
 

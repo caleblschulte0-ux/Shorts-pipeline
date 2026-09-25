@@ -349,25 +349,22 @@ def _chapter_problems(beats, era: str, lo: int, hi: int, before=None, opening: b
                     others = [o for o in opts if o != name]
                     bad.append(f"{name} holds {sts.count(name)} of the film's {len(sts)} {cls} beats so far: "
                                f"use {' or '.join(others)} for some of this chapter's")
-    # a chapter whose TITLE names a place is drawn there at its judged
-    # moments (the Egypt film's judge: "the 'Watching the Stars' chapter
-    # never shows a sky" — its quarter and end beats were story beats told
-    # indoors). The words of those beats decide their place, so this goes
-    # back to the brain: the beats at a quarter, a half and the end are the
-    # ones the title is about
-    if title:
-        tcls = place_class(title)
-        opts = place_settings(tcls, era)
-        marks_ = _mark_beats(beats)
-        wins = _mark_windows(beats)
-        if opts and len(marks_) == 3 and len(wins) == 3:
-            inside = [w for w in wins if w and all(isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)
-                                                  and beats[j]["scene"].get("setting") in opts for j in w)]
-            if len(inside) < 2:
-                near = sorted({j + 1 for w in wins for j in w})
-                bad.append(f"the chapter is titled {title!r} but its judged moments (around beats "
-                           f"{', '.join(str(j) for j in near)}) are not there: write at least two of those "
-                           f"stretches about the {tcls} and draw them in {' or '.join(opts[:4])}")
+    # a chapter whose TITLE names a place is on that side of the door at its
+    # judged moments (the Egypt film's judge: "the 'Watching the Stars'
+    # chapter never shows a sky" — its quarter and end beats were told
+    # indoors). The side, not the exact place: the Elizabethan run lost a
+    # whole film asking "The Bell That Shut the Gates" to stand in a market
+    # square while its words were on the Thames. Place-less beats are moved
+    # in code (mend_title); only words that pin a beat to the wrong side go
+    # back to the brain
+    side = title_side(title, era)
+    if side:
+        wrong = _title_windows_wrong(beats, side)
+        if len(wrong) >= 2:
+            near = sorted({j + 1 for w in wrong for j in w})
+            bad.append(f"the chapter is titled {title!r} but its judged moments (around beats "
+                       f"{', '.join(str(j) for j in near)}) are {'outdoors' if side == 'indoors' else 'indoors'}: "
+                       f"write at least two of those stretches {side}")
     # a sleep film ends in the dark: the last third of the last chapter is
     # night (run #18's judge: "the ending brightens back to sunset instead
     # of settling into night")
@@ -901,6 +898,13 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
     return n
 
 
+# problems the brain is asked to fix but that never cost the film on the
+# last attempt: a pre-check of what the judge MIGHT see, not a gate (the
+# Elizabethan run lost a whole film to the chapter-title rule three times
+# over). The judge still judges; nothing here touches it
+SOFT = ("is titled",)
+
+
 def _with_retry(prompt_fn, check, ask, label, mend=None):
     problems = ""
     for attempt in (1, 2, 3):
@@ -916,6 +920,9 @@ def _with_retry(prompt_fn, check, ask, label, mend=None):
             mend(out)                      # the deterministic fixes first; the brain sees only what is left
         bad = check(out)
         if not bad:
+            return out
+        if attempt == 3 and all(any(k in b for k in SOFT) for b in bad):
+            print(f"[ori_author] {label} kept on its last attempt with: {bad[:3]}", flush=True)
             return out
         print(f"[ori_author] {label} attempt {attempt} invalid: {bad[:6]}", flush=True)
         problems = ("\nYOUR LAST ATTEMPT WAS REJECTED FOR: " + "; ".join(bad[:25])
@@ -1149,6 +1156,62 @@ def place_settings(cls: str | None, era: str) -> list[str]:
     return [n for n in PLACE_SETTINGS.get(cls, ()) if n in S.SETTINGS and era in S.SETTINGS[n].eras]
 
 
+# the side of the door a chapter's title promises. A city title promises
+# neither (a tavern, an inn and a bakery are city words), nor a cave (it has
+# an inside)
+_TITLE_NO_SIDE = ("city", "cave")
+
+
+def title_side(title: str, era: str) -> str | None:
+    cls = place_class(title or "")
+    if cls is None or cls in _TITLE_NO_SIDE or not place_settings(cls, era):
+        return None
+    return "indoors" if cls == "interior" else "outdoors"
+
+
+def _is_indoors(sc) -> bool:
+    st = S.SETTINGS.get(sc.get("setting")) if isinstance(sc, dict) else None
+    return st is not None and bool(st.interior)
+
+
+def _title_windows_wrong(beats, side: str) -> list[list[int]]:
+    """The judged moments on the wrong side of the door: a moment is wrong
+    when any beat that may be playing at it is."""
+    beats = beats if isinstance(beats, list) else []
+    want = side == "indoors"
+    return [w for w in _mark_windows(beats)
+            if w and any(isinstance(beats[j], dict) and isinstance(beats[j].get("scene"), dict)
+                         and _is_indoors(beats[j]["scene"]) != want for j in w)]
+
+
+def mend_title(beats, title: str, era: str, home=None, used=None) -> list[str]:
+    """Move the place-less beats at a chapter's judged moments to the side
+    of the door its title promises (preferring the film's home). A beat
+    whose words name a place on the other side is left for the brain."""
+    side = title_side(title, era)
+    if not side or not isinstance(beats, list):
+        return []
+    wrong = _title_windows_wrong(beats, side)
+    if len(wrong) < 2:
+        return []
+    cls = place_class(title)
+    opts = place_settings(cls, era)
+    homes = [n for c in (home or []) for n in place_settings(c, era) if n in opts]
+    notes = []
+    for j in sorted({j for w in wrong for j in w}):
+        b = beats[j]
+        sc = b.get("scene") if isinstance(b, dict) else None
+        if not isinstance(sc, dict) or _is_indoors(sc) == (side == "indoors"):
+            continue
+        wcls = place_class(b.get("say", ""))
+        if wcls is not None and wcls != cls:
+            continue
+        did = _move(b, era, homes or opts, used, f"the chapter is titled {title!r}")
+        if did:
+            notes.append(f"beat {j + 1}: {did}")
+    return notes
+
+
 # words in a passage that pin it to its place: a beat whose words say the
 # cave is not moved out of the cave to satisfy a picture rule
 SETTING_WORDS = {
@@ -1302,6 +1365,15 @@ def mend_place(beat: dict, era: str, used=None) -> str | None:
     options = place_settings(place_class(beat.get("say", "")), era)
     if not options or sc.get("setting") in options:
         return None
+    return _move(beat, era, options, used, f"the words say {place_class(beat.get('say', ''))}")
+
+
+def _move(beat: dict, era: str, options, used, why: str) -> str | None:
+    """Move a beat to the least-used of `options`, bringing its props and
+    light along (what cannot come is swapped or dropped)."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict) or not options or sc.get("setting") in options:
+        return None
     used = used or {}
     old = sc.get("setting")
     sc["setting"] = min(options, key=lambda n: (used.get(n, 0), options.index(n)))
@@ -1313,8 +1385,7 @@ def mend_place(beat: dict, era: str, used=None) -> str | None:
         inner = mend_scene(sc, era)
         if inner:
             notes.append(inner)
-    return f"{old} -> {sc['setting']} (the words say {place_class(beat.get('say', ''))})" + \
-        (": " + ", ".join(notes) if notes else "")
+    return f"{old} -> {sc['setting']} ({why})" + (": " + ", ".join(notes) if notes else "")
 
 
 def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[str]:
@@ -1332,7 +1403,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
     from data_learning import ori_sleep as OS
     era = ep["era"]
     keep = ("picture", "of the film", "new place", "crowded", "moves", "judged moments", "the words are about",
-            "ends in deep night", "beats so far")
+            "ends in deep night", "beats so far", "is titled")
 
     def problems():
         out = []
@@ -1340,7 +1411,7 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
             if only_chapter is not None and i != only_chapter:
                 continue
             for x in _chapter_problems(c["beats"], era, 0, 10 ** 6, before=ep["chapters"][:i],
-                                       final=(i == len(ep["chapters"]) - 1)):
+                                       final=(i == len(ep["chapters"]) - 1), title=c.get("title", "")):
                 if any(k in x for k in keep):
                     out.append((i, x))
         return out
@@ -1403,7 +1474,8 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         return sorted(near, key=lambda n: used[n])
 
     def own_problems(k):
-        return len(_chapter_problems(ep["chapters"][k]["beats"], era, 0, 10 ** 6, before=ep["chapters"][:k]))
+        return len(_chapter_problems(ep["chapters"][k]["beats"], era, 0, 10 ** 6, before=ep["chapters"][:k],
+                                     title=ep["chapters"][k].get("title", "")))
 
     def try_move(i, j, guard=None):
         """Move beat j of chapter i to the least-used nearby place. `guard`
@@ -1463,6 +1535,15 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         return None
 
     notes = []
+    # a chapter on the wrong side of the door its title promises: the
+    # place-less beats at its judged moments go through first
+    home = film_home(ep)
+    for i, c in enumerate(ep["chapters"]):
+        if only_chapter is not None and i != only_chapter:
+            continue
+        for did in mend_title(c["beats"], c.get("title", ""), era, home=home, used=_place_tally(ep["chapters"])):
+            notes.append(f"{c.get('title', '')} {did}")
+            log(f"[ori_author] repair_film: {notes[-1]}")
     skipped = set()          # a problem nothing here can fix: say so once, honestly, and move on
     for _ in range(MAX_FILM_REPAIRS):
         ap = [(i, p) for i, p in problems() if (i, p) not in skipped]
