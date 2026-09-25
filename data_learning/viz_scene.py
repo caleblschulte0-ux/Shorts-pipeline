@@ -3711,6 +3711,12 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[0], "art", int(bx0 + gap + bw / 2), top + bh // 2)
 
 
+#: How built the tower is on the cold open's first frame: enough to be a
+#: picture (`test_a_machine_hook_is_not_an_empty_frame`), with the rest of
+#: the stack still to arrive across the span.
+TOWER_HOOK_START = 0.55
+
+
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     """A TOWER: an accumulated total, one block at a time, with Data on top.
 
@@ -3757,7 +3763,9 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     top, bot = max(by0 + 210, 350), by1 - 120
-    bh = int(min(72, (bot - top) / max(1, n)) - 6)
+    # a short stack gets tall blocks: five cities in 72px slabs left "the
+    # top half of the frame empty" (Waymo, re-render)
+    bh = int(min(72 if n > 6 else 150, (bot - top) / max(1, n)) - 6)
     bw = int(min((bx1 - bx0) * 0.42, 380))
     # A CASCADE, like the isotype. Blocks landing one per slot left every
     # frame between arrivals identical to the last: measured, 107 of 119 frames
@@ -3769,7 +3777,17 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     # landed by 1.7s and held for nine: "the stack never fills and holds
     # unchanged from 1.7s to 10.6s" (Waymo). Blocks keep arriving across
     # the beat and the header counts up with them.
-    e = max(0.0, min(1.0, reveal))
+    #
+    # ...AND ON THE BEAT'S CLOCK, NOT THE COLD OPEN'S. On the hook the
+    # reveal is `hook_reveal`, which bursts to three quarters by 22% of the
+    # span however long the span is — so an 11-second opening stack was done
+    # at 3.7s and "the frame is unchanged until 10.6s" (Waymo, re-render).
+    # A third built on frame one (the cold open still starts on a picture),
+    # then one steady cascade to the end of the span.
+    e = beat_clock(reveal)
+    if _HOOK_LEAD:
+        e = TOWER_HOOK_START + (1.0 - TOWER_HOOK_START) * e
+    e = max(0.0, min(1.0, e))
     fill_by, overlap = 0.90, 1.4
     slot = fill_by / max(1, n)
     ty = bot
@@ -3826,8 +3844,12 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     if then_p is not None:
         # both ends, true in every frame while the stack builds between them
         _tv = float(getattr(then_p, "value", 0) or 0)
-        _s = (f"{getattr(then_p, 'label', '')} "
-              f"{charts._ulabel(_tv, unit, group=True)}  →  " + _s)
+        _head = (f"{getattr(then_p, 'label', '')} "
+                 f"{charts._ulabel(_tv, unit, group=True)}  →  ")
+        # the NOW is named only once the count has passed the then: "2025 1"
+        # under a then of 1 was a false sentence (Waymo, re-render)
+        _s = (_head + _s) if (_shown > abs(_tv) or e >= fill_by) \
+            else _head.rstrip(" →")
     _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
     d.text((cx, by0 + 58), _s,
            font=_f, fill=_rgba(color, 255), anchor="mm")

@@ -140,6 +140,25 @@ class TheTowerTellsTheTruthWhileItBuilds(unittest.TestCase):
         self.assertNotIn("Feb 2025   200,000", early)
         self.assertIn("10,000", early)          # the then is named throughout
 
+    def test_on_the_cold_open_it_still_builds_across_the_whole_beat(self):
+        """hook_reveal bursts to 3/4 by 22% of the span; an 11s opening
+        stack finished at 3.7s and held (Waymo re-render, 52)."""
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count")
+        mid = charts.hook_reveal(0.5)
+        self.assertGreater(mid, 0.8)                 # the burst is real
+        try:
+            vs._HOOK_LEAD, vs._BEAT_PHASE = True, 0.5
+            half = " | ".join(self._texts(ins, mid))
+        finally:
+            vs._HOOK_LEAD, vs._BEAT_PHASE = False, None
+        self.assertNotIn("Feb 2025   200,000", half)
+
+    def test_the_now_is_not_named_below_the_then(self):
+        ins = mk([("2020", 1), ("2023", 3), ("2025", 5)], "cities")
+        early = " | ".join(self._texts(ins, 0.05))
+        self.assertNotIn("2025   1", early)
+
     def test_a_then_smaller_than_a_block_keeps_the_framing(self):
         ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
                   ("Feb 2025", 200000)], "count")
@@ -161,3 +180,35 @@ class TheRecapKeepsTheClaim(unittest.TestCase):
         src = (ROOT / "data_learning" / "studio_render.py").read_text()
         self.assertIn("recap_replay_from(sp.get(\"kind\")", src)
         self.assertIn("trim=start=", src)
+
+
+class ASecondPictureIsANewShape(unittest.TestCase):
+    """"a plain three-bar chart; it repeats what the hook stack already
+    showed" (Waymo), "the same largest-ship data twice, first as vertical
+    bars and then as horizontal bars" (container ships)."""
+
+    def _ins(self, kind):
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count",
+                 topic="how many robotaxi rides waymo gives every week")
+        ins.kind = kind
+        if kind == "scene":
+            ins.scene = {"title": True,
+                         "elements": [{"type": "tower", "region": "full"}]}
+        return ins
+
+    def test_after_a_stack_the_beat_does_not_draw_heights_again(self):
+        from data_learning import studio_render as sr
+        for kind in ("scene", "bars"):
+            ins = self._ins(kind)
+            seq = sr._depiction_sequence(ins, set(), 11.1)
+            self.assertTrue(sr._is_heights(seq[0], ins), seq)
+            for k in seq[1:]:
+                self.assertFalse(sr._is_heights(k), (kind, seq))
+
+    def test_a_scene_is_heights_only_when_it_draws_heights(self):
+        from data_learning import studio_render as sr
+        ins = self._ins("scene")
+        self.assertTrue(sr._is_heights("scene", ins))
+        ins.scene = {"elements": [{"type": "balance"}]}
+        self.assertFalse(sr._is_heights("scene", ins))
