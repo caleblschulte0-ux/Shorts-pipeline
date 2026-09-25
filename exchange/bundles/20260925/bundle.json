@@ -370,8 +370,8 @@
           "shot_index": 0,
           "phrase": "packages kept vanishing from our apartment lobby",
           "query": "apartment lobby packages",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
@@ -384,29 +384,29 @@
           "shot_index": 2,
           "phrase": "The tracker sat still for two hours in a unit on the third floor",
           "query": "apartment building hallway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "the building's own maintenance closet",
           "query": "maintenance closet tools",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "forwarded the location history straight to the property manager",
           "query": "phone screen map app",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "a master key to every door in the building",
           "query": "master key keyring",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -419,26 +419,26 @@
           "shot_index": 7,
           "phrase": "paying back eleven other tenants through a small claims judgment",
           "query": "small claims courtroom",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 7,
+        "missing": 1,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "airtag-catches-maintenance-thief-s0-3e002cbd1b52",
+        "airtag-catches-maintenance-thief-s6-104cf0bc5433",
+        "airtag-catches-maintenance-thief-s1-6f63cc4aab6f",
         "airtag-catches-maintenance-thief-s2-c0d9223afa65",
         "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
         "airtag-catches-maintenance-thief-s4-6a96ef48c407",
         "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
-        "airtag-catches-maintenance-thief-s6-104cf0bc5433",
         "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
-        "airtag-catches-maintenance-thief-s1-6f63cc4aab6f"
+        "airtag-catches-maintenance-thief-s0-3e002cbd1b52"
       ]
     },
     {
@@ -450,36 +450,36 @@
           "shot_index": 0,
           "phrase": "the same recorded voice from calling four times a day",
           "query": "robocall phone screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "I work fraud analysis for a telecom carrier",
           "query": "call center analyst desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "pulled the originating trunk numbers from our own network logs",
           "query": "server room data center",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "one leased call center running under six different fake business names",
           "query": "empty office call center",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "a single billing address in a strip mall three states away",
           "query": "strip mall storefront",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -492,21 +492,21 @@
           "shot_index": 6,
           "phrase": "the center's phone lines were disconnected mid-shift",
           "query": "unplugged telephone cable",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "a multimillion-dollar settlement it will never fully pay off",
           "query": "courtroom gavel",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -516,143 +516,13 @@
         "robocall-scam-center-shutdown-s2-fb3d2b678937",
         "robocall-scam-center-shutdown-s3-37cc8cf87caa",
         "robocall-scam-center-shutdown-s4-d09c54cb71fd",
+        "robocall-scam-center-shutdown-s5-bf900f0788c4",
         "robocall-scam-center-shutdown-s6-eaec5a25a287",
-        "robocall-scam-center-shutdown-s7-cccd58eb3b67",
-        "robocall-scam-center-shutdown-s5-bf900f0788c4"
+        "robocall-scam-center-shutdown-s7-cccd58eb3b67"
       ]
     }
   ],
   "requests": [
-    {
-      "request_id": "airtag-catches-maintenance-thief-s0-3e002cbd1b52",
-      "safe_request_id": "airtag-catches-maintenance-thief-s0-3e002cbd1b52",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s0-3e002cbd1b52.png",
-      "prompt_sha256": "207ff8ccfa00a2030a152845e13b723af1c0081d3d2140f9373afa00e027a047",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s0-3e002cbd1b52.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: apartment lobby packages. It accompanies the narration: \"packages kept vanishing from our apartment lobby\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s2-c0d9223afa65",
-      "safe_request_id": "airtag-catches-maintenance-thief-s2-c0d9223afa65",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s2-c0d9223afa65.png",
-      "prompt_sha256": "10f15a44a8f9fe8da22f18b60287851bdcca7d5305bac25e0f6494b4854d69b1",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s2-c0d9223afa65.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: apartment building hallway. It accompanies the narration: \"The tracker sat still for two hours in a unit on the third floor\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
-      "safe_request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s3-1e3cb39c1264.png",
-      "prompt_sha256": "553e632c7a6ef7c97da2f068a5c9110a235c6cf841591b39ccd38c0b6d9c1ec1",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s3-1e3cb39c1264.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: maintenance closet tools. It accompanies the narration: \"the building's own maintenance closet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
-      "safe_request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s4-6a96ef48c407.png",
-      "prompt_sha256": "d88a16ad39704110109696a50c44e785e152a8ace805d49cd962cc85951a447c",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s4-6a96ef48c407.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen map app. It accompanies the narration: \"forwarded the location history straight to the property manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
-      "safe_request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s5-73c4ea8a71a1.png",
-      "prompt_sha256": "b3ccc4ff4f26af9e75537c29554dcd34d92168ee1f26fb8f7a40e96f4b5f05c1",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s5-73c4ea8a71a1.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: master key keyring. It accompanies the narration: \"a master key to every door in the building\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "airtag-catches-maintenance-thief-s6-104cf0bc5433",
       "safe_request_id": "airtag-catches-maintenance-thief-s6-104cf0bc5433",
@@ -663,32 +533,6 @@
       "shot_index": 6,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: phone resale app listing. It accompanies the narration: \"selling whatever looked expensive on a resale app\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
-      "safe_request_id": "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s7-c2fd663aaf0f.png",
-      "prompt_sha256": "62a99e252c378d0b7473f3a029d8a280f1b2551f50f417d2b7dde5732b904192",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s7-c2fd663aaf0f.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: small claims courtroom. It accompanies the narration: \"paying back eleven other tenants through a small claims judgment\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -727,6 +571,174 @@
       "width": 1080,
       "height": 1080,
       "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s2-c0d9223afa65",
+      "safe_request_id": "airtag-catches-maintenance-thief-s2-c0d9223afa65",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s2-c0d9223afa65.png",
+      "prompt_sha256": "10f15a44a8f9fe8da22f18b60287851bdcca7d5305bac25e0f6494b4854d69b1",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s2-c0d9223afa65.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: apartment building hallway. It accompanies the narration: \"The tracker sat still for two hours in a unit on the third floor\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
+      "safe_request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s3-1e3cb39c1264.png",
+      "prompt_sha256": "553e632c7a6ef7c97da2f068a5c9110a235c6cf841591b39ccd38c0b6d9c1ec1",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s3-1e3cb39c1264.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: maintenance closet tools. It accompanies the narration: \"the building's own maintenance closet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
+      "safe_request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s4-6a96ef48c407.png",
+      "prompt_sha256": "d88a16ad39704110109696a50c44e785e152a8ace805d49cd962cc85951a447c",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s4-6a96ef48c407.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen map app. It accompanies the narration: \"forwarded the location history straight to the property manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
+      "safe_request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s5-73c4ea8a71a1.png",
+      "prompt_sha256": "b3ccc4ff4f26af9e75537c29554dcd34d92168ee1f26fb8f7a40e96f4b5f05c1",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s5-73c4ea8a71a1.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: master key keyring. It accompanies the narration: \"a master key to every door in the building\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
+      "safe_request_id": "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s7-c2fd663aaf0f.png",
+      "prompt_sha256": "62a99e252c378d0b7473f3a029d8a280f1b2551f50f417d2b7dde5732b904192",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s7-c2fd663aaf0f.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: small claims courtroom. It accompanies the narration: \"paying back eleven other tenants through a small claims judgment\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "airtag-catches-maintenance-thief-s0-3e002cbd1b52",
+      "safe_request_id": "airtag-catches-maintenance-thief-s0-3e002cbd1b52",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s0-3e002cbd1b52.png",
+      "prompt_sha256": "207ff8ccfa00a2030a152845e13b723af1c0081d3d2140f9373afa00e027a047",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s0-3e002cbd1b52.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: apartment lobby packages. It accompanies the narration: \"packages kept vanishing from our apartment lobby\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
         "resolution unverified (no width/height reported)"
       ],
       "verdict": "weak"
@@ -753,9 +765,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "robocall-scam-center-shutdown-s1-7748c45b5e54",
@@ -779,9 +793,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "robocall-scam-center-shutdown-s2-fb3d2b678937",
@@ -805,9 +821,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "robocall-scam-center-shutdown-s3-37cc8cf87caa",
@@ -831,9 +849,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "robocall-scam-center-shutdown-s4-d09c54cb71fd",
@@ -857,61 +877,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "robocall-scam-center-shutdown-s6-eaec5a25a287",
-      "safe_request_id": "robocall-scam-center-shutdown-s6-eaec5a25a287",
-      "drive_filename": "20260925__robocall-scam-center-shutdown-s6-eaec5a25a287.png",
-      "prompt_sha256": "0385b8983d927e5ebb33a479b0c56ff1120243480c56f5e676ab33b987cde6e3",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/robocall-scam-center-shutdown-s6-eaec5a25a287.json",
-      "slug": "robocall-scam-center-shutdown",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: unplugged telephone cable. It accompanies the narration: \"the center's phone lines were disconnected mid-shift\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "robocall-scam-center-shutdown-s7-cccd58eb3b67",
-      "safe_request_id": "robocall-scam-center-shutdown-s7-cccd58eb3b67",
-      "drive_filename": "20260925__robocall-scam-center-shutdown-s7-cccd58eb3b67.png",
-      "prompt_sha256": "eb36649c2b716edb7e6c70153d379204963522ced56f18457eda55d404c878ad",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/robocall-scam-center-shutdown-s7-cccd58eb3b67.json",
-      "slug": "robocall-scam-center-shutdown",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom gavel. It accompanies the narration: \"a multimillion-dollar settlement it will never fully pay off\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "robocall-scam-center-shutdown-s5-bf900f0788c4",
@@ -936,7 +906,64 @@
       "height": 1080,
       "why": [
         "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)"
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "robocall-scam-center-shutdown-s6-eaec5a25a287",
+      "safe_request_id": "robocall-scam-center-shutdown-s6-eaec5a25a287",
+      "drive_filename": "20260925__robocall-scam-center-shutdown-s6-eaec5a25a287.png",
+      "prompt_sha256": "0385b8983d927e5ebb33a479b0c56ff1120243480c56f5e676ab33b987cde6e3",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/robocall-scam-center-shutdown-s6-eaec5a25a287.json",
+      "slug": "robocall-scam-center-shutdown",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: unplugged telephone cable. It accompanies the narration: \"the center's phone lines were disconnected mid-shift\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "robocall-scam-center-shutdown-s7-cccd58eb3b67",
+      "safe_request_id": "robocall-scam-center-shutdown-s7-cccd58eb3b67",
+      "drive_filename": "20260925__robocall-scam-center-shutdown-s7-cccd58eb3b67.png",
+      "prompt_sha256": "eb36649c2b716edb7e6c70153d379204963522ced56f18457eda55d404c878ad",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/robocall-scam-center-shutdown-s7-cccd58eb3b67.json",
+      "slug": "robocall-scam-center-shutdown",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom gavel. It accompanies the narration: \"a multimillion-dollar settlement it will never fully pay off\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
       "verdict": "weak"
     }
