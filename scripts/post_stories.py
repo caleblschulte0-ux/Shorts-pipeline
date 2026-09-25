@@ -79,6 +79,44 @@ def _recent_gate_blocks(hours: int = 48) -> set:
     return out
 
 
+# Doctor finding f6aa3e1f1c66 (ruled `doing` 2026-08-18, built 2026-09-25):
+# 34 titles carrying an extreme/superlative cue measured a 50.1% median
+# average-view-percentage against 29.1% for the other 97 — a real gap, but
+# on this channel's noise floor it earns a controlled slot-level test, not
+# a doctrine rewrite. This regex is the exact grouping the finding measured
+# against state/analytics_explainer/latest.json; changing it silently
+# changes what the registered experiment (retro/state/experiments.json,
+# actual_structure="superlative_topic") is actually testing.
+_SUPERLATIVE_RE = re.compile(
+    r"\b(largest|hottest|strongest|deadliest|oldest|loudest|longest|"
+    r"driest|fastest|deepest|biggest|most)\b", re.I)
+
+
+def _is_superlative_topic(title: str) -> bool:
+    return bool(_SUPERLATIVE_RE.search(title or ""))
+
+
+def _reserve_superlative_slot(slugs: list[str], stories: dict,
+                               log: dict) -> None:
+    """The experiment's TREATMENT: one slot a day goes to a superlative-
+    titled story ahead of plain queue order, if one is waiting and none has
+    posted yet today. Mutates `slugs` in place; a day with no such story in
+    the queue falls back to the untouched order, same as before this ran."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    posted_today = {slug for slug, e in log.get("posted", {}).items()
+                    if e and not e.get("skipped")
+                    and str(e.get("at") or "").startswith(today)}
+    if any(_is_superlative_topic(stories[s].get("title", ""))
+           for s in posted_today if s in stories):
+        return  # today's slot is already spent
+    for i, slug in enumerate(slugs):
+        if slug in posted_today:
+            continue
+        if _is_superlative_topic(stories[slug].get("title", "")):
+            slugs.insert(0, slugs.pop(i))
+            return
+
+
 def _load_log(path: Path = LOG_PATH) -> dict:
     # FAIL CLOSED on corruption (fsutil.CorruptStateError): this dict is the
     # explainer channel's only dedupe state, and the old JSONDecodeError
@@ -205,6 +243,13 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
     cannot describe it.
     """
     facts: dict = {}
+    # The topic-family experiment (retro/state/experiments.json,
+    # actual_structure="superlative_topic") reads this straight off the
+    # posted-log entry via fetch_analytics — same join style as style_arm.
+    _arm = ("superlative_topic" if _is_superlative_topic(sc.get("title", ""))
+            else "other_topic")
+    facts["experiment_arm"] = _arm
+    facts["actual_structure"] = _arm
     try:
         from shared import style_arms as _style_arms
         _st = _style_arms.read(mp4)
@@ -565,6 +610,8 @@ def main() -> int:
         return 2
 
     log = _load_log(args.log)
+    if not args.slugs:
+        _reserve_superlative_slot(slugs, stories, log)
     results = []
     uploader = None
     # `posted` gates the SLATE (what the registry asks for); `attempts`

@@ -25,6 +25,31 @@
       "samples_seen": 1,
       "proposal_file": "doctor:66364106b455",
       "readout": null
+    },
+    {
+      "id": "20260925-superlative-science-family-explainer-topics-beat-t",
+      "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
+      "change": "post_stories.py reserves one explainer slot per day for the next unposted superlative-titled story (largest/hottest/strongest/deadliest/oldest/loudest/longest/driest/fastest/deepest/biggest/most) ahead of plain queue order, when one is waiting and none has posted yet that day (_reserve_superlative_slot). No change to cadence, quality bar, or the topic doctrine. Every posted-log entry is tagged experiment_arm/actual_structure=superlative_topic|other_topic by _creative_facts so fetch_analytics and shared.experiments can join outcome to topic family per video, scoped so a fallback cannot corrupt the count.",
+      "channel": "explainer",
+      "format": "",
+      "actual_structure": "superlative_topic",
+      "files": [
+        "scripts/post_stories.py",
+        "data_learning/niche.config.json",
+        "state/analytics_explainer/latest.json"
+      ],
+      "metric": "explainer.average_view_percentage (mature, age-banded vs the other_topic arm)",
+      "direction": "up",
+      "baseline": 29.1,
+      "guardrail": "explainer.narrative_score (showrunner gate score, median)",
+      "guardrail_baseline": 61.0,
+      "min_days": 28,
+      "min_samples": 25,
+      "started_at": "2026-09-25T05:17:36Z",
+      "status": "running",
+      "samples_seen": 0,
+      "proposal_file": "doctor:f6aa3e1f1c66",
+      "readout": null
     }
   ]
 }
