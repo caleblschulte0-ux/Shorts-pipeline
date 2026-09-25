@@ -30,16 +30,14 @@
       "news_angle": "Packages kept vanishing from the apartment lobby right after delivery notifications.",
       "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/04_Mailboxes_in_lobby_of_apartment_building_in_Spain%2C_common_area_in_apartment_building.jpg/1280px-04_Mailboxes_in_lobby_of_apartment_building_in_Spain%2C_common_area_in_apartment_building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "apartment building lobby mail area",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "apartment lobby",
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/04_Mailboxes_in_lobby_of_apartment_building_in_Spain%2C_common_area_in_apartment_building.jpg/1280px-04_Mailboxes_in_lobby_of_apartment_building_in_Spain%2C_common_area_in_apartment_building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-        "verified_at": "2026-09-25T14:44:08Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-25T15:11:42Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -49,50 +47,30 @@
       "pin_context": "Apple AirTag Bluetooth tracker product",
       "news_query": "AirTag",
       "news_angle": "A hidden Apple AirTag was zip\u2011tied to the bottom of a package to track the thief inside the apartment building.",
-      "image_url": "https://pixabay.com/get/gc2f51e2a8c3df6a70a803b1fd29031e6d90bf539cc649a9b2d80d55072d48d69ec48f3a3acde980e06e105a37a51c9597f0b350943573f56f2414b6458b2ada2_1280.jpg",
+      "media_origin": "self_fill",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "url": "https://pixabay.com/get/gc2f51e2a8c3df6a70a803b1fd29031e6d90bf539cc649a9b2d80d55072d48d69ec48f3a3acde980e06e105a37a51c9597f0b350943573f56f2414b6458b2ada2_1280.jpg",
-        "source_class": "unverified",
-        "provider": "pixabay.com",
-        "width": 0,
+        "content_type": "image/svg+xml",
         "height": 0,
-        "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
-        "resolved_by": "verify_shot_urls"
-      },
-      "media_origin": "self_fill"
+        "provider": "wikimedia",
+        "query": "Apple Bluetooth tracker accessory",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "AirTag",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-25T15:11:55Z",
+        "width": 0
+      }
     },
     {
       "phrase": "The tracker sat still for two hours in a unit on the third floor",
       "query": "apartment building hallway",
-      "image_url": "https://pixabay.com/get/g6803c48052346e884a6f975ddf8e988fb0735f5fa8a95e537a2daefb9877cac92ffdd7d01c92d52fa72259310578eb940cdfeeb1ec981184570727dce694bfc1_1280.jpg",
-      "media_origin": "self_fill",
-      "media_evidence": {
-        "url": "https://pixabay.com/get/g6803c48052346e884a6f975ddf8e988fb0735f5fa8a95e537a2daefb9877cac92ffdd7d01c92d52fa72259310578eb940cdfeeb1ec981184570727dce694bfc1_1280.jpg",
-        "source_class": "unverified",
-        "provider": "pixabay.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
-        "resolved_by": "verify_shot_urls"
-      }
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the building's own maintenance closet",
       "query": "maintenance closet tools",
-      "image_url": "https://pixabay.com/get/gbe509d2273ef2dfa000f626df6de8d9ce97a4be11ef19fba2d39d19f4bf293efb55214965e57a176376ece35edf3eac80bbac1fee1881f3b781bc579630e513b_1280.jpg",
       "media_origin": "self_fill",
-      "media_evidence": {
-        "url": "https://pixabay.com/get/gbe509d2273ef2dfa000f626df6de8d9ce97a4be11ef19fba2d39d19f4bf293efb55214965e57a176376ece35edf3eac80bbac1fee1881f3b781bc579630e513b_1280.jpg",
-        "source_class": "unverified",
-        "provider": "pixabay.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "maintenance closet",
       "pin_context": "building maintenance closet interior tools",
       "news_query": "maintenance closet",
@@ -101,18 +79,7 @@
     {
       "phrase": "forwarded the location history straight to the property manager",
       "query": "phone screen map app",
-      "image_url": "https://pixabay.com/get/ge3d64ad7036d973cbf1ff9b0d1287636e4be9a444c7d11d8fd07cf6b23afb7882838e52e2c03f36bacd1beb7f150e96377a44e240428c97b7da3a6af728d960e_1280.jpg",
       "media_origin": "self_fill",
-      "media_evidence": {
-        "url": "https://pixabay.com/get/ge3d64ad7036d973cbf1ff9b0d1287636e4be9a444c7d11d8fd07cf6b23afb7882838e52e2c03f36bacd1beb7f150e96377a44e240428c97b7da3a6af728d960e_1280.jpg",
-        "source_class": "unverified",
-        "provider": "pixabay.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "property manager",
       "pin_context": "apartment building manager office keys",
       "news_query": "property manager",
@@ -130,7 +97,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
+        "verified_at": "2026-09-25T15:11:43Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -150,7 +117,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T14:43:54Z",
+        "verified_at": "2026-09-25T15:11:43Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "small claims judgment",
