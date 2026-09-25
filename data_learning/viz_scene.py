@@ -3813,6 +3813,12 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                                        (color if k == n - 1 else REST), _al),
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
+        _nf = then_u - k if then_p is not None else 0.0
+        if 0.0 < _nf < 1.0:
+            # the part of this block the THEN already had, from its bottom
+            d.rounded_rectangle([cx - bw // 2 + 3, int(by + bh * (1.0 - _nf)),
+                                 cx + bw // 2 - 3, by + bh - 3],
+                                radius=7, fill=_rgba(REST, _al))
         if _tg is not None and bh >= 34:
             # THE BLOCK IS MADE OF THE SUBJECT: one emblem per block, so the
             # stack is taxis, each worth `per` ("generic blocks, each worth
@@ -3826,12 +3832,6 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                     lambda v_, a_=min(1.0, a * 2.2): int(v_ * a_)))
             canvas.alpha_composite(_gi, (int(cx - _gi.width / 2),
                                          int(by + (bh - _gi.height) / 2)))
-        _nf = then_u - k if then_p is not None else 0.0
-        if 0.0 < _nf < 1.0:
-            # the part of this block the THEN already had, from its bottom
-            d.rounded_rectangle([cx - bw // 2 + 3, int(by + bh * (1.0 - _nf)),
-                                 cx + bw // 2 - 3, by + bh - 3],
-                                radius=7, fill=_rgba(REST, _al))
         ty = min(ty, by) if k else by
         if a >= 1.0:
             landed = by
@@ -3865,8 +3865,11 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                  f"{charts._ulabel(_tv, unit, group=True)}  →  ")
         # the NOW is named only once the count has passed the then: "2025 1"
         # under a then of 1 was a false sentence (Waymo, re-render)
-        _s = (_head + _s) if (_shown > abs(_tv) or e >= fill_by) \
-            else _head.rstrip(" →")
+        # ...and while the count runs, the header is ONLY the count: "Oct
+        # 2023 10,000 -> 120,000" still read as a date against a value that
+        # was not its own (Waymo re-render). The sentence lands whole.
+        _s = (_head + _s) if e >= fill_by else \
+            charts._ulabel(max(_shown, abs(_tv)), unit, group=True)
     _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
     d.text((cx, by0 + 58), _s,
            font=_f, fill=_rgba(color, 255), anchor="mm")
