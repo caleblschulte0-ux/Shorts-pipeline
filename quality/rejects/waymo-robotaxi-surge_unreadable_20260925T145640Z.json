@@ -1,0 +1,21 @@
+{
+ "slug": "waymo-robotaxi-surge",
+ "ts": "20260925T145640Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid and seg1:end: Data stands over the Oct 2023 label, so it reads \"10 00\". seg4:start\u2013seg4:end: the label \"Cruise, weekly rides (after Dec 2024 shutdown\" is cut off by the mascot. The small grey lane labels in seg4 are too faint to read on a phone.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_fallback_and_void",
+  "visible_evidence": "seg2:start is a plain horizontal bar chart (1/3/5) with Data floating between the rows. seg2:mid collapses to one lone 2020 podium in a mostly empty frame. seg2:end shows 4 city icons on the \"3\" column and 8 on the \"5\" column, so the icon counts contradict the numbers.",
+  "root_cause": "The cities beat fell back to a chart, then to a column machine whose pictogram count is not tied to the data value. The 'compounding' claim is never drawn.",
+  "repair_goal": "Draw one US map or skyline where each Waymo city lights up in turn (Phoenix 2020; SF and LA by 2023; Austin and Atlanta by 2025), with exactly one icon per city, labelled by name. Data should act by placing or activating each city, not by standing on a bar."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

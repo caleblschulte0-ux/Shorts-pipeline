@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20260925T145640Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start/mid/end: the label reads \"Before 201\" because the mascot covers the last digit. The source line at hook@0.3 is cut off (\"monitori...\"), and the cyan 10.1K% at seg2:start is low-contrast.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_and_cloned_mascot",
+  "visible_evidence": "seg2:start to seg2:end: two identical Data figures cheer at once. One covers the 'Before 2014' label so it reads 'Before 201'. The '10.1K%' is a number sliding along a line with a dotted rail, and nothing grows or explodes.",
+  "root_cause": "A generic two-row value slide was used for a population explosion. A mascot was placed on each row, so Data is duplicated and overlaps the axis label, and the 100x growth is only printed as text.",
+  "repair_goal": "Show the urchin explosion physically: a small cluster of purple urchins multiplies roughly 100x until it floods the frame. Use one Data, reacting to (or buried by) the swarm, and keep every label clear of the mascot."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

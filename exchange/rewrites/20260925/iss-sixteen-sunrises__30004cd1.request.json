@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "iss-sixteen-sunrises__30004cd1",
+ "filed": "2026-09-25T14:56:32Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "iss-sixteen-sunrises",
+ "current": {
+  "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+  "hook": "Something is racing over your head 30 times faster than the jet you flew.",
+  "closing": "Even in space, you can't dodge a 24-hour day.",
+  "question": "How many hours of daylight did you get today? Tell me below.",
+  "segments": [
+   {
+    "topic": "how fast the ISS orbits compared to a jet",
+    "say": "The ISS circles Earth at 27,600 kilometers an hour -- about 30 times faster than a commercial jet's 900. That speed isn't for show: it's exactly what keeps the station from falling into the ground."
+   },
+   {
+    "topic": "why the ISS orbit period is so short",
+    "say": "So why so fast? Altitude decides orbital speed: the ISS orbits every 93 minutes, GPS satellites take 720, and geostationary satellites take a full 1,440 -- exactly matching Earth's spin."
+   },
+   {
+    "topic": "how many sunrises the ISS sees in a day",
+    "say": "Each 93-minute lap flips the station from night to day, so a new sunrise comes every 93 minutes. On the ground that same cycle takes 1,440 minutes. Up there, it happens 16 times a day."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how fast the ISS orbits compared to a jet",
+   "say": "The ISS circles Earth at 27,600 kilometers an hour -- about 30 times faster than a commercial jet's 900. That speed isn't for show: it's exactly what keeps the station from falling into the ground.",
+   "role": "1 · THE SPEED",
+   "data": {
+    "file": "iss_speed_vs_jet.json",
+    "unit": "count",
+    "title": "Cruising speed: ISS orbit vs. a commercial jet",
+    "points": [
+     {
+      "label": "ISS orbital speed (km/h)",
+      "value": 27600
+     },
+     {
+      "label": "Commercial jet cruising speed (km/h)",
+      "value": 900
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why the ISS orbit period is so short",
+   "say": "So why so fast? Altitude decides orbital speed: the ISS orbits every 93 minutes, GPS satellites take 720, and geostationary satellites take a full 1,440 -- exactly matching Earth's spin.",
+   "role": "2 · WHY ALTITUDE MATTERS",
+   "data": {
+    "file": "iss_orbit_period_by_altitude.json",
+    "unit": "count",
+    "title": "Orbital period by altitude (minutes)",
+    "points": [
+     {
+      "label": "ISS (about 400 km up)",
+      "value": 93
+     },
+     {
+      "label": "GPS satellites (about 20,200 km up)",
+      "value": 720
+     },
+     {
+      "label": "Geostationary satellites (about 35,786 km up)",
+      "value": 1440
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how many sunrises the ISS sees in a day",
+   "say": "Each 93-minute lap flips the station from night to day, so a new sunrise comes every 93 minutes. On the ground that same cycle takes 1,440 minutes. Up there, it happens 16 times a day.",
+   "role": "3 · THE PAYOFF",
+   "data": {
+    "file": "iss_sunrise_interval.json",
+    "unit": "count",
+    "title": "Minutes between sunrises: ISS vs. Earth's surface",
+    "points": [
+     {
+      "label": "ISS: minutes between sunrises",
+      "value": 93
+     },
+     {
+      "label": "Earth's surface: minutes between sunrises",
+      "value": 1440
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: The video never draws its own title. There are no 16 sunrises and nothing races at 30x a jet, only labelled numbers, bubbles, a seesaw and a ruler."
+ ],
+ "reasons": [
+  "judge: The video never draws its own title. There are no 16 sunrises and nothing races at 30x a jet, only labelled numbers, bubbles, a seesaw and a ruler."
+ ],
+ "judge": {
+  "ts": "2026-09-25T14:35:50+00:00",
+  "score": 35,
+  "one_line": "The video never draws its own title. There are no 16 sunrises and nothing races at 30x a jet, only labelled numbers, bubbles, a seesaw and a ruler.",
+  "problems": [
+   "Hook and the speed beat are the same static layout of '900' vs '27.6K' for about 15s. The hook has no motion hook.",
+   "The headline number, 16 sunrises a day, never appears as a picture.",
+   "The closing shows '1,347 apart', a subtraction with no meaning for the story.",
+   "Data is decorative throughout: two clones standing by numbers, perched on a circle, shuffling by a ruler.",
+   "Kicker text is truncated with 'T...' at seg3:start, and labels crowd each other at seg4:start.",
+   "The seesaw treats orbital period as weight, which misstates the relationship, and it drops GPS 720."
+  ],
+  "fixes": [
+   "Open on the ISS streaking past a jet over Earth in the first second.",
+   "Speed beat: race the ISS and the jet across the same globe, with the ISS lapping about 30 times.",
+   "Sunrise beat: a day-and-night terminator with the ISS circling it, dropping a sun marker each lap until 16 are lined up against Earth's 1.",
+   "Replace '1,347 apart' with a payoff of 16 sunrises vs 1.",
+   "Give Data a real bit, such as trying to eat breakfast at each sunrise and being overwhelmed by 16.",
+   "Fit or shorten the kicker, and stop the ISS and Earth labels from overlapping."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260925/iss-sixteen-sunrises__30004cd1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260925T145640Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start: the kicker is cut off as 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T...'. seg4:start: a faded 'ISS: minutes between sunrises 93' sits tight under the 1440 label. hook@1.5: the mascot covers the '(km/h)' of the jet label.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:start/mid/end: the same '900' vs '27.6K' layout as the hook, with two identical mascots standing beside the numbers and a static dotted column on the right. Nothing races and nothing is 30x anything.",
+  "root_cause": "The speed comparison was drawn as two labelled numbers on baselines instead of a motion machine. The claim is SPEED, so it needs motion, and the hook layout was reused for the beat.",
+  "repair_goal": "Show speed as motion. A jet and the ISS travel across the same stretch of Earth at the same time; the ISS laps the frame about 30 times while the jet crawls a sliver. Data should react to the gap, for example chasing the jet and then being left behind by the ISS. Give the hook a different picture from this beat."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

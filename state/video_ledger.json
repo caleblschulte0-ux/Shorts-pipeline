@@ -4206,6 +4206,78 @@
           "detail": "do-you-answer-unknown-numbers question"
         }
       ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "directed_at": "2026-09-25",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "inversion",
+      "hook_text": "Recycling isn't doing what you think.",
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "Pre-render direction pass, re-verified against VIZ_BRAIN doctrine and source data (12/12 segments across the 4 target slugs re-validated, validate_scenes.py OK). Scenes/copy for this slug unchanged this pass -- no ACCENT usage or other doctrine violations found here."
+    },
+    {
+      "slug": "measles-ninety-five-rule",
+      "directed_at": "2026-09-25",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "stake",
+      "hook_text": "One number decides whether measles comes back.",
+      "words_first_10s": 18,
+      "scene_changes_before_5s": 4,
+      "depictions": [
+        "mechanic:outbreak-radiate-count",
+        "mechanic:forty-kids-three-gaps",
+        "viz:trend"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The One Number",
+      "notes": "Pre-render direction pass. Found and fixed a real defect: outbreak-radiate-count's per-disease infected-count text was colored with the deprecated `ACCENT` (a dim mid-tone the sandbox's own code comment says 'nothing here should reach for ACCENT again' -- it fails contrast and reads as disabled/context rather than as a number worth reading). Switched to `TEXT` (ink), matching the neighbouring label text on the same line. Synced the same fix into the viz_mechanics.json library copy (sig recomputed). validate_scenes.py: 12/12 PASS, OK."
+    },
+    {
+      "slug": "peanut-allergy-guideline-flip",
+      "directed_at": "2026-09-25",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "inversion",
+      "hook_text": "The peanut allergy advice was backwards the whole time.",
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:peanut-rash-climb",
+        "mechanic:peanut-shield-crack-duel",
+        "viz:comparison"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "Pre-render direction pass, re-verified against VIZ_BRAIN doctrine and source data (43% drop in seg3 double-checked against 0.79->0.45). Scenes/copy for this slug unchanged this pass -- no ACCENT usage or other doctrine violations found here."
+    },
+    {
+      "slug": "landline-death-robocall-boom",
+      "directed_at": "2026-09-25",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "question",
+      "hook_text": "Why does every unknown number feel like a scam call now?",
+      "words_first_10s": 17,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "viz:trend",
+        "mechanic:robocall-phone-pile-sort",
+        "mechanic:robocall-tower-flood"
+      ],
+      "ending_type": "consequence",
+      "franchise": null,
+      "notes": "Pre-render direction pass. Prior ledger entry named seg2's mechanic 'robocall-phone-swarm-sort' -- the live niche.config.json has it as 'robocall-phone-pile-sort'; corrected here so the ledger matches what actually ships (naming drift only, not a scene change). Found and fixed a real defect in seg3 (robocall-tower-flood): the tower's pulse-ring outline was colored with the deprecated `ACCENT` (sandbox comment: 'nothing here should reach for ACCENT again' -- fails contrast, reads as disabled). Switched the supporting mark to `REST`, the correct neutral per shared/look doctrine. Synced the fix into the viz_mechanics.json library copy (sig recomputed). validate_scenes.py: 12/12 PASS, OK."
     }
   ]
 }
