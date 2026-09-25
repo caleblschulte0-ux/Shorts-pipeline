@@ -71,7 +71,8 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("band", "dj", "music", "concert", "ticket", "tour"), "1f3b5"),
     (("chocolate", "cocoa", "candy"), "1f36b"),
     (("coffee", "caffeine", "espresso"), "2615"),
-    (("flight", "plane", "airline", "air travel", "aviation"), "2708"),
+    (("flight", "plane", "airline", "air travel", "aviation", "jet",
+      "jetliner"), "2708"),
     (("car", "auto", "vehicle", "ev"), "1f697"),
     # "degree" is NOT a graduation key. In this catalogue a degree is almost
     # always a temperature — "8 degrees hotter", "degrees of warming" — and
@@ -111,7 +112,7 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     # RIGHT BELOW THIS ONE and the first match wins — so every orbital-debris
     # topic in the config still launched. The fix has to be ABOVE the rocket,
     # which is here, next to the satellite it is made of.
-    (("satellite", "space station", "orbiter",
+    (("satellite", "space station", "orbiter", "iss",
       "space debris", "orbital debris", "debris"), "1f6f0"),
     (("space", "rocket", "launch", "spacecraft"), "1f680"),
     (("toilet", "sanitation", "sewer"), "1f6bd"),
