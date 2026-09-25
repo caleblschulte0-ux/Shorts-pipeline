@@ -1369,8 +1369,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if (e["xy"] and e["box"]
                 and not (isinstance(_a, dict) and _a.get("measured") is False)):
             mx, my = int(e["xy"][0]), int(e["xy"][1])
-            rx = e["box"][0] / 2 + 24      # encase the WHOLE number + padding
-            ry = e["box"][1] / 2 + 14
+            rx, ry = ring_radii(e["box"][0], e["box"][1])
             ring = ("{\\an7\\pos(0,0)\\org(" + f"{mx},{my}" + ")\\1a&HFF&"
                     "\\3c&HF0E14F&\\bord5\\shad0\\fad(120,150)"
                     "\\t(0,200,\\fscx106\\fscy106)\\t(200,420,\\fscx100\\fscy100)"
@@ -1563,6 +1562,25 @@ def _phrase_frac(sentence: str, phrase: str):
 #: The closing's one-line pointer to the full citation in the description.
 SRC_FS = 28
 SRC_TEXT = "Sources in the description"
+
+
+RING_PAD = 10          # px between the number's box and the ring's stroke
+RING_BORD = 5          # the ring's stroke width (ASS \\bord)
+
+
+def ring_radii(w: float, h: float) -> tuple[float, float]:
+    """Semi-axes of the highlight ring around a `w` x `h` number.
+
+    It was `w/2 + 24, h/2 + 14` — a fixed pad, which only contains a box
+    that is nearly square. On a wide number the ellipse passed INSIDE the
+    box's corners and its stroke ran through the first and last digits:
+    "a cyan highlight circle covers the '10000' digits" (Waymo,
+    2026-09-25). The smallest ellipse through a rectangle's corners has
+    semi-axes of half-side x sqrt(2); padded, plus half the stroke, it
+    clears every corner of every number however wide."""
+    k = 2 ** 0.5
+    return ((w / 2 + RING_PAD) * k + RING_BORD / 2,
+            (h / 2 + RING_PAD) * k + RING_BORD / 2)
 
 
 def _plan_events(st: story.Story, windows):

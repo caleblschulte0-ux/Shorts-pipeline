@@ -148,7 +148,14 @@ class UnitsTravelWithTheNumber(unittest.TestCase):
         for value, unit, want in ((449, "thousand dollars", "$449K"),
                                   (11.3, "years", "11.3 yrs"),
                                   (6.72, "percent", "6.7%"),
-                                  (1500, "dollars", "$1500"),
+                                  (1500, "dollars", "$1,500"),
+                                  # Waymo's rides, 2026-09-25: "values are
+                                  # unformatted ('10000', '100000')"
+                                  (10000, "count", "10K"),
+                                  (200000, "count", "200K"),
+                                  (12500, "count", "12.5K"),
+                                  (999999, "count", "1M"),
+                                  (1234567, "people", "1.2M"),
                                   (3.2, "ratio", "3.2x"),
                                   # cents are the number under $100
                                   (4.41, "dollars", "$4.41"),
