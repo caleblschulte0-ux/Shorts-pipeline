@@ -34,16 +34,14 @@
       "news_angle": "A hidden Apple AirTag was zip\u2011tied to the bottom of a package to track the thief inside the apartment building.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "content_type": "image/svg+xml",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "Apple AirTag Bluetooth tracker product",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "AirTag",
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-09-25T09:57:33Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/svg+xml",
+        "verified_at": "2026-09-25T10:08:04Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {

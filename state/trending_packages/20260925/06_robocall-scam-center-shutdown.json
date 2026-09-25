@@ -50,16 +50,14 @@
       "news_angle": "The FTC received the compliance report and moved to shut down the fraudulent call center.",
       "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Federal_Trade_Commission_Building_3.jpg/1280px-Federal_Trade_Commission_Building_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "Federal Trade Commission Washington DC headquarters",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "FTC",
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Federal_Trade_Commission_Building_3.jpg/1280px-Federal_Trade_Commission_Building_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-        "verified_at": "2026-09-25T09:57:46Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-25T10:08:05Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
