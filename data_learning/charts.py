@@ -233,6 +233,33 @@ def _vfmt(v: float) -> str:
     return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
+def _vshort(v: float, unit: str = "") -> str:
+    """A bar/step value, as SHORT as it can be and still read.
+
+    Ungrouped, "10000", "100000" and "200000" were the labels on Waymo's
+    rides chart — "values are unformatted ('10000', '100000')", and the
+    judge read one half-covered as '10 00' (2026-09-25). A comma was kept off
+    these labels so they would not outgrow their bar; the compact form is
+    SHORTER than the raw digits, so it keeps that promise and reads.
+    A unit that already names its magnitude ("thousand dollars") keeps the
+    old digits, since `_ulabel` appends that magnitude itself."""
+    u = (unit or "").lower()
+    # three significant figures FIRST, so 999,999 rolls to "1M", not "1000K"
+    a = abs(float(f"{float(v):.3g}")) if abs(float(v)) >= 1e4 else abs(float(v))
+    if any(w in u for w in ("thousand", "million", "billion", "trillion")) \
+            or "year" in u:
+        return _vfmt(v)
+    for at, div, suf in ((1e12, 1e12, "T"), (1e9, 1e9, "B"), (1e6, 1e6, "M"),
+                         (1e4, 1e3, "K")):
+        if a >= at:
+            q = (a if v >= 0 else -a) / div
+            t = f"{q:.0f}" if abs(q) >= 100 else f"{q:.1f}".rstrip("0").rstrip(".")
+            return t + suf
+    if a >= 1000 and float(v).is_integer():
+        return f"{v:,.0f}"
+    return _vfmt(v)
+
+
 # Units the World Bank / FRED datasets in this channel actually publish, and
 # what a viewer needs to see next to the number. "the chart subtitle carries
 # the unit" was the old rule and it does not survive a four-second visual: the
@@ -255,9 +282,9 @@ def _ulabel(v: float, unit: str, group: bool = False) -> str:
     # `group` is for the renderers that show ONE number at 180pt, where
     # 20,570 reads and 20570 does not. Everything else stays ungrouped so a
     # bar label does not grow a comma the axis has no room for.
-    n = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
-         else f"{v:,.1f}") if group else _vfmt(v)
     u = (unit or "").strip().lower()
+    n = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+         else f"{v:,.1f}") if group else _vshort(v, u)
     if u in ("percent", "%", "rate", "pct"):
         return n + "%"
     if u in ("dollars", "dollar", "usd", "$"):
