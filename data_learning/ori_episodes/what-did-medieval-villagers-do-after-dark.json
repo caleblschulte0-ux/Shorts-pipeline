@@ -1,0 +1,1761 @@
+{
+ "slug": "what-did-medieval-villagers-do-after-dark",
+ "title": "What Did Medieval Villagers Do After Dark? | Cozy History for Sleep",
+ "thumbnail_text": "ONLY ONE CANDLE?",
+ "thumbnail_scene": {
+  "setting": "hut_inside",
+  "time": "night",
+  "weather": "clear",
+  "shot": "close",
+  "cast": [
+   {
+    "who": "woman",
+    "pose": "sit",
+    "action": "sew",
+    "mood": "calm",
+    "item": "needle",
+    "at": "center"
+   }
+  ],
+  "props": [
+   "hearth",
+   "candle"
+  ]
+ },
+ "description": "Drift into a small medieval village as the sun goes down and the fields empty out for the night. We'll wander through supper by the hearth, mending and storytelling by candlelight, and the last quiet rounds before every door is shut and every fire banked low. Nothing here is urgent — just the slow, ordinary rhythm of an evening from many centuries ago, retold gently enough to fall asleep to. Where the record is thin, we'll say so, and simply imagine softly.",
+ "tags": [
+  "history for sleep",
+  "sleep story",
+  "relaxing history",
+  "medieval history",
+  "medieval village",
+  "village life",
+  "bedtime history",
+  "history documentary",
+  "calm history",
+  "history asmr",
+  "medieval life",
+  "cozy history",
+  "fall asleep history",
+  "long sleep video"
+ ],
+ "era": "medieval",
+ "chapters": [
+  {
+   "title": "Dusk Over the Village",
+   "beats": [
+    {
+     "say": "You arrive as the light over the village turns gold and long, the day's warmth easing into evening. Fields lie quiet at the edges of the houses, and here and there thin smoke has begun to climb from the hearths. This is the hour when the outside day gives way, gently, to the inside evening.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ]
+     }
+    },
+    {
+     "say": "At the river's edge, someone leads the last animal down for a drink before dark. The water moves slow and dark gold with the last light, and the sound of it is the only hurry left in the evening. Soon this stretch of bank will be empty until morning.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "hold",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "cow"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In the farmyard, a small fire has been lit against the evening chill, and a child feeds it twigs while the animals are counted in one by one. Sheep and a milk cow settle into the pen, and a dog circles once before lying down nearby. Everything that grazes is nearly home.",
+     "scene": {
+      "setting": "market_square",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused"
+       }
+      ],
+      "props": [
+       "campfire",
+       "sheep",
+       "cow"
+      ]
+     }
+    },
+    {
+     "say": "By her own door, a woman crouches over a small fire she has carried outside to catch before bringing it in. The flame catches, small and orange against the graying light, and she cups her hands around it a moment before rising. Behind her, the doorway waits, dark and warm.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Inside, the hearth fire has caught properly now, filling the low room with warmth and a soft orange light. Shadows settle into the corners of the room, and the smell of woodsmoke mixes with something simmering nearby. The world outside grows smaller, and the room grows kinder.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "stir",
+        "mood": "content",
+        "item": "bowl",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "pot"
+      ]
+     }
+    },
+    {
+     "say": "The family gathers at a low table to share bread and a simple pottage from one shared pot. There is little talk, only the soft clink of bowls and the crackle of the fire nearby. Supper here is plain and unhurried, and it is enough to end the day well.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "table"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "In another home, an elder sits close to the fire, needle moving slowly through a worn piece of cloth. Mending is evening work, done by firelight when the hands know the motion better than the eyes do. Beside her, a candle burns low, steady, and unhurried.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ]
+     }
+    },
+    {
+     "say": "The square has gone quiet now, its stalls empty and its well silent under the dark sky. Near its edge, someone warms their hands over a small fire before the walk home. Nothing moves in the square but the flame, small and orange against the night.",
+     "scene": {
+      "setting": "market_square",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "warm_hands",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "well"
+      ]
+     }
+    },
+    {
+     "say": "By another hearth, a child sits close to an elder, listening to a story told many times before. The fire pops and settles as the tale winds on, and the child's eyes grow heavy long before it ends. These small, warm evenings are how such stories get passed along.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In the last lit house, someone stirs a pot set near the coals, readying something simple for the morning ahead. The motion is slow and unhurried, the small, final task that closes out a long day. Outside, the rest of the village has already gone dark.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "stir",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "cauldron"
+      ]
+     }
+    },
+    {
+     "say": "Outside once more, someone pauses by the dying yard fire before going in for the night, looking up at a sky thick with stars. There is no other light for a long way, and the quiet feels large and gentle rather than empty. Then, softly, they turn back toward the door.",
+     "scene": {
+      "setting": "farmyard",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "look_up",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Inside, a child is already asleep on a low bed, wrapped snug against the night's chill. The hearth has burned down to a soft red glow, enough to warm the room without lighting it. This is how the village ends its day, one quiet room at a time.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "title": "Supper by the Hearth",
+   "beats": [
+    {
+     "say": "Outside in the lane, a few neighbors linger a moment longer by a low outdoor fire, warming their hands before ducking inside for the night. Smoke is rising straight up from every chimney along the row now, since the evening air has gone still. Doors are swinging shut one by one, each house drawing its own family in close around its own small fire.",
+     "scene": {
+      "setting": "village",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "warm_hands",
+        "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "campfire",
+       "timber_house"
+      ]
+     }
+    },
+    {
+     "say": "Inside, the one-room home is warm and close, and a pot of pottage has been simmering over the hearth since morning, filling the air with something plain and good. A woman stirs it slowly while a man sets a low table, and a child watches, already leaning toward the smell of it.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "stir",
+        "mood": "content",
+        "at": "center_left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "calm",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "stand",
+        "action": "idle",
+        "mood": "happy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "pot",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "She ladles the thick pottage into wooden bowls, one for each of them, and sets the last on the table for herself. It is not a rich meal — grain, greens, whatever the season allowed — but it is hot, and after a long day that is most of what anyone asks of supper.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "carry",
+        "mood": "content",
+        "item": "bowl"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "eat",
+        "mood": "happy",
+        "item": "bowl"
+       }
+      ],
+      "props": [
+       "hearth",
+       "pot"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The man breaks a round loaf of bread with his hands and passes pieces around the table, one to each. There is no ceremony to it, just the quiet passing of food between people who know each other well. You dip the bread into the pottage the way they probably have, without thinking about it.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "calm",
+        "item": "bread"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "eat",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "The child tells, in a small unhurried voice, about something ordinary that happened earlier — a bird that landed on the sill, a game played with a stick. Nobody rushes the telling. The woman listens with her spoon half-lifted, and the story matters simply because it is being told, here, by firelight.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "happy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "eat",
+        "item": "bowl",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "An elder at the table has news from farther down the lane — nothing large, a birth, a sickness easing, a roof that needs mending before winter. The others lean in a little to hear it. This is how word moved through a village like this one, mouth to mouth, over supper.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "focused"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "The man rises partway to feed the hearth another split log, and the fire answers with a soft crack and a brighter glow across the room. Nobody hurries him back to the table. Tending the fire is simply part of the meal here, done between bites without anyone remarking on it.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "at": "center_left"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The dog has settled close to the hearth, worn out from the day, and the woman drinks from a plain cup, content. Talk has slowed to something quieter now, the kind that does not need answering. The room smells of woodsmoke and warm grain, and nobody is in any hurry to leave the table.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "drink",
+        "mood": "content",
+        "item": "cup"
+       },
+       {
+        "who": "man",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "hearth",
+       "dog"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The child yawns, wide and unguarded, the way children do when a full stomach meets a warm room. The woman reaches over without a word and pulls a shawl closer around the child's shoulders. Outside it has gone fully dark, but in here the only clock anyone follows is the fire.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "yawn",
+        "mood": "sleepy"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "By the time the bowls are empty, the hearth has burned down to something softer, embers more than flame, casting a low red light across the room. The man banks the last log so it will smolder through the night rather than burn. Nobody speaks much now. The meal is finished, and the day is folding itself gently toward sleep, one small room like this one at a time.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "content"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hold",
+        "item": "bowl",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    }
+   ]
+  },
+  {
+   "title": "Firelight and Handwork",
+   "beats": [
+    {
+     "say": "In the square, the last stalls are closing. A craftsman wraps his tools against rain beginning to fall, tying the bundle before starting home. His trading is done, but his evening is not — there is a stool leg to mend, waiting for him by his own hearth.",
+     "scene": {
+      "setting": "market_square",
+      "time": "dusk",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "gather",
+        "mood": "focused",
+        "item": "bundle"
+       }
+      ],
+      "props": [
+       "stall"
+      ]
+     }
+    },
+    {
+     "say": "Down at the river, a man checks his last fish trap before the light goes. He works the willow weave loose with cold fingers, feels for anything caught, and resets it low against the current. Quiet work, unhurried, filling the hour between daylight and dark.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "dusk",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "fish",
+        "mood": "focused",
+        "item": "basket",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "reeds"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In the farmyard, a small fire burns low enough to warm cold hands. He crouches beside it after latching the barn, breath showing white in the frost. The animals are fed and bedded. This little fire is only for the last warmth before he crosses the yard to bed.",
+     "scene": {
+      "setting": "farmyard",
+      "time": "night",
+      "weather": "frost",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "warm_hands",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "barn",
+       "sheep"
+      ]
+     }
+    },
+    {
+     "say": "Inside the cottage, a woman sits close to the hearth with a candle at her elbow, mending a torn sleeve. Her needle moves slowly, patient stitch after patient stitch. A child sits near her knee, drowsy with the warmth. Cloth is costly, and nothing is thrown away while it can still be worn.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle",
+       "bench"
+      ]
+     }
+    },
+    {
+     "say": "In a smaller house, a man sits by his own low fire, turning a piece of wood in his hands, shaping a spoon in slow, careful strokes. The shavings fall near his feet. It is a task a person can do half by feel, eyes drifting to the flame as often as to the work.",
+     "scene": {
+      "setting": "forest",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "knap",
+        "mood": "focused",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Along the village lane, two neighbors have carried their mending out to a shared little fire, close enough to talk while their hands stay busy. One turns a hem, the other a cuff, needles catching the firelight. Evenings like this are sociable as much as useful.",
+     "scene": {
+      "setting": "village",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "content",
+        "item": "needle",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "calm",
+        "item": "needle",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "Even in the lord's household, the evening looks much the same. Near a fire in the hall, a servant mends a torn banner while an old man holds the cloth steady, talking softly as she works. Wealth changes the size of the room, not the task inside it.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle"
+       },
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "calm"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back in the small house, someone leans in to coax a little more life from the fire, laying on a thin stick and blowing gently until it catches. It will not last the night at this size, only long enough to finish the evening's work.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "item": "stick"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In the small house, a child watches an elder work a knife along a stick, turning it into something useful, a hook perhaps, or a toggle for a cloak. Nobody explains the steps aloud. The child learns simply by watching patient hands, close to the fire, until the shape becomes obvious.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "hold",
+        "mood": "focused",
+        "item": "stick",
+        "at": "left"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "content",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In that same small house, the evening's small tasks finish one by one. A needle is set down, a finished spoon set aside, a mended sleeve folded. Someone yawns without meaning to. The fire has burned low enough that faces are mostly shadow, and nobody moves to build it back up.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "content",
+        "item": "needle"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "yawn",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, rain falls softly over the sleeping village, drumming on thatch and running from the eaves. A dog trots home along the empty lane. Behind shuttered windows, the last small fires are being banked down for the night, their work finished, their households settling toward sleep.",
+     "scene": {
+      "setting": "village",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  },
+  {
+   "title": "Stories, Songs and Riddles",
+   "beats": [
+    {
+     "say": "As true dark settles over the village, a light rain still ticking softly against the thatch, a few neighbors step from their doorways and walk together along the lane toward one cottage where the shutters glow warm. Someone carries a bundle to share; another shields a small lantern from the drizzle. There is no hurry in their steps, only the pull of company waiting ahead.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "content",
+        "item": "bundle"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "focused",
+        "item": "lantern"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Inside, the room is small and warm, bodies settled on benches drawn close to the hearth. A single candle gathers every face into one soft circle. Someone stirs the fire so it holds a while longer. There is easy talk before the stories begin, the unhurried kind that asks nothing back.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "focused"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "warm_hands",
+        "mood": "calm"
+       },
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "look_up",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle",
+       "bench",
+       "table"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "The elder leans in and offers the first riddle, voice low and playful, meant to be turned over slowly. A child's eyes widen, working it through in silence. Riddles like this have passed from hand to hand for longer than anyone can say, kept only in memory, since paper was too precious to spare for such small delights.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "focused",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "look_up",
+        "mood": "surprised",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "candle",
+       "hearth"
+      ]
+     }
+    },
+    {
+     "say": "A woman finally guesses close enough that soft laughter moves around the room, careful not to wake the sleeping child in the corner. No one keeps score. The pleasure is only in the turning of the words, shared as freely as the fire's warmth.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "happy",
+        "at": "center"
+       },
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "An old woman begins a song next, one she learned as a girl from someone older still, the tune worn soft at the edges like a favorite cloth. A few voices join the low chorus, not quite together, warmer for it. Songs like this live only in breath and memory, never on any page.",
+     "scene": {
+      "setting": "castle",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "talk",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "happy",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "A longer story unfolds after, told the same way each time because that sameness is part of its comfort. A man leans forward, hands moving a little as he speaks, and the others settle the way people do who already know the ending and want to hear it anyway.",
+     "scene": {
+      "setting": "castle",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "focused"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "calm"
+       },
+       {
+        "who": "elder",
+        "pose": "sit_on",
+        "action": "idle",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "sit",
+        "action": "look_up",
+        "mood": "happy"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Not every hand stays idle while the telling goes on. A woman keeps mending by candlelight, needle moving in small, practiced stitches, her attention divided easily between the cloth and the tale — two quiet kinds of work, neither asking to be finished quickly.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "focused",
+        "item": "needle",
+        "at": "center"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "idle",
+        "mood": "content",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside, the lane lies empty and rain-slick, the village asleep around this one glowing window. A thread of song slips through the shutters into the wet night air, faint enough that only someone passing close, collar turned up against the drizzle, would notice it at all before walking on toward home.",
+     "scene": {
+      "setting": "village",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "idle",
+        "mood": "content",
+        "at": "center_right"
+       }
+      ],
+      "props": [
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Back inside, a child yawns against a shoulder, losing the fight against sleep a little more with each story. No one hurries the evening along. The sound of familiar voices in a warm room is, itself, part of what makes a night feel safe.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "mood": "sleepy",
+        "at": "center_left"
+       },
+       {
+        "who": "woman",
+        "pose": "sit_on",
+        "action": "talk",
+        "mood": "calm",
+        "at": "left"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ]
+     }
+    },
+    {
+     "say": "Eventually the evening loosens on its own, and neighbors rise, gather their bundles, and step back out into the soft rain. They part at the lane with quiet goodnights, each hurrying gently toward their own low doorway, the riddles and songs folded away, ready to be carried out again some other evening.",
+     "scene": {
+      "setting": "village",
+      "time": "night",
+      "weather": "rain",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "wave",
+        "mood": "content",
+        "at": "left"
+       },
+       {
+        "who": "elder",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "bundle",
+        "at": "right"
+       }
+      ],
+      "props": []
+     }
+    }
+   ]
+  },
+  {
+   "title": "Banking the Fire, Locking the Door",
+   "beats": [
+    {
+     "say": "Inside the cottage, the fire is banked down for the night. The coals are raked into a low mound and covered with a thin layer of ash, so they hold their heat without flaring while the household sleeps. The room dims to a soft red glow, quiet and steady, waiting for morning.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "sleepy",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside along the lane, a man draws a heavy wooden bar across his door and settles it into its brackets. Up and down the row of low houses, neighbors do the same, shutting each home against the cold night air. A small fire left banked near the well glows faintly, and a torch beside it throws a soft, steady light across the packed earth.",
+     "scene": {
+      "setting": "castle",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "hold",
+        "mood": "focused",
+        "item": "stick",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "In a hut near the edge of the village, an elder crouches by the hearth one final time, feeding it a last careful handful of embers before letting it rest. The light narrows to a small orange glow in the dark room. It is an old, familiar motion, done the same quiet way most nights, so the fire will still be alive by morning.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "content",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In the farmyard, the animals have gone still. A man checks the latch on the barn door, a torch held low so as not to startle the sheep dozing inside. Near the woodpile, a small fire has been banked too, its glow just visible past the timber rails. He listens a moment, hears only breathing and settling straw, then turns back toward the house.",
+     "scene": {
+      "setting": "farmyard",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "hold",
+        "mood": "focused",
+        "item": "torch",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "barn",
+       "campfire"
+      ]
+     }
+    },
+    {
+     "say": "In villages that kept a watch, the market square would stand empty by now, its stalls shuttered, its benches bare beneath the dark sky. One man walks its edge carrying a torch, while another stands nearby talking low, their voices easy in the stillness. Behind them a small fire, banked for the night, still glows faintly against the cold stone.",
+     "scene": {
+      "setting": "market_square",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "talk",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "stall",
+       "torch"
+      ]
+     }
+    },
+    {
+     "say": "Past the last houses, the stream that runs by the village keeps moving in the dark, the same quiet sound it has made all day. No one is there to watch it; it needs no watching. The water slides over stone and root, patient and unhurried, while behind it the village has gone almost silent, its small sounds giving way to this one steady murmur.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [],
+      "props": [
+       "rock",
+       "tree",
+       "timber_house"
+      ]
+     }
+    },
+    {
+     "say": "In another hut, a mother banks her own fire while her child already lies sleeping nearby, a blanket pulled close against the evening chill. She feeds the embers one last small piece of wood, watches it catch and settle, then sits back for a moment in the quiet, listening to her child's slow, even breathing before she too grows still.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "Out on the lane, the watch passes once more, unhurried, footsteps soft on the packed earth. One lifts a hand in a quiet wave to the other, who carries a torch low at his side. Their voices fade toward the far end of the village, and the street settles into its long, ordinary silence, lit only by the last banked fire by the well.",
+     "scene": {
+      "setting": "village",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "wave",
+        "mood": "calm",
+        "at": "left"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "calm",
+        "item": "torch",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Back inside the cottage, the last embers glow low beneath their blanket of ash. You sit near them a moment longer, listening to a child already asleep nearby, and pull your arms close against the evening's last chill. The door is barred, the fire is banked, and there is nothing left to do now but rest.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "hug_self",
+        "mood": "content",
+        "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ]
+     }
+    },
+    {
+     "say": "The village lies dark and still now, door after door shut fast, fire after fire banked low. Only the faint murmur of the watch drifts occasionally through the quiet, and here and there a torch or a banked ember glows softly behind a shuttered window, holding its small warmth through the long hours until someone rises again to wake it into flame.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "torch",
+       "campfire"
+      ],
+      "variant": 3
+     }
+    }
+   ]
+  },
+  {
+   "title": "The Village Falls Asleep",
+   "beats": [
+    {
+     "say": "You lie down at last, pulling the blanket close, the straw mattress soft beneath you. The hearth glows low, just a handful of coals now, and someone leans forward to pinch out the last candle. The room dims to firelight, then to almost nothing, and you let your eyes close.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "candle"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Outside the walls, the stream that runs past the village never stops. It slips over stones in the dark, quiet and steady, the same as it did at noon, the same as it will at dawn. No one is awake to hear it, but it keeps moving, patient, all through the night.",
+     "scene": {
+      "setting": "riverbank",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "reeds",
+       "rock"
+      ]
+     }
+    },
+    {
+     "say": "In the market square, the stalls stand empty and shuttered, the bread and cloth long since carried home. Only the night watchman remains, crouched by a small fire near the well, warming his hands. He does not expect trouble. He is only keeping the dark company until his turn is done.",
+     "scene": {
+      "setting": "market_square",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "crouch",
+        "action": "warm_hands",
+        "mood": "calm",
+        "item": "stick"
+       }
+      ],
+      "props": [
+       "campfire",
+       "well"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Out past the last cottages, the fields lie open under the stars, the wheat stubble pale and still. A shepherd sits by a low fire at the field's edge, sheep settled around him in a loose, breathing huddle. He watches the sky more than the flock tonight; both are quiet.",
+     "scene": {
+      "setting": "field",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "elder",
+        "pose": "sit",
+        "action": "feed_fire",
+        "mood": "calm",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Near the barn, a farmhand crouches to bank the fire he has kept burning against the evening chill. The animals have gone still around him, a cow lying heavy in the straw, sheep pressed together for warmth. He watches the coals dim to orange, then rises to find his own bed.",
+     "scene": {
+      "setting": "farmyard",
+      "time": "dusk",
+      "weather": "frost",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "focused",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire",
+       "barn",
+       "cow"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "In another hut at the far end of the village, a different family is doing just what yours has done. The hearth burns low, the children are already asleep, and the woman of the house lies down beside them, pulling a worn blanket over all three, glad for the day's end.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "old_woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "content"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Beyond the fields, where the ground dips low, a lake lies flat and silver under the stars, hardly a ripple moving across it. From here the village is only a dark huddle of rooftops in the distance, every one of them settling, at last, into stillness and sleep.",
+     "scene": {
+      "setting": "field",
+      "time": "night",
+      "weather": "clear",
+      "shot": "wide",
+      "cast": [],
+      "props": [
+       "reeds",
+       "campfire",
+       "torch"
+      ],
+      "variant": 1
+     }
+    },
+    {
+     "say": "Even at the lord's hall on the hill, the night keeps its own quiet watch. A guard stands along the wall, warming his hands at a small fire, looking out over the sleeping fields below. The great house behind him has gone dark too, torches doused, doors barred until morning.",
+     "scene": {
+      "setting": "mountains",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "man",
+        "pose": "stand",
+        "action": "warm_hands",
+        "mood": "calm",
+        "item": "spear",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "campfire"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "Back in the village, an old woman sits a little longer by her own hearth, finishing a last stitch by the glow of the coals before she puts the needle away. She banks the fire carefully, the way she has every night for years, and settles herself down to rest.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "sew",
+        "mood": "content",
+        "item": "needle",
+        "at": "center"
+       }
+      ],
+      "props": [
+       "hearth"
+      ],
+      "variant": 3
+     }
+    },
+    {
+     "say": "In a small hut nearby, a child is already fast asleep, one arm flung loose across the blanket. A parent leans close a moment, then pinches out the last candle between two fingers. The room goes dark and warm, filled only with the soft, even sound of breathing.",
+     "scene": {
+      "setting": "hut_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy",
+        "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "crouch",
+        "action": "hold",
+        "mood": "calm",
+        "at": "right"
+       }
+      ],
+      "props": [
+       "candle"
+      ],
+      "variant": 2
+     }
+    },
+    {
+     "say": "Back where you began, the family lies still now, the hearth no more than a dull red glow. Outside, the whole village has gone quiet the same way, hearth by hearth, hut by hut, until there is nothing left awake but the stars. Let your own eyes close now too, and rest.",
+     "scene": {
+      "setting": "cottage_inside",
+      "time": "night",
+      "weather": "clear",
+      "shot": "close",
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
+       }
+      ],
+      "props": [
+       "hearth",
+       "bed"
+      ],
+      "variant": 1
+     }
+    }
+   ]
+  }
+ ],
+ "sources": [],
+ "topic": "What did medieval villagers do after dark?",
+ "added": "2026-09-25T09:59",
+ "authored_by": "ori_author",
+ "storyboard": {
+  "kit": "cef82680ca3c",
+  "clean": false,
+  "reviewed_at": "2026-09-25T10:16",
+  "rounds": 3,
+  "repaired": 140
+ }
+}
