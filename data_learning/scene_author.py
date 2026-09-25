@@ -575,6 +575,13 @@ the frame or more), centred in the upper-middle, the first thing the eye \
 lands on. If the idea is a vape cloud turning into a nicotine pouch, that \
 cloud and that pouch fill the frame — Data and the setting support it, \
 they never shrink it into a corner.
+HOW TO SHOW A SHARE (the showrunner's most repeated note on this look): a \
+percentage is ONE WHOLE, split. Draw the whole once — one field, one ship's \
+cargo, one crowd, one plate — and cut it at the true proportion, both parts \
+visible at their real sizes, the share in the accent and the rest in a \
+neutral. Never two separate objects with labels doing the arithmetic ("the \
+80/20 split relies on labels", "the 20% remainder is a tiny truck at the \
+right edge", "flying cards do not show the 33% or 25% share").
 6. No imports; use only these names: {kit}, math, cairo, look, fit_size, \
 INK, INK_2, WARN, and these builtins: {builtins}. _c(rgb, alpha) makes a cairo colour. Colours: tuples (r, g, b) 0..255, or P[...] palette keys: \
 {palette}.
