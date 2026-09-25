@@ -558,7 +558,7 @@
       "video_id": null,
       "topic_category": "energy",
       "hook_type": "inversion",
-      "hook_text": "You'd think green energy took off years ago — two decades in, it had barely moved.",
+      "hook_text": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
       "words_first_10s": 25,
       "scene_changes_before_5s": 3,
       "depictions": [
@@ -573,7 +573,7 @@
         {
           "t": 0,
           "event": "hook",
-          "detail": "You'd think green energy took off years ago — two decades in, it had barely moved."
+          "detail": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved."
         },
         {
           "t": 7,
@@ -593,7 +593,7 @@
         {
           "t": 40,
           "event": "payoff",
-          "detail": "Two decades of 'clean energy revolution' headlines — and the grid still ran mostly on the old stuff."
+          "detail": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff."
         },
         {
           "t": 48,
@@ -1433,7 +1433,7 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "risk-scale-tilt: It's not the average — it's the GAP between the most and least active people. That gap mak"
+          "detail": "risk-scale-tilt: It's not the average \u2014 it's the GAP between the most and least active people. That gap mak"
         },
         {
           "t": 26,
@@ -1538,12 +1538,12 @@
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "blight-map-creep: This happened before — a Panama disease wiped out the world's last banana, the Gros Michel"
+          "detail": "blight-map-creep: This happened before \u2014 a Panama disease wiped out the world's last banana, the Gros Michel"
         },
         {
           "t": 35,
           "event": "payoff",
-          "detail": "closing line: One fungus away from déjà vu."
+          "detail": "closing line: One fungus away from d\u00e9j\u00e0 vu."
         },
         {
           "t": 38,
@@ -1583,7 +1583,7 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "balloon-squeeze-double: Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors n"
+          "detail": "balloon-squeeze-double: Demand is about to nearly double by 2035, driven by chipmaking \u2014 advanced semiconductors n"
         },
         {
           "t": 26,
@@ -1593,7 +1593,7 @@
         {
           "t": 35,
           "event": "payoff",
-          "detail": "closing line: Once it's gone, it's gone — literally into space."
+          "detail": "closing line: Once it's gone, it's gone \u2014 literally into space."
         },
         {
           "t": 38,
@@ -1633,12 +1633,12 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "concern-flag-row: Why'd it stick? The number one reason parents give — 83 percent — is concern about the env"
+          "detail": "concern-flag-row: Why'd it stick? The number one reason parents give \u2014 83 percent \u2014 is concern about the env"
         },
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "house-vs-school-growth: That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 per"
+          "detail": "house-vs-school-growth: That's now close to the entire private school system \u2014 9.6 percent of kids, versus 5.4 per"
         },
         {
           "t": 35,
@@ -1733,12 +1733,12 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "funnel-to-hatch: Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate — thi"
+          "detail": "funnel-to-hatch: Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate \u2014 thi"
         },
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "cockpit-seats-dim: Even the corps itself shrank — from about 149 active astronauts in 2000 down to around 41 "
+          "detail": "cockpit-seats-dim: Even the corps itself shrank \u2014 from about 149 active astronauts in 2000 down to around 41 "
         },
         {
           "t": 35,
@@ -1754,7 +1754,7 @@
     },
     {
       "slug": "recycling-myth-reality",
-      "directed_at": "2026-09-25",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "environment",
       "hook_type": "inversion",
@@ -1768,7 +1768,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "Just Recycle It",
-      "notes": "Updated 2026-09-22: seg3 mechanic corrected to what's actually in niche.config.json (plastic-sluice-split replaced the earlier recycling-bin-fill-duel; this entry had drifted out of sync). Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), plastic-sluice-split closes on real bottles forking at OECD's own best-case rate (17%) -- most of the chute still piles onto the landfill heap, so even the optimistic future doesn't rescue the label. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Re-verified again 2026-09-23 (later same-day pre-render pass): scenes/data/copy still unchanged, validate_scenes.py 12/12 PASS. Also deduped the viz_mechanics.json library in this pass (2 stale/duplicate rows removed, outbreak-radiate-count synced to its live motion-fixed code) -- library hygiene, unrelated to this slug. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed. Re-confirmed 2026-09-25: pre-render pass, no scene/copy edits needed -- validate_scenes.py 12/12 PASS, data/narration cross-checked against source files, mechanics still varied (tier-1 count/level/drain-share beats present) -- and the exact duplicate 'directed' record for this same un-posted slug was merged into this entry (video_ledger had accumulated two identical un-posted rows per story from repeated direction passes).",
+      "notes": "Updated 2026-09-22: seg3 mechanic corrected to what's actually in niche.config.json (plastic-sluice-split replaced the earlier recycling-bin-fill-duel; this entry had drifted out of sync). Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), plastic-sluice-split closes on real bottles forking at OECD's own best-case rate (17%) -- most of the chute still piles onto the landfill heap, so even the optimistic future doesn't rescue the label. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Re-verified again 2026-09-23 (later same-day pre-render pass): scenes/data/copy still unchanged, validate_scenes.py 12/12 PASS. Also deduped the viz_mechanics.json library in this pass (2 stale/duplicate rows removed, outbreak-radiate-count synced to its live motion-fixed code) -- library hygiene, unrelated to this slug. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -1778,7 +1778,7 @@
         {
           "t": 8,
           "event": "visual_swap",
-          "detail": "trash-mountain-rise: Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to"
+          "detail": "trash-mountain-rise: Global plastic waste is on track to almost triple by 2060 \u2014 from 353 million tons today to"
         },
         {
           "t": 17,
@@ -2116,7 +2116,7 @@
     },
     {
       "slug": "measles-ninety-five-rule",
-      "directed_at": "2026-09-25",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "body",
       "hook_type": "shock_stat",
@@ -2129,7 +2129,7 @@
         "viz:trend"
       ],
       "ending_type": "consequence",
-      "notes": "First ledger entry for this slug. Seg1 and seg3 had no depiction before this pass. Outbreak-radiate-count swarms a measles patient-zero with 15 radiating silhouettes against flu's lone extra case, making R0 viscerally comparable before the existing forty-kids grid lands the 92.5%-vs-95% gap; seg3 switched to the classic trend line (was undirected) since a year-by-year case count is a clean escalation that doesn't need an invented mechanic, and keeps the video from repeating the person-icon layout a third time. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed. Re-confirmed 2026-09-25: pre-render pass, no scene/copy edits needed -- validate_scenes.py 12/12 PASS, data/narration cross-checked against source files, mechanics still varied (tier-1 count/level/drain-share beats present) -- and the exact duplicate 'directed' record for this same un-posted slug was merged into this entry (video_ledger had accumulated two identical un-posted rows per story from repeated direction passes).",
+      "notes": "First ledger entry for this slug. Seg1 and seg3 had no depiction before this pass. Outbreak-radiate-count swarms a measles patient-zero with 15 radiating silhouettes against flu's lone extra case, making R0 viscerally comparable before the existing forty-kids grid lands the 92.5%-vs-95% gap; seg3 switched to the classic trend line (was undirected) since a year-by-year case count is a clean escalation that doesn't need an invented mechanic, and keeps the video from repeating the person-icon layout a third time. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -2459,7 +2459,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Body Clock",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). Chose motion-first mechanics over the safe photo-card fallback: dog-belly-inflate-timeline scales one dog wider at each timeline stop, scale-tip-pet-duel tilts a balance beam toward cats, lifespan-track-runners races two dogs down a years ruler and shades the gap. Closing sharpened from a flat CTA to a consequence line that echoes the lifespan-gap number.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). Chose motion-first mechanics over the safe photo-card fallback: dog-belly-inflate-timeline scales one dog wider at each timeline stop, scale-tip-pet-duel tilts a balance beam toward cats, lifespan-track-runners races two dogs down a years ruler and shades the gap. Closing sharpened from a flat CTA to a consequence line that echoes the lifespan-gap number.",
       "timeline": [
         {
           "t": 0,
@@ -2494,7 +2494,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "Viral by the Numbers",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). pawn-stack-timeline grows a tower of pawn photos across the 5-point membership curve, queens-gambit-signup-flood streams pawn icons out of a TV the moment the show hits, globe-pawn-fill-share highlights Chess.com's wedge of world players on a glowing globe.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). pawn-stack-timeline grows a tower of pawn photos across the 5-point membership curve, queens-gambit-signup-flood streams pawn icons out of a TV the moment the show hits, globe-pawn-fill-share highlights Chess.com's wedge of world players on a glowing globe.",
       "timeline": [
         {
           "t": 0,
@@ -2529,7 +2529,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Bet You Can't Guess",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). volcano-erupt-row ranks 5 countries by erupting-photo height, state-map-volcano-swarm splits Alaska's packed volcano-icon grid from the sparse rest-of-US column, ring-of-fire-globe-glow lights 75% of the globe's rim with volcano markers.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). volcano-erupt-row ranks 5 countries by erupting-photo height, state-map-volcano-swarm splits Alaska's packed volcano-icon grid from the sparse rest-of-US column, ring-of-fire-globe-glow lights 75% of the globe's rim with volcano markers.",
       "timeline": [
         {
           "t": 0,
@@ -2564,7 +2564,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Follow the Money",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). checkout-button-swell-timeline grows a 'Pay in 4' button bigger at each timeline stop, cash-tower-duel stacks cash-bundle photos 12x taller for 2021 vs 2019, receipt-swarm-flood buries a checkout-screen photo in receipt icons for the loan-count jump.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). checkout-button-swell-timeline grows a 'Pay in 4' button bigger at each timeline stop, cash-tower-duel stacks cash-bundle photos 12x taller for 2021 vs 2019, receipt-swarm-flood buries a checkout-screen photo in receipt icons for the loan-count jump.",
       "timeline": [
         {
           "t": 0,
@@ -2599,7 +2599,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "Follow the Money",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). padlock-timer-crumble drains and cracks a padlock's shell as GPU crack-time collapses from 225 to 132 years, siege-hammer-duel batters a lowercase-only padlock to shards in seconds while a mixed-rule padlock only dents, combination-wheel-stack spins a bigger denser dial for a 12-char lowercase password than an 8-char mixed one despite fewer rule types.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). padlock-timer-crumble drains and cracks a padlock's shell as GPU crack-time collapses from 225 to 132 years, siege-hammer-duel batters a lowercase-only padlock to shards in seconds while a mixed-rule padlock only dents, combination-wheel-stack spins a bigger denser dial for a 12-char lowercase password than an 8-char mixed one despite fewer rule types.",
       "timeline": [
         {
           "t": 0,
@@ -2634,7 +2634,7 @@
       ],
       "ending_type": "escalation",
       "franchise": "Bet You Can't Guess",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). pit-stop-timer-collapse shrinks a stopwatch arc era by era from a full lap to a blink, reaction-blink-race fills a strip of human-reaction-time blinks to show the modern stop fits under seven of them, pit-crew-swarm-count spirals mechanics from a sparse 1950s handful into a full 20-person swarm.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). pit-stop-timer-collapse shrinks a stopwatch arc era by era from a full lap to a blink, reaction-blink-race fills a strip of human-reaction-time blinks to show the modern stop fits under seven of them, pit-crew-swarm-count spirals mechanics from a sparse 1950s handful into a full 20-person swarm.",
       "timeline": [
         {
           "t": 0,
@@ -2669,7 +2669,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Viral by the Numbers",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). signal-echo-stretch pings a radio pulse between an ever-receding Voyager and Earth as the travel-time counter climbs each era, roundtrip-clock-double fills a ring once per leg to show round-trip time as double the one-way delay, power-core-fade-out dims Voyager's glowing power core and blinks its instruments dark one by one to match the falling wattage.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). signal-echo-stretch pings a radio pulse between an ever-receding Voyager and Earth as the travel-time counter climbs each era, roundtrip-clock-double fills a ring once per leg to show round-trip time as double the one-way delay, power-core-fade-out dims Voyager's glowing power core and blinks its instruments dark one by one to match the falling wattage.",
       "timeline": [
         {
           "t": 0,
@@ -2704,7 +2704,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Follow the Money",
-      "notes": "Directed this pass — all 3 segments were undirected (NONE). suitcase-cash-stuff swells a suitcase and strains its zipper as it fills with cash bundles from $464M (2007) to $7.1B (2023), fuselage-cash-flood floods cash up inside a fuselage cutaway to show bag fees as a small slice of $117.9B global ancillary revenue, runway-cash-trail-lineup grows three airline planes' cash-exhaust trails sized to their 2024 bag-fee hauls.",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). suitcase-cash-stuff swells a suitcase and strains its zipper as it fills with cash bundles from $464M (2007) to $7.1B (2023), fuselage-cash-flood floods cash up inside a fuselage cutaway to show bag fees as a small slice of $117.9B global ancillary revenue, runway-cash-trail-lineup grows three airline planes' cash-exhaust trails sized to their 2024 bag-fee hauls.",
       "timeline": [
         {
           "t": 0,
@@ -2825,7 +2825,7 @@
     },
     {
       "slug": "peanut-allergy-guideline-flip",
-      "directed_at": "2026-09-25",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "health",
       "hook_type": "inversion",
@@ -2839,7 +2839,7 @@
       ],
       "ending_type": "inversion",
       "franchise": "The Advice Was Backwards",
-      "notes": "No prior analytics for this slug. Bet: peanut-rash-climb shows the tripling allergy rate the old advice was supposed to prevent, peanut-shield-crack-duel makes the LEAP trial's reversal visceral (avoidance shield shatters, early-exposure shield barely scratched), and the before/after comparison closes on the 43% drop -- landing the inversion on 'the cure was doing the opposite of the caution' rather than a plain stat recap. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed. Re-confirmed 2026-09-25: pre-render pass, no scene/copy edits needed -- validate_scenes.py 12/12 PASS, data/narration cross-checked against source files, mechanics still varied (tier-1 count/level/drain-share beats present) -- and the exact duplicate 'directed' record for this same un-posted slug was merged into this entry (video_ledger had accumulated two identical un-posted rows per story from repeated direction passes).",
+      "notes": "No prior analytics for this slug. Bet: peanut-rash-climb shows the tripling allergy rate the old advice was supposed to prevent, peanut-shield-crack-duel makes the LEAP trial's reversal visceral (avoidance shield shatters, early-exposure shield barely scratched), and the before/after comparison closes on the 43% drop -- landing the inversion on 'the cure was doing the opposite of the caution' rather than a plain stat recap. Reconfirmed 2026-09-23 (pre-render direction pass): scenes/data/copy unchanged -- verified against source data files and validate_scenes.py (12/12 PASS). Reconfirmed again 2026-09-23 (pre-render pass): scenes/data/copy unchanged, validate_scenes.py 12/12 PASS. Re-confirmed 2026-09-24 pre-render pass: every segment re-checked against VIZ_BRAIN doctrine (no bare number/bar/bubble, mechanics varied within the video, numbers match cited source data, hook opens on curiosity not information, ending escalates/inverts rather than summarizing) -- direction from the original session already cleared the bar, no scene edits needed.",
       "timeline": [
         {
           "t": 0,
@@ -2875,7 +2875,7 @@
     },
     {
       "slug": "landline-death-robocall-boom",
-      "directed_at": "2026-09-25",
+      "directed_at": "2026-09-24",
       "video_id": null,
       "topic_category": "tech",
       "hook_type": "shock_stat",
@@ -2889,7 +2889,7 @@
       ],
       "ending_type": "consequence",
       "franchise": "Why That Matters",
-      "notes": "No prior ledger entries for this topic. Bet: causal chain from cord-cutting to caller-ID chaos -- the wireless-only trend chart (classic fallback, mascot riding the line) sets up why any number can flash on your screen, phones sorting into share-of-52.8B bins names the categories, then a broadcasting tower flooding the frame with a scaled phone-count contrasts 29.3B (2016) against 52.8B (2024) so the growth is counted, not just labeled. Re-confirmed 2026-09-25: pre-render pass, no scene/copy edits needed -- validate_scenes.py 12/12 PASS, data/narration cross-checked against source files, mechanics still varied (tier-1 count/level/drain-share beats present) -- and the exact duplicate 'directed' record for this same un-posted slug was merged into this entry (video_ledger had accumulated two identical un-posted rows per story from repeated direction passes).",
+      "notes": "No prior ledger entries for this topic. Bet: causal chain from cord-cutting to caller-ID chaos -- the wireless-only trend chart (classic fallback, mascot riding the line) sets up why any number can flash on your screen, phones sorting into share-of-52.8B bins names the categories, then a broadcasting tower flooding the frame with a scaled phone-count contrasts 29.3B (2016) against 52.8B (2024) so the growth is counted, not just labeled.",
       "timeline": [
         {
           "t": 0,
@@ -4004,6 +4004,206 @@
           "t": 31,
           "event": "payoff",
           "detail": "closing: the last footprint is still up there"
+        }
+      ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "inversion",
+      "hook_text": "Recycling isn't doing what you think.",
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "No prior ledger entries for this topic. Bet: build one unbroken chain from scale (mountain of waste growing toward 2060) to fate (donut chart of where it goes) to the supposed fix (a sluice of real bottles forking into recycled-vs-landfill, drain-share method so the fork widens/narrows with the actual rate) -- each beat sharpens the same myth instead of three disconnected facts. Closing plays the irony (label vs landfill) rather than restating the 9%.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'Recycling isn't doing what you think' over the waste pile beginning to rise"
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "trash-mountain-rise: pile grows from 353M tons (2019) toward 1,014M tons (2060), person silhouette pinned for scale"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "donut share: 9% recycled, 50% landfilled, 22% mismanaged, 19% incinerated"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "plastic-sluice-split: bottles fork at the split point, only 9% (today) vs 17% (2060 best case) peel into the recycling bin"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing: 'the label says recyclable, the landfill says otherwise'"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "guess-the-real-rate question"
+        }
+      ]
+    },
+    {
+      "slug": "measles-ninety-five-rule",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "stake",
+      "hook_text": "One number decides whether measles comes back.",
+      "words_first_10s": 18,
+      "scene_changes_before_5s": 4,
+      "depictions": [
+        "mechanic:outbreak-radiate-count",
+        "mechanic:forty-kids-three-gaps",
+        "viz:trend"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The One Number",
+      "notes": "No prior ledger entries for this topic. Bet: make the 2.5-point gap physically countable -- 4 diseases radiate their exact R0 in infected silhouettes (measles visibly swarmed vs flu's lone dot), then the same 40-kid grid shows the gap between the 95% measles needs and the 92.5% the US has is exactly 1 kid, then the case-count trend shows what that 1 kid costs. Fixed a mismatch: the closing line said 'three in forty' while the mechanic's own concept and math (38 needed vs 37 covered, of 40) say one -- corrected to 'One in forty will do' so the payoff matches what's on screen.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'One number decides whether measles comes back'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "outbreak-radiate-count: measles (15), chickenpox (11), polio (6), flu (1.3) each ringed by their exact infected count"
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "forty-kids-three-gaps: 40-kid grid, 37 lit (92.5% actual) vs 38 needed (95%) -- one kid short"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "trend: US cases 285 (2024) -> 2,289 (2025) -> 2,566 (2026 so far), worst since elimination in 2000"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing: 'measles doesn't need many open doors, one in forty will do'"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "did-you-get-both-shots question"
+        }
+      ]
+    },
+    {
+      "slug": "peanut-allergy-guideline-flip",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "inversion",
+      "hook_text": "The peanut allergy advice was backwards the whole time.",
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:peanut-rash-climb",
+        "mechanic:peanut-shield-crack-duel",
+        "viz:comparison"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Myth vs Reality",
+      "notes": "No prior ledger entries for this topic. Bet: run the reversal as two duels of the same subject (peanuts) against different defenses -- first climbing a rash-red trend line as avoidance-era allergy rates triple, then literally cracking a shield harder the more a group avoided peanut (13.7% shattered) versus barely scratching one that ate it early (1.9%) -- so the mechanism (avoidance causes it) is shown, not told, before the after-guidelines comparison lands the 43% drop.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'The peanut allergy advice was backwards the whole time'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "peanut-rash-climb: allergy rate climbs 0.4% (1997) -> 0.8% (2002) -> 1.4% (2008)"
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "peanut-shield-crack-duel: avoidance shield shatters at 13.7%, early-exposure shield barely cracks at 1.9%"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "comparison: post-guideline allergy rate 0.79% -> 0.45%, a 43% drop"
+        },
+        {
+          "t": 31,
+          "event": "payoff",
+          "detail": "closing: 'sometimes the cure is just... eating the thing'"
+        },
+        {
+          "t": 34,
+          "event": "cta",
+          "detail": "did-your-family-avoid-peanuts question"
+        }
+      ]
+    },
+    {
+      "slug": "landline-death-robocall-boom",
+      "directed_at": "2026-09-24",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "question",
+      "hook_text": "Why does every unknown number feel like a scam call now?",
+      "words_first_10s": 17,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "viz:trend",
+        "mechanic:robocall-phone-swarm-sort",
+        "mechanic:robocall-tower-flood"
+      ],
+      "ending_type": "consequence",
+      "franchise": null,
+      "notes": "No prior ledger entries for this topic. Bet: causal chain from cord-cutting to caller-ID chaos -- the wireless-only trend chart (classic fallback, mascot riding the line) sets up why any number can flash on your screen, phones sorting into share-of-52.8B bins names the categories, then a broadcasting tower flooding the frame with a scaled phone-count contrasts 29.3B (2016) against 52.8B (2024) so the growth is counted, not just labeled.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'Why does every unknown number feel like a scam call now?'"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "trend: wireless-only adults 24.9% (2010) -> 73.2% (2022) -> 76% (2024)"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "robocall-phone-swarm-sort: phones sort into 4 bins by share of 52.8B robocalls -- 36% telemarketing, 22% scam"
+        },
+        {
+          "t": 23,
+          "event": "visual_swap",
+          "detail": "robocall-tower-flood: tower floods the frame with scaled phone counts, 29.3B (2016) vs 52.8B (2024)"
+        },
+        {
+          "t": 31,
+          "event": "payoff",
+          "detail": "closing: 'your phone still rings, most of the time it isn't for you'"
+        },
+        {
+          "t": 34,
+          "event": "cta",
+          "detail": "do-you-answer-unknown-numbers question"
         }
       ]
     }
