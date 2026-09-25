@@ -116,6 +116,35 @@ class ThePictureOfTheThingOpensTheBeat(unittest.TestCase):
         self.assertEqual(seq[0], "bubbles")
 
 
+class TheSameWordsAtTwoDatesAreAThenAndNow(unittest.TestCase):
+    """"February 2024" vs "February 2025" came back `duel` — two things on
+    a set of scales — because the date test only knew a bare year."""
+
+    def test_a_month_or_quarter_at_two_years_is_dated(self):
+        from data_learning import relationships as rel
+        self.assertTrue(rel._dated_pair(["February 2024", "February 2025"]))
+        self.assertTrue(rel._dated_pair(["Q3 2023", "Q3 2024"]))
+        self.assertTrue(rel._dated_pair(["2019", "2025"]))
+
+    def test_two_places_in_one_year_are_not(self):
+        from data_learning import relationships as rel
+        self.assertFalse(rel._dated_pair(["Brazil 2025", "Vietnam 2025"]))
+        self.assertFalse(rel._dated_pair(["September Estimate",
+                                          "Revised Estimate"]))
+        self.assertFalse(rel._dated_pair(["2013-2022 avg", "1983-1992 avg"]))
+
+
+class AfterThePictureOfTheThingNoGenericRestatement(unittest.TestCase):
+    def test_tiles_do_not_follow_the_copies(self):
+        ins = mk([("February 2024", 2.0), ("February 2025", 4.41)], "usd",
+                 topic=DOUBLE)
+        ins.kind = "bubbles"
+        seq = sr._depiction_sequence(ins, set(), 13.0)
+        self.assertEqual(seq[0], "copies_scene")
+        self.assertNotIn("nest_scene", seq)
+        self.assertNotIn("units_scene", seq)
+
+
 class NeitherIsAFieldOfIcons(unittest.TestCase):
     """Operator, 2026-09-22: a crowd of one thing is used very sparingly.
     The hole is ONE object; the copies are at most five."""

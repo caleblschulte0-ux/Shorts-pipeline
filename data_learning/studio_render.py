@@ -2378,6 +2378,14 @@ def _depiction_sequence(insight, used: set, dur: float,
     # said the thing, which is the whole philosophy inverted by a line of
     # variety code.
     machines = [c for c in _machines_for(insight) if c not in seq]
+    # After a picture of the thing, a GENERIC picture of the same ratio is a
+    # step down, not a second idea: coffee went cups -> "a generic
+    # tile-in-box doubling scene" (the judge, 2026-09-25). Tiles and icon
+    # grids restate a claim-led machine's number less well; anything else
+    # (the scales, now weighted with the subject) says it differently.
+    if _lead:
+        machines = [c for c in machines
+                    if c not in ("nest_scene", "units_scene")]
     fallback = [kind] if (_lead and not _grid) else []
     for c in list(_alt_candidates_for(insight)) + list(
             _ALT_DEPICTION.get(kind, ())):

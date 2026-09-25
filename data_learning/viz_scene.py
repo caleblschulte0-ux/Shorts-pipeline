@@ -6017,7 +6017,8 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
         # 2025 cup ... cross-fades through itself" (the judge, 2026-09-25) —
         # and a drop from above ran through the THEN cup. The row fills left
         # to right, so everything to a copy's right is still empty.
-        cx = int(slots[k] + (1.0 - settle(u)) * (bx1 - slots[k]))
+        # ...from just inside the frame's right edge, never beyond it
+        cx = int(slots[k] + (1.0 - settle(u)) * max(0, bx1 - s - slots[k]))
         cy = y_now
         frac = min(1.0, r - k)
         _fade = min(1.0, u * 3.0)
