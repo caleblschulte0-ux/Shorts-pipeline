@@ -1167,6 +1167,18 @@ RECAP_BAND_H = 1683 - 20 - RECAP_TOP   # ...to 20px above the foot band
 RECAP_TRIM = 0.175               # trimmed off the top AND the bottom
 
 
+#: How far into its build a FIGURE's closing recap starts (see the recap in
+#: the master). A chart replays from zero; a machine's end state is its claim.
+RECAP_FIGURE_FROM = 0.5
+
+
+def recap_replay_from(kind, full_by: float, span: float) -> float:
+    """Seconds into a span's own clip where its closing recap starts."""
+    if not kind or kind == "subject_scene" or _family(str(kind)) != "figure":
+        return 0.0
+    return max(0.0, RECAP_FIGURE_FROM * max(0.0, min(1.0, full_by)) * span)
+
+
 def recap_geometry(vw: int, vh: int) -> dict:
     """Where and how big a visual's CONTENT BAND is drawn under the closing.
 
@@ -3791,17 +3803,31 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # compresses the whole sequence into the closing window,
                     # so the bars sweep across bands that were dead.
                     _span = max(0.05, t1 - t0)
-                    _k = (t1 - _close0) / _span
                     # A SUBJECT SCENE is not replayed: its first frames are an
                     # empty chalkboard or a map with no red line yet, and the
                     # scene is alive to its last frame anyway (Data, steam,
                     # heat). It carries on in the recap panel, on its own clock.
+                    #
+                    # ...AND A MACHINE REPLAYS FROM HALFWAY. A chart redrawn
+                    # from nothing is still the chart; a set of scales
+                    # replayed from empty is a LEVEL BEAM under "it's just
+                    # Waymo" — "the scale beam goes level even though it is
+                    # 200,000 against 0" (Waymo, 2026-09-25). A figure's
+                    # final state IS its claim, so its recap starts with the
+                    # claim already showing and keeps arriving.
+                    _from = recap_replay_from(sp.get("kind"),
+                                              float(sp.get("full_by", 1.0)),
+                                              _span)
+                    _kk = (t1 - _close0) / max(0.05, _span - _from)
                     _pts = (f"setpts=PTS-STARTPTS+{t0:.3f}/TB"
                             if sp.get("kind") == "subject_scene" else
-                            f"setpts=(PTS-STARTPTS)*{_k:.5f}+{_close0:.3f}/TB")
+                            f"setpts=(PTS-STARTPTS)*{_kk:.5f}+{_close0:.3f}/TB")
+                    _trim = (f"trim=start={t0 + _from:.3f},"
+                             if _from > 0 and sp.get("kind") != "subject_scene"
+                             else "")
                     fc.append(f"[{lab}]split=2[{lab}a][{lab}b]")
                     fc.append(
-                        f"[{lab}b]crop={vw}:{_ch},"
+                        f"[{lab}b]{_trim}crop={vw}:{_ch},"
                         f"scale={_rw}:{_rh},"
                         f"{_pts}"
                         f"[{lab}d]")

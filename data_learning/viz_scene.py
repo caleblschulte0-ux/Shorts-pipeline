@@ -3725,21 +3725,35 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
     v = float(getattr(star, "value", 0) or 0)
     n, per = unit_plan(v, abs(v) / 12.0 or 1.0, cap=16)
+    # A COUNT IS COUNTED IN ONES. "'each block = 0.4' is a nonsensical unit
+    # for cities, and 10 lit blocks show 4 cities against a header of 5"
+    # (Waymo, 2026-09-25): unit_plan split 5 cities into twelfths. The same
+    # rule as every other pile (`is_count`).
+    if is_count([p.value for p in items], unit):
+        n, per = max(1, int(abs(v))), 1.0
     # THE THEN IS PART OF THE PICTURE. "The header reads '2023 48%', but
     # only one of 10 '5%' blocks lights, so the picture shows 5% under a 48%
     # label" (passport-ownership-surge, 2026-09-25). With a then and a now,
     # the blocks the THEN already had stay neutral and every block ADDED
     # since is lit — the growth is the lit part — and the header names the
     # then until the stack passes it.
-    then_p, then_n = None, 0
+    #
+    # ...EVEN WHEN THE THEN IS LESS THAN ONE BLOCK. Waymo's 10,000 against
+    # 200,000 rounded to 0 blocks of 20K, the then/now framing was dropped,
+    # and the stack lit one block of ten under a '200,000' header — "the
+    # header shows 200,000 from frame 1 but only 1 of 10 blocks (20K) is
+    # lit" (2026-09-25). The then is now a FRACTION of the stack: half a
+    # block, neutral, at its base; everything above it is the growth.
+    then_p, then_u = None, 0.0
     if len(items) >= 2:
         _tn = _then_now(insight) if len(items) == 2 else (items[0], items[-1])
         if _tn is not None and _tn[1] is star:
             then_p = _tn[0]
             tv = abs(float(getattr(then_p, "value", 0) or 0))
-            then_n = int(round(tv / per)) if per else 0
-            if not (0 < then_n < n):
-                then_p, then_n = None, 0
+            then_u = (tv / per) if per else 0.0
+            if not (0 < then_u < n):
+                then_p, then_u = None, 0.0
+    then_n = int(then_u)
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     top, bot = max(by0 + 210, 350), by1 - 120
@@ -3750,11 +3764,17 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     # had no change and the longest still run was 43 against a ceiling of 45 —
     # passing by one frame, which is not passing. Each block now fades over a
     # window that overlaps its neighbours', so something is always arriving.
-    e = settle(reveal)
+    # LINEAR, not settled. `settle` front-loads the drop, and on the cold
+    # open (which already starts a third built and bursts) the stack had
+    # landed by 1.7s and held for nine: "the stack never fills and holds
+    # unchanged from 1.7s to 10.6s" (Waymo). Blocks keep arriving across
+    # the beat and the header counts up with them.
+    e = max(0.0, min(1.0, reveal))
     fill_by, overlap = 0.90, 1.4
     slot = fill_by / max(1, n)
     ty = bot
     landed = bot                      # top of the blocks that have LANDED
+    landed_k = 0                      # ...and how many
     for k in range(n):
         a = max(0.0, min(1.0, (e - k * slot) / (slot * overlap)))
         if a <= 0.0:
@@ -3766,17 +3786,24 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         # like.
         rest = bot - (k + 1) * (bh + 6)
         by = int(rest - (1.0 - a) * (bh + 6) * 3.5)
+        _al = int(240 * min(1.0, a * 2.2))
         d.rounded_rectangle([cx - bw // 2, by, cx + bw // 2, by + bh],
                             radius=9,
                             fill=_rgba((color if k >= then_n else REST)
                                        if then_p is not None else
-                                       (color if k == n - 1 else REST),
-                                       int(240 * min(1.0, a * 2.2))),
+                                       (color if k == n - 1 else REST), _al),
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
+        _nf = then_u - k if then_p is not None else 0.0
+        if 0.0 < _nf < 1.0:
+            # the part of this block the THEN already had, from its bottom
+            d.rounded_rectangle([cx - bw // 2 + 3, int(by + bh * (1.0 - _nf)),
+                                 cx + bw // 2 - 3, by + bh - 3],
+                                radius=7, fill=_rgba(REST, _al))
         ty = min(ty, by) if k else by
         if a >= 1.0:
             landed = by
+            landed_k = k + 1
     host = scene_host("cheer", reveal, insight, "tower")
     if host is not None:
         mh = 190
@@ -3787,8 +3814,15 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         # him onto the stack, not through him.
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(cx + bw // 2 - mw * 0.6), int(landed - mh + 8)))
+    # the header counts up WITH the stack: the answer arrives, it is not
+    # printed on frame one ("the answer is printed before anything happens")
+    # ...one BLOCK at a time, so every number it passes through is a whole
+    # number of blocks (20K, 40K ...), not an interpolation ("77,778").
+    _shown = v if e >= fill_by else min(abs(v), landed_k * per)
+    if then_p is not None:
+        _shown = max(_shown, float(getattr(then_p, "value", 0) or 0))
     _s = (f"{getattr(star, 'label', '')}   "
-          f"{charts._ulabel(v, unit, group=True)}")
+          f"{charts._ulabel(_shown, unit, group=True)}")
     if then_p is not None:
         # both ends, true in every frame while the stack builds between them
         _tv = float(getattr(then_p, "value", 0) or 0)
