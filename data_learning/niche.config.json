@@ -20482,6 +20482,7 @@
      "role": "2 · WHERE IT GOES",
      "topic": "where plastic waste actually ends up",
      "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump.",
+     "viz": "share",
      "scene": {
       "mechanic": "plastic-fate-river",
       "concept": "one continuous stream of plastic waste forks into four proportionally-widthed channels, bottles flowing down each into a pile that fills to its share of the whole",
@@ -21480,6 +21481,7 @@
       "file": "us_measles_cases_by_year.json"
      },
      "insight_type": "trend",
+     "viz": "trend",
      "role": "3 · WHAT 2.5 POINTS COSTS",
      "topic": "US measles cases per year",
      "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000.",
@@ -22897,6 +22899,7 @@
      "role": "3 · CONSEQUENCE",
      "topic": "what happened after guidelines flipped",
      "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban.",
+     "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
       "concept": "a dense grid of red allergy-alert markers -- one guideline flip later, 43% of them drain off the bottom of the frame, the rest left wobbling in place",
@@ -22940,6 +22943,7 @@
      "role": "1 · SETUP",
      "topic": "the death of the landline",
      "say": "By 2024, 76% of US adults lived without a landline at all -- up from just 25% in 2010. Your phone number isn't tied to an address anymore. It's just... you.",
+     "viz": "trend",
      "scene": {
       "mechanic": "cord-fray-cellswarm",
       "concept": "a landline cord thins year by year as the wireless-only share climbs, cellphone icons swarming off the fraying point until the cord is nearly gone",
