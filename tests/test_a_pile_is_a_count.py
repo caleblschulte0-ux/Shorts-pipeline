@@ -100,3 +100,64 @@ class ABeatDoesNotRepeatAnotherBeatsFigure(unittest.TestCase):
             used.add(seq[1])
         # the unshown charts came BEFORE any repeat of a shown figure
         self.assertGreaterEqual(charts_seen, 2)
+
+
+class TheTowerTellsTheTruthWhileItBuilds(unittest.TestCase):
+    """Waymo, local render 2026-09-25 (score 44): "the header shows 200,000
+    from frame 1 but only 1 of 10 blocks (20K) is lit", "'each block = 0.4'
+    is a nonsensical unit for cities", "the stack never fills and holds
+    unchanged from 1.7s to 10.6s"."""
+
+    def _texts(self, ins, reveal):
+        drawn = []
+        img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 255))
+        d = ImageDraw.Draw(img)
+        real = d.text
+
+        def spy(xy, text, *a, **k):
+            drawn.append(str(text))
+            return real(xy, text, *a, **k)
+
+        d.text = spy
+        with mock.patch.object(vs, "scene_host", lambda *a, **k: None):
+            vs._MACHINE_DRAW["tower"](d, img, (vs.RX0, vs.RTOP, vs.RX1, vs.RBOT),
+                                      vs.drawable_insight(ins),
+                                      charts.HIGHLIGHT, reveal, ins.unit)
+        return drawn
+
+    def test_cities_are_counted_in_ones(self):
+        ins = mk([("Oct 2023", 1), ("Aug 2024", 3), ("Feb 2025", 5)], "cities")
+        texts = " | ".join(self._texts(ins, 1.0))
+        self.assertIn("each block  =  1", texts)
+        self.assertNotIn("0.4", texts)
+
+    def test_the_answer_arrives_it_is_not_printed_on_frame_one(self):
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count")
+        early = " | ".join(self._texts(ins, 0.3))
+        done = " | ".join(self._texts(ins, 1.0))
+        self.assertIn("Feb 2025   200,000", done)
+        self.assertNotIn("Feb 2025   200,000", early)
+        self.assertIn("10,000", early)          # the then is named throughout
+
+    def test_a_then_smaller_than_a_block_keeps_the_framing(self):
+        ins = mk([("Oct 2023", 10000), ("Aug 2024", 100000),
+                  ("Feb 2025", 200000)], "count")
+        texts = " | ".join(self._texts(ins, 1.0))
+        self.assertIn("→", texts)
+
+
+class TheRecapKeepsTheClaim(unittest.TestCase):
+    """"the scale beam goes level even though it is 200,000 against 0": the
+    closing recap replayed the scales from empty under the takeaway."""
+
+    def test_a_figure_replays_from_halfway_a_chart_from_zero(self):
+        from data_learning import studio_render as sr
+        self.assertGreater(sr.recap_replay_from("balance_scene", 1.0, 10.0), 0)
+        self.assertEqual(sr.recap_replay_from("bars", 1.0, 10.0), 0.0)
+        self.assertEqual(sr.recap_replay_from("subject_scene", 1.0, 10.0), 0.0)
+
+    def test_the_master_trims_the_recap_to_it(self):
+        src = (ROOT / "data_learning" / "studio_render.py").read_text()
+        self.assertIn("recap_replay_from(sp.get(\"kind\")", src)
+        self.assertIn("trim=start=", src)
