@@ -357,25 +357,45 @@ def _backfill_illustrations(pkg: dict) -> None:
     # Cap generations per package: each call can wait out a slow Pollinations
     # response, so bound the time cost (a render-time budget, not a money one).
     MAX_GEN = int(os.environ.get("MAX_GEN_IMAGES", "3"))
-    n = 0
+    n = icons_n = 0
     for s in pkg.get("shots") or []:
-        if n >= MAX_GEN:
-            break
         if s.get("image_url"):
             continue
         phrase = s.get("phrase") or ""
         # validate_package stores the phrase truncated to 50 chars.
         if phrase[:50] not in keyword_only:
             continue
-        dest = outdir / f"{_slug(phrase)}_{n}.png"
-        got = gemini_images.generate_image(_img_prompt(pkg, s), dest,
-                                           width=1080, height=1080)
+        got = None
+        if n < MAX_GEN:
+            dest = outdir / f"{_slug(phrase)}_{n}.png"
+            got = gemini_images.generate_image(_img_prompt(pkg, s), dest,
+                                               width=1080, height=1080)
+            if got:
+                n += 1
+        if not got:
+            # THE LAST RESORT THAT NEEDS NOTHING (funnel/icon_panel.py): the
+            # object the beat names, drawn from the icon library on the
+            # channel's ground — offline, instant, and dropped downstream by
+            # shot_relevance if it does not fit the line. On 2026-09-25
+            # ChatGPT, Pollinations and Gemini were all down at once and five
+            # stories shipped as bare gameplay, every one blocked.
+            try:
+                from funnel import icon_panel as _ip
+                got = _ip.icon_panel(
+                    [s.get("query"), phrase, s.get("pin_query")],
+                    outdir / f"{_slug(phrase)}_icon.png")
+            except Exception:  # noqa: BLE001
+                got = None
+            if got:
+                icons_n += 1
         if got:
             s["image_url"] = str(got)
-            n += 1
     if n:
         print(f"[backfill] pinned {n} generated image(s) for thin beats",
               flush=True)
+    if icons_n:
+        print(f"[backfill] pinned {icons_n} icon panel(s) where no generator "
+              f"answered", flush=True)
 
 
 def _sample_frames(video: Path, n: int = 3) -> list[str]:
@@ -558,7 +578,11 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
            # the package on disk, so a kept render can be published later
            # with THIS package's description/tags (scripts/claim_reviews.py)
            "package": pkg.get("_path") or result.get("package_path"),
+           # a reddit_story shot's line is its `phrase`: read without it,
+           # the judge was handed eight nulls and reported "the segments
+           # array is all null" as if the story had no pictures (2026-09-25)
            "segments": [s.get("say") or s.get("text") or s.get("caption")
+                        or s.get("phrase")
                         for s in (pkg.get("shots") or [])][:8]}
     if will_upload and os.environ.get("REVIEW_MAILBOX", "1") not in ("0", "off"):
         # THE JUDGE OF LAST RESORT (shared/review_mailbox.py): only ADDS.
