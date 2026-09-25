@@ -539,6 +539,42 @@ TTS_USED = {"engine": None, "why_not_elevenlabs": None}
 _ELEVEN_DEAD = None       # the reason ElevenLabs is off for the rest of the run
 
 
+class _eleven_slot:
+    """One of ELEVENLABS_MAX_CONCURRENT slots, shared by every render process
+    on this machine (a lock file per slot). The plan allows 3 at once; the
+    default of 2 leaves room for anything else using the key."""
+
+    def __enter__(self):
+        import fcntl
+        import os
+        import tempfile
+        import time as _t
+        n = max(1, int(os.environ.get("ELEVENLABS_MAX_CONCURRENT", "2") or 2))
+        d = Path(tempfile.gettempdir()) / "elevenlabs_slots"
+        d.mkdir(exist_ok=True)
+        deadline = _t.time() + 120
+        while True:
+            for k in range(n):
+                fh = open(d / f"slot{k}", "w")
+                try:
+                    fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                    self.fh = fh
+                    return self
+                except OSError:
+                    fh.close()
+            if _t.time() > deadline:           # never wedge a render on a lock
+                self.fh = None
+                return self
+            _t.sleep(0.25)
+
+    def __exit__(self, *exc):
+        if getattr(self, "fh", None) is not None:
+            import fcntl
+            fcntl.flock(self.fh, fcntl.LOCK_UN)
+            self.fh.close()
+        return False
+
+
 def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
     """Synthesize ONE line with ElevenLabs -> WAV (operator, 2026-09-24: "this
     should start trying to use ElevenLabs when it can"). Raw 24kHz PCM, the
@@ -567,22 +603,45 @@ def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
                                             "similarity_boost": 0.8}}).encode(),
         headers={"xi-api-key": key, "Content-Type": "application/json",
                  "Accept": "audio/pcm"}, method="POST")
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            pcm = r.read()
-    except urllib.error.HTTPError as e:
-        body = ""
+    # BUSY IS NOT DEAD. The plan allows 3 requests at once; the explainer's
+    # renders run side by side, and on 2026-09-25 two of four videos fell
+    # back to Speechify on "429 concurrent_limit_exceeded" — which the old
+    # code treated like a missing key, and switched ElevenLabs off for the
+    # rest of the run. A concurrency or rate 429 waits and tries again; only
+    # a quota, an auth failure, or running out of retries turns it off.
+    pcm = None
+    for attempt in range(6):
         try:
-            body = e.read().decode("utf-8", "replace")[:200]
-        except Exception:  # noqa: BLE001
-            pass
-        why = f"HTTP {e.code} {body}".strip()
-        if e.code in (401, 402, 403, 429) or "quota" in body.lower():
-            _ELEVEN_DEAD = why              # it will not fix itself this run
-        print(f"[tts] elevenlabs failed: {why}", file=sys.stderr)
-        return False
-    except Exception as e:  # noqa: BLE001
-        print(f"[tts] elevenlabs failed: {str(e)[:160]}", file=sys.stderr)
+            with _eleven_slot():
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    pcm = r.read()
+            break
+        except urllib.error.HTTPError as e:
+            body = ""
+            try:
+                body = e.read().decode("utf-8", "replace")[:200]
+            except Exception:  # noqa: BLE001
+                pass
+            why = f"HTTP {e.code} {body}".strip()
+            busy = e.code == 429 and "quota" not in body.lower() and (
+                "concurrent" in body.lower() or "rate" in body.lower()
+                or "too many" in body.lower())
+            if busy and attempt < 5:
+                import random
+                import time as _t
+                wait = min(30.0, 2.0 * 2 ** attempt) + random.uniform(0, 1.5)
+                print(f"[tts] elevenlabs busy (429), retrying in {wait:.1f}s",
+                      file=sys.stderr)
+                _t.sleep(wait)
+                continue
+            if e.code in (401, 402, 403, 429) or "quota" in body.lower():
+                _ELEVEN_DEAD = why          # it will not fix itself this run
+            print(f"[tts] elevenlabs failed: {why}", file=sys.stderr)
+            return False
+        except Exception as e:  # noqa: BLE001
+            print(f"[tts] elevenlabs failed: {str(e)[:160]}", file=sys.stderr)
+            return False
+    if pcm is None:
         return False
     if len(pcm) < 2000:
         print("[tts] elevenlabs returned no audio", file=sys.stderr)

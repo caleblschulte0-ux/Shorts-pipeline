@@ -73,6 +73,44 @@ class ElevenLabsWav(unittest.TestCase):
         self.assertIn("HTTP 401", R._ELEVEN_DEAD)
 
 
+class BusyIsNotDead(unittest.TestCase):
+    """2026-09-25: two of four videos fell back to Speechify on '429
+    concurrent_limit_exceeded' — the plan allows 3 requests at once and the
+    renders run side by side. A busy key waits and tries again."""
+
+    def setUp(self):
+        R._ELEVEN_DEAD = None
+        self.tmp = Path(tempfile.mkdtemp())
+
+    def _busy(self, req, timeout=0):
+        raise urllib.error.HTTPError(
+            req.full_url, 429, "busy", {},
+            io.BytesIO(b'{"detail":{"type":"rate_limit_error",'
+                       b'"code":"concurrent_limit_exceeded"}}'))
+
+    def test_a_busy_key_is_retried_and_then_used(self):
+        calls = {"n": 0}
+
+        def flaky(req, timeout=0):
+            calls["n"] += 1
+            if calls["n"] < 3:
+                self._busy(req)
+            return _Resp(b"\x01\x00" * 24000)
+        with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "k"}), \
+                mock.patch("urllib.request.urlopen", flaky), \
+                mock.patch("time.sleep", lambda s: None):
+            self.assertTrue(R._elevenlabs_wav("hi", self.tmp / "a.wav"))
+        self.assertEqual(calls["n"], 3)
+        self.assertFalse(R._ELEVEN_DEAD)
+
+    def test_a_key_that_stays_busy_gives_up_in_the_end(self):
+        with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "k"}), \
+                mock.patch("urllib.request.urlopen", self._busy), \
+                mock.patch("time.sleep", lambda s: None):
+            self.assertFalse(R._elevenlabs_wav("hi", self.tmp / "a.wav"))
+        self.assertIn("HTTP 429", R._ELEVEN_DEAD)
+
+
 class TheChainAndTheRecord(unittest.TestCase):
     def test_elevenlabs_is_tried_before_speechify_and_kokoro(self):
         import inspect

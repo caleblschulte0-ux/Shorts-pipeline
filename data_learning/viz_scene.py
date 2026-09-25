@@ -3691,6 +3691,21 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
     v = float(getattr(star, "value", 0) or 0)
     n, per = unit_plan(v, abs(v) / 12.0 or 1.0, cap=16)
+    # THE THEN IS PART OF THE PICTURE. "The header reads '2023 48%', but
+    # only one of 10 '5%' blocks lights, so the picture shows 5% under a 48%
+    # label" (passport-ownership-surge, 2026-09-25). With a then and a now,
+    # the blocks the THEN already had stay neutral and every block ADDED
+    # since is lit — the growth is the lit part — and the header names the
+    # then until the stack passes it.
+    then_p, then_n = None, 0
+    if len(items) >= 2:
+        _tn = _then_now(insight) if len(items) == 2 else (items[0], items[-1])
+        if _tn is not None and _tn[1] is star:
+            then_p = _tn[0]
+            tv = abs(float(getattr(then_p, "value", 0) or 0))
+            then_n = int(round(tv / per)) if per else 0
+            if not (0 < then_n < n):
+                then_p, then_n = None, 0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     top, bot = max(by0 + 210, 350), by1 - 120
@@ -3719,7 +3734,9 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         by = int(rest - (1.0 - a) * (bh + 6) * 3.5)
         d.rounded_rectangle([cx - bw // 2, by, cx + bw // 2, by + bh],
                             radius=9,
-                            fill=_rgba(color if k == n - 1 else REST,
+                            fill=_rgba((color if k >= then_n else REST)
+                                       if then_p is not None else
+                                       (color if k == n - 1 else REST),
                                        int(240 * min(1.0, a * 2.2))),
                             outline=_rgba(charts.CARD,
                                           int(255 * min(1.0, a * 2.2))), width=3)
@@ -3738,6 +3755,11 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
                                (int(cx + bw // 2 - mw * 0.6), int(landed - mh + 8)))
     _s = (f"{getattr(star, 'label', '')}   "
           f"{charts._ulabel(v, unit, group=True)}")
+    if then_p is not None:
+        # both ends, true in every frame while the stack builds between them
+        _tv = float(getattr(then_p, "value", 0) or 0)
+        _s = (f"{getattr(then_p, 'label', '')} "
+              f"{charts._ulabel(_tv, unit, group=True)}  →  " + _s)
     _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
     d.text((cx, by0 + 58), _s,
            font=_f, fill=_rgba(color, 255), anchor="mm")

@@ -95,6 +95,8 @@ MIN_PEAK = 50.0            # post-normalization; catches 0-10 index data
 # (`run_trending_daily._backfill`). Calibrated on four samples: revisit as
 # more accumulate.
 MIN_SWING = 5.0
+#: How long a race that passed only on its crossover may run (see `render`).
+CROSSOVER_MAX_S = 7.0
 CROSSOVER_SWING = 1.6
 SWING_CAP = 999.0        # a series touching 0 is an infinite ratio
 
@@ -575,6 +577,27 @@ def _interp(years, values, x):
     return values[-1]
 
 
+def race_duration(spec: dict) -> float:
+    """How long the race runs, in seconds.
+
+    A RACE THAT ONLY PASSED ON ITS CROSSOVER RUNS SHORT. The lenient bar (a
+    lead that changes hands, CROSSOVER_SWING) lets in lines that barely
+    move, and spread over 13 seconds they move under a pixel a frame at the
+    gate's 192px: all three graph_races of 2026-09-25 ("chicken passed
+    beef", "homeschool passed Catholic school", "C-sections passed vaginal
+    births") were blocked at 7.9-10.5 effective fps. Measured on those same
+    three specs at CROSSOVER_MAX_S: 20.2, 15.3 and 14.0 fps. A crossover is
+    one moment — a short story, told fast.
+    """
+    duration = float(spec.get("duration") or 12.0)
+    try:
+        if assess(spec).get("swing", MIN_SWING) < MIN_SWING:
+            duration = min(duration, CROSSOVER_MAX_S)
+    except Exception:  # noqa: BLE001 — an unassessable spec keeps its pace
+        pass
+    return duration
+
+
 def render(spec: dict, out: str | Path, *,
            size: tuple[int, int] = (1080, 1920), fps: int = FPS) -> Path:
     """Render the race to a SILENT h264 mp4. Raises on failure."""
@@ -590,7 +613,7 @@ def render(spec: dict, out: str | Path, *,
     W, H = int(size[0]), int(size[1])
     # biggest truthful numbers on screen: 11.5 "(millions)" -> 11.5M
     spec = normalize(spec)
-    duration = float(spec.get("duration") or 12.0)
+    duration = race_duration(spec)
     title = spec.get("title", "")
     y_label = spec.get("y_label", "")
     source = spec.get("source", "")

@@ -390,3 +390,26 @@ class TestTheOpeningIsNotAnEmptyFrame(unittest.TestCase):
         got = cr.assess(v)
         self.assertIn("open_area", got)
         self.assertIn("travel", got)
+
+
+class ACrossoverRaceRunsShort(unittest.TestCase):
+    """All three graph_races of 2026-09-25 were crossovers ('X passed Y')
+    that passed on the lenient swing and were blocked at 7.9-10.5 effective
+    fps over 13 seconds. Measured on the same specs at 7s: 14-20 fps."""
+
+    def _spec(self, a, b):
+        return {"title": "t", "y_label": "lbs", "duration": 13,
+                "years": [1970, 1980, 1990, 2000, 2010, 2020, 2023],
+                "series": [{"name": "Beef", "values": a},
+                           {"name": "Chicken", "values": b}]}
+
+    def test_a_crossover_on_a_small_swing_is_capped(self):
+        from engines import chart_race as C
+        s = self._spec([84, 72, 64, 64, 57, 55, 58], [27, 32, 42, 54, 58, 65, 68])
+        self.assertEqual(C.race_duration(C.normalize(s)), C.CROSSOVER_MAX_S)
+
+    def test_a_big_mover_keeps_its_authored_length(self):
+        from engines import chart_race as C
+        s = self._spec([80, 70, 60, 50, 40, 30, 20],
+                       [5, 20, 60, 150, 300, 600, 900])
+        self.assertEqual(C.race_duration(C.normalize(s)), 13.0)
