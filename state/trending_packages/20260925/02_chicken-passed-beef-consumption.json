@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "chicken-passed-beef-consumption",
+  "title": "Chicken Quietly Passed Beef In America",
+  "hook": "Chicken Beat Beef",
+  "y_label": "US per-capita meat availability (lbs)",
+  "duration": 13,
+  "source": "US per-capita meat availability (boneless/retail-weight basis), USDA Economic Research Service Charts of Note and Food Availability data series: chicken's per-capita availability first passed beef's in 2010 (about 58 lbs vs 56.7 lbs) and has stayed higher every year since, while beef fell from roughly 84 lbs per person in 1970 as chicken rose from about 27 lbs over the same period.",
+  "years": [1970, 1980, 1990, 2000, 2010, 2020, 2023],
+  "series": [
+    {
+      "name": "Beef",
+      "color": "#d32f2f",
+      "values": [84, 72, 64, 64, 57, 55, 58]
+    },
+    {
+      "name": "Chicken",
+      "color": "#ffb300",
+      "values": [27, 32, 42, 54, 58, 65, 68]
+    }
+  ],
+  "hashtags": [
+    "chicken",
+    "beef",
+    "meat",
+    "food",
+    "usda",
+    "nutrition",
+    "agriculture",
+    "diet",
+    "protein",
+    "foodindustry",
+    "farming",
+    "groceries",
+    "poultry"
+  ],
+  "music_vibe": "dark"
+}
