@@ -3,14 +3,14 @@
     "topic": "Chicken Quietly Passed Beef In America",
     "title": "Chicken Quietly Passed Beef In America",
     "format": "graph_race",
-    "publish_at": "2026-09-25T20:30:00Z",
+    "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean two-line race that clearly shows chicken overtaking beef. The tip labels collide at the crossover, and the hook opens on a static title box over a half-empty chart.",
-    "elapsed_seconds": 75.6,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race whose crossover is unreadable because the labels collide, and the hook card gives the ending away while hiding the chart for the first two seconds.",
+    "elapsed_seconds": 60.2,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-191655_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-202745_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,44 +28,10 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean two-line race that clearly shows chicken overtaking beef. The tip labels collide at the crossover, and the hook opens on a static title box over a half-empty chart.",
-      "score": 78
+      "reason": "showrunner BLOCK: A clean, honest two-line race whose crossover is unreadable because the labels collide, and the hook card gives the ending away while hiding the chart for the first two seconds.",
+      "score": 70
     },
     "blocked": true
-  },
-  {
-    "topic": "Homeschooling Just Passed Catholic Schools",
-    "title": "Homeschooling Just Passed Catholic Schools",
-    "format": "graph_race",
-    "publish_at": "2026-09-25T20:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/C2A7p-dZemQ",
-    "error": null,
-    "elapsed_seconds": 78.7,
-    "package_path": "state/trending_packages/20260925/03_homeschool-passed-catholic-school.json",
-    "source": "brain",
-    "video_path": "output/daily_20260925-191811_homeschooling_just_passed_catholic_schoo.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
   },
   {
     "topic": "He Had A Master Key. I Had An AirTag.",
@@ -74,14 +40,14 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 Frame 2 is missing the expected caption in the bottom gameplay section, which was specified as 'gameplay with captions'.",
-    "elapsed_seconds": 344.0,
+    "error": "showrunner_block: showrunner BLOCK: About 30 seconds of the middle is dark gameplay with no story illustration, so the AirTag chase is never shown, only captioned.",
+    "elapsed_seconds": 390.5,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-191933_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-202957_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.867,
+      "duration": 54.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -92,14 +58,19 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.5
+      "loudness_lufs": -24.4
     },
     "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "Frame 2 is missing the expected caption in the bottom gameplay section, which was specified as 'gameplay with captions'."
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
-    "quarantined": true
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: About 30 seconds of the middle is dark gameplay with no story illustration, so the AirTag chase is never shown, only captioned.",
+      "score": 57
+    },
+    "blocked": true
   },
   {
     "topic": "I Traced The Robocalls. The FTC Did The Rest.",
@@ -108,11 +79,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown: a blank placeholder phone is used twice, the stock photos are generic, and most mid-video frames have no captions.",
-    "elapsed_seconds": 504.5,
+    "error": "showrunner_block: showrunner BLOCK: The story beats are clear, but the illustrations are generic emoji-style icons (a blank phone, a chair, a cash stack) that demonstrate nothing, one beat has no illustration at all, and the payoff is a static cash icon that holds unchanged.",
+    "elapsed_seconds": 577.8,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-192557_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-203629_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 53.167,
@@ -135,25 +106,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are never shown: a blank placeholder phone is used twice, the stock photos are generic, and most mid-video frames have no captions.",
-      "score": 53
+      "reason": "showrunner BLOCK: The story beats are clear, but the illustrations are generic emoji-style icons (a blank phone, a chair, a cash stack) that demonstrate nothing, one beat has no illustration at all, and the payoff is a static cash icon that holds unchanged.",
+      "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "marruecos - gab\u00f3n",
+    "topic": "google",
     "angle": null,
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK:",
-    "elapsed_seconds": 475.9,
-    "title": "My Manager Made Me Give Away Their Table",
-    "package_path": "state/trending_packages/20260925-193659_auto_marruecos___gab\u00f3n.json",
-    "video_path": "output/daily_20260925-193659_marruecos___gab\u00f3n.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The Reddit-story narrative works, but its illustrations are generic emoji, including an irrelevant microscope at the climax, and there is a visible seam line and a ghosted title card.",
+    "elapsed_seconds": 463.0,
+    "title": "My Boss's Budget Cut Killed His Own Demo",
+    "package_path": "state/trending_packages/20260925-204805_auto_google.json",
+    "video_path": "output/daily_20260925-204805_google.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.533,
+      "duration": 46.233,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -164,7 +135,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.2
+      "loudness_lufs": -24.6
     },
     "qa": {
       "ok": true,
@@ -173,26 +144,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK:",
-      "score": 49
+      "reason": "showrunner BLOCK: The Reddit-story narrative works, but its illustrations are generic emoji, including an irrelevant microscope at the climax, and there is a visible seam line and a ghosted title card.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "rotten tomatoes",
+    "topic": "mbappe",
     "angle": null,
     "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The captions and gameplay are clean, but the story illustrations are flat placeholder icons (a blank phone twice, a music note) that show none of the refund chaos.",
-    "elapsed_seconds": 618.3,
-    "title": "My Manager's No-Questions Refund Rule Backfired Instantly",
-    "package_path": "state/trending_packages/20260925-194452_auto_rotten_tomatoes.json",
-    "video_path": "output/daily_20260925-194452_rotten_tomatoes.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a plain post card over gameplay with one generic emoji reused across beats. None of the cause and effect is shown, and it ends on the word 'AFTER.'",
+    "elapsed_seconds": 490.2,
+    "title": "I Followed The Rule And Shut Down The Shop",
+    "package_path": "state/trending_packages/20260925-205559_auto_mbappe.json",
+    "video_path": "output/daily_20260925-205559_mbappe.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 42.3,
+      "duration": 49.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -203,7 +174,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -21.6
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -212,26 +183,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The captions and gameplay are clean, but the story illustrations are flat placeholder icons (a blank phone twice, a music note) that show none of the refund chaos.",
-      "score": 57
+      "reason": "showrunner BLOCK: This is a plain post card over gameplay with one generic emoji reused across beats. None of the cause and effect is shown, and it ends on the word 'AFTER.'",
+      "score": 53
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "macklin celebrini",
+    "topic": "brendan beck",
     "angle": null,
     "publish_at": "2026-09-26T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown. After one generic emoji, the body is 40 seconds of full-screen parkour under captions, so the malicious-compliance payoff lands only in words.",
-    "elapsed_seconds": 428.1,
-    "title": "I Became Youngest Floor Lead. He Got Rules.",
-    "package_path": "state/trending_packages/20260925-195504_auto_macklin_celebrini.json",
-    "video_path": "output/daily_20260925-195504_macklin_celebrini.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The illustrations misread the story (a computer monitor for restaurant 'servers', a garbled AI board) and vanish for most of it, so the malicious-compliance payoff is never shown \u2014 only Minecraft plus captions.",
+    "elapsed_seconds": 407.6,
+    "title": "She Rewrote My Schedule So I Followed It Exactly",
+    "package_path": "state/trending_packages/20260925-210355_auto_brendan_beck.json",
+    "video_path": "output/daily_20260925-210355_brendan_beck.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.2,
+      "duration": 46.833,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -242,7 +213,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -24.6
     },
     "qa": {
       "ok": true,
@@ -251,26 +222,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are never shown. After one generic emoji, the body is 40 seconds of full-screen parkour under captions, so the malicious-compliance payoff lands only in words.",
-      "score": 57
+      "reason": "showrunner BLOCK: The illustrations misread the story (a computer monitor for restaurant 'servers', a garbled AI board) and vanish for most of it, so the malicious-compliance payoff is never shown \u2014 only Minecraft plus captions.",
+      "score": 53
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "africa cup of nations qualification",
+    "topic": "france football",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A readable Reddit story with thin, generic illustration: half the beats are bare gameplay and the payoff is a cash emoji instead of the bill reveal.",
-    "elapsed_seconds": 557.1,
-    "title": "I Gave Him Every Free Drink He Wanted",
-    "package_path": "state/trending_packages/20260925-200244_auto_africa_cup_of_nations_qualification.json",
-    "video_path": "output/daily_20260925-200244_africa_cup_of_nations_qualification.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Only one of 8 story beats is illustrated; the rest is bare parkour gameplay with captions, so nothing on screen shows the bar confrontation.",
+    "elapsed_seconds": 472.2,
+    "title": "The Entitled Regular I Banned Before Kickoff",
+    "package_path": "state/trending_packages/20260925-211050_auto_france_football.json",
+    "video_path": "output/daily_20260925-211050_france_football.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.133,
+      "duration": 51.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -281,7 +252,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.8
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
@@ -290,8 +261,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A readable Reddit story with thin, generic illustration: half the beats are bare gameplay and the payoff is a cash emoji instead of the bill reveal.",
-      "score": 66
+      "reason": "showrunner BLOCK: Only one of 8 story beats is illustrated; the rest is bare parkour gameplay with captions, so nothing on screen shows the bar confrontation.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
