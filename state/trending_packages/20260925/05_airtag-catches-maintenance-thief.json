@@ -21,21 +21,82 @@
   ],
   "script": "For three weeks straight, packages kept vanishing from our apartment lobby the same afternoon they arrived, always right after the delivery notification ping. I ordered a completely unremarkable box, just packing peanuts and a hidden AirTag zip-tied to the bottom, and left it on the counter with everyone else's mail. It disappeared by four o'clock, same as always. The tracker sat still for two hours in a unit on the third floor, then moved to the building's own maintenance closet at six, exactly when the night shift clocked in. I forwarded the location history straight to the property manager instead of confronting anyone myself. Turned out the guy with a master key to every door in the building had been running this for months, selling whatever looked expensive on a resale app under a fake name. He lost the job, the key, and is now paying back eleven other tenants through a small claims judgment nobody expected to actually collect.",
   "shots": [
-    {"phrase": "packages kept vanishing from our apartment lobby", "query": "apartment lobby packages"},
-    {"phrase": "a hidden AirTag zip-tied to the bottom", "query": "airtag tracker device"},
-    {"phrase": "The tracker sat still for two hours in a unit on the third floor", "query": "apartment building hallway"},
-    {"phrase": "the building's own maintenance closet", "query": "maintenance closet tools"},
-    {"phrase": "forwarded the location history straight to the property manager", "query": "phone screen map app"},
-    {"phrase": "a master key to every door in the building", "query": "master key keyring"},
-    {"phrase": "selling whatever looked expensive on a resale app", "query": "phone resale app listing"},
-    {"phrase": "paying back eleven other tenants through a small claims judgment", "query": "small claims courtroom"}
+    {
+      "phrase": "packages kept vanishing from our apartment lobby",
+      "query": "apartment lobby packages"
+    },
+    {
+      "phrase": "a hidden AirTag zip-tied to the bottom",
+      "query": "airtag tracker device",
+      "pin_query": "AirTag",
+      "pin_context": "Apple AirTag Bluetooth tracker product",
+      "news_query": "AirTag",
+      "news_angle": "A hidden Apple AirTag was zip\u2011tied to the bottom of a package to track the thief inside the apartment building.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/svg+xml",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "Apple AirTag Bluetooth tracker product",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "AirTag",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Apple_AirTag.svg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-25T09:57:33Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "The tracker sat still for two hours in a unit on the third floor",
+      "query": "apartment building hallway"
+    },
+    {
+      "phrase": "the building's own maintenance closet",
+      "query": "maintenance closet tools"
+    },
+    {
+      "phrase": "forwarded the location history straight to the property manager",
+      "query": "phone screen map app"
+    },
+    {
+      "phrase": "a master key to every door in the building",
+      "query": "master key keyring"
+    },
+    {
+      "phrase": "selling whatever looked expensive on a resale app",
+      "query": "phone resale app listing"
+    },
+    {
+      "phrase": "paying back eleven other tenants through a small claims judgment",
+      "query": "small claims courtroom"
+    }
   ],
   "punches": [
-    {"phrase": "packages kept vanishing", "text": "PACKAGES VANISHING", "color": "#ffaa30"},
-    {"phrase": "a hidden AirTag zip-tied to the bottom", "text": "TRACKER PLANTED", "color": "#ffaa30"},
-    {"phrase": "the building's own maintenance closet", "text": "IT WAS STAFF", "color": "#ff3030"},
-    {"phrase": "He lost the job, the key", "text": "LOST THE JOB", "color": "#ff3030"},
-    {"phrase": "small claims judgment", "text": "PAYING IT BACK", "color": "#50ff80"}
+    {
+      "phrase": "packages kept vanishing",
+      "text": "PACKAGES VANISHING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a hidden AirTag zip-tied to the bottom",
+      "text": "TRACKER PLANTED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "the building's own maintenance closet",
+      "text": "IT WAS STAFF",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He lost the job, the key",
+      "text": "LOST THE JOB",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "small claims judgment",
+      "text": "PAYING IT BACK",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }

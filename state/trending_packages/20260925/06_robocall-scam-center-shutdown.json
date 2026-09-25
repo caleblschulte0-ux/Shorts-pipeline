@@ -21,21 +21,82 @@
   ],
   "script": "My car's extended warranty had already expired for two years, which didn't stop the same recorded voice from calling four times a day claiming it was about to lapse. I work fraud analysis for a telecom carrier, so instead of hanging up I let the call route through, then pulled the originating trunk numbers from our own network logs during my lunch break. The calls all traced back to one leased call center running under six different fake business names, all sharing a single billing address in a strip mall three states away. I packaged the routing data, the recordings, and the shared address into one report and handed it to our compliance team, who forwarded it straight to the FTC the same afternoon. Eight weeks later the center's phone lines were disconnected mid-shift, the operators mid-call when it happened, and the company behind it is now facing a multimillion-dollar settlement it will never fully pay off.",
   "shots": [
-    {"phrase": "the same recorded voice from calling four times a day", "query": "robocall phone screen"},
-    {"phrase": "I work fraud analysis for a telecom carrier", "query": "call center analyst desk"},
-    {"phrase": "pulled the originating trunk numbers from our own network logs", "query": "server room data center"},
-    {"phrase": "one leased call center running under six different fake business names", "query": "empty office call center"},
-    {"phrase": "a single billing address in a strip mall three states away", "query": "strip mall storefront"},
-    {"phrase": "forwarded it straight to the FTC the same afternoon", "query": "government building exterior"},
-    {"phrase": "the center's phone lines were disconnected mid-shift", "query": "unplugged telephone cable"},
-    {"phrase": "a multimillion-dollar settlement it will never fully pay off", "query": "courtroom gavel"}
+    {
+      "phrase": "the same recorded voice from calling four times a day",
+      "query": "robocall phone screen"
+    },
+    {
+      "phrase": "I work fraud analysis for a telecom carrier",
+      "query": "call center analyst desk"
+    },
+    {
+      "phrase": "pulled the originating trunk numbers from our own network logs",
+      "query": "server room data center"
+    },
+    {
+      "phrase": "one leased call center running under six different fake business names",
+      "query": "empty office call center"
+    },
+    {
+      "phrase": "a single billing address in a strip mall three states away",
+      "query": "strip mall storefront"
+    },
+    {
+      "phrase": "forwarded it straight to the FTC the same afternoon",
+      "query": "government building exterior",
+      "pin_query": "FTC",
+      "pin_context": "Federal Trade Commission Washington DC headquarters",
+      "news_query": "FTC",
+      "news_angle": "The FTC received the compliance report and moved to shut down the fraudulent call center.",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Federal_Trade_Commission_Building_3.jpg/1280px-Federal_Trade_Commission_Building_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "Federal Trade Commission Washington DC headquarters",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "FTC",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Federal_Trade_Commission_Building_3.jpg/1280px-Federal_Trade_Commission_Building_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "verified_at": "2026-09-25T09:57:46Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "the center's phone lines were disconnected mid-shift",
+      "query": "unplugged telephone cable"
+    },
+    {
+      "phrase": "a multimillion-dollar settlement it will never fully pay off",
+      "query": "courtroom gavel"
+    }
   ],
   "punches": [
-    {"phrase": "calling four times a day", "text": "4 CALLS A DAY", "color": "#ffaa30"},
-    {"phrase": "six different fake business names", "text": "6 FAKE NAMES", "color": "#ffaa30"},
-    {"phrase": "forwarded it straight to the FTC", "text": "FTC NOTIFIED", "color": "#50ff80"},
-    {"phrase": "phone lines were disconnected mid-shift", "text": "SHUT DOWN", "color": "#ff3030"},
-    {"phrase": "multimillion-dollar settlement", "text": "MILLIONS OWED", "color": "#50ff80"}
+    {
+      "phrase": "calling four times a day",
+      "text": "4 CALLS A DAY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "six different fake business names",
+      "text": "6 FAKE NAMES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "forwarded it straight to the FTC",
+      "text": "FTC NOTIFIED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "phone lines were disconnected mid-shift",
+      "text": "SHUT DOWN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "multimillion-dollar settlement",
+      "text": "MILLIONS OWED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "cinematic"
 }

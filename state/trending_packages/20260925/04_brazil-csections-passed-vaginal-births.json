@@ -6,17 +6,41 @@
   "y_label": "Share of births in Brazil (%)",
   "duration": 13,
   "source": "Brazil's cesarean-section share of live births, compiled from peer-reviewed trend analyses (Medicine journal, 'Cesarean section rates in Brazil') and Brazilian Ministry of Health/DATASUS birth records: the national C-section rate rose from about 15% in 1970 to roughly 38% by 2001 and 48.4% by 2008, then crossed 50% in the early 2010s to reach 55.4% in 2016 and 57.2% in 2020 -- one of the highest national rates in the world, and now the more common way Brazilian babies are born.",
-  "years": [1970, 1980, 1990, 2001, 2008, 2016, 2020],
+  "years": [
+    1970,
+    1980,
+    1990,
+    2001,
+    2008,
+    2016,
+    2020
+  ],
   "series": [
     {
       "name": "C-Sections",
       "color": "#e53935",
-      "values": [15, 31, 34, 38, 48.4, 55.4, 57.2]
+      "values": [
+        15,
+        31,
+        34,
+        38,
+        48.4,
+        55.4,
+        57.2
+      ]
     },
     {
       "name": "Vaginal Births",
       "color": "#00897b",
-      "values": [85, 69, 66, 62, 51.6, 44.6, 42.8]
+      "values": [
+        85,
+        69,
+        66,
+        62,
+        51.6,
+        44.6,
+        42.8
+      ]
     }
   ],
   "hashtags": [
