@@ -1698,7 +1698,7 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     for _p, _v in ((items[0], a), (items[-1], b)):
         _s = f"{getattr(_p, 'label', '')}  {charts._ulabel(_v, unit)}"
         _spans.append((_s, fit_text(d, _s, 40, int(bx1 - bx0 - 60), 26)[0]))
-    _ws = [d.textlength(_s, font=_ff) for _s, _ff in _spans]
+    _ws = [text_w(d, _s, _ff) for _s, _ff in _spans]
     _cs = [min(bx1 - 30 - _w / 2, max(bx0 + 30 + _w / 2, _px))
            for _w, _px in zip(_ws, (pa, pb))]
     _up = abs(_cs[0] - _cs[1]) < sum(_ws) / 2 + 24
@@ -2285,7 +2285,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
              for p, v in zip(items, vals)]
     lab_f = _labs[0][0] if _labs else _pil_font(32)
     labs = [t for _f, t in _labs]
-    lab_w = max((d.textlength(t, font=f) for f, t in _labs), default=240)
+    lab_w = max((text_w(d, t, f) for f, t in _labs), default=240)
     # 300px reserved on the left for the mascot and the "here" callout.
     full = min((bx1 - bx0) * 0.36, (bx1 - bx0) - lab_w - 340)
     cx = int(bx0 + 300 + full / 2)
@@ -3818,7 +3818,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
                       min_size=22)
              for p, v in zip(items, vals)]
     lab_f = _labs[0][0] if _labs else _pil_font(34)
-    lab_w = max((d.textlength(t, font=f) for f, t in _labs), default=200)
+    lab_w = max((text_w(d, t, f) for f, t in _labs), default=200)
     full_w = min((bx1 - bx0) * 0.44, (bx1 - bx0) - lab_w - 150)
     last_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
@@ -4495,6 +4495,18 @@ def _wrap_to(d, text: str, max_w: int, hi: int, lo: int):
         if len(lines) <= 3 and all(d.textlength(x, font=f) <= max_w for x in lines):
             return f, "\n".join(lines)
     return None
+
+
+def text_w(d, text: str, font) -> float:
+    """The width of `text` as drawn: its WIDEST LINE.
+
+    `fit_text` wraps a long label onto two or three lines, and PIL's
+    `textlength` refuses multiline text outright — so the bottleneck and the
+    funnel, measuring their fitted labels to lay out a column, died on every
+    long stage name ("Greater Los Angeles metro") and fell back to a chart.
+    """
+    return max((d.textlength(ln, font=font) for ln in str(text).split("\n")),
+               default=0.0)
 
 
 def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26,

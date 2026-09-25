@@ -118,6 +118,36 @@ class NoMachineEverRaises(unittest.TestCase):
         self.assertEqual(fails[:12], [], f"{len(fails)} machine crashes")
 
 
+class AwkwardDataDoesNotCrashAMachine(unittest.TestCase):
+    """The audit's own STRESS shapes — values too close, values too huge,
+    labels too long — through every machine's draw function directly.
+
+    `_guarded` turns a crash into a chart, so a machine that dies on every
+    long label looks like a machine that chose not to draw. The bottleneck
+    and the funnel did exactly that on 2026-09-25: `fit_text` wrapped their
+    stage names onto two lines and `textlength` refuses multiline text.
+    """
+
+    def test_every_machine_survives_every_stress_shape(self):
+        from PIL import Image, ImageDraw
+        from data_learning import a_audit as A
+        from data_learning import viz_scene as vs
+        crashed = []
+        for name, _b, ins in A.cases():
+            fn = vs._MACHINE_DRAW.get(name)
+            if fn is None:
+                continue
+            for how in A.STRESS:
+                i = A.stressed(ins, how)
+                img = Image.new("RGBA", (1080, 1920))
+                try:
+                    fn(ImageDraw.Draw(img), img, vs.REGIONS["full"], i,
+                       "#ffcc00", 0.8, i.unit)
+                except Exception as e:  # noqa: BLE001
+                    crashed.append(f"{name}/{how}: {e}")
+        self.assertEqual(crashed, [])
+
+
 class TheChokePointsHold(unittest.TestCase):
     def test_a_NaN_is_stripped_and_the_rest_kept(self):
         out = vs.drawable_insight(CASES["a NaN"])
