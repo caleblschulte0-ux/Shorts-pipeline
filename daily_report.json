@@ -1,4 +1,230 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "Chicken Quietly Passed Beef In America",
+    "title": "Chicken Quietly Passed Beef In America",
+    "format": "graph_race",
+    "publish_at": "2026-09-25T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The line race tells the story clearly, but the key moment where chicken passes beef is a pile of overlapping labels, and the ending is a plain '#1 Chicken' caption.",
+    "elapsed_seconds": 74.3,
+    "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
+    "source": "brain",
+    "video_path": "output/daily_20260925-153323_chicken_quietly_passed_beef_in_america.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 8.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The line race tells the story clearly, but the key moment where chicken passes beef is a pile of overlapping labels, and the ending is a plain '#1 Chicken' caption.",
+      "score": 79
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Homeschooling Just Passed Catholic Schools",
+    "title": "Homeschooling Just Passed Catholic Schools",
+    "format": "graph_race",
+    "publish_at": "2026-09-25T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK:",
+    "elapsed_seconds": 77.4,
+    "package_path": "state/trending_packages/20260925/03_homeschool-passed-catholic-school.json",
+    "source": "brain",
+    "video_path": "output/daily_20260925-153438_homeschooling_just_passed_catholic_schoo.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 8.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK:",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "C-Sections Just Passed Natural Births In Brazil",
+    "title": "C-Sections Just Passed Natural Births In Brazil",
+    "format": "graph_race",
+    "publish_at": "2026-09-25T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/P51Acg64Ivo",
+    "error": null,
+    "elapsed_seconds": 75.9,
+    "package_path": "state/trending_packages/20260925/04_brazil-csections-passed-vaginal-births.json",
+    "source": "brain",
+    "video_path": "output/daily_20260925-153555_c_sections_just_passed_natural_births_in.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 8.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "He Had A Master Key. I Had An AirTag.",
+    "title": "He Had A Master Key. I Had An AirTag.",
+    "format": "reddit",
+    "publish_at": "2026-09-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The hook card and captions are clean, but the story beats are never shown: it is generic Minecraft gameplay for 47 seconds with no AirTag, key or thief on screen.",
+    "elapsed_seconds": 415.7,
+    "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
+    "source": "brain",
+    "video_path": "output/daily_20260925-153736_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.267,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The hook card and captions are clean, but the story beats are never shown: it is generic Minecraft gameplay for 47 seconds with no AirTag, key or thief on screen.",
+      "score": 65
+    },
+    "blocked": true
+  },
+  {
+    "topic": "I Traced The Robocalls. The FTC Did The Rest.",
+    "title": "I Traced The Robocalls. The FTC Did The Rest.",
+    "format": "reddit",
+    "publish_at": "2026-09-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story beats are carried only by captions over gameplay, and the one illustration that tries to show 'tracing' is an unrelated stock analytics photo.",
+    "elapsed_seconds": 495.7,
+    "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
+    "source": "brain",
+    "video_path": "output/daily_20260925-154517_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.133,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story beats are carried only by captions over gameplay, and the one illustration that tries to show 'tracing' is an unrelated stock analytics photo.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "microsoft stock",
+    "angle": null,
+    "publish_at": "2026-09-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['put 50000 dollars into whatever we recommended', 'stuck in traffic', 'shut down 8 months ago for fraud', \"client's face went white\", 'called corporate right there in the lobby', 'compliance was already on speakerphone', 'holding the script he told me to follow exactly']",
+    "elapsed_seconds": 133.0,
+    "title": "My Boss Silenced Me, Then I Exposed His Fraud",
+    "package_path": "state/trending_packages/20260925-155537_auto_microsoft_stock.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "ed sheeran boston",
+    "angle": null,
+    "publish_at": "2026-09-25T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'ed sheeran boston' refused by the writer: trend is a real political controversy (artist dropped from tour over a Gaza protest statement, resulting boycott and AG refund action) involving real people and",
+    "elapsed_seconds": 45.2,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "cruise ship",
+    "angle": null,
+    "publish_at": "2026-09-25T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['free upgrade', 'screamed until I', 'no exceptions', 'new key', 'photos of the balcony', 'front desk printer', '4200 dollars']",
+    "elapsed_seconds": 151.1,
+    "title": "I Upgraded Her Suite Exactly Like She Demanded",
+    "package_path": "state/trending_packages/20260925-155820_auto_cruise_ship.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "nick bosa injury",
+    "angle": null,
+    "publish_at": "2026-09-26T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'nick bosa injury' refused by the writer: trend is a sports injury report (Nick Bosa calf/knee injury) - injury topics are excluded from seeding fiction",
+    "elapsed_seconds": 30.2,
+    "unfit": true,
+    "backfill": true
+  }
+]

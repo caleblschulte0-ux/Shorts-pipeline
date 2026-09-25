@@ -16,4 +16,4 @@ Excluded from the content-mix comparison (unclassified / non-series structure):
 
 | label | n | median VPH |
 |---|---|---|
-| unknown | 1 | 1.61 |
+| unknown | 1 | 1.64 |

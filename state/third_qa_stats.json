@@ -1,6 +1,338 @@
 {
   "runs": [
     {
+      "date": "20260918",
+      "dry_run": false,
+      "ts": "2026-09-18T23:15:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 106,
+        "with_retention": 84,
+        "with_curve": 13,
+        "fetched_at": "2026-09-18T15:21:48.324320+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20260918-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260919",
+      "dry_run": false,
+      "ts": "2026-09-19T14:32:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 104,
+        "with_retention": 85,
+        "with_curve": 14,
+        "fetched_at": "2026-09-18T23:15:14.251674+00:00"
+      },
+      "brain": {
+        "ok": 45,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260919-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "reaction to newcomer, vague what happens",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine chaotic reaction, first shift mi",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha: Lang Reacts To 404 And BrickBabies Losing Cameras On Shift One"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Final two frames (20.5s-22.4s) show a static pawn-shop inventory/menu screen with no visible people \u2014 a flatter ending t"
+              ]
+            }
+          },
+          "took_s": 282.3
+        },
+        {
+          "slug": "clip-20260919-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (static talk, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "surprising visible reaction moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "static talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 59.1
+        },
+        {
+          "slug": "clip-20260919-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague excited callout, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Picks His Squad And Gets Way Too Hyped About It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": [
+                "Caption text 'JOE AND ONLY' likely mistranscribes the name 'Oney' (small caption below reads 'Joe and Oney') \u2014 minor wor"
+              ]
+            }
+          },
+          "took_s": 211.0
+        },
+        {
+          "slug": "clip-20260919-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "reaction implied, no context given",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague title, disjointed setup chatter",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Plaqueboymax Gets Made To Do Push-Ups Over His Wardrobe"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "opening frame (1.0s) and 18.1s frame show empty gym equipment with no visible subject"
+              ]
+            }
+          },
+          "took_s": 330.4
+        },
+        {
+          "slug": "clip-20260919-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (routine GTA RP walk-and-talk, no event)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "buddha/buddha-about-buddha-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "xqc/xqc-city-from-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                },
+                {
+                  "cluster": "lacy/lacy-fans-film-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "funny title, unclear event, likely bit",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "routine GTA RP walk-and-talk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 772.7
+        },
+        {
+          "slug": "clip-20260919-6",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "title gibberish, no info",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague fashion chat, garbled title",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 72.6
+        }
+      ]
+    },
+    {
       "date": "20260919",
       "dry_run": false,
       "ts": "2026-09-19T15:02:11+00:00",
@@ -4713,110 +5045,6 @@
             }
           },
           "took_s": 129.0
-        },
-        {
-          "slug": "clip-20260925-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260925",
-      "dry_run": false,
-      "ts": "2026-09-25T15:33:47+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 107,
-        "with_retention": 85,
-        "with_curve": 13,
-        "fetched_at": "2026-09-25T14:04:04.661286+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260925-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260925",
-      "dry_run": false,
-      "ts": "2026-09-25T15:49:36+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 107,
-        "with_retention": 85,
-        "with_curve": 13,
-        "fetched_at": "2026-09-25T15:34:00.721830+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260925-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260925-5",
-          "ok": true,
-          "skipped": "already posted"
         },
         {
           "slug": "clip-20260925-6",
