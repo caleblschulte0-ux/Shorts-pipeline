@@ -2563,7 +2563,8 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
                 if b.get("illustrated_scene"):          # a verified brain scene
                     a["illustrated_scene"] = b["illustrated_scene"]
             for k in ("closing_scene", "closing_data",     # its bookends
-                      "hook_scene", "hook_data"):
+                      "hook_scene", "hook_data",
+                      "hook", "hook_was"):                  # a sharpened hook
                 if story_cfg.get(k) is not None:
                     st_[k] = story_cfg[k]
             break
@@ -2631,6 +2632,25 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     print(f"[studio] style arm: {_style['style_arm']}", flush=True)
     if voice is None:
         voice = theme["voice"]
+
+    # THE FIRST SENTENCE IS AN AD (operator, 2026-09-25: "our intros need to
+    # be 2000s ... LimeWire type shit ... real clickbaity. And not like
+    # scammy"). Every story in the queue — not only the new ones the forge
+    # writes — gets its hook rewritten here when it does not clear the bar,
+    # before a word is spoken, and the rewrite is persisted so it happens
+    # once. Numbers from the data, no outside names: `shared/hook_doctrine`.
+    import os as _os_h
+    if _os_h.environ.get("HOOK_SHARPEN", "on").lower() not in ("0", "off", "false"):
+        try:
+            from shared import hook_doctrine as _hd
+            _new_hook = _hd.sharpen(
+                story_cfg, log=lambda m: print(f"[studio] {m}", flush=True))
+            if _new_hook:
+                story_cfg.setdefault("hook_was", story_cfg.get("hook", ""))
+                story_cfg["hook"] = _new_hook
+                _PERSISTED.append(slug)
+        except Exception as e:  # noqa: BLE001 — a soft hook beats no video
+            print(f"[studio] hook sharpen skipped: {e}", flush=True)
 
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)

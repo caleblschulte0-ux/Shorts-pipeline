@@ -420,6 +420,18 @@ def _claude_words(sysmsg: str, user: str) -> dict | None:
         return None
 
 
+def _hook_doctrine() -> str:
+    try:
+        from shared import hook_doctrine as _hd
+        return _hd.DOCTRINE
+    except Exception:  # noqa: BLE001
+        return "The hook is one spoken line that makes scrolling stop."
+
+
+# One doctrine for every hook, new or re-hooked (shared/hook_doctrine.py).
+_HOOK_DOCTRINE = _hook_doctrine()
+
+
 def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
     brief = []
     for d in dss:
@@ -448,7 +460,7 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
         "number proves it ('Landlines Fell Below Their 1993 Level', 'Cities "
         "Are Growing Half As Fast As In 1983'). Ask yourself what the viewer "
         "would have guessed, then write the title that corrects them.\n"
-        "The hook is one spoken line that makes scrolling stop.")
+        "\n" + _HOOK_DOCTRINE)
     kit = ("  object      — a drawable SUBJECT cut-out sized by its value. "
            "region 'ground-row' for a row of 2-5 of them. needs subject + "
            "data.value_from ('item:0','item:1',... or 'star').\n"
@@ -692,6 +704,19 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
             m = bm.check(str(say), vals, ds.get("unit", ""))
             if not m["ok"]:
                 reasons.append(f"say[{i}]: {m['why']}")
+        # THE HOOK HAS TO HIT (operator, 2026-09-25). Scored by the same
+        # doctrine the renderer sharpens against, so a story is not banked
+        # with a hook the render will only have to rewrite.
+        try:
+            from shared import hook_doctrine as _hd
+            _p = _hd.punch(w.get("hook", ""))
+            if _p["score"] < _hd.BAR:
+                reasons.append(f"hook: too soft (punch {_p['score']}/10: "
+                               f"{', '.join(_p['notes'][-3:])}) — make the "
+                               "viewer the one it happens to, lead with the "
+                               "shock, one number from the data")
+        except Exception:  # noqa: BLE001
+            pass
         if v["ok"] and not reasons:
             return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
         last = "; ".join(reasons)[:300]
