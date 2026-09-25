@@ -630,6 +630,14 @@ only as a hand edit is not a rule. So:
   instead of a staff from hand to ground. NOT BUILT, named by the judge: a
   lord's hall set (stone walls, a long table, banners).
 
+- **Run #26 (ancient Greeks) never rendered, for ONE WORD.** The film's
+  running word budget counted with `split()` and the check with
+  `OS._words`, which splits "well-worn" in two, so the assembled script came
+  out at 4001 of 4000 and forty-five minutes of writing were thrown away. The
+  budget now counts the way the check does, and `trim_to_length` cuts whole
+  closing sentences from the longest middle beats of a film that is still a
+  little over, rather than losing it.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

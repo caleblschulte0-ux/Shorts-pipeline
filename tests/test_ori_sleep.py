@@ -1452,6 +1452,30 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertGreater(y1, y0)
         self.assertLess(y1, 0.0, "the branch reaches the ground like a cane")
 
+    def test_the_greek_film_is_not_thrown_away_for_one_word(self):
+        # the Greek film: the running budget counted words with split() and the
+        # check with OS._words ("well-worn" is one and two), so the assembled
+        # script came out at 4001 of 4000 and forty-five minutes were lost
+        import inspect as _i
+        import ori_author as A
+        from data_learning import ori_sleep as OS
+        src = _i.getsource(A.author)
+        self.assertNotIn('.split()) for c in out_chapters', src)
+        self.assertIn("OS._words(", src)
+        say = "It is a quiet well-worn path by the water. The lamps are low and the night is soft. " * 6
+        beats = [{"say": say, "scene": {}} for _ in range(40)]
+        ep = {"chapters": [{"title": "t", "beats": beats}]}
+        over = sum(OS._words(b["say"]) for b in beats) - OS.MAX_WORDS
+        self.assertGreater(over, 0)
+        cut = A.trim_to_length(ep)
+        total = sum(OS._words(b["say"]) for b in beats)
+        self.assertLessEqual(total, OS.MAX_WORDS)
+        self.assertGreaterEqual(cut, over)
+        self.assertEqual(beats[0]["say"], say, "the opening was trimmed")
+        self.assertEqual(beats[-1]["say"], say, "the ending was trimmed")
+        self.assertTrue(all(OS._words(b["say"]) >= OS.BEAT_WORDS[0] for b in beats))
+        self.assertTrue(all(b["say"].rstrip().endswith(".") for b in beats), "a sentence was cut in half")
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

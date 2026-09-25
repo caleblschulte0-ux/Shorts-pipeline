@@ -201,6 +201,32 @@ def chapter_words(n: int) -> tuple[int, int, int, int]:
     return ask_lo, ask_hi, max(300, ask_lo - 60), min(cap, ask_hi + 100)
 
 
+def trim_to_length(ep: dict) -> int:
+    """A film a little over OS.MAX_WORDS loses whole closing sentences from
+    its longest middle beats, never below a beat's floor and never from the
+    first or last beat, rather than being thrown away. Returns the words cut."""
+    beats = [b for c in ep.get("chapters") or [] for b in c.get("beats") or []]
+    total = sum(OS._words(b.get("say")) for b in beats)
+    cut = 0
+    while total > OS.MAX_WORDS:
+        best = None
+        for b in beats[1:-1]:
+            sents = OS.sentences(b.get("say") or "")
+            if len(sents) < 2:
+                continue
+            w = OS._words(b["say"]) - OS._words(sents[-1])
+            if w >= OS.BEAT_WORDS[0] and (best is None or OS._words(b["say"]) > OS._words(best["say"])):
+                best = b
+        if best is None:
+            break
+        sents = OS.sentences(best["say"])
+        n = OS._words(sents[-1])
+        best["say"] = " ".join(sents[:-1])
+        total -= n
+        cut += n
+    return cut
+
+
 def chapter_words_left(so_far: int, left: int, ask_lo: int, ask_hi: int, check_lo: int) -> tuple:
     """(ask_lo, ask_hi, check_lo, check_hi) for the next chapter of a film
     that has written `so_far` words with `left` chapters to go (this one
@@ -1049,7 +1075,10 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
         # the FILM has the budget, not the chapter: a long chapter makes the
         # later ones shorter (run #20 lost its first chapter three times for
         # writing 900 words against a 666-word cap in a film with room for it)
-        so_far = sum(len((b.get("say") or "").split()) for c in out_chapters for b in c["beats"])
+        # counted exactly as OS.validate counts them: split() made "well-worn"
+        # one word and the check two, and the Greek film was thrown away at
+        # 4001 of 4000 after forty-five minutes of writing
+        so_far = sum(OS._words(b.get("say")) for c in out_chapters for b in c["beats"])
         left = len(chs) - i
         words_lo, words_hi, check_lo, check_hi = chapter_words_left(so_far, left, words_lo0, words_hi0, check_lo0)
         prev = (f"The previous chapter ended: \"{prev_text[-600:]}\"" if prev_text
@@ -1092,6 +1121,9 @@ def author(topic: str, era: str, ask=_ask) -> dict | None:
           "thumbnail_scene": o["thumbnail_scene"], "description": o["description"],
           "tags": o.get("tags") or [], "era": era, "chapters": out_chapters,
           "sources": o.get("sources") or []}
+    trimmed = trim_to_length(ep)
+    if trimmed:
+        print(f"[ori_author] trimmed {trimmed} word(s) to fit {OS.MAX_WORDS}", flush=True)
     bad = OS.validate(ep)
     if bad:
         print(f"[ori_author] {topic!r} assembled episode invalid: {bad[:6]}", flush=True)
