@@ -1285,11 +1285,6 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     cx = (bx0 + bx1) // 2
     pivot_y = by0 + int((by1 - by0) * 0.38)
     arm = int(min((bx1 - bx0) * 0.36, 350))
-    # Level, then settle into the true tilt — the tip IS the reveal, so the
-    # element animates for the whole span without anything decorative added.
-    #
-    # See `settle`: linear-ish and still moving at the end. A cubic-out here
-    # left a 6-second visual's back half a fraction of a degree from still.
     # THE WEIGHT IS LOADED, ONE PIECE AT A TIME, AND THE BEAM ANSWERS EACH.
     #
     # The tip used to be one smooth `settle` from level to the true angle.
@@ -1323,7 +1318,7 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # The beam only ever leans the TRUE way, further as the load arrives —
     # tipping by the running totals put the lighter side down for a moment
     # whenever its block landed first, a picture of the opposite claim.
-    tilt = balance_tilt(value, other) * (sum(landed) / len(order))
+    tilt = balance_tilt(value, other) * settle(sum(landed) / len(order))
     # the rock after each landing: a quick damped swing, not a drift
     last = max([0.04 + (j + 1) * step * 0.9 + j * step * 0.1
                 for j in range(len(order)) if (t - 0.04 - j * step) / (step * 0.9) >= 1.0]
@@ -3261,7 +3256,8 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
         u = min(1.0, u)
         gx, gy = k % across, k // across
         x = cx - side / 2 + gx * cell
-        y = top + gy * cell - (1.0 - u * u) * (gy * cell + cell)   # from just above the square
+        # from the square's own top edge — never up into the title band
+        y = top + gy * cell - (1.0 - u * u) * (gy * cell)
         d.rounded_rectangle([x + 2, y + 2, x + cell - 2, y + cell - 2],
                             radius=max(2, int(cell * 0.16)),
                             fill=_rgba(REST, int(225 * min(1.0, u * 2))))
@@ -4936,7 +4932,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
         f = settle(t / 0.30)
     elif t < 0.62:                                # down past the reading
         u = (t - 0.30) / 0.32
-        f = 1.0 + (frac * 0.82 - 1.0) * (1.0 - (1.0 - u) ** 2)
+        f = 1.0 + (frac * 0.82 - 1.0) * settle(u)
     else:                                         # settling onto it
         u = (t - 0.62) / 0.38
         f = frac + (frac * 0.82 - frac) * _math.exp(-u * 4.0) \
