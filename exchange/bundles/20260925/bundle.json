@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260925/DONE",
   "counts": {
     "packages": 6,
-    "requests": 15,
+    "requests": 16,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -392,7 +392,7 @@
           "phrase": "the building's own maintenance closet",
           "query": "maintenance closet tools",
           "has_media": true,
-          "verdict": "strong"
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
@@ -424,19 +424,20 @@
         }
       ],
       "media_health": {
-        "strong": 1,
-        "weak": 5,
+        "strong": 0,
+        "weak": 6,
         "missing": 2,
         "unknown": 0
       },
-      "strong_fraction": 0.125,
+      "strong_fraction": 0.0,
       "requested": [
         "airtag-catches-maintenance-thief-s2-c0d9223afa65",
         "airtag-catches-maintenance-thief-s6-104cf0bc5433",
+        "airtag-catches-maintenance-thief-s4-6a96ef48c407",
         "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
         "airtag-catches-maintenance-thief-s7-c2fd663aaf0f",
+        "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
         "airtag-catches-maintenance-thief-s1-6f63cc4aab6f",
-        "airtag-catches-maintenance-thief-s4-6a96ef48c407",
         "airtag-catches-maintenance-thief-s0-3e002cbd1b52"
       ]
     },
@@ -575,6 +576,34 @@
       "verdict": "missing"
     },
     {
+      "request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
+      "safe_request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s4-6a96ef48c407.png",
+      "prompt_sha256": "d88a16ad39704110109696a50c44e785e152a8ace805d49cd962cc85951a447c",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s4-6a96ef48c407.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen map app. It accompanies the narration: \"forwarded the location history straight to the property manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
       "safe_request_id": "airtag-catches-maintenance-thief-s5-73c4ea8a71a1",
       "drive_filename": "20260925__airtag-catches-maintenance-thief-s5-73c4ea8a71a1.png",
@@ -631,6 +660,33 @@
       "verdict": "weak"
     },
     {
+      "request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
+      "safe_request_id": "airtag-catches-maintenance-thief-s3-1e3cb39c1264",
+      "drive_filename": "20260925__airtag-catches-maintenance-thief-s3-1e3cb39c1264.png",
+      "prompt_sha256": "553e632c7a6ef7c97da2f068a5c9110a235c6cf841591b39ccd38c0b6d9c1ec1",
+      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s3-1e3cb39c1264.json",
+      "slug": "airtag-catches-maintenance-thief",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: maintenance closet tools. It accompanies the narration: \"the building's own maintenance closet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "airtag-catches-maintenance-thief-s1-6f63cc4aab6f",
       "safe_request_id": "airtag-catches-maintenance-thief-s1-6f63cc4aab6f",
       "drive_filename": "20260925__airtag-catches-maintenance-thief-s1-6f63cc4aab6f.png",
@@ -653,33 +709,6 @@
       "height": 1080,
       "why": [
         "resolution unverified (no width/height reported)"
-      ],
-      "verdict": "weak"
-    },
-    {
-      "request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
-      "safe_request_id": "airtag-catches-maintenance-thief-s4-6a96ef48c407",
-      "drive_filename": "20260925__airtag-catches-maintenance-thief-s4-6a96ef48c407.png",
-      "prompt_sha256": "d88a16ad39704110109696a50c44e785e152a8ace805d49cd962cc85951a447c",
-      "checkpoint_path": "exchange/bundles/20260925/media-progress/airtag-catches-maintenance-thief-s4-6a96ef48c407.json",
-      "slug": "airtag-catches-maintenance-thief",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen map app. It accompanies the narration: \"forwarded the location history straight to the property manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
       ],
       "verdict": "weak"
     },

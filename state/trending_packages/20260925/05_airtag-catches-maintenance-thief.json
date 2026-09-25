@@ -36,7 +36,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T18:35:36Z",
+        "verified_at": "2026-09-25T19:23:54Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -56,7 +56,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/svg+xml",
-        "verified_at": "2026-09-25T18:35:36Z",
+        "verified_at": "2026-09-25T19:23:54Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -75,16 +75,14 @@
       "news_angle": "The AirTag showed the stolen package being moved to the building's maintenance closet at six.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Architect_and_engineer_%281933%29_%2814598048717%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "building maintenance storage room",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "maintenance closet",
         "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Architect_and_engineer_%281933%29_%2814598048717%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-        "verified_at": "2026-09-25T18:36:04Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-25T19:23:54Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -97,16 +95,14 @@
       "news_angle": "The narrator forwarded the AirTag location history to the property manager to expose the thief.",
       "image_url": "https://live.staticflickr.com/8393/8624571650_670cac7803_b.jpg",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "apartment building management person",
-        "resolved_by": "entity_media",
-        "source_class": "unverified",
-        "title": "property manager",
         "url": "https://live.staticflickr.com/8393/8624571650_670cac7803_b.jpg",
-        "verified_at": "2026-09-25T18:35:51Z",
-        "width": 0
+        "source_class": "unverified",
+        "provider": "live.staticflickr.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-09-25T19:23:54Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -121,13 +117,21 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T18:35:36Z",
+        "verified_at": "2026-09-25T19:23:54Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "master key",
+      "pin_context": "building master key security access tool",
+      "news_query": "master key",
+      "news_angle": "The suspect used a master key that opened every door in the building to steal the packages."
     },
     {
       "phrase": "selling whatever looked expensive on a resale app",
-      "query": "phone resale app listing"
+      "query": "phone resale app listing",
+      "pin_query": "resale app",
+      "pin_context": "online resale marketplace app smartphone",
+      "news_query": "resale app",
+      "news_angle": "The thief sold the stolen items on a resale app under a fake name."
     },
     {
       "phrase": "paying back eleven other tenants through a small claims judgment",
@@ -141,7 +145,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/jpeg",
-        "verified_at": "2026-09-25T18:35:36Z",
+        "verified_at": "2026-09-25T19:23:54Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "small claims judgment",
