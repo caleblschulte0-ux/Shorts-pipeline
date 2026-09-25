@@ -50,7 +50,8 @@ class TheArithmeticIsTrue(unittest.TestCase):
 class OnlyCheckedComparisonsReachAHook(unittest.TestCase):
     def test_the_amazon_story_gets_a_true_comparison(self):
         facts = H.scale_facts(AMAZON)
-        self.assertIn("bigger than Texas", [f["phrase"] for f in facts])
+        # from BEAT 1's numbers — the hook is spoken over its picture
+        self.assertIn("almost the size of Belgium", [f["phrase"] for f in facts])
 
     def test_a_checked_name_is_allowed_and_an_unchecked_one_is_not(self):
         brain_calls = []
@@ -60,11 +61,12 @@ class OnlyCheckedComparisonsReachAHook(unittest.TestCase):
             if "fact-checker" in prompt:
                 return json.dumps({"supported": [1, 2]})
             return json.dumps({"hooks": [
-                "A forest bigger than Texas vanished — and you ate it.",
-                "A forest bigger than Mongolia vanished — and you ate it."]})
+                "A forest almost the size of Belgium vanished — and you ate it.",
+                "A forest almost the size of Mongolia vanished — and you ate it."]})
         got = H.sharpen(dict(AMAZON), brain=brain, log=lambda m: None)
-        self.assertEqual(got, "A forest bigger than Texas vanished — and you ate it.")
-        self.assertIn("bigger than Texas", brain_calls[0])
+        self.assertEqual(got,
+                         "A forest almost the size of Belgium vanished — and you ate it.")
+        self.assertIn("almost the size of Belgium", brain_calls[0])
 
 
 if __name__ == "__main__":

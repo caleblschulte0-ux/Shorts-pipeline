@@ -28,7 +28,7 @@ COFFEE = dict(next(s for s in CFG["stories"]
 
 class TheScoreKnowsAnAdFromAFact(unittest.TestCase):
     def test_the_voice_outscores_the_queue(self):
-        ad = H.punch("Your coffee just got gutted: 11 million bags, gone overnight.")
+        ad = H.punch("Your coffee just hit a record $4.41 a pound — gutted.")
         soft = H.punch("Your coffee habit is about to get pricier.")
         self.assertGreaterEqual(ad["score"], H.BAR)
         self.assertLess(soft["score"], H.BAR)
@@ -60,21 +60,27 @@ class ItNeverLies(unittest.TestCase):
 
     def test_a_number_from_the_data_passes(self):
         self.assertEqual(self._problems(
-            "Your coffee just got gutted: 11 million bags, gone overnight."), [])
+            "Your coffee just hit a record $4.41 a pound — gutted."), [])
 
     def test_a_number_from_nowhere_is_refused(self):
         self.assertTrue(self._problems("Your coffee costs 5 times more now."))
 
     def test_a_name_from_outside_is_refused_even_as_the_first_word(self):
-        self.assertTrue(self._problems("Starbucks is hiding 11 million bags."))
+        self.assertTrue(self._problems("Starbucks is hiding $4.41 coffee."))
+
+    def test_a_later_beats_number_is_refused(self):
+        """The hook is spoken over BEAT 1's picture: "11 million bags" is
+        beat two's, and the viewer cannot see it during the hook."""
+        self.assertTrue(self._problems(
+            "Your coffee just got gutted: 11 million bags, gone overnight."))
 
     def test_a_name_the_story_uses_passes(self):
         self.assertEqual(self._problems(
-            "Brazil's drought erased 11 million bags of your coffee."), [])
+            "Brazil's drought pushed your coffee to $4.41 a pound."), [])
 
     def test_contractions_and_common_words_are_not_names(self):
         self.assertEqual(self._problems(
-            "You're paying for 11 million bags that are gone. One drought."), [])
+            "You're paying $4.41 a pound now. One drought."), [])
 
 
 def _brain(hooks, supported):
@@ -92,7 +98,7 @@ def _brain(hooks, supported):
 
 
 class TheSharpener(unittest.TestCase):
-    GOOD = "Your coffee just got gutted: 11 million bags, gone overnight."
+    GOOD = "Your coffee just hit a record $4.41 a pound — gutted."
 
     def test_a_soft_hook_is_replaced_by_a_true_hard_one(self):
         b = _brain(["Your coffee costs 5 times more now.", self.GOOD], [1])

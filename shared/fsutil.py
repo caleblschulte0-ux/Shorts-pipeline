@@ -37,7 +37,25 @@ def atomic_write_json(path: str | Path, obj, *, indent: int = 2,
         raise
 
 
-def write_json_if_changed(path: str | Path, obj, *, indent: int = 2,
+def file_indent(path: str | Path, default: int = 2) -> int:
+    """The indent an existing JSON file is written at, else `default`.
+
+    `niche.config.json` is 29,000 lines and has at least six writers. Each
+    wrote its own indent, so every save by a different writer re-indented
+    the whole file: one sharpened hook arrived as a 58,880-line diff
+    (2026-09-25). A writer keeps the file's indent, whoever wrote it last.
+    """
+    import re
+    try:
+        with open(path, encoding="utf-8") as fh:
+            head = fh.read(4096)
+        m = re.search(r"\n( +)\"", head)
+        return len(m.group(1)) if m else default
+    except (OSError, UnicodeDecodeError):     # missing or junk: the default
+        return default
+
+
+def write_json_if_changed(path: str | Path, obj, *, indent: int | None = None,
                           sort_keys: bool = False,
                           ensure_ascii: bool = True) -> bool:
     """Write only when the serialised content actually differs. Returns
@@ -56,6 +74,8 @@ def write_json_if_changed(path: str | Path, obj, *, indent: int = 2,
     not the timestamp of the last time something looked at it.
     """
     path = Path(path)
+    if indent is None:                      # keep the file's own indent
+        indent = file_indent(path)
     body = json.dumps(obj, indent=indent, sort_keys=sort_keys,
                       ensure_ascii=ensure_ascii) + "\n"
     try:
