@@ -9594,6 +9594,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (just checking release date, no event)",
       "ts": "2026-09-26T13:32:52.370559+00:00"
+    },
+    "clip-20260926-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/ObservantSincereHerdDuDudu-LNsICQLY6Nm7dSR_",
+      "story_key": null,
+      "streamer": "zackrawrr",
+      "title": "Zackrawrr Can't Believe Bonnie Said THE Word In Her Olympus Interview",
+      "kind": "twitch_clip",
+      "ts": "2026-09-26T15:03:57.995541+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
