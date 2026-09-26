@@ -3766,6 +3766,21 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     return pattern, []
 
 
+def count_up(value: float, t: float) -> float:
+    """A number counting up to `value`, never more precise than `value` is.
+
+    `value * t` put "1.5" and "4.9" on screen for a count of 1, 3 and 5
+    cities — "the gauge shows fractional city counts ... for an integer
+    claim" (Waymo, 2026-09-26). A whole number counts in whole steps; a
+    decimal counts in its own decimals."""
+    v = float(value) * max(0.0, min(1.0, float(t)))
+    if float(value).is_integer():
+        return float(round(v))
+    s = repr(float(value))
+    places = len(s.split(".")[1]) if "." in s and "e" not in s else 1
+    return round(v, min(places, 2))
+
+
 @_fullframe("fill_vessel")
 def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
     """Premium single-stat DEMONSTRATION: a radial GAUGE that sweeps to the
@@ -3807,9 +3822,17 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         # topic, above the gauge
+        # FITTED to the frame: at a fixed 56pt "CITIES WAYMO'S ROBOTAXI
+        # SERVICE ..." ran off both edges and read "TIES WAYMO'S" (Waymo,
+        # 2026-09-26, `unreadable`).
         title = (insight.topic or "").strip().upper()
-        tb = d.textbbox((0, 0), title, font=title_font)
-        d.text(((W - (tb[2] - tb[0])) // 2, 470), title, font=title_font,
+        _tf = title_font
+        _ts = 56
+        while _ts > 30 and d.textlength(title, font=_tf) > W - 100:
+            _ts -= 2
+            _tf = _pil_font(_ts)
+        tb = d.textbbox((0, 0), title, font=_tf)
+        d.text(((W - (tb[2] - tb[0])) // 2, 470), title, font=_tf,
                fill=(248, 250, 252, 255), stroke_width=4,
                stroke_fill=(5, 8, 15, 255))
         # gauge track (full sweep, faint) with rounded caps
@@ -3836,7 +3859,7 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
             canvas.alpha_composite(m, (int(tx - mw / 2), int(ty - mh + 24)))
         # counting number in the centre
-        num = fmt(star.value * eased)
+        num = fmt(count_up(star.value, eased))
         nb = d.textbbox((0, 0), num, font=num_font)
         d.text((cx - (nb[2] - nb[0]) // 2 - nb[0],
                 cy - (nb[3] - nb[1]) // 2 - nb[1] - 34), num, font=num_font,
