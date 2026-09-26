@@ -2,8 +2,9 @@
 
 ## Health
 
+- 1 consecutive daily-run failure(s)
 - 2 shot(s) shipped with no media
-- 6 trending slot(s) ended with no video, after 4 retry(ies)
+- 5 trending slot(s) ended with no video, after 4 retry(ies)
 
 ## Channels (mature videos only)
 
@@ -23,5 +24,6 @@
 
 ## Needs Caleb
 
+- 1 consecutive daily-run failure(s)
 - 2 shot(s) shipped with no media
-- 6 trending slot(s) ended with no video, after 4 retry(ies)
+- 5 trending slot(s) ended with no video, after 4 retry(ies)

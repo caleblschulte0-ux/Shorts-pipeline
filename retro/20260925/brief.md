@@ -1,6 +1,6 @@
 # Retro — 20260925
 
-generated 2026-09-25T23:30:59Z · 10 video(s) posted today
+generated 2026-09-26T00:30:58Z · 10 video(s) posted today
 
 ## trending
 
@@ -54,9 +54,9 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 1.76d, 1 samples, needs 28d / 25 samples · 1.8/28 days elapsed — too early to read
+    - 1.8d, 1 samples, needs 28d / 25 samples · 1.8/28 days elapsed — too early to read
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 0.76d, 0 samples, needs 28d / 25 samples · 0.8/28 days elapsed — too early to read
+    - 0.8d, 0 samples, needs 28d / 25 samples · 0.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
@@ -74,13 +74,13 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Pipeline health
 
-- consecutive failures: 0
+- consecutive failures: 1
 - exchange: {"media": {"fulfilled": 0, "self_filled": 14, "unfilled": 2, "refused": 0}, "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 6}, "done_marker": false, "authored": {"promoted": 0, "rejecte
-- slots: {"target": 6, "shipped": 0, "held": 5, "backfilled": 4, "short": 6, "held_reasons": ["showrunner_block: showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on to
-- showrunner: {"recent": 40, "blocks": 38, "avg_score": 61.5}
+- slots: {"target": 6, "shipped": 1, "held": 4, "backfilled": 4, "short": 5, "held_reasons": ["showrunner_block: showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The
+- showrunner: {"recent": 40, "blocks": 37, "avg_score": 62.8}
 
 ## Repo
 
-- HEAD 69e7509, 50 commit(s) since 2026-09-24
+- HEAD 09187bb, 50 commit(s) since 2026-09-25
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.

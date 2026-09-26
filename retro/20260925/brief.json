@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260925",
-  "generated_at": "2026-09-25T23:30:59Z",
+  "generated_at": "2026-09-26T00:30:58Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 1.76,
+          "days": 1.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 0.76,
+          "days": 0.8,
           "samples": 0,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1382,7 +1382,7 @@
     }
   },
   "pipeline_health": {
-    "consecutive_failures": "0",
+    "consecutive_failures": "1",
     "exchange": {
       "media": {
         "fulfilled": 0,
@@ -1404,22 +1404,21 @@
     },
     "slots": {
       "target": 6,
-      "shipped": 0,
-      "held": 5,
+      "shipped": 1,
+      "held": 4,
       "backfilled": 4,
-      "short": 6,
+      "short": 5,
       "held_reasons": [
-        "showrunner_block: showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of e",
-        "showrunner_block: showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: n",
-        "showrunner_block: showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile",
-        "showrunner_block: showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: on",
-        "showrunner_block: showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people ico"
+        "showrunner_block: showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip l",
+        "showrunner_block: showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost no",
+        "showrunner_block: showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons",
+        "showrunner_block: showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an"
       ]
     },
     "showrunner": {
       "recent": 40,
-      "blocks": 38,
-      "avg_score": 61.5
+      "blocks": 37,
+      "avg_score": 62.8
     },
     "failure_census": {
       "n_verdicts": 20,
@@ -1427,94 +1426,96 @@
         "empty_void": {
           "count": 8,
           "stories": {
-            "rotten_tomatoes": 1,
-            "he_had_a_master_key__i_had_an_airtag_": 2,
             "mbappe": 1,
+            "he_had_a_master_key__i_had_an_airtag_": 2,
             "i_traced_the_robocalls__the_ftc_did_the_": 3,
-            "snake": 1
+            "snake": 1,
+            "olivia_rodrigo_tour": 1
           },
           "timestamps": [
-            "2026-09-25T19:54:02+00:00",
-            "2026-09-25T20:35:15+00:00",
             "2026-09-25T21:02:49+00:00",
             "2026-09-25T21:42:48+00:00",
             "2026-09-25T21:50:22+00:00",
             "2026-09-25T21:50:22+00:00",
             "2026-09-25T22:07:54+00:00",
-            "2026-09-25T22:34:37+00:00"
+            "2026-09-25T22:34:37+00:00",
+            "2026-09-25T23:41:03+00:00",
+            "2026-09-25T23:57:07+00:00"
           ],
           "examples": [
-            "empty_void: In mid1, mid2 and mid4 the top half of the frame is a dark navy gradient with one small flat icon in the middle. Most of that half is empty.",
-            "empty_void: mid3 (t=32.26s) is mostly black with a few dim blue shapes on the left, and mid1/mid2 are dark murky gameplay filling the whole frame with no story picture",
-            "empty_void: The top half of mid1/mid2/mid3 is a flat dark navy panel holding one small generic emoji, so about 40% of that area is wasted."
+            "empty_void: The top half of mid1/mid2/mid3 is a flat dark navy panel holding one small generic emoji, so about 40% of that area is wasted.",
+            "empty_void: In hook@0.3 and hook@0.8 the frame is mostly black under the post card, with one small shape in the lower half. In mid3 the lower half is almost all black with a few gear fragments at the ",
+            "junk_imagery: mid0 and mid3 both show the same blank blue phone rectangle on a dark void, a generic placeholder icon. mid1 is an AI-looking stock photo of a smiling call-center agent, which does not s"
           ],
           "recurred_after_fix": false
         },
         "other": {
-          "count": 6,
+          "count": 7,
           "stories": {
-            "chicken_quietly_passed_beef_in_america": 3,
             "google": 1,
             "brendan_beck": 1,
-            "mexico_vs_colombia": 1
+            "chicken_quietly_passed_beef_in_america": 3,
+            "mexico_vs_colombia": 1,
+            "he_had_a_master_key__i_had_an_airtag_": 1
           },
           "timestamps": [
-            "2026-09-25T20:28:45+00:00",
             "2026-09-25T20:54:39+00:00",
             "2026-09-25T21:09:36+00:00",
             "2026-09-25T21:34:57+00:00",
             "2026-09-25T22:18:26+00:00",
-            "2026-09-25T22:54:04+00:00"
+            "2026-09-25T22:54:04+00:00",
+            "2026-09-25T23:35:11+00:00",
+            "2026-09-25T23:41:03+00:00"
           ],
           "examples": [
-            "unreadable: mid4 (t=5.60s): at the crossing, the 'Chicken 60' and 'Beef 56' tip labels are stacked on top of each other and on the pulse ring and arrow, so 'Beef 56' is partly covered. mid3 (t=4.83s):",
             "unreadable: hook@2.2 (t=2.20s): the post card fades over busy gameplay and the title 'My Boss's Budget Cut Killed His Own Demo' is ghosted and illegible. A thin horizontal seam line also runs across t",
-            "unreadable: mid0: the AI shift board's text is garbled and can't be read; a hard horizontal seam line runs across the gameplay at mid-frame in hook@0.3, mid2, mid3 and mid5"
-          ],
-          "recurred_after_fix": false
-        },
-        "dead_air": {
-          "count": 5,
-          "stories": {
-            "rotten_tomatoes": 1,
-            "mbappe": 1,
-            "i_traced_the_robocalls__the_ftc_did_the_": 2,
-            "mexico_vs_colombia": 1
-          },
-          "timestamps": [
-            "2026-09-25T19:54:02+00:00",
-            "2026-09-25T21:02:49+00:00",
-            "2026-09-25T21:50:22+00:00",
-            "2026-09-25T22:34:37+00:00",
-            "2026-09-25T22:54:04+00:00"
-          ],
-          "examples": [
-            "dead_air: The top panel shows the same static blank blue phone icon at mid1 (10.06s) and mid2 (17.62s), so two beats are visually identical. Only the gameplay below moves.",
-            "dead_air: mid1 (t=11.5s) and mid2 (t=20.6s) show the same two-person silhouette nine seconds apart, over two different beats ('stormed in' vs 'shoved past the line'), so two beats look identical in th",
-            "dead_air: The top half repeats the same static blank-phone illustration at mid0 and mid3, so two beats look identical. Gameplay keeps moving underneath (longest_static_s 0.0), but the story half has n"
+            "unreadable: mid0: the AI shift board's text is garbled and can't be read; a hard horizontal seam line runs across the gameplay at mid-frame in hook@0.3, mid2, mid3 and mid5",
+            "unreadable: At mid4 (t=5.60s) the 'Chicken 60' and 'Beef 56' tip labels stack on top of each other and sit under the crossover glow ring, so 'Beef 56' is hard to read at phone size. At mid3 the 'Beef "
           ],
           "recurred_after_fix": false
         },
         "junk_imagery": {
-          "count": 5,
+          "count": 6,
           "stories": {
             "google": 1,
             "brendan_beck": 1,
             "snake": 1,
             "i_traced_the_robocalls__the_ftc_did_the_": 1,
-            "mexico_vs_colombia": 1
+            "mexico_vs_colombia": 1,
+            "chatgpt_down": 1
           },
           "timestamps": [
             "2026-09-25T20:54:39+00:00",
             "2026-09-25T21:09:36+00:00",
             "2026-09-25T22:07:54+00:00",
             "2026-09-25T22:34:37+00:00",
-            "2026-09-25T22:54:04+00:00"
+            "2026-09-25T22:54:04+00:00",
+            "2026-09-26T00:05:31+00:00"
           ],
           "examples": [
             "junk_imagery: mid3 (t=27.54s): a generic microscope emoji is the illustration for 'EVERY SCREEN WENT' black. It has nothing to do with screens, a demo or overheating, so it is an off-topic icon.",
             "junk_imagery: mid1: a generic desktop-computer icon illustrates 'pulled three servers' (restaurant staff read as computer servers); mid0: AI shift board with garbled fake text ('Yonop', scribbled cell",
             "junk_imagery: mid3 and mid4 show a generic red paw-print clip-art on a dark gradient, standing in for a snake story. Paw prints do not fit a snake at all."
+          ],
+          "recurred_after_fix": false
+        },
+        "dead_air": {
+          "count": 4,
+          "stories": {
+            "mbappe": 1,
+            "i_traced_the_robocalls__the_ftc_did_the_": 2,
+            "mexico_vs_colombia": 1
+          },
+          "timestamps": [
+            "2026-09-25T21:02:49+00:00",
+            "2026-09-25T21:50:22+00:00",
+            "2026-09-25T22:34:37+00:00",
+            "2026-09-25T22:54:04+00:00"
+          ],
+          "examples": [
+            "dead_air: mid1 (t=11.5s) and mid2 (t=20.6s) show the same two-person silhouette nine seconds apart, over two different beats ('stormed in' vs 'shoved past the line'), so two beats look identical in th",
+            "dead_air: The top half repeats the same static blank-phone illustration at mid0 and mid3, so two beats look identical. Gameplay keeps moving underneath (longest_static_s 0.0), but the story half has n",
+            "dead_air: The same bills photo is held from mid4 (35.4s) through payoff@-0.4 (45.2s), about 10s. Gameplay moves underneath, but the story panel does not change."
           ],
           "recurred_after_fix": false
         }
@@ -1557,11 +1558,6 @@
         }
       },
       "scores": [
-        57,
-        57,
-        66,
-        70,
-        57,
         66,
         57,
         53,
@@ -1576,6 +1572,11 @@
         61,
         53,
         61,
+        57,
+        78,
+        57,
+        70,
+        53,
         57
       ]
     }
@@ -1611,10 +1612,16 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "69e7509",
-    "commits_since": "2026-09-24",
+    "head": "09187bb",
+    "commits_since": "2026-09-25",
     "commit_count": 50,
     "commits": [
+      "09187bb daily: 2026-09-26 report + state [skip ci]",
+      "2b68927 claim: mailbox verdicts 2026-09-25T23:47Z [skip ci]",
+      "c4ad8bb third: analytics [skip ci]",
+      "5819444 third: update posted log + analytics [skip ci]",
+      "7b6cf9e deadman: repaired 2026-09-25 [skip ci]",
+      "792ef9f retro: brief + triage for 20260925 [skip ci]",
       "69e7509 exchange: phase A bundle for 20260925 [skip ci]",
       "39399cd No machine twice across beats; the running count stands alone (#475)",
       "018817f daily: 2026-09-25 report + state [skip ci]",
@@ -1648,13 +1655,7 @@
       "742fb0c Tower and recap tell the truth while they move (#470)",
       "51b56a6 third: analytics [skip ci]",
       "fa22149 third: update posted log + analytics [skip ci]",
-      "f18ab8b watchdog: chatgpt task verdicts 20260925 [skip ci]",
-      "1e3edea deadman: repaired 2026-09-25 [skip ci]",
-      "7f15a98 claim: mailbox verdicts 2026-09-25T18:49Z [skip ci]",
-      "5f650f9 claim: mailbox verdicts 2026-09-25T18:47Z [skip ci]",
-      "52b68f7 watchdog: chatgpt task verdicts 20260925 [skip ci]",
-      "76735f3 exchange: phase A bundle for 20260925 [skip ci]",
-      "2890a6f Reddit story: the post card arrives and keeps coming (#469)"
+      "f18ab8b watchdog: chatgpt task verdicts 20260925 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
