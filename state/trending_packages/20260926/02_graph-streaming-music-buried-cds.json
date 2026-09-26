@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-music-buried-cds",
+  "title": "Streaming Music Buried The CD",
+  "hook": "The disc stopped spinning.",
+  "y_label": "U.S. recorded-music revenue (billions USD)",
+  "duration": 13,
+  "source": "Recording Industry Association of America U.S. Sales Database and annual revenue reports: nominal estimated retail revenue by format, selected years 2010-2024. Streaming includes paid subscriptions, ad-supported on-demand and related streaming categories; approximate billions.",
+  "years": [
+    2010,
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Streaming",
+      "color": "#00C853",
+      "icon": "Spotify",
+      "values": [
+        0.5,
+        1,
+        1.9,
+        4,
+        7.4,
+        10.1,
+        13.3,
+        14.9
+      ]
+    },
+    {
+      "name": "CDs",
+      "color": "#7E57C2",
+      "icon": "RIAA",
+      "values": [
+        3.4,
+        2.5,
+        1.9,
+        1.2,
+        0.7,
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "cd",
+    "music",
+    "spotify",
+    "recording",
+    "riaa",
+    "technology",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

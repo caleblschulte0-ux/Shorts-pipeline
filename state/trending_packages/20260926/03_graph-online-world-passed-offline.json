@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-online-world-passed-offline",
+  "title": "The Online World Passed The Offline World",
+  "hook": "The internet became majority.",
+  "y_label": "World population (billions)",
+  "duration": 13,
+  "source": "International Telecommunication Union Facts and Figures and World Telecommunication/ICT Indicators, combined with United Nations World Population Prospects: people using the Internet versus population not using it, selected years 2000-2024. Approximate billions.",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2019,
+    2021,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Online",
+      "color": "#1E88E5",
+      "icon": "ITU",
+      "values": [
+        0.4,
+        1,
+        2,
+        3.2,
+        4.1,
+        4.9,
+        5.4,
+        5.5
+      ]
+    },
+    {
+      "name": "Offline",
+      "color": "#6D4C41",
+      "icon": "UN",
+      "values": [
+        5.7,
+        5.5,
+        4.9,
+        4.2,
+        3.6,
+        3,
+        2.6,
+        2.7
+      ]
+    }
+  ],
+  "hashtags": [
+    "internet",
+    "online",
+    "technology",
+    "population",
+    "digital",
+    "itu",
+    "unitednations",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

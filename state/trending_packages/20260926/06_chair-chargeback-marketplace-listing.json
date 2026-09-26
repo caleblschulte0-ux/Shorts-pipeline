@@ -1,0 +1,160 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "chair-chargeback-marketplace-listing",
+  "title": "He Said The Chair Vanished. Then He Listed It.",
+  "hashtags": [
+    "customerservice",
+    "chargeback",
+    "furniture",
+    "marketplace",
+    "receipts",
+    "scam",
+    "karma",
+    "shorts"
+  ],
+  "script": "I managed customer pickups at a small furniture store. A man bought a $1,200 leather chair, loaded it himself, then filed a chargeback claiming he never received it. Our signed receipt helped, but he said the signature was forged. Then our salesperson recognized the chair in his public marketplace listing, photographed in the same garage shown on his ID. The listing even said purchased yesterday, changed my mind. Useful detail. We saved screenshots, the loading-dock video, his vehicle plate, and the message where he offered delivery for extra cash. The bank denied the chargeback within two days. He deleted the listing and called us thieves for keeping his payment. My manager offered to accept a normal return under the posted policy. He refused because someone had already bought the chair. So the chair was missing, except for the buyer, the listing, the sale, and the money. A remarkably crowded disappearance.",
+  "shots": [
+    {
+      "phrase": "bought a $1,200 leather chair",
+      "query": "brown leather armchair in small furniture showroom",
+      "pin_query": "leather chair",
+      "pin_context": "furniture store leather chair $1200",
+      "news_query": "leather chair",
+      "news_angle": "The $1,200 leather chair was bought, loaded by the buyer, and later shown in his online listing.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "furniture store leather chair $1200",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "leather chair",
+        "url": "https://live.staticflickr.com/8696/17107904465_5b9923f65b_b.jpg",
+        "verified_at": "2026-09-26T11:40:04Z",
+        "width": 0
+      },
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+      "media_sha256": "3834427d49b20c363efebcdce3b0ef5522237b013215f79c8aafa79e9fcdac5a",
+      "media_bytes": 2267175
+    },
+    {
+      "phrase": "loaded it himself",
+      "query": "customer loading leather armchair into pickup truck",
+      "image_url": "https://drive.google.com/uc?export=download&id=1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+      "media_sha256": "371c99eb05131a35eb0071262ca1905b48b6df547882e4b8b6ce119f46b04b97",
+      "media_bytes": 2145585
+    },
+    {
+      "phrase": "filed a chargeback claiming he never received it",
+      "query": "chargeback dispute on laptop beside furniture receipt",
+      "image_url": "https://drive.google.com/uc?export=download&id=11BeEikUCtIZzLkSAfJF-mFy-8CKMHQwR",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "11BeEikUCtIZzLkSAfJF-mFy-8CKMHQwR",
+      "media_sha256": "ded9cec3950371c795bfc89a357bd6b41e91c2482c976b38945fd4b30ee0212b",
+      "media_bytes": 1790761
+    },
+    {
+      "phrase": "chair in his public marketplace listing",
+      "query": "leather armchair photographed in residential garage for sale",
+      "pin_query": "public marketplace listing",
+      "pin_context": "online marketplace garage photo listing",
+      "news_query": "public marketplace listing",
+      "news_angle": "The salesperson identified the chair in the buyer's public marketplace listing, which included a photo of the same garage shown on his ID.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1YZX8t9a283Ut4vkjoRDDqL0FjnPUUIib",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "online marketplace garage photo listing",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "public marketplace listing",
+        "url": "https://live.staticflickr.com/4059/4558333143_77e8602a39_b.jpg",
+        "verified_at": "2026-09-26T11:40:20Z",
+        "width": 0
+      },
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1YZX8t9a283Ut4vkjoRDDqL0FjnPUUIib",
+      "media_sha256": "268c04262e24121ffb259cecd3c15d295433479d662a9589cfbc937baccbf24d",
+      "media_bytes": 2401989
+    },
+    {
+      "phrase": "saved screenshots, the loading-dock video, his vehicle plate",
+      "query": "retail fraud evidence screenshots and loading dock security monitor",
+      "pin_query": "vehicle plate",
+      "pin_context": "license plate car photo evidence",
+      "news_query": "vehicle plate",
+      "news_angle": "The buyer's vehicle plate was captured in the loading-dock video as evidence of his possession of the chair.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "license plate car photo evidence",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "vehicle plate",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Japanese_car_accident.jpg/1280px-Japanese_car_accident.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "verified_at": "2026-09-26T11:40:34Z",
+        "width": 0
+      },
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+      "media_sha256": "f04779ab9e4ac66ffa0b819a72d84ad1d81bb9d8a572a25afdae0bfa6d3959e6",
+      "media_bytes": 2078589
+    },
+    {
+      "phrase": "The bank denied the chargeback",
+      "query": "store manager reading successful chargeback decision on computer",
+      "pin_query": "bank",
+      "pin_context": "bank chargeback department",
+      "news_query": "bank",
+      "news_angle": "The bank denied the buyer's chargeback request within two days after reviewing the evidence.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1CVz09V5suNG2s46dVJGMu4wrXiym5HYn",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "bank chargeback department",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "bank",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/London.bankofengland.arp.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-26T11:40:49Z",
+        "width": 0
+      },
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1CVz09V5suNG2s46dVJGMu4wrXiym5HYn",
+      "media_sha256": "d4d2cde89ce82429e207a8aa95c70760580958b2d3b899eef8a92da3401cd3bd",
+      "media_bytes": 1870507
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "$1,200 leather chair",
+      "text": "$1,200 CHAIR",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "never received it",
+      "text": "NEVER RECEIVED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "public marketplace listing",
+      "text": "LISTED FOR SALE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "denied the chargeback",
+      "text": "CHARGEBACK DENIED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "deadpan",
+  "_authored_by": "chatgpt-takeover"
+}
