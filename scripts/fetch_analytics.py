@@ -544,6 +544,13 @@ def build_snapshot(posted_log: Path, channel: str = "",
             "catalog_id": entry.get("ident"),
             "streamer": entry.get("streamer"),
             "series": entry.get("series"),
+            # Format-scoped experiments (shared.experiments.eligible_videos'
+            # want_format) read this. Found while re-verifying doctor
+            # finding 9d5a03472328: this field was missing entirely, so any
+            # experiment ever registered with a `format` could never
+            # accumulate a sample. Worth fixing on its own regardless of
+            # that finding's outcome.
+            "format": entry.get("format"),
             # A/B: what was assigned vs what actually rendered.
             "experiment_arm": entry.get("experiment_arm"),
             "actual_structure": entry.get("actual_structure"),
