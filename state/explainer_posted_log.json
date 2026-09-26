@@ -2116,6 +2116,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 50.0
+    },
+    "online-shopping-store-toll": {
+      "url": "https://youtube.com/shorts/OO8eAieF3xw",
+      "title": "Online Shopping Just Hit 16% Of Everything We Buy",
+      "at": "2026-09-26T12:21:21.141589+00:00",
+      "publish_at": "2026-09-26T12:55:14Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 34 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 54.4
     }
   },
   "uploads": [
@@ -2478,6 +2496,15 @@
       "state": "posted",
       "slug": "colon-cancer-screening-drop",
       "at": "2026-09-25T11:56:18.456570+00:00"
+    },
+    {
+      "claimed_at": "2026-09-26T12:21:13.870781+00:00",
+      "title": "Online Shopping Just Hit 16% Of Everything We Buy",
+      "publish_at": "2026-09-26T12:55:14Z",
+      "url": "https://youtube.com/shorts/OO8eAieF3xw",
+      "state": "posted",
+      "slug": "online-shopping-store-toll",
+      "at": "2026-09-26T12:21:21.141589+00:00"
     }
   ]
 }
