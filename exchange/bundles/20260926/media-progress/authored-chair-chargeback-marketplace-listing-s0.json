@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:23.533Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-chair-chargeback-marketplace-listing-s0",
+  "safe_request_id": "authored-chair-chargeback-marketplace-listing-s0",
+  "prompt_sha256": "df640a2931192deef3ca1e90b36cc419e73c3570bb839303f20bff979cf1b5db",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story shot. Scene: small independent furniture showroom. Subject: premium brown leather armchair centered on the sales floor, price tag turned away so no text is visible. Style: realistic retail editorial photography. Composition: portrait product-focused medium-wide shot. Lighting: warm showroom light. Constraints: no logos, no readable text, no watermark, no people.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+    "filename": "20260926__authored-chair-chargeback-marketplace-listing-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3834427d49b20c363efebcdce3b0ef5522237b013215f79c8aafa79e9fcdac5a",
+    "bytes": 2267175,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "chair-chargeback-marketplace-listing",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
