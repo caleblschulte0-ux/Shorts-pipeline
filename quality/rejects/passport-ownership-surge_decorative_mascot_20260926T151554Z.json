@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260926T151554Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly perches. He stands beside the top block (hook@0.3 to seg0:end), sits on the gauge rim (seg1:mid/end), sits on the scale pan (seg2:start), stands on top of the NJ circle (seg3), and does the same small dance by the grey post (seg4:start to payoff@-0.4). He never places ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:start shows the header 'AMERICANS WHO OWN A PASSPOR' clipped at both edges. The gauge counts 3.5% to 47.7% under a fixed '2023' label, which wrongly dates the 1990 start. At seg1:end the mascot covers 'WHO' and an unexplained cyan ring appears. The lower half of the frame is empty.",
+  "root_cause": "The header is set at a fixed size with no measured width. The mascot is placed on the arc top, right under the title. The year label is static while the value animates, and the gauge is a generic chart with nothing of passports in it.",
+  "repair_goal": "Fit the title inside the frame (measure it and scale it down) and keep the mascot clear of all text. Tie the year label to the value so it runs 1990 at 5% to today at 48%. Replace the gauge with a subject-made picture, such as a crowd of 20 people where 1 holds a passport in 1990 and nearly 10 do today, with Data handing out passports. Use the empty lower half."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

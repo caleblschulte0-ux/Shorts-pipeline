@@ -1,0 +1,16 @@
+{
+ "slug": "beaver-ecosystem-comeback",
+ "ts": "20260926T151554Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid: the bottom ~45% below the seesaw base is empty ground. seg2:mid: the top third above the rulers is empty. The frame's space is wasted.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start is a bordered widget box with a faint grey '3', a garbled 'fits in' label and '3 times over'. seg2:end turns the 3x RATIO into a ruler gap labelled '2 apart', which mis-states the claim. Data just stands between the rulers.",
+  "root_cause": "A generic 'fits-in' container and a difference ruler were applied to a MULTIPLIER claim (burned 3x worse). The machine picked shows subtraction, not ratio, and nothing in the picture is made of fire, streams or dams.",
+  "repair_goal": "Draw the ratio as the subject: two stream corridors side by side. Burn fronts spread 3x further and char the banks on the no-dam stream, while the dammed stream's green pond band stops the flames. Data holds a firebreak at the pond. No boxed card, no '2 apart', and all labels in readable ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260926T151554Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The grey '15' sits on grey-blue tiles and nearly disappears (seg4:start to payoff@-0.4). The header runs off the frame as 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T\u2026' (seg3:start). '15 times over' is faded to near-invisible at seg4:start.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "From hook@0.3 to seg0:end the frame is a two-row scoreboard: '900' and '27.6K' in big type, a mascot waving beside each, and a dotted rail on the right. The only change is Data sliding from left to right across the 27.6K row.",
+  "root_cause": "The speed comparison was drawn as a labelled stat table. Nothing shows speed as motion, so the hook's 'you've never moved this fast' promise has no picture behind it.",
+  "repair_goal": "Make the speed into motion. Race a jet against the ISS along the same arc over a curved Earth horizon: in the time the jet crawls one short tick, the ISS laps across the whole frame about 30 times. A distance counter ticks up under each one so the 30x gap is visible before any number is read. Data should run a stopwatch or try to chase the station, not stand beside a number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

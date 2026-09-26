@@ -1,0 +1,16 @@
+{
+ "slug": "cicada-double-brood-2024",
+ "ts": "20260926T151554Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end: the label '0 yrs apar' is cut off at the right edge, and 'Years until the next one (2024-2245) 221 yrs' is printed on top of 'emergence (1803-2024) 221 yrs'. seg2:start: the two axis captions overlap ('(1803-2024)' collides with 'until the next one'), and the mascot covers the ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_and_wrong_claim",
+  "visible_evidence": "seg2:start shows two identical '221 yrs' pill bars with overlapping captions. seg2:mid-end shows one thin vertical tick on an axis with no year labels, two stacked labels printed over each other, and a truncated '0 yrs apar' that contradicts the 221-year story.",
+  "root_cause": "A bar or timeline chart was used for a lowest-common-multiple claim. Both values are 221, so the comparison says nothing, and the label layout was never measured, so text overlaps and runs off the frame.",
+  "repair_goal": "Show two cycles ticking forward on a shared year line, the 13-year cycle and the 17-year cycle, each marking its emergence years from 1803. Only at 2024 (and next at 2245) do the marks meet, and that meeting should flash. Label only 1803, 2024 and 2245 with measured, non-overlapping text inside the frame. Have Data physically walk the line and stop at each meeting point."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

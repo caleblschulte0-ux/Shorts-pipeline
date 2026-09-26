@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260926T151554Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg0:end the '2030 (projected): about 82M' label is dim blue on navy and barely shows. In seg1:mid the value column (34M/44M/53.6M/62M) is ghosted near-invisible, and the mascot sits on the 2019 row. In seg2:start and seg3:start the segment labels ('Not properly recycled 78%', 'Met by",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "generic_chart_repeat",
+  "visible_evidence": "seg3:start to seg3:end show a single stacked column filling to 99%, the same template as the recycled-share column in seg2. It is visually almost the same beat twice in a row. The mascot just stands at the fill edge holding his head, and the 1% sliver is a hairline at the top.",
+  "root_cause": "A 'share of whole' relationship went to a stock stacked-column chart, even though the claim is about waste versus mining ('throwing away a mine and digging a new one'). None of the subject is in the picture.",
+  "repair_goal": "Replace the column with a picture made of the subject. For example, a pile of discarded phones and circuit boards next to an open-pit mine: only 1 in 100 scoops of rare-earth ore comes out of the e-waste pile, and the other 99 come out of the ground. Data could try to pull ore from the e-waste pile and get a tiny handful while the mine's excavator dumps load after load. Keep labels at full contrast in INK."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

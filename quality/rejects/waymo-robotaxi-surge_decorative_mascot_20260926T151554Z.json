@@ -1,0 +1,21 @@
+{
+ "slug": "waymo-robotaxi-surge",
+ "ts": "20260926T151554Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly stands on top of the bars in hook@0.8 through seg1:start, and on the line/arc in seg1:mid and seg2:mid, arms raised. No bit ties him to the stat. The seesaw in seg3 is the only real exception.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_claim_depiction",
+  "visible_evidence": "The gauge reads '1.5' in seg2:mid and '4.9' in seg2:end over '2025', under a heading clipped to 'TIES WAYMO'S ROBOTAXI SERVICE'. The narration says one city, then three, then five, and the gauge shows fractional values that match none of them. The bottom half of the frame is empty.",
+  "root_cause": "A count of discrete cities was sent to a progress-gauge machine that tweens through fractional values. The title was also laid out wider than the frame, so it gets clipped.",
+  "repair_goal": "Show the cities as discrete things: pins or glowing city tiles that light up one at a time (Phoenix, then SF and LA, then Austin and Atlanta), with the count ticking 1 \u2192 3 \u2192 5 as whole numbers. Data should place each pin. Keep the heading inside the safe margins and fill the lower half of the frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
