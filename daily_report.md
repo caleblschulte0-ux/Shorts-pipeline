@@ -1,30 +1,32 @@
-# Daily Trending Shorts — 2026-09-25
+# Daily Trending Shorts — 2026-09-26
 
+> **ChatGPT wrote 6 of today's 10 packages** — the Claude Routine did not run (weekly limit?).
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **7**
-- succeeded: **1**
+- queued: **10**
+- succeeded: **0**
 - quarantined (off-topic imagery): **0**
-- failed: **6**
-
-## Posted
-- **I Traced The Robocalls. The FTC Did The Rest.**
-  - topic: I Traced The Robocalls. The FTC Did The Rest.
-  - publishes: `2026-09-26T13:00:00Z`
-  - https://youtube.com/shorts/AXCeqFH6j4U
-  - took: 477.5s
+- failed: **10**
 
 ## Failed
-- **Chicken Quietly Passed Beef In America**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip labels collide right at the pass, which is the moment the whole video exists for, and the hook card gives away the ending.`
-- **He Had A Master Key. I Had An AirTag.**
-  - error: `showrunner_block: showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost none of the story (no AirTag, no closet, no master key), and one mid frame is a black void.`
-- **prime time movie**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 102)`
-- **olivia rodrigo tour**
-  - error: `showrunner_block: showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons (an empty phone repeated twice, a music note) floating in a dark void, and the camera-catch payoff is never shown.`
-- **chatgpt down**
-  - error: `showrunner_block: showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an irrelevant microscope icon, so none of the story beats are demonstrated.`
-- **what to stream tonight**
-  - error: `unfit_for_fiction: the story still names the real news (last) after 2 retries`
+- **Wind And Solar Finally Passed Coal**
+  - error: `showrunner_block: showrunner BLOCK:`
+- **Streaming Music Buried The CD**
+  - error: `showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.`
+- **The Online World Passed The Offline World**
+  - error: `showrunner_block: showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.`
+- **Mobile Broadband Left Fixed Lines Behind**
+  - error: `showrunner_block: showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.`
+- **They Fined My Garden. Their Own Map Canceled It.**
+  - error: `showrunner_block: showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.`
+- **He Said The Chair Vanished. Then He Listed It.**
+  - error: `showrunner_block: showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.`
+- **My Weird New Hobby: Wandering Around Tokyo on Google Maps**
+  - error: `showrunner_block: showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.`
+- **Scientists find two tiny new snails with shells that close like doors**
+  - error: `showrunner_block: showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.`
+- **Monkey spotted on Florida man's trail cam - FOX 35 Orlando**
+  - error: `showrunner_block: showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.`
+- **Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch**
+  - error: `showrunner_block: showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.`
 

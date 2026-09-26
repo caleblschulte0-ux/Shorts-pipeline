@@ -1,19 +1,19 @@
 [
   {
-    "topic": "Chicken Quietly Passed Beef In America",
-    "title": "Chicken Quietly Passed Beef In America",
+    "topic": "Wind And Solar Finally Passed Coal",
+    "title": "Wind And Solar Finally Passed Coal",
     "format": "graph_race",
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip labels collide right at the pass, which is the moment the whole video exists for, and the hook card gives away the ending.",
-    "elapsed_seconds": 78.0,
-    "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
-    "source": "brain",
-    "video_path": "output/daily_20260925-233353_chicken_quietly_passed_beef_in_america.mp4",
+    "error": "showrunner_block: showrunner BLOCK:",
+    "elapsed_seconds": 90.5,
+    "package_path": "state/trending_packages/20260926/01_graph-wind-solar-passed-coal.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-114347_wind_and_solar_finally_passed_coal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 8.375,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,30 +24,64 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip labels collide right at the pass, which is the moment the whole video exists for, and the hook card gives away the ending.",
+      "reason": "showrunner BLOCK:",
+      "score": 79
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Streaming Music Buried The CD",
+    "title": "Streaming Music Buried The CD",
+    "format": "graph_race",
+    "publish_at": "2026-09-26T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.",
+    "elapsed_seconds": 97.0,
+    "package_path": "state/trending_packages/20260926/02_graph-streaming-music-buried-cds.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-114517_streaming_music_buried_the_cd.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.",
       "score": 78
     },
     "blocked": true
   },
   {
-    "topic": "He Had A Master Key. I Had An AirTag.",
-    "title": "He Had A Master Key. I Had An AirTag.",
-    "format": "reddit",
+    "topic": "The Online World Passed The Offline World",
+    "title": "The Online World Passed The Offline World",
+    "format": "graph_race",
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost none of the story (no AirTag, no closet, no master key), and one mid frame is a black void.",
-    "elapsed_seconds": 352.5,
-    "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
-    "source": "brain",
-    "video_path": "output/daily_20260925-233513_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.",
+    "elapsed_seconds": 87.5,
+    "package_path": "state/trending_packages/20260926/03_graph-online-world-passed-offline.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-114654_the_online_world_passed_the_offline_worl.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.1,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,35 +92,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost none of the story (no AirTag, no closet, no master key), and one mid frame is a black void.",
-      "score": 57
+      "reason": "showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.",
+      "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "I Traced The Robocalls. The FTC Did The Rest.",
-    "title": "I Traced The Robocalls. The FTC Did The Rest.",
-    "format": "reddit",
+    "topic": "Mobile Broadband Left Fixed Lines Behind",
+    "title": "Mobile Broadband Left Fixed Lines Behind",
+    "format": "graph_race",
     "publish_at": "2026-09-26T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/AXCeqFH6j4U",
-    "error": null,
-    "elapsed_seconds": 477.5,
-    "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
-    "source": "brain",
-    "video_path": "output/daily_20260925-234226_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.",
+    "elapsed_seconds": 91.5,
+    "package_path": "state/trending_packages/20260926/04_graph-mobile-broadband-left-fixed-behind.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-114822_mobile_broadband_left_fixed_lines_behind.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.1,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,83 +126,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "prime time movie",
-    "angle": null,
-    "publish_at": "2026-09-26T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 102)",
-    "elapsed_seconds": 35.9,
-    "backfill": true
-  },
-  {
-    "topic": "olivia rodrigo tour",
-    "angle": null,
-    "publish_at": "2026-09-26T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons (an empty phone repeated twice, a music note) floating in a dark void, and the camera-catch payoff is never shown.",
-    "elapsed_seconds": 410.2,
-    "title": "I Caught Her Fake Ticket Scam On Camera",
-    "package_path": "state/trending_packages/20260925-235129_auto_olivia_rodrigo_tour.json",
-    "video_path": "output/daily_20260925-235129_olivia_rodrigo_tour.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.1,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "loudness_lufs": -25.0
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons (an empty phone repeated twice, a music note) floating in a dark void, and the camera-catch payoff is never shown.",
-      "score": 53
+      "reason": "showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.",
+      "score": 70
     },
-    "blocked": true,
-    "backfill": true
+    "blocked": true
   },
   {
-    "topic": "chatgpt down",
-    "angle": null,
-    "publish_at": null,
+    "topic": "They Fined My Garden. Their Own Map Canceled It.",
+    "title": "They Fined My Garden. Their Own Map Canceled It.",
+    "format": "reddit",
+    "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an irrelevant microscope icon, so none of the story beats are demonstrated.",
-    "elapsed_seconds": 503.7,
-    "title": "My Manager Told Me To Lie To Every Caller",
-    "package_path": "state/trending_packages/20260925-235832_auto_chatgpt_down.json",
-    "video_path": "output/daily_20260925-235832_chatgpt_down.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.",
+    "elapsed_seconds": 224.3,
+    "package_path": "state/trending_packages/20260926/05_hoa-garden-property-line.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-114956_they_fined_my_garden__their_own_map_canc.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 51.0,
+      "duration": 54.4,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -188,26 +164,214 @@
     },
     "qa": {
       "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.",
+      "score": 75
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Said The Chair Vanished. Then He Listed It.",
+    "title": "He Said The Chair Vanished. Then He Listed It.",
+    "format": "reddit",
+    "publish_at": "2026-09-26T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.",
+    "elapsed_seconds": 261.0,
+    "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-115340_he_said_the_chair_vanished__then_he_list.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.967,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.",
+      "score": 66
+    },
+    "blocked": true
+  },
+  {
+    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
+    "angle": "A rabbit\u2011hole street\u2011view hunt reveals the same white Nissan 350Z mysteriously parked in the same spot for years, sparking online speculation.",
+    "publish_at": "2026-09-26T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.",
+    "elapsed_seconds": 270.4,
+    "title": "I Served an Entitled Customer a Salty \u2018Free\u2019 Coffee",
+    "package_path": "state/trending_packages/20260926-115831_auto_my_weird_new_hobby__wandering_around_tok.json",
+    "video_path": "output/daily_20260926-115831_my_weird_new_hobby__wandering_around_tok.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.733,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [
+        [
+          25.4667,
+          26.0667
+        ]
+      ],
+      "black_frac": 0.0131,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.2
+    },
+    "qa": {
+      "ok": true,
       "verdict": "skip",
       "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an irrelevant microscope icon, so none of the story beats are demonstrated.",
+      "reason": "showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.",
       "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "what to stream tonight",
-    "angle": null,
-    "publish_at": null,
+    "topic": "Scientists find two tiny new snails with shells that close like doors",
+    "angle": "Researchers in Montenegro uncover two brand\u2011new snail species whose door\u2011like shells could inspire bio\u2011inspired engineering.",
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: the story still names the real news (last) after 2 retries",
-    "elapsed_seconds": 156.4,
-    "unfit": true,
+    "error": "showrunner_block: showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.",
+    "elapsed_seconds": 269.3,
+    "title": "I Served Karma to an Entitled Coffee Snob",
+    "package_path": "state/trending_packages/20260926-120247_auto_scientists_find_two_tiny_new_snails_with.json",
+    "video_path": "output/daily_20260926-120247_scientists_find_two_tiny_new_snails_with.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.",
+      "score": 49
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
+    "angle": "A trail camera set to monitor a private property captures a macaque wandering the yard, prompting a wildlife\u2011control response and viral memes.",
+    "publish_at": "2026-09-26T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.",
+    "elapsed_seconds": 196.2,
+    "title": "I Served a Free Latte to an Entitled Swindler",
+    "package_path": "state/trending_packages/20260926-120718_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
+    "video_path": "output/daily_20260926-120718_monkey_spotted_on_florida_man_s_trail_ca.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.967,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.",
+      "score": 57
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch",
+    "angle": "A golden retriever tasked with guarding a store\u2019s entrance bolts out, letting a shoplifter walk away, turning a simple job into viral comedy.",
+    "publish_at": "2026-09-26T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.",
+    "elapsed_seconds": 211.4,
+    "title": "My Golden Retriever Got Fired and Then Saved the Cafe",
+    "package_path": "state/trending_packages/20260926-121037_auto_golden_retriever_had_one_job__he_failed_.json",
+    "video_path": "output/daily_20260926-121037_golden_retriever_had_one_job__he_failed_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.",
+      "score": 61
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
