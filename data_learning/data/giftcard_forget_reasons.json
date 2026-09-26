@@ -1,0 +1,26 @@
+{
+  "key": "giftcard_forget_reasons",
+  "title": "Average card value vs abandoned balance",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "current (illustrative average)",
+  "source": {
+    "name": "Gift card issuance & breakage estimates",
+    "publisher": "Mercator Advisory Group / CEB TowerGroup industry estimates",
+    "url": "https://www.mercatoradvisorygroup.com/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 simplified average figures standing in for typical face value vs. typical abandoned balance.",
+  "points": [
+    {
+      "label": "Average card face value",
+      "value": 25,
+      "baseline": true
+    },
+    {
+      "label": "Average balance left unspent",
+      "value": 5
+    }
+  ]
+}

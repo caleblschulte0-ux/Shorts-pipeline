@@ -1,0 +1,26 @@
+{
+  "key": "doomsday_clock_era_avg",
+  "title": "Doomsday Clock average distance from midnight",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "1990s vs 2020s (average seconds)",
+  "source": {
+    "name": "Doomsday Clock announcements",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 decade averages approximated from the Bulletin's published annual settings.",
+  "points": [
+    {
+      "label": "1990s average",
+      "value": 900,
+      "baseline": true
+    },
+    {
+      "label": "2020s average",
+      "value": 100
+    }
+  ]
+}

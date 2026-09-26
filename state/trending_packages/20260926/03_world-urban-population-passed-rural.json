@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "world-urban-population-passed-rural",
+  "title": "Cities Passed The Countryside For The First Time",
+  "hook": "More People Live In Cities Now",
+  "y_label": "World population (billions)",
+  "duration": 13,
+  "source": "World urban vs. rural population compiled from UN DESA World Urbanization Prospects: global urban population overtook rural population for the first time in human history around 2007-2008, with urban continuing to grow while rural population growth flattened.",
+  "years": [
+    1950,
+    1970,
+    1990,
+    2000,
+    2007,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Urban population",
+      "color": "#e67e22",
+      "values": [
+        0.75,
+        1.33,
+        2.29,
+        2.86,
+        3.35,
+        4.38,
+        4.66
+      ]
+    },
+    {
+      "name": "Rural population",
+      "color": "#2ecc71",
+      "values": [
+        1.79,
+        2.4,
+        3.02,
+        3.29,
+        3.33,
+        3.41,
+        3.4
+      ]
+    }
+  ],
+  "hashtags": [
+    "urbanization",
+    "cities",
+    "population",
+    "demographics",
+    "unitednations",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "music_vibe": "cinematic"
+}

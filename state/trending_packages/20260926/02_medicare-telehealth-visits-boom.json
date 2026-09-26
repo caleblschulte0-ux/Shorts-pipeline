@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "medicare-telehealth-visits-boom",
+  "title": "Medicare Telehealth Visits Jumped 60x In A Year",
+  "hook": "840K Visits. Then 52.7 Million.",
+  "y_label": "Medicare telehealth visits (millions)",
+  "duration": 13,
+  "source": "Medicare fee-for-service telehealth utilization compiled from CMS and HHS Office of Inspector General reporting: about 0.84 million telehealth visits in 2019 jumped to roughly 52.7 million in 2020 during the pandemic, then declined but stayed far above the 2019 baseline through 2021-2024.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Medicare telehealth visits",
+      "color": "#4a90e2",
+      "values": [
+        0.84,
+        52.7,
+        34,
+        24,
+        20,
+        19
+      ]
+    },
+    {
+      "name": "2019 baseline",
+      "color": "#9b9b9b",
+      "values": [
+        0.84,
+        0.84,
+        0.84,
+        0.84,
+        0.84,
+        0.84
+      ]
+    }
+  ],
+  "hashtags": [
+    "telehealth",
+    "medicare",
+    "healthcare",
+    "pandemic",
+    "digitalhealth",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "music_vibe": "dark"
+}

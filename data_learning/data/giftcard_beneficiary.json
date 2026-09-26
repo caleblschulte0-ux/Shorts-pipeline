@@ -1,0 +1,25 @@
+{
+  "key": "giftcard_beneficiary",
+  "title": "Where unspent gift-card money ends up",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "current (illustrative share)",
+  "source": {
+    "name": "State escheatment / unclaimed-property rules for gift cards",
+    "publisher": "National Association of Unclaimed Property Administrators (NAUPA) \u2014 state law summaries",
+    "url": "https://www.unclaimed.org/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 a simplified index standing in for the point that most states let issuers keep breakage, while a minority require escheatment.",
+  "points": [
+    {
+      "label": "States: issuer keeps it",
+      "value": 42
+    },
+    {
+      "label": "States: goes to unclaimed-property fund",
+      "value": 8
+    }
+  ]
+}

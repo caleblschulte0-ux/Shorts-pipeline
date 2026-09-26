@@ -1,0 +1,47 @@
+{
+  "key": "giftcard_breakage_trend",
+  "title": "US gift card breakage (unredeemed value)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2015-2024",
+  "source": {
+    "name": "Gift card issuance & breakage estimates",
+    "publisher": "Mercator Advisory Group / CEB TowerGroup industry estimates",
+    "url": "https://www.mercatoradvisorygroup.com/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 approximate figures compiled from published gift-card industry breakage estimates.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 1.0,
+      "period": "2015"
+    },
+    {
+      "label": "2017",
+      "value": 1.4,
+      "period": "2017"
+    },
+    {
+      "label": "2019",
+      "value": 2.0,
+      "period": "2019"
+    },
+    {
+      "label": "2021",
+      "value": 2.8,
+      "period": "2021"
+    },
+    {
+      "label": "2023",
+      "value": 3.0,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 3.0,
+      "period": "2024"
+    }
+  ]
+}

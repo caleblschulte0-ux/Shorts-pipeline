@@ -1,0 +1,80 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "gym-recurring-charge-fraud-freeze",
+  "title": "They Said No Cancellation On File. I Had Six.",
+  "hashtags": [
+    "prorevenge",
+    "reddit",
+    "redditstories",
+    "gym",
+    "subscription",
+    "karma",
+    "justice",
+    "storytime",
+    "truestory",
+    "billingfraud",
+    "satisfying",
+    "revenge",
+    "creditcard",
+    "consumerprotection",
+    "fitness"
+  ],
+  "script": "Four months after I cancelled my gym membership in writing, they kept charging my card the exact same eighty nine dollar fee, always timed three days past the refund window. I started forwarding every charge into a folder, right next to the six cancellation confirmations they claimed didn't exist. The fifth charge hit a card I'd already reported stolen weeks earlier, so my bank flagged it as fraud on its own. That pulled in the card network's merchant-risk team, the same team that checks a business's total unauthorized-charge complaints before doing anything else. Forty one other members turned up with the identical pattern once someone actually looked. The network froze the gym's ability to process any card at all, three weeks before their biggest renewal push of the year. Every one of us got refunded the same afternoon the freeze hit, the gym's own system did it automatically, no human required.",
+  "shots": [
+    {
+      "phrase": "Four months after I cancelled my gym membership in writing",
+      "query": "gym membership cancellation"
+    },
+    {
+      "phrase": "the exact same eighty nine dollar fee",
+      "query": "credit card charge receipt"
+    },
+    {
+      "phrase": "the six cancellation confirmations they claimed didn't exist",
+      "query": "email inbox confirmation"
+    },
+    {
+      "phrase": "a card I'd already reported stolen weeks earlier",
+      "query": "stolen credit card report"
+    },
+    {
+      "phrase": "the card network's merchant-risk team",
+      "query": "bank fraud review office"
+    },
+    {
+      "phrase": "Forty one other members turned up with the identical pattern",
+      "query": "customer complaints spreadsheet"
+    },
+    {
+      "phrase": "froze the gym's ability to process any card at all",
+      "query": "credit card terminal blocked"
+    },
+    {
+      "phrase": "Every one of us got refunded the same afternoon",
+      "query": "refund notification phone"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "eighty nine dollar fee",
+      "text": "$89 AGAIN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Forty one other members",
+      "text": "41 VICTIMS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "froze the gym's ability to process any card at all",
+      "text": "FROZEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Every one of us got refunded",
+      "text": "REFUNDED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}
