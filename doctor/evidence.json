@@ -2664,8 +2664,8 @@
     }
   ],
   "recent_commits": [
-    "8b31fad 2026-09-26 claim: mailbox verdicts 2026-09-26T04:48Z [skip ci]",
-    "e9f3a28 2026-09-26 claim: mailbox verdicts 2026-09-26T03:47Z [skip ci]"
+    "ab63e51 2026-09-26 claim: mailbox verdicts 2026-09-26T09:47Z [skip ci]",
+    "fcafc79 2026-09-26 claim: mailbox verdicts 2026-09-26T08:49Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2770,32 +2770,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 107,
+      "videos": 110,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 7.23,
+          "vph": 6.57,
           "views": 1356
         },
         {
-          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
-          "vph": 1.86,
-          "views": 112
-        },
-        {
-          "title": "Chat Could Not Handle This Caseoh Moment",
-          "vph": 1.63,
-          "views": 218
+          "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
+          "vph": 2.31,
+          "views": 33
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.61,
-          "views": 29
+          "vph": 2.04,
+          "views": 75
         },
         {
-          "title": "Jynxzi Has No Idea What He's Looking At \ud83d\ude2d",
-          "vph": 1.46,
-          "views": 136
+          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
+          "vph": 1.54,
+          "views": 121
+        },
+        {
+          "title": "Chat Could Not Handle This Caseoh Moment",
+          "vph": 1.43,
+          "views": 218
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2896,13 +2896,6 @@
       "ruling": "in_progress"
     },
     {
-      "signature": "9d5a03472328",
-      "title": "Test explicit rivalry titles on truthful graph crossovers",
-      "horizon": "strategy",
-      "severity": "medium",
-      "ruling": "doing"
-    },
-    {
       "signature": "0aa9d12e55a8",
       "title": "Test concrete search-intent titles on Third clips",
       "horizon": "strategy",
@@ -2913,13 +2906,6 @@
       "signature": "90428377a85b",
       "title": "Test a sub-40-second explainer cut without changing cadence",
       "horizon": "strategy",
-      "severity": "medium",
-      "ruling": "doing"
-    },
-    {
-      "signature": "34e98321286f",
-      "title": "Phase B's durable report omits cross-channel and recovery outcomes",
-      "horizon": "short_term",
       "severity": "medium",
       "ruling": "doing"
     },
@@ -3458,6 +3444,13 @@
       "revisit_after": null
     },
     {
+      "signature": "9d5a03472328",
+      "verdict": "not_doing",
+      "date": "20260926",
+      "because": "Re-verified before building, per the original ruling's own note to pull fresh analytics first. The 08-13 snapshot's 16-vs-42 split does not replicate: restricting to graph_race format only (joined via state/posted_log.json's format field, which the raw 08-13 comparison did not do) and using the current 2026-09-25 snapshot, 39 mature (>=72h) graph_race videos split 23 rivalry-cue-titled (mean 0.0061 VPH, median 0.0) vs 16 plain-titled (mean 0.0106 VPH, median 0.01) -- the plain arm now leads, the opposite of the original claim. Both spot-checks share a real confound (views_per_hour mechanically decays with age, so any two snapshots taken weeks apart are comparing different age-mixes), so this isn't proof the effect is negative either -- but there is no live signal left to justify shipping an active title-doctrine push toward manufactured rivalry titles. Not doing. If this is revisited, it needs an age-normalized comparison (percentile-by-age, as retro/build_retro.py already does), not another raw-VPH spot check.",
+      "revisit_after": null
+    },
+    {
       "signature": "9f547a4372a9",
       "verdict": "later",
       "date": "20260825",
@@ -3476,6 +3469,13 @@
       "verdict": "done",
       "date": "20260909",
       "because": "Fixed and shipped. is_package now consults the registry's own detectors as a union with the marker heuristic: OLD is_package({slug, source_url}) was False, NEW is_package(same, 'third') is True. Union rather than replacement because the markers answer a different question \u2014 'content rather than config' \u2014 which the registry detectors do not: a trending reddit_story is recognised by script+shots before subreddit exists on it. A registry that cannot be read falls back to markers rather than emptying every channel. tests/test_phase_a_sees_third.py derives fixtures FROM config/channel_registry.json for every active format of every channel Phase A accepts, so the detector cannot drift again, and covers the exclusions the widening could have broken.",
+      "revisit_after": null
+    },
+    {
+      "signature": "34e98321286f",
+      "verdict": "done",
+      "date": "20260926",
+      "because": "Merged in PR #476 (4f08ba9): authored.other_channels and checkpoints.recovered_rejected_detail now persist into phase_b_report.json; covered by two new tests in tests/test_split_worker.py verified to fail pre-fix and pass post-fix.",
       "revisit_after": null
     },
     {
