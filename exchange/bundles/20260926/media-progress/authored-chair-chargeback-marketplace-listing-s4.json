@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:31.185Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-chair-chargeback-marketplace-listing-s4",
+  "safe_request_id": "authored-chair-chargeback-marketplace-listing-s4",
+  "prompt_sha256": "ca6e76c30fd57c45a14af8d6f821161c3930e8bde33ce8fce356fa6ece3772a2",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story shot. Scene: retail manager's desk. Subject: organized fraud evidence including printed screenshots with blurred unreadable interface, a security monitor showing a chair at a loading dock, and a vehicle photo with the plate blurred. Style: realistic investigative editorial photography. Composition: portrait top-down three-quarter view. Lighting: cool office light. Constraints: no legible text, no logos, no readable plate, no watermark.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+    "filename": "20260926__authored-chair-chargeback-marketplace-listing-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f04779ab9e4ac66ffa0b819a72d84ad1d81bb9d8a572a25afdae0bfa6d3959e6",
+    "bytes": 2078589,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "chair-chargeback-marketplace-listing",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
