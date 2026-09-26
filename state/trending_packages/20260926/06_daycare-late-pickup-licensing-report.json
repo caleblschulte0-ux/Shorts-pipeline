@@ -1,0 +1,80 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "daycare-late-pickup-licensing-report",
+  "title": "She Was Late Forty Minutes Daily. We Started A Clock.",
+  "hashtags": [
+    "entitledparents",
+    "reddit",
+    "redditstories",
+    "daycare",
+    "childcare",
+    "karma",
+    "justice",
+    "storytime",
+    "truestory",
+    "preschool",
+    "satisfying",
+    "revenge",
+    "licensing",
+    "parenting",
+    "worklife"
+  ],
+  "script": "Every day for two months, one mother picked her son up at least forty minutes after our posted closing time, then acted personally offended when we mentioned the late fee already written into her contract. She stopped answering our calls during pickup delays entirely, so we switched to a keypad system that time stamps every checkout automatically instead of a staff member writing it by hand. State licensing rules require us to report any child left in care more than thirty minutes past closing four times in a rolling year, which we'd technically been doing all along without realizing the count mattered. Her file hit five documented late pickups the same week a routine licensing inspection happened to be scheduled. The inspector didn't care about her excuses, only the timestamps, and filed the incident against her file, not ours. She lost her spot on the waitlist for the following year's pre-K program entirely, and we finally got quiet mornings back.",
+  "shots": [
+    {
+      "phrase": "picked her son up at least forty minutes after our posted closing time",
+      "query": "daycare pickup clock"
+    },
+    {
+      "phrase": "the late fee already written into her contract",
+      "query": "childcare contract paperwork"
+    },
+    {
+      "phrase": "switched to a keypad system that time stamps every checkout automatically",
+      "query": "keypad checkin system"
+    },
+    {
+      "phrase": "report any child left in care more than thirty minutes past closing four times in a rolling year",
+      "query": "state licensing inspector"
+    },
+    {
+      "phrase": "Her file hit five documented late pickups",
+      "query": "file folder documents"
+    },
+    {
+      "phrase": "a routine licensing inspection happened to be scheduled",
+      "query": "clipboard inspection"
+    },
+    {
+      "phrase": "She lost her spot on the waitlist for the following year's pre-K program",
+      "query": "preschool classroom empty"
+    },
+    {
+      "phrase": "we finally got quiet mornings back",
+      "query": "empty daycare hallway"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "at least forty minutes after our posted closing time",
+      "text": "40 MIN LATE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "five documented late pickups",
+      "text": "5 STRIKES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "She lost her spot on the waitlist",
+      "text": "WAITLIST GONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "we finally got quiet mornings back",
+      "text": "PEACE AT LAST",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop"
+}

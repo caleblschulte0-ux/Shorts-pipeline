@@ -1,0 +1,57 @@
+{
+  "key": "doomsday_clock_recent",
+  "title": "Doomsday Clock, seconds to midnight (recent)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2018-2025",
+  "source": {
+    "name": "Doomsday Clock announcements",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 figures match the Bulletin's published annual settings, converted to seconds.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 120,
+      "period": "2018"
+    },
+    {
+      "label": "2019",
+      "value": 120,
+      "period": "2019"
+    },
+    {
+      "label": "2020",
+      "value": 100,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 100,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 100,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 90,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 90,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 89,
+      "period": "2025"
+    }
+  ]
+}

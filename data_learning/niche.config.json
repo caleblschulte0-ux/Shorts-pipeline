@@ -29647,6 +29647,237 @@
     }
    ],
    "hook_was": "Driverless cars just quietly became normal."
+  },
+  {
+   "slug": "magnetic-pole-drift-race",
+   "title": "The Magnetic Pole Moved 600 Miles In 30 Years",
+   "hook": "The magnetic north pole is racing at 50 km a year.",
+   "closing": "Even the planet's compass needle is a moving target.",
+   "question": "Did you know your phone's compass depends on this? Tell me below.",
+   "caption": "The magnetic north pole isn't fixed — it's been sprinting toward Siberia for 30 years, and it moved so fast NOAA had to rush an emergency fix in 2019. Here's the chase, in 3 charts.",
+   "hashtags": [
+    "magneticpole",
+    "geomagnetism",
+    "earth",
+    "science",
+    "nasa",
+    "noaa",
+    "compass",
+    "gps",
+    "sciencefacts",
+    "didyouknow",
+    "earthscience",
+    "physics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "magnetic_pole_speed",
+     "params": {
+      "file": "magnetic_pole_speed.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CHASE",
+     "topic": "how fast the magnetic pole is racing",
+     "say": "The magnetic north pole used to crawl about 9 kilometers a year. By 2007 it was racing at 55 kilometers a year, headed straight for Siberia."
+    },
+    {
+     "source": "offline",
+     "key": "magnetic_pole_era_speed",
+     "params": {
+      "file": "magnetic_pole_era_speed.json"
+     },
+     "insight_type": "rank",
+     "role": "2 · THE BURST",
+     "topic": "why the magnetic pole sped up",
+     "ascending": false,
+     "say": "That's not steady drift, it's a burst. A jet of liquid iron under Canada sped up in the 1990s, dragging the average pace from about 10 kilometers a year up to 50."
+    },
+    {
+     "source": "offline",
+     "key": "wmm_schedule",
+     "params": {
+      "file": "wmm_schedule.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE FIX",
+     "use_baseline": true,
+     "topic": "why the magnetic pole's speed forced an emergency fix",
+     "say": "Phone GPS and compasses lean on a model updated every 5 years. The pole moved so fast NOAA had to rush out a fix a full year early, in 2019."
+    }
+   ]
+  },
+  {
+   "slug": "body-temperature-drop",
+   "title": "Normal Body Temperature Isn't 98.6 Anymore",
+   "hook": "Your normal temperature dropped 1 full degree since 1851.",
+   "closing": "Even 'normal' has been quietly moving the whole time.",
+   "question": "What's your normal temperature actually run at? Tell me below.",
+   "caption": "98.6 was measured in 1851 from patients riddled with infections doctors couldn't treat yet. Modern humans run about a degree cooler — here's why, in 3 charts.",
+   "hashtags": [
+    "bodytemperature",
+    "health",
+    "biology",
+    "science",
+    "medicine",
+    "humanbody",
+    "sciencefacts",
+    "didyouknow",
+    "publichealth",
+    "wellness",
+    "fever",
+    "medicalhistory"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "body_temp_trend",
+     "params": {
+      "file": "body_temp_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DROP",
+     "topic": "how body temperature dropped since 1851",
+     "say": "In 1851 the average reading was 98.6 degrees. By 2023, the same kind of measurement read 97.5."
+    },
+    {
+     "source": "offline",
+     "key": "body_temp_causes",
+     "params": {
+      "file": "body_temp_causes.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE CAUSE",
+     "use_baseline": true,
+     "topic": "why average body temperature fell",
+     "say": "It's not the thermometers, it's us. Background inflammation ran hot back then, and it's dropped by almost two thirds since."
+    },
+    {
+     "source": "offline",
+     "key": "body_temp_generations",
+     "params": {
+      "file": "body_temp_generations.json"
+     },
+     "insight_type": "rank",
+     "role": "3 · THE PATTERN",
+     "ascending": false,
+     "topic": "how body temperature keeps falling by generation",
+     "say": "Born in the 1800s, the average ran 98.4. Born in the 1990s, it's 97.6. Each generation runs a little cooler than the last."
+    }
+   ]
+  },
+  {
+   "slug": "doomsday-clock-90-seconds",
+   "title": "The Doomsday Clock Just Hit 90 Seconds To Midnight",
+   "hook": "In 1991 we had 17 minutes. Now it's 90 seconds.",
+   "closing": "The clock has never once been this close before.",
+   "question": "Did you know the clock has run since 1947? Tell me below.",
+   "caption": "In 1991 the Doomsday Clock sat at its safest point ever: 17 minutes to midnight. It's now 90 seconds. Here's the plunge, in 3 charts.",
+   "hashtags": [
+    "doomsdayclock",
+    "bulletinofatomicscientists",
+    "geopolitics",
+    "science",
+    "nuclearrisk",
+    "climatechange",
+    "sciencefacts",
+    "didyouknow",
+    "worldnews",
+    "history"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "doomsday_clock_trend",
+     "params": {
+      "file": "doomsday_clock_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE PLUNGE",
+     "topic": "how close the doomsday clock has moved to midnight",
+     "say": "In 1991, after the Cold War ended, the Doomsday Clock sat at 17 minutes to midnight, its safest point ever. By 2023 it was down to just 90 seconds."
+    },
+    {
+     "source": "offline",
+     "key": "doomsday_clock_era_avg",
+     "params": {
+      "file": "doomsday_clock_era_avg.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SHIFT",
+     "use_baseline": true,
+     "topic": "why the doomsday clock accelerated toward midnight",
+     "say": "Through the 1990s, the clock averaged about 900 seconds from midnight. In the 2020s, that's down to about 100, a swing scientists tie to nuclear, climate, and disinformation risk stacking at once."
+    },
+    {
+     "source": "offline",
+     "key": "doomsday_clock_recent",
+     "params": {
+      "file": "doomsday_clock_recent.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE HOLD",
+     "topic": "what the doomsday clock has never done before",
+     "say": "The clock has now sat near its closest point ever for years running, the first time since 1947 it hasn't swung back even a little."
+    }
+   ]
+  },
+  {
+   "slug": "gift-card-breakage",
+   "title": "Americans Forget To Spend 3 Billion In Gift Cards",
+   "hook": "3 billion dollars in gift cards just vanish every year.",
+   "closing": "Somewhere, a drawer is quietly funding someone else's quarter.",
+   "question": "Do you have an old gift card sitting around right now? Tell me below.",
+   "caption": "Americans buy about 200 billion dollars in gift cards a year, and roughly 3 billion of that is never spent. Here's where it actually goes, in 3 charts.",
+   "hashtags": [
+    "giftcards",
+    "personalfinance",
+    "money",
+    "retail",
+    "consumertrends",
+    "moneytalk",
+    "finance",
+    "didyouknow",
+    "shopping",
+    "budgeting"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "giftcard_breakage_trend",
+     "params": {
+      "file": "giftcard_breakage_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE LEFTOVER",
+     "topic": "how much gift card money goes unspent",
+     "say": "In 2015, gift card breakage was about 1 billion dollars a year. By 2023 it had tripled to 3 billion, and it's stayed there since."
+    },
+    {
+     "source": "offline",
+     "key": "giftcard_forget_reasons",
+     "params": {
+      "file": "giftcard_forget_reasons.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE PATTERN",
+     "use_baseline": true,
+     "topic": "why gift card money goes unspent",
+     "say": "It's not one huge card going to waste, it's millions of small ones. The average card is worth about 25 dollars, and people typically stop using it with around 5 dollars still on it."
+    },
+    {
+     "source": "offline",
+     "key": "giftcard_beneficiary",
+     "params": {
+      "file": "giftcard_beneficiary.json"
+     },
+     "insight_type": "rank",
+     "role": "3 · WHO KEEPS IT",
+     "ascending": false,
+     "topic": "who benefits when gift card money goes unspent",
+     "say": "In most states, that leftover balance just becomes pure profit for the retailer, no product, no refund, no cost. A few states force companies to hand it to unclaimed-property funds instead."
+    }
+   ]
   }
  ],
  "videos": [

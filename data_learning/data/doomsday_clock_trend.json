@@ -1,0 +1,47 @@
+{
+  "key": "doomsday_clock_trend",
+  "title": "Doomsday Clock, seconds to midnight",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "1947-2023",
+  "source": {
+    "name": "Doomsday Clock announcements",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 minutes converted to seconds for charting; figures match the Bulletin's published settings.",
+  "points": [
+    {
+      "label": "1947",
+      "value": 420,
+      "period": "1947"
+    },
+    {
+      "label": "1991",
+      "value": 1020,
+      "period": "1991"
+    },
+    {
+      "label": "2007",
+      "value": 300,
+      "period": "2007"
+    },
+    {
+      "label": "2018",
+      "value": 120,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 100,
+      "period": "2020"
+    },
+    {
+      "label": "2023",
+      "value": 90,
+      "period": "2023"
+    }
+  ]
+}

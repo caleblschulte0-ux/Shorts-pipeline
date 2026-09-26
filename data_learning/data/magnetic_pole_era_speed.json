@@ -1,0 +1,29 @@
+{
+  "key": "magnetic_pole_era_speed",
+  "title": "Magnetic pole average speed by era",
+  "unit": "km/year",
+  "geography": "Arctic / global",
+  "time_coverage": "1900s-2010s (by era)",
+  "source": {
+    "name": "Magnetic pole position tracking",
+    "publisher": "NOAA National Centers for Environmental Information / British Geological Survey",
+    "url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 era averages approximated from published pole-tracking summaries.",
+  "points": [
+    {
+      "label": "1900s-1980s",
+      "value": 10
+    },
+    {
+      "label": "1990s",
+      "value": 25
+    },
+    {
+      "label": "2000s-2010s",
+      "value": 50
+    }
+  ]
+}

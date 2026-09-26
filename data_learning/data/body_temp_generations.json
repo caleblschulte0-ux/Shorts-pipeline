@@ -1,0 +1,29 @@
+{
+  "key": "body_temp_generations",
+  "title": "Average temperature by birth decade",
+  "unit": "degrees F",
+  "geography": "United States",
+  "time_coverage": "1800s-1990s birth cohorts",
+  "source": {
+    "name": "Union Army veteran records + modern clinical cohorts (Stanford analysis)",
+    "publisher": "Stanford University School of Medicine (Protsiv et al., eLife 2020)",
+    "url": "https://elifesciences.org/articles/49555",
+    "officiality": "secondary",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 approximate per-decade figures compiled from the study's reported ~0.03F per-decade decline.",
+  "points": [
+    {
+      "label": "Born 1800s",
+      "value": 98.4
+    },
+    {
+      "label": "Born 1900s",
+      "value": 98.1
+    },
+    {
+      "label": "Born 1990s",
+      "value": 97.6
+    }
+  ]
+}

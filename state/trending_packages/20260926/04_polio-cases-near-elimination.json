@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "polio-cases-near-elimination",
+  "title": "Polio Cases Fell 99% Since 1988",
+  "hook": "350K Cases. Then Almost None.",
+  "y_label": "Global polio cases (reported)",
+  "duration": 13,
+  "source": "Wild poliovirus case counts compiled from Global Polio Eradication Initiative (GPEI) and WHO historical surveillance data: an estimated 350,000+ cases in 1988 fell more than 99% to double-digit case counts by the 2010s-2020s, with year-to-year fluctuation as the last endemic pockets are cleared.",
+  "years": [
+    1988,
+    1994,
+    2000,
+    2006,
+    2012,
+    2018,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Global polio cases",
+      "color": "#e74c3c",
+      "values": [
+        350000,
+        80000,
+        3500,
+        1997,
+        223,
+        33,
+        12
+      ]
+    },
+    {
+      "name": "1988 baseline",
+      "color": "#9b9b9b",
+      "values": [
+        350000,
+        350000,
+        350000,
+        350000,
+        350000,
+        350000,
+        350000
+      ]
+    }
+  ],
+  "hashtags": [
+    "polio",
+    "publichealth",
+    "vaccines",
+    "who",
+    "globalhealth",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "music_vibe": "cinematic"
+}

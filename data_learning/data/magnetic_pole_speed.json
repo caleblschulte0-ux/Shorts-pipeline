@@ -1,0 +1,52 @@
+{
+  "key": "magnetic_pole_speed",
+  "title": "Magnetic north pole drift speed",
+  "unit": "km/year",
+  "geography": "Arctic / global",
+  "time_coverage": "1900-2024 (approx, by era)",
+  "source": {
+    "name": "Magnetic pole position tracking",
+    "publisher": "NOAA National Centers for Environmental Information / British Geological Survey",
+    "url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 approximate figures compiled from published NOAA/BGS pole-tracking summaries; year-to-year estimates vary by source.",
+  "points": [
+    {
+      "label": "1900",
+      "value": 9,
+      "period": "1900"
+    },
+    {
+      "label": "1950",
+      "value": 10,
+      "period": "1950"
+    },
+    {
+      "label": "1990",
+      "value": 15,
+      "period": "1990"
+    },
+    {
+      "label": "2001",
+      "value": 40,
+      "period": "2001"
+    },
+    {
+      "label": "2007",
+      "value": 55,
+      "period": "2007"
+    },
+    {
+      "label": "2019",
+      "value": 50,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 35,
+      "period": "2024"
+    }
+  ]
+}

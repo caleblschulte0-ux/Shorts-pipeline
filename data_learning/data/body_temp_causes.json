@@ -1,0 +1,25 @@
+{
+  "key": "body_temp_causes",
+  "title": "Background inflammation, then vs now",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "1851 vs today (illustrative index)",
+  "source": {
+    "name": "Union Army veteran records + modern clinical cohorts (Stanford analysis)",
+    "publisher": "Stanford University School of Medicine (Protsiv et al., eLife 2020)",
+    "url": "https://elifesciences.org/articles/49555",
+    "officiality": "secondary",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 a simplified index standing in for the study's point that chronic infection/inflammation was far more common in 1851.",
+  "points": [
+    {
+      "label": "1851 (chronic infection common)",
+      "value": 100
+    },
+    {
+      "label": "Today",
+      "value": 35
+    }
+  ]
+}

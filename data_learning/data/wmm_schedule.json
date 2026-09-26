@@ -1,0 +1,25 @@
+{
+  "key": "wmm_schedule",
+  "title": "World Magnetic Model update cadence",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "2000-2020",
+  "source": {
+    "name": "World Magnetic Model release history",
+    "publisher": "NOAA / British Geological Survey",
+    "url": "https://www.ncei.noaa.gov/products/world-magnetic-model",
+    "officiality": "official",
+    "access_date": "2026-09-26"
+  },
+  "notes": "Illustrative \u2014 the WMM is normally released on a 5-year cycle; the 2019 out-of-cycle release is well documented.",
+  "points": [
+    {
+      "label": "Normal cycle",
+      "value": 5
+    },
+    {
+      "label": "2019 emergency release",
+      "value": 1
+    }
+  ]
+}

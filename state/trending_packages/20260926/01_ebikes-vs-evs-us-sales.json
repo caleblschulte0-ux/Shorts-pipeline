@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "ebikes-vs-evs-us-sales",
+  "title": "E-Bikes Outsold EVs. Then EVs Caught Up.",
+  "hook": "E-Bikes Beat EVs. Not Anymore.",
+  "y_label": "US annual unit sales (thousands)",
+  "duration": 13,
+  "source": "US e-bike retail unit sales compiled from NPD Group point-of-sale tracking, vs. US electric-vehicle (battery-electric) sales compiled from Cox Automotive / Kelley Blue Book: e-bikes outsold EVs in 2019-2021 (roughly 450-880 thousand units vs 240-650 thousand), then EV sales overtook e-bikes around 2022 as EV volume accelerated past 1 million units.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "E-bikes",
+      "color": "#2ecc71",
+      "values": [
+        450,
+        700,
+        880,
+        950,
+        1100,
+        1150
+      ]
+    },
+    {
+      "name": "Electric cars (BEV)",
+      "color": "#4a90e2",
+      "icon": "US",
+      "values": [
+        240,
+        300,
+        650,
+        990,
+        1400,
+        1700
+      ]
+    }
+  ],
+  "hashtags": [
+    "ebikes",
+    "electricvehicles",
+    "evs",
+    "tesla",
+    "transportation",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "music_vibe": "cinematic"
+}
