@@ -2,12 +2,12 @@
   "formats": [
     {
       "format": "graph_race",
-      "videos": 47,
-      "views": 156,
-      "views_per_video": 3.3,
-      "avg_views_per_hour": 0.02,
-      "engaged_views": 53,
-      "avg_view_pct": 65.8,
+      "videos": 50,
+      "views": 152,
+      "views_per_video": 3.0,
+      "avg_views_per_hour": 0.03,
+      "engaged_views": 65,
+      "avg_view_pct": 56.8,
       "likes": 1,
       "shares": 0,
       "subs_gained": 0
@@ -18,13 +18,13 @@
       "views": 15,
       "views_per_video": 0.6,
       "avg_views_per_hour": 0.0,
-      "engaged_views": 6,
-      "avg_view_pct": 11.4,
+      "engaged_views": 5,
+      "avg_view_pct": 8.4,
       "likes": 0,
       "shares": 0,
       "subs_gained": 0
     }
   ],
-  "matched": 72,
+  "matched": 75,
   "unmatched": 0
 }
