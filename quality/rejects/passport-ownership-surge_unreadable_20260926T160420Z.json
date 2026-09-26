@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260926T160420Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start, seg1:mid and seg1:end the title 'AMERICANS WHO OWN A PASSPORT' is cut off at both frame edges ('MERICANS ... PASSPOR'), and in seg1:end the mascot covers 'WHO'. In seg4:start the vertical rod cuts through '20.1% apart' and 'National average 48%' is faded almost invisible.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "The gauge title is clipped at the left and right frame edges in all three seg1 frames. The mascot sits on top of 'WHO' at seg1:end. The gauge is labelled '2023' while it sweeps from 3.5% to 47.7%, but the narration says 5% in 1990 and 48% today, and the caption says '5%' while the dial reads 3.5%.",
+  "root_cause": "The title is set at a fixed size wider than the frame instead of being measured and fitted. The mascot's anchor on the gauge tip passes through the title band. The year label is bound to the last data row, not to the sweep's start and end points (1990 to today).",
+  "repair_goal": "Measure the title and fit it inside safe margins, wrapping or shrinking as needed. Keep the mascot's path below the title band. Label the start year 1990 at 5% and the end year 'today' at 48% so the dial's values match the narration. Better still, replace the generic gauge with something made of the subject: a row of passport booklets that fills from 1 in 20 to nearly 1 in 2."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

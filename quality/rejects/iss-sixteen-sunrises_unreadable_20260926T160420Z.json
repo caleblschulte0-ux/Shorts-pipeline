@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260926T160420Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start/mid/end: the kicker is cut off as 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T\u2026'. seg4:mid/end: the grey '15' is printed over grey tiles and almost disappears, and a tan wipe bar crosses it in payoff@-0.4. In seg1 two labels sit stacked tightly on top of each other.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_contradicts_claim",
+  "visible_evidence": "seg4:mid through payoff@-0.4: a grid of grey tiles in a gold box shows a low-contrast '15' and the text '15 times over'. The title and narration promise 16 sunrises a day. The label 'ISS: minutes between sunrises fits in Earth's surface: minutes between sunrises' is a clumsy two-line sentence. Data stands to the side in the same pointing pose for the whole scene.",
+  "root_cause": "The fit machine computed floor(1440/93)=15 and drew a generic tile-fill with the raw series labels. The claim is about sunrises per day (1440/93 \u2248 15.5, stated as 16), so the picture contradicts the headline number and shows nothing about sunrises.",
+  "repair_goal": "Make the payoff show the title's 16: an Earth with the ISS lapping it, and a small sunrise burst lighting on each lap, with a counter that ticks up to 16 beside one sunrise on the ground. Put the number in high-contrast ink, write the label as plain words ('ISS sunrises per day'), and have Data do a bit such as squinting or covering his eyes at each flash."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
