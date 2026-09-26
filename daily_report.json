@@ -6,11 +6,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK:",
-    "elapsed_seconds": 90.5,
+    "error": "showrunner_block: showrunner BLOCK: A clean, well-sourced two-line race that lands the crossover and leaderboard flip, but the coal labels are low-contrast and pile up at the crossing, right at the payoff.",
+    "elapsed_seconds": 89.3,
     "package_path": "state/trending_packages/20260926/01_graph-wind-solar-passed-coal.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-114347_wind_and_solar_finally_passed_coal.mp4",
+    "video_path": "output/daily_20260926-121706_wind_and_solar_finally_passed_coal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK:",
-      "score": 79
+      "reason": "showrunner BLOCK: A clean, well-sourced two-line race that lands the crossover and leaderboard flip, but the coal labels are low-contrast and pile up at the crossing, right at the payoff.",
+      "score": 78
     },
     "blocked": true
   },
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.",
-    "elapsed_seconds": 97.0,
+    "error": "showrunner_block: showrunner BLOCK: A clean, correctly branded graph race with a real crossover moment, but the losing-series label collides with its own line and the ending just holds instead of landing a scale punchline.",
+    "elapsed_seconds": 91.6,
     "package_path": "state/trending_packages/20260926/02_graph-streaming-music-buried-cds.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-114517_streaming_music_buried_the_cd.mp4",
+    "video_path": "output/daily_20260926-121836_streaming_music_buried_the_cd.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,8 +62,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.",
-      "score": 78
+      "reason": "showrunner BLOCK: A clean, correctly branded graph race with a real crossover moment, but the losing-series label collides with its own line and the ending just holds instead of landing a scale punchline.",
+      "score": 74
     },
     "blocked": true
   },
@@ -74,11 +74,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.",
-    "elapsed_seconds": 87.5,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest crossover race with a clear 'Online passes Offline' moment, but the hook is flat and ungrammatical and the Offline series is too dark to read on a phone.",
+    "elapsed_seconds": 86.2,
     "package_path": "state/trending_packages/20260926/03_graph-online-world-passed-offline.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-114654_the_online_world_passed_the_offline_worl.mp4",
+    "video_path": "output/daily_20260926-122007_the_online_world_passed_the_offline_worl.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,7 +96,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.",
+      "reason": "showrunner BLOCK: A clean, honest crossover race with a clear 'Online passes Offline' moment, but the hook is flat and ungrammatical and the Offline series is too dark to read on a phone.",
       "score": 74
     },
     "blocked": true
@@ -108,11 +108,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.",
-    "elapsed_seconds": 91.5,
+    "error": "showrunner_block: showrunner BLOCK: A clean but generic two-line chart. Mobile leads from frame one, so the 'race' has no overtake, and the fixed-broadband label is buried in its own line.",
+    "elapsed_seconds": 82.7,
     "package_path": "state/trending_packages/20260926/04_graph-mobile-broadband-left-fixed-behind.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-114822_mobile_broadband_left_fixed_lines_behind.mp4",
+    "video_path": "output/daily_20260926-122134_mobile_broadband_left_fixed_lines_behind.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,8 +130,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.",
-      "score": 70
+      "reason": "showrunner BLOCK: A clean but generic two-line chart. Mobile leads from frame one, so the 'race' has no overtake, and the fixed-broadband label is buried in its own line.",
+      "score": 65
     },
     "blocked": true
   },
@@ -140,16 +140,16 @@
     "title": "They Fined My Garden. Their Own Map Canceled It.",
     "format": "reddit",
     "publish_at": "2026-09-26T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.",
-    "elapsed_seconds": 224.3,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/gYCGXO_3XLQ",
+    "error": null,
+    "elapsed_seconds": 181.0,
     "package_path": "state/trending_packages/20260926/05_hoa-garden-property-line.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-114956_they_fined_my_garden__their_own_map_canc.mp4",
+    "video_path": "output/daily_20260926-122258_they_fined_my_garden__their_own_map_canc.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.4,
+      "duration": 52.733,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -24.9
     },
     "qa": {
       "ok": true,
@@ -168,76 +168,33 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.",
-      "score": 75
+      "blocked": false,
+      "reason": "",
+      "score": 74
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "He Said The Chair Vanished. Then He Listed It.",
     "title": "He Said The Chair Vanished. Then He Listed It.",
     "format": "reddit",
-    "publish_at": "2026-09-26T13:00:00Z",
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.",
-    "elapsed_seconds": 261.0,
+    "error": "showrunner_block: showrunner BLOCK: The chair and evidence shots work, but the back half hangs one clip-art bank icon for ~22s, so the story's best beats (the listing and the denial) are never shown and the ending has no payoff.",
+    "elapsed_seconds": 326.2,
     "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-115340_he_said_the_chair_vanished__then_he_list.mp4",
+    "video_path": "output/daily_20260926-122600_he_said_the_chair_vanished__then_he_list.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.967,
+      "duration": 54.7,
       "width": 1080,
       "height": 1920,
       "has_video": true,
       "has_audio": true,
       "black_spans": [],
       "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.7
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.",
-      "score": 66
-    },
-    "blocked": true
-  },
-  {
-    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
-    "angle": "A rabbit\u2011hole street\u2011view hunt reveals the same white Nissan 350Z mysteriously parked in the same spot for years, sparking online speculation.",
-    "publish_at": "2026-09-26T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.",
-    "elapsed_seconds": 270.4,
-    "title": "I Served an Entitled Customer a Salty \u2018Free\u2019 Coffee",
-    "package_path": "state/trending_packages/20260926-115831_auto_my_weird_new_hobby__wandering_around_tok.json",
-    "video_path": "output/daily_20260926-115831_my_weird_new_hobby__wandering_around_tok.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.733,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [
-        [
-          25.4667,
-          26.0667
-        ]
-      ],
-      "black_frac": 0.0131,
       "freeze_spans": [],
       "freeze_frac": 0.0,
       "silence_spans": [],
@@ -246,31 +203,30 @@
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.",
-      "score": 57
+      "reason": "showrunner BLOCK: The chair and evidence shots work, but the back half hangs one clip-art bank icon for ~22s, so the story's best beats (the listing and the denial) are never shown and the ending has no payoff.",
+      "score": 66
     },
-    "blocked": true,
-    "backfill": true
+    "blocked": true
   },
   {
-    "topic": "Scientists find two tiny new snails with shells that close like doors",
-    "angle": "Researchers in Montenegro uncover two brand\u2011new snail species whose door\u2011like shells could inspire bio\u2011inspired engineering.",
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "The rare Blanding\u2019s turtle uses a newly built tunnel, showing a concrete win for wildlife corridors and conservation tech.",
     "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.",
-    "elapsed_seconds": 269.3,
-    "title": "I Served Karma to an Entitled Coffee Snob",
-    "package_path": "state/trending_packages/20260926-120247_auto_scientists_find_two_tiny_new_snails_with.json",
-    "video_path": "output/daily_20260926-120247_scientists_find_two_tiny_new_snails_with.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Overlapping captions at 10.8s and 27.3s make the story impossible to read, and no beat is illustrated, so it plays as a caption track over generic parkour with no visual payoff.",
+    "elapsed_seconds": 237.9,
+    "title": "I caught an entitled cafe customer stealing my tip",
+    "package_path": "state/trending_packages/20260926-123153_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260926-123153_endangered_blanding_s_turtle_caught_on_c.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 51.7,
+      "duration": 45.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -281,46 +237,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.",
-      "score": 49
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Monkey spotted on Florida man's trail cam - FOX 35 Orlando",
-    "angle": "A trail camera set to monitor a private property captures a macaque wandering the yard, prompting a wildlife\u2011control response and viral memes.",
-    "publish_at": "2026-09-26T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.",
-    "elapsed_seconds": 196.2,
-    "title": "I Served a Free Latte to an Entitled Swindler",
-    "package_path": "state/trending_packages/20260926-120718_auto_monkey_spotted_on_florida_man_s_trail_ca.json",
-    "video_path": "output/daily_20260926-120718_monkey_spotted_on_florida_man_s_trail_ca.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 42.967,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.7
+      "loudness_lufs": -23.9
     },
     "qa": {
       "ok": true,
@@ -329,26 +246,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.",
-      "score": 57
+      "reason": "showrunner BLOCK: Overlapping captions at 10.8s and 27.3s make the story impossible to read, and no beat is illustrated, so it plays as a caption track over generic parkour with no visual payoff.",
+      "score": 53
     },
     "blocked": true,
     "backfill": true
   },
   {
     "topic": "Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch",
-    "angle": "A golden retriever tasked with guarding a store\u2019s entrance bolts out, letting a shoplifter walk away, turning a simple job into viral comedy.",
-    "publish_at": "2026-09-26T17:30:00Z",
+    "angle": "A well\u2011trained golden retriever botches a simple delivery, highlighting how even beloved pets can cause chaotic slip\u2011ups.",
+    "publish_at": "2026-09-26T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.",
-    "elapsed_seconds": 211.4,
-    "title": "My Golden Retriever Got Fired and Then Saved the Cafe",
-    "package_path": "state/trending_packages/20260926-121037_auto_golden_retriever_had_one_job__he_failed_.json",
-    "video_path": "output/daily_20260926-121037_golden_retriever_had_one_job__he_failed_.mp4",
+    "error": "quarantined: vision QA: broken \u2014 The first frame shows an image that is split horizontally, creating a duplicate or mirrored effect that is not cohesive with the rest of the video's format where the top half is an illustration and th",
+    "elapsed_seconds": 274.4,
+    "title": "My Barista Revenge Turned Viral",
+    "package_path": "state/trending_packages/20260926-123539_auto_golden_retriever_had_one_job__he_failed_.json",
+    "video_path": "output/daily_20260926-123539_golden_retriever_had_one_job__he_failed_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.5,
+      "duration": 44.133,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -359,17 +276,62 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.4
+      "loudness_lufs": -24.1
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The first frame shows an image that is split horizontally, creating a duplicate or mirrored effect that is not cohesive with the rest of the video's format where the top half is an illustration and th"
+    },
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam",
+    "angle": "Legendary pianist Rick Wakeman plays for rescued moon bears, blending music and wildlife rescue in a viral charity event.",
+    "publish_at": "2026-09-26T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam' refused by the writer: The prompt references real persons and events, which violates the rule against using real names or real events.",
+    "elapsed_seconds": 0.8,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "This Week's Weird News 9/25/26 | 1150 WIMA | Coast to Coast AM with George Noory - 1150 WIMA",
+    "angle": "A roundup of bizarre stories\u2014including a town that renamed itself after a tax protest\u2014captures the week\u2019s oddball headlines.",
+    "publish_at": "2026-09-26T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A readable reddit story over gameplay, but the illustrations are flat stock emoji, several beats (kitchen, fire alarm) have none, and the ending is one static cash icon, so the payoff never lands",
+    "elapsed_seconds": 250.5,
+    "title": "I Got Fired for Fixing the Coffee Machine and Walked Out Rich",
+    "package_path": "state/trending_packages/20260926-124014_auto_this_week_s_weird_news_9_25_26___1150_wi.json",
+    "video_path": "output/daily_20260926-124014_this_week_s_weird_news_9_25_26___1150_wi.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.367,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.8
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.",
-      "score": 61
+      "reason": "showrunner BLOCK: A readable reddit story over gameplay, but the illustrations are flat stock emoji, several beats (kitchen, fire alarm) have none, and the ending is one static cash icon, so the payoff never lands",
+      "score": 62
     },
     "blocked": true,
     "backfill": true

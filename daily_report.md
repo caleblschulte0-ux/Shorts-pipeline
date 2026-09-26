@@ -4,29 +4,36 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **10**
-- succeeded: **0**
-- quarantined (off-topic imagery): **0**
-- failed: **10**
+- succeeded: **1**
+- quarantined (off-topic imagery): **1**
+- failed: **8**
+
+## Posted
+- **They Fined My Garden. Their Own Map Canceled It.**
+  - topic: They Fined My Garden. Their Own Map Canceled It.
+  - publishes: `2026-09-26T13:00:00Z`
+  - https://youtube.com/shorts/gYCGXO_3XLQ
+  - took: 181.0s
+
+## Quarantined (off-topic imagery — fix & re-author)
+- **Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch**
+  - quarantined: vision QA: broken — The first frame shows an image that is split horizontally, creating a duplicate or mirrored effect that is not cohesive with the rest of the video's format where the top half is an illustration and th
 
 ## Failed
 - **Wind And Solar Finally Passed Coal**
-  - error: `showrunner_block: showrunner BLOCK:`
+  - error: `showrunner_block: showrunner BLOCK: A clean, well-sourced two-line race that lands the crossover and leaderboard flip, but the coal labels are low-contrast and pile up at the crossing, right at the payoff.`
 - **Streaming Music Buried The CD**
-  - error: `showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover and a big scale payoff, but from the midpoint on the CDs tip label is printed on top of its own flattened line and is hard to read on a phone.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, correctly branded graph race with a real crossover moment, but the losing-series label collides with its own line and the ending just holds instead of landing a scale punchline.`
 - **The Online World Passed The Offline World**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest line race where the crossover lands, but the Offline series is almost invisible brown-on-black and the hook opens on a near-static chart.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, honest crossover race with a clear 'Online passes Offline' moment, but the hook is flat and ungrammatical and the Offline series is too dark to read on a phone.`
 - **Mobile Broadband Left Fixed Lines Behind**
-  - error: `showrunner_block: showrunner BLOCK: The line race is clean and honest, but the hook is a slow build from a small gap, and the ending just declares '#1' with no scale punchline (about 5x) and a label collision.`
-- **They Fined My Garden. Their Own Map Canceled It.**
-  - error: `showrunner_block: showrunner BLOCK: The illustrations follow the story well beat by beat, but captions collide and become unreadable at mid3 and again at the payoff, so the punchline is garbled.`
+  - error: `showrunner_block: showrunner BLOCK: A clean but generic two-line chart. Mobile leads from frame one, so the 'race' has no overtake, and the fixed-broadband label is buried in its own line.`
 - **He Said The Chair Vanished. Then He Listed It.**
-  - error: `showrunner_block: showrunner BLOCK: The Reddit card and gameplay hook work, but the illustration pane freezes on one generic envelope icon for the last ~22s, so the chair listing and the bank-denial payoff are never shown.`
-- **My Weird New Hobby: Wandering Around Tokyo on Google Maps**
-  - error: `showrunner_block: showrunner BLOCK: A petty-revenge story whose visuals are two static stock emoji and bare gameplay, so the salt gag and the $20-tip twist are never shown.`
-- **Scientists find two tiny new snails with shells that close like doors**
-  - error: `showrunner_block: showrunner BLOCK: A 52s reddit story told almost entirely over raw gameplay: only one generic coffee icon illustrates seven beats, the payoff has no picture, and a grey seam line crosses mid-frame throughout.`
-- **Monkey spotted on Florida man's trail cam - FOX 35 Orlando**
-  - error: `showrunner_block: showrunner BLOCK: This is pure gameplay and captions. None of the six story beats is illustrated, the hook sits on blown-out yellow mush, and a seam line cuts through every frame.`
-- **Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch**
-  - error: `showrunner_block: showrunner BLOCK: The story beats are never shown: 45s of generic Minecraft gameplay with captions, no illustration of the dog, the espresso chaos or the gas-leak rescue, and a stray grey line cuts across every frame.`
+  - error: `showrunner_block: showrunner BLOCK: The chair and evidence shots work, but the back half hangs one clip-art bank icon for ~22s, so the story's best beats (the listing and the denial) are never shown and the ending has no payoff.`
+- **Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME**
+  - error: `showrunner_block: showrunner BLOCK: Overlapping captions at 10.8s and 27.3s make the story impossible to read, and no beat is illustrated, so it plays as a caption track over generic parkour with no visual payoff.`
+- **Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam**
+  - error: `unfit_for_fiction: 'Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam' refused by the writer: The prompt references real persons and events, which violates the rule against using real names or real events.`
+- **This Week's Weird News 9/25/26 | 1150 WIMA | Coast to Coast AM with George Noory - 1150 WIMA**
+  - error: `showrunner_block: showrunner BLOCK: A readable reddit story over gameplay, but the illustrations are flat stock emoji, several beats (kitchen, fire alarm) have none, and the ending is one static cash icon, so the payoff never lands`
 

@@ -1,6 +1,58 @@
 {
   "runs": [
     {
+      "date": "20260918",
+      "dry_run": false,
+      "ts": "2026-09-18T23:15:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 106,
+        "with_retention": 84,
+        "with_curve": 13,
+        "fetched_at": "2026-09-18T15:21:48.324320+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20260918-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
       "date": "20260919",
       "dry_run": false,
       "ts": "2026-09-19T14:32:58+00:00",
@@ -4998,275 +5050,6 @@
           "slug": "clip-20260925-6",
           "ok": true,
           "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260926",
-      "dry_run": false,
-      "ts": "2026-09-26T12:38:00+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 110,
-        "with_retention": 88,
-        "with_curve": 14,
-        "fetched_at": "2026-09-26T08:46:01.232780+00:00"
-      },
-      "brain": {
-        "ok": 41,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260926-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (vague haggling, no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "no info, title blank",
-              "blind": false
-            },
-            "content": {
-              "score": 0.2,
-              "why": "vague haggling, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 81.8
-        },
-        {
-          "slug": "clip-20260926-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "funny leak/blooper moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.75,
-              "why": "prank backfires, instant regret admissio",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": []
-            }
-          },
-          "took_s": 206.8
-        },
-        {
-          "slug": "clip-20260926-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp in-focus region is only a thin horizontal strip (roughly a fifth of the canvas height) instead of filling ~3/4 of ; vision: Frame at 14.5s shows a warped/glitched, stretched image incons",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "hype reaction, unclear cause",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "vague hype, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Caseoh Finds A New Method And Goes Off"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.7,
-              "problems": [
-                "Sharp in-focus region is only a thin horizontal strip (roughly a fifth of the canvas height) instead of filling ~3/4 of ",
-                "Frame at 14.5s shows a warped/glitched, stretched image inconsistent with surrounding frames",
-                "Subject (streamer webcam) is reduced to a tiny corner sliver, not readable at phone size"
-              ]
-            }
-          },
-          "took_s": 209.8
-        },
-        {
-          "slug": "clip-20260926-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (just naming a pet, no event)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "just naming a pet, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 40.0
-        },
-        {
-          "slug": "clip-20260926-5",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (routine gameplay counting, no clear even)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "routine gameplay counting, no clear even",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 65.4
-        },
-        {
-          "slug": "clip-20260926-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "pizza costume talk, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Just Said 'Nah' To This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.78,
-              "problems": []
-            }
-          },
-          "took_s": 240.8
         }
       ]
     }
