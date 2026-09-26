@@ -1,99 +1,109 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "empty_void": {
-   "count": 8,
+  "decorative_mascot": {
+   "count": 7,
    "stories": {
-    "mbappe": 1,
-    "he_had_a_master_key__i_had_an_airtag_": 2,
-    "i_traced_the_robocalls__the_ftc_did_the_": 3,
-    "snake": 1,
-    "olivia_rodrigo_tour": 1
+    "passport-ownership-surge": 2,
+    "iss-sixteen-sunrises": 2,
+    "cicada-double-brood-2024": 3
    },
    "timestamps": [
-    "2026-09-25T21:02:49+00:00",
-    "2026-09-25T21:42:48+00:00",
-    "2026-09-25T21:50:22+00:00",
-    "2026-09-25T21:50:22+00:00",
-    "2026-09-25T22:07:54+00:00",
-    "2026-09-25T22:34:37+00:00",
-    "2026-09-25T23:41:03+00:00",
-    "2026-09-25T23:57:07+00:00"
+    "2026-09-26T15:55:30+00:00",
+    "2026-09-26T16:04:05+00:00",
+    "2026-09-26T16:04:05+00:00",
+    "2026-09-26T17:00:29+00:00",
+    "2026-09-26T17:09:10+00:00",
+    "2026-09-26T17:09:10+00:00",
+    "2026-09-26T17:18:01+00:00"
    ],
    "examples": [
-    "empty_void: The top half of mid1/mid2/mid3 is a flat dark navy panel holding one small generic emoji, so about 40% of that area is wasted.",
-    "empty_void: In hook@0.3 and hook@0.8 the frame is mostly black under the post card, with one small shape in the lower half. In mid3 the lower half is almost all black with a few gear fragments at the ",
-    "junk_imagery: mid0 and mid3 both show the same blank blue phone rectangle on a dark void, a generic placeholder icon. mid1 is an AI-looking stock photo of a smiling call-center agent, which does not s"
+    "unreadable: In seg1:start, seg1:mid and seg1:end the title 'AMERICANS WHO OWN A PASSPORT' is cut off at both frame edges ('MERICANS ... PASSPOR'), and in seg1:end the mascot covers 'WHO'. In seg4:star",
+    "decorative_mascot: In hook@0.3 through seg0:end two copies of Data stand beside the numbers and slide sideways. In seg3:start/mid/end he balances on top of a bubble. In seg4:start/mid/end and payoff h",
+    "bare_number_card: The hook and seg0 (t=0.3 to 5.18s) are two rows of big numbers, '900' and '27.6K', each next to a mascot, with nothing showing speed. Only the labels carry the 30x claim."
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 7,
+   "count": 5,
    "stories": {
-    "google": 1,
-    "brendan_beck": 1,
-    "chicken_quietly_passed_beef_in_america": 3,
-    "mexico_vs_colombia": 1,
-    "he_had_a_master_key__i_had_an_airtag_": 1
+    "iss-sixteen-sunrises": 1,
+    "wind_and_solar_finally_passed_coal": 1,
+    "cicada-double-brood-2024": 2,
+    "phil_knight": 1
    },
    "timestamps": [
-    "2026-09-25T20:54:39+00:00",
-    "2026-09-25T21:09:36+00:00",
-    "2026-09-25T21:34:57+00:00",
-    "2026-09-25T22:18:26+00:00",
-    "2026-09-25T22:54:04+00:00",
-    "2026-09-25T23:35:11+00:00",
-    "2026-09-25T23:41:03+00:00"
+    "2026-09-26T16:04:05+00:00",
+    "2026-09-26T15:53:09+00:00",
+    "2026-09-26T17:18:01+00:00",
+    "2026-09-26T17:26:48+00:00",
+    "2026-09-26T17:26:53+00:00"
    ],
    "examples": [
-    "unreadable: hook@2.2 (t=2.20s): the post card fades over busy gameplay and the title 'My Boss's Budget Cut Killed His Own Demo' is ghosted and illegible. A thin horizontal seam line also runs across t",
-    "unreadable: mid0: the AI shift board's text is garbled and can't be read; a hard horizontal seam line runs across the gameplay at mid-frame in hook@0.3, mid2, mid3 and mid5",
-    "unreadable: At mid4 (t=5.60s) the 'Chicken 60' and 'Beef 56' tip labels stack on top of each other and sit under the crossover glow ring, so 'Beef 56' is hard to read at phone size. At mid3 the 'Beef "
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 6,
-   "stories": {
-    "google": 1,
-    "brendan_beck": 1,
-    "snake": 1,
-    "i_traced_the_robocalls__the_ftc_did_the_": 1,
-    "mexico_vs_colombia": 1,
-    "chatgpt_down": 1
-   },
-   "timestamps": [
-    "2026-09-25T20:54:39+00:00",
-    "2026-09-25T21:09:36+00:00",
-    "2026-09-25T22:07:54+00:00",
-    "2026-09-25T22:34:37+00:00",
-    "2026-09-25T22:54:04+00:00",
-    "2026-09-26T00:05:31+00:00"
-   ],
-   "examples": [
-    "junk_imagery: mid3 (t=27.54s): a generic microscope emoji is the illustration for 'EVERY SCREEN WENT' black. It has nothing to do with screens, a demo or overheating, so it is an off-topic icon.",
-    "junk_imagery: mid1: a generic desktop-computer icon illustrates 'pulled three servers' (restaurant staff read as computer servers); mid0: AI shift board with garbled fake text ('Yonop', scribbled cell",
-    "junk_imagery: mid3 and mid4 show a generic red paw-print clip-art on a dark gradient, standing in for a snake story. Paw prints do not fit a snake at all."
+    "unreadable: seg3:start/mid/end: the kicker is cut off as 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T\u2026'. seg4:mid/end: the grey '15' is printed over grey tiles and almost disappears, and a tan wipe ba",
+    "unreadable: payoff@-1.8: the gold tip ring sits over the end of the 'Wind + solar 721' label, and the 'Coal 688' label is packed right under it. At the crossover the two tip labels and markers collide",
+    "unreadable: seg3:end: the second line, \"500\u00d7 as many / as a typical wooded acre\", is faded grey printed over the dark treeline and the fence rope, so you have to work out what it says. seg1:end: the s"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 4,
+   "count": 3,
    "stories": {
-    "mbappe": 1,
-    "i_traced_the_robocalls__the_ftc_did_the_": 2,
-    "mexico_vs_colombia": 1
+    "diana__princess_of_wales": 1,
+    "he_said_the_chair_vanished__then_he_list": 1,
+    "phil_knight": 1
    },
    "timestamps": [
-    "2026-09-25T21:02:49+00:00",
-    "2026-09-25T21:50:22+00:00",
-    "2026-09-25T22:34:37+00:00",
-    "2026-09-25T22:54:04+00:00"
+    "2026-09-26T16:12:04+00:00",
+    "2026-09-26T17:14:34+00:00",
+    "2026-09-26T17:26:53+00:00"
    ],
    "examples": [
-    "dead_air: mid1 (t=11.5s) and mid2 (t=20.6s) show the same two-person silhouette nine seconds apart, over two different beats ('stormed in' vs 'shoved past the line'), so two beats look identical in th",
-    "dead_air: The top half repeats the same static blank-phone illustration at mid0 and mid3, so two beats look identical. Gameplay keeps moving underneath (longest_static_s 0.0), but the story half has n",
-    "dead_air: The same bills photo is held from mid4 (35.4s) through payoff@-0.4 (45.2s), about 10s. Gameplay moves underneath, but the story panel does not change."
+    "dead_air: The top illustration is the same blank phone icon from mid4 (39.4s) through mid5, payoff@-1.8 and payoff@-0.4 (50.2s), about 11s. Two beats (dialed the number / flagged her account) show the",
+    "dead_air: The same static clip-art bank icon fills the top half at mid3 (32.6s), mid4, mid5, payoff@-1.8 and payoff@-0.4, roughly 22s unchanged. It also appeared at mid1, so two beats use the same pic",
+    "dead_air: The story stops being illustrated for a long stretch. mid2 through mid4 (~20-44s) are full-screen gameplay with only captions, so the plaque, trash-can and 42-word-paragraph beats have nothi"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 2,
+   "stories": {
+    "diana__princess_of_wales": 1,
+    "coleman_wong": 1
+   },
+   "timestamps": [
+    "2026-09-26T16:12:04+00:00",
+    "2026-09-26T16:30:37+00:00"
+   ],
+   "examples": [
+    "junk_imagery: mid3/mid4/mid5: the top half is a generic flat clip-art receipt icon, then a blank blue-screen phone icon. They are placeholder pictograms, not an illustration of the story beat, and the",
+    "junk_imagery: mid1 (t=10.83s): a stock photo of a hand plucking an acoustic GUITAR's strings illustrates tennis-racket restringing. It is the wrong instrument and the wrong sport, pulled in by a keywo"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 1,
+   "stories": {
+    "coldest-place-in-the-universe-is-human-made": 1
+   },
+   "timestamps": [
+    "2026-09-26T16:45:27+00:00"
+   ],
+   "examples": [
+    "temporal_gate: duplicate_ratio 0.536 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 1,
+   "stories": {
+    "oktoberfest": 1
+   },
+   "timestamps": [
+    "2026-09-26T17:45:48+00:00"
+   ],
+   "examples": [
+    "empty_void: At mid5, payoff@-1.8 and payoff@-0.4 the whole top half is a dark vignette with one small phone icon whose screen is blank flat blue. Nearly half the frame is wasted."
    ],
    "recurred_after_fix": false
   }
@@ -101,27 +111,27 @@
  "weak_dims": {
   "hook": {
    "median": 2,
-   "min": 1,
-   "max": 3
+   "min": 0,
+   "max": 4
   },
   "data_demo": {
    "median": 1,
-   "min": 1,
-   "max": 3
+   "min": 0,
+   "max": 4
   },
   "mascot": {
    "median": 4,
-   "min": 4,
+   "min": 0,
    "max": 4
   },
   "craft": {
    "median": 1,
-   "min": 1,
-   "max": 2
+   "min": 0,
+   "max": 3
   },
   "pace": {
-   "median": 1,
-   "min": 1,
+   "median": 2,
+   "min": 0,
    "max": 2
   },
   "payoff": {
@@ -136,25 +146,25 @@
   }
  },
  "scores": [
-  66,
+  53,
   57,
-  53,
-  53,
-  61,
+  35,
   83,
+  74,
   57,
+  49,
+  65,
   57,
-  57,
+  66,
+  14,
   57,
   78,
-  61,
-  53,
-  61,
-  57,
+  74,
   78,
-  57,
-  70,
   53,
-  57
+  57,
+  61,
+  61,
+  91
  ]
 }
