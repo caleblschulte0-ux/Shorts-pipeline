@@ -616,6 +616,18 @@ python scripts/doctor.py next                     # what to build
 python scripts/doctor.py rule <sig> doing --because "..."
 ```
 
+## Self-repair — the daily session that fixes recurring defects (docs/SELF_REPAIR.md)
+
+Operator, 2026-09-26: *"we can't be babysitting every little video."* A
+Routine starts a fresh Claude session every afternoon (after the day's posts)
+that reads the verdicts, groups them into CLASSES of defect, fixes the most
+frequent one in code with a test that fails on the old code, and ships it
+through an auto-merging `claude/self-repair-<date>` PR, with a note in
+`self_repair/<date>.md`. It never touches the protected and operator-review
+files named in `scripts/review_proposals.py`, and never lowers a bar. If you
+are an interactive session, read the last few `self_repair/` notes before
+starting on the same verdicts.
+
 ## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
 
 Daily at 23:15 UTC (`retro.yml`), `scripts/build_retro.py` writes an
