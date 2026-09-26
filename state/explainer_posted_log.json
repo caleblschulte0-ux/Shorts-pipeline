@@ -2166,6 +2166,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 38.5
+    },
+    "cicada-double-brood-2024": {
+      "url": "https://youtube.com/shorts/_i-xPF_fcBY",
+      "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
+      "at": "2026-09-26T17:26:59.267897+00:00",
+      "publish_at": "2026-09-26T23:24:51Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 24 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 78,
+      "duration_s": 54.6
     }
   },
   "uploads": [
@@ -2555,6 +2573,15 @@
       "state": "posted",
       "slug": "passport-ownership-surge",
       "at": "2026-09-26T17:00:43.112992+00:00"
+    },
+    {
+      "claimed_at": "2026-09-26T17:26:49.723915+00:00",
+      "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
+      "publish_at": "2026-09-26T23:24:51Z",
+      "url": "https://youtube.com/shorts/_i-xPF_fcBY",
+      "state": "posted",
+      "slug": "cicada-double-brood-2024",
+      "at": "2026-09-26T17:26:59.267897+00:00"
     }
   ]
 }
