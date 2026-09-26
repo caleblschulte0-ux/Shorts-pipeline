@@ -1,8 +1,8 @@
 {
- "checked_at": "2026-09-26T12:30:51+00:00",
+ "checked_at": "2026-09-26T13:31:29+00:00",
  "date": "20260926",
  "deadline_central": 8,
- "deadline_passed": false,
+ "deadline_passed": true,
  "expected": [
   "exchange/bundles/20260926/response.json",
   "exchange/bundles/20260926/DONE"
