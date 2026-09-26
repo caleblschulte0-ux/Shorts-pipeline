@@ -6,11 +6,11 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of each other right at the crossover, which is the moment the video exists for.",
-    "elapsed_seconds": 74.3,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip labels collide right at the pass, which is the moment the whole video exists for, and the hook card gives away the ending.",
+    "elapsed_seconds": 78.0,
     "package_path": "state/trending_packages/20260925/02_chicken-passed-beef-consumption.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-221712_chicken_quietly_passed_beef_in_america.mp4",
+    "video_path": "output/daily_20260925-233353_chicken_quietly_passed_beef_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,7 +28,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean graph race with a real crossover payoff, but the tip labels pile on top of each other right at the crossover, which is the moment the video exists for.",
+      "reason": "showrunner BLOCK: A clean, honest two-line race with a clear crossover and leaderboard flip. The tip labels collide right at the pass, which is the moment the whole video exists for, and the hook card gives away the ending.",
       "score": 78
     },
     "blocked": true
@@ -40,14 +40,14 @@
     "publish_at": "2026-09-26T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: none of the AirTag-catches-thief beats is illustrated, and the payoff is a stock money emoji.",
-    "elapsed_seconds": 435.5,
+    "error": "showrunner_block: showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost none of the story (no AirTag, no closet, no master key), and one mid frame is a black void.",
+    "elapsed_seconds": 352.5,
     "package_path": "state/trending_packages/20260925/05_airtag-catches-maintenance-thief.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-221943_he_had_a_master_key__i_had_an_airtag_.mp4",
+    "video_path": "output/daily_20260925-233513_he_had_a_master_key__i_had_an_airtag_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.967,
+      "duration": 54.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,7 +58,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.9
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -67,8 +67,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The hook card and captions are clean, but the middle 45 seconds are bare gameplay: none of the AirTag-catches-thief beats is illustrated, and the payoff is a stock money emoji.",
-      "score": 61
+      "reason": "showrunner BLOCK: The Reddit card hook is fine, but 50 seconds of mostly bare gameplay shows almost none of the story (no AirTag, no closet, no master key), and one mid frame is a black void.",
+      "score": 57
     },
     "blocked": true
   },
@@ -77,16 +77,16 @@
     "title": "I Traced The Robocalls. The FTC Did The Rest.",
     "format": "reddit",
     "publish_at": "2026-09-26T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile, and a 'past due bills' photo held for the last 10 seconds, so the tracing and shutdown beats are never shown.",
-    "elapsed_seconds": 535.5,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/AXCeqFH6j4U",
+    "error": null,
+    "elapsed_seconds": 477.5,
     "package_path": "state/trending_packages/20260925/06_robocall-scam-center-shutdown.json",
     "source": "brain",
-    "video_path": "output/daily_20260925-222707_i_traced_the_robocalls__the_ftc_did_the_.mp4",
+    "video_path": "output/daily_20260925-234226_i_traced_the_robocalls__the_ftc_did_the_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.633,
+      "duration": 49.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,7 +97,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.1
+      "loudness_lufs": -22.8
     },
     "qa": {
       "ok": true,
@@ -105,48 +105,36 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story panel shows a blank phone icon twice, a mismatched stock call-centre smile, and a 'past due bills' photo held for the last 10 seconds, so the tracing and shutdown beats are never shown.",
-      "score": 53
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "will smith",
-    "angle": null,
-    "publish_at": "2026-09-26T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'will smith' refused by the writer: The trend centers on a real physical assault (the Oscars slap) and real celebrities' reactions to violence at a public event, which falls under the violence exc",
-    "elapsed_seconds": 32.3,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "rays vs phillies",
+    "topic": "prime time movie",
     "angle": null,
     "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'rays vs phillies' refused by the writer: trend is a real sports injury (Arraez's ankle injury) - injury-related news cannot seed a story per rule 1",
-    "elapsed_seconds": 30.5,
-    "unfit": true,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 102)",
+    "elapsed_seconds": 35.9,
     "backfill": true
   },
   {
-    "topic": "braves vs marlins",
+    "topic": "olivia rodrigo tour",
     "angle": null,
     "publish_at": "2026-09-26T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: one blank clip-art phone used twice and nothing for the scan, the security, the list or the gift-card payoff.",
-    "elapsed_seconds": 456.6,
-    "title": "I Scanned His Ticket and Ended His Scam",
-    "package_path": "state/trending_packages/20260925-223936_auto_braves_vs_marlins.json",
-    "video_path": "output/daily_20260925-223936_braves_vs_marlins.mp4",
+    "error": "showrunner_block: showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons (an empty phone repeated twice, a music note) floating in a dark void, and the camera-catch payoff is never shown.",
+    "elapsed_seconds": 410.2,
+    "title": "I Caught Her Fake Ticket Scam On Camera",
+    "package_path": "state/trending_packages/20260925-235129_auto_olivia_rodrigo_tour.json",
+    "video_path": "output/daily_20260925-235129_olivia_rodrigo_tour.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.967,
+      "duration": 46.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -166,26 +154,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A readable Reddit hook over gameplay, but the story beats are barely illustrated: one blank clip-art phone used twice and nothing for the scan, the security, the list or the gift-card payoff.",
-      "score": 61
+      "reason": "showrunner BLOCK: A standard gameplay reddit story whose few illustrations are blank placeholder icons (an empty phone repeated twice, a music note) floating in a dark void, and the camera-catch payoff is never shown.",
+      "score": 53
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "mexico vs colombia",
+    "topic": "chatgpt down",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people icon, missing captions, and a grey seam line across every frame.",
-    "elapsed_seconds": 522.8,
-    "title": "He Demanded The Remote, I Gave Him A Dead One",
-    "package_path": "state/trending_packages/20260925-224634_auto_mexico_vs_colombia.json",
-    "video_path": "output/daily_20260925-224634_mexico_vs_colombia.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an irrelevant microscope icon, so none of the story beats are demonstrated.",
+    "elapsed_seconds": 503.7,
+    "title": "My Manager Told Me To Lie To Every Caller",
+    "package_path": "state/trending_packages/20260925-235832_auto_chatgpt_down.json",
+    "video_path": "output/daily_20260925-235832_chatgpt_down.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.367,
+      "duration": 51.0,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -196,7 +184,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -205,10 +193,21 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story is never shown: about 40s of bare Minecraft gameplay, one stock people icon, missing captions, and a grey seam line across every frame.",
+      "reason": "showrunner BLOCK: Captions over generic gameplay tell the whole story, and the only illustration is an irrelevant microscope icon, so none of the story beats are demonstrated.",
       "score": 57
     },
     "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "what to stream tonight",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: the story still names the real news (last) after 2 retries",
+    "elapsed_seconds": 156.4,
+    "unfit": true,
     "backfill": true
   }
 ]

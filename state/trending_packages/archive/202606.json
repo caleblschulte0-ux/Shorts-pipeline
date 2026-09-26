@@ -17250,5 +17250,806 @@
       ],
       "music_vibe": "cinematic"
     }
+  },
+  "20260627": {
+    "01_merlin-duck-mexico-world-cup.json": {
+      "version": 1,
+      "slug": "merlin-duck-mexico-world-cup",
+      "title": "FIFA Banned Merl\u00edn the Duck From Mexico's Match",
+      "script": "FIFA banned... a duck? Merl\u00edn \u2014 a 2-year-old duck in a tiny green Mexico jersey \u2014 became the unofficial mascot of the 2026 World Cup. He showed up at Mexico's opening match and went instantly viral. Got invited to the presidential palace. Netflix. Televisa. He waddled through Mexico City streets while fans chanted his name. Then his owner brought him to Azteca Stadium for the Czech Republic match. Cameras set up outside. A FIFA spokesperson confirmed it: live animals aren't allowed inside the stadium. Merl\u00edn could film a commercial on the grounds. But not watch the game. In 2 weeks, that duck visited more Mexico City landmarks than most tourists manage in a month. Should the World Cup have a duck exemption?",
+      "shots": [
+        {
+          "phrase": "FIFA banned... a duck?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "duck outdoors walking",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Merl\u00edn \u2014 a 2-year-old duck in a tiny green Mexico jersey",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "duck wearing jersey mascot",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "unofficial mascot of the 2026 World Cup",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+          "query": "World Cup 2026 stadium Mexico fans",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He showed up at Mexico's opening match and went instantly viral",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+          "query": "Mexico soccer fans cheering crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Got invited to the presidential palace",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "Mexico City Zocalo presidential palace",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Netflix. Televisa",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "television studio broadcast camera",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "waddled through Mexico City streets while fans chanted his name",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "Mexico City street market crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "his owner brought him to Azteca Stadium for the Czech Republic match",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+          "query": "Azteca Stadium exterior entrance gate",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "live animals aren't allowed inside the stadium",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+          "query": "stadium security gate no entry sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Merl\u00edn could film a commercial on the grounds",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "duck outside stadium camera crew film",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "that duck visited more Mexico City landmarks than most tourists manage in a month",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mexico_city_Estadio_Azteca_estadio_banorte_fifa_world_cup_2026_4.JPG",
+          "query": "Mexico City aerial landmark skyline",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Should the World Cup have a duck exemption?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Male_mallard_duck_2.jpg",
+          "query": "duck alone sad excluded outside",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "FIFA banned... a duck?",
+          "text": "A DUCK?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "2-year-old duck in a tiny green Mexico jersey",
+          "text": "GREEN JERSEY DUCK",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "unofficial mascot of the 2026 World Cup",
+          "text": "WORLD CUP MASCOT",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "live animals aren't allowed inside the stadium",
+          "text": "NO LIVE ANIMALS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "But not watch the game",
+          "text": "BANNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "more Mexico City landmarks than most tourists manage in a month",
+          "text": "FULL CITY TOUR",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Should the World Cup have a duck exemption?",
+          "text": "DUCK EXEMPTION?",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "merlineldato",
+        "mexicoworldcup2026",
+        "FIFA2026",
+        "worldcup2026",
+        "worldcupmascot",
+        "mexicosoccer",
+        "aztecaestadio",
+        "funnyanimals",
+        "duckstory",
+        "viral",
+        "sportsweird",
+        "animalnews",
+        "mexico2026"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_richard-delcid-dominos-fastest-pizza.json": {
+      "version": 1,
+      "slug": "richard-delcid-dominos-fastest-pizza",
+      "title": "Virginia Man Makes 3 Pizzas in 31 Seconds Flat",
+      "script": "31 seconds. Three pizzas? Richard Delcid is a general manager at Domino's in Manassas, Virginia. Started there in 2012 as a part-time door hanger handing out coupons. Worked his way up to running the whole store. This spring, Domino's flew him to Las Vegas for the World's Fastest Pizza Maker competition \u2014 a real event the company has held since 1982. Finalists had to make 3 large pizzas \u2014 pepperoni, mushroom, and cheese \u2014 and pass a quality inspection: dough stretched right, sauce spread evenly, toppings distributed. And be the fastest. Delcid did it in 31.22 seconds, his third year competing and his first win. Walked away with $5,000, a championship belt, and a trophy. How is a 10-minute delivery even possible when the pizza only takes 31 seconds to make?",
+      "shots": [
+        {
+          "phrase": "31 seconds. Three pizzas?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "pizza dough stretch fast competition",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Richard Delcid is a general manager at Domino's in Manassas, Virginia",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domino's_Pizza,_Crawfordville,_Florida.jpg",
+          "query": "Dominos pizza store exterior",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Started there in 2012 as a part-time door hanger handing out coupons",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domino's_Pizza,_Crawfordville,_Florida.jpg",
+          "query": "pizza delivery flyer coupon neighborhood",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Worked his way up to running the whole store",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domino's_Pizza,_Crawfordville,_Florida.jpg",
+          "query": "restaurant manager kitchen team",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Domino's flew him to Las Vegas for the World's Fastest Pizza Maker competition",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "Las Vegas hotel resort convention stage",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a real event the company has held since 1982",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "pizza competition championship trophy",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Finalists had to make 3 large pizzas \u2014 pepperoni, mushroom, and cheese",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "pizza pepperoni toppings close up",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "pass a quality inspection: dough stretched right, sauce spread evenly, toppings distributed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "pizza dough stretching sauce spreading",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Delcid did it in 31.22 seconds, his third year competing and his first win",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "stopwatch timer competition winner",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Walked away with $5,000, a championship belt, and a trophy",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pizza.JPG",
+          "query": "championship belt trophy winner prize",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How is a 10-minute delivery even possible when the pizza only takes 31 seconds to make?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Domino's_Pizza,_Crawfordville,_Florida.jpg",
+          "query": "pizza delivery driver car road",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "31 seconds. Three pizzas?",
+          "text": "31 SECONDS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "World's Fastest Pizza Maker competition",
+          "text": "WORLD'S FASTEST",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "held since 1982",
+          "text": "SINCE 1982",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Delcid did it in 31.22 seconds",
+          "text": "31.22 SECONDS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "his third year competing and his first win",
+          "text": "FIRST WIN",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "$5,000, a championship belt, and a trophy",
+          "text": "$5,000 PRIZE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "10-minute delivery even possible when the pizza only takes 31 seconds to make",
+          "text": "31 SEC PIZZA",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "richarddelcid",
+        "dominos2026",
+        "fastestpizzamaker",
+        "worldrecord",
+        "pizza",
+        "dominos",
+        "manassas",
+        "Virginia",
+        "pizzacompetition",
+        "worldsfastest",
+        "foodrecord",
+        "weirdnews",
+        "viral"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "03_guernsey-spca-tortoise-escape-heatwave.json": {
+      "version": 1,
+      "slug": "guernsey-spca-tortoise-escape-heatwave",
+      "title": "Guernsey Has a Tortoise Escape Epidemic Right Now",
+      "script": "Four tortoises. One morning? The Guernsey SPCA is overwhelmed. Their island is having a tortoise escape epidemic \u2014 and it's the heat's fault. Every summer, the shelter handles 20 to 30 lost tortoises. This week, 4 landed at the facility in a single 24-hour stretch. SPCA manager Steve Byrne explained it: tortoises are surprisingly good climbers, and when temperatures climb, they get motivated. The males especially wander in search of mates. Which means Guernsey just hit peak tortoise mating season during a full heat wave. Byrne says more escapes are coming as long as the temperatures hold. If you own a tortoise on this island, check your enclosure walls. Actually, check whether your tortoise is even home right now. Is anyone on Guernsey actually surprised that their tortoise isn't where they left it?",
+      "shots": [
+        {
+          "phrase": "Four tortoises. One morning?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "tortoise walking garden",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "The Guernsey SPCA is overwhelmed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "animal shelter staff rescue center",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "having a tortoise escape epidemic \u2014 and it's the heat's fault",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "hot summer day dry grass heat",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Every summer, the shelter handles 20 to 30 lost tortoises",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "tortoise enclosure garden fence",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "4 landed at the facility in a single 24-hour stretch",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "animal rescue intake facility desk",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "tortoises are surprisingly good climbers, and when temperatures climb, they get motivated",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "tortoise climbing garden wall fence",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The males especially wander in search of mates",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "tortoise moving slowly garden path",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Guernsey just hit peak tortoise mating season during a full heat wave",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "Guernsey island summer heat sunny",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "more escapes are coming as long as the temperatures hold",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "thermometer hot temperature summer",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "check whether your tortoise is even home right now",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "empty tortoise enclosure backyard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Is anyone on Guernsey actually surprised that their tortoise isn't where they left it?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tortoise_portrait.JPG",
+          "query": "person searching garden confused",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Four tortoises. One morning?",
+          "text": "4 TORTOISES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "tortoise escape epidemic",
+          "text": "ESCAPE EPIDEMIC",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "4 landed at the facility in a single 24-hour stretch",
+          "text": "24 HOURS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "tortoises are surprisingly good climbers",
+          "text": "GOOD CLIMBERS!",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "peak tortoise mating season during a full heat wave",
+          "text": "MATING SEASON",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "check whether your tortoise is even home right now",
+          "text": "CHECK YOUR PET",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Is anyone on Guernsey actually surprised",
+          "text": "GUERNSEY PROBLEM",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "guernseySPCA",
+        "tortoiseescapes",
+        "tortoisenews",
+        "petrescue",
+        "weirdnews",
+        "animalstories",
+        "heatwave2026",
+        "tortoise",
+        "islandnews",
+        "guernsey",
+        "funnypets",
+        "wildlifenews",
+        "oddnews"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_utah-fireworks-ban-july4th-cox-drought.json": {
+      "version": 1,
+      "slug": "utah-fireworks-ban-july4th-cox-drought",
+      "title": "Utah Just Banned July 4th Fireworks Statewide",
+      "script": "No fireworks. Not one! Utah Governor Spencer Cox just declared a state of emergency and banned all personal fireworks statewide through July 5. That's the entire Fourth of July. Right now, 94% of Utah is in severe or extreme drought. This fire season: 354 fires, more than 141,000 acres burned. Cox says personal fireworks \u2014 backyard sparklers included \u2014 are banned everywhere in the state. Some permitted public shows are still happening. But if you were planning to light anything yourself in Utah this week, that's over. The timing: America turns 250 on July 4th. The single most fireworks-saturated holiday in American history \u2014 and Utah's sitting it out. Cox is essentially saying: the birthday party is on. Just without the part where things explode. Is 250 years of tradition worth a valley full of smoke?",
+      "shots": [
+        {
+          "phrase": "No fireworks. Not one!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+          "query": "fireworks canceled ban sign",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Utah Governor Spencer Cox just declared a state of emergency",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+          "query": "governor press conference podium announcement",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "banned all personal fireworks statewide through July 5",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+          "query": "fireworks display night sky aerial",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "94% of Utah is in severe or extreme drought",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+          "query": "Utah dry cracked earth drought",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "This fire season: 354 fires, more than 141,000 acres burned",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+          "query": "Utah wildfire aerial smoke 2026",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Cox says personal fireworks \u2014 backyard sparklers included \u2014 are banned everywhere in the state",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+          "query": "sparkler backyard Fourth of July",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Some permitted public shows are still happening",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+          "query": "public fireworks display professional show",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "if you were planning to light anything yourself in Utah this week, that's over",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+          "query": "Utah wildfire smoke dry landscape",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "America turns 250 on July 4th",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fireworks_over_the_East_Village_of_New_York_City.JPG",
+          "query": "Fourth of July celebration 250th anniversary",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the birthday party is on. Just without the part where things explode",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Utah_Governor_Spencer_Cox_and_his_wife_(53708399012)_(cropped).jpg",
+          "query": "birthday party no fireworks Utah",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Is 250 years of tradition worth a valley full of smoke?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sawmill_Fire_6.16.26_(cropped).png",
+          "query": "Utah valley smoke wildfire haze",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "No fireworks. Not one!",
+          "text": "BANNED!",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "declared a state of emergency",
+          "text": "STATE OF EMERGENCY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "94% of Utah is in severe or extreme drought",
+          "text": "94% DROUGHT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "354 fires, more than 141,000 acres burned",
+          "text": "141K ACRES BURNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "backyard sparklers included",
+          "text": "SPARKLERS TOO",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "America turns 250 on July 4th",
+          "text": "AMERICA'S 250TH",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "without the part where things explode",
+          "text": "NO EXPLOSIONS",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "UtahFireworks",
+        "SpencerCox",
+        "July4th2026",
+        "UtahWildfires",
+        "fireworksban",
+        "Utah2026",
+        "America250",
+        "stateofemergency",
+        "drought2026",
+        "wildfires",
+        "fourthofJuly",
+        "usanews",
+        "breaking"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "05_tobago-backhoe-atm-heist-batman.json": {
+      "version": 1,
+      "slug": "tobago-backhoe-atm-heist-batman",
+      "title": "They Used a Stolen Backhoe to Rob an ATM. It Went Wrong.",
+      "script": "A stolen backhoe. An ATM! Police in Tobago are looking for robbers who pulled up to a cash machine with a stolen backhoe. They dug out the ATM and dragged it to the sidewalk. Great start. Then the backhoe arm broke. They tried lifting the ATM onto a pickup truck. Failed. Tried again. Still failed. Security cameras recorded the whole thing \u2014 more than 10 minutes of footage. One suspect wore a black poncho that kept billowing in the wind like a superhero's cape. He tripped. More than once. By the next morning, Tobago radio was full of jokes. A local newspaper headlined it: 'Batman and robbing.' Police are still looking. The ATM is back where it was. What exactly is the exit strategy when your getaway vehicle is a backhoe?",
+      "shots": [
+        {
+          "phrase": "A stolen backhoe. An ATM!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "backhoe excavator machine construction",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Police in Tobago are looking for robbers who pulled up to a cash machine with a stolen backhoe",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "ATM cash machine outdoor bank",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They dug out the ATM and dragged it to the sidewalk",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "backhoe digging concrete street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Great start. Then the backhoe arm broke",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "broken machinery construction equipment failure",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They tried lifting the ATM onto a pickup truck. Failed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "pickup truck loading heavy equipment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Tried again. Still failed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "heavy metal machine sidewalk failed",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Security cameras recorded the whole thing \u2014 more than 10 minutes of footage",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "security camera CCTV footage night",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "One suspect wore a black poncho that kept billowing in the wind like a superhero's cape",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "black poncho cape wind billowing",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "He tripped. More than once",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "person tripping falling debris floor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Tobago radio was full of jokes",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "radio station morning show hosts laughing",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A local newspaper headlined it: 'Batman and robbing'",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "newspaper headline print press morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The ATM is back where it was",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NCR_ATM.JPG",
+          "query": "ATM machine bank sidewalk untouched",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "What exactly is the exit strategy when your getaway vehicle is a backhoe?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John_Deere_110_Backhoe.jpg",
+          "query": "backhoe slow road highway traffic",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A stolen backhoe. An ATM!",
+          "text": "STOLEN BACKHOE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Great start. Then the backhoe arm broke",
+          "text": "ARM BROKE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Still failed",
+          "text": "STILL FAILED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "more than 10 minutes of footage",
+          "text": "10 MIN ON CAMERA",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "billowing in the wind like a superhero's cape",
+          "text": "SUPERHERO CAPE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "He tripped. More than once",
+          "text": "TRIPPED TWICE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "'Batman and robbing'",
+          "text": "BATMAN ROBBING",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "The ATM is back where it was",
+          "text": "BACK WHERE IT WAS",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "tobago",
+        "ATMheist",
+        "backhoe",
+        "failedrobbery",
+        "batmanandrobbing",
+        "trinidadandtobago",
+        "crimefail",
+        "securitycamera",
+        "heistfail",
+        "weirdcrime",
+        "viral",
+        "oddnews",
+        "crimestories"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "06_doj-healthcare-fraud-takedown-2026.json": {
+      "version": 1,
+      "slug": "doj-healthcare-fraud-takedown-2026",
+      "title": "$6.5 Billion Healthcare Fraud Bust \u2014 90 Doctors Charged",
+      "script": "455 arrests. One morning! The Justice Department just ran the 2026 National Health Care Fraud Takedown \u2014 the program's largest ever single-day operation. 455 defendants charged. 90 of them are licensed doctors and other medical professionals. Total alleged fraud: over $6.5 billion in false claims. The schemes: billing Medicare and Medicaid for treatments patients never received, handing out illegal opioid prescriptions for cash, filing fake diagnoses so insurers pay for patients who aren't even sick. Prosecutors say some of these operations had been running for years. Today was collection day. The bust spans multiple states. If you've ever received a medical bill for something that didn't feel right, this is part of why. How does $6.5 billion in fake healthcare claims go undetected long enough to become the biggest bust of the year?",
+      "shots": [
+        {
+          "phrase": "455 arrests. One morning!",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "federal courthouse building exterior",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "The Justice Department just ran the 2026 National Health Care Fraud Takedown",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "Department of Justice press conference podium",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "455 defendants charged",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "handcuffs arrest law enforcement federal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "90 of them are licensed doctors and other medical professionals",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "doctor white coat medical professional",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Total alleged fraud: over $6.5 billion in false claims",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "medical billing paperwork insurance claim",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "billing Medicare and Medicaid for treatments patients never received",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "Medicare Medicaid billing invoice hospital",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "handing out illegal opioid prescriptions for cash",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "prescription pills opioids bottle drugs",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "filing fake diagnoses so insurers pay for patients who aren't even sick",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "medical records clipboard diagnosis form",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "some of these operations had been running for years",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "healthcare fraud investigation years paper",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Today was collection day. The bust spans multiple states",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "FBI arrest federal agents raid",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "If you've ever received a medical bill for something that didn't feel right, this is part of why",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "medical bill invoice patient confused",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "How does $6.5 billion in fake healthcare claims go undetected long enough to become the biggest bust of the year?",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Thurgood_Marshall_United_States_Courthouse_004.jpg",
+          "query": "federal courthouse justice scales law",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "455 arrests. One morning!",
+          "text": "455 ARRESTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the program's largest ever single-day operation",
+          "text": "LARGEST EVER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "90 of them are licensed doctors",
+          "text": "90 DOCTORS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "over $6.5 billion in false claims",
+          "text": "$6.5 BILLION",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "billing Medicare and Medicaid for treatments patients never received",
+          "text": "FAKE BILLING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "illegal opioid prescriptions for cash",
+          "text": "OPIOIDS FOR CASH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Today was collection day",
+          "text": "COLLECTION DAY",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "The bust spans multiple states",
+          "text": "NATIONWIDE BUST",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "healthcarefraud",
+        "DOJ2026",
+        "medicarefraud",
+        "opioidcrisis",
+        "federalbust",
+        "fraud2026",
+        "455arrested",
+        "medicaidfraud",
+        "doctorsarrested",
+        "healthcarenews",
+        "justiceserved",
+        "breaking",
+        "usnews"
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
