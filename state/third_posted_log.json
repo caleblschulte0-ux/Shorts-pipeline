@@ -9568,14 +9568,45 @@
       "ts": "2026-09-26T13:10:58.797972+00:00"
     },
     "clip-20260926-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/shroud/clip/SeductiveFurryPotCmonBruh--v2IUlxXQxpw8YUZ",
-      "story_key": null,
-      "streamer": "shroud",
+      "url": "https://youtube.com/shorts/QNnbMfre4hI",
       "title": "Shroud Takes A Risky Shot And Can't Believe What Happens",
       "kind": "twitch_clip",
-      "ts": "2026-09-26T13:17:10.596995+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-26T13:17:18.048887+00:00",
+      "uploaded_at": "2026-09-26T13:17:18.048910+00:00",
+      "publish_at": "2026-09-27T05:00:00Z",
+      "source_url": "https://www.twitch.tv/shroud/clip/SeductiveFurryPotCmonBruh--v2IUlxXQxpw8YUZ",
+      "streamer": "shroud",
+      "series": "chaos",
+      "hook": "HE TRIES SOMETHING RISKIER THIS TIME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2256,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 39.38
+      },
+      "director_cut": true
+    },
+    "rejected-sarcastichelpfulsushidxcat-nwrdmixrztltsohb": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/SarcasticHelpfulSushiDxCat-NWrDMIxrztltsOhb",
+      "streamer": "ohnepixel",
+      "title": "fulham farmed the clip LOL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling commentary, no visible event)",
+      "ts": "2026-09-26T13:18:38.414727+00:00"
+    },
+    "rejected-vodmine://2878535256/587": {
+      "source_url": "vodmine://2878535256/587",
+      "streamer": "zackrawrr",
+      "title": "",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (just checking release date, no event)",
+      "ts": "2026-09-26T13:32:52.370559+00:00"
     }
   }
 }
