@@ -1424,6 +1424,17 @@ def piece_counts(values, unit: str = "", most: int = 6,
     return [max(1 if v > 0 else 0, int(round(most * v / big))) for v in vs]
 
 
+def times_text(ratio: float) -> str:
+    """A multiple as a viewer should read it: whole above 20, one decimal
+    below. `f"{ratio:,.0f}"` floored 1,440 / 93 = 15.48 to "15 times over"
+    under a title promising 16 sunrises (ISS, 2026-09-26) — the honest
+    figure is 15.5."""
+    r = abs(float(ratio))
+    if r >= 20:
+        return f"{r:,.0f}"
+    return f"{r:.1f}".rstrip("0").rstrip(".")
+
+
 def draw_balance(d, canvas, box, value, other, label, other_label, color,
                  reveal, unit="", cutout=None):
     """A SET OF SCALES: two pans, tipping by how the numbers actually compare.
@@ -3429,15 +3440,22 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     # reveal, and the thing they are supposed to fit inside is half the claim.
     d.rounded_rectangle([cx - side // 2, top, cx + side // 2, top + side],
                         radius=14, outline=_rgba(color, 245), width=10)
+    # the count wears INK: at 105 alpha on the tiles "the grey '15' ... nearly
+    # disappears" (ISS) and "the grey '3' on a grey box is unreadable"
+    # (beaver), both 2026-09-26
     d.text((cx, top + side // 2), f"{total:,}", font=_pil_font(90),
-           fill=_rgba(TEXT, 105), anchor="mm")
-    _nest_title = f"{_label_of(small_p)} fits in {_label_of(big_p)}"
+           fill=_rgba(TEXT, 240), anchor="mm",
+           stroke_width=6, stroke_fill=(5, 8, 15, 255))
+    # THE MULTIPLE, NOT "FITS IN". Said of a rate, "fits in" is nonsense:
+    # "With beaver dams fits in Without beaver dams" (2026-09-26, garbled).
+    _nest_title = (f"{_label_of(big_p)}  =  {times_text(ratio)}x "
+                   f"{_label_of(small_p)}")
     _ntf, _nest_title = fit_text(d, _nest_title, 46, (bx1 - bx0) - 60,
                                  min_size=28)
     d.text((cx, by0 + 90), _nest_title, font=_ntf,
            fill=_rgba(TEXT, 240), anchor="mm")
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
-    d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
+    d.text((cx, top + side + 78), f"{times_text(ratio)} times over",
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
     host = scene_host("point", reveal, insight, "nest")
     if host is not None:

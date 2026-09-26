@@ -35,6 +35,11 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     # claimed them. A phrase whose shorter match is already right does not
     # need to be anywhere.
     (("solar eclipse", "lunar eclipse"), "1f311"),   # not the SUN ("solar")
+    # NO ICON AT ALL is the right answer for some phrases: a sea star is not
+    # a WAVE ("sea"), and there is no emoji for one. A `None` row stops the
+    # search, so the caller draws a plain tile — a count, never a lie.
+    (("sea star", "sea stars", "starfish", "sea urchin", "sea urchins"),
+     None),
     (("milky way",), "1f30c"),                       # not a star
     (("post office",), "2709"),                      # not an office block
     # EARTH. A data channel names it constantly — six scene subjects in the
@@ -53,7 +58,22 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("dog", "puppy"), "1f415"),
     (("cat", "kitten"), "1f408"),
     (("bird",), "1f426"),
-    (("fish",), "1f41f"),
+    (("fish", "salmon", "trout", "cod", "tuna"), "1f41f"),
+    # ANIMALS NAME THEMSELVES. A missing animal is not neutral: the next word
+    # decides, and "north american beaver population" drew twenty HUMAN
+    # silhouettes via "population" — FATAL `junk_imagery` (2026-09-26).
+    (("beaver", "beavers"), "1f9ab"),
+    (("whale", "whales"), "1f40b"),
+    (("bear", "bears"), "1f43b"),
+    (("deer",), "1f98c"),
+    (("elephant", "elephants"), "1f418"),
+    (("shark", "sharks"), "1f988"),
+    (("turtle", "turtles", "tortoise"), "1f422"),
+    (("ant", "ants"), "1f41c"),
+    (("koala", "koalas"), "1f428"),
+    (("penguin", "penguins"), "1f427"),
+    (("owl", "owls"), "1f989"),
+    (("bison", "buffalo"), "1f9ac"),
     (("pet",), "1f43e"),                                           # paw prints
     (("wedding", "marriage", "bride", "groom", "engage"), "1f48d"),  # ring
     (("rent", "mortgage", "home", "house", "housing"), "1f3e0"),
@@ -511,9 +531,35 @@ def emoji_codepoint(label: str) -> str | None:
         return None
     for keys, cp in _MAP:
         for k in keys:
+            if k == "population" and not _people_population(tokens):
+                continue
             if _phrase_matches(tokens, k):
                 return cp
     return None
+
+
+#: What may stand before "population" and still mean PEOPLE: a place or a
+#: general word. Anything else is a species ("beaver population"), and the
+#: people icon would be a lie about what is being counted.
+_PEOPLE_PLACE = {
+    "world", "global", "worldwide", "us", "u", "s", "usa", "uk", "eu",
+    "human", "humans", "urban", "rural", "city", "cities", "country",
+    "countries", "national", "total", "state", "states", "county", "earth",
+    "planet", "america", "american", "europe", "european", "africa",
+    "african", "asia", "asian", "china", "chinese", "india", "indian",
+    "japan", "japanese", "prison", "inmate", "working", "age", "aged",
+    "older", "elderly", "school", "student", "college", "adult", "youth",
+    "the", "a", "our", "its", "their", "of",
+}
+
+
+def _people_population(tokens) -> bool:
+    """Does "population" in these tokens mean people?"""
+    for i, t in enumerate(tokens):
+        if t.startswith("population"):
+            before = [x for x in tokens[:i] if not x.isdigit()]
+            return all(x in _PEOPLE_PLACE or x in _POPULATION for x in before)
+    return True
 
 
 def icon_for(label: str) -> Path | None:
