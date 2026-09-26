@@ -4,23 +4,31 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **7**
-- succeeded: **0**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **7**
+- failed: **5**
+
+## Posted
+- **Wind And Solar Finally Passed Coal**
+  - topic: Wind And Solar Finally Passed Coal
+  - publishes: `2026-09-26T16:00:00Z`
+  - https://youtube.com/shorts/X0H21REn2S4
+  - took: 107.4s
+- **I Let The Security Footage Do My Talking**
+  - topic: lincoln kienholz
+  - publishes: `2026-09-26T19:00:00Z`
+  - https://youtube.com/shorts/jtMxU65saLA
+  - took: 612.9s
 
 ## Failed
-- **Wind And Solar Finally Passed Coal**
-  - error: `showrunner_block: showrunner BLOCK: This is a clean, well-paced overtake race with a real payoff, but the moment of the crossover is a pile of overlapping labels, and the grey coal labels are too dim to read on a phone.`
 - **Streaming Music Buried The CD**
-  - error: `showrunner_block: showrunner BLOCK: A clean, competent race chart with a clear crossover, but the CD tip label is crossed by its own line and the ending lands on a generic '#1 Streaming' rather than the 30x scale gap.`
+  - error: `showrunner_block: showrunner BLOCK: Clean, readable race with a real crossover and a strong scale payoff, but the hook is a slow chart build and the source credit is unreadable fine print.`
 - **He Said The Chair Vanished. Then He Listed It.**
-  - error: `showrunner_block: showrunner BLOCK: Strong gameplay hook and a good chair and evidence photos early on, but the top panel freezes on one envelope icon for the last 22 seconds and the bank-denial punchline is never shown.`
-- **trump polls**
-  - error: `unfit_for_fiction: 'trump polls' refused by the writer: Trend is political (Trump approval polls/GOP reaction) - politics cannot seed a story per rule 1`
-- **isack hadjar**
-  - error: `showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation`
-- **silver price today**
-  - error: `showrunner_block: showrunner BLOCK: After one emoji the story's own shots never appear: the acid, magnet and brass reveals play over bare Minecraft, and captions overlap at mid2`
-- **taylor townsend**
-  - error: `showrunner_block: showrunner BLOCK: The story is told only by captions over unrelated Minecraft parkour. No beat is illustrated, and the first 2.5s are a static-looking card over dark, blurry stone.`
+  - error: `showrunner_block: showrunner BLOCK: The reddit-card hook and gameplay are fine, but the illustrations never show the chair or the listing reveal. One stock evidence photo and a static bank icon each sit on screen for about 10-12s.`
+- **peyton manning**
+  - error: `showrunner_block: showrunner BLOCK: A clean, readable reddit story, but the illustrations stop before the climax: the quit and the promotion play over bare gameplay, and the receipt still is reused.`
+- **shaheen jafargholi heated rivalry season 2**
+  - error: `showrunner_block: showrunner BLOCK: Most beats have no story illustration at all: the ending is an overexposed yellow lava blur, and the only 'security' shot is a construction-worker emoji.`
+- **josh heupel**
+  - error: `showrunner_block: showrunner BLOCK: This is a bare Minecraft background with captions. After the hook card, only one generic plate icon illustrates an eight-beat story, so the malicious-compliance payoff (the poster) is never seen.`
 
