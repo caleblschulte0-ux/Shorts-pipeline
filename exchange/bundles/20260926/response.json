@@ -1,0 +1,660 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260926",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "author",
+  "contract": {
+    "registry_revision": 6,
+    "registry_sha256": "e23bd0422991def8547286e9daa2ebc799d01038c5e1857b2fa8e5967b650a50",
+    "source_commit": "4f08ba91776a5620b4714f3bd841d4d51137fc2e",
+    "production_date": "20260926",
+    "bundle_sha256": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-wind-solar-passed-coal",
+      "title": "Wind And Solar Finally Passed Coal",
+      "hook": "Coal lost its lead.",
+      "y_label": "U.S. electricity generated per year (TWh)",
+      "duration": 13,
+      "source": "U.S. Energy Information Administration, Electric Power Annual: annual U.S. generation by energy source, selected years 2010-2024. Wind plus total solar includes utility-scale and small-scale solar; approximate TWh.",
+      "years": [
+        2010,
+        2012,
+        2014,
+        2016,
+        2018,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Wind + solar",
+          "color": "#F9A825",
+          "icon": "EIA",
+          "values": [
+            96,
+            145,
+            200,
+            263,
+            339,
+            427,
+            580,
+            757
+          ]
+        },
+        {
+          "name": "Coal",
+          "color": "#455A64",
+          "icon": "EIA",
+          "values": [
+            1847,
+            1514,
+            1582,
+            1239,
+            1146,
+            774,
+            828,
+            652
+          ]
+        }
+      ],
+      "hashtags": [
+        "wind",
+        "solar",
+        "coal",
+        "electricity",
+        "energy",
+        "renewables",
+        "eia",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260926"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-streaming-music-buried-cds",
+      "title": "Streaming Music Buried The CD",
+      "hook": "The disc stopped spinning.",
+      "y_label": "U.S. recorded-music revenue (billions USD)",
+      "duration": 13,
+      "source": "Recording Industry Association of America U.S. Sales Database and annual revenue reports: nominal estimated retail revenue by format, selected years 2010-2024. Streaming includes paid subscriptions, ad-supported on-demand and related streaming categories; approximate billions.",
+      "years": [
+        2010,
+        2012,
+        2014,
+        2016,
+        2018,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Streaming",
+          "color": "#00C853",
+          "icon": "Spotify",
+          "values": [
+            0.5,
+            1,
+            1.9,
+            4,
+            7.4,
+            10.1,
+            13.3,
+            14.9
+          ]
+        },
+        {
+          "name": "CDs",
+          "color": "#7E57C2",
+          "icon": "RIAA",
+          "values": [
+            3.4,
+            2.5,
+            1.9,
+            1.2,
+            0.7,
+            0.5,
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "hashtags": [
+        "streaming",
+        "cd",
+        "music",
+        "spotify",
+        "recording",
+        "riaa",
+        "technology",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260926"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-online-world-passed-offline",
+      "title": "The Online World Passed The Offline World",
+      "hook": "The internet became majority.",
+      "y_label": "World population (billions)",
+      "duration": 13,
+      "source": "International Telecommunication Union Facts and Figures and World Telecommunication/ICT Indicators, combined with United Nations World Population Prospects: people using the Internet versus population not using it, selected years 2000-2024. Approximate billions.",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2019,
+        2021,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Online",
+          "color": "#1E88E5",
+          "icon": "ITU",
+          "values": [
+            0.4,
+            1,
+            2,
+            3.2,
+            4.1,
+            4.9,
+            5.4,
+            5.5
+          ]
+        },
+        {
+          "name": "Offline",
+          "color": "#6D4C41",
+          "icon": "UN",
+          "values": [
+            5.7,
+            5.5,
+            4.9,
+            4.2,
+            3.6,
+            3,
+            2.6,
+            2.7
+          ]
+        }
+      ],
+      "hashtags": [
+        "internet",
+        "online",
+        "technology",
+        "population",
+        "digital",
+        "itu",
+        "unitednations",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260926"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-mobile-broadband-left-fixed-behind",
+      "title": "Mobile Broadband Left Fixed Lines Behind",
+      "hook": "Broadband escaped the wall.",
+      "y_label": "Global subscriptions per 100 people",
+      "duration": 13,
+      "source": "International Telecommunication Union World Telecommunication/ICT Indicators and Facts and Figures 2024: active mobile-broadband and fixed-broadband subscriptions per 100 inhabitants, selected years 2010-2024. Approximate.",
+      "years": [
+        2010,
+        2012,
+        2014,
+        2016,
+        2018,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Mobile broadband",
+          "color": "#00ACC1",
+          "icon": "ITU",
+          "values": [
+            11.5,
+            22.1,
+            32,
+            49.4,
+            69.3,
+            83.2,
+            87.7,
+            95
+          ]
+        },
+        {
+          "name": "Fixed broadband",
+          "color": "#5E35B1",
+          "icon": "ITU",
+          "values": [
+            7.6,
+            9.2,
+            10.4,
+            12.3,
+            14.1,
+            15.8,
+            17.6,
+            19
+          ]
+        }
+      ],
+      "hashtags": [
+        "mobile",
+        "broadband",
+        "internet",
+        "wifi",
+        "telecom",
+        "itu",
+        "technology",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260926"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "hoa-garden-property-line",
+      "title": "They Fined My Garden. Their Own Map Canceled It.",
+      "hashtags": [
+        "maliciouscompliance",
+        "hoa",
+        "garden",
+        "property",
+        "neighbors",
+        "receipts",
+        "karma",
+        "shorts"
+      ],
+      "script": "My HOA sent me a $75 fine because my vegetable beds were supposedly in a shared green space. I checked the community map and noticed the green space ended exactly at my fence. The board president still told me to remove everything by Friday. Fine. I requested a formal hearing and brought the plat, my survey, and the same map attached to their violation notice. At the meeting, she insisted the rule was obvious until the property manager enlarged the boundary on the projector. My garden was private. Her decorative stone path, however, crossed three feet into the shared area. The manager asked whether enforcement should be consistent. I said absolutely. The board canceled my fine and gave her thirty days to move the path she had installed without approval. The next newsletter reminded everyone to verify property lines before filing complaints. My tomatoes remained dangerously stationary.",
+      "shots": [
+        {
+          "phrase": "My HOA sent me a $75 fine",
+          "query": "homeowner holding HOA violation letter beside vegetable garden",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1NXRRhnBpYVM6jPl-A8-IBm5ghSWL2J3F",
+              "filename": "20260926__authored-hoa-garden-property-line-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1NXRRhnBpYVM6jPl-A8-IBm5ghSWL2J3F",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "e6a57960d4ecbd7b7753247ea539a4b3310786b6548d521bbe64da671da361b4",
+              "bytes": 2391646,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "the green space ended exactly at my fence",
+          "query": "backyard fence boundary beside raised vegetable beds",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1S7flopjok7QsIbBFvX2ocZbdUJvjSmV9",
+              "filename": "20260926__authored-hoa-garden-property-line-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1S7flopjok7QsIbBFvX2ocZbdUJvjSmV9",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "369d61c8e00201274dc3fac7715597e094950eb89d17137c5d4cd232e32961c3",
+              "bytes": 3061378,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "brought the plat, my survey, and the same map",
+          "query": "property survey and neighborhood plat spread on table",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1maB9DETFuwO39io8q4AMnh4lNwm212dv",
+              "filename": "20260926__authored-hoa-garden-property-line-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1maB9DETFuwO39io8q4AMnh4lNwm212dv",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "94dbe7d16e95760522642aa881d848fd94a3e4ee0c8c0452dc1eeaef3f71cb65",
+              "bytes": 2409806,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "enlarged the boundary on the projector",
+          "query": "community board meeting with property map projected",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1lc9IkrlrAEd0szQtymAJaZqVegfxlk_Z",
+              "filename": "20260926__authored-hoa-garden-property-line-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1lc9IkrlrAEd0szQtymAJaZqVegfxlk_Z",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "9fd3ed18bd63ec0d8a2d768b54f6b632f51e67d343ddcf2ffe41cd2bfc90f9c1",
+              "bytes": 1868761,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "decorative stone path, however, crossed three feet",
+          "query": "decorative stone path crossing lawn property boundary",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1RbojL1CkgNHPAgjitbX2bHnalZu_iNjN",
+              "filename": "20260926__authored-hoa-garden-property-line-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1RbojL1CkgNHPAgjitbX2bHnalZu_iNjN",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "a4f79ac2df25e44198b41b3c7b3efc695dde0fbb30047a70a901599a81650e89",
+              "bytes": 3320753,
+              "format": "png",
+              "width": 940,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "My tomatoes remained dangerously stationary",
+          "query": "healthy tomato plants in raised backyard garden",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1A5Q7KXCfvzLv539B-9EibEZImn742g8B",
+              "filename": "20260926__authored-hoa-garden-property-line-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1A5Q7KXCfvzLv539B-9EibEZImn742g8B",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "bf0412e3f06c5d57fc603a88a04998d1aa27bd5951dd2daa1f0c2cc6242552b9",
+              "bytes": 2943661,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "$75 fine",
+          "text": "$75 FINE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "My garden was private",
+          "text": "PRIVATE PROPERTY",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "crossed three feet",
+          "text": "HER PATH CROSSED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "canceled my fine",
+          "text": "FINE CANCELED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "tense",
+      "_authored_by": "chatgpt-takeover-20260926"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "chair-chargeback-marketplace-listing",
+      "title": "He Said The Chair Vanished. Then He Listed It.",
+      "hashtags": [
+        "customerservice",
+        "chargeback",
+        "furniture",
+        "marketplace",
+        "receipts",
+        "scam",
+        "karma",
+        "shorts"
+      ],
+      "script": "I managed customer pickups at a small furniture store. A man bought a $1,200 leather chair, loaded it himself, then filed a chargeback claiming he never received it. Our signed receipt helped, but he said the signature was forged. Then our salesperson recognized the chair in his public marketplace listing, photographed in the same garage shown on his ID. The listing even said purchased yesterday, changed my mind. Useful detail. We saved screenshots, the loading-dock video, his vehicle plate, and the message where he offered delivery for extra cash. The bank denied the chargeback within two days. He deleted the listing and called us thieves for keeping his payment. My manager offered to accept a normal return under the posted policy. He refused because someone had already bought the chair. So the chair was missing, except for the buyer, the listing, the sale, and the money. A remarkably crowded disappearance.",
+      "shots": [
+        {
+          "phrase": "bought a $1,200 leather chair",
+          "query": "brown leather armchair in small furniture showroom",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1OZChJTgdnmtpm_59sJvt54Nz8lOrWTiI",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "3834427d49b20c363efebcdce3b0ef5522237b013215f79c8aafa79e9fcdac5a",
+              "bytes": 2267175,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "loaded it himself",
+          "query": "customer loading leather armchair into pickup truck",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "371c99eb05131a35eb0071262ca1905b48b6df547882e4b8b6ce119f46b04b97",
+              "bytes": 2145585,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "filed a chargeback claiming he never received it",
+          "query": "chargeback dispute on laptop beside furniture receipt",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "11BeEikUCtIZzLkSAfJF-mFy-8CKMHQwR",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=11BeEikUCtIZzLkSAfJF-mFy-8CKMHQwR",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "ded9cec3950371c795bfc89a357bd6b41e91c2482c976b38945fd4b30ee0212b",
+              "bytes": 1790761,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "chair in his public marketplace listing",
+          "query": "leather armchair photographed in residential garage for sale",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1YZX8t9a283Ut4vkjoRDDqL0FjnPUUIib",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1YZX8t9a283Ut4vkjoRDDqL0FjnPUUIib",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "268c04262e24121ffb259cecd3c15d295433479d662a9589cfbc937baccbf24d",
+              "bytes": 2401989,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "saved screenshots, the loading-dock video, his vehicle plate",
+          "query": "retail fraud evidence screenshots and loading dock security monitor",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1YJdc79jTKHy-foPpUi0GiQ-YfMF0fE20",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "f04779ab9e4ac66ffa0b819a72d84ad1d81bb9d8a572a25afdae0bfa6d3959e6",
+              "bytes": 2078589,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "The bank denied the chargeback",
+          "query": "store manager reading successful chargeback decision on computer",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1CVz09V5suNG2s46dVJGMu4wrXiym5HYn",
+              "filename": "20260926__authored-chair-chargeback-marketplace-listing-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1CVz09V5suNG2s46dVJGMu4wrXiym5HYn",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "d4d2cde89ce82429e207a8aa95c70760580958b2d3b899eef8a92da3401cd3bd",
+              "bytes": 1870507,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "$1,200 leather chair",
+          "text": "$1,200 CHAIR",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "never received it",
+          "text": "NEVER RECEIVED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "public marketplace listing",
+          "text": "LISTED FOR SALE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "denied the chargeback",
+          "text": "CHARGEBACK DENIED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "deadpan",
+      "_authored_by": "chatgpt-takeover-20260926"
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s predicted empty plates. The numbers went the other way.",
+      "says": [
+        "Progression to secondary school (%) rose from 77.8 in 1985 to 91.3 in 2017 — 1.2 times higher.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million metric tons in 2024 — 1.5 times higher.",
+        "China leads with 5.2 million square kilometers of farmland, ahead of the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never showed up — the harvest did.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Is 3.0x Higher Than In 1990",
+      "hook": "It is not solar or wind. The source that tripled was combustible renewables and waste.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2 % of total energy in 1990 to 30.1 % of total energy in 2024 — 3.0 times higher.",
+        "Access to electricity increased from 73.2 % of population in 1998 to 91.9 % of population in 2024 — 1.3 times higher.",
+        "Methane (ch4) emissions from waste climbed from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024 — 1.8 times higher."
+      ],
+      "closing": "The leftovers became fuel, then left a methane bill.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "The planet kept growing. Its growth rate did not.",
+      "says": [
+        "Rural population fell from 63.1 % of total population in 1972 to 42.2 % of total population in 2025 — down to 67 percent of that.",
+        "Population in the largest city moved from 18.2 % of urban population in 1972 to 16.2 % of urban population in 2025 — barely moved.",
+        "Population growth dropped from 2 annual % in 1972 to 0.91 annual % in 2025 — down to 46 percent of that."
+      ],
+      "closing": "More people, less acceleration — the curve quietly changed shape.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "Bundle mode author: completed the frozen 4 graph_race + 2 reddit_story shortfall.",
+    "Rewrote all three requested Explainer stories while preserving protected numbers, years, countries and named entities."
+  ]
+}
