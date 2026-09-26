@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:15.561Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-hoa-garden-property-line-s2",
+  "safe_request_id": "authored-hoa-garden-property-line-s2",
+  "prompt_sha256": "e240b276359dc7bb39e833965822ca6e09c6e10513fc70da6add20497e876ba3",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story shot. Scene: dining table in a modest home. Subject: hands arranging a property survey, neighborhood plat and boundary map with colored lines but absolutely no readable words or numbers. Style: natural documentary photography, realistic paper texture. Composition: portrait top-down three-quarter angle. Lighting: window daylight. Constraints: no legible text, no logos, no watermark.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1maB9DETFuwO39io8q4AMnh4lNwm212dv",
+    "filename": "20260926__authored-hoa-garden-property-line-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1maB9DETFuwO39io8q4AMnh4lNwm212dv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "94dbe7d16e95760522642aa881d848fd94a3e4ee0c8c0452dc1eeaef3f71cb65",
+    "bytes": 2409806,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "hoa-garden-property-line",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
