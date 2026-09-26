@@ -114,28 +114,84 @@ def generate_image(prompt, out_path, *, width: int = 1024, height: int = 1024,
     return p
 
 
+#: Pollinations' keyless tier answers one request at a time. The backfill
+#: fired its panels half a second apart, so on 2026-09-26 every story got its
+#: first image and then 429, 429, 429 — and shipped with no pictures. Calls
+#: are now PACED, a 429 is retried after waiting, and the whole process has a
+#: budget, so a genuinely dead service cannot eat the render window.
+POLLINATIONS_MIN_GAP_S = 12.0
+POLLINATIONS_RETRIES = 2
+POLLINATIONS_BACKOFF_S = 15.0
+POLLINATIONS_TIMEOUT_S = 60
+POLLINATIONS_BUDGET_S = 420.0
+_POLL = {"last": 0.0, "spent": 0.0}
+
+
+def _poll_wait(seconds: float) -> bool:
+    """Sleep `seconds` against the process budget. False once it is spent."""
+    import time
+    seconds = max(0.0, float(seconds))
+    if _POLL["spent"] + seconds > POLLINATIONS_BUDGET_S:
+        return False
+    if seconds:
+        time.sleep(seconds)
+        _POLL["spent"] += seconds
+    return True
+
+
 def _pollinations_image(prompt, out_path, width, height, seed):
-    """Fetch a generated image from Pollinations.ai. None on any failure."""
-    try:
-        styled = (prompt.strip()
-                  + ". photorealistic, editorial news photo, sharp, well lit, "
-                    "no text, no watermark, no caption")
-        url = (POLLINATIONS_IMG + urllib.parse.quote(styled[:480])
-               + f"?width={int(width)}&height={int(height)}&nologo=true&model=flux")
-        if seed is not None:
-            url += f"&seed={int(seed) % (2 ** 31)}"
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        data = urllib.request.urlopen(req, timeout=20).read()
-        if not data or len(data) < 2000:        # tiny payload = error page
+    """Fetch a generated image from Pollinations.ai, paced and retried.
+    None on any failure."""
+    import time
+    import urllib.error
+    for attempt in range(POLLINATIONS_RETRIES + 1):
+        gap = POLLINATIONS_MIN_GAP_S - (time.monotonic() - _POLL["last"])
+        if _POLL["last"] and gap > 0 and not _poll_wait(gap):
+            print("[pollinations] wait budget spent — skipping", flush=True)
             return None
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_bytes(data)
-        print(f"[pollinations] image -> {out_path.name} ({len(data)} bytes)",
-              flush=True)
-        return out_path
-    except Exception as e:  # noqa: BLE001
-        print(f"[pollinations] image failed: {type(e).__name__}: {e}", flush=True)
+        _POLL["last"] = time.monotonic()
+        try:
+            return _pollinations_once(prompt, out_path, width, height, seed)
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or attempt == POLLINATIONS_RETRIES:
+                print(f"[pollinations] image failed: HTTPError: {e}", flush=True)
+                return None
+            try:
+                after = float(e.headers.get("Retry-After") or 0)
+            except (TypeError, ValueError, AttributeError):
+                after = 0.0
+            wait = max(after, POLLINATIONS_BACKOFF_S * (attempt + 1))
+            print(f"[pollinations] 429 — waiting {wait:.0f}s "
+                  f"(retry {attempt + 1}/{POLLINATIONS_RETRIES})", flush=True)
+            if not _poll_wait(wait):
+                print("[pollinations] wait budget spent — skipping", flush=True)
+                return None
+        except Exception as e:  # noqa: BLE001
+            print(f"[pollinations] image failed: {type(e).__name__}: {e}",
+                  flush=True)
+            return None
+    return None
+
+
+def _pollinations_once(prompt, out_path, width, height, seed):
+    """One request. Raises HTTPError (so a 429 can be retried); None on any
+    other bad answer."""
+    styled = (prompt.strip()
+              + ". photorealistic, editorial news photo, sharp, well lit, "
+                "no text, no watermark, no caption")
+    url = (POLLINATIONS_IMG + urllib.parse.quote(styled[:480])
+           + f"?width={int(width)}&height={int(height)}&nologo=true&model=flux")
+    if seed is not None:
+        url += f"&seed={int(seed) % (2 ** 31)}"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    data = urllib.request.urlopen(req, timeout=POLLINATIONS_TIMEOUT_S).read()
+    if not data or len(data) < 2000:        # tiny payload = error page
         return None
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_bytes(data)
+    print(f"[pollinations] image -> {out_path.name} ({len(data)} bytes)",
+          flush=True)
+    return out_path
 
 
 def _gemini_image(prompt: str, out_path: Path) -> "Path | None":
