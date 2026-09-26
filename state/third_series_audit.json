@@ -3,45 +3,49 @@
   "content_series": {
     "chaos": {
       "n": 36,
-      "median_vph": 0.01
+      "median_vph": 0.015
     },
     "wholesome": {
-      "n": 14,
-      "median_vph": 0.14
+      "n": 13,
+      "median_vph": 0.15
     },
     "fail": {
       "n": 12,
-      "median_vph": 0.02
+      "median_vph": 0.025
     },
     "win": {
       "n": 8,
-      "median_vph": 0.065
+      "median_vph": 0.06
     },
     "drama": {
       "n": 8,
-      "median_vph": 0.035
+      "median_vph": 0.03
     },
     "jumpscare": {
+      "n": 4,
+      "median_vph": 0.46
+    },
+    "rage": {
       "n": 3,
-      "median_vph": 0.01
+      "median_vph": 0.0
     },
     "argument": {
       "n": 3,
       "median_vph": 0.02
     },
+    "clutch": {
+      "n": 2,
+      "median_vph": 0.125
+    },
     "beef": {
       "n": 2,
       "median_vph": 0.01
-    },
-    "rage": {
-      "n": 2,
-      "median_vph": 0.0
     }
   },
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 1.64
+      "median_vph": 1.37
     }
   }
 }

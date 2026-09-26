@@ -4,13 +4,47 @@
     "title": "Wind And Solar Finally Passed Coal",
     "format": "graph_race",
     "publish_at": "2026-09-26T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/X0H21REn2S4",
-    "error": null,
-    "elapsed_seconds": 107.4,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest graph race whose crossover payoff lands, but the tip labels collide exactly at the moment the video builds to.",
+    "elapsed_seconds": 114.3,
     "package_path": "state/trending_packages/20260926/01_graph-wind-solar-passed-coal.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-145944_wind_and_solar_finally_passed_coal.mp4",
+    "video_path": "output/daily_20260926-155115_wind_and_solar_finally_passed_coal.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, honest graph race whose crossover payoff lands, but the tip labels collide exactly at the moment the video builds to.",
+      "score": 83
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Streaming Music Buried The CD",
+    "title": "Streaming Music Buried The CD",
+    "format": "graph_race",
+    "publish_at": "2026-09-26T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/9Qf2nXPOYlQ",
+    "error": null,
+    "elapsed_seconds": 102.7,
+    "package_path": "state/trending_packages/20260926/02_graph-streaming-music-buried-cds.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260926-155309_streaming_music_buried_the_cd.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -29,43 +63,9 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 78
+      "score": 74
     },
     "channel": "default"
-  },
-  {
-    "topic": "Streaming Music Buried The CD",
-    "title": "Streaming Music Buried The CD",
-    "format": "graph_race",
-    "publish_at": "2026-09-26T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean, readable race with a real crossover and a strong scale payoff, but the hook is a slow chart build and the source credit is unreadable fine print.",
-    "elapsed_seconds": 111.2,
-    "package_path": "state/trending_packages/20260926/02_graph-streaming-music-buried-cds.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260926-150132_streaming_music_buried_the_cd.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Clean, readable race with a real crossover and a strong scale payoff, but the hook is a slow chart build and the source credit is unreadable fine print.",
-      "score": 78
-    },
-    "blocked": true
   },
   {
     "topic": "He Said The Chair Vanished. Then He Listed It.",
@@ -74,14 +74,14 @@
     "publish_at": "2026-09-26T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The reddit-card hook and gameplay are fine, but the illustrations never show the chair or the listing reveal. One stock evidence photo and a static bank icon each sit on screen for about 10-12s.",
-    "elapsed_seconds": 266.9,
+    "error": "showrunner_block: showrunner BLOCK: The story has a great twist, but the visuals never show the chair or the listing, and the last 19s sit on one generic envelope icon, so the payoff doesn't land.",
+    "elapsed_seconds": 348.0,
     "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-150325_he_said_the_chair_vanished__then_he_list.mp4",
+    "video_path": "output/daily_20260926-155622_he_said_the_chair_vanished__then_he_list.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.633,
+      "duration": 48.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -92,34 +92,34 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.8
+      "loudness_lufs": -23.8
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The reddit-card hook and gameplay are fine, but the illustrations never show the chair or the listing reveal. One stock evidence photo and a static bank icon each sit on screen for about 10-12s.",
-      "score": 66
+      "reason": "showrunner BLOCK: The story has a great twist, but the visuals never show the chair or the listing, and the last 19s sit on one generic envelope icon, so the payoff doesn't land.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "peyton manning",
+    "topic": "diana, princess of wales",
     "angle": null,
     "publish_at": "2026-09-26T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable reddit story, but the illustrations stop before the climax: the quit and the promotion play over bare gameplay, and the receipt still is reused.",
-    "elapsed_seconds": 433.8,
-    "title": "I Got Fired Over a $4.50 Latte and Became Manager",
-    "package_path": "state/trending_packages/20260926-150953_auto_peyton_manning.json",
-    "video_path": "output/daily_20260926-150953_peyton_manning.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a standard gameplay reddit story with a dark, captionless hook and a generic clip-art top panel. The panel repeats one blank phone icon for the last 11 seconds, so the malicious-compliance payoff never lands on screen.",
+    "elapsed_seconds": 641.0,
+    "title": "She Demanded A Refund, I Followed Policy",
+    "package_path": "state/trending_packages/20260926-160243_auto_diana__princess_of_wales.json",
+    "video_path": "output/daily_20260926-160243_diana__princess_of_wales.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.967,
+      "duration": 50.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -139,64 +139,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable reddit story, but the illustrations stop before the climax: the quit and the promotion play over bare gameplay, and the receipt still is reused.",
-      "score": 66
+      "reason": "showrunner BLOCK: This is a standard gameplay reddit story with a dark, captionless hook and a generic clip-art top panel. The panel repeats one blank phone icon for the last 11 seconds, so the malicious-compliance payoff never lands on screen.",
+      "score": 49
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "lincoln kienholz",
+    "topic": "peyton manning",
     "angle": null,
     "publish_at": "2026-09-26T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/jtMxU65saLA",
-    "error": null,
-    "elapsed_seconds": 612.9,
-    "title": "I Let The Security Footage Do My Talking",
-    "package_path": "state/trending_packages/20260926-151804_auto_lincoln_kienholz.json",
-    "video_path": "output/daily_20260926-151804_lincoln_kienholz.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 47.0,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "backfill": true
-  },
-  {
-    "topic": "shaheen jafargholi heated rivalry season 2",
-    "angle": null,
-    "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Most beats have no story illustration at all: the ending is an overexposed yellow lava blur, and the only 'security' shot is a construction-worker emoji.",
-    "elapsed_seconds": 632.3,
-    "title": "I Ignored Her Threats And Sold The Last Tickets",
-    "package_path": "state/trending_packages/20260926-152835_auto_shaheen_jafargholi_heated_rivalry_season.json",
-    "video_path": "output/daily_20260926-152835_shaheen_jafargholi_heated_rivalry_season.mp4",
+    "error": "showrunner_block: showrunner BLOCK: A clean reddit-story shell (a readable post card, then smooth gameplay with bold captions) that never illustrates a single story beat, so the rigged-contest reversal lives only in the captions.",
+    "elapsed_seconds": 542.6,
+    "title": "My Boss Rigged The Contest, The Rules Won",
+    "package_path": "state/trending_packages/20260926-161309_auto_peyton_manning.json",
+    "video_path": "output/daily_20260926-161309_peyton_manning.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.967,
+      "duration": 44.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -216,26 +178,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Most beats have no story illustration at all: the ending is an overexposed yellow lava blur, and the only 'security' shot is a construction-worker emoji.",
-      "score": 57
+      "reason": "showrunner BLOCK: A clean reddit-story shell (a readable post card, then smooth gameplay with bold captions) that never illustrates a single story beat, so the rigged-contest reversal lives only in the captions.",
+      "score": 65
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "josh heupel",
+    "topic": "coleman wong",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a bare Minecraft background with captions. After the hook card, only one generic plate icon illustrates an eight-beat story, so the malicious-compliance payoff (the poster) is never seen.",
-    "elapsed_seconds": 674.8,
-    "title": "He Demanded A Free Meal, I Gave Him Exactly That",
-    "package_path": "state/trending_packages/20260926-153905_auto_josh_heupel.json",
-    "video_path": "output/daily_20260926-153905_josh_heupel.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Mostly captions over Minecraft with a single illustration, and that one is junk: a guitar standing in for tennis-racket stringing.",
+    "elapsed_seconds": 570.6,
+    "title": "I Followed His Exact Order And It Cost Him Everything",
+    "package_path": "state/trending_packages/20260926-162221_auto_coleman_wong.json",
+    "video_path": "output/daily_20260926-162221_coleman_wong.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.1,
+      "duration": 46.133,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -255,8 +217,47 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a bare Minecraft background with captions. After the hook card, only one generic plate icon illustrates an eight-beat story, so the malicious-compliance payoff (the poster) is never seen.",
-      "score": 53
+      "reason": "showrunner BLOCK: Mostly captions over Minecraft with a single illustration, and that one is junk: a guitar standing in for tennis-racket stringing.",
+      "score": 57
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "virginia tech vs boston college",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A readable Reddit-story build, but the illustrations are generic emoji and one reused AI still, and the lobby-ban payoff has no picture at all.",
+    "elapsed_seconds": 848.2,
+    "title": "He Threatened To Get Me Fired Over A Latte",
+    "package_path": "state/trending_packages/20260926-163354_auto_virginia_tech_vs_boston_college.json",
+    "video_path": "output/daily_20260926-163354_virginia_tech_vs_boston_college.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A readable Reddit-story build, but the illustrations are generic emoji and one reused AI still, and the lobby-ban payoff has no picture at all.",
+      "score": 66
     },
     "blocked": true,
     "backfill": true
