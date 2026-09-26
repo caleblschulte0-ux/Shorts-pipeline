@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-26T17:27:04Z",
+ "updated": "2026-09-26T18:17:44Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -377,6 +377,16 @@
    "answer_path": "exchange/rewrites/20260922/global-displacement-record__94a06c8b.answer.json"
   },
   {
+   "id": "global-ewaste-crisis__82dcc083",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-22T16:53:11Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers rather than a single consequential, verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260922/global-ewaste-crisis__82dcc083.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__dad5454f",
    "slug": "gps-einstein-fix",
    "filed": "2026-09-22T11:08:32Z",
@@ -385,6 +395,16 @@
    ],
    "request": "exchange/rewrites/20260922/gps-einstein-fix__dad5454f.request.json",
    "answer_path": "exchange/rewrites/20260922/gps-einstein-fix__dad5454f.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__e96b02c3",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-22T23:24:35Z",
+   "why": [
+    "premise: brain: This is just the well-known, searchable 'Gulf of Mexico Dead Zone' topic restated with a size comparison, not a premise that reverses a specific expectation the viewer holds."
+   ],
+   "request": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.request.json",
+   "answer_path": "exchange/rewrites/20260922/gulf-dead-zone-growth__e96b02c3.answer.json"
   },
   {
    "id": "helium-supply-squeeze__c62dbd35",
@@ -1182,6 +1202,16 @@
    "answer_path": "exchange/rewrites/20260923/global-displacement-record__94a06c8b.answer.json"
   },
   {
+   "id": "global-ewaste-crisis__82dcc083",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-23T00:49:13Z",
+   "why": [
+    "premise: brain: This is just a labeled statistic (e-waste volume + recycling rate), not a reversal of a specific expectation the viewer holds — there's no 'you'd think X but actually Y' tension, just two numbers stapled together."
+   ],
+   "request": "exchange/rewrites/20260923/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260923/global-ewaste-crisis__82dcc083.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__dad5454f",
    "slug": "gps-einstein-fix",
    "filed": "2026-09-23T00:49:11Z",
@@ -1190,6 +1220,16 @@
    ],
    "request": "exchange/rewrites/20260923/gps-einstein-fix__dad5454f.request.json",
    "answer_path": "exchange/rewrites/20260923/gps-einstein-fix__dad5454f.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__e96b02c3",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-23T00:49:11Z",
+   "why": [
+    "premise: brain: The 'size of New Jersey' comparison and 'dies every summer' framing are attention-grabbing but the premise doesn't reverse a specific expectation the viewer holds — dead zones from agricultural runoff are a known, unsurprising phenomenon, not a violated assumption."
+   ],
+   "request": "exchange/rewrites/20260923/gulf-dead-zone-growth__e96b02c3.request.json",
+   "answer_path": "exchange/rewrites/20260923/gulf-dead-zone-growth__e96b02c3.answer.json"
   },
   {
    "id": "helium-supply-squeeze__c62dbd35",
@@ -1980,6 +2020,16 @@
    "answer_path": "exchange/rewrites/20260924/global-displacement-record__94a06c8b.answer.json"
   },
   {
+   "id": "global-ewaste-crisis__82dcc083",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-24T11:18:00Z",
+   "why": [
+    "premise: brain: It presents a raw statistic without a clear reversal of a viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20260924/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260924/global-ewaste-crisis__82dcc083.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__dad5454f",
    "slug": "gps-einstein-fix",
    "filed": "2026-09-24T11:17:59Z",
@@ -2426,6 +2476,16 @@
    "answer_path": "exchange/rewrites/20260925/bat-fungus-collapse__4a4b851a.answer.json"
   },
   {
+   "id": "beaver-ecosystem-comeback__0e68c3b5",
+   "slug": "beaver-ecosystem-comeback",
+   "filed": "2026-09-25T11:56:25Z",
+   "why": [
+    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure"
+   ],
+   "request": "exchange/rewrites/20260925/beaver-ecosystem-comeback__0e68c3b5.request.json",
+   "answer_path": "exchange/rewrites/20260925/beaver-ecosystem-comeback__0e68c3b5.answer.json"
+  },
+  {
    "id": "betelgeuse-great-dimming__5b23be2f",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-09-25T11:56:22Z",
@@ -2676,6 +2736,16 @@
    ],
    "request": "exchange/rewrites/20260925/global-displacement-record__94a06c8b.request.json",
    "answer_path": "exchange/rewrites/20260925/global-displacement-record__94a06c8b.answer.json"
+  },
+  {
+   "id": "global-ewaste-crisis__82dcc083",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-25T11:56:25Z",
+   "why": [
+    "premise: brain: It presents statistics without overturning a viewer expectation and relies on multiple numbers rather than a single consequential figure."
+   ],
+   "request": "exchange/rewrites/20260925/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260925/global-ewaste-crisis__82dcc083.answer.json"
   },
   {
    "id": "gps-einstein-fix__dad5454f",
@@ -3173,14 +3243,14 @@
    "answer_path": "exchange/rewrites/20260926/bat-fungus-collapse__4a4b851a.answer.json"
   },
   {
-   "id": "beaver-ecosystem-comeback__e235a087",
+   "id": "beaver-ecosystem-comeback__0e68c3b5",
    "slug": "beaver-ecosystem-comeback",
-   "filed": "2026-09-26T17:27:04Z",
+   "filed": "2026-09-26T12:57:05Z",
    "why": [
-    "premise: brain: The premise uses multiple numbers and lacks a single verifiable figure tied to a clear expectation reversal."
+    "premise: brain: It uses multiple numbers and lacks a single clear, verifiable figure to hinge the claim on."
    ],
-   "request": "exchange/rewrites/20260926/beaver-ecosystem-comeback__e235a087.request.json",
-   "answer_path": "exchange/rewrites/20260926/beaver-ecosystem-comeback__e235a087.answer.json"
+   "request": "exchange/rewrites/20260926/beaver-ecosystem-comeback__0e68c3b5.request.json",
+   "answer_path": "exchange/rewrites/20260926/beaver-ecosystem-comeback__0e68c3b5.answer.json"
   },
   {
    "id": "betelgeuse-great-dimming__5b23be2f",
@@ -3201,16 +3271,6 @@
    ],
    "request": "exchange/rewrites/20260926/bird-flu-species-jump__49e828cf.request.json",
    "answer_path": "exchange/rewrites/20260926/bird-flu-species-jump__49e828cf.answer.json"
-  },
-  {
-   "id": "black-holes-in-galaxy__cf824ed9",
-   "slug": "black-holes-in-galaxy",
-   "filed": "2026-09-26T17:27:03Z",
-   "why": [
-    "premise: brain: The premise is a generic 'there are more of X than you think' astronomy fact with a hedged, unanchored number ('might be 100 million'), not a specific reversal of a concrete expectation hanging on a verifiable figure."
-   ],
-   "request": "exchange/rewrites/20260926/black-holes-in-galaxy__cf824ed9.request.json",
-   "answer_path": "exchange/rewrites/20260926/black-holes-in-galaxy__cf824ed9.answer.json"
   },
   {
    "id": "blood-supply-three-percent__40fe030c",
@@ -3284,6 +3344,16 @@
    "answer_path": "exchange/rewrites/20260926/chatgpt-fastest-adoption-ever__cb5bfb31.answer.json"
   },
   {
+   "id": "chess-online-boom__a777710a",
+   "slug": "chess-online-boom",
+   "filed": "2026-09-26T18:17:43Z",
+   "why": [
+    "premise: brain: The premise rests on a vague, unverifiable claim ('200-million-person habit' / 'broke the internet's chess habit') rather than a single sourced, checkable statistic tied to a clear before/after reversal."
+   ],
+   "request": "exchange/rewrites/20260926/chess-online-boom__a777710a.request.json",
+   "answer_path": "exchange/rewrites/20260926/chess-online-boom__a777710a.answer.json"
+  },
+  {
    "id": "chip-transistor-shrink-limit__32aedade",
    "slug": "chip-transistor-shrink-limit",
    "filed": "2026-09-26T12:57:02Z",
@@ -3294,14 +3364,14 @@
    "answer_path": "exchange/rewrites/20260926/chip-transistor-shrink-limit__32aedade.answer.json"
   },
   {
-   "id": "cicada-double-brood-2024__3b1ff30b",
+   "id": "cicada-double-brood-2024__c00a1a7f",
    "slug": "cicada-double-brood-2024",
-   "filed": "2026-09-26T15:15:46Z",
+   "filed": "2026-09-26T18:17:44Z",
    "why": [
     "judge: A clever 13x17 prime-cycle story is drawn as generic bubbles and bars, with a garbled seg2 whose overlapping, cut-off labels contradict its own claim."
    ],
-   "request": "exchange/rewrites/20260926/cicada-double-brood-2024__3b1ff30b.request.json",
-   "answer_path": "exchange/rewrites/20260926/cicada-double-brood-2024__3b1ff30b.answer.json"
+   "request": "exchange/rewrites/20260926/cicada-double-brood-2024__c00a1a7f.request.json",
+   "answer_path": "exchange/rewrites/20260926/cicada-double-brood-2024__c00a1a7f.answer.json"
   },
   {
    "id": "clear-air-turbulence-increase__452b3b56",
@@ -3334,14 +3404,14 @@
    "answer_path": "exchange/rewrites/20260926/college-gender-gap__7d403c04.answer.json"
   },
   {
-   "id": "cremation-overtakes-burial__8762af6b",
+   "id": "cremation-overtakes-burial__366085b9",
    "slug": "cremation-overtakes-burial",
-   "filed": "2026-09-26T15:15:45Z",
+   "filed": "2026-09-26T18:17:43Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20260926/cremation-overtakes-burial__8762af6b.request.json",
-   "answer_path": "exchange/rewrites/20260926/cremation-overtakes-burial__8762af6b.answer.json"
+   "request": "exchange/rewrites/20260926/cremation-overtakes-burial__366085b9.request.json",
+   "answer_path": "exchange/rewrites/20260926/cremation-overtakes-burial__366085b9.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__2a2910ca",
@@ -3475,14 +3545,14 @@
    "answer_path": "exchange/rewrites/20260926/global-displacement-record__94a06c8b.answer.json"
   },
   {
-   "id": "global-ewaste-crisis__5b6a07dd",
+   "id": "global-ewaste-crisis__82dcc083",
    "slug": "global-ewaste-crisis",
-   "filed": "2026-09-26T17:27:04Z",
+   "filed": "2026-09-26T12:57:05Z",
    "why": [
-    "premise: brain: E-waste tonnage is a static searchable fact, not an expectation reversal, and the number's stakes aren't made consequential or verifiable in the hook."
+    "premise: brain: It relies on multiple numbers rather than a single consequential figure, failing the one-number requirement."
    ],
-   "request": "exchange/rewrites/20260926/global-ewaste-crisis__5b6a07dd.request.json",
-   "answer_path": "exchange/rewrites/20260926/global-ewaste-crisis__5b6a07dd.answer.json"
+   "request": "exchange/rewrites/20260926/global-ewaste-crisis__82dcc083.request.json",
+   "answer_path": "exchange/rewrites/20260926/global-ewaste-crisis__82dcc083.answer.json"
   },
   {
    "id": "gps-einstein-fix__dad5454f",
@@ -3493,16 +3563,6 @@
    ],
    "request": "exchange/rewrites/20260926/gps-einstein-fix__dad5454f.request.json",
    "answer_path": "exchange/rewrites/20260926/gps-einstein-fix__dad5454f.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__b277706d",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-09-26T17:27:02Z",
-   "why": [
-    "premise: brain: The premise uses a generic searchable phrase and lacks a single, verifiable consequential number to reverse viewer expectations."
-   ],
-   "request": "exchange/rewrites/20260926/gulf-dead-zone-growth__b277706d.request.json",
-   "answer_path": "exchange/rewrites/20260926/gulf-dead-zone-growth__b277706d.answer.json"
   },
   {
    "id": "helium-supply-squeeze__c62dbd35",
@@ -3811,6 +3871,16 @@
    "answer_path": "exchange/rewrites/20260926/religious-nones-rise__ea96d336.answer.json"
   },
   {
+   "id": "saffron-red-gold-myth__9af139ed",
+   "slug": "saffron-red-gold-myth",
+   "filed": "2026-09-26T18:17:43Z",
+   "why": [
+    "premise: brain: This is a searchable noun-phrase premise ('world's most expensive spice') dressed up with a number, but it doesn't reverse a specific expectation the viewer holds — everyone already assumes rare spices are pricey, so 'costs more than steak' isn't a genuine reversal."
+   ],
+   "request": "exchange/rewrites/20260926/saffron-red-gold-myth__9af139ed.request.json",
+   "answer_path": "exchange/rewrites/20260926/saffron-red-gold-myth__9af139ed.answer.json"
+  },
+  {
    "id": "sand-mining-crisis__eb97e4fb",
    "slug": "sand-mining-crisis",
    "filed": "2026-09-26T12:57:01Z",
@@ -3819,16 +3889,6 @@
    ],
    "request": "exchange/rewrites/20260926/sand-mining-crisis__eb97e4fb.request.json",
    "answer_path": "exchange/rewrites/20260926/sand-mining-crisis__eb97e4fb.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__19acc403",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-09-26T17:27:02Z",
-   "why": [
-    "premise: brain: This is a searchable noun-phrase premise about deep-sea mining dressed up with a metaphor, and it doesn't reverse a specific expectation the viewer holds — 'gold rush underwater' is evocative but not a stated belief being overturned, nor is there one consequential, verifiable number it hangs on."
-   ],
-   "request": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.request.json",
-   "answer_path": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.answer.json"
   },
   {
    "id": "self-checkout-cashier-jobs__9dbf5d63",

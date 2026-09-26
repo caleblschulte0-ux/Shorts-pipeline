@@ -1,6 +1,37 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-26T17:47:37Z",
- "open": [],
+ "updated": "2026-09-26T18:17:43Z",
+ "open": [
+  {
+   "id": "beaver-ecosystem-comeback__855d950629",
+   "channel": "explainer",
+   "slug": "beaver-ecosystem-comeback",
+   "title": "Beavers Crashed To 100,000. Now There Are 12 Million.",
+   "filed": "2026-09-26T18:10:29Z",
+   "request": "exchange/reviews/20260926/beaver-ecosystem-comeback__855d950629.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/beaver-ecosystem-comeback__855d950629/sheet.jpg",
+   "answer_path": "exchange/reviews/20260926/beaver-ecosystem-comeback__855d950629.verdict.json"
+  },
+  {
+   "id": "cicada-double-brood-2024__828771cf8e",
+   "channel": "explainer",
+   "slug": "cicada-double-brood-2024",
+   "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
+   "filed": "2026-09-26T18:17:43Z",
+   "request": "exchange/reviews/20260926/cicada-double-brood-2024__828771cf8e.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/cicada-double-brood-2024__828771cf8e/sheet.jpg",
+   "answer_path": "exchange/reviews/20260926/cicada-double-brood-2024__828771cf8e.verdict.json"
+  },
+  {
+   "id": "hidden-foster-system__e741f6be13",
+   "channel": "explainer",
+   "slug": "hidden-foster-system",
+   "title": "2.6 Million Kids Are Raised By A System No One Runs",
+   "filed": "2026-09-26T18:04:01Z",
+   "request": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/hidden-foster-system__e741f6be13/sheet.jpg",
+   "answer_path": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.verdict.json"
+  }
+ ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

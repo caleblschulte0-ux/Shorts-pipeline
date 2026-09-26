@@ -1,0 +1,152 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "cicada-double-brood-2024__c00a1a7f",
+ "filed": "2026-09-26T18:17:44Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "cicada-double-brood-2024",
+ "current": {
+  "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
+  "hook": "13 and 17 just found their one shared year — and it happened in your backyard.",
+  "closing": "So... will you still be around in 2245?",
+  "question": "Which cicada brood year were you born into? Tell me below.",
+  "segments": [
+   {
+    "topic": "the two cicada broods and their different clocks",
+    "say": "Brood XIX runs on a 13-year clock. Brood XIII runs on 17. Both cicada broods were due to emerge in 2024 -- and for once, they emerged together."
+   },
+   {
+    "topic": "why cicada broods only line up every 221 years",
+    "say": "So why is that rare? 13 times 17 equals 221, so these cicada broods only line up every 221 years. The last time was 1803. The next time is 2245."
+   },
+   {
+    "topic": "how many cicadas per acre when both broods swarm together",
+    "say": "Add it up: prime habitat can hit 1,500,000 cicadas per acre, next to just 3,000 in an average wooded acre. Across both cicada broods' range, that's easily hundreds of billions of bugs singing at once."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "the two cicada broods and their different clocks",
+   "say": "Brood XIX runs on a 13-year clock. Brood XIII runs on 17. Both cicada broods were due to emerge in 2024 -- and for once, they emerged together.",
+   "role": "1 · TWO CLOCKS",
+   "data": {
+    "file": "cicada_brood_cycle_lengths.json",
+    "unit": "years",
+    "title": "Life cycle length: Brood XIX vs. Brood XIII periodical cicadas",
+    "points": [
+     {
+      "label": "Brood XIX (13-year cicadas)",
+      "value": 13
+     },
+     {
+      "label": "Brood XIII (17-year cicadas)",
+      "value": 17
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why cicada broods only line up every 221 years",
+   "say": "So why is that rare? 13 times 17 equals 221, so these cicada broods only line up every 221 years. The last time was 1803. The next time is 2245.",
+   "role": "2 · WHY SO RARE",
+   "data": {
+    "file": "cicada_double_emergence_gap.json",
+    "unit": "years",
+    "title": "Years between Brood XIX / Brood XIII double emergences",
+    "points": [
+     {
+      "label": "Years since the last double emergence (1803-2024)",
+      "value": 221
+     },
+     {
+      "label": "Years until the next one (2024-2245)",
+      "value": 221
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how many cicadas per acre when both broods swarm together",
+   "say": "Add it up: prime habitat can hit 1,500,000 cicadas per acre, next to just 3,000 in an average wooded acre. Across both cicada broods' range, that's easily hundreds of billions of bugs singing at once.",
+   "role": "3 · THE SWARM",
+   "data": {
+    "file": "cicada_peak_density.json",
+    "unit": "count",
+    "title": "Periodical cicadas per acre: peak habitat vs. typical woodland",
+    "points": [
+     {
+      "label": "Peak density, prime habitat",
+      "value": 1500000
+     },
+     {
+      "label": "Typical wooded acre",
+      "value": 3000
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A clever 13x17 prime-cycle story is drawn as generic bubbles and bars, with a garbled seg2 whose overlapping, cut-off labels contradict its own claim."
+ ],
+ "reasons": [
+  "judge: A clever 13x17 prime-cycle story is drawn as generic bubbles and bars, with a garbled seg2 whose overlapping, cut-off labels contradict its own claim."
+ ],
+ "judge": {
+  "ts": "2026-09-26T14:52:24+00:00",
+  "score": 39,
+  "one_line": "A clever 13x17 prime-cycle story is drawn as generic bubbles and bars, with a garbled seg2 whose overlapping, cut-off labels contradict its own claim.",
+  "problems": [
+   "Hook is a slow build of two hourglasses with a small caption, with no immediate motion or surprise tied to 'trillions of bugs'.",
+   "seg1:start is a near-empty void with only a tiny mascot.",
+   "seg1 and seg3 are number-in-a-circle bubble charts.",
+   "seg2:end labels overlap, and '0 yrs apar' is cut off at the right edge and wrongly claims 0 years apart.",
+   "seg2:start captions overlap each other, and the mascot covers the 'vs'.",
+   "Mascot only stands, perches on circles or points; there is no performed bit."
+  ],
+  "fixes": [
+   "Open on a swarm of cicadas bursting out of the ground, with a counter racing up to trillions.",
+   "Replace seg2 with two ticking cycle lines (13 and 17) that meet only at 1803, 2024 and 2245, using measured labels that stay inside the frame.",
+   "Draw the density as an acre plot filling with cicada glyphs: prime habitat overflowing next to an average acre with a sparse, visible scatter.",
+   "Give Data a bit: he sets two alarm clocks with 13 and 17 dials, and they ring together at 2024. Or he wades through the dense acre and strolls through the sparse one.",
+   "Remove the 'tops the list' ranking header from non-ranking scenes."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/cicada-double-brood-2024__c00a1a7f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
