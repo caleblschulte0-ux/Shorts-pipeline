@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:11.641Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-hoa-garden-property-line-s0",
+  "safe_request_id": "authored-hoa-garden-property-line-s0",
+  "prompt_sha256": "95745d9fbd81af22ffd07341933c80ffde17e9caed0cf0d7084d3c2b1a48def6",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story shot. Scene: tidy suburban backyard beside raised vegetable beds. Subject: an adult homeowner holding an official-looking HOA violation envelope with no readable text, looking confused rather than angry. Style: natural editorial photography, realistic skin and garden textures. Composition: portrait, medium shot, safe center framing. Lighting: soft morning daylight. Constraints: no logos, no legible text, no watermark, no split screen, no violence.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1NXRRhnBpYVM6jPl-A8-IBm5ghSWL2J3F",
+    "filename": "20260926__authored-hoa-garden-property-line-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1NXRRhnBpYVM6jPl-A8-IBm5ghSWL2J3F",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e6a57960d4ecbd7b7753247ea539a4b3310786b6548d521bbe64da671da361b4",
+    "bytes": 2391646,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "hoa-garden-property-line",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
