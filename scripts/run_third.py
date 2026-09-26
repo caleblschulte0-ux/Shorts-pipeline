@@ -280,7 +280,15 @@ def _learned_prior() -> dict:
                 return (lo + 0.5 * eq) / n_ if n_ else 0.5
             return pct
 
-        vph_pct = _pct_fn(float(v.get("views_per_hour") or 0.0) for v in vids)
+        # REACH IS TOTAL VIEWS, not views per hour. A Short collects most of
+        # its views in its first days, so per-hour punishes age: a 472-hour
+        # clip with 322 views scored below a 61-hour clip with 61, and on
+        # 2026-09-26 lacy (median 11 views) out-ranked jasontheween (median
+        # 44) — the direction test caught it. Every clip here is already
+        # past MIN_PUBLIC_AGE, so their totals are comparable, and a
+        # streamer's median percentile is then monotone in their median
+        # views.
+        vph_pct = _pct_fn(float(v.get("views") or 0.0) for v in vids)
         ret_vids = [v for v in vids if v.get("usable_for_retention")
                     and v.get("average_view_percentage") is not None]
         ret_pct = _pct_fn(min(float(v["average_view_percentage"]), AVP_CAP)
@@ -289,7 +297,7 @@ def _learned_prior() -> dict:
         def _ratio(v):
             """2 * percentile on one shared scale; None never happens now —
             every eligible video has a views-per-hour, even when it is 0."""
-            r = 2.0 * vph_pct(float(v.get("views_per_hour") or 0.0))
+            r = 2.0 * vph_pct(float(v.get("views") or 0.0))
             if (ret_pct is not None and v.get("usable_for_retention")
                     and v.get("average_view_percentage") is not None):
                 r *= 0.75 + 0.5 * ret_pct(

@@ -163,9 +163,36 @@ KEY_X_VALUE = 0.90
 # frame as dead black band between the plot floor and the year counter, and
 # a chart that fills less of the screen moves fewer pixels per frame — which
 # is literally what the showrunner's motion floor measures.
-AX_LEFT = 0.10
+AX_LEFT = 0.135      # room for 20px ticks AND the rotated axis name
 AX_BOTTOM = 0.205
-AX_WIDTH = 0.87
+AX_WIDTH = 0.835
+
+
+TIP_INK = "#f4f6fb"      # every label on the race; a mark's colour is not ink
+
+
+def visible_on_black(hex_color: str, min_contrast: float = 4.5) -> str:
+    """`hex_color`, lifted toward white until it reads on the race's black
+    ground. Authored series colours like dark brown or deep purple were
+    "nearly disappearing" at phone distance (2026-09-26); a line is a mark
+    and marks need contrast too. Hue is kept; only lightness rises."""
+    h = str(hex_color or "").lstrip("#")
+    try:
+        rgb = [int(h[i:i + 2], 16) / 255.0 for i in (0, 2, 4)]
+    except (ValueError, IndexError):
+        return hex_color
+
+    def lum(c):
+        lin = [v / 12.92 if v <= 0.03928 else ((v + 0.055) / 1.055) ** 2.4
+               for v in c]
+        return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
+
+    t = 0.0
+    c = rgb
+    while (lum(c) + 0.05) / 0.05 < min_contrast and t < 1.0:
+        t += 0.05
+        c = [v + (1.0 - v) * t for v in rgb]
+    return "#" + "".join(f"{int(round(v * 255)):02x}" for v in c)
 
 
 def _race_ease(p: float) -> float:
@@ -731,6 +758,7 @@ def render(spec: dict, out: str | Path, *,
     series = [dict(s) for s in spec["series"]]
     for i, s in enumerate(series):
         s.setdefault("color", PALETTE[i % len(PALETTE)])
+        s["color"] = visible_on_black(s["color"])
     global_max = max(max(s["values"]) for s in series)
 
     # Icons: resolved ONCE up front (network, best-effort). A miss just
@@ -807,7 +835,7 @@ def render(spec: dict, out: str | Path, *,
         # A share reads as "57%", not "57": the unit was only on the axis
         # name, rotated, in 15px grey.
         # the credit is fitted by MEASURED width, not a character count
-        credit_size = 15
+        credit_size = 18
         while credit and credit_size > 11 and \
                 _text_px(fig, credit, credit_size) > W * 0.92:
             credit_size -= 1
@@ -932,7 +960,7 @@ def render(spec: dict, out: str | Path, *,
             # a y label is drawn rotated.
             ax.set_ylabel(_fit_axis_name(fig, y_label,
                                          ax.get_window_extent().height),
-                          color="#9aa4b2", fontsize=15)
+                          color="#c3cad6", fontsize=18)
             ax.yaxis.set_major_formatter(
                 FuncFormatter(lambda v, _: _fmt_compact(v)))
             ax.xaxis.set_major_locator(FixedLocator(ticks))
@@ -942,7 +970,9 @@ def render(spec: dict, out: str | Path, *,
                 ax.spines[spine].set_visible(False)
             for spine in ("left", "bottom"):
                 ax.spines[spine].set_color("#3a4252")
-            ax.tick_params(colors="#9aa4b2", labelsize=14)
+            # TICKS A PHONE CAN READ: at 14px "1B" read as "18" (online
+            # race, 2026-09-26).
+            ax.tick_params(colors="#c3cad6", labelsize=20)
             ax.grid(axis="y", color="#141a26", linewidth=1)
 
             # THE PASS IS MARKED WHERE IT HAPPENS, AND STAYS MARKED.
@@ -1023,7 +1053,7 @@ def render(spec: dict, out: str | Path, *,
                 # showrunner's "colliding, edge-clipped tip badges"). Clear
                 # the dot's radius and its white edge before the text.
                 _dot_r = (16 if rank == 0 else 13) / 2.0 + 1.4
-                off = (_dot_r + 8) if art is None else iw + 16
+                off = (_dot_r + 14) if art is None else iw + 16
                 # Flip the icon+label to the LEFT of the tip once they would
                 # not fit to its right. This used to be one shared
                 # `cur > 82% of the span` flag, which is wrong twice over: it
@@ -1056,19 +1086,24 @@ def render(spec: dict, out: str | Path, *,
                 ax.annotate(label,
                             xy=(cur, ly),
                             xytext=(-off, 0) if flip else (off, 0),
-                            textcoords="offset points", color=s["color"],
+                            textcoords="offset points", color=TIP_INK,
                             fontsize=15, fontweight="bold", va="center",
                             ha="right" if flip else "left",
                             zorder=5, clip_on=False,
                             annotation_clip=False,
                             # The label sits AT its series' value, which is
                             # exactly where that series' line is — so grey
-                            # text landed on a grey line and vanished. A
-                            # near-opaque plate makes every tip readable
-                            # over lines, gridlines and other labels.
-                            bbox=dict(boxstyle="round,pad=0.25",
-                                      facecolor="#000000", alpha=0.78,
-                                      edgecolor="none"))
+                            # text landed on a grey line and vanished.
+                            # ...AND TEXT WEARS INK ON AN OPAQUE PLATE. In the
+                            # series' own colour it was "dim purple text on a
+                            # purple mark", "dark brown on near-black", and
+                            # at 78% the plate still let the line run through
+                            # the letters: all four graph races of 2026-09-26
+                            # auto-failed `unreadable`. The series colour is
+                            # the plate's edge, which is enough to say whose.
+                            bbox=dict(boxstyle="round,pad=0.3",
+                                      facecolor="#05070c", alpha=1.0,
+                                      edgecolor=s["color"], linewidth=2))
 
             # THE KEY: compact icon + name + value rows parked in the
             # dead band between the title and the plot, so it never sits
@@ -1097,7 +1132,7 @@ def render(spec: dict, out: str | Path, *,
                                        facecolor=s["color"],
                                        edgecolor="none"))
                 fig.text(KEY_X_NAME, ly, f"{rank + 1}. {s['name']}",
-                         color=s["color"], ha="left", va="center",
+                         color=TIP_INK, ha="left", va="center",
                          fontsize=17, fontweight="bold")
                 fig.text(KEY_X_VALUE, ly, _fmt_compact(cv) + unit, color="white",
                          ha="right", va="center", fontsize=19,
@@ -1130,7 +1165,7 @@ def render(spec: dict, out: str | Path, *,
                 # two frames are the same right through to the cut.
                 land = min(1.0, hp / 0.4)
                 ease = 1.0 - (1.0 - land) ** 3
-                fig.text(0.5, 0.078 + 0.014 * (1.0 - ease) + 0.004 * hp,
+                fig.text(0.5, 0.062 + 0.012 * (1.0 - ease) + 0.003 * hp,
                          f"#1  {lead['name']}",
                          color=lead["color"], ha="center", va="center",
                          fontsize=32 + 10 * ease, fontweight="bold",
