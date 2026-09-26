@@ -281,6 +281,74 @@ class TestPhaseBHonoursTheCheckpoints(unittest.TestCase):
         self.assertEqual(report["media"]["fulfilled"], 1, out.stdout)
         self.assertEqual(report["checkpoints"]["ok"], 1)
 
+    def test_a_recovered_checkpoint_that_fails_the_contract_is_reported(self):
+        """Doctor finding 34e98321286f: a checkpoint recovered for a gap the
+        response left silent, then refused on the contract, used to be a
+        workflow-log line and nothing else — the durable report showed a
+        clean day with no record a checkpoint had ever existed for it."""
+        pkg = reddit_pkg(slug="recovered-refusal")
+        self.day.mkdir(parents=True, exist_ok=True)
+        (self.day / "01_recovered-refusal.json").write_text(json.dumps(pkg))
+        b = self._write_bundle([pkg])
+        answered, orphan = b["requests"][0], b["requests"][1]
+        url, sha, nbytes = self._png(answered["drive_filename"])
+
+        # A checkpoint for the SECOND request, verified but stamped for a
+        # bundle revision that is not this one — recoverable in principle,
+        # refused on the identity check.
+        saved = mc.BUNDLE_ROOT
+        try:
+            mc.BUNDLE_ROOT = ROOT / "exchange" / "bundles"
+            mc.write_checkpoint(self.DATE, mc.build_checkpoint(
+                date=self.DATE, request_id=orphan["request_id"],
+                bundle_id="a-stale-bundle-identity",
+                prompt=orphan["prompt_verbatim"],
+                drive={"file_id": "REAL", "filename": orphan["drive_filename"],
+                       "sharing": "anyone_with_link"},
+                image={"sha256": "b" * 64, "bytes": 123, "format": "png",
+                       "width": 64, "height": 64}))
+        finally:
+            mc.BUNDLE_ROOT = saved
+
+        # The response answers only the FIRST request — the orphan's
+        # checkpoint is what the finalizer never wrote an envelope for.
+        (self.bundle / "response.json").write_text(json.dumps({"media": [{
+            "request_id": answered["request_id"], "status": "fulfilled",
+            "drive": {"file_id": "REAL", "download_url": url},
+            "image": {"sha256": sha, "bytes": nbytes, "format": "png",
+                      "width": 64, "height": 64}}]}))
+
+        out = self._run()
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        report = json.loads((self.bundle / "phase_b_report.json").read_text())
+        detail = report["checkpoints"]["recovered_rejected_detail"]
+        self.assertTrue(
+            any(d["request_id"] == orphan["request_id"]
+                and d["origin"] == "media" for d in detail),
+            detail)
+
+    def test_other_channel_ingest_outcomes_are_recorded(self):
+        """Doctor finding 34e98321286f: authored['other_channels'] (the
+        explainer/curiosity applied+rejected counts Phase B already
+        computes) was dropped when the durable report was built, so a
+        rejected sibling-channel rewrite left no trace outside the log."""
+        pkg = reddit_pkg(slug="other-channels-shape")
+        self.day.mkdir(parents=True, exist_ok=True)
+        (self.day / "01_other-channels-shape.json").write_text(json.dumps(pkg))
+        b = self._write_bundle([pkg])
+        req = b["requests"][0]
+        url, sha, nbytes = self._png(req["drive_filename"])
+        (self.bundle / "response.json").write_text(json.dumps({"media": [{
+            "request_id": req["request_id"], "status": "fulfilled",
+            "drive": {"file_id": "REAL", "download_url": url},
+            "image": {"sha256": sha, "bytes": nbytes, "format": "png",
+                      "width": 64, "height": 64}}]}))
+        out = self._run()
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        report = json.loads((self.bundle / "phase_b_report.json").read_text())
+        self.assertEqual(set(report["authored"]["other_channels"]),
+                         {"explainer", "curiosity"})
+
     def test_no_done_backstop_still_accepts_uncheckpointed_media(self):
         """Policy A, and ONLY on this path. With no DONE, ChatGPT never
         finished — often never started — so there are no checkpoints to

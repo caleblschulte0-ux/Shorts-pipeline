@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260925",
+  "updated": "20260926",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -896,10 +896,16 @@
       "commit": "d8fddc3"
     },
     "9d5a03472328": {
-      "verdict": "doing",
-      "date": "20260825",
-      "because": "Spot-checked state/analytics/latest.json directly: filtering videos by the cited rivalry/crossover cue words reproduces the finding's named examples (Switch Buried the PS5 at 0.19 VPH, Starlink Outnumbers at 0.13, Lottery Mega Millions vs Powerball at 0.11) and the general pattern of higher velocity on explicit-rivalry titles. Proposal only changes title wording on stories where the data already contains a genuine crossover, keeps the registered mix/cadence untouched, and stays inside the refusal list. Note for whoever builds it: fetched_at in that file is 2026-08-13 -- pull a fresh analytics snapshot before running the actual ten-video test so the control group is current.",
-      "history": []
+      "verdict": "not_doing",
+      "date": "20260926",
+      "because": "Re-verified before building, per the original ruling's own note to pull fresh analytics first. The 08-13 snapshot's 16-vs-42 split does not replicate: restricting to graph_race format only (joined via state/posted_log.json's format field, which the raw 08-13 comparison did not do) and using the current 2026-09-25 snapshot, 39 mature (>=72h) graph_race videos split 23 rivalry-cue-titled (mean 0.0061 VPH, median 0.0) vs 16 plain-titled (mean 0.0106 VPH, median 0.01) -- the plain arm now leads, the opposite of the original claim. Both spot-checks share a real confound (views_per_hour mechanically decays with age, so any two snapshots taken weeks apart are comparing different age-mixes), so this isn't proof the effect is negative either -- but there is no live signal left to justify shipping an active title-doctrine push toward manufactured rivalry titles. Not doing. If this is revisited, it needs an age-normalized comparison (percentile-by-age, as retro/build_retro.py already does), not another raw-VPH spot check.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260825",
+          "because": "Spot-checked state/analytics/latest.json directly: filtering videos by the cited rivalry/crossover cue words reproduces the finding's named examples (Switch Buried the PS5 at 0.19 VPH, Starlink Outnumbers at 0.13, Lottery Mega Millions vs Powerball at 0.11) and the general pattern of higher velocity on explicit-rivalry titles. Proposal only changes title wording on stories where the data already contains a genuine crossover, keeps the registered mix/cadence untouched, and stays inside the refusal list. Note for whoever builds it: fetched_at in that file is 2026-08-13 -- pull a fresh analytics snapshot before running the actual ten-video test so the control group is current."
+        }
+      ]
     },
     "9f547a4372a9": {
       "verdict": "later",
@@ -939,10 +945,16 @@
       ]
     },
     "34e98321286f": {
-      "verdict": "doing",
-      "date": "20260826",
-      "because": "Verified: scripts/exchange_phase_b.py already computes authored['other_channels'] (line ~630) and collects _recovered_refused/_auth_refused (checkpoint recovery), but the final report dict (line ~723) reconstructs 'authored' from only promoted/rejected counts and never persists other_channels or the recovery refusal detail into report/report['checkpoints']. The durable audit record silently omits real structured outcomes it already has in hand. Scoped fix: wire the existing data into the report schema.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260926",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260826",
+          "because": "Verified: scripts/exchange_phase_b.py already computes authored['other_channels'] (line ~630) and collects _recovered_refused/_auth_refused (checkpoint recovery), but the final report dict (line ~723) reconstructs 'authored' from only promoted/rejected counts and never persists other_channels or the recovery refusal detail into report/report['checkpoints']. The durable audit record silently omits real structured outcomes it already has in hand. Scoped fix: wire the existing data into the report schema."
+        }
+      ]
     },
     "363113a0188b": {
       "verdict": "doing",

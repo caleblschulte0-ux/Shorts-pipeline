@@ -766,17 +766,32 @@ def main() -> int:
         print(f"[phase-b] recovered {attached} authored-shot pointer(s) "
               f"from checkpoints (shots the response left bare)")
 
+    # Doctor finding 34e98321286f: the day's audit already computes both of
+    # these (authored["other_channels"] above; _recovered_refused and
+    # _auth_refused from the two recovery passes) and then discarded them —
+    # the durable report could claim a clean trending exchange while a
+    # sibling-channel rewrite was rejected or a recovery candidate failed
+    # its contract, with only an ephemeral workflow-log line saying so.
+    recovered_rejected_detail = (
+        [{"request_id": rid, "origin": "media", "problems": problems}
+         for rid, problems in _recovered_refused.items()]
+        + [{"request_id": rid, "origin": "authored_shot", "problems": problems}
+           for rid, problems in _auth_refused.items()])
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
               "authored": {"promoted": len(authored.get("promoted") or []),
-                           "rejected": len(authored.get("rejected") or [])},
+                           "rejected": len(authored.get("rejected") or []),
+                           "other_channels": authored.get("other_channels",
+                                                          {})},
               "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0,
                         "refused": 0},
               "checkpoints": {"bundle_identity": bundle_id,
                               "required": require_cp,
                               **(validation.get("counts") or {}),
                               "rejected_detail": validation.get("rejected"),
-                              "warnings_detail": validation.get("warnings")},
+                              "warnings_detail": validation.get("warnings"),
+                              "recovered_rejected_detail":
+                                  recovered_rejected_detail},
               "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
               # The durable record that the whole response was refused, and
               # why. Without this the report shows a day that simply had no
