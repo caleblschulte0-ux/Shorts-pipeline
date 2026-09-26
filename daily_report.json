@@ -3,17 +3,17 @@
     "topic": "He Said The Chair Vanished. Then He Listed It.",
     "title": "He Said The Chair Vanished. Then He Listed It.",
     "format": "reddit",
-    "publish_at": "2026-09-26T17:30:00Z",
+    "publish_at": "2026-09-26T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's twist (the 'vanished' chair shows up in his own listing) is never shown; the back half is one clip-art bank icon held for about 22 seconds over gameplay.",
-    "elapsed_seconds": 543.8,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+    "elapsed_seconds": 193.4,
     "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-170642_he_said_the_chair_vanished__then_he_list.mp4",
+    "video_path": "output/daily_20260926-183405_he_said_the_chair_vanished__then_he_list.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.7,
+      "duration": 55.2,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,145 +24,58 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -25.7
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story's twist (the 'vanished' chair shows up in his own listing) is never shown; the back half is one clip-art bank icon held for about 22 seconds over gameplay.",
-      "score": 53
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+      "score": null
     },
     "blocked": true
   },
   {
-    "topic": "phil knight",
+    "topic": "pearl jam new drummer",
     "angle": null,
-    "publish_at": "2026-09-26T17:30:00Z",
+    "publish_at": "2026-09-26T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Just as the malicious compliance plays out (plaques, paragraph, trash cans), the illustrations vanish and it becomes 20+ seconds of bare gameplay with captions, so the joke is only heard, never seen.",
-    "elapsed_seconds": 619.3,
-    "title": "I Gave The Donor Exactly What He Asked For",
-    "package_path": "state/trending_packages/20260926-171840_auto_phil_knight.json",
-    "video_path": "output/daily_20260926-171840_phil_knight.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 56.033,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Just as the malicious compliance plays out (plaques, paragraph, trash cans), the illustrations vanish and it becomes 20+ seconds of bare gameplay with captions, so the joke is only heard, never seen.",
-      "score": 57
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (d2c0f14bade33222)",
+    "elapsed_seconds": 27.4,
     "backfill": true
   },
   {
-    "topic": "kamario taylor",
+    "topic": "laken tomlinson",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Motion and captions are clean, but the story beats are never shown: illustrations arrive only at 40s and are generic icons (a blank phone, a grad cap) that prove nothing.",
-    "elapsed_seconds": 488.1,
-    "title": "I Followed The Rules, He Got Suspended",
-    "package_path": "state/trending_packages/20260926-172819_auto_kamario_taylor.json",
-    "video_path": "output/daily_20260926-172819_kamario_taylor.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 51.6,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Motion and captions are clean, but the story beats are never shown: illustrations arrive only at 40s and are generic icons (a blank phone, a grad cap) that prove nothing.",
-      "score": 61
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5154886221728877)",
+    "elapsed_seconds": 26.0,
     "backfill": true
   },
   {
-    "topic": "oktoberfest",
+    "topic": "william, prince of wales",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The whole revenge story is told only in captions over random Minecraft parkour. The one illustration is a blank phone icon floating in a dark void, so none of the story is ever shown.",
-    "elapsed_seconds": 646.8,
-    "title": "I Gave The Rude VIP Exactly What She Wanted",
-    "package_path": "state/trending_packages/20260926-173603_auto_oktoberfest.json",
-    "video_path": "output/daily_20260926-173603_oktoberfest.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 47.3,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The whole revenge story is told only in captions over random Minecraft parkour. The one illustration is a blank phone icon floating in a dark void, so none of the story is ever shown.",
-      "score": 61
-    },
-    "blocked": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (6d3379c3e8797994)",
+    "elapsed_seconds": 26.1,
     "backfill": true
   },
   {
-    "topic": "archie manning",
+    "topic": "czechia vs croatia",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "JSONDecodeError: Extra data: line 1 column 5 (char 4)",
-    "elapsed_seconds": 58.5,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (a8e0806f155184e4)",
+    "elapsed_seconds": 26.2,
     "backfill": true
   }
 ]
