@@ -313,7 +313,7 @@ class TheTipLabelClearsTheMarker(unittest.TestCase):
         blk = src[i:i + 900]
         self.assertNotIn("off = 8 if art is None", blk)
         self.assertIn("_dot_r = (16 if rank == 0 else 13) / 2.0 + 1.4", blk)
-        self.assertIn("off = (_dot_r + 8) if art is None", blk)
+        self.assertIn("off = (_dot_r + 14) if art is None", blk)
 
 
 class TheHookCardIsReadableAndOffTheAxis(unittest.TestCase):
