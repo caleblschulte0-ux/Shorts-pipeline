@@ -590,6 +590,8 @@ def scene_host(action: str, phase: float, insight=None, kind: str = ""):
                 img = img.crop(bb)
     except Exception:  # noqa: BLE001
         pass
+    if img is not None:
+        img.info[HOST_MARK] = True    # so `watch_hosts` knows him on the canvas
     if len(_SCENE_HOST_CACHE) > 400:
         _SCENE_HOST_CACHE.clear()
     _SCENE_HOST_CACHE[key] = img
@@ -1017,16 +1019,126 @@ class InkDraw:
 
     def __init__(self, draw):
         self._draw = draw
+        # every string drawn, in order, so `ink_over_host` can tell which
+        # words a later host composite landed on
+        self.drawn: list = []
 
     def __getattr__(self, name):
         return getattr(self._draw, name)
 
+    def _note(self, method, xy, text, fill, args, kwargs):
+        try:
+            extra = {k: kwargs[k] for k in ("spacing", "align")
+                     if k in kwargs}
+            box = getattr(self._draw, method + "bbox")(
+                xy, str(text), font=kwargs.get("font"),
+                anchor=kwargs.get("anchor"),
+                stroke_width=kwargs.get("stroke_width", 0), **extra)
+            self.drawn.append((method, xy, text, fill, args, dict(kwargs), box))
+        except Exception:  # noqa: BLE001 — the ledger never costs a frame
+            pass
+
     def text(self, xy, text, fill=None, *args, **kwargs):
-        return self._draw.text(xy, text, _lift_rest(fill), *args, **kwargs)
+        fill = _lift_rest(fill)
+        self._note("text", xy, text, fill, args, kwargs)
+        return self._draw.text(xy, text, fill, *args, **kwargs)
 
     def multiline_text(self, xy, text, fill=None, *args, **kwargs):
-        return self._draw.multiline_text(xy, text, _lift_rest(fill),
-                                         *args, **kwargs)
+        fill = _lift_rest(fill)
+        self._note("multiline_text", xy, text, fill, args, kwargs)
+        return self._draw.multiline_text(xy, text, fill, *args, **kwargs)
+
+
+# TYPE IS THE TOP LAYER — THE HOST NEVER HIDES A WORD.
+#
+# Forty machines each place Data by their own arithmetic, and each one that
+# composites him AFTER its labels can stand him on one. The showrunner named
+# it in 24 verdicts on 11 stories in three days (2026-09-24..26): "Data stands
+# over the Oct 2023 label, so it reads '10 00'", "the mascot covers the label
+# 'ISS orbital speed', so it reads 'ISS o...tal speed'", "the label reads
+# 'Before 201' because the mascot covers the last digit", "the Cruise label
+# ... ends clipped at 'shutdow'". Every one an `unreadable` auto-fail, every
+# one fixed at its own site the day before and back somewhere else the next.
+# So it is fixed where every machine draws: `render_scene` watches which
+# host composites land on words already drawn and re-inks those words on top
+# of him, keylined like every other number in the kit. He is not moved — a
+# rider stays on his satellite, a load stays in his hands — only the words
+# come to the front. Held by `tests/test_the_host_never_hides_a_word.py`.
+HOST_MARK = "viz_host"      # `Image.info` key `scene_host` stamps on him
+_KEYLINE = (5, 8, 15)
+
+
+def watch_hosts(canvas, d) -> list:
+    """Record every HOST composite onto ``canvas`` (with how many strings
+    ``d`` had drawn by then). The host is recognised by `HOST_MARK`, which
+    PIL carries through the resize/copy/putalpha every machine applies."""
+    seen: list = []
+    real = canvas.alpha_composite
+
+    def _composite(im, dest=(0, 0), source=(0, 0)):
+        try:
+            if getattr(im, "info", {}).get(HOST_MARK) and \
+                    tuple(source) == (0, 0):
+                seen.append((len(getattr(d, "drawn", [])), im,
+                             (int(dest[0]), int(dest[1]))))
+        except Exception:  # noqa: BLE001
+            pass
+        return real(im, dest, source)
+
+    canvas.alpha_composite = _composite
+    return seen
+
+
+def ink_over_host(canvas, d, seen) -> int:
+    """Re-draw, on top of the host, every word he was composited over.
+    Clipped to his silhouette, so a word he does not cover is untouched.
+    Returns how many words were brought to the front."""
+    from PIL import Image, ImageChops, ImageDraw
+    drawn = getattr(d, "drawn", [])
+    if not seen or not drawn:
+        return 0
+    layer = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    ld = ImageDraw.Draw(layer)
+    mask = Image.new("L", canvas.size, 0)
+    lifted = 0
+    for n, im, (x, y) in seen:
+        try:
+            a = im.getchannel("A")
+            bb = a.getbbox()
+        except Exception:  # noqa: BLE001
+            continue
+        if not bb:
+            continue
+        hb = (x + bb[0], y + bb[1], x + bb[2], y + bb[3])
+        hit = False
+        for method, xy, text, fill, args, kw, tb in drawn[:n]:
+            if (min(hb[2], tb[2]) <= max(hb[0], tb[0])
+                    or min(hb[3], tb[3]) <= max(hb[1], tb[1])):
+                continue
+            kw = dict(kw)
+            if len(args) <= 2:           # (font, anchor) at most positionally
+                font = kw.get("font") or (args[0] if args else None)
+                size = getattr(font, "size", 40)
+                alpha = fill[3] if isinstance(fill, (tuple, list)) \
+                    and len(fill) > 3 else 255
+                kw["stroke_width"] = max(int(kw.get("stroke_width") or 0),
+                                         max(3, int(size) // 14))
+                kw["stroke_fill"] = (*_KEYLINE, int(alpha))
+            try:
+                getattr(ld, method)(xy, text, fill, *args, **kw)
+                lifted += 1
+                hit = True
+            except Exception:  # noqa: BLE001 — never lose a frame over it
+                continue
+        if hit:
+            # wherever he covers AT ALL: a soft edge left half a word
+            solid = a.point(lambda v: 255 if v else 0)
+            mask.paste(solid, (x, y), solid)
+    if not lifted:
+        return 0
+    layer.putalpha(ImageChops.multiply(layer.getchannel("A"), mask))
+    Image.Image.alpha_composite(canvas, layer)
+    return lifted
 
 
 def _lift_rest(fill):
@@ -6959,6 +7071,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         _BEAT_PHASE = f / max(1, frames)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = InkDraw(ImageDraw.Draw(canvas))
+        _hosts = watch_hosts(canvas, d)
         if show_title:
             draw_caption(d, (RX0, 250, RX1, 250), insight.topic, 1.0, size=52)
         for i, el in enumerate(els):
@@ -7056,6 +7169,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         # slow 4% push across the build is what a real edit does anyway, and it
         # guarantees no two frames of the beat are the same whatever the scene
         # is made of.
+        # (First, the words he landed on come to the front — `ink_over_host`.)
+        ink_over_host(canvas, d, _hosts)
         canvas = _push(canvas, r)
         # compress_level=1: these are intermediate build frames that ffmpeg
         # reads once and throws away, so the default level-6 deflate is pure
