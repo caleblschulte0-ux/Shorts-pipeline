@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:25.395Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-chair-chargeback-marketplace-listing-s1",
+  "safe_request_id": "authored-chair-chargeback-marketplace-listing-s1",
+  "prompt_sha256": "4a2ec75fa4b70e790b833b41cd23f3b597acf4b2b6996588ced2b116ba394fc8",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story shot. Scene: furniture-store loading dock. Subject: adult customer and employee carefully loading a brown leather armchair into the bed of a pickup truck. Style: candid realistic documentary photography. Composition: portrait, chair and truck clearly visible, faces not prominent. Lighting: natural afternoon light. Constraints: no logos, no readable license plate, no text, no watermark.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+    "filename": "20260926__authored-chair-chargeback-marketplace-listing-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_bABrFKgXpMSEOF8VwSoZVAyYUcYLHiX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "371c99eb05131a35eb0071262ca1905b48b6df547882e4b8b6ce119f46b04b97",
+    "bytes": 2145585,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "chair-chargeback-marketplace-listing",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
