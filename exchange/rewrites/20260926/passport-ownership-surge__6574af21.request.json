@@ -1,0 +1,135 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "passport-ownership-surge__6574af21",
+ "filed": "2026-09-26T12:57:05Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "passport-ownership-surge",
+ "current": {
+  "title": "Half Of Americans Now Own A Passport -- Up From Just 5% In 1990",
+  "hook": "5% became almost half — your whole country just broke out.",
+  "closing": "Half the country's ready to leave. The other half isn't.",
+  "question": "Do you actually have a valid passport right now? Tell me below.",
+  "segments": [
+   {
+    "topic": "Americans who own a passport",
+    "say": "In 1990, just 5% of Americans owned a passport. Today it's 48% -- almost half the country has one."
+   },
+   {
+    "topic": "how many Americans get a passport now",
+    "say": "The government can barely keep up -- it issued 24 million passports in 2023, then broke that record with 27.3 million in 2025."
+   },
+   {
+    "topic": "passport ownership across states",
+    "say": "It's not even across the map, though. New Jersey alone sits at 68% -- 20 points above the national average."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Americans who own a passport",
+   "say": "In 1990, just 5% of Americans owned a passport. Today it's 48% -- almost half the country has one.",
+   "role": "1 · THE SHIFT",
+   "data": {
+    "file": "passport_ownership_rate.json",
+    "unit": "percent",
+    "title": "Share of Americans who hold a valid US passport",
+    "points": [
+     {
+      "label": "1990",
+      "value": 5,
+      "period": "1990"
+     },
+     {
+      "label": "2023",
+      "value": 48,
+      "period": "2023"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "how many Americans get a passport now",
+   "say": "The government can barely keep up -- it issued 24 million passports in 2023, then broke that record with 27.3 million in 2025.",
+   "role": "2 · THE DEMAND",
+   "data": {
+    "file": "passports_issued_annual_record.json",
+    "unit": "million",
+    "title": "US passports issued per year, record vs. prior record",
+    "points": [
+     {
+      "label": "FY2023",
+      "value": 24
+     },
+     {
+      "label": "FY2025",
+      "value": 27.3
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "passport ownership across states",
+   "say": "It's not even across the map, though. New Jersey alone sits at 68% -- 20 points above the national average.",
+   "role": "3 · THE DIVIDE",
+   "data": {
+    "file": "passport_rate_nj_vs_national.json",
+    "unit": "percent",
+    "title": "Passport ownership rate: New Jersey vs. the national average",
+    "points": [
+     {
+      "label": "National average",
+      "value": 48
+     },
+     {
+      "label": "New Jersey",
+      "value": 68.1
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It relies on two numbers (5% and 50%) instead of a single consequential figure, violating the one-number rule."
+ ],
+ "reasons": [
+  "premise: brain: It relies on two numbers (5% and 50%) instead of a single consequential figure, violating the one-number rule."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/passport-ownership-surge__6574af21.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

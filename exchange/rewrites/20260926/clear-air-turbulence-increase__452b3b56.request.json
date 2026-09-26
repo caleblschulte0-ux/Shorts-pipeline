@@ -1,0 +1,161 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "clear-air-turbulence-increase__452b3b56",
+ "filed": "2026-09-26T12:57:03Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "clear-air-turbulence-increase",
+ "current": {
+  "title": "Why Flights Are Getting Bumpier",
+  "hook": "It's not your imagination.",
+  "closing": "Buckle up. That's not a suggestion anymore.",
+  "question": "Have you noticed flights getting bumpier lately? Tell me below.",
+  "segments": [
+   {
+    "topic": "severe turbulence over the North Atlantic",
+    "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent."
+   },
+   {
+    "topic": "turbulence increase by severity",
+    "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most."
+   },
+   {
+    "topic": "turbulence under a warming climate",
+    "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "severe turbulence over the North Atlantic",
+   "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent.",
+   "role": "1 · THE BUMP",
+   "data": {
+    "file": "turbulence_trend.json",
+    "unit": "hours",
+    "title": "Severe clear-air turbulence over the North Atlantic (annual hours)",
+    "points": [
+     {
+      "label": "1979",
+      "value": 17.7,
+      "period": "1979"
+     },
+     {
+      "label": "1990",
+      "value": 20.0,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 22.0,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 24.5,
+      "period": "2010"
+     },
+     {
+      "label": "2020",
+      "value": 27.4,
+      "period": "2020"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "turbulence increase by severity",
+   "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most.",
+   "role": "2 · THE PATTERN",
+   "data": {
+    "file": "turbulence_categories_comparison.json",
+    "unit": "percent",
+    "title": "Increase in North Atlantic turbulence duration, 1979-2020 (%)",
+    "points": [
+     {
+      "label": "Light Turbulence",
+      "value": 17
+     },
+     {
+      "label": "Moderate Turbulence",
+      "value": 37
+     },
+     {
+      "label": "Severe Turbulence",
+      "value": 55
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "turbulence under a warming climate",
+   "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century.",
+   "role": "3 · WHY",
+   "data": {
+    "file": "turbulence_projection.json",
+    "unit": "hours",
+    "title": "Projected severe clear-air turbulence (annual hours, North Atlantic)",
+    "points": [
+     {
+      "label": "2020 (observed)",
+      "value": 27,
+      "period": "2020"
+     },
+     {
+      "label": "2050 (modeled)",
+      "value": 43,
+      "period": "2050"
+     },
+     {
+      "label": "2080 (modeled)",
+      "value": 62,
+      "period": "2080"
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/clear-air-turbulence-increase__452b3b56.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

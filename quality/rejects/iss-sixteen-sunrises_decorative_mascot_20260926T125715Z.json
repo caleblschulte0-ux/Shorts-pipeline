@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260926T125715Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data rides on top of the satellite. seg2:end: he stands beside the scale. seg3:start/mid/end: he stands on the 1,440 bubble. seg4: he points at the grid. None of this is a bit that acts out a stat.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "wrong_claim_and_weak_payoff",
+  "visible_evidence": "seg4:start to seg4:end: a grey grid with a dim '15' and '15 times over', while the narration and title promise 16 sunrises. The labels read 'ISS: minutes between sunrises fits in Earth's surface: minutes between sunrises', which is clumsy. A beige bar slides over the tiles for no clear reason. Data stands in the corner pointing.",
+  "root_cause": "A generic 'A fits in B N times' machine counted floor(1440/93)=15. The story's actual claim is 16 sunrises a day. The machine takes raw dataset labels and fills neutral tiles with no sun or orbit imagery.",
+  "repair_goal": "Make the closing show 16 sunrises. Draw 16 small sun-flashes popping one by one around an orbit ring as the ISS laps Earth, next to a single sunrise for the ground. Count up to 16 in the accent colour with readable ink. Data should flinch or shade his eyes at each flash."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

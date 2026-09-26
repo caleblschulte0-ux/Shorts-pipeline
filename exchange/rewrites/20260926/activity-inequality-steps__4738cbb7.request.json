@@ -1,0 +1,145 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "activity-inequality-steps__4738cbb7",
+ "filed": "2026-09-26T12:57:02Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "activity-inequality-steps",
+ "current": {
+  "title": "It's Not How Much You Walk. It's How Unequal It Is.",
+  "hook": "Walking more won't fix obesity. This will.",
+  "closing": "It's never about the steps. It's the gap.",
+  "question": "How many steps do you actually walk a day? Drop it below.",
+  "segments": [
+   {
+    "topic": "average daily steps by country",
+    "say": "Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global average sits around 4,961."
+   },
+   {
+    "topic": "activity inequality and obesity risk",
+    "say": "It's not the average — it's the GAP between the most and least active people. That gap makes obesity almost 200 percent more likely."
+   },
+   {
+    "topic": "what drives activity inequality",
+    "say": "Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men in nearly every country studied."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "average daily steps by country",
+   "say": "Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global average sits around 4,961.",
+   "role": "1 · THE STEPS",
+   "data": {
+    "file": "global_daily_steps_by_country.json",
+    "unit": "steps",
+    "title": "Average daily steps by country (smartphone accelerometer data)",
+    "points": [
+     {
+      "label": "Hong Kong",
+      "value": 6880
+     },
+     {
+      "label": "China",
+      "value": 6180
+     },
+     {
+      "label": "United States",
+      "value": 4774
+     },
+     {
+      "label": "Saudi Arabia",
+      "value": 3807
+     },
+     {
+      "label": "Indonesia",
+      "value": 3513
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "activity inequality and obesity risk",
+   "say": "It's not the average — it's the GAP between the most and least active people. That gap makes obesity almost 200 percent more likely.",
+   "role": "2 · THE REAL PREDICTOR",
+   "data": {
+    "file": "activity_inequality_obesity_risk.json",
+    "unit": "index",
+    "title": "Relative obesity likelihood: low vs high 'activity inequality' countries (index)",
+    "points": [
+     {
+      "label": "Low activity-inequality countries (e.g. Sweden, Japan)",
+      "value": 100
+     },
+     {
+      "label": "High activity-inequality countries (e.g. US, Canada, Egypt)",
+      "value": 297
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "what drives activity inequality",
+   "say": "Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men in nearly every country studied.",
+   "role": "3 · WHY THE GAP",
+   "data": {
+    "file": "activity_inequality_gender_gap_share.json",
+    "unit": "percent",
+    "title": "Share of worldwide activity inequality explained by the gender step gap",
+    "points": [
+     {
+      "label": "Explained by the gender step gap",
+      "value": 43
+     },
+     {
+      "label": "Other factors",
+      "value": 57
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/activity-inequality-steps__4738cbb7.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

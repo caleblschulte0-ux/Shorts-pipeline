@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "beaver-ecosystem-comeback__0e68c3b5",
+ "filed": "2026-09-26T12:57:05Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "beaver-ecosystem-comeback",
+ "current": {
+  "title": "Beavers Crashed To 100,000. Now There Are 12 Million.",
+  "hook": "We nearly wiped out nature's best firefighter.",
+  "closing": "Turns out the 'pest' flooding your yard might be a firefighter.",
+  "question": "Have you ever seen a real beaver dam up close? I want to know.",
+  "segments": [
+   {
+    "topic": "beavers crashed to near extinction, now rebounding",
+    "say": "Beavers once numbered around 100 million across North America. Fur trappers crashed that to just 100,000 by 1900. Today they're back to about 12 million -- still a fraction of what once was."
+   },
+   {
+    "topic": "why it matters: beavers as nature's firefighter",
+    "say": "Here's why that matters: a peer-reviewed study found streams without beaver dams burned 3 times worse in wildfires than streams with them. Beaver ponds act like natural firebreaks."
+   },
+   {
+    "topic": "how much water beavers store per dam",
+    "say": "A single beaver dam can hold 1.1 million gallons of water -- more than an Olympic swimming pool. That stored water keeps the land green enough to survive drought and fire."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "beavers crashed to near extinction, now rebounding",
+   "say": "Beavers once numbered around 100 million across North America. Fur trappers crashed that to just 100,000 by 1900. Today they're back to about 12 million -- still a fraction of what once was.",
+   "role": "1 · THE CRASH",
+   "data": {
+    "file": "beaver_population_recovery.json",
+    "unit": "million",
+    "title": "North American beaver population (millions)",
+    "points": [
+     {
+      "label": "1600s (pre fur trade)",
+      "value": 100,
+      "period": "1600s"
+     },
+     {
+      "label": "1900",
+      "value": 0.1,
+      "period": "1900"
+     },
+     {
+      "label": "Today",
+      "value": 12,
+      "period": "2026"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why it matters: beavers as nature's firefighter",
+   "say": "Here's why that matters: a peer-reviewed study found streams without beaver dams burned 3 times worse in wildfires than streams with them. Beaver ponds act like natural firebreaks.",
+   "role": "2 · WHY IT MATTERS",
+   "data": {
+    "file": "wildfire_burn_severity_beaver.json",
+    "unit": "index",
+    "title": "Relative wildfire burn severity, with vs. without beaver dams",
+    "points": [
+     {
+      "label": "With beaver dams",
+      "value": 1
+     },
+     {
+      "label": "Without beaver dams",
+      "value": 3
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how much water beavers store per dam",
+   "say": "A single beaver dam can hold 1.1 million gallons of water -- more than an Olympic swimming pool. That stored water keeps the land green enough to survive drought and fire.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "beaver_dam_water_storage.json",
+    "unit": "million gallons",
+    "title": "Water stored: one beaver dam vs. an Olympic swimming pool (million gallons)",
+    "points": [
+     {
+      "label": "One beaver dam",
+      "value": 1.1
+     },
+     {
+      "label": "An Olympic pool",
+      "value": 0.66
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It uses multiple numbers and lacks a single clear, verifiable figure to hinge the claim on."
+ ],
+ "reasons": [
+  "premise: brain: It uses multiple numbers and lacks a single clear, verifiable figure to hinge the claim on."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/beaver-ecosystem-comeback__0e68c3b5.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

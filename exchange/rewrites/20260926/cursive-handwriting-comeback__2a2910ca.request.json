@@ -1,0 +1,142 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "cursive-handwriting-comeback__2a2910ca",
+ "filed": "2026-09-26T12:57:05Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "cursive-handwriting-comeback",
+ "current": {
+  "title": "Cursive Nearly Died. Schools Brought It Back.",
+  "hook": "Your kid's school killed cursive. Then un-killed it.",
+  "closing": "Soon nobody will read their own grandparents' letters.",
+  "question": "Did you learn cursive in school? Tell me below.",
+  "segments": [
+   {
+    "topic": "states requiring cursive",
+    "say": "In 2016, only 14 states required cursive by law. By 2024, 25 states did — nearly double in under a decade."
+   },
+   {
+    "topic": "cursive literacy among young Americans",
+    "say": "That gap costs something: about 2 in 3 young Americans can't actually read cursive anymore. The skill skipped a whole generation."
+   },
+   {
+    "topic": "the National Archives' cursive documents",
+    "say": "It's not just old letters — about 80 percent of the National Archives' 15 billion documents are written in cursive."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "states requiring cursive",
+   "say": "In 2016, only 14 states required cursive by law. By 2024, 25 states did — nearly double in under a decade.",
+   "role": "1 · THE COMEBACK",
+   "data": {
+    "file": "states_requiring_cursive.json",
+    "unit": "states",
+    "title": "U.S. states requiring cursive handwriting instruction by law",
+    "points": [
+     {
+      "label": "2016",
+      "value": 14,
+      "period": "2016"
+     },
+     {
+      "label": "2019",
+      "value": 20,
+      "period": "2019"
+     },
+     {
+      "label": "2024",
+      "value": 25,
+      "period": "2024"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "cursive literacy among young Americans",
+   "say": "That gap costs something: about 2 in 3 young Americans can't actually read cursive anymore. The skill skipped a whole generation.",
+   "role": "2 · THE GAP",
+   "data": {
+    "file": "cursive_literacy_young_adults.json",
+    "unit": "percent",
+    "title": "Young Americans who can read cursive (estimated)",
+    "points": [
+     {
+      "label": "Can read cursive",
+      "value": 33
+     },
+     {
+      "label": "Cannot read cursive",
+      "value": 67
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "the National Archives' cursive documents",
+   "say": "It's not just old letters — about 80 percent of the National Archives' 15 billion documents are written in cursive.",
+   "role": "3 · THE STAKES",
+   "data": {
+    "file": "national_archives_cursive_share.json",
+    "unit": "percent",
+    "title": "Share of National Archives holdings written in cursive",
+    "points": [
+     {
+      "label": "In cursive",
+      "value": 80
+     },
+     {
+      "label": "Not in cursive",
+      "value": 20
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook",
+  "beats: seg2: the line's headline number (1.5e+10) is 37,500,000x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook",
+  "beats: seg2: the line's headline number (1.5e+10) is 37,500,000x away from anything this beat's picture can show — say a number the picture shows"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/cursive-handwriting-comeback__2a2910ca.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

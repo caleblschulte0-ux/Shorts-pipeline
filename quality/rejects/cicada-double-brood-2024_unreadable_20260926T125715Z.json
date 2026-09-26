@@ -1,0 +1,16 @@
+{
+ "slug": "cicada-double-brood-2024",
+ "ts": "20260926T125715Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end: the subtitle under 'Together' ('both clocks struck at once, the broods emerge side by side') is tiny and runs into the tree trunk and the mascot. The '13 years / 17 years \u00b7 Brood XIX / XIII' labels fade to dark grey on brown soil, too faint to read on a phone.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:end the 'Together' subtitle is set at caption-minimum size and collides with the tree trunk and the mascot. The clock labels fade to grey on brown soil, and the payoff ('both clocks strike at once') is carried by two clock hands pointing up, which is hard to read.",
+  "root_cause": "The end state dims the labels to show 'done' instead of holding them in ink. The subtitle width is not measured against the tree and mascot at the top right. The emergence (nymphs leaving the clocks) happens off-frame in the tree instead of on the clocks.",
+  "repair_goal": "Keep the clock labels in full INK at the end. Measure the subtitle and wrap or shorten it so it clears the trunk and the mascot. Make the synced moment visible: both hands hit 12 together and both nymphs rise out of their clocks up the shafts to the surface, so the number becomes the event."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

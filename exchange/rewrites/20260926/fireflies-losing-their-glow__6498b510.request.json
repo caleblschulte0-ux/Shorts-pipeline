@@ -1,0 +1,155 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "fireflies-losing-their-glow__6498b510",
+ "filed": "2026-09-26T12:57:04Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "fireflies-losing-their-glow",
+ "current": {
+  "title": "Where Did All The Fireflies Go?",
+  "hook": "You might be watching the last fireflies.",
+  "closing": "Turn off the porch light. Just this once.",
+  "question": "Have you noticed fewer fireflies where you grew up? Tell me below.",
+  "segments": [
+   {
+    "topic": "night sky brightness",
+    "say": "Every year, the night sky gets about 9.6 percent brighter with artificial light. Compound that for a decade, and some regions saw their skyglow nearly triple."
+   },
+   {
+    "topic": "firefly extinction risk",
+    "say": "A 2021 assessment found 14 percent of North American firefly species already formally threatened. Counting the ones we haven't fully studied, Xerces estimates 1 in 3 species may be at risk."
+   },
+   {
+    "topic": "how much we've actually studied",
+    "say": "We've only assessed 132 of the roughly 172 known firefly species in the US and Canada. For the rest, we genuinely don't know if they're already gone."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "night sky brightness",
+   "say": "Every year, the night sky gets about 9.6 percent brighter with artificial light. Compound that for a decade, and some regions saw their skyglow nearly triple.",
+   "role": "1 · THE SKY IS BRIGHTER",
+   "data": {
+    "file": "firefly_light_pollution_index.json",
+    "unit": "index",
+    "title": "Global night-sky brightness index (2011 = 100)",
+    "points": [
+     {
+      "label": "2011",
+      "value": 100,
+      "period": "2011"
+     },
+     {
+      "label": "2013",
+      "value": 120,
+      "period": "2013"
+     },
+     {
+      "label": "2015",
+      "value": 144,
+      "period": "2015"
+     },
+     {
+      "label": "2017",
+      "value": 173,
+      "period": "2017"
+     },
+     {
+      "label": "2019",
+      "value": 208,
+      "period": "2019"
+     },
+     {
+      "label": "2022",
+      "value": 274,
+      "period": "2022"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "firefly extinction risk",
+   "say": "A 2021 assessment found 14 percent of North American firefly species already formally threatened. Counting the ones we haven't fully studied, Xerces estimates 1 in 3 species may be at risk.",
+   "role": "2 · THE COST",
+   "data": {
+    "file": "firefly_extinction_risk_share.json",
+    "unit": "percent",
+    "title": "Share of North American firefly species at risk of extinction",
+    "points": [
+     {
+      "label": "Confirmed threatened (2021 assessment)",
+      "value": 14
+     },
+     {
+      "label": "Projected at risk, data-deficient included",
+      "value": 29
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how much we've actually studied",
+   "say": "We've only assessed 132 of the roughly 172 known firefly species in the US and Canada. For the rest, we genuinely don't know if they're already gone.",
+   "role": "3 · THE BLIND SPOT",
+   "data": {
+    "file": "firefly_species_assessed_share.json",
+    "unit": "count",
+    "title": "Firefly species formally assessed vs. still unstudied",
+    "points": [
+     {
+      "label": "Species assessed",
+      "value": 132
+     },
+     {
+      "label": "Total described species",
+      "value": 172
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/fireflies-losing-their-glow__6498b510.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

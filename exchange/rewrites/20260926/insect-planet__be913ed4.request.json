@@ -1,0 +1,137 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "insect-planet__be913ed4",
+ "filed": "2026-09-26T12:57:01Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "insect-planet",
+ "current": {
+  "title": "Earth Is Actually The Planet Of The Bugs",
+  "hook": "You are massively outnumbered right now.",
+  "closing": "Somewhere right now, an unnamed beetle is judging you.",
+  "question": "What's the weirdest bug you've ever seen? Tell me below.",
+  "segments": [
+   {
+    "topic": "insects' share of animal species",
+    "say": "About 80% of every animal species on Earth is an insect. Every mammal, bird, fish, and reptile combined makes up the rest."
+   },
+   {
+    "topic": "beetles vs mammals and birds",
+    "say": "Beetles alone account for an estimated 1.5 million species — more than all 6,400 mammal species and all 11,000 bird species combined."
+   },
+   {
+    "topic": "described vs estimated insect species",
+    "say": "And we've only actually named about 1 million insect species so far. Scientists estimate 5.5 million exist — most still nameless."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "insects' share of animal species",
+   "say": "About 80% of every animal species on Earth is an insect. Every mammal, bird, fish, and reptile combined makes up the rest.",
+   "role": "1 · WHO'S HERE",
+   "data": {
+    "file": "insect_share_of_animal_species.json",
+    "unit": "percent",
+    "title": "Insects as a share of all known animal species",
+    "points": [
+     {
+      "label": "Insects",
+      "value": 80
+     },
+     {
+      "label": "All other animals",
+      "value": 20
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "beetles vs mammals and birds",
+   "say": "Beetles alone account for an estimated 1.5 million species — more than all 6,400 mammal species and all 11,000 bird species combined.",
+   "role": "2 · JUST ONE GROUP",
+   "data": {
+    "file": "beetle_vs_vertebrate_species_count.json",
+    "unit": "species",
+    "title": "Estimated beetle species vs. total mammal and bird species",
+    "points": [
+     {
+      "label": "Beetles (estimated)",
+      "value": 1500000
+     },
+     {
+      "label": "All mammal species",
+      "value": 6400
+     },
+     {
+      "label": "All bird species",
+      "value": 11000
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "described vs estimated insect species",
+   "say": "And we've only actually named about 1 million insect species so far. Scientists estimate 5.5 million exist — most still nameless.",
+   "role": "3 · STILL UNNAMED",
+   "data": {
+    "file": "insect_species_described_vs_estimated.json",
+    "unit": "million",
+    "title": "Insect species described so far vs. estimated to actually exist",
+    "points": [
+     {
+      "label": "Described so far",
+      "value": 1
+     },
+     {
+      "label": "Estimated to exist",
+      "value": 5.5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/insect-planet__be913ed4.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
