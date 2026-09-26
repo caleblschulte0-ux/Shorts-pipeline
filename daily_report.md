@@ -1,39 +1,40 @@
 # Daily Trending Shorts — 2026-09-26
 
-> **ChatGPT wrote 6 of today's 10 packages** — the Claude Routine did not run (weekly limit?).
+> **ChatGPT wrote 5 of today's 9 packages** — the Claude Routine did not run (weekly limit?).
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **10**
-- succeeded: **1**
+- queued: **9**
+- succeeded: **2**
 - quarantined (off-topic imagery): **1**
-- failed: **8**
+- failed: **6**
 
 ## Posted
-- **They Fined My Garden. Their Own Map Canceled It.**
-  - topic: They Fined My Garden. Their Own Map Canceled It.
+- **The Online World Passed The Offline World**
+  - topic: The Online World Passed The Offline World
   - publishes: `2026-09-26T13:00:00Z`
-  - https://youtube.com/shorts/gYCGXO_3XLQ
-  - took: 181.0s
+  - https://youtube.com/shorts/f08NjFxJrno
+  - took: 108.8s
+- **Mobile Broadband Left Fixed Lines Behind**
+  - topic: Mobile Broadband Left Fixed Lines Behind
+  - publishes: `2026-09-26T14:30:00Z`
+  - https://youtube.com/shorts/MljwI_YJqj8
+  - took: 106.1s
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch**
-  - quarantined: vision QA: broken — The first frame shows an image that is split horizontally, creating a duplicate or mirrored effect that is not cohesive with the rest of the video's format where the top half is an illustration and th
+- **Golden Retriever Had One Job. He Failed: Weird News & Oddities - patch.com**
+  - quarantined: vision QA: broken — The second frame's top half is a blank background where a story illustration should be, indicating a missing asset or render error.
 
 ## Failed
 - **Wind And Solar Finally Passed Coal**
-  - error: `showrunner_block: showrunner BLOCK: A clean, well-sourced two-line race that lands the crossover and leaderboard flip, but the coal labels are low-contrast and pile up at the crossing, right at the payoff.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, honest graph race with a real crossover payoff, spoiled by the end labels colliding at the very moment the lines cross.`
 - **Streaming Music Buried The CD**
-  - error: `showrunner_block: showrunner BLOCK: A clean, correctly branded graph race with a real crossover moment, but the losing-series label collides with its own line and the ending just holds instead of landing a scale punchline.`
-- **The Online World Passed The Offline World**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest crossover race with a clear 'Online passes Offline' moment, but the hook is flat and ungrammatical and the Offline series is too dark to read on a phone.`
-- **Mobile Broadband Left Fixed Lines Behind**
-  - error: `showrunner_block: showrunner BLOCK: A clean but generic two-line chart. Mobile leads from frame one, so the 'race' has no overtake, and the fixed-broadband label is buried in its own line.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, well-paced two-line race with a real crossover moment, but the CD tip label gets buried under its own line once CDs flatten, and the ending lands on '#1 Streaming' instead of showing how big the gap is.`
 - **He Said The Chair Vanished. Then He Listed It.**
-  - error: `showrunner_block: showrunner BLOCK: The chair and evidence shots work, but the back half hangs one clip-art bank icon for ~22s, so the story's best beats (the listing and the denial) are never shown and the ending has no payoff.`
+  - error: `showrunner_block: showrunner BLOCK: It opens with real story imagery, then parks one generic bank icon over the last ~25 seconds, so the listing reveal and the chargeback denial are never shown.`
 - **Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME**
-  - error: `showrunner_block: showrunner BLOCK: Overlapping captions at 10.8s and 27.3s make the story impossible to read, and no beat is illustrated, so it plays as a caption track over generic parkour with no visual payoff.`
-- **Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam**
-  - error: `unfit_for_fiction: 'Rick Wakeman performs piano concert to 150 rescued moon bears in Vietnam' refused by the writer: The prompt references real persons and events, which violates the rule against using real names or real events.`
-- **This Week's Weird News 9/25/26 | 1150 WIMA | Coast to Coast AM with George Noory - 1150 WIMA**
-  - error: `showrunner_block: showrunner BLOCK: A readable reddit story over gameplay, but the illustrations are flat stock emoji, several beats (kitchen, fire alarm) have none, and the ending is one static cash icon, so the payoff never lands`
+  - error: `showrunner_block: showrunner BLOCK: A competent Reddit-story shell with readable captions, but the illustrations are literal keyword stock photos and the '5-star review' punchline ends on one generic clip-art star, so the payoff falls flat.`
+- **This Week's Weird News 9/25/26 - Newsradio WFLA Orlando**
+  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 102)`
+- **My Weird New Hobby: Wandering Around Tokyo on Google Maps**
+  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 106)`
 

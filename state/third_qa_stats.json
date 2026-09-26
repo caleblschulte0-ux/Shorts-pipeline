@@ -1,6 +1,58 @@
 {
   "runs": [
     {
+      "date": "20260918",
+      "dry_run": false,
+      "ts": "2026-09-18T23:15:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 106,
+        "with_retention": 84,
+        "with_curve": 13,
+        "fetched_at": "2026-09-18T15:21:48.324320+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20260918-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260918-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
       "date": "20260919",
       "dry_run": false,
       "ts": "2026-09-19T14:32:58+00:00",
@@ -4996,244 +5048,6 @@
         },
         {
           "slug": "clip-20260925-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260926",
-      "dry_run": false,
-      "ts": "2026-09-26T13:01:38+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 110,
-        "with_retention": 88,
-        "with_curve": 14,
-        "fetched_at": "2026-09-26T08:46:01.232780+00:00"
-      },
-      "brain": {
-        "ok": 31,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260926-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "title just a name",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "funny emoji mix-up reveal",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Argues With Chat Over A Bull, A Goat, And Josh Allen"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 135.1
-        },
-        {
-          "slug": "clip-20260926-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260926-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "chaos suggests visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "character catches fire, no reaction show",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Stream Turns Into Absolute Chaos"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.65,
-              "problems": [
-                "Sharp region looks smaller than the ~75% target \u2014 the in-game action (parking-lot chaos) reads a bit small/distant rathe",
-                "Sharp region itself looks soft/motion-blurred in the transition frames around 3.9s-6.5s, not just the letterbox padding",
-                "Final frames (24.9s-30.1s) are quite dark, making the car/chaos payoff hard to read"
-              ]
-            }
-          },
-          "took_s": 383.8
-        },
-        {
-          "slug": "clip-20260926-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (static RP gameplay narration, no event)",
-          "judges": {
-            "banger": {
-              "score": 0.6,
-              "why": "voice crack, real reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.2,
-              "why": "static RP gameplay narration, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 81.2
-        },
-        {
-          "slug": "clip-20260926-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: sharp region is a thin strip occupying under half the canvas height, with the vtuber avatar/subject tiny in the corner \u2014; vision: below the sharp strip is dead blurred black space for most of ",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "vague rant, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Vedal987 Curses At Chat Then Immediately Says Sorry"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.65,
-              "problems": [
-                "sharp region is a thin strip occupying under half the canvas height, with the vtuber avatar/subject tiny in the corner \u2014",
-                "below the sharp strip is dead blurred black space for most of the lower canvas, wasting the frame instead of cropping ti",
-                "captions split mid-word across cuts ('THERE'S STILL FUCKING' / 'FUCKING SPEAK IN') reading as broken/garbled text"
-              ]
-            }
-          },
-          "took_s": 135.6
-        },
-        {
-          "slug": "clip-20260926-6",
           "ok": true,
           "skipped": "already posted"
         }
