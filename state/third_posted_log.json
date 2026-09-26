@@ -9359,14 +9359,27 @@
       "ts": "2026-09-26T11:38:07.019402+00:00"
     },
     "clip-20260926-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/fuslie/clip/PiercingProductiveEggnogRlyTho-styX3O0xy6HjZFau",
-      "story_key": null,
-      "streamer": "fuslie",
+      "url": "https://youtube.com/shorts/wjfOUx9mRHM",
       "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
       "kind": "twitch_clip",
-      "ts": "2026-09-26T11:41:27.631564+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-26T11:41:33.844047+00:00",
+      "uploaded_at": "2026-09-26T11:41:33.844063+00:00",
+      "publish_at": "2026-09-26T18:30:00Z",
+      "source_url": "https://www.twitch.tv/fuslie/clip/PiercingProductiveEggnogRlyTho-styX3O0xy6HjZFau",
+      "streamer": "fuslie",
+      "series": "fail",
+      "hook": "SHE LEAKED THE ROOM CODE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3465,
+      "banger": 0.65,
+      "cut": {
+        "start": 9.5,
+        "end": 25.5
+      },
+      "director_cut": true
     },
     "rejected-cogentalivepotheyguys-5mr89-8v1rx2yfhx": {
       "source_url": "https://www.twitch.tv/buddha/clip/CogentAlivePotHeyGuys-5MR89-8V1rX2yfHX",
@@ -9544,6 +9557,25 @@
       "rejected_by": "qa",
       "rejected_why": "vision: sharp region is a thin strip occupying under half the canvas height, with the vtuber avatar/subject tiny in the corner \u2014; vision: below the sharp strip is dead blurred black space for most of the lower canvas, wasting the frame instead of cropping ti; vision: captions split mid-word across c",
       "ts": "2026-09-26T13:01:38.601206+00:00"
+    },
+    "rejected-magnificentevilstarlingopieop-58tu1mkgbcznlzw9": {
+      "source_url": "https://www.twitch.tv/nmplol/clip/MagnificentEvilStarlingOpieOP-58tU1mkGbcZNLZw9",
+      "streamer": "nmplol",
+      "title": "meta gaming",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (calm talk, no visible event)",
+      "ts": "2026-09-26T13:10:58.797972+00:00"
+    },
+    "clip-20260926-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/shroud/clip/SeductiveFurryPotCmonBruh--v2IUlxXQxpw8YUZ",
+      "story_key": null,
+      "streamer": "shroud",
+      "title": "Shroud Takes A Risky Shot And Can't Believe What Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-09-26T13:17:10.596995+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
