@@ -3,14 +3,14 @@
     "topic": "Wind And Solar Finally Passed Coal",
     "title": "Wind And Solar Finally Passed Coal",
     "format": "graph_race",
-    "publish_at": "2026-09-26T13:00:00Z",
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest graph race with a real crossover payoff, spoiled by the end labels colliding at the very moment the lines cross.",
-    "elapsed_seconds": 107.0,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable line race that shows coal falling and wind + solar rising, but the actual moment wind + solar passes coal is a cramped pile-up of labels and rings at the right edge where 'Coal 703' cannot be read.",
+    "elapsed_seconds": 116.1,
     "package_path": "state/trending_packages/20260926/01_graph-wind-solar-passed-coal.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-124722_wind_and_solar_finally_passed_coal.mp4",
+    "video_path": "output/daily_20260926-131456_wind_and_solar_finally_passed_coal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest graph race with a real crossover payoff, spoiled by the end labels colliding at the very moment the lines cross.",
-      "score": 83
+      "reason": "showrunner BLOCK: A clean, readable line race that shows coal falling and wind + solar rising, but the actual moment wind + solar passes coal is a cramped pile-up of labels and rings at the right edge where 'Coal 703' cannot be read.",
+      "score": 74
     },
     "blocked": true
   },
@@ -37,14 +37,14 @@
     "topic": "Streaming Music Buried The CD",
     "title": "Streaming Music Buried The CD",
     "format": "graph_race",
-    "publish_at": "2026-09-26T13:00:00Z",
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, well-paced two-line race with a real crossover moment, but the CD tip label gets buried under its own line once CDs flatten, and the ending lands on '#1 Streaming' instead of showing how big the gap is.",
-    "elapsed_seconds": 115.2,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable streaming-vs-CD race with a clear crossover, but the CD tip label collides with its own flattened line and the payoff lands flat.",
+    "elapsed_seconds": 113.2,
     "package_path": "state/trending_packages/20260926/02_graph-streaming-music-buried-cds.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-124909_streaming_music_buried_the_cd.mp4",
+    "video_path": "output/daily_20260926-131652_streaming_music_buried_the_cd.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,7 +62,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, well-paced two-line race with a real crossover moment, but the CD tip label gets buried under its own line once CDs flatten, and the ending lands on '#1 Streaming' instead of showing how big the gap is.",
+      "reason": "showrunner BLOCK: A clean, readable streaming-vs-CD race with a clear crossover, but the CD tip label collides with its own flattened line and the payoff lands flat.",
       "score": 74
     },
     "blocked": true
@@ -71,14 +71,14 @@
     "topic": "The Online World Passed The Offline World",
     "title": "The Online World Passed The Offline World",
     "format": "graph_race",
-    "publish_at": "2026-09-26T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/f08NjFxJrno",
-    "error": null,
-    "elapsed_seconds": 108.8,
+    "publish_at": "2026-09-26T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable population race with a real crossover payoff, but the hook opens on the least interesting part of the data and the Offline labels are too dim.",
+    "elapsed_seconds": 106.0,
     "package_path": "state/trending_packages/20260926/03_graph-online-world-passed-offline.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-125104_the_online_world_passed_the_offline_worl.mp4",
+    "video_path": "output/daily_20260926-131846_the_online_world_passed_the_offline_worl.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,24 +95,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, readable population race with a real crossover payoff, but the hook opens on the least interesting part of the data and the Offline labels are too dim.",
+      "score": 83
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "Mobile Broadband Left Fixed Lines Behind",
     "title": "Mobile Broadband Left Fixed Lines Behind",
     "format": "graph_race",
     "publish_at": "2026-09-26T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/MljwI_YJqj8",
-    "error": null,
-    "elapsed_seconds": 106.1,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable two-line race that clearly shows mobile pulling away, but the hook is only the chart starting up, the ending is a flat winner banner with no 5x payoff, and the Fixed broadband labels collide with their end dots.",
+    "elapsed_seconds": 117.9,
     "package_path": "state/trending_packages/20260926/04_graph-mobile-broadband-left-fixed-behind.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-125253_mobile_broadband_left_fixed_lines_behind.mp4",
+    "video_path": "output/daily_20260926-132032_mobile_broadband_left_fixed_lines_behind.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -129,27 +129,27 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, readable two-line race that clearly shows mobile pulling away, but the hook is only the chart starting up, the ending is a flat winner banner with no 5x payoff, and the Fixed broadband labels collide with their end dots.",
       "score": 74
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "He Said The Chair Vanished. Then He Listed It.",
     "title": "He Said The Chair Vanished. Then He Listed It.",
     "format": "reddit",
-    "publish_at": "2026-09-26T16:00:00Z",
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: It opens with real story imagery, then parks one generic bank icon over the last ~25 seconds, so the listing reveal and the chargeback denial are never shown.",
-    "elapsed_seconds": 292.9,
+    "error": "showrunner_block: showrunner BLOCK: The story's reveal, the chair in his own listing, is never shown: one static bank icon sits over 30 seconds of different beats and the ending has no payoff.",
+    "elapsed_seconds": 409.6,
     "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-125442_he_said_the_chair_vanished__then_he_list.mp4",
+    "video_path": "output/daily_20260926-132400_he_said_the_chair_vanished__then_he_list.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.7,
+      "duration": 52.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -21.3
     },
     "qa": {
       "ok": true,
@@ -169,25 +169,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: It opens with real story imagery, then parks one generic bank icon over the last ~25 seconds, so the listing reveal and the chargeback denial are never shown.",
+      "reason": "showrunner BLOCK: The story's reveal, the chair in his own listing, is never shown: one static bank icon sits over 30 seconds of different beats and the ending has no payoff.",
       "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
-    "angle": "A rare Blanding\u2019s turtle was filmed navigating a brand\u2011new wildlife tunnel, showing a concrete solution that could slash road\u2011kill numbers for endangered species.",
-    "publish_at": "2026-09-26T16:00:00Z",
+    "topic": "sylvester stallone",
+    "angle": null,
+    "publish_at": "2026-09-26T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A competent Reddit-story shell with readable captions, but the illustrations are literal keyword stock photos and the '5-star review' punchline ends on one generic clip-art star, so the payoff falls flat.",
-    "elapsed_seconds": 390.4,
-    "title": "I Served a Scalding Espresso as a 'Spicy Latte' and Got a 5\u2011Star Review",
-    "package_path": "state/trending_packages/20260926-125946_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260926-125946_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a bare gameplay-plus-captions read: none of the eight story beats gets a picture of its own, the hook gameplay is washed out, and a render seam line crosses every frame.",
+    "elapsed_seconds": 441.8,
+    "title": "He Threatened My Job, So I Followed Policy",
+    "package_path": "state/trending_packages/20260926-133254_auto_sylvester_stallone.json",
+    "video_path": "output/daily_20260926-133254_sylvester_stallone.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.6,
+      "duration": 49.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -198,7 +198,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -24.3
     },
     "qa": {
       "ok": true,
@@ -207,26 +207,50 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A competent Reddit-story shell with readable captions, but the illustrations are literal keyword stock photos and the '5-star review' punchline ends on one generic clip-art star, so the payoff falls flat.",
-      "score": 66
+      "reason": "showrunner BLOCK: This is a bare gameplay-plus-captions read: none of the eight story beats gets a picture of its own, the hook gameplay is washed out, and a render seam line crosses every frame.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Golden Retriever Had One Job. He Failed: Weird News & Oddities - patch.com",
-    "angle": "A well\u2011trained golden retriever was hired to guard a construction site, but his epic fail went viral, highlighting how even the friendliest dogs can cause costly mishaps.",
+    "topic": "isack hadjar",
+    "angle": null,
+    "publish_at": "2026-09-26T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'isack hadjar' refused by the writer: Trend is centered on a real athlete's wrist injury and comeback, which falls under injury/illness topics that cannot seed a fictional premise",
+    "elapsed_seconds": 34.9,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "taylor townsend",
+    "angle": null,
     "publish_at": "2026-09-26T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 The second frame's top half is a blank background where a story illustration should be, indicating a missing asset or render error.",
-    "elapsed_seconds": 293.9,
-    "title": "My Cafe\u2019s Service Dog Destroyed the Espresso Machine",
-    "package_path": "state/trending_packages/20260926-130616_auto_golden_retriever_had_one_job__he_failed_.json",
-    "video_path": "output/daily_20260926-130616_golden_retriever_had_one_job__he_failed_.mp4",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['his account showed 3 months overdue', 'skipped the tension test', 'cheap 15 dollar practice string', 'handed it back in 9 minutes flat', 'His son lost the first set 6-0', 'came back purple-faced demanding a refund', 'get a proper restring before the next round']",
+    "elapsed_seconds": 140.5,
+    "title": "He Wanted A Free Restring, So I Complied",
+    "package_path": "state/trending_packages/20260926-134049_auto_taylor_townsend.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "slovenia vs scotland",
+    "angle": null,
+    "publish_at": "2026-09-26T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A reddit story told almost entirely over bare gameplay, with a single mismatched caf\u00e9 stock photo standing in for the sports-bar/baking-show premise.",
+    "elapsed_seconds": 418.8,
+    "title": "I Was Told To Give Her Exactly What She Wanted",
+    "package_path": "state/trending_packages/20260926-134316_auto_slovenia_vs_scotland.json",
+    "video_path": "output/daily_20260926-134316_slovenia_vs_scotland.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.133,
+      "duration": 44.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -237,34 +261,19 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -24.5
     },
     "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "The second frame's top half is a blank background where a story illustration should be, indicating a missing asset or render error."
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "This Week's Weird News 9/25/26 - Newsradio WFLA Orlando",
-    "angle": "A roundup of bizarre stories\u2014from a town that renamed its main street after a pizza chain to a mayor who declared a \u2018no\u2011shoe\u2019 day\u2014illustrates how oddball local news spikes online interest.",
-    "publish_at": "2026-09-26T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 102)",
-    "elapsed_seconds": 35.4,
-    "backfill": true
-  },
-  {
-    "topic": "My Weird New Hobby: Wandering Around Tokyo on Google Maps",
-    "angle": "A Tokyo street\u2011view enthusiast discovered the same white Nissan 350Z parked in identical spots across years, turning a hobby into a mystery about abandoned cars.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 106)",
-    "elapsed_seconds": 36.7,
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A reddit story told almost entirely over bare gameplay, with a single mismatched caf\u00e9 stock photo standing in for the sports-bar/baking-show premise.",
+      "score": 57
+    },
+    "blocked": true,
     "backfill": true
   }
 ]
