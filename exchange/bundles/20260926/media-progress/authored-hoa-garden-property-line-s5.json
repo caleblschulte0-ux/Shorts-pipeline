@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260926",
+  "bundle": {
+    "identity": "346bf838256b07e512cf72053f2fae5972216a4c63d2ab146bd0300126d949df",
+    "path": "exchange/bundles/20260926/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-26T11:37:21.687Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-hoa-garden-property-line-s5",
+  "safe_request_id": "authored-hoa-garden-property-line-s5",
+  "prompt_sha256": "868154170352ddbe508cd0e390da7b53de40d19d11ee14e00a14ca83506716a5",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Short story payoff shot. Scene: thriving raised backyard vegetable garden. Subject: ripe red tomatoes on healthy vines standing neatly behind a fence, calm and untouched. Style: warm realistic editorial photography. Composition: portrait close-medium shot with lush depth. Lighting: golden late-afternoon sun. Constraints: no text, no logos, no watermark, no people.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1A5Q7KXCfvzLv539B-9EibEZImn742g8B",
+    "filename": "20260926__authored-hoa-garden-property-line-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1A5Q7KXCfvzLv539B-9EibEZImn742g8B",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bf0412e3f06c5d57fc603a88a04998d1aa27bd5951dd2daa1f0c2cc6242552b9",
+    "bytes": 2943661,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "hoa-garden-property-line",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
