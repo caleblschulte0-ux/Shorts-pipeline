@@ -1,0 +1,16 @@
+{
+ "slug": "cicada-double-brood-2024",
+ "ts": "20260926T172712Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end \u2014 the subtitle under 'Together' ('both clocks struck at once, the broods emerge side by side') is tiny and Data's body runs over it; the greyed '13 years/17 years' labels fade into the soil. seg2:end \u2014 'every 221 years' overlaps the house roof and the 'your backyard, this time' ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:end: the 'Together' subtitle is set at roughly 8px and runs under Data, who is perched on the tree right where the line ends; the Brood XIX/XIII labels dim to near-ground brown and nearly vanish",
+  "root_cause": "The subtitle is shrunk to fit a long sentence into the title column, and the mascot's tree-perch position was not collision-checked against the text block; the label fade-out drops contrast below legibility",
+  "repair_goal": "Cut the subtitle to a short line (e.g. 'both clocks hit zero') at normal subline size, move Data's perch clear of the text block (higher on the trunk or on the branch at right), and keep the brood labels at full ink when the clocks strike"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

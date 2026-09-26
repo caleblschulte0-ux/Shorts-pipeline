@@ -1,0 +1,150 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "black-holes-in-galaxy__cf824ed9",
+ "filed": "2026-09-26T17:27:03Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "black-holes-in-galaxy",
+ "current": {
+  "title": "Our Galaxy Is Hiding Millions Of Black Holes",
+  "hook": "There might be 100 million black holes near us.",
+  "closing": "Somewhere out there, one just went quiet again.",
+  "question": "How many black holes do you think are within 1,000 light-years of us? Guess below.",
+  "segments": [
+   {
+    "topic": "black hole collisions detected",
+    "say": "In 2015, we felt a black hole collision ripple through space for the first time ever. By now, that count has climbed from 1 confirmed collision to 390."
+   },
+   {
+    "topic": "how we've found them",
+    "say": "For a century, we could only catch a black hole by light -- watching it devour a nearby star. That found about a dozen. Gravitational waves found 390 in under ten years."
+   },
+   {
+    "topic": "how many are still hidden",
+    "say": "Scientists estimate our galaxy alone holds about 100 million black holes. We've confirmed roughly 400 -- the rest are just out there, silent and completely dark."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "black hole collisions detected",
+   "say": "In 2015, we felt a black hole collision ripple through space for the first time ever. By now, that count has climbed from 1 confirmed collision to 390.",
+   "role": "1 · FIRST CONTACT",
+   "data": {
+    "file": "black_hole_collisions.json",
+    "unit": "count",
+    "title": "Cumulative confirmed gravitational-wave black hole mergers detected",
+    "points": [
+     {
+      "label": "2015",
+      "value": 1,
+      "period": "2015"
+     },
+     {
+      "label": "2017",
+      "value": 3,
+      "period": "2017"
+     },
+     {
+      "label": "2019",
+      "value": 11,
+      "period": "2019"
+     },
+     {
+      "label": "2021",
+      "value": 90,
+      "period": "2021"
+     },
+     {
+      "label": "2026",
+      "value": 390,
+      "period": "2026"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "how we've found them",
+   "say": "For a century, we could only catch a black hole by light -- watching it devour a nearby star. That found about a dozen. Gravitational waves found 390 in under ten years.",
+   "role": "2 · TWO METHODS",
+   "data": {
+    "file": "black_hole_detection_methods.json",
+    "unit": "count",
+    "title": "Black holes confirmed by light vs. by gravitational waves",
+    "points": [
+     {
+      "label": "Found by light (before 2015)",
+      "value": 12
+     },
+     {
+      "label": "Found by gravity waves (2015-2026)",
+      "value": 390
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how many are still hidden",
+   "say": "Scientists estimate our galaxy alone holds about 100 million black holes. We've confirmed roughly 400 -- the rest are just out there, silent and completely dark.",
+   "role": "3 · THE HIDDEN MAJORITY",
+   "data": {
+    "file": "black_hole_hidden_total.json",
+    "unit": "count",
+    "title": "Confirmed black holes vs. the estimated total in the Milky Way",
+    "points": [
+     {
+      "label": "Confirmed so far",
+      "value": 400
+     },
+     {
+      "label": "Estimated in the Milky Way",
+      "value": 100000000
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise is a generic 'there are more of X than you think' astronomy fact with a hedged, unanchored number ('might be 100 million'), not a specific reversal of a concrete expectation hanging on a verifiable figure."
+ ],
+ "reasons": [
+  "premise: brain: The premise is a generic 'there are more of X than you think' astronomy fact with a hedged, unanchored number ('might be 100 million'), not a specific reversal of a concrete expectation hanging on a verifiable figure."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260926/black-holes-in-galaxy__cf824ed9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

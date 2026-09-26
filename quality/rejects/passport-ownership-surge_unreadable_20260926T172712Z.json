@@ -1,0 +1,16 @@
+{
+ "slug": "passport-ownership-surge",
+ "ts": "20260926T172712Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start through seg1:end the title is cut off at both frame edges ('AMERICANS WHO OWN A PASSPOR'), and at seg1:end the mascot's head covers 'WHO'. At seg3:end the '68.1%' text is dark navy on the blue circle and hard to read. In seg4:start the '20.1% apart' label is crossed by the ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "Seg1:start through seg1:end: the title runs off both edges of the frame ('AMERICANS WHO OWN A PASSPOR'), and at seg1:end the mascot sits on top of the word 'WHO'. The ring gauge starts at 3.5% even though the script says 5% in 1990, and the number sits over the year '2023' when it is the 1990-to-today ownership rate. It is a generic donut gauge with a teal circle drawn around it.",
+  "root_cause": "The title's width is set by character count rather than measured, so the all-caps title overflows the 1080px frame. The mascot is anchored to the top of the arc, which puts him on the title. The gauge interpolates from its own zero instead of starting at the 1990 value, and the year label comes from the wrong datum.",
+  "repair_goal": "Measure the title and fit it inside the safe margins, or shrink or wrap it. Keep the mascot off every text box. Start the fill at 5% labelled 1990 and end it at 48% labelled 'today'. Better still, replace the gauge with a physical form, such as a stack of passports or a crowd of 20 figures filling from 1 to about 10, so the rise from 5% to 48% is something a viewer sees rather than reads."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
