@@ -945,16 +945,22 @@
       ]
     },
     "34e98321286f": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260926",
-      "because": "picked up",
+      "because": "Merged in PR #476 (4f08ba9): authored.other_channels and checkpoints.recovered_rejected_detail now persist into phase_b_report.json; covered by two new tests in tests/test_split_worker.py verified to fail pre-fix and pass post-fix.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260826",
           "because": "Verified: scripts/exchange_phase_b.py already computes authored['other_channels'] (line ~630) and collects _recovered_refused/_auth_refused (checkpoint recovery), but the final report dict (line ~723) reconstructs 'authored' from only promoted/rejected counts and never persists other_channels or the recovery refusal detail into report/report['checkpoints']. The durable audit record silently omits real structured outcomes it already has in hand. Scoped fix: wire the existing data into the report schema."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260926",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "4f08ba9"
     },
     "363113a0188b": {
       "verdict": "doing",
