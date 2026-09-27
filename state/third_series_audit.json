@@ -3,7 +3,7 @@
   "content_series": {
     "chaos": {
       "n": 37,
-      "median_vph": 0.02
+      "median_vph": 0.01
     },
     "wholesome": {
       "n": 13,
@@ -23,11 +23,11 @@
     },
     "jumpscare": {
       "n": 4,
-      "median_vph": 0.365
+      "median_vph": 0.36
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.345
+      "median_vph": 0.335
     },
     "clutch": {
       "n": 3,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 1.2
+      "median_vph": 1.19
     }
   }
 }
