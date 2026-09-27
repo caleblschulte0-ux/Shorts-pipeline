@@ -2012,6 +2012,27 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-27"
+    },
+    "kaicenat-about-artist-2026w36": {
+      "event_id": "kaicenat-about-artist-2026w36",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "artist",
+        "discuss",
+        "favorite"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-27",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/BetterHilariousPassionfruitBrainSlug-Ru4ZTYAKprtHUAQg",
+        "https://www.twitch.tv/kaicenat/clip/ElatedBigTirePoooound-cMz_kdZbQVqZ4DJm"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-27"
     }
   }
 }

@@ -3,144 +3,6 @@
     {
       "date": "20260920",
       "dry_run": false,
-      "ts": "2026-09-20T13:00:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 108,
-        "with_retention": 85,
-        "with_curve": 14,
-        "fetched_at": "2026-09-19T15:02:21.654139+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260920-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "bro dissing the game",
-              "raw": "bro dissing the game",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 297.8
-        },
-        {
-          "slug": "clip-20260920-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260920",
-      "dry_run": false,
       "ts": "2026-09-20T14:46:46+00:00",
       "feedback": {
         "snapshot": true,
@@ -5209,6 +5071,215 @@
             }
           },
           "took_s": 789.1
+        }
+      ]
+    },
+    {
+      "date": "20260927",
+      "dry_run": false,
+      "ts": "2026-09-27T15:52:04+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 115,
+        "with_retention": 91,
+        "with_curve": 13,
+        "fetched_at": "2026-09-27T14:11:58.698360+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260927-1",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 9.6
+        },
+        {
+          "slug": "clip-20260927-2",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260927-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260927-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260927-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260927-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "scouted": [],
+                "vod_arcs": 181,
+                "candidates": 277,
+                "pool": 1355,
+                "pool_with_vod": 1289,
+                "arc_sizes": [
+                  6,
+                  2,
+                  2,
+                  2,
+                  4,
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "northernlion@vod2880264709",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "kaicenat@vod2859079447/kaicenat-about-artist-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips only show the streamer debating design orientations and asking a chat question without any resoluti"
+                },
+                {
+                  "cluster": "sodapoppin@vod2863459276",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "stableronaldo@vod2864388285",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "ohnepixel@vod2861551488",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "emiru@vod2860987916",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 767.3
         }
       ]
     }
