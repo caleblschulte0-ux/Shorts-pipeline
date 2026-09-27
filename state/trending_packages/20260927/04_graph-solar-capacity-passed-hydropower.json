@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-solar-capacity-passed-hydropower",
+  "title": "Solar Capacity Just Passed Hydropower",
+  "hook": "Sunlight took the lead.",
+  "y_label": "Global installed capacity (GW)",
+  "duration": 13,
+  "source": "International Renewable Energy Agency, Renewable Capacity Statistics 2025: global solar photovoltaic and renewable hydropower capacity, selected years 2015-2024. Approximate gigawatts.",
+  "years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Solar",
+      "color": "#FDD835",
+      "icon": "IRENA",
+      "values": [
+        223,
+        296,
+        391,
+        486,
+        586,
+        714,
+        1055,
+        1865
+      ]
+    },
+    {
+      "name": "Hydropower",
+      "color": "#1E88E5",
+      "icon": "IRENA",
+      "values": [
+        1211,
+        1242,
+        1275,
+        1304,
+        1334,
+        1360,
+        1414,
+        1428
+      ]
+    }
+  ],
+  "hashtags": [
+    "solar",
+    "hydropower",
+    "renewableenergy",
+    "electricity",
+    "irena",
+    "climate",
+    "energy",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

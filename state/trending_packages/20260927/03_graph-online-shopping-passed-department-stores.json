@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-online-shopping-passed-department-stores",
+  "title": "Online Shopping Passed Department Stores",
+  "hook": "The checkout moved online.",
+  "y_label": "U.S. annual retail sales (billions USD)",
+  "duration": 13,
+  "source": "U.S. Census Bureau Quarterly Retail E-Commerce Sales and Monthly Retail Trade time series: annual retail e-commerce sales versus department-store sales, selected years 2000-2024. Nominal, seasonally unadjusted approximate billions.",
+  "years": [
+    2000,
+    2004,
+    2008,
+    2012,
+    2016,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Retail e-commerce",
+      "color": "#7E57C2",
+      "icon": "Census",
+      "values": [
+        27.6,
+        72,
+        142,
+        232,
+        391,
+        813,
+        1040,
+        1192
+      ]
+    },
+    {
+      "name": "Department stores",
+      "color": "#FB8C00",
+      "icon": "Store",
+      "values": [
+        232,
+        220,
+        188,
+        164,
+        151,
+        135,
+        132,
+        136
+      ]
+    }
+  ],
+  "hashtags": [
+    "ecommerce",
+    "shopping",
+    "retail",
+    "departmentstore",
+    "census",
+    "business",
+    "internet",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

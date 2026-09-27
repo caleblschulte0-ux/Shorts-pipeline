@@ -1,0 +1,96 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "boss-expense-receipt-audit",
+  "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "expenses",
+    "audit",
+    "receipts",
+    "boss",
+    "karma",
+    "shorts"
+  ],
+  "script": "My manager rejected an $18 client-lunch reimbursement because the receipt was slightly faded. He announced that every expense needed perfect documentation, no exceptions. Fine. I resubmitted mine with the restaurant's duplicate receipt, a bank statement, the meeting invite, and the client's thank-you email. Then accounting asked me to help reconcile our team's overdue expense file. I applied his rule exactly. His corporate card had $4,800 in charges labeled business development with no receipts, attendees, or notes. Mostly steakhouse tabs and weekend rides. I flagged every line instead of guessing. The controller froze his card and scheduled an audit. He told me I should have used common sense because everyone knew his expenses were legitimate. I forwarded his no-exceptions email. My $18 lunch was approved that afternoon. His expenses took six weeks, three interviews, and one newly mandatory receipt-scanning app. The faded receipt survived.",
+  "shots": [
+    {
+      "phrase": "rejected an $18 client-lunch reimbursement",
+      "query": "employee holding faded restaurant receipt in office",
+      "image_url": "https://drive.google.com/uc?export=download&id=14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+      "media_sha256": "87ca4cae2d606bc76b98eed06c184c3bc0e376d00fbff16308181429c0a2cdb9",
+      "media_bytes": 1714315
+    },
+    {
+      "phrase": "every expense needed perfect documentation",
+      "query": "manager presenting strict expense policy to team",
+      "image_url": "https://drive.google.com/uc?export=download&id=1S5Slj1_GV8QVD9SxOAenjuHFIUVzihYn",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1S5Slj1_GV8QVD9SxOAenjuHFIUVzihYn",
+      "media_sha256": "78960af83c634afa20b43d844b785d32d603d8cff9b7f828ee6a7218f8182f61",
+      "media_bytes": 1707719
+    },
+    {
+      "phrase": "resubmitted mine with the restaurant's duplicate receipt",
+      "query": "organized expense evidence on desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+      "media_sha256": "49e7a1c1d6319193478faa5ee9b2e6c645881abd9a4d3d19af742fe35dc67806",
+      "media_bytes": 1961636
+    },
+    {
+      "phrase": "$4,800 in charges labeled business development",
+      "query": "corporate card expense spreadsheet with highlighted charges no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+      "media_sha256": "3bc280d403bd2548d9d5c57f05ffb713ca7617150527e6d3f0457523cb424116",
+      "media_bytes": 1609822
+    },
+    {
+      "phrase": "The controller froze his card",
+      "query": "finance controller locking corporate card account on computer",
+      "image_url": "https://drive.google.com/uc?export=download&id=1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+      "media_sha256": "7348dae9745f951fec4eb82ee5b537c16354284d4d6f512b3d9d1578a344dce4",
+      "media_bytes": 1544431
+    },
+    {
+      "phrase": "My $18 lunch was approved",
+      "query": "approved expense notification beside faded receipt no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+      "media_sha256": "2a646987be918f83ca57c030963a3b07039c2481771a2c91d3e00670314272dc",
+      "media_bytes": 1823766
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "$18 client-lunch",
+      "text": "$18 LUNCH",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "no exceptions",
+      "text": "NO EXCEPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "$4,800 in charges",
+      "text": "$4,800 UNDOCUMENTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "froze his card",
+      "text": "CARD FROZEN",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "tense",
+  "_authored_by": "chatgpt-takeover"
+}

@@ -1,0 +1,96 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "gym-membership-certified-mail",
+  "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+  "hashtags": [
+    "gym",
+    "membership",
+    "customerservice",
+    "certifiedmail",
+    "chargeback",
+    "receipts",
+    "karma",
+    "shorts"
+  ],
+  "script": "My gym kept charging me after I canceled in person. The manager said cancellations only counted through their online form, which conveniently crashed after the final button. I tried three browsers, recorded the error, and sent the cancellation by certified mail. They signed for it, then charged me again. Fine. I disputed the payment and attached the video, the tracking receipt, and their employee's signature. The gym fought back with a screenshot showing my membership was still active. That was useful, because it also showed someone reopened it two days after receiving my letter. The bank reversed three months of charges and blocked future payments. Corporate called to apologize and offered me a free year. I asked whether canceling that year required the same broken form. They mailed a refund instead. Apparently certified mail has a stronger core than their website.",
+  "shots": [
+    {
+      "phrase": "kept charging me after I canceled in person",
+      "query": "customer canceling gym membership at front desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=1vuxf5sn24fFtBWEE_9VW0qEPjXkWPg_u",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1vuxf5sn24fFtBWEE_9VW0qEPjXkWPg_u",
+      "media_sha256": "048e282e312117c3cd4d15d19108bf64a847c6e8d0bc08fb81462374cc7b3dec",
+      "media_bytes": 1837349
+    },
+    {
+      "phrase": "online form, which conveniently crashed",
+      "query": "broken online cancellation form on laptop",
+      "image_url": "https://drive.google.com/uc?export=download&id=1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+      "media_sha256": "99e7a0012365f6e3f081da7a7f0dc77acf3ffa1b7eccc866e56bc12c2c399b63",
+      "media_bytes": 1794244
+    },
+    {
+      "phrase": "sent the cancellation by certified mail",
+      "query": "certified letter and postal tracking receipt",
+      "image_url": "https://drive.google.com/uc?export=download&id=1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+      "media_sha256": "6f67a2afa8d7f0827862804607bf3b822bd9bca0ddc7ac0c64ebb92b51563741",
+      "media_bytes": 1785088
+    },
+    {
+      "phrase": "charged me again",
+      "query": "bank statement with repeated gym charge no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=1oK_UlhCEQ1zu5SxaWOLb4_kwEJLCLKxN",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1oK_UlhCEQ1zu5SxaWOLb4_kwEJLCLKxN",
+      "media_sha256": "3d52523ef13f0f8f7a47b0410829c2227cce2d28418b5504d624212bcfc5ed60",
+      "media_bytes": 1931408
+    },
+    {
+      "phrase": "someone reopened it two days after receiving my letter",
+      "query": "gym account history showing suspicious reactivation no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+      "media_sha256": "da33aa63fde490ff6676b505a84c1b7419f04780e0d3fee1941deb5712bcfb68",
+      "media_bytes": 1899613
+    },
+    {
+      "phrase": "They mailed a refund instead",
+      "query": "refund check envelope beside gym membership card no text",
+      "image_url": "https://drive.google.com/uc?export=download&id=125RFtOjLkImptdaR_pK60HN0zEQbruiu",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "125RFtOjLkImptdaR_pK60HN0zEQbruiu",
+      "media_sha256": "6a8857e351b4a1b418cf17fab5101eb28408229722bfd53c57004360144338f9",
+      "media_bytes": 2026798
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "charging me after I canceled",
+      "text": "CHARGED AFTER CANCELING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "signed for it",
+      "text": "THEY SIGNED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "reopened it",
+      "text": "REOPENED IT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "reversed three months of charges",
+      "text": "THREE MONTHS REVERSED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "deadpan",
+  "_authored_by": "chatgpt-takeover"
+}

@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-mobile-lines-buried-landlines",
+  "title": "Mobile Lines Buried Landlines Worldwide",
+  "hook": "The cord lost the world.",
+  "y_label": "Subscriptions per 100 people",
+  "duration": 13,
+  "source": "International Telecommunication Union World Telecommunication/ICT Indicators and Facts and Figures 2024: global mobile-cellular and fixed-telephone subscriptions per 100 inhabitants, selected years 2000-2024. Approximate.",
+  "years": [
+    2000,
+    2003,
+    2006,
+    2009,
+    2012,
+    2016,
+    2020,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Mobile cellular",
+      "color": "#00ACC1",
+      "icon": "ITU",
+      "values": [
+        12.1,
+        22.2,
+        41.7,
+        68.1,
+        89.5,
+        101.5,
+        106.2,
+        112
+      ]
+    },
+    {
+      "name": "Fixed telephone",
+      "color": "#6D4C41",
+      "icon": "ITU",
+      "values": [
+        16,
+        18,
+        19.1,
+        18.3,
+        17.2,
+        13.6,
+        11.9,
+        10.6
+      ]
+    }
+  ],
+  "hashtags": [
+    "mobile",
+    "landline",
+    "telephone",
+    "telecom",
+    "itu",
+    "technology",
+    "history",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}
