@@ -1,0 +1,33 @@
+{
+ "checked_at": "2026-09-27T12:31:03+00:00",
+ "date": "20260927",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260927/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "authored-boss-expense-receipt-audit-s0.json",
+  "authored-boss-expense-receipt-audit-s1.json",
+  "authored-boss-expense-receipt-audit-s2.json",
+  "authored-boss-expense-receipt-audit-s3.json",
+  "authored-boss-expense-receipt-audit-s4.json",
+  "authored-boss-expense-receipt-audit-s5.json",
+  "authored-gym-membership-certified-mail-s0.json",
+  "authored-gym-membership-certified-mail-s1.json",
+  "authored-gym-membership-certified-mail-s2.json",
+  "authored-gym-membership-certified-mail-s3.json",
+  "authored-gym-membership-certified-mail-s4.json",
+  "authored-gym-membership-certified-mail-s5.json"
+ ],
+ "headline": "media: not_required",
+ "ok": true,
+ "required": false,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "not_required",
+ "task": "media",
+ "why_required": "the bundle asks for 0 images"
+}
