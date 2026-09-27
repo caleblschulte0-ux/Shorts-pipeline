@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:47.041Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-expense-receipt-audit-s0",
+  "safe_request_id": "authored-boss-expense-receipt-audit-s0",
+  "prompt_sha256": "3bb584e951115b2a8cabc6c696954fa2a447c73bf08f470f6fcc69548d662799",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: employee holding faded restaurant receipt in office. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+    "filename": "20260927__authored-boss-expense-receipt-audit-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "87ca4cae2d606bc76b98eed06c184c3bc0e376d00fbff16308181429c0a2cdb9",
+    "bytes": 1714315,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "boss-expense-receipt-audit",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
