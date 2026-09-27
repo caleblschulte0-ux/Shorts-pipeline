@@ -2200,6 +2200,22 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 92,
       "duration_s": 46.5
+    },
+    "hidden-foster-system": {
+      "url": "https://youtube.com/shorts/3Rk8HksoIyg",
+      "title": "2.6 Million Kids Are Raised By A System No One Runs",
+      "at": "2026-09-27T12:45:44.499555+00:00",
+      "publish_at": "2026-09-27T13:34:49Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 29 credits are required for this request.\",\"status",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 92,
+      "duration_s": 59.8
     }
   },
   "uploads": [
@@ -2607,6 +2623,15 @@
       "state": "posted",
       "slug": "beaver-ecosystem-comeback",
       "at": "2026-09-27T11:52:30.578695+00:00"
+    },
+    {
+      "claimed_at": "2026-09-27T12:45:32.886752+00:00",
+      "title": "2.6 Million Kids Are Raised By A System No One Runs",
+      "publish_at": "2026-09-27T13:34:49Z",
+      "url": "https://youtube.com/shorts/3Rk8HksoIyg",
+      "state": "posted",
+      "slug": "hidden-foster-system",
+      "at": "2026-09-27T12:45:44.499555+00:00"
     }
   ]
 }
