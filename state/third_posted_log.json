@@ -9644,6 +9644,15 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-09-27T11:50:31.229427+00:00"
+    },
+    "rejected-snappyelegantsalmonwoop-hma3kpow8jvwjk56": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SnappyElegantSalmonWOOP-hma3kPoW8jVwJK56",
+      "streamer": "kaicenat",
+      "title": "Icelandic Lullaby inside a Volcano \ud83d\udc4f vs American lullaby \ud83d\ude04",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-09-27T12:22:33.674136+00:00"
     }
   }
 }
