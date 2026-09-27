@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260927T115947Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3:start, the numbers '1,440' and '93' are presented as bare numbers inside simple circles, without an interesting demonstration.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "Bare number card and weak data demonstration",
+  "visible_evidence": "The scene displays '1,440' and '93' inside simple circles, representing minutes between sunrises, without a dynamic or engaging visual metaphor.",
+  "root_cause": "Reliance on static number display and basic shape comparison instead of an inventive data demonstration.",
+  "repair_goal": "Replace the static circles with a dynamic visual metaphor that actively demonstrates the difference in time or number of sunrises."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

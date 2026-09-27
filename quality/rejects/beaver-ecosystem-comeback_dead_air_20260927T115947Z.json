@@ -1,0 +1,16 @@
+{
+ "slug": "beaver-ecosystem-comeback",
+ "ts": "20260927T115947Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The video has a static period of 4.5 seconds between frame seg2:end (t=25.65s) and frame seg3:start (t=30.15s), where nothing meaningfully moves.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 2,
+  "failure_class": "dead_air",
+  "visible_evidence": "The screen is static and dark for 4.5 seconds between the end of segment 2 (t=25.65s) and the start of segment 3 (t=30.15s).",
+  "root_cause": "Insufficient animation or transition between segments, leading to a prolonged static screen.",
+  "repair_goal": "Add a dynamic transition or animation to bridge the gap between segment 2 and segment 3, ensuring continuous meaningful motion."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
