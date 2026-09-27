@@ -1,0 +1,22 @@
+{
+  "date": "20260927",
+  "channel": "trending",
+  "schema": "production-channel-outcome/v1",
+  "expected": 6,
+  "previously_uploaded": 0,
+  "rendered_or_attempted": 6,
+  "uploaded": 6,
+  "quarantined": 0,
+  "failed": 0,
+  "failed_by_stage": {},
+  "failed_by_format": {},
+  "status": "production_complete",
+  "video_urls": [
+    "https://youtube.com/shorts/KIGs737MQQ0",
+    "https://youtube.com/shorts/jrUfQJENhXo",
+    "https://youtube.com/shorts/YSfEaVTmRJA",
+    "https://youtube.com/shorts/_lt5O1MKrYw",
+    "https://youtube.com/shorts/vOYQCQZnCWs",
+    "https://youtube.com/shorts/CKp0vhdNiDY"
+  ]
+}

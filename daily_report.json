@@ -1,19 +1,19 @@
 [
   {
-    "topic": "He Said The Chair Vanished. Then He Listed It.",
-    "title": "He Said The Chair Vanished. Then He Listed It.",
-    "format": "reddit",
-    "publish_at": "2026-09-26T20:30:00Z",
+    "topic": "China Pulled Away In Electric Car Sales",
+    "title": "China Pulled Away In Electric Car Sales",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/5VyLFxjuPYY",
+    "video_url": "https://youtube.com/shorts/KIGs737MQQ0",
     "error": null,
-    "elapsed_seconds": 204.5,
-    "package_path": "state/trending_packages/20260926/06_chair-chargeback-marketplace-listing.json",
+    "elapsed_seconds": 138.7,
+    "package_path": "state/trending_packages/20260927/01_graph-china-ev-sales-pulled-away.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260926-193325_he_said_the_chair_vanished__then_he_list.mp4",
+    "video_path": "output/daily_20260927-113731_china_pulled_away_in_electric_car_sales.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.7,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,12 +24,109 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -25.2
     },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 100
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Mobile Lines Buried Landlines Worldwide",
+    "title": "Mobile Lines Buried Landlines Worldwide",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/jrUfQJENhXo",
+    "error": null,
+    "elapsed_seconds": 146.3,
+    "package_path": "state/trending_packages/20260927/02_graph-mobile-lines-buried-landlines.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-113949_mobile_lines_buried_landlines_worldwide.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Online Shopping Passed Department Stores",
+    "title": "Online Shopping Passed Department Stores",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/YSfEaVTmRJA",
+    "error": null,
+    "elapsed_seconds": 128.4,
+    "package_path": "state/trending_packages/20260927/03_graph-online-shopping-passed-department-stores.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-114216_online_shopping_passed_department_stores.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 87
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Solar Capacity Just Passed Hydropower",
+    "title": "Solar Capacity Just Passed Hydropower",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/_lt5O1MKrYw",
+    "error": null,
+    "elapsed_seconds": 123.2,
+    "package_path": "state/trending_packages/20260927/04_graph-solar-capacity-passed-hydropower.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-114424_solar_capacity_just_passed_hydropower.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": false,
@@ -39,44 +136,81 @@
     "channel": "default"
   },
   {
-    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Cameras capture dozens of elk, deer and coyotes safely crossing the highway, proving wildlife bridges can save lives.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (fcb48cd2c487f6fa)",
-    "elapsed_seconds": 26.4,
-    "backfill": true
+    "topic": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+    "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+    "format": "reddit",
+    "publish_at": "2026-09-27T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/vOYQCQZnCWs",
+    "error": null,
+    "elapsed_seconds": 164.9,
+    "package_path": "state/trending_packages/20260927/05_gym-membership-certified-mail.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-114629_the_gym_kept_charging_me__the_mail_kept_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.233,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 100
+    },
+    "channel": "default"
   },
   {
-    "topic": "Golden Retriever Had One Job. He Failed: Weird News & Oddities - Patch",
-    "angle": "A golden retriever hired to guard a store trips the alarm, turning a simple job into a viral blooper.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (97199b1b644f8661)",
-    "elapsed_seconds": 25.8,
-    "backfill": true
-  },
-  {
-    "topic": "Scientists discovered two bizarre new sea spiders that are \u201cnightmare fuel\u201d",
-    "angle": "Researchers unveil a hairy\u2011legged, red\u2011eyed sea spider that looks straight out of a sci\u2011fi horror, highlighting deep\u2011sea biodiversity.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (ee1410b7ac58c539)",
-    "elapsed_seconds": 25.8,
-    "backfill": true
-  },
-  {
-    "topic": "Florida man tased after sword-wielding home invasion: ACSO - FOX 13 Tampa Bay",
-    "angle": "A burglar storms a home brandishing a sword, only to be tased by police, sparking a bizarre online debate.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Florida man tased after sword-wielding home invasion: ACSO - FOX 13 Tampa Bay' refused by the writer: The seed describes violence and injury, which is not allowed for story generation.",
-    "elapsed_seconds": 26.2,
-    "unfit": true,
-    "backfill": true
+    "topic": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+    "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+    "format": "reddit",
+    "publish_at": "2026-09-27T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/CKp0vhdNiDY",
+    "error": null,
+    "elapsed_seconds": 197.2,
+    "package_path": "state/trending_packages/20260927/06_boss-expense-receipt-audit.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-114913_he_rejected_my__18_receipt__the_auditor_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 56.3,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 96
+    },
+    "channel": "default"
   }
 ]
