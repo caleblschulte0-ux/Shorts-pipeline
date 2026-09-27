@@ -9626,6 +9626,24 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-09-27T11:34:22.810708+00:00"
+    },
+    "rejected-bloodyblazingchickenelegiggle-7rltqskg2dnaetog": {
+      "source_url": "https://www.twitch.tv/xqc/clip/BloodyBlazingChickenEleGiggle-7rLtqskG2dNAEtoG",
+      "streamer": "xqc",
+      "title": "xqc got clapped by soda",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no clear observable event)",
+      "ts": "2026-09-27T11:49:52.835475+00:00"
+    },
+    "rejected-innocentmildpancakedansgame-0pdjtcnj1deiwout": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/InnocentMildPancakeDansGame-0pdJTCNj1dEiwOUt",
+      "streamer": "sodapoppin",
+      "title": "Tyler1's \"Lock In\" Poker Tell vs. Sodapoppin",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-09-27T11:50:31.229427+00:00"
     }
   }
 }
