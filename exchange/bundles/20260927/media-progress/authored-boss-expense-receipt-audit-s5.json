@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:53.056Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-expense-receipt-audit-s5",
+  "safe_request_id": "authored-boss-expense-receipt-audit-s5",
+  "prompt_sha256": "d684f1a324446ff1a357df0e7aeb717a008c7f6a901b1ede304709f8ad6d9adf",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: approved expense notification beside faded receipt no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+    "filename": "20260927__authored-boss-expense-receipt-audit-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2a646987be918f83ca57c030963a3b07039c2481771a2c91d3e00670314272dc",
+    "bytes": 1823766,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "boss-expense-receipt-audit",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
