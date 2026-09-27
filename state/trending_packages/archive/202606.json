@@ -18051,5 +18051,538 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260628": {
+    "01_iran-strikes-bahrain-kuwait.json": {
+      "version": 1,
+      "slug": "iran-strikes-bahrain-kuwait",
+      "title": "Iran Just Bombed an American Ally's Backyard",
+      "hashtags": [
+        "iran",
+        "bahrain",
+        "kuwait",
+        "middleeast",
+        "breaking",
+        "military",
+        "war",
+        "news",
+        "usfifthfleet",
+        "fyp",
+        "viral"
+      ],
+      "script": "Iran just bombed an ally. IRGC ballistic missiles slammed into Bahrain, home of the US Navy's Fifth Fleet, and hit a Kuwaiti airbase in the same wave. Drones reached residential Manama, wounding an eleven-year-old girl in her own neighborhood. Bahrain and Kuwait both condemned the strikes and called emergency sessions of parliament. US CENTCOM launched retaliatory strikes on IRGC radar and missile sites within hours. This is the first direct Iranian strike on a Gulf Cooperation Council member's soil in modern history. It was supposed to be a pressure campaign, but missiles hitting civilian neighborhoods changes every calculation. Peace talks that were quietly happening in Oman have now collapsed. So at what point does this stop getting worse?",
+      "shots": [
+        {
+          "phrase": "Iran just bombed an ally",
+          "query": "iran missile launch",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "IRGC missiles targeting the Navy Fifth Fleet",
+          "query": "US navy fifth fleet bahrain",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_Skyline.jpg"
+        },
+        {
+          "phrase": "Drones reached residential Manama",
+          "query": "manama bahrain city",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_bahrain.jpg"
+        },
+        {
+          "phrase": "Kuwaiti airbase and Kuwait condemn the attacks",
+          "query": "bahrain street civilians",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "US CENTCOM launched retaliatory strikes",
+          "query": "us military aircraft strike",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "first direct Iranian strike on Gulf soil",
+          "query": "middle east map gulf",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_Skyline.jpg"
+        },
+        {
+          "phrase": "Peace talks in Oman have collapsed",
+          "query": "diplomacy negotiations table",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "does this stop getting worse",
+          "query": "middle east crisis news",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Manama_bahrain.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "bombed an ally",
+          "text": "BOMBED AN ALLY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "eleven-year-old girl",
+          "text": "CIVILIAN HIT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "first direct Iranian strike",
+          "text": "FIRST TIME EVER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Peace talks in Oman have collapsed",
+          "text": "TALKS COLLAPSE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "02_cottonwood-fire-utah-2026.json": {
+      "version": 1,
+      "slug": "cottonwood-fire-utah-record-2026",
+      "title": "Utah's Biggest Fire Just Made Weather History",
+      "hashtags": [
+        "wildfire",
+        "utah",
+        "cottonwoodfire",
+        "fire",
+        "disaster",
+        "breaking",
+        "climate",
+        "weather",
+        "emergency",
+        "fyp",
+        "viral"
+      ],
+      "script": "Utah's biggest fire ever? That's actually the question, and the answer is yes. The Cottonwood Fire is now the largest wildfire in Utah recorded history, burning past 92,000 acres with zero percent containment. It's also the nation's largest active fire right now. The National Weather Service office in Salt Lake City just issued their very first Particularly Dangerous Situation red flag warning in history, which is the NWS saying conditions are as bad as they have ever measured. A ski resort is damaged and 150,000 acres are burning across the state simultaneously. The governor declared a state of emergency. Crews are fighting a fire that's generating its own wind systems, throwing embers miles ahead. Will anything break the Cottonwood Fire's run?",
+      "shots": [
+        {
+          "phrase": "biggest fire in Utah recorded history",
+          "query": "wildfire utah mountains",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg"
+        },
+        {
+          "phrase": "92,000 acres with zero percent containment",
+          "query": "wildfire aerial drone smoke",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg"
+        },
+        {
+          "phrase": "nation's largest active fire",
+          "query": "wildfire news map",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "National Weather Service Salt Lake City issues first Particularly Dangerous Situation NWS warning",
+          "query": "national weather service warning",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "ski resort is damaged",
+          "query": "utah ski resort mountains summer",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "150,000 acres burning simultaneously",
+          "query": "wildfire smoke from above",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg"
+        },
+        {
+          "phrase": "generating its own wind systems",
+          "query": "pyrocumulonimbus wildfire cloud",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "break the Cottonwood Fire's run",
+          "query": "wildfire firefighter utah",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Quail_Run_Fire_in_Alpine_Utah.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "biggest fire in Utah recorded history",
+          "text": "RECORD BREAKER",
+          "color": "#ff6a00"
+        },
+        {
+          "phrase": "zero percent containment",
+          "text": "0% CONTAINED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "first Particularly Dangerous Situation",
+          "text": "FIRST EVER PDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "generating its own wind systems",
+          "text": "MAKING ITS OWN WEATHER",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_europe-heat-records-june-2026.json": {
+      "version": 1,
+      "slug": "europe-heat-uk-denmark-records-2026",
+      "title": "Europe Just Shattered 150 Years of Heat Records",
+      "hashtags": [
+        "heatwave",
+        "europe",
+        "uk",
+        "denmark",
+        "heatrecord",
+        "climate",
+        "weather",
+        "breaking",
+        "summer",
+        "fyp",
+        "viral"
+      ],
+      "script": "Europe just shattered June records! The UK hit 37.3 degrees Celsius this week, smashing its hottest June temperature ever recorded and breaking a mark that stood since 1976. Denmark hit 37.2 degrees, its hottest day since 1874. Basel in Switzerland climbed to 38 degrees. These aren't just records, they're obliterating temperatures that lasted through entire generations. The UK Health Security Agency confirmed four heat deaths in two days, including a 22-year-old and a 15-year-old. The heat is now pushing east toward Czech Republic and Austria. Meteorologists say June temperatures like this were essentially impossible under historical climate patterns. So is 37 degrees just June now?",
+      "shots": [
+        {
+          "phrase": "Europe just shattered June records",
+          "query": "europe heatwave summer city",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "UK hit 37.3 degrees Celsius",
+          "query": "london heatwave uk summer",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/London_from_St_Paul%27s_Cathedral_-_geograph.org.uk_-_1444.jpg"
+        },
+        {
+          "phrase": "Denmark hit 37.2 degrees, its hottest since 1874",
+          "query": "denmark copenhagen summer heat",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Copenhagen_City_Hall_Square.jpg"
+        },
+        {
+          "phrase": "Basel in Switzerland climbed to 38 degrees",
+          "query": "switzerland summer heat city",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "four heat deaths including a 15-year-old",
+          "query": "heatwave warning health",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "heat is pushing east toward Czech Republic",
+          "query": "europe weather map heat",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "impossible under historical climate patterns",
+          "query": "climate chart temperature record",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "37 degrees just June now",
+          "query": "thermometer extreme heat",
+          "mascot_pose": "shock"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "shattered June records",
+          "text": "RECORD SHATTERED",
+          "color": "#ff6a00"
+        },
+        {
+          "phrase": "hottest since 1874",
+          "text": "SINCE 1874",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "four heat deaths",
+          "text": "4 DEAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "essentially impossible",
+          "text": "SHOULD BE IMPOSSIBLE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_taczanowskia-waska-zombie-spider.json": {
+      "version": 1,
+      "slug": "taczanowskia-waska-zombie-spider",
+      "title": "Amazon Scientists Just Found the Zombie Spider",
+      "hashtags": [
+        "spider",
+        "amazon",
+        "science",
+        "zombie",
+        "discovery",
+        "newspecies",
+        "wildlife",
+        "weird",
+        "nature",
+        "fyp",
+        "viral"
+      ],
+      "script": "This spider is the zombie? A team working in the Ecuadorian Amazon just described Taczanowskia waska, a new orb-weaver spider that does something no other animal on record has ever done: it mimics a Cordyceps zombie fungus. You know Cordyceps. It's the real fungus that takes over insects' brains and kills them. Other animals in the forest recognize infected bugs and flee. This spider figured out it can impersonate that infection, painting itself to look like a diseased corpse, so predators avoid it on instinct. It also plays completely motionless for minutes at a time to sell the act. Researchers call it the first known case of a non-fungus mimicking a pathogen to survive. So how do you outsmart a spider pretending to already be dead?",
+      "shots": [
+        {
+          "phrase": "This Ecuadorian Amazon spider is the zombie",
+          "query": "orb weaver spider web amazon",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Taczanowskia waska",
+          "query": "new spider species amazon jungle",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Cordyceps zombie fungus",
+          "query": "cordyceps fungus zombie insect",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ophiocordyceps_unilateralis.jpg"
+        },
+        {
+          "phrase": "Other animals flee from infected bugs",
+          "query": "forest floor insects amazon",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "impersonate that infection",
+          "query": "spider camouflage disguise",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "plays completely motionless",
+          "query": "spider still camouflage leaf",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Researchers confirm first case of pathogen mimicry",
+          "query": "amazon rainforest research scientist",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "pretending to already be dead",
+          "query": "spider dead leaf disguise amazon",
+          "mascot_pose": "shock"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Cordyceps zombie fungus",
+          "text": "ZOMBIE FUNGUS",
+          "color": "#8a2be2"
+        },
+        {
+          "phrase": "impersonate that infection",
+          "text": "FAKE INFECTION",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "first known case",
+          "text": "FIRST EVER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "pretending to already be dead",
+          "text": "FAKING DEATH",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "05_fiordland-black-coral-400-years.json": {
+      "version": 1,
+      "slug": "fiordland-black-coral-400-years-nz",
+      "title": "Scientists Found a 400-Year-Old Sea Giant in Fiordland",
+      "hashtags": [
+        "ocean",
+        "coral",
+        "newzealand",
+        "fiordland",
+        "discovery",
+        "underwater",
+        "science",
+        "nature",
+        "ancient",
+        "fyp",
+        "viral"
+      ],
+      "script": "It predates your nation? Divers in Fiordland National Park, New Zealand, just documented the largest black coral colony ever recorded in New Zealand waters. It stands four meters tall and stretches four and a half meters wide. Scientists estimate it is between 300 and 400 years old, meaning it was alive in the 1620s, before the United States, before Australia was colonized, growing silently in the dark fjord water this entire time. Black coral grows only millimeters per year, so an animal this size is essentially irreplaceable on any human timeline. Fiordland's fjords protect it from wave action, which is why giants like this can survive there and almost nowhere else on Earth. So what else is hiding in Fiordland?",
+      "shots": [
+        {
+          "phrase": "Divers discover the ancient giant in Fiordland",
+          "query": "fiordland new zealand underwater",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christie_Falls_in_Fiordland_National_Park_05.jpg"
+        },
+        {
+          "phrase": "largest black coral colony in New Zealand",
+          "query": "black coral deep sea underwater",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "four meters tall, four and a half wide",
+          "query": "coral colony deep ocean large",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "alive before United States and Australia were founded",
+          "query": "fiordland national park new zealand",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/00_1358_New_Zealand,_Lake_Gunn._-_Fiordland_National_Park.jpg"
+        },
+        {
+          "phrase": "grows only millimeters per year",
+          "query": "coral growth underwater marine",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Scientists say it is irreplaceable on Earth",
+          "query": "deep ocean fjord diving",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Fiordland National Park fjords protect it",
+          "query": "fiordland fjord milford sound",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Christie_Falls_in_Fiordland_National_Park_05.jpg"
+        },
+        {
+          "phrase": "what else is hiding in Fiordland",
+          "query": "fiordland dark water mysterious",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/00_1358_New_Zealand,_Lake_Gunn._-_Fiordland_National_Park.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "predates your nation",
+          "text": "400 YEARS OLD",
+          "color": "#00bfff"
+        },
+        {
+          "phrase": "alive in the 1620s",
+          "text": "BORN IN 1620s",
+          "color": "#1e90ff"
+        },
+        {
+          "phrase": "only millimeters per year",
+          "text": "MM/YEAR",
+          "color": "#00bfff"
+        },
+        {
+          "phrase": "irreplaceable on any human timeline",
+          "text": "IRREPLACEABLE",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_florida-python-challenge-alligator.json": {
+      "version": 1,
+      "slug": "florida-python-challenge-2026-everglades",
+      "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
+      "hashtags": [
+        "python",
+        "florida",
+        "everglades",
+        "snake",
+        "alligator",
+        "pythonchallenge",
+        "wildlife",
+        "animals",
+        "weird",
+        "fyp",
+        "viral"
+      ],
+      "script": "Florida losing its snake war? The state is about to launch its annual Python Challenge offering ten thousand dollars for the most pythons caught, and it still cannot dent a population estimated in the hundreds of thousands. Last year's winner caught 294 snakes in ten days. The Burmese python has no natural predators, breeds twice a year, and has eaten through 90 percent of the small mammal population in parts of the Everglades. Meanwhile, one alligator in Shark Valley last week settled the size debate for free: a gator dragged a 24-foot Burmese python across a trail in broad daylight in front of tourists. The python was the longest ever documented in the wild. The alligator needed no prize money. Can 10,000 hunters do what one alligator just did for free?",
+      "shots": [
+        {
+          "phrase": "Florida losing its snake war",
+          "query": "everglades swamp florida wildlife",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Python Challenge offering ten thousand dollars",
+          "query": "burmese python florida everglades",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Burmese_python_coiled_in_the_grass_in_the_Everglades.jpg"
+        },
+        {
+          "phrase": "Burmese python population in the Everglades",
+          "query": "python snake everglades wetlands",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Burmese_python_coiled_in_the_grass_in_the_Everglades.jpg"
+        },
+        {
+          "phrase": "Meanwhile 90 percent of small mammals gone",
+          "query": "everglades ecosystem wildlife",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "alligator in Shark Valley dragged a 24-foot python",
+          "query": "alligator everglades florida",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_alligator_Everglades_National_Park_0024.JPG"
+        },
+        {
+          "phrase": "longest ever documented in the wild",
+          "query": "burmese python record size",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/A_Burmese_python_coiled_in_the_grass_in_the_Everglades.jpg"
+        },
+        {
+          "phrase": "alligator needed no prize money",
+          "query": "alligator python fight everglades",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_alligator_Everglades_National_Park_0024.JPG"
+        },
+        {
+          "phrase": "what one alligator just did for free",
+          "query": "florida alligator swamp everglades",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_alligator_Everglades_National_Park_0024.JPG"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "ten thousand dollars",
+          "text": "$10,000 PRIZE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "hundreds of thousands",
+          "text": "100,000+ SNAKES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "24-foot Burmese python",
+          "text": "24 FEET",
+          "color": "#ff6a00"
+        },
+        {
+          "phrase": "alligator needed no prize money",
+          "text": "FREE OF CHARGE",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
