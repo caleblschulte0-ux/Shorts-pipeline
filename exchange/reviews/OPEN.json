@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-27T12:48:19Z",
+ "updated": "2026-09-27T13:29:30Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -41,6 +41,26 @@
    "request": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/hidden-foster-system__e741f6be13/sheet.jpg",
    "answer_path": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.verdict.json"
+  },
+  {
+   "id": "hidden-foster-system__d492dd0e43",
+   "channel": "explainer",
+   "slug": "hidden-foster-system",
+   "title": "2.6 Million Kids Are Raised By A System No One Runs",
+   "filed": "2026-09-27T13:21:33Z",
+   "request": "exchange/reviews/20260927/hidden-foster-system__d492dd0e43.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/hidden-foster-system__d492dd0e43/sheet.jpg",
+   "answer_path": "exchange/reviews/20260927/hidden-foster-system__d492dd0e43.verdict.json"
+  },
+  {
+   "id": "iss-sixteen-sunrises__e7a4ad048b",
+   "channel": "explainer",
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "filed": "2026-09-27T13:29:30Z",
+   "request": "exchange/reviews/20260927/iss-sixteen-sunrises__e7a4ad048b.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/iss-sixteen-sunrises__e7a4ad048b/sheet.jpg",
+   "answer_path": "exchange/reviews/20260927/iss-sixteen-sunrises__e7a4ad048b.verdict.json"
   },
   {
    "id": "online_shopping_passed_department_stores__16de371bf6",

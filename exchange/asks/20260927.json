@@ -1,0 +1,50 @@
+{
+ "schema": "shorts-ask-batch/v1",
+ "date": "20260927",
+ "asks": {
+  "bc6c324289c4a013": {
+   "filed": "2026-09-27T13:03:03Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Self-Checkout Is Quietly Replacing Cashiers (3 Charts)\nHOOK: That kiosk replaced somebody's job.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "1b65f6f138c718cb": {
+   "filed": "2026-09-27T13:04:08Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
+   "user": "HEADLINE TITLE: Self-Checkout Is Quietly Replacing Cashiers (3 Charts)\nHOOK: That kiosk replaced somebody's job.\n\nSEGMENTS TO CHECK (index: topic):\n1: 'US cashier employment, 2013 vs 2023'\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
+  },
+  "06234a6d9a1f040d": {
+   "filed": "2026-09-27T13:05:22Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Americans Used To Be The Tallest People On Earth (3 Charts)\nHOOK: Americans used to be the tallest on Earth.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "6c460f2ef546fff0": {
+   "filed": "2026-09-27T13:06:27Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Our Galaxy Is Hiding Millions Of Black Holes\nHOOK: There might be 100 million black holes near us.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "7bd76ffd01f3905c": {
+   "filed": "2026-09-27T13:09:00Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: The Ocean Lost 71% Of Its Sharks Since 1970\nHOOK: Nobody saw the ocean's sharks disappearing.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "de463fd12fc0f388": {
+   "filed": "2026-09-27T13:10:15Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.\nHOOK: 99% of them were gone within two years — and no one warned you.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "fe28b47dae585065": {
+   "filed": "2026-09-27T13:11:28Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
+   "user": "HEADLINE TITLE: California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.\nHOOK: 99% of them were gone within two years — and no one warned you.\n\nSEGMENTS TO CHECK (index: topic):\n0: 'sea stars wiped out by disease'\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
+  }
+ },
+ "answer_path": "exchange/asks/20260927.answers.json",
+ "how_to_answer": "For every key under `asks`, answer the `user` message under the `system` instruction EXACTLY as the model they were written for would — same format, JSON where JSON is asked for, no commentary. Write answer_path as {\"schema\": \"shorts-ask-answers/v1\", \"answers\": {<key>: {\"answer\": \"<your reply>\", \"by\": \"chatgpt\", \"at\": \"<ISO-8601 UTC>\"}}} and commit it. Do not edit this file."
+}
