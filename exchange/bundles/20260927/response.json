@@ -1,0 +1,675 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260927",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "author",
+  "contract": {
+    "registry_revision": 6,
+    "registry_sha256": "e23bd0422991def8547286e9daa2ebc799d01038c5e1857b2fa8e5967b650a50",
+    "source_commit": "54f0181d252b25ed9d450dfca7712fa458afea3a",
+    "production_date": "20260927",
+    "bundle_sha256": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-china-ev-sales-pulled-away",
+      "title": "China Pulled Away In Electric Car Sales",
+      "hook": "One market broke away.",
+      "y_label": "Annual electric car sales (millions)",
+      "duration": 13,
+      "source": "International Energy Agency, Global EV Outlook 2025 and Global EV Data Explorer: annual battery-electric and plug-in hybrid car sales by major market, selected years 2015-2024. Approximate millions.",
+      "years": [
+        2015,
+        2017,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#E53935",
+          "icon": "CN",
+          "values": [
+            0.3,
+            0.6,
+            1.2,
+            1.3,
+            3.3,
+            6,
+            8.1,
+            11
+          ]
+        },
+        {
+          "name": "Europe",
+          "color": "#1E88E5",
+          "icon": "EU",
+          "values": [
+            0.2,
+            0.3,
+            0.6,
+            1.4,
+            2.3,
+            2.7,
+            3.2,
+            3.2
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#43A047",
+          "icon": "US",
+          "values": [
+            0.1,
+            0.2,
+            0.3,
+            0.3,
+            0.6,
+            0.9,
+            1.4,
+            1.6
+          ]
+        }
+      ],
+      "hashtags": [
+        "ev",
+        "electriccars",
+        "china",
+        "europe",
+        "usa",
+        "iea",
+        "cars",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260927"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-mobile-lines-buried-landlines",
+      "title": "Mobile Lines Buried Landlines Worldwide",
+      "hook": "The cord lost the world.",
+      "y_label": "Subscriptions per 100 people",
+      "duration": 13,
+      "source": "International Telecommunication Union World Telecommunication/ICT Indicators and Facts and Figures 2024: global mobile-cellular and fixed-telephone subscriptions per 100 inhabitants, selected years 2000-2024. Approximate.",
+      "years": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012,
+        2016,
+        2020,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Mobile cellular",
+          "color": "#00ACC1",
+          "icon": "ITU",
+          "values": [
+            12.1,
+            22.2,
+            41.7,
+            68.1,
+            89.5,
+            101.5,
+            106.2,
+            112
+          ]
+        },
+        {
+          "name": "Fixed telephone",
+          "color": "#6D4C41",
+          "icon": "ITU",
+          "values": [
+            16,
+            18,
+            19.1,
+            18.3,
+            17.2,
+            13.6,
+            11.9,
+            10.6
+          ]
+        }
+      ],
+      "hashtags": [
+        "mobile",
+        "landline",
+        "telephone",
+        "telecom",
+        "itu",
+        "technology",
+        "history",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260927"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-online-shopping-passed-department-stores",
+      "title": "Online Shopping Passed Department Stores",
+      "hook": "The checkout moved online.",
+      "y_label": "U.S. annual retail sales (billions USD)",
+      "duration": 13,
+      "source": "U.S. Census Bureau Quarterly Retail E-Commerce Sales and Monthly Retail Trade time series: annual retail e-commerce sales versus department-store sales, selected years 2000-2024. Nominal, seasonally unadjusted approximate billions.",
+      "years": [
+        2000,
+        2004,
+        2008,
+        2012,
+        2016,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Retail e-commerce",
+          "color": "#7E57C2",
+          "icon": "Census",
+          "values": [
+            27.6,
+            72,
+            142,
+            232,
+            391,
+            813,
+            1040,
+            1192
+          ]
+        },
+        {
+          "name": "Department stores",
+          "color": "#FB8C00",
+          "icon": "Store",
+          "values": [
+            232,
+            220,
+            188,
+            164,
+            151,
+            135,
+            132,
+            136
+          ]
+        }
+      ],
+      "hashtags": [
+        "ecommerce",
+        "shopping",
+        "retail",
+        "departmentstore",
+        "census",
+        "business",
+        "internet",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260927"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-solar-capacity-passed-hydropower",
+      "title": "Solar Capacity Just Passed Hydropower",
+      "hook": "Sunlight took the lead.",
+      "y_label": "Global installed capacity (GW)",
+      "duration": 13,
+      "source": "International Renewable Energy Agency, Renewable Capacity Statistics 2025: global solar photovoltaic and renewable hydropower capacity, selected years 2015-2024. Approximate gigawatts.",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2022,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Solar",
+          "color": "#FDD835",
+          "icon": "IRENA",
+          "values": [
+            223,
+            296,
+            391,
+            486,
+            586,
+            714,
+            1055,
+            1865
+          ]
+        },
+        {
+          "name": "Hydropower",
+          "color": "#1E88E5",
+          "icon": "IRENA",
+          "values": [
+            1211,
+            1242,
+            1275,
+            1304,
+            1334,
+            1360,
+            1414,
+            1428
+          ]
+        }
+      ],
+      "hashtags": [
+        "solar",
+        "hydropower",
+        "renewableenergy",
+        "electricity",
+        "irena",
+        "climate",
+        "energy",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260927"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "gym-membership-certified-mail",
+      "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+      "hashtags": [
+        "gym",
+        "membership",
+        "customerservice",
+        "certifiedmail",
+        "chargeback",
+        "receipts",
+        "karma",
+        "shorts"
+      ],
+      "script": "My gym kept charging me after I canceled in person. The manager said cancellations only counted through their online form, which conveniently crashed after the final button. I tried three browsers, recorded the error, and sent the cancellation by certified mail. They signed for it, then charged me again. Fine. I disputed the payment and attached the video, the tracking receipt, and their employee's signature. The gym fought back with a screenshot showing my membership was still active. That was useful, because it also showed someone reopened it two days after receiving my letter. The bank reversed three months of charges and blocked future payments. Corporate called to apologize and offered me a free year. I asked whether canceling that year required the same broken form. They mailed a refund instead. Apparently certified mail has a stronger core than their website.",
+      "shots": [
+        {
+          "phrase": "kept charging me after I canceled in person",
+          "query": "customer canceling gym membership at front desk",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1vuxf5sn24fFtBWEE_9VW0qEPjXkWPg_u",
+              "filename": "20260927__authored-gym-membership-certified-mail-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1vuxf5sn24fFtBWEE_9VW0qEPjXkWPg_u",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "048e282e312117c3cd4d15d19108bf64a847c6e8d0bc08fb81462374cc7b3dec",
+              "bytes": 1837349,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "online form, which conveniently crashed",
+          "query": "broken online cancellation form on laptop",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+              "filename": "20260927__authored-gym-membership-certified-mail-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "99e7a0012365f6e3f081da7a7f0dc77acf3ffa1b7eccc866e56bc12c2c399b63",
+              "bytes": 1794244,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "sent the cancellation by certified mail",
+          "query": "certified letter and postal tracking receipt",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+              "filename": "20260927__authored-gym-membership-certified-mail-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6f67a2afa8d7f0827862804607bf3b822bd9bca0ddc7ac0c64ebb92b51563741",
+              "bytes": 1785088,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "charged me again",
+          "query": "bank statement with repeated gym charge no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1oK_UlhCEQ1zu5SxaWOLb4_kwEJLCLKxN",
+              "filename": "20260927__authored-gym-membership-certified-mail-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1oK_UlhCEQ1zu5SxaWOLb4_kwEJLCLKxN",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "3d52523ef13f0f8f7a47b0410829c2227cce2d28418b5504d624212bcfc5ed60",
+              "bytes": 1931408,
+              "format": "png",
+              "width": 940,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "someone reopened it two days after receiving my letter",
+          "query": "gym account history showing suspicious reactivation no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+              "filename": "20260927__authored-gym-membership-certified-mail-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "da33aa63fde490ff6676b505a84c1b7419f04780e0d3fee1941deb5712bcfb68",
+              "bytes": 1899613,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "They mailed a refund instead",
+          "query": "refund check envelope beside gym membership card no text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "125RFtOjLkImptdaR_pK60HN0zEQbruiu",
+              "filename": "20260927__authored-gym-membership-certified-mail-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=125RFtOjLkImptdaR_pK60HN0zEQbruiu",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6a8857e351b4a1b418cf17fab5101eb28408229722bfd53c57004360144338f9",
+              "bytes": 2026798,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "charging me after I canceled",
+          "text": "CHARGED AFTER CANCELING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "signed for it",
+          "text": "THEY SIGNED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "reopened it",
+          "text": "REOPENED IT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "reversed three months of charges",
+          "text": "THREE MONTHS REVERSED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "deadpan",
+      "_authored_by": "chatgpt-takeover-20260927"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "boss-expense-receipt-audit",
+      "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "expenses",
+        "audit",
+        "receipts",
+        "boss",
+        "karma",
+        "shorts"
+      ],
+      "script": "My manager rejected an $18 client-lunch reimbursement because the receipt was slightly faded. He announced that every expense needed perfect documentation, no exceptions. Fine. I resubmitted mine with the restaurant's duplicate receipt, a bank statement, the meeting invite, and the client's thank-you email. Then accounting asked me to help reconcile our team's overdue expense file. I applied his rule exactly. His corporate card had $4,800 in charges labeled business development with no receipts, attendees, or notes. Mostly steakhouse tabs and weekend rides. I flagged every line instead of guessing. The controller froze his card and scheduled an audit. He told me I should have used common sense because everyone knew his expenses were legitimate. I forwarded his no-exceptions email. My $18 lunch was approved that afternoon. His expenses took six weeks, three interviews, and one newly mandatory receipt-scanning app. The faded receipt survived.",
+      "shots": [
+        {
+          "phrase": "rejected an $18 client-lunch reimbursement",
+          "query": "employee holding faded restaurant receipt in office",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=14qoRTcLxlKAdkEr1weyWjMjQ6_X5paos",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "87ca4cae2d606bc76b98eed06c184c3bc0e376d00fbff16308181429c0a2cdb9",
+              "bytes": 1714315,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "every expense needed perfect documentation",
+          "query": "manager presenting strict expense policy to team",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1S5Slj1_GV8QVD9SxOAenjuHFIUVzihYn",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1S5Slj1_GV8QVD9SxOAenjuHFIUVzihYn",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "78960af83c634afa20b43d844b785d32d603d8cff9b7f828ee6a7218f8182f61",
+              "bytes": 1707719,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "resubmitted mine with the restaurant's duplicate receipt",
+          "query": "organized expense evidence on desk",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "49e7a1c1d6319193478faa5ee9b2e6c645881abd9a4d3d19af742fe35dc67806",
+              "bytes": 1961636,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "$4,800 in charges labeled business development",
+          "query": "corporate card expense spreadsheet with highlighted charges no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "3bc280d403bd2548d9d5c57f05ffb713ca7617150527e6d3f0457523cb424116",
+              "bytes": 1609822,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "The controller froze his card",
+          "query": "finance controller locking corporate card account on computer",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "7348dae9745f951fec4eb82ee5b537c16354284d4d6f512b3d9d1578a344dce4",
+              "bytes": 1544431,
+              "format": "png",
+              "width": 940,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "My $18 lunch was approved",
+          "query": "approved expense notification beside faded receipt no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+              "filename": "20260927__authored-boss-expense-receipt-audit-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=17ZrDUqY0WwuI4ge0emL9e92pkao1c_aT",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "2a646987be918f83ca57c030963a3b07039c2481771a2c91d3e00670314272dc",
+              "bytes": 1823766,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "$18 client-lunch",
+          "text": "$18 LUNCH",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "no exceptions",
+          "text": "NO EXCEPTIONS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "$4,800 in charges",
+          "text": "$4,800 UNDOCUMENTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "froze his card",
+          "text": "CARD FROZEN",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "tense",
+      "_authored_by": "chatgpt-takeover-20260927"
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s predicted empty plates. The numbers went the other way.",
+      "says": [
+        "Progression to secondary school (%) rose from 77.8 in 1985 to 91.3 in 2017 — 1.2 times higher.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million metric tons in 2024 — 1.5 times higher.",
+        "China leads with 5.2 million square kilometers of farmland, ahead of the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never showed up — the harvest did.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Is 3.0x Higher Than In 1990",
+      "hook": "It is not solar or wind. The source that tripled was combustible renewables and waste.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2 % of total energy in 1990 to 30.1 % of total energy in 2024 — 3.0 times higher.",
+        "Access to electricity increased from 73.2 % of population in 1998 to 91.9 % of population in 2024 — 1.3 times higher.",
+        "Methane (ch4) emissions from waste climbed from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024 — 1.8 times higher."
+      ],
+      "closing": "The leftovers became fuel, then left a methane bill.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "The planet kept growing. Its growth rate did not.",
+      "says": [
+        "Rural population fell from 63.1 % of total population in 1972 to 42.2 % of total population in 2025 — down to 67 percent of that.",
+        "Population in the largest city moved from 18.2 % of urban population in 1972 to 16.2 % of urban population in 2025 — barely moved.",
+        "Population growth dropped from 2 annual % in 1972 to 0.91 annual % in 2025 — down to 46 percent of that."
+      ],
+      "closing": "More people, less acceleration — the curve quietly changed shape.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "Bundle mode author: completed the frozen 4 graph_race + 2 reddit_story shortfall.",
+    "Rewrote all three requested Explainer stories while preserving protected numbers, years, countries and named entities."
+  ]
+}
