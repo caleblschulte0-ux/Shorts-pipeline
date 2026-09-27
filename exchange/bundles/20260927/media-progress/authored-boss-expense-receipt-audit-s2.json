@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:49.199Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-expense-receipt-audit-s2",
+  "safe_request_id": "authored-boss-expense-receipt-audit-s2",
+  "prompt_sha256": "a56e7e2cb5aac1fff054cd31304eddd980c7891c1d43e333b7a2436191faa358",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: organized expense evidence on desk. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+    "filename": "20260927__authored-boss-expense-receipt-audit-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1BEnDUIe2WJ51gkiM_oIpzClMQVQaGIVy",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "49e7a1c1d6319193478faa5ee9b2e6c645881abd9a4d3d19af742fe35dc67806",
+    "bytes": 1961636,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "boss-expense-receipt-audit",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
