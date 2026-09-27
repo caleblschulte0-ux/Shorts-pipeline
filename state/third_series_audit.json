@@ -23,15 +23,15 @@
     },
     "jumpscare": {
       "n": 4,
-      "median_vph": 0.37
+      "median_vph": 0.365
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.35
+      "median_vph": 0.345
     },
     "clutch": {
       "n": 3,
-      "median_vph": 0.08
+      "median_vph": 0.07
     },
     "argument": {
       "n": 3,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 1.21
+      "median_vph": 1.2
     }
   }
 }
