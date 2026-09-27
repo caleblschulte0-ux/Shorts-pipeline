@@ -1,0 +1,16 @@
+{
+ "slug": "hidden-foster-system",
+ "ts": "20260927T124555Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The `held_s` is 5.38s, indicating a period of static frames longer than 4 seconds. Specifically, there are gaps of 4.26s (seg0-seg1), 5.56s (seg1-seg2), and 7.09s (seg2-seg3) between segment end and start frames.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "Pacing",
+  "visible_evidence": "There is a 7.09-second static period between the end of seg2 (t=29.69s) and the start of seg3 (t=36.78s), where nothing meaningful moves.",
+  "root_cause": "Lack of continuous motion or smooth transitions between distinct data demonstrations, leading to prolonged static frames.",
+  "repair_goal": "Introduce dynamic transitions or continuous animation between segments to eliminate static periods longer than 2 seconds."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
