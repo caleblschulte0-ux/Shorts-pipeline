@@ -43,6 +43,30 @@
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
    "user": "HEADLINE TITLE: California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.\nHOOK: 99% of them were gone within two years — and no one warned you.\n\nSEGMENTS TO CHECK (index: topic):\n0: 'sea stars wiped out by disease'\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
+  },
+  "bce62911c16096ca": {
+   "filed": "2026-09-27T13:48:29Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)\nHOOK: Part of the ocean dies every single summer.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "fa205ad11ed7c91a": {
+   "filed": "2026-09-27T13:50:19Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: The Race To Mine A Place No One Owns (3 Charts)\nHOOK: There's a gold rush happening 4 kilometers underwater.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "b5e86d9087434591": {
+   "filed": "2026-09-27T13:51:33Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Humans Have Only Ever Domesticated 14 Large Animals\nHOOK: The list closed thousands of years ago.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "7c6574562d9293d9": {
+   "filed": "2026-09-27T13:53:13Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: North America Lost 3 Billion Birds Since 1970\nHOOK: The birds outside your window are disappearing.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   }
  },
  "answer_path": "exchange/asks/20260927.answers.json",
