@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-27T11:48:28Z",
+ "updated": "2026-09-27T12:03:31Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -41,6 +41,26 @@
    "request": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/hidden-foster-system__e741f6be13/sheet.jpg",
    "answer_path": "exchange/reviews/20260926/hidden-foster-system__e741f6be13.verdict.json"
+  },
+  {
+   "id": "online_shopping_passed_department_stores__16de371bf6",
+   "channel": "trending",
+   "slug": "online_shopping_passed_department_stores",
+   "title": "Online Shopping Passed Department Stores",
+   "filed": "2026-09-27T12:01:38Z",
+   "request": "exchange/reviews/20260927/online_shopping_passed_department_stores__16de371bf6.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/online_shopping_passed_department_stores__16de371bf6/sheet.jpg",
+   "answer_path": "exchange/reviews/20260927/online_shopping_passed_department_stores__16de371bf6.verdict.json"
+  },
+  {
+   "id": "solar_capacity_just_passed_hydropower__836e2ec869",
+   "channel": "trending",
+   "slug": "solar_capacity_just_passed_hydropower",
+   "title": "Solar Capacity Just Passed Hydropower",
+   "filed": "2026-09-27T12:03:31Z",
+   "request": "exchange/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869/sheet.jpg",
+   "answer_path": "exchange/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."

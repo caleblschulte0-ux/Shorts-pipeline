@@ -5,114 +5,12 @@
     "format": "graph_race",
     "publish_at": "2026-09-27T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/KIGs737MQQ0",
+    "video_url": "https://youtube.com/shorts/VJCY2lIHD7c",
     "error": null,
-    "elapsed_seconds": 138.7,
+    "elapsed_seconds": 136.8,
     "package_path": "state/trending_packages/20260927/01_graph-china-ev-sales-pulled-away.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260927-113731_china_pulled_away_in_electric_car_sales.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 100
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Mobile Lines Buried Landlines Worldwide",
-    "title": "Mobile Lines Buried Landlines Worldwide",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/jrUfQJENhXo",
-    "error": null,
-    "elapsed_seconds": 146.3,
-    "package_path": "state/trending_packages/20260927/02_graph-mobile-lines-buried-landlines.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-113949_mobile_lines_buried_landlines_worldwide.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Online Shopping Passed Department Stores",
-    "title": "Online Shopping Passed Department Stores",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/YSfEaVTmRJA",
-    "error": null,
-    "elapsed_seconds": 128.4,
-    "package_path": "state/trending_packages/20260927/03_graph-online-shopping-passed-department-stores.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-114216_online_shopping_passed_department_stores.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Solar Capacity Just Passed Hydropower",
-    "title": "Solar Capacity Just Passed Hydropower",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/_lt5O1MKrYw",
-    "error": null,
-    "elapsed_seconds": 123.2,
-    "package_path": "state/trending_packages/20260927/04_graph-solar-capacity-passed-hydropower.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-114424_solar_capacity_just_passed_hydropower.mp4",
+    "video_path": "output/daily_20260927-115518_china_pulled_away_in_electric_car_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -136,20 +34,20 @@
     "channel": "default"
   },
   {
-    "topic": "The Gym Kept Charging Me. The Mail Kept Receipts.",
-    "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
-    "format": "reddit",
-    "publish_at": "2026-09-27T19:00:00Z",
+    "topic": "Mobile Lines Buried Landlines Worldwide",
+    "title": "Mobile Lines Buried Landlines Worldwide",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/vOYQCQZnCWs",
+    "video_url": "https://youtube.com/shorts/TiNYFIM4GDw",
     "error": null,
-    "elapsed_seconds": 164.9,
-    "package_path": "state/trending_packages/20260927/05_gym-membership-certified-mail.json",
+    "elapsed_seconds": 133.4,
+    "package_path": "state/trending_packages/20260927/02_graph-mobile-lines-buried-landlines.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260927-114629_the_gym_kept_charging_me__the_mail_kept_.mp4",
+    "video_path": "output/daily_20260927-115735_mobile_lines_buried_landlines_worldwide.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.233,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +58,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "loudness_lufs": -25.0
     },
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 100
+      "score": 91
     },
     "channel": "default"
   },
   {
-    "topic": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
-    "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
-    "format": "reddit",
-    "publish_at": "2026-09-27T20:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/CKp0vhdNiDY",
-    "error": null,
-    "elapsed_seconds": 197.2,
-    "package_path": "state/trending_packages/20260927/06_boss-expense-receipt-audit.json",
+    "topic": "Online Shopping Passed Department Stores",
+    "title": "Online Shopping Passed Department Stores",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+    "elapsed_seconds": 109.7,
+    "package_path": "state/trending_packages/20260927/03_graph-online-shopping-passed-department-stores.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260927-114913_he_rejected_my__18_receipt__the_auditor_.mp4",
+    "video_path": "output/daily_20260927-115948_online_shopping_passed_department_stores.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 56.3,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +92,75 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Solar Capacity Just Passed Hydropower",
+    "title": "Solar Capacity Just Passed Hydropower",
+    "format": "graph_race",
+    "publish_at": "2026-09-27T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+    "elapsed_seconds": 113.9,
+    "package_path": "state/trending_packages/20260927/04_graph-solar-capacity-passed-hydropower.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-120138_solar_capacity_just_passed_hydropower.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+      "score": null
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+    "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+    "format": "reddit",
+    "publish_at": "2026-09-27T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OQa4f2xJDGQ",
+    "error": null,
+    "elapsed_seconds": 169.1,
+    "package_path": "state/trending_packages/20260927/05_gym-membership-certified-mail.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-120333_the_gym_kept_charging_me__the_mail_kept_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.9
     },
     "qa": {
       "ok": true,
@@ -212,5 +173,131 @@
       "score": 96
     },
     "channel": "default"
+  },
+  {
+    "topic": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+    "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
+    "format": "reddit",
+    "publish_at": "2026-09-27T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.",
+    "elapsed_seconds": 193.3,
+    "package_path": "state/trending_packages/20260927/06_boss-expense-receipt-audit.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260927-120623_he_rejected_my__18_receipt__the_auditor_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.033,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Grizzly reality: US states grapple with uptick in encounters between bears and humans",
+    "angle": "Record numbers of grizzly sightings are forcing U.S. states to rethink how humans and bears share the landscape.",
+    "publish_at": "2026-09-27T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Grizzly reality: US states grapple with uptick in encounters between bears and humans' refused by the writer: The provided trend is not a permissible setting for a fictional story",
+    "elapsed_seconds": 12.9,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "Scientists discovered two bizarre new sea spiders that are \u201cnightmare fuel\u201d",
+    "angle": "Two newly identified sea\u2011spider species with hair\u2011covered legs and glowing red eyes have been found in the Salish Sea, looking like creatures from a horror film.",
+    "publish_at": "2026-09-27T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/KEl27m-bydU",
+    "error": null,
+    "elapsed_seconds": 269.4,
+    "title": "My gate agent yelled, then the passenger stole my latte",
+    "package_path": "state/trending_packages/20260927-120958_auto_scientists_discovered_two_bizarre_new_se.json",
+    "video_path": "output/daily_20260927-120958_scientists_discovered_two_bizarre_new_se.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 38.433,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 83
+    },
+    "backfill": true
+  },
+  {
+    "topic": "PNOE\u2019s new face mask wants to make lab-grade breath testing a self-serve affair",
+    "angle": "Startup PNO\u0112 launches a wearable mask that can instantly analyze breath for alcohol and drugs, aiming to bring lab\u2011level testing to everyday users.",
+    "publish_at": "2026-09-27T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/vNwiLrr_qH4",
+    "error": null,
+    "elapsed_seconds": 272.7,
+    "title": "I Let a Customer Hijack Our New Health Mask",
+    "package_path": "state/trending_packages/20260927-121428_auto_pnoe_s_new_face_mask_wants_to_make_lab_g.json",
+    "video_path": "output/daily_20260927-121428_pnoe_s_new_face_mask_wants_to_make_lab_g.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.8,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 96
+    },
+    "backfill": true
   }
 ]
