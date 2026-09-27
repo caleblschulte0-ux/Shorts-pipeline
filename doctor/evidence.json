@@ -2653,8 +2653,8 @@
     }
   ],
   "recent_commits": [
-    "aef5e35 2026-09-27 claim: mailbox verdicts 2026-09-27T04:47Z [skip ci]",
-    "92e885b 2026-09-27 claim: mailbox verdicts 2026-09-27T03:47Z [skip ci]"
+    "9aa1fec 2026-09-27 watchdog: phase A readiness 20260927 [skip ci]",
+    "b9117b1 2026-09-27 exchange: phase A bundle for 20260927 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2759,32 +2759,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 110,
+      "videos": 115,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 6.38,
+          "vph": 5.89,
           "views": 1356
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 3.21,
-          "views": 42
-        },
-        {
-          "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
-          "vph": 1.85,
-          "views": 38
+          "vph": 2.37,
+          "views": 73
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.79,
-          "views": 77
+          "vph": 1.66,
+          "views": 101
         },
         {
-          "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament",
-          "vph": 1.42,
-          "views": 121
+          "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
+          "vph": 1.61,
+          "views": 23
+        },
+        {
+          "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
+          "vph": 1.25,
+          "views": 48
         }
       ],
       "full_data": "state/analytics_third/latest.json"
