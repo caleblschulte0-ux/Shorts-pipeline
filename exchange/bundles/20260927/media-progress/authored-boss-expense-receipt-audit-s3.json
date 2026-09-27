@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:50.591Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-expense-receipt-audit-s3",
+  "safe_request_id": "authored-boss-expense-receipt-audit-s3",
+  "prompt_sha256": "6f1827095568d05f36accc69291a62d96d028e611ae13610b8c3c483ec9c64b1",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: corporate card expense spreadsheet with highlighted charges no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+    "filename": "20260927__authored-boss-expense-receipt-audit-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=160JMm-Bdsku3K2NiMYq75iYI7AK5OEQ2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3bc280d403bd2548d9d5c57f05ffb713ca7617150527e6d3f0457523cb424116",
+    "bytes": 1609822,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "boss-expense-receipt-audit",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
