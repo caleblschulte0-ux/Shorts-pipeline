@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:40.828Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-gym-membership-certified-mail-s1",
+  "safe_request_id": "authored-gym-membership-certified-mail-s1",
+  "prompt_sha256": "5bb3ef8d1be4a72684e75e3cc7e44963634330f142242449244ad21f871d461b",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: broken online cancellation form on laptop. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+    "filename": "20260927__authored-gym-membership-certified-mail-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QOl8BmQJ0B4kepdm_uuEd6ZQxEFWBNA6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "99e7a0012365f6e3f081da7a7f0dc77acf3ffa1b7eccc866e56bc12c2c399b63",
+    "bytes": 1794244,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "gym-membership-certified-mail",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
