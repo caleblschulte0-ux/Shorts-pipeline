@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:44.670Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-gym-membership-certified-mail-s4",
+  "safe_request_id": "authored-gym-membership-certified-mail-s4",
+  "prompt_sha256": "d8b7710f7730acb45a05ba35cc5e7690c5715489e2ef7997d371b3710b9346c8",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: gym account history showing suspicious reactivation no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+    "filename": "20260927__authored-gym-membership-certified-mail-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Sb1WYFJIidnUt6DamQRBcgcq_Mh7OOCA",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "da33aa63fde490ff6676b505a84c1b7419f04780e0d3fee1941deb5712bcfb68",
+    "bytes": 1899613,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "gym-membership-certified-mail",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
