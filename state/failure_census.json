@@ -1,96 +1,55 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "decorative_mascot": {
-   "count": 7,
+  "dead_air": {
+   "count": 5,
    "stories": {
-    "passport-ownership-surge": 2,
-    "iss-sixteen-sunrises": 2,
-    "cicada-double-brood-2024": 3
+    "he_said_the_chair_vanished__then_he_list": 1,
+    "phil_knight": 1,
+    "beaver-ecosystem-comeback": 1,
+    "iss-sixteen-sunrises": 1,
+    "hidden-foster-system": 1
    },
    "timestamps": [
-    "2026-09-26T15:55:30+00:00",
-    "2026-09-26T16:04:05+00:00",
-    "2026-09-26T16:04:05+00:00",
-    "2026-09-26T17:00:29+00:00",
-    "2026-09-26T17:09:10+00:00",
-    "2026-09-26T17:09:10+00:00",
-    "2026-09-26T17:18:01+00:00"
+    "2026-09-26T17:14:34+00:00",
+    "2026-09-26T17:26:53+00:00",
+    "2026-09-27T11:52:20+00:00",
+    "2026-09-27T11:59:32+00:00",
+    "2026-09-27T12:45:31+00:00"
    ],
    "examples": [
-    "unreadable: In seg1:start, seg1:mid and seg1:end the title 'AMERICANS WHO OWN A PASSPORT' is cut off at both frame edges ('MERICANS ... PASSPOR'), and in seg1:end the mascot covers 'WHO'. In seg4:star",
-    "decorative_mascot: In hook@0.3 through seg0:end two copies of Data stand beside the numbers and slide sideways. In seg3:start/mid/end he balances on top of a bubble. In seg4:start/mid/end and payoff h",
-    "bare_number_card: The hook and seg0 (t=0.3 to 5.18s) are two rows of big numbers, '900' and '27.6K', each next to a mascot, with nothing showing speed. Only the labels carry the 30x claim."
+    "dead_air: The same static clip-art bank icon fills the top half at mid3 (32.6s), mid4, mid5, payoff@-1.8 and payoff@-0.4, roughly 22s unchanged. It also appeared at mid1, so two beats use the same pic",
+    "dead_air: The story stops being illustrated for a long stretch. mid2 through mid4 (~20-44s) are full-screen gameplay with only captions, so the plaque, trash-can and 42-word-paragraph beats have nothi",
+    "dead_air: The video has a static period of 4.5 seconds between frame seg2:end (t=25.65s) and frame seg3:start (t=30.15s), where nothing meaningfully moves."
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 2,
+   "stories": {
+    "iss-sixteen-sunrises": 1,
+    "he_rejected_my__18_receipt__the_auditor_": 1
+   },
+   "timestamps": [
+    "2026-09-27T11:59:32+00:00",
+    "2026-09-27T12:09:34+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: The mascot is largely static or merely slides between positions without performing a specific bit tied to the data, as seen in hook@0.3 through seg0:end where it stands next to the ",
+    "decorative_mascot: The Subway Surfers character runs and jumps continuously in the bottom half of the screen, but its actions are generic gameplay and not a specific bit tied to the narrative beats (e"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 5,
-   "stories": {
-    "iss-sixteen-sunrises": 1,
-    "wind_and_solar_finally_passed_coal": 1,
-    "cicada-double-brood-2024": 2,
-    "phil_knight": 1
-   },
-   "timestamps": [
-    "2026-09-26T16:04:05+00:00",
-    "2026-09-26T15:53:09+00:00",
-    "2026-09-26T17:18:01+00:00",
-    "2026-09-26T17:26:48+00:00",
-    "2026-09-26T17:26:53+00:00"
-   ],
-   "examples": [
-    "unreadable: seg3:start/mid/end: the kicker is cut off as 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T\u2026'. seg4:mid/end: the grey '15' is printed over grey tiles and almost disappears, and a tan wipe ba",
-    "unreadable: payoff@-1.8: the gold tip ring sits over the end of the 'Wind + solar 721' label, and the 'Coal 688' label is packed right under it. At the crossover the two tip labels and markers collide",
-    "unreadable: seg3:end: the second line, \"500\u00d7 as many / as a typical wooded acre\", is faded grey printed over the dark treeline and the fence rope, so you have to work out what it says. seg1:end: the s"
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 3,
-   "stories": {
-    "diana__princess_of_wales": 1,
-    "he_said_the_chair_vanished__then_he_list": 1,
-    "phil_knight": 1
-   },
-   "timestamps": [
-    "2026-09-26T16:12:04+00:00",
-    "2026-09-26T17:14:34+00:00",
-    "2026-09-26T17:26:53+00:00"
-   ],
-   "examples": [
-    "dead_air: The top illustration is the same blank phone icon from mid4 (39.4s) through mid5, payoff@-1.8 and payoff@-0.4 (50.2s), about 11s. Two beats (dialed the number / flagged her account) show the",
-    "dead_air: The same static clip-art bank icon fills the top half at mid3 (32.6s), mid4, mid5, payoff@-1.8 and payoff@-0.4, roughly 22s unchanged. It also appeared at mid1, so two beats use the same pic",
-    "dead_air: The story stops being illustrated for a long stretch. mid2 through mid4 (~20-44s) are full-screen gameplay with only captions, so the plaque, trash-can and 42-word-paragraph beats have nothi"
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 2,
-   "stories": {
-    "diana__princess_of_wales": 1,
-    "coleman_wong": 1
-   },
-   "timestamps": [
-    "2026-09-26T16:12:04+00:00",
-    "2026-09-26T16:30:37+00:00"
-   ],
-   "examples": [
-    "junk_imagery: mid3/mid4/mid5: the top half is a generic flat clip-art receipt icon, then a blank blue-screen phone icon. They are placeholder pictograms, not an illustration of the story beat, and the",
-    "junk_imagery: mid1 (t=10.83s): a stock photo of a hand plucking an acoustic GUITAR's strings illustrates tennis-racket restringing. It is the wrong instrument and the wrong sport, pulled in by a keywo"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
    "count": 1,
    "stories": {
-    "coldest-place-in-the-universe-is-human-made": 1
+    "phil_knight": 1
    },
    "timestamps": [
-    "2026-09-26T16:45:27+00:00"
+    "2026-09-26T17:26:53+00:00"
    ],
    "examples": [
-    "temporal_gate: duplicate_ratio 0.536 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+    "unreadable: In mid2 the caption 'NO EDITS ONCE' is small, washed out and yellow on a sandy yellow background, so it is hard to read at phone distance. It is also visibly smaller than the other caption"
    ],
    "recurred_after_fix": false
   },
@@ -106,18 +65,31 @@
     "empty_void: At mid5, payoff@-1.8 and payoff@-0.4 the whole top half is a dark vignette with one small phone icon whose screen is blank flat blue. Nearly half the frame is wasted."
    ],
    "recurred_after_fix": false
+  },
+  "bare_number": {
+   "count": 1,
+   "stories": {
+    "iss-sixteen-sunrises": 1
+   },
+   "timestamps": [
+    "2026-09-27T11:59:32+00:00"
+   ],
+   "examples": [
+    "bare_number_card: In seg3:start, the numbers '1,440' and '93' are presented as bare numbers inside simple circles, without an interesting demonstration."
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
-   "min": 0,
+   "median": 3,
+   "min": 2,
    "max": 4
   },
   "data_demo": {
-   "median": 1,
-   "min": 0,
-   "max": 4
+   "median": 4,
+   "min": 1,
+   "max": 5
   },
   "mascot": {
    "median": 4,
@@ -125,8 +97,8 @@
    "max": 4
   },
   "craft": {
-   "median": 1,
-   "min": 0,
+   "median": 3,
+   "min": 1,
    "max": 3
   },
   "pace": {
@@ -135,7 +107,7 @@
    "max": 2
   },
   "payoff": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -148,23 +120,23 @@
  "scores": [
   53,
   57,
-  35,
+  61,
+  61,
+  91,
+  100,
+  82,
+  87,
+  91,
+  100,
+  96,
+  92,
+  52,
+  91,
+  91,
+  96,
+  82,
   83,
-  74,
-  57,
-  49,
-  65,
-  57,
-  66,
-  14,
-  57,
-  78,
-  74,
-  78,
-  53,
-  57,
-  61,
-  61,
-  91
+  96,
+  92
  ]
 }
