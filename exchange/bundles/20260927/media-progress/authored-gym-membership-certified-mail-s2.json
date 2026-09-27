@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:41.988Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-gym-membership-certified-mail-s2",
+  "safe_request_id": "authored-gym-membership-certified-mail-s2",
+  "prompt_sha256": "449558a8d23b89439b7c49280b7757c33840525104ee4f07615cd81d98200cea",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: certified letter and postal tracking receipt. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+    "filename": "20260927__authored-gym-membership-certified-mail-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1NIz0UIVj1eCuNydhQZCnc9pS-_97wZm9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6f67a2afa8d7f0827862804607bf3b822bd9bca0ddc7ac0c64ebb92b51563741",
+    "bytes": 1785088,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "gym-membership-certified-mail",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
