@@ -640,6 +640,40 @@ def _spread(pos: list[float], min_sep: float, floor: float,
     return out
 
 
+def _clear_band(values: list[float], placed: list[float], min_sep: float,
+                floor: float, ceil: float, lo: float,
+                hi: float) -> list[float]:
+    """Move a descending block of label positions off the band (lo, hi).
+
+    Labels whose series sits at or above the band's middle go above `hi`,
+    the rest below `lo`, keeping rank order and `min_sep`. When the lower
+    group has no room above `floor`, every label goes above the band. If
+    even that would overrun `ceil`, the positions come back unchanged: a
+    label pushed out of the plot is worse than one beside a marker.
+    """
+    if not placed:
+        return list(placed)
+    mid = (lo + hi) / 2.0
+
+    def _split(n_up: int) -> list[float]:
+        up = list(placed[:n_up])
+        for i in range(len(up) - 1, -1, -1):
+            need = hi if i == len(up) - 1 else up[i + 1] + min_sep
+            up[i] = max(up[i], need)
+        dn = list(placed[n_up:])
+        for i in range(len(dn)):
+            need = lo if i == 0 else dn[i - 1] - min_sep
+            dn[i] = min(dn[i], need)
+        return up + dn
+
+    out = _split(sum(1 for v in values if v >= mid))
+    if out[-1] < floor:
+        out = _split(len(placed))
+    if out[0] > ceil:
+        return list(placed)
+    return out
+
+
 def _interp(years, values, x):
     if x <= years[0]:
         return values[0]
@@ -1039,6 +1073,43 @@ def render(spec: dict, out: str | Path, *,
                              min_sep=_sep,
                              floor=cam_bot + _sep * 0.8,
                              ceil=cam_top - _sep * 0.4)
+            # ...AND CLEAR OF THE PASS. After the crossing, a ring holds the
+            # spot for the rest of the race, and a "finally passed" race
+            # crosses near its last year, which is exactly where the tip
+            # labels flip LEFT to. `_spread` kept them apart from each
+            # other and dropped them both onto the ring: "the gold tip ring
+            # sits over the end of the 'Wind + solar 721' label, and 'Coal
+            # 688' is packed right under it" and "a leftover ring marker
+            # overlaps the digits" (wind/solar, both `unreadable`
+            # auto-fails, 2026-09-26, after the ink-label fix); "the
+            # crossover glow ring covers them at the overtake" (chicken,
+            # 2026-09-25). So when a flipped label reaches back to the
+            # crossing, the leader's label goes above the ring and the
+            # trailer's below it. The ring is 26pt across with a 3pt edge
+            # and a plate is ~34px tall: 44px between centres clears both.
+            if cross is not None and cur >= cross["x"]:
+                _span = (x_hi - years[0]) or 1.0
+                _back = (cur - cross["x"]) / _span * ax_w_px
+                _reach = 0.0
+                for rank, (cv, s, _xs, _ys) in enumerate(tips):
+                    _lbl = f"{s['name']}  {_fmt_compact(cv)}{unit}"
+                    _art = icons.get(s["name"])
+                    _off = ((16 if rank == 0 else 13) / 2.0 + 1.4 + 14
+                            if _art is None else
+                            _icon_width(_art, TIP_ICON_PX, TIP_ICON_MAX_W) + 16)
+                    _avail = (1.0 - (cur - years[0]) / _span) * ax_w_px
+                    if (_text_px(fig, _lbl, 15) + _off + 14) > _avail:
+                        # `off` is in points; the reach is measured in px
+                        _reach = max(_reach, _text_px(fig, _lbl, 15)
+                                     + _off * dpi / 72.0 + 14)
+                _ring_px = 26 * dpi / 72.0 / 2.0 + 3
+                if _reach and _back <= _reach + _ring_px:
+                    _clear = (cam_top - cam_bot) * (44.0 / _ax_px)
+                    placed = _clear_band(
+                        [t[0] for t in tips], placed, min_sep=_sep,
+                        floor=cam_bot + _sep * 0.8,
+                        ceil=cam_top - _sep * 0.4,
+                        lo=cross["y"] - _clear, hi=cross["y"] + _clear)
             for rank, (cv, s, _xs, _ys) in enumerate(tips):
                 ly = placed[rank]
                 art = icons.get(s["name"])
