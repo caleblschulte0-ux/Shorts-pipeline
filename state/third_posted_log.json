@@ -9653,6 +9653,33 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-09-27T12:22:33.674136+00:00"
+    },
+    "rejected-lightempathicbunnyprchase-qeggprn1vengum3w": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/LightEmpathicBunnyPRChase-QEGgpRn1VeNgUm3W",
+      "streamer": "sodapoppin",
+      "title": "RIIIIIIIIIGGED",
+      "qa_rejected": true,
+      "rejected_by": "rescue fail-closed",
+      "rejected_why": "weak title + no transcript judge reachable \u2014 nothing vouched for it",
+      "ts": "2026-09-27T13:34:16.452106+00:00"
+    },
+    "rejected-cogenttenacioustapirnerfredblaster-8vwtby_snqof9lbq": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CogentTenaciousTapirNerfRedBlaster-8VWtBY_SNqOf9lbQ",
+      "streamer": "stableronaldo",
+      "title": "???????",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-09-27T13:34:26.044990+00:00"
+    },
+    "rejected-encouragingpleasantmanateepastathat-b3wkwop1dk6c8ph3": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/EncouragingPleasantManateePastaThat-B3wKwoP1Dk6c8PH3",
+      "streamer": "zackrawrr",
+      "title": "Asmongold is right yet again.... burn on CarolineKwan",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 19/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-09-27T13:34:35.171840+00:00"
     }
   }
 }
