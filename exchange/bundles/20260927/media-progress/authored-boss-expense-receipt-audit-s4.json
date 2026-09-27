@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260927",
+  "bundle": {
+    "identity": "4ce35709e59b9666972af7e5553f276da50a8f168fff5e2732156eb483a1afc6",
+    "path": "exchange/bundles/20260927/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-27T11:31:51.900Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-expense-receipt-audit-s4",
+  "safe_request_id": "authored-boss-expense-receipt-audit-s4",
+  "prompt_sha256": "46ed65c52d5a2d3bee767a21d63438deaecefb356a52965bac4afda804b10910",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: finance controller locking corporate card account on computer. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+    "filename": "20260927__authored-boss-expense-receipt-audit-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1R-tzRO28SNjeCkmNmldm5KgCFWLF4PBv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7348dae9745f951fec4eb82ee5b537c16354284d4d6f512b3d9d1578a344dce4",
+    "bytes": 1544431,
+    "format": "png",
+    "width": 940,
+    "height": 1672
+  },
+  "package_id": "boss-expense-receipt-audit",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
