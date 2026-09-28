@@ -1,155 +1,123 @@
 [
   {
-    "topic": "mexico",
-    "angle": "A Category\u202f2 hurricane is set to slam Mexico\u2019s Baja California today, while a new tropical storm spins up, threatening millions with flash floods.",
+    "topic": "sonnet 5.5",
+    "angle": null,
     "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'mexico' cannot seed a story ('Hurricane'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.9,
-    "unfit": true
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (9eaf635899801cc6)",
+    "elapsed_seconds": 26.0
   },
   {
-    "topic": "5 British suspects arrested, explosives found near U.S.-run air base. Iran denies role",
-    "angle": "Five British nationals were detained after a cache of explosives was discovered near a U.S. air base in England, sparking diplomatic tensions with Iran.",
+    "topic": "tropical cyclone",
+    "angle": null,
     "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: '5 British suspects arrested, explosives found near U.S.-run air base. Iran denies role' cannot seed a story ('arrested'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.0,
-    "unfit": true
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (7082a429d037cf1a)",
+    "elapsed_seconds": 26.4
   },
   {
-    "topic": "\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys",
-    "angle": "Chacma baboons are raiding suburbs, leaving piles of poop on rooftops and sparking a heated debate over wildlife management in Cape Town.",
+    "topic": "taylor swift support bebe rexha",
+    "angle": null,
     "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: '\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys' cannot seed a story ('troops'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.0,
-    "unfit": true
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5a894f3bec53ac66)",
+    "elapsed_seconds": 26.0
   },
   {
-    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
-    "angle": "Scientists filmed an elusive Andean cat \u2013 one of the world\u2019s rarest felines \u2013 on a remote trail, confirming its presence in a threatened habitat.",
+    "topic": "milania giudice",
+    "angle": null,
     "publish_at": "2026-09-28T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/gW18T9Z4fbg",
-    "error": null,
-    "elapsed_seconds": 302.9,
-    "title": "I Saved a $200 Order and Got Promoted",
-    "package_path": "state/trending_packages/20260928-173423_auto_rare_small_cat_caught_on_camera_in_the_a.json",
-    "video_path": "output/daily_20260928-173423_rare_small_cat_caught_on_camera_in_the_a.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.033,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -26.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    }
-  },
-  {
-    "topic": "After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench",
-    "angle": "A massive whale carcass drifted onto a Perth shoreline, prompting beach closures and a surge of selfie\u2011snapping tourists.",
-    "publish_at": "2026-09-28T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench' cannot seed a story ('dead'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.0,
-    "unfit": true
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (0d18c5569c5be678)",
+    "elapsed_seconds": 25.9
   },
   {
-    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Footage from Colorado\u2019s I\u201170 wildlife tunnel shows deer, elk and coyotes safely crossing, proving the underpass cuts highway\u2011kill rates.",
-    "publish_at": "2026-09-28T20:30:00Z",
+    "topic": "brian dawkins",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (fcb48cd2c487f6fa)",
-    "elapsed_seconds": 25.7
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (efeb34416955be8d)",
+    "elapsed_seconds": 25.8
   },
   {
-    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
-    "angle": "NORAD pilots intercepted two unidentified aircraft over Chicago, and the rare cockpit videos reveal the tense scramble.",
-    "publish_at": "2026-09-28T20:30:00Z",
+    "topic": "belgium vs france",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (d4f8a15c40583027)",
-    "elapsed_seconds": 25.6
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (ed928c0f617727b6)",
+    "elapsed_seconds": 26.3
   },
   {
-    "topic": "Nigerian attempts to break world record by dancing non-stop for seven days",
-    "angle": "Ben Dancer is attempting a Guinness\u2011record marathon dance in Lagos, aiming to out\u2011last the current seven\u2011day streak and draw global attention.",
-    "publish_at": "2026-09-28T20:30:00Z",
+    "topic": "b\u00e9lgica - francia",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (39ac80088423bae0)",
-    "elapsed_seconds": 25.7
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5fe89ab9a6fef570)",
+    "elapsed_seconds": 26.3
   },
   {
-    "topic": "Florida man hospitalized after car plunges into Massachusetts bay - WWLP",
-    "angle": "A Florida driver lost control on a bridge and crashed into a Massachusetts bay, ending up in the hospital and prompting a rescue operation.",
-    "publish_at": "2026-09-28T20:30:00Z",
+    "topic": "romania vs bosnia and herzegovina",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (733c440039eb9caa)",
-    "elapsed_seconds": 25.5
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (77fbd6e2b470db40)",
+    "elapsed_seconds": 27.7
   },
   {
-    "topic": "snow",
+    "topic": "t\u00fcrkiye vs italy",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (8bf889e28dd304b3)",
+    "elapsed_seconds": 26.2
+  },
+  {
+    "topic": "sonnet 5.5",
+    "angle": null,
+    "publish_at": "2026-09-28T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (9eaf635899801cc6)",
+    "elapsed_seconds": 25.6,
+    "backfill": true
+  },
+  {
+    "topic": "tropical cyclone",
     "angle": null,
     "publish_at": "2026-09-28T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (ade6c4f7b6e69ed6)",
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (22c6dbbaddf6bf82)",
     "elapsed_seconds": 25.7,
     "backfill": true
   },
   {
-    "topic": "blood pressure",
+    "topic": "taylor swift support bebe rexha",
     "angle": null,
     "publish_at": "2026-09-29T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (469343ce7509dae7)",
-    "elapsed_seconds": 26.1,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (f87f54e57e35e9ce)",
+    "elapsed_seconds": 25.8,
     "backfill": true
   },
   {
-    "topic": "kelvin wave 2026",
+    "topic": "milania giudice",
     "angle": null,
     "publish_at": "2026-09-29T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (bd484dd30c12b959)",
-    "elapsed_seconds": 25.7,
-    "backfill": true
-  },
-  {
-    "topic": "taylor sheridan landman filming update",
-    "angle": null,
-    "publish_at": "2026-09-29T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (b8d12af359444361)",
-    "elapsed_seconds": 26.1,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (0d18c5569c5be678)",
+    "elapsed_seconds": 25.5,
     "backfill": true
   }
 ]
