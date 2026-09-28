@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-28T12:36:02Z",
+ "updated": "2026-09-28T12:59:51Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -4758,6 +4758,16 @@
    "answer_path": "exchange/rewrites/20260928/bird-flu-species-jump__49e828cf.answer.json"
   },
   {
+   "id": "black-holes-in-galaxy__cf824ed9",
+   "slug": "black-holes-in-galaxy",
+   "filed": "2026-09-28T12:59:51Z",
+   "why": [
+    "premise: brain: The claim relies on a speculative figure without a clear, verifiable reversal of a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20260928/black-holes-in-galaxy__cf824ed9.request.json",
+   "answer_path": "exchange/rewrites/20260928/black-holes-in-galaxy__cf824ed9.answer.json"
+  },
+  {
    "id": "blood-type-rarity__b751ede5",
    "slug": "blood-type-rarity",
    "filed": "2026-09-28T12:03:54Z",
@@ -5303,16 +5313,6 @@
    ],
    "request": "exchange/rewrites/20260928/religious-nones-rise__ea96d336.request.json",
    "answer_path": "exchange/rewrites/20260928/religious-nones-rise__ea96d336.answer.json"
-  },
-  {
-   "id": "saffron-red-gold-myth__9af139ed",
-   "slug": "saffron-red-gold-myth",
-   "filed": "2026-09-28T12:36:02Z",
-   "why": [
-    "premise: brain: Uses a searchable noun phrase ('World's Most Expensive Spice') which triggers automatic rejection."
-   ],
-   "request": "exchange/rewrites/20260928/saffron-red-gold-myth__9af139ed.request.json",
-   "answer_path": "exchange/rewrites/20260928/saffron-red-gold-myth__9af139ed.answer.json"
   },
   {
    "id": "sand-mining-crisis__eb97e4fb",
