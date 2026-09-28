@@ -3,50 +3,49 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **13**
-- succeeded: **0**
+- succeeded: **1**
 - quarantined (off-topic imagery): **0**
-- failed: **13**
+- failed: **12**
+
+## Posted
+- **I Saved a $200 Order and Got Promoted**
+  - topic: Rare small cat caught on camera in the Andean foothills. Here’s why experts are so excited - BBC Wildlife Magazine
+  - angle: Scientists filmed an elusive Andean cat – one of the world’s rarest felines – on a remote trail, confirming its presence in a threatened habitat.
+  - publishes: `2026-09-28T19:00:00Z`
+  - https://youtube.com/shorts/gW18T9Z4fbg
+  - took: 302.9s
 
 ## Failed
-- **Two mass shootings in South Africa leave 28 dead**
-  - error: `unfit_for_fiction: 'Two mass shootings in South Africa leave 28 dead' cannot seed a story ('shootings'): a real tragedy, war, crime or politics is not inspiration for fiction`
-- **Rare small cat caught on camera in the Andean foothills. Here’s why experts are so excited - BBC Wildlife Magazine**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)`
-- **Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)`
+- **mexico**
+  - error: `unfit_for_fiction: 'mexico' cannot seed a story ('Hurricane'): a real tragedy, war, crime or politics is not inspiration for fiction`
+- **5 British suspects arrested, explosives found near U.S.-run air base. Iran denies role**
+  - error: `unfit_for_fiction: '5 British suspects arrested, explosives found near U.S.-run air base. Iran denies role' cannot seed a story ('arrested'): a real tragedy, war, crime or politics is not inspiration for fiction`
+- **‘It’s hard to sell a house when it’s covered in baboon faeces’: Cape Town divided over plan to remove its monkeys**
+  - error: `unfit_for_fiction: '‘It’s hard to sell a house when it’s covered in baboon faeces’: Cape Town divided over plan to remove its monkeys' cannot seed a story ('troops'): a real tragedy, war, crime or politics is not inspiration for fiction`
+- **After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench**
+  - error: `unfit_for_fiction: 'After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench' cannot seed a story ('dead'): a real tragedy, war, crime or politics is not inspiration for fiction`
 - **Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 121)`
-- **Giant pandas arrive in Atlanta after Trump-Xi meeting**
-  - error: `unfit_for_fiction: 'Giant pandas arrive in Atlanta after Trump-Xi meeting' cannot seed a story ('President'): a real tragedy, war, crime or politics is not inspiration for fiction`
-- **Florida man hospitalized after car plunges into Massachusetts bay - wwlp.com**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (900f56f2b127960c)`
-- **Deputies confront sword-wielding Florida man after reported home invasion - WPEC**
+ | mailbox: AnswerPending: answer pending in exchange/asks (fcb48cd2c487f6fa)`
+- **Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (5dcc24c548644727)`
-- **Meta's Muse agent is attacking one of the economy's most profitable weak spots**
-  - error: `unfit_for_fiction: "Meta's Muse agent is attacking one of the economy's most profitable weak spots" cannot seed a story ('attacking'): a real tragedy, war, crime or politics is not inspiration for fiction`
-- **Soccer player gets smoked by lawn roller during halftime warm-up in wild moment caught on camera - Fox News**
-  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 123)`
-- **qqq stock**
+ | mailbox: AnswerPending: answer pending in exchange/asks (d4f8a15c40583027)`
+- **Nigerian attempts to break world record by dancing non-stop for seven days**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (0bcb533a261d85af)`
-- **msft stock**
+ | mailbox: AnswerPending: answer pending in exchange/asks (39ac80088423bae0)`
+- **Florida man hospitalized after car plunges into Massachusetts bay - WWLP**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (2e6a22f56988d645)`
-- **mcdonalds drive thru**
+ | mailbox: AnswerPending: answer pending in exchange/asks (733c440039eb9caa)`
+- **snow**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (6e22687db37ca24a)`
-- **ollie gordon**
+ | mailbox: AnswerPending: answer pending in exchange/asks (ade6c4f7b6e69ed6)`
+- **blood pressure**
   - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (43d65165d98d0fbc)`
+ | mailbox: AnswerPending: answer pending in exchange/asks (469343ce7509dae7)`
+- **kelvin wave 2026**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
+ | mailbox: AnswerPending: answer pending in exchange/asks (bd484dd30c12b959)`
+- **taylor sheridan landman filming update**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
+ | mailbox: AnswerPending: answer pending in exchange/asks (b8d12af359444361)`
 
-
-## Format scoreboard (A/B/C test)
-
-| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
-|---|---|---|---|---|---|---|---|---|
-| graph_race | 49 | 158 | 3.2 | 0.03 | 67.4 | 1 | 0 | 0 |
-| reddit_story | 27 | 15 | 0.6 | 0.0 | 7.2 | 0 | 0 | 0 |
-
-matched 76 videos to packages, 0 unmatched (pre-A/B/C uploads)
