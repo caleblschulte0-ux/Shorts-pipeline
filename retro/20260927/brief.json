@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260927",
-  "generated_at": "2026-09-27T23:30:56Z",
+  "generated_at": "2026-09-28T00:30:51Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 3.76,
+          "days": 3.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 2.76,
+          "days": 2.8,
           "samples": 0,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1525,10 +1525,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "d299025",
-    "commits_since": "2026-09-26",
+    "head": "8b8e01d",
+    "commits_since": "2026-09-27",
     "commit_count": 50,
     "commits": [
+      "8b8e01d claim: mailbox verdicts 2026-09-27T23:47Z [skip ci]",
+      "2833d57 retro: brief + triage for 20260927 [skip ci]",
       "d299025 claim: mailbox verdicts 2026-09-27T22:26Z [skip ci]",
       "25f5bd5 chart_race: tip labels step off the pass ring (self-repair 2026-09-27) (#483)",
       "a4c859d claim: mailbox verdicts 2026-09-27T21:47Z [skip ci]",
@@ -1566,9 +1568,7 @@
       "6d65d27 explainer: update posted log + analytics [skip ci]",
       "1c8e59f claim: mailbox verdicts 2026-09-27T12:48Z [skip ci]",
       "b0cda41 explainer: update posted log + analytics [skip ci]",
-      "53fee62 explainer: posted hidden-foster-system [skip ci]",
-      "ea32a26 third: analytics [skip ci]",
-      "3a3b845 third: update posted log + analytics [skip ci]"
+      "53fee62 explainer: posted hidden-foster-system [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
