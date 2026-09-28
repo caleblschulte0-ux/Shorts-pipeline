@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-28T17:47:17Z",
+ "updated": "2026-09-28T18:17:13Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -111,6 +111,16 @@
    "request": "exchange/reviews/20260928/global-ewaste-crisis__c0286f81ee.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/global-ewaste-crisis__c0286f81ee/sheet.jpg",
    "answer_path": "exchange/reviews/20260928/global-ewaste-crisis__c0286f81ee.verdict.json"
+  },
+  {
+   "id": "iss-sixteen-sunrises__17a3253fc4",
+   "channel": "explainer",
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "filed": "2026-09-28T18:17:13Z",
+   "request": "exchange/reviews/20260928/iss-sixteen-sunrises__17a3253fc4.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__17a3253fc4/sheet.jpg",
+   "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__17a3253fc4.verdict.json"
   },
   {
    "id": "iss-sixteen-sunrises__54c0fab7d3",
