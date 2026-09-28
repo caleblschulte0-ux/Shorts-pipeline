@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:02.155Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-reserved-parking-tow-receipt-s0",
+  "safe_request_id": "authored-reserved-parking-tow-receipt-s0",
+  "prompt_sha256": "56d8351feafdb8e479966154fa45f94aa882cba8bf0b785d2097c3d42c9d3ed0",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: car parked in clearly numbered apartment parking space. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1sBWiz_ICORF3Umvy3ODe-7eeMsymNW20",
+    "filename": "20260928__authored-reserved-parking-tow-receipt-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1sBWiz_ICORF3Umvy3ODe-7eeMsymNW20",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8f64b41bcf69b5d609da3713384487f63b85059fc13821eac7a287da233acdd8",
+    "bytes": 2120830,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "reserved-parking-tow-receipt",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
