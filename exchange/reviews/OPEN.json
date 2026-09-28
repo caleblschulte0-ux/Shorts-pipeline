@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-28T10:47:52Z",
+ "updated": "2026-09-28T12:36:01Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -81,6 +81,36 @@
    "request": "exchange/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869/sheet.jpg",
    "answer_path": "exchange/reviews/20260927/solar_capacity_just_passed_hydropower__836e2ec869.verdict.json"
+  },
+  {
+   "id": "iss-sixteen-sunrises__a991090a35",
+   "channel": "explainer",
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "filed": "2026-09-28T12:03:53Z",
+   "request": "exchange/reviews/20260928/iss-sixteen-sunrises__a991090a35.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__a991090a35/sheet.jpg",
+   "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__a991090a35.verdict.json"
+  },
+  {
+   "id": "iss-sixteen-sunrises__bec1a09753",
+   "channel": "explainer",
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "filed": "2026-09-28T12:36:01Z",
+   "request": "exchange/reviews/20260928/iss-sixteen-sunrises__bec1a09753.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__bec1a09753/sheet.jpg",
+   "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__bec1a09753.verdict.json"
+  },
+  {
+   "id": "kelp-forest-sea-star-collapse__fe28b66374",
+   "channel": "explainer",
+   "slug": "kelp-forest-sea-star-collapse",
+   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
+   "filed": "2026-09-28T12:28:03Z",
+   "request": "exchange/reviews/20260928/kelp-forest-sea-star-collapse__fe28b66374.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/kelp-forest-sea-star-collapse__fe28b66374/sheet.jpg",
+   "answer_path": "exchange/reviews/20260928/kelp-forest-sea-star-collapse__fe28b66374.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
