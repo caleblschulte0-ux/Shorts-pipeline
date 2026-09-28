@@ -3675,9 +3675,11 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
 
     def _xat(v):
         return x0 + (x1 - x0) * max(0.0, min(1.0, (v - lo) / (hi - lo)))
+    from .viz_scene import settle as _settle
     for f in range(1, frames + 1):
         r = 1.0 if f == frames else f / frames
-        r = 1.0 - (1.0 - r) ** 2
+        # the kit's ONE curve, not a private ease-out (see `_flow`)
+        r = _settle(r)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         tb = d.textbbox((0, 0), title, font=title_font)
@@ -3724,6 +3726,9 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
                 d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
                        font=tick_font, fill=(165, 180, 199, 255))
         d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(HIGHLIGHT, 255), width=12)
+        # time keeps flowing along the stretch the dot has covered, so the
+        # quarter of the span it arrives early by is reading time, not a still
+        _flow(d, [(x0, axis_y), (mx, axis_y)], f, TEXT, r=18)
         for rad, alpha in ((48, 60), (34, 120), (23, 255)):
             d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
                       fill=_rgba(HIGHLIGHT, alpha))
@@ -3764,6 +3769,68 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
                    stroke_width=3, stroke_fill=(5, 8, 15, 255))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
     return pattern, []
+
+
+#: Where across its span a full-frame gauge or timeline has ARRIVED — the
+#: value drawn, the number final. The rest of the span is the reading time,
+#: and it is not a still: `_flow` keeps light running along what was drawn.
+FLOW_ARRIVE = 0.8
+#: Beads of light along a drawn value, in 1080px units PER FRAME. The cadence
+#: gate samples at 24fps and downscales to 192px wide; a 26px bead moving
+#: 14px a frame is ~2.5px at that scale, a change it can see.
+FLOW_STEP = 14.0
+FLOW_SPACING = 90.0
+
+
+def _arc_pts(cx, cy, R, a0, a1, step_deg: float = 3.0):
+    """A circular arc from `a0` to `a1` degrees (PIL's convention) as points."""
+    n = max(2, int(abs(a1 - a0) / step_deg))
+    return [(cx + R * math.cos(math.radians(a0 + (a1 - a0) * k / n)),
+             cy + R * math.sin(math.radians(a0 + (a1 - a0) * k / n)))
+            for k in range(n + 1)]
+
+
+def _flow(d, pts, f: int, color: str, r: int = 13, alpha: int = 235):
+    """Beads of light streaming along a polyline, at a constant pace.
+
+    THE GAUGE AND THE TIMELINE FROZE INTO THEIR OWN READING TIME. Both
+    rolled a private ease-out (cubic and quadratic) and then held the finished
+    picture: `coldest-place-in-the-universe-is-human-made` was blocked by the
+    temporal gate fifteen times from 2026-09-07 to 2026-09-28 (duplicate_ratio
+    0.51-0.54 against 0.45), and rendered offline the gauge's span measured
+    five full seconds with nothing moving (0 of 120 frames), the timeline's
+    alone 0.50 held with a 68-frame still run. Neither was ever in
+    `MotionMustBeVISIBLE`, which measures `_MACHINE_DRAW` and not these.
+
+    This is `illustrated.flow` for PIL: decoration ON the value that adds no
+    quantity — the arc that says 22% still says 22%, the line still ends at
+    its year — so the finished picture reads and the frame still moves.
+    `f` is the frame index, so the pace is per frame, not per reveal: a long
+    span flows at the same visible speed as a short one."""
+    if len(pts) < 2:
+        return
+    segs, total = [], 0.0
+    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+        L = math.hypot(x1 - x0, y1 - y0)
+        if L > 0:
+            segs.append((x0, y0, x1, y1, total, L))
+            total += L
+    if total <= 2 * r:
+        return
+    # A short value (a 3% arc is ~40px) still carries one bead the whole
+    # time: with the full spacing it was on screen for half the frames and
+    # the gate counted the other half as held.
+    gap = min(FLOW_SPACING, total)
+    s = (f * FLOW_STEP) % gap
+    fill = _rgba(color, alpha)
+    while s < total:
+        for x0, y0, x1, y1, s0, L in segs:
+            if s0 <= s <= s0 + L:
+                k = (s - s0) / L
+                x, y = x0 + (x1 - x0) * k, y0 + (y1 - y0) * k
+                d.ellipse([x - r, y - r, x + r, y + r], fill=fill)
+                break
+        s += gap
 
 
 def count_up(value: float, t: float) -> float:
@@ -3816,9 +3883,13 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
                   fill=color)
 
     pattern = str(out_dir / f"{slug}_build%02d.png")
+    from .viz_scene import settle as _settle
     for f in range(1, frames + 1):
         r = 1.0 if f == frames else f / frames
-        eased = 1.0 - (1.0 - r) ** 3
+        # The kit's ONE curve, arriving with a fifth of the span to spare —
+        # not a private cubic ease-out that crawled the last half below the
+        # gate's threshold (see `_flow`).
+        eased = _settle(min(1.0, r / FLOW_ARRIVE))
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         # topic, above the gauge
@@ -3847,6 +3918,18 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             end = a0 + sweep * cur
             d.arc(bbox, a0, end, fill=ac, width=wdt)
             _cap(d, a0, ac); _cap(d, end, ac)
+            # the fill FLOWS along the arc, start to tip, the whole span: dark
+            # notches running through the accent
+            if R * math.radians(end - a0) >= FLOW_SPACING:
+                _flow(d, _arc_pts(cx, cy, R, a0, end), f,
+                      _hex(_look.GROUND_TOP), r=wdt // 2 - 4)
+        if R * math.radians(end - a0) < FLOW_SPACING:
+            # A 1-3% arc is 15-45px: there is nothing to flow along, and the
+            # gauge sat still for 0.64-0.91 of its span. The flow runs round
+            # the empty HOUSING instead, in the neutral ink — it adds no
+            # quantity, and the accent stays on the value alone.
+            _flow(d, _arc_pts(cx, cy, R, a0, a0 + sweep), f, SUBTLE,
+                  r=wdt // 3, alpha=150)
         # Data PERFORMS on the gauge: he rides the tip of the value arc UP as it
         # fills — he's the reason the number climbs. (Composited straight into
         # the demonstration; the traveling overlay is suppressed for this beat.)
