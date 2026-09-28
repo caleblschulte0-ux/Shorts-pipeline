@@ -1,6 +1,6 @@
 {
  "schema": "shorts-ask-index/v1",
- "updated": "2026-09-28T12:21:35Z",
+ "updated": "2026-09-28T12:28:46Z",
  "open": [
   {
    "batch": "exchange/asks/20260921.json",
@@ -82,7 +82,7 @@
    "answer_path": "exchange/asks/20260928.answers.json",
    "pending": 1,
    "keys": [
-    "12fd36f4d5ddb3c1"
+    "b3ce47a883be6105"
    ]
   }
  ],

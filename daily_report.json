@@ -4,16 +4,16 @@
     "title": "He Stole My Parking Spot. His Lease Ordered The Tow.",
     "format": "reddit",
     "publish_at": "2026-09-28T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 The bottom half of frame 3 is heavily pixelated and distorted, appearing corrupt or garbled, which falls under the 'broken' criteria.",
-    "elapsed_seconds": 184.6,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/r_dNslMEa-4",
+    "error": null,
+    "elapsed_seconds": 200.7,
     "package_path": "state/trending_packages/20260928/05_reserved-parking-tow-receipt.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260928-120800_he_stole_my_parking_spot__his_lease_orde.mp4",
+    "video_path": "output/daily_20260928-122453_he_stole_my_parking_spot__his_lease_orde.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.967,
+      "duration": 48.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,77 +24,44 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.2
-    },
-    "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "The bottom half of frame 3 is heavily pixelated and distorted, appearing corrupt or garbled, which falls under the 'broken' criteria."
-    },
-    "quarantined": true
-  },
-  {
-    "topic": "tom rahill everglades python hunt",
-    "angle": "Tom Rahill nets 96 massive pythons in the Everglades, sparking a controversial bounty debate.",
-    "publish_at": "2026-09-28T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video tells a Reddit story using a split screen with Minecraft-style gameplay and generic AI images, effectively conveying the narrative beats.",
-    "elapsed_seconds": 373.1,
-    "title": "I Swapped the Stolen Wrench for a Brand\u2011New One",
-    "package_path": "state/trending_packages/20260928-121138_auto_tom_rahill_everglades_python_hunt.json",
-    "video_path": "output/daily_20260928-121138_tom_rahill_everglades_python_hunt.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 33.133,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [
-        [
-          25.5,
-          27.3333
-        ],
-        [
-          27.7667,
-          28.7667
-        ]
-      ],
-      "black_frac": 0.0855,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -25.1
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": ""
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video tells a Reddit story using a split screen with Minecraft-style gameplay and generic AI images, effectively conveying the narrative beats.",
-      "score": 100
+      "blocked": false,
+      "reason": "",
+      "score": 91
     },
-    "blocked": true,
-    "backfill": true
+    "channel": "default"
   },
   {
-    "topic": "fat bear",
-    "angle": "Alaska\u2019s Fat Bear Week crowns the heaviest hibernation champion, a quirky showdown for wildlife fans.",
+    "topic": "tom rahill everglades python hunt",
+    "angle": "Florida wildlife crews use robot rabbits to trap Burmese pythons, catching a 96\u2011python haul that could curb the invasive snake boom.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A Reddit story told over Minecraft gameplay with relevant but generic static images in the top panel.",
-    "elapsed_seconds": 235.5,
-    "title": "I Served a Free Latte to the Customer Who Tried to Steal My Tips",
-    "package_path": "state/trending_packages/20260928-121729_auto_fat_bear.json",
-    "video_path": "output/daily_20260928-121729_fat_bear.mp4",
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (b3ce47a883be6105)",
+    "elapsed_seconds": 16.9,
+    "backfill": true
+  },
+  {
+    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
+    "angle": "Scientists captured footage of a newly discovered dwarf cat species prowling the Andean footholds, a find that could reshape conservation plans.",
+    "publish_at": null,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/KDi4OcpxUF4",
+    "error": null,
+    "elapsed_seconds": 371.7,
+    "title": "I Served a Free Latte and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260928-122909_auto_rare_small_cat_caught_on_camera_in_the_a.json",
+    "video_path": "output/daily_20260928-122909_rare_small_cat_caught_on_camera_in_the_a.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 40.767,
+      "duration": 47.667,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -105,7 +72,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -25.6
     },
     "qa": {
       "ok": true,
@@ -113,32 +80,32 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A Reddit story told over Minecraft gameplay with relevant but generic static images in the top panel.",
+      "blocked": false,
+      "reason": "",
       "score": 100
     },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
-    "angle": "NORAD pilots scramble to intercept two unidentified objects over Chicago, footage shows the tense aerial drama.",
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com' refused by the writer: trend involves real military event",
-    "elapsed_seconds": 0.6,
-    "unfit": true,
     "backfill": true
   },
   {
     "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Camera reveals deer, elk and a bobcat safely crossing I\u201170 through a new wildlife underpass.",
+    "angle": "Cameras in Colorado\u2019s I\u201170 wildlife tunnel reveal deer, elk and a lone bobcat safely crossing the highway, proving the underpass saves dozens of lives daily.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (12fd36f4d5ddb3c1)",
-    "elapsed_seconds": 15.1,
+    "error": "unfit_for_fiction: the story still names the real news (see) after 2 retries",
+    "elapsed_seconds": 13.3,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "Deputies confront sword-wielding Florida man after reported home invasion - WPEC",
+    "angle": "Police responded to a midnight home invasion where the intruder brandished a sword, sparking a bizarre standoff that ended in his arrest.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Deputies confront sword-wielding Florida man after reported home invasion - WPEC' refused by the writer: The trend involves violent crime, which is not allowed for story setting.",
+    "elapsed_seconds": 0.6,
+    "unfit": true,
     "backfill": true
   }
 ]
