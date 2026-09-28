@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:10.503Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-reserved-parking-tow-receipt-s5",
+  "safe_request_id": "authored-reserved-parking-tow-receipt-s5",
+  "prompt_sha256": "3add95162d29eb2cc94f45cecf697b0aa39d6a2dcfc7584da23c64fe5e7a4877",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: empty assigned parking space beside apartment dumpster. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1XEkD2MpSz8DH31RvU21MqHcaQOHmbija",
+    "filename": "20260928__authored-reserved-parking-tow-receipt-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1XEkD2MpSz8DH31RvU21MqHcaQOHmbija",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7ca8ae9fa30234e24de5bfb94621595e5f1fbbd438876172badb31d7862a81db",
+    "bytes": 2730517,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "reserved-parking-tow-receipt",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
