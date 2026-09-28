@@ -19,6 +19,12 @@
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
+        "code": "channel_auto_paused",
+        "severity": "critical",
+        "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
+        "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
+      },
+      {
         "code": "production_repair_trending",
         "severity": "critical",
         "detail": "trending 20260927: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 4 failed).",
@@ -39,8 +45,7 @@
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "trending: 9/6 posted",
-      "failure counter at 1/2 \u2014 one more failing day auto-pauses trending"
+      "trending: 9/6 posted"
     ],
     "deferred": false
   },
@@ -2553,8 +2558,8 @@
     }
   ],
   "recent_commits": [
-    "078d76b 2026-09-28 claim: mailbox verdicts 2026-09-28T04:47Z [skip ci]",
-    "fccfdbe 2026-09-28 claim: mailbox verdicts 2026-09-28T03:47Z [skip ci]"
+    "346daf7 2026-09-28 daily: 2026-09-28 report + state [skip ci]",
+    "a00c2ce 2026-09-28 exchange: phase B applied for 20260928 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2658,32 +2663,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 115,
+      "videos": 111,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 5.71,
+          "vph": 5.33,
           "views": 1356
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 2.27,
-          "views": 86
+          "vph": 1.88,
+          "views": 103
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.61,
-          "views": 109
-        },
-        {
-          "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
-          "vph": 1.59,
-          "views": 34
+          "vph": 1.62,
+          "views": 137
         },
         {
           "title": "Zackrawrr Can't Believe Bonnie Said THE Word In Her Olympus Interview",
-          "vph": 1.56,
-          "views": 17
+          "vph": 1.58,
+          "views": 44
+        },
+        {
+          "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
+          "vph": 1.49,
+          "views": 57
         }
       ],
       "full_data": "state/analytics_third/latest.json"
