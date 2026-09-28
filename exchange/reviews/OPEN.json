@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-28T21:47:48Z",
+ "updated": "2026-09-28T22:47:59Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -171,6 +171,16 @@
    "request": "exchange/reviews/20260928/iss-sixteen-sunrises__54c0fab7d3.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__54c0fab7d3/sheet.jpg",
    "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__54c0fab7d3.verdict.json"
+  },
+  {
+   "id": "iss-sixteen-sunrises__71e3661ecb",
+   "channel": "explainer",
+   "slug": "iss-sixteen-sunrises",
+   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+   "filed": "2026-09-28T21:47:18Z",
+   "request": "exchange/reviews/20260928/iss-sixteen-sunrises__71e3661ecb.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__71e3661ecb/sheet.jpg",
+   "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__71e3661ecb.verdict.json"
   },
   {
    "id": "iss-sixteen-sunrises__74ac3a1fa1",
