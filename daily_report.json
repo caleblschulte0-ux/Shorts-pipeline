@@ -1,50 +1,16 @@
 [
   {
-    "topic": "China Pulled Away In Electric Car Sales",
-    "title": "China Pulled Away In Electric Car Sales",
+    "topic": "Debit Cards Replaced The Checkbook",
+    "title": "Debit Cards Replaced The Checkbook",
     "format": "graph_race",
-    "publish_at": "2026-09-27T13:00:00Z",
+    "publish_at": "2026-09-28T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/VJCY2lIHD7c",
+    "video_url": "https://youtube.com/shorts/Tm-T8BT3D7g",
     "error": null,
-    "elapsed_seconds": 136.8,
-    "package_path": "state/trending_packages/20260927/01_graph-china-ev-sales-pulled-away.json",
+    "elapsed_seconds": 139.2,
+    "package_path": "state/trending_packages/20260928/01_graph-debit-cards-replaced-checks.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260927-115518_china_pulled_away_in_electric_car_sales.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Mobile Lines Buried Landlines Worldwide",
-    "title": "Mobile Lines Buried Landlines Worldwide",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/TiNYFIM4GDw",
-    "error": null,
-    "elapsed_seconds": 133.4,
-    "package_path": "state/trending_packages/20260927/02_graph-mobile-lines-buried-landlines.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-115735_mobile_lines_buried_landlines_worldwide.mp4",
+    "video_path": "output/daily_20260928-113833_debit_cards_replaced_the_checkbook.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -63,181 +29,59 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
+      "score": 87
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Smartphones Passed PCs In Two Years",
+    "title": "Smartphones Passed PCs In Two Years",
+    "format": "graph_race",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/qN-ZLbpk8OQ",
+    "error": null,
+    "elapsed_seconds": 99.5,
+    "package_path": "state/trending_packages/20260928/02_graph-smartphones-passed-pcs.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260928-114052_smartphones_passed_pcs_in_two_years.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 8.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
       "score": 91
     },
     "channel": "default"
   },
   {
-    "topic": "Online Shopping Passed Department Stores",
-    "title": "Online Shopping Passed Department Stores",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-    "elapsed_seconds": 109.7,
-    "package_path": "state/trending_packages/20260927/03_graph-online-shopping-passed-department-stores.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-115948_online_shopping_passed_department_stores.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-      "score": null
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Solar Capacity Just Passed Hydropower",
-    "title": "Solar Capacity Just Passed Hydropower",
-    "format": "graph_race",
-    "publish_at": "2026-09-27T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-    "elapsed_seconds": 113.9,
-    "package_path": "state/trending_packages/20260927/04_graph-solar-capacity-passed-hydropower.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-120138_solar_capacity_just_passed_hydropower.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-      "score": null
-    },
-    "blocked": true
-  },
-  {
-    "topic": "The Gym Kept Charging Me. The Mail Kept Receipts.",
-    "title": "The Gym Kept Charging Me. The Mail Kept Receipts.",
+    "topic": "He Stole My Parking Spot. His Lease Ordered The Tow.",
+    "title": "He Stole My Parking Spot. His Lease Ordered The Tow.",
     "format": "reddit",
-    "publish_at": "2026-09-27T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/OQa4f2xJDGQ",
-    "error": null,
-    "elapsed_seconds": 169.1,
-    "package_path": "state/trending_packages/20260927/05_gym-membership-certified-mail.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260927-120333_the_gym_kept_charging_me__the_mail_kept_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.567,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 96
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
-    "title": "He Rejected My $18 Receipt. The Auditor Found $4,800.",
-    "format": "reddit",
-    "publish_at": "2026-09-27T17:30:00Z",
+    "publish_at": "2026-09-28T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.",
-    "elapsed_seconds": 193.3,
-    "package_path": "state/trending_packages/20260927/06_boss-expense-receipt-audit.json",
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a petty revenge story using split-screen visuals and captions, but the Subway Surfers mascot is decorative and irrelevant.",
+    "elapsed_seconds": 186.2,
+    "package_path": "state/trending_packages/20260928/05_reserved-parking-tow-receipt.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260927-120623_he_rejected_my__18_receipt__the_auditor_.mp4",
+    "video_path": "output/daily_20260928-114233_he_stole_my_parking_spot__his_lease_orde.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.033,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.",
-      "score": 82
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Grizzly reality: US states grapple with uptick in encounters between bears and humans",
-    "angle": "Record numbers of grizzly sightings are forcing U.S. states to rethink how humans and bears share the landscape.",
-    "publish_at": "2026-09-27T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Grizzly reality: US states grapple with uptick in encounters between bears and humans' refused by the writer: The provided trend is not a permissible setting for a fictional story",
-    "elapsed_seconds": 12.9,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "Scientists discovered two bizarre new sea spiders that are \u201cnightmare fuel\u201d",
-    "angle": "Two newly identified sea\u2011spider species with hair\u2011covered legs and glowing red eyes have been found in the Salish Sea, looking like creatures from a horror film.",
-    "publish_at": "2026-09-27T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/KEl27m-bydU",
-    "error": null,
-    "elapsed_seconds": 269.4,
-    "title": "My gate agent yelled, then the passenger stole my latte",
-    "package_path": "state/trending_packages/20260927-120958_auto_scientists_discovered_two_bizarre_new_se.json",
-    "video_path": "output/daily_20260927-120958_scientists_discovered_two_bizarre_new_se.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 38.433,
+      "duration": 49.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -252,30 +96,31 @@
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a petty revenge story using split-screen visuals and captions, but the Subway Surfers mascot is decorative and irrelevant.",
+      "score": 82
     },
-    "backfill": true
+    "blocked": true
   },
   {
-    "topic": "PNOE\u2019s new face mask wants to make lab-grade breath testing a self-serve affair",
-    "angle": "Startup PNO\u0112 launches a wearable mask that can instantly analyze breath for alcohol and drugs, aiming to bring lab\u2011level testing to everyday users.",
-    "publish_at": "2026-09-27T20:30:00Z",
+    "topic": "She Returned A Vacuum. The Serial Number Returned Her.",
+    "title": "She Returned A Vacuum. The Serial Number Returned Her.",
+    "format": "reddit",
+    "publish_at": "2026-09-28T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/vNwiLrr_qH4",
+    "video_url": "https://youtube.com/shorts/uji8qHMfUwQ",
     "error": null,
-    "elapsed_seconds": 272.7,
-    "title": "I Let a Customer Hijack Our New Health Mask",
-    "package_path": "state/trending_packages/20260927-121428_auto_pnoe_s_new_face_mask_wants_to_make_lab_g.json",
-    "video_path": "output/daily_20260927-121428_pnoe_s_new_face_mask_wants_to_make_lab_g.mp4",
+    "elapsed_seconds": 210.4,
+    "package_path": "state/trending_packages/20260928/06_vacuum-return-serial-number.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260928-114538_she_returned_a_vacuum__the_serial_number.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.8,
+      "duration": 53.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -286,12 +131,126 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.1
+      "loudness_lufs": -23.4
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
       "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 96
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "tom rahill everglades python hunt",
+    "angle": "Florida\u2019s Everglades team nets 96 invasive Burmese pythons in a high\u2011stakes hunt, highlighting a costly wildlife war.",
+    "publish_at": "2026-09-28T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/USvZjMmxfoA",
+    "error": null,
+    "elapsed_seconds": 293.2,
+    "title": "I Turned the Manager\u2019s \u201cFree Coffee\u201d Policy Against Him",
+    "package_path": "state/trending_packages/20260928-114939_auto_tom_rahill_everglades_python_hunt.json",
+    "video_path": "output/daily_20260928-114939_tom_rahill_everglades_python_hunt.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 100
+    },
+    "backfill": true
+  },
+  {
+    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
+    "angle": "Colorado\u2019s I\u201170 wildlife underpass proves its worth as dozens of elk and deer safely cross, showing how tunnels can curb highway deaths.",
+    "publish_at": null,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/VBo6XRC7hpc",
+    "error": null,
+    "elapsed_seconds": 315.2,
+    "title": "I Served a Free Latte and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260928-115419_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
+    "video_path": "output/daily_20260928-115419_colorado_s_i_70_wildlife_underpass_is_wo.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.0,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 87
+    },
+    "backfill": true
+  },
+  {
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "Maine\u2019s new turtle tunnel captures an endangered Blanding\u2019s turtle navigating safely, a rare glimpse of conservation tech in action.",
+    "publish_at": null,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/3HrH7UAaZ4M",
+    "error": null,
+    "elapsed_seconds": 319.9,
+    "title": "I Served a VIP Who Stole My Tip Jar",
+    "package_path": "state/trending_packages/20260928-115935_auto_endangered_blanding_s_turtle_caught_on_c.json",
+    "video_path": "output/daily_20260928-115935_endangered_blanding_s_turtle_caught_on_c.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.067,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
       "blocked": false,

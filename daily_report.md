@@ -1,49 +1,47 @@
-# Daily Trending Shorts — 2026-09-27
+# Daily Trending Shorts — 2026-09-28
 
-> **ChatGPT wrote 6 of today's 9 packages** — the Claude Routine did not run (weekly limit?).
+> **ChatGPT wrote 4 of today's 7 packages** — the Claude Routine did not run (weekly limit?).
 > **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **9**
-- succeeded: **5**
+- queued: **7**
+- succeeded: **6**
 - quarantined (off-topic imagery): **0**
-- failed: **4**
+- failed: **1**
 
 ## Posted
-- **China Pulled Away In Electric Car Sales**
-  - topic: China Pulled Away In Electric Car Sales
-  - publishes: `2026-09-27T13:00:00Z`
-  - https://youtube.com/shorts/VJCY2lIHD7c
-  - took: 136.8s
-- **Mobile Lines Buried Landlines Worldwide**
-  - topic: Mobile Lines Buried Landlines Worldwide
-  - publishes: `2026-09-27T14:30:00Z`
-  - https://youtube.com/shorts/TiNYFIM4GDw
-  - took: 133.4s
-- **The Gym Kept Charging Me. The Mail Kept Receipts.**
-  - topic: The Gym Kept Charging Me. The Mail Kept Receipts.
-  - publishes: `2026-09-27T16:00:00Z`
-  - https://youtube.com/shorts/OQa4f2xJDGQ
-  - took: 169.1s
-- **My gate agent yelled, then the passenger stole my latte**
-  - topic: Scientists discovered two bizarre new sea spiders that are “nightmare fuel”
-  - angle: Two newly identified sea‑spider species with hair‑covered legs and glowing red eyes have been found in the Salish Sea, looking like creatures from a horror film.
-  - publishes: `2026-09-27T19:00:00Z`
-  - https://youtube.com/shorts/KEl27m-bydU
-  - took: 269.4s
-- **I Let a Customer Hijack Our New Health Mask**
-  - topic: PNOE’s new face mask wants to make lab-grade breath testing a self-serve affair
-  - angle: Startup PNOĒ launches a wearable mask that can instantly analyze breath for alcohol and drugs, aiming to bring lab‑level testing to everyday users.
-  - publishes: `2026-09-27T20:30:00Z`
-  - https://youtube.com/shorts/vNwiLrr_qH4
-  - took: 272.7s
+- **Debit Cards Replaced The Checkbook**
+  - topic: Debit Cards Replaced The Checkbook
+  - publishes: `2026-09-28T13:00:00Z`
+  - https://youtube.com/shorts/Tm-T8BT3D7g
+  - took: 139.2s
+- **Smartphones Passed PCs In Two Years**
+  - topic: Smartphones Passed PCs In Two Years
+  - publishes: `2026-09-28T14:30:00Z`
+  - https://youtube.com/shorts/qN-ZLbpk8OQ
+  - took: 99.5s
+- **She Returned A Vacuum. The Serial Number Returned Her.**
+  - topic: She Returned A Vacuum. The Serial Number Returned Her.
+  - publishes: `2026-09-28T16:00:00Z`
+  - https://youtube.com/shorts/uji8qHMfUwQ
+  - took: 210.4s
+- **I Turned the Manager’s “Free Coffee” Policy Against Him**
+  - topic: tom rahill everglades python hunt
+  - angle: Florida’s Everglades team nets 96 invasive Burmese pythons in a high‑stakes hunt, highlighting a costly wildlife war.
+  - publishes: `2026-09-28T17:30:00Z`
+  - https://youtube.com/shorts/USvZjMmxfoA
+  - took: 293.2s
+- **I Served a Free Latte and Got Sweet Karma**
+  - topic: Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News
+  - angle: Colorado’s I‑70 wildlife underpass proves its worth as dozens of elk and deer safely cross, showing how tunnels can curb highway deaths.
+  - https://youtube.com/shorts/VBo6XRC7hpc
+  - took: 315.2s
+- **I Served a VIP Who Stole My Tip Jar**
+  - topic: Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME
+  - angle: Maine’s new turtle tunnel captures an endangered Blanding’s turtle navigating safely, a rare glimpse of conservation tech in action.
+  - https://youtube.com/shorts/3HrH7UAaZ4M
+  - took: 319.9s
 
 ## Failed
-- **Online Shopping Passed Department Stores**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)\n", "headless-claude[1]: claude CLI r`
-- **Solar Capacity Just Passed Hydropower**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)\n", "headless-claude[1]: claude CLI r`
-- **He Rejected My $18 Receipt. The Auditor Found $4,800.**
-  - error: `showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.`
-- **Grizzly reality: US states grapple with uptick in encounters between bears and humans**
-  - error: `unfit_for_fiction: 'Grizzly reality: US states grapple with uptick in encounters between bears and humans' refused by the writer: The provided trend is not a permissible setting for a fictional story`
+- **He Stole My Parking Spot. His Lease Ordered The Tow.**
+  - error: `showrunner_block: showrunner BLOCK: The video effectively tells a petty revenge story using split-screen visuals and captions, but the Subway Surfers mascot is decorative and irrelevant.`
 
