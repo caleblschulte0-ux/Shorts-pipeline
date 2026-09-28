@@ -9705,14 +9705,27 @@
       "director_cut": true
     },
     "clip-20260928-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/DreamySaltySandwichHassanChop-ezRTDtDPQQ8Gz1z0",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/dXut1Uzbrd4",
       "title": "Silky BURGER NOOOO \ud83d\ude31",
       "kind": "twitch_clip",
-      "ts": "2026-09-28T11:59:51.656263+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-28T11:59:58.174612+00:00",
+      "uploaded_at": "2026-09-28T11:59:58.174629+00:00",
+      "publish_at": "2026-09-28T18:30:00Z",
+      "source_url": "https://www.twitch.tv/silky/clip/DreamySaltySandwichHassanChop-ezRTDtDPQQ8Gz1z0",
+      "streamer": "silky",
+      "series": "fail",
+      "hook": "BURGER DISASTER UNFOLDS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1702,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 15.0
+      },
+      "director_cut": true
     }
   }
 }

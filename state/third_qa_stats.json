@@ -3,144 +3,6 @@
     {
       "date": "20260920",
       "dry_run": false,
-      "ts": "2026-09-20T14:46:46+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 107,
-        "with_retention": 85,
-        "with_curve": 14,
-        "fetched_at": "2026-09-20T13:09:52.270348+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260920-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "bro dissing the game",
-              "raw": "bro dissing the game",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 300.8
-        },
-        {
-          "slug": "clip-20260920-2",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-3",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260920-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260920",
-      "dry_run": false,
       "ts": "2026-09-20T14:53:30+00:00",
       "feedback": {
         "snapshot": true,
@@ -5280,6 +5142,255 @@
             }
           },
           "took_s": 767.3
+        }
+      ]
+    },
+    {
+      "date": "20260928",
+      "dry_run": false,
+      "ts": "2026-09-28T11:59:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 111,
+        "with_retention": 95,
+        "with_curve": 14,
+        "fetched_at": "2026-09-28T08:46:13.417910+00:00"
+      },
+      "brain": {
+        "ok": 6,
+        "fail": 2
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260928-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.7,
+              "why": "visible win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "visible win reaction",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Wins Game 11 After Crazy Clix Moment"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 464.6
+        },
+        {
+          "slug": "clip-20260928-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "scouted": [],
+                "vod_arcs": 169,
+                "candidates": 270,
+                "pool": 1364,
+                "pool_with_vod": 1283,
+                "arc_sizes": [
+                  6,
+                  2,
+                  2,
+                  5,
+                  2,
+                  3,
+                  2,
+                  2,
+                  2,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "northernlion@vod2880264709",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "kaicenat@vod2859079447/kaicenat-about-artist-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips consist of a continuous monologue about design options and a repeated question about favorite artis"
+                },
+                {
+                  "cluster": "sodapoppin@vod2863459276/sodapoppin-about-command-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips consist of unrelated shouts and reactions without a clear meaningful change, conflict resolution, o"
+                },
+                {
+                  "cluster": "ohnepixel@vod2861551488/ohnepixel-asks-audible-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips lack a clear meaningful change or narrative progression; they are isolated reactions and questions "
+                },
+                {
+                  "cluster": "stableronaldo@vod2864388285/stableronaldo-about-accident-202",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips contain unrelated excited remarks without a clear meaningful change, conflict, or resolution."
+                },
+                {
+                  "cluster": "emiru@vod2860987916/emiru-about-caught-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips are unrelated fragments of the streamer talking about different topics without a clear setup, escal"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.65,
+              "why": "reacts to ruined burger",
+              "blind": false
+            },
+            "content": {
+              "why": "no transcript and no frames \u2014 nothing to judge",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky BURGER NOOOO \ud83d\ude31"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 1031.2
+        },
+        {
+          "slug": "clip-20260928-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 1.6
+        },
+        {
+          "slug": "clip-20260928-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260928-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20260928-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
         }
       ]
     }
