@@ -1,123 +1,125 @@
 [
   {
-    "topic": "sonnet 5.5",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (9eaf635899801cc6)",
-    "elapsed_seconds": 26.0
-  },
-  {
-    "topic": "tropical cyclone",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (7082a429d037cf1a)",
-    "elapsed_seconds": 26.4
-  },
-  {
-    "topic": "taylor swift support bebe rexha",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5a894f3bec53ac66)",
-    "elapsed_seconds": 26.0
-  },
-  {
-    "topic": "milania giudice",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (0d18c5569c5be678)",
-    "elapsed_seconds": 25.9
-  },
-  {
-    "topic": "brian dawkins",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (efeb34416955be8d)",
-    "elapsed_seconds": 25.8
-  },
-  {
-    "topic": "belgium vs france",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (ed928c0f617727b6)",
-    "elapsed_seconds": 26.3
-  },
-  {
-    "topic": "b\u00e9lgica - francia",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5fe89ab9a6fef570)",
-    "elapsed_seconds": 26.3
-  },
-  {
-    "topic": "romania vs bosnia and herzegovina",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (77fbd6e2b470db40)",
-    "elapsed_seconds": 27.7
-  },
-  {
-    "topic": "t\u00fcrkiye vs italy",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (8bf889e28dd304b3)",
-    "elapsed_seconds": 26.2
-  },
-  {
-    "topic": "sonnet 5.5",
-    "angle": null,
-    "publish_at": "2026-09-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (9eaf635899801cc6)",
-    "elapsed_seconds": 25.6,
-    "backfill": true
-  },
-  {
-    "topic": "tropical cyclone",
+    "topic": "warren county ky",
     "angle": null,
     "publish_at": "2026-09-28T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (22c6dbbaddf6bf82)",
-    "elapsed_seconds": 25.7,
+    "error": "unfit_for_fiction: 'warren county ky' cannot seed a story ('shooting'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.6,
+    "unfit": true
+  },
+  {
+    "topic": "today",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (03b338e90880a16f)",
+    "elapsed_seconds": 25.9
+  },
+  {
+    "topic": "france",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (061f566e855f7ce1)",
+    "elapsed_seconds": 26.0
+  },
+  {
+    "topic": "gow laufey",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'gow laufey' cannot seed a story ('War'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.4,
+    "unfit": true
+  },
+  {
+    "topic": "national coffee day 2026",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (dcc3c17e170646e1)",
+    "elapsed_seconds": 28.4
+  },
+  {
+    "topic": "title ix",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (a3fe6a9c699cad86)",
+    "elapsed_seconds": 25.7
+  },
+  {
+    "topic": "sciencedaily",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (3e9e56a2783e2a45)",
+    "elapsed_seconds": 26.2
+  },
+  {
+    "topic": "ios 27.0 1",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (3168e7eb9e009150)",
+    "elapsed_seconds": 26.1
+  },
+  {
+    "topic": "matthew knies",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (3627a837e47c2ca9)",
+    "elapsed_seconds": 27.7
+  },
+  {
+    "topic": "today",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (03b338e90880a16f)",
+    "elapsed_seconds": 26.0,
     "backfill": true
   },
   {
-    "topic": "taylor swift support bebe rexha",
+    "topic": "france",
     "angle": null,
     "publish_at": "2026-09-29T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (f87f54e57e35e9ce)",
-    "elapsed_seconds": 25.8,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (061f566e855f7ce1)",
+    "elapsed_seconds": 26.2,
     "backfill": true
   },
   {
-    "topic": "milania giudice",
+    "topic": "national coffee day 2026",
     "angle": null,
     "publish_at": "2026-09-29T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (0d18c5569c5be678)",
-    "elapsed_seconds": 25.5,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (dcc3c17e170646e1)",
+    "elapsed_seconds": 25.8,
+    "backfill": true
+  },
+  {
+    "topic": "title ix",
+    "angle": null,
+    "publish_at": "2026-09-29T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (a3fe6a9c699cad86)",
+    "elapsed_seconds": 26.0,
     "backfill": true
   }
 ]
