@@ -9680,6 +9680,16 @@
       "rejected_by": "preflight",
       "rejected_why": "source too dark (avg luma 19/255) \u2014 unwatchable IRL/night footage",
       "ts": "2026-09-27T13:34:35.171840+00:00"
+    },
+    "clip-20260928-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DependableInexpensiveGiraffePlanking-ghFIyzkDlQzIwgqx",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Wins Game 11 After Crazy Clix Moment",
+      "kind": "twitch_clip",
+      "ts": "2026-09-28T11:42:38.443402+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
