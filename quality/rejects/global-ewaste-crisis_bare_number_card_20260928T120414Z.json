@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260928T120414Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: The hook starts with 'Only 1' (hook@0.3) followed by 'in 5' (seg0:start) on a plain background, which is a bare number card.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "dead_air",
+  "visible_evidence": "A 4.47-second static period occurs immediately after frame seg2:end (t=22.39s) before seg3:start (t=26.86s).",
+  "root_cause": "Insufficient animation or transition planned between segments, leading to a prolonged static screen.",
+  "repair_goal": "Add dynamic animation or a quicker transition between seg2 and seg3 to eliminate the dead air."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
