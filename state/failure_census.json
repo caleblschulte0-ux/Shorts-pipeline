@@ -1,94 +1,112 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "dead_air": {
-   "count": 5,
+  "junk_imagery": {
+   "count": 4,
    "stories": {
-    "he_said_the_chair_vanished__then_he_list": 1,
-    "phil_knight": 1,
-    "beaver-ecosystem-comeback": 1,
-    "iss-sixteen-sunrises": 1,
-    "hidden-foster-system": 1
+    "tom_rahill_everglades_python_hunt": 1,
+    "fat_bear": 1,
+    "rare_small_cat_caught_on_camera_in_the_a": 1,
+    "two_norad_chicago_interceptions_caught_o": 1
    },
    "timestamps": [
-    "2026-09-26T17:14:34+00:00",
-    "2026-09-26T17:26:53+00:00",
-    "2026-09-27T11:52:20+00:00",
-    "2026-09-27T11:59:32+00:00",
-    "2026-09-27T12:45:31+00:00"
+    "2026-09-28T12:17:24+00:00",
+    "2026-09-28T12:21:19+00:00",
+    "2026-09-28T13:26:45+00:00",
+    "2026-09-28T13:30:42+00:00"
    ],
    "examples": [
-    "dead_air: The same static clip-art bank icon fills the top half at mid3 (32.6s), mid4, mid5, payoff@-1.8 and payoff@-0.4, roughly 22s unchanged. It also appeared at mid1, so two beats use the same pic",
-    "dead_air: The story stops being illustrated for a long stretch. mid2 through mid4 (~20-44s) are full-screen gameplay with only captions, so the plaque, trash-can and 42-word-paragraph beats have nothi",
-    "dead_air: The video has a static period of 4.5 seconds between frame seg2:end (t=25.65s) and frame seg3:start (t=30.15s), where nothing meaningfully moves."
+    "junk_imagery: Frame hook@2.2 and mid0 show a realistic man in a library-like setting, which appears to be an AI-generated or stock image, not directly related to the 'stolen wrench' narrative.",
+    "junk_imagery: Generic stock/AI images of a coffee cup (mid1, mid2) and user icons (mid5, payoff) are used in the top panel.",
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 3,
+   "stories": {
+    "coldest-place-in-the-universe-is-human-made": 3
+   },
+   "timestamps": [
+    "2026-09-28T18:00:30+00:00",
+    "2026-09-28T18:42:57+00:00",
+    "2026-09-28T19:19:41+00:00"
+   ],
+   "examples": [
+    "temporal_gate: duplicate_ratio 0.526 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 2,
+   "stories": {
+    "hidden-foster-system": 1,
+    "global-ewaste-crisis": 1
+   },
+   "timestamps": [
+    "2026-09-27T12:45:31+00:00",
+    "2026-09-28T11:55:54+00:00"
+   ],
+   "examples": [
+    "dead_air: The `held_s` is 5.38s, indicating a period of static frames longer than 4 seconds. Specifically, there are gaps of 4.26s (seg0-seg1), 5.56s (seg1-seg2), and 7.09s (seg2-seg3) between segment",
+    "dead_air: There is a 4.47-second static period between frame seg2:end (t=22.39s) and frame seg3:start (t=26.86s), exceeding the 4-second threshold."
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
    "count": 2,
    "stories": {
-    "iss-sixteen-sunrises": 1,
-    "he_rejected_my__18_receipt__the_auditor_": 1
+    "global-ewaste-crisis": 1,
+    "he_stole_my_parking_spot__his_lease_orde": 1
    },
    "timestamps": [
-    "2026-09-27T11:59:32+00:00",
-    "2026-09-27T12:09:34+00:00"
+    "2026-09-28T11:55:54+00:00",
+    "2026-09-28T11:45:38+00:00"
    ],
    "examples": [
-    "decorative_mascot: The mascot is largely static or merely slides between positions without performing a specific bit tied to the data, as seen in hook@0.3 through seg0:end where it stands next to the ",
-    "decorative_mascot: The Subway Surfers character runs and jumps continuously in the bottom half of the screen, but its actions are generic gameplay and not a specific bit tied to the narrative beats (e"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 1,
-   "stories": {
-    "phil_knight": 1
-   },
-   "timestamps": [
-    "2026-09-26T17:26:53+00:00"
-   ],
-   "examples": [
-    "unreadable: In mid2 the caption 'NO EDITS ONCE' is small, washed out and yellow on a sandy yellow background, so it is hard to read at phone distance. It is also visibly smaller than the other caption"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 1,
-   "stories": {
-    "oktoberfest": 1
-   },
-   "timestamps": [
-    "2026-09-26T17:45:48+00:00"
-   ],
-   "examples": [
-    "empty_void: At mid5, payoff@-1.8 and payoff@-0.4 the whole top half is a dark vignette with one small phone icon whose screen is blank flat blue. Nearly half the frame is wasted."
+    "decorative_mascot: For most of the video (seg0, seg1, seg2, seg3), the mascot primarily points or moves along chart elements without a complex, content-tied bit, acting as a decorative element.",
+    "decorative_mascot: The Subway Surfers character runs continuously in the bottom frame but its actions are not tied to the story beats."
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
    "count": 1,
    "stories": {
-    "iss-sixteen-sunrises": 1
+    "global-ewaste-crisis": 1
    },
    "timestamps": [
-    "2026-09-27T11:59:32+00:00"
+    "2026-09-28T11:55:54+00:00"
    ],
    "examples": [
-    "bare_number_card: In seg3:start, the numbers '1,440' and '93' are presented as bare numbers inside simple circles, without an interesting demonstration."
+    "bare_number_card: The hook starts with 'Only 1' (hook@0.3) followed by 'in 5' (seg0:start) on a plain background, which is a bare number card."
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 1,
+   "stories": {
+    "fat_bear": 1
+   },
+   "timestamps": [
+    "2026-09-28T12:21:19+00:00"
+   ],
+   "examples": [
+    "empty_void: The top half of the screen in mid1, mid2, mid5, and payoff frames features a small, static icon on a large, plain dark background, wasting significant screen space."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
-   "min": 2,
+   "median": 4,
+   "min": 0,
    "max": 4
   },
   "data_demo": {
    "median": 4,
-   "min": 1,
+   "min": 0,
    "max": 5
   },
   "mascot": {
@@ -98,7 +116,7 @@
   },
   "craft": {
    "median": 3,
-   "min": 1,
+   "min": 0,
    "max": 3
   },
   "pace": {
@@ -118,25 +136,25 @@
   }
  },
  "scores": [
-  53,
-  57,
-  61,
-  61,
-  91,
-  100,
-  82,
-  87,
-  91,
-  100,
-  96,
   92,
   52,
+  87,
   91,
-  91,
-  96,
   82,
-  83,
   96,
-  92
+  100,
+  87,
+  96,
+  100,
+  100,
+  91,
+  100,
+  14,
+  84,
+  78,
+  14,
+  14,
+  14,
+  91
  ]
 }
