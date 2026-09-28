@@ -1,87 +1,19 @@
 [
   {
-    "topic": "Debit Cards Replaced The Checkbook",
-    "title": "Debit Cards Replaced The Checkbook",
-    "format": "graph_race",
-    "publish_at": "2026-09-28T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Tm-T8BT3D7g",
-    "error": null,
-    "elapsed_seconds": 139.2,
-    "package_path": "state/trending_packages/20260928/01_graph-debit-cards-replaced-checks.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260928-113833_debit_cards_replaced_the_checkbook.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Smartphones Passed PCs In Two Years",
-    "title": "Smartphones Passed PCs In Two Years",
-    "format": "graph_race",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/qN-ZLbpk8OQ",
-    "error": null,
-    "elapsed_seconds": 99.5,
-    "package_path": "state/trending_packages/20260928/02_graph-smartphones-passed-pcs.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260928-114052_smartphones_passed_pcs_in_two_years.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
-    },
-    "channel": "default"
-  },
-  {
     "topic": "He Stole My Parking Spot. His Lease Ordered The Tow.",
     "title": "He Stole My Parking Spot. His Lease Ordered The Tow.",
     "format": "reddit",
-    "publish_at": "2026-09-28T16:00:00Z",
+    "publish_at": "2026-09-28T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a petty revenge story using split-screen visuals and captions, but the Subway Surfers mascot is decorative and irrelevant.",
-    "elapsed_seconds": 186.2,
+    "error": "quarantined: vision QA: broken \u2014 The bottom half of frame 3 is heavily pixelated and distorted, appearing corrupt or garbled, which falls under the 'broken' criteria.",
+    "elapsed_seconds": 184.6,
     "package_path": "state/trending_packages/20260928/05_reserved-parking-tow-receipt.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260928-114233_he_stole_my_parking_spot__his_lease_orde.mp4",
+    "video_path": "output/daily_20260928-120800_he_stole_my_parking_spot__his_lease_orde.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.567,
+      "duration": 52.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -92,7 +24,49 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.1
+      "loudness_lufs": -23.2
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The bottom half of frame 3 is heavily pixelated and distorted, appearing corrupt or garbled, which falls under the 'broken' criteria."
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "tom rahill everglades python hunt",
+    "angle": "Tom Rahill nets 96 massive pythons in the Everglades, sparking a controversial bounty debate.",
+    "publish_at": "2026-09-28T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video tells a Reddit story using a split screen with Minecraft-style gameplay and generic AI images, effectively conveying the narrative beats.",
+    "elapsed_seconds": 373.1,
+    "title": "I Swapped the Stolen Wrench for a Brand\u2011New One",
+    "package_path": "state/trending_packages/20260928-121138_auto_tom_rahill_everglades_python_hunt.json",
+    "video_path": "output/daily_20260928-121138_tom_rahill_everglades_python_hunt.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 33.133,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [
+        [
+          25.5,
+          27.3333
+        ],
+        [
+          27.7667,
+          28.7667
+        ]
+      ],
+      "black_frac": 0.0855,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -101,162 +75,70 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells a petty revenge story using split-screen visuals and captions, but the Subway Surfers mascot is decorative and irrelevant.",
-      "score": 82
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Returned A Vacuum. The Serial Number Returned Her.",
-    "title": "She Returned A Vacuum. The Serial Number Returned Her.",
-    "format": "reddit",
-    "publish_at": "2026-09-28T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/uji8qHMfUwQ",
-    "error": null,
-    "elapsed_seconds": 210.4,
-    "package_path": "state/trending_packages/20260928/06_vacuum-return-serial-number.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260928-114538_she_returned_a_vacuum__the_serial_number.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 53.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 96
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "tom rahill everglades python hunt",
-    "angle": "Florida\u2019s Everglades team nets 96 invasive Burmese pythons in a high\u2011stakes hunt, highlighting a costly wildlife war.",
-    "publish_at": "2026-09-28T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/USvZjMmxfoA",
-    "error": null,
-    "elapsed_seconds": 293.2,
-    "title": "I Turned the Manager\u2019s \u201cFree Coffee\u201d Policy Against Him",
-    "package_path": "state/trending_packages/20260928-114939_auto_tom_rahill_everglades_python_hunt.json",
-    "video_path": "output/daily_20260928-114939_tom_rahill_everglades_python_hunt.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.1,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
+      "reason": "showrunner BLOCK: The video tells a Reddit story using a split screen with Minecraft-style gameplay and generic AI images, effectively conveying the narrative beats.",
       "score": 100
     },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "fat bear",
+    "angle": "Alaska\u2019s Fat Bear Week crowns the heaviest hibernation champion, a quirky showdown for wildlife fans.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A Reddit story told over Minecraft gameplay with relevant but generic static images in the top panel.",
+    "elapsed_seconds": 235.5,
+    "title": "I Served a Free Latte to the Customer Who Tried to Steal My Tips",
+    "package_path": "state/trending_packages/20260928-121729_auto_fat_bear.json",
+    "video_path": "output/daily_20260928-121729_fat_bear.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 40.767,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A Reddit story told over Minecraft gameplay with relevant but generic static images in the top panel.",
+      "score": 100
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
+    "angle": "NORAD pilots scramble to intercept two unidentified objects over Chicago, footage shows the tense aerial drama.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com' refused by the writer: trend involves real military event",
+    "elapsed_seconds": 0.6,
+    "unfit": true,
     "backfill": true
   },
   {
     "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Colorado\u2019s I\u201170 wildlife underpass proves its worth as dozens of elk and deer safely cross, showing how tunnels can curb highway deaths.",
+    "angle": "Camera reveals deer, elk and a bobcat safely crossing I\u201170 through a new wildlife underpass.",
     "publish_at": null,
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/VBo6XRC7hpc",
-    "error": null,
-    "elapsed_seconds": 315.2,
-    "title": "I Served a Free Latte and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260928-115419_auto_colorado_s_i_70_wildlife_underpass_is_wo.json",
-    "video_path": "output/daily_20260928-115419_colorado_s_i_70_wildlife_underpass_is_wo.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 43.0,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
-    },
-    "backfill": true
-  },
-  {
-    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
-    "angle": "Maine\u2019s new turtle tunnel captures an endangered Blanding\u2019s turtle navigating safely, a rare glimpse of conservation tech in action.",
-    "publish_at": null,
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/3HrH7UAaZ4M",
-    "error": null,
-    "elapsed_seconds": 319.9,
-    "title": "I Served a VIP Who Stole My Tip Jar",
-    "package_path": "state/trending_packages/20260928-115935_auto_endangered_blanding_s_turtle_caught_on_c.json",
-    "video_path": "output/daily_20260928-115935_endangered_blanding_s_turtle_caught_on_c.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.067,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 96
-    },
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (12fd36f4d5ddb3c1)",
+    "elapsed_seconds": 15.1,
     "backfill": true
   }
 ]
