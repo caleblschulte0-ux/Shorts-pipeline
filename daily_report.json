@@ -1,217 +1,126 @@
 [
   {
     "topic": "Two mass shootings in South Africa leave 28 dead",
-    "angle": "A deadly double\u2011attack in South Africa highlights a surge in gang\u2011related gun violence and forces a hard look at security policies.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Two mass shootings in South Africa leave 28 dead' cannot seed a story ('shootings'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 1.5,
-    "unfit": true
-  },
-  {
-    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
-    "angle": "Scientists spot a critically endangered Andean cat on video, a rare glimpse that could boost conservation funding worth millions.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation",
-    "elapsed_seconds": 303.9,
-    "title": "I swapped my manager's payroll and he quit on the spot",
-    "package_path": "state/trending_packages/20260928-132144_auto_rare_small_cat_caught_on_camera_in_the_a.json",
-    "video_path": "output/daily_20260928-132144_rare_small_cat_caught_on_camera_in_the_a.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 52.167,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked: judge response failed schema validation",
-      "score": 14
-    },
-    "blocked": true
-  },
-  {
-    "topic": "5 men arrested over suspected attack at a U.S.-run air force base are British nationals",
-    "angle": "Five British nationals are detained for a suspected plot against a U.S. air base in England, raising alarms about trans\u2011Atlantic security cooperation.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: '5 men arrested over suspected attack at a U.S.-run air force base are British nationals' cannot seed a story ('arrested'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.2,
-    "unfit": true
-  },
-  {
-    "topic": "\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys",
-    "angle": "Chacma baboons are raiding homes in Cape Town, forcing property values to tumble and prompting costly wildlife\u2011management plans.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: '\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys' cannot seed a story ('troops'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.9,
-    "unfit": true
-  },
-  {
-    "topic": "After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench",
-    "angle": "A massive whale carcass on a Perth shoreline triggers a hazardous cleanup and sparks a viral debate over respect for marine life.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench' cannot seed a story ('dead'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.8,
-    "unfit": true
-  },
-  {
-    "topic": "Meta's Muse agent is attacking one of the economy's most profitable weak spots",
-    "angle": "Meta rolls out Muse, an AI personal finance assistant that could reshape credit\u2011card spending habits and threaten $1\u202ftrillion in consumer debt revenue.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: \"Meta's Muse agent is attacking one of the economy's most profitable weak spots\" cannot seed a story ('attacking'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.2,
-    "unfit": true
-  },
-  {
-    "topic": "Fighting between rival forces in Somalia\u2019s Baidoa",
-    "angle": "Intense clashes erupt in Baidoa, Somalia, threatening humanitarian aid routes and prompting a UN call for urgent ceasefire negotiations.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Fighting between rival forces in Somalia\u2019s Baidoa' cannot seed a story ('attacks'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.3,
-    "unfit": true
-  },
-  {
-    "topic": "'It devastated me:' 85-year-old Florida man reflects on viral 110 mph arrest - WKMG",
-    "angle": "An 85\u2011year\u2011old\u2019s high\u2011speed police chase becomes a cautionary tale about aging drivers and law\u2011enforcement video surveillance.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: \"'It devastated me:' 85-year-old Florida man reflects on viral 110 mph arrest - WKMG\" cannot seed a story ('arrest'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 1.2,
-    "unfit": true
-  },
-  {
-    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
-    "angle": "NORAD pilots scramble to intercept two unknown objects over Chicago, sparking public fears and prompting a federal air\u2011space review.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video tells a Reddit story using Minecraft gameplay and AI-generated images, but the AI visuals clash with the overall aesthetic.",
-    "elapsed_seconds": 233.2,
-    "title": "I Turned a Rogue Baggage Clerk's $75 Scam on Himself",
-    "package_path": "state/trending_packages/20260928-132654_auto_two_norad_chicago_interceptions_caught_o.json",
-    "video_path": "output/daily_20260928-132654_two_norad_chicago_interceptions_caught_o.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.533,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video tells a Reddit story using Minecraft gameplay and AI-generated images, but the AI visuals clash with the overall aesthetic.",
-      "score": 84
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
-    "angle": "A newly discovered wild cat species was photographed in the Andes, sparking urgent conservation concerns.",
-    "publish_at": "2026-09-28T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (60bcb07a3237ef06)",
-    "elapsed_seconds": 10.8,
-    "backfill": true
-  },
-  {
-    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
-    "angle": "NORAD pilots intercepted two unauthorized aircraft over Chicago, a rare glimpse into national air\u2011defense drills.",
+    "angle": "Coordinated gun attacks in two South African towns killed 28, underscoring the nation\u2019s escalating gang violence.",
     "publish_at": "2026-09-28T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-    "elapsed_seconds": 415.7,
-    "title": "I Served a Free Coffee to an Entitled Customer and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260928-133128_auto_two_norad_chicago_interceptions_caught_o.json",
-    "video_path": "output/daily_20260928-133128_two_norad_chicago_interceptions_caught_o.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 43.4,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
-      "score": null
-    },
-    "blocked": true,
-    "backfill": true
+    "error": "unfit_for_fiction: 'Two mass shootings in South Africa leave 28 dead' cannot seed a story ('shootings'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.0,
+    "unfit": true
+  },
+  {
+    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
+    "angle": "A newly discovered wild cat species was filmed prowling the Andes, sparking urgent conservation calls.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)",
+    "elapsed_seconds": 35.0
+  },
+  {
+    "topic": "Endangered Blanding's turtle caught on camera using new Maine wildlife tunnel - WGME",
+    "angle": "Maine\u2019s new wildlife tunnel saved an endangered Blanding\u2019s turtle, showing a rare success for habitat restoration.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)",
+    "elapsed_seconds": 35.4
+  },
+  {
+    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
+    "angle": "A camera in Colorado\u2019s I\u201170 underpass captured dozens of animals safely crossing, proving the design works.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 121)",
+    "elapsed_seconds": 34.4
+  },
+  {
+    "topic": "Giant pandas arrive in Atlanta after Trump-Xi meeting",
+    "angle": "Two giant pandas landed in Atlanta, a diplomatic gesture that could boost tourism and US\u2011China cultural ties.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Giant pandas arrive in Atlanta after Trump-Xi meeting' cannot seed a story ('President'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.1,
+    "unfit": true
+  },
+  {
+    "topic": "Florida man hospitalized after car plunges into Massachusetts bay - wwlp.com",
+    "angle": "A Florida driver\u2019s car plunged into the Atlantic off Massachusetts, raising questions about distracted driving.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (900f56f2b127960c)",
+    "elapsed_seconds": 30.7
   },
   {
     "topic": "Deputies confront sword-wielding Florida man after reported home invasion - WPEC",
-    "angle": "A sword\u2011wielding suspect turned a routine home\u2011invasion call into a televised showdown.",
-    "publish_at": "2026-09-28T17:30:00Z",
+    "angle": "Police faced a sword\u2011wielding intruder in a bizarre home\u2011invasion standoff that ended with a taser.",
+    "publish_at": "2026-09-28T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5dcc24c548644727)",
-    "elapsed_seconds": 27.2,
+    "elapsed_seconds": 25.6
+  },
+  {
+    "topic": "Meta's Muse agent is attacking one of the economy's most profitable weak spots",
+    "angle": "Meta\u2019s new Muse AI assistant can hijack credit\u2011card spending data, raising privacy alarms for consumers.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: \"Meta's Muse agent is attacking one of the economy's most profitable weak spots\" cannot seed a story ('attacking'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.0,
+    "unfit": true
+  },
+  {
+    "topic": "Soccer player gets smoked by lawn roller during halftime warm-up in wild moment caught on camera - Fox News",
+    "angle": "A lawn\u2011roller accident injured a professional soccer player mid\u2011match, highlighting unsafe field\u2011side equipment.",
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 123)",
+    "elapsed_seconds": 34.9
+  },
+  {
+    "topic": "qqq stock",
+    "angle": null,
+    "publish_at": "2026-09-28T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (0bcb533a261d85af)",
+    "elapsed_seconds": 27.4,
     "backfill": true
   },
   {
-    "topic": "Florida man shares survival story after suffering from vascular disease - KVUE",
-    "angle": "A Florida man\u2019s battle with a rare vascular disease offers a stark reminder of hidden health risks.",
+    "topic": "msft stock",
+    "angle": null,
+    "publish_at": "2026-09-28T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (2e6a22f56988d645)",
+    "elapsed_seconds": 25.8,
+    "backfill": true
+  },
+  {
+    "topic": "mcdonalds drive thru",
+    "angle": null,
     "publish_at": "2026-09-28T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (cb7c7aba61e2c413)",
-    "elapsed_seconds": 27.3,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (6e22687db37ca24a)",
+    "elapsed_seconds": 27.5,
+    "backfill": true
+  },
+  {
+    "topic": "ollie gordon",
+    "angle": null,
+    "publish_at": "2026-09-28T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (43d65165d98d0fbc)",
+    "elapsed_seconds": 26.1,
     "backfill": true
   }
 ]
