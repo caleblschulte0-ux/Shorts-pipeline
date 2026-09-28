@@ -1,0 +1,652 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260928",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "author",
+  "contract": {
+    "registry_revision": 6,
+    "registry_sha256": "e23bd0422991def8547286e9daa2ebc799d01038c5e1857b2fa8e5967b650a50",
+    "source_commit": "6922795643642b336168bcd78f22c932596b7f1e",
+    "production_date": "20260928",
+    "bundle_sha256": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-debit-cards-replaced-checks",
+      "title": "Debit Cards Replaced The Checkbook",
+      "hook": "Plastic erased the signature.",
+      "y_label": "U.S. payments per year (billions)",
+      "duration": 13,
+      "source": "Federal Reserve Payments Study estimates for U.S. noncash payments: debit-card payments and checks paid, selected years 2000-2021. Approximate annual counts.",
+      "years": [
+        2000,
+        2003,
+        2006,
+        2009,
+        2012,
+        2015,
+        2018,
+        2021
+      ],
+      "series": [
+        {
+          "name": "Debit cards",
+          "color": "#1565C0",
+          "icon": "Visa",
+          "values": [
+            8.3,
+            15.6,
+            25.3,
+            37.9,
+            47,
+            59.6,
+            72.7,
+            87.8
+          ]
+        },
+        {
+          "name": "Checks",
+          "color": "#6D4C41",
+          "values": [
+            42.6,
+            36.7,
+            30.5,
+            24.5,
+            18.3,
+            17.3,
+            14.5,
+            11.2
+          ]
+        }
+      ],
+      "hashtags": [
+        "debitcard",
+        "checks",
+        "payments",
+        "banking",
+        "fintech",
+        "money",
+        "federalreserve",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260928"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-smartphones-passed-pcs",
+      "title": "Smartphones Passed PCs In Two Years",
+      "hook": "The pocket beat the desk.",
+      "y_label": "Global shipments per year (millions)",
+      "duration": 13,
+      "source": "IDC Worldwide Quarterly Mobile Phone Tracker and Personal Computing Device Tracker, annual global smartphone and PC shipments, 2010-2023. Approximate.",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2014,
+        2016,
+        2019,
+        2021,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Smartphones",
+          "color": "#00ACC1",
+          "icon": "Apple",
+          "values": [
+            305,
+            494,
+            725,
+            1301,
+            1473,
+            1371,
+            1355,
+            1167
+          ]
+        },
+        {
+          "name": "PCs",
+          "color": "#5E35B1",
+          "icon": "Microsoft",
+          "values": [
+            351,
+            365,
+            350,
+            309,
+            260,
+            267,
+            349,
+            260
+          ]
+        }
+      ],
+      "hashtags": [
+        "smartphone",
+        "pc",
+        "technology",
+        "iphone",
+        "android",
+        "computers",
+        "idc",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "electronic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260928"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-internet-ate-newspaper-ads",
+      "title": "The Internet Ate The Newspaper Ad",
+      "hook": "Print never caught the feed.",
+      "y_label": "U.S. advertising revenue per year (billion dollars)",
+      "duration": 13,
+      "source": "Newspaper advertising revenue: Pew Research Center State of the News Media. Digital/internet advertising revenue: IAB/PwC Internet Advertising Revenue Report, U.S. totals. Approximate.",
+      "years": [
+        2000,
+        2005,
+        2008,
+        2010,
+        2013,
+        2016,
+        2019,
+        2022
+      ],
+      "series": [
+        {
+          "name": "Newspaper ads",
+          "color": "#5D4037",
+          "values": [
+            46,
+            49.4,
+            34.7,
+            22.8,
+            17.3,
+            14.3,
+            13,
+            9.8
+          ]
+        },
+        {
+          "name": "Digital ads",
+          "color": "#0288D1",
+          "values": [
+            8.2,
+            12.5,
+            23.4,
+            26,
+            42.8,
+            72.5,
+            129.3,
+            209.7
+          ]
+        }
+      ],
+      "hashtags": [
+        "digitalads",
+        "advertising",
+        "newspapers",
+        "media",
+        "journalism",
+        "adrevenue",
+        "internet",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260928"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-america-replaced-cars-with-trucks",
+      "title": "America Replaced Cars With Trucks",
+      "hook": "The sedan lost the driveway.",
+      "y_label": "Share of new U.S. vehicle sales (percent)",
+      "duration": 13,
+      "source": "WardsAuto / Motor Intelligence U.S. light-vehicle sales by body style: passenger cars vs. light trucks (SUVs, crossovers, pickups, vans), share of new sales, 1990-2024. Approximate.",
+      "years": [
+        1990,
+        1998,
+        2004,
+        2009,
+        2013,
+        2018,
+        2024
+      ],
+      "series": [
+        {
+          "name": "SUVs & trucks",
+          "color": "#616161",
+          "values": [
+            30,
+            45,
+            55,
+            48,
+            52.1,
+            67,
+            80
+          ]
+        },
+        {
+          "name": "Sedans & cars",
+          "color": "#C62828",
+          "values": [
+            70,
+            55,
+            45,
+            52,
+            47.9,
+            33,
+            20
+          ]
+        }
+      ],
+      "hashtags": [
+        "suv",
+        "trucks",
+        "sedan",
+        "cars",
+        "automotive",
+        "carsales",
+        "wardsauto",
+        "data",
+        "shorts",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover-20260928"
+    },
+    {
+      "subreddit": "pettyrevenge",
+      "slug": "reserved-parking-tow-receipt",
+      "title": "He Stole My Parking Spot. His Lease Ordered The Tow.",
+      "hashtags": [
+        "pettyrevenge",
+        "parking",
+        "apartment",
+        "towtruck",
+        "neighbor",
+        "lease",
+        "karma",
+        "shorts"
+      ],
+      "script": "My apartment neighbor kept parking in my numbered space because it was closer to his door. I left a note. He threw it under my windshield wiper with ‘first come, first served’ written across it. The lease disagreed. Management warned him twice, then told me to call their towing company if it happened again. Friday night, his truck was back, perfectly centered over my painted number. I photographed the truck, the sign, and my lease, then made the call. He came outside while the driver was lifting it and insisted the space belonged to visitors. The driver checked the parking map. His own signed lease assigned him a different spot beside the dumpster. A modest scenic upgrade. He paid $286 to recover the truck and started using his actual space. On Monday, management billed him another $75 for removing the warning sticker. My space has been mysteriously available ever since.",
+      "shots": [
+        {
+          "phrase": "parking in my numbered space",
+          "query": "car parked in clearly numbered apartment parking space",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1sBWiz_ICORF3Umvy3ODe-7eeMsymNW20",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1sBWiz_ICORF3Umvy3ODe-7eeMsymNW20",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "8f64b41bcf69b5d609da3713384487f63b85059fc13821eac7a287da233acdd8",
+              "bytes": 2120830,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "left a note",
+          "query": "hand placing polite note under car windshield wiper",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "15gPgwyT2mJLj7XhzvC_RAVqSnRH8jJBg",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=15gPgwyT2mJLj7XhzvC_RAVqSnRH8jJBg",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "30bc0375b49eb07733b1dff84db51bb17cc3ea75ed8f65f3a80e75d94b8f2cc9",
+              "bytes": 1857727,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "The lease disagreed",
+          "query": "apartment lease and parking map on desk no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1CFrTlPq17AVR6ODX2BzhNcYICFATw8c8",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1CFrTlPq17AVR6ODX2BzhNcYICFATw8c8",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "78e77810c477da82b9cc748da434e7c59c1e499494b77f41f7e3864c57f148fe",
+              "bytes": 2039517,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "his truck was back",
+          "query": "pickup truck in reserved apartment parking spot at night",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1q1KVk5PASA6pI32QEtBT2V7VQGTXEEfx",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1q1KVk5PASA6pI32QEtBT2V7VQGTXEEfx",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "80ff8e3b4bb662f08eacbd2d71ee261825a707f3affe7fcb28251bf07f876a27",
+              "bytes": 2346060,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "the driver was lifting it",
+          "query": "tow truck lifting pickup in apartment parking lot",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "19DbgPw6CIva-YsaxMdscJQcZbuEQuHhp",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=19DbgPw6CIva-YsaxMdscJQcZbuEQuHhp",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "b4739cdcfc20524a75bde134434e889ba032109834505c1dde14f8aae110731b",
+              "bytes": 2395614,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "beside the dumpster",
+          "query": "empty assigned parking space beside apartment dumpster",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1XEkD2MpSz8DH31RvU21MqHcaQOHmbija",
+              "filename": "20260928__authored-reserved-parking-tow-receipt-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1XEkD2MpSz8DH31RvU21MqHcaQOHmbija",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "7ca8ae9fa30234e24de5bfb94621595e5f1fbbd438876172badb31d7862a81db",
+              "bytes": 2730517,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "first come, first served",
+          "text": "FIRST COME?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "call their towing company",
+          "text": "CALL THE TOW",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "His own signed lease",
+          "text": "HIS OWN LEASE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "$286",
+          "text": "$286 LATER",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "deadpan",
+      "_authored_by": "chatgpt-takeover-20260928"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "vacuum-return-serial-number",
+      "title": "She Returned A Vacuum. The Serial Number Returned Her.",
+      "hashtags": [
+        "customerservice",
+        "retail",
+        "refund",
+        "vacuum",
+        "serialnumber",
+        "receipts",
+        "karma",
+        "shorts"
+      ],
+      "script": "A customer returned a premium vacuum and said it had never worked. The box looked new. The vacuum inside looked like it had cleaned a gravel driveway. She demanded a cash refund and handed me a receipt from the previous afternoon. Our policy allowed it, but the serial number on the receipt did not match the machine. She said manufacturers reuse numbers. They do not. I checked the rewards account attached to her receipt. It showed yesterday’s new vacuum—and another purchase of the same model eighteen months earlier. The old purchase matched the battered machine in front of me. She had put her old vacuum in the new box and brought it back. Inventory magic, minus the magic. I denied the refund and returned both items to her. She threatened a chargeback, so I printed both serial records and noted the attempted switch on her account. The chargeback never arrived. The gravel did, scattered across my counter.",
+      "shots": [
+        {
+          "phrase": "returned a premium vacuum",
+          "query": "customer returning boxed vacuum at retail service counter",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+              "filename": "20260928__authored-vacuum-return-serial-number-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "de9f9472d43134da79d691b4f75fecaff3753485e2edea818ecab484c77256cb",
+              "bytes": 1807840,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "cleaned a gravel driveway",
+          "query": "dirty battered vacuum cleaner with small gravel debris",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+              "filename": "20260928__authored-vacuum-return-serial-number-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "89a345472fec60dc11e5fe9b5b8c4b87ec924fe5da71f245d0baaee9b8a9be1a",
+              "bytes": 2259568,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "serial number on the receipt",
+          "query": "employee comparing receipt and appliance serial label no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+              "filename": "20260928__authored-vacuum-return-serial-number-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "18cdee755f547834ebd8be22f25b7a7864508dbbc8ef192449a3e1c9a4e4a8bd",
+              "bytes": 2081606,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "checked the rewards account",
+          "query": "retail employee reviewing customer purchase history on computer",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1fP8DHmey0f5Z-JsoxyvjFcnpvsCCrbtk",
+              "filename": "20260928__authored-vacuum-return-serial-number-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1fP8DHmey0f5Z-JsoxyvjFcnpvsCCrbtk",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "458e9c4cfe103264c58edb5dbc40069a177e9fbf172999481ae2e056d3d005b6",
+              "bytes": 1856668,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "eighteen months earlier",
+          "query": "two purchase records for same vacuum model no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+              "filename": "20260928__authored-vacuum-return-serial-number-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "4b65ebfe7dd4113c22de043b1442ff2782c5eaf18a206220f3d4591b32a87b80",
+              "bytes": 2096786,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        },
+        {
+          "phrase": "printed both serial records",
+          "query": "two printed serial records beside boxed vacuum no readable text",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "131sp_nUCOdTijFKczfcwITKDPEYoKJJv",
+              "filename": "20260928__authored-vacuum-return-serial-number-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=131sp_nUCOdTijFKczfcwITKDPEYoKJJv",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "5bdb8e70a27fe2d555340353613577aec7b1732f82401d1b7b6eef70d21f4d7a",
+              "bytes": 1961116,
+              "format": "png",
+              "width": 941,
+              "height": 1672
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "never worked",
+          "text": "NEVER WORKED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "did not match",
+          "text": "SERIAL MISMATCH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "eighteen months earlier",
+          "text": "18 MONTHS EARLIER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "denied the refund",
+          "text": "REFUND DENIED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "suspicious",
+      "_authored_by": "chatgpt-takeover-20260928"
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s predicted empty plates. The numbers went the other way.",
+      "says": [
+        "Progression to secondary school (%) rose from 77.8 in 1985 to 91.3 in 2017 — 1.2 times higher.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million metric tons in 2024 — 1.5 times higher.",
+        "China leads with 5.2 million square kilometers of farmland, ahead of the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never showed up — the harvest did.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Is 3.0x Higher Than In 1990",
+      "hook": "It is not solar or wind. The source that tripled was combustible renewables and waste.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2 % of total energy in 1990 to 30.1 % of total energy in 2024 — 3.0 times higher.",
+        "Access to electricity increased from 73.2 % of population in 1998 to 91.9 % of population in 2024 — 1.3 times higher.",
+        "Methane (ch4) emissions from waste climbed from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024 — 1.8 times higher."
+      ],
+      "closing": "The leftovers became fuel, then left a methane bill.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "The planet kept growing. Its growth rate did not.",
+      "says": [
+        "Rural population fell from 63.1 % of total population in 1972 to 42.2 % of total population in 2025 — down to 67 percent of that.",
+        "Population in the largest city moved from 18.2 % of urban population in 1972 to 16.2 % of urban population in 2025 — barely moved.",
+        "Population growth dropped from 2 annual % in 1972 to 0.91 annual % in 2025 — down to 46 percent of that."
+      ],
+      "closing": "More people, less acceleration — the curve quietly changed shape.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "Bundle mode author: completed the frozen 4 graph_race + 2 reddit_story shortfall.",
+    "Rewrote all three requested Explainer stories while preserving protected numbers, years, countries and named entities."
+  ]
+}
