@@ -3,20 +3,18 @@
   "channel": "trending",
   "schema": "production-channel-outcome/v1",
   "expected": 6,
-  "previously_uploaded": 5,
-  "rendered_or_attempted": 5,
-  "uploaded": 7,
+  "previously_uploaded": 6,
+  "rendered_or_attempted": 13,
+  "uploaded": 6,
   "quarantined": 0,
-  "failed": 3,
+  "failed": 13,
   "failed_by_stage": {
-    "infra_error": 3
+    "infra_error": 10,
+    "showrunner_block": 3
   },
   "failed_by_format": {
-    "unknown": 3
+    "unknown": 13
   },
-  "status": "repair_required",
-  "video_urls": [
-    "https://youtube.com/shorts/r_dNslMEa-4",
-    "https://youtube.com/shorts/KDi4OcpxUF4"
-  ]
+  "status": "production_complete",
+  "video_urls": []
 }

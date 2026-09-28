@@ -1,19 +1,28 @@
 [
   {
-    "topic": "He Stole My Parking Spot. His Lease Ordered The Tow.",
-    "title": "He Stole My Parking Spot. His Lease Ordered The Tow.",
-    "format": "reddit",
-    "publish_at": "2026-09-28T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/r_dNslMEa-4",
-    "error": null,
-    "elapsed_seconds": 200.7,
-    "package_path": "state/trending_packages/20260928/05_reserved-parking-tow-receipt.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260928-122453_he_stole_my_parking_spot__his_lease_orde.mp4",
+    "topic": "Two mass shootings in South Africa leave 28 dead",
+    "angle": "A deadly double\u2011attack in South Africa highlights a surge in gang\u2011related gun violence and forces a hard look at security policies.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Two mass shootings in South Africa leave 28 dead' cannot seed a story ('shootings'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 1.5,
+    "unfit": true
+  },
+  {
+    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
+    "angle": "Scientists spot a critically endangered Andean cat on video, a rare glimpse that could boost conservation funding worth millions.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation",
+    "elapsed_seconds": 303.9,
+    "title": "I swapped my manager's payroll and he quit on the spot",
+    "package_path": "state/trending_packages/20260928-132144_auto_rare_small_cat_caught_on_camera_in_the_a.json",
+    "video_path": "output/daily_20260928-132144_rare_small_cat_caught_on_camera_in_the_a.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.633,
+      "duration": 52.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,44 +33,94 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.1
+      "loudness_lufs": -22.4
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked: judge response failed schema validation",
+      "score": 14
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "tom rahill everglades python hunt",
-    "angle": "Florida wildlife crews use robot rabbits to trap Burmese pythons, catching a 96\u2011python haul that could curb the invasive snake boom.",
-    "publish_at": null,
+    "topic": "5 men arrested over suspected attack at a U.S.-run air force base are British nationals",
+    "angle": "Five British nationals are detained for a suspected plot against a U.S. air base in England, raising alarms about trans\u2011Atlantic security cooperation.",
+    "publish_at": "2026-09-28T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (b3ce47a883be6105)",
-    "elapsed_seconds": 16.9,
-    "backfill": true
+    "error": "unfit_for_fiction: '5 men arrested over suspected attack at a U.S.-run air force base are British nationals' cannot seed a story ('arrested'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.2,
+    "unfit": true
   },
   {
-    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
-    "angle": "Scientists captured footage of a newly discovered dwarf cat species prowling the Andean footholds, a find that could reshape conservation plans.",
-    "publish_at": null,
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/KDi4OcpxUF4",
-    "error": null,
-    "elapsed_seconds": 371.7,
-    "title": "I Served a Free Latte and Got Sweet Karma",
-    "package_path": "state/trending_packages/20260928-122909_auto_rare_small_cat_caught_on_camera_in_the_a.json",
-    "video_path": "output/daily_20260928-122909_rare_small_cat_caught_on_camera_in_the_a.mp4",
+    "topic": "\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys",
+    "angle": "Chacma baboons are raiding homes in Cape Town, forcing property values to tumble and prompting costly wildlife\u2011management plans.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: '\u2018It\u2019s hard to sell a house when it\u2019s covered in baboon faeces\u2019: Cape Town divided over plan to remove its monkeys' cannot seed a story ('troops'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.9,
+    "unfit": true
+  },
+  {
+    "topic": "After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench",
+    "angle": "A massive whale carcass on a Perth shoreline triggers a hazardous cleanup and sparks a viral debate over respect for marine life.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'After a dead whale washed up at a Perth beach, some took selfies. Others held their nose from the stench' cannot seed a story ('dead'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.8,
+    "unfit": true
+  },
+  {
+    "topic": "Meta's Muse agent is attacking one of the economy's most profitable weak spots",
+    "angle": "Meta rolls out Muse, an AI personal finance assistant that could reshape credit\u2011card spending habits and threaten $1\u202ftrillion in consumer debt revenue.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: \"Meta's Muse agent is attacking one of the economy's most profitable weak spots\" cannot seed a story ('attacking'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.2,
+    "unfit": true
+  },
+  {
+    "topic": "Fighting between rival forces in Somalia\u2019s Baidoa",
+    "angle": "Intense clashes erupt in Baidoa, Somalia, threatening humanitarian aid routes and prompting a UN call for urgent ceasefire negotiations.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'Fighting between rival forces in Somalia\u2019s Baidoa' cannot seed a story ('attacks'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.3,
+    "unfit": true
+  },
+  {
+    "topic": "'It devastated me:' 85-year-old Florida man reflects on viral 110 mph arrest - WKMG",
+    "angle": "An 85\u2011year\u2011old\u2019s high\u2011speed police chase becomes a cautionary tale about aging drivers and law\u2011enforcement video surveillance.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: \"'It devastated me:' 85-year-old Florida man reflects on viral 110 mph arrest - WKMG\" cannot seed a story ('arrest'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 1.2,
+    "unfit": true
+  },
+  {
+    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
+    "angle": "NORAD pilots scramble to intercept two unknown objects over Chicago, sparking public fears and prompting a federal air\u2011space review.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video tells a Reddit story using Minecraft gameplay and AI-generated images, but the AI visuals clash with the overall aesthetic.",
+    "elapsed_seconds": 233.2,
+    "title": "I Turned a Rogue Baggage Clerk's $75 Scam on Himself",
+    "package_path": "state/trending_packages/20260928-132654_auto_two_norad_chicago_interceptions_caught_o.json",
+    "video_path": "output/daily_20260928-132654_two_norad_chicago_interceptions_caught_o.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.667,
+      "duration": 49.533,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -72,7 +131,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.6
+      "loudness_lufs": -25.4
     },
     "qa": {
       "ok": true,
@@ -80,32 +139,79 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 100
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video tells a Reddit story using Minecraft gameplay and AI-generated images, but the AI visuals clash with the overall aesthetic.",
+      "score": 84
     },
+    "blocked": true
+  },
+  {
+    "topic": "Rare small cat caught on camera in the Andean foothills. Here\u2019s why experts are so excited - BBC Wildlife Magazine",
+    "angle": "A newly discovered wild cat species was photographed in the Andes, sparking urgent conservation concerns.",
+    "publish_at": "2026-09-28T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (60bcb07a3237ef06)",
+    "elapsed_seconds": 10.8,
     "backfill": true
   },
   {
-    "topic": "Colorado's I-70 wildlife underpass is working. See the animals caught on camera - 9News",
-    "angle": "Cameras in Colorado\u2019s I\u201170 wildlife tunnel reveal deer, elk and a lone bobcat safely crossing the highway, proving the underpass saves dozens of lives daily.",
-    "publish_at": null,
+    "topic": "Two NORAD Chicago Interceptions Caught on Camera - AvBrief.com",
+    "angle": "NORAD pilots intercepted two unauthorized aircraft over Chicago, a rare glimpse into national air\u2011defense drills.",
+    "publish_at": "2026-09-28T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: the story still names the real news (see) after 2 retries",
-    "elapsed_seconds": 13.3,
-    "unfit": true,
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+    "elapsed_seconds": 415.7,
+    "title": "I Served a Free Coffee to an Entitled Customer and Got Sweet Karma",
+    "package_path": "state/trending_packages/20260928-133128_auto_two_norad_chicago_interceptions_caught_o.json",
+    "video_path": "output/daily_20260928-133128_two_norad_chicago_interceptions_caught_o.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI r",
+      "score": null
+    },
+    "blocked": true,
     "backfill": true
   },
   {
     "topic": "Deputies confront sword-wielding Florida man after reported home invasion - WPEC",
-    "angle": "Police responded to a midnight home invasion where the intruder brandished a sword, sparking a bizarre standoff that ended in his arrest.",
-    "publish_at": null,
+    "angle": "A sword\u2011wielding suspect turned a routine home\u2011invasion call into a televised showdown.",
+    "publish_at": "2026-09-28T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'Deputies confront sword-wielding Florida man after reported home invasion - WPEC' refused by the writer: The trend involves violent crime, which is not allowed for story setting.",
-    "elapsed_seconds": 0.6,
-    "unfit": true,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (5dcc24c548644727)",
+    "elapsed_seconds": 27.2,
+    "backfill": true
+  },
+  {
+    "topic": "Florida man shares survival story after suffering from vascular disease - KVUE",
+    "angle": "A Florida man\u2019s battle with a rare vascular disease offers a stark reminder of hidden health risks.",
+    "publish_at": "2026-09-28T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Sep 30, 12am (UTC)\n | mailbox: AnswerPending: answer pending in exchange/asks (cb7c7aba61e2c413)",
+    "elapsed_seconds": 27.3,
     "backfill": true
   }
 ]
