@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-28T12:59:51Z",
+ "updated": "2026-09-28T19:41:10Z",
  "open": [
   {
    "id": "activity-inequality-steps__4738cbb7",
@@ -4950,6 +4950,16 @@
    "answer_path": "exchange/rewrites/20260928/earth-rotation-speeding-up__1c2a50c1.answer.json"
   },
   {
+   "id": "eclipse-recurrence-rarity__fa26abf6",
+   "slug": "eclipse-recurrence-rarity",
+   "filed": "2026-09-28T19:41:10Z",
+   "why": [
+    "premise: brain: Uses multiple numbers (2 eclipses and 7 years) instead of a single consequential, verifiable number"
+   ],
+   "request": "exchange/rewrites/20260928/eclipse-recurrence-rarity__fa26abf6.request.json",
+   "answer_path": "exchange/rewrites/20260928/eclipse-recurrence-rarity__fa26abf6.answer.json"
+  },
+  {
    "id": "english-internet-share-decline__aa4746d9",
    "slug": "english-internet-share-decline",
    "filed": "2026-09-28T12:04:00Z",
@@ -5313,6 +5323,16 @@
    ],
    "request": "exchange/rewrites/20260928/religious-nones-rise__ea96d336.request.json",
    "answer_path": "exchange/rewrites/20260928/religious-nones-rise__ea96d336.answer.json"
+  },
+  {
+   "id": "saffron-red-gold-myth__9af139ed",
+   "slug": "saffron-red-gold-myth",
+   "filed": "2026-09-28T12:36:02Z",
+   "why": [
+    "premise: brain: Uses a searchable noun phrase ('World's Most Expensive Spice') which triggers automatic rejection."
+   ],
+   "request": "exchange/rewrites/20260928/saffron-red-gold-myth__9af139ed.request.json",
+   "answer_path": "exchange/rewrites/20260928/saffron-red-gold-myth__9af139ed.answer.json"
   },
   {
    "id": "sand-mining-crisis__eb97e4fb",
