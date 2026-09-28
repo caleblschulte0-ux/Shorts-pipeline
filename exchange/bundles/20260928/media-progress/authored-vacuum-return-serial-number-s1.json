@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:13.778Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-vacuum-return-serial-number-s1",
+  "safe_request_id": "authored-vacuum-return-serial-number-s1",
+  "prompt_sha256": "0b55fc705c0e610a2c30451579d7aac82428df5f81ae498e341960dc1dc89bd8",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: dirty battered vacuum cleaner with small gravel debris. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+    "filename": "20260928__authored-vacuum-return-serial-number-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "89a345472fec60dc11e5fe9b5b8c4b87ec924fe5da71f245d0baaee9b8a9be1a",
+    "bytes": 2259568,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "vacuum-return-serial-number",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
