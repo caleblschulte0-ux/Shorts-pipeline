@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:12.201Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-vacuum-return-serial-number-s0",
+  "safe_request_id": "authored-vacuum-return-serial-number-s0",
+  "prompt_sha256": "0cee01e5a8669a6f31bcfeef8b739ea9d00a3a1f3eec1a5cf08623266d75676f",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: customer returning boxed vacuum at retail service counter. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+    "filename": "20260928__authored-vacuum-return-serial-number-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "de9f9472d43134da79d691b4f75fecaff3753485e2edea818ecab484c77256cb",
+    "bytes": 1807840,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "vacuum-return-serial-number",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
