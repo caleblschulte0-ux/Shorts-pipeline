@@ -18584,5 +18584,731 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260629": {
+    "01_venezuela-earthquake-rescue-2026.json": {
+      "version": 1,
+      "slug": "venezuela-earthquake-rescue-2026",
+      "title": "1,400 Dead in Venezuela. 27 Countries Are Digging.",
+      "hashtags": [
+        "venezuelaearthquake",
+        "venezuela",
+        "caracas",
+        "earthquake",
+        "searchandrescue",
+        "disaster",
+        "worldnews",
+        "breaking",
+        "rescue",
+        "fyp",
+        "viral",
+        "news"
+      ],
+      "script": "Sixty-eight thousand still missing? Two magnitude 7 earthquakes \u2014 39 seconds apart \u2014 struck Venezuela on June 24, killing more than 1,430 people and leaving 68,900 unaccounted for. It's the worst earthquake disaster in Venezuelan recorded history. Caracas and La Guaira took the worst of it. Buildings collapsed mid-block. Residents dug with their hands because the government never sent heavy equipment. The golden 72-hour window for finding survivors alive passed days ago. Then on Sunday, rescue workers pulled two 11-year-old boys out of the rubble \u2014 days after the quake. Teams from 27 countries are now on the ground with 140 search dogs and 2,245 specialists. The USGS model still says the final toll could reach 100,000. So which of those 68,900 people just hasn't been found yet?",
+      "shots": [
+        {
+          "phrase": "Sixty-eight thousand still missing",
+          "query": "earthquake rubble collapsed building rescue",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Two magnitude 7 earthquakes \u2014 39 seconds apart \u2014 struck Venezuela",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/2018_Venezuela_earthquake.jpg",
+          "query": "venezuela earthquake damage buildings",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "worst earthquake disaster in Venezuelan recorded history",
+          "query": "caracas venezuela city skyline aerial",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Caracas and La Guaira took the worst of it",
+          "query": "la guaira venezuela coastal city",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Buildings collapsed mid-block",
+          "query": "collapsed building rubble earthquake destruction",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Residents dug with their hands because the government never sent heavy equipment",
+          "query": "earthquake volunteers digging rubble hands",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The golden 72-hour window for finding survivors alive passed days ago",
+          "query": "search rescue clock time pressure",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "rescue workers pulled two 11-year-old boys out of the rubble",
+          "query": "earthquake survivor rescue alive pulled",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Teams from 27 countries are now on the ground",
+          "query": "international rescue team disaster response",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "140 search dogs and 2,245 specialists",
+          "query": "search rescue dog disaster rubble",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The USGS model still says the final toll could reach 100,000",
+          "query": "USGS earthquake damage assessment map",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "68,900 people just hasn't been found yet",
+          "query": "missing persons earthquake aftermath",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Sixty-eight thousand still missing",
+          "text": "68,900 MISSING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "killing more than 1,430 people",
+          "text": "1,430+ DEAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "worst earthquake disaster in Venezuelan recorded history",
+          "text": "WORST IN HISTORY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "72-hour window for finding survivors alive passed",
+          "text": "72H WINDOW CLOSED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "two 11-year-old boys out of the rubble",
+          "text": "BOYS FOUND ALIVE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "final toll could reach 100,000",
+          "text": "MAY HIT 100,000",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "02_snyder-fire-firefighters-killed-2026.json": {
+      "version": 1,
+      "slug": "snyder-fire-firefighters-killed-2026",
+      "title": "3 Federal Firefighters Just Died in a Burnover",
+      "hashtags": [
+        "snyderfire",
+        "wildfire",
+        "firefighter",
+        "burnover",
+        "coloradowildfire",
+        "utahwildfire",
+        "BLM",
+        "wildfireseason",
+        "firefighters",
+        "news",
+        "fyp",
+        "viral"
+      ],
+      "script": "The shelter didn't work? Three federal wildland firefighters are dead after a burnover on the Colorado-Utah border Saturday, where two merging wildfires became the Snyder Fire and swallowed their position faster than any shelter could stop. They'd deployed emergency fire shelters \u2014 the last-resort metallic blankets designed to reflect heat when there's nowhere left to run. Two others survived, burned. Winds were gusting to 44 miles per hour. Humidity was 2%. Fuel moisture readings were between 2 and 8 percent \u2014 basically kindling. The Snyder Fire had been burning at 0 percent containment when the skies turned. Governors of both Utah and Colorado declared emergencies. The names of the three firefighters are still being withheld pending family notifications. So who sends people into those conditions?",
+      "shots": [
+        {
+          "phrase": "The shelter didn't work",
+          "query": "emergency fire shelter foil blanket wildland",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Three federal wildland firefighters are dead",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Small_team_gets_BLM_firetrucks_to_America%E2%80%99s_wildfires_(22845694861).jpg",
+          "query": "BLM wildland firefighters trucks forest",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "burnover on the Colorado-Utah border",
+          "query": "colorado utah border canyon red rock",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "two merging wildfires became the Snyder Fire",
+          "query": "wildfire smoke column aerial west",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "emergency fire shelters \u2014 the last-resort metallic blankets",
+          "query": "fire shelter deployment drill training",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "Two others survived, burned",
+          "query": "burn injury hospital emergency transport",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Winds were gusting to 44 miles per hour",
+          "query": "wildfire wind embers flying flames",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Fuel moisture readings were between 2 and 8 percent \u2014 basically kindling",
+          "query": "dry brush parched grass fire fuel",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Snyder Fire had been burning at 0 percent containment",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Firefighter_fighting_fire_03.jpg",
+          "query": "wildfire night aerial zero containment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Governors of both Utah and Colorado declared emergencies",
+          "query": "governor press conference emergency declaration",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "names of the three firefighters are still being withheld",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/My_Public_Lands_Roadtrip-_Meet_BLM%27s_Boise%2C_Idaho_Smokejumpers_(20765838030).jpg",
+          "query": "fallen firefighter memorial tribute helmet",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who sends people into those conditions",
+          "query": "wildfire crew line suppression helicopter",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "The shelter didn't work",
+          "text": "SHELTER FAILED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Three federal wildland firefighters are dead",
+          "text": "3 FIREFIGHTERS DEAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Humidity was 2%",
+          "text": "2% HUMIDITY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "basically kindling",
+          "text": "BASICALLY KINDLING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "0 percent containment",
+          "text": "0% CONTAINED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "names of the three firefighters are still being withheld",
+          "text": "NAMES WITHHELD",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_tomblaine-skydiving-crash-2026.json": {
+      "version": 1,
+      "slug": "tomblaine-skydiving-crash-2026",
+      "title": "A Plane Full of Nurses Never Left the Runway",
+      "hashtags": [
+        "tomblaine",
+        "skydiving",
+        "planecrash",
+        "france",
+        "nancy",
+        "aviation",
+        "PC6Porter",
+        "skydivingaccident",
+        "breakingnews",
+        "worldnews",
+        "fyp",
+        "viral"
+      ],
+      "script": "A plane crashed at takeoff! A Pilatus PC-6 Porter \u2014 ten skydivers and their pilot \u2014 lifted off from Nancy-Essey airfield in northeastern France on Sunday morning. Three hundred meters out, it came straight down. All eleven died. Families on the ground watched it happen. The five novice jumpers were nurses, there on a work celebration, jumping for the first time. Five instructors. One pilot. The plane had climbed maybe 100 feet when it went almost vertical and didn't come back up. French aviation investigators have grounded all PC-6 Porters while they figure out why. It's the deadliest skydiving crash France has seen in thirty years. What exactly went wrong in the first 300 meters?",
+      "shots": [
+        {
+          "phrase": "A plane crashed at takeoff",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "skydiving plane takeoff small airfield",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Pilatus PC-6 Porter",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "small aircraft parachute jump plane",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Nancy-Essey airfield in northeastern France",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Place-Stanislas-Nancy.JPG",
+          "query": "nancy france city aerial",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Three hundred meters out, it came straight down",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "plane crash site emergency response",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "All eleven died",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Place-Stanislas-Nancy.JPG",
+          "query": "emergency responders crash site wreckage",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Families on the ground watched it happen",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Place-Stanislas-Nancy.JPG",
+          "query": "spectators airfield watching crowd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The five novice jumpers were nurses",
+          "query": "tandem skydiving jump parachute student",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "there on a work celebration, jumping for the first time",
+          "query": "skydiving first jump training instructor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "went almost vertical and didn't come back up",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "aircraft nose dive vertical crash",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "French aviation investigators have grounded all PC-6 Porters",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "aviation investigation aircraft safety grounded",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "deadliest skydiving crash France has seen in thirty years",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Place-Stanislas-Nancy.JPG",
+          "query": "france aviation memorial skydiving",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "first 300 meters",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pilatus_PC-6_Turbo-Porter_(D-FIBE)_arrives_Bristol_Airport%2C_England_14May2019_arp.jpg",
+          "query": "runway takeoff small plane airfield",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A plane crashed at takeoff",
+          "text": "CRASHED AT TAKEOFF",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "All eleven died",
+          "text": "ALL 11 DEAD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "jumping for the first time",
+          "text": "FIRST JUMP EVER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "The five novice jumpers were nurses",
+          "text": "5 NURSES ON BOARD",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "French aviation investigators have grounded all PC-6 Porters",
+          "text": "ALL GROUNDED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "deadliest skydiving crash France has seen in thirty years",
+          "text": "DEADLIEST IN 30 YRS",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_roundup-scotus-ruling-2026.json": {
+      "version": 1,
+      "slug": "roundup-scotus-ruling-2026",
+      "title": "Supreme Court Rules: You Can't Sue Roundup for Cancer",
+      "hashtags": [
+        "roundup",
+        "bayer",
+        "monsanto",
+        "supremecourt",
+        "glyphosate",
+        "SCOTUS",
+        "cancer",
+        "herbicide",
+        "lawsuits",
+        "health",
+        "news",
+        "fyp",
+        "viral"
+      ],
+      "script": "Your weed killer won? The Supreme Court ruled 7-to-2 today that you cannot sue Bayer \u2014 makers of Roundup \u2014 for failing to warn you about cancer risk from its main chemical, glyphosate. John Durnell used Roundup for years and got non-Hodgkin lymphoma, won a $1.25 million Missouri jury verdict, and brought it all the way to the Supreme Court. Gone. The court ruled the EPA said glyphosate was safe and that federally-approved labels preempt state-level lawsuits. Bayer stock jumped nearly 19 percent. The company still faces roughly 60,000 remaining lawsuits on other grounds. Glyphosate is in virtually every American lawn. The International Agency for Research on Cancer still lists it as a probable human carcinogen. So if you're still using Roundup, who's responsible if something goes wrong?",
+      "shots": [
+        {
+          "phrase": "Your weed killer won",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Weed_control_in_action_(8069319357).jpg",
+          "query": "roundup herbicide weed killer spray lawn",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Supreme Court ruled 7-to-2 today",
+          "query": "US Supreme Court building exterior",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "cannot sue Bayer \u2014 makers of Roundup",
+          "query": "roundup weed killer bottle garden store",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "cancer risk from its main chemical, glyphosate",
+          "query": "glyphosate herbicide field spray",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "John Durnell used Roundup for years and got non-Hodgkin lymphoma",
+          "query": "cancer patient hospital chemotherapy treatment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "won a $1.25 million Missouri jury verdict",
+          "query": "courtroom jury trial verdict gavel",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Gone.",
+          "query": "gavel court ruling overturned",
+          "mascot_pose": "dismiss"
+        },
+        {
+          "phrase": "EPA said glyphosate was safe",
+          "query": "EPA headquarters Washington DC government",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Bayer stock jumped nearly 19 percent",
+          "query": "stock market chart green rising gains",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "roughly 60,000 remaining lawsuits",
+          "query": "legal documents courthouse lawsuit stack",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Glyphosate is in virtually every American lawn",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Weed_control_in_action_(8069319357).jpg",
+          "query": "american suburban lawn grass green",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "International Agency for Research on Cancer still lists it as a probable human carcinogen",
+          "query": "cancer research laboratory scientist",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Your weed killer won",
+          "text": "ROUNDUP WINS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Supreme Court ruled 7-to-2",
+          "text": "7-2 RULING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Gone.",
+          "text": "CASE GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Bayer stock jumped nearly 19 percent",
+          "text": "+19% BAYER STOCK",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "roughly 60,000 remaining lawsuits",
+          "text": "60,000 SUITS REMAIN",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "probable human carcinogen",
+          "text": "PROBABLE CARCINOGEN",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_dc-fireworks-world-record-july4-2026.json": {
+      "version": 1,
+      "slug": "dc-fireworks-world-record-july4-2026",
+      "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
+      "hashtags": [
+        "july4th",
+        "fireworks",
+        "worldrecord",
+        "guinness",
+        "washington",
+        "nationalMall",
+        "america250",
+        "july4",
+        "independenceday",
+        "fyp",
+        "viral",
+        "news"
+      ],
+      "script": "851,000 fireworks? Washington, DC is about to fire off the largest fireworks display in US history \u2014 851,000 shells over 40 minutes along the National Mall, the Potomac River, and eight floating barges, all timed to break the Guinness World Record for the most fireworks launched in a single show. The record is currently held by a church in the Philippines, which set off 810,904 fireworks in 2016. DC is going to top that for America's 250th birthday. Pyrotecnico has 60 technicians on eight Potomac barges plus every site from the Lincoln Memorial to West Potomac Park. The display runs double the usual time. They're doing this on July 4, five days from now. So can 60 people actually pull off the world's biggest fireworks show at once?",
+      "shots": [
+        {
+          "phrase": "851,000 fireworks",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fourth_of_July_fireworks_behind_the_Washington_Monument,_1986.jpg",
+          "query": "fireworks launching multiple shells night sky",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Washington, DC largest fireworks display in US history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fourth_of_July_fireworks_behind_the_Washington_Monument,_1986.jpg",
+          "query": "washington monument fourth july fireworks",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Guinness World Record for the most fireworks launched in a single show",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_National_Mall_15847v.jpg",
+          "query": "national mall washington dc aerial fireworks",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "church in the Philippines, which set off 810,904 fireworks in 2016",
+          "query": "philippines fireworks celebration church new year",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "DC is going to top that for America's 250th birthday",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/4th_of_July_Fireworks_-_Washington_DC_(7511077340).jpg",
+          "query": "national mall washington dc aerial night",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Pyrotecnico has 60 technicians on eight Potomac barges",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arlington_Memorial_Bridge%2C_Washington%2C_D.C.%2C_viewed_from_Virginia_side_of_Potomac_River.jpg",
+          "query": "potomac river washington dc barge bridge",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "eight floating barges",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arlington_Memorial_Bridge%2C_Washington%2C_D.C.%2C_viewed_from_Virginia_side_of_Potomac_River.jpg",
+          "query": "barge river potomac fireworks setup launch",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Lincoln Memorial to West Potomac Park",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_National_Mall_15847v.jpg",
+          "query": "lincoln memorial washington dc night reflection",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The display runs double the usual time",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/4th_of_July_Fireworks_-_Washington_DC_(7511077340).jpg",
+          "query": "fireworks extended show grand finale sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "July 4, five days from now",
+          "query": "fireworks preparation setup countdown july",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "world's biggest fireworks show at once",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fourth_of_July_fireworks_behind_the_Washington_Monument,_1986.jpg",
+          "query": "massive fireworks explosion night sky grand",
+          "mascot_pose": "shock"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "851,000 fireworks",
+          "text": "851,000 FIREWORKS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Guinness World Record",
+          "text": "WORLD RECORD BID",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "810,904 fireworks in 2016",
+          "text": "CURRENT RECORD: 810,904",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "America's 250th birthday",
+          "text": "USA TURNS 250",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "double the usual time",
+          "text": "2X LONGER SHOW",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "largest fireworks display in US history",
+          "text": "BIGGEST IN US HISTORY",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_dedham-raccoon-glass-jar-2026.json": {
+      "version": 1,
+      "slug": "dedham-raccoon-glass-jar-2026",
+      "title": "A Raccoon Got Its Head Stuck in a Jar. CPR Was on Standby.",
+      "hashtags": [
+        "raccoon",
+        "dedham",
+        "animalrescue",
+        "raccoonrescue",
+        "Massachusetts",
+        "wildlife",
+        "animals",
+        "animalcontrol",
+        "funnyanimals",
+        "fyp",
+        "viral",
+        "news"
+      ],
+      "script": "A raccoon? In a jar? Animal control in Dedham, Massachusetts got a call about a young raccoon running around with a glass jar over its head, rapidly running out of air. Officers arrived, grabbed the raccoon, and after a few quick twists and pulls, got the jar off. They had CPR compressions ready. A wildlife rehabilitator was on standby. The raccoon had gone critical \u2014 its eyes were barely moving when they arrived. Jar off. A few dizzy stumbles. Then it righted itself, crawled through a fence slat, and climbed straight to the top of a wooden swing set. The 5-year-old kid who lived there watched the whole thing. Everyone confirmed it was totally fine. So does the raccoon know it almost didn't make it?",
+      "shots": [
+        {
+          "phrase": "A raccoon? In a jar?",
+          "query": "glass jar clear transparent stuck",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Animal control in Dedham, Massachusetts",
+          "query": "animal control officer uniform vehicle",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "young raccoon running around with a glass jar over its head",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raccoon_procyon_lotor.jpg",
+          "query": "raccoon close up face curious",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "rapidly running out of air",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raccoon_procyon_lotor.jpg",
+          "query": "raccoon trapped rescue oxygen emergency",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "after a few quick twists and pulls, got the jar off",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raccoon_procyon_lotor.jpg",
+          "query": "animal rescue careful hands wildlife gloves",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They had CPR compressions ready",
+          "query": "CPR medical emergency first aid",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "A wildlife rehabilitator was on standby",
+          "query": "wildlife rehabilitator animal care gloves",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "eyes were barely moving when they arrived",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Common_Raccoon_-_Procyon_lotor_-_Tampa%2C_Florida.jpg",
+          "query": "raccoon eyes close up face",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Jar off. A few dizzy stumbles.",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Common_Raccoon_-_Procyon_lotor_-_Tampa%2C_Florida.jpg",
+          "query": "raccoon suburban yard ground stumble",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "climbed straight to the top of a wooden swing set",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Common_Raccoon_-_Procyon_lotor_-_Tampa%2C_Florida.jpg",
+          "query": "raccoon climbing fence wood backyard",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "The 5-year-old kid who lived there watched the whole thing",
+          "query": "child watching backyard curious excited",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Everyone confirmed it was totally fine",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Raccoon_procyon_lotor.jpg",
+          "query": "raccoon healthy wildlife recovery",
+          "mascot_pose": "laugh"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "In a jar",
+          "text": "TRAPPED IN A JAR",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "rapidly running out of air",
+          "text": "RUNNING OUT OF AIR",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "CPR compressions ready",
+          "text": "CPR ON STANDBY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eyes were barely moving",
+          "text": "BARELY ALIVE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "climbed straight to the top of a wooden swing set",
+          "text": "CLIMBED THE SWING SET",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "totally fine",
+          "text": "TOTALLY FINE",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
