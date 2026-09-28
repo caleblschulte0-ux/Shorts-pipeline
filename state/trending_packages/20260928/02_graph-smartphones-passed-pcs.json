@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-smartphones-passed-pcs",
+  "title": "Smartphones Passed PCs In Two Years",
+  "hook": "The pocket beat the desk.",
+  "y_label": "Global shipments per year (millions)",
+  "duration": 13,
+  "source": "IDC Worldwide Quarterly Mobile Phone Tracker and Personal Computing Device Tracker, annual global smartphone and PC shipments, 2010-2023. Approximate.",
+  "years": [
+    2010,
+    2011,
+    2012,
+    2014,
+    2016,
+    2019,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Smartphones",
+      "color": "#00ACC1",
+      "icon": "Apple",
+      "values": [
+        305,
+        494,
+        725,
+        1301,
+        1473,
+        1371,
+        1355,
+        1167
+      ]
+    },
+    {
+      "name": "PCs",
+      "color": "#5E35B1",
+      "icon": "Microsoft",
+      "values": [
+        351,
+        365,
+        350,
+        309,
+        260,
+        267,
+        349,
+        260
+      ]
+    }
+  ],
+  "hashtags": [
+    "smartphone",
+    "pc",
+    "technology",
+    "iphone",
+    "android",
+    "computers",
+    "idc",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "electronic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

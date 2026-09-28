@@ -1,0 +1,96 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "vacuum-return-serial-number",
+  "title": "She Returned A Vacuum. The Serial Number Returned Her.",
+  "hashtags": [
+    "customerservice",
+    "retail",
+    "refund",
+    "vacuum",
+    "serialnumber",
+    "receipts",
+    "karma",
+    "shorts"
+  ],
+  "script": "A customer returned a premium vacuum and said it had never worked. The box looked new. The vacuum inside looked like it had cleaned a gravel driveway. She demanded a cash refund and handed me a receipt from the previous afternoon. Our policy allowed it, but the serial number on the receipt did not match the machine. She said manufacturers reuse numbers. They do not. I checked the rewards account attached to her receipt. It showed yesterday\u2019s new vacuum\u2014and another purchase of the same model eighteen months earlier. The old purchase matched the battered machine in front of me. She had put her old vacuum in the new box and brought it back. Inventory magic, minus the magic. I denied the refund and returned both items to her. She threatened a chargeback, so I printed both serial records and noted the attempted switch on her account. The chargeback never arrived. The gravel did, scattered across my counter.",
+  "shots": [
+    {
+      "phrase": "returned a premium vacuum",
+      "query": "customer returning boxed vacuum at retail service counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1TBMBB4YFD4BffjYIhbv3ja4h0bmpkj7G",
+      "media_sha256": "de9f9472d43134da79d691b4f75fecaff3753485e2edea818ecab484c77256cb",
+      "media_bytes": 1807840
+    },
+    {
+      "phrase": "cleaned a gravel driveway",
+      "query": "dirty battered vacuum cleaner with small gravel debris",
+      "image_url": "https://drive.google.com/uc?export=download&id=1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1QtKBRmRXQkcCGWUziYF3tvel7GMxixye",
+      "media_sha256": "89a345472fec60dc11e5fe9b5b8c4b87ec924fe5da71f245d0baaee9b8a9be1a",
+      "media_bytes": 2259568
+    },
+    {
+      "phrase": "serial number on the receipt",
+      "query": "employee comparing receipt and appliance serial label no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+      "media_sha256": "18cdee755f547834ebd8be22f25b7a7864508dbbc8ef192449a3e1c9a4e4a8bd",
+      "media_bytes": 2081606
+    },
+    {
+      "phrase": "checked the rewards account",
+      "query": "retail employee reviewing customer purchase history on computer",
+      "image_url": "https://drive.google.com/uc?export=download&id=1fP8DHmey0f5Z-JsoxyvjFcnpvsCCrbtk",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1fP8DHmey0f5Z-JsoxyvjFcnpvsCCrbtk",
+      "media_sha256": "458e9c4cfe103264c58edb5dbc40069a177e9fbf172999481ae2e056d3d005b6",
+      "media_bytes": 1856668
+    },
+    {
+      "phrase": "eighteen months earlier",
+      "query": "two purchase records for same vacuum model no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+      "media_sha256": "4b65ebfe7dd4113c22de043b1442ff2782c5eaf18a206220f3d4591b32a87b80",
+      "media_bytes": 2096786
+    },
+    {
+      "phrase": "printed both serial records",
+      "query": "two printed serial records beside boxed vacuum no readable text",
+      "image_url": "https://drive.google.com/uc?export=download&id=131sp_nUCOdTijFKczfcwITKDPEYoKJJv",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "131sp_nUCOdTijFKczfcwITKDPEYoKJJv",
+      "media_sha256": "5bdb8e70a27fe2d555340353613577aec7b1732f82401d1b7b6eef70d21f4d7a",
+      "media_bytes": 1961116
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "never worked",
+      "text": "NEVER WORKED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "did not match",
+      "text": "SERIAL MISMATCH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "eighteen months earlier",
+      "text": "18 MONTHS EARLIER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "denied the refund",
+      "text": "REFUND DENIED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "suspicious",
+  "_authored_by": "chatgpt-takeover"
+}
