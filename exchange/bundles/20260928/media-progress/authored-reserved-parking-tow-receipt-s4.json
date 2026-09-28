@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:08.484Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-reserved-parking-tow-receipt-s4",
+  "safe_request_id": "authored-reserved-parking-tow-receipt-s4",
+  "prompt_sha256": "8004add783dde87393e29d7f0aed8170d3407c372dd41a9b67270f70f1962fc0",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: tow truck lifting pickup in apartment parking lot. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19DbgPw6CIva-YsaxMdscJQcZbuEQuHhp",
+    "filename": "20260928__authored-reserved-parking-tow-receipt-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19DbgPw6CIva-YsaxMdscJQcZbuEQuHhp",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b4739cdcfc20524a75bde134434e889ba032109834505c1dde14f8aae110731b",
+    "bytes": 2395614,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "reserved-parking-tow-receipt",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
