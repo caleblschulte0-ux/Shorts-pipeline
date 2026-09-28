@@ -9682,13 +9682,36 @@
       "ts": "2026-09-27T13:34:35.171840+00:00"
     },
     "clip-20260928-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/DependableInexpensiveGiraffePlanking-ghFIyzkDlQzIwgqx",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/2zclpeq_OQU",
       "title": "Stableronaldo Wins Game 11 After Crazy Clix Moment",
       "kind": "twitch_clip",
-      "ts": "2026-09-28T11:42:38.443402+00:00",
+      "ts": "2026-09-28T11:42:46.992626+00:00",
+      "uploaded_at": "2026-09-28T11:42:46.992644+00:00",
+      "publish_at": "2026-09-28T17:00:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DependableInexpensiveGiraffePlanking-ghFIyzkDlQzIwgqx",
+      "streamer": "stableronaldo",
+      "series": "win",
+      "hook": "HE WON THE GAME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3889,
+      "banger": 0.7,
+      "cut": {
+        "start": 2.0,
+        "end": 58.1
+      },
+      "director_cut": true
+    },
+    "clip-20260928-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/DreamySaltySandwichHassanChop-ezRTDtDPQQ8Gz1z0",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky BURGER NOOOO \ud83d\ude31",
+      "kind": "twitch_clip",
+      "ts": "2026-09-28T11:59:51.656263+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
