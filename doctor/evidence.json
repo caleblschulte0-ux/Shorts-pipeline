@@ -1,34 +1,78 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260927",
-  "judged_date": "20260926",
+  "date": "20260928",
+  "judged_date": "20260927",
   "alarm": {
-    "date": "20260926",
+    "date": "20260927",
     "ok": false,
     "alarms": [
       {
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 2/4 posted for 20260927.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 4/6 posted for 20260927.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "production_repair_trending",
+        "severity": "critical",
+        "detail": "trending 20260927: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 4 failed).",
+        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 1/6; 0 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 5/6; 3 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (18 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (19 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "explainer: 4/4 posted",
-      "third: 6/6 posted",
-      "trending: 6/6 posted",
-      "trending: production outcome complete (6/6)"
+      "trending: 9/6 posted",
+      "failure counter at 1/2 \u2014 one more failing day auto-pauses trending"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260927",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 9,
+      "uploaded": 5,
+      "quarantined": 0,
+      "failed": 4,
+      "failed_by_stage": {
+        "showrunner_block": 3,
+        "infra_error": 1
+      },
+      "failed_by_format": {
+        "graph_race": 2,
+        "reddit": 1,
+        "unknown": 1
+      },
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/VJCY2lIHD7c",
+        "https://youtube.com/shorts/TiNYFIM4GDw",
+        "https://youtube.com/shorts/OQa4f2xJDGQ",
+        "https://youtube.com/shorts/KEl27m-bydU",
+        "https://youtube.com/shorts/vNwiLrr_qH4"
+      ]
+    },
     {
       "date": "20260926",
       "channel": "trending",
@@ -157,652 +201,9 @@
       },
       "status": "repair_required",
       "video_urls": []
-    },
-    {
-      "date": "20260920",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 4,
-      "rendered_or_attempted": 6,
-      "uploaded": 5,
-      "quarantined": 0,
-      "failed": 5,
-      "failed_by_stage": {
-        "showrunner_block": 1,
-        "infra_error": 4
-      },
-      "failed_by_format": {
-        "graph_race": 1,
-        "unknown": 4
-      },
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/gMOgljY4tH0"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-26T12:21:12+00:00",
-      "slug": "online-shopping-store-toll",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Solid, subject-made depictions (torn bill, cart, Prime truck, store shutter) with an active mascot, but the ending just repeats the store-closure number in a boxed card instead of landing the hook's 'your package closed a store' payoff.",
-      "auto_fails": [],
-      "problems": [
-        "seg4/closing is a bordered inset card on a gradient (UI widget) and repeats seg3's 7,327 / +2,414 with no new turn",
-        "The hook promises 'your last package closed a store', but no frame ever shows a package causing a closure",
-        "seg1: the mascot only perches on the cart rim, so no bit is tied to the fill",
-        "The seg1 cart fill (3.9 to 16.4%) is a thin sliver that barely reads as growth at phone size",
-        "The seg3:start caption '2023. In 2024' is rendered in dim grey, lower contrast than the other captions"
-      ],
-      "fixes": [
-        "Rebuild the closing full-bleed with no card: a van drops a package at a door and a storefront goes dark or shutters on 'Somebody's storefront is paying for it'",
-        "In seg1, have Data load bags from the grey store side into the cyan online side so he is the force moving the share",
-        "Make the online share in the cart visibly larger, or add a before/after ghost so the jump from 4.4 to 16.4 is felt",
-        "Keep caption ink at full contrast during transitions"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 16.67,
-        "dark_fraction": 0.0,
-        "sampled": 163
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-09-26T12:26:43+00:00",
-      "slug": "iss-sixteen-sunrises",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "Every beat is a stock machine or a bubble chart, Data only perches, the hook label is covered, and the payoff says 15 when the promise was 16 sunrises.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end: Data rides on top of the satellite. seg2:end: he stands beside the scale. seg3:start/mid/end: he stands on the 1,440 bubble. seg4: he points at the grid. None of this is a bit that acts out a stat.",
-        "empty_void: seg3:start: a big empty dark area around one yellow bubble and a tiny 93 dot. seg1:start: the top half of the frame is empty above the bubbles. hook@0.3: the lower third is blank.",
-        "unreadable: hook@0.3, hook@0.8, hook@1.5 and seg0:start: the mascot covers the label 'ISS orbital speed', so it reads 'ISS o...tal speed'. seg4:start: '15' and '15 times over' are grey on navy with very low contrast. seg0:end: the header 'EARTH'S SURFACE: MINUTES BETWEEN SUNRISES T...' is cut off."
-      ],
-      "problems": [
-        "hook@0.3 to seg0:start: the mascot sits on top of the 'ISS orbital speed' label and hides it.",
-        "seg0: the race lanes barely separate, so 30x faster reads as maybe 2x.",
-        "seg1:start and seg3: bubble views with large empty dark areas; seg3 is a plain chart.",
-        "seg4: '15 times over' contradicts the title and narration of 16 sunrises, and the 15 is low-contrast grey.",
-        "The mascot never performs a bit tied to a stat; he rides, stands and points.",
-        "No sunrise imagery anywhere in a story about sunrises."
-      ],
-      "fixes": [
-        "Move Data off the label in the hook and give him a bit, such as being blown back by the satellite passing.",
-        "Make seg0 a real speed race where the satellite laps the plane about 30 times.",
-        "Replace the seg3 bubbles with an orbit ring around Earth, sun flashes at each crossing, and a ground clock beside it.",
-        "Rebuild the payoff to count 16 sunrises in bright accent ink, matching the title.",
-        "Fill the empty space in seg1:start and seg3:start with the subject: Earth, orbits, the sun."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 174
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-26T12:44:16+00:00",
-      "slug": "cicada-double-brood-2024",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The cicada-made visuals are strong (tree-ring gears, the acre flooding with bugs), but the key '500\u00d7 as many' callout is unreadable and the ending re-runs the acre comparison instead of paying off hundreds of billions or 2245.",
-      "auto_fails": [
-        "unreadable: seg3:end: the '500\u00d7 as many' callout is grey, low-contrast text printed over the blue-grey treeline and almost vanishes. seg1:end: the tiny subtitle 'both clocks struck at once; the broods emerge side by side' can't be read on a phone and the mascot overlaps it."
-      ],
-      "problems": [
-        "seg3:end: the '500\u00d7 as many' callout is grey and low-contrast over the treeline, so it can't be read on a phone.",
-        "seg1:end: the subtitle under 'Together' is tiny and the mascot overlaps it. The 13/17-year labels dim to near-invisible.",
-        "seg2: the two gear wheels overlap heavily and '221' is never drawn. The header says '221 years' while the subtitle changes meaning from 'since the last' to 'until the next'.",
-        "seg4/payoff: the jar repeats the 3,000 vs 1,500,000 comparison already made in seg3. The narrated 'hundreds of billions' and the closing question about 2245 are never visualised.",
-        "seg4:mid: the '500\u00d7 a typical acre' callout is crammed against the 'cicadas \u00b7 peak density' subtitle."
-      ],
-      "fixes": [
-        "Put the seg3 ratio callout in full-opacity ink on clean sky, with the accent on '500\u00d7'.",
-        "Enlarge the seg1:end subtitle or cut it, keep the mascot clear of text, and keep the 13/17 labels at full ink when the clocks strike.",
-        "Separate the seg2 gears so their teeth mesh at one visible contact point, and add a counter ticking up to 221 as the glowing teeth line up.",
-        "Make the payoff show scale beyond one acre (jars multiplying across the range toward hundreds of billions) or a 1803 \u2192 2024 \u2192 2245 timeline for the closing question, instead of repeating the acre ratio.",
-        "Give '500\u00d7 a typical acre' its own row with space above the jar lid."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 164
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-09-26T12:50:16+00:00",
-      "slug": "cicada-double-brood-2024",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong subject-made visuals (field density, cicada gears, a real pour bit), but the seg1 clocks are a stock machine with an unreadable subline, and the payoff restates the density instead of landing 'will you be around in 2245'.",
-      "auto_fails": [
-        "unreadable: At seg1:end the subline 'both clocks struck at once, the broods emerge side by side' is micro-type running under the mascot and tree trunk and cannot be read on a phone. At seg4:end '500\u00d7 a typical acre' sits right on top of 'cicadas \u00b7 peak density, prime habitat' with no gap."
-      ],
-      "problems": [
-        "seg1:end subline 'both clocks struck at once...' is micro-text under the mascot and tree; unreadable on a phone",
-        "seg1 clocks are a generic machine: both dials go to 12 and never show 13 vs 17 cycles",
-        "seg4:end '500\u00d7 a typical acre' has no gap from the line above it",
-        "The payoff (seg4) repeats seg3's 3,000 vs 1,500,000 comparison instead of paying off the 221-year / 2245 idea in the closing line",
-        "The mascot mostly stands and waves beside the machines in seg0 and seg3; his only full setup->action->payoff bit is the seg4 pour"
-      ],
-      "fixes": [
-        "Cut the seg1:end subline to a short phrase at legible size, placed clear of the mascot and trunk; keep the brood labels at full ink",
-        "Make the seg1 dials tick visibly different counts (13 vs 17 emergences) so the sync is earned",
-        "Add spacing between '500\u00d7' and the density label in seg4",
-        "Point the closing beat at 2245: e.g. the gears turning forward to 2245 with a viewer-lifespan marker, instead of a second density demo",
-        "Give Data a stat-tied action in seg3 (e.g. walking into the field and getting swarmed as the density hits 1.5M)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 164
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-09-26T12:56:50+00:00",
-      "slug": "cicada-double-brood-2024",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A strong, subject-built middle (tree-ring gears, the acre carpet), but the clock scene's end state has text you cannot read, and the closing jar re-shows the acre stat instead of paying off 2245.",
-      "auto_fails": [
-        "unreadable: seg1:end: the subtitle under 'Together' ('both clocks struck at once, the broods emerge side by side') is tiny and runs into the tree trunk and the mascot. The '13 years / 17 years \u00b7 Brood XIX / XIII' labels fade to dark grey on brown soil, too faint to read on a phone."
-      ],
-      "problems": [
-        "seg1:end: the 'Together' subtitle is tiny and collides with the tree trunk and the mascot; the clock labels fade to grey on brown and become illegible",
-        "seg1: the moment the clocks sync is just two hands pointing up, and the emergence happens off in the tree",
-        "seg4 (closing): the jar repeats seg3's 3,000 vs 1.5M comparison; nothing shows the 2245 question the card asks",
-        "hook/seg0: the mascot stands at the side waving while the cicadas do all the work",
-        "The closing is a boxed panel with dark bands, which breaks the full-bleed look"
-      ],
-      "fixes": [
-        "Keep the seg1 labels in ink at the end; measure and wrap the subtitle so it clears the trunk and the mascot",
-        "Make the seg1 payoff physical: both hands hit 12 on the same beat and both nymphs rise out of their dials to the surface together",
-        "Replace the closing jar with something that pays off 2245, e.g. the gears turning forward to the next alignment with a 'you are here, 2024' marker, so the question lands visually",
-        "Give the mascot a bit in the hook, e.g. he taps each burrow as its cicada emerges"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 164
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-09-26T12:49:09+00:00",
-      "slug": "wind_and_solar_finally_passed_coal",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, honest graph race with a real crossover payoff, spoiled by the end labels colliding at the very moment the lines cross.",
-      "auto_fails": [
-        "unreadable: At the crossover (mid5, payoff@-1.8) the 'Coal 703'/'Coal 688' labels sit under the Wind+solar marker ring and label. In mid3 the '1.2K' of 'Coal 1.2K' is clipped by the tip marker. The dim grey Coal labels on near-black are hard to read on a phone"
-      ],
-      "problems": [
-        "mid5/payoff@-1.8: the Wind+solar marker and ring cover the 'Coal 703/688' label at the crossover",
-        "mid3: the '1.2K' of 'Coal 1.2K' is clipped by the tip marker",
-        "The Coal series labels and legend are a dim grey on near-black and hard to read on a phone",
-        "The hook opens on an already-drawn chart with a caption box. It has motion, but no instant visual jolt"
-      ],
-      "fixes": [
-        "Add collision avoidance for the endpoint labels: when the tips converge, offset them vertically with leader lines",
-        "Draw the crossover highlight ring behind the labels, not on top of them",
-        "Raise the Coal label ink to a readable neutral, or give each label a dark backing plate",
-        "Open the hook on the gap itself, e.g. a quick zoom showing coal towering over wind and solar, before the race starts"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T12:51:04+00:00",
-      "slug": "streaming_music_buried_the_cd",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, well-paced two-line race with a real crossover moment, but the CD tip label gets buried under its own line once CDs flatten, and the ending lands on '#1 Streaming' instead of showing how big the gap is.",
-      "auto_fails": [
-        "unreadable: From mid3 (t=8.43) to payoff@-0.4 the in-chart 'CDs 500M' / 'CDs 586.2M' tip label is dim purple on black, the purple line runs through it and the tip dot sits on its last character ('500M\u2022'). It is hard to read on a phone."
-      ],
-      "problems": [
-        "From mid3 to payoff@-0.4 the 'CDs 500M' tip label is dim purple on black, crossed by the purple line and overlapped by the end dot.",
-        "The hook (hook@0.3-2.2) is a title plus caption over a chart that has only just started, so there is little visual reason to stay.",
-        "The payoff '#1 Streaming' states the obvious winner. It never shows the roughly 30x gap, which is what 'buried' means.",
-        "The year counter reads 2012 at both hook@1.5 and hook@2.2 while the values change, so it briefly looks out of sync.",
-        "The CD series sits flat at exactly 500M from 2021 to 2024 (mid4 to payoff), which looks like clamped or placeholder data."
-      ],
-      "fixes": [
-        "Draw the tip labels in ink, placed above the line with collision avoidance, and keep the label off the endpoint dot.",
-        "Open on the crossover or on the falling CD line with a bold visual beat in the first 0.5s.",
-        "End with a scale payoff: an annotation such as 'Streaming = 30x CDs', or zoom in on the CD line crushed against the axis.",
-        "Make sure the year counter advances in step with the data interpolation.",
-        "Check the CD series values for 2021-2024 against the RIAA source."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T12:52:49+00:00",
-      "slug": "the_online_world_passed_the_offline_worl",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean two-line race whose crossing clearly proves the claim, but the first 2s is a slow build of short stubs under a caption that gives the ending away.",
-      "auto_fails": [],
-      "problems": [
-        "The hook is a slow chart build: in hook@0.3 to hook@2.2 only two short stubs move and the plot is mostly empty black.",
-        "The caption 'The internet became majority.' states the payoff before the race shows it.",
-        "The Offline series' dark brown on black is low-contrast in the leaderboard and tip labels (hook@0.3, mid0).",
-        "The final '#1 Online' banner (payoff@-0.4) arrives only in the last half-second and is small compared with the year counter."
-      ],
-      "fixes": [
-        "Tease the crossing in frame 1, or compress 2000-2012 so the lines visibly close in within the first 2s.",
-        "Replace the spoiler caption with a question or stake, e.g. 'When did online win?'",
-        "Lighten the Offline series colour or its text so its labels read on a phone.",
-        "Hold the crossing moment longer and show the '#1 Online' payoff earlier and bigger."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T12:54:34+00:00",
-      "slug": "mobile_broadband_left_fixed_lines_behind",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean two-line race whose ending is obvious from frame one: mobile leads from 2010, so there is no race and the '#1 Mobile broadband' payoff lands flat.",
-      "auto_fails": [],
-      "problems": [
-        "The hook is a slow chart build: two stubs on the left axis with an empty plot and a static caption (hook@0.3 to hook@2.2).",
-        "There is no competitive tension. Mobile leads for the whole video, so the leaderboard never changes and the '#1' banner at payoff@-0.4 tells the viewer nothing new.",
-        "The fixed broadband label collides with its own line and tip marker in mid2 and mid4.",
-        "At payoff@-0.4 the '#1 Mobile broadband' banner sits on top of the progress bar, and the 2024 counter is crowded against it.",
-        "The scale payoff is never stated: the fact that mobile reached 5x fixed is never shown as a 'whoa' moment."
-      ],
-      "fixes": [
-        "Open tight on the diverging tips, or flash the final gap first, so something dramatic happens in the first second.",
-        "Replace the '#1' winner banner with a scale payoff, for example a callout of '5x' or '95 vs 19' with the gap bracket animating between the two tips.",
-        "Offset the fixed broadband label above its line and clear of the marker.",
-        "Move the payoff banner off the progress bar and year counter, or hide the bar at the payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T12:59:32+00:00",
-      "slug": "he_said_the_chair_vanished__then_he_list",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "It opens with real story imagery, then parks one generic bank icon over the last ~25 seconds, so the listing reveal and the chargeback denial are never shown.",
-      "auto_fails": [
-        "dead_air: The top half is the same static flat bank icon at mid3 (32.6s), mid4 (42.7s), mid5 (52.7s), payoff@-1.8 and payoff@-0.4, about 20s with the illustration frozen; only gameplay and captions change",
-        "empty_void: mid5 and payoff@-1.8: the bottom gameplay half is almost entirely black, with just a caption and one dot; the top half is a small icon on a dark gradient",
-        "unreadable: hook@2.2: the post card has gone translucent and its title and handle sit over busy blue gameplay shapes, so they are hard to read"
-      ],
-      "problems": [
-        "mid1 and mid3 through payoff reuse one static clip-art bank icon for the top half",
-        "The story's key reveal, the chair in his marketplace listing, is never shown",
-        "The payoff ends on the caption 'disappearance.' over the same icon, with no visual resolution of the denial",
-        "The bottom gameplay half goes mostly black at mid5 and payoff@-1.8",
-        "hook@2.2: the post card fades over busy gameplay, so its title is hard to read"
-      ],
-      "fixes": [
-        "Put a distinct illustration on each beat: the chair being loaded, a chargeback form, the marketplace listing with the chair, the evidence, and a 'DENIED' stamp",
-        "Add motion (a push-in or reveal) to every top-half illustration",
-        "Keep the post card fully opaque until it cuts away",
-        "Cut or replace the stretches where the gameplay goes black"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 164
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T13:06:14+00:00",
-      "slug": "endangered_blanding_s_turtle_caught_on_c",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A competent Reddit-story shell with readable captions, but the illustrations are literal keyword stock photos and the '5-star review' punchline ends on one generic clip-art star, so the payoff falls flat.",
-      "auto_fails": [],
-      "problems": [
-        "seg7/payoff: the ending is one static clip-art star on a dark gradient, with no review, customer or cafe, so the punchline has no visual",
-        "seg3 (mid3): the glass-of-water stock image has a stray diamond in it and reads as off-topic filler",
-        "seg0 (mid1): the image shows a latte with foam art while the story says scalding espresso",
-        "Hook (hook@0.3-2.2): a static Reddit title card over generic parkour. There is no immediate visual hook beyond the title",
-        "Craft: the gameplay is heavily blurred and upscaled (mid4, payoff@-0.4), and a thin grey seam line runs across the frame at mid-height in every hook frame"
-      ],
-      "fixes": [
-        "Replace the seg7 star with an animated review card or phone screen filling in five stars, ideally with a quoted 'best spicy latte ever' line, timed to the caption",
-        "Swap seg3 for a clean shot of a customer gulping a glass of water, with no diamond",
-        "Use a real espresso shot (dark crema, small cup, steam) for seg0 instead of a latte",
-        "Remove the horizontal seam line in the hook composite, and use sharper gameplay footage"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 137
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T13:16:52+00:00",
-      "slug": "wind_and_solar_finally_passed_coal",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable line race that shows coal falling and wind + solar rising, but the actual moment wind + solar passes coal is a cramped pile-up of labels and rings at the right edge where 'Coal 703' cannot be read.",
-      "auto_fails": [
-        "unreadable: At payoff@-1.8 and payoff@-0.4 the 'Coal 703' / 'Coal 652' tip labels sit under the crossover marker's rings and are jammed against the 'Wind + solar' label, so a phone viewer cannot read them. The coal tip labels are also dim grey on near-black in every frame (hook@0.3 'Coal 1.8K', mid3 'Coal 1.2K', where the label runs into its marker)."
-      ],
-      "problems": [
-        "The crossover payoff happens at the far right edge, and both tip labels plus the pulsing ring overlap there (payoff@-1.8, payoff@-0.4).",
-        "The coal tip labels are dim grey on near-black throughout and hard to read at arm's length; at mid3, 'Coal 1.2K' runs into its marker.",
-        "The hook is a title plus a caption over a two-point chart that barely moves in the first second, so nothing striking happens right away.",
-        "The 'Wind + solar passes Coal' flag sits high above the plot, disconnected from the crossing point it refers to.",
-        "The lead is only 2 TWh (705 vs 703) and nothing on screen stresses the scale of the swing (about 1.8K down to 650 vs about 100 up to 757), so the payoff lands flat."
-      ],
-      "fixes": [
-        "Add empty space on the x-axis after the final year so the crossover happens inside the plot, not at its edge.",
-        "Separate the tip labels vertically with leader lines and make the coal label legible ink instead of dim grey.",
-        "Anchor the crossover flag right at the crossing point and keep its ring from covering any text.",
-        "Open on motion: start the lines already moving, or open with a quick zoom on the gap between them, so the first frame gives a reason to stay.",
-        "End on a scale payoff, e.g. 'Coal: -65% since 2010 / Wind + solar: 7x', instead of just '#1 Wind + solar'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T13:18:46+00:00",
-      "slug": "streaming_music_buried_the_cd",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable streaming-vs-CD race with a clear crossover, but the CD tip label collides with its own flattened line and the payoff lands flat.",
-      "auto_fails": [
-        "unreadable: In mid4, payoff@-1.8 and payoff@-0.4, the small purple 'CDs 500M' tip label is printed on top of the flattened purple CD line near the right edge. It is low-contrast purple on near-black and hard to read on a phone."
-      ],
-      "problems": [
-        "The 'CDs 500M' tip label is drawn over the purple CD line in mid4, payoff@-1.8 and payoff@-0.4. It is purple on dark and hard to read.",
-        "The hook (hook@0.3 to hook@2.2) is a slow chart build with a static caption. There is no immediate event.",
-        "The payoff '#1 Streaming' banner restates the leaderboard and gives no sense of scale (14.9B vs 500M).",
-        "The 'CDs 500M' value stays exactly flat from 2021 to 2024, which reads as a data plateau rather than a demonstration."
-      ],
-      "fixes": [
-        "Place the CD tip label off the line, in ink colour with a halo, and don't let it overlap the series.",
-        "Open on the crossover moment or a spinning-disc stop instead of a slow build from 2010.",
-        "End on a scale callout, for example 'Streaming \u2248 30\u00d7 CDs', with the gap visually emphasised.",
-        "Draw the year-counter and label text in ink rather than series colours for contrast."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T13:20:32+00:00",
-      "slug": "the_online_world_passed_the_offline_worl",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable population race with a real crossover payoff, but the hook opens on the least interesting part of the data and the Offline labels are too dim.",
-      "auto_fails": [
-        "unreadable: The Offline series labels are dark brown on black and read poorly at arm's length: 'Offline 5.7B' at hook@0.3, 'Offline 3.5B' at mid4 sitting on the brown line next to the crossover ring, and the dim '1. Offline' / '2. Offline' leaderboard rows."
-      ],
-      "problems": [
-        "The hook (hook@0.3 to hook@2.2) is a slow chart build from 2001, with lines about 5B apart and no tension.",
-        "The Offline series uses dark brown text on black, so it has low contrast on the tip labels and leaderboard (hook@0.3, mid4).",
-        "At mid4, the 'Offline 3.5B' label sits on the line near the crossover ring and competes with it.",
-        "The caption box disappears after the hook, and nothing explains the 2018 crossover when it happens."
-      ],
-      "fixes": [
-        "Open with the crossover teased, or compress the early years so the convergence is visible within the first 1.5s.",
-        "Draw every series label and leaderboard row in look ink, and keep the mark colour for the line only.",
-        "Place the Offline tip label so it stays clear of the crossover ring and the other line.",
-        "Add a short beat of on-screen text when the lines cross, such as 'Online passes Offline' with the year, pulsing as the lines meet."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
-    {
-      "ts": "2026-09-26T13:22:30+00:00",
-      "slug": "mobile_broadband_left_fixed_lines_behind",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable two-line race that clearly shows mobile pulling away, but the hook is only the chart starting up, the ending is a flat winner banner with no 5x payoff, and the Fixed broadband labels collide with their end dots.",
-      "auto_fails": [
-        "unreadable: In mid4 and mid5 the end dot of the Fixed broadband line sits on its own value label (\"17 \u2299\", \"19 \u2299\"), so the digits get clipped. The source line at the bottom of every frame is tiny grey text on black that can't be read on a phone. In payoff@-0.4 the \"#1 Mobile broadband\" banner is crammed under the 2024 counter and progress bar."
-      ],
-      "problems": [
-        "The hook (hook@0.3 to hook@2.2) is just the chart starting to draw under a caption box. Nothing lands to make a viewer stop.",
-        "The payoff (payoff@-0.4) adds a \"#1 Mobile broadband\" banner jammed under the 2024 counter and never lands the scale (95 vs 19, about 5x).",
-        "The Fixed broadband end dot overlaps its value label in mid4 and mid5 (\"17 \u2299\", \"19 \u2299\").",
-        "The source line is tiny, low-contrast grey on black in every frame.",
-        "The y-axis keeps rescaling (mid0 to mid5), which hides how steep mobile's climb is.",
-        "There is a large, mostly empty black area below the fixed line and to the right of the tips early on (hook@0.3, mid0)."
-      ],
-      "fixes": [
-        "Open with the finished gap already on screen, or a bold 2010 vs 2024 contrast, then rewind and race.",
-        "End on a bracket between the two 2024 tips labelled \"5x\", with room of its own, instead of the #1 banner.",
-        "Place the value labels to the left of or above the end dots, with collision checks against the marker.",
-        "Enlarge the source line and brighten it to readable contrast.",
-        "Hold a fixed y-axis (0 to 100) so the mobile line visibly climbs the frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
     {
       "ts": "2026-09-26T13:29:19+00:00",
       "slug": "he_said_the_chair_vanished__then_he_list",
@@ -2650,16 +2051,514 @@
       "judge": "gemini-fallback",
       "model": "opus",
       "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:39:46+00:00",
+      "slug": "china_pulled_away_in_electric_car_sales",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and effective graph race demonstrating China's dominance in EV sales.",
+      "auto_fails": [],
+      "problems": [
+        "The 'One market broke away' text is static for a long duration, reducing dynamic engagement."
+      ],
+      "fixes": [
+        "Animate or remove the 'One market broke away' text after its initial appearance to maintain dynamic visuals throughout the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:42:13+00:00",
+      "slug": "mobile_lines_buried_landlines_worldwide",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and well-paced graph race effectively demonstrates mobile lines surpassing landlines worldwide.",
+      "auto_fails": [],
+      "problems": [
+        "The data demonstration, while effective as a graph race, is fundamentally a line chart, which is the lowest grade for bespoke depiction."
+      ],
+      "fixes": [
+        "Explore more creative, non-chart visual metaphors for data demonstration, especially for the initial hook or key crossover points, to enhance engagement beyond a standard graph."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:44:21+00:00",
+      "slug": "online_shopping_passed_department_stores",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and well-executed graph race demonstrating the rise of online shopping over department stores.",
+      "auto_fails": [],
+      "problems": [
+        "The hook immediately presents a chart build, which could be more visually dynamic or surprising to grab attention."
+      ],
+      "fixes": [
+        "Consider an initial visual metaphor or a more dramatic reveal of the chart's premise before the lines begin their race."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:46:24+00:00",
+      "slug": "solar_capacity_just_passed_hydropower",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and well-paced graph race effectively demonstrating solar capacity overtaking hydropower.",
+      "auto_fails": [],
+      "problems": [
+        "The visual demonstration, while clear and effective for a 'graph race' format, relies on a standard chart rather than a highly bespoke or physically metaphorical representation of the data."
+      ],
+      "fixes": [
+        "Explore more creative, non-chart visual metaphors for capacity growth and competition in future graph races to enhance the 'bespoke' quality of the depiction."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:49:09+00:00",
+      "slug": "the_gym_kept_charging_me__the_mail_kept_",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A Reddit story effectively told with split-screen visuals, but the top half relies on generic stock imagery.",
+      "auto_fails": [],
+      "problems": [
+        "The visual depictions in the top half are generic stock images that illustrate rather than dynamically demonstrate the story beats.",
+        "The bottom half gameplay is visually engaging but largely disconnected from the narrative."
+      ],
+      "fixes": [
+        "Replace stock imagery with custom animations or more integrated visuals that actively show the story's cause and effect.",
+        "Explore ways to visually connect the bottom gameplay to the story beats, even metaphorically."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 136
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:52:25+00:00",
+      "slug": "he_rejected_my__18_receipt__the_auditor_",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a Reddit story using a split-screen format with relevant stock imagery and continuous gameplay.",
+      "auto_fails": [],
+      "problems": [
+        "The top-half imagery, while relevant, often uses generic stock photography which could be more visually engaging or custom-illustrated to better match the narrative."
+      ],
+      "fixes": [
+        "Replace generic stock images with more dynamic or custom-designed visuals that directly represent the story beats, especially in the middle segments."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 169
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:52:20+00:00",
+      "slug": "beaver-ecosystem-comeback",
+      "score": 92,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 0,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively demonstrates data about beavers' impact and population changes, but suffers from a significant period of dead air between segments.",
+      "auto_fails": [
+        "dead_air: The video has a static period of 4.5 seconds between frame seg2:end (t=25.65s) and frame seg3:start (t=30.15s), where nothing meaningfully moves."
+      ],
+      "problems": [
+        "The video has a prolonged static period of 4.5 seconds between segment 2 and segment 3, which constitutes dead air.",
+        "The overall `held_s` of 8.62s indicates multiple static stretches throughout the video."
+      ],
+      "fixes": [
+        "Introduce a dynamic transition or animation between segment 2 and segment 3 to eliminate the 4.5-second static screen.",
+        "Review all segment transitions and within-segment holds to ensure continuous meaningful motion and avoid any static periods exceeding 4 seconds."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 139
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "current"
+    },
+    {
+      "ts": "2026-09-27T11:59:32+00:00",
+      "slug": "iss-sixteen-sunrises",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 0,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video suffers from significant dead air and a largely decorative mascot, with several data demonstrations being basic charts or bare number cards.",
+      "auto_fails": [
+        "decorative_mascot: The mascot is largely static or merely slides between positions without performing a specific bit tied to the data, as seen in hook@0.3 through seg0:end where it stands next to the ISS speed.",
+        "bare_number_card: In seg3:start, the numbers '1,440' and '93' are presented as bare numbers inside simple circles, without an interesting demonstration.",
+        "dead_air: There is a 6.17 second period where nothing meaningfully moves between frame seg2:end (t=33.20s) and seg3:start (t=39.37s)."
+      ],
+      "problems": [
+        "Multiple instances of dead air exceeding 4 seconds, notably between segments.",
+        "The mascot is decorative throughout the video and does not perform a bit tied to the data.",
+        "Several data demonstrations, particularly in seg0, seg1, and seg3, are basic charts or bare number cards, lacking inventive visual metaphors."
+      ],
+      "fixes": [
+        "Introduce more continuous motion and dynamic transitions between scenes to eliminate dead air.",
+        "Integrate the mascot into the data demonstrations with specific actions or interactions that illustrate the numbers.",
+        "Redesign bare number cards and simple charts into more engaging, bespoke visual metaphors."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 174
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "current"
+    },
+    {
+      "ts": "2026-09-27T11:57:31+00:00",
+      "slug": "china_pulled_away_in_electric_car_sales",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and effective graph race demonstrating China's rapid lead in electric car sales.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T11:59:45+00:00",
+      "slug": "mobile_lines_buried_landlines_worldwide",
+      "score": 91,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and well-executed graph race demonstrating the rise of mobile lines over landlines.",
+      "auto_fails": [],
+      "problems": [
+        "The hook could be more visually dynamic to immediately grab attention, rather than starting with a partially drawn chart."
+      ],
+      "fixes": [
+        "Introduce a more engaging visual reveal for the initial data points or the hook text 'The cord lost the world.' at the beginning of the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T12:06:17+00:00",
+      "slug": "the_gym_kept_charging_me__the_mail_kept_",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a Reddit story using a split-screen format with relevant stock imagery and dynamic abstract backgrounds.",
+      "auto_fails": [],
+      "problems": [
+        "The top-half imagery can be static for consecutive beats, reducing visual variety."
+      ],
+      "fixes": [
+        "Vary the top-half imagery more frequently or introduce subtle motion/changes within the static images for consecutive story beats."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.014,
+        "sampled": 140
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T12:09:34+00:00",
+      "slug": "he_rejected_my__18_receipt__the_auditor_",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a Reddit story using a split-screen format with relevant business imagery and continuous gameplay, but the mascot's role is largely decorative.",
+      "auto_fails": [
+        "decorative_mascot: The Subway Surfers character runs and jumps continuously in the bottom half of the screen, but its actions are generic gameplay and not a specific bit tied to the narrative beats (e.g., frame mid1)."
+      ],
+      "problems": [
+        "The mascot's actions are generic and not specifically integrated into the narrative beats of the story."
+      ],
+      "fixes": [
+        "Design specific actions for the mascot that visually represent or react to the narrative points in each scene, making it a more integral performer rather than just background motion."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 162
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T12:14:22+00:00",
+      "slug": "scientists_discovered_two_bizarre_new_se",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a Reddit story using a split-screen format with Minecraft visuals and relevant, though often generic, AI illustrations.",
+      "auto_fails": [],
+      "problems": [
+        "The top-half AI illustrations are frequently generic and lack a strong visual connection to the specific narrative beats, particularly in later segments."
+      ],
+      "fixes": [
+        "Enhance the specificity and dynamism of the top-half AI illustrations to more directly and uniquely represent the story's events."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 115
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T12:18:54+00:00",
+      "slug": "pnoe_s_new_face_mask_wants_to_make_lab_g",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A Reddit story about a health mask hijack told over engaging Minecraft gameplay.",
+      "auto_fails": [],
+      "problems": [
+        "The visual representation of the 'eight-minute protocol' in segment 4 is generic, using a static alarm clock icon."
+      ],
+      "fixes": [
+        "Integrate the concept of the 'eight-minute protocol' more dynamically into the Minecraft gameplay for segment 4, showing actions or a timer within the game world."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 134
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-09-27T12:45:31+00:00",
+      "slug": "hidden-foster-system",
+      "score": 92,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 0,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively demonstrates data with engaging visuals and mascot performance, but suffers from significant dead air between segments.",
+      "auto_fails": [
+        "dead_air: The `held_s` is 5.38s, indicating a period of static frames longer than 4 seconds. Specifically, there are gaps of 4.26s (seg0-seg1), 5.56s (seg1-seg2), and 7.09s (seg2-seg3) between segment end and start frames."
+      ],
+      "problems": [
+        "Multiple long static periods (dead air) between segments disrupt the video's pace and engagement.",
+        "The transitions between distinct data demonstrations are abrupt, leading to prolonged periods of no meaningful motion."
+      ],
+      "fixes": [
+        "Implement dynamic transitions between all segments to ensure continuous motion.",
+        "Reduce all static periods between beats to less than 2 seconds by introducing subtle animations or faster scene changes."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 179
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "current"
     }
   ],
   "recent_commits": [
-    "9aa1fec 2026-09-27 watchdog: phase A readiness 20260927 [skip ci]",
-    "b9117b1 2026-09-27 exchange: phase A bundle for 20260927 [skip ci]"
+    "078d76b 2026-09-28 claim: mailbox verdicts 2026-09-28T04:47Z [skip ci]",
+    "fccfdbe 2026-09-28 claim: mailbox verdicts 2026-09-28T03:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-13": 3,
         "2026-09-16": 2,
         "2026-09-17": 2,
         "2026-09-18": 2,
@@ -2670,15 +2569,15 @@
         "2026-09-23": 1,
         "2026-09-24": 6,
         "2026-09-25": 4,
-        "2026-09-26": 6
+        "2026-09-26": 6,
+        "2026-09-27": 9
       },
-      "total_posted": 363,
-      "attempted": 363,
+      "total_posted": 372,
+      "attempted": 372,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-09-13": 1,
         "2026-09-15": 1,
         "2026-09-16": 3,
         "2026-09-17": 1,
@@ -2689,15 +2588,15 @@
         "2026-09-23": 1,
         "2026-09-24": 7,
         "2026-09-25": 4,
-        "2026-09-26": 4
+        "2026-09-26": 4,
+        "2026-09-27": 2
       },
-      "total_posted": 278,
-      "attempted": 278,
+      "total_posted": 280,
+      "attempted": 280,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-09-13": 7,
         "2026-09-14": 1,
         "2026-09-16": 4,
         "2026-09-17": 5,
@@ -2713,8 +2612,8 @@
         "2026-09-27": 4
       },
       "total_posted": 330,
-      "attempted": 713,
-      "rejected_or_pending": 383
+      "attempted": 720,
+      "rejected_or_pending": 390
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2728,32 +2627,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 90,
+      "videos": 89,
       "top_by_vph": [
         {
-          "title": "Pythons Wiped Out 99% Of Raccoons In Parts Of The Everglades",
-          "vph": 4.61,
-          "views": 142
-        },
-        {
-          "title": "Why Is America Growing 4 Times More 100-Year-Olds?",
-          "vph": 4.15,
-          "views": 432
-        },
-        {
-          "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
-          "vph": 4.15,
-          "views": 302
+          "title": "Beavers Crashed To 100,000. Now There Are 12 Million.",
+          "vph": 11.64,
+          "views": 89
         },
         {
           "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
-          "vph": 4.06,
+          "vph": 3.69,
           "views": 972
         },
         {
-          "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
-          "vph": 3.18,
-          "views": 448
+          "title": "Why Is America Growing 4 Times More 100-Year-Olds?",
+          "vph": 3.36,
+          "views": 432
+        },
+        {
+          "title": "Pythons Wiped Out 99% Of Raccoons In Parts Of The Everglades",
+          "vph": 3.23,
+          "views": 178
+        },
+        {
+          "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
+          "vph": 3.11,
+          "views": 302
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -2763,36 +2662,36 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 5.89,
+          "vph": 5.71,
           "views": 1356
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 2.37,
-          "views": 73
+          "vph": 2.27,
+          "views": 86
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.66,
-          "views": 101
+          "vph": 1.61,
+          "views": 109
         },
         {
           "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
-          "vph": 1.61,
-          "views": 23
+          "vph": 1.59,
+          "views": 34
         },
         {
-          "title": "Xqc Gets Jumpscared By Jean Paul And Loses It",
-          "vph": 1.25,
-          "views": 48
+          "title": "Zackrawrr Can't Believe Bonnie Said THE Word In Her Olympus Interview",
+          "vph": 1.56,
+          "views": 17
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260924/brief.json",
       "retro/20260925/brief.json",
-      "retro/20260926/brief.json"
+      "retro/20260926/brief.json",
+      "retro/20260927/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
