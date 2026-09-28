@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:04.556Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-reserved-parking-tow-receipt-s1",
+  "safe_request_id": "authored-reserved-parking-tow-receipt-s1",
+  "prompt_sha256": "794643296a7db71cdc2e908e7ee62a9302fafa20acd8390221c04cb48cde4e69",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: hand placing polite note under car windshield wiper. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "15gPgwyT2mJLj7XhzvC_RAVqSnRH8jJBg",
+    "filename": "20260928__authored-reserved-parking-tow-receipt-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=15gPgwyT2mJLj7XhzvC_RAVqSnRH8jJBg",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "30bc0375b49eb07733b1dff84db51bb17cc3ea75ed8f65f3a80e75d94b8f2cc9",
+    "bytes": 1857727,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "reserved-parking-tow-receipt",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
