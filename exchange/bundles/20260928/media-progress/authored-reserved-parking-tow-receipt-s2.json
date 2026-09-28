@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:06.127Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-reserved-parking-tow-receipt-s2",
+  "safe_request_id": "authored-reserved-parking-tow-receipt-s2",
+  "prompt_sha256": "03803eb0850e9b490dbee39b164cd31ebe7461cc2febbe23e5a4b7ea0f6808b0",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: apartment lease and parking map on desk no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CFrTlPq17AVR6ODX2BzhNcYICFATw8c8",
+    "filename": "20260928__authored-reserved-parking-tow-receipt-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CFrTlPq17AVR6ODX2BzhNcYICFATw8c8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "78e77810c477da82b9cc748da434e7c59c1e499494b77f41f7e3864c57f148fe",
+    "bytes": 2039517,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "reserved-parking-tow-receipt",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
