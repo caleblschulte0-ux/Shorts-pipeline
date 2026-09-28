@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:14.998Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-vacuum-return-serial-number-s2",
+  "safe_request_id": "authored-vacuum-return-serial-number-s2",
+  "prompt_sha256": "600a09f79a76d0e9097c3773cf331dda10cf354b494b5d47b2625f7354248bdf",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: employee comparing receipt and appliance serial label no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+    "filename": "20260928__authored-vacuum-return-serial-number-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=17aAvF8OqPXDZk9x55ycgzryE66ggVdlQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "18cdee755f547834ebd8be22f25b7a7864508dbbc8ef192449a3e1c9a4e4a8bd",
+    "bytes": 2081606,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "vacuum-return-serial-number",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
