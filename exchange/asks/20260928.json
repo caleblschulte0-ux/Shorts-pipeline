@@ -157,6 +157,12 @@
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: North America Lost 3 Billion Birds Since 1970\nHOOK: The birds outside your window are disappearing.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "1b65f6f138c718cb": {
+   "filed": "2026-09-28T23:06:22Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
+   "user": "HEADLINE TITLE: Self-Checkout Is Quietly Replacing Cashiers (3 Charts)\nHOOK: That kiosk replaced somebody's job.\n\nSEGMENTS TO CHECK (index: topic):\n1: 'US cashier employment, 2013 vs 2023'\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
   }
  },
  "answer_path": "exchange/asks/20260928.answers.json",
