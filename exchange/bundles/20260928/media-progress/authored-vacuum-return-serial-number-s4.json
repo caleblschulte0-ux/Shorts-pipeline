@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260928",
+  "bundle": {
+    "identity": "87fd0e37c00606da31f3e5dd27e5c8dadcd5997bb81a331d4b81262277c355aa",
+    "path": "exchange/bundles/20260928/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-09-28T11:30:19.489Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-vacuum-return-serial-number-s4",
+  "safe_request_id": "authored-vacuum-return-serial-number-s4",
+  "prompt_sha256": "d02ff18fbd623f68edf1149a50e6c46b7af4a638e3748feb0b5f5d46d3191496",
+  "prompt_used": "Use case: photorealistic-natural. Asset type: vertical 9:16 YouTube Shorts story b-roll. Primary request: two purchase records for same vacuum model no readable text. Style/medium: realistic editorial photography with natural texture. Composition/framing: portrait, single clear story beat, safe center framing. Lighting/mood: natural cinematic light appropriate to the scene. Constraints: no logos, no legible text, no watermark, no collage, no split screen.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+    "filename": "20260928__authored-vacuum-return-serial-number-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10cuJh_MFiPwVWvBLHQKtt0oEB-N3S4DY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4b65ebfe7dd4113c22de043b1442ff2782c5eaf18a206220f3d4591b32a87b80",
+    "bytes": 2096786,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "vacuum-return-serial-number",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
