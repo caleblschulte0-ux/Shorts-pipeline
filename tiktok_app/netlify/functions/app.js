@@ -1392,7 +1392,7 @@ function library(user, notice, connected) {
     </div>
     <div class="dash-cta">
        <a class="btn btn-tiktok" href="/app/connect">${TIKTOK_GLYPH}${user ? "Connect another TikTok" : "Connect TikTok"}</a>
-       <p class="small">You will authorize Shorts Media on TikTok. Shorts Media never asks for your TikTok password.</p>
+       <p class="small">${user ? "TikTok links whichever account is signed in on tiktok.com in this browser. To add a different account, first sign out at tiktok.com (or switch accounts there), then press Connect another." : "You will authorize Shorts Media on TikTok. Shorts Media never asks for your TikTok password."}</p>
      </div>
   </div>
   ${notice || ""}
@@ -1647,9 +1647,12 @@ exports.handler = async function(event) {
       }
     }
     connected = (await Promise.all(owned.map((id) => accounts.getRecord(id).catch(() => null)))).filter(Boolean);
+    // The switcher lists every account this browser linked, even ones Blobs
+    // has not caught up with yet (the cookie remembers their open_id).
+    for (const id of owned) if (!connected.some((a) => a.open_id === id)) connected.push({ open_id: id, handle: "", name: "account (saving\u2026)" });
     if (user && !connected.some((a) => a.open_id === user.open_id)) connected.unshift({ open_id: user.open_id, handle: user.handle, name: user.name });
     if (renewed && path === "/app") return page(library(user, "", connected), { "Set-Cookie": setCookie("sm_session", sign(renewed), 2592e3) });
-    if (path === "/app") return page(library(user, "", connected));
+    if (path === "/app") return page(library(user, q.again === "1" && user ? `<div class="notice">TikTok sent back @${esc(user.handle || user.name)} again \u2014 that account was already connected. To add another account, sign out at <a href="https://www.tiktok.com/logout" target="_blank" rel="noopener noreferrer">tiktok.com</a> (or switch accounts there), then press Connect another TikTok.</div>` : "", connected));
     if (path === "/app/select") {
       if (!owned.includes(String(q.open_id || ""))) return redirect("/app/");
       let rec = null;
@@ -1703,6 +1706,7 @@ exports.handler = async function(event) {
         name: creator.creator_nickname || u.display_name || "TikTok user",
         avatar: creator.creator_avatar_url || u.avatar_url || "/app-assets/img/avatar.svg"
       });
+      const again = owned.includes(tok.open_id);
       const nextOwned = [.../* @__PURE__ */ new Set([...owned, tok.open_id])].slice(-50);
       return {
         statusCode: 200,
@@ -1712,7 +1716,7 @@ exports.handler = async function(event) {
           setCookie("sm_accounts", sign({ ids: nextOwned }), 2592e3),
           setCookie("sm_state", "", 0)
         ] },
-        body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${SITE}/app/"><title>Connecting | Shorts Media</title></head><body style="background:#09090c;color:#eee;font:16px system-ui;padding:40px">Connected. Taking you back to Shorts Media\u2026</body></html>`
+        body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${SITE}/app/${again ? "?again=1" : ""}"><title>Connecting | Shorts Media</title></head><body style="background:#09090c;color:#eee;font:16px system-ui;padding:40px">Connected. Taking you back to Shorts Media\u2026</body></html>`
       };
     }
     if (path === "/app/disconnect") {

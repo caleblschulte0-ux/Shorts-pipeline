@@ -40,10 +40,10 @@ global.fetch = async (url, opts = {}) => {
     tokenCalls++;
     const b = new URLSearchParams(opts.body);
     if (b.get("client_secret") !== "cs") return new Response(JSON.stringify({ error: "invalid_client" }));
-    return new Response(JSON.stringify({ access_token: "at" + tokenCalls, refresh_token: "rt" + tokenCalls, open_id: "oid1", expires_in: expiresIn, refresh_expires_in: 31536000, scope: "user.info.basic,video.upload,video.publish" }));
+    return new Response(JSON.stringify({ access_token: "at" + tokenCalls, refresh_token: "rt" + tokenCalls, open_id: global.NEXT_OPEN_ID || "oid1", expires_in: expiresIn, refresh_expires_in: 31536000, scope: "user.info.basic,video.upload,video.publish" }));
   }
   if (url.startsWith("https://open.tiktokapis.com/v2/user/info/")) return new Response(JSON.stringify({ data: { user: { display_name: "Caleb" } }, error: { code: "ok" } }));
-  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: "thirdbraindown", creator_nickname: "Third" }, error: { code: "ok" } }));
+  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: global.NEXT_OPEN_ID ? "second" : "thirdbraindown", creator_nickname: "Third" }, error: { code: "ok" } }));
   if (url.startsWith("https://token.actions.githubusercontent.com")) return new Response(JSON.stringify({ keys: [Object.assign(global.PUB, { kid: "k1", use: "sig" })] }));
   return realFetch(url, opts);
 };
@@ -67,11 +67,31 @@ srv.listen(0, async () => {
   ok(/TikTok connected/.test(r.body) && /thirdbraindown/.test(r.body), "library shows the connected account before Blobs catches up");
   flush();
   // expire the access token -> refresh path with etag write
-  const [k, v] = [...mem][0]; const rec = JSON.parse(v.data); rec.access_expires_at = Date.now(); mem.set(k, { data: Buffer.from(JSON.stringify(rec)), etag: v.etag });
+  const [k, v] = [...mem].find(([, x]) => JSON.parse(x.data).open_id === "oid1"); const rec = JSON.parse(v.data); rec.access_expires_at = Date.now(); mem.set(k, { data: Buffer.from(JSON.stringify(rec)), etag: v.etag });
+  // a second account: TikTok signed in as someone else this time
+  const ownedOnly = cookie.split("; ").filter((c) => c.startsWith("sm_accounts=")).join("");
+  r = await handler(ev("/app/connect", { cookie })); const st3 = new URL(r.headers.Location).searchParams.get("state");
+  global.NEXT_OPEN_ID = "oid2";
+  r = await handler(ev("/auth/tiktok/callback", { q: { code: "c", state: st3 }, cookie: ownedOnly + "; sm_state=" + st3 }));
+  global.NEXT_OPEN_ID = undefined;
+  const cookie2 = r.multiValueHeaders["Set-Cookie"].map((c) => c.split(";")[0]).filter((c) => !c.startsWith("sm_state")).join("; ");
+  r = await handler(ev("/app", { cookie: cookie2 }));
+  ok(mem.size === 2 && /select\?open_id=oid1/.test(r.body), "a second account links and the first stays switchable");
+  // the same account again says so
+  r = await handler(ev("/app/connect", { cookie: cookie2 })); const st4 = new URL(r.headers.Location).searchParams.get("state");
+  global.NEXT_OPEN_ID = "oid2";
+  r = await handler(ev("/auth/tiktok/callback", { q: { code: "c", state: st4 }, cookie: cookie2 + "; sm_state=" + st4 }));
+  global.NEXT_OPEN_ID = undefined;
+  ok(/\/app\/\?again=1/.test(r.body), "re-linking the same account is called out");
+  r = await handler(ev("/app", { cookie: cookie2, q: { again: "1" } }));
+  ok(/already connected/.test(r.body), "the page tells you to sign out of tiktok.com first");
+  flush();
+  await handler(ev("/app/disconnect", { cookie: cookie2 }));
   flush();
   const stale = cookie.replace(/sm_session=[^;]*/, () => { const c = require("crypto"); const body = Buffer.from(JSON.stringify({ open_id: "oid1", tok: "old", exp: 0 })).toString("base64url"); return "sm_session=" + body + "." + c.createHmac("sha256", "cookie").update(body).digest("base64url"); });
   r = await handler(ev("/app", { cookie: stale }));
-  ok(JSON.parse([...mem][0][1].data).access_token === "at2" && /TikTok connected/.test(r.body), "expired access token refreshed and saved");
+  const oid1 = [...mem].map(([, v]) => JSON.parse(v.data)).find((x) => x.open_id === "oid1");
+  ok(oid1 && oid1.access_token === "at" + tokenCalls && /TikTok connected/.test(r.body), "expired access token refreshed and saved");
   flush();
   r = await handler(ev("/api/tiktok/token", { over: { httpMethod: "POST", body: "{}" } }));
   ok(r.statusCode === 401, "broker refuses a request without GitHub OIDC");
