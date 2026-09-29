@@ -235,5 +235,37 @@ class UnauditedPostsPrivatelyAndSaysSo(unittest.TestCase):
         self.assertEqual(res.raw["publish_id"], "p1")
 
 
+class TheAuditProbePublishesNothing(unittest.TestCase):
+    def _probe(self, init_status, init_body):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import tiktok_audit_probe as tp
+        calls = []
+
+        def post(url, headers=None, json=None, timeout=None):
+            calls.append(url)
+            if url == uploaders.CREATOR_INFO_URL:
+                return _Resp(200, {"data": {"privacy_level_options": ["SELF_ONLY"]}})
+            return _Resp(init_status, init_body)
+
+        def put(*a, **k):
+            raise AssertionError("the probe must never send video bytes")
+
+        with mock.patch("requests.post", post), mock.patch("requests.put", put):
+            return tp.probe("tok"), calls
+
+    def test_accepted_public_init_means_audited(self):
+        (verdict, _), calls = self._probe(200, {"data": {"publish_id": "p", "upload_url": "u"}})
+        self.assertEqual(verdict, "audited")
+
+    def test_unaudited_refusal_is_read_as_unaudited(self):
+        (verdict, _), _ = self._probe(403, {"error": {"code":
+            "unaudited_client_can_only_post_to_private_accounts"}})
+        self.assertEqual(verdict, "unaudited")
+
+    def test_it_never_calls_upload(self):
+        src = (ROOT / "scripts" / "tiktok_audit_probe.py").read_text()
+        self.assertNotRegex(src, r"\.upload\s*\(")
+
+
 if __name__ == "__main__":
     unittest.main()
