@@ -2216,6 +2216,22 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 92,
       "duration_s": 59.8
+    },
+    "iss-sixteen-sunrises": {
+      "url": "https://youtube.com/shorts/Q8DtMeI35Ac",
+      "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+      "at": "2026-09-29T11:45:13.484027+00:00",
+      "publish_at": "2026-09-29T12:36:42Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "kokoro",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 43 credits are required for this request.\",\"status",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 91,
+      "duration_s": 51.5
     }
   },
   "uploads": [
@@ -2632,6 +2648,15 @@
       "state": "posted",
       "slug": "hidden-foster-system",
       "at": "2026-09-27T12:45:44.499555+00:00"
+    },
+    {
+      "claimed_at": "2026-09-29T11:45:06.788576+00:00",
+      "title": "Astronauts On The ISS See 16 Sunrises Every Day",
+      "publish_at": "2026-09-29T12:36:42Z",
+      "url": "https://youtube.com/shorts/Q8DtMeI35Ac",
+      "state": "posted",
+      "slug": "iss-sixteen-sunrises",
+      "at": "2026-09-29T11:45:13.484027+00:00"
     }
   ]
 }
