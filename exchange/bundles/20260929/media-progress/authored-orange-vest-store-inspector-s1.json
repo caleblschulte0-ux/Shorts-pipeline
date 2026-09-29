@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:32:50.518Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-orange-vest-store-inspector-s1",
+  "safe_request_id": "authored-orange-vest-store-inspector-s1",
+  "prompt_sha256": "254cba2c08de25ebf434dbf0b5b74a97b0b3daee317ea39f34cc47c665e0e898",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: impatient shopper pushing product box toward confused inspector.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1v8zUWIHM-DjodUqY-WtRsCkzOlwUUqwl",
+    "filename": "20260929__authored-orange-vest-store-inspector-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1v8zUWIHM-DjodUqY-WtRsCkzOlwUUqwl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c5b5a62460e6ce0b8800f1d4a4f08e66b2d11e3822cb349c9ccbd55aac714c68",
+    "bytes": 1831246,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "orange-vest-store-inspector",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
