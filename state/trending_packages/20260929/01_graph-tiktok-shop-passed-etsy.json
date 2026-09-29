@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tiktok-shop-passed-etsy",
+  "title": "A 2-Year-Old App Just Passed Etsy",
+  "hook": "Etsy took 19 years. TikTok took 2.",
+  "y_label": "Global GMV ($ billions)",
+  "duration": 13,
+  "source": "Etsy Inc. annual reports for marketplace GMS (2019-2025); TikTok Shop global GMV estimates reported by Reuters, Momentum Works, and Retail TouchPoints (2022-2025).",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Etsy",
+      "color": "#f45800",
+      "icon": "Etsy",
+      "values": [
+        4.97,
+        10.28,
+        13.51,
+        13.31,
+        13.2,
+        12.6,
+        11.9
+      ]
+    },
+    {
+      "name": "TikTok Shop",
+      "color": "#25f4ee",
+      "icon": "TikTok",
+      "values": [
+        0,
+        0,
+        0,
+        4.4,
+        11,
+        33.2,
+        66
+      ]
+    }
+  ],
+  "hashtags": [
+    "tiktokshop",
+    "etsy",
+    "ecommerce",
+    "onlineshopping",
+    "smallbusiness",
+    "retail",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}
