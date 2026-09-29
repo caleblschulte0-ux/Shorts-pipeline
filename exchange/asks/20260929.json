@@ -165,16 +165,10 @@
    "user": "TITLE: Podcasts Just Beat Radio For The First Time (3 Charts)\nHOOK: Podcasts Just Beat Radio For The First Time\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
   "bf651c20b81c3548": {
-   "filed": "2026-09-29T17:39:35Z",
+   "filed": "2026-09-29T18:04:47Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: There Are 2.5 Million Ants For Every Person Alive\nHOOK: You are outnumbered. By ants.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
-  },
-  "fe28b47dae585065": {
-   "filed": "2026-09-29T17:57:17Z",
-   "caller": "_call_llm",
-   "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
-   "user": "HEADLINE TITLE: California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.\nHOOK: 99% of them were gone within two years — and no one warned you.\n\nSEGMENTS TO CHECK (index: topic):\n0: 'sea stars wiped out by disease'\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
   }
  },
  "answer_path": "exchange/asks/20260929.answers.json",
