@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T17:29:07Z",
+ "updated": "2026-09-29T17:48:20Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -371,6 +371,16 @@
    "request": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc/sheet.jpg",
    "answer_path": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.verdict.json"
+  },
+  {
+   "id": "brock_faber__2b99c80a11",
+   "channel": "trending",
+   "slug": "brock_faber",
+   "title": "I Turned My Boss’s Tip Into His Cleaning Duty",
+   "filed": "2026-09-29T17:00:18Z",
+   "request": "exchange/reviews/20260929/brock_faber__2b99c80a11.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/brock_faber__2b99c80a11/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/brock_faber__2b99c80a11.verdict.json"
   },
   {
    "id": "global-ewaste-crisis__47a13a3dad",
