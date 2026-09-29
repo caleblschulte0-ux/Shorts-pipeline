@@ -68,6 +68,25 @@ def site_files(base: zipfile.ZipFile) -> dict[str, bytes]:
     return out
 
 
+def verify_credentials(config: dict) -> None:
+    """Ask TikTok whether the key + secret are real BEFORE shipping them.
+
+    A secret read off a screenshot swaps look-alikes (capital I vs lowercase
+    l in TikTok's font); three builds shipped one and every link failed at
+    the callback with "Client key or secret is incorrect.". A
+    client_credentials grant answers that question in one request."""
+    import requests
+    key = str(config.get("client_key") or os.environ.get("TIKTOK_CLIENT_KEY") or "")
+    secret = str(config.get("client_secret") or os.environ.get("TIKTOK_CLIENT_SECRET") or "")
+    r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={
+        "client_key": key, "client_secret": secret,
+        "grant_type": "client_credentials"}, timeout=30)
+    if "access_token" not in r.text:
+        raise SystemExit(f"TikTok rejects this client key/secret: {r.text}\n"
+                         "Copy the secret with the portal's copy button — "
+                         "never retype it from a screenshot (I vs l).")
+
+
 def build(base: Path, config: dict, out: Path) -> Path:
     with zipfile.ZipFile(base) as z:
         files = site_files(z)
@@ -95,8 +114,12 @@ def main() -> None:
     ap.add_argument("--config", type=Path,
                     help="local JSON with client_key/client_secret/cookie_secret")
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--no-verify", action="store_true",
+                    help="skip asking TikTok whether the credentials work")
     a = ap.parse_args()
     config = json.loads(a.config.read_text()) if a.config else {}
+    if not a.no_verify:
+        verify_credentials(config)
     print(build(a.base, config, a.out))
 
 
