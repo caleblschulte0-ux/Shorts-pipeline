@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T20:48:45Z",
+ "updated": "2026-09-29T21:29:41Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -463,6 +463,16 @@
    "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__22a712b32d.verdict.json"
   },
   {
+   "id": "kelp-forest-sea-star-collapse__538403cdea",
+   "channel": "explainer",
+   "slug": "kelp-forest-sea-star-collapse",
+   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
+   "filed": "2026-09-29T20:14:23Z",
+   "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea.verdict.json"
+  },
+  {
    "id": "kelp-forest-sea-star-collapse__b15f7dc96d",
    "channel": "explainer",
    "slug": "kelp-forest-sea-star-collapse",
@@ -541,6 +551,16 @@
    "request": "exchange/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f.verdict.json"
+  },
+  {
+   "id": "tsa__207104dbd3",
+   "channel": "trending",
+   "slug": "tsa",
+   "title": "I Turned the Greedy Customer's Shortcut Into a Day-Long Detention",
+   "filed": "2026-09-29T21:29:41Z",
+   "request": "exchange/reviews/20260929/tsa__207104dbd3.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/tsa__207104dbd3/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/tsa__207104dbd3.verdict.json"
   },
   {
    "id": "video__elk_encounter_caught_on_camera__g__1a8c7309e3",
