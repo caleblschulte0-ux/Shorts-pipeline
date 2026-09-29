@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:31:29.424Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-banned-email-task-board-s2",
+  "safe_request_id": "authored-manager-banned-email-task-board-s2",
+  "prompt_sha256": "5fd4ad581aeb4780a53edb6c12f56393e000b92748f9cba8852225570f50e7f9",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: close view of employee carefully documenting spoken instructions.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1dAOOLnhI2jbMfAWEDEnVvvd3kAaTzHAM",
+    "filename": "20260929__authored-manager-banned-email-task-board-s2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1dAOOLnhI2jbMfAWEDEnVvvd3kAaTzHAM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d267eded41ba93cbdeaadcb3ae4bcc14d0e882e50e85ae9f3f5911d4559c5c05",
+    "bytes": 1950033,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "manager-banned-email-task-board",
+  "shot_index": 2,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
