@@ -57,7 +57,7 @@
   "channels": {
     "trending": {
       "id": "trending",
-      "tiktok": {"handle": ""},
+      "tiktok": {"handle": "ballerbro2.1"},
       "enabled": true,
       "display_name": "Trending / daily shorts",
       "cadence": {
@@ -221,7 +221,7 @@
     },
     "explainer": {
       "id": "explainer",
-      "tiktok": {"handle": ""},
+      "tiktok": {"handle": "shortexplainer1"},
       "enabled": true,
       "display_name": "Explainer (data stories)",
       "cadence": {
@@ -396,7 +396,7 @@
     },
     "third": {
       "id": "third",
-      "tiktok": {"handle": ""},
+      "tiktok": {"handle": "third.brain.down"},
       "enabled": true,
       "display_name": "Third channel (Proof Mode / clips)",
       "cadence": {
