@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:32:01.592Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-banned-email-task-board-s4",
+  "safe_request_id": "authored-manager-banned-email-task-board-s4",
+  "prompt_sha256": "0409a6c1df0304a14a244ec4e0fc831c680964ca2e81151a5767063ef1c359ec",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: tense office meeting as employee presents laptop evidence.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "12i1nDi6HpR5K9N0H6pF1Xjk6Yr8jEvmv",
+    "filename": "20260929__authored-manager-banned-email-task-board-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=12i1nDi6HpR5K9N0H6pF1Xjk6Yr8jEvmv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1ebdf9f63a7c0fb3de18e64090fcd3305a8c839e49c9a1985f40500152fcb00c",
+    "bytes": 1749870,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "manager-banned-email-task-board",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
