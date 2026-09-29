@@ -1522,7 +1522,9 @@ function composer(user, video, creator) {
   </form>`;
   return shell("New TikTok post", main, user);
 }
-function statusPage(user, video, state, detail, draft) {
+var AUDIENCE_WORDS = { SELF_ONLY: "visible only to you (Only me)", MUTUAL_FOLLOW_FRIENDS: "visible to your friends (mutual follows)", FOLLOWER_OF_CREATOR: "visible to your followers", PUBLIC_TO_EVERYONE: "visible to everyone" };
+function statusPage(user, video, state, detail, draft, privacy) {
+  const who = AUDIENCE_WORDS[privacy] || "with the privacy you chose";
   const done = state === "done";
   const failed = state === "failed";
   if (draft) return draftStatus(user, video, state, detail);
@@ -1541,11 +1543,10 @@ function statusPage(user, video, state, detail, draft) {
     <ol class="steps">
       <li class="step s1 step-done"><span class="dot" aria-hidden="true"><span class="tick"></span></span>Uploaded to TikTok</li>
       <li class="step s2${state === "uploading" || state === "processing" ? "" : " step-done"}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "TikTok processed your video" : failed ? "TikTok stopped processing" : "TikTok is processing your video\u2026"}</li>
-      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "Posted \u2014 visible only to you" : "Waiting for TikTok to confirm"}</li>
+      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "Posted \u2014 " + esc(who) : "Waiting for TikTok to confirm"}</li>
     </ol>
     <div class="status-note">
-      ${done ? "<p>Your video is on your TikTok profile, visible only to you (Only me). Open your profile to see it.</p>" : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : "<p>This page checks with TikTok every few seconds. It usually takes under a minute.</p>"}
-      <p class="small">Until TikTok audits Shorts Media for public posting, TikTok keeps API posts private (Only me).</p>
+      ${done ? `<p>Your video is on your TikTok profile, ${esc(who)}. Open your profile to see it.</p>` : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : "<p>This page checks with TikTok every few seconds. It usually takes under a minute.</p>"}
     </div>
     <div class="status-actions">${done ? `<a class="btn primary btn-wide" href="https://www.tiktok.com/@${esc(user.user)}">Open my TikTok profile</a> <a class="btn btn-quiet" href="/app/">Back to your Shorts</a>` : failed ? '<a class="btn primary btn-wide" href="/app/">Back to your Shorts</a>' : ""}</div>
   </section>`;
@@ -1773,7 +1774,7 @@ exports.handler = async function(event) {
         body: bytes
       });
       if (put.status !== 201 && put.status !== 200) return page(problem(user, "The upload did not take", `TikTok answered ${put.status}.`));
-      return redirect("/app/status?id=" + encodeURIComponent(init.publish_id));
+      return redirect("/app/status?id=" + encodeURIComponent(init.publish_id) + "&p=" + encodeURIComponent(privacy));
     }
     if (path === "/app/draft/" + VIDEO.id) return page(draftPage(user, VIDEO));
     if (path === "/app/drafting" && event.httpMethod === "POST") {
@@ -1798,9 +1799,9 @@ exports.handler = async function(event) {
       const draft = q.draft === "1";
       const st = await tt("/v2/post/publish/status/fetch/", user.tok, { publish_id: String(q.id || "") });
       const s = String(st.status || "");
-      if (s === "PUBLISH_COMPLETE" || s === "SEND_TO_USER_INBOX") return page(statusPage(user, VIDEO, "done", "", draft));
-      if (s === "FAILED") return page(statusPage(user, VIDEO, "failed", st.fail_reason || "", draft));
-      return page(statusPage(user, VIDEO, s === "PROCESSING_UPLOAD" ? "uploading" : "processing", "", draft));
+      if (s === "PUBLISH_COMPLETE" || s === "SEND_TO_USER_INBOX") return page(statusPage(user, VIDEO, "done", "", draft, q.p));
+      if (s === "FAILED") return page(statusPage(user, VIDEO, "failed", st.fail_reason || "", draft, q.p));
+      return page(statusPage(user, VIDEO, s === "PROCESSING_UPLOAD" ? "uploading" : "processing", "", draft, q.p));
     }
     return redirect("/app/");
   } catch (e) {
