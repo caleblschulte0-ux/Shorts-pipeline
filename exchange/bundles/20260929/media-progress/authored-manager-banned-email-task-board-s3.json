@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:31:43.836Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-banned-email-task-board-s3",
+  "safe_request_id": "authored-manager-banned-email-task-board-s3",
+  "prompt_sha256": "87437f2f28af0c336b4214c7535654d7720b909712ef7bd312cbf52ba1cb6f9c",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: sealed office shipment boxes waiting beside desk on Friday evening.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "12XVMqp63eYZcIZ1OeJKzxfMPNBiAhvlf",
+    "filename": "20260929__authored-manager-banned-email-task-board-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=12XVMqp63eYZcIZ1OeJKzxfMPNBiAhvlf",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "51ea64043514127e853222804a8b011029fae652491bdc5a889171c87f31621b",
+    "bytes": 1915433,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "manager-banned-email-task-board",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
