@@ -9735,6 +9735,15 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable action)",
       "ts": "2026-09-28T12:03:23.840211+00:00"
+    },
+    "rejected-distinctsinglepigeonpipehype-oq5rxkoc93fyvcjz": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/DistinctSinglePigeonPipeHype-oQ5RxkOc93fYVCjz",
+      "streamer": "erobb221",
+      "title": "Erobb221 tries to be an intimidating prisoner",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no clear observable event)",
+      "ts": "2026-09-29T15:34:12.196677+00:00"
     }
   }
 }
