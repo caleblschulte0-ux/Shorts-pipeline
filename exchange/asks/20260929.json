@@ -8,65 +8,65 @@
    "system": "You write ORIGINAL first-person Reddit-style storytime scripts for YouTube Shorts as strict JSON (1080x1920 vertical, ~45-60 seconds). The story is FICTION on a UNIVERSAL premise. It is never about the news, never a real event, and it names no real person, company, brand, product, place or organisation. Open on the shock, build tension, end on a twist or payoff.\n\nThe channel's rules for this format:\n- ORIGINAL first-person story, 130-170 words, ONE paragraph.\n- Open-loop hook; end on a satisfying twist or payoff, NOT a question.\n- UNIVERSAL premises — workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.\n- 6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.\n- 3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.\n- Do not add the Data/Explainer mascot; Trending is a separate channel.\n\nSubreddit: exactly one of pettyrevenge, MaliciousCompliance, ProRevenge, entitledparents, TalesFromTheCustomer, IDontWorkHereLady.\nOutput JSON only - no prose, no fences.",
    "user": "Your previous JSON output failed validation. Issues:\n\n- shot trigger phrase \"manager's smug grin\" is not a verbatim substring of the script. Either change the script to include it, or pick a different trigger phrase that IS in the script.\n- shot trigger phrase \"customer's shocked face\" is not a verbatim substring of the script. Either change the script to include it, or pick a different trigger phrase that IS in the script.\n- punch trigger phrase \"manager's smug grin\" is not a verbatim substring of the script. Either change the script to include it, or pick a different trigger phrase that IS in the script.\n\nHere was your previous output:\n{\n  \"subreddit\": \"pettyrevenge\",\n  \"title\": \"I filmed my manager trash the tip and got sweet karma\",\n  \"script\": \"I caught my manager literally trash the tip right after a frantic customer left a $5 tip on the counter, claiming the cafe was short\\u2011changing them. I slipped my hidden camera into the sugar jar, waiting for the perfect moment. The manager\\u2019s smug grin widened as he tossed the cash into the waste bin, while the customer stared in disbelief, clutching their receipt. I waited until the cash register beep echoed, then the doorbell rings and the manager turned to see a police officer stepping inside, drawn by the live feed I\\u2019d sent to the local watchdog. The officer lifted the trash bag, exposing the stolen money, and the manager was escorted out as the customer cheered. I walked out with the $5 tip still in my pocket, feeling the sweet taste of justice.\",\n  \"hashtags\": [\n    \"pettyrevenge\",\n    \"cafe\",\n    \"revenge\",\n    \"justice\",\n    \"cash\"\n  ],\n  \"shots\": [\n    {\n      \"phrase\": \"trash the tip\",\n      \"query\": \"waste bin\"\n    },\n    {\n      \"phrase\": \"manager's smug grin\",\n      \"query\": \"smug face\"\n    },\n    {\n      \"phrase\": \"hidden camera\",\n      \"query\": \"cafe interior\"\n    },\n    {\n      \"phrase\": \"customer's shocked face\",\n      \"query\": \"surprised patron\"\n    },\n    {\n      \"phrase\": \"cash register beep\",\n      \"query\": \"register screen\"\n    },\n    {\n      \"phrase\": \"doorbell rings\",\n      \"query\": \"cafe door\"\n    }\n  ],\n  \"punches\": [\n    {\n      \"phrase\": \"trash the tip\",\n      \"text\": \"SCAM\",\n      \"color\": \"#ff3030\"\n    },\n    {\n      \"phrase\": \"manager's smug grin\",\n      \"text\": \"KARMA\",\n      \"color\": \"#50ff80\"\n    },\n    {\n      \"phrase\": \"hidden camera\",\n      \"text\": \"REVEALED\",\n      \"color\": \"#ffaa30\"\n    }\n  ],\n  \"music_vibe\": \"cinematic\"\n}\n\nFix every issue and output the corrected JSON object. Same schema, same rules. Output ONLY the JSON object."
   },
-  "309744f139d92eb6": {
-   "filed": "2026-09-29T12:19:28Z",
-   "caller": "_call_llm",
-   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
-   "user": "TITLE: Why The World's Most Expensive Spice Costs $15 A Gram\nHOOK: One spice costs more than steak, by a lot.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
-  },
-  "bf651c20b81c3548": {
-   "filed": "2026-09-29T12:20:42Z",
-   "caller": "_call_llm",
-   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
-   "user": "TITLE: There Are 2.5 Million Ants For Every Person Alive\nHOOK: You are outnumbered. By ants.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
-  },
   "f4f66b04193a9f95": {
-   "filed": "2026-09-29T12:21:56Z",
+   "filed": "2026-09-29T12:53:46Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: How A Netflix Show Turned Chess Into A 200-Million-Person Habit\nHOOK: A Netflix show broke the internet's chess habit.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
-  "fa205ad11ed7c91a": {
-   "filed": "2026-09-29T12:24:13Z",
+  "bce62911c16096ca": {
+   "filed": "2026-09-29T12:55:00Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
-   "user": "TITLE: The Race To Mine A Place No One Owns (3 Charts)\nHOOK: There's a gold rush happening 4 kilometers underwater.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+   "user": "TITLE: The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)\nHOOK: Part of the ocean dies every single summer.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "3e8ad574a36b89c0": {
+   "filed": "2026-09-29T12:56:15Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: The Moon Is Slowly Leaving Us (3 Charts)\nHOOK: Every total eclipse you'll ever see is numbered.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "b5e86d9087434591": {
+   "filed": "2026-09-29T12:58:30Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Humans Have Only Ever Domesticated 14 Large Animals\nHOOK: The list closed thousands of years ago.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
   "67696dc99643e00d": {
-   "filed": "2026-09-29T12:25:28Z",
+   "filed": "2026-09-29T12:59:44Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: The Coldest Place In The Universe Isn't In Space (3 Charts)\nHOOK: The Coldest Place In The Universe Isn't In Space\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
   "4b3e0009c547cf3b": {
-   "filed": "2026-09-29T12:26:42Z",
+   "filed": "2026-09-29T13:00:58Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor checking whether every segment of a data video genuinely supports ONE headline claim. For each segment given by index, decide whether it has a real semantic bridge to the headline -- not just a shared category, but something that helps prove or contextualize the SAME claim. Default to false when unsure.",
    "user": "HEADLINE TITLE: The Coldest Place In The Universe Isn't In Space (3 Charts)\nHOOK: The Coldest Place In The Universe Isn't In Space\n\nSEGMENTS TO CHECK (index: topic):\n0: 'how cold known places get'\n1: \"Boomerang Nebula vs. NASA's Cold Atom Lab\"\n\nReturn STRICT JSON: {\"bridges\": {\"<index>\": true|false}} with one entry per segment index above."
   },
   "bc6c324289c4a013": {
-   "filed": "2026-09-29T12:28:35Z",
+   "filed": "2026-09-29T13:02:37Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: Self-Checkout Is Quietly Replacing Cashiers (3 Charts)\nHOOK: That kiosk replaced somebody's job.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
   "57a9b1bf65e2bbdd": {
-   "filed": "2026-09-29T12:37:09Z",
+   "filed": "2026-09-29T13:10:39Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: Lab-Grown Diamonds Just Lost 90% Of Their Value\nHOOK: One diamond kept its price. One didn't.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
   "d9bfa507ad9c3107": {
-   "filed": "2026-09-29T12:38:13Z",
+   "filed": "2026-09-29T13:11:53Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: America's Blood Supply Has A 3% Problem\nHOOK: Only 3% of eligible people actually donate.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   },
-  "6b4e49e5eeff5f83": {
-   "filed": "2026-09-29T12:39:31Z",
+  "7bd76ffd01f3905c": {
+   "filed": "2026-09-29T13:13:07Z",
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
-   "user": "TITLE: The World Made 62 Million Tons Of E-Waste\nHOOK: Only 1 in 5 of those tons get recycled.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+   "user": "TITLE: The Ocean Lost 71% Of Its Sharks Since 1970\nHOOK: Nobody saw the ocean's sharks disappearing.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   }
  },
  "answer_path": "exchange/asks/20260929.answers.json",
