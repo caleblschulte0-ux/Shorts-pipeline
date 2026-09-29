@@ -42,6 +42,9 @@ on:
 
 permissions:
   contents: write   # commit third_posted_log.json
+  # TikTok cross-post: the uploader trades this job's OIDC token for a
+  # fresh access token at shorts-media.netlify.app (tiktok_app/).
+  id-token: write
 
 env:
   PYTHON_VERSION: '3.11'
@@ -164,6 +167,9 @@ jobs:
           # unset = YouTube-only (today's behaviour). IG Reels also needs
           # META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST.
           TIKTOK_ACCESS_TOKEN_THIRD: ${{ secrets.TIKTOK_ACCESS_TOKEN_THIRD }}
+          # Which account linked at shorts-media.netlify.app/app/ this
+          # channel posts to; optional while only one is linked.
+          TIKTOK_HANDLE_THIRD: ${{ vars.TIKTOK_HANDLE_THIRD }}
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           REELS_PUBLIC_HOST: ${{ secrets.REELS_PUBLIC_HOST }}

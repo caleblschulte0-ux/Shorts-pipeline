@@ -57,6 +57,7 @@
   "channels": {
     "trending": {
       "id": "trending",
+      "tiktok": {"handle": ""},
       "enabled": true,
       "display_name": "Trending / daily shorts",
       "cadence": {
@@ -220,6 +221,7 @@
     },
     "explainer": {
       "id": "explainer",
+      "tiktok": {"handle": ""},
       "enabled": true,
       "display_name": "Explainer (data stories)",
       "cadence": {
@@ -394,6 +396,7 @@
     },
     "third": {
       "id": "third",
+      "tiktok": {"handle": ""},
       "enabled": true,
       "display_name": "Third channel (Proof Mode / clips)",
       "cadence": {

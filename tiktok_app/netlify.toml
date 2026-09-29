@@ -1,0 +1,32 @@
+# Shorts Media — TikTok Login Kit + Content Posting API site.
+# Deployed as a drop: the site root IS the publish directory, and the one
+# function (netlify/functions/app.js) is self-contained — no build step,
+# no npm install. Build it with scripts/build_tiktok_drop.py.
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "zisi"
+
+[[redirects]]
+  from = "/auth/tiktok/callback/*"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/app/*"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/app"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/tiktok/*"
+  to = "/.netlify/functions/app"
+  status = 200
+  force = true

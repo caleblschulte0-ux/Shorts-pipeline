@@ -160,6 +160,9 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict) -> str:
             break
     ps._save_log(log, ps.LOG_PATH)
     ps._persist_posted_log_now(ps.LOG_PATH, req["slug"])
+    from shared.crosspost import crosspost
+    crosspost("explainer", mp4, sc.get("title", req["slug"])[:100],
+              ps._description(sc), ps._merged_tags(sc))
     return url
 
 
@@ -184,6 +187,9 @@ def _publish_trending(req: dict, mp4: Path) -> str:
                           "format": pkg.get("format"), "video_url": url,
                           "publish_at": None, "posted_at": _now(), "via": JUDGE})
     rt.save_log(log)
+    from shared.crosspost import crosspost
+    crosspost("trending", mp4, (req.get("title") or pkg.get("title") or topic)[:100],
+              rt._description(pkg), rt._tags(pkg))
     return url
 
 

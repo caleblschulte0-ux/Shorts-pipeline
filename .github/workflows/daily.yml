@@ -64,6 +64,7 @@ on:
 permissions:
   contents: write   # commit posted_log + failure_count + reports
   issues: write     # post the daily report comment
+  id-token: write   # TikTok cross-post: trade for a token at shorts-media.netlify.app
 
 env:
   PYTHON_VERSION: '3.11'

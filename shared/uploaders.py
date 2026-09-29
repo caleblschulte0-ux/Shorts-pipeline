@@ -18,11 +18,14 @@ Required environment variables per platform:
     YOUTUBE_TOKEN                path to writable token.json
 
   tiktok:
-    TIKTOK_ACCESS_TOKEN     user access token with video.publish scope.
-                            Setup: register a TikTok developer app,
-                            complete Content Posting API review (~1-2
-                            weeks), then run a one-time OAuth flow to
-                            mint the token (refresh outside this tool).
+    Normally NOTHING: connect the account once at
+    https://shorts-media.netlify.app/app/ and a GitHub Actions job on main
+    with `permissions: id-token: write` fetches a fresh access token from
+    that site (tiktok_app/, OIDC-authenticated; the site refreshes it).
+    TIKTOK_HANDLE_<CHANNEL>   which linked account a channel posts to
+                              (optional when exactly one is linked).
+    TIKTOK_ACCESS_TOKEN[_<CHANNEL>]  a static token still wins if set, but
+                              it expires in 24h — the broker does not.
 
   instagram / facebook (both share the Meta token):
     META_ACCESS_TOKEN       long-lived page/system-user token with
@@ -370,6 +373,83 @@ class YouTubeUploader(Uploader):
 
 # ---------- TikTok ----------
 
+#: The Shorts Media site (tiktok_app/) holds the linked accounts and
+#: refreshes their tokens; a GitHub Actions OIDC token is the only key.
+TIKTOK_BROKER = "https://shorts-media.netlify.app/api/tiktok/token"
+CREATOR_INFO_URL = "https://open.tiktokapis.com/v2/post/publish/creator_info/query/"
+
+
+def tiktok_broker_available() -> bool:
+    """True inside a GitHub Actions job granted `id-token: write`."""
+    return bool(os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
+                and os.environ.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN"))
+
+
+def _tiktok_broker_auth() -> dict:
+    """This job's GitHub OIDC token, as the site's Authorization header."""
+    import requests
+    if not tiktok_broker_available():
+        raise UploadError(
+            "no TikTok token: set TIKTOK_ACCESS_TOKEN, or run in GitHub "
+            "Actions with `permissions: id-token: write` so the job can "
+            "fetch one from shorts-media.netlify.app")
+    r = requests.get(os.environ["ACTIONS_ID_TOKEN_REQUEST_URL"],
+                     params={"audience": TIKTOK_BROKER},
+                     headers={"Authorization": "Bearer "
+                              + os.environ["ACTIONS_ID_TOKEN_REQUEST_TOKEN"]},
+                     timeout=30)
+    if not r.ok:
+        raise UploadError(f"github oidc token failed: {r.status_code} {r.text}")
+    return {"Authorization": "Bearer " + r.json()["value"]}
+
+
+def tiktok_linked_accounts(auth: dict | None = None) -> list[dict]:
+    """Every account linked at shorts-media.netlify.app/app/:
+    [{open_id, handle, name, scopes}] (no tokens)."""
+    import requests
+    r = requests.get(TIKTOK_BROKER.rsplit("/", 1)[0] + "/accounts",
+                     headers=auth or _tiktok_broker_auth(), timeout=30)
+    if not r.ok:
+        raise UploadError(f"tiktok broker accounts failed: {r.status_code} {r.text}")
+    return r.json().get("accounts") or []
+
+
+def _tiktok_broker_token(channel: str = "") -> str:
+    """A fresh TikTok access token for the account linked at
+    shorts-media.netlify.app/app/, fetched with this job's GitHub OIDC
+    token. The site only answers jobs on caleblschulte0-ux/Shorts-pipeline
+    main. Which account: TIKTOK_HANDLE_<CHANNEL>, else TIKTOK_HANDLE, else
+    the only linked account (more than one linked and none named refuses,
+    rather than guessing which account a channel posts to)."""
+    import requests
+    auth = _tiktok_broker_auth()
+
+    handle = ""
+    if channel:
+        handle = os.environ.get(f"TIKTOK_HANDLE_{channel.upper()}", "")
+    handle = (handle or os.environ.get("TIKTOK_HANDLE", "")).strip().lstrip("@")
+    if handle:
+        who = {"handle": handle}
+    else:
+        linked = tiktok_linked_accounts(auth)
+        if len(linked) != 1:
+            raise UploadError(
+                f"{len(linked)} TikTok accounts are linked at "
+                "shorts-media.netlify.app/app/ — "
+                + ("connect one there" if not linked else
+                   f"set repo variable TIKTOK_HANDLE_{(channel or 'X').upper()} "
+                   "to the handle this channel posts to: "
+                   + ", ".join("@" + (a.get("handle") or "?") for a in linked)))
+        who = {"open_id": linked[0]["open_id"]}
+    r = requests.post(TIKTOK_BROKER, headers=auth, json=who, timeout=30)
+    if not r.ok:
+        raise UploadError(f"tiktok broker token failed: {r.status_code} {r.text}"
+                          + (" — reconnect the account at "
+                             "shorts-media.netlify.app/app/"
+                             if r.status_code == 409 else ""))
+    return r.json()["access_token"]
+
+
 class TikTokUploader(Uploader):
     name = "tiktok"
     INIT_URL = "https://open.tiktokapis.com/v2/post/publish/video/init/"
@@ -385,7 +465,21 @@ class TikTokUploader(Uploader):
             scoped = os.environ.get(f"TIKTOK_ACCESS_TOKEN_{self.channel.upper()}")
             if scoped:
                 return scoped.strip(" \t\r\n<>\"'")
-        return _env("TIKTOK_ACCESS_TOKEN")
+        if os.environ.get("TIKTOK_ACCESS_TOKEN"):
+            return _env("TIKTOK_ACCESS_TOKEN")
+        return _tiktok_broker_token(self.channel)
+
+    def _creator_privacy(self, token: str) -> list[str]:
+        """The privacy levels TikTok offers this account right now. Direct
+        Post must pick from these (a value outside them is refused)."""
+        import requests
+        r = requests.post(CREATOR_INFO_URL, headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json; charset=UTF-8"}, json={},
+            timeout=30)
+        if not r.ok:
+            raise UploadError(f"tiktok creator_info failed: {r.status_code} {r.text}")
+        return list((r.json().get("data") or {}).get("privacy_level_options") or [])
 
     def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
@@ -407,10 +501,13 @@ class TikTokUploader(Uploader):
         else:
             caption = (title + " "
                        + " ".join(f"#{t}" for t in (tags or [])))[:2200]
+        options = self._creator_privacy(token)
+        privacy = ("PUBLIC_TO_EVERYONE" if "PUBLIC_TO_EVERYONE" in options
+                   else "SELF_ONLY")
         init_payload = {
             "post_info": {
                 "title": caption,
-                "privacy_level": "PUBLIC_TO_EVERYONE",
+                "privacy_level": privacy,
                 "disable_duet": False,
                 "disable_comment": False,
                 "disable_stitch": False,
@@ -432,6 +529,20 @@ class TikTokUploader(Uploader):
             json=init_payload,
             timeout=60,
         )
+        if not r.ok and "unaudited_client" in r.text and privacy != "SELF_ONLY":
+            # Until TikTok audits the app for public Direct Post, every API
+            # post is private. Say so loudly — a private post is not reach —
+            # and post it Only-me rather than lose the clip.
+            print("::warning::[tiktok] the Shorts Media app is not yet "
+                  "audited for public posting, so TikTok only accepts "
+                  "private (Only me) posts. Posting privately. Request the "
+                  "Content Posting API audit in the TikTok developer portal.",
+                  flush=True)
+            init_payload["post_info"]["privacy_level"] = privacy = "SELF_ONLY"
+            r = requests.post(self.INIT_URL, headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json; charset=UTF-8"},
+                json=init_payload, timeout=60)
         if not r.ok:
             raise UploadError(f"tiktok init failed: {r.status_code} {r.text}")
         data = r.json().get("data", {})
