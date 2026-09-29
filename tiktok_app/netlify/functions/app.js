@@ -1102,7 +1102,7 @@ var require_account_service = __commonJS({
       const db = store();
       const key = keyFor(openId);
       let existing = await db.getWithMetadata(key, { type: "json" });
-      if (!existing) throw new Error("TikTok account is not connected");
+      if (!existing) throw new Error("TikTok account is not saved yet (a new connection can take up to a minute to appear) or was disconnected");
       let rec = existing.data;
       if (rec.access_expires_at > Date.now() + 60 * 60 * 1e3) return rec;
       if (rec.refresh_expires_at < Date.now()) throw new Error("TikTok authorization expired; reconnect the account");
@@ -1587,6 +1587,12 @@ function problem(user, title, text) {
   const main = `<section class="status-card posting"><div class="status-top"><div><div class="eyebrow">Shorts Media</div><h1 class="status-h1">${esc(title)}</h1><p class="status-title">${esc(text)}</p></div></div><div class="status-actions"><a class="btn primary btn-wide" href="/app/">Back to your Shorts</a></div></section>`;
   return shell(title, main, user);
 }
+function sessionFrom(rec) {
+  return { open_id: rec.open_id, handle: rec.handle, name: rec.name, avatar: rec.avatar, tok: rec.access_token, exp: rec.access_expires_at };
+}
+function sessionUser(s) {
+  return { open_id: s.open_id, handle: s.handle, name: s.name || "TikTok user", avatar: s.avatar || "/app-assets/img/avatar.svg", tok: s.tok, user: s.handle || s.name || "tiktok" };
+}
 exports.handler = async function(event) {
   const path = (event.path || "/").replace(/\/+$/, "") || "/";
   const jar = cookies(event);
@@ -1625,16 +1631,34 @@ exports.handler = async function(event) {
         return jsonPage(409, { error: "reconnect_required" });
       }
     }
+    let renewed = null;
     if (path !== "/auth/tiktok/callback" && session?.open_id && owned.includes(session.open_id)) {
-      user = await accounts.refreshRecord(session.open_id, CONFIG);
-      user.tok = user.access_token;
-      user.user = user.handle || user.name;
+      if (session.tok && session.exp > Date.now() + 5 * 60 * 1e3) {
+        user = sessionUser(session);
+      } else {
+        // Token in the cookie is stale: the stored record refreshes it.
+        try {
+          const rec = await accounts.refreshRecord(session.open_id, CONFIG);
+          user = sessionUser(sessionFrom(rec));
+          renewed = sessionFrom(rec);
+        } catch (e) {
+          user = null;
+        }
+      }
     }
-    connected = (await Promise.all(owned.map((id) => accounts.getRecord(id)))).filter(Boolean);
+    connected = (await Promise.all(owned.map((id) => accounts.getRecord(id).catch(() => null)))).filter(Boolean);
+    if (user && !connected.some((a) => a.open_id === user.open_id)) connected.unshift({ open_id: user.open_id, handle: user.handle, name: user.name });
+    if (renewed && path === "/app") return page(library(user, "", connected), { "Set-Cookie": setCookie("sm_session", sign(renewed), 2592e3) });
     if (path === "/app") return page(library(user, "", connected));
     if (path === "/app/select") {
       if (!owned.includes(String(q.open_id || ""))) return redirect("/app/");
-      return redirect("/app/", { "Set-Cookie": setCookie("sm_session", sign({ open_id: q.open_id }), 2592e3) });
+      let rec = null;
+      try {
+        rec = await accounts.refreshRecord(String(q.open_id), CONFIG);
+      } catch (e) {
+        return page(problem(user, "That account is still being saved", "TikTok accounts take up to a minute to appear after connecting. Try again shortly."));
+      }
+      return redirect("/app/", { "Set-Cookie": setCookie("sm_session", sign(sessionFrom(rec)), 2592e3) });
     }
     if (path === "/app/connect") {
       const state = crypto.randomBytes(12).toString("base64url");
@@ -1674,7 +1698,7 @@ exports.handler = async function(event) {
       } catch (e) {
         creator = {};
       }
-      await accounts.saveAuthorization(tok, {
+      const saved = await accounts.saveAuthorization(tok, {
         handle: creator.creator_username || "",
         name: creator.creator_nickname || u.display_name || "TikTok user",
         avatar: creator.creator_avatar_url || u.avatar_url || "/app-assets/img/avatar.svg"
@@ -1684,7 +1708,7 @@ exports.handler = async function(event) {
         statusCode: 200,
         headers: BASE_HEADERS,
         multiValueHeaders: { "Set-Cookie": [
-          setCookie("sm_session", sign({ open_id: tok.open_id }), 2592e3),
+          setCookie("sm_session", sign(sessionFrom(saved)), 2592e3),
           setCookie("sm_accounts", sign({ ids: nextOwned }), 2592e3),
           setCookie("sm_state", "", 0)
         ] },

@@ -8,6 +8,9 @@ const http = require("http");
 const path = require("path");
 process.env.TIKTOK_CLIENT_KEY = "ck"; process.env.TIKTOK_CLIENT_SECRET = "cs"; process.env.SM_COOKIE_SECRET = "cookie";
 const mem = new Map(); let n = 0;
+// Reads come from `seen`, which lags writes until flush(): Netlify Blobs is
+// eventually consistent, and the live site broke on exactly that.
+let seen = new Map(); const flush = () => { seen = new Map([...mem].map(([k, v]) => [k, { ...v }])); };
 const srv = http.createServer((req, res) => {
   const u = new URL(req.url, "http://x");
   const parts = u.pathname.split("/").filter(Boolean); // site, store, ...key
@@ -17,9 +20,9 @@ const srv = http.createServer((req, res) => {
     if (req.method === "GET" && !key) {
       const p = u.searchParams.get("prefix") || "";
       res.writeHead(200, { "content-type": "application/json" });
-      return res.end(JSON.stringify({ blobs: [...mem].filter(([k]) => k.startsWith(p)).map(([k, v]) => ({ key: k, etag: v.etag })) }));
+      return res.end(JSON.stringify({ blobs: [...seen].filter(([k]) => k.startsWith(p)).map(([k, v]) => ({ key: k, etag: v.etag })) }));
     }
-    if (req.method === "GET") { const v = mem.get(key); if (!v) { res.writeHead(404); return res.end(); } res.writeHead(200, { etag: v.etag }); return res.end(v.data); }
+    if (req.method === "GET") { const v = seen.get(key); if (!v) { res.writeHead(404); return res.end(); } res.writeHead(200, { etag: v.etag }); return res.end(v.data); }
     if (req.method === "PUT") {
       const im = req.headers["if-match"]; const cur = mem.get(key);
       if (im && (!cur || cur.etag !== im)) { res.writeHead(412); return res.end(); }
@@ -58,13 +61,18 @@ srv.listen(0, async () => {
   r = await handler(ev("/auth/tiktok/callback", { q: { code: "c", state }, cookie: "sm_state=" + state }));
   ok(r.statusCode === 200 && /Connected/.test(r.body), "callback stores the account" + (/Connected/.test(r.body) ? "" : " — " + (r.body.match(/status-title">([^<]*)/) || [])[1]));
   ok(mem.size === 1, "one account in Blobs");
+  ok(seen.size === 0, "(Blobs has not caught up yet)");
   const cookie = r.multiValueHeaders["Set-Cookie"].map((c) => c.split(";")[0]).join("; ");
   r = await handler(ev("/app", { cookie }));
-  ok(/TikTok connected/.test(r.body) && /thirdbraindown/.test(r.body), "library shows the connected account");
+  ok(/TikTok connected/.test(r.body) && /thirdbraindown/.test(r.body), "library shows the connected account before Blobs catches up");
+  flush();
   // expire the access token -> refresh path with etag write
   const [k, v] = [...mem][0]; const rec = JSON.parse(v.data); rec.access_expires_at = Date.now(); mem.set(k, { data: Buffer.from(JSON.stringify(rec)), etag: v.etag });
-  r = await handler(ev("/app", { cookie }));
-  ok(JSON.parse([...mem][0][1].data).access_token === "at2", "expired access token refreshed and saved");
+  flush();
+  const stale = cookie.replace(/sm_session=[^;]*/, () => { const c = require("crypto"); const body = Buffer.from(JSON.stringify({ open_id: "oid1", tok: "old", exp: 0 })).toString("base64url"); return "sm_session=" + body + "." + c.createHmac("sha256", "cookie").update(body).digest("base64url"); });
+  r = await handler(ev("/app", { cookie: stale }));
+  ok(JSON.parse([...mem][0][1].data).access_token === "at2" && /TikTok connected/.test(r.body), "expired access token refreshed and saved");
+  flush();
   r = await handler(ev("/api/tiktok/token", { over: { httpMethod: "POST", body: "{}" } }));
   ok(r.statusCode === 401, "broker refuses a request without GitHub OIDC");
   // no blobs context -> a readable error page, not a crash
@@ -72,9 +80,11 @@ srv.listen(0, async () => {
   ok(/event.blobs missing/.test(r.body), "missing Blobs says so plainly");
   r = await handler(ev("/app/disconnect", { cookie }));
   ok(r.statusCode === 302 && mem.size === 0, "disconnect removes the account");
+  flush();
   // positive broker path: a real RS256 OIDC token for main
   r = await handler(ev("/app/connect")); const st2 = new URL(r.headers.Location).searchParams.get("state");
   await handler(ev("/auth/tiktok/callback", { q: { code: "c", state: st2 }, cookie: "sm_state=" + st2 }));
+  flush();
   const crypto = require("crypto");
   const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", { modulusLength: 2048 });
   global.PUB = publicKey.export({ format: "jwk" });
