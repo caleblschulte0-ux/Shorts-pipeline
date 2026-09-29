@@ -2379,8 +2379,8 @@
     }
   ],
   "recent_commits": [
-    "43e843f 2026-09-29 claim: mailbox verdicts 2026-09-29T04:48Z [skip ci]",
-    "f5be271 2026-09-29 claim: mailbox verdicts 2026-09-29T03:47Z [skip ci]"
+    "3cfed35 2026-09-29 media: start 20260929 daily producer",
+    "5a136d6 2026-09-29 watchdog: phase A readiness 20260929 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2489,28 +2489,28 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 5.06,
+          "vph": 4.87,
           "views": 1356
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 1.5,
-          "views": 103
+          "vph": 1.32,
+          "views": 104
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.42,
-          "views": 140
+          "vph": 1.31,
+          "views": 143
         },
         {
           "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
-          "vph": 1.21,
-          "views": 63
+          "vph": 1.12,
+          "views": 70
         },
         {
-          "title": "Zackrawrr Can't Believe Bonnie Said THE Word In Her Olympus Interview",
-          "vph": 1.13,
-          "views": 47
+          "title": "Chat Could Not Handle This Caseoh Moment",
+          "vph": 0.99,
+          "views": 221
         }
       ],
       "full_data": "state/analytics_third/latest.json"
