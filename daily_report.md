@@ -4,36 +4,38 @@
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **6**
-- succeeded: **4**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **2**
+- failed: **4**
 
 ## Posted
+- **He Banned Email. The Task Board Remembered Everything.**
+  - topic: He Banned Email. The Task Board Remembered Everything.
+  - publishes: `2026-09-29T13:00:00Z`
+  - https://youtube.com/shorts/obhuAl2xV4E
+  - took: 218.0s
 - **She Ordered Me To Stock Shelves. I Closed The Aisle.**
   - topic: She Ordered Me To Stock Shelves. I Closed The Aisle.
-  - publishes: `2026-09-29T13:00:00Z`
-  - https://youtube.com/shorts/o9GniW71MIk
-  - took: 176.5s
-- **I Gave a Free Latte to a Raging Customer and Got Paid**
-  - topic: Florida man likely to face criminal charges after SUV ends up on Cape Cod beach during nor'easter - CBS News
-  - angle: A sudden nor'easter drove an SUV onto a Cape Cod beach, turning a weather event into a bizarre legal nightmare.
   - publishes: `2026-09-29T14:30:00Z`
-  - https://youtube.com/shorts/ZzmH5XnezTE
-  - took: 269.7s
-- **I Gave the Entitled Customer Exactly What He Wanted**
-  - topic: NASA’s Crew-13 could go from Florida to the ISS in under 9 hours
-  - angle: SpaceX and NASA aim to shave launch‑to‑orbit time to under nine hours, a record‑breaking sprint to the International Space Station.
-  - https://youtube.com/shorts/IDnQa373Z8A
-  - took: 223.0s
-- **I Served a Free Latte to an Entitled Customer Who Was My Manager’s Sister**
-  - topic: CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - KOIN.com
-  - angle: A lone bobcat trotted down a downtown Portland street, highlighting urban wildlife encroachment as night falls.
-  - https://youtube.com/shorts/6QNCNr2dDhw
-  - took: 236.4s
+  - https://youtube.com/shorts/7ubT4lk-x9U
+  - took: 163.4s
 
 ## Failed
-- **He Banned Email. The Task Board Remembered Everything.**
-  - error: `showrunner_block: showrunner BLOCK: The video tells a Reddit story using a split screen with generic AI images and a Minecraft-like animation, failing to meet the channel's visual craft standards.`
+- **Rare 'Firenado' Caught On Camera During Florida Controlled Burn - KWWL**
+  - error: `unfit_for_fiction: "Rare 'Firenado' Caught On Camera During Florida Controlled Burn - KWWL" refused by the writer: The trend involves a disaster (firenado), which is prohibited for story seeding.`
+- **CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - KOIN.com**
+  - error: `JSONDecodeError: Expecting ',' delimiter: line 23 column 43 (char 1634)`
 - **VIDEO: Elk encounter caught on camera; GSMNP warns visitors to take precautions - WLOS**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-sett`
+  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)`
+- **Firenado caught on camera during a prescribed burn in Florida - WFAA**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (fdb5a14347b0e733)`
 
+
+## Format scoreboard (A/B/C test)
+
+| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
+|---|---|---|---|---|---|---|---|---|
+| graph_race | 49 | 167 | 3.4 | 0.02 | 67.8 | 1 | 0 | 0 |
+| reddit_story | 29 | 15 | 0.5 | 0.0 | 7.2 | 0 | 0 | 0 |
+
+matched 78 videos to packages, 1 unmatched (pre-A/B/C uploads)

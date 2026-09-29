@@ -4,16 +4,16 @@
     "title": "He Banned Email. The Task Board Remembered Everything.",
     "format": "reddit",
     "publish_at": "2026-09-29T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video tells a Reddit story using a split screen with generic AI images and a Minecraft-like animation, failing to meet the channel's visual craft standards.",
-    "elapsed_seconds": 213.8,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/obhuAl2xV4E",
+    "error": null,
+    "elapsed_seconds": 218.0,
     "package_path": "state/trending_packages/20260929/05_manager-banned-email-task-board.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260929-113810_he_banned_email__the_task_board_remember.mp4",
+    "video_path": "output/daily_20260929-120304_he_banned_email__the_task_board_remember.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 57.1,
+      "duration": 53.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,35 +24,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.9
+      "loudness_lufs": -26.6
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video tells a Reddit story using a split screen with generic AI images and a Minecraft-like animation, failing to meet the channel's visual craft standards.",
-      "score": 96
+      "blocked": false,
+      "reason": "",
+      "score": 92
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "She Ordered Me To Stock Shelves. I Closed The Aisle.",
     "title": "She Ordered Me To Stock Shelves. I Closed The Aisle.",
     "format": "reddit",
-    "publish_at": "2026-09-29T13:00:00Z",
+    "publish_at": "2026-09-29T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/o9GniW71MIk",
+    "video_url": "https://youtube.com/shorts/7ubT4lk-x9U",
     "error": null,
-    "elapsed_seconds": 176.5,
+    "elapsed_seconds": 163.4,
     "package_path": "state/trending_packages/20260929/06_orange-vest-store-inspector.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260929-114144_she_ordered_me_to_stock_shelves__i_close.mp4",
+    "video_path": "output/daily_20260929-120641_she_ordered_me_to_stock_shelves__i_close.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.8,
+      "duration": 50.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -63,7 +63,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -25.8
     },
     "qa": {
       "ok": true,
@@ -73,161 +73,49 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 100
+      "score": 91
     },
     "channel": "default"
   },
   {
-    "topic": "Florida man likely to face criminal charges after SUV ends up on Cape Cod beach during nor'easter - CBS News",
-    "angle": "A sudden nor'easter drove an SUV onto a Cape Cod beach, turning a weather event into a bizarre legal nightmare.",
-    "publish_at": "2026-09-29T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/ZzmH5XnezTE",
-    "error": null,
-    "elapsed_seconds": 269.7,
-    "title": "I Gave a Free Latte to a Raging Customer and Got Paid",
-    "package_path": "state/trending_packages/20260929-114501_auto_florida_man_likely_to_face_criminal_char.json",
-    "video_path": "output/daily_20260929-114501_florida_man_likely_to_face_criminal_char.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
-    },
-    "backfill": true
-  },
-  {
-    "topic": "NASA\u2019s Crew-13 could go from Florida to the ISS in under 9 hours",
-    "angle": "SpaceX and NASA aim to shave launch\u2011to\u2011orbit time to under nine hours, a record\u2011breaking sprint to the International Space Station.",
+    "topic": "Rare 'Firenado' Caught On Camera During Florida Controlled Burn - KWWL",
+    "angle": "Another rare fire tornado footage shows how quickly controlled burns can turn into dangerous vortexes.",
     "publish_at": null,
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/IDnQa373Z8A",
-    "error": null,
-    "elapsed_seconds": 223.0,
-    "title": "I Gave the Entitled Customer Exactly What He Wanted",
-    "package_path": "state/trending_packages/20260929-114928_auto_nasa_s_crew_13_could_go_from_florida_to_.json",
-    "video_path": "output/daily_20260929-114928_nasa_s_crew_13_could_go_from_florida_to_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 42.867,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
-    },
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: \"Rare 'Firenado' Caught On Camera During Florida Controlled Burn - KWWL\" refused by the writer: The trend involves a disaster (firenado), which is prohibited for story seeding.",
+    "elapsed_seconds": 0.7,
+    "unfit": true,
     "backfill": true
   },
   {
     "topic": "CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - KOIN.com",
-    "angle": "A lone bobcat trotted down a downtown Portland street, highlighting urban wildlife encroachment as night falls.",
+    "angle": "A lone bobcat ambles onto a downtown Portland street, prompting wildlife officials to warn urban residents.",
     "publish_at": null,
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/6QNCNr2dDhw",
-    "error": null,
-    "elapsed_seconds": 236.4,
-    "title": "I Served a Free Latte to an Entitled Customer Who Was My Manager\u2019s Sister",
-    "package_path": "state/trending_packages/20260929-115311_auto_caught_on_camera__reported_bobcat_wander.json",
-    "video_path": "output/daily_20260929-115311_caught_on_camera__reported_bobcat_wander.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.167,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 87
-    },
+    "ok": false,
+    "video_url": null,
+    "error": "JSONDecodeError: Expecting ',' delimiter: line 23 column 43 (char 1634)",
+    "elapsed_seconds": 15.0,
     "backfill": true
   },
   {
     "topic": "VIDEO: Elk encounter caught on camera; GSMNP warns visitors to take precautions - WLOS",
-    "angle": "An elk ambushed hikers in the Great Smoky Mountains, prompting park officials to issue urgent safety alerts.",
+    "angle": "A startled elk charges a campsite in Great Smoky Mountains, highlighting rising human\u2011wildlife conflicts.",
     "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-sett",
-    "elapsed_seconds": 207.3,
-    "title": "I Served a Free Latte to a Food Critic and Got a Paycheck",
-    "package_path": "state/trending_packages/20260929-115706_auto_video__elk_encounter_caught_on_camera__g.json",
-    "video_path": "output/daily_20260929-115706_video__elk_encounter_caught_on_camera__g.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 48.433,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-sett",
-      "score": null
-    },
-    "blocked": true,
+    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 113)",
+    "elapsed_seconds": 35.0,
+    "backfill": true
+  },
+  {
+    "topic": "Firenado caught on camera during a prescribed burn in Florida - WFAA",
+    "angle": "A prescribed burn creates a fire tornado, offering a stark visual of how climate\u2011driven fire dynamics are evolving.",
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (fdb5a14347b0e733)",
+    "elapsed_seconds": 27.2,
     "backfill": true
   }
 ]
