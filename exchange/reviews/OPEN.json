@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T19:14:02Z",
+ "updated": "2026-09-29T18:43:50Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -383,6 +383,16 @@
    "answer_path": "exchange/reviews/20260929/brock_faber__2b99c80a11.verdict.json"
   },
   {
+   "id": "españa___croacia__255c93921e",
+   "channel": "trending",
+   "slug": "españa___croacia",
+   "title": "I Locked the Espresso Machine After the Spill and Got Sweet Karma",
+   "filed": "2026-09-29T18:43:50Z",
+   "request": "exchange/reviews/20260929/españa___croacia__255c93921e.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/españa___croacia__255c93921e/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/españa___croacia__255c93921e.verdict.json"
+  },
+  {
    "id": "global-ewaste-crisis__47a13a3dad",
    "channel": "explainer",
    "slug": "global-ewaste-crisis",
@@ -431,16 +441,6 @@
    "request": "exchange/reviews/20260929/global-ewaste-crisis__b8a4bebbcc.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/global-ewaste-crisis__b8a4bebbcc/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__b8a4bebbcc.verdict.json"
-  },
-  {
-   "id": "kelp-forest-sea-star-collapse__22a712b32d",
-   "channel": "explainer",
-   "slug": "kelp-forest-sea-star-collapse",
-   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
-   "filed": "2026-09-29T19:14:02Z",
-   "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__22a712b32d.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__22a712b32d/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__22a712b32d.verdict.json"
   },
   {
    "id": "kelp-forest-sea-star-collapse__b15f7dc96d",
