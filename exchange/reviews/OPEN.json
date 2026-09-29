@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T21:47:49Z",
+ "updated": "2026-09-29T22:07:15Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -453,6 +453,16 @@
    "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__b8a4bebbcc.verdict.json"
   },
   {
+   "id": "global-ewaste-crisis__ec46fd6e2d",
+   "channel": "explainer",
+   "slug": "global-ewaste-crisis",
+   "title": "The World Made 62 Million Tons Of E-Waste",
+   "filed": "2026-09-29T22:01:07Z",
+   "request": "exchange/reviews/20260929/global-ewaste-crisis__ec46fd6e2d.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/global-ewaste-crisis__ec46fd6e2d/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__ec46fd6e2d.verdict.json"
+  },
+  {
    "id": "kelp-forest-sea-star-collapse__22a712b32d",
    "channel": "explainer",
    "slug": "kelp-forest-sea-star-collapse",
@@ -471,6 +481,16 @@
    "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__538403cdea.verdict.json"
+  },
+  {
+   "id": "kelp-forest-sea-star-collapse__a798d71a4f",
+   "channel": "explainer",
+   "slug": "kelp-forest-sea-star-collapse",
+   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
+   "filed": "2026-09-29T22:07:15Z",
+   "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f.verdict.json"
   },
   {
    "id": "kelp-forest-sea-star-collapse__b15f7dc96d",
@@ -543,6 +563,16 @@
    "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__add6f06b65.verdict.json"
   },
   {
+   "id": "self-checkout-cashier-jobs__d623ed4d95",
+   "channel": "explainer",
+   "slug": "self-checkout-cashier-jobs",
+   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+   "filed": "2026-09-29T21:49:21Z",
+   "request": "exchange/reviews/20260929/self-checkout-cashier-jobs__d623ed4d95.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/self-checkout-cashier-jobs__d623ed4d95/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__d623ed4d95.verdict.json"
+  },
+  {
    "id": "self-checkout-cashier-jobs__d895bb2f0f",
    "channel": "explainer",
    "slug": "self-checkout-cashier-jobs",
@@ -551,16 +581,6 @@
    "request": "exchange/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__d895bb2f0f.verdict.json"
-  },
-  {
-   "id": "tsa__207104dbd3",
-   "channel": "trending",
-   "slug": "tsa",
-   "title": "I Turned the Greedy Customer's Shortcut Into a Day-Long Detention",
-   "filed": "2026-09-29T21:29:41Z",
-   "request": "exchange/reviews/20260929/tsa__207104dbd3.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/tsa__207104dbd3/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/tsa__207104dbd3.verdict.json"
   },
   {
    "id": "video__elk_encounter_caught_on_camera__g__1a8c7309e3",
