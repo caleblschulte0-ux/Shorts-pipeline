@@ -385,13 +385,8 @@ def tiktok_broker_available() -> bool:
                 and os.environ.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN"))
 
 
-def _tiktok_broker_token(channel: str = "") -> str:
-    """A fresh TikTok access token for the account linked at
-    shorts-media.netlify.app/app/, fetched with this job's GitHub OIDC
-    token. The site only answers jobs on caleblschulte0-ux/Shorts-pipeline
-    main. Which account: TIKTOK_HANDLE_<CHANNEL>, else TIKTOK_HANDLE, else
-    the only linked account (more than one linked and none named refuses,
-    rather than guessing which account a channel posts to)."""
+def _tiktok_broker_auth() -> dict:
+    """This job's GitHub OIDC token, as the site's Authorization header."""
     import requests
     if not tiktok_broker_available():
         raise UploadError(
@@ -405,7 +400,29 @@ def _tiktok_broker_token(channel: str = "") -> str:
                      timeout=30)
     if not r.ok:
         raise UploadError(f"github oidc token failed: {r.status_code} {r.text}")
-    auth = {"Authorization": "Bearer " + r.json()["value"]}
+    return {"Authorization": "Bearer " + r.json()["value"]}
+
+
+def tiktok_linked_accounts(auth: dict | None = None) -> list[dict]:
+    """Every account linked at shorts-media.netlify.app/app/:
+    [{open_id, handle, name, scopes}] (no tokens)."""
+    import requests
+    r = requests.get(TIKTOK_BROKER.rsplit("/", 1)[0] + "/accounts",
+                     headers=auth or _tiktok_broker_auth(), timeout=30)
+    if not r.ok:
+        raise UploadError(f"tiktok broker accounts failed: {r.status_code} {r.text}")
+    return r.json().get("accounts") or []
+
+
+def _tiktok_broker_token(channel: str = "") -> str:
+    """A fresh TikTok access token for the account linked at
+    shorts-media.netlify.app/app/, fetched with this job's GitHub OIDC
+    token. The site only answers jobs on caleblschulte0-ux/Shorts-pipeline
+    main. Which account: TIKTOK_HANDLE_<CHANNEL>, else TIKTOK_HANDLE, else
+    the only linked account (more than one linked and none named refuses,
+    rather than guessing which account a channel posts to)."""
+    import requests
+    auth = _tiktok_broker_auth()
 
     handle = ""
     if channel:
@@ -414,11 +431,7 @@ def _tiktok_broker_token(channel: str = "") -> str:
     if handle:
         who = {"handle": handle}
     else:
-        r = requests.get(TIKTOK_BROKER.rsplit("/", 1)[0] + "/accounts",
-                         headers=auth, timeout=30)
-        if not r.ok:
-            raise UploadError(f"tiktok broker accounts failed: {r.status_code} {r.text}")
-        linked = r.json().get("accounts") or []
+        linked = tiktok_linked_accounts(auth)
         if len(linked) != 1:
             raise UploadError(
                 f"{len(linked)} TikTok accounts are linked at "

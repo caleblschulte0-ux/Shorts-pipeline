@@ -1,0 +1,37 @@
+name: tiktok_accounts
+
+# Lists the TikTok accounts linked at shorts-media.netlify.app/app/ (handle,
+# name, granted scopes — never a token), so a channel can be pointed at the
+# right one (TIKTOK_HANDLE_<CHANNEL>). Publishes NOTHING. The site answers
+# only jobs on main, so dispatch it from main.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write   # the site authenticates this job by its GitHub OIDC token
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: List linked TikTok accounts
+        run: |
+          python - <<'PY'
+          import os
+          from shared.uploaders import tiktok_linked_accounts
+          accts = tiktok_linked_accounts()
+          lines = [f"- @{a.get('handle') or '?'}  ({a.get('name') or ''})  scopes: {a.get('scopes') or ''}"
+                   for a in accts]
+          out = f"{len(accts)} TikTok account(s) linked:\n" + "\n".join(lines)
+          print(out)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              f.write(out + "\n")
+          PY
