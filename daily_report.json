@@ -1,156 +1,125 @@
 [
   {
-    "topic": "charles kelley",
+    "topic": "judge",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'charles kelley' cannot seed a story ('Cancer'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.1,
+    "error": "unfit_for_fiction: 'judge' refused by the writer: The provided trend is political news, which is prohibited for story seeding.",
+    "elapsed_seconds": 1.0,
     "unfit": true
   },
   {
-    "topic": "seattle earthquake",
+    "topic": "dante pettis",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'seattle earthquake' cannot seed a story ('earthquake'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.4,
+    "error": "JSONDecodeError: Expecting property name enclosed in double quotes: line 30 column 44 (char 1701)",
+    "elapsed_seconds": 35.5
+  },
+  {
+    "topic": "otto sirgo",
+    "angle": null,
+    "publish_at": "2026-09-30T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (c61445f2481be9ac)",
+    "elapsed_seconds": 26.5
+  },
+  {
+    "topic": "boeing",
+    "angle": null,
+    "publish_at": "2026-09-30T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: 'boeing' cannot seed a story ('War'): a real tragedy, war, crime or politics is not inspiration for fiction",
+    "elapsed_seconds": 0.3,
     "unfit": true
   },
   {
-    "topic": "earthquakes today",
+    "topic": "wnba games today",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: 'earthquakes today' cannot seed a story ('earthquakes'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 0.4,
-    "unfit": true
-  },
-  {
-    "topic": "tsa",
-    "angle": null,
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-sett",
-    "elapsed_seconds": 263.9,
-    "title": "I Turned the Greedy Customer's Shortcut Into a Day-Long Detention",
-    "package_path": "state/trending_packages/20260929-212521_auto_tsa.json",
-    "video_path": "output/daily_20260929-212521_tsa.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 48.733,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-sett",
-      "score": null
-    },
-    "blocked": true
-  },
-  {
-    "topic": "earthquake today",
-    "angle": null,
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'earthquake today' cannot seed a story ('earthquake'): a real tragedy, war, crime or politics is not inspiration for fiction",
-    "elapsed_seconds": 1.4,
-    "unfit": true
-  },
-  {
-    "topic": "devin neal",
-    "angle": null,
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (2a7e1b82d06599ef)",
-    "elapsed_seconds": 25.9
-  },
-  {
-    "topic": "kevin zeitler",
-    "angle": null,
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (d5a6bee2949cd7be)",
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (4f65c3e481829747)",
     "elapsed_seconds": 26.0
   },
   {
-    "topic": "nhl schedule",
+    "topic": "yankees game today",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (b1bb8a1cc0c4cff9)",
-    "elapsed_seconds": 25.8
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (50676efcb0ade902)",
+    "elapsed_seconds": 26.2
   },
   {
-    "topic": "mlb scores today",
+    "topic": "jose altuve",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (e7df31fffb512429)",
-    "elapsed_seconds": 25.9
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (33a7ddd7a1251d9c)",
+    "elapsed_seconds": 59.1
   },
   {
-    "topic": "tsa",
+    "topic": "barry melrose",
     "angle": null,
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (461166c4e0a3a1c2)",
-    "elapsed_seconds": 25.5,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (73d9791e3e610e0f)",
+    "elapsed_seconds": 26.2
+  },
+  {
+    "topic": "bruins",
+    "angle": null,
+    "publish_at": "2026-09-30T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (9b4ed8a460335a76)",
+    "elapsed_seconds": 26.1
+  },
+  {
+    "topic": "judge",
+    "angle": null,
+    "publish_at": "2026-09-30T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (66e386e9f896e518)",
+    "elapsed_seconds": 26.1,
     "backfill": true
   },
   {
-    "topic": "devin neal",
+    "topic": "dante pettis",
     "angle": null,
     "publish_at": "2026-09-30T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (e1854579de0d0d6d)",
-    "elapsed_seconds": 25.8,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (b3aee0ab13b806e9)",
+    "elapsed_seconds": 25.7,
     "backfill": true
   },
   {
-    "topic": "kevin zeitler",
+    "topic": "otto sirgo",
     "angle": null,
     "publish_at": "2026-09-30T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (d5a6bee2949cd7be)",
-    "elapsed_seconds": 25.4,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (c61445f2481be9ac)",
+    "elapsed_seconds": 25.6,
     "backfill": true
   },
   {
-    "topic": "nhl schedule",
+    "topic": "wnba games today",
     "angle": null,
     "publish_at": "2026-09-30T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (b1bb8a1cc0c4cff9)",
-    "elapsed_seconds": 25.4,
+    "error": "RuntimeError: every configured LLM backend failed \u2014 groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit \u00b7 ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (4f65c3e481829747)",
+    "elapsed_seconds": 25.7,
     "backfill": true
   }
 ]
