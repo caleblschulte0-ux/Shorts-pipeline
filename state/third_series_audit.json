@@ -5,13 +5,13 @@
       "n": 38,
       "median_vph": 0.02
     },
+    "fail": {
+      "n": 15,
+      "median_vph": 0.04
+    },
     "wholesome": {
       "n": 14,
-      "median_vph": 0.145
-    },
-    "fail": {
-      "n": 14,
-      "median_vph": 0.035
+      "median_vph": 0.14
     },
     "drama": {
       "n": 10,
@@ -35,7 +35,7 @@
     },
     "clutch": {
       "n": 3,
-      "median_vph": 0.05
+      "median_vph": 0.04
     },
     "beef": {
       "n": 3,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.95
+      "median_vph": 0.94
     },
     "story": {
       "n": 1,
