@@ -846,12 +846,15 @@ def _crosspost(mp4: Path, title: str, description: str,
     Guarded + best-effort: a platform is attempted ONLY if its token is
     configured, and ANY failure is logged and swallowed so cross-posting can
     never break the YouTube post. Returns {platform: url} for whatever landed.
-    TikTok needs only TIKTOK_ACCESS_TOKEN_THIRD (chunked file upload); IG
+    TikTok needs an account connected at shorts-media.netlify.app/app/ and
+    this job's `id-token: write` (the uploader fetches a fresh token from
+    that site), or a static TIKTOK_ACCESS_TOKEN_THIRD; IG
     Reels additionally needs META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST
     (a public URL Meta can fetch the file from)."""
+    from shared.uploaders import tiktok_broker_available
     out: dict = {}
     if os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
-            os.environ.get("TIKTOK_ACCESS_TOKEN"):
+            os.environ.get("TIKTOK_ACCESS_TOKEN") or tiktok_broker_available():
         try:
             from shared.uploaders import TikTokUploader
             up = TikTokUploader(channel="third").upload(
@@ -871,9 +874,10 @@ def _crosspost(mp4: Path, title: str, description: str,
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[crosspost] instagram failed ({e})", flush=True)
     if not out:
-        print("[crosspost] no TikTok/Reels token set — YouTube only. Set "
-              "TIKTOK_ACCESS_TOKEN_THIRD to reach the FYP where small accounts "
-              "break out (the deep dive's #1 lever).", flush=True)
+        print("[crosspost] nothing cross-posted — YouTube only. Connect a "
+              "TikTok account at https://shorts-media.netlify.app/app/ to "
+              "reach the FYP where small accounts break out (the deep "
+              "dive's #1 lever).", flush=True)
     return out
 
 
