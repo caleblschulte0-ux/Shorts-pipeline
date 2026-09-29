@@ -31,7 +31,7 @@
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.4
+      "median_vph": 0.39
     },
     "clutch": {
       "n": 3,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.96
+      "median_vph": 0.95
     },
     "story": {
       "n": 1,
