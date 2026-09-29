@@ -19310,5 +19310,746 @@
       "music_vibe": "hiphop",
       "bottom_theme": "auto"
     }
+  },
+  "20260630": {
+    "01_gracie-giraffe-texas-2026.json": {
+      "version": 1,
+      "slug": "gracie-giraffe-texas-2026",
+      "title": "Gracie the Giraffe Was Missing 2 Weeks in Texas",
+      "script": "A giraffe just vanished? Gracie, a 3-year-old reticulated giraffe at Cedar Hollow Ranch in the Texas Hill Country, wandered through an open gate \u2014 and kept walking. For nearly 2 weeks, her owner sent helicopters searching 7,500 acres of rugged terrain. No luck. So he offered a $5,000 reward. A few scattered sightings came in. The helicopters kept circling. Meanwhile, Gracie was apparently doing just fine \u2014 hanging out near a pond about 4 miles from home, swishing her tail, surrounded by trees growing from rock formations. She weighed at least 1,200 pounds and was in no rush to go anywhere. Aerial crews finally spotted her Friday near the town of Leakey. So how exactly do you lose a 1,200-pound giraffe for 2 weeks?",
+      "shots": [
+        {
+          "phrase": "A giraffe just vanished",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "giraffe standing tall wild",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Cedar Hollow Ranch in the Texas Hill Country",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Texas_Hill_Country_187N-2.JPG/960px-Texas_Hill_Country_187N-2.JPG",
+          "query": "Texas Hill Country ranch landscape",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "wandered through an open gate \u2014 and kept walking",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "ranch gate open fence field",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "helicopters searching 7,500 acres of rugged terrain",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bell_206_Red_rescue_helicopter.jpg/960px-Bell_206_Red_rescue_helicopter.jpg",
+          "query": "helicopter aerial search rugged terrain Texas",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "he offered a $5,000 reward",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "reward poster missing animal search",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A few scattered sightings came in",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "wildlife sighting camera road Texas",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Gracie was apparently doing just fine",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "giraffe grazing tree browse calm",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "pond about 4 miles from home",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG/960px-Scrub_vegetation_in_Texas_Hill_Country_IMG_4318.JPG",
+          "query": "Texas Hill Country pond creek water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "swishing her tail, surrounded by trees growing from rock formations",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "giraffe tail trees rocky terrain",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "at least 1,200 pounds and was in no rush",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "giraffe standing large tall animal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "near the town of Leakey",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Texas_Hill_Country_187N-2.JPG/960px-Texas_Hill_Country_187N-2.JPG",
+          "query": "Leakey Texas rural town Hill Country road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "lose a 1,200-pound giraffe for 2 weeks",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Reticulated_Giraffe_(4178201522).jpg/960px-Reticulated_Giraffe_(4178201522).jpg",
+          "query": "giraffe walking away field",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A giraffe just vanished",
+          "text": "VANISHED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "nearly 2 weeks",
+          "text": "2 WEEKS MISSING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "7,500 acres",
+          "text": "7,500 ACRES SEARCHED",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "$5,000 reward",
+          "text": "$5,000 REWARD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "4 miles from home",
+          "text": "4 MILES AWAY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "1,200 pounds",
+          "text": "1,200 LBS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "near the town of Leakey",
+          "text": "FOUND NEAR LEAKEY",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "graciegiraffe",
+        "texasgiraffe",
+        "giraffeescape",
+        "cedarhollowranch",
+        "texashillcountry",
+        "missinggiraffe",
+        "animalescape",
+        "wildlifenews",
+        "texasnews",
+        "weirdnews",
+        "funnyanimals",
+        "animalnews"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "02_heat-dome-july4-2026.json": {
+      "version": 1,
+      "slug": "heat-dome-july4-2026",
+      "title": "DC Hits 105\u00b0F on July 4th. No One Is Ready.",
+      "script": "105 degrees on July 4th? A massive heat dome is building over the eastern United States right now \u2014 and it's going to peak on the worst possible day. Washington, D.C. is forecast to hit 105 degrees Fahrenheit on Independence Day. New York City could reach 102. Philadelphia might tie its all-time June record of 104. That's not just uncomfortable \u2014 that's dangerous. The National Weather Service says heat index values could reach 115 degrees in some spots, meaning it feels even worse than the thermometer shows. At least 200 million Americans are in the path of this thing. The dome is already baking Chicago, Minneapolis, and St. Louis. It's only going to intensify as it shifts east. So if you've got fireworks plans this week \u2014 is your water bottle ready?",
+      "shots": [
+        {
+          "phrase": "105 degrees on July 4th",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+          "query": "thermometer extreme heat summer",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "heat dome is building over the eastern United States",
+          "query": "heat dome weather map United States",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Washington, D.C. is forecast to hit 105 degrees Fahrenheit",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/United_States_Capitol_Building.jpg/960px-United_States_Capitol_Building.jpg",
+          "query": "Washington DC summer heat",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "New York City could reach 102",
+          "query": "New York City skyline summer heat haze",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Philadelphia might tie its all-time June record of 104",
+          "query": "Philadelphia city skyline summer",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "That's not just uncomfortable \u2014 that's dangerous",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Summer_Heat.jpg/960px-Summer_Heat.jpg",
+          "query": "extreme heat warning danger sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "heat index values could reach 115 degrees",
+          "query": "heat index chart 115 degrees feels like",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "200 million Americans are in the path",
+          "query": "crowd people summer outdoor heat",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "already baking Chicago, Minneapolis, and St. Louis",
+          "query": "Chicago skyline summer heatwave",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "intensify as it shifts east",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+          "query": "heat wave map east coast",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "fireworks plans this week",
+          "query": "July 4th fireworks night sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "is your water bottle ready",
+          "query": "water bottle hydration summer heat outdoor",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "105 degrees on July 4th",
+          "text": "105\u00b0F JULY 4TH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "reach 102",
+          "text": "NYC: 102\u00b0F",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "all-time June record of 104",
+          "text": "PHILLY RECORD: 104\u00b0F",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "that's dangerous",
+          "text": "DANGEROUS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "heat index values could reach 115 degrees",
+          "text": "FEELS LIKE 115\u00b0F",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "200 million Americans",
+          "text": "200M AMERICANS",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "heatdome",
+        "heatwave",
+        "july4th",
+        "DC105degrees",
+        "extremeheat",
+        "heatindex",
+        "nationalweatherservice",
+        "summerheat",
+        "independenceday",
+        "weatheralert",
+        "heatstroke",
+        "staycool",
+        "weathernews",
+        "breaking"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "03_jetblue-drone-jfk-2026.json": {
+      "version": 1,
+      "slug": "jetblue-drone-jfk-2026",
+      "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
+      "script": "A drone hit a plane? A JetBlue flight from Las Vegas was on final approach to JFK International Airport Monday morning when the pilot reported a collision \u2014 a drone, striking the jet right above the cockpit at 3,000 feet. Flight 948 landed safely. Passengers deplaned normally. A post-flight inspection found zero damage. But here's the kicker: the same morning, a nearby helicopter reported almost hitting a model airplane \u2014 a completely separate incident in the same airspace. The FAA is now investigating both. Nobody got hurt. No windows blown out, no emergency landing, no chaos. Just a commercial jet and a small drone sharing the sky at 3,000 feet over New York \u2014 which, apparently, is just a Monday morning now. So whose drone was it?",
+      "shots": [
+        {
+          "phrase": "A drone hit a plane",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+          "query": "drone quadcopter flying sky",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "JetBlue flight from Las Vegas",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/JetBlue_A320_at_Orlando.jpeg/960px-JetBlue_A320_at_Orlando.jpeg",
+          "query": "JetBlue airplane runway airport",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "final approach to JFK International Airport",
+          "query": "JFK International Airport approach aerial view",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "striking the jet right above the cockpit at 3,000 feet",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+          "query": "drone near airplane cockpit sky",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Flight 948 landed safely",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/JetBlue_A320_at_Orlando.jpeg/960px-JetBlue_A320_at_Orlando.jpeg",
+          "query": "JetBlue plane landing runway safe",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "post-flight inspection found zero damage",
+          "query": "aircraft mechanic inspection maintenance",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the same morning, a nearby helicopter reported almost hitting a model airplane",
+          "query": "helicopter in flight sky",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "a completely separate incident in the same airspace",
+          "query": "airspace crowded flight paths radar",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The FAA is now investigating both",
+          "query": "FAA aviation investigation aircraft",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a commercial jet and a small drone sharing the sky at 3,000 feet over New York",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Quadcopter_camera_drone_in_flight.jpg/960px-Quadcopter_camera_drone_in_flight.jpg",
+          "query": "drone airplane sky collision risk",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "whose drone was it",
+          "query": "drone quadcopter who pilot remote control",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A drone hit a plane",
+          "text": "DRONE HIT A PLANE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "above the cockpit at 3,000 feet",
+          "text": "3,000 FEET UP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "zero damage",
+          "text": "ZERO DAMAGE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "same morning",
+          "text": "SAME MORNING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "almost hitting a model airplane",
+          "text": "2ND NEAR-MISS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "FAA is now investigating both",
+          "text": "FAA INVESTIGATING",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "jetblue",
+        "droneincident",
+        "JFK",
+        "dronevsplane",
+        "aviationsafety",
+        "FAA",
+        "dronenearairplane",
+        "nycnews",
+        "aviation",
+        "dronelaws",
+        "flight948",
+        "airspace",
+        "breakingnews",
+        "viral"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "04_richard-delcid-dominos-pizza-2026.json": {
+      "version": 1,
+      "slug": "richard-delcid-dominos-pizza-2026",
+      "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
+      "script": "Three pizzas in 31 seconds? Richard Delcid, a Domino's manager from Manassas, Virginia, just became the fastest pizza maker on Earth. At the 2026 World's Fastest Pizza Maker competition in Las Vegas, Delcid stretched the dough, spread the sauce, and distributed every topping on 3 large pies \u2014 a pepperoni, a mushroom, and a cheese \u2014 in 31.22 seconds. Judges inspected every pie. All passed. He won $5,000, a trophy, and a championship belt. The man started working at Domino's as a part-time door hanger back in 2012. This was his third time competing, second time reaching the finals, and first time winning. One pizza every 10 seconds. Sauce, stretch, toppings \u2014 repeat \u2014 while the whole room is watching. So what are you doing that fast today?",
+      "shots": [
+        {
+          "phrase": "Three pizzas in 31 seconds",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Indian_style_dominos_pizza.jpg/960px-Indian_style_dominos_pizza.jpg",
+          "query": "pizza dough stretching hands",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Richard Delcid, a Domino's manager from Manassas, Virginia",
+          "query": "Dominos pizza store Virginia manager",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "fastest pizza maker on Earth",
+          "query": "world record pizza competition",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "2026 World's Fastest Pizza Maker competition in Las Vegas",
+          "query": "Las Vegas Mandalay Bay competition event",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "stretched the dough, spread the sauce, and distributed every topping",
+          "query": "pizza making dough sauce toppings hands",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "3 large pies \u2014 a pepperoni, a mushroom, and a cheese \u2014 in 31.22 seconds",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Indian_style_dominos_pizza.jpg/960px-Indian_style_dominos_pizza.jpg",
+          "query": "three pizzas pepperoni cheese mushroom",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Judges inspected every pie. All passed.",
+          "query": "pizza quality inspection judge",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He won $5,000, a trophy, and a championship belt",
+          "query": "championship belt trophy winner award",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "started working at Domino's as a part-time door hanger back in 2012",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Dominos_pizza_outlet.jpg/960px-Dominos_pizza_outlet.jpg",
+          "query": "Dominos pizza door hanger delivery worker",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "third time competing, second time reaching the finals",
+          "query": "competition finalist podium",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "One pizza every 10 seconds",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Indian_style_dominos_pizza.jpg/960px-Indian_style_dominos_pizza.jpg",
+          "query": "stopwatch ten seconds timer fast",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "what are you doing that fast today",
+          "query": "pizza close up top view fresh",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Three pizzas in 31 seconds",
+          "text": "31.22 SECONDS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "fastest pizza maker on Earth",
+          "text": "WORLD'S FASTEST",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "3 large pies",
+          "text": "3 LARGE PIZZAS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "$5,000, a trophy, and a championship belt",
+          "text": "$5,000 PRIZE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "part-time door hanger back in 2012",
+          "text": "STARTED IN 2012",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "One pizza every 10 seconds",
+          "text": "10 SEC PER PIE",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "richarddelcid",
+        "dominospizza",
+        "fastestpizzamaker",
+        "worldrecord",
+        "pizzacompetition",
+        "dominos2026",
+        "manassasvirginia",
+        "pizzamaking",
+        "guinnessrecord",
+        "foodchallenge",
+        "weirdnews",
+        "viral",
+        "fyp"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "05_monaco-parcel-bomb-2026.json": {
+      "version": 1,
+      "slug": "monaco-parcel-bomb-2026",
+      "title": "A Parcel Bomb Just Went Off in Monaco. First Time Ever.",
+      "script": "A bomb in Monaco? Sunday night, a package was left at the entrance of a residential building in the tiny principality of Monaco \u2014 the wealthiest per-capita nation on Earth. Inside the package: buckshot and bolts. When it exploded, it critically injured a couple in their 50s and put a 13-year-old in the hospital. One of the critically wounded is Vadym Yermolaiev, a Ukrainian oligarch. The attack appears to have been targeted. According to Monaco's own minister of state, this is the first time in the principality's entire history that something like this has happened. The suspect fled across the border into France before police could respond. French and Monegasque authorities are now hunting for them. So who plants a bomb in Monaco \u2014 and why?",
+      "shots": [
+        {
+          "phrase": "A bomb in Monaco",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+          "query": "Monaco harbor luxury yachts aerial",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "package was left at the entrance of a residential building",
+          "query": "apartment building entrance lobby door",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "wealthiest per-capita nation on Earth",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+          "query": "Monaco luxury wealth skyline harbor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Inside the package: buckshot and bolts",
+          "query": "bomb disposal police crime scene",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "critically injured a couple in their 50s and put a 13-year-old in the hospital",
+          "query": "ambulance emergency hospital stretcher",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Vadym Yermolaiev, a Ukrainian oligarch",
+          "query": "Monaco residential building wealthy neighborhood",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "The attack appears to have been targeted",
+          "query": "police investigation crime scene tape Monaco",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "first time in the principality's entire history",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+          "query": "Monaco principality history landmark",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "suspect fled across the border into France",
+          "query": "France Monaco border road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "French and Monegasque authorities are now hunting for them",
+          "query": "police manhunt search suspect law enforcement",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who plants a bomb in Monaco \u2014 and why",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Monaco_Hercule_Harbour_Panorama.jpg/960px-Monaco_Hercule_Harbour_Panorama.jpg",
+          "query": "Monaco mystery investigation",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A bomb in Monaco",
+          "text": "BOMB IN MONACO",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "buckshot and bolts",
+          "text": "BUCKSHOT & BOLTS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "critically injured",
+          "text": "CRITICALLY INJURED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "13-year-old in the hospital",
+          "text": "13-YEAR-OLD HIT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "first time in the principality's entire history",
+          "text": "FIRST TIME EVER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fled across the border into France",
+          "text": "FLED TO FRANCE",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "monaco",
+        "monacoparcelbomb",
+        "vadymyermolaiev",
+        "ukrainianoligarch",
+        "monacoexplosion",
+        "parcelbomb",
+        "worldnews",
+        "crimeinvestigation",
+        "monaconews",
+        "europenews",
+        "breakingnews",
+        "crime",
+        "fyp"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    },
+    "06_guernsey-tortoise-epidemic-2026.json": {
+      "version": 1,
+      "slug": "guernsey-tortoise-epidemic-2026",
+      "title": "Guernsey Is Having a Tortoise Escape Epidemic Right Now",
+      "script": "Four tortoises in one day? On the tiny island of Guernsey in the English Channel, the local SPCA had a very strange week \u2014 four stray tortoises showed up at their shelter within 24 hours. Just waddled right out of their yards. That's what the GSPCA's manager, Steve Byrne, is calling an epidemic. Here's the thing about tortoises: when temperatures rise, they don't just sit there. They get active. They explore. And the males wander even farther \u2014 because they're looking for mates. The GSPCA typically handles 20 to 30 escaped tortoises every summer, but four in one day is unusual even by their standards. And with temperatures still climbing, Steve says more are coming. So is your tortoise still in the yard?",
+      "shots": [
+        {
+          "phrase": "Four tortoises in one day",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "pet tortoise garden walking",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "island of Guernsey in the English Channel",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "Guernsey island coast English Channel aerial",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "four stray tortoises showed up at their shelter within 24 hours",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "tortoise wildlife rescue shelter",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "Just waddled right out of their yards",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "tortoise walking backyard fence escape garden",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "GSPCA's manager, Steve Byrne, is calling an epidemic",
+          "query": "animal shelter manager SPCA staff",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "temperatures rise, they don't just sit there",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+          "query": "thermometer summer heat hot day",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "They get active. They explore.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "tortoise moving exploring outdoors grass",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "males wander even farther \u2014 because they're looking for mates",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "tortoise outdoor exploring wild roaming",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "20 to 30 escaped tortoises every summer",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "multiple tortoises enclosure pen reptile",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "four in one day is unusual even by their standards",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "tortoise mystery unusual escape garden",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "temperatures still climbing, Steve says more are coming",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg/960px-41_Celsius_recorded_on_Thermometer_during_a_Heat_Wave.jpg",
+          "query": "heat wave summer temperature rising",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "is your tortoise still in the yard",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Tortoise_portrait.JPG/960px-Tortoise_portrait.JPG",
+          "query": "garden backyard tortoise missing",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Four tortoises in one day",
+          "text": "4 IN 24 HOURS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "an epidemic",
+          "text": "EPIDEMIC",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "males wander even farther",
+          "text": "MALES WANDER FOR MATES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "20 to 30 escaped tortoises every summer",
+          "text": "20-30 EVERY SUMMER",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "four in one day is unusual",
+          "text": "4 IN ONE DAY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "more are coming",
+          "text": "MORE COMING",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "guernsey",
+        "tortoiseescape",
+        "tortoiseescaping",
+        "GSPCA",
+        "pettortoise",
+        "stevebyrne",
+        "tortoises",
+        "heatwave",
+        "animalrescue",
+        "weirdnews",
+        "funnyanimals",
+        "englishchannel",
+        "animalnews",
+        "fyp"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    }
   }
 }
