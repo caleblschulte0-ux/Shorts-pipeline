@@ -9744,6 +9744,15 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no clear observable event)",
       "ts": "2026-09-29T15:34:12.196677+00:00"
+    },
+    "rejected-mildvivacioushummingbirdsoonerlater-e2uhmscjj7nfknpp": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/MildVivaciousHummingbirdSoonerLater-e2UhMScjJ7nFKNPP",
+      "streamer": "sodapoppin",
+      "title": "Soda Druid Lore",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-09-29T17:34:26.565399+00:00"
     }
   }
 }
