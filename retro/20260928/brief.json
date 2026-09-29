@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260928",
-  "generated_at": "2026-09-28T23:31:08Z",
+  "generated_at": "2026-09-29T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 4.76,
+          "days": 4.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 3.76,
+          "days": 3.8,
           "samples": 0,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1529,10 +1529,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "6464313",
-    "commits_since": "2026-09-27",
+    "head": "c3cc6aa",
+    "commits_since": "2026-09-28",
     "commit_count": 50,
     "commits": [
+      "c3cc6aa self-repair 2026-09-28: the gauge and the timeline keep moving until the cut (#484)",
+      "a0a664f retro: brief + triage for 20260928 [skip ci]",
       "6464313 explainer: update posted log + analytics [skip ci]",
       "17e5c63 claim: mailbox verdicts 2026-09-28T23:27Z [skip ci]",
       "d6b3d69 explainer: update posted log + analytics [skip ci]",
@@ -1570,9 +1572,7 @@
       "6b7416d daily: 2026-09-28 report + state [skip ci]",
       "61b9dec third: analytics [skip ci]",
       "a452a3b third: update posted log + analytics [skip ci]",
-      "c7b817b deadman: repaired 2026-09-28 [skip ci]",
-      "cd014ef watchdog: phase A readiness 20260928 [skip ci]",
-      "fa8b0ec explainer: update posted log + analytics [skip ci]"
+      "c7b817b deadman: repaired 2026-09-28 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1580,6 +1580,7 @@
       "test_a_block_costs_a_story_not_the_day.py",
       "test_a_comparison_is_checked_not_invented.py",
       "test_a_dial_needs_a_scale.py",
+      "test_a_gauge_and_a_timeline_keep_moving.py",
       "test_a_held_story_is_reauthored_not_parked.py",
       "test_a_label_never_leaves_the_frame.py",
       "test_a_long_row_name_goes_above_its_bar.py",
