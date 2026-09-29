@@ -64,6 +64,7 @@ on:
 permissions:
   contents: write   # commit posted_log + failure_count + reports
   issues: write     # post the daily report comment
+  id-token: write   # short-lived identity for Shorts Media token endpoint
 
 env:
   PYTHON_VERSION: '3.11'
@@ -425,6 +426,7 @@ jobs:
           # the repo just become empty strings and the orchestrator's
           # error message tells you which one is missing.
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          TIKTOK_ACCOUNT_TRENDING: ${{ vars.TIKTOK_ACCOUNT_TRENDING }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           # THE SHOWRUNNER. This channel ships 6 videos a day and, until now,
           # nothing watched any of them (docs/SYSTEM_AUDIT.md §D). The gate

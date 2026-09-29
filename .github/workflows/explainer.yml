@@ -127,6 +127,7 @@ on:
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
+  id-token: write          # short-lived identity for Shorts Media token endpoint
 
 env:
   PYTHON_VERSION: '3.11'
@@ -519,6 +520,7 @@ jobs:
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          TIKTOK_ACCOUNT_EXPLAINER: ${{ vars.TIKTOK_ACCOUNT_EXPLAINER }}
           # LLM key for the auto-localization layer (translates titles/
           # descriptions into 12 languages on every upload).
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}

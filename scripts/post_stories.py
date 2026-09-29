@@ -1102,6 +1102,17 @@ def main() -> int:
         # Durable BEFORE the next render starts — a reclaimed runner between
         # here and the end of the run would otherwise cost a duplicate upload.
         _persist_posted_log_now(args.log, slug)
+        if os.environ.get("TIKTOK_ACCOUNT_EXPLAINER"):
+            try:
+                from shared.uploaders import crosspost_tiktok_if_configured
+                tiktok = crosspost_tiktok_if_configured(
+                    "explainer", out, title=sc.get("title", slug)[:100],
+                    description=_description(sc), tags=_merged_tags(sc))
+                log["posted"][slug]["tiktok_url"] = tiktok.url
+                _save_log(log, args.log)
+                _persist_posted_log_now(args.log, slug)
+            except Exception as exc:
+                print(f"::warning::TikTok crosspost failed for {slug}: {exc}", flush=True)
         posted += 1                     # the slate counts THIS, not attempts
         _arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1
         results.append({"slug": slug, "ok": True, "url": url})
