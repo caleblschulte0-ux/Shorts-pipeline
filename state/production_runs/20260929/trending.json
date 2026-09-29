@@ -1,0 +1,25 @@
+{
+  "date": "20260929",
+  "channel": "trending",
+  "schema": "production-channel-outcome/v1",
+  "expected": 6,
+  "previously_uploaded": 4,
+  "rendered_or_attempted": 6,
+  "uploaded": 8,
+  "quarantined": 0,
+  "failed": 2,
+  "failed_by_stage": {
+    "showrunner_block": 2
+  },
+  "failed_by_format": {
+    "reddit": 1,
+    "unknown": 1
+  },
+  "status": "repair_required",
+  "video_urls": [
+    "https://youtube.com/shorts/o9GniW71MIk",
+    "https://youtube.com/shorts/ZzmH5XnezTE",
+    "https://youtube.com/shorts/IDnQa373Z8A",
+    "https://youtube.com/shorts/6QNCNr2dDhw"
+  ]
+}

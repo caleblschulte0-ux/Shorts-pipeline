@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T11:48:40Z",
+ "updated": "2026-09-29T12:00:31Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -371,6 +371,16 @@
    "request": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc/sheet.jpg",
    "answer_path": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.verdict.json"
+  },
+  {
+   "id": "video__elk_encounter_caught_on_camera__g__1a8c7309e3",
+   "channel": "trending",
+   "slug": "video__elk_encounter_caught_on_camera__g",
+   "title": "I Served a Free Latte to a Food Critic and Got a Paycheck",
+   "filed": "2026-09-29T12:00:31Z",
+   "request": "exchange/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."

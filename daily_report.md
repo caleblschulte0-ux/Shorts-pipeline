@@ -1,53 +1,39 @@
-# Daily Trending Shorts — 2026-09-28
+# Daily Trending Shorts — 2026-09-29
 
+> **ChatGPT wrote 2 of today's 6 packages** — the Claude Routine did not run (weekly limit?).
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **13**
-- succeeded: **1**
+- queued: **6**
+- succeeded: **4**
 - quarantined (off-topic imagery): **0**
-- failed: **12**
+- failed: **2**
 
 ## Posted
-- **I Served a Free Refill and the Cafe Charged Him Everything**
-  - topic: world labs
+- **She Ordered Me To Stock Shelves. I Closed The Aisle.**
+  - topic: She Ordered Me To Stock Shelves. I Closed The Aisle.
   - publishes: `2026-09-29T13:00:00Z`
-  - https://youtube.com/shorts/rjCjy7WRcLA
-  - took: 282.0s
+  - https://youtube.com/shorts/o9GniW71MIk
+  - took: 176.5s
+- **I Gave a Free Latte to a Raging Customer and Got Paid**
+  - topic: Florida man likely to face criminal charges after SUV ends up on Cape Cod beach during nor'easter - CBS News
+  - angle: A sudden nor'easter drove an SUV onto a Cape Cod beach, turning a weather event into a bizarre legal nightmare.
+  - publishes: `2026-09-29T14:30:00Z`
+  - https://youtube.com/shorts/ZzmH5XnezTE
+  - took: 269.7s
+- **I Gave the Entitled Customer Exactly What He Wanted**
+  - topic: NASA’s Crew-13 could go from Florida to the ISS in under 9 hours
+  - angle: SpaceX and NASA aim to shave launch‑to‑orbit time to under nine hours, a record‑breaking sprint to the International Space Station.
+  - https://youtube.com/shorts/IDnQa373Z8A
+  - took: 223.0s
+- **I Served a Free Latte to an Entitled Customer Who Was My Manager’s Sister**
+  - topic: CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - KOIN.com
+  - angle: A lone bobcat trotted down a downtown Portland street, highlighting urban wildlife encroachment as night falls.
+  - https://youtube.com/shorts/6QNCNr2dDhw
+  - took: 236.4s
 
 ## Failed
-- **data center**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (3649562462a5a44c)`
-- **warren county ky**
-  - error: `unfit_for_fiction: 'warren county ky' cannot seed a story ('shooting'): a real tragedy, war, crime or politics is not inspiration for fiction`
-- **rob dillingham**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (16ea1ab6c05ad18b)`
-- **katie miller**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (594f05688f537a78)`
-- **warren county ohio**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (a63ee121697a65ff)`
-- **france**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (bdb0f4634564c1bf)`
-- **tunisia vs botswana**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (494ace25244ec16d)`
-- **michael kayode**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (1f33aa4c559427b5)`
-- **data center**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (6226a0249831ce42)`
-- **rob dillingham**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (16ea1ab6c05ad18b)`
-- **josh allen injury**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (2de9ef1ab47a055a)`
-- **katie miller**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your weekly limit · resets Sep 30, 12am (UTC)
- | mailbox: AnswerPending: answer pending in exchange/asks (594f05688f537a78)`
+- **He Banned Email. The Task Board Remembered Everything.**
+  - error: `showrunner_block: showrunner BLOCK: The video tells a Reddit story using a split screen with generic AI images and a Minecraft-like animation, failing to meet the channel's visual craft standards.`
+- **VIDEO: Elk encounter caught on camera; GSMNP warns visitors to take precautions - WLOS**
+  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-sett`
 
