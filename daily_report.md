@@ -8,39 +8,39 @@
 - failed: **13**
 
 ## Failed
-- **youtubetv**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (f90ec6a8a45a6832)`
-- **nbc sports**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (2a3396724a765c21)`
-- **gpt 6.1 sol**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (ad0b36c91e3b1aae)`
-- **university of georgia student fall**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (7af968a18caa1aef)`
-- **españa - croacia**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-sett`
-- **scotland vs switzerland**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (c2d54f4c0a13a965)`
-- **chequia - inglaterra**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (84065836d50e9bcc)`
-- **czechia vs england**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (5f8408bf4f5296d0)`
-- **phillies score**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (ea3274d3c17bc9b0)`
-- **alec bohm**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (6fa21248b60af888)`
-- **youtubetv**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (f90ec6a8a45a6832)`
-- **james hetfield new hairstyle vegas**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (f24ac736acad8b37)`
-- **nbc sports**
-  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (2a3396724a765c21)`
+- **spain**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (83ac25867f0c14c0)`
+- **eric schmidt**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (410f57571e35a282)`
+- **bryce harper**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (1e4009cd9818af66)`
+- **jason kelce espn broadcast apology**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (e8892e6ccbcea992)`
+- **mike yastrzemski**
+  - error: `JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 101)`
+- **san marino vs albania**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (0a76beac00b355f2)`
+- **spain fc**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (4e3fa404471990df)`
+- **escocia - suiza**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (e8f6ffa22fed076e)`
+- **congo vs cameroon**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (2dd0650c7f31879b)`
+- **spain**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (83ac25867f0c14c0)`
+- **eric schmidt**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (410f57571e35a282)`
+- **bryce harper**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (1e4009cd9818af66)`
+- **jason kelce espn broadcast apology**
+  - error: `RuntimeError: every configured LLM backend failed — groq: HTTPError: HTTP Error 429: Too Many Requests | gemini: HTTPError: HTTP Error 429: Too Many Requests | claude_cli: RuntimeError: claude CLI rc=1: You've hit your org's monthly spend limit · ask your admin to raise it at claude.ai/admin-settings/usag | mailbox: AnswerPending: answer pending in exchange/asks (ae0d9b6bc0bb4713)`
 
 
 ## Format scoreboard (A/B/C test)
 
 | format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
 |---|---|---|---|---|---|---|---|---|
-| graph_race | 49 | 169 | 3.4 | 0.02 | 67.8 | 1 | 0 | 0 |
-| reddit_story | 30 | 19 | 0.6 | 0.01 | 7.2 | 1 | 0 | 0 |
+| graph_race | 49 | 169 | 3.4 | 0.02 | 65.7 | 1 | 0 | 0 |
+| reddit_story | 30 | 20 | 0.7 | 0.01 | 19.1 | 2 | 0 | 0 |
 
 matched 79 videos to packages, 2 unmatched (pre-A/B/C uploads)
