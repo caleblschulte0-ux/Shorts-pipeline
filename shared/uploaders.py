@@ -572,7 +572,8 @@ class TikTokUploader(Uploader):
         return UploadResult(
             self.name,
             f"https://www.tiktok.com/@me/video/{publish_id}",
-            {"publish_id": publish_id},
+            {"publish_id": publish_id,
+             "privacy_level": init_payload["post_info"]["privacy_level"]},
         )
 
 

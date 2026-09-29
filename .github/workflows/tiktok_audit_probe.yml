@@ -1,0 +1,30 @@
+name: tiktok_audit_probe
+
+# Asks TikTok whether the Shorts Media app may post PUBLICLY (has passed the
+# Direct Post audit) by starting a public post and never uploading the video.
+# PUBLISHES NOTHING. Manual only; the site answers only jobs on main.
+
+on:
+  workflow_dispatch:
+    inputs:
+      handle:
+        description: "Linked TikTok handle to ask as"
+        required: true
+        default: "shortexplainer1"
+
+permissions:
+  contents: read
+  id-token: write   # the site authenticates this job by its GitHub OIDC token
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Ask TikTok (publishes nothing)
+        run: python scripts/tiktok_audit_probe.py --handle "${{ inputs.handle }}"

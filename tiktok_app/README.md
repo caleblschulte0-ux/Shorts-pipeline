@@ -11,8 +11,17 @@ approved app ("Shorts Media"), with Login Kit and the Content Posting API.
          ◄── fresh access token  ──►  shared/uploaders.TikTokUploader
 
 No TikTok token is kept in GitHub secrets. Which linked account a channel
-posts to is the repo variable `TIKTOK_HANDLE_<CHANNEL>` (optional while only
-one account is linked). `third.yml` is the workflow wired for it today.
+posts to is `channels.<id>.tiktok.handle` in `config/channel_registry.json`
+(override: repo variable `TIKTOK_HANDLE_<CHANNEL>`); a channel with no handle
+does not post. Every publishing channel cross-posts through
+`shared/crosspost.py` after its gated YouTube upload succeeds. To see what is
+linked, run the `tiktok_accounts` workflow on main.
+
+| channel | TikTok |
+|---|---|
+| trending (Baller Bro 2.0) | @ballerbro2.1 |
+| third (Thirdbraindown) | @third.brain.down |
+| explainer (short_explainer67) | @shortexplainer1 |
 
 ## Build and deploy
 
