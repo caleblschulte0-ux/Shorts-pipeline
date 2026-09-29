@@ -4,12 +4,12 @@
 |---|---|---|
 | chaos | 38 | 0.02 |
 | fail | 15 | 0.04 |
-| wholesome | 14 | 0.14 |
+| wholesome | 14 | 0.145 |
 | drama | 10 | 0.025 |
 | win | 8 | 0.045 |
 | jumpscare | 5 | 0.49 |
 | argument | 5 | 0.08 |
-| rage | 4 | 0.38 |
+| rage | 4 | 0.375 |
 | clutch | 3 | 0.04 |
 | beef | 3 | 0.0 |
 
