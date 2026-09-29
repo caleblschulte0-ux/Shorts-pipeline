@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:32:20.094Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-banned-email-task-board-s5",
+  "safe_request_id": "authored-manager-banned-email-task-board-s5",
+  "prompt_sha256": "6adc4f3b6ce80d59e64335023c2b51b78fa021f3464648217cd76e2f5ed63099",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: relieved employee receiving written approval email in modern office.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1KSts-V3FyGdhF_WCHN_h317sXG5t1mza",
+    "filename": "20260929__authored-manager-banned-email-task-board-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1KSts-V3FyGdhF_WCHN_h317sXG5t1mza",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "66e190c13ddcdfc43595bb69a481d71b74f96d4ab4dc0d24102e39ec61a91e4a",
+    "bytes": 1707259,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "manager-banned-email-task-board",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
