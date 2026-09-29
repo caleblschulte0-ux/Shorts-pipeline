@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac",
+    "path": "exchange/bundles/20260929/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "verified_at": "2026-09-29T11:30:22.096Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-banned-email-task-board-s0",
+  "safe_request_id": "authored-manager-banned-email-task-board-s0",
+  "prompt_sha256": "fe2f5bfbe877a5e9f18ffd85c8694cd1aa78d1178b5927512dd4f23c7e60da00",
+  "prompt_used": "Use case: illustration-story\nAsset type: vertical 9:16 Reddit-story b-roll frame\nPrimary request: corporate manager announcing new no-email office rule in conference room.\nStyle/medium: polished cinematic 3D illustration with realistic proportions, tactile materials, and expressive but natural body language.\nComposition/framing: portrait 9:16, one clear focal action, medium-wide framing, safe central composition for mobile.\nLighting/mood: story-appropriate cinematic lighting, believable retail or office environment.\nConstraints: no text, no captions, no logos, no watermark, no readable screens, no split-screen, no collage, no injury or danger depicted.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1x1eAVAL4lmSYPL3QgJLQflOCdPu4Nv07",
+    "filename": "20260929__authored-manager-banned-email-task-board-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1x1eAVAL4lmSYPL3QgJLQflOCdPu4Nv07",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9f6f84f107672d3b2ac385a00cddf9ff335749764f61ebbcb229e5c437c96990",
+    "bytes": 1669638,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "package_id": "manager-banned-email-task-board",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
