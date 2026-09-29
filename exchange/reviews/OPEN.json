@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-09-29T15:47:50Z",
+ "updated": "2026-09-29T16:06:55Z",
  "open": [
   {
    "id": "beaver-ecosystem-comeback__855d950629",
@@ -383,6 +383,16 @@
    "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__47a13a3dad.verdict.json"
   },
   {
+   "id": "global-ewaste-crisis__8084b6757a",
+   "channel": "explainer",
+   "slug": "global-ewaste-crisis",
+   "title": "The World Made 62 Million Tons Of E-Waste",
+   "filed": "2026-09-29T16:06:55Z",
+   "request": "exchange/reviews/20260929/global-ewaste-crisis__8084b6757a.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/global-ewaste-crisis__8084b6757a/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__8084b6757a.verdict.json"
+  },
+  {
    "id": "global-ewaste-crisis__b8a4bebbcc",
    "channel": "explainer",
    "slug": "global-ewaste-crisis",
@@ -401,6 +411,16 @@
    "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__b15f7dc96d.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__b15f7dc96d/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__b15f7dc96d.verdict.json"
+  },
+  {
+   "id": "self-checkout-cashier-jobs__219d249024",
+   "channel": "explainer",
+   "slug": "self-checkout-cashier-jobs",
+   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+   "filed": "2026-09-29T15:56:59Z",
+   "request": "exchange/reviews/20260929/self-checkout-cashier-jobs__219d249024.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/self-checkout-cashier-jobs__219d249024/sheet.jpg",
+   "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__219d249024.verdict.json"
   },
   {
    "id": "self-checkout-cashier-jobs__5dc59df862",
