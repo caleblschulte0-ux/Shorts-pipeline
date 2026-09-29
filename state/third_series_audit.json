@@ -19,7 +19,7 @@
     },
     "win": {
       "n": 8,
-      "median_vph": 0.05
+      "median_vph": 0.045
     },
     "jumpscare": {
       "n": 5,
@@ -31,7 +31,7 @@
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.41
+      "median_vph": 0.405
     },
     "clutch": {
       "n": 3,
@@ -49,7 +49,7 @@
     },
     "story": {
       "n": 1,
-      "median_vph": 0.05
+      "median_vph": 0.04
     }
   }
 }
