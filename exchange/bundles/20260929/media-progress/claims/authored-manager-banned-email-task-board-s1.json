@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260929",
+  "bundle": {
+    "identity": "dc0fbbbe4467951e71549f57394f40c745cd50247e6bd64f0aae2f70856bd7ac"
+  },
+  "request_id": "authored-manager-banned-email-task-board-s1",
+  "safe_request_id": "authored-manager-banned-email-task-board-s1",
+  "worker": "daily-producer",
+  "worker_run_id": "daily-producer-20260929-0615",
+  "created_at": "2026-09-29T11:21:23.397Z",
+  "expires_at": "2026-09-29T11:36:23.397Z",
+  "lease_seconds": 900
+}
