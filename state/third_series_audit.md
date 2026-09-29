@@ -7,7 +7,7 @@
 | fail | 14 | 0.035 |
 | drama | 10 | 0.025 |
 | win | 8 | 0.045 |
-| jumpscare | 5 | 0.51 |
+| jumpscare | 5 | 0.5 |
 | argument | 5 | 0.08 |
 | rage | 4 | 0.39 |
 | clutch | 3 | 0.05 |
