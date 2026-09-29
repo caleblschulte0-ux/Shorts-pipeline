@@ -963,6 +963,13 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
                 getattr(upload_result, "url", None) or str(upload_result)
             )
             result["ok"] = True
+            # Shipped (gate passed, YouTube took it): same cut to TikTok.
+            from shared.crosspost import crosspost
+            xposts = crosspost("trending", out_path,
+                               (result["title"] or result["topic"])[:100],
+                               _description(pkg), _tags(pkg))
+            if xposts:
+                result["crossposts"] = xposts
     except KeyboardInterrupt:
         raise
     except BaseException as e:  # noqa: BLE001
@@ -1095,6 +1102,11 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
                 getattr(upload_result, "url", None) or str(upload_result)
             )
             result["ok"] = True
+            from shared.crosspost import crosspost
+            xposts = crosspost("trending", out_path, result["title"][:100],
+                               _description(pkg, topic.angle), _tags(pkg))
+            if xposts:
+                result["crossposts"] = xposts
     except Exception as e:  # noqa: BLE001
         result["error"] = f"{type(e).__name__}: {e}"
         print(f"[{topic.query!r}] FAILED: {result['error']}", flush=True)

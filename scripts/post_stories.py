@@ -1105,6 +1105,12 @@ def main() -> int:
         posted += 1                     # the slate counts THIS, not attempts
         _arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1
         results.append({"slug": slug, "ok": True, "url": url})
+        # Shipped (gate passed, YouTube took it): same cut to TikTok.
+        from shared.crosspost import crosspost
+        xposts = crosspost(args.channel, out, sc.get("title", slug)[:100],
+                           _description(sc), _merged_tags(sc))
+        if xposts:
+            results[-1]["crossposts"] = xposts
 
     # ------------------------------------------------------------------ #
     # HONEST OUTCOME. This used to be `0 if ok == len(results) else 1`, so a

@@ -157,9 +157,57 @@ class TheThirdWorkflowCanAsk(unittest.TestCase):
         self.assertRegex(wf, r"(?m)^permissions:\n(?:  .*\n)*?  id-token: write")
         self.assertIn("TIKTOK_HANDLE_THIRD: ${{ vars.TIKTOK_HANDLE_THIRD }}", wf)
 
-    def test_crosspost_is_attempted_when_the_broker_is_reachable(self):
-        src = (ROOT / "scripts" / "run_third.py").read_text()
-        self.assertIn("tiktok_broker_available()", src)
+    def test_every_publishing_channel_crossposts_through_the_shared_copy(self):
+        for f, ch in [("run_third.py", "third"), ("run_trending_daily.py", "trending"),
+                      ("post_stories.py", None), ("claim_reviews.py", "explainer")]:
+            src = (ROOT / "scripts" / f).read_text()
+            self.assertIn("from shared.crosspost import crosspost", src, f)
+            if ch:
+                self.assertIn(f'crosspost("{ch}"', src, f)
+        for wf in ("third", "daily", "explainer", "claim_reviews", "tiktok_accounts"):
+            text = (ROOT / ".github" / "workflows" / f"{wf}.yml").read_text()
+            self.assertRegex(text, r"(?m)^permissions:\n(?:  .*\n)*?  id-token: write", wf)
+
+
+class CrossPostGoesToTheChannelsOwnAccount(unittest.TestCase):
+    def _run(self, env, handle_in_registry=""):
+        from shared import crosspost as cp
+        calls = []
+
+        class FakeTT:
+            def __init__(self, channel=""):
+                self.channel = channel
+
+            def upload(self, **kw):
+                calls.append(self.channel)
+                return uploaders.UploadResult("tiktok", "https://t/1")
+
+        reg = {"tiktok": {"handle": handle_in_registry}}
+        with mock.patch.dict(os.environ, env, clear=True), \
+                mock.patch("shared.uploaders.TikTokUploader", FakeTT), \
+                mock.patch("shared.channel_registry.channel", lambda c: reg):
+            out = cp.crosspost("trending", Path("v.mp4"), "t", "d", [])
+        return out, calls
+
+    def test_no_handle_means_no_tiktok_post(self):
+        out, calls = self._run(OIDC_ENV)
+        self.assertEqual(calls, [])
+        self.assertEqual(out, {})
+
+    def test_registry_handle_posts_as_that_channel(self):
+        out, calls = self._run(OIDC_ENV, "ballerbro")
+        self.assertEqual(calls, ["trending"])
+        self.assertEqual(out, {"tiktok": "https://t/1"})
+
+    def test_env_handle_overrides_registry(self):
+        from shared import crosspost as cp
+        with mock.patch.dict(os.environ, {"TIKTOK_HANDLE_TRENDING": "@x"}, clear=True):
+            self.assertEqual(cp.tiktok_handle("trending"), "x")
+
+    def test_every_publishing_channel_has_a_tiktok_slot_in_the_registry(self):
+        reg = json.loads((ROOT / "config" / "channel_registry.json").read_text())
+        for cid in ("trending", "explainer", "third"):
+            self.assertIn("handle", reg["channels"][cid].get("tiktok", {}), cid)
 
 
 class UnauditedPostsPrivatelyAndSaysSo(unittest.TestCase):

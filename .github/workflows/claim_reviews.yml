@@ -29,6 +29,7 @@ concurrency:
 permissions:
   contents: write          # persist posted logs + settled requests
   actions: read            # download the kept-render artifact
+  id-token: write          # TikTok cross-post: trade for a token at shorts-media.netlify.app
 
 jobs:
   claim:
