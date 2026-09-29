@@ -42,6 +42,7 @@ on:
 
 permissions:
   contents: write   # commit third_posted_log.json
+  id-token: write   # short-lived identity for Shorts Media token endpoint
 
 env:
   PYTHON_VERSION: '3.11'
@@ -164,6 +165,7 @@ jobs:
           # unset = YouTube-only (today's behaviour). IG Reels also needs
           # META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST.
           TIKTOK_ACCESS_TOKEN_THIRD: ${{ secrets.TIKTOK_ACCESS_TOKEN_THIRD }}
+          TIKTOK_ACCOUNT_THIRD: ${{ vars.TIKTOK_ACCOUNT_THIRD }}
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           REELS_PUBLIC_HOST: ${{ secrets.REELS_PUBLIC_HOST }}

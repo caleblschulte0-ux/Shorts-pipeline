@@ -850,7 +850,8 @@ def _crosspost(mp4: Path, title: str, description: str,
     Reels additionally needs META_ACCESS_TOKEN + IG_USER_ID + REELS_PUBLIC_HOST
     (a public URL Meta can fetch the file from)."""
     out: dict = {}
-    if os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
+    if os.environ.get("TIKTOK_ACCOUNT_THIRD") or \
+            os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
             os.environ.get("TIKTOK_ACCESS_TOKEN"):
         try:
             from shared.uploaders import TikTokUploader

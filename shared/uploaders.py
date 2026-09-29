@@ -381,11 +381,39 @@ class TikTokUploader(Uploader):
         self.channel = (channel or "").strip().lower()
 
     def _token(self) -> str:
+        account = None
+        if self.channel:
+            account = os.environ.get(f"TIKTOK_ACCOUNT_{self.channel.upper()}")
+        account = account or os.environ.get("TIKTOK_ACCOUNT")
+        if account:
+            import requests
+            request_url = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_URL")
+            request_token = os.environ.get("ACTIONS_ID_TOKEN_REQUEST_TOKEN")
+            if not request_url or not request_token:
+                raise UploadError("GitHub Actions OIDC is required for persistent TikTok access")
+            audience = "https://shorts-media.netlify.app/api/tiktok/token"
+            identity = requests.get(request_url,
+                                    params={"audience": audience},
+                                    headers={"Authorization": f"Bearer {request_token}"},
+                                    timeout=20)
+            identity.raise_for_status()
+            jwt = identity.json()["value"]
+            response = requests.post(audience,
+                                     headers={"Authorization": f"Bearer {jwt}"},
+                                     json={"handle": account.strip().lstrip("@")},
+                                     timeout=30)
+            if not response.ok:
+                raise UploadError(f"TikTok account token request failed ({response.status_code}); reconnect or check account routing")
+            data = response.json()
+            if data.get("handle", "").lower() != account.strip().lstrip("@").lower():
+                raise UploadError("TikTok account mismatch; refusing to post")
+            return data["access_token"]
         if self.channel:
             scoped = os.environ.get(f"TIKTOK_ACCESS_TOKEN_{self.channel.upper()}")
             if scoped:
                 return scoped.strip(" \t\r\n<>\"'")
         return _env("TIKTOK_ACCESS_TOKEN")
+
 
     def upload(self, file_path, *, title, description, tags=None, publish_at=None):
         import requests
@@ -463,6 +491,19 @@ class TikTokUploader(Uploader):
             f"https://www.tiktok.com/@me/video/{publish_id}",
             {"publish_id": publish_id},
         )
+
+def crosspost_tiktok_if_configured(channel, file_path, *, title, description, tags=None):
+    """Send a rendered video to the TikTok account assigned to this channel.
+
+    TikTok's Direct Post uploads immediately, even if the YouTube copy is
+    scheduled. A missing account assignment preserves the existing workflow.
+    """
+    channel = (channel or "").strip().lower()
+    scoped = os.environ.get(f"TIKTOK_ACCOUNT_{channel.upper()}") if channel else None
+    if not (scoped or os.environ.get("TIKTOK_ACCOUNT")):
+        return None
+    return TikTokUploader(channel=channel).upload(
+        file_path=file_path, title=title, description=description, tags=tags)
 
 
 # ---------- Meta (Instagram + Facebook Reels) ----------

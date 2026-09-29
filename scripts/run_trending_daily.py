@@ -962,6 +962,17 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             result["video_url"] = (
                 getattr(upload_result, "url", None) or str(upload_result)
             )
+            if os.environ.get(f"TIKTOK_ACCOUNT_{(channel or 'TRENDING').upper()}"):
+                try:
+                    from shared.uploaders import crosspost_tiktok_if_configured
+                    tiktok = crosspost_tiktok_if_configured(
+                        channel or "trending", out_path,
+                        title=(result["title"] or result["topic"])[:100],
+                        description=_description(pkg), tags=_tags(pkg))
+                    result["tiktok_url"] = tiktok.url
+                except Exception as exc:
+                    result["tiktok_error"] = str(exc)
+                    print(f"::warning::TikTok crosspost failed: {exc}", flush=True)
             result["ok"] = True
     except KeyboardInterrupt:
         raise
@@ -1094,6 +1105,16 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
             result["video_url"] = (
                 getattr(upload_result, "url", None) or str(upload_result)
             )
+            if os.environ.get("TIKTOK_ACCOUNT_TRENDING"):
+                try:
+                    from shared.uploaders import crosspost_tiktok_if_configured
+                    tiktok = crosspost_tiktok_if_configured(
+                        "trending", out_path, title=result["title"][:100],
+                        description=_description(pkg, topic.angle), tags=_tags(pkg))
+                    result["tiktok_url"] = tiktok.url
+                except Exception as exc:
+                    result["tiktok_error"] = str(exc)
+                    print(f"::warning::TikTok crosspost failed: {exc}", flush=True)
             result["ok"] = True
     except Exception as e:  # noqa: BLE001
         result["error"] = f"{type(e).__name__}: {e}"
