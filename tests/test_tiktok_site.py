@@ -47,6 +47,14 @@ class TheSiteLinksAnAccount(unittest.TestCase):
         self.assertIn("connectLambda(event);", src)
         self.assertNotIn('getStore({ name: STORE_NAME, consistency: "strong" })', src)
 
+    def test_the_confirmation_states_the_privacy_actually_chosen(self):
+        # It said "visible only to you (Only me)" after every post, public
+        # ones included — false the day the audit passes.
+        src = APP_JS.read_text(encoding="utf-8")
+        self.assertNotIn("<p>Your video is on your TikTok profile, visible only to you", src)
+        self.assertIn('"&p=" + encodeURIComponent(privacy)', src)
+        self.assertIn('PUBLIC_TO_EVERYONE: "visible to everyone"', src)
+
     def test_no_secret_is_committed(self):
         # This repo is public. The function carries placeholders only.
         src = APP_JS.read_text(encoding="utf-8")
