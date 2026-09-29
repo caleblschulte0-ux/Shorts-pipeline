@@ -1,0 +1,16 @@
+{
+ "slug": "iss-sixteen-sunrises",
+ "ts": "20260929T114533Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0, from hook@0.3 (t=0.30s) to seg0:end (t=4.50s), the mascot is a static icon next to the ISS orbital speed, performing no action or interaction.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "The mascot appears as a static icon next to the ISS speed and does not move or interact with the data demonstration throughout the segment.",
+  "root_cause": "The mascot was placed as a label/decoration rather than integrated into the speed comparison demonstration.",
+  "repair_goal": "Integrate the mascot into the speed comparison, perhaps by having it race alongside the jet or react to the speed difference."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
