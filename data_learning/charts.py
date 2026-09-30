@@ -4137,6 +4137,68 @@ def hook_reveal(hf: float) -> float:
     return HOOK_BURST_LEVEL + (hf - HOOK_BURST_END) / (1.0 - HOOK_BURST_END) * (1.0 - HOOK_BURST_LEVEL)
 
 
+#: The reviewer samples the master at 24fps, downscales to 192px wide and
+#: calls a frame held when no block moved (`showrunner_review`).
+_DETECTOR_W = 192
+_REVIEW_FPS = 24.0
+#: Build frames are laid across their span at 30fps (`studio_render._draw`).
+_BUILD_FPS = 30.0
+
+
+def _detector_thumb(im):
+    """A frame as the cadence detector sees it: grey, 192px wide."""
+    im = im.convert("L")
+    im = im.resize((_DETECTOR_W, int(im.height * _DETECTOR_W / im.width)))
+    return list(getattr(im, "get_flattened_data", im.getdata)())
+
+
+def _span_thumbs(pattern, frames: int) -> list:
+    """The frames a full-frame renderer WROTE — what ffmpeg will encode."""
+    from PIL import Image
+    out = []
+    for f in range(1, frames + 1):
+        try:
+            with Image.open(str(pattern) % f) as im:
+                out.append(_detector_thumb(im))
+        except (OSError, TypeError, ValueError):
+            return []                    # not a frame sequence: no opinion
+    return out
+
+
+def span_held_ratio(thumbs, build_fps: float = _BUILD_FPS):
+    """Share of a span's frames the REVIEWER would call duplicates.
+
+    Resamples the build to the reviewer's 24fps and compares adjacent samples
+    with its own block detector (`_max_block_diff` < `BLOCK_MOTION_THRESH`),
+    so this is the question `_temporal_evidence` asks of the master, asked of
+    one span. None when there is nothing to measure or no reviewer to
+    measure with."""
+    try:
+        from scripts.showrunner_review import (BLOCK_MOTION_THRESH,
+                                               _max_block_diff)
+    except Exception:  # noqa: BLE001 — no reviewer, no opinion
+        return None
+    n = len(thumbs)
+    m = int(n * _REVIEW_FPS / build_fps)
+    if m < 3:
+        return None
+    idx = [min(n - 1, int(i * build_fps / _REVIEW_FPS)) for i in range(m)]
+    held = sum(1 for a, b in zip(idx, idx[1:])
+               if _max_block_diff(thumbs[a], thumbs[b], _DETECTOR_W)
+               < BLOCK_MOTION_THRESH)
+    return held / (m - 1)
+
+
+def _held_ceiling():
+    """The active phase's duplicate-frame ceiling — the gate's number, read
+    from the one place it lives, never restated here."""
+    try:
+        from .quality_milestones import active_phase
+        return float(active_phase().max_duplicate_ratio)
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
                        frames: int = 60, full_by: float = 1.0,
                        hook_lead: bool = False):
@@ -4152,6 +4214,9 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
     # 1080x1920 sequence. If one can't produce (image gen failed), degrade to the
     # next DEPICTED kind — never to bare numbers — and try again (cap the hops).
     hops = 0
+    # The story's own picture, when it drew but froze at this length, and
+    # the directory its frames stay in (`_held_ceiling` below).
+    base_dir, kept = out_dir, None
     while insight.kind in FULLFRAME_RENDERERS and hops < 3:
         from . import viz_scene as _vs_hook
         _vs_hook._HOOK_LEAD = bool(hook_lead)     # machines open built, too
@@ -4160,7 +4225,32 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         finally:
             _vs_hook._HOOK_LEAD = False
         if res is not None:
-            return res
+            held = span_held_ratio(_span_thumbs(res[0], frames))
+            ceiling = _held_ceiling()
+            if held is None or ceiling is None or held <= ceiling:
+                return res
+            # MEASURED AT THE LENGTH IT PLAYS. Every full-frame renderer is
+            # paced by its reveal, so the same picture over a 13.8s span
+            # moves half as far per frame as over 7s, and nothing measured
+            # it at the span it was given: `mechanic_motion_ok` probes one
+            # pair at five points of a 7s beat, `MotionMustBeVISIBLE` a
+            # 120-frame render. coldest-place's earth-orbit flyout passed
+            # the probe and played 0.88 held (36-48s of the master), and the
+            # diorama it would have fallen back to was no better; the video
+            # was blocked by the temporal gate 21 times. A span that is over
+            # the gate's own ceiling on its own steps down the chain — and
+            # the chain can freeze too (that flyout's diorama measured 0.97,
+            # its bubbles no better), so the first frozen picture is KEPT and
+            # plays unless something further down actually moves. A still
+            # is never traded for a different still.
+            print(f"[chart] '{slug}' {insight.kind!r} refused: {held:.2f} of "
+                  f"its {frames}-frame span is held (ceiling {ceiling})",
+                  flush=True)
+            if kept is None:
+                kept = (insight.kind, res,
+                        bool(getattr(insight, "host_baked", False)))
+            out_dir = base_dir / f"step{hops + 1}"   # keep its frames intact
+            out_dir.mkdir(parents=True, exist_ok=True)
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
         print(f"[chart] '{slug}' fell back -> {insight.kind!r}", flush=True)
         hops += 1
@@ -4224,6 +4314,15 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         (out_dir / f"{slug}_attach.json").write_text(_json.dumps(attach))
     except Exception:  # noqa: BLE001 — sidecar must never kill a render
         pass
-    return str(out_dir / f"{slug}_build%02d.png"), anchors
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    if kept is not None:
+        held = span_held_ratio(_span_thumbs(pattern, frames))
+        ceiling = _held_ceiling()
+        if held is None or ceiling is None or held > ceiling:
+            print(f"[chart] '{slug}' nothing down the chain moves over "
+                  f"{frames} frames either — {kept[0]!r} plays", flush=True)
+            insight.kind, insight.host_baked = kept[0], kept[2]
+            return kept[1]
+    return pattern, anchors
 
 
