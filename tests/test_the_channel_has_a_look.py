@@ -317,8 +317,17 @@ class EveryStringOnTheCardIsMEASURED(unittest.TestCase):
         characters. Then the ellipsis is the honest answer, and WHICH END
         survives is the whole question: the publisher identifies the source,
         so the cut takes the study title off the tail and never the
-        organisation off the front."""
-        fig, plt = self._card(self.LONG)
+        organisation off the front.
+
+        Since 2026-09-30 the card draws only the PUBLISHER (the dataset name
+        and access date go to the description), so a credit this long is a
+        publisher field that is itself a bibliography. Some brain-written
+        ones are (up to 318 characters). Same assertions, same cut path."""
+        fig, plt = self._card(
+            self.LONG + " Scientific Assessment Panel, with the Global "
+            "Atmosphere Watch programme, NASA, NOAA and the European "
+            "Commission Joint Research Centre (Scientific Assessment of "
+            "Ozone Depletion 2022, GAW Report No. 278)")
         try:
             got = self._footer_text(fig)[0].get_text()
             self.assertIn("\u2026", got, "a 148-char credit fitted?")
