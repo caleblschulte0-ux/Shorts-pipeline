@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260930",
+  "bundle": {
+    "identity": "22bbdb45f35adc763fa1242f375208c710dfc0c27b2b2bef16b3c8e9bce2bd78",
+    "path": "exchange/bundles/20260930/bundle.json"
+  },
+  "request_id": "return-policy-backfire-s2-42fb61b961c7",
+  "safe_request_id": "return-policy-backfire-s2-42fb61b961c7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b39757d1dd67e16d470e8e68733de4df7b5f4d9b22ff567e150a619e93d4b00b",
+  "prompt_used": "An editorial illustration for a short-form video: laminated paper sign. It accompanies the narration: \"laminated the policy\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1oLm1p9h0CzG2EQwdXE1K49aDZcUubUhA",
+    "filename": "20260930__return-policy-backfire-s2-42fb61b961c7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1oLm1p9h0CzG2EQwdXE1K49aDZcUubUhA",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7aaa536c6184630d1e9d3023d6b75fc98d9dc1da3673fecd489f06569898c943",
+    "bytes": 1817393,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-30T11:23:55.775Z"
+}
