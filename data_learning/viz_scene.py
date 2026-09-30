@@ -7610,8 +7610,12 @@ def render_procedural(insight, out_dir: Path, slug: str, frames: int = 16):
             signal.setitimer(signal.ITIMER_REAL, 0)
 
     for f in range(1, frames + 1):
-        r = 1.0 if f == frames else f / frames
-        r = 1.0 - (1.0 - r) ** 2
+        # THE HOUSE CURVE, not a private ease-out. `1 - (1 - r)**2` sat here
+        # and its end slope is zero, so the back half of every mechanic moved
+        # by fractions of a pixel per frame (see `settle`). Whether the span
+        # moves at the length it PLAYS is measured by the caller
+        # (`charts.render_story_build`), for every full-frame renderer.
+        r = 1.0 if f == frames else settle(f / frames)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         try:
             _guard(3.0)

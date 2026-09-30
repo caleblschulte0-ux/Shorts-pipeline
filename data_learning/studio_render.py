@@ -3164,6 +3164,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 nfr = int(max(30, min(1200, _mfr.ceil((t1 - t0) * 30))))
                 cpath, anc = None, []
                 _fb = 1.0
+                _built = None
                 # Per-span truth: the renderer SETS this while it draws Data
                 # into the visual (every chart's `_bake_host`, every
                 # self-hosting machine in `render_scene`). Cleared before each
@@ -3203,6 +3204,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                         full_by=_fb,
                         # only the opening visual bursts up out of the hook
                         hook_lead=(i == 0 and lead_hook and first))
+                    # what it actually drew: the build steps down the
+                    # FALLBACK chain when a picture refuses or freezes
+                    _built = seg.insight.kind
                 except Exception as e:  # noqa: BLE001 — a missing extra visual
                     print(f"[studio] seg{i} visual {tag} ({kind}) skipped: {e}",
                           flush=True)
@@ -3210,7 +3214,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     seg.insight.kind = _orig_kind
                 if not cpath:
                     return None
-                if kind == "mechanic":
+                # Only a mechanic that DREW is kept as one: the library
+                # records it `moves: True`, and one the build refused as
+                # frozen would teach the next brain the thing that got
+                # coldest-place blocked.
+                if kind == "mechanic" and _built == "mechanic":
                     _persist_rendered_mechanic(seg.insight, slug,
                                                rendered_as=f"seg{i}")
                 _kinds_used.add(kind)
