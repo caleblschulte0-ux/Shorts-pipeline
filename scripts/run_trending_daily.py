@@ -142,6 +142,197 @@ def save_log(log: dict) -> None:
     atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
+# ---------------------------------------------------------------------------
+# THE UPLOAD IS CLAIMED, CHECKED AGAINST MAIN, AND RECORDED THE MOMENT IT
+# HAPPENS — 2026-09-29.
+#
+# Two daily.yml runs (Phase B's explicit dispatch + the workflow_run event it
+# also raises) queued behind the `daily-shorts` concurrency group. The second
+# started at 12:00:49, four seconds after the first pushed its posted log,
+# but actions/checkout fetched the SHA the EVENT was raised on (11:35), not
+# main — so its posted log did not contain the first run's uploads, the
+# 6-hour guard saw nothing, and "She Ordered Me To Stock Shelves" went up
+# twice. The same run's three backfill uploads never reached the log at all:
+# main() appended only the pre-written results, then `save_log(load_log())`
+# re-saved the file unchanged under a comment claiming otherwise.
+#
+# So every upload now goes through `_guarded_upload`: read main's posted log
+# first (a run can be stale however it was started), refuse a title already
+# posted or claimed, write a claim and push it BEFORE the API call, and write
+# the posted entry and push it right after. The explainer has worked this way
+# since 2026-09-07 (post_stories._persist_posted_log_now).
+# ---------------------------------------------------------------------------
+
+class DuplicateUpload(RuntimeError):
+    """The title is already posted (or claimed mid-upload) on this channel."""
+
+
+def _norm(s) -> str:
+    return (s or "").strip().casefold()
+
+
+def _refresh_log_from_origin() -> None:
+    """Union main's posted log into ours. CI only, best effort, never raises.
+
+    A run that started from a stale commit — a queued run, a re-run, a
+    workflow_run pinned to its event's SHA — otherwise decides "already
+    posted?" against yesterday's ledger."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    import subprocess as _sp
+    branch = os.environ.get("CI_COMMIT_BRANCH", "main")
+    try:
+        _sp.run(["git", "fetch", "-q", "origin", branch], cwd=REPO,
+                capture_output=True, text=True, timeout=90, check=True)
+        try:
+            rel = LOG_PATH.relative_to(REPO).as_posix()
+        except ValueError:                            # redirected in tests
+            rel = "state/posted_log.json"
+        r = _sp.run(["git", "show", f"origin/{branch}:{rel}"], cwd=REPO,
+                    capture_output=True, text=True, timeout=30, check=True)
+        theirs = json.loads(r.stdout)
+        from scripts.merge_posted_log import merge
+        before = len(load_log().get("posted") or [])
+        merged = merge(theirs, load_log())
+        save_log(merged)
+        gained = len(merged.get("posted") or []) - before
+        if gained:
+            print(f"[posted-log] main had {gained} upload(s) this run's "
+                  f"checkout did not — merged before deciding what to post",
+                  flush=True)
+    except Exception as exc:                          # noqa: BLE001
+        print(f"[posted-log] could not refresh from origin/{branch} "
+              f"({type(exc).__name__}: {str(exc)[:120]}) — deciding on the "
+              f"local ledger", flush=True)
+
+
+def _persist_log_now(why: str) -> None:
+    """Push the posted log IMMEDIATELY (CI only). Never raises: the upload
+    has already happened, and the end-of-run persist still runs."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    import subprocess as _sp
+    script = REPO / "scripts" / "ci_commit_state.sh"
+    if not script.exists():
+        return
+    try:
+        # RELATIVE path: ci_commit_state.sh mirrors it with `cp --parents`
+        # on a push race, and an absolute one restores to the wrong place.
+        r = _sp.run(["bash", str(script), f"trending: {why} [skip ci]",
+                     LOG_PATH.relative_to(REPO).as_posix()], cwd=REPO,
+                    capture_output=True, text=True, timeout=180)
+        if r.returncode != 0:
+            print(f"[posted-log] WARNING: could not persist now "
+                  f"(rc={r.returncode}); the end-of-run persist must catch "
+                  f"it: {(r.stderr or r.stdout)[-200:]}", flush=True)
+    except Exception as exc:                          # noqa: BLE001
+        print(f"[posted-log] WARNING: persist raised: {exc}", flush=True)
+
+
+def _open_claim(log: dict, title: str, topic: str):
+    for u in log.get("uploads") or []:
+        if (u.get("state") == "uploading" and not u.get("url")
+                and ({_norm(u.get("title")), _norm(u.get("topic"))}
+                     & {_norm(title), _norm(topic)} - {""})):
+            return u
+    return None
+
+
+#: Upload errors that cannot have put a video on the channel — only these
+#: release a claim. Anything else (a timeout, a reset) may have, and a
+#: duplicate is worse than a gap.
+_CERTAIN_NO_UPLOAD = ("uploadLimitExceeded", "exceeded the number of videos",
+                      "quotaExceeded", "Unauthorized", "401", "403")
+
+
+def _guarded_upload(*, title: str, topic: str, fmt, publish_at,
+                    do_upload) -> str:
+    """Claim → upload → record. Returns the video URL; raises DuplicateUpload
+    (nothing uploaded) or whatever `do_upload` raised."""
+    _refresh_log_from_origin()
+    log = load_log()
+    for e in log.get("posted") or []:
+        if {_norm(e.get("title")), _norm(e.get("topic"))} & \
+                ({_norm(title), _norm(topic)} - {""}):
+            raise DuplicateUpload(
+                f"already posted {e.get('posted_at')} -> "
+                f"{e.get('video_url')} — refusing to upload it again")
+    held = _open_claim(log, title, topic)
+    if held:
+        raise DuplicateUpload(
+            f"claimed mid-upload at {held.get('claimed_at')} and never "
+            f"confirmed — it may be live; check the channel before clearing "
+            f"the claim in state/posted_log.json 'uploads'")
+    now_s = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    claim = {"slug": _slug(title or topic), "title": title, "topic": topic,
+             "claimed_at": now_s, "state": "uploading", "url": None}
+    log.setdefault("uploads", []).append(claim)
+    save_log(log)
+    _persist_log_now(f"claim upload slot {claim['slug']}")
+    try:
+        url = do_upload()
+    except BaseException as exc:
+        msg = str(exc)
+        log = load_log()
+        if any(k in msg for k in _CERTAIN_NO_UPLOAD):
+            log["uploads"] = [u for u in log.get("uploads") or []
+                              if not (u.get("claimed_at") == now_s
+                                      and u.get("slug") == claim["slug"]
+                                      and not u.get("url"))]
+            save_log(log)
+        else:
+            print(f"[{title!r}] the upload claim STAYS — this error can "
+                  f"leave a video live, and a duplicate is worse than a gap",
+                  flush=True)
+        _persist_log_now(f"upload failed {claim['slug']}")
+        raise
+    log = load_log()
+    for u in reversed(log.get("uploads") or []):
+        if u.get("claimed_at") == now_s and u.get("slug") == claim["slug"]:
+            u.update({"url": url, "state": "posted"})
+            break
+    log.setdefault("posted", []).append({
+        "topic": topic, "title": title, "format": fmt, "video_url": url,
+        "publish_at": publish_at,
+        "posted_at": datetime.now(timezone.utc).strftime(
+            "%Y-%m-%dT%H:%M:%SZ"),
+    })
+    save_log(log)
+    _persist_log_now(f"posted {claim['slug']}")
+    return url
+
+
+def uploaded_on(log: dict, day: str) -> list[dict]:
+    """Posted-log entries uploaded on `day` (YYYYMMDD, UTC). THIS is what
+    "already uploaded today" means — not "a package title that appears
+    anywhere in the log", which on 2026-09-29 counted four August uploads
+    as today's and reported 8/6."""
+    want = f"{day[:4]}-{day[4:6]}-{day[6:8]}"
+    return [e for e in log.get("posted") or []
+            if (e.get("posted_at") or "").startswith(want)]
+
+
+def split_manifest(pkgs: list[dict], log: dict) -> tuple[list[dict], list[str]]:
+    """(renderable, reasons) — every package left out says exactly why."""
+    index: dict[str, dict] = {}
+    for e in log.get("posted") or []:
+        for k in ("title", "topic"):
+            if _norm(e.get(k)):
+                index.setdefault(_norm(e.get(k)), e)
+    keep, why = [], []
+    for p in pkgs:
+        hit = index.get(_norm(p.get("title")))
+        if hit:
+            why.append(
+                f"{Path(p.get('_path') or p.get('slug') or '?').name} "
+                f"[{p.get('format') or 'reddit'}] {p.get('title')!r}: title "
+                f"already posted {hit.get('posted_at')} -> "
+                f"{hit.get('video_url')} — not re-uploading")
+        else:
+            keep.append(p)
+    return keep, why
+
+
 def schedule_times(now: datetime, n: int,
                    slots: "list[tuple[int, int]] | None" = None) -> list[str]:
     """Pick the next n publish slots ≥5 min out, walking into tomorrow if
@@ -607,7 +798,8 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
 MAX_BACKFILL = int(os.environ.get("MAX_BACKFILL", "4"))
 
 
-def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
+def _backfill(results: list[dict], args, sched, now, log, *,
+              prior_uploaded: int = 0) -> list[dict]:
     """Refill slots the gate emptied. **A HELD SLOT IS NOT A LOST SLOT.**
 
     Operator ruling 2026-08-05: *"if the video doesn't make it past the
@@ -638,7 +830,8 @@ def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
     if args.dry_run:
         return []
     expected = int(args.count)
-    posted = sum(1 for r in results if r.get("ok"))
+    # Uploads an earlier run already made today fill slots too.
+    posted = prior_uploaded + sum(1 for r in results if r.get("ok"))
     short = expected - posted
     if short <= 0:
         return []
@@ -951,18 +1144,24 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             print(f"[{result['topic']!r}] uploading to "
                   f"{result['channel']}...", flush=True)
             uploader = YouTubeUploader(channel=channel)
-            upload_result = uploader.upload(
-                file_path=out_path,
-                title=(result["title"] or result["topic"])[:100],
-                description=_description(pkg),
-                tags=_tags(pkg),
-                publish_at=None if no_schedule else publish_at,
-                thumbnail=thumb,
-            )
-            result["video_url"] = (
-                getattr(upload_result, "url", None) or str(upload_result)
-            )
+
+            def _do_upload():
+                upload_result = uploader.upload(
+                    file_path=out_path,
+                    title=(result["title"] or result["topic"])[:100],
+                    description=_description(pkg),
+                    tags=_tags(pkg),
+                    publish_at=None if no_schedule else publish_at,
+                    thumbnail=thumb,
+                )
+                return (getattr(upload_result, "url", None)
+                        or str(upload_result))
+            result["video_url"] = _guarded_upload(
+                title=result["title"], topic=result["topic"],
+                fmt=result.get("format"), publish_at=publish_at,
+                do_upload=_do_upload)
             result["ok"] = True
+            result["logged"] = True
             # Shipped (gate passed, YouTube took it): same cut to TikTok.
             from shared.crosspost import crosspost
             xposts = crosspost("trending", out_path,
@@ -1088,20 +1287,28 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
             from shared.uploaders import YouTubeUploader
             print(f"[{topic.query!r}] uploading...", flush=True)
             uploader = YouTubeUploader()
-            upload_result = uploader.upload(
-                file_path=out_path,
-                title=result["title"][:100],
-                description=_description(pkg, topic.angle),
-                tags=_tags(pkg),
-                publish_at=None if no_schedule else publish_at,
-                thumbnail=thumb,
-            )
-            # uploaders return an UploadResult with .url; tolerate either
-            # an object or a plain string for forward compat.
-            result["video_url"] = (
-                getattr(upload_result, "url", None) or str(upload_result)
-            )
+
+            def _do_upload():
+                upload_result = uploader.upload(
+                    file_path=out_path,
+                    title=result["title"][:100],
+                    description=_description(pkg, topic.angle),
+                    tags=_tags(pkg),
+                    publish_at=None if no_schedule else publish_at,
+                    thumbnail=thumb,
+                )
+                # uploaders return an UploadResult with .url; tolerate
+                # either an object or a plain string for forward compat.
+                return (getattr(upload_result, "url", None)
+                        or str(upload_result))
+            # Claimed, checked against main and RECORDED here — a backfill
+            # upload used to reach the posted log never (2026-09-29).
+            result["video_url"] = _guarded_upload(
+                title=result["title"], topic=result["topic"],
+                fmt=result.get("format"), publish_at=publish_at,
+                do_upload=_do_upload)
             result["ok"] = True
+            result["logged"] = True
             from shared.crosspost import crosspost
             xposts = crosspost("trending", out_path, result["title"][:100],
                                _description(pkg, topic.angle), _tags(pkg))
@@ -1233,11 +1440,14 @@ def _failure_stage(error: str | None) -> str:
         return "showrunner_block"
     if error.startswith("quarantined:"):
         return "quarantined"
+    if error.startswith("DuplicateUpload:"):
+        return "duplicate_refused"
     return "infra_error"
 
 
 def compute_production_outcome(results: list, *, prior_uploaded: int,
-                                expected: int, dry_run: bool) -> tuple:
+                                expected: int, dry_run: bool,
+                                prior_urls: list | None = None) -> tuple:
     """The real completion decision, isolated so it is executable in a test
     instead of only greppable in source: a partial day (uploaded < expected)
     must always report `complete=False` and status `repair_required`, never
@@ -1246,7 +1456,9 @@ def compute_production_outcome(results: list, *, prior_uploaded: int,
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     uploaded_total = prior_uploaded + len(posted)
-    complete = (dry_run or uploaded_total == expected)
+    # >= not ==: every slot filled is not "repair_required" just because
+    # an earlier run over-filled (2026-09-29 reported "8/6" as incomplete).
+    complete = (dry_run or uploaded_total >= expected)
     failed_by_stage: dict[str, int] = {}
     failed_by_format: dict[str, int] = {}
     for r in failed:
@@ -1266,8 +1478,10 @@ def compute_production_outcome(results: list, *, prior_uploaded: int,
         "failed_by_format": failed_by_format,
         "status": ("dry_run" if dry_run else
                    "production_complete" if complete else "repair_required"),
-        "video_urls": [r.get("video_url") for r in posted
-                       if r.get("video_url")],
+        # Every URL behind `uploaded`, not only this run's: a later run of
+        # the same day used to write uploaded=6 beside an empty list.
+        "video_urls": list(prior_urls or []) + [
+            r.get("video_url") for r in posted if r.get("video_url")],
     }
     return outcome, complete
 
@@ -1313,6 +1527,9 @@ def main() -> int:
     # logged itself just after midnight UTC and today's intended run
     # would get blocked all day.
     if not args.dry_run:
+        # Decide against MAIN's ledger, not the checkout's: a queued second
+        # run on 2026-09-29 read a posted log 25 minutes stale and re-posted.
+        _refresh_log_from_origin()
         log = load_log()
         now_dt = datetime.now(timezone.utc)
         cutoff = now_dt - timedelta(hours=6)
@@ -1366,6 +1583,8 @@ def main() -> int:
     # to the most recent day's packages — far better than burning
     # through Groq's free tier on emergency script generation.
     prior_uploaded = 0
+    prior_urls: list[str] = []
+    need = args.count
     if args.require_manifest:
         today_dir = todays_package_dir()
         all_today = _load_package_dir(today_dir) if today_dir.exists() else []
@@ -1379,15 +1598,25 @@ def main() -> int:
             )
             return 2
         src_dir = today_dir
-        already = posted_titles()
-        prior_uploaded = sum(
-            1 for pkg in all_today
-            if (pkg.get("title") or "").strip().casefold() in already
-        )
-        prewritten = [
-            pkg for pkg in all_today
-            if (pkg.get("title") or "").strip().casefold() not in already
-        ]
+        # A package whose title is already in the posted log is not
+        # rendered — and the log says WHICH, WHEN and WHERE, per package.
+        # On 2026-09-29 four takeover-authored graph_race packages repeated
+        # August titles and the run said only "using 2 pre-written
+        # packages". Those four are NOT today's uploads either: what counts
+        # toward the day is what the posted log shows uploaded TODAY.
+        _log_now = load_log()
+        prewritten, excluded = split_manifest(all_today, _log_now)
+        for why in excluded:
+            print(f"[run_trending_daily] EXCLUDED {why}", flush=True)
+        todays = uploaded_on(_log_now, now.strftime("%Y%m%d"))
+        prior_uploaded = len(todays)
+        prior_urls = [e.get("video_url") for e in todays
+                      if e.get("video_url")]
+        need = max(0, args.count - prior_uploaded)
+        print(f"[run_trending_daily] {prior_uploaded} uploaded today "
+              f"already; {need} slot(s) to fill; {len(prewritten)} "
+              f"renderable package(s)", flush=True)
+        prewritten = prewritten[:need]
     else:
         src_dir, prewritten = ((None, []) if args.force_llm
                                else load_prewritten_packages())
@@ -1424,7 +1653,7 @@ def main() -> int:
         sched = schedule_times(now, max(1, math.ceil(eff / per_slot)))
         results: list[dict] = []
         sched_idx = 0
-        for pkg in prewritten[:args.count]:
+        for pkg in prewritten[:need]:
             slot = sched_idx // per_slot
             publish_at = sched[slot] if slot < len(sched) else None
             result = run_one_from_package(
@@ -1434,6 +1663,11 @@ def main() -> int:
             results.append(result)
             if result["ok"]:
                 sched_idx += 1
+    elif args.require_manifest:
+        # --require-manifest never authors a slate here (its contract).
+        # Whatever the day is still short goes to _backfill below — fresh
+        # authoring through the SAME run_one + gate path, bounded.
+        results = []
     else:
         # Path B (fallback): no pre-written packages, run Groq end-to-end.
         if not os.environ.get("GROQ_API_KEY"):
@@ -1490,9 +1724,11 @@ def main() -> int:
                 sched_idx += 1
 
     # 4. Update posted log with successful uploads.
+    # _guarded_upload already recorded (and pushed) every real upload; this
+    # catches only a result that somehow bypassed it.
     log = load_log()
     for r in results:
-        if r["ok"] and not args.dry_run:
+        if r["ok"] and not args.dry_run and not r.get("logged"):
             log["posted"].append({
                 "topic": r["topic"],
                 "title": r.get("title"),
@@ -1504,8 +1740,20 @@ def main() -> int:
     save_log(log)
 
     # 4b. BACKFILL. A held slot is not a lost slot.
-    results += _backfill(results, args, sched, now, log)
-    save_log(load_log())          # backfill uploads appended to the log
+    backfilled = _backfill(results, args, sched, now, log,
+                           prior_uploaded=prior_uploaded)
+    results += backfilled
+    log = load_log()
+    for r in backfilled:          # recorded by _guarded_upload; belt+braces
+        if r.get("ok") and not args.dry_run and not r.get("logged"):
+            log["posted"].append({
+                "topic": r.get("topic"), "title": r.get("title"),
+                "format": r.get("format"), "video_url": r.get("video_url"),
+                "publish_at": r.get("publish_at"),
+                "posted_at": datetime.now(timezone.utc).strftime(
+                    "%Y-%m-%dT%H:%M:%SZ"),
+            })
+    save_log(log)
 
     # 5. Write report.
     date_str = now.strftime("%Y-%m-%d")
@@ -1521,7 +1769,7 @@ def main() -> int:
     expected = int(args.count)
     outcome, complete = compute_production_outcome(
         results, prior_uploaded=prior_uploaded, expected=expected,
-        dry_run=args.dry_run)
+        dry_run=args.dry_run, prior_urls=prior_urls)
     try:
         from shared.fsutil import atomic_write_json
         outcome_path = (STATE_DIR / "production_runs" /

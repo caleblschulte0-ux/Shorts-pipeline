@@ -85,10 +85,20 @@ jobs:
       cancel-in-progress: false
 
     steps:
+      # THE BRANCH TIP, NOT THE EVENT'S SHA (2026-09-29). Phase B both
+      # dispatches this workflow and raises workflow_run on completing, so
+      # two runs start and the `daily-shorts` group queues the second. With
+      # no `ref`, checkout fetches github.sha — the commit the EVENT saw at
+      # 11:35 — so the queued run started at 12:00:49 on a posted log that
+      # did not contain the first run's uploads (pushed 12:00:44), and
+      # re-uploaded "She Ordered Me To Stock Shelves". A ref makes checkout
+      # fetch the tip when the job STARTS. run_trending_daily also re-reads
+      # main's posted log before every upload, so this is belt and braces.
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.ref }}
           fetch-depth: 1
 
       # Its OWN step, deliberately. tests/test_split_worker.py and
