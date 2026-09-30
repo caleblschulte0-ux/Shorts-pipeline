@@ -9827,13 +9827,49 @@
       "director_cut": true
     },
     "clip-20260930-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/GrotesqueTacitRamenFailFish-2eJUSbT3LAwYGhVY",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/UL_xG7xuP1k",
       "title": "Kaicenat: Kai Cenat Aura Moment Has The Whole Room Screaming Yes",
       "kind": "twitch_clip",
-      "ts": "2026-09-30T12:09:46.715858+00:00",
+      "ts": "2026-09-30T12:09:53.990223+00:00",
+      "uploaded_at": "2026-09-30T12:09:53.990241+00:00",
+      "publish_at": "2026-09-30T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20260930-kaicenat-kai-cenat-aura-moment-has-the-whole-roo-a89602c6"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/GrotesqueTacitRamenFailFish-2eJUSbT3LAwYGhVY",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "THE ROOM LOST IT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2765,
+      "banger": 0.5,
+      "cut": {
+        "start": 4.6,
+        "end": 9.6
+      },
+      "director_cut": true
+    },
+    "rejected-nicepiercingbutterflyvoteyea-en5wi5xbrdwdppf_": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/NicePiercingButterflyVoteYea-en5wi5xbrdWDPPf_",
+      "streamer": "jasontheween",
+      "title": "rakai",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching a video, talking, no visible ev)",
+      "ts": "2026-09-30T12:11:10.659690+00:00"
+    },
+    "clip-20260930-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/EnticingResoluteBaguetteSmoocherZ-K3bRW4Nc7m5s2tUh",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha And Lang Run From The Whole PD After The Chop Spot Gets Stormed",
+      "kind": "twitch_clip",
+      "ts": "2026-09-30T12:14:49.940930+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
