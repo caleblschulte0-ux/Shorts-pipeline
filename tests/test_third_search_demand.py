@@ -120,7 +120,16 @@ class ItStaysQuietWhenItShould(unittest.TestCase):
 class ItIsWired(unittest.TestCase):
     def test_the_author_call_passes_it(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()
-        self.assertIn("search=_search_guidance(streamer, _known)", src)
+        self.assertIn("_search = _search_guidance(streamer, _known)", src)
+        self.assertIn("search=_search)", src)
+
+    def test_the_title_arm_is_tagged_from_the_guidance_and_recorded(self):
+        # Doctor 0aa9d12e55a8: without the tag the search-title effect
+        # cannot be compared against clips that were not told the queries.
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn('title_arm = "search" if _search else "control"', src)
+        self.assertIn('led["title_arm"]', src)
+        self.assertIn('entry["title_arm"] = led.get("title_arm"', src)
 
     def test_the_prompt_carries_it_in_its_own_section(self):
         from third_capture import author

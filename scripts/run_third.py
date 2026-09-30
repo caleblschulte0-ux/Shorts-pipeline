@@ -1958,12 +1958,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 _known = [ch for chans in (_cap.get("sources") or {
                     "twitch": _cap.get("channels", [])}).values()
                     for ch in chans]
+                _search = _search_guidance(streamer, _known)
+                # Doctor 0aa9d12e55a8: tag the title arm so 72h search
+                # views can be compared -- "search" = the author was told
+                # the real queries, "control" = it was not (no queries for
+                # this streamer / search share too low).
+                title_arm = "search" if _search else "control"
                 meta = author.author_package(
                     streamer, info["title"],
                     " ".join(w["w"] for w in words), info["views"],
                     words=words, clip_dur=clip_dur,
                     guidance=_opening_guidance(),
-                    search=_search_guidance(streamer, _known))
+                    search=_search)
             hook = (meta or {}).get("hook") or pkg.get("hook", "")
             # "unknown", never "chaos" -- a failed/absent author call is not
             # a confirmed chaos classification (doctor finding 2127c6395c2c).
@@ -2203,6 +2209,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # though edit_mode was on — labelling that "edit" corrupts the
                 # comparison, so it becomes "simple_fallback".
                 led["experiment_arm"] = "edit" if edit_mode else "clip"
+                led["title_arm"] = locals().get("title_arm") or "control"
                 led["structure"] = (
                     "simple_fallback" if led["self_healed"]
                     else "edit" if (edit_mode and led.get("auto_edit"))
@@ -2419,6 +2426,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # A/B: assigned arm + what ACTUALLY rendered (self-heal ships
                 # the simple clip even under edit_mode → "simple_fallback").
                 entry["experiment_arm"] = led.get("experiment_arm", "clip")
+                entry["title_arm"] = led.get("title_arm", "control")
                 entry["structure"] = led.get("structure", "clip")
                 entry["actual_structure"] = led.get("structure", "clip")
                 entry["self_healed"] = led.get("self_healed", False)
