@@ -1,88 +1,125 @@
 {
  "n_verdicts": 20,
  "classes": {
+  "decorative_mascot": {
+   "count": 8,
+   "stories": {
+    "iss-sixteen-sunrises": 1,
+    "global-ewaste-crisis": 4,
+    "kelp-forest-sea-star-collapse": 3
+   },
+   "timestamps": [
+    "2026-09-29T11:45:05+00:00",
+    "2026-09-30T00:07:02+00:00",
+    "2026-09-30T00:07:02+00:00",
+    "2026-09-30T00:14:02+00:00",
+    "2026-09-30T00:20:55+00:00",
+    "2026-09-30T00:26:19+00:00",
+    "2026-09-30T00:26:19+00:00",
+    "2026-09-30T00:26:19+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: In seg0, from hook@0.3 (t=0.30s) to seg0:end (t=4.50s), the mascot is a static icon next to the ISS orbital speed, performing no action or interaction.",
+    "decorative_mascot: From hook@0.3 to seg0:end Data stands in the top-left corner pointing at nothing. In seg1:mid and seg1:end he drifts across the bars. In seg4:start to seg4:end he stands on the scal",
+    "unreadable: The labels 'Properly recycled 22%' (seg2:start) and 'Met by new mining 99%' / 'Met by e-waste recycling 1%' (seg3:start) are dim grey on navy and disappear at phone distance. The source li"
+   ],
+   "recurred_after_fix": false
+  },
   "temporal_gate": {
    "count": 7,
    "stories": {
     "coldest-place-in-the-universe-is-human-made": 7
    },
    "timestamps": [
-    "2026-09-28T18:00:30+00:00",
     "2026-09-28T18:42:57+00:00",
     "2026-09-28T19:19:41+00:00",
     "2026-09-29T15:51:19+00:00",
     "2026-09-29T19:00:10+00:00",
     "2026-09-29T19:44:25+00:00",
-    "2026-09-29T22:37:55+00:00"
+    "2026-09-29T22:37:55+00:00",
+    "2026-09-29T23:54:08+00:00"
    ],
    "examples": [
-    "temporal_gate: duplicate_ratio 0.526 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
     "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "temporal_gate: duplicate_ratio 0.534 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 3,
+   "stories": {
+    "global-ewaste-crisis": 3
+   },
+   "timestamps": [
+    "2026-09-30T00:07:02+00:00",
+    "2026-09-30T00:14:02+00:00",
+    "2026-09-30T00:20:55+00:00"
+   ],
+   "examples": [
+    "empty_void: At hook@0.3 and hook@0.8 the only content is a tiny line stub in the lower left. The whole right half past the 'data stops here' line and the band from y\u2248490 to y\u2248660 are empty dark gradie",
+    "empty_void: hook@0.3 through seg0:mid: a thin line fills a small patch lower-left, the whole 'projected' right half is blank, and the band between y\u2248490 and the captions is dead dark space.",
+    "empty_void: hook@0.3 through hook@2.2: a tiny line sits in the lower-left corner, and the 'projected' half and the whole lower third of the frame are empty dark navy for about 3s."
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 2,
+   "stories": {
+    "global-ewaste-crisis": 2
+   },
+   "timestamps": [
+    "2026-09-30T00:14:02+00:00",
+    "2026-09-30T00:20:55+00:00"
+   ],
+   "examples": [
+    "unreadable: seg2:start: 'Properly recycled 22%' and 'Not properly recycled 78%' are grey on navy and almost invisible. seg3:start/mid: 'Met by e-waste recycling 1%' and 'Met by new mining 99%' fade in",
+    "unreadable: At seg3:start, 'Met by e-waste recycling 1%' and 'Met by new mining 99%' are grey on slate and almost invisible. 'Properly recycled 22%' at seg2:start and the year labels at seg1:start are"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 3,
+   "count": 1,
    "stories": {
-    "rare_small_cat_caught_on_camera_in_the_a": 1,
-    "two_norad_chicago_interceptions_caught_o": 1,
     "he_banned_email__the_task_board_remember": 1
    },
    "timestamps": [
-    "2026-09-28T13:26:45+00:00",
-    "2026-09-28T13:30:42+00:00",
     "2026-09-29T11:41:42+00:00"
    ],
    "examples": [
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-    "junk_imagery: The top half of frames mid1 and mid2 show low-quality, AI-generated images of a printer and a receipt that clash stylistically with the Minecraft gameplay.",
     "junk_imagery: Frames mid1, mid3, mid4, and mid5 display generic AI images of people in office settings that do not earn their place as bespoke visuals, despite being topically relevant."
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 1,
-   "stories": {
-    "iss-sixteen-sunrises": 1
-   },
-   "timestamps": [
-    "2026-09-29T11:45:05+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: In seg0, from hook@0.3 (t=0.30s) to seg0:end (t=4.50s), the mascot is a static icon next to the ISS orbital speed, performing no action or interaction."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 4,
+   "median": 2,
    "min": 0,
    "max": 4
   },
   "data_demo": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 5
   },
   "mascot": {
-   "median": 4,
+   "median": 1,
    "min": 0,
    "max": 4
   },
   "craft": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 3
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
   "payoff": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -93,11 +130,6 @@
   }
  },
  "scores": [
-  100,
-  14,
-  84,
-  78,
-  14,
   14,
   14,
   91,
@@ -112,6 +144,11 @@
   14,
   14,
   14,
-  14
+  14,
+  14,
+  48,
+  48,
+  39,
+  48
  ]
 }

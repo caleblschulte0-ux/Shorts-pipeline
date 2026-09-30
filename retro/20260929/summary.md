@@ -7,12 +7,12 @@
 ## Channels (mature videos only)
 
 - **trending**: 1 video(s) at ~24h, median 0.0 views _(thin)_
-    - best: China Pulled Away In Electric Car Sales (0.1523 vph)
+    - best: China Pulled Away In Electric Car Sales (0.1508 vph)
     - worst: BYD Passed Tesla To Lead The Global EV Race (0.0 vph)
 - **explainer**: nothing in the 24h window yet
 - **curiosity**: nothing in the 24h window yet
 - **third**: 1 video(s) at ~24h, median 0.0 views _(thin)_
-    - best: Jynxzi Got Warned Not To Do It... Then This Happened (4.6343 vph)
+    - best: Jynxzi Got Warned Not To Do It... Then This Happened (4.6233 vph)
     - worst: Jynxzi Jokes He's Learning Spanish From This Game (0.0 vph)
 
 ## Experiments
