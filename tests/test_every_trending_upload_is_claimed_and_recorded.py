@@ -52,7 +52,13 @@ class LogCase(unittest.TestCase):
             rtd, "_persist_log_now",
             lambda why: self.persisted.append(
                 {"why": why, "log": json.loads(self.log_path.read_text())}))
-        for p in (p1, p2):
+        # Off CI by default: in Actions GITHUB_ACTIONS is set, and the
+        # origin refresh would merge the REAL main ledger (381 entries) into
+        # this test's empty log. A test that exercises the refresh sets it.
+        env = {k: v for k, v in __import__("os").environ.items()
+               if k != "GITHUB_ACTIONS"}
+        p3 = mock.patch.dict("os.environ", env, clear=True)
+        for p in (p1, p2, p3):
             p.start()
             self.addCleanup(p.stop)
         self.addCleanup(shutil.rmtree, self.tmp, True)
