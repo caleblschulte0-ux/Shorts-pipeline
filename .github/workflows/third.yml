@@ -148,6 +148,7 @@ jobs:
 
       - name: Render + upload
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # shared/release_video: the video becomes a Release asset (Shorts Media library)
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           # channel="third" in the packages routes the uploader to this
           # token; the shared channels' tokens are never referenced here.
