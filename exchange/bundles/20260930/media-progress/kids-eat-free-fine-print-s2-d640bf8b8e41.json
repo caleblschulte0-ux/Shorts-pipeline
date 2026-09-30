@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260930",
+  "bundle": {
+    "identity": "22bbdb45f35adc763fa1242f375208c710dfc0c27b2b2bef16b3c8e9bce2bd78",
+    "path": "exchange/bundles/20260930/bundle.json"
+  },
+  "request_id": "kids-eat-free-fine-print-s2-d640bf8b8e41",
+  "safe_request_id": "kids-eat-free-fine-print-s2-d640bf8b8e41",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e64a698bb404b8ddffcf76a2ea6371c0759860498f80ddf394d414dd0a04f9ad",
+  "prompt_used": "An editorial illustration for a short-form video: restaurant manager office. It accompanies the narration: \"whoever's actually in charge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1dcmdH72pycj85ghDiUJM2ow9UAVd-Lzk",
+    "filename": "20260930__kids-eat-free-fine-print-s2-d640bf8b8e41.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1dcmdH72pycj85ghDiUJM2ow9UAVd-Lzk",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "90db20918a7b877e74b8994a10fb12836fd04bfe9f12a5e4d619bacc9beda6ed",
+    "bytes": 1702267,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-09-30T11:24:59.249Z"
+}
