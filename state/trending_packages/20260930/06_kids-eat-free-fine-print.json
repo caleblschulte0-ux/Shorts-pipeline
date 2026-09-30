@@ -3,21 +3,71 @@
   "slug": "kids-eat-free-fine-print",
   "title": "She Tried To Get 5 \"Kids\" Free Meals",
   "script": "A mom at my restaurant tried to use our kids eat free promo for her seventeen-year-old and four random neighbor kids she called basically family. I explained the promo covers one child per paying adult, ages twelve and under. She demanded to see whoever's actually in charge and announced she would never come back. I smiled and pointed at the fine print taped right on the menu, the same fine print she had been reading upside down while yelling. Turned out she had been recording the whole thing for a complaint video, camera pointed the wrong way the entire time, catching only the ceiling and her own rant. She posted it anyway. The comments read the menu for her within minutes, and by morning three hundred people were tagging our page just to say thank you.",
-  "hashtags": ["entitledparents", "restaurant", "customerservice", "karma", "workstories", "reddit", "pettyrevenge", "waitress", "foodservice", "job", "truestory", "receipts"],
+  "hashtags": [
+    "entitledparents",
+    "restaurant",
+    "customerservice",
+    "karma",
+    "workstories",
+    "reddit",
+    "pettyrevenge",
+    "waitress",
+    "foodservice",
+    "job",
+    "truestory",
+    "receipts"
+  ],
   "shots": [
-    {"phrase": "kids eat free", "query": "restaurant menu board"},
-    {"phrase": "seventeen-year-old", "query": "teenager restaurant booth"},
-    {"phrase": "whoever's actually in charge", "query": "restaurant manager office"},
-    {"phrase": "fine print taped right on the menu", "query": "restaurant menu sign"},
-    {"phrase": "recording the whole thing", "query": "phone recording video"},
-    {"phrase": "posted it anyway", "query": "phone social media post"},
-    {"phrase": "tagging our page", "query": "restaurant social media comments"}
+    {
+      "phrase": "kids eat free",
+      "query": "restaurant menu board"
+    },
+    {
+      "phrase": "seventeen-year-old",
+      "query": "teenager restaurant booth"
+    },
+    {
+      "phrase": "whoever's actually in charge",
+      "query": "restaurant manager office"
+    },
+    {
+      "phrase": "fine print taped right on the menu",
+      "query": "restaurant menu sign"
+    },
+    {
+      "phrase": "recording the whole thing",
+      "query": "phone recording video"
+    },
+    {
+      "phrase": "posted it anyway",
+      "query": "phone social media post"
+    },
+    {
+      "phrase": "tagging our page",
+      "query": "restaurant social media comments"
+    }
   ],
   "punches": [
-    {"phrase": "never come back", "text": "NEVER COMING BACK", "color": "#ff3030"},
-    {"phrase": "camera pointed the wrong way", "text": "WRONG WAY", "color": "#ffaa30"},
-    {"phrase": "three hundred people", "text": "300 PEOPLE", "color": "#50ff80"},
-    {"phrase": "thank you", "text": "THANK YOU", "color": "#50ff80"}
+    {
+      "phrase": "never come back",
+      "text": "NEVER COMING BACK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "camera pointed the wrong way",
+      "text": "WRONG WAY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "three hundred people",
+      "text": "300 PEOPLE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "thank you",
+      "text": "THANK YOU",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"

@@ -6,14 +6,59 @@
   "y_label": "US per-capita consumption (grams/year)",
   "duration": 13,
   "source": "USDA Economic Research Service food availability data on US per-capita butter and margarine consumption (originally reported in pounds/year, converted to grams here). Figures approximate as publicly reported.",
-  "years": [2000, 2004, 2008, 2012, 2016, 2020, 2023],
-  "series": [
-    {"name": "Margarine", "color": "#f1c40f", "icon": null,
-     "values": [3629, 3175, 2722, 2404, 2177, 1950, 1814]},
-    {"name": "Butter", "color": "#fff4c1", "icon": null,
-     "values": [2041, 2177, 2268, 2540, 2631, 2812, 2858]}
+  "years": [
+    2000,
+    2004,
+    2008,
+    2012,
+    2016,
+    2020,
+    2023
   ],
-  "hashtags": ["butter", "margarine", "food", "nutrition", "usda", "data", "grocery", "kitchen", "health", "foodtrends", "cooking", "facts"],
+  "series": [
+    {
+      "name": "Margarine",
+      "color": "#f1c40f",
+      "icon": null,
+      "values": [
+        3629,
+        3175,
+        2722,
+        2404,
+        2177,
+        1950,
+        1814
+      ]
+    },
+    {
+      "name": "Butter",
+      "color": "#fff4c1",
+      "icon": null,
+      "values": [
+        2041,
+        2177,
+        2268,
+        2540,
+        2631,
+        2812,
+        2858
+      ]
+    }
+  ],
+  "hashtags": [
+    "butter",
+    "margarine",
+    "food",
+    "nutrition",
+    "usda",
+    "data",
+    "grocery",
+    "kitchen",
+    "health",
+    "foodtrends",
+    "cooking",
+    "facts"
+  ],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }

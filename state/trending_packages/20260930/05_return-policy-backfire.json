@@ -3,21 +3,88 @@
   "slug": "return-policy-backfire",
   "title": "He Fired Me For Being Nice To Customers",
   "script": "My new store manager fired a cashier for approving one lenient return, then posted a memo demanding every return get processed exactly per written policy, no exceptions, no discretion, ever. Fine by me. I laminated the policy and followed it to the letter. Torn tag but missing receipt? Denied, per section four. Opened box, no receipt, forty seconds past the register close? Denied. A regular with six years of loyalty got the same cold no as a total stranger. Complaints piled up, corporate started calling, and the manager got summoned upstairs twice in one week. Three weeks later he tried returning his own broken espresso machine without a receipt. I smiled, pulled out the laminated sheet, and read section four out loud, word for word. He stood there speechless while the whole line behind him started clapping.",
-  "hashtags": ["maliciouscompliance", "retail", "workplace", "revenge", "manager", "customerservice", "workstories", "karma", "reddit", "trueoffmychest", "job", "boss"],
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "workplace",
+    "revenge",
+    "manager",
+    "customerservice",
+    "workstories",
+    "karma",
+    "reddit",
+    "trueoffmychest",
+    "job",
+    "boss"
+  ],
   "shots": [
-    {"phrase": "fired a cashier", "query": "retail store fired"},
-    {"phrase": "posted a memo", "query": "office memo bulletin board"},
-    {"phrase": "laminated the policy", "query": "laminated paper sign"},
-    {"phrase": "Torn tag but missing receipt", "query": "torn clothing tag"},
-    {"phrase": "Complaints piled up", "query": "stack of papers desk"},
-    {"phrase": "broken espresso machine", "query": "broken espresso machine"},
-    {"phrase": "started clapping", "query": "crowd clapping applause"}
+    {
+      "phrase": "fired a cashier",
+      "query": "retail store fired"
+    },
+    {
+      "phrase": "posted a memo",
+      "query": "office memo bulletin board"
+    },
+    {
+      "phrase": "laminated the policy",
+      "query": "laminated paper sign"
+    },
+    {
+      "phrase": "Torn tag but missing receipt",
+      "query": "torn clothing tag"
+    },
+    {
+      "phrase": "Complaints piled up",
+      "query": "stack of papers desk"
+    },
+    {
+      "phrase": "broken espresso machine",
+      "query": "broken espresso machine",
+      "pin_query": "espresso machine",
+      "pin_context": "kitchen appliance retail product broken return",
+      "news_query": "espresso machine",
+      "news_angle": "The manager attempts to return his own broken espresso machine without a receipt, and the narrator enforces the strict return policy.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "kitchen appliance retail product broken return",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "espresso machine",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Rocket_silver_metal_espresso_machine_on_table.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-09-30T09:54:34Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "started clapping",
+      "query": "crowd clapping applause"
+    }
   ],
   "punches": [
-    {"phrase": "no exceptions, no discretion, ever", "text": "NO EXCEPTIONS", "color": "#ff3030"},
-    {"phrase": "Denied, per section four", "text": "DENIED", "color": "#ff3030"},
-    {"phrase": "corporate started calling", "text": "CORPORATE CALLED", "color": "#ffaa30"},
-    {"phrase": "started clapping", "text": "BUSTED", "color": "#50ff80"}
+    {
+      "phrase": "no exceptions, no discretion, ever",
+      "text": "NO EXCEPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Denied, per section four",
+      "text": "DENIED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "corporate started calling",
+      "text": "CORPORATE CALLED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "started clapping",
+      "text": "BUSTED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"

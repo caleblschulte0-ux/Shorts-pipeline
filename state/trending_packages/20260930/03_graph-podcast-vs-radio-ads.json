@@ -6,14 +6,62 @@
   "y_label": "Annual US ad revenue (billions USD)",
   "duration": 13,
   "source": "US podcast advertising revenue from IAB/PwC podcast advertising studies; US terrestrial radio advertising revenue from Radio Advertising Bureau / Insider Intelligence estimates. Figures approximate as publicly reported.",
-  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
-  "series": [
-    {"name": "Podcast ads", "color": "#9b59b6", "icon": null,
-     "values": [0.31, 0.48, 0.71, 0.85, 1.4, 1.8, 2.0, 2.3]},
-    {"name": "Radio ads", "color": "#bdc3c7", "icon": null,
-     "values": [14.0, 14.1, 14.2, 10.6, 12.75, 13.0, 12.5, 12.2]}
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
   ],
-  "hashtags": ["podcasts", "radio", "advertising", "media", "marketing", "data", "business", "streaming", "audio", "adspend", "trends", "economy"],
+  "series": [
+    {
+      "name": "Podcast ads",
+      "color": "#9b59b6",
+      "icon": null,
+      "values": [
+        0.31,
+        0.48,
+        0.71,
+        0.85,
+        1.4,
+        1.8,
+        2.0,
+        2.3
+      ]
+    },
+    {
+      "name": "Radio ads",
+      "color": "#bdc3c7",
+      "icon": null,
+      "values": [
+        14.0,
+        14.1,
+        14.2,
+        10.6,
+        12.75,
+        13.0,
+        12.5,
+        12.2
+      ]
+    }
+  ],
+  "hashtags": [
+    "podcasts",
+    "radio",
+    "advertising",
+    "media",
+    "marketing",
+    "data",
+    "business",
+    "streaming",
+    "audio",
+    "adspend",
+    "trends",
+    "economy"
+  ],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }
