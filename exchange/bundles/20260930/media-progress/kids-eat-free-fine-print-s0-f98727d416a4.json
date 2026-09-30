@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260930",
+  "bundle": {
+    "identity": "22bbdb45f35adc763fa1242f375208c710dfc0c27b2b2bef16b3c8e9bce2bd78",
+    "path": "exchange/bundles/20260930/bundle.json"
+  },
+  "request_id": "kids-eat-free-fine-print-s0-f98727d416a4",
+  "safe_request_id": "kids-eat-free-fine-print-s0-f98727d416a4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0b377b57cb5942d30ffef21dae538a875848b8d3da8df26325fb33857ad96486",
+  "prompt_used": "An editorial illustration for a short-form video: restaurant menu board. It accompanies the narration: \"kids eat free\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZMOhSpL8rgJqXaJCnsvz2E_3byKubpb3",
+    "filename": "20260930__kids-eat-free-fine-print-s0-f98727d416a4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZMOhSpL8rgJqXaJCnsvz2E_3byKubpb3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ae97c5604be9c3e389b5333995de98b26bfffc923a1be0302e7ecd8c285c75ba",
+    "bytes": 2902835,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-30T11:24:37.580Z"
+}
