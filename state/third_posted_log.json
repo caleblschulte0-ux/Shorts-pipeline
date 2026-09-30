@@ -9899,14 +9899,49 @@
       "ts": "2026-09-30T12:16:06.881208+00:00"
     },
     "clip-20260930-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/PatientObliviousHamsterMoreCowbell-OmtrSGtVulXE_mFP",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/OEfFdnVUNzg",
       "title": "Stableronaldo Gets Told To Do The C Walk On Stage And Ron Hits It",
       "kind": "twitch_clip",
-      "ts": "2026-09-30T12:18:30.053452+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-30T12:18:44.307030+00:00",
+      "uploaded_at": "2026-09-30T12:18:44.307049+00:00",
+      "publish_at": "2026-09-30T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20260930-stableronaldo-gets-told-to-do-the-c-walk-on-stag-faff6799"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PatientObliviousHamsterMoreCowbell-OmtrSGtVulXE_mFP",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "RON HITS THE C WALK",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2408,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.6,
+        "end": 14.1
+      },
+      "director_cut": true
+    },
+    "rejected-dependablesuspiciousgazellepastathat-xhur6c40z5zuuu7b": {
+      "source_url": "https://www.twitch.tv/nmplol/clip/DependableSuspiciousGazellePastaThat-XhUR6C40z5ZuUu7b",
+      "streamer": "nmplol",
+      "title": "naked glitch lol",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.7s \u2014 too short to edit",
+      "ts": "2026-09-30T12:19:34.401643+00:00"
+    },
+    "rejected-yawningblushingstrawberrypjsugar-tnanfbwbmwp2fqws": {
+      "source_url": "https://www.twitch.tv/lacy/clip/YawningBlushingStrawberryPJSugar-tNANFbwbMWp2fQwS",
+      "streamer": "lacy",
+      "title": "Nahh Peterbot said it again",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Inside joke, vague chatter, no visible e)",
+      "ts": "2026-09-30T12:19:59.562252+00:00"
     }
   }
 }

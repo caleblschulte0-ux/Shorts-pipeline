@@ -3,216 +3,6 @@
     {
       "date": "20260922",
       "dry_run": false,
-      "ts": "2026-09-22T14:03:03+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 102,
-        "with_retention": 90,
-        "with_curve": 14,
-        "fetched_at": "2026-09-22T13:35:04.774605+00:00"
-      },
-      "brain": {
-        "ok": 20,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260922-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.75,
-              "why": "visible emotional meltdown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "genuine animated rant, chat mad at him",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Snaps Back After Joe Chat Gets Mad She Won A $20K Tournament"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": [
-                "skull emoji briefly covers the streamer's face around 8.7s (reads as intentional reaction meme, not a defect, but worth "
-              ]
-            }
-          },
-          "took_s": 228.7
-        },
-        {
-          "slug": "clip-20260922-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "emoji title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "gym owner yells, visible confrontation e",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Plaqueboymax Snaps And Calls Someone Out For Wanting To Be A \"Songstress\""
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "5.1s frame is just a blank gray wall with no subject visible (likely a quick pan/transition), momentarily loses the pers"
-              ]
-            }
-          },
-          "took_s": 263.5
-        },
-        {
-          "slug": "clip-20260922-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "routine gameplay kill clip",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "kill confirmed then confusion, unclear p",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Shroud Kills The Heli And Even He Can't Believe It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "10.3s frame is empty scenery with no player/weapon or caption visible, reads as a dead gap in the action"
-              ]
-            }
-          },
-          "took_s": 169.3
-        },
-        {
-          "slug": "clip-20260922-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260922-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260922",
-      "dry_run": false,
       "ts": "2026-09-22T14:06:12+00:00",
       "feedback": {
         "snapshot": true,
@@ -5835,6 +5625,316 @@
             }
           },
           "took_s": 377.2
+        }
+      ]
+    },
+    {
+      "date": "20260930",
+      "dry_run": false,
+      "ts": "2026-09-30T12:19:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 113,
+        "with_retention": 102,
+        "with_curve": 15,
+        "fetched_at": "2026-09-30T08:46:27.034345+00:00"
+      },
+      "brain": {
+        "ok": 39,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260930-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "chase implied, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "GTA RP store robbery, then police chase",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Chases Jean Paul Down While Chat Screams Send It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Two caption layers run at once with different text (a bold centre caption and a purple-highlight bottom caption). This r",
+                "The centre caption 'IT THE FUCK' at 12.1s sits on the car and shows the profanity uncensored, while the bottom caption m",
+                "Bottom captions like 'donkey Keep passing' look like garbled transcription."
+              ]
+            }
+          },
+          "took_s": 228.7
+        },
+        {
+          "slug": "clip-20260930-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "fight review, event unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "post-fight apology, refused hug, real dr",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "frame at 5.2s shows a tiny, distant person in a hallway, but it is brief",
+                "captions sit low and slightly overlap clothing and torso, but no faces are covered",
+                "frame at 13.6s has the subject partly cropped and turned away"
+              ]
+            }
+          },
+          "took_s": 228.5
+        },
+        {
+          "slug": "clip-20260930-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague aura moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.74,
+              "why": "Axe throw lands, crowd erupts, hugs",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Aura Moment Has The Whole Room Screaming Yes"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "First two frames (0.2s and 0.6s) show a washed-out or overexposed intro shot of a different subject before the main acti",
+                "Small 'YES!' caption sits on the subject's torso in a few frames, and the big 'YES!' at 4.0s partly overlaps the helmet",
+                "Framing zooms in and out between shots, but the subject stays visible and readable throughout"
+              ]
+            }
+          },
+          "took_s": 93.7
+        },
+        {
+          "slug": "clip-20260930-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "police hunt, RP insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.42,
+              "why": "Running toward police raid; GTA RP, uncl",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha And Lang Run From The Whole PD After The Chop Spot Gets Stormed"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Caption text appears twice in the first frame: a white caption and a yellow caption both read 'really gotta go'.",
+                "The bush briefly blocks the character at 6.6s.",
+                "The last frame has a burst overlay that partly covers the subject."
+              ]
+            }
+          },
+          "took_s": 228.9
+        },
+        {
+          "slug": "clip-20260930-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "dance, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Ron dances at event; chat laughing, insi",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets Told To Do The C Walk On Stage And Ron Hits It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Subject is small and distant in a few frames (7.3s to 9.6s), but the picture is still clear and readable",
+                "Two caption layers (bold white line plus a lower line) are redundant and don't match each other, which adds clutter",
+                "The hook card fades at 2.8s and is hard to read",
+                "Overlays stay off faces and no frames are broken"
+              ]
+            }
+          },
+          "took_s": 157.4
+        },
+        {
+          "slug": "clip-20260930-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Inside joke, vague chatter, no visible e)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "inside joke, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Inside joke, vague chatter, no visible e",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 25.2
         }
       ]
     }
