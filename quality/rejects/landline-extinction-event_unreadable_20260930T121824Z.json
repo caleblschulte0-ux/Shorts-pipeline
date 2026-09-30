@@ -1,0 +1,16 @@
+{
+ "slug": "landline-extinction-event",
+ "ts": "20260930T121824Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:mid Data covers the end of China's '670M' bar, and the label is dark text on pink. 'United States o...' is cut off. 'China 669825900' is printed over the map's China shape. Faded subtitle words ('815 million' at seg0:end, 'billion in 2006,' at seg1:start) almost disappear.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "misleading_label_and_dead_hold",
+  "visible_evidence": "From hook@0.3 to seg0:end the headline number reads '158M to 1.3B' on a story about a decline from 1.26B to 815M. The caption says 'up and down the whole way', the x-axis has no labels, and the finished chart holds for about 4s while Data perches on the line tip.",
+  "root_cause": "The headline number was built as first-value-to-max over the whole series (1972 to the peak), not peak-to-now. The chart draws itself once and then has nothing left to do for the rest of the beat.",
+  "repair_goal": "Make the scene state the claim: 1.26B at the 2006 peak falling to 815M by 2025. Label 2006 and 2025 on the axis. Show the loss as physical motion across the whole beat, for example 445M lines being unplugged or cut away from a stack while the counter falls. Give Data an act tied to the fall, such as yanking cords or getting dropped down the slope, instead of perching."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

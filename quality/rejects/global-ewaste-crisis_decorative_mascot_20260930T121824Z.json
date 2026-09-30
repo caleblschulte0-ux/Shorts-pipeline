@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260930T121824Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg0:end Data stands parked in the top-left corner doing the same point. In seg1:mid he stands on top of the 2019 bar. In seg2 and seg3 he only rides up beside the fill with his hands on his head. In seg4 he stands on the pan. He never does a setup, action and pay",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "repeated_generic_chart",
+  "visible_evidence": "seg3:start to seg3:end is the same stacked column, colours and mascot pose as seg2 (22/78). The headline 1% is a 2-pixel sliver at the top of the column, with a faint label in seg3:mid that only gets circled at seg3:end.",
+  "root_cause": "The relationship was classified as 'share' and drawn with the same fill-column template as the previous beat. A share of 1% has no visible area in a column, so the subject (a mine thrown away versus a mine dug) never appears.",
+  "repair_goal": "Replace the column with a picture made of the subject. For example, a heap of 100 dead circuit boards or phones where only 1 glows gold and gets pulled back into a 'recycled' tray, while 99 ore carts roll out of a freshly dug mine beside it. The 1-in-100 should be countable and read without a label. Give Data an action: he digs the one gold chip out of the heap and holds it up next to the mine. Every label should be in full-contrast ink and clear of the column edge."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

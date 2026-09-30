@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-30T02:56:54Z",
+ "updated": "2026-09-30T12:18:15Z",
  "open": [
+  {
+   "id": "child-mortality-collapse__d8fecd16",
+   "slug": "child-mortality-collapse",
+   "filed": "2026-09-30T12:18:15Z",
+   "why": [
+    "judge: A chart slideshow: gauge, line, columns, bars. It opens on 8 seconds of a static-looking gauge and ends on a clipped health-spending stack instead of the 60% drop."
+   ],
+   "request": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.request.json",
+   "answer_path": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.answer.json"
+  },
+  {
+   "id": "landline-extinction-event__433220f2",
+   "slug": "landline-extinction-event",
+   "filed": "2026-09-30T12:18:15Z",
+   "why": [
+    "judge: A stack of generic charts whose opening headline number ('158M to 1.3B') contradicts the peak-and-decline story, with a mascot who only perches."
+   ],
+   "request": "exchange/rewrites/20260930/landline-extinction-event__433220f2.request.json",
+   "answer_path": "exchange/rewrites/20260930/landline-extinction-event__433220f2.answer.json"
+  },
+  {
+   "id": "rural-power-catch-up__88476eb6",
+   "slug": "rural-power-catch-up",
+   "filed": "2026-09-30T12:18:15Z",
+   "why": [
+    "judge: The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture."
+   ],
+   "request": "exchange/rewrites/20260930/rural-power-catch-up__88476eb6.request.json",
+   "answer_path": "exchange/rewrites/20260930/rural-power-catch-up__88476eb6.answer.json"
+  },
+  {
+   "id": "the-biggest-lightest-workforce__f95e75d6",
+   "slug": "the-biggest-lightest-workforce",
+   "filed": "2026-09-30T12:18:15Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague claim rather than a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.request.json",
+   "answer_path": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.answer.json"
+  },
+  {
+   "id": "global-ewaste-crisis__cd82412e",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-30T12:18:14Z",
+   "why": [
+    "judge: Four generic charts in a row: a slow line, bars, then the same stacked column twice, with Data parked beside them. The e-waste pile, the garbage trucks and the thrown-away mine are never shown."
+   ],
+   "request": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.request.json",
+   "answer_path": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__62469eb7",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-30T12:18:11Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies on a vague comparative size rather than a single, verifiable numerical fact."
+   ],
+   "request": "exchange/rewrites/20260930/gulf-dead-zone-growth__62469eb7.request.json",
+   "answer_path": "exchange/rewrites/20260930/gulf-dead-zone-growth__62469eb7.answer.json"
+  },
   {
    "id": "cursive-handwriting-comeback__2a2910ca",
    "slug": "cursive-handwriting-comeback",
@@ -53,16 +113,6 @@
    ],
    "request": "exchange/rewrites/20260930/kelp-forest-sea-star-collapse__88acf100.request.json",
    "answer_path": "exchange/rewrites/20260930/kelp-forest-sea-star-collapse__88acf100.answer.json"
-  },
-  {
-   "id": "global-ewaste-crisis__82dcc083_r1",
-   "slug": "global-ewaste-crisis",
-   "filed": "2026-09-30T00:26:30Z",
-   "why": [
-    "judge: Four generic charts, two of them repeats (line then bars for the same trend, then the same stacked column twice), open on a mostly empty slow chart build, with a mascot that poses instead of performing."
-   ],
-   "request": "exchange/rewrites/20260930/global-ewaste-crisis__82dcc083_r1.request.json",
-   "answer_path": "exchange/rewrites/20260930/global-ewaste-crisis__82dcc083_r1.answer.json"
   },
   {
    "id": "cargo-ship-size-growth__b798661f",
@@ -711,16 +761,6 @@
    ],
    "request": "exchange/rewrites/20260930/bird-flu-species-jump__49e828cf.request.json",
    "answer_path": "exchange/rewrites/20260930/bird-flu-species-jump__49e828cf.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__62469eb7",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-09-29T19:44:31Z",
-   "why": [
-    "premise: brain: It relies on a generic comparison rather than a clear reversal of viewer expectation and lacks a single, decisive verifiable number."
-   ],
-   "request": "exchange/rewrites/20260929/gulf-dead-zone-growth__62469eb7.request.json",
-   "answer_path": "exchange/rewrites/20260929/gulf-dead-zone-growth__62469eb7.answer.json"
   },
   {
    "id": "chess-online-boom__a777710a",

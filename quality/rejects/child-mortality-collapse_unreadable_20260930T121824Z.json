@@ -1,0 +1,21 @@
+{
+ "slug": "child-mortality-collapse",
+ "ts": "20260930T121824Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 the tops of the blue year and value labels ('2018 9.6', '2023 10.1') are sliced off. At seg0:start the caption 'dying before' is faded almost into the background.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_clipped_text_and_off_story_payoff",
+  "visible_evidence": "In seg4:mid through payoff@-0.4 the year and value readout ('2023 10.1') has its top half cut off. The stack Data holds up is health-spending bars, not child mortality. The label 'what he's carrying' means nothing. The last image is a GDP-share stack, not the 60% drop.",
+  "root_cause": "The closing composer reuses the previous beat's dataset (health spending) instead of the headline stat. Its ticker label is positioned or masked so that its top edge crops the glyphs.",
+  "repair_goal": "Rebuild the closing around the headline: 93.5 falling to 37.4 per 1,000, a 60% drop. Draw it as something made of the subject, for example a row of 94 small child figures of which about 56 light up or step aside as saved, with Data reacting to the drop. Keep every label fully inside the frame with a measured top margin, and remove the 'what he's carrying' caption."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

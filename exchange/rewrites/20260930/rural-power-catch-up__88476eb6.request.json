@@ -1,0 +1,219 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "rural-power-catch-up__88476eb6",
+ "filed": "2026-09-30T12:18:15Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "rural-power-catch-up",
+ "current": {
+  "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
+  "hook": "Rural areas got electricity. Cooking never caught up.",
+  "closing": "Wired up isn't the same as cooked up.",
+  "question": "Does your kitchen run on gas, electric, or fire? Comment below.",
+  "segments": [
+   {
+    "topic": "rural electricity access",
+    "say": "Rural electricity access jumped from 67 percent in 2000 to 85 percent by 2024 — most of the world's countryside finally got wired up."
+   },
+   {
+    "topic": "why rural cooking never caught up",
+    "say": "But clean cooking fuel access crawled from just 24 percent to 56 percent — so 44 percent of rural homes are still cooking over open fire or charcoal."
+   },
+   {
+    "topic": "power use behind the rural electricity gap",
+    "say": "Meanwhile overall electricity use per person climbed from 2,093 to 3,558 kilowatt-hours a year — the world is using more power, just not always the cleanest kind."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "rural electricity access",
+   "say": "Rural electricity access jumped from 67 percent in 2000 to 85 percent by 2024 — most of the world's countryside finally got wired up.",
+   "role": "1 · THE WIRE-UP",
+   "data": {
+    "file": "eg_elc_accs_ru_zs_trend.json",
+    "unit": "% of rural population",
+    "title": "Access to electricity, rural",
+    "points": [
+     {
+      "label": "2000",
+      "value": 66.5,
+      "period": "2000"
+     },
+     {
+      "label": "2005",
+      "value": 68.4,
+      "period": "2005"
+     },
+     {
+      "label": "2010",
+      "value": 73.1,
+      "period": "2010"
+     },
+     {
+      "label": "2014",
+      "value": 76.1,
+      "period": "2014"
+     },
+     {
+      "label": "2019",
+      "value": 82.6,
+      "period": "2019"
+     },
+     {
+      "label": "2024",
+      "value": 84.9,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why rural cooking never caught up",
+   "say": "But clean cooking fuel access crawled from just 24 percent to 56 percent — so 44 percent of rural homes are still cooking over open fire or charcoal.",
+   "role": "2 · THE LAG",
+   "data": {
+    "file": "eg_cft_accs_ru_zs_trend.json",
+    "unit": "% of rural population",
+    "title": "Access to clean fuels and technologies for cooking, rural",
+    "points": [
+     {
+      "label": "2000",
+      "value": 23.8,
+      "period": "2000"
+     },
+     {
+      "label": "2005",
+      "value": 26.1,
+      "period": "2005"
+     },
+     {
+      "label": "2009",
+      "value": 29.2,
+      "period": "2009"
+     },
+     {
+      "label": "2014",
+      "value": 36.8,
+      "period": "2014"
+     },
+     {
+      "label": "2018",
+      "value": 45.3,
+      "period": "2018"
+     },
+     {
+      "label": "2023",
+      "value": 55.8,
+      "period": "2023"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "power use behind the rural electricity gap",
+   "say": "Meanwhile overall electricity use per person climbed from 2,093 to 3,558 kilowatt-hours a year — the world is using more power, just not always the cleanest kind.",
+   "role": "3 · THE USE",
+   "data": {
+    "file": "eg_use_elec_kh_pc_trend.json",
+    "unit": "kWh per capita",
+    "title": "Electric power consumption",
+    "points": [
+     {
+      "label": "1990",
+      "value": 2093,
+      "period": "1990"
+     },
+     {
+      "label": "1997",
+      "value": 2218,
+      "period": "1997"
+     },
+     {
+      "label": "2003",
+      "value": 2438,
+      "period": "2003"
+     },
+     {
+      "label": "2010",
+      "value": 2888,
+      "period": "2010"
+     },
+     {
+      "label": "2016",
+      "value": 3138,
+      "period": "2016"
+     },
+     {
+      "label": "2023",
+      "value": 3558,
+      "period": "2023"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "judge: The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture."
+ ],
+ "reasons": [
+  "judge: The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture."
+ ],
+ "judge": {
+  "ts": "2026-09-30T11:43:15+00:00",
+  "score": 39,
+  "one_line": "The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture.",
+  "problems": [
+   "The hook (0-4s) has no motion with a purpose: faint unlabeled numbers on an empty gradient.",
+   "Irrelevant watermarked stock thumbnails (a winding road, a man walking at sunset) appear in the hook/seg0.",
+   "Captions fade to near-invisible grey (seg0:start 'countryside got', seg1:start 'percent in 2000').",
+   "Data is decorative: arms raised, riding markers, standing beside a wall that builds itself.",
+   "seg3:end: the mascot covers the 55.8 end label.",
+   "The headline '44% cooking over fire' is never visualized. The closing gauge shows 55.8, the clean share, not the 44% on fire."
+  ],
+  "fixes": [
+   "Replace the hook with a full-frame contrast: a lit bulb over a smoking cookfire, with electricity 85% set against cooking 56%.",
+   "Delete the stock thumbnails and the floating number list.",
+   "Make the payoff show 44 of 100 homes still with smoke/fire rising, not a clean-fuel dial.",
+   "Give Data a real bit: fanning smoke away from a pot, or flipping the light switch and then coughing at the fire.",
+   "Keep the mascot clear of value labels, and keep caption opacity at full.",
+   "Retitle seg2 honestly as world electricity use per person."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260930/rural-power-catch-up__88476eb6.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

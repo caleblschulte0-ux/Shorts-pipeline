@@ -1,0 +1,21 @@
+{
+ "slug": "rural-power-catch-up",
+ "ts": "20260930T121824Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@2.2 / seg0:end: small stock thumbnails of a green winding-road landscape and a silhouetted man walking on a sunset road, with watermarks. They have nothing to do with rural electricity or cooking fuel.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "empty_void_junk_hook",
+  "visible_evidence": "hook@0.3 to seg0:end: a dark empty gradient holding faint teal numbers (76.1/2014, 73.1/2010, 68.4/2005) with no labels, plus two small watermarked stock photos (a winding green road, a man on a sunset road). No mascot, no subject, no motion with a purpose.",
+  "root_cause": "The hook scene fell back to a floating-number list with auto-grabbed stock thumbnails. No machine carries the 'wired but still cooking over fire' contrast, and the numbers do not even say what they measure.",
+  "repair_goal": "Open on the tension right away: a rural home whose light bulb switches on (electricity 85%) while a smoking fire keeps burning beneath the cooking pot (44% still on fire). Make it full-frame, with Data reacting to the smoke. Remove the stock thumbnails and the unlabeled floating numbers."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
