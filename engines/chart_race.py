@@ -374,10 +374,13 @@ def _trim_words(t: str) -> str:
     # leaves "...Ozempic + Wegovy and Eli" and "...Bank of New York, Center
     # for Microeconomic": a name with its tail missing, which the judge
     # reads as cut off. A credit that is too long nearly always lists
-    # several things, so drop whole items at the last seam that fits.
+    # several things, so drop whole items at the last seam that fits — but
+    # only a seam that keeps most of the budget: "US per-capita meat
+    # availability, USDA Economic Research Service" cut at its comma is a
+    # credit with no publisher in it.
     if len(t) > CREDIT_MAX_CHARS:
         seams = [m.start() for m in _SEAM.finditer(t)
-                 if 20 <= m.start() <= CREDIT_MAX_CHARS]
+                 if 0.6 * CREDIT_MAX_CHARS <= m.start() <= CREDIT_MAX_CHARS]
         if seams:
             t = t[:seams[-1]].strip(" .,;:—-")
     words = t.split()
