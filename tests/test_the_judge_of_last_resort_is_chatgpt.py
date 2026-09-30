@@ -352,8 +352,13 @@ class AletheiaIsAReaderNotAPatient(unittest.TestCase):
             self.assertNotIn("aletheia/", src.replace("aletheia/` ", ""), f.name)
 
     def test_the_doc_says_so(self):
+        # 2026-09-30: Aletheia became a GRADER of this mailbox on the
+        # operator's ruling ("let Alethea answer the mailbox"). What the doc
+        # must still say: who answers, that code decides, and that this
+        # repo never writes into her intercom.
         txt = (ROOT / "docs" / "REVIEW_MAILBOX.md").read_text()
-        for s in ("sucker fish", "Nothing in Aletheia changes", "Never the intercom"):
+        for s in ("sucker fish", "Aletheia answers it too", "Code still decides",
+                  "Never the intercom"):
             self.assertIn(s, txt, s)
 
 

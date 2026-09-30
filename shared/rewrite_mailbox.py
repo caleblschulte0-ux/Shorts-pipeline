@@ -64,6 +64,15 @@ MAX_TOPIC_WORDS = 4       # a topic is an ON-SCREEN label; long ones clip
 MAX_SAY_WORDS = 40
 WORDS_BY = "chatgpt-rewrite"
 
+
+def words_by(ans: dict) -> str:
+    """Who wrote these words, for the record: `aletheia:<route>` answers
+    (operator, 2026-09-30: "let Alethea answer the mailbox") are
+    Aletheia's; anything else keeps the historical name. Provenance only —
+    every writer's words pass the same `validate`."""
+    head = str((ans or {}).get("by") or "").strip().lower().split(":", 1)[0]
+    return "aletheia-rewrite" if head == "aletheia" else WORDS_BY
+
 #: The gate's four word rules, in the words ChatGPT is given. These restate
 #: `scripts/editorial_gate.py` — the CODE there is what decides, this text
 #: only tells the writer what it will be measured against.
@@ -528,13 +537,13 @@ def validate(sc: dict, ans: dict) -> tuple[dict | None, list[str]]:
     return cand, []
 
 
-def apply(cfg: dict, cand: dict) -> bool:
+def apply(cfg: dict, cand: dict, by: str = WORDS_BY) -> bool:
     """Put the validated words into the config (in memory) and drop the
     slug's old scene plan — a rewritten story is a new story to plan."""
     for i, s in enumerate(cfg.get("stories") or []):
         if s.get("slug") == cand.get("slug"):
             cand = dict(cand)
-            cand["words_by"] = WORDS_BY
+            cand["words_by"] = by
             cand["rewritten_at"] = _now()
             cfg["stories"][i] = cand
             try:
@@ -586,11 +595,12 @@ def claim_all(config_path: Path | None = None, *, rewrites_dir: Path | None = No
             file_request(sc, (req.get("held_for") or []), judge=req.get("judge"),
                          prior_rejection=problems, rewrites_dir=rewrites_dir)
             continue
-        if apply(cfg, cand):
+        by = words_by(ans)
+        if apply(cfg, cand, by):
             changed = True
-            settle(req, {"decision": "applied", "words_by": WORDS_BY})
+            settle(req, {"decision": "applied", "words_by": by})
             report["applied"].append(req["slug"])
-            print(f"[rewrites] APPLIED ChatGPT words to {req['slug']}", flush=True)
+            print(f"[rewrites] APPLIED {by} words to {req['slug']}", flush=True)
     if changed and not dry_run:
         tmp = config_path.with_suffix(".json.tmp")
         # in the file's own indent, or one rewrite is a 29,000-line diff

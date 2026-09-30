@@ -95,9 +95,13 @@ is better videos, never a weaker gate.
   decides; nothing in the mailbox can ship what the gate did not approve.
   The same mailbox idea ends the text chain: `shared/llm_mailbox.py` files
   a question no backend could answer into `exchange/asks/` and returns the
-  committed answer on the next run. Aletheia is attached as a reader only
-  ("sucker fish"): the Thea ChatGPT Project takes the round, its pulse
-  already watches the verdict log; nothing in Aletheia is edited.
+  committed answer on the next run. **Aletheia answers all three
+  mailboxes too** (ruling 2026-09-30, after ChatGPT answered none of them
+  for nine days: *"let Alethea answer the mailbox ... We're not posting bad
+  stuff"*): from his PC every 30 minutes, his Claude → Codex on his ChatGPT
+  → her own local models, `"by": "aletheia:<route>"`. Her answers go
+  through the same code as anyone's; she only writes answer files, and
+  this repo still never writes into her intercom.
 - **A held explainer story is RE-AUTHORED, not parked** (ruling
   2026-09-22, `shared/rewrite_mailbox.py`). The deterministic gate held
   312 of 337 stories that morning, nearly all for WORD reasons, and

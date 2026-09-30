@@ -79,7 +79,7 @@ ANSWER_SCHEMA = {
     "schema": VERDICT_SCHEMA,
     "request_id": "<the request's id, copied exactly>",
     "video_sha256": "<the request's video_sha256, copied exactly>",
-    "by": "chatgpt",
+    "by": "<who graded: chatgpt, or aletheia:<route>>",
     "graded_at": "<ISO-8601 UTC>",
     "grades": "<the JSON object the prompt asks for: dimensions, checks, "
               "weakest_scene, depictions, one_line, problems, fixes>",
@@ -293,6 +293,34 @@ def verdict_for(req: dict) -> tuple[dict | None, str]:
     if not isinstance(grades, dict):
         return None, "verdict has no grades object"
     return grades, "ok"
+
+
+#: Who may answer the mailbox, and the name the ledger records for each.
+#: Operator, 2026-09-30, after ChatGPT had answered none of 61 requests in
+#: nine days: *"yes, obviously let Alethea answer the mailbox ... I just
+#: need Alethea to make sure shit gets posted"* — and, in the same breath,
+#: *"We're not posting bad stuff."* So Aletheia grades from his PC (his
+#: Claude, then Codex on his ChatGPT, then her own local vision model) and
+#: her grades go through the SAME `assemble_verdict` + `showrunner_gate.
+#: decide` as every other judge's. The name is provenance, never authority.
+GRADERS = {"chatgpt": "chatgpt-mailbox", "aletheia": "aletheia-mailbox"}
+
+
+def grader_of(verdict_by) -> str:
+    """The ledger name for a verdict's `by` (`aletheia:codex` is Aletheia's).
+    Anything unrecognised keeps the historical name, so an older verdict
+    written without a `by` is recorded as it always was."""
+    head = str(verdict_by or "").strip().lower().split(":", 1)[0].strip()
+    return GRADERS.get(head, GRADERS["chatgpt"])
+
+
+def verdict_by(req: dict) -> str:
+    """The raw `by` of this request's verdict, or ''."""
+    vp = Path(req["_path"]).parent / f"{req['id']}.verdict.json"
+    try:
+        return str(json.loads(vp.read_text()).get("by") or "")
+    except Exception:  # noqa: BLE001
+        return ""
 
 
 def has_verdict(req: dict) -> bool:

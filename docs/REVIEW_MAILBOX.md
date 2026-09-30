@@ -126,29 +126,43 @@ executing it). One roll-up index, `exchange/OPEN.json`, tells it whether
 any of the three mailboxes has work. Change section 7 and every firing
 changes; no app prompt is ever touched again.
 
-## The sucker fish — how this uses Aletheia without touching it
+## Aletheia answers it too (ruling 2026-09-30)
 
-Aletheia (`caleblschulte0-ux/aletheia`) is Caleb's local-first OS; its
-voice is the ChatGPT Project ("Thea") that reads Aletheia's truth from
-its repo and relays commands. That same ChatGPT subscription is the
-reader here. Nothing in Aletheia changes:
+The sucker-fish arrangement below lasted nine days and answered nothing:
+from 09-21 to 09-30 ChatGPT graded **0 of 61** review requests, **0 of 681**
+rewrites and **0 of ~100** asks, and the explainer posted 0 on 09-28 with
+every render held for want of a judge. Operator, 2026-09-30: *"yes,
+obviously let Alethea answer the mailbox ... I just need Alethea to make
+sure shit gets posted, and if it doesn't get posted, that she gets shit
+done"* — and, in the same breath, *"We're not posting bad stuff."*
 
-- **Same reader.** The review round above is one more paragraph in the
-  Thea Project's instructions. No new account, no API key, no code in
-  Aletheia. Caleb can also just say "do the shorts review round" to Thea.
-- **Same truth.** Aletheia's fleet registry already watches this repo's
-  `state/showrunner_verdicts.jsonl` and every publishing workflow. A
-  mailbox verdict lands in that file with `judge: chatgpt-mailbox`, so
-  the pulse, the sentinel and the morning brief see it with no change.
-- **Not the local models.** Aletheia's own `eyes.py` measured local
-  vision on the PC at 157–178 s per screenshot and ruled it out; its
-  cloud worker runs on the same Claude subscription that hit the limit.
-  Neither is a judge. What Aletheia contributes is the always-on ChatGPT
-  reader and the fleet view — which is exactly what a remora needs from
-  its shark.
-- **Never the intercom.** Aletheia's `exchange/commands/` contract says a
-  command relays the operator's words. This pipeline does not file
-  commands there and never will; that would be messing with it.
+So Aletheia (`caleblschulte0-ux/aletheia`, `aletheia/shorts_mailbox.py`)
+is now a grader of all three mailboxes, from his PC, on a 30-minute
+scheduled task. It asks his Claude subscription first, then Codex on his
+ChatGPT subscription, then its own local models (a vision model for the
+contact sheet: minutes per picture, which he accepted: *"I don't care if
+Alethea takes an extra three hours"*). It writes ONLY answer files, only
+at the paths its fleet grant names, and marks each with
+`"by": "aletheia:<route>"`.
+
+- **Code still decides.** Her grades go through the same
+  `assemble_verdict` + `showrunner_gate.decide`; her rewrites through the
+  same `validate`. The ledger records `judge: aletheia-mailbox`, the
+  config `words_by: aletheia-rewrite`. A grader's name is provenance,
+  never authority.
+- **Only the newest cut is judged.** Every re-render filed its own
+  request (fourteen for one story on 09-28); the claim step now settles
+  the older unanswered ones as superseded (`supersede_stale`).
+- **Never the intercom.** This pipeline still files nothing into
+  Aletheia's `exchange/commands/`; the arrow points one way — she answers
+  here, this repo never commands her.
+
+### The sucker fish (2026-09-21, superseded as the only reader)
+
+The original arrangement: the Thea ChatGPT Project reads `exchange/OPEN.json`
+as one more paragraph of its instructions, and Aletheia's pulse watches
+`state/showrunner_verdicts.jsonl`. It is still wired and still welcome —
+ChatGPT answering first costs nothing — but it is no longer the only reader.
 
 ## What does not move
 
