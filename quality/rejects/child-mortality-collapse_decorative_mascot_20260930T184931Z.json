@@ -1,0 +1,21 @@
+{
+ "slug": "child-mortality-collapse",
+ "ts": "20260930T184931Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data walks the line in the hook (hook@0.3 to seg0:end), but from seg1:mid through seg3:end he just perches on the top of a bar (seg2:end, seg3:end), and in seg4 he holds up bars that carry no idea from the story.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_and_off_story_closing",
+  "visible_evidence": "The closing line 'Progress doesn't announce itself' plays over a scrolling readout of health-spending years and values ('2009 9.8' to '2023 10.1') that clips out of the frame at the top. Data holds up a stack of grey bars under the placeholder caption 'what he's carrying'. Nothing links it back to child mortality or the 60% drop.",
+  "root_cause": "The closing reuses the last beat's health-spending series as a generic 'carry' machine instead of paying off the headline number. Its scrolling value ticker has no clip-safe margin, and the scene ships a debug-style caption.",
+  "repair_goal": "Pay off the 60% drop: for example, Data sets down 93.5 in 1,000 kid markers until only 37.4 remain lit, with the 60% landing big. Keep every label fully inside the frame, and remove the 'what he's carrying' caption and the health-spending ticker."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

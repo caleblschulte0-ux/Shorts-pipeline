@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260930T184931Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3\u2013seg0:mid: a tiny line fills the lower-left corner, and the whole right 'projected' half and the band between y\u2248500 and the captions are empty dark gradient.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "empty_void",
+  "visible_evidence": "hook@0.3\u2013seg0:end: a thin line chart crawls across the lower-left third while the right half ('projected') and the lower third stay blank. The title reads 'the data stops here'. Data stands pointing in the corner, away from the mark.",
+  "root_cause": "The opening is a forecast-line chart built slowly from the left edge, so the first two seconds show almost nothing. The mascot is placed as a corner sticker rather than inside the demonstration.",
+  "repair_goal": "Open on a physical pile of e-waste (phones and laptops stacking) that grows from 34M to 62M tons in the first second and fills the frame. Data should toss a dead phone onto the pile so the hook line lands on an action, and the 2030 projection should show as the pile overflowing past a marked line."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

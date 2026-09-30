@@ -1,0 +1,25 @@
+{
+ "slug": "landline-extinction-event",
+ "ts": "20260930T184931Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:end the mascot stands on the end of China's bar and covers the '6' in '670M', the key number of the beat. At seg1:end he also covers most of the 1972 bar.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "claim_not_shown",
+  "visible_evidence": "seg1:start to seg1:end: the title is 'landlines since their 2006 peak', but the bars are 1972, 1982, 1991, 2015 and 2025, with 2015 (1.1B) as the longest. There is no 2006 bar and no 1.26B. It repeats the same series the hook's line chart just showed, and the mascot parks on the bars and covers the 1972 row.",
+  "root_cause": "The scene uses a generic ranked-bar chart on a sparse sample of years, so the peak the script names drops out. It restates the hook with a weaker picture instead of adding anything new.",
+  "repair_goal": "Replace the bar chart with a picture made of the subject that shows a rise to a 2006 peak of 1.26B and a fall to 815M. For example, a wall of desk phones that fills to 2006, after which phones unplug and go dark down to 815M. Label the 2006 peak explicitly. Keep the mascot off every label, and give him a bit such as pulling the cords."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
