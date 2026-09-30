@@ -9762,6 +9762,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-09-29T23:34:05.233468+00:00"
+    },
+    "clip-20260930-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/BenevolentSquareDolphinPeanutButterJellyTime-cZn6j11kAfLajjOF",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Chases Jean Paul Down While Chat Screams Send It",
+      "kind": "twitch_clip",
+      "ts": "2026-09-30T12:03:38.025452+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
