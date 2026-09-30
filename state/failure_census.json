@@ -2,92 +2,103 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 8,
+   "count": 20,
    "stories": {
-    "iss-sixteen-sunrises": 1,
+    "the-biggest-lightest-workforce": 1,
+    "landline-extinction-event": 12,
     "global-ewaste-crisis": 4,
-    "kelp-forest-sea-star-collapse": 3
+    "child-mortality-collapse": 3
    },
    "timestamps": [
-    "2026-09-29T11:45:05+00:00",
-    "2026-09-30T00:07:02+00:00",
-    "2026-09-30T00:07:02+00:00",
-    "2026-09-30T00:14:02+00:00",
-    "2026-09-30T00:20:55+00:00",
-    "2026-09-30T00:26:19+00:00",
-    "2026-09-30T00:26:19+00:00",
-    "2026-09-30T00:26:19+00:00"
+    "2026-09-30T15:53:31+00:00",
+    "2026-09-30T16:00:49+00:00",
+    "2026-09-30T16:00:49+00:00",
+    "2026-09-30T16:00:49+00:00",
+    "2026-09-30T16:08:02+00:00",
+    "2026-09-30T16:14:09+00:00",
+    "2026-09-30T16:14:09+00:00",
+    "2026-09-30T16:14:09+00:00",
+    "2026-09-30T17:48:34+00:00",
+    "2026-09-30T17:59:54+00:00",
+    "2026-09-30T18:19:09+00:00",
+    "2026-09-30T18:28:01+00:00",
+    "2026-09-30T18:28:01+00:00",
+    "2026-09-30T18:35:56+00:00",
+    "2026-09-30T18:35:56+00:00",
+    "2026-09-30T18:42:55+00:00",
+    "2026-09-30T18:42:55+00:00",
+    "2026-09-30T18:49:06+00:00",
+    "2026-09-30T19:07:54+00:00",
+    "2026-09-30T19:21:31+00:00"
    ],
    "examples": [
-    "decorative_mascot: In seg0, from hook@0.3 (t=0.30s) to seg0:end (t=4.50s), the mascot is a static icon next to the ISS orbital speed, performing no action or interaction.",
-    "decorative_mascot: From hook@0.3 to seg0:end Data stands in the top-left corner pointing at nothing. In seg1:mid and seg1:end he drifts across the bars. In seg4:start to seg4:end he stands on the scal",
-    "unreadable: The labels 'Properly recycled 22%' (seg2:start) and 'Met by new mining 99%' / 'Met by e-waste recycling 1%' (seg3:start) are dim grey on navy and disappear at phone distance. The source li"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
-   "count": 7,
-   "stories": {
-    "coldest-place-in-the-universe-is-human-made": 7
-   },
-   "timestamps": [
-    "2026-09-28T18:42:57+00:00",
-    "2026-09-28T19:19:41+00:00",
-    "2026-09-29T15:51:19+00:00",
-    "2026-09-29T19:00:10+00:00",
-    "2026-09-29T19:44:25+00:00",
-    "2026-09-29T22:37:55+00:00",
-    "2026-09-29T23:54:08+00:00"
-   ],
-   "examples": [
-    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "temporal_gate: duplicate_ratio 0.525 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "temporal_gate: duplicate_ratio 0.534 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 3,
-   "stories": {
-    "global-ewaste-crisis": 3
-   },
-   "timestamps": [
-    "2026-09-30T00:07:02+00:00",
-    "2026-09-30T00:14:02+00:00",
-    "2026-09-30T00:20:55+00:00"
-   ],
-   "examples": [
-    "empty_void: At hook@0.3 and hook@0.8 the only content is a tiny line stub in the lower left. The whole right half past the 'data stops here' line and the band from y\u2248490 to y\u2248660 are empty dark gradie",
-    "empty_void: hook@0.3 through seg0:mid: a thin line fills a small patch lower-left, the whole 'projected' right half is blank, and the band between y\u2248490 and the captions is dead dark space.",
-    "empty_void: hook@0.3 through hook@2.2: a tiny line sits in the lower-left corner, and the 'projected' half and the whole lower third of the frame are empty dark navy for about 3s."
+    "decorative_mascot: In seg0:end Data stands on the 1997 bar, and in seg2:start he rides the 1993 bar top. In seg1:end and seg3:mid he stands at the end of a column with his arms up. He never does a set",
+    "decorative_mascot: Data stands off to the side waving at seg1:start/mid/end, and mostly poses at the end of a line or bar (seg0:mid, seg2:end). He only really acts in seg3, where he shoves the China b",
+    "dead_air: The hook line chart (hook@0.3 to seg0:end, about 6s) is almost the same frame the whole time. Only the mascot moves a little along a line that is already drawn. Measured held_s is 10.54 and "
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 2,
+   "count": 14,
    "stories": {
-    "global-ewaste-crisis": 2
+    "the-biggest-lightest-workforce": 2,
+    "global-ewaste-crisis": 6,
+    "child-mortality-collapse": 5,
+    "landline-extinction-event": 1
    },
    "timestamps": [
-    "2026-09-30T00:14:02+00:00",
-    "2026-09-30T00:20:55+00:00"
+    "2026-09-30T15:46:27+00:00",
+    "2026-09-30T15:53:31+00:00",
+    "2026-09-30T17:48:34+00:00",
+    "2026-09-30T17:54:18+00:00",
+    "2026-09-30T17:59:54+00:00",
+    "2026-09-30T18:11:06+00:00",
+    "2026-09-30T18:19:09+00:00",
+    "2026-09-30T18:35:56+00:00",
+    "2026-09-30T19:07:54+00:00",
+    "2026-09-30T19:14:47+00:00",
+    "2026-09-30T19:21:31+00:00",
+    "2026-09-30T19:35:47+00:00",
+    "2026-09-30T19:49:19+00:00",
+    "2026-09-30T20:01:44+00:00"
    ],
    "examples": [
-    "unreadable: seg2:start: 'Properly recycled 22%' and 'Not properly recycled 78%' are grey on navy and almost invisible. seg3:start/mid: 'Met by e-waste recycling 1%' and 'Met by new mining 99%' fade in",
-    "unreadable: At seg3:start, 'Met by e-waste recycling 1%' and 'Met by new mining 99%' are grey on slate and almost invisible. 'Properly recycled 22%' at seg2:start and the year labels at seg1:start are"
+    "unreadable: In seg1:mid and seg1:end the 1990 value label is cut off by the left edge and reads \",322,587,072\" instead of \"2,322,587,072\". In seg2:end the 2014 55 and 2025 54.5 labels are crammed toge",
+    "unreadable: seg1:start and seg1:end: the 1990 value label runs off the left frame edge and reads '2,322,587,072' with its first digit clipped. seg1:end: the long 10-digit labels crowd each other over ",
+    "unreadable: At seg1:start every label and value is washed-out grey and the bars are invisible. At seg2:start the 'Properly recycled 22%' and 'Not properly recycled 78%' labels are dim grey on grey. At"
    ],
    "recurred_after_fix": false
   },
-  "junk_imagery": {
-   "count": 1,
+  "empty_void": {
+   "count": 4,
    "stories": {
-    "he_banned_email__the_task_board_remember": 1
+    "the-biggest-lightest-workforce": 1,
+    "landline-extinction-event": 1,
+    "global-ewaste-crisis": 2
    },
    "timestamps": [
-    "2026-09-29T11:41:42+00:00"
+    "2026-09-30T15:53:31+00:00",
+    "2026-09-30T16:00:49+00:00",
+    "2026-09-30T17:59:54+00:00",
+    "2026-09-30T19:07:54+00:00"
    ],
    "examples": [
-    "junk_imagery: Frames mid1, mid3, mid4, and mid5 display generic AI images of people in office settings that do not earn their place as bespoke visuals, despite being topically relevant."
+    "empty_void: seg1:start: the upper half, and everything right of the single 1990 column, is empty dark gradient. seg3:start: the top 40% above three small bars is empty.",
+    "empty_void: At seg1:start the frame is almost empty: a small dot and pill in the middle, a faint polyline, and big blank dark areas above and below.",
+    "empty_void: hook@0.3\u2013seg0:mid: a tiny line fills the lower-left corner, and the whole right 'projected' half and the band between y\u2248500 and the captions are empty dark gradient."
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "child-mortality-collapse": 1
+   },
+   "timestamps": [
+    "2026-09-30T18:11:06+00:00"
+   ],
+   "examples": [
+    "dead_air: The same tank shot runs from hook@0.3 to seg1:start (about 8.4s). Only the blue band creeps down a few pixels and Data keeps the same pointing pose, so the hook and seg0 look identical."
    ],
    "recurred_after_fix": false
   }
@@ -95,33 +106,33 @@
  "weak_dims": {
   "hook": {
    "median": 2,
-   "min": 0,
-   "max": 4
+   "min": 1,
+   "max": 3
   },
   "data_demo": {
    "median": 2,
-   "min": 0,
-   "max": 5
+   "min": 1,
+   "max": 3
   },
   "mascot": {
-   "median": 1,
-   "min": 0,
-   "max": 4
+   "median": 2,
+   "min": 1,
+   "max": 2
   },
   "craft": {
-   "median": 2,
-   "min": 0,
-   "max": 3
+   "median": 1,
+   "min": 1,
+   "max": 2
   },
   "pace": {
    "median": 1,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "payoff": {
    "median": 1,
    "min": 0,
-   "max": 2
+   "max": 1
   },
   "temporal_craft": {
    "median": 3,
@@ -130,25 +141,25 @@
   }
  },
  "scores": [
-  14,
-  14,
-  91,
-  91,
-  96,
-  100,
-  91,
-  91,
-  87,
-  92,
-  91,
-  14,
-  14,
-  14,
-  14,
-  14,
-  48,
+  65,
+  53,
+  39,
   48,
   39,
-  48
+  39,
+  52,
+  44,
+  53,
+  44,
+  40,
+  48,
+  52,
+  57,
+  43,
+  56,
+  48,
+  66,
+  70,
+  70
  ]
 }
