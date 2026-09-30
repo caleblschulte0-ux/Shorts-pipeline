@@ -2,7 +2,7 @@
   "subreddit": "MaliciousCompliance",
   "slug": "return-policy-backfire",
   "title": "He Fired Me For Being Nice To Customers",
-  "script": "My new store manager fired a cashier for approving one lenient return, then posted a memo demanding every return get processed exactly per written policy, no exceptions, no discretion, ever. Fine by me. I laminated the policy and followed it to the letter. Torn tag but missing receipt? Denied, per section four. Opened box, no receipt, forty seconds past the register close? Denied. A regular with six years of loyalty got the same cold no as a total stranger. Complaints piled up, corporate started calling, and the manager got summoned upstairs twice in one week. Three weeks later he tried returning his own broken espresso machine without a receipt. I smiled, pulled out the laminated sheet, and read section four out loud, word for word. He stood there speechless while the whole line behind him started clapping.",
+  "script": "My manager fired a cashier for approving one lenient return, then posted a memo: every return exactly per written policy, no exceptions, no discretion, ever. Fine by me. I laminated the policy and followed it to the letter. Torn tag but missing receipt? Denied, per section four. Opened box, no receipt, forty seconds past register close? Denied. A regular with six years of loyalty got the same cold no as a stranger. Complaints piled up, corporate started calling, and the manager got summoned upstairs twice in one week. Three weeks later, he tried returning his own broken espresso machine without a receipt. I smiled, pulled out the laminated sheet, and read section four out loud. He stood speechless while the whole line behind him started clapping. His exceptions returned before his refund did.",
   "hashtags": [
     "maliciouscompliance",
     "retail",
@@ -20,23 +20,48 @@
   "shots": [
     {
       "phrase": "fired a cashier",
-      "query": "retail store fired"
+      "query": "retail store fired",
+      "image_url": "https://drive.google.com/uc?export=download&id=1iQGpN_5cT7RsO9sL6ywHxPY3ow-bLY0G",
+      "media_origin": "chatgpt",
+      "media_file_id": "1iQGpN_5cT7RsO9sL6ywHxPY3ow-bLY0G",
+      "media_sha256": "219b3e38121d37a4575be3b561233ee36efd9c09bc65193290373cc80fc6a18c",
+      "media_bytes": 1928105
     },
     {
       "phrase": "posted a memo",
-      "query": "office memo bulletin board"
+      "query": "office memo bulletin board",
+      "image_url": "https://drive.google.com/uc?export=download&id=1IV9GIPOayYRfYCRuOywjwlslZw19FWNI",
+      "media_origin": "chatgpt",
+      "media_file_id": "1IV9GIPOayYRfYCRuOywjwlslZw19FWNI",
+      "media_sha256": "e44a7654b70f6ac687f1dbb6f8dbd75884870906de02cf292326827bbd5f3b1f",
+      "media_bytes": 2094949
     },
     {
       "phrase": "laminated the policy",
-      "query": "laminated paper sign"
+      "query": "laminated paper sign",
+      "image_url": "https://drive.google.com/uc?export=download&id=1oLm1p9h0CzG2EQwdXE1K49aDZcUubUhA",
+      "media_origin": "chatgpt",
+      "media_file_id": "1oLm1p9h0CzG2EQwdXE1K49aDZcUubUhA",
+      "media_sha256": "7aaa536c6184630d1e9d3023d6b75fc98d9dc1da3673fecd489f06569898c943",
+      "media_bytes": 1817393
     },
     {
       "phrase": "Torn tag but missing receipt",
-      "query": "torn clothing tag"
+      "query": "torn clothing tag",
+      "image_url": "https://drive.google.com/uc?export=download&id=1_7yXzV89LUHWdQdxs3sOCUHOpB6aCTD0",
+      "media_origin": "chatgpt",
+      "media_file_id": "1_7yXzV89LUHWdQdxs3sOCUHOpB6aCTD0",
+      "media_sha256": "253ba183114069af6fbadb1be1096d8960d8fc3da9c2ee5f3dc902d0f1d948ee",
+      "media_bytes": 2333588
     },
     {
       "phrase": "Complaints piled up",
-      "query": "stack of papers desk"
+      "query": "stack of papers desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=1e7WSxjYIgAXbp2z-QNi3KVEsCFhkQFhG",
+      "media_origin": "chatgpt",
+      "media_file_id": "1e7WSxjYIgAXbp2z-QNi3KVEsCFhkQFhG",
+      "media_sha256": "034c6eea3921112ecc711cf46c9017ae8cd0c567f35389601e3a7a2340510fdc",
+      "media_bytes": 1857147
     },
     {
       "phrase": "broken espresso machine",
@@ -61,7 +86,12 @@
     },
     {
       "phrase": "started clapping",
-      "query": "crowd clapping applause"
+      "query": "crowd clapping applause",
+      "image_url": "https://drive.google.com/uc?export=download&id=1iSop7EBLQrvNVLPCTuDQVohlcjqmVKPM",
+      "media_origin": "chatgpt",
+      "media_file_id": "1iSop7EBLQrvNVLPCTuDQVohlcjqmVKPM",
+      "media_sha256": "7706cb9f46243445041630f122f6e397390be166c682bd681b91f5d69304a763",
+      "media_bytes": 2085708
     }
   ],
   "punches": [
@@ -87,5 +117,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }

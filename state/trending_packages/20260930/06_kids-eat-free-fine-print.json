@@ -2,7 +2,7 @@
   "subreddit": "entitledparents",
   "slug": "kids-eat-free-fine-print",
   "title": "She Tried To Get 5 \"Kids\" Free Meals",
-  "script": "A mom at my restaurant tried to use our kids eat free promo for her seventeen-year-old and four random neighbor kids she called basically family. I explained the promo covers one child per paying adult, ages twelve and under. She demanded to see whoever's actually in charge and announced she would never come back. I smiled and pointed at the fine print taped right on the menu, the same fine print she had been reading upside down while yelling. Turned out she had been recording the whole thing for a complaint video, camera pointed the wrong way the entire time, catching only the ceiling and her own rant. She posted it anyway. The comments read the menu for her within minutes, and by morning three hundred people were tagging our page just to say thank you.",
+  "script": "A mom at my restaurant tried to use our kids eat free promo for her seventeen-year-old and four random neighbor kids she called basically family. I explained the promo covers one child per paying adult, ages twelve and under. She demanded whoever's actually in charge and announced she would never come back. I pointed at the fine print taped right on the menu, which she had been reading upside down while yelling. Turned out she was recording the whole thing for a complaint video, with the camera pointed the wrong way. It captured only the ceiling and her own rant. She posted it anyway. The comments read the menu for her within minutes. By morning, three hundred people were tagging our page just to say thank you. The camera missed us. The fine print did not.",
   "hashtags": [
     "entitledparents",
     "restaurant",
@@ -20,31 +20,66 @@
   "shots": [
     {
       "phrase": "kids eat free",
-      "query": "restaurant menu board"
+      "query": "restaurant menu board",
+      "image_url": "https://drive.google.com/uc?export=download&id=1ZMOhSpL8rgJqXaJCnsvz2E_3byKubpb3",
+      "media_origin": "chatgpt",
+      "media_file_id": "1ZMOhSpL8rgJqXaJCnsvz2E_3byKubpb3",
+      "media_sha256": "ae97c5604be9c3e389b5333995de98b26bfffc923a1be0302e7ecd8c285c75ba",
+      "media_bytes": 2902835
     },
     {
       "phrase": "seventeen-year-old",
-      "query": "teenager restaurant booth"
+      "query": "teenager restaurant booth",
+      "image_url": "https://drive.google.com/uc?export=download&id=185qNpVMl1b06dJuMe3X-5dOvZwdH9Sko",
+      "media_origin": "chatgpt",
+      "media_file_id": "185qNpVMl1b06dJuMe3X-5dOvZwdH9Sko",
+      "media_sha256": "b6929bcc93b4610cd64cba0409bf4cec6674d9a7cc1925b550f8268727989573",
+      "media_bytes": 2272444
     },
     {
       "phrase": "whoever's actually in charge",
-      "query": "restaurant manager office"
+      "query": "restaurant manager office",
+      "image_url": "https://drive.google.com/uc?export=download&id=1dcmdH72pycj85ghDiUJM2ow9UAVd-Lzk",
+      "media_origin": "chatgpt",
+      "media_file_id": "1dcmdH72pycj85ghDiUJM2ow9UAVd-Lzk",
+      "media_sha256": "90db20918a7b877e74b8994a10fb12836fd04bfe9f12a5e4d619bacc9beda6ed",
+      "media_bytes": 1702267
     },
     {
       "phrase": "fine print taped right on the menu",
-      "query": "restaurant menu sign"
+      "query": "restaurant menu sign",
+      "image_url": "https://drive.google.com/uc?export=download&id=1FO3tUV_G23tY1a7OKip6Q7q_XQldcvAd",
+      "media_origin": "chatgpt",
+      "media_file_id": "1FO3tUV_G23tY1a7OKip6Q7q_XQldcvAd",
+      "media_sha256": "871499212b8c7ed07c98dcff8c36422a59820e536368207add866ebf9f44ef2a",
+      "media_bytes": 2257865
     },
     {
       "phrase": "recording the whole thing",
-      "query": "phone recording video"
+      "query": "phone recording video",
+      "image_url": "https://drive.google.com/uc?export=download&id=1TNemXHV2luqPBc9cItVfDJs8vwnSCf3c",
+      "media_origin": "chatgpt",
+      "media_file_id": "1TNemXHV2luqPBc9cItVfDJs8vwnSCf3c",
+      "media_sha256": "323a85a0b37f71f7dd7315f5cb08e46cf5eddfe9dca714de3f30626daaada831",
+      "media_bytes": 1549210
     },
     {
       "phrase": "posted it anyway",
-      "query": "phone social media post"
+      "query": "phone social media post",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Sup7BnCKeeAaXUv-vLjqZQF86AtTL1o1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Sup7BnCKeeAaXUv-vLjqZQF86AtTL1o1",
+      "media_sha256": "d1eccec294153d732cea7d26ccf143a9273b646f63f45c36ccf61c157a262825",
+      "media_bytes": 1857025
     },
     {
       "phrase": "tagging our page",
-      "query": "restaurant social media comments"
+      "query": "restaurant social media comments",
+      "image_url": "https://drive.google.com/uc?export=download&id=1q86xesQ14-CCzHV7uupRIepsSQIBE_Wf",
+      "media_origin": "chatgpt",
+      "media_file_id": "1q86xesQ14-CCzHV7uupRIepsSQIBE_Wf",
+      "media_sha256": "86badff25c307b5a69f72d6d0e2daa0a01235c83e67555fffedc1d0306c153aa",
+      "media_bytes": 1935130
     }
   ],
   "punches": [
@@ -70,5 +105,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }
