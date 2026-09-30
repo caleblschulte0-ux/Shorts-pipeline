@@ -215,7 +215,16 @@ def open_requests(rewrites_dir: Path | None = None) -> list[dict]:
 def write_index(rewrites_dir: Path | None = None) -> Path | None:
     rewrites_dir = Path(rewrites_dir or REWRITES_DIR)
     try:
-        reqs = open_requests(rewrites_dir)
+        # ONE entry per story, the newest. Every run that holds a story
+        # files it again, so on 2026-09-30 the index listed 681 requests
+        # for 98 stories — a writer working down it answered the same story
+        # nine times and never reached the rest. Older copies stay on disk
+        # (the claim step still decides any that get answered).
+        newest: dict = {}
+        for r in open_requests(rewrites_dir):
+            if str(r.get("filed")) >= str(newest.get(r["slug"], {}).get("filed", "")):
+                newest[r["slug"]] = r
+        reqs = sorted(newest.values(), key=lambda r: str(r.get("filed")), reverse=True)
         idx = {"schema": "shorts-rewrite-index/v1", "updated": _now(),
                "open": [{"id": r["id"], "slug": r["slug"], "filed": r.get("filed"),
                          "why": (r.get("reasons") or [])[:3],

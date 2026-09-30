@@ -405,6 +405,14 @@ STEP 2 — EDIT: punch up every package per the bundle's punchup_mission
 DECISION you state, never a default). Do the explainer/curiosity work the
 bundle asks for. On a takeover bundle (mode:"author"), author what
 authoring_request specifies FIRST.
+  NEW TITLES ONLY. Before you author a package, open
+  state/posted_log.json (raw, main) and make sure neither its title nor
+  its topic is already there. On 09-27..29 you re-authored graph titles
+  posted in August ("A 2-Year-Old App Just Passed Etsy" and three more);
+  the pipeline refuses a posted title, so those slots rendered nothing.
+  Likewise never copy yesterday's authored_explainer: work from TODAY's
+  bundle requests (the same three explainer rewrites went in four days
+  running).
 
 STEP 3 — CLOSE, in this exact order, no exceptions:
   a. write response.json per the bundle's response_schema, commit it,
@@ -511,12 +519,18 @@ ships a video or changes a story on its own. Full contract:
 ```text
 MAILBOX ROUND
 
-STEP 0 — Open exchange/OPEN.json (raw, on main). If open_total is 0, say
-"mailbox round: nothing open" and stop. Otherwise open each mailbox index
-it lists with open > 0, in this order:
+STEP 0 — Open ALL THREE mailbox indexes directly (raw, on main):
+exchange/reviews/OPEN.json, exchange/asks/OPEN.json,
+exchange/rewrites/OPEN.json. Count each `open` list yourself. Do NOT trust
+exchange/OPEN.json alone: from 2026-09-22 to 09-30 no workflow committed
+it, it said "reviews: 0 open" while 61 reviews waited, and nine days of
+rounds did nothing. Only if all three lists are empty, say "mailbox round:
+nothing open" and stop. Otherwise work them in this order, and stop a
+mailbox at its cap so every firing reaches all three:
 
-STEP 1 — REVIEWS (exchange/reviews/OPEN.json). A video the judge could not
-watch. For each entry: open its `request` file; open `sheet_url` (a contact
+STEP 1 — REVIEWS (exchange/reviews/OPEN.json), up to 8 per firing,
+top of the list first (it is newest first). A video the judge could not
+watch — these are finished videos waiting ONLY on your grade. For each entry: open its `request` file; open `sheet_url` (a contact
 sheet of labelled frames) and any frame url you need to look closer; grade
 EXACTLY as the request's `prompt` says — dimension anchors and hard checks
 only, cite frame labels as evidence, NEVER output ship or block (the code
@@ -524,14 +538,15 @@ decides that). Write `answer_path` as one JSON object matching the
 request's `answer_schema`, with request_id and video_sha256 copied
 verbatim. Commit it to main.
 
-STEP 2 — ASKS (exchange/asks/OPEN.json). Questions no backend could answer
-in-run. For each open batch: open `batch`; for every listed key answer the
+STEP 2 — ASKS (exchange/asks/OPEN.json), up to 20 keys per firing,
+newest batch first. Questions no backend could answer in-run. For each open batch: open `batch`; for every listed key answer the
 `user` message under its `system` instruction exactly as the model it was
 written for would (JSON where JSON is asked for, no commentary). Write or
 merge into `answer_path` per the batch's how_to_answer. Commit.
 
-STEP 3 — REWRITES (exchange/rewrites/OPEN.json). Held explainer stories.
-For each entry: open its `request`; rewrite the WORDS so the story clears
+STEP 3 — REWRITES (exchange/rewrites/OPEN.json), up to 10 per firing,
+top of the list first (one entry per story, newest first). Held explainer
+stories. For each entry: open its `request`; rewrite the WORDS so the story clears
 every rule in `rules` and answers every reason in `held_for` (and
 `prior_rejection` if present). Same number of segments, same order. Use
 ONLY numbers you can derive from each segment's `data.points` (a listed
@@ -544,7 +559,9 @@ request_id and slug copied. Commit.
 HARD RULES: never edit a request file; never edit anything outside the
 answer paths the requests name; never touch code, workflows, docs or
 config — a validator applies your answers, you do not. One commit per
-mailbox is fine; message "exchange: mailbox round <date> [skip ci]".
+mailbox is fine; message "exchange: mailbox round <date>". NEVER put
+[skip ci] in it: your commit landing is what fires the claim workflow that
+uploads a graded video and applies a rewrite.
 
 FINISH by stating, for each mailbox: open, answered, skipped (with the
 reason), and the commit SHA(s). A round with no SHAs and open > 0 FAILED.

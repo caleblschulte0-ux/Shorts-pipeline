@@ -130,6 +130,6 @@ jobs:
             msg="claim: mailbox verdicts $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]"
           fi
           bash scripts/ci_commit_state.sh "$msg" \
-            exchange/reviews exchange/rewrites data_learning/niche.config.json \
+            exchange/reviews exchange/rewrites exchange/OPEN.json data_learning/niche.config.json \
             state/scene_plans state/explainer_posted_log.json state/posted_log.json \
             state/showrunner_verdicts.jsonl

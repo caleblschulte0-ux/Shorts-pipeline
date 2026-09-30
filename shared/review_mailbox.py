@@ -362,7 +362,10 @@ def write_index(reviews_dir: Path | None = None) -> Path | None:
     it opens a known file. Rewritten on every file/settle."""
     reviews_dir = Path(reviews_dir or REVIEWS_DIR)
     try:
-        reqs = open_requests(reviews_dir)
+        # Newest first: a grader with limited time reaches the render the
+        # pipeline most recently made (and whose artifact has not expired).
+        reqs = sorted(open_requests(reviews_dir),
+                      key=lambda r: str(r.get("filed")), reverse=True)
         idx = {"schema": "shorts-review-index/v1", "updated": _now(),
                "open": [{"id": r["id"], "channel": r.get("channel"),
                          "slug": r["slug"], "title": r.get("title"),
