@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260930",
+  "bundle": {
+    "identity": "22bbdb45f35adc763fa1242f375208c710dfc0c27b2b2bef16b3c8e9bce2bd78",
+    "path": "exchange/bundles/20260930/bundle.json"
+  },
+  "request_id": "return-policy-backfire-s4-ae81e59dd73f",
+  "safe_request_id": "return-policy-backfire-s4-ae81e59dd73f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "02b132ae904232aabd4a19859fddceb6a8920e6f8ab616f11cac352be223c031",
+  "prompt_used": "An editorial illustration for a short-form video: stack of papers desk. It accompanies the narration: \"Complaints piled up\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1e7WSxjYIgAXbp2z-QNi3KVEsCFhkQFhG",
+    "filename": "20260930__return-policy-backfire-s4-ae81e59dd73f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1e7WSxjYIgAXbp2z-QNi3KVEsCFhkQFhG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "034c6eea3921112ecc711cf46c9017ae8cd0c567f35389601e3a7a2340510fdc",
+    "bytes": 1857147,
+    "format": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-09-30T11:24:15.338Z"
+}
