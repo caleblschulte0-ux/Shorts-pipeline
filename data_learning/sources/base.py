@@ -26,6 +26,20 @@ class Source:
         """Exact source-footer text for the on-screen card / description."""
         return f"Source: {self.publisher} ({self.name}), accessed {self.access_date}"
 
+    def credit(self) -> str:
+        """The ON-SCREEN credit: who published it, nothing else.
+
+        `footer()` is the full provenance (publisher, dataset, access date)
+        and it still goes to the description and QA, where it can be read
+        and copied. Drawn on a 9:16 frame it was up to 318 characters, so
+        the fitter shrank it to 11pt and then cut it with an ellipsis, and
+        the headless judge called it "microscopic", "tiny and truncated"
+        on every explainer it watched on 2026-09-30 (`unreadable`, an
+        auto-fail). The publisher is the part that identifies the source.
+        """
+        who = (self.publisher or "").strip() or (self.name or "").strip()
+        return f"Source: {who}" if who else ""
+
 
 @dataclass
 class DataPoint:

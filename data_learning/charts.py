@@ -1084,7 +1084,7 @@ def _footer(fig, insight: Insight):
     import matplotlib.font_manager as _fm
     _band = (1.0 - 2 * HEAD_X)
     _room = _band * fig.get_size_inches()[0] * 72.0
-    _txt = insight.source.footer()
+    _txt = insight.source.credit()
 
     def _fits(t, sz):
         return all(_measure_pts(fig, ln, _fm.FontProperties(size=sz)) <= _room

@@ -296,7 +296,13 @@ def is_reference_line(values) -> bool:
     return (hi - lo) <= FLAT_SERIES_TOL * hi
 
 
-CREDIT_MAX_CHARS = 96
+# A credit is read at arm's length in one line at its full size (18 on a
+# 1080 frame), never shrunk to fit. 96 characters did not fit at 18: the
+# fitter took it down to ~15 grey pixels and the headless judge wrote "tiny,
+# low-contrast grey ... cut off at '...McDonald's US'" on all four graph
+# races of 2026-09-30 (`unreadable`, an auto-fail). 64 is what 18 holds.
+CREDIT_MAX_CHARS = 64
+CREDIT_PT = 18
 
 
 def credit_line(source: str) -> str:
@@ -331,7 +337,15 @@ def credit_line(source: str) -> str:
     # World Economic Outlook (nominal GDP". Pulling organisation names out
     # of free text was tried and rejected: it confidently printed "American
     # Society for Metabolic". The source's own words, whole, are safer.
-    head = re.split(r":\s|(?<=[a-z]{3})\.\s+", head)[0].strip(" .,;—-")
+    #
+    # A SENTENCE ENDS AFTER A BRACKET TOO. "…10-K annual reports (fiscal
+    # year-end). McDonald's US restaurant counts…" was read as one sentence,
+    # so the trim cut the SECOND source mid-name and the frame said
+    # "…annual reports. McDonald's US" (2026-09-30). A dash introduces a
+    # description of the data, not more publisher: "…Credit Report — student
+    # loan and auto loan balances".
+    head = re.split(r":\s|(?:(?<=[a-z]{3})|(?<=\)))\.\s+|\s+[—–]\s+",
+                    head)[0].strip(" .,;—-")
     if len(head) <= CREDIT_MAX_CHARS and _balanced(head):
         return f"Source: {head}" if head else ""
     head = _trim_words(head)
@@ -340,6 +354,10 @@ def credit_line(source: str) -> str:
 
 _TRAILING = {"of", "for", "and", "&", "the", "on", "a", "an", "by", "in", "to",
              "from", "with", "vs", "or"}
+
+
+#: Where one item of a credit ends and the next begins.
+_SEAM = re.compile(r",\s|;\s|\s/\s|\s(?:and|&|vs\.?|versus|plus|with)\s")
 
 
 def _balanced(t: str) -> bool:
@@ -352,6 +370,16 @@ def _trim_words(t: str) -> str:
     word reads as a credit."""
     t = re.sub(r"\s*\([^)]*\)", "", t)
     t = re.sub(r"\s*\([^)]*$", "", t).strip(" .,;:—-")
+    # CUT AT A SEAM, NOT IN A NAME. Trimming word by word to the budget
+    # leaves "...Ozempic + Wegovy and Eli" and "...Bank of New York, Center
+    # for Microeconomic": a name with its tail missing, which the judge
+    # reads as cut off. A credit that is too long nearly always lists
+    # several things, so drop whole items at the last seam that fits.
+    if len(t) > CREDIT_MAX_CHARS:
+        seams = [m.start() for m in _SEAM.finditer(t)
+                 if 20 <= m.start() <= CREDIT_MAX_CHARS]
+        if seams:
+            t = t[:seams[-1]].strip(" .,;:—-")
     words = t.split()
     cut = False
     while words and len(" ".join(words)) > CREDIT_MAX_CHARS:
@@ -559,19 +587,21 @@ def _icon_width(arr, target_h: float, max_w: float | None = None) -> float:
 _PX_CACHE: dict = {}
 
 
-def _text_px(fig, text: str, size: float) -> float:
+def _text_px(fig, text: str, size: float, weight: str = "bold") -> float:
     """Rendered width of `text` in PIXELS, measured on this figure.
 
-    Cached per (text, size): a race draws every tip label on every one of
-    ~400 frames, and a canvas measurement per label per frame is real time.
+    Cached per (text, size, weight): a race draws every tip label on every
+    one of ~400 frames, and a canvas measurement per label per frame is real
+    time. Measure in the weight it is DRAWN in: the credit is regular, and
+    measured bold it was shrunk below 18 when it fitted.
     """
-    key = (text, size)
+    key = (text, size, weight)
     hit = _PX_CACHE.get(key)
     if hit is not None:
         return hit
     try:
         r = fig.canvas.get_renderer()
-        probe = fig.text(0, 0, text, fontsize=size, fontweight="bold")
+        probe = fig.text(0, 0, text, fontsize=size, fontweight=weight)
         w = float(probe.get_window_extent(renderer=r).width)
         probe.remove()
     except Exception:  # noqa: BLE001 — fall back to the old estimate
@@ -869,9 +899,9 @@ def render(spec: dict, out: str | Path, *,
         # A share reads as "57%", not "57": the unit was only on the axis
         # name, rotated, in 15px grey.
         # the credit is fitted by MEASURED width, not a character count
-        credit_size = 18
+        credit_size = CREDIT_PT
         while credit and credit_size > 11 and \
-                _text_px(fig, credit, credit_size) > W * 0.92:
+                _text_px(fig, credit, credit_size, "normal") > W * 0.92:
             credit_size -= 1
         unit = "%" if re.search(r"%|\bpercent", y_label, re.I) else ""
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
