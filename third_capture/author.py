@@ -512,6 +512,10 @@ def brain_health() -> dict:
 _LIMIT_HIT: dict = {"at": "", "detail": ""}
 _LIMIT_PAT = re.compile(
     r"usage limit|rate.?limit|quota|too many requests|resets? (at|in)|"
+    # 2026-09-27/29: the CLI said "You've hit your weekly limit · resets
+    # Sep 30, 12am (UTC)" and NONE of the above matched it, so the breaker
+    # never armed and every call in the run re-hit the wall.
+    r"(weekly|session|daily|monthly|hourly) limit|hit your \w* ?limit|"
     r"429|overloaded", re.I)
 
 
@@ -624,9 +628,50 @@ def _call_claude(user: str, system: str = SYSTEM,
     return json.loads(m.group(0))
 
 
+# ------------------------------------------------ the fallback judges
+# 2026-09-27 and 09-29 posted ZERO: Claude was at its weekly limit, the
+# Groq fallback answered 413 (Payload Too Large — the director's scene
+# reports ran past Groq's per-request token ceiling) and then 429, and the
+# third channel had no third rung at all while GEMINI_API_KEY sat unused.
+# The chain is now Claude -> Groq -> Gemini, and Gemini is the one fallback
+# that can SEE: it takes the contact sheet as inline image data, so a
+# vision verdict survives the CLI being out.
+
+# Groq's free tier counts prompt + max_tokens against a per-minute token
+# ceiling (8k on gpt-oss-120b) and refuses an over-size request outright
+# with 413 — it does not truncate for you. ~12k characters of system+user
+# is ~3.4k tokens, which leaves room for the 4k reply budget.
+GROQ_PROMPT_CHARS = int(os.environ.get("THIRD_GROQ_PROMPT_CHARS", "12000"))
+_GROQ_TAIL_CHARS = 300
+_GROQ_TRUNC_NOTE = "\n[... truncated to fit the model's size limit ...]\n"
+# a Groq 429 is a per-MINUTE limit: stop asking for a minute instead of
+# spending every remaining clip's call on the same refusal
+_GROQ_COOLDOWN_S = 60.0
+_GROQ_REST: dict = {"until": 0.0}
+
+
+def _groq_bounded(user: str, system: str = SYSTEM) -> str:
+    """`user`, cut down so system+user fits GROQ_PROMPT_CHARS. Keeps the
+    head (the task and the first candidates / reports) and the last
+    _GROQ_TAIL_CHARS (where prompts put their closing instruction), and
+    says in the prompt that it was cut."""
+    budget = max(1500, GROQ_PROMPT_CHARS - len(system or ""))
+    if len(user) <= budget:
+        return user
+    head = budget - _GROQ_TAIL_CHARS - len(_GROQ_TRUNC_NOTE)
+    return user[:head] + _GROQ_TRUNC_NOTE + user[-_GROQ_TAIL_CHARS:]
+
+
+def _groq_would_truncate(user: str, system: str = SYSTEM) -> bool:
+    return _groq_bounded(user, system) != user
+
+
 def _call_groq(user: str, system: str = SYSTEM) -> dict | None:
     key = os.environ.get("GROQ_API_KEY", "").strip()
     if not key:
+        return None
+    import time
+    if time.time() < _GROQ_REST["until"]:
         return None
     import requests
     resp = requests.post(
@@ -634,14 +679,148 @@ def _call_groq(user: str, system: str = SYSTEM) -> dict | None:
         headers={"Authorization": f"Bearer {key}"},
         json={"model": MODEL,
               "messages": [{"role": "system", "content": system},
-                           {"role": "user", "content": user}],
+                           {"role": "user",
+                            "content": _groq_bounded(user, system)}],
               "temperature": 0.5,
               "max_tokens": 4000,
               "reasoning_effort": "low",
               "response_format": {"type": "json_object"}},
         timeout=45)
+    if resp.status_code == 429:
+        _GROQ_REST["until"] = time.time() + _GROQ_COOLDOWN_S
+        print(f"::warning::[groq] 429 — resting Groq for "
+              f"{_GROQ_COOLDOWN_S:.0f}s (Gemini answers meanwhile)",
+              flush=True)
     resp.raise_for_status()
     return json.loads(resp.json()["choices"][0]["message"]["content"])
+
+
+GEMINI_MODEL = os.environ.get("THIRD_GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_API = ("https://generativelanguage.googleapis.com/v1beta/models/"
+              "{model}:generateContent")
+# Same breaker shape as Claude's _LIMIT_HIT: once Gemini says 429 (free
+# tier RPM / RPD), every further call this run is a guaranteed refusal —
+# stop asking rather than stampede it.
+_GEMINI_LIMIT: dict = {"at": "", "detail": ""}
+
+
+def gemini_limited() -> dict:
+    return dict(_GEMINI_LIMIT)
+
+
+def _json_from_text(txt: str) -> dict:
+    txt = (txt or "").strip()
+    if txt.startswith("```"):
+        txt = re.sub(r"^```[a-zA-Z]*\s*|\s*```$", "", txt)
+    try:
+        out = json.loads(txt)
+    except ValueError:
+        m = re.search(r"\{.*\}", txt, re.DOTALL)
+        if not m:
+            raise
+        out = json.loads(m.group(0))
+    if not isinstance(out, dict):
+        raise ValueError("model reply is JSON but not an object")
+    return out
+
+
+def _call_gemini(user: str, system: str = SYSTEM,
+                 image_path: str | None = None) -> dict | None:
+    """Gemini (GEMINI_API_KEY, gemini-2.5-flash) with a JSON response.
+    `image_path` attaches a local JPEG as inline base64 image data, so the
+    model actually SEES the contact sheet — the only non-Claude judge here
+    that can. None when there is no key, the image cannot be read, or the
+    breaker is armed; raises on any other failure (callers count it)."""
+    key = os.environ.get("GEMINI_API_KEY", "").strip()
+    if not key or _GEMINI_LIMIT["at"]:
+        return None
+    parts: list = []
+    if image_path:
+        import base64
+        try:
+            with open(image_path, "rb") as fh:
+                data = base64.b64encode(fh.read()).decode("ascii")
+        except OSError as e:
+            print(f"::warning::[gemini] cannot read image {image_path} "
+                  f"({e}) — no vision call", flush=True)
+            return None
+        parts.append({"inline_data": {"mime_type": "image/jpeg",
+                                      "data": data}})
+    parts.append({"text": user + "\n\nReturn ONLY the JSON object."})
+    import requests
+    resp = requests.post(
+        GEMINI_API.format(model=GEMINI_MODEL),
+        params={"key": key},
+        headers={"content-type": "application/json"},
+        json={"system_instruction": {"parts": [{"text": system}]},
+              "contents": [{"role": "user", "parts": parts}],
+              "generationConfig": {"temperature": 0.5,
+                                   "maxOutputTokens": 8192,
+                                   "responseMimeType": "application/json"}},
+        timeout=120)
+    if resp.status_code == 429:
+        from datetime import datetime, timezone
+        _GEMINI_LIMIT.update(
+            at=datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            detail=str(getattr(resp, "text", ""))[:200])
+        print("::warning::[gemini] 429 — no more Gemini calls this run",
+              flush=True)
+        return None
+    resp.raise_for_status()
+    body = resp.json()
+    cands = body.get("candidates") or []
+    if not cands:
+        raise RuntimeError(f"gemini returned no candidates: "
+                           f"{str(body.get('promptFeedback', ''))[:160]}")
+    txt = "".join(p.get("text", "") for p in
+                  ((cands[0].get("content") or {}).get("parts") or [])
+                  if isinstance(p, dict))
+    if not txt.strip():
+        raise RuntimeError(f"gemini returned no text (finishReason="
+                           f"{cands[0].get('finishReason')})")
+    return _json_from_text(txt)
+
+
+# Which text fallback answered the last _call_text_fallback() — logs name
+# the provider, so a Gemini-authored title never reads as Groq's.
+_LAST_FALLBACK: dict = {"provider": ""}
+
+
+def _call_text_fallback(user: str, system: str = SYSTEM,
+                        tag: str = "brain") -> dict | None:
+    """The text-only fallback chain after Claude: Groq, then Gemini.
+    Never raises. One exception to the order: when the prompt is too big
+    for Groq (it would have to be truncated) and Gemini is available,
+    Gemini goes first, so the long prompt is read WHOLE and Groq's cut-down
+    copy is the last resort rather than the default."""
+    _LAST_FALLBACK["provider"] = ""
+    order = [("groq", _call_groq), ("gemini", _call_gemini)]
+    if (_groq_would_truncate(user, system)
+            and os.environ.get("GEMINI_API_KEY", "").strip()
+            and not _GEMINI_LIMIT["at"]):
+        order.reverse()
+    for name, fn in order:
+        try:
+            out = fn(user, system=system)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[{tag}] {name} failed ({e})", flush=True)
+            continue
+        if out:
+            _LAST_FALLBACK["provider"] = name
+            return out
+    return None
+
+
+def _call_gemini_vision(user: str, system: str, image_path: str,
+                        tag: str = "brain") -> dict | None:
+    """Gemini WITH the image, never raising. None = no vision verdict."""
+    if not image_path or not os.path.isfile(str(image_path)):
+        return None
+    try:
+        return _call_gemini(user, system=system, image_path=str(image_path))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[{tag}] gemini vision failed ({e})", flush=True)
+        return None
 
 
 # ---------------------------------------------- clip selection ("banger") brain
@@ -773,32 +952,52 @@ def judge_content(streamer: str, title: str, transcript: str,
                "reaction, physical comedy and a clean gameplay moment all "
                "read as no-transcript. Do NOT penalise the missing words."))
     tried_claude = False
+
+    def _first_score(out):
+        for s in ((out or {}).get("scores") or []):
+            # A MISSING `banger` KEY IS "NO SCORE", NOT 0.5.
+            # The default used to be 0.5, which is under the 0.70
+            # content floor — so a malformed reply REJECTED the
+            # clip and wrote it to the PERMANENT blocklist with
+            # `rejected_why: "0.50 < 0.7"`. A parse quirk became an
+            # irreversible verdict on a clip nothing had evaluated.
+            if not isinstance(s, dict) or s.get("banger") is None:
+                continue
+            try:
+                return (max(0.0, min(1.0, float(s["banger"]))),
+                        str(s.get("why", ""))[:40])
+            except (TypeError, ValueError):
+                continue
+        return None
+
     if sheet:
         try:
             tried_claude = True
-            out = _call_claude(user, system=_CONTENT_SYSTEM, read_files=True)
-            if out:
-                for s in (out.get("scores") or []):
-                    # A MISSING `banger` KEY IS "NO SCORE", NOT 0.5.
-                    # The default used to be 0.5, which is under the 0.70
-                    # content floor — so a malformed reply REJECTED the
-                    # clip and wrote it to the PERMANENT blocklist with
-                    # `rejected_why: "0.50 < 0.7"`. A parse quirk became an
-                    # irreversible verdict on a clip nothing had evaluated.
-                    if not isinstance(s, dict) or s.get("banger") is None:
-                        continue
-                    try:
-                        b = max(0.0, min(1.0, float(s["banger"])))
-                        _brain_note(True)
-                        return b, str(s.get("why", ""))[:40], True
-                    except (TypeError, ValueError):
-                        continue
-                # reached only if the reply parsed but carried no usable
-                # score — a model answering in the wrong shape is a failed
-                # brain task, not a silent no-op
-                _brain_note(False)
-            else:
-                _brain_note(False)
+            try:
+                got = _first_score(_call_claude(
+                    user, system=_CONTENT_SYSTEM, read_files=True))
+            except Exception as e:  # noqa: BLE001
+                print(f"::warning::[content] claude vision failed ({e}) — "
+                      f"gemini vision", flush=True)
+                got = None
+            if got is None:
+                # Claude could not see it (limit, empty, or a reply in the
+                # wrong shape). GEMINI SEES TOO: it gets the same contact
+                # sheet as inline image data, so the verdict keeps its eyes
+                # instead of dropping to the text-only rubric. One brain
+                # task, one note: ok if either vision judge answered.
+                got = _first_score(_call_gemini_vision(
+                    user, _CONTENT_SYSTEM, sheet, tag="content"))
+                if got is not None:
+                    print(f"::warning::[content] GEMINI VISION judged "
+                          f"(claude unavailable): {got[0]:.2f}", flush=True)
+            if got is not None:
+                _brain_note(True)
+                return got[0], got[1], True
+            # reached only if no vision judge produced a usable score — a
+            # model answering in the wrong shape is a failed brain task,
+            # not a silent no-op
+            _brain_note(False)
         except Exception as e:  # noqa: BLE001
             # COUNT IT. A vision failure used to record nothing at all, so
             # a CLI failing 100% of eyes-on calls while Groq answered the
@@ -842,19 +1041,14 @@ def judge_content(streamer: str, title: str, transcript: str,
             print(f"::warning::[content] claude text judge failed ({e})",
                   flush=True)
     if out is None:
-        try:
-            out = _call_groq(text_user, system=_RANK_SYSTEM)
-        except Exception as e:  # noqa: BLE001
-            print(f"::warning::[content] groq text judge failed ({e})",
-                  flush=True)
-    _brain_note(bool(out))
-    for s in (out or {}).get("scores") or []:
-        try:
-            b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
-            why = str(s.get("why", ""))[:40]
-            break
-        except (TypeError, ValueError):
-            continue
+        out = _call_text_fallback(text_user, system=_RANK_SYSTEM,
+                                  tag="content")
+    # same rule as the vision path: a reply with no `banger` is NO score,
+    # never a manufactured 0.5 that blocklists a clip nothing evaluated
+    got = _first_score(out)
+    _brain_note(got is not None)
+    if got is not None:
+        b, why = got
     return b, why, False
 
 
@@ -879,10 +1073,7 @@ def rank_clips(clips: list[dict]) -> dict:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[rank] claude failed ({e}) — groq", flush=True)
     if out is None:
-        try:
-            out = _call_groq(user, system=_RANK_SYSTEM)
-        except Exception as e:  # noqa: BLE001
-            print(f"::warning::[rank] groq failed ({e})", flush=True)
+        out = _call_text_fallback(user, system=_RANK_SYSTEM, tag="rank")
     _brain_note(bool(out))
     if not out:
         return {}
@@ -967,10 +1158,7 @@ def order_story(clips: list[dict]) -> dict | None:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[story] claude failed ({e}) — groq", flush=True)
     if out is None:
-        try:
-            out = _call_groq(user, system=_STORY_SYSTEM)
-        except Exception as e:  # noqa: BLE001
-            print(f"::warning::[story] groq failed ({e})", flush=True)
+        out = _call_text_fallback(user, system=_STORY_SYSTEM, tag="story")
     if not out or not out.get("is_story"):
         return None
     beats = []
@@ -1025,21 +1213,24 @@ def author_package(streamer: str, clip_title: str, transcript: str,
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] Claude failed ({e}) — falling to Groq",
               flush=True)
-    try:
-        out = _call_groq(user)
-        if out is not None:
+    out = _call_text_fallback(user, tag="author")
+    if out is not None:
+        try:
             meta = _postprocess(out, streamer, context, clip_dur=clip_dur)
-            if meta:
-                print(f"::warning::[author] GROQ FALLBACK authored: "
-                      f"{meta['title']!r}", flush=True)
-                _brain_note(True)
-                return meta
-    except Exception as e:  # noqa: BLE001
-        print(f"::warning::[author] groq authoring failed: {e}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[author] fallback reply unusable: {e}",
+                  flush=True)
+            meta = None
+        if meta:
+            print(f"::warning::[author] "
+                  f"{(_LAST_FALLBACK['provider'] or 'fallback').upper()} "
+                  f"FALLBACK authored: {meta['title']!r}", flush=True)
+            _brain_note(True)
+            return meta
     # Both brains are down. This used to return silently and the raw clip
     # title shipped with nothing in the log to explain why — say it loudly,
     # because the public title is now a fallback, not an authored one.
-    print("::warning::[author] AUTHORING FAILED (claude + groq) — the clip "
+    print("::warning::[author] AUTHORING FAILED (claude + groq + gemini) — the clip "
           "ships on a fallback title, not an authored one", flush=True)
     _brain_note(False)
     return None

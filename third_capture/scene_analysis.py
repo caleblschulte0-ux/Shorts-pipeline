@@ -15,9 +15,9 @@ expansion trigger), and candidate keep-windows. The full transcript stays
 attached — the director reads it all, never a summary of a summary.
 
 Contract: `analyze_source()` returns a report dict or None, never raises.
-Vision is best-effort (Claude CLI when available); without it the report
-degrades to transcript-only via the Groq brain, and `visual_beats` stays
-empty rather than invented.
+Vision is best-effort (Claude CLI, else Gemini with the sheet attached);
+without either the report degrades to transcript-only (Groq, then Gemini
+text), and `visual_beats` stays empty rather than invented.
 """
 from __future__ import annotations
 
@@ -26,7 +26,8 @@ import subprocess
 from pathlib import Path
 
 from third_capture import clip_edit, clip_qa
-from third_capture.author import _call_claude, _call_groq
+from third_capture.author import (_call_claude, _call_gemini_vision,
+                                  _call_text_fallback)
 
 REPO = Path(__file__).resolve().parent.parent
 
@@ -102,7 +103,8 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
                 + f"FULL TRANSCRIPT (timestamped):\n{tlines}")
         # VISION PROVENANCE (reviewer #1): a text-only model can never see
         # the frames, so visual_beats are trustworthy ONLY when a
-        # vision-capable model (Claude WITH the Read grant) actually
+        # vision-capable model (Claude WITH the Read grant, or Gemini with the
+        # sheet attached as image data) actually
         # inspected the contact sheet. Track which model answered; the Groq
         # fallback is text-only and its visual_beats are DISCARDED, so the
         # module's "visual events are never invented" promise holds.
@@ -116,12 +118,19 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
                     vision_ok = True     # Claude saw the frames
             except Exception as e:  # noqa: BLE001
                 print(f"::warning::[scene] claude vision failed ({e}) — "
-                      "groq (text-only, no visual_beats)", flush=True)
+                      "gemini vision", flush=True)
+            if out is None:
+                # Gemini gets the SAME sheet as inline image data, so its
+                # visual_beats come from a model that looked — vision_ok is
+                # true only because it actually received the frames.
+                out = _call_gemini_vision(user, _SCENE_SYSTEM, str(sheet),
+                                          tag="scene")
+                if out is not None:
+                    vision_ok = True
         if out is None:
-            try:
-                out = _call_groq(user, system=_SCENE_SYSTEM)
-            except Exception as e:  # noqa: BLE001
-                print(f"::warning::[scene] groq failed ({e})", flush=True)
+            # text-only (Groq, then Gemini): no visual_beats survive
+            out = _call_text_fallback(user, system=_SCENE_SYSTEM,
+                                      tag="scene")
         if not out:
             return None
 
