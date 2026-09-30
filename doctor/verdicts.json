@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260926",
+  "updated": "20260930",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -969,10 +969,16 @@
       "history": []
     },
     "0aa9d12e55a8": {
-      "verdict": "doing",
-      "date": "20260826",
-      "because": "Evidence is real and checkable (state/analytics_third/latest.json: YT_SEARCH=2977 vs SHORTS=264, named search terms tied to specific low/high performers) and the proposal is appropriately bounded (title-only, no cadence/selection change, matched control arm). Accepting the direction; the actual 24-clip experiment runs over multiple days of production and is an editorial/authoring change to third_capture/author.py + docs/THIRD_INTERNET_PLAYBOOK.md titling guidance, not a same-session code fix.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260930",
+      "because": "picked up: tag title_arm (search vs control) on ledger + posted entry; search guidance already shipped 09-22",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260826",
+          "because": "Evidence is real and checkable (state/analytics_third/latest.json: YT_SEARCH=2977 vs SHORTS=264, named search terms tied to specific low/high performers) and the proposal is appropriately bounded (title-only, no cadence/selection change, matched control arm). Accepting the direction; the actual 24-clip experiment runs over multiple days of production and is an editorial/authoring change to third_capture/author.py + docs/THIRD_INTERNET_PLAYBOOK.md titling guidance, not a same-session code fix."
+        }
+      ]
     },
     "4754c87f0f7e": {
       "verdict": "done",
