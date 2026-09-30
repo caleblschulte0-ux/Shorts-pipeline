@@ -762,23 +762,62 @@ def _gemini_judge(prompt: str, labeled) -> dict:
     return parse_judge_json(txt)
 
 
+# A judge that has SAID it is out of budget is out for the rest of the
+# process. 2026-09-27..29: the CLI answered "You've hit your weekly limit"
+# and every render still retried it three times (with sleeps), and the
+# explainer renders ~15 cuts a run — ~45 doomed calls per run, while the
+# free Gemini fallback took 429s from the same stampede. Remember the
+# refusal; never turn a known-empty judge into more load. This only ever
+# SKIPS a judge that cannot answer; it never ships anything (the gate
+# still fails closed on no verdict, and the mailbox still files it).
+_LIMIT_RE = re.compile(
+    r"hit your (?:session|weekly|daily|monthly)?\s*limit|usage limit|spend limit"
+    r"|rate.?limit|quota|too many requests|\b429\b|resets? (?:at|in|sep|oct|\d)",
+    re.I)
+_OUT: dict = {}
+
+
+def judge_out(backend: str) -> str:
+    """Why `backend` refused on budget earlier in this process, or ''."""
+    return _OUT.get(backend, "")
+
+
+def _note_out(backend: str, err: Exception) -> bool:
+    msg = str(err)
+    if _LIMIT_RE.search(msg):
+        if backend not in _OUT:
+            _OUT[backend] = msg[:200]
+            print(f"::warning::[showrunner] {backend} is out of budget "
+                  f"({msg[:120]}) — not asking it again this run", flush=True)
+        return True
+    return False
+
+
 def _judge(prompt: str, labeled):
     """Returns (grades_dict, backend_used). Headless brain is the judge of
     record (retried); free Gemini is the only fallback. The backend that
     actually produced the grades is reported (no more mislabelling)."""
     import time
     errs = []
-    for attempt in range(int(os.environ.get("SHOWRUNNER_RETRIES", "3"))):
-        try:
-            return _headless_claude_judge(prompt, labeled), "headless-claude"
-        except Exception as e:  # noqa: BLE001
-            errs.append(f"headless-claude[{attempt}]: {e}")
-            time.sleep(3 * (attempt + 1))
-    if os.environ.get("GEMINI_API_KEY"):
+    if judge_out("headless-claude"):
+        errs.append(f"headless-claude: out of budget ({judge_out('headless-claude')})")
+    else:
+        for attempt in range(int(os.environ.get("SHOWRUNNER_RETRIES", "3"))):
+            try:
+                return _headless_claude_judge(prompt, labeled), "headless-claude"
+            except Exception as e:  # noqa: BLE001
+                errs.append(f"headless-claude[{attempt}]: {e}")
+                if _note_out("headless-claude", e):
+                    break
+                time.sleep(3 * (attempt + 1))
+    if os.environ.get("GEMINI_API_KEY") and not judge_out("gemini"):
         try:
             return _gemini_judge(prompt, labeled), "gemini-fallback"
         except Exception as e:  # noqa: BLE001
             errs.append(f"gemini: {e}")
+            _note_out("gemini", e)
+    elif judge_out("gemini"):
+        errs.append(f"gemini: out of budget ({judge_out('gemini')})")
     raise RuntimeError(f"no vision judge available. {errs}")
 
 

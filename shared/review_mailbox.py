@@ -295,6 +295,39 @@ def verdict_for(req: dict) -> tuple[dict | None, str]:
     return grades, "ok"
 
 
+def has_verdict(req: dict) -> bool:
+    return (Path(req["_path"]).parent / f"{req['id']}.verdict.json").exists()
+
+
+def supersede_stale(reviews_dir: Path | None = None) -> list[str]:
+    """Settle as SUPERSEDED every unanswered request with a NEWER request
+    for the same channel+slug. Returns the ids settled.
+
+    2026-09-28 filed fourteen requests for `iss-sixteen-sunrises` in one
+    day — every re-render of a held story files its own — and the mailbox
+    reached 61 open. A grader working through that list oldest-first
+    spends its whole round on renders the pipeline has already replaced
+    and may never reach the one that matters. Only the newest cut of a story is worth
+    judging. A request that already HAS a verdict is left for the claim
+    step, and the newest request is never touched."""
+    newest: dict = {}
+    reqs = open_requests(reviews_dir)
+    for r in reqs:
+        key = (r.get("channel"), r.get("slug"))
+        if key not in newest or str(r.get("filed")) >= str(newest[key].get("filed")):
+            newest[key] = r
+    done = []
+    for r in reqs:
+        top = newest[(r.get("channel"), r.get("slug"))]
+        if r is top or has_verdict(r):
+            continue
+        settle(r, {"decision": "superseded", "judge": None,
+                   "reason": f"a newer render of {r.get('slug')} was filed "
+                             f"({top['id']}); only the newest cut is judged"})
+        done.append(r["id"])
+    return done
+
+
 def write_index(reviews_dir: Path | None = None) -> Path | None:
     """`exchange/reviews/OPEN.json` — every open request, with the one URL
     ChatGPT needs per request. A scheduled task cannot list a directory;

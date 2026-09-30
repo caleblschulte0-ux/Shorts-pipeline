@@ -276,6 +276,10 @@ def main() -> int:
                   + (f" ({res.get('why')})" if res.get("why") else ""), flush=True)
             settled += res["state"] == "settled"
     rm.write_index(args.reviews_dir)
+    # After claiming (so an answered older cut is still decided), retire
+    # every unanswered request a newer render of the same story replaced.
+    for rid in rm.supersede_stale(args.reviews_dir):
+        print(f"[claim] superseded {rid}: a newer render was filed", flush=True)
     print(f"[claim] settled {settled}", flush=True)
     return 0
 
