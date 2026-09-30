@@ -6,11 +6,11 @@
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear 2017 crossover and leaderboard swap, but the source footer is cut off and the hook's 'tripled' claim overstates the roughly 2.5x growth.",
-    "elapsed_seconds": 84.0,
+    "error": "showrunner_block: showrunner BLOCK: A clean, readable overtake race that lands its crossover, but the source footer is cut off in every frame and the hook says \"tripled\" when the data shows 2.5x.",
+    "elapsed_seconds": 81.4,
     "package_path": "state/trending_packages/20260930/01_graph-dollar-general-vs-mcdonalds.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-120548_dollar_general_quietly_passed_mcdonald_s.mp4",
+    "video_path": "output/daily_20260930-122232_dollar_general_quietly_passed_mcdonald_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean two-line race with a clear 2017 crossover and leaderboard swap, but the source footer is cut off and the hook's 'tripled' claim overstates the roughly 2.5x growth.",
-      "score": 83
+      "reason": "showrunner BLOCK: A clean, readable overtake race that lands its crossover, but the source footer is cut off in every frame and the hook says \"tripled\" when the data shows 2.5x.",
+      "score": 78
     },
     "blocked": true
   },
@@ -40,11 +40,11 @@
     "publish_at": "2026-09-30T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The chart tells the wrong story: podcast's 7x growth is squashed flat against the floor by radio's 14B scale, and the video ends by crowning '#1 Radio ads'.",
-    "elapsed_seconds": 105.0,
+    "error": "showrunner_block: showrunner BLOCK: The headline promises 7x podcast growth, but the chart shows a flat purple sliver under a dominant Radio line and ends by crowning Radio #1.",
+    "elapsed_seconds": 101.5,
     "package_path": "state/trending_packages/20260930/03_graph-podcast-vs-radio-ads.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-120712_podcast_ads_grew_7x_in_one_decade.mp4",
+    "video_path": "output/daily_20260930-122353_podcast_ads_grew_7x_in_one_decade.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,8 +62,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The chart tells the wrong story: podcast's 7x growth is squashed flat against the floor by radio's 14B scale, and the video ends by crowning '#1 Radio ads'.",
-      "score": 70
+      "reason": "showrunner BLOCK: The headline promises 7x podcast growth, but the chart shows a flat purple sliver under a dominant Radio line and ends by crowning Radio #1.",
+      "score": 57
     },
     "blocked": true
   },
@@ -72,13 +72,13 @@
     "title": "Student Debt Passed Auto Loans In 2010",
     "format": "graph_race",
     "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, moving two-line race with a real crossing, but the hook promises several lead swaps the data does not have, and it ends on a 1600B-vs-1600B tie with collided labels.",
-    "elapsed_seconds": 115.1,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/rn8CIKgiLz4",
+    "error": null,
+    "elapsed_seconds": 129.3,
     "package_path": "state/trending_packages/20260930/04_graph-student-vs-auto-loans.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-120857_student_debt_passed_auto_loans_in_2010.mp4",
+    "video_path": "output/daily_20260930-122534_student_debt_passed_auto_loans_in_2010.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,27 +95,31 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean, moving two-line race with a real crossing, but the hook promises several lead swaps the data does not have, and it ends on a 1600B-vs-1600B tie with collided labels.",
+      "blocked": false,
+      "reason": "",
       "score": 74
     },
-    "blocked": true
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-student-debt-passed-auto-loans-in-2010-a015d403"
+    }
   },
   {
     "topic": "He Fired Me For Being Nice To Customers",
     "title": "He Fired Me For Being Nice To Customers",
     "format": "reddit",
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are illustrated in order, but the espresso-machine beat is a clip-art coffee emoji under a 'receipt' caption, and the payoff is a stock theater audience with a garbled final caption, so the ending doesn't land.",
-    "elapsed_seconds": 200.8,
+    "publish_at": "2026-09-30T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/cJSoMiY9fKI",
+    "error": null,
+    "elapsed_seconds": 301.9,
     "package_path": "state/trending_packages/20260930/05_return-policy-backfire.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-121054_he_fired_me_for_being_nice_to_customers.mp4",
+    "video_path": "output/daily_20260930-122745_he_fired_me_for_being_nice_to_customers.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.567,
+      "duration": 46.3,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -126,7 +130,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.2
+      "loudness_lufs": -24.6
     },
     "qa": {
       "ok": true,
@@ -134,58 +138,30 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are illustrated in order, but the espresso-machine beat is a clip-art coffee emoji under a 'receipt' caption, and the payoff is a stock theater audience with a garbled final caption, so the ending doesn't land.",
-      "score": 66
+      "blocked": false,
+      "reason": "",
+      "score": 79
     },
-    "blocked": true
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-he-fired-me-for-being-nice-to-customers-873089b8"
+    }
   },
   {
     "topic": "Couple describes relief at rescue after whale destroys their yacht",
-    "angle": "A 30\u2011ton sperm whale slams into a New Zealand yacht, forcing a dramatic rescue that highlights ocean dangers for sailors.",
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "unfit_for_fiction: 'Couple describes relief at rescue after whale destroys their yacht' refused by the writer: Story premise involves disaster",
-    "elapsed_seconds": 0.9,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "'Backpack' declared Alaska's Fat Bear Week winner",
-    "angle": "A massive 600\u2011lb brown bear named Backpack outlasts rivals in Alaska\u2019s viral Fat Bear Week, showcasing wildlife resilience.",
-    "publish_at": "2026-09-30T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "JSONDecodeError: Unterminated string starting at: line 4 column 13 (char 118)",
-    "elapsed_seconds": 16.1,
-    "backfill": true
-  },
-  {
-    "topic": "Bear 910 vs. Backpack: It's the final showdown for Alaska's Fat Bear Week",
-    "angle": "The climactic battle between bear 910 and Backpack draws millions of online votes, turning wildlife into internet stars.",
+    "angle": "A massive sperm whale rammed a New Zealand yacht, forcing a dramatic rescue that highlights the hidden dangers of open\u2011water sailing.",
     "publish_at": "2026-09-30T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: \"Bear 910 vs. Backpack: It's the final showdown for Alaska's Fat Bear Week\" refused by the writer: The provided trend does not describe a permissible workplace setting for a story.",
-    "elapsed_seconds": 1.1,
-    "unfit": true,
-    "backfill": true
-  },
-  {
-    "topic": "Florida Man Charged With Threatening Sheriff in AI Image - PetaPixel",
-    "angle": "A Florida resident creates a deep\u2011fake threatening the county sheriff, raising alarms about AI\u2011generated harassment.",
-    "publish_at": "2026-09-30T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean Reddit-story shell, but no story beat is ever illustrated. It is 51s of generic Minecraft parkour with captions, so the revenge never plays out on screen.",
-    "elapsed_seconds": 287.3,
-    "title": "I turned a demanding client into a drenched disaster",
-    "package_path": "state/trending_packages/20260930-121515_auto_florida_man_charged_with_threatening_she.json",
-    "video_path": "output/daily_20260930-121515_florida_man_charged_with_threatening_she.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The story is told only by captions over generic parkour gameplay. Its beats (truck, crushed shelf, toolbox, forklift, adjuster) are never shown, and the one illustration is a static placeholder receipt icon at the end.",
+    "elapsed_seconds": 297.4,
+    "title": "I Stole the Owner\u2019s Toolbox and Got Paid",
+    "package_path": "state/trending_packages/20260930-123257_auto_couple_describes_relief_at_rescue_after_.json",
+    "video_path": "output/daily_20260930-123257_couple_describes_relief_at_rescue_after_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 51.2,
+      "duration": 49.5,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -196,17 +172,56 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.1
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Clean Reddit-story shell, but no story beat is ever illustrated. It is 51s of generic Minecraft parkour with captions, so the revenge never plays out on screen.",
+      "reason": "showrunner BLOCK: The story is told only by captions over generic parkour gameplay. Its beats (truck, crushed shelf, toolbox, forklift, adjuster) are never shown, and the one illustration is a static placeholder receipt icon at the end.",
       "score": 61
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Caught on camera: Dashcam captures truck hydroplaning as rain creates dangerous road conditions - KRIS 6 News Corpus Christi",
+    "angle": "A dash\u2011cam video shows a semi\u2011tractor losing traction on a slick highway, underscoring how sudden rain can turn roads into death traps.",
+    "publish_at": "2026-09-30T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story's beats are never shown: half the video is bare gameplay and the rest is two generic emoji held static, ending on a blank phone.",
+    "elapsed_seconds": 320.0,
+    "title": "I turned a busted ladder delivery into $150 profit",
+    "package_path": "state/trending_packages/20260930-123755_auto_caught_on_camera__dashcam_captures_truck.json",
+    "video_path": "output/daily_20260930-123755_caught_on_camera__dashcam_captures_truck.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.133,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story's beats are never shown: half the video is bare gameplay and the rest is two generic emoji held static, ending on a blank phone.",
+      "score": 53
     },
     "blocked": true,
     "backfill": true
