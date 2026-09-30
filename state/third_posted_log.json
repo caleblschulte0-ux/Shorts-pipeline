@@ -9942,6 +9942,34 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Inside joke, vague chatter, no visible e)",
       "ts": "2026-09-30T12:19:59.562252+00:00"
+    },
+    "rejected-agileaggressivecrowprimeme-3bsakjy2j4ow5fbb": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AgileAggressiveCrowPrimeMe-3BsAKjY2j4Ow5FbB",
+      "streamer": "jynxzi",
+      "title": "Self report stream sniping LOL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (menu-screen argument, no visible event)",
+      "ts": "2026-09-30T12:24:35.802992+00:00"
+    },
+    "rejected-caringplayfulcroissantvoteyea-wzqmtnm6vackss8b": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CaringPlayfulCroissantVoteYea-WZQMtnM6VAcKSs8B",
+      "streamer": "jynxzi",
+      "title": "Jiddy jorking it live",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (R6 spectating, casual esports chatter, n)",
+      "ts": "2026-09-30T12:25:00.927730+00:00"
+    },
+    "clip-20260930-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/GlutenFreeLongDogeDendiFace-LRGix51I1E3_AyPe",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Gets Put On The Spot And Has To Think Fast",
+      "kind": "twitch_clip",
+      "ts": "2026-09-30T12:26:41.375074+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
