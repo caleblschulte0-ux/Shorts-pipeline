@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260930T002638Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:start, 'Met by e-waste recycling 1%' and 'Met by new mining 99%' are grey on slate and almost invisible. 'Properly recycled 22%' at seg2:start and the year labels at seg1:start are just as faint. The source line is too small to read on a phone.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "generic_chart_redundant",
+  "visible_evidence": "seg1:start to seg1:end is a plain horizontal bar chart (2010 34M ... 2030 82M) of the same series seg0 already drew as a line. Data floats over the 2019 and 2010 bars doing nothing. The years are grey-on-navy and hard to read at seg1:start.",
+  "root_cause": "The growth claim fell back to a chart kind. The trend was shown twice (a line, then bars) instead of being drawn as the subject's own physics, e.g. a pile of discarded electronics or garbage trucks. The narration line 'a million and a half garbage trucks' is never drawn.",
+  "repair_goal": "Replace the bar chart with a bespoke e-waste pile or a garbage-truck convoy that grows from 34M (2010) to 62M (2022), with an 82M projected ghost. Data should physically heave a dead phone onto the pile as it crests 62M, and every label should be in full-contrast ink."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

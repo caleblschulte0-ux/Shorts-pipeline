@@ -27708,7 +27708,7 @@
   {
    "slug": "global-ewaste-crisis",
    "title": "The World Made 62 Million Tons Of E-Waste",
-   "hook": "Only 1 in 5 of those tons get recycled.",
+   "hook": "Your dead phone joined 62 million tons of trash, and the pile is growing fast.",
    "closing": "One recycling bin at a time isn't going to cut it.",
    "question": "How many old phones do you have sitting in a drawer right now? Tell me below.",
    "hashtags": [
@@ -27759,7 +27759,8 @@
      "topic": "the real cost of wasted e-waste materials",
      "say": "That waste stream carries gold, copper, and rare earths, but recycling meets just 1 percent of global rare earth demand. We're throwing away a mine and digging a new one instead."
     }
-   ]
+   ],
+   "hook_was": "Only 1 in 5 of those tons get recycled."
   },
   {
    "slug": "bot-traffic-passed-human",
