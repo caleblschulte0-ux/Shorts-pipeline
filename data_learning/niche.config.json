@@ -29664,6 +29664,234 @@
     }
    ],
    "hook_was": "Driverless cars just quietly became normal."
+  },
+  {
+   "slug": "child-mortality-collapse",
+   "title": "Child Mortality Fell 60% Since 1990",
+   "hook": "Child deaths used to be brutal. Not anymore.",
+   "closing": "Progress doesn't announce itself. It just quietly happens.",
+   "question": "Did you get your shots as a kid? Tell me below.",
+   "caption": "In 1990, roughly 1 in 11 kids died before age 5. Today it's about 1 in 27 — mostly because of one cheap shot. Here's the data behind the biggest public health win nobody talks about.",
+   "hashtags": [
+    "childmortality",
+    "globalhealth",
+    "immunization",
+    "vaccines",
+    "publichealth",
+    "worldbank",
+    "data",
+    "science",
+    "health",
+    "kids",
+    "medicine",
+    "progress"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "sh_dyn_mort_trend",
+     "params": {
+      "file": "sh_dyn_mort_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COLLAPSE",
+     "topic": "child mortality since 1990",
+     "say": "In 1990, the under-5 mortality rate was 93.5 per thousand live births. By 2024 it fell to 37.4 — a 60 percent drop in one generation."
+    },
+    {
+     "source": "offline",
+     "key": "sh_imm_idpt_trend",
+     "params": {
+      "file": "sh_imm_idpt_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE FIX",
+     "topic": "the fix behind falling child mortality: immunization",
+     "say": "The fix wasn't fancy. DPT immunization coverage climbed from 17 percent in 1980 to 85 percent of kids today — one shot, given almost everywhere."
+    },
+    {
+     "source": "offline",
+     "key": "sh_xpd_chex_gd_zs_trend",
+     "params": {
+      "file": "sh_xpd_chex_gd_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE INVESTMENT",
+     "topic": "health spending behind the falling child mortality",
+     "say": "And the world backed it with money — health spending rose from 8.6 percent of global GDP in 2000 to 10.1 percent by 2023, funding the shot."
+    }
+   ]
+  },
+  {
+   "slug": "rural-power-catch-up",
+   "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
+   "hook": "Rural areas got electricity. Cooking never caught up.",
+   "closing": "Wired up isn't the same as cooked up.",
+   "question": "Does your kitchen run on gas, electric, or fire? Comment below.",
+   "caption": "Rural electricity access jumped to 85%. Clean cooking fuel access is still stuck near 56% — so nearly half of rural homes worldwide are still burning wood or charcoal to cook dinner. Here's the gap nobody wired shut.",
+   "hashtags": [
+    "ruralenergy",
+    "electricity",
+    "cleancooking",
+    "energyaccess",
+    "worldbank",
+    "globaldevelopment",
+    "energy",
+    "data",
+    "climate",
+    "sustainability",
+    "infrastructure",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "eg_elc_accs_ru_zs_trend",
+     "params": {
+      "file": "eg_elc_accs_ru_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE WIRE-UP",
+     "topic": "rural electricity access",
+     "say": "Rural electricity access jumped from 67 percent in 2000 to 85 percent by 2024 — most of the world's countryside finally got wired up."
+    },
+    {
+     "source": "offline",
+     "key": "eg_cft_accs_ru_zs_trend",
+     "params": {
+      "file": "eg_cft_accs_ru_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE LAG",
+     "topic": "why rural cooking never caught up",
+     "say": "But clean cooking fuel access crawled from just 24 percent to 56 percent — so 44 percent of rural homes are still cooking over open fire or charcoal."
+    },
+    {
+     "source": "offline",
+     "key": "eg_use_elec_kh_pc_trend",
+     "params": {
+      "file": "eg_use_elec_kh_pc_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE USE",
+     "topic": "power use behind the rural electricity gap",
+     "say": "Meanwhile overall electricity use per person climbed from 2,093 to 3,558 kilowatt-hours a year — the world is using more power, just not always the cleanest kind."
+    }
+   ]
+  },
+  {
+   "slug": "the-biggest-lightest-workforce",
+   "title": "The World's Workforce Has Never Been This Big — Or This Free",
+   "hook": "3.7 billion people work now. Fewer depend on each one.",
+   "closing": "More hands, fewer mouths, bigger cities. Do the math.",
+   "question": "Would you rather live rural or urban? Tell me below.",
+   "caption": "The global workforce hit 3.7 billion people. Each worker now supports fewer dependents than ever recorded. And most of that growth landed in cities. Three numbers, one story about how the world actually grew up.",
+   "hashtags": [
+    "workforce",
+    "demographics",
+    "laboreconomics",
+    "urbanization",
+    "worldbank",
+    "data",
+    "economy",
+    "population",
+    "globaleconomy",
+    "cities",
+    "science",
+    "society"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "sl_tlf_totl_in_trend",
+     "params": {
+      "file": "sl_tlf_totl_in_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SIZE",
+     "topic": "the world's workforce",
+     "say": "The global labor force grew from 2.3 billion people in 1990 to 3.7 billion by 2025 — the biggest working-age population the world has ever had."
+    },
+    {
+     "source": "offline",
+     "key": "sp_pop_dpnd_trend",
+     "params": {
+      "file": "sp_pop_dpnd_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE LOAD",
+     "topic": "dependency behind the world's biggest workforce",
+     "say": "And each of those workers carries a lighter load than ever — the dependency ratio fell from 76 to about 55 per 100 working-age people since 1972."
+    },
+    {
+     "source": "offline",
+     "key": "sp_urb_totl_in_zs_trend",
+     "params": {
+      "file": "sp_urb_totl_in_zs_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE PLACE",
+     "topic": "where the world's workforce lives now: cities",
+     "say": "So where did all that growth land? Mostly in cities — the world went from 37 percent urban in 1972 to 58 percent urban by 2025."
+    }
+   ]
+  },
+  {
+   "slug": "landline-extinction-event",
+   "title": "Landlines Peaked In 2006. They've Been Dying Since.",
+   "hook": "1.26 billion phone lines, once. Now 815 million.",
+   "closing": "The phone didn't die. It just stopped ringing at home.",
+   "question": "Do you even own a landline anymore? Tell me below.",
+   "caption": "Fixed telephone lines peaked at 1.26 billion in 2006 and have been falling ever since. What replaced them wasn't a phone at all — it was broadband, and China now runs more of it than the next four countries combined.",
+   "hashtags": [
+    "landlines",
+    "broadband",
+    "internet",
+    "telecom",
+    "worldbank",
+    "data",
+    "technology",
+    "connectivity",
+    "infrastructure",
+    "china",
+    "science",
+    "history"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "it_mlt_main_trend",
+     "params": {
+      "file": "it_mlt_main_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE PEAK",
+     "topic": "landlines since their 2006 peak",
+     "say": "Fixed telephone lines peaked at 1.26 billion in 2006, right as smartphones took off — then started falling, down to 815 million by 2025."
+    },
+    {
+     "source": "offline",
+     "key": "it_net_bbnd_trend",
+     "params": {
+      "file": "it_net_bbnd_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE REPLACEMENT",
+     "topic": "what replaced the dying landline: broadband",
+     "say": "What replaced them wasn't a phone at all. Broadband subscriptions exploded from 220 million in 2005 to 1.65 billion by 2025 — seven times more."
+    },
+    {
+     "source": "offline",
+     "key": "it_net_bbnd_rank",
+     "params": {
+      "file": "it_net_bbnd_rank.json"
+     },
+     "insight_type": "rank",
+     "role": "3 · THE MAP",
+     "topic": "where the dying landlines' replacement landed, by country",
+     "say": "China alone now runs 670 million of those broadband lines — more than the next four countries combined: the US, Brazil, Japan, and India."
+    }
+   ]
   }
  ],
  "videos": [

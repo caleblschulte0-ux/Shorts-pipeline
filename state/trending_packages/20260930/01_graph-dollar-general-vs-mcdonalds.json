@@ -1,0 +1,19 @@
+{
+  "format": "graph_race",
+  "slug": "graph-dollar-general-vs-mcdonalds",
+  "title": "Dollar General Quietly Passed McDonald's",
+  "hook": "One tripled. One barely moved.",
+  "y_label": "US store count",
+  "duration": 13,
+  "source": "Dollar General store counts from company 10-K annual reports (fiscal year-end). McDonald's US restaurant counts from company annual reports / franchise disclosure documents. Figures approximate as publicly reported, rounded to the nearest hundred.",
+  "years": [2005, 2008, 2011, 2014, 2017, 2020, 2023],
+  "series": [
+    {"name": "Dollar General", "color": "#ffcc00", "icon": "Dollar General",
+     "values": [7929, 8362, 9937, 11789, 14534, 16368, 19988]},
+    {"name": "McDonald's", "color": "#da291c", "icon": "McDonald's",
+     "values": [13700, 13918, 14098, 14259, 14027, 13846, 13589]}
+  ],
+  "hashtags": ["dollargeneral", "mcdonalds", "retail", "discountstores", "fastfood", "business", "economy", "data", "stores", "consumer", "brands", "usa"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
