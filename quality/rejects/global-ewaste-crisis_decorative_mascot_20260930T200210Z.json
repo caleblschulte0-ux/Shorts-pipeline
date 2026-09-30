@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260930T200210Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data is parked top-left doing the same point pose for 4.5s. seg1:mid/end: he slides along the bars. seg2:start to seg3:end: the same hands-on-head pose while he rides up beside the fill. seg4: he stands on the 99% pan. He never does a setup->action->payoff bi",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_not_demonstration",
+  "visible_evidence": "seg1:start to seg1:end show a plain horizontal bar chart of years 2010-2030 (34M to 82M) that fades in from near-invisible. Data slides along the bars. The narration's '1.5 million garbage trucks' image is never shown, and the 62M headline number is just one bar among five.",
+  "root_cause": "The growth beat fell back to a generic ranked-bar chart. The subject (a pile of trash and a fleet of garbage trucks) is never used, and the hook already used a line chart for the same growth, so seg0 and seg1 repeat one idea in two chart forms.",
+  "repair_goal": "Redraw seg1 as a pile of e-waste (or a convoy of garbage trucks) that grows from 34M in 2010 to 62M in 2022, each truck or chunk a fixed tonnage, so the +82% reads as the pile nearly doubling. Data should do a bit: toss a phone onto the pile, then be buried or dwarfed by it at 62M. Start the labels at full contrast."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

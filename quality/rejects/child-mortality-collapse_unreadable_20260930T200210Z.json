@@ -1,0 +1,21 @@
+{
+ "slug": "child-mortality-collapse",
+ "ts": "20260930T200210Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In payoff@-1.8 the '+0.19' tag on the money bag is rotated upside down and cannot be read. In seg3:mid and seg4 the 'health spending' label on the funnel is buried under the coins. The grey caption '8.6 percent of' (seg3:mid) is low-contrast on the dark floor.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "illegible_metaphor",
+  "visible_evidence": "From seg1:start to seg1:end the bottom rows of the crowd melt into a formless cream blob, while a dark teal strip on the right fills with blue figures. There is no visible ratio of 93.5 against 37.4, and the viewer cannot tell which figures are the deaths.",
+  "root_cause": "The crowd machine packs the removed figures into a smeared pile at the bottom and never makes clear what one figure stands for, so the 60% collapse looks like a rendering glitch rather than lives saved.",
+  "repair_goal": "Show 94 figures out of 1,000 births (or 93.5 marked tokens) and have 56 of them visibly step out or light up as saved, leaving 37 behind. Use a clear count label and one accent on the saved group. Data should lead the saved children out of the dark column, not stand beside it."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
