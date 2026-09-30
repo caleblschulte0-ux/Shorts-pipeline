@@ -15,6 +15,11 @@ works as before.
 
 TikTok's API cannot schedule: a cross-post goes out when the video is made,
 not at its YouTube publish slot.
+
+GitHub Releases: the same file is attached to a release of this repository
+(shared/release_video.py), which is how it appears in the Shorts Media
+library at shorts-media.netlify.app/app/ — the site lists any public
+repository's release videos, ours included.
 """
 from __future__ import annotations
 
@@ -53,6 +58,16 @@ def crosspost(channel: str, mp4: Path, title: str, description: str,
               tags: list[str]) -> dict:
     """Returns {platform: url} for whatever landed."""
     out: dict = {}
+    from shared import release_video
+    if release_video.available()[0]:
+        try:
+            out["github_release"] = release_video.publish(
+                mp4, title, description, channel)
+            print(f"[crosspost] github release -> {out['github_release']}",
+                  flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[crosspost] github release failed ({e})",
+                  flush=True)
     ready, why = _tiktok_ready(channel)
     if ready:
         try:
@@ -73,7 +88,7 @@ def crosspost(channel: str, mp4: Path, title: str, description: str,
             print(f"[crosspost] instagram -> {out['instagram']}", flush=True)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[crosspost] instagram failed ({e})", flush=True)
-    if not out:
+    if not any(k in out for k in ("tiktok", "instagram")):
         print(f"[crosspost] {channel}: YouTube only"
               + (f" — {why}" if why else "") + ".", flush=True)
     return out

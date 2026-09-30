@@ -417,6 +417,7 @@ jobs:
         if: steps.preflight.outputs.skip == ''
         continue-on-error: true
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # shared/release_video: the video becomes a Release asset (Shorts Media library)
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           # Per-channel tokens. Each one corresponds to a channel slug

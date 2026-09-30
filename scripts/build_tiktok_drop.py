@@ -28,6 +28,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 APP = ROOT / "tiktok_app"
 FUNCTION = APP / "netlify" / "functions" / "app.js"
+#: Pages and stylesheets kept in git (text only; media stays in the base drop).
+SITE = APP / "site"
 PLACEHOLDERS = {
     "__TIKTOK_CLIENT_KEY__": ("client_key", "TIKTOK_CLIENT_KEY"),
     "__TIKTOK_CLIENT_SECRET__": ("client_secret", "TIKTOK_CLIENT_SECRET"),
@@ -37,7 +39,13 @@ PLACEHOLDERS = {
 DROPPED = ("netlify/", "netlify.toml", "package.json")
 
 
-def fill(source: str, config: dict) -> str:
+def fill(source: str, config: dict, placeholders: bool = False) -> str:
+    """Fill the three secrets in, or (placeholders=True) leave the markers:
+    the function reads TIKTOK_CLIENT_KEY / TIKTOK_CLIENT_SECRET /
+    SM_COOKIE_SECRET from Netlify's environment first, so a drop built this
+    way carries no secret at all."""
+    if placeholders:
+        return source
     for mark, (key, env) in PLACEHOLDERS.items():
         value = str(config.get(key) or os.environ.get(env) or "").strip()
         if not value:
@@ -87,12 +95,23 @@ def verify_credentials(config: dict) -> None:
                          "never retype it from a screenshot (I vs l).")
 
 
-def build(base: Path, config: dict, out: Path) -> Path:
+def site_overlay() -> dict[str, bytes]:
+    """The pages and CSS under tiktok_app/site/, keyed by site path."""
+    out = {}
+    if SITE.is_dir():
+        for path in SITE.rglob("*"):
+            if path.is_file():
+                out[path.relative_to(SITE).as_posix()] = path.read_bytes()
+    return out
+
+
+def build(base: Path, config: dict, out: Path, placeholders: bool = False) -> Path:
     with zipfile.ZipFile(base) as z:
         files = site_files(z)
+    files.update(site_overlay())
     files["netlify.toml"] = (APP / "netlify.toml").read_bytes()
     files["netlify/functions/app.js"] = fill(
-        FUNCTION.read_text(encoding="utf-8"), config).encode("utf-8")
+        FUNCTION.read_text(encoding="utf-8"), config, placeholders).encode("utf-8")
     out.parent.mkdir(parents=True, exist_ok=True)
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         for rel in sorted(files):
@@ -116,11 +135,14 @@ def main() -> None:
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--no-verify", action="store_true",
                     help="skip asking TikTok whether the credentials work")
+    ap.add_argument("--placeholders", action="store_true",
+                    help="leave the secret markers in: the site's Netlify "
+                         "environment variables supply the keys")
     a = ap.parse_args()
     config = json.loads(a.config.read_text()) if a.config else {}
-    if not a.no_verify:
+    if not a.no_verify and not a.placeholders:
         verify_credentials(config)
-    print(build(a.base, config, a.out))
+    print(build(a.base, config, a.out, a.placeholders))
 
 
 if __name__ == "__main__":

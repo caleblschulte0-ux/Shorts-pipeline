@@ -503,6 +503,7 @@ jobs:
 
       - name: Run
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # shared/release_video: the video becomes a Release asset (Shorts Media library)
           # Render-time depiction invention is ON. Freshly top-up-authored stories
           # arrive with viz='auto'; without this they render with the GENERIC
           # fallback (the stale "old look" that shipped 2026-07-11). With it, the
