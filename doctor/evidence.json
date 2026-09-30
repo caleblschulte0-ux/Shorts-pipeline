@@ -2323,8 +2323,8 @@
     }
   ],
   "recent_commits": [
-    "625fb77 2026-09-30 claim: mailbox verdicts 2026-09-30T04:47Z [skip ci]",
-    "815aba6 2026-09-30 claim: mailbox verdicts 2026-09-30T03:48Z [skip ci]"
+    "66d07ef 2026-09-30 claim: mailbox verdicts 2026-09-30T10:49Z [skip ci]",
+    "b9b54ac 2026-09-30 watchdog: phase A readiness 20260930 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2434,27 +2434,27 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 4.62,
+          "vph": 4.49,
           "views": 1356
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.22,
-          "views": 151
+          "vph": 1.16,
+          "views": 154
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 1.12,
-          "views": 105
+          "vph": 1.04,
+          "views": 107
         },
         {
           "title": "Chat Could Not Handle This Caseoh Moment",
-          "vph": 0.93,
+          "vph": 0.89,
           "views": 222
         },
         {
           "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
-          "vph": 0.93,
+          "vph": 0.83,
           "views": 72
         }
       ],
@@ -2560,7 +2560,7 @@
       "title": "Test concrete search-intent titles on Third clips",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "90428377a85b",
