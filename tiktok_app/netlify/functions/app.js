@@ -1182,6 +1182,7 @@ var require_account_service = __commonJS({
 // livev2/netlify/functions/app.js
 var crypto = require("crypto");
 var accounts = require_account_service();
+var blobs = require_main3();
 var CONFIG = {
   client_key: process.env.TIKTOK_CLIENT_KEY || "__TIKTOK_CLIENT_KEY__",
   client_secret: process.env.TIKTOK_CLIENT_SECRET || "__TIKTOK_CLIENT_SECRET__",
@@ -1190,20 +1191,31 @@ var CONFIG = {
 };
 var SITE = "https://shorts-media.netlify.app";
 var TT = "https://open.tiktokapis.com";
+var GITHUB_API = "https://api.github.com";
 var SCOPES = "user.info.basic,video.upload,video.publish";
-var VIDEO = {
-  id: "urban-growth",
+// Every user's library (the sources they added and the videos found in
+// them) lives in Netlify Blobs, one record per TikTok account.
+var LIB_STORE = "shorts-media-libraries";
+var MAX_SOURCES = 12;
+var MAX_VIDEOS = 200;
+// TikTok's FILE_UPLOAD takes a video in chunks of 5-64 MB; each chunk is
+// moved by one function invocation (a page refresh drives the next one),
+// so a video of any size fits inside Netlify's per-request limits.
+var CHUNK = 5 * 1024 * 1024;
+var MAX_VIDEO_BYTES = 500 * 1024 * 1024;
+var VIDEO_EXT = /\.(mp4|mov|webm)(\?.*)?$/i;
+// The one video every library can add in a click, so a new user (or a
+// reviewer) can try the whole flow before adding their own sources.
+var SAMPLE = {
+  id: "sample-urban-growth",
   title: "Urban Growth Just Hit A 50-Year Low Of 1.36%",
-  caption: "Everyone assumes cities are exploding faster than ever \u2014 but the world's urban growth rate just fell to its slowest pace in over 50 years.\n\n#data #cities #urbanization #explained",
+  caption: "Everyone assumes cities are exploding faster than ever — but the world's urban growth rate just fell to its slowest pace in over 50 years.\n\n#data #cities #urbanization #explained",
   length: "1:36",
-  file: SITE + "/app-assets/media/urban-growth.mp4",
-  poster: "/app-assets/media/urban-growth-poster.png"
+  url: SITE + "/app-assets/media/urban-growth.mp4",
+  poster: "/app-assets/media/urban-growth-poster.png",
+  size: 4460954,
+  kind: "sample"
 };
-var LIBRARY = [
-  { id: "cargo-ships", title: "Cargo Ships Quietly Got Six Times Bigger", length: "0:58", poster: "/app-assets/img/poster-cargo-ships.svg", when: "Yesterday" },
-  { id: "ocean-floor", title: "We\u2019ve Mapped More Of Mars Than Our Own Ocean Floor", length: "1:12", poster: "/app-assets/img/poster-ocean-floor.svg", when: "2 days ago" },
-  { id: "drinkable-water", title: "How Much Of Earth\u2019s Water You Can Actually Drink", length: "1:04", poster: "/app-assets/img/poster-drinkable-water.svg", when: "3 days ago" }
-];
 var esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#x27;" })[c]);
 function sign(payload) {
   const body = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
@@ -1238,7 +1250,9 @@ var BASE_HEADERS = {
   "X-Content-Type-Options": "nosniff",
   "X-Frame-Options": "DENY",
   "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; media-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'none'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+  // media-src https: — previews play straight from GitHub's release CDN
+  // (or wherever the user's direct link points). No script runs here.
+  "Content-Security-Policy": "default-src 'self'; img-src 'self' data: https:; media-src 'self' https:; style-src 'self' 'unsafe-inline'; script-src 'none'; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
 };
 function jsonPage(statusCode, data) {
   return { statusCode, headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" }, body: JSON.stringify(data) };
@@ -1267,16 +1281,201 @@ function form(event) {
   for (const [k, v] of new URLSearchParams(raw)) out[k] = v;
   return out;
 }
+
+// ---------- the library: sources and the videos found in them ----------
+function libStore() {
+  return blobs.getStore({ name: LIB_STORE });
+}
+function libKey(openId) {
+  return "libraries/" + crypto.createHash("sha256").update(String(openId)).digest("hex");
+}
+function emptyLibrary() {
+  return { v: 1, sources: [], videos: [], updated: 0 };
+}
+async function loadLibrary(openId) {
+  const got = await libStore().getWithMetadata(libKey(openId), { type: "json" });
+  if (!got || !got.data) return { lib: emptyLibrary(), etag: null };
+  const lib = Object.assign(emptyLibrary(), got.data);
+  lib.sources = Array.isArray(lib.sources) ? lib.sources : [];
+  lib.videos = Array.isArray(lib.videos) ? lib.videos : [];
+  return { lib, etag: got.etag || null };
+}
+async function saveLibrary(openId, lib, etag) {
+  lib.updated = Date.now();
+  const db = libStore();
+  const key = libKey(openId);
+  const options = etag ? { onlyIfMatch: etag } : { onlyIfNew: true };
+  const write = await db.setJSON(key, lib, options);
+  if (write.modified) return lib;
+  // Someone else (another tab) wrote first: merge onto the newest copy.
+  const newest = await db.getWithMetadata(key, { type: "json" });
+  const base = Object.assign(emptyLibrary(), newest && newest.data || {});
+  const merged = mergeLibraries(base, lib);
+  merged.updated = Date.now();
+  await db.setJSON(key, merged, newest ? { onlyIfMatch: newest.etag } : {});
+  return merged;
+}
+function mergeLibraries(base, mine) {
+  const out = emptyLibrary();
+  const seenS = new Set(); const seenV = new Set();
+  for (const s of [...mine.sources, ...base.sources]) if (!seenS.has(s.id)) { seenS.add(s.id); out.sources.push(s); }
+  for (const v of [...mine.videos, ...base.videos]) if (!seenV.has(v.id) && seenS.has(v.source)) { seenV.add(v.id); out.videos.push(v); }
+  return out;
+}
+function videoId(url) {
+  return "v" + crypto.createHash("sha256").update(String(url)).digest("hex").slice(0, 16);
+}
+function sourceId(kind, ref) {
+  return kind + ":" + crypto.createHash("sha256").update(kind + "\n" + String(ref).toLowerCase()).digest("hex").slice(0, 12);
+}
+function niceTitle(name) {
+  const t = String(name || "").replace(VIDEO_EXT, "").replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim().slice(0, 100);
+  return t ? t[0].toUpperCase() + t.slice(1) : "Untitled video";
+}
+function repoFrom(text) {
+  let s = String(text || "").trim();
+  s = s.replace(/^https?:\/\/(www\.)?github\.com\//i, "").replace(/\.git$/i, "").replace(/\/+$/, "");
+  const m = s.match(/^([A-Za-z0-9](?:[A-Za-z0-9-]{0,38}))\/([A-Za-z0-9._-]{1,100})(?:\/.*)?$/);
+  return m ? m[1] + "/" + m[2] : "";
+}
+function githubHeaders() {
+  const h = { Accept: "application/vnd.github+json", "User-Agent": "Shorts-Media/1.0 (+https://shorts-media.netlify.app)", "X-GitHub-Api-Version": "2022-11-28" };
+  if (process.env.GITHUB_TOKEN) h.Authorization = "Bearer " + process.env.GITHUB_TOKEN;
+  return h;
+}
+// The videos published as release assets of a public GitHub repository:
+// every .mp4/.mov/.webm attached to any release, newest first.
+async function githubVideos(repo, sid) {
+  const res = await fetch(`${GITHUB_API}/repos/${repo}/releases?per_page=30`, { headers: githubHeaders() });
+  if (res.status === 404) throw new Error(`GitHub has no public repository called ${repo}.`);
+  if (res.status === 403 || res.status === 429) throw new Error("GitHub is rate-limiting requests right now. Try again in a few minutes.");
+  if (!res.ok) throw new Error(`GitHub answered ${res.status}.`);
+  const releases = await res.json();
+  if (!Array.isArray(releases)) throw new Error("GitHub sent an unexpected answer.");
+  const out = [];
+  for (const rel of releases) {
+    if (rel.draft) continue;
+    const assets = (rel.assets || []).filter((a) => a && VIDEO_EXT.test(a.name || "") && a.browser_download_url);
+    for (const a of assets) {
+      const size = Number(a.size || 0);
+      out.push({
+        id: videoId(a.browser_download_url),
+        title: assets.length === 1 && rel.name ? String(rel.name).slice(0, 100) : niceTitle(a.name),
+        caption: assets.length === 1 && rel.body ? String(rel.body).slice(0, 2200) : "",
+        url: a.browser_download_url,
+        size,
+        kind: "github",
+        source: sid,
+        release: rel.tag_name || "",
+        when: a.updated_at || rel.published_at || "",
+        tooBig: size > MAX_VIDEO_BYTES
+      });
+    }
+  }
+  return out;
+}
+async function linkVideo(url, sid) {
+  let u;
+  try {
+    u = new URL(String(url || "").trim());
+  } catch {
+    throw new Error("That is not a web address.");
+  }
+  if (u.protocol !== "https:") throw new Error("The link must start with https://.");
+  const res = await fetch(u.toString(), { method: "HEAD", redirect: "follow" });
+  if (!res.ok) throw new Error(`That link answered ${res.status}.`);
+  const type = String(res.headers.get("content-type") || "").toLowerCase();
+  if (!type.startsWith("video/") && !VIDEO_EXT.test(u.pathname)) throw new Error("That link is not a video file (mp4, mov or webm).");
+  const size = Number(res.headers.get("content-length") || 0);
+  if (!size) throw new Error("That server does not say how large the video is, so it cannot be uploaded in parts.");
+  if (size > MAX_VIDEO_BYTES) throw new Error("Videos up to 500 MB are supported.");
+  return { id: videoId(u.toString()), title: niceTitle(decodeURIComponent(u.pathname.split("/").pop() || "")), caption: "", url: u.toString(), size, kind: "link", source: sid, when: new Date().toISOString() };
+}
+function replaceVideos(lib, sid, videos) {
+  lib.videos = lib.videos.filter((v) => v.source !== sid).concat(videos).slice(0, MAX_VIDEOS);
+}
+function findVideo(lib, id) {
+  if (id === SAMPLE.id) return lib.videos.find((v) => v.id === SAMPLE.id) || null;
+  return lib.videos.find((v) => v.id === id) || null;
+}
+function sampleVideo(sid) {
+  return Object.assign({}, SAMPLE, { source: sid, when: new Date().toISOString() });
+}
+function mb(bytes) {
+  const n = Number(bytes || 0);
+  return n >= 1024 * 1024 ? (n / (1024 * 1024)).toFixed(n >= 100 * 1024 * 1024 ? 0 : 1).replace(/\.0$/, "") + " MB" : Math.max(1, Math.round(n / 1024)) + " KB";
+}
+function whenWord(iso) {
+  const t = Date.parse(iso || "");
+  if (!t) return "";
+  const d = new Date(t);
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: d.getFullYear() === new Date().getFullYear() ? void 0 : "numeric" });
+}
+function sourceLabel(s) {
+  if (!s) return "";
+  if (s.kind === "github") return "GitHub \xB7 " + s.repo;
+  if (s.kind === "link") return "Direct link";
+  return "Sample video";
+}
+
+// ---------- moving a video to TikTok in chunks ----------
+function chunkPlan(size) {
+  if (size < CHUNK) return { chunk_size: size, count: 1 };
+  return { chunk_size: CHUNK, count: Math.floor(size / CHUNK) };
+}
+function chunkRange(plan, size, i) {
+  const start = i * plan.chunk_size;
+  const end = i === plan.count - 1 ? size - 1 : start + plan.chunk_size - 1;
+  return { start, end };
+}
+async function readRange(url, start, end, size) {
+  const res = await fetch(url, { headers: { Range: `bytes=${start}-${end}` }, redirect: "follow" });
+  if (res.status === 206) return Buffer.from(await res.arrayBuffer());
+  if (res.status === 200) {
+    // The host ignored the range: take the whole file (small ones only).
+    if (size > 64 * 1024 * 1024) throw new Error("That host does not support partial downloads, so a video this large cannot be uploaded from it.");
+    const all = Buffer.from(await res.arrayBuffer());
+    return all.subarray(start, end + 1);
+  }
+  throw new Error(`The video host answered ${res.status} while reading the file.`);
+}
+async function putChunk(uploadUrl, bytes, start, end, size) {
+  const put = await fetch(uploadUrl, {
+    method: "PUT",
+    headers: { "Content-Type": "video/mp4", "Content-Length": String(bytes.length), "Content-Range": `bytes ${start}-${end}/${size}` },
+    body: bytes
+  });
+  if (put.status !== 201 && put.status !== 200 && put.status !== 206) throw new Error(`TikTok answered ${put.status} while receiving the video.`);
+}
+async function sendChunk(st, i) {
+  const plan = { chunk_size: st.cs, count: st.n };
+  const { start, end } = chunkRange(plan, st.size, i);
+  const bytes = await readRange(st.url, start, end, st.size);
+  if (bytes.length !== end - start + 1) throw new Error("The video host sent fewer bytes than it promised.");
+  await putChunk(st.up, bytes, start, end, st.size);
+}
+async function beginUpload(user, video, draft, postInfo) {
+  const plan = chunkPlan(video.size);
+  const source_info = { source: "FILE_UPLOAD", video_size: video.size, chunk_size: plan.chunk_size, total_chunk_count: plan.count };
+  const init = draft ? await tt("/v2/post/publish/inbox/video/init/", user.tok, { source_info }) : await tt("/v2/post/publish/video/init/", user.tok, { post_info: postInfo, source_info });
+  const st = { id: init.publish_id, up: init.upload_url, url: video.url, size: video.size, cs: plan.chunk_size, n: plan.count, next: 0, v: video.id, draft: draft ? 1 : 0 };
+  await sendChunk(st, 0);
+  st.next = 1;
+  return st;
+}
+
+// ---------- pages ----------
 var TIKTOK_GLYPH = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 0 1 0-5.18c.27 0 .52.04.76.12v-3.1a5.71 5.71 0 0 0-.76-.05A5.68 5.68 0 1 0 15.54 15.4V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3a4.29 4.29 0 0 1-3.24-1.48z"/></svg>';
 var LOCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
-function shell(title, main, user) {
+var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>';
+function shell(title, main, user, refreshSeconds) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(title)} | Shorts Media</title>
-<meta name="description" content="Shorts Media creator dashboard.">
+${refreshSeconds ? `<meta http-equiv="refresh" content="${Number(refreshSeconds)}">\n` : ""}<title>${esc(title)} | Shorts Media</title>
+<meta name="description" content="Shorts Media: organize the short videos you keep in GitHub Releases or at a direct link, and post them to TikTok when you choose.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="/assets/shorts-media-app-icon.png">
@@ -1293,12 +1492,13 @@ function shell(title, main, user) {
       <span>Shorts Media</span>
     </a>
     <nav class="navlinks" aria-label="Support and legal">
+      <a href="/how-it-works/">How it works</a>
       <a href="/support/">Support</a>
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-of-service/">Terms of Service</a>
     </nav>
   </div>
-  <p class="sandbox-banner">TikTok Live app \u2014 connect a TikTok account to publish with the access you approve.</p>
+  <p class="sandbox-banner">Your videos, from GitHub Releases or a direct link — posted to TikTok only when you press Post.</p>
 </header>
 
 <main id="main">
@@ -1318,7 +1518,7 @@ ${main}
         <img src="/assets/shorts-media-app-icon.png" alt="" width="40" height="40">
         <span>Shorts Media</span>
       </div>
-      <p class="small">TikTok is a third-party service. Shorts Media is not endorsed by, sponsored by, or affiliated with TikTok.</p>
+      <p class="small">TikTok is a third-party service. Shorts Media is not endorsed by, sponsored by, or affiliated with TikTok. GitHub is a trademark of GitHub, Inc.</p>
     </div>
     <nav aria-label="More about Shorts Media">
       <a href="/how-it-works/">How it works</a>
@@ -1342,10 +1542,80 @@ function acct(user) {
       <a class="btn btn-quiet" href="/app/disconnect">Disconnect TikTok</a>
     </div>`;
 }
-function card(v, user, primary) {
-  const inner = `<div class="vthumb"><img src="${esc(v.poster)}" alt="" width="1080" height="1920"><span class="dur">${esc(v.length)}</span>${user ? "" : `<span class="lock">${LOCK}Connect TikTok to share</span>`}</div>
-<div class="vbody"><div class="vtitle">${esc(v.title)}</div><div class="vsub"><span class="badge ${user ? "badge-ready" : "badge-locked"}">${user ? "Ready" : "Not connected"}</span><span>${esc(v.when || "Today")}</span></div>${user && primary ? `<a class="cta cta-post" href="/app/post/${esc(v.id)}">${TIKTOK_GLYPH}Post to TikTok</a><a class="cta cta-draft" href="/app/draft/${esc(v.id)}">${TIKTOK_GLYPH}Send as a draft</a>` : ""}</div>`;
+function thumb(v) {
+  if (v.poster) return `<img src="${esc(v.poster)}" alt="" width="1080" height="1920">`;
+  return `<div class="vthumb-blank" aria-hidden="true"><span class="vthumb-play">${PLAY}</span><span class="vthumb-kind">${esc(v.kind === "github" ? "GitHub release" : "Video link")}</span></div>`;
+}
+function card(v, user, src) {
+  const meta = [v.length || "", v.size ? mb(v.size) : ""].filter(Boolean).join(" \xB7 ");
+  const inner = `<div class="vthumb">${thumb(v)}${meta ? `<span class="dur">${esc(meta)}</span>` : ""}${user ? "" : `<span class="lock">${LOCK}Connect TikTok to post</span>`}</div>
+<div class="vbody"><div class="vtitle">${esc(v.title)}</div><div class="vsub"><span class="badge ${user ? v.tooBig ? "badge-locked" : "badge-ready" : "badge-locked"}">${user ? v.tooBig ? "Too large" : "Ready" : "Not connected"}</span><span>${esc(whenWord(v.when) || "Today")}</span></div><div class="vsource">${esc(sourceLabel(src))}${v.release ? ` \xB7 ${esc(v.release)}` : ""}</div>${user && !v.tooBig ? `<a class="cta cta-post" href="/app/post/${esc(v.id)}">${TIKTOK_GLYPH}Post to TikTok</a><a class="cta cta-draft" href="/app/draft/${esc(v.id)}">${TIKTOK_GLYPH}Send as a draft</a>` : ""}</div>`;
   return `<div class="vcard">${inner}</div>`;
+}
+function sourcesPanel(lib) {
+  const rows = lib.sources.map((s) => {
+    const count = lib.videos.filter((v) => v.source === s.id).length;
+    return `<li class="source-row">
+      <div class="source-text"><strong>${esc(sourceLabel(s))}</strong><span class="small">${count} video${count === 1 ? "" : "s"}${s.synced ? " \xB7 checked " + esc(whenWord(s.synced)) : ""}${s.error ? ` \xB7 <span class="source-err">${esc(s.error)}</span>` : ""}</span></div>
+      <div class="source-actions">
+        ${s.kind === "github" ? `<form method="post" action="/app/sources"><input type="hidden" name="action" value="refresh"><input type="hidden" name="source" value="${esc(s.id)}"><button class="btn btn-small" type="submit">Check for new videos</button></form>` : ""}
+        <form method="post" action="/app/sources"><input type="hidden" name="action" value="remove"><input type="hidden" name="source" value="${esc(s.id)}"><button class="btn btn-small btn-quiet" type="submit">Remove</button></form>
+      </div>
+    </li>`;
+  }).join("");
+  const hasSample = lib.sources.some((s) => s.kind === "sample");
+  return `<section class="sources" aria-labelledby="sources-h2">
+    <div class="sources-head"><h2 class="app-h2" id="sources-h2">Where your videos come from</h2><p class="muted">Shorts Media lists the videos it finds in each source. It never copies them anywhere; a video is only read when you post it.</p></div>
+    ${rows ? `<ul class="source-list">${rows}</ul>` : '<p class="empty">No sources yet. Add one below.</p>'}
+    <div class="addgrid">
+      <form class="addcard" method="post" action="/app/sources">
+        <input type="hidden" name="action" value="add-github">
+        <label class="flabel" for="repo">GitHub repository</label>
+        <input id="repo" name="repo" type="text" inputmode="url" placeholder="owner/repository" required maxlength="200" aria-describedby="repo-hint">
+        <p class="hint" id="repo-hint">Every .mp4, .mov or .webm attached to a public release of that repository is added.</p>
+        <button class="btn" type="submit">Add repository</button>
+      </form>
+      <form class="addcard" method="post" action="/app/sources">
+        <input type="hidden" name="action" value="add-link">
+        <label class="flabel" for="link">Direct video link</label>
+        <input id="link" name="url" type="url" placeholder="https://…/video.mp4" required maxlength="2000" aria-describedby="link-hint">
+        <p class="hint" id="link-hint">Any https link straight to a video file, up to 500 MB.</p>
+        <button class="btn" type="submit">Add link</button>
+      </form>
+      ${hasSample ? "" : `<form class="addcard addcard-sample" method="post" action="/app/sources">
+        <input type="hidden" name="action" value="add-sample">
+        <div class="flabel">Just trying it out?</div>
+        <p class="hint">Add Shorts Media's sample video and post it to see the whole flow.</p>
+        <button class="btn" type="submit">Add the sample video</button>
+      </form>`}
+    </div>
+  </section>`;
+}
+function library(user, lib, notice, connected, refreshSeconds) {
+  const srcById = Object.fromEntries((lib.sources || []).map((s) => [s.id, s]));
+  const videos = (lib.videos || []).slice().sort((a, b) => Date.parse(b.when || "") - Date.parse(a.when || ""));
+  const main = `
+  <div class="dash-head">
+    <div>
+      <div class="eyebrow">Library</div>
+      <h1 class="app-h1">Your videos</h1>
+      <p class="muted">${user ? "The videos Shorts Media found in your sources. Pick one, choose its settings, and post it to your TikTok account. Nothing is sent until you press Post." : "Connect your TikTok account, then add where your videos live: a GitHub repository's releases or a direct link."}</p>
+    </div>
+    <div class="dash-cta">
+       <a class="btn btn-tiktok" href="/app/connect">${TIKTOK_GLYPH}${user ? "Connect another TikTok" : "Connect TikTok"}</a>
+       <p class="small">${user ? "TikTok links whichever account is signed in on tiktok.com in this browser. To add a different account, first sign out at tiktok.com (or switch accounts there), then press Connect another." : "You will authorize Shorts Media on TikTok. Shorts Media never asks for your TikTok password."}</p>
+     </div>
+  </div>
+  ${notice || ""}
+  ${connected && connected.length > 1 ? `<div class="notice">Connected accounts: ${connected.map((a) => a.open_id === user?.open_id ? `<strong>${esc(a.handle || a.name)}</strong>` : `<a href="/app/select?open_id=${encodeURIComponent(a.open_id)}">${esc(a.handle || a.name)}</a>`).join(" \xB7 ")}</div>` : ""}
+  ${user ? sourcesPanel(lib) : `<section class="sources"><div class="sources-head"><h2 class="app-h2">How it works</h2></div><ol class="howlist"><li><strong>Connect TikTok.</strong> You authorize Shorts Media on TikTok's own screen and can revoke it there at any time.</li><li><strong>Add your sources.</strong> A public GitHub repository (its release assets) or a direct link to a video file.</li><li><strong>Post when you are ready.</strong> Choose the caption, who can view it, comments, Duet, Stitch and content disclosure for each video, then press Post.</li></ol></section>`}
+  ${user ? videos.length ? `<h2 class="app-h2 grid-h2">Videos <span class="count">${videos.length}</span></h2><div class="vgrid">${videos.map((v) => card(v, user, srcById[v.source])).join("")}</div>` : '<p class="empty empty-videos">No videos yet. Add a source above and they appear here.</p>' : `<div class="vgrid">${card(SAMPLE, null, { kind: "sample" })}</div>`}`;
+  return shell("Your videos", main, user, refreshSeconds);
+}
+function previewBlock(video) {
+  return `<div class="flabel" id="preview-label">Preview</div>
+        <video class="preview" src="${esc(video.url)}"${video.poster ? ` poster="${esc(video.poster)}"` : ""} controls preload="metadata" playsinline aria-labelledby="preview-label video-title"></video>
+        <p class="video-title" id="video-title">${esc(video.title)}</p>`;
 }
 function draftPage(user, video) {
   const main = `
@@ -1358,10 +1628,8 @@ function draftPage(user, video) {
     <input type="hidden" name="video" value="${esc(video.id)}">
     <div class="composer-cols">
       <div class="composer-preview">
-        <div class="flabel" id="preview-label">Preview</div>
-        <video class="preview" src="/app-assets/media/${esc(video.id)}.mp4" poster="${esc(video.poster)}" controls preload="metadata" playsinline aria-labelledby="preview-label video-title"></video>
-        <p class="video-title" id="video-title">${esc(video.title)}</p>
-        <p class="check-line">Video length ${esc(video.length)}</p>
+        ${previewBlock(video)}
+        <p class="check-line">${esc([video.length, mb(video.size)].filter(Boolean).join(" \xB7 "))}</p>
       </div>
       <div class="composer-form">
         <div class="post-account">
@@ -1381,26 +1649,6 @@ function draftPage(user, video) {
     </div>
   </form>`;
   return shell("Send as a draft", main, user);
-}
-function library(user, notice, connected) {
-  const main = `
-  <div class="dash-head">
-    <div>
-      <div class="eyebrow">Library</div>
-      <h1 class="app-h1">Your Shorts</h1>
-      <p class="muted">${user ? "Post a short straight to your TikTok account. Nothing is sent until you press Post." : "Connect your TikTok account to post these shorts to TikTok."}</p>
-    </div>
-    <div class="dash-cta">
-       <a class="btn btn-tiktok" href="/app/connect">${TIKTOK_GLYPH}${user ? "Connect another TikTok" : "Connect TikTok"}</a>
-       <p class="small">${user ? "TikTok links whichever account is signed in on tiktok.com in this browser. To add a different account, first sign out at tiktok.com (or switch accounts there), then press Connect another." : "You will authorize Shorts Media on TikTok. Shorts Media never asks for your TikTok password."}</p>
-     </div>
-  </div>
-  ${notice || ""}
-  ${connected && connected.length > 1 ? `<div class="notice">Connected accounts: ${connected.map((a) => a.open_id === user?.open_id ? `<strong>${esc(a.handle || a.name)}</strong>` : `<a href="/app/select?open_id=${encodeURIComponent(a.open_id)}">${esc(a.handle || a.name)}</a>`).join(" \xB7 ")}</div>` : ""}
-  <div class="vgrid">
-    ${card(Object.assign({ when: "Today" }, VIDEO), user, true)}${LIBRARY.map((v) => card(v, user, false)).join("")}
-  </div>`;
-  return shell("Your Shorts", main, user);
 }
 function composer(user, video, creator) {
   const opts = creator.privacy_level_options || ["SELF_ONLY", "MUTUAL_FOLLOW_FRIENDS", "FOLLOWER_OF_CREATOR", "PUBLIC_TO_EVERYONE"];
@@ -1422,10 +1670,8 @@ function composer(user, video, creator) {
     <input type="hidden" name="video" value="${esc(video.id)}">
     <div class="composer-cols">
       <div class="composer-preview">
-        <div class="flabel" id="preview-label">Preview</div>
-        <video class="preview" src="/app-assets/media/${esc(video.id)}.mp4" poster="${esc(video.poster)}" controls preload="metadata" playsinline aria-labelledby="preview-label video-title"></video>
-        <p class="video-title" id="video-title">${esc(video.title)}</p>
-        <p class="check-line">Video length ${esc(video.length)} \xB7 within this account's ${esc(maxSec)} maximum</p>
+        ${previewBlock(video)}
+        <p class="check-line">${video.length ? `Video length ${esc(video.length)} \xB7 ` : ""}${esc(mb(video.size))} \xB7 this account's limit is ${esc(maxSec)} per video</p>
       </div>
 
       <div class="composer-form">
@@ -1440,14 +1686,14 @@ function composer(user, video, creator) {
 
         <div class="field">
           <label class="flabel" for="caption">Caption</label>
-          <textarea id="caption" name="caption" rows="5" maxlength="2200" aria-describedby="caption-hint">${esc(video.caption)}</textarea>
+          <textarea id="caption" name="caption" rows="5" maxlength="2200" aria-describedby="caption-hint">${esc(video.caption || video.title)}</textarea>
           <p class="hint" id="caption-hint">Edit the caption before posting. Up to 2,200 characters, hashtags included.</p>
         </div>
 
         <div class="field privacy-standard">
           <label class="flabel" for="privacy">Who can view this video</label>
           <select id="privacy" name="privacy_level" aria-describedby="privacy-hint">
-            <option value="" selected>Select who can view this video\u2026</option>
+            <option value="" selected>Select who can view this video…</option>
             ${options}
           </select>
           <p class="hint" id="privacy-hint">You must choose. These are the options TikTok allows for this account.</p>
@@ -1455,7 +1701,7 @@ function composer(user, video, creator) {
         <div class="field privacy-branded">
           <label class="flabel" for="privacy-branded">Who can view this video</label>
           <select id="privacy-branded" name="privacy_level_branded" aria-describedby="privacy-branded-hint">
-            <option value="" selected>Select who can view this video\u2026</option>
+            <option value="" selected>Select who can view this video…</option>
             <option value="SELF_ONLY" disabled>Only me (not available for branded content)</option>
             ${branded}
           </select>
@@ -1523,69 +1769,71 @@ function composer(user, video, creator) {
   return shell("New TikTok post", main, user);
 }
 var AUDIENCE_WORDS = { SELF_ONLY: "visible only to you (Only me)", MUTUAL_FOLLOW_FRIENDS: "visible to your friends (mutual follows)", FOLLOWER_OF_CREATOR: "visible to your followers", PUBLIC_TO_EVERYONE: "visible to everyone" };
-function statusPage(user, video, state, detail, draft, privacy) {
+function statusThumb(video) {
+  return video.poster ? `<img class="status-thumb" src="${esc(video.poster)}" alt="Video thumbnail" width="1080" height="1920">` : `<div class="status-thumb vthumb-blank" aria-hidden="true"><span class="vthumb-play">${PLAY}</span></div>`;
+}
+// state: uploading (part n of m still moving), processing, done, failed
+function statusPage(user, video, state, detail, draft, privacy, parts) {
   const who = AUDIENCE_WORDS[privacy] || "with the privacy you chose";
   const done = state === "done";
   const failed = state === "failed";
-  if (draft) return draftStatus(user, video, state, detail);
+  const uploading = state === "uploading";
+  if (draft) return draftStatus(user, video, state, detail, parts);
   const main = `
   <section class="status-card ${done ? "posted" : "posting"}" aria-labelledby="status-h1">
     <div class="status-top">
-      <img class="status-thumb" src="${esc(video.poster)}" alt="Video thumbnail" width="1080" height="1920">
+      ${statusThumb(video)}
       <div>
         <div class="eyebrow">Content Posting API \xB7 Direct Post</div>
-        <h1 class="status-h1" id="status-h1">${failed ? "TikTok could not post it" : done ? "Posted to TikTok" : "Posting to TikTok"}</h1>
+        <h1 class="status-h1" id="status-h1">${failed ? "TikTok could not post it" : done ? "Posted to TikTok" : uploading ? "Uploading to TikTok" : "Posting to TikTok"}</h1>
         <p class="status-title">${esc(video.title)}</p>
         <div class="mini-acct"><img src="${esc(user.avatar)}" alt="" width="36" height="36"><span><span class="acct-name">${esc(user.name)}</span><span class="acct-handle">@${esc(user.user)}</span></span></div>
       </div>
     </div>
     ${failed ? "" : '<div class="progress" aria-hidden="true"><span></span></div>'}
     <ol class="steps">
-      <li class="step s1 step-done"><span class="dot" aria-hidden="true"><span class="tick"></span></span>Uploaded to TikTok</li>
-      <li class="step s2${state === "uploading" || state === "processing" ? "" : " step-done"}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "TikTok processed your video" : failed ? "TikTok stopped processing" : "TikTok is processing your video\u2026"}</li>
-      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "Posted \u2014 " + esc(who) : "Waiting for TikTok to confirm"}</li>
+      <li class="step s1${uploading ? "" : " step-done"}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${uploading ? `Uploading to TikTok — part ${parts.sent} of ${parts.total}` : "Uploaded to TikTok"}</li>
+      <li class="step s2${done || failed ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "TikTok processed your video" : failed ? "TikTok stopped processing" : uploading ? "TikTok will process your video" : "TikTok is processing your video…"}</li>
+      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "Posted — " + esc(who) : "Waiting for TikTok to confirm"}</li>
     </ol>
     <div class="status-note">
-      ${done ? `<p>Your video is on your TikTok profile, ${esc(who)}. Open your profile to see it.</p>` : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : "<p>This page checks with TikTok every few seconds. It usually takes under a minute.</p>"}
+      ${done ? `<p>Your video is on your TikTok profile, ${esc(who)}. Open your profile to see it.</p>` : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : uploading ? "<p>The video is read from where you keep it and sent to TikTok in parts. Keep this page open.</p>" : "<p>This page checks with TikTok every few seconds. It usually takes under a minute.</p>"}
     </div>
-    <div class="status-actions">${done ? `<a class="btn primary btn-wide" href="https://www.tiktok.com/@${esc(user.user)}">Open my TikTok profile</a> <a class="btn btn-quiet" href="/app/">Back to your Shorts</a>` : failed ? '<a class="btn primary btn-wide" href="/app/">Back to your Shorts</a>' : ""}</div>
+    <div class="status-actions">${done ? `<a class="btn primary btn-wide" href="https://www.tiktok.com/@${esc(user.user)}">Open my TikTok profile</a> <a class="btn btn-quiet" href="/app/">Back to your videos</a>` : failed ? '<a class="btn primary btn-wide" href="/app/">Back to your videos</a>' : ""}</div>
   </section>`;
-  const html = shell(done ? "Posted" : failed ? "Not posted" : "Posting", main, user);
-  if (done || failed) return html;
-  return html.replace("<title>", '<meta http-equiv="refresh" content="3">\n<title>');
+  return shell(done ? "Posted" : failed ? "Not posted" : uploading ? "Uploading" : "Posting", main, user, done || failed ? 0 : uploading ? 1 : 3);
 }
-function draftStatus(user, video, state, detail) {
+function draftStatus(user, video, state, detail, parts) {
   const done = state === "done";
   const failed = state === "failed";
+  const uploading = state === "uploading";
   const main = `
   <section class="status-card ${done ? "posted" : "posting"}" aria-labelledby="status-h1">
     <div class="status-top">
-      <img class="status-thumb" src="${esc(video.poster)}" alt="Video thumbnail" width="1080" height="1920">
+      ${statusThumb(video)}
       <div>
         <div class="eyebrow">Content Posting API \xB7 Upload to inbox</div>
-        <h1 class="status-h1" id="status-h1">${failed ? "TikTok could not take the draft" : done ? "Draft sent to your TikTok inbox" : "Sending to your TikTok inbox"}</h1>
+        <h1 class="status-h1" id="status-h1">${failed ? "TikTok could not take the draft" : done ? "Draft sent to your TikTok inbox" : uploading ? "Uploading to TikTok" : "Sending to your TikTok inbox"}</h1>
         <p class="status-title">${esc(video.title)}</p>
         <div class="mini-acct"><img src="${esc(user.avatar)}" alt="" width="36" height="36"><span><span class="acct-name">${esc(user.name)}</span><span class="acct-handle">@${esc(user.user)}</span></span></div>
       </div>
     </div>
     ${failed ? "" : '<div class="progress" aria-hidden="true"><span></span></div>'}
     <ol class="steps">
-      <li class="step s1 step-done"><span class="dot" aria-hidden="true"><span class="tick"></span></span>Uploaded to TikTok</li>
-      <li class="step s2${done || failed ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "TikTok processed your video" : failed ? "TikTok stopped processing" : "TikTok is processing your video\u2026"}</li>
-      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "In your inbox \u2014 finish it in the TikTok app" : "Waiting for TikTok to confirm"}</li>
+      <li class="step s1${uploading ? "" : " step-done"}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${uploading ? `Uploading to TikTok — part ${parts.sent} of ${parts.total}` : "Uploaded to TikTok"}</li>
+      <li class="step s2${done || failed ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "TikTok processed your video" : failed ? "TikTok stopped processing" : uploading ? "TikTok will process your video" : "TikTok is processing your video…"}</li>
+      <li class="step s3${done ? " step-done" : ""}"><span class="dot" aria-hidden="true"><span class="spin"></span><span class="tick"></span></span>${done ? "In your inbox — finish it in the TikTok app" : "Waiting for TikTok to confirm"}</li>
     </ol>
     <div class="status-note">
-      ${done ? "<p>Open the TikTok app: the draft is in your inbox, waiting for your caption and settings. Nothing was published.</p>" : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : "<p>This page checks with TikTok every few seconds.</p>"}
+      ${done ? "<p>Open the TikTok app: the draft is in your inbox, waiting for your caption and settings. Nothing was published.</p>" : failed ? `<p>TikTok answered: ${esc(detail || "no reason given")}.</p>` : uploading ? "<p>The video is read from where you keep it and sent to TikTok in parts. Keep this page open.</p>" : "<p>This page checks with TikTok every few seconds.</p>"}
       <p class="small">The draft waits in your TikTok inbox until you finish it.</p>
     </div>
-    <div class="status-actions">${done || failed ? '<a class="btn primary btn-wide" href="/app/">Back to your Shorts</a>' : ""}</div>
+    <div class="status-actions">${done || failed ? '<a class="btn primary btn-wide" href="/app/">Back to your videos</a>' : ""}</div>
   </section>`;
-  const html = shell(done ? "Draft sent" : failed ? "Draft not sent" : "Sending", main, user);
-  if (done || failed) return html;
-  return html.replace("<title>", '<meta http-equiv="refresh" content="3">\n<title>');
+  return shell(done ? "Draft sent" : failed ? "Draft not sent" : uploading ? "Uploading" : "Sending", main, user, done || failed ? 0 : uploading ? 1 : 3);
 }
 function problem(user, title, text) {
-  const main = `<section class="status-card posting"><div class="status-top"><div><div class="eyebrow">Shorts Media</div><h1 class="status-h1">${esc(title)}</h1><p class="status-title">${esc(text)}</p></div></div><div class="status-actions"><a class="btn primary btn-wide" href="/app/">Back to your Shorts</a></div></section>`;
+  const main = `<section class="status-card posting"><div class="status-top"><div><div class="eyebrow">Shorts Media</div><h1 class="status-h1">${esc(title)}</h1><p class="status-title">${esc(text)}</p></div></div><div class="status-actions"><a class="btn primary btn-wide" href="/app/">Back to your videos</a></div></section>`;
   return shell(title, main, user);
 }
 function sessionFrom(rec) {
@@ -1594,6 +1842,11 @@ function sessionFrom(rec) {
 function sessionUser(s) {
   return { open_id: s.open_id, handle: s.handle, name: s.name || "TikTok user", avatar: s.avatar || "/app-assets/img/avatar.svg", tok: s.tok, user: s.handle || s.name || "tiktok" };
 }
+function notice(text, kind) {
+  return `<div class="${kind === "err" ? "notice notice-err" : "flash"}">${esc(text)}</div>`;
+}
+
+// ---------- the request handler ----------
 exports.handler = async function(event) {
   const path = (event.path || "/").replace(/\/+$/, "") || "/";
   const jar = cookies(event);
@@ -1650,10 +1903,23 @@ exports.handler = async function(event) {
     connected = (await Promise.all(owned.map((id) => accounts.getRecord(id).catch(() => null)))).filter(Boolean);
     // The switcher lists every account this browser linked, even ones Blobs
     // has not caught up with yet (the cookie remembers their open_id).
-    for (const id of owned) if (!connected.some((a) => a.open_id === id)) connected.push({ open_id: id, handle: "", name: "account (saving\u2026)" });
+    for (const id of owned) if (!connected.some((a) => a.open_id === id)) connected.push({ open_id: id, handle: "", name: "account (saving…)" });
     if (user && !connected.some((a) => a.open_id === user.open_id)) connected.unshift({ open_id: user.open_id, handle: user.handle, name: user.name });
-    if (renewed && path === "/app") return page(library(user, "", connected), { "Set-Cookie": setCookie("sm_session", sign(renewed), 2592e3) });
-    if (path === "/app") return page(library(user, q.again === "1" && user ? `<div class="notice">TikTok sent back @${esc(user.handle || user.name)} again \u2014 that account was already connected. To add another account, sign out at <a href="https://www.tiktok.com/logout" target="_blank" rel="noopener noreferrer">tiktok.com</a> (or switch accounts there), then press Connect another TikTok.</div>` : "", connected));
+    if (path === "/app") {
+      const extra = renewed ? { "Set-Cookie": setCookie("sm_session", sign(renewed), 2592e3) } : {};
+      if (!user) return page(library(null, emptyLibrary(), "", connected), extra);
+      const { lib } = await loadLibrary(user.open_id);
+      // A change made a moment ago may not have reached this read yet
+      // (Blobs is eventually consistent): say so and look again shortly.
+      const hint = verify(jar.sm_libv);
+      let text = q.again === "1" ? `TikTok sent back @${user.handle || user.name} again — that account was already connected. To add another account, sign out at tiktok.com (or switch accounts there), then press Connect another TikTok.` : "";
+      let refresh = 0;
+      if (hint && Number(hint.t) > Number(lib.updated || 0) && Date.now() - Number(hint.t) < 30 * 1e3) {
+        text = "Your last change is still being saved — this page will refresh in a moment.";
+        refresh = 2;
+      }
+      return page(library(user, lib, text ? notice(text) : "", connected, refresh), extra);
+    }
     if (path === "/app/select") {
       if (!owned.includes(String(q.open_id || ""))) return redirect("/app/");
       let rec = null;
@@ -1717,7 +1983,7 @@ exports.handler = async function(event) {
           setCookie("sm_accounts", sign({ ids: nextOwned }), 2592e3),
           setCookie("sm_state", "", 0)
         ] },
-        body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${SITE}/app/${again ? "?again=1" : ""}"><title>Connecting | Shorts Media</title></head><body style="background:#09090c;color:#eee;font:16px system-ui;padding:40px">Connected. Taking you back to Shorts Media\u2026</body></html>`
+        body: `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=${SITE}/app/${again ? "?again=1" : ""}"><title>Connecting | Shorts Media</title></head><body style="background:#09090c;color:#eee;font:16px system-ui;padding:40px">Connected. Taking you back to Shorts Media…</body></html>`
       };
     }
     if (path === "/app/disconnect") {
@@ -1734,25 +2000,106 @@ exports.handler = async function(event) {
       return redirect("/app/");
     }
     if (!user) return redirect("/app/");
-    if (path === "/app/post/" + VIDEO.id) {
+    const sessionCookie = renewed ? { "Set-Cookie": setCookie("sm_session", sign(renewed), 2592e3) } : {};
+
+    if (path === "/app/sources" && event.httpMethod === "POST") {
+      const f = form(event);
+      const { lib, etag } = await loadLibrary(user.open_id);
+      let text = "";
+      let kind = "ok";
+      try {
+        if (f.action === "add-github") {
+          const repo = repoFrom(f.repo);
+          if (!repo) throw new Error("Enter the repository as owner/repository (or paste its GitHub address).");
+          const sid = sourceId("github", repo);
+          if (!lib.sources.some((s) => s.id === sid) && lib.sources.length >= MAX_SOURCES) throw new Error(`You can have up to ${MAX_SOURCES} sources. Remove one first.`);
+          const videos = await githubVideos(repo, sid);
+          if (!videos.length) throw new Error(`${repo} has no public release with a video file attached (.mp4, .mov or .webm).`);
+          const src = lib.sources.find((s) => s.id === sid) || { id: sid, kind: "github", repo, added: new Date().toISOString() };
+          src.synced = new Date().toISOString();
+          delete src.error;
+          if (!lib.sources.includes(src)) lib.sources.push(src);
+          replaceVideos(lib, sid, videos);
+          text = `Added ${videos.length} video${videos.length === 1 ? "" : "s"} from ${repo}.`;
+        } else if (f.action === "add-link") {
+          const sid = sourceId("link", String(f.url || "").trim());
+          if (lib.sources.some((s) => s.id === sid)) throw new Error("That link is already in your library.");
+          if (lib.sources.length >= MAX_SOURCES) throw new Error(`You can have up to ${MAX_SOURCES} sources. Remove one first.`);
+          const video = await linkVideo(f.url, sid);
+          lib.sources.push({ id: sid, kind: "link", url: video.url, added: new Date().toISOString(), synced: new Date().toISOString() });
+          replaceVideos(lib, sid, [video]);
+          text = `Added ${video.title}.`;
+        } else if (f.action === "add-sample") {
+          const sid = sourceId("sample", "urban-growth");
+          if (!lib.sources.some((s) => s.id === sid)) {
+            lib.sources.push({ id: sid, kind: "sample", added: new Date().toISOString(), synced: new Date().toISOString() });
+            replaceVideos(lib, sid, [sampleVideo(sid)]);
+          }
+          text = "Added the sample video.";
+        } else if (f.action === "refresh") {
+          const src = lib.sources.find((s) => s.id === String(f.source || ""));
+          if (!src) throw new Error("That source is not in your library.");
+          if (src.kind === "github") {
+            try {
+              const videos = await githubVideos(src.repo, src.id);
+              replaceVideos(lib, src.id, videos);
+              src.synced = new Date().toISOString();
+              delete src.error;
+              text = `${src.repo}: ${videos.length} video${videos.length === 1 ? "" : "s"} found.`;
+            } catch (e) {
+              src.error = String(e.message || e);
+              throw e;
+            }
+          }
+        } else if (f.action === "remove") {
+          const sid = String(f.source || "");
+          if (!lib.sources.some((s) => s.id === sid)) throw new Error("That source is not in your library.");
+          lib.sources = lib.sources.filter((s) => s.id !== sid);
+          lib.videos = lib.videos.filter((v) => v.source !== sid);
+          text = "Removed.";
+        } else {
+          throw new Error("Unknown action.");
+        }
+      } catch (e) {
+        text = String(e && e.message || e);
+        kind = "err";
+      }
+      let saved = lib;
+      if (kind === "ok") saved = await saveLibrary(user.open_id, lib, etag);
+      const cookiesOut = [setCookie("sm_libv", sign({ t: saved.updated || 0 }), 60)];
+      if (renewed) cookiesOut.push(setCookie("sm_session", sign(renewed), 2592e3));
+      return { statusCode: 200, headers: BASE_HEADERS, multiValueHeaders: { "Set-Cookie": cookiesOut }, body: library(user, saved, notice(text, kind), connected) };
+    }
+
+    const postMatch = path.match(/^\/app\/(post|draft)\/([A-Za-z0-9_-]{1,64})$/);
+    if (postMatch) {
+      const { lib } = await loadLibrary(user.open_id);
+      const video = findVideo(lib, postMatch[2]);
+      if (!video) return page(problem(user, "That video is not in your library", "It may have been removed from its source. Check the source on your videos page."), sessionCookie);
+      if (video.tooBig) return page(problem(user, "That video is too large", "Videos up to 500 MB are supported."), sessionCookie);
+      if (postMatch[1] === "draft") return page(draftPage(user, video), sessionCookie);
       let creator = {};
       try {
         creator = await tt("/v2/post/publish/creator_info/query/", user.tok, {});
       } catch (e) {
         creator = {};
       }
-      return page(composer(user, VIDEO, creator));
+      return page(composer(user, video, creator), sessionCookie);
     }
-    if (path === "/app/posting" && event.httpMethod === "POST") {
+    if ((path === "/app/posting" || path === "/app/drafting") && event.httpMethod === "POST") {
       const f = form(event);
-      const branded = f.brand_content_toggle === "1";
-      const privacy = branded ? f.privacy_level_branded : f.privacy_level;
-      if (!privacy) return page(problem(user, "Pick who can view it", "Choose a privacy setting, then post again."));
-      if (f.disclose === "1" && !branded && f.brand_organic_toggle !== "1") return page(problem(user, "Say what the video promotes", "Choose at least one disclosure option, then post again."));
-      const video = await fetch(VIDEO.file);
-      const bytes = Buffer.from(await video.arrayBuffer());
-      const init = await tt("/v2/post/publish/video/init/", user.tok, {
-        post_info: {
+      const draft = path === "/app/drafting";
+      const { lib } = await loadLibrary(user.open_id);
+      const video = findVideo(lib, String(f.video || ""));
+      if (!video) return page(problem(user, "That video is not in your library", "Go back to your videos and pick one."));
+      let postInfo = null;
+      let privacy = "";
+      if (!draft) {
+        const branded = f.brand_content_toggle === "1";
+        privacy = branded ? f.privacy_level_branded : f.privacy_level;
+        if (!privacy) return page(problem(user, "Pick who can view it", "Choose a privacy setting, then post again."));
+        if (f.disclose === "1" && !branded && f.brand_organic_toggle !== "1") return page(problem(user, "Say what the video promotes", "Choose at least one disclosure option, then post again."));
+        postInfo = {
           title: String(f.caption || "").slice(0, 2200),
           privacy_level: privacy,
           disable_comment: f.allow_comment !== "1",
@@ -1761,47 +2108,33 @@ exports.handler = async function(event) {
           video_cover_timestamp_ms: 1e3,
           brand_content_toggle: branded,
           brand_organic_toggle: f.brand_organic_toggle === "1"
-        },
-        source_info: { source: "FILE_UPLOAD", video_size: bytes.length, chunk_size: bytes.length, total_chunk_count: 1 }
-      });
-      const put = await fetch(init.upload_url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "video/mp4",
-          "Content-Length": String(bytes.length),
-          "Content-Range": `bytes 0-${bytes.length - 1}/${bytes.length}`
-        },
-        body: bytes
-      });
-      if (put.status !== 201 && put.status !== 200) return page(problem(user, "The upload did not take", `TikTok answered ${put.status}.`));
-      return redirect("/app/status?id=" + encodeURIComponent(init.publish_id) + "&p=" + encodeURIComponent(privacy));
-    }
-    if (path === "/app/draft/" + VIDEO.id) return page(draftPage(user, VIDEO));
-    if (path === "/app/drafting" && event.httpMethod === "POST") {
-      const video = await fetch(VIDEO.file);
-      const bytes = Buffer.from(await video.arrayBuffer());
-      const init = await tt("/v2/post/publish/inbox/video/init/", user.tok, {
-        source_info: { source: "FILE_UPLOAD", video_size: bytes.length, chunk_size: bytes.length, total_chunk_count: 1 }
-      });
-      const put = await fetch(init.upload_url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "video/mp4",
-          "Content-Length": String(bytes.length),
-          "Content-Range": `bytes 0-${bytes.length - 1}/${bytes.length}`
-        },
-        body: bytes
-      });
-      if (put.status !== 201 && put.status !== 200) return page(problem(user, "The upload did not take", `TikTok answered ${put.status}.`));
-      return redirect("/app/status?draft=1&id=" + encodeURIComponent(init.publish_id));
+        };
+      }
+      const st = await beginUpload(user, video, draft, postInfo);
+      const to = "/app/status?id=" + encodeURIComponent(st.id) + "&v=" + encodeURIComponent(video.id) + (draft ? "&draft=1" : "&p=" + encodeURIComponent(privacy));
+      // The remaining parts move on the status page, one per refresh.
+      return redirect(to, { "Set-Cookie": setCookie("sm_upload", sign(st), 3600) });
     }
     if (path === "/app/status") {
       const draft = q.draft === "1";
-      const st = await tt("/v2/post/publish/status/fetch/", user.tok, { publish_id: String(q.id || "") });
-      const s = String(st.status || "");
-      if (s === "PUBLISH_COMPLETE" || s === "SEND_TO_USER_INBOX") return page(statusPage(user, VIDEO, "done", "", draft, q.p));
-      if (s === "FAILED") return page(statusPage(user, VIDEO, "failed", st.fail_reason || "", draft, q.p));
-      return page(statusPage(user, VIDEO, s === "PROCESSING_UPLOAD" ? "uploading" : "processing", "", draft, q.p));
+      const { lib } = await loadLibrary(user.open_id);
+      const video = findVideo(lib, String(q.v || "")) || { title: "Your video", poster: "", kind: "link" };
+      const st = verify(jar.sm_upload);
+      if (st && st.id === String(q.id || "") && st.next < st.n) {
+        try {
+          await sendChunk(st, st.next);
+        } catch (e) {
+          return page(statusPage(user, video, "failed", String(e.message || e), draft, q.p, null), { "Set-Cookie": setCookie("sm_upload", "", 0) });
+        }
+        st.next += 1;
+        const finished = st.next >= st.n;
+        return page(statusPage(user, video, finished ? "processing" : "uploading", "", draft, q.p, { sent: st.next, total: st.n }), { "Set-Cookie": finished ? setCookie("sm_upload", "", 0) : setCookie("sm_upload", sign(st), 3600) });
+      }
+      const res = await tt("/v2/post/publish/status/fetch/", user.tok, { publish_id: String(q.id || "") });
+      const s = String(res.status || "");
+      if (s === "PUBLISH_COMPLETE" || s === "SEND_TO_USER_INBOX") return page(statusPage(user, video, "done", "", draft, q.p, null));
+      if (s === "FAILED") return page(statusPage(user, video, "failed", res.fail_reason || "", draft, q.p, null));
+      return page(statusPage(user, video, "processing", "", draft, q.p, null));
     }
     return redirect("/app/");
   } catch (e) {
@@ -1810,7 +2143,7 @@ exports.handler = async function(event) {
       return page(problem(
         user,
         "Your TikTok account needs to be private for this",
-        "Until TikTok audits Shorts Media for public posting, TikTok only lets it post to an account set to Private. In TikTok: Settings and privacy \u203A Privacy \u203A Private account. Then post again."
+        "Until TikTok audits Shorts Media for public posting, TikTok only lets it post to an account set to Private. In TikTok: Settings and privacy › Privacy › Private account. Then post again."
       ));
     }
     return page(problem(user, "Something went wrong", said));

@@ -87,6 +87,31 @@ class TheDropBuilds(unittest.TestCase):
             self.assertNotIn("__TIKTOK_CLIENT_SECRET__", fn)
             self.assertNotIn("old", fn[:50])
 
+    def test_site_pages_in_git_overlay_the_base_and_placeholders_stay(self):
+        """The pages under tiktok_app/site/ replace the base drop's copies,
+        and --placeholders ships the function with its markers intact (the
+        site's Netlify environment supplies the keys), so no secret is ever
+        written into a drop on disk."""
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import build_tiktok_drop as b
+        with TemporaryDirectory() as d:
+            base = Path(d) / "base.zip"
+            with zipfile.ZipFile(base, "w") as z:
+                z.writestr("index.html", "<h1>old home</h1>")
+                z.writestr("app-assets/media/urban-growth.mp4", "mp4")
+            out = b.build(base, {}, Path(d) / "o.zip", placeholders=True)
+            with zipfile.ZipFile(out) as z:
+                home = z.read("index.html").decode()
+                fn = z.read("netlify/functions/app.js").decode()
+                names = set(z.namelist())
+        self.assertNotIn("old home", home)
+        self.assertIn("GitHub", home)
+        self.assertIn("app-assets/media/urban-growth.mp4", names)
+        self.assertIn("app-assets/app.css", names)
+        for mark in ("__TIKTOK_CLIENT_KEY__", "__TIKTOK_CLIENT_SECRET__",
+                     "__SM_COOKIE_SECRET__"):
+            self.assertIn(mark, fn)
+
     def test_missing_secret_refuses(self):
         sys.path.insert(0, str(ROOT / "scripts"))
         import build_tiktok_drop as b
@@ -168,7 +193,7 @@ class TheThirdWorkflowCanAsk(unittest.TestCase):
     def test_every_publishing_channel_crossposts_through_the_shared_copy(self):
         for f, ch in [("run_third.py", "third"), ("run_trending_daily.py", "trending"),
                       ("post_stories.py", None), ("claim_reviews.py", "explainer")]:
-            src = (ROOT / "scripts" / f).read_text()
+            src = (ROOT / "scripts" / f).read_text(encoding="utf-8")
             self.assertIn("from shared.crosspost import crosspost", src, f)
             if ch:
                 self.assertIn(f'crosspost("{ch}"', src, f)
