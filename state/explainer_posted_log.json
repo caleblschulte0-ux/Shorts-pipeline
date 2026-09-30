@@ -2250,6 +2250,22 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 47.6
+    },
+    "the-biggest-lightest-workforce": {
+      "url": "https://youtube.com/shorts/cY4-tgGIir4",
+      "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
+      "at": "2026-09-30T15:53:41.747918+00:00",
+      "publish_at": "2026-09-30T21:23:05Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "kokoro",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 35 credits are required for this request.\",\"status",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 65,
+      "duration_s": 43.1
     }
   },
   "uploads": [
@@ -2684,6 +2700,15 @@
       "state": "posted",
       "slug": "rural-power-catch-up",
       "at": "2026-09-30T15:25:32.362021+00:00"
+    },
+    {
+      "claimed_at": "2026-09-30T15:53:33.209929+00:00",
+      "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
+      "publish_at": "2026-09-30T21:23:05Z",
+      "url": "https://youtube.com/shorts/cY4-tgGIir4",
+      "state": "posted",
+      "slug": "the-biggest-lightest-workforce",
+      "at": "2026-09-30T15:53:41.747918+00:00"
     }
   ]
 }
