@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "rural-power-catch-up__88476eb6",
- "filed": "2026-09-30T12:18:15Z",
+ "filed": "2026-09-30T14:06:19Z",
  "status": "open",
  "channel": "explainer",
  "slug": "rural-power-catch-up",
@@ -160,30 +160,30 @@
   }
  ],
  "held_for": [
-  "judge: The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture."
+  "judge: The opening is a near-empty dark void with faint numbers and an unrelated field thumbnail. The rest is stock charts plus a gauge, and Data just holds his arms up on top of them."
  ],
  "reasons": [
-  "judge: The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture."
+  "judge: The opening is a near-empty dark void with faint numbers and an unrelated field thumbnail. The rest is stock charts plus a gauge, and Data just holds his arms up on top of them."
  ],
  "judge": {
-  "ts": "2026-09-30T11:43:15+00:00",
-  "score": 39,
-  "one_line": "The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture.",
+  "ts": "2026-09-30T14:06:12+00:00",
+  "score": 35,
+  "one_line": "The opening is a near-empty dark void with faint numbers and an unrelated field thumbnail. The rest is stock charts plus a gauge, and Data just holds his arms up on top of them.",
   "problems": [
-   "The hook (0-4s) has no motion with a purpose: faint unlabeled numbers on an empty gradient.",
-   "Irrelevant watermarked stock thumbnails (a winding road, a man walking at sunset) appear in the hook/seg0.",
-   "Captions fade to near-invisible grey (seg0:start 'countryside got', seg1:start 'percent in 2000').",
-   "Data is decorative: arms raised, riding markers, standing beside a wall that builds itself.",
-   "seg3:end: the mascot covers the 55.8 end label.",
-   "The headline '44% cooking over fire' is never visualized. The closing gauge shows 55.8, the clean share, not the 44% on fire."
+   "hook/seg0: faint, context-free numbers (76.1, 73.1, 68.4) on a mostly empty frame, with no hook motion or reason to stay",
+   "hook/seg0: an unrelated stock photo of a green field with a winding road, the size of a postage stamp",
+   "seg1: Data is pasted over the 2010 bar and later parked at the axis ends in the same arms-up pose",
+   "seg1:mid: the whole chart is faded to low contrast, so the title and year labels are hard to read",
+   "seg3:end: the mascot covers the '55.8' end label",
+   "seg4: the gauge counts 21.2 to 55.8 but is labelled '2023' throughout, and the mascot overlaps the big number"
   ],
   "fixes": [
-   "Replace the hook with a full-frame contrast: a lit bulb over a smoking cookfire, with electricity 85% set against cooking 56%.",
-   "Delete the stock thumbnails and the floating number list.",
-   "Make the payoff show 44 of 100 homes still with smoke/fire rising, not a clean-fuel dial.",
-   "Give Data a real bit: fanning smoke away from a pot, or flipping the light switch and then coughing at the fire.",
-   "Keep the mascot clear of value labels, and keep caption opacity at full.",
-   "Retitle seg2 honestly as world electricity use per person."
+   "Rebuild the hook as a full-bleed side-by-side: 85 of 100 rural homes light up, then only 56 of them switch from a fire to a stove, leaving 44 flickering flames in the first 2s",
+   "Delete the stock field thumbnail. Add no image unless it depicts rural cooking fires",
+   "Replace seg3's line chart with a grid of 100 hearths where clean stoves replace fires from 24% to 56%, with the remaining fires flickering",
+   "Give Data a bit per scene: he flips a breaker in seg1, stacks a brick in seg2, and tries to blow out a cooking fire in seg3",
+   "Keep the mascot out of value labels and the gauge's number. Offset the labels from the line end",
+   "Make the gauge show the 44% gap, or drop the static 2023 label while the value counts"
   ]
  },
  "prior_rejection": [],

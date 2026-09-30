@@ -1,0 +1,21 @@
+{
+ "slug": "global-ewaste-crisis",
+ "ts": "20260930T140630Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data stands parked top-left in the same pointing pose. seg1:mid/end: he drifts over the bars and covers the 2019 bar. seg2/seg3: he only rises beside the fill with his hands on his head. No setup, action and payoff tied to a stat until he rides the seesaw in ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "repeated_generic_chart",
+  "visible_evidence": "seg3:start/mid/end reuse seg2's stacked column exactly: same blue fill rising and the same layout. The 1% slice is a hairline at the top of seg3:end that no one can see. The line 'we're throwing away a mine and digging a new one' has no picture at all.",
+  "root_cause": "The share relationship went to the same stacked-column fallback as the prior beat instead of a subject-made mechanic, so two beats in a row look identical and the vivid mine metaphor in the script is never drawn.",
+  "repair_goal": "Draw the metaphor. On one side, a heap of discarded phones and circuit boards glints with gold, copper and rare-earth flecks, and only 1 in 100 flecks gets pulled back out. On the other, a mining pit digs out the other 99. Data should toss a phone onto the heap, then watch the excavator do the real work. Every label goes in full-contrast ink, and it must not look like seg2."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "child-mortality-collapse__d8fecd16",
- "filed": "2026-09-30T12:18:15Z",
+ "filed": "2026-09-30T14:06:19Z",
  "status": "open",
  "channel": "explainer",
  "slug": "child-mortality-collapse",
@@ -160,29 +160,30 @@
   }
  ],
  "held_for": [
-  "judge: A chart slideshow: gauge, line, columns, bars. It opens on 8 seconds of a static-looking gauge and ends on a clipped health-spending stack instead of the 60% drop."
+  "judge: The headline 60% collapse is never shown: the opening is 6s of a block creeping down a ruler, the middle is generic charts, and the closing clips its own numbers."
  ],
  "reasons": [
-  "judge: A chart slideshow: gauge, line, columns, bars. It opens on 8 seconds of a static-looking gauge and ends on a clipped health-spending stack instead of the 60% drop."
+  "judge: The headline 60% collapse is never shown: the opening is 6s of a block creeping down a ruler, the middle is generic charts, and the closing clips its own numbers."
  ],
  "judge": {
-  "ts": "2026-09-30T11:07:07+00:00",
-  "score": 40,
-  "one_line": "A chart slideshow: gauge, line, columns, bars. It opens on 8 seconds of a static-looking gauge and ends on a clipped health-spending stack instead of the 60% drop.",
+  "ts": "2026-09-30T13:34:51+00:00",
+  "score": 48,
+  "one_line": "The headline 60% collapse is never shown: the opening is 6s of a block creeping down a ruler, the middle is generic charts, and the closing clips its own numbers.",
   "problems": [
-   "The hook (hook@0.3 to seg0:end) is a slow gauge with a title card that holds one layout for about 8s. It gives no reason to stay.",
-   "seg1, seg2 and seg3 are stock charts (line, columns, bars). None of them makes a child death or a vaccine visible.",
-   "In seg0 the mascot stands pointing inside a box for about 8s, and in seg3 he walks along the bars with no purpose.",
-   "The closing (seg4) is about health spending, not mortality, so the payoff never lands the 60% drop.",
-   "In seg4:mid through payoff@-0.4 the year and value labels have their tops sliced off.",
-   "In seg3:start the bars are near-empty with no values showing, and a 1.5-point rise from 8.6 to 10.1 on a stretched bar reads as no change."
+   "hook/seg0: about 6s of nearly identical frames; the block moves a few pixels and Data keeps one pointing pose",
+   "seg0: the tube starts around 2010, so the 93.5 to 37.4 drop (the claim) is never shown",
+   "seg0: the tube fills only the middle third of the frame and the lower third is empty",
+   "seg2: the 2024 bar repeats 84.8, the same as 2015, so the scene ends with no rise",
+   "seg3: the spending bars look almost equal, so the 8.6 to 10.1 rise does not register, and Data covers the end of the 2000 bar at seg3:end",
+   "seg4: the year/value header is sliced off at its top edge (\"2018 9.6\", \"2023 10.1\")"
   ],
   "fixes": [
-   "Open on motion that shows the stat. For example, 94 child figures with about 56 of them turning safe in the first 2 seconds.",
-   "Replace the seg0 gauge with a demonstration made of children, and give Data a setup, action and payoff. For example, he shields figures as the rate falls.",
-   "Show immunization as syringes or kids receiving a shot, filling from 17 of 100 to 85 of 100, instead of columns.",
-   "Tie spending to the outcome visually, or cut it. Do not end on it.",
-   "End on the 93.5 to 37.4 reveal. Measure and clamp every label inside the safe area, and drop the 'what he's carrying' caption."
+   "Rebuild seg0 as a cohort or vessel that starts full at 93.5 and visibly collapses by 60% to 37.4 in the first 2s, with Data driving the collapse",
+   "Give Data a sequence of poses tied to each beat, and never hold one pose for 4s",
+   "Pull the seg4 header down so its whole glyph height clears the element above it, and keep Data off the value labels in seg3",
+   "Draw the spending scene so the rise is visible (a zoomed axis or money filling a vial), or cut it",
+   "End seg2 on the latest distinct value so the scene closes on growth",
+   "Make the closing payoff tie back to lives saved rather than restating the spending bars"
   ]
  },
  "prior_rejection": [],

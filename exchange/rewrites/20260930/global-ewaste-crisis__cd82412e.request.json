@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "global-ewaste-crisis__cd82412e",
- "filed": "2026-09-30T12:18:14Z",
+ "filed": "2026-09-30T14:06:19Z",
  "status": "open",
  "channel": "explainer",
  "slug": "global-ewaste-crisis",
@@ -111,30 +111,30 @@
   }
  ],
  "held_for": [
-  "judge: Four generic charts in a row: a slow line, bars, then the same stacked column twice, with Data parked beside them. The e-waste pile, the garbage trucks and the thrown-away mine are never shown."
+  "judge: Four chart fallbacks in a row, two of them identical, carry a story with great physical hooks (a trash pile, garbage trucks, a mine), and the mascot is a sticker until the final seesaw."
  ],
  "reasons": [
-  "judge: Four generic charts in a row: a slow line, bars, then the same stacked column twice, with Data parked beside them. The e-waste pile, the garbage trucks and the thrown-away mine are never shown."
+  "judge: Four chart fallbacks in a row, two of them identical, carry a story with great physical hooks (a trash pile, garbage trucks, a mine), and the mascot is a sticker until the final seesaw."
  ],
  "judge": {
-  "ts": "2026-09-30T10:27:42+00:00",
-  "score": 43,
-  "one_line": "Four generic charts in a row: a slow line, bars, then the same stacked column twice, with Data parked beside them. The e-waste pile, the garbage trucks and the thrown-away mine are never shown.",
+  "ts": "2026-09-30T12:53:45+00:00",
+  "score": 39,
+  "one_line": "Four chart fallbacks in a row, two of them identical, carry a story with great physical hooks (a trash pile, garbage trucks, a mine), and the mascot is a sticker until the final seesaw.",
   "problems": [
-   "Hook (hook@0.3 to hook@2.2) is a slow line build in the lower-left corner with half the frame empty. Nothing happens in the first second to stop a scroll.",
-   "seg1 is a plain bar ranking. The script's '1.5 million garbage trucks' comparison is never shown.",
-   "seg2 and seg3 use an identical stacked-column template back to back, so the video looks like a slide deck.",
-   "seg3's 1% is a sliver you cannot see, and its label is dim, low-contrast text pushed against the column top (seg3:mid).",
-   "Data is decorative: he points from a corner through the whole hook, stands on a bar in seg1:mid, and rides the fill with his hands on his head in seg2 and seg3. There is no bit tied to any stat.",
-   "The mascot covers the 2019 bar in seg1:mid, and the value labels are near-invisible at seg1:start and seg2:start."
+   "Hook is a slow line build with a vague 'the data stops here' label and a mostly empty frame. Nothing happens in the first two seconds that makes you stay.",
+   "seg2 and seg3 are the same stacked-column shot back to back, so the video visibly repeats itself.",
+   "Several labels are low-contrast grey on navy (seg2:start, seg3:start), and the 1% slice in seg3 is invisible.",
+   "Mascot is parked or drifting in seg0 to seg3 and covers the 2019 bar in seg1:mid.",
+   "The script's concrete images (a trash pile, 1.5M garbage trucks, dumped/burned/shipped waste, a thrown-away mine) are never drawn.",
+   "Payoff closes on a seesaw whose blocks are generic, with a CTA stacked under the closing line."
   ],
   "fixes": [
-   "Open on motion made of the subject: dead phones raining onto a pile that visibly grows, with 62M tons stamped on it inside the first second.",
-   "seg1: show the pile growing from 34M to 62M as garbage trucks lining up. Cut the bar ranking.",
-   "seg2: from 100 devices, 22 go to a recycling bin and 78 go to a dump, a fire or a ship, sorted on screen.",
-   "seg3: one gold chip pulled out of a heap of 100 while ore carts roll out of a mine. Data digs the chip out.",
-   "Give Data one real action per beat (tossing a phone onto the pile, sorting devices, digging) instead of standing beside the chart.",
-   "Render every value label in full-contrast ink and keep the mascot off the marks."
+   "Open on a pile of dead phones and devices growing in the first second, with Data tossing his own phone onto it as the tons counter climbs.",
+   "seg1: show 62M tons as a convoy of garbage trucks, or a pile that grows each year, instead of bars.",
+   "seg2: split the pile into 22% going into a recycling chute and 78% visibly dumped, burned or shipped off.",
+   "seg3: draw the discarded-mine versus dug-mine metaphor instead of a second stacked column. Make the 1% legible.",
+   "Draw every label in full-contrast ink and keep the mascot off the marks.",
+   "seg4: make the seesaw weights real ore and e-waste, not generic blocks, and give Data a payoff action (hopping off, the side slamming down)."
   ]
  },
  "prior_rejection": [],

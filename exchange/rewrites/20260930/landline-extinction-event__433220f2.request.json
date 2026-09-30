@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "landline-extinction-event__433220f2",
- "filed": "2026-09-30T12:18:15Z",
+ "filed": "2026-09-30T14:06:19Z",
  "status": "open",
  "channel": "explainer",
  "slug": "landline-extinction-event",
@@ -150,31 +150,12 @@
   }
  ],
  "held_for": [
-  "judge: A stack of generic charts whose opening headline number ('158M to 1.3B') contradicts the peak-and-decline story, with a mascot who only perches."
+  "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure, failing the one-number rule."
  ],
  "reasons": [
-  "judge: A stack of generic charts whose opening headline number ('158M to 1.3B') contradicts the peak-and-decline story, with a mascot who only perches."
+  "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure, failing the one-number rule."
  ],
- "judge": {
-  "ts": "2026-09-30T12:18:08+00:00",
-  "score": 39,
-  "one_line": "A stack of generic charts whose opening headline number ('158M to 1.3B') contradicts the peak-and-decline story, with a mascot who only perches.",
-  "problems": [
-   "hook/seg0: the headline number '158M to 1.3B' and the caption 'up and down the whole way' misstate a story about a 1.26B peak falling to 815M; the x-axis is unlabeled",
-   "seg0: the finished chart holds for about 4s (1.7-5.9s) with only Data's arms moving",
-   "seg1: the landline bars skip 2006, the peak the whole title is about",
-   "seg3: Data covers China's '670M' label; 'United States o...' is cut off; 'China 669825900' overlaps the map",
-   "seg4: the seesaw weighs China against India alone, not against the next four combined as narrated, and the beam barely tilts for a 15x gap",
-   "Data stands on marks in every scene with no bit tied to a number"
-  ],
-  "fixes": [
-   "Rebuild the hook/seg0 visual on peak-to-now (1.26B to 815M) with labeled years, and make the loss physical (lines being unplugged or cut away) so something moves for the whole beat",
-   "Put 2006 into the seg1 series, or replace that scene, since it repeats the seg0 decline",
-   "Make seg2 prove 'seven times': seven 2005-sized blocks stacking up to the 2025 height",
-   "In seg3/seg4, stack the US, Brazil, Japan and India together on one pan against China, and let the beam slam down",
-   "Give Data an act tied to each stat (cutting phone cords, getting catapulted by the tipping scale) and keep him off the labels"
-  ]
- },
+ "judge": null,
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

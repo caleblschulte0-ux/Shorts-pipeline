@@ -1,0 +1,16 @@
+{
+ "slug": "child-mortality-collapse",
+ "ts": "20260930T140630Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In the closing, the year/value header is sliced off at its top edge: \"2018 9.6\" at seg4:mid, and \"2023 10.1\" at payoff@-1.8 and seg4:end. At seg3:end Data covers the end of the 2000 bar next to 8.6.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "dead_air_static_machine",
+  "visible_evidence": "From hook@0.3 to seg0:end, a narrow grey tube with year ticks takes up the middle third. A blue block with Data on it slides from the 2010 tick to 2024 over about 6s. Data holds one pointing pose the whole time and the bottom third of the frame is empty. The hook opens on the same still-looking frame.",
+  "root_cause": "The mortality drop is drawn as a slow elevator creeping down a ruler. The 1990 level of 93.5 is never shown, so the 60% fall that the scene exists to show never happens on screen. Data has no action beyond pointing.",
+  "repair_goal": "Open on the 1990 level: a full cohort of 93.5 child figures per thousand (or a filled vessel). Collapse it hard to 37.4 within 2s so about 60% visibly vanishes, with Data reacting and pushing the level down. Fill the frame width, and don't hold one pose for more than 2s."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

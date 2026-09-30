@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-30T02:56:54Z",
+ "updated": "2026-09-30T14:06:19Z",
  "open": [
+  {
+   "id": "child-mortality-collapse__d8fecd16",
+   "slug": "child-mortality-collapse",
+   "filed": "2026-09-30T14:06:19Z",
+   "why": [
+    "judge: The headline 60% collapse is never shown: the opening is 6s of a block creeping down a ruler, the middle is generic charts, and the closing clips its own numbers."
+   ],
+   "request": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.request.json",
+   "answer_path": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.answer.json"
+  },
+  {
+   "id": "global-ewaste-crisis__cd82412e",
+   "slug": "global-ewaste-crisis",
+   "filed": "2026-09-30T14:06:19Z",
+   "why": [
+    "judge: Four chart fallbacks in a row, two of them identical, carry a story with great physical hooks (a trash pile, garbage trucks, a mine), and the mascot is a sticker until the final seesaw."
+   ],
+   "request": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.request.json",
+   "answer_path": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.answer.json"
+  },
+  {
+   "id": "landline-extinction-event__433220f2",
+   "slug": "landline-extinction-event",
+   "filed": "2026-09-30T14:06:19Z",
+   "why": [
+    "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure, failing the one-number rule."
+   ],
+   "request": "exchange/rewrites/20260930/landline-extinction-event__433220f2.request.json",
+   "answer_path": "exchange/rewrites/20260930/landline-extinction-event__433220f2.answer.json"
+  },
+  {
+   "id": "rural-power-catch-up__88476eb6",
+   "slug": "rural-power-catch-up",
+   "filed": "2026-09-30T14:06:19Z",
+   "why": [
+    "judge: The opening is a near-empty dark void with faint numbers and an unrelated field thumbnail. The rest is stock charts plus a gauge, and Data just holds his arms up on top of them."
+   ],
+   "request": "exchange/rewrites/20260930/rural-power-catch-up__88476eb6.request.json",
+   "answer_path": "exchange/rewrites/20260930/rural-power-catch-up__88476eb6.answer.json"
+  },
+  {
+   "id": "the-biggest-lightest-workforce__f95e75d6",
+   "slug": "the-biggest-lightest-workforce",
+   "filed": "2026-09-30T14:06:19Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.request.json",
+   "answer_path": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.answer.json"
+  },
   {
    "id": "cursive-handwriting-comeback__2a2910ca",
    "slug": "cursive-handwriting-comeback",
@@ -53,16 +103,6 @@
    ],
    "request": "exchange/rewrites/20260930/kelp-forest-sea-star-collapse__88acf100.request.json",
    "answer_path": "exchange/rewrites/20260930/kelp-forest-sea-star-collapse__88acf100.answer.json"
-  },
-  {
-   "id": "global-ewaste-crisis__82dcc083_r1",
-   "slug": "global-ewaste-crisis",
-   "filed": "2026-09-30T00:26:30Z",
-   "why": [
-    "judge: Four generic charts, two of them repeats (line then bars for the same trend, then the same stacked column twice), open on a mostly empty slow chart build, with a mascot that poses instead of performing."
-   ],
-   "request": "exchange/rewrites/20260930/global-ewaste-crisis__82dcc083_r1.request.json",
-   "answer_path": "exchange/rewrites/20260930/global-ewaste-crisis__82dcc083_r1.answer.json"
   },
   {
    "id": "cargo-ship-size-growth__b798661f",

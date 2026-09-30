@@ -1,0 +1,16 @@
+{
+ "slug": "rural-power-catch-up",
+ "ts": "20260930T140630Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 to seg0:end: about 85% of the frame is empty dark gradient, with only small numbers top-right and a thumbnail top-left.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg0:start-seg0:end: a dark empty gradient with three small teal numbers (76.1, 73.1, 68.4) and years stacked top-right, next to an unrelated postage-stamp photo of a green field. Nothing demonstrates 'rural areas got electricity'.",
+  "root_cause": "The opening beat fell back to a list of numbers plus an auto-grabbed stock image instead of a composed data machine. The values also appear in reverse chronological order with no unit or subject.",
+  "repair_goal": "Replace it with a full-bleed opening built from the subject: rural homes lighting up one by one to 85%, while a cooking-fire icon stays lit in 44% of them, which sets up the gap in the first second. Remove the stock thumbnail and put the mascot in to flip a light switch."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
