@@ -1,0 +1,21 @@
+{
+ "slug": "the-biggest-lightest-workforce",
+ "ts": "20260930T161424Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:start: the upper half, and everything right of the single 1990 column, is empty dark gradient. seg3:start: the top 40% above three small bars is empty.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_clipped_label",
+  "visible_evidence": "The 1990 value label '2,322,587,072' is cut off by the left frame edge (seg1:start, seg1:end). The columns carry full 10-digit labels that crowd each other. A generic lollipop/column chart restates the seg0 bar chart that played just before it.",
+  "root_cause": "The value labels are left-anchored to the column and the column sits at the frame edge. Their width is not measured against the frame. Full-precision numbers are printed where 2.3B would do.",
+  "repair_goal": "Drop the repeated chart and make the growth physical: rows of worker figures (each = 250M) filling in from 2.3B to 3.7B, with Data adding the last row. Every label abbreviated (2.3B / 3.7B) and measured to stay inside the frame margins."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "the-biggest-lightest-workforce",
+ "ts": "20260930T161424Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:start and seg1:end: the 1990 value label runs off the left frame edge and reads '2,322,587,072' with its first digit clipped. seg1:end: the long 10-digit labels crowd each other over the columns. seg0:end: the 1990\u21922025 subtitle line is tiny, pink on dark, and hard to read at arm's ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_clipped_label",
+  "visible_evidence": "The 1990 value label '2,322,587,072' is cut off by the left frame edge (seg1:start, seg1:end). The columns carry full 10-digit labels that crowd each other. A generic lollipop/column chart restates the seg0 bar chart that played just before it.",
+  "root_cause": "The value labels are left-anchored to the column and the column sits at the frame edge. Their width is not measured against the frame. Full-precision numbers are printed where 2.3B would do.",
+  "repair_goal": "Drop the repeated chart and make the growth physical: rows of worker figures (each = 250M) filling in from 2.3B to 3.7B, with Data adding the last row. Every label abbreviated (2.3B / 3.7B) and measured to stay inside the frame margins."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

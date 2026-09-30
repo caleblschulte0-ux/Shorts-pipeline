@@ -1,0 +1,22 @@
+{
+ "slug": "child-mortality-collapse",
+ "ts": "20260930T161424Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4, the top half of the headline year and value ('2018 9.6', '2023 10.1') is sliced off. At seg0:start the caption 'dying before' fades to near-invisible grey on navy.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_and_meaningless_closing_visual",
+  "visual_evidence_note": "",
+  "visible_evidence": "At seg4:end, the '2023 10.1' readout above the stack has its top half cropped. Data holds up a pile of grey slats labelled 'what he's carrying', which cycles through health-spending years (2009 9.8, 2014 9.4). That has nothing to do with the closing line 'Progress doesn't announce itself.'",
+  "root_cause": "The closing reuses the health-spending series as an animated weight stack. The ticker's value label scrolls under a clipping mask that crops its top half. The caption is a template placeholder, not story text.",
+  "repair_goal": "Make the closing pay off the child-mortality drop, e.g. 93.5 to 37.4 per 1,000 drawn as children saved, with Data releasing weight. Keep every number fully inside the frame and unclipped, and replace 'what he's carrying' with story-specific text or remove it."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

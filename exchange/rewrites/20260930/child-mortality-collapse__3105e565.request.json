@@ -1,0 +1,218 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "child-mortality-collapse__3105e565",
+ "filed": "2026-09-30T16:14:12Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "child-mortality-collapse",
+ "current": {
+  "title": "Child Mortality Fell 60% Since 1990",
+  "hook": "Your kid's odds of dying before age five just fell 60 percent — here's what changed.",
+  "closing": "Progress doesn't announce itself. It just quietly happens.",
+  "question": "Did you get your shots as a kid? Tell me below.",
+  "segments": [
+   {
+    "topic": "child mortality since 1990",
+    "say": "In 1990, the under-5 mortality rate was 93.5 per thousand live births. By 2024 it fell to 37.4 — a 60 percent drop in one generation."
+   },
+   {
+    "topic": "the fix behind falling child mortality: immunization",
+    "say": "The fix wasn't fancy. DPT immunization coverage climbed from 17 percent in 1980 to 85 percent of kids today — one shot, given almost everywhere."
+   },
+   {
+    "topic": "health spending behind the falling child mortality",
+    "say": "And the world backed it with money — health spending rose from 8.6 percent of global GDP in 2000 to 10.1 percent by 2023, funding the shot."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "child mortality since 1990",
+   "say": "In 1990, the under-5 mortality rate was 93.5 per thousand live births. By 2024 it fell to 37.4 — a 60 percent drop in one generation.",
+   "role": "1 · THE COLLAPSE",
+   "data": {
+    "file": "sh_dyn_mort_trend.json",
+    "unit": "per 1,000 live births",
+    "title": "Mortality rate, under-5",
+    "points": [
+     {
+      "label": "1990",
+      "value": 93.5,
+      "period": "1990"
+     },
+     {
+      "label": "1997",
+      "value": 84.3,
+      "period": "1997"
+     },
+     {
+      "label": "2004",
+      "value": 65.8,
+      "period": "2004"
+     },
+     {
+      "label": "2010",
+      "value": 50.6,
+      "period": "2010"
+     },
+     {
+      "label": "2017",
+      "value": 40.9,
+      "period": "2017"
+     },
+     {
+      "label": "2024",
+      "value": 37.4,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "the fix behind falling child mortality: immunization",
+   "say": "The fix wasn't fancy. DPT immunization coverage climbed from 17 percent in 1980 to 85 percent of kids today — one shot, given almost everywhere.",
+   "role": "2 · THE FIX",
+   "data": {
+    "file": "sh_imm_idpt_trend.json",
+    "unit": "% of children ages 12-23 months",
+    "title": "Immunization, DPT",
+    "points": [
+     {
+      "label": "1980",
+      "value": 16.7,
+      "period": "1980"
+     },
+     {
+      "label": "1989",
+      "value": 68.4,
+      "period": "1989"
+     },
+     {
+      "label": "1998",
+      "value": 71.4,
+      "period": "1998"
+     },
+     {
+      "label": "2006",
+      "value": 78.4,
+      "period": "2006"
+     },
+     {
+      "label": "2015",
+      "value": 84.8,
+      "period": "2015"
+     },
+     {
+      "label": "2024",
+      "value": 84.8,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "health spending behind the falling child mortality",
+   "say": "And the world backed it with money — health spending rose from 8.6 percent of global GDP in 2000 to 10.1 percent by 2023, funding the shot.",
+   "role": "3 · THE INVESTMENT",
+   "data": {
+    "file": "sh_xpd_chex_gd_zs_trend.json",
+    "unit": "% of GDP",
+    "title": "Current health expenditure",
+    "points": [
+     {
+      "label": "2000",
+      "value": 8.6,
+      "period": "2000"
+     },
+     {
+      "label": "2005",
+      "value": 9.3,
+      "period": "2005"
+     },
+     {
+      "label": "2009",
+      "value": 9.79,
+      "period": "2009"
+     },
+     {
+      "label": "2014",
+      "value": 9.39,
+      "period": "2014"
+     },
+     {
+      "label": "2018",
+      "value": 9.58,
+      "period": "2018"
+     },
+     {
+      "label": "2023",
+      "value": 10.1,
+      "period": "2023"
+     }
+    ],
+    "n_points": 6
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Chart after chart with a clipped, off-message closing: the 60% drop in child deaths is never made physical, and the ending cuts its own numbers in half."
+ ],
+ "reasons": [
+  "judge: Chart after chart with a clipped, off-message closing: the 60% drop in child deaths is never made physical, and the ending cuts its own numbers in half."
+ ],
+ "judge": {
+  "ts": "2026-09-30T14:58:41+00:00",
+  "score": 44,
+  "one_line": "Chart after chart with a clipped, off-message closing: the 60% drop in child deaths is never made physical, and the ending cuts its own numbers in half.",
+  "problems": [
+   "seg4: the year/value ticker ('2018 9.6', '2023 10.1') has its top half cropped at seg4:mid and seg4:end, so it is unreadable on a phone.",
+   "seg4: the closing visual repeats health-spending numbers under a placeholder caption ('what he's carrying') and does not pay off the mortality story.",
+   "seg0: the hook tank holds nearly the same frame from 1.4s to 8.7s. The fill creeps, but nothing new happens for about 7 seconds.",
+   "seg1 to seg3 are a line chart followed by two bar charts. The data is charted, not demonstrated.",
+   "seg3: the axis choice makes 8.6 to 10.1 look flat, which undercuts the line 'the world backed it with money'.",
+   "seg2: the 2024 bar reads 84.8, identical to 2015, which weakens the 'climbed to 85' beat."
+  ],
+  "fixes": [
+   "Rebuild the closing around 93.5 to 37.4: for example, 1,000 figures where about 56 lights come back on. Keep all text inside the safe area and unmasked.",
+   "Replace the 'what he's carrying' placeholder with story text, or delete it.",
+   "Make the hook move in its first second: the tank drains visibly from 93.5 to 37.4 within about 2s, not over 8s.",
+   "Replace the seg2 bars with a subject-made form, such as a row of arms or syringes filling from 17% to 85% of children.",
+   "Show health spending as a growing share of a GDP pie or coin stack, on a scale where 8.6 to 10.1 reads as growth, or cut the beat."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20260930/child-mortality-collapse__3105e565.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

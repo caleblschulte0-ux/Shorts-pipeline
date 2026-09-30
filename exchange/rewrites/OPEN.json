@@ -1,16 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-30T14:06:19Z",
+ "updated": "2026-09-30T16:14:12Z",
  "open": [
   {
-   "id": "child-mortality-collapse__d8fecd16",
+   "id": "child-mortality-collapse__3105e565",
    "slug": "child-mortality-collapse",
-   "filed": "2026-09-30T14:06:19Z",
+   "filed": "2026-09-30T16:14:12Z",
    "why": [
-    "judge: The headline 60% collapse is never shown: the opening is 6s of a block creeping down a ruler, the middle is generic charts, and the closing clips its own numbers."
+    "judge: Chart after chart with a clipped, off-message closing: the 60% drop in child deaths is never made physical, and the ending cuts its own numbers in half."
    ],
-   "request": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.request.json",
-   "answer_path": "exchange/rewrites/20260930/child-mortality-collapse__d8fecd16.answer.json"
+   "request": "exchange/rewrites/20260930/child-mortality-collapse__3105e565.request.json",
+   "answer_path": "exchange/rewrites/20260930/child-mortality-collapse__3105e565.answer.json"
+  },
+  {
+   "id": "landline-extinction-event__f48f5d4d",
+   "slug": "landline-extinction-event",
+   "filed": "2026-09-30T16:14:12Z",
+   "why": [
+    "judge: blocked by the showrunner"
+   ],
+   "request": "exchange/rewrites/20260930/landline-extinction-event__f48f5d4d.request.json",
+   "answer_path": "exchange/rewrites/20260930/landline-extinction-event__f48f5d4d.answer.json"
   },
   {
    "id": "global-ewaste-crisis__cd82412e",
@@ -21,16 +31,6 @@
    ],
    "request": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.request.json",
    "answer_path": "exchange/rewrites/20260930/global-ewaste-crisis__cd82412e.answer.json"
-  },
-  {
-   "id": "landline-extinction-event__433220f2",
-   "slug": "landline-extinction-event",
-   "filed": "2026-09-30T14:06:19Z",
-   "why": [
-    "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure, failing the one-number rule."
-   ],
-   "request": "exchange/rewrites/20260930/landline-extinction-event__433220f2.request.json",
-   "answer_path": "exchange/rewrites/20260930/landline-extinction-event__433220f2.answer.json"
   },
   {
    "id": "rural-power-catch-up__88476eb6",
@@ -51,6 +51,16 @@
    ],
    "request": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.request.json",
    "answer_path": "exchange/rewrites/20260930/the-biggest-lightest-workforce__f95e75d6.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__62469eb7",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-09-30T12:18:11Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies on a vague comparative size rather than a single, verifiable numerical fact."
+   ],
+   "request": "exchange/rewrites/20260930/gulf-dead-zone-growth__62469eb7.request.json",
+   "answer_path": "exchange/rewrites/20260930/gulf-dead-zone-growth__62469eb7.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__2a2910ca",
@@ -751,16 +761,6 @@
    ],
    "request": "exchange/rewrites/20260930/bird-flu-species-jump__49e828cf.request.json",
    "answer_path": "exchange/rewrites/20260930/bird-flu-species-jump__49e828cf.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__62469eb7",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-09-29T19:44:31Z",
-   "why": [
-    "premise: brain: It relies on a generic comparison rather than a clear reversal of viewer expectation and lacks a single, decisive verifiable number."
-   ],
-   "request": "exchange/rewrites/20260929/gulf-dead-zone-growth__62469eb7.request.json",
-   "answer_path": "exchange/rewrites/20260929/gulf-dead-zone-growth__62469eb7.answer.json"
   },
   {
    "id": "chess-online-boom__a777710a",

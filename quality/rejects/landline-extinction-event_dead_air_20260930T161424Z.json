@@ -1,0 +1,21 @@
+{
+ "slug": "landline-extinction-event",
+ "ts": "20260930T161424Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The same line chart holds from hook@0.3 to seg0:end (about 6s). Only the small mascot moves and the line hardly changes after hook@1.5. seg1 and seg3 then use the same horizontal-bar template, so they look nearly identical.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "static_repeat_chart_with_contradictory_headline",
+  "visible_evidence": "seg0:start, seg0:mid and seg0:end show the same frame as hook@1.5: a pink line chart headed 'landlines since their 2006 peak' with '158M to 1.3B' in large type and 'up and down the whole way' under it. The mascot stands at the end of the line. The headline number shows growth while the narration says landlines are dying, and 815M never appears on screen.",
+  "root_cause": "The hook's generic trend chart runs on into beat 0 unchanged. Its headline is a first-to-max range computed from the series, not the claim (a peak of 1.26B falling to 815M). No subject-specific depiction was authored for the decline.",
+  "repair_goal": "Replace seg0 with a depiction made of landlines that carries the fall: 1.26B peak in 2006 shrinking to 815M by 2025. For example, a wall of desk phones or phone jacks where handsets disconnect and drop off until 815M remain, with the 2006 peak and 815M both labelled. Data should do a tied bit, such as pulling out a cord or holding a receiver that never rings. It must look different from the hook's frame."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
