@@ -79,7 +79,7 @@ ANSWER_SCHEMA = {
     "schema": VERDICT_SCHEMA,
     "request_id": "<the request's id, copied exactly>",
     "video_sha256": "<the request's video_sha256, copied exactly>",
-    "by": "chatgpt",
+    "by": "<who graded: chatgpt, or aletheia:<route>>",
     "graded_at": "<ISO-8601 UTC>",
     "grades": "<the JSON object the prompt asks for: dimensions, checks, "
               "weakest_scene, depictions, one_line, problems, fixes>",
@@ -295,13 +295,77 @@ def verdict_for(req: dict) -> tuple[dict | None, str]:
     return grades, "ok"
 
 
+#: Who may answer the mailbox, and the name the ledger records for each.
+#: Operator, 2026-09-30, after ChatGPT had answered none of 61 requests in
+#: nine days: *"yes, obviously let Alethea answer the mailbox ... I just
+#: need Alethea to make sure shit gets posted"* — and, in the same breath,
+#: *"We're not posting bad stuff."* So Aletheia grades from his PC (his
+#: Claude, then Codex on his ChatGPT, then her own local vision model) and
+#: her grades go through the SAME `assemble_verdict` + `showrunner_gate.
+#: decide` as every other judge's. The name is provenance, never authority.
+GRADERS = {"chatgpt": "chatgpt-mailbox", "aletheia": "aletheia-mailbox"}
+
+
+def grader_of(verdict_by) -> str:
+    """The ledger name for a verdict's `by` (`aletheia:codex` is Aletheia's).
+    Anything unrecognised keeps the historical name, so an older verdict
+    written without a `by` is recorded as it always was."""
+    head = str(verdict_by or "").strip().lower().split(":", 1)[0].strip()
+    return GRADERS.get(head, GRADERS["chatgpt"])
+
+
+def verdict_by(req: dict) -> str:
+    """The raw `by` of this request's verdict, or ''."""
+    vp = Path(req["_path"]).parent / f"{req['id']}.verdict.json"
+    try:
+        return str(json.loads(vp.read_text()).get("by") or "")
+    except Exception:  # noqa: BLE001
+        return ""
+
+
+def has_verdict(req: dict) -> bool:
+    return (Path(req["_path"]).parent / f"{req['id']}.verdict.json").exists()
+
+
+def supersede_stale(reviews_dir: Path | None = None) -> list[str]:
+    """Settle as SUPERSEDED every unanswered request with a NEWER request
+    for the same channel+slug. Returns the ids settled.
+
+    2026-09-28 filed fourteen requests for `iss-sixteen-sunrises` in one
+    day — every re-render of a held story files its own — and the mailbox
+    reached 61 open. A grader working through that list oldest-first
+    spends its whole round on renders the pipeline has already replaced
+    and may never reach the one that matters. Only the newest cut of a story is worth
+    judging. A request that already HAS a verdict is left for the claim
+    step, and the newest request is never touched."""
+    newest: dict = {}
+    reqs = open_requests(reviews_dir)
+    for r in reqs:
+        key = (r.get("channel"), r.get("slug"))
+        if key not in newest or str(r.get("filed")) >= str(newest[key].get("filed")):
+            newest[key] = r
+    done = []
+    for r in reqs:
+        top = newest[(r.get("channel"), r.get("slug"))]
+        if r is top or has_verdict(r):
+            continue
+        settle(r, {"decision": "superseded", "judge": None,
+                   "reason": f"a newer render of {r.get('slug')} was filed "
+                             f"({top['id']}); only the newest cut is judged"})
+        done.append(r["id"])
+    return done
+
+
 def write_index(reviews_dir: Path | None = None) -> Path | None:
     """`exchange/reviews/OPEN.json` — every open request, with the one URL
     ChatGPT needs per request. A scheduled task cannot list a directory;
     it opens a known file. Rewritten on every file/settle."""
     reviews_dir = Path(reviews_dir or REVIEWS_DIR)
     try:
-        reqs = open_requests(reviews_dir)
+        # Newest first: a grader with limited time reaches the render the
+        # pipeline most recently made (and whose artifact has not expired).
+        reqs = sorted(open_requests(reviews_dir),
+                      key=lambda r: str(r.get("filed")), reverse=True)
         idx = {"schema": "shorts-review-index/v1", "updated": _now(),
                "open": [{"id": r["id"], "channel": r.get("channel"),
                          "slug": r["slug"], "title": r.get("title"),

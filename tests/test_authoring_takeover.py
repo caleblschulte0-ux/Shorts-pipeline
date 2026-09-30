@@ -209,6 +209,23 @@ class TestIngest(IngestTestCase):
         self.assertIn("not registered",
                       " ".join(report["rejected"][0]["problems"]))
 
+    def test_a_title_already_posted_on_the_channel_is_not_promoted(self):
+        """2026-09-29: four takeover graph_race packages repeated August
+        titles. known_titles only saw the last few package DIRECTORIES, so
+        they were promoted, and the renderer then refused to re-upload them
+        — four empty slots. The posted log is what knows."""
+        old = graph_pkg(slug="old-chart")
+        (self.tmp / "state" / "posted_log.json").write_text(json.dumps(
+            {"posted": [{"title": old["title"].upper(),
+                         "posted_at": "2026-08-17T09:53:19Z",
+                         "video_url": "https://youtube.com/shorts/U2J2nQdOo-c"}]}))
+        self.write_response([old, reddit_pkg(slug="new-tale")])
+        report = ing.ingest("20260801", "trending", target=6)
+        self.assertEqual(len(report["promoted"]), 1)
+        problems = " ".join(report["rejected"][0]["problems"])
+        self.assertIn("already POSTED", problems)
+        self.assertIn("U2J2nQdOo-c", problems)
+
     def test_duplicate_slug_within_one_response_is_caught(self):
         self.write_response([reddit_pkg(slug="same-slug-twice"), reddit_pkg(slug="same-slug-twice")])
         report = ing.ingest("20260801", "trending", target=6)

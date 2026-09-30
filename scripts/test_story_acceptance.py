@@ -223,11 +223,15 @@ def main() -> int:  # noqa: C901
 
     # ---- reviewer #11: with a sheet, a VISION verdict is REQUIRED — the
     # text-only Groq fallback must not be able to publish a cut it never saw
+    # (Groq is now one rung of `_call_text_fallback`, Groq -> Gemini; the
+    # text-only rung is patched where the director actually calls it.)
     story_director._call_claude = \
         lambda u, system=None, read_files=False: None      # vision unavailable
-    story_director._call_groq = \
-        lambda u, system=None: {"publish": True, "story_score": 90,
-                                "problems": []}             # would rubber-stamp
+    story_director._call_gemini_vision = \
+        lambda u, system, image_path, tag="": None         # no vision either
+    story_director._call_text_fallback = \
+        lambda u, system=None, tag="": {"publish": True, "story_score": 90,
+                                        "problems": []}     # would rubber-stamp
     r = story_director.review_rough_cut(edl, "words", str(td / "s.jpg"), 40.0)
     check("sheet + no vision model => FAIL CLOSED, not groq's publish (#11)",
           r["publish"] is False and r["story_score"] == -1)

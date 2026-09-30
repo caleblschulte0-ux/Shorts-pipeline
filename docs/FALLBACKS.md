@@ -152,6 +152,24 @@ load-bearing secret here, not `CLAUDE_CODE_OAUTH_TOKEN`.
 If you ever need to ship with both judges down, that is a deliberate
 operator decision, not a config toggle: it means publishing ungraded video.
 
+### The third channel's judges: Claude → Groq → Gemini
+
+`third_capture/author.py` (rank, content greenlight, story, authoring) and
+the scene analyzer / story director behind it now fall through **Claude →
+Groq → Gemini** (`_call_text_fallback`), and Gemini is the one fallback that
+can SEE: when Claude's vision call fails and a contact sheet exists,
+`_call_gemini_vision` attaches the JPEG as inline data, so `judge_content`
+keeps `saw_frames=True`, scene reports keep `visual_beats`, and a rough-cut
+review that REQUIRES vision can still get one. None of the gates in
+`scripts/run_third.py` moved — they fire less because a judge answers.
+Groq prompts are bounded to `THIRD_GROQ_PROMPT_CHARS` (a 413 is a size
+refusal, not a transient); a prompt too big for Groq goes to Gemini first,
+whole. A Gemini 429 disarms Gemini for the rest of the run, a Groq 429 rests
+Groq for a minute, and the CLI's "hit your weekly limit" now trips the Claude
+breaker. `third.yml` passes `GEMINI_API_KEY` — until 2026-09-30 it did not,
+and 09-27 and 09-29 posted zero with Claude at its weekly limit and Groq
+answering 413/429.
+
 ## 5. Retry — cover for a slot the gates emptied
 
 `run_trending_daily._backfill`. A slot a gate refused is not a lost slot: the
@@ -373,7 +391,7 @@ row reads `unreachable`, never `dead`.
 | Secret / subscription gone | Consequence |
 |---|---|
 | Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. ChatGPT authors the day (§6); only if that misses too does Groq write. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
-| `GEMINI_API_KEY` | Showrunner has no fallback judge → explainer publishes nothing if Claude is also down. Media judging gets dumber. |
+| `GEMINI_API_KEY` | Showrunner has no fallback judge → explainer publishes nothing if Claude is also down. Media judging gets dumber. Third loses its only non-Claude EYES and its third text judge. |
 | `GROQ_API_KEY` | Last-resort writer gone; ranking degrades. Harmless *while packages are authored* — but NOT for the trending backfill, which is the last unattended chance to fill a slot a gate emptied. That path used to name Groq explicitly and lost three slots to an expired key on 2026-09-07; it is unpinned now, so the chain falls through to Gemini and then Anthropic. Prefer a key with no expiry — see above. |
 | ChatGPT task | Policy A: Phase B self-fills, backstop cron renders. A weaker shot beats no video. |
 | Stock provider keys | Narrower search, more gaps, more self-fill work. |

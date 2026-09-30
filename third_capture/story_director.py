@@ -17,7 +17,8 @@ from __future__ import annotations
 
 import re
 
-from third_capture.author import _call_claude, _call_groq, scrub_text
+from third_capture.author import (_call_claude, _call_gemini_vision,
+                                  _call_text_fallback, scrub_text)
 
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
@@ -506,16 +507,19 @@ def validate_edl(edl: dict, durations: dict[str, float],
 
 
 def _brain(user: str, system: str,
-           read_files: bool = False, require_vision: bool = False) -> dict | None:
+           read_files: bool = False, require_vision: bool = False,
+           image_path: str | None = None) -> dict | None:
     """The director's model call. `read_files=True` grants Claude the Read
     tool so it can actually OPEN a contact-sheet image referenced in `user`
     — without it the critic is blind to the rendered frames and can only
-    reason about text. The Groq fallback is always text-only.
+    reason about text. `image_path` is that same image, handed to Gemini
+    as inline data when Claude does not answer. The text fallback (Groq,
+    then Gemini without the image) is text-only.
 
     `require_vision=True` means the answer is only trustworthy if a
-    vision-capable model produced it: Claude (with the Read grant) is the
-    ONLY vision backend, so if it doesn't answer we return None instead of
-    falling through to text-only Groq. Without this, a rough-cut critic that
+    vision-capable model produced it: Claude (with the Read grant) or
+    Gemini (with the image attached). If neither answers we return None
+    instead of falling through to the text-only fallback. Without this, a rough-cut critic that
     is supposed to LOOK at the frames could be silently rubber-stamped by a
     Groq verdict that never saw them (reviewer #11) — mirrors the scene
     analyzer's `vision_ok` provenance."""
@@ -527,16 +531,20 @@ def _brain(user: str, system: str,
               flush=True)
     if out is not None:
         return out
+    if read_files and image_path:
+        # Gemini is the second vision backend: it receives the image
+        # itself (inline data), so its verdict satisfies require_vision
+        # honestly — it LOOKED. Added 2026-09-30 after two zero-post days
+        # with Claude at its weekly limit.
+        out = _call_gemini_vision(user, system, image_path, tag="director")
+        if out is not None:
+            return out
     if require_vision:
-        print("::warning::[director] a VISION verdict was required but claude "
-              "(the only vision backend) was unavailable — refusing the "
-              "text-only groq fallback (fail closed)", flush=True)
+        print("::warning::[director] a VISION verdict was required but no "
+              "vision backend (claude, gemini) answered — refusing the "
+              "text-only fallback (fail closed)", flush=True)
         return None
-    try:
-        out = _call_groq(user, system=system)
-    except Exception as e:  # noqa: BLE001
-        print(f"::warning::[director] groq failed ({e})", flush=True)
-    return out
+    return _call_text_fallback(user, system=system, tag="director")
 
 
 # Why the last plan_story() call ended the way it did. Read by run_third
@@ -633,7 +641,8 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                if have_sheet else "")
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
     out = _brain(user, _REVIEW_SYSTEM, read_files=have_sheet,
-                 require_vision=have_sheet)
+                 require_vision=have_sheet,
+                 image_path=str(sheet) if have_sheet else None)
     if not out:
         # FAIL CLOSED for stories (reviewer #9): the story format's primary
         # risk is incoherence, so an UNREVIEWED story must not publish — the

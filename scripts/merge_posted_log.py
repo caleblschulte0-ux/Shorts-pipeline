@@ -74,6 +74,10 @@ def _identity(entry) -> str:
 _EVENT_LISTS = ("uploads",)
 
 
+def _has_url(e: dict) -> bool:
+    return bool(e.get("url") or e.get("video_url"))
+
+
 def merge(theirs: dict, ours: dict) -> dict:
     out = dict(theirs)
     out.update({k: v for k, v in ours.items()
@@ -82,8 +86,17 @@ def merge(theirs: dict, ours: dict) -> dict:
         tl = theirs.get(key) if isinstance(theirs.get(key), list) else []
         ol = ours.get(key) if isinstance(ours.get(key), list) else []
         if tl or ol:
+            # A claim pushed BEFORE an upload and confirmed after it has one
+            # identity (slug@claimed_at) and two versions. Theirs-wins would
+            # keep main's url-less claim over our confirmed one and turn a
+            # real upload back into an orphan — so the side with the URL wins.
+            confirmed = {_identity(e): e for e in ol
+                         if isinstance(e, dict) and _has_url(e)}
+            merged_l = [confirmed.get(_identity(e), e)
+                        if isinstance(e, dict) and not _has_url(e) else e
+                        for e in tl]
             seen = {_identity(e) for e in tl}
-            out[key] = tl + [e for e in ol if _identity(e) not in seen]
+            out[key] = merged_l + [e for e in ol if _identity(e) not in seen]
     tp, op = theirs.get("posted"), ours.get("posted")
     if isinstance(tp, dict) or isinstance(op, dict):
         merged = dict(tp if isinstance(tp, dict) else {})

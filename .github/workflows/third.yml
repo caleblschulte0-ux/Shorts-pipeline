@@ -156,6 +156,11 @@ jobs:
           # Groq author writes per-clip titles/hooks/hashtags from the
           # transcript; run degrades to raw clip titles without it
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Gemini is the third judge (Claude -> Groq -> Gemini) and the only
+          # fallback that can SEE a contact sheet. 2026-09-27/29 posted 0
+          # with Claude at its weekly limit and Groq 413/429 while this key
+          # sat unused because the workflow never passed it.
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # Claude authors titles/hooks/hashtags (Groq is the loud fallback)
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Twitch Helix (optional): exact clip ages + proper windowing.

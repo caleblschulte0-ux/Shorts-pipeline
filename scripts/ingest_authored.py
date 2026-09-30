@@ -65,6 +65,36 @@ def collect(date: str) -> list[tuple[str, dict]]:
     return out
 
 
+#: The posted log per channel whose packages this promotes. `known_titles`
+#: only ever saw the last RECENT_DAYS of package DIRECTORIES, so a title
+#: posted in August sailed through in September and the slot went empty.
+POSTED_LOGS = {"trending": "state/posted_log.json"}
+
+
+def posted_titles(channel: str) -> dict[str, str]:
+    """casefolded title -> "at <posted_at> (<url>)" for every upload."""
+    if channel not in POSTED_LOGS:
+        return {}
+    path = ROOT / POSTED_LOGS[channel]
+    if not path.is_file():
+        return {}
+    try:
+        posted = json.loads(path.read_text()).get("posted") or []
+    except Exception:                                 # noqa: BLE001
+        return {}
+    entries = posted.values() if isinstance(posted, dict) else posted
+    out: dict[str, str] = {}
+    for e in entries:
+        if not isinstance(e, dict):
+            continue
+        for k in ("title", "topic"):
+            t = (e.get(k) or "").strip().casefold()
+            if t:
+                out.setdefault(t, f"at {e.get('posted_at') or e.get('at')} "
+                                  f"({e.get('video_url') or e.get('url')})")
+    return out
+
+
 def existing_slate(channel: str, date: str) -> list[dict]:
     day = ROOT / PACKAGE_DIRS.get(channel, PACKAGE_DIRS["trending"]) / str(date)
     if not day.is_dir():
@@ -101,6 +131,7 @@ def ingest(date: str, channel: str = "trending", *, target: int = 6,
     known_titles |= set(brief._recent_titles(args.channel))
     known_titles.discard("")
     taken_slugs = {(p.get("slug") or "") for p in have}
+    posted = posted_titles(args.channel)
 
     day = ROOT / PACKAGE_DIRS[args.channel] / str(args.date)
     room = max(0, args.target - len(have))
@@ -111,6 +142,12 @@ def ingest(date: str, channel: str = "trending", *, target: int = 6,
         problems = brief.validate_authored(pkg, known_titles=known_titles)
         if slug in taken_slugs:
             problems.append(f"slug already in today's slate: {slug}")
+        hit = posted.get((pkg.get("title") or "").strip().casefold())
+        if hit:
+            problems.append(
+                f"title already POSTED on this channel {hit} — the renderer "
+                f"will refuse to re-upload it, so promoting it only empties "
+                f"a slot (2026-09-29: four August graph_race titles)")
         if not problems and len(promoted) >= room:
             problems.append(
                 f"slate is full ({args.target}) — not promoted, but nothing "

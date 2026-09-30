@@ -117,18 +117,22 @@ def download_artifact(run_id: str, name: str, member: str, dest: Path,
     return dest
 
 
-def decide_request(req: dict, grades: dict) -> tuple[dict, dict]:
-    """(verdict, gate) — the judge's grades through the judge's own code."""
+def decide_request(req: dict, grades: dict,
+                   judge: str = JUDGE) -> tuple[dict, dict]:
+    """(verdict, gate) — the judge's grades through the judge's own code.
+    `judge` names who graded (provenance only): every grader's grades go
+    through this same code."""
     from scripts import showrunner_review as sr
     from shared import showrunner_gate as gate_mod
     verdict = sr.assemble_verdict(grades, motion=req.get("motion") or {},
-                                  temporal=req.get("temporal") or {}, backend=JUDGE)
+                                  temporal=req.get("temporal") or {}, backend=judge)
     gate = gate_mod.decide(will_upload=True, gate_on=True, verdict=verdict)
     gate["slug"] = req["slug"]
     return verdict, gate
 
 
-def _publish_explainer(req: dict, mp4: Path, verdict: dict) -> str:
+def _publish_explainer(req: dict, mp4: Path, verdict: dict,
+                       judge: str = JUDGE) -> str:
     from scripts import post_stories as ps
     from shared.uploaders import YouTubeUploader
     cfg = json.loads(ps.CONFIG.read_text())
@@ -140,7 +144,7 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict) -> str:
     if isinstance(prev, dict) and prev.get("state") == "posted" and prev.get("url"):
         raise RuntimeError(f"{req['slug']} is already posted: {prev['url']}")
     claim = {"title": sc.get("title"), "publish_at": None, "url": None,
-             "state": "uploading", "claimed_at": _now(), "via": JUDGE}
+             "state": "uploading", "claimed_at": _now(), "via": judge}
     log.setdefault("posted", {})[req["slug"]] = claim
     log.setdefault("uploads", []).append(dict(claim, slug=req["slug"]))
     ps._save_log(log, ps.LOG_PATH)
@@ -152,7 +156,7 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict) -> str:
     log = ps._load_log(ps.LOG_PATH)
     log["posted"][req["slug"]] = {
         "url": url, "title": sc.get("title"), "at": _now(), "publish_at": None,
-        "state": "posted", "via": JUDGE,
+        "state": "posted", "via": judge,
         **ps._creative_facts(req["slug"], sc, mp4, verdict)}
     for u in reversed(log.get("uploads") or []):
         if u.get("slug") == req["slug"] and u.get("state") == "uploading":
@@ -166,7 +170,7 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict) -> str:
     return url
 
 
-def _publish_trending(req: dict, mp4: Path) -> str:
+def _publish_trending(req: dict, mp4: Path, judge: str = JUDGE) -> str:
     from scripts import run_trending_daily as rt
     from shared.uploaders import YouTubeUploader
     pkg_path = (req.get("ctx") or {}).get("package")
@@ -174,18 +178,22 @@ def _publish_trending(req: dict, mp4: Path) -> str:
         raise RuntimeError(f"the request's package {pkg_path!r} is gone")
     pkg = json.loads((REPO / pkg_path).read_text())
     topic = (req.get("ctx") or {}).get("topic") or pkg.get("topic") or req["slug"]
-    log = rt.load_log()
-    if any(p.get("topic") == topic for p in log.get("posted", [])):
-        raise RuntimeError(f"{topic!r} is already in the trending posted log")
     channel = (pkg.get("channel") or "").strip().lower()
-    res = YouTubeUploader(channel=channel).upload(
-        file_path=mp4, title=(req.get("title") or pkg.get("title") or topic)[:100],
-        description=rt._description(pkg), tags=rt._tags(pkg), publish_at=None)
-    url = getattr(res, "url", None) or str(res)
+    title = (req.get("title") or pkg.get("title") or topic)[:100]
+    # The same claim -> upload -> record path every trending upload takes,
+    # so a mailbox ship can never race a render run into a duplicate (the
+    # 2026-09-28/29 double uploads). It raises on a topic already posted.
+    url = rt._guarded_upload(
+        title=title, topic=topic, fmt=pkg.get("format"), publish_at=None,
+        do_upload=lambda: (lambda r: getattr(r, "url", None) or str(r))(
+            YouTubeUploader(channel=channel).upload(
+                file_path=mp4, title=title, description=rt._description(pkg),
+                tags=rt._tags(pkg), publish_at=None)))
     log = rt.load_log()
-    log["posted"].append({"topic": topic, "title": req.get("title") or pkg.get("title"),
-                          "format": pkg.get("format"), "video_url": url,
-                          "publish_at": None, "posted_at": _now(), "via": JUDGE})
+    for e in reversed(log.get("posted") or []):
+        if e.get("video_url") == url:
+            e["via"] = judge
+            break
     rt.save_log(log)
     from shared.crosspost import crosspost
     crosspost("trending", mp4, (req.get("title") or pkg.get("title") or topic)[:100],
@@ -201,7 +209,8 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
     grades, why = rm.verdict_for(req)
     if grades is None:
         return {"id": req["id"], "state": "open", "why": why}
-    verdict, gate = decide_request(req, grades)
+    judge = rm.grader_of(rm.verdict_by(req))
+    verdict, gate = decide_request(req, grades, judge)
     gate_mod.log(gate, req["slug"])
     try:
         sr.append_ledger(req["slug"], verdict)
@@ -209,7 +218,7 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
         pass
     if gate["blocked"]:
         out = {"decision": "hold", "reason": gate["reason"], "score": verdict.get("score"),
-               "judge": JUDGE}
+               "judge": judge}
         rm.settle(req, out)
         return {"id": req["id"], "state": "settled", **out}
     if not publish:
@@ -223,12 +232,12 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
         if got != req["video_sha256"]:
             raise RuntimeError(f"kept render hash {got[:10]} != request {req['video_sha256'][:10]}")
         if req.get("channel") == "trending":
-            url = _publish_trending(req, mp4)
+            url = _publish_trending(req, mp4, judge)
         else:
-            url = _publish_explainer(req, mp4, verdict)
+            url = _publish_explainer(req, mp4, verdict, judge)
     except Exception as e:  # noqa: BLE001
         out = {"decision": "ship", "published": False, "score": verdict.get("score"),
-               "judge": JUDGE, "error": f"{type(e).__name__}: {e}"[:300]}
+               "judge": judge, "error": f"{type(e).__name__}: {e}"[:300]}
         # settled: a ship that could not be published is not retried
         # forever against an expired artifact; the story re-renders normally
         rm.settle(req, out)
@@ -236,7 +245,7 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
               flush=True)
         return {"id": req["id"], "state": "settled", **out}
     out = {"decision": "ship", "published": True, "url": url,
-           "score": verdict.get("score"), "judge": JUDGE}
+           "score": verdict.get("score"), "judge": judge}
     rm.settle(req, out)
     print(f"[claim] {req['id']}: SHIPPED -> {url}", flush=True)
     return {"id": req["id"], "state": "settled", **out}
@@ -276,6 +285,10 @@ def main() -> int:
                   + (f" ({res.get('why')})" if res.get("why") else ""), flush=True)
             settled += res["state"] == "settled"
     rm.write_index(args.reviews_dir)
+    # After claiming (so an answered older cut is still decided), retire
+    # every unanswered request a newer render of the same story replaced.
+    for rid in rm.supersede_stale(args.reviews_dir):
+        print(f"[claim] superseded {rid}: a newer render was filed", flush=True)
     print(f"[claim] settled {settled}", flush=True)
     return 0
 

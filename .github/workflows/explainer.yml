@@ -868,5 +868,5 @@ jobs:
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json \
             state/showrunner_verdicts.jsonl \
-            exchange/reviews exchange/asks exchange/rewrites \
+            exchange/reviews exchange/asks exchange/rewrites exchange/OPEN.json \
             state/scene_plans quality
