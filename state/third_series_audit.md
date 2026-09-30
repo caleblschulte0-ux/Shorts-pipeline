@@ -9,7 +9,7 @@
 | win | 8 | 0.045 |
 | argument | 6 | 0.085 |
 | jumpscare | 5 | 0.45 |
-| rage | 4 | 0.35 |
+| rage | 4 | 0.345 |
 | clutch | 3 | 0.04 |
 | beef | 3 | 0.0 |
 
