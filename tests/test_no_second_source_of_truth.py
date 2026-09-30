@@ -65,7 +65,7 @@ def _lines(rel: str):
     p = ROOT / rel
     if not p.exists():
         return []
-    return list(enumerate(p.read_text().splitlines(), start=1))
+    return list(enumerate(p.read_text(encoding="utf-8").splitlines(), start=1))
 
 
 class TestNoSecondSourceOfTruth(unittest.TestCase):
@@ -138,7 +138,7 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
                 sorted(ROOT.glob("data_learning/*.config.json")):
             if p.name == "channel_registry.json":
                 continue
-            text = p.read_text()
+            text = p.read_text(encoding="utf-8")
             for key in ("target_mix", "slate_mix", "format_mix",
                         "target_count"):
                 if f'"{key}"' in text:
@@ -150,13 +150,13 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
         for rel in ("shared/authoring_brief.py", "shared/package_schema.py",
                     "scripts/exchange_phase_a.py",
                     "scripts/exchange_phase_b.py"):
-            text = (ROOT / rel).read_text()
+            text = (ROOT / rel).read_text(encoding="utf-8")
             self.assertIn("channel_registry", text,
                           f"{rel} decides slate policy without reading the "
                           f"registry")
 
     def test_the_render_workflow_is_not_a_second_brain(self):
-        wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
+        wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text(encoding="utf-8")
         self.assertNotIn("Brain — author today's packages", wf)
         self.assertNotIn("claude -p", wf)
         self.assertIn("--require-manifest", wf)
@@ -194,7 +194,7 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
         # description of the pattern it is banning.
         rx = re.compile(r'^sys\.path\.insert\(\s*0\s*,[^)]*scripts', re.M)
         offenders = [p.name for p in sorted(Path(ROOT / "tests").glob("*.py"))
-                     if rx.search(p.read_text())]
+                     if rx.search(p.read_text(encoding="utf-8"))]
         self.assertEqual(offenders, [],
                          "use sys.path.append for scripts/ — inserting it at "
                          "0 lets scripts/test_*.py shadow tests/test_*.py")
@@ -202,7 +202,7 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
     def test_ci_actually_runs_the_suite(self):
         """The suite gated nothing until 2026-08-01: `automerge` needed only
         the sanity job, so a PR breaking every test merged itself."""
-        wf = (ROOT / ".github" / "workflows" / "auto-merge.yml").read_text()
+        wf = (ROOT / ".github" / "workflows" / "auto-merge.yml").read_text(encoding="utf-8")
         self.assertIn("unittest discover -s tests", wf,
                       "no CI job runs the test suite")
         import yaml
