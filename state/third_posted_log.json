@@ -9863,13 +9863,49 @@
       "ts": "2026-09-30T12:11:10.659690+00:00"
     },
     "clip-20260930-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/EnticingResoluteBaguetteSmoocherZ-K3bRW4Nc7m5s2tUh",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/i3588TIWXqY",
       "title": "Buddha And Lang Run From The Whole PD After The Chop Spot Gets Stormed",
       "kind": "twitch_clip",
-      "ts": "2026-09-30T12:14:49.940930+00:00",
+      "ts": "2026-09-30T12:14:59.603775+00:00",
+      "uploaded_at": "2026-09-30T12:14:59.603797+00:00",
+      "publish_at": "2026-09-30T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20260930-buddha-and-lang-run-from-the-whole-pd-after-the--1112d398"
+      },
+      "source_url": "https://www.twitch.tv/buddha/clip/EnticingResoluteBaguetteSmoocherZ-K3bRW4Nc7m5s2tUh",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "THE WHOLE PD IS COMING",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3265,
+      "banger": 0.55,
+      "cut": {
+        "start": 1.0,
+        "end": 29.2
+      },
+      "director_cut": true
+    },
+    "rejected-suavecallousbasenjitebowing-yjkit8f2qdq49kxe": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SuaveCallousBasenjiTebowing-yJkit8f2qdQ49kxE",
+      "streamer": "caseoh_",
+      "title": "stream inspiration",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (abstract blobs falling, no clear event)",
+      "ts": "2026-09-30T12:16:06.881208+00:00"
+    },
+    "clip-20260930-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PatientObliviousHamsterMoreCowbell-OmtrSGtVulXE_mFP",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Gets Told To Do The C Walk On Stage And Ron Hits It",
+      "kind": "twitch_clip",
+      "ts": "2026-09-30T12:18:30.053452+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
