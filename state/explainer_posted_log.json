@@ -2267,11 +2267,11 @@
       "narrative_score": 65,
       "duration_s": 43.1
     },
-    "landline-extinction-event": {
-      "url": "https://youtube.com/shorts/KywWY0m0ZY4",
-      "title": "Landlines Peaked In 2006. They've Been Dying Since.",
-      "at": "2026-09-30T18:49:15.082485+00:00",
-      "publish_at": "2026-09-30T18:42:38Z",
+    "global-ewaste-crisis": {
+      "url": "https://youtube.com/shorts/PYTH0ZtazWc",
+      "title": "The World Made 62 Million Tons Of E-Waste",
+      "at": "2026-09-30T19:21:39.968648+00:00",
+      "publish_at": "2026-09-30T20:00:59Z",
       "state": "posted",
       "experiment_arm": "other_topic",
       "actual_structure": "other_topic",
@@ -2280,8 +2280,8 @@
       "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 34 credits are required for this request.\",\"status",
       "n_beats": 3,
       "story_structure": "auto+auto+auto",
-      "narrative_score": 57,
-      "duration_s": 46.2
+      "narrative_score": 56,
+      "duration_s": 42.7
     }
   },
   "uploads": [
@@ -2727,13 +2727,13 @@
       "at": "2026-09-30T15:53:41.747918+00:00"
     },
     {
-      "claimed_at": "2026-09-30T18:49:07.760752+00:00",
-      "title": "Landlines Peaked In 2006. They've Been Dying Since.",
-      "publish_at": "2026-09-30T18:42:38Z",
-      "url": "https://youtube.com/shorts/KywWY0m0ZY4",
+      "claimed_at": "2026-09-30T19:21:32.562704+00:00",
+      "title": "The World Made 62 Million Tons Of E-Waste",
+      "publish_at": "2026-09-30T20:00:59Z",
+      "url": "https://youtube.com/shorts/PYTH0ZtazWc",
       "state": "posted",
-      "slug": "landline-extinction-event",
-      "at": "2026-09-30T18:49:15.082485+00:00"
+      "slug": "global-ewaste-crisis",
+      "at": "2026-09-30T19:21:39.968648+00:00"
     }
   ]
 }
