@@ -9962,14 +9962,31 @@
       "ts": "2026-09-30T12:25:00.927730+00:00"
     },
     "clip-20260930-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/GlutenFreeLongDogeDendiFace-LRGix51I1E3_AyPe",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/HOfV-rfTDkc",
       "title": "Silky Gets Put On The Spot And Has To Think Fast",
       "kind": "twitch_clip",
-      "ts": "2026-09-30T12:26:41.375074+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-30T12:26:51.832837+00:00",
+      "uploaded_at": "2026-09-30T12:26:51.832862+00:00",
+      "publish_at": "2026-10-01T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20260930-silky-gets-put-on-the-spot-and-has-to-think-fast-d6bdd2b2"
+      },
+      "source_url": "https://www.twitch.tv/silky/clip/GlutenFreeLongDogeDendiFace-LRGix51I1E3_AyPe",
+      "streamer": "silky",
+      "series": "chaos",
+      "hook": "THINK FAST",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2173,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 13.72
+      },
+      "director_cut": true
     }
   }
 }
