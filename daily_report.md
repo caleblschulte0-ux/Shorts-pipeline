@@ -2,30 +2,24 @@
 
 > **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **6**
-- succeeded: **2**
+- queued: **4**
+- succeeded: **1**
 - quarantined (off-topic imagery): **0**
-- failed: **4**
+- failed: **3**
 
 ## Posted
-- **Student Debt Passed Auto Loans In 2010**
-  - topic: Student Debt Passed Auto Loans In 2010
-  - publishes: `2026-09-30T13:00:00Z`
-  - https://youtube.com/shorts/rn8CIKgiLz4
-  - took: 129.3s
-- **He Fired Me For Being Nice To Customers**
-  - topic: He Fired Me For Being Nice To Customers
-  - publishes: `2026-09-30T14:30:00Z`
-  - https://youtube.com/shorts/cJSoMiY9fKI
-  - took: 301.9s
+- **I Got Served When My Manager ‘Forgot’ My Tip**
+  - topic: Botswana condemned for slaughtering elephants for independence celebrations
+  - angle: Botswana authorizes the hunting of 23 elephants in a controversial tradition, sparking international outrage over wildlife protection.
+  - publishes: `2026-09-30T16:00:00Z`
+  - https://youtube.com/shorts/ibRYfimMM1k
+  - took: 401.0s
 
 ## Failed
 - **Dollar General Quietly Passed McDonald's**
-  - error: `showrunner_block: showrunner BLOCK: A clean, readable overtake race that lands its crossover, but the source footer is cut off in every frame and the hook says "tripled" when the data shows 2.5x.`
+  - error: `showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame and the hook says 'tripled' when the data shows about 2.5x.`
 - **Podcast Ads Grew 7x In One Decade**
-  - error: `showrunner_block: showrunner BLOCK: The headline promises 7x podcast growth, but the chart shows a flat purple sliver under a dominant Radio line and ends by crowning Radio #1.`
+  - error: `showrunner_block: showrunner BLOCK: The race crowns radio and squashes podcasts' 7x growth into a flat line at zero, so the video argues the opposite of its title.`
 - **Couple describes relief at rescue after whale destroys their yacht**
-  - error: `showrunner_block: showrunner BLOCK: The story is told only by captions over generic parkour gameplay. Its beats (truck, crushed shelf, toolbox, forklift, adjuster) are never shown, and the one illustration is a static placeholder receipt icon at the end.`
-- **Caught on camera: Dashcam captures truck hydroplaning as rain creates dangerous road conditions - KRIS 6 News Corpus Christi**
-  - error: `showrunner_block: showrunner BLOCK: The story's beats are never shown: half the video is bare gameplay and the rest is two generic emoji held static, ending on a blank phone.`
+  - error: `showrunner_block: showrunner BLOCK: A clean Reddit card and readable captions, but after the hook it is 46 seconds of unrelated Minecraft with no picture of a single story beat, so the cement-mixer story is never shown, only read.`
 

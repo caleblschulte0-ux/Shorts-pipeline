@@ -3,14 +3,14 @@
     "topic": "Dollar General Quietly Passed McDonald's",
     "title": "Dollar General Quietly Passed McDonald's",
     "format": "graph_race",
-    "publish_at": "2026-09-30T13:00:00Z",
+    "publish_at": "2026-09-30T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable overtake race that lands its crossover, but the source footer is cut off in every frame and the hook says \"tripled\" when the data shows 2.5x.",
-    "elapsed_seconds": 81.4,
+    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame and the hook says 'tripled' when the data shows about 2.5x.",
+    "elapsed_seconds": 84.7,
     "package_path": "state/trending_packages/20260930/01_graph-dollar-general-vs-mcdonalds.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-122232_dollar_general_quietly_passed_mcdonald_s.mp4",
+    "video_path": "output/daily_20260930-133435_dollar_general_quietly_passed_mcdonald_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,7 +28,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable overtake race that lands its crossover, but the source footer is cut off in every frame and the hook says \"tripled\" when the data shows 2.5x.",
+      "reason": "showrunner BLOCK: A clean two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame and the hook says 'tripled' when the data shows about 2.5x.",
       "score": 78
     },
     "blocked": true
@@ -37,14 +37,14 @@
     "topic": "Podcast Ads Grew 7x In One Decade",
     "title": "Podcast Ads Grew 7x In One Decade",
     "format": "graph_race",
-    "publish_at": "2026-09-30T13:00:00Z",
+    "publish_at": "2026-09-30T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The headline promises 7x podcast growth, but the chart shows a flat purple sliver under a dominant Radio line and ends by crowning Radio #1.",
-    "elapsed_seconds": 101.5,
+    "error": "showrunner_block: showrunner BLOCK: The race crowns radio and squashes podcasts' 7x growth into a flat line at zero, so the video argues the opposite of its title.",
+    "elapsed_seconds": 101.0,
     "package_path": "state/trending_packages/20260930/03_graph-podcast-vs-radio-ads.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-122353_podcast_ads_grew_7x_in_one_decade.mp4",
+    "video_path": "output/daily_20260930-133600_podcast_ads_grew_7x_in_one_decade.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,64 +62,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The headline promises 7x podcast growth, but the chart shows a flat purple sliver under a dominant Radio line and ends by crowning Radio #1.",
-      "score": 57
+      "reason": "showrunner BLOCK: The race crowns radio and squashes podcasts' 7x growth into a flat line at zero, so the video argues the opposite of its title.",
+      "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "Student Debt Passed Auto Loans In 2010",
-    "title": "Student Debt Passed Auto Loans In 2010",
-    "format": "graph_race",
-    "publish_at": "2026-09-30T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/rn8CIKgiLz4",
-    "error": null,
-    "elapsed_seconds": 129.3,
-    "package_path": "state/trending_packages/20260930/04_graph-student-vs-auto-loans.json",
-    "source": "brain",
-    "video_path": "output/daily_20260930-122534_student_debt_passed_auto_loans_in_2010.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-student-debt-passed-auto-loans-in-2010-a015d403"
-    }
-  },
-  {
-    "topic": "He Fired Me For Being Nice To Customers",
-    "title": "He Fired Me For Being Nice To Customers",
-    "format": "reddit",
+    "topic": "Couple describes relief at rescue after whale destroys their yacht",
+    "angle": "A massive sperm whale rams a New Zealand yacht, forcing a dramatic rescue that highlights the perils of ocean sailing.",
     "publish_at": "2026-09-30T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/cJSoMiY9fKI",
-    "error": null,
-    "elapsed_seconds": 301.9,
-    "package_path": "state/trending_packages/20260930/05_return-policy-backfire.json",
-    "source": "brain",
-    "video_path": "output/daily_20260930-122745_he_fired_me_for_being_nice_to_customers.mp4",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean Reddit card and readable captions, but after the hook it is 46 seconds of unrelated Minecraft with no picture of a single story beat, so the cement-mixer story is never shown, only read.",
+    "elapsed_seconds": 367.7,
+    "title": "Cement mixer wrecked my store, I got free tools",
+    "package_path": "state/trending_packages/20260930-133754_auto_couple_describes_relief_at_rescue_after_.json",
+    "video_path": "output/daily_20260930-133754_couple_describes_relief_at_rescue_after_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 46.3,
+      "duration": 48.533,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -130,7 +91,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.6
+      "loudness_lufs": -24.7
     },
     "qa": {
       "ok": true,
@@ -138,69 +99,27 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 79
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-he-fired-me-for-being-nice-to-customers-873089b8"
-    }
-  },
-  {
-    "topic": "Couple describes relief at rescue after whale destroys their yacht",
-    "angle": "A massive sperm whale rammed a New Zealand yacht, forcing a dramatic rescue that highlights the hidden dangers of open\u2011water sailing.",
-    "publish_at": "2026-09-30T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is told only by captions over generic parkour gameplay. Its beats (truck, crushed shelf, toolbox, forklift, adjuster) are never shown, and the one illustration is a static placeholder receipt icon at the end.",
-    "elapsed_seconds": 297.4,
-    "title": "I Stole the Owner\u2019s Toolbox and Got Paid",
-    "package_path": "state/trending_packages/20260930-123257_auto_couple_describes_relief_at_rescue_after_.json",
-    "video_path": "output/daily_20260930-123257_couple_describes_relief_at_rescue_after_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story is told only by captions over generic parkour gameplay. Its beats (truck, crushed shelf, toolbox, forklift, adjuster) are never shown, and the one illustration is a static placeholder receipt icon at the end.",
-      "score": 61
+      "reason": "showrunner BLOCK: A clean Reddit card and readable captions, but after the hook it is 46 seconds of unrelated Minecraft with no picture of a single story beat, so the cement-mixer story is never shown, only read.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Caught on camera: Dashcam captures truck hydroplaning as rain creates dangerous road conditions - KRIS 6 News Corpus Christi",
-    "angle": "A dash\u2011cam video shows a semi\u2011tractor losing traction on a slick highway, underscoring how sudden rain can turn roads into death traps.",
-    "publish_at": "2026-09-30T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's beats are never shown: half the video is bare gameplay and the rest is two generic emoji held static, ending on a blank phone.",
-    "elapsed_seconds": 320.0,
-    "title": "I turned a busted ladder delivery into $150 profit",
-    "package_path": "state/trending_packages/20260930-123755_auto_caught_on_camera__dashcam_captures_truck.json",
-    "video_path": "output/daily_20260930-123755_caught_on_camera__dashcam_captures_truck.mp4",
+    "topic": "Botswana condemned for slaughtering elephants for independence celebrations",
+    "angle": "Botswana authorizes the hunting of 23 elephants in a controversial tradition, sparking international outrage over wildlife protection.",
+    "publish_at": "2026-09-30T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ibRYfimMM1k",
+    "error": null,
+    "elapsed_seconds": 401.0,
+    "title": "I Got Served When My Manager \u2018Forgot\u2019 My Tip",
+    "package_path": "state/trending_packages/20260930-134402_auto_botswana_condemned_for_slaughtering_elep.json",
+    "video_path": "output/daily_20260930-134402_botswana_condemned_for_slaughtering_elep.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.133,
+      "duration": 39.8,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -215,15 +134,18 @@
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story's beats are never shown: half the video is bare gameplay and the rest is two generic emoji held static, ending on a blank phone.",
-      "score": 53
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true,
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-i-got-served-when-my-manager-forgot-my-tip-805c37e5"
+    },
     "backfill": true
   }
 ]
