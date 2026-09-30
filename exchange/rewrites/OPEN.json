@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-09-30T18:49:22Z",
+ "updated": "2026-09-30T16:14:12Z",
  "open": [
-  {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-09-30T18:49:22Z",
-   "why": [
-    "premise: brain: Relies on a vague expectation reversal and a percentage without a single, verifiable consequential number tied to a specific claim"
-   ],
-   "request": "exchange/rewrites/20260930/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20260930/lab-grown-diamond-price-collapse__147039f2.answer.json"
-  },
   {
    "id": "child-mortality-collapse__3105e565",
    "slug": "child-mortality-collapse",
@@ -821,6 +811,16 @@
    ],
    "request": "exchange/rewrites/20260928/iss-sixteen-sunrises__2a396886.request.json",
    "answer_path": "exchange/rewrites/20260928/iss-sixteen-sunrises__2a396886.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-09-28T12:03:59Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on vague comparison rather than a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20260928/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20260928/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "hidden-foster-system__6b258b71",
