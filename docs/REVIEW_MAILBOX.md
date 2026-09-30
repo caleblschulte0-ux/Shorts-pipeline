@@ -136,14 +136,16 @@ obviously let Alethea answer the mailbox ... I just need Alethea to make
 sure shit gets posted, and if it doesn't get posted, that she gets shit
 done"* — and, in the same breath, *"We're not posting bad stuff."*
 
-So Aletheia (`caleblschulte0-ux/aletheia`, `aletheia/shorts_mailbox.py`)
-is now a grader of all three mailboxes, from his PC, on a 30-minute
-scheduled task. It asks his Claude subscription first, then Codex on his
-ChatGPT subscription, then its own local models (a vision model for the
-contact sheet: minutes per picture, which he accepted: *"I don't care if
-Alethea takes an extra three hours"*). It writes ONLY answer files, only
-at the paths its fleet grant names, and marks each with
-`"by": "aletheia:<route>"`.
+So Aletheia (`caleblschulte0-ux/aletheia`) is authorised as a grader of
+all three mailboxes. **Status 2026-09-30: this repo accepts and records her
+answers; the worker on her side is NOT BUILT yet** — giving her a write
+grant into this repo needs the operator to approve that permission change
+directly. The plan: from his PC, on a 30-minute scheduled task, ask his
+Claude subscription first, then Codex on his ChatGPT subscription, then her
+own local models (a vision model for the contact sheet: minutes per
+picture, which he accepted: *"I don't care if Alethea takes an extra three
+hours"*); write ONLY answer files, only at paths a fleet grant names, each
+marked `"by": "aletheia:<route>"`.
 
 - **Code still decides.** Her grades go through the same
   `assemble_verdict` + `showrunner_gate.decide`; her rewrites through the
