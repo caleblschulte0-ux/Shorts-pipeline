@@ -2149,13 +2149,39 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(cx_ - mw // 2), int(cy_ - mh + 12)))
-    d.text(((bx0 + bx1) // 2, by0 + 58),
-           f"{charts._ulabel(lo, unit)}  to  {charts._ulabel(hi, unit)}",
+    head, sub = coaster_caption(items, vals, unit)
+    d.text(((bx0 + bx1) // 2, by0 + 58), head,
            font=_pil_font(64), fill=_rgba(color, 255), anchor="mm")
-    # not "and back again": that claims a return the series may not make
-    d.text(((bx0 + bx1) // 2, bot + 88), "up and down the whole way",
+    d.text(((bx0 + bx1) // 2, bot + 88), sub,
            font=_pil_font(40), fill=_rgba(TEXT, 215), anchor="mm")
     return (vals[k_end], "art", cx_, cy_)
+
+
+def coaster_caption(items, vals, unit="") -> tuple:
+    """(headline, sub-caption) for the coaster, said from the SHAPE it draws.
+
+    The coaster serves REVERSAL as well as VOLATILE, and it used to caption
+    both "lo to hi / up and down the whole way". On a one-turn series that
+    is the opposite of the story: landlines rose to 1.26B in 2006 and fell
+    to 815M, and the hook read "158M to 1.3B, up and down the whole way"
+    under a title saying they are dying (showrunner, 2026-09-30, three
+    blocks). One turn says where it turned and where it is now; only a
+    genuine zig-zag says it went up and down."""
+    from data_learning import relationships as _rel
+    _net, rev = _rel._direction(vals)
+    lab = [str(getattr(p, "label", "") or "") for p in items]
+    fmt = lambda v: charts._ulabel(v, unit)                  # noqa: E731
+    if rev == 1 and len(vals) >= 3:
+        k = max(range(len(vals)), key=lambda i: abs(vals[i] - vals[0]))
+        if 0 < k < len(vals) - 1:
+            peak = vals[k] > vals[0]
+            when = f" in {lab[k]}" if lab[k] else ""
+            return (f"{fmt(vals[0])}  to  {fmt(vals[k])}  to  {fmt(vals[-1])}",
+                    (f"peaked{when}, falling since" if peak
+                     else f"bottomed out{when}, climbing since"))
+    lo, hi = min(vals), max(vals)
+    # not "and back again": that claims a return the series may not make
+    return f"{fmt(lo)}  to  {fmt(hi)}", "up and down the whole way"
 
 
 def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):

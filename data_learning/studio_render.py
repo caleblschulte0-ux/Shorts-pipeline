@@ -2225,8 +2225,10 @@ _MACHINES = {
     "centre":      ("centre_scene", "race_scene"),
     # the rise is compounding, not merely rising
     "acceleration": ("staircase_scene", "tower_scene", "coaster_scene"),
-    # it went one way, then turned and stayed turned
-    "reversal":    ("coaster_scene", "spotlight_scene", "elevator_scene"),
+    # it went one way, then turned and stayed turned. NOT the spotlight: it
+    # captions "it never settled ... anywhere between lo and hi", a claim of
+    # volatility a one-turn series does not make (landlines, 2026-09-30).
+    "reversal":    ("coaster_scene", "elevator_scene"),
     # it REPEATS — a stronger claim than volatility, and a wheel is the claim
     "cycle":       ("wheel_scene", "coaster_scene"),
     # they are all basically the same, which a sorted bar chart hides
