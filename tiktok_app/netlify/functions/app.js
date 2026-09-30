@@ -1183,12 +1183,19 @@ var require_account_service = __commonJS({
 var crypto = require("crypto");
 var accounts = require_account_service();
 var blobs = require_main3();
+// A build with --config fills the __MARKERS__; a build with --placeholders
+// leaves them, and the site's Netlify environment supplies the values. Only
+// TIKTOK_CLIENT_SECRET is truly required: the client key is public (it is in
+// every consent URL) and the cookie-signing key is derived from the secret
+// when none is set.
+var unfilled = (mark, fallback) => /^__[A-Z_]+__$/.test(mark) ? fallback : mark;
 var CONFIG = {
-  client_key: process.env.TIKTOK_CLIENT_KEY || "__TIKTOK_CLIENT_KEY__",
+  client_key: process.env.TIKTOK_CLIENT_KEY || unfilled("__TIKTOK_CLIENT_KEY__", "aw9hmk3x2xmhv4mv"),
   client_secret: process.env.TIKTOK_CLIENT_SECRET || "__TIKTOK_CLIENT_SECRET__",
   redirect_uri: process.env.TIKTOK_REDIRECT_URI || "https://shorts-media.netlify.app/auth/tiktok/callback/",
-  cookie_secret: process.env.SM_COOKIE_SECRET || "__SM_COOKIE_SECRET__"
+  cookie_secret: process.env.SM_COOKIE_SECRET || unfilled("__SM_COOKIE_SECRET__", "")
 };
+if (!CONFIG.cookie_secret) CONFIG.cookie_secret = crypto.createHash("sha256").update("shorts-media-cookie:" + CONFIG.client_secret).digest("hex");
 var SITE = "https://shorts-media.netlify.app";
 var TT = "https://open.tiktokapis.com";
 var GITHUB_API = "https://api.github.com";
