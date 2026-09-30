@@ -1,7 +1,89 @@
 {
-  "fetched_at": "2026-07-01T17:07:20.736847+00:00",
-  "videos": [
-    {
+  "month": "202607",
+  "days": {
+    "20260701": {
+      "total_videos": 115,
+      "total_views": 668,
+      "avg_views_per_video": 5.8,
+      "median_views_per_hour": 0.01,
+      "top_5_by_vph": [
+        {
+          "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
+          "views_per_hour": 0.5,
+          "views": 12,
+          "age_hours": 24.1,
+          "url": "https://youtube.com/shorts/6pV6brdeb0U"
+        },
+        {
+          "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
+          "views_per_hour": 0.41,
+          "views": 9,
+          "age_hours": 22.1,
+          "url": "https://youtube.com/shorts/xvjBDXx-kQY"
+        },
+        {
+          "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
+          "views_per_hour": 0.33,
+          "views": 16,
+          "age_hours": 48.1,
+          "url": "https://youtube.com/shorts/oUK6KrZLuLc"
+        },
+        {
+          "title": "100 Monkeys Just Broke Out of Their Enclosure",
+          "views_per_hour": 0.24,
+          "views": 1,
+          "age_hours": 4.1,
+          "url": "https://youtube.com/shorts/adFTMyrrykA"
+        },
+        {
+          "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
+          "views_per_hour": 0.23,
+          "views": 16,
+          "age_hours": 68.1,
+          "url": "https://youtube.com/shorts/zYYItLCApoU"
+        }
+      ],
+      "bottom_5_by_vph": [
+        {
+          "title": "Scientists Found How Alzheimer's Actually Spreads",
+          "views_per_hour": 0.0,
+          "views": 0,
+          "age_hours": 4.6,
+          "url": "https://youtube.com/shorts/flUvmCQt_jc"
+        },
+        {
+          "title": "155 Homes Were Gone by Morning",
+          "views_per_hour": 0.0,
+          "views": 0,
+          "age_hours": 4.7,
+          "url": "https://youtube.com/shorts/PgBRsZI6vpM"
+        },
+        {
+          "title": "A Wild Seal Just Turned Completely Purple",
+          "views_per_hour": 0.0,
+          "views": 0,
+          "age_hours": 4.9,
+          "url": "https://youtube.com/shorts/_3qri9uccB4"
+        },
+        {
+          "title": "A Highway Just Turned Into a River of Beer",
+          "views_per_hour": 0.0,
+          "views": 0,
+          "age_hours": 0.1,
+          "url": "https://youtube.com/shorts/PCjZirW_Nsc"
+        },
+        {
+          "title": "Police Just Had the World's Slowest Chase",
+          "views_per_hour": 0.0,
+          "views": 0,
+          "age_hours": 2.1,
+          "url": "https://youtube.com/shorts/JzPy7UD3_fg"
+        }
+      ]
+    }
+  },
+  "videos": {
+    "https://youtube.com/shorts/6pV6brdeb0U": {
       "video_id": "6pV6brdeb0U",
       "url": "https://youtube.com/shorts/6pV6brdeb0U",
       "catalog_id": null,
@@ -13,7 +95,7 @@
       "comments": 0,
       "views_per_hour": 0.5
     },
-    {
+    "https://youtube.com/shorts/xvjBDXx-kQY": {
       "video_id": "xvjBDXx-kQY",
       "url": "https://youtube.com/shorts/xvjBDXx-kQY",
       "catalog_id": null,
@@ -25,7 +107,7 @@
       "comments": 0,
       "views_per_hour": 0.41
     },
-    {
+    "https://youtube.com/shorts/oUK6KrZLuLc": {
       "video_id": "oUK6KrZLuLc",
       "url": "https://youtube.com/shorts/oUK6KrZLuLc",
       "catalog_id": null,
@@ -37,7 +119,7 @@
       "comments": 0,
       "views_per_hour": 0.33
     },
-    {
+    "https://youtube.com/shorts/adFTMyrrykA": {
       "video_id": "adFTMyrrykA",
       "url": "https://youtube.com/shorts/adFTMyrrykA",
       "catalog_id": null,
@@ -49,7 +131,7 @@
       "comments": 0,
       "views_per_hour": 0.24
     },
-    {
+    "https://youtube.com/shorts/zYYItLCApoU": {
       "video_id": "zYYItLCApoU",
       "url": "https://youtube.com/shorts/zYYItLCApoU",
       "catalog_id": null,
@@ -61,7 +143,7 @@
       "comments": 0,
       "views_per_hour": 0.23
     },
-    {
+    "https://youtube.com/shorts/hIAq1WP6fns": {
       "video_id": "hIAq1WP6fns",
       "url": "https://youtube.com/shorts/hIAq1WP6fns",
       "catalog_id": null,
@@ -73,7 +155,7 @@
       "comments": 0,
       "views_per_hour": 0.2
     },
-    {
+    "https://youtube.com/shorts/3iiG4zoRwSQ": {
       "video_id": "3iiG4zoRwSQ",
       "url": "https://youtube.com/shorts/3iiG4zoRwSQ",
       "catalog_id": null,
@@ -85,7 +167,7 @@
       "comments": 0,
       "views_per_hour": 0.2
     },
-    {
+    "https://youtube.com/shorts/5HfZ6F6FnWo": {
       "video_id": "5HfZ6F6FnWo",
       "url": "https://youtube.com/shorts/5HfZ6F6FnWo",
       "catalog_id": null,
@@ -97,7 +179,7 @@
       "comments": 0,
       "views_per_hour": 0.19
     },
-    {
+    "https://youtube.com/shorts/b_TxrT4mD0c": {
       "video_id": "b_TxrT4mD0c",
       "url": "https://youtube.com/shorts/b_TxrT4mD0c",
       "catalog_id": null,
@@ -109,7 +191,7 @@
       "comments": 0,
       "views_per_hour": 0.17
     },
-    {
+    "https://youtube.com/shorts/uvoSHZwI-8c": {
       "video_id": "uvoSHZwI-8c",
       "url": "https://youtube.com/shorts/uvoSHZwI-8c",
       "catalog_id": null,
@@ -121,7 +203,7 @@
       "comments": 0,
       "views_per_hour": 0.14
     },
-    {
+    "https://youtube.com/shorts/62pDFn_rPWM": {
       "video_id": "62pDFn_rPWM",
       "url": "https://youtube.com/shorts/62pDFn_rPWM",
       "catalog_id": null,
@@ -133,7 +215,7 @@
       "comments": 0,
       "views_per_hour": 0.13
     },
-    {
+    "https://youtube.com/shorts/smuV7hyd3G8": {
       "video_id": "smuV7hyd3G8",
       "url": "https://youtube.com/shorts/smuV7hyd3G8",
       "catalog_id": null,
@@ -145,7 +227,7 @@
       "comments": 0,
       "views_per_hour": 0.11
     },
-    {
+    "https://youtube.com/shorts/Tjw50o2-miI": {
       "video_id": "Tjw50o2-miI",
       "url": "https://youtube.com/shorts/Tjw50o2-miI",
       "catalog_id": null,
@@ -157,7 +239,7 @@
       "comments": 0,
       "views_per_hour": 0.1
     },
-    {
+    "https://youtube.com/shorts/9MEQlY1gmRY": {
       "video_id": "9MEQlY1gmRY",
       "url": "https://youtube.com/shorts/9MEQlY1gmRY",
       "catalog_id": null,
@@ -169,7 +251,7 @@
       "comments": 0,
       "views_per_hour": 0.09
     },
-    {
+    "https://youtube.com/shorts/JviFa9Npwts": {
       "video_id": "JviFa9Npwts",
       "url": "https://youtube.com/shorts/JviFa9Npwts",
       "catalog_id": null,
@@ -181,7 +263,7 @@
       "comments": 0,
       "views_per_hour": 0.09
     },
-    {
+    "https://youtube.com/shorts/vrDhoFqp2gA": {
       "video_id": "vrDhoFqp2gA",
       "url": "https://youtube.com/shorts/vrDhoFqp2gA",
       "catalog_id": null,
@@ -193,7 +275,7 @@
       "comments": 0,
       "views_per_hour": 0.08
     },
-    {
+    "https://youtube.com/shorts/o8VT5JU6nZg": {
       "video_id": "o8VT5JU6nZg",
       "url": "https://youtube.com/shorts/o8VT5JU6nZg",
       "catalog_id": null,
@@ -205,7 +287,7 @@
       "comments": 0,
       "views_per_hour": 0.08
     },
-    {
+    "https://youtube.com/shorts/9sQQL6qyMVE": {
       "video_id": "9sQQL6qyMVE",
       "url": "https://youtube.com/shorts/9sQQL6qyMVE",
       "catalog_id": null,
@@ -217,7 +299,7 @@
       "comments": 0,
       "views_per_hour": 0.08
     },
-    {
+    "https://youtube.com/shorts/foVStf1xx7k": {
       "video_id": "foVStf1xx7k",
       "url": "https://youtube.com/shorts/foVStf1xx7k",
       "catalog_id": null,
@@ -229,7 +311,7 @@
       "comments": 0,
       "views_per_hour": 0.07
     },
-    {
+    "https://youtube.com/shorts/0TnBqUhvpYM": {
       "video_id": "0TnBqUhvpYM",
       "url": "https://youtube.com/shorts/0TnBqUhvpYM",
       "catalog_id": null,
@@ -241,7 +323,7 @@
       "comments": 0,
       "views_per_hour": 0.07
     },
-    {
+    "https://youtube.com/shorts/THfbw0_bezs": {
       "video_id": "THfbw0_bezs",
       "url": "https://youtube.com/shorts/THfbw0_bezs",
       "catalog_id": null,
@@ -253,7 +335,7 @@
       "comments": 0,
       "views_per_hour": 0.07
     },
-    {
+    "https://youtube.com/shorts/vJZzuwJNmco": {
       "video_id": "vJZzuwJNmco",
       "url": "https://youtube.com/shorts/vJZzuwJNmco",
       "catalog_id": null,
@@ -265,7 +347,7 @@
       "comments": 0,
       "views_per_hour": 0.06
     },
-    {
+    "https://youtube.com/shorts/PqmPWusedcA": {
       "video_id": "PqmPWusedcA",
       "url": "https://youtube.com/shorts/PqmPWusedcA",
       "catalog_id": null,
@@ -277,7 +359,7 @@
       "comments": 0,
       "views_per_hour": 0.05
     },
-    {
+    "https://youtube.com/shorts/Ob5ZqX7Y9eQ": {
       "video_id": "Ob5ZqX7Y9eQ",
       "url": "https://youtube.com/shorts/Ob5ZqX7Y9eQ",
       "catalog_id": null,
@@ -289,7 +371,7 @@
       "comments": 0,
       "views_per_hour": 0.05
     },
-    {
+    "https://youtube.com/shorts/7iKzrP5dA1g": {
       "video_id": "7iKzrP5dA1g",
       "url": "https://youtube.com/shorts/7iKzrP5dA1g",
       "catalog_id": null,
@@ -301,7 +383,7 @@
       "comments": 0,
       "views_per_hour": 0.05
     },
-    {
+    "https://youtube.com/shorts/4dH3FIwKXeI": {
       "video_id": "4dH3FIwKXeI",
       "url": "https://youtube.com/shorts/4dH3FIwKXeI",
       "catalog_id": null,
@@ -313,7 +395,7 @@
       "comments": 0,
       "views_per_hour": 0.05
     },
-    {
+    "https://youtube.com/shorts/_HuXKVA69rc": {
       "video_id": "_HuXKVA69rc",
       "url": "https://youtube.com/shorts/_HuXKVA69rc",
       "catalog_id": null,
@@ -325,7 +407,7 @@
       "comments": 0,
       "views_per_hour": 0.04
     },
-    {
+    "https://youtube.com/shorts/G1HyluH1vGM": {
       "video_id": "G1HyluH1vGM",
       "url": "https://youtube.com/shorts/G1HyluH1vGM",
       "catalog_id": null,
@@ -337,7 +419,7 @@
       "comments": 0,
       "views_per_hour": 0.04
     },
-    {
+    "https://youtube.com/shorts/m5vyxm44eUQ": {
       "video_id": "m5vyxm44eUQ",
       "url": "https://youtube.com/shorts/m5vyxm44eUQ",
       "catalog_id": null,
@@ -349,7 +431,7 @@
       "comments": 0,
       "views_per_hour": 0.04
     },
-    {
+    "https://youtube.com/shorts/B2WxCwsvuFw": {
       "video_id": "B2WxCwsvuFw",
       "url": "https://youtube.com/shorts/B2WxCwsvuFw",
       "catalog_id": null,
@@ -361,7 +443,7 @@
       "comments": 0,
       "views_per_hour": 0.04
     },
-    {
+    "https://youtube.com/shorts/ZIQ2YDCwhP8": {
       "video_id": "ZIQ2YDCwhP8",
       "url": "https://youtube.com/shorts/ZIQ2YDCwhP8",
       "catalog_id": null,
@@ -373,7 +455,7 @@
       "comments": 0,
       "views_per_hour": 0.04
     },
-    {
+    "https://youtube.com/shorts/4cwMI_MP9Ag": {
       "video_id": "4cwMI_MP9Ag",
       "url": "https://youtube.com/shorts/4cwMI_MP9Ag",
       "catalog_id": null,
@@ -385,7 +467,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/CjcI0C3Y604": {
       "video_id": "CjcI0C3Y604",
       "url": "https://youtube.com/shorts/CjcI0C3Y604",
       "catalog_id": null,
@@ -397,7 +479,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/EEVH17t1VUE": {
       "video_id": "EEVH17t1VUE",
       "url": "https://youtube.com/shorts/EEVH17t1VUE",
       "catalog_id": null,
@@ -409,7 +491,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/xOxqOeZS8Ds": {
       "video_id": "xOxqOeZS8Ds",
       "url": "https://youtube.com/shorts/xOxqOeZS8Ds",
       "catalog_id": null,
@@ -421,7 +503,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/bVYr4DAbcpY": {
       "video_id": "bVYr4DAbcpY",
       "url": "https://youtube.com/shorts/bVYr4DAbcpY",
       "catalog_id": null,
@@ -433,7 +515,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/o6nowoUMVk0": {
       "video_id": "o6nowoUMVk0",
       "url": "https://youtube.com/shorts/o6nowoUMVk0",
       "catalog_id": null,
@@ -445,7 +527,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/E-6vu2Vnf1o": {
       "video_id": "E-6vu2Vnf1o",
       "url": "https://youtube.com/shorts/E-6vu2Vnf1o",
       "catalog_id": null,
@@ -457,7 +539,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/JrNb0nUqty4": {
       "video_id": "JrNb0nUqty4",
       "url": "https://youtube.com/shorts/JrNb0nUqty4",
       "catalog_id": null,
@@ -469,7 +551,7 @@
       "comments": 0,
       "views_per_hour": 0.03
     },
-    {
+    "https://youtube.com/shorts/PVhwUMJjHo0": {
       "video_id": "PVhwUMJjHo0",
       "url": "https://youtube.com/shorts/PVhwUMJjHo0",
       "catalog_id": null,
@@ -481,7 +563,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/Kny5IKR_YZU": {
       "video_id": "Kny5IKR_YZU",
       "url": "https://youtube.com/shorts/Kny5IKR_YZU",
       "catalog_id": null,
@@ -493,7 +575,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/OCwXisN3oFI": {
       "video_id": "OCwXisN3oFI",
       "url": "https://youtube.com/shorts/OCwXisN3oFI",
       "catalog_id": null,
@@ -505,7 +587,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/iwRpLGwSOIQ": {
       "video_id": "iwRpLGwSOIQ",
       "url": "https://youtube.com/shorts/iwRpLGwSOIQ",
       "catalog_id": null,
@@ -517,7 +599,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/CIFGn60B2b4": {
       "video_id": "CIFGn60B2b4",
       "url": "https://youtube.com/shorts/CIFGn60B2b4",
       "catalog_id": null,
@@ -529,7 +611,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/4OP8CwtXWJE": {
       "video_id": "4OP8CwtXWJE",
       "url": "https://youtube.com/shorts/4OP8CwtXWJE",
       "catalog_id": null,
@@ -541,7 +623,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/k-9YVJ-y0EY": {
       "video_id": "k-9YVJ-y0EY",
       "url": "https://youtube.com/shorts/k-9YVJ-y0EY",
       "catalog_id": null,
@@ -553,7 +635,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/9-bX9a0sJds": {
       "video_id": "9-bX9a0sJds",
       "url": "https://youtube.com/shorts/9-bX9a0sJds",
       "catalog_id": null,
@@ -565,7 +647,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/QnqkFuR4HkQ": {
       "video_id": "QnqkFuR4HkQ",
       "url": "https://youtube.com/shorts/QnqkFuR4HkQ",
       "catalog_id": null,
@@ -577,7 +659,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/RT8OUsXDNqY": {
       "video_id": "RT8OUsXDNqY",
       "url": "https://youtube.com/shorts/RT8OUsXDNqY",
       "catalog_id": null,
@@ -589,7 +671,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/sJ4Ba8dcIhk": {
       "video_id": "sJ4Ba8dcIhk",
       "url": "https://youtube.com/shorts/sJ4Ba8dcIhk",
       "catalog_id": null,
@@ -601,7 +683,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/TPFp3pRLAGo": {
       "video_id": "TPFp3pRLAGo",
       "url": "https://youtube.com/shorts/TPFp3pRLAGo",
       "catalog_id": null,
@@ -613,7 +695,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/23Cra8kc_NQ": {
       "video_id": "23Cra8kc_NQ",
       "url": "https://youtube.com/shorts/23Cra8kc_NQ",
       "catalog_id": null,
@@ -625,7 +707,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/jFSyadamo48": {
       "video_id": "jFSyadamo48",
       "url": "https://youtube.com/shorts/jFSyadamo48",
       "catalog_id": null,
@@ -637,7 +719,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/uHaITAS4-1g": {
       "video_id": "uHaITAS4-1g",
       "url": "https://youtube.com/shorts/uHaITAS4-1g",
       "catalog_id": null,
@@ -649,7 +731,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/6h_pqFgLzKs": {
       "video_id": "6h_pqFgLzKs",
       "url": "https://youtube.com/shorts/6h_pqFgLzKs",
       "catalog_id": null,
@@ -661,7 +743,7 @@
       "comments": 0,
       "views_per_hour": 0.02
     },
-    {
+    "https://youtube.com/shorts/alrajCULMkQ": {
       "video_id": "alrajCULMkQ",
       "url": "https://youtube.com/shorts/alrajCULMkQ",
       "catalog_id": null,
@@ -673,7 +755,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/K-lDi5rVPBI": {
       "video_id": "K-lDi5rVPBI",
       "url": "https://youtube.com/shorts/K-lDi5rVPBI",
       "catalog_id": null,
@@ -685,7 +767,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/aQIFAiY3tys": {
       "video_id": "aQIFAiY3tys",
       "url": "https://youtube.com/shorts/aQIFAiY3tys",
       "catalog_id": null,
@@ -697,7 +779,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/w_JlkKAuVAQ": {
       "video_id": "w_JlkKAuVAQ",
       "url": "https://youtube.com/shorts/w_JlkKAuVAQ",
       "catalog_id": null,
@@ -709,7 +791,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/-XQxgNBVNJI": {
       "video_id": "-XQxgNBVNJI",
       "url": "https://youtube.com/shorts/-XQxgNBVNJI",
       "catalog_id": null,
@@ -721,7 +803,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/YiJXXBsyuoM": {
       "video_id": "YiJXXBsyuoM",
       "url": "https://youtube.com/shorts/YiJXXBsyuoM",
       "catalog_id": null,
@@ -733,7 +815,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/wWtWXK0Zi2Y": {
       "video_id": "wWtWXK0Zi2Y",
       "url": "https://youtube.com/shorts/wWtWXK0Zi2Y",
       "catalog_id": null,
@@ -745,7 +827,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/JRYTGzTPxaw": {
       "video_id": "JRYTGzTPxaw",
       "url": "https://youtube.com/shorts/JRYTGzTPxaw",
       "catalog_id": null,
@@ -757,7 +839,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/kVuaw0a-suQ": {
       "video_id": "kVuaw0a-suQ",
       "url": "https://youtube.com/shorts/kVuaw0a-suQ",
       "catalog_id": null,
@@ -769,7 +851,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/sx5T9KKWrTg": {
       "video_id": "sx5T9KKWrTg",
       "url": "https://youtube.com/shorts/sx5T9KKWrTg",
       "catalog_id": null,
@@ -781,7 +863,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/b1zTZXg9_i0": {
       "video_id": "b1zTZXg9_i0",
       "url": "https://youtube.com/shorts/b1zTZXg9_i0",
       "catalog_id": null,
@@ -793,7 +875,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/F0AhiVkovfU": {
       "video_id": "F0AhiVkovfU",
       "url": "https://youtube.com/shorts/F0AhiVkovfU",
       "catalog_id": null,
@@ -805,7 +887,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/kTP_jQfhyuo": {
       "video_id": "kTP_jQfhyuo",
       "url": "https://youtube.com/shorts/kTP_jQfhyuo",
       "catalog_id": null,
@@ -817,7 +899,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/MNDY2vNRmJo": {
       "video_id": "MNDY2vNRmJo",
       "url": "https://youtube.com/shorts/MNDY2vNRmJo",
       "catalog_id": null,
@@ -829,7 +911,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/ul4_-Lnu19I": {
       "video_id": "ul4_-Lnu19I",
       "url": "https://youtube.com/shorts/ul4_-Lnu19I",
       "catalog_id": null,
@@ -841,7 +923,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/If7Ut6TVJl4": {
       "video_id": "If7Ut6TVJl4",
       "url": "https://youtube.com/shorts/If7Ut6TVJl4",
       "catalog_id": null,
@@ -853,7 +935,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/RTF5aHGl2M4": {
       "video_id": "RTF5aHGl2M4",
       "url": "https://youtube.com/shorts/RTF5aHGl2M4",
       "catalog_id": null,
@@ -865,7 +947,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/UMpb60-Mu7E": {
       "video_id": "UMpb60-Mu7E",
       "url": "https://youtube.com/shorts/UMpb60-Mu7E",
       "catalog_id": null,
@@ -877,7 +959,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/zjHxv6WG7Yk": {
       "video_id": "zjHxv6WG7Yk",
       "url": "https://youtube.com/shorts/zjHxv6WG7Yk",
       "catalog_id": null,
@@ -889,7 +971,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/1NFrEwBha8I": {
       "video_id": "1NFrEwBha8I",
       "url": "https://youtube.com/shorts/1NFrEwBha8I",
       "catalog_id": null,
@@ -901,7 +983,7 @@
       "comments": 0,
       "views_per_hour": 0.01
     },
-    {
+    "https://youtube.com/shorts/bi3BXxiGqxU": {
       "video_id": "bi3BXxiGqxU",
       "url": "https://youtube.com/shorts/bi3BXxiGqxU",
       "catalog_id": null,
@@ -913,7 +995,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/O0EfSVZTkRw": {
       "video_id": "O0EfSVZTkRw",
       "url": "https://youtube.com/shorts/O0EfSVZTkRw",
       "catalog_id": null,
@@ -925,7 +1007,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/JDIYvJrRfv8": {
       "video_id": "JDIYvJrRfv8",
       "url": "https://youtube.com/shorts/JDIYvJrRfv8",
       "catalog_id": null,
@@ -937,7 +1019,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/kZUjrDySFDk": {
       "video_id": "kZUjrDySFDk",
       "url": "https://youtube.com/shorts/kZUjrDySFDk",
       "catalog_id": null,
@@ -949,7 +1031,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/GBcLdmgRrwE": {
       "video_id": "GBcLdmgRrwE",
       "url": "https://youtube.com/shorts/GBcLdmgRrwE",
       "catalog_id": null,
@@ -961,7 +1043,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/9VJZC9pDuUk": {
       "video_id": "9VJZC9pDuUk",
       "url": "https://youtube.com/shorts/9VJZC9pDuUk",
       "catalog_id": null,
@@ -973,7 +1055,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/1Ghy-K2i9Ic": {
       "video_id": "1Ghy-K2i9Ic",
       "url": "https://youtube.com/shorts/1Ghy-K2i9Ic",
       "catalog_id": null,
@@ -985,7 +1067,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/mjeCvBv8b3A": {
       "video_id": "mjeCvBv8b3A",
       "url": "https://youtube.com/shorts/mjeCvBv8b3A",
       "catalog_id": null,
@@ -997,7 +1079,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/vvevYXKeFyQ": {
       "video_id": "vvevYXKeFyQ",
       "url": "https://youtube.com/shorts/vvevYXKeFyQ",
       "catalog_id": null,
@@ -1009,7 +1091,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/fdVaBogRXBc": {
       "video_id": "fdVaBogRXBc",
       "url": "https://youtube.com/shorts/fdVaBogRXBc",
       "catalog_id": null,
@@ -1021,7 +1103,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/pUkzf1ulPtI": {
       "video_id": "pUkzf1ulPtI",
       "url": "https://youtube.com/shorts/pUkzf1ulPtI",
       "catalog_id": null,
@@ -1033,7 +1115,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/tkB0cfzBNPo": {
       "video_id": "tkB0cfzBNPo",
       "url": "https://youtube.com/shorts/tkB0cfzBNPo",
       "catalog_id": null,
@@ -1045,7 +1127,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/B8UyteUQV2A": {
       "video_id": "B8UyteUQV2A",
       "url": "https://youtube.com/shorts/B8UyteUQV2A",
       "catalog_id": null,
@@ -1057,7 +1139,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/ynPzRO70UXE": {
       "video_id": "ynPzRO70UXE",
       "url": "https://youtube.com/shorts/ynPzRO70UXE",
       "catalog_id": null,
@@ -1069,7 +1151,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/u1A3pPviml0": {
       "video_id": "u1A3pPviml0",
       "url": "https://youtube.com/shorts/u1A3pPviml0",
       "catalog_id": null,
@@ -1081,7 +1163,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/Ip2Hor8Zdow": {
       "video_id": "Ip2Hor8Zdow",
       "url": "https://youtube.com/shorts/Ip2Hor8Zdow",
       "catalog_id": null,
@@ -1093,7 +1175,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/znpAFTAy6S8": {
       "video_id": "znpAFTAy6S8",
       "url": "https://youtube.com/shorts/znpAFTAy6S8",
       "catalog_id": null,
@@ -1105,7 +1187,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/0YFVyBYMXvs": {
       "video_id": "0YFVyBYMXvs",
       "url": "https://youtube.com/shorts/0YFVyBYMXvs",
       "catalog_id": null,
@@ -1117,7 +1199,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/QH7puELADuo": {
       "video_id": "QH7puELADuo",
       "url": "https://youtube.com/shorts/QH7puELADuo",
       "catalog_id": null,
@@ -1129,7 +1211,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/absrI6em474": {
       "video_id": "absrI6em474",
       "url": "https://youtube.com/shorts/absrI6em474",
       "catalog_id": null,
@@ -1141,7 +1223,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/vs3QYUXAoqU": {
       "video_id": "vs3QYUXAoqU",
       "url": "https://youtube.com/shorts/vs3QYUXAoqU",
       "catalog_id": null,
@@ -1153,7 +1235,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/h3G0SmbB72Y": {
       "video_id": "h3G0SmbB72Y",
       "url": "https://youtube.com/shorts/h3G0SmbB72Y",
       "catalog_id": null,
@@ -1165,7 +1247,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/RR-CdpBFRE0": {
       "video_id": "RR-CdpBFRE0",
       "url": "https://youtube.com/shorts/RR-CdpBFRE0",
       "catalog_id": null,
@@ -1177,7 +1259,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/2v21RuGf01s": {
       "video_id": "2v21RuGf01s",
       "url": "https://youtube.com/shorts/2v21RuGf01s",
       "catalog_id": null,
@@ -1189,7 +1271,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/kM4xjud8G0I": {
       "video_id": "kM4xjud8G0I",
       "url": "https://youtube.com/shorts/kM4xjud8G0I",
       "catalog_id": null,
@@ -1201,7 +1283,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/0sYaeoX5Nl4": {
       "video_id": "0sYaeoX5Nl4",
       "url": "https://youtube.com/shorts/0sYaeoX5Nl4",
       "catalog_id": null,
@@ -1213,7 +1295,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/xCe3A9DRgOk": {
       "video_id": "xCe3A9DRgOk",
       "url": "https://youtube.com/shorts/xCe3A9DRgOk",
       "catalog_id": null,
@@ -1225,7 +1307,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/7ZGCSH4blj4": {
       "video_id": "7ZGCSH4blj4",
       "url": "https://youtube.com/shorts/7ZGCSH4blj4",
       "catalog_id": null,
@@ -1237,7 +1319,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/jZpRNqvn4k4": {
       "video_id": "jZpRNqvn4k4",
       "url": "https://youtube.com/shorts/jZpRNqvn4k4",
       "catalog_id": null,
@@ -1249,7 +1331,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/3cKznL7rMHc": {
       "video_id": "3cKznL7rMHc",
       "url": "https://youtube.com/shorts/3cKznL7rMHc",
       "catalog_id": null,
@@ -1261,7 +1343,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/MKY0IKzGsh4": {
       "video_id": "MKY0IKzGsh4",
       "url": "https://youtube.com/shorts/MKY0IKzGsh4",
       "catalog_id": null,
@@ -1273,7 +1355,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/PYAGuOVNFZQ": {
       "video_id": "PYAGuOVNFZQ",
       "url": "https://youtube.com/shorts/PYAGuOVNFZQ",
       "catalog_id": null,
@@ -1285,7 +1367,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/BpJ91FOqBhc": {
       "video_id": "BpJ91FOqBhc",
       "url": "https://youtube.com/shorts/BpJ91FOqBhc",
       "catalog_id": null,
@@ -1297,7 +1379,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/zLDkIMhBVZ0": {
       "video_id": "zLDkIMhBVZ0",
       "url": "https://youtube.com/shorts/zLDkIMhBVZ0",
       "catalog_id": null,
@@ -1309,7 +1391,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/v85DbrXdTpM": {
       "video_id": "v85DbrXdTpM",
       "url": "https://youtube.com/shorts/v85DbrXdTpM",
       "catalog_id": null,
@@ -1321,7 +1403,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/JzPy7UD3_fg": {
       "video_id": "JzPy7UD3_fg",
       "url": "https://youtube.com/shorts/JzPy7UD3_fg",
       "catalog_id": null,
@@ -1333,7 +1415,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/PCjZirW_Nsc": {
       "video_id": "PCjZirW_Nsc",
       "url": "https://youtube.com/shorts/PCjZirW_Nsc",
       "catalog_id": null,
@@ -1345,7 +1427,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/_3qri9uccB4": {
       "video_id": "_3qri9uccB4",
       "url": "https://youtube.com/shorts/_3qri9uccB4",
       "catalog_id": null,
@@ -1357,7 +1439,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/PgBRsZI6vpM": {
       "video_id": "PgBRsZI6vpM",
       "url": "https://youtube.com/shorts/PgBRsZI6vpM",
       "catalog_id": null,
@@ -1369,7 +1451,7 @@
       "comments": 0,
       "views_per_hour": 0.0
     },
-    {
+    "https://youtube.com/shorts/flUvmCQt_jc": {
       "video_id": "flUvmCQt_jc",
       "url": "https://youtube.com/shorts/flUvmCQt_jc",
       "catalog_id": null,
@@ -1381,85 +1463,5 @@
       "comments": 0,
       "views_per_hour": 0.0
     }
-  ],
-  "summary": {
-    "total_videos": 115,
-    "total_views": 668,
-    "avg_views_per_video": 5.8,
-    "median_views_per_hour": 0.01,
-    "top_5_by_vph": [
-      {
-        "title": "A Drone Hit a JetBlue Plane at 3,000 Feet Over NYC",
-        "views_per_hour": 0.5,
-        "views": 12,
-        "age_hours": 24.1,
-        "url": "https://youtube.com/shorts/6pV6brdeb0U"
-      },
-      {
-        "title": "This Guy Made 3 Domino's Pizzas in 31 Seconds Flat",
-        "views_per_hour": 0.41,
-        "views": 9,
-        "age_hours": 22.1,
-        "url": "https://youtube.com/shorts/xvjBDXx-kQY"
-      },
-      {
-        "title": "DC Is Shooting Off 851,000 Fireworks This July 4",
-        "views_per_hour": 0.33,
-        "views": 16,
-        "age_hours": 48.1,
-        "url": "https://youtube.com/shorts/oUK6KrZLuLc"
-      },
-      {
-        "title": "100 Monkeys Just Broke Out of Their Enclosure",
-        "views_per_hour": 0.24,
-        "views": 1,
-        "age_hours": 4.1,
-        "url": "https://youtube.com/shorts/adFTMyrrykA"
-      },
-      {
-        "title": "Florida Is Paying $10,000 to Hunt Pythons. The Snakes Are Winning.",
-        "views_per_hour": 0.23,
-        "views": 16,
-        "age_hours": 68.1,
-        "url": "https://youtube.com/shorts/zYYItLCApoU"
-      }
-    ],
-    "bottom_5_by_vph": [
-      {
-        "title": "Scientists Found How Alzheimer's Actually Spreads",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 4.6,
-        "url": "https://youtube.com/shorts/flUvmCQt_jc"
-      },
-      {
-        "title": "155 Homes Were Gone by Morning",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 4.7,
-        "url": "https://youtube.com/shorts/PgBRsZI6vpM"
-      },
-      {
-        "title": "A Wild Seal Just Turned Completely Purple",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 4.9,
-        "url": "https://youtube.com/shorts/_3qri9uccB4"
-      },
-      {
-        "title": "A Highway Just Turned Into a River of Beer",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 0.1,
-        "url": "https://youtube.com/shorts/PCjZirW_Nsc"
-      },
-      {
-        "title": "Police Just Had the World's Slowest Chase",
-        "views_per_hour": 0.0,
-        "views": 0,
-        "age_hours": 2.1,
-        "url": "https://youtube.com/shorts/JzPy7UD3_fg"
-      }
-    ]
   }
 }
