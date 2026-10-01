@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s3-c168a96796c4",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s3-c168a96796c4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c9f2880e6d18decb2153ac6e537a209c5cda4a1f1c901398d2b7d6809634cd78",
+  "prompt_used": "An editorial illustration for a short-form video: phone screenshot glitch error. It accompanies the narration: \"started screenshotting every glitch\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1IZ35e7fX40KBtfxpmgpYS6xlf6lgb4-8",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s3-c168a96796c4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1IZ35e7fX40KBtfxpmgpYS6xlf6lgb4-8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ad6e31579122391ac67ff6a550e21a6b77bce596cbad57b814e0492febc61f82",
+    "bytes": 2208626,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:24:14.090Z"
+}
