@@ -13,8 +13,13 @@
   },
   "notes": "A genome-wide association analysis of 697,828 people identified 351 genetic loci influencing chronotype; twin studies estimate roughly 44% of differences in natural sleep timing are inherited, with the rest coming from environment and habits. Figures approximate as publicly reported.",
   "points": [
-    {"label": "Genetics", "value": 44},
-    {"label": "Environment & habits", "value": 56}
-  ],
-  "baseline": {"label": "Genetics", "value": 44}
+    {
+      "label": "Genetics",
+      "value": 44
+    },
+    {
+      "label": "Genetics",
+      "value": 44
+    }
+  ]
 }

@@ -1,0 +1,189 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "landline-extinction-event__f48f5d4d",
+ "filed": "2026-10-01T11:01:19Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "landline-extinction-event",
+ "current": {
+  "title": "Landlines Peaked In 2006. They've Been Dying Since.",
+  "hook": "Your landline is dying: 1.26 billion lines in 2006, just 815 million now.",
+  "closing": "The phone didn't die. It just stopped ringing at home.",
+  "question": "Do you even own a landline anymore? Tell me below.",
+  "segments": [
+   {
+    "topic": "landlines since their 2006 peak",
+    "say": "Fixed telephone lines peaked at 1.26 billion in 2006, right as smartphones took off — then started falling, down to 815 million by 2025."
+   },
+   {
+    "topic": "what replaced the dying landline: broadband",
+    "say": "What replaced them wasn't a phone at all. Broadband subscriptions exploded from 220 million in 2005 to 1.65 billion by 2025 — seven times more."
+   },
+   {
+    "topic": "where the dying landlines' replacement landed, by country",
+    "say": "China alone now runs 670 million of those broadband lines — more than the next four countries combined: the US, Brazil, Japan, and India."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "landlines since their 2006 peak",
+   "say": "Fixed telephone lines peaked at 1.26 billion in 2006, right as smartphones took off — then started falling, down to 815 million by 2025.",
+   "role": "1 · THE PEAK",
+   "data": {
+    "file": "it_mlt_main_trend.json",
+    "unit": "",
+    "title": "Fixed telephone subscriptions",
+    "points": [
+     {
+      "label": "1972",
+      "value": 158436054,
+      "period": "1972"
+     },
+     {
+      "label": "1982",
+      "value": 351911500,
+      "period": "1982"
+     },
+     {
+      "label": "1991",
+      "value": 543078177,
+      "period": "1991"
+     },
+     {
+      "label": "2006",
+      "value": 1260900000,
+      "period": "2006"
+     },
+     {
+      "label": "2015",
+      "value": 1046000000,
+      "period": "2015"
+     },
+     {
+      "label": "2025",
+      "value": 815000000,
+      "period": "2025"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "what replaced the dying landline: broadband",
+   "say": "What replaced them wasn't a phone at all. Broadband subscriptions exploded from 220 million in 2005 to 1.65 billion by 2025 — seven times more.",
+   "role": "2 · THE REPLACEMENT",
+   "data": {
+    "file": "it_net_bbnd_trend.json",
+    "unit": "",
+    "title": "Fixed broadband subscriptions",
+    "points": [
+     {
+      "label": "2005",
+      "value": 219600000,
+      "period": "2005"
+     },
+     {
+      "label": "2009",
+      "value": 468100000,
+      "period": "2009"
+     },
+     {
+      "label": "2013",
+      "value": 692400000,
+      "period": "2013"
+     },
+     {
+      "label": "2017",
+      "value": 1027000000,
+      "period": "2017"
+     },
+     {
+      "label": "2021",
+      "value": 1330000000,
+      "period": "2021"
+     },
+     {
+      "label": "2025",
+      "value": 1654000000,
+      "period": "2025"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "where the dying landlines' replacement landed, by country",
+   "say": "China alone now runs 670 million of those broadband lines — more than the next four countries combined: the US, Brazil, Japan, and India.",
+   "role": "3 · THE MAP",
+   "data": {
+    "file": "it_net_bbnd_rank.json",
+    "unit": "",
+    "title": "Fixed broadband subscriptions",
+    "points": [
+     {
+      "label": "China",
+      "value": 669825900
+     },
+     {
+      "label": "United States",
+      "value": 134223000
+     },
+     {
+      "label": "Brazil",
+      "value": 51047559
+     },
+     {
+      "label": "Japan",
+      "value": 48046037
+     },
+     {
+      "label": "India",
+      "value": 45711188
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: Uses two figures instead of a single consequential number, failing the one-number requirement."
+ ],
+ "reasons": [
+  "premise: brain: Uses two figures instead of a single consequential number, failing the one-number requirement."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261001/landline-extinction-event__f48f5d4d.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

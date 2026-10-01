@@ -13,8 +13,13 @@
   },
   "notes": "GlaMBIE researchers report that recent mountain-glacier mass loss (about 390 billion tonnes/year) now runs about 18% larger than losses from the Greenland ice sheet over the same period. Greenland figure derived from that reported ratio; approximate as publicly reported.",
   "points": [
-    {"label": "Mountain glaciers", "value": 390},
-    {"label": "Greenland ice sheet", "value": 330}
-  ],
-  "baseline": {"label": "Greenland ice sheet", "value": 330}
+    {
+      "label": "Mountain glaciers",
+      "value": 390
+    },
+    {
+      "label": "Greenland ice sheet",
+      "value": 330
+    }
+  ]
 }

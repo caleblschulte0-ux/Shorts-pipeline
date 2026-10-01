@@ -4142,6 +4142,66 @@
    "ending_type": "escalation",
    "franchise": "",
    "notes": "existing scenes kept; validated OK"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-01",
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "scenes kept; hook/closing sharpened to scene numbers"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-01",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "scenes kept; hook/closing sharpened to scene numbers"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-01",
+   "topic_category": "animals",
+   "hook_type": "shock_stat",
+   "hook_text": "One fungus, one New York cave, 35 states of dead bats.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "scenes kept; hook/closing sharpened to scene numbers"
+  },
+  {
+   "slug": "cremation-overtakes-burial",
+   "directed_at": "2026-10-01",
+   "topic_category": "society",
+   "hook_type": "shock_stat",
+   "hook_text": "In the 1970s, 5 percent chose fire. Today it's 63.",
+   "depictions": [
+    "mechanic:cremation-crowd-ignite",
+    "scene:object-rows",
+    "viz:geo_us"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "scenes kept; hook/closing sharpened to scene numbers"
   }
  ]
 }

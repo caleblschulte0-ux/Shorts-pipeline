@@ -1,0 +1,16 @@
+{
+ "slug": "cremation-overtakes-burial",
+ "ts": "20261001T110127Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end, '49.1 points apart' is printed over the 'Nevada' base plate and the mascot's feet. In seg3:start/mid, the 'Mississippi' marker label is tiny and pressed against the left frame edge.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "text_collision_and_narration_mismatch",
+  "visible_evidence": "seg3:start and seg3:mid show 'Alabama 38.1%' and 'Utah 42.8%' while the voiceover says 'Nevada cremates 81.9 percent' and 'Mississippi is still just 32.8'. Neither state is ever named in the narration. In seg3:end, the '49.1 points apart' callout overlaps the 'Nevada' plate. The Mississippi reference is a tiny label hugging the left edge.",
+  "root_cause": "The lantern steps through intermediate states the script never mentions. The gap callout is placed at a fixed y that collides with the base nameplate. The reference-mark label is not measured against the frame edge.",
+  "repair_goal": "Open on Mississippi at 32.8% (lantern low) and have Data hoist it to Nevada at 81.9% as the narration says each number, with no unnamed states in between. Move the '49.1 points apart' callout clear of the nameplate, for example beside the bracket. Make the Mississippi marker label phone-readable and keep it inside the safe margin."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

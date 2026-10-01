@@ -13,8 +13,13 @@
   },
   "notes": "Forbes-tallied billionaire wealth grew from $7.1T (2015) to $16.1T (2025), about +127%. The S&P 500 index grew from about 2,028 (Jan 2015) to about 5,980 (Jan 2025), about +195%, over the same stretch. Figures approximate as publicly reported.",
   "points": [
-    {"label": "Billionaire wealth", "value": 127},
-    {"label": "S&P 500 index", "value": 195}
-  ],
-  "baseline": {"label": "Billionaire wealth", "value": 127}
+    {
+      "label": "Billionaire wealth",
+      "value": 127
+    },
+    {
+      "label": "Billionaire wealth",
+      "value": 127
+    }
+  ]
 }
