@@ -123,7 +123,7 @@ class TheClimberNeverStandsOnANumber(unittest.TestCase):
         top = max(by0 + vs.STAIR_HOST_H + 30, 340)
         bot = by1 - 120
         n = len(self.STEPS)
-        w = (bx1 - bx0 - 160) / n
+        w = (bx1 - bx0 - 160 - vs.STAIR_LANE) / n
         vals = [v for _, v in self.STEPS]
         lo, hi = min(vals), max(vals)
         sprite = Image.new("RGBA", (200, 300), (255, 0, 255, 255))

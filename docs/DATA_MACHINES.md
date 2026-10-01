@@ -529,7 +529,7 @@ moves and had him react to it. So there is a second vocabulary:
 - **`mascot_director.AGENT_ACTS`** — acts keyed on the VERB of the data's
   moving part (`fill` → pour, `stack` → place, `turn` → crank, `lift` →
   haul, `drain` → tap, `sweep` → shove, `drop` → toss, `travel` → drive,
-  `pinch`, `draw`, `flip`, `heat`, `light`, `mark`, `cut`). Each puts his
+  `pinch`, `draw`, `flip`, `light`, `mark`, `cut`). Each puts his
   hands on the part at a declared **anchor** in rig coordinates, and some
   declare a **tip** (the bucket's lip, the thrown item) for a machine to
   draw the stream or the lob from. The payoff of an agent act is DONE, never

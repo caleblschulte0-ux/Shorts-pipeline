@@ -1851,35 +1851,6 @@ def _a_tip(t, _prop):
     return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, 0.0)
 
 
-def _a_torch(t, _prop):
-    """TORCH: a flame held under the bulb. The mercury climbs because he is
-    heating it."""
-    z, s = _zone(t)
-    # he WAVES the flame under the bulb through the effort zone: two slow
-    # passes, 36px wide — a flicker alone is a still frame to the gate
-    # (thermometer: 54-frame run, measured 2026-10-01)
-    wave = math.sin(s * math.pi * 4.0) * 18.0 if z == 1 else 0.0
-    hx, hy = (_lp(236, 290, s), _lp(250, 190, s)) if z == 0 else \
-             ((290 + wave, 190 + abs(wave) * 0.4) if z == 1
-              else (_lp(290, 236, s), _lp(190, 250, s)))
-    lh = [128, 282, -6]; rh = [hx, hy, 8]
-    fx, fy = hx + 28, hy - 40
-    lick = 6.0 * math.sin(t * math.pi * 10.0) if z == 1 else 0.0
-    torch = (f'<rect x="{hx-8:.0f}" y="{hy-36:.0f}" width="16" height="44" rx="4" '
-             f'fill="#4B5A68" stroke="{OUT}" stroke-width="5" '
-             f'transform="rotate(-35 {hx:.0f} {hy:.0f})"/>')
-    if z != 2:
-        torch += (f'<path d="M{fx-14:.0f},{fy+14:.0f} Q{fx-16+lick:.0f},{fy-18:.0f} '
-                  f'{fx:.0f},{fy-34:.0f} Q{fx+16-lick:.0f},{fy-14:.0f} {fx+14:.0f},'
-                  f'{fy+14:.0f} Z" fill="#F2A23C" stroke="{OUT}" stroke-width="4"/>'
-                  f'<path d="M{fx-6:.0f},{fy+12:.0f} Q{fx:.0f},{fy-10:.0f} '
-                  f'{fx+6:.0f},{fy+12:.0f} Z" fill="#FFE07A"/>')
-    expr = "think" if z != 2 else "happy"
-    eyes, mouth = _expr(expr, look=(5, 0))
-    return (_agent_arms(lh, rh), _braced_legs(crouch=0.15), "", torch, eyes,
-            mouth, 0.0)
-
-
 def _a_beam(t, _prop):
     """BEAM: a lamp in both hands, aimed. The lane is lit, the cone is cast,
     because he is holding the light on it."""
@@ -1970,7 +1941,6 @@ AGENT_ACTS: dict[str, tuple[str, tuple[float, float]]] = {
     "pinch":   ("squeeze", (300.0, 240.0)),
     "drop":    ("toss",    (312.0, 150.0)),
     "flip":    ("tip",     (296.0, 250.0)),
-    "heat":    ("torch",   (318.0, 150.0)),
     "light":   ("beam",    (320.0, 180.0)),
     "mark":    ("stamp",   (296.0, 300.0)),
     "cut":     ("cut",     (296.0, 250.0)),
@@ -2028,7 +1998,7 @@ ANIMATORS = {
     # AGENT acts — he CAUSES the data's motion (see AGENT_ACTS):
     "pour": _a_pour, "place": _a_place, "drive": _a_drive, "crank": _a_crank,
     "haul": _a_haul, "pull": _a_pull, "shove": _a_shove, "tap": _a_tap,
-    "squeeze": _a_squeeze, "toss": _a_toss, "tip": _a_tip, "torch": _a_torch,
+    "squeeze": _a_squeeze, "toss": _a_toss, "tip": _a_tip,
     "beam": _a_beam, "stamp": _a_stamp, "cut": _a_cut,
 }
 

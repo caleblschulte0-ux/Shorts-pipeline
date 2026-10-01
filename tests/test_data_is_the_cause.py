@@ -329,10 +329,10 @@ class HisAnchorLandsOnPixelsThatMove(unittest.TestCase):
             parts = [bx for n, bx in blobs if n >= 2]
             dists = [_dist_to_box(at_a, bx) for bx in parts]
             ok = min(dists) <= self.REACH
-            if not ok and verb in ("fill", "drain", "heat"):
-                # what flows, flows VERTICALLY: he pours from above the level,
-                # opens the tap below it, heats the bulb under the column —
-                # so for these the anchor is in the part's x-range, not on it
+            if not ok and verb in ("fill", "drain"):
+                # what flows, flows VERTICALLY: he pours from above the level
+                # and opens the tap below it — so for these the anchor is in
+                # the part's x-range, not on it
                 ok = any(bx[0] - 60 <= at_a[0] <= bx[2] + 60 for bx in parts)
             if not ok:
                 failures.append(f"{kind} ({verb}): anchor {at_a} is "
@@ -365,7 +365,7 @@ class HeStandsOnSomething(unittest.TestCase):
         d = ImageDraw.Draw(canvas)
         before = canvas.copy()
         box, _tip = vs.place_agent(canvas, d, "sweep", 0.5, None, "t",
-                                   (500, 1380), height=240, floor=1500)
+                                   (500, 1420), height=240, floor=1500)
         if box is None:
             self.skipTest("no rasteriser")
         self.assertLessEqual(abs(box[3] - 1500), 16, box)
