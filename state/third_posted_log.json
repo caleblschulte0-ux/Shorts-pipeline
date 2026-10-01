@@ -10124,13 +10124,49 @@
       "director_cut": true
     },
     "clip-20261001-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/zackrawrr/clip/FunnyObedientAntelopeWutFace-ctt_emH4kuIE3CJx",
-      "story_key": null,
-      "streamer": "zackrawrr",
+      "url": "https://youtube.com/shorts/FLoOIGPj5XI",
       "title": "Zackrawrr Can't Believe His Reaction After Seeing Turkey Pop Up",
       "kind": "twitch_clip",
-      "ts": "2026-10-01T11:46:15.145745+00:00",
+      "ts": "2026-10-01T11:46:22.950588+00:00",
+      "uploaded_at": "2026-10-01T11:46:22.950604+00:00",
+      "publish_at": "2026-10-01T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261001-zackrawrr-can-t-believe-his-reaction-after-seein-3d15539e"
+      },
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/FunnyObedientAntelopeWutFace-ctt_emH4kuIE3CJx",
+      "streamer": "zackrawrr",
+      "series": "chaos",
+      "hook": "NO WAY, TURKEY?! HE LOST IT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 36040,
+      "banger": 0.45,
+      "cut": {
+        "start": 10.8,
+        "end": 31.3
+      },
+      "director_cut": true
+    },
+    "rejected-antsyprettyzebrafrankerz-ufrs8h1m05styejb": {
+      "source_url": "https://www.twitch.tv/agent00/clip/AntsyPrettyZebraFrankerZ-UfRS8h1M05STyejB",
+      "streamer": "agent00",
+      "title": "Pudgie almost answers if he can beat Emily in a fight",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.5s \u2014 too short to edit",
+      "ts": "2026-10-01T11:46:31.546927+00:00"
+    },
+    "clip-20261001-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Catches Reggie Lying About The Call He Says He Made At 2 32 AM",
+      "kind": "twitch_clip",
+      "ts": "2026-10-01T11:49:27.061664+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
