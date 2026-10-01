@@ -673,6 +673,17 @@ only as a hand edit is not a rule. So:
   - **Voice:** ElevenLabs is OFF (`config/ELEVENLABS_OFF`) on his word.
     Kokoro narrates until he says otherwise.
 
+- **The Greek film again, with the fixes above (78, BLOCK; Kokoro voice).**
+  Up from 74. The judge: "A calm, consistent and beautifully paced sleep
+  film, but the Men's Symposium chapter never shows a symposium, and several
+  passages are drawn over the wrong place or activity." The Testa etching
+  opened beat 8 of that chapter, which is none of its three judged moments.
+  Named and not yet built: an andron (couches, reclining men, a krater), a
+  banked brazier, beached boats with furled sails, a drawn stream, and a
+  town behind the opening shore. The Met refused some searches from the CI
+  runner (HTTP 403), so the Art Institute carried the paintings. Sent to the
+  operator for his own verdict; his eye, not the judge's, is the bar.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
