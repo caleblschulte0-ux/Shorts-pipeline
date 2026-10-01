@@ -1855,8 +1855,13 @@ def _a_torch(t, _prop):
     """TORCH: a flame held under the bulb. The mercury climbs because he is
     heating it."""
     z, s = _zone(t)
+    # he WAVES the flame under the bulb through the effort zone: two slow
+    # passes, 36px wide — a flicker alone is a still frame to the gate
+    # (thermometer: 54-frame run, measured 2026-10-01)
+    wave = math.sin(s * math.pi * 4.0) * 18.0 if z == 1 else 0.0
     hx, hy = (_lp(236, 290, s), _lp(250, 190, s)) if z == 0 else \
-             ((290, 190) if z == 1 else (_lp(290, 236, s), _lp(190, 250, s)))
+             ((290 + wave, 190 + abs(wave) * 0.4) if z == 1
+              else (_lp(290, 236, s), _lp(190, 250, s)))
     lh = [128, 282, -6]; rh = [hx, hy, 8]
     fx, fy = hx + 28, hy - 40
     lick = 6.0 * math.sin(t * math.pi * 10.0) if z == 1 else 0.0

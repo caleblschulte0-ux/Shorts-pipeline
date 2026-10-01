@@ -734,7 +734,8 @@ def scene_agent(verb: str, phase: float, insight=None, kind: str = ""):
 
 def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
                 at, height: float = 260, floor=None, hmin: float = 150,
-                hmax: float = 460, xlim=None, flip: bool = False):
+                hmax: float = 460, xlim=None, flip: bool = False,
+                ceil=None):
     """Composite Data DOING the verb, with the act's anchor ON ``at``.
 
     ``at`` is where the machine says its moving part is — the rim he pours
@@ -743,8 +744,11 @@ def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
     about standing: if the part is above his reach he is scaled up to it
     (within ``hmin``..``hmax``) and, past that, a LADDER is drawn from the
     floor to his feet — a man pouring over a tall rim is on a ladder. If the
-    part is lower than his hands he is scaled down to it. ``xlim`` clamps
-    his left/right edges inside the frame.
+    part is lower than his hands he is scaled down to it. ``height`` is his
+    size, and with a floor it is the MOST he grows to reach: a part further
+    up gets the ladder, not a giant. ``ceil`` is a y his head may not pass
+    (the box top, under the title): he is scaled down to keep under it.
+    ``xlim`` clamps his left/right edges inside the frame.
 
     Returns ``(box, tip_xy)`` — his bounding box on the canvas and where the
     act's business end is (the bucket's lip, the stamp's face), for the
@@ -775,7 +779,10 @@ def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
         need = (float(floor) - float(at[1])) / max(1.0, (img.height - ay))
         h_fit = need * img.height
         if h_fit > 0:
-            h = max(hmin, min(hmax, h_fit))
+            h = max(hmin, min(hmax, h, h_fit))
+    if ceil is not None and ay > 0:
+        # his top sits ay*s above the anchor; keep it at or under the ceiling
+        h = max(hmin, min(h, (float(at[1]) - float(ceil)) / ay * img.height))
     s = h / max(1, img.height)
     w = max(1, int(img.width * s))
     hh = max(1, int(h))
@@ -2184,7 +2191,7 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     # from the floor, so the span is measured because he measured it.
     place_agent(canvas, d, "draw", reveal, insight, "tape",
                 (x1 + 6, y), height=min(340, max(150, _ground - (y + 60))),
-                floor=_ground, xlim=(8, W - 8))
+                floor=_ground, xlim=(8, W - 8), ceil=by0)
     return (b, "art", x1, y)
 
 
@@ -2288,7 +2295,7 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     # deck's leading end — it reaches as far as it does because he built it.
     place_agent(canvas, d, "stack", reveal, insight, "bridge",
                 (edge - 8, deck_y + 30), height=300, floor=_floor,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (v, "art", edge, y)
 
 
@@ -2333,7 +2340,7 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
     _ch = (bot - top) * (vals[_cur] / vmax) * min(1.0, max(0.0, e * n - _cur) * 2.0)
     place_agent(canvas, d, "stack", reveal, insight, "centre",
                 (bx0 + 60 + _cur * w + 14, bot - _ch), height=230, floor=bot,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     d.text(((bx0 + bx1) // 2, by0 + 58),
            f"middle:  {charts._ulabel(med, unit, group=True)}",
            font=_pil_font(66), fill=_rgba(color, 255), anchor="mm")
@@ -2534,7 +2541,7 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
     # pushing it round. In a car he was a passenger the data carried.
     place_agent(canvas, d, "sweep", reveal, insight, "wheel",
                 (cx + R * 0.40, cy + R * 0.90), height=250, floor=_gy + 18,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     d.text((cx, by0 + 58),
            f"{charts._ulabel(lo, unit)} to {charts._ulabel(hi, unit)}, "
            f"every year", font=_pil_font(52), fill=_rgba(color, 255),
@@ -2667,7 +2674,7 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
                         radius=8, fill=_rgba(TEXT, 120))
     place_agent(canvas, d, "mark", reveal, insight, "queue",
                 (hx + mw + 10, ground - 104), height=280, floor=ground,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     # THE CROWD IS SIZED TO FILL THE BOX AT ITS LARGEST, not to a fixed 96px.
     # `sz = 96` put 30 icons in five rows 650px tall inside a 1140px region and
     # left the top third of the frame bare — measured 33% void on 2026-09-09,
@@ -2804,7 +2811,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
     _wv = full * (vals[worst] / vmax)
     place_agent(canvas, d, "pinch", reveal, insight, "bottleneck",
                 (cx - _wv / 2 - 6, wy + 40), height=220, floor=bot,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     lost = (max(drops) / vals[0] * 100.0) if (drops and vals[0]) else 0.0
     d.text((int((bx0 + bx1) / 2), bot + 60),
            f"{lost:.0f}% of them stop right there",
@@ -2871,7 +2878,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
     # stands to the right of the bucket, so the act is mirrored.
     place_agent(canvas, d, "drain", reveal, insight, "leaky",
                 (hx + 4, hy), height=240, floor=bot, xlim=(8, W - 8),
-                flip=True)
+                flip=True, ceil=by0)
     return (kept_v, "art", cx, wy)
 
 
@@ -2955,7 +2962,7 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
     # HIS HAND ON THE INFLOW VALVE: the water comes in because he opened it.
     place_agent(canvas, d, "drain", reveal, insight, "inout",
                 (cx - tw // 2 - 16, top + 34), height=220, floor=bot,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (abs(surplus), "art", cx, ly)
 
 
@@ -3022,7 +3029,7 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
     # bins: the stream drops because he turns it.
     place_agent(canvas, d, "turn", reveal, insight, "sorter",
                 (cx + 176, chute_y - 36), height=220, floor=bin_top - 2,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (vals[0], "art", centres[0], bin_top)
 
 
@@ -3115,7 +3122,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     # HE DRIVES THE LINE, by a crank at its head: the load moves down the
     # chain because he turns it. Mirrored, so he stands outside the chain.
     place_agent(canvas, d, "turn", reveal, insight, "chain",
-                (x0 - 36, y + 6), height=200, xlim=(8, W - 8), flip=True)
+                (x0 - 36, y + 6), height=330, xlim=(8, W - 8), flip=True)
     return (vals[weak], "art", wx, y)
 
 
@@ -3182,7 +3189,7 @@ def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
     # PALMS ON THE RIM: it spins because he spun it.
     place_agent(canvas, d, "sweep", reveal, insight, "spinner",
                 (cx - r * 0.66, cy + r * 0.72), height=240, floor=by1 - 20,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (p * 100.0, "art", cx, cy)
 
 
@@ -3415,7 +3422,7 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
     d.line([(ax, cy), (ax, cy + ra + 70)], fill=_rgba(TEXT, 120), width=12)
     place_agent(canvas, d, "turn", reveal, insight, "gears",
                 (ax, cy + ra + 74), height=260, floor=by1 - 40,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (a_v, "art", ax, cy)
 
 
@@ -3487,7 +3494,7 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
     # PALMS ON THE HANDLE, from the floor: it moves because he shoves it.
     place_agent(canvas, d, "sweep", reveal, insight, "slider",
                 (hx - 18, cy + 20), height=300, floor=by1 - 20,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (a_v, "art", int(hx), cy)
 
 
@@ -3548,7 +3555,7 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
     _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "density",
                              (_sx + side - 30, top + side + 4),
                              height=int(max(200, min(390, by1 - 30 - (top + side + 140)))),
-                             floor=by1 - 30, xlim=(8, W - 8))
+                             floor=by1 - 30, xlim=(8, W - 8), ceil=by0)
     if _tip is not None:
         draw_lob(d, _tip, (_sx + side * 0.5, top + side * 0.5),
                  beat_clock(reveal), color)
@@ -3688,7 +3695,7 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "nest",
                              (cx + side / 2 + 8, top + side * 0.55),
                              height=int(min(380, (by1 - by0) * 0.26)),
-                             floor=by1 - 10, xlim=(8, W - 8), flip=True)
+                             floor=by1 - 10, xlim=(8, W - 8), flip=True, ceil=by0)
     if _tip is not None:
         draw_lob(d, _tip, (cx, top + side * 0.5), beat_clock(reveal), REST)
     return (big_v, "art", cx, top + side // 2)
@@ -3788,7 +3795,7 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     _lx = sx0 + (chairs - 1) * cw_
     place_agent(canvas, d, "draw", reveal, insight, "chairs",
                 (_lx + 34, seat_y - 60), height=200, floor=seat_y + 92,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (seekers, "art", cx, int(seat_y))
 
 
@@ -3887,7 +3894,7 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
     _mx0 = bx0 + gap + gw / 2
     place_agent(canvas, d, "flip", reveal, insight, "hourglass",
                 (_mx0 - gw * 0.12, top + gh / 2), height=260, floor=by1 - 16,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
 
 
@@ -3997,7 +4004,7 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
                 (x0 + (_rk % cols) * cell_w + cw * 0.5,
                  _ry + 10 + (_rk // cols) * cell_h),
                 height=int(min(300, (by1 - by0) * 0.2)),
-                floor=_ry + rowh - 22, hmin=140, xlim=(8, W - 8))
+                floor=_ry + rowh - 22, hmin=140, xlim=(8, W - 8), ceil=by0)
     return (vals[0], "art", int(bx0 + 300), int(top + rowh * 0.4))
 
 
@@ -4072,7 +4079,7 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     _bx = int(bx0 + gap)
     _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "basket",
                              (_bx + bw - 24, top + 6), height=260,
-                             floor=by1 - 20, xlim=(8, W - 8), flip=True)
+                             floor=by1 - 20, xlim=(8, W - 8), flip=True, ceil=by0)
     if _tip is not None:
         draw_lob(d, _tip, (_bx + bw // 2, top + bh // 2), beat_clock(reveal),
                  color)
@@ -4210,7 +4217,7 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     # was the judge's "stands on top of the tallest bar and waves".
     place_agent(canvas, d, "stack", reveal, insight, "tower",
                 (cx - bw // 2 + 26, landed), height=190, floor=bot,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     # the header counts up WITH the stack: the answer arrives, it is not
     # printed on frame one ("the answer is printed before anything happens")
     # ...one BLOCK at a time, so every number it passes through is a whole
@@ -4462,7 +4469,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         _w0 = full_w * (vals[0] / vmax)
         _box, _tip = place_agent(canvas, d, "fill", reveal, insight, "funnel",
                                  (_fcx - _w0 / 2 - 10, top - 30), height=220,
-                                 floor=bot, xlim=(8, W - 8))
+                                 floor=bot, xlim=(8, W - 8), ceil=by0)
         if _tip is not None:
             draw_stream(d, _tip, (_fcx - _w0 * 0.2, top + 24), charts.CARD,
                         beat_clock(reveal), width=14)
@@ -4527,7 +4534,7 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
     # floor. The boxes arrive because he turns it.
     place_agent(canvas, d, "turn", reveal, insight, "conveyor",
                 (bx1 - 44, belt_y + 26), height=300, floor=ground,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     d.text(((bx0 + bx1) // 2, by0 + 58),
            charts._ulabel(v, unit, group=True), font=_pil_font(96),
            fill=_rgba(color, 255), anchor="mm")
@@ -4722,8 +4729,12 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
     # THE LANE IS HIS LAMP: he holds the light on it from its left end, so
     # the marker wanders in a beam he is casting.
+    # ...from above its left end, so the lo label under that end and the
+    # sub-caption stay clear of him ("'$4.4' is behind the mascot's torso",
+    # coffee, 2026-09-22).
     place_agent(canvas, d, "light", reveal, insight, "spotlight",
-                (cx - half * e - 12, cy), height=230, xlim=(8, W - 8))
+                (cx - half * e + 10, cy - lane - 44), height=190,
+                xlim=(8, W - 8), ceil=by0)
     return (vals[-1], "art", mx, cy)
 
 
@@ -4968,7 +4979,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
         place_agent(canvas, d, "stack", reveal, insight, "staircase",
                     (x0 + _cur * w + 12, bot - _h),
                     height=int(min(STAIR_HOST_H, (bot - top) * 0.34)),
-                    floor=bot, xlim=(8, W - 8))
+                    floor=bot, xlim=(8, W - 8), ceil=by0)
     return (vals[-1], "art", top_xy[0], top_xy[1]) if top_xy else None
 
 
@@ -5449,8 +5460,11 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     # bottom 58% of the frame carrying nothing — the showrunner's most-cited
     # block on this channel, and measurable without asking it (see
     # shared/frame_occupancy.py).
-    cy = int(by0 + (by1 - by0) * 0.44)
-    R = int(min((bx1 - bx0) * 0.44, (by1 - by0) * 0.32))
+    # ...AND THE DIAL IS THE PICTURE. He used to stand under it and fill the
+    # lower band; now he is on the needle, so the dial itself takes the
+    # frame — a bigger radius, lower, with the number under it.
+    cy = int(by0 + (by1 - by0) * 0.50)
+    R = int(min((bx1 - bx0) * 0.47, (by1 - by0) * 0.42))
     a0, sweep = 200.0, 140.0                    # a car-style dial, open at the top
     d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
           fill=_rgba(TEXT, 70), width=26)
@@ -5501,7 +5515,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     # PALMS ON THE NEEDLE. It sweeps because he is pushing it round; under
     # the dial reading it he was "standing under the dial pointing at it".
     place_agent(canvas, d, "sweep", reveal, insight, "gauge",
-                (nx, ny), height=240, xlim=(8, W - 8))
+                (nx, ny), height=330, xlim=(8, W - 8))
     return (v, "art", int(nx), int(ny))
 
 
@@ -6007,7 +6021,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     if bars:
         place_agent(canvas, d, "stack", r, insight, "closing",
                     (hx - bw / 2 + 16, hy), height=268, floor=pb,
-                    xlim=(8, W - 8))
+                    xlim=(8, W - 8), ceil=box[1])
     else:
         place_agent(canvas, d, "travel", r, insight, "closing",
                     (hx, hy + 6), height=268, xlim=(8, W - 8))
@@ -6593,7 +6607,7 @@ def draw_hole(d, canvas, box, insight, color, reveal, unit=""):
     place_agent(canvas, d, "cut", reveal, insight, "hole",
                 (ox + cut - 8, gy1 + 6),
                 height=int(min(600, (by1 - by0) * 0.41)), floor=by1 - 20,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     # the words go on last, so nothing is drawn over them
     lab = _then_now(insight)
     if not gone:
@@ -6693,7 +6707,7 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
     place_agent(canvas, d, "mark", reveal, insight, "copies",
                 (slots[_lk] + s * 0.5, y_now + 6),
                 height=int(min(500, (by1 - by0) * 0.33)), floor=by1 - 20,
-                xlim=(8, W - 8))
+                xlim=(8, W - 8), ceil=by0)
     # words last
     tl = f"{getattr(then_p, 'label', '')}  {charts._ulabel(a, unit, group=True)}"
     _f, _s = fit_text(d, tl, 48, W - (s + 100))

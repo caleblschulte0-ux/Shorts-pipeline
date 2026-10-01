@@ -67,16 +67,27 @@ class EveryWorldDrawsEveryShape(unittest.TestCase):
         from data_learning import illustrated as I
         td = Path(tempfile.mkdtemp())
         hosts, texts = [], []
-        real_host, real_text = I._host, I.text
+        real_host, real_agent, real_text = I._host, I._agent, I.text
 
         def host(cr, role, phase, insight, kind, cx, foot_y, height):
             hosts.append((cx, foot_y))
             return real_host(cr, role, phase, insight, kind, cx, foot_y, height)
 
+        def agent(cr, verb, phase, insight, kind, at, height, **kw):
+            # since 2026-10-01 every drawing puts him ON its moving part:
+            # his feet are where the placer put them, floor or ladder
+            box, tip = real_agent(cr, verb, phase, insight, kind, at, height,
+                                  **kw)
+            if box is not None:
+                hosts.append(((box[0] + box[2]) / 2, box[3]))
+            return box, tip
+
         def text(cr, s, *a, **k):
             texts.append(s)
             return real_text(cr, s, *a, **k)
-        with mock.patch.object(I, "_host", host), mock.patch.object(I, "text", text):
+        with mock.patch.object(I, "_host", host), \
+                mock.patch.object(I, "_agent", agent), \
+                mock.patch.object(I, "text", text):
             pat, anc = I.render_build(ins, td, "t", frames=frames, full_by=0.8,
                                       draw=draw, world=world)
         return pat, hosts, texts
