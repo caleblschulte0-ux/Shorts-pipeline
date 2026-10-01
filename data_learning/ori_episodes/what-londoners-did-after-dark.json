@@ -152,6 +152,12 @@
         "action": "look_up",
         "mood": "calm",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [
@@ -304,6 +310,12 @@
         "action": "hug_self",
         "mood": "calm",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [
@@ -560,6 +572,12 @@
         "action": "point",
         "mood": "focused",
         "at": "center_right"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1197,7 +1215,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bed"
       ]
      }
     },
@@ -1321,6 +1340,12 @@
         "mood": "focused",
         "item": "lantern",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [],
@@ -1344,7 +1369,7 @@
        },
        {
         "who": "woman",
-        "pose": "stand",
+        "pose": "walk",
         "action": "hold",
         "mood": "calm",
         "item": "bundle"
@@ -1503,6 +1528,12 @@
         "action": "talk",
         "mood": "calm",
         "at": "right"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1600,11 +1631,10 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "focused",
-        "item": "torch",
-        "at": "center"
+        "item": "torch"
        }
       ],
       "props": [

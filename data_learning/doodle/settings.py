@@ -216,9 +216,11 @@ def _frost(cr, gy, seed):
                  ink=(0.93, 0.96, 1.0), amp=0)
 
 
-def _town(cr, r, y0, seed):
+def _town(cr, r, y0, seed, facts=None):
     """A row of Mediterranean houses on the skyline: cream walls, low
-    terracotta roofs, a few dark windows."""
+    terracotta roofs, a few dark windows. Records where the windows and the
+    roof ridges are, so the evening can come to them (`ambient`)."""
+    town = (facts or {}).setdefault("town", {"windows": [], "roofs": []})
     for k in range(6):
         x = -80 + k * 380 + r.uniform(-50, 50)
         w = r.uniform(150, 240)
@@ -229,10 +231,12 @@ def _town(cr, r, y0, seed):
         roof = rgb("#b8623f")
         ink.fill_stroke(cr, [(x - w / 2 - 14, y0 - h), (x, y0 - h - r.uniform(30, 55)), (x + w / 2 + 14, y0 - h)],
                         roof, lw=4, amp=1, seed=seed + k + 7, shadow=shade(roof), shadow_dir=(1, 0))
+        town["roofs"].append((x + r.uniform(-w / 4, w / 4), y0 - h - 20))
         for j in range(int(w // 70)):
             wx = x - w / 2 + 35 + j * 70
             ink.fill_stroke(cr, [(wx - 12, y0 - h * 0.55), (wx + 12, y0 - h * 0.55), (wx + 12, y0 - h * 0.25),
                                  (wx - 12, y0 - h * 0.25)], rgb("#3d3a44"), lw=3, amp=0)
+            town["windows"].append((wx, y0 - h * 0.4))
 
 
 def _colonnade(cr, r, y0, seed):
@@ -486,7 +490,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     if city_water:
         # run #21's judge: "mountains and a lake appear in a London street
         # story" — a Victorian park lake or the Thames has roofs behind it
-        _town(cr, r, H * st.horizon + 40, seed)
+        _town(cr, r, H * st.horizon + 40, seed, facts)
     elif name in ("mountains", "snowfield", "lakeshore") or (name == "cave_mouth" and r.random() < 0.5):
         _mountains(cr, r, H * st.horizon, far, seed, snowcaps=True)
     if not city_water:
@@ -494,7 +498,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     if name == "castle":
         _castle(cr, W * r.uniform(0.3, 0.7), H * st.horizon + 60, seed)
     if name == "forum":
-        _town(cr, r, H * st.horizon + 40, seed)
+        _town(cr, r, H * st.horizon + 40, seed, facts)
         _colonnade(cr, r, H * st.horizon + 150, seed)
     if name == "street":
         from .props import terrace
@@ -645,6 +649,7 @@ def ambient(cr, name: str, time: str, weather: str, facts: dict, t: float, seed:
     if w:
         kind, top, bot = w
         _flow(cr, kind, top, bot, t, seed, time)
+    _evening(cr, name, time, weather, facts, t, seed)
     if weather == "rain":
         _rain(cr, t, seed)
     elif weather == "snow":
@@ -686,6 +691,52 @@ def _flow(cr, kind, top, bot, t, seed, time):
         y = bot + 4 + k * 26
         ink.line(cr, [(-20, y), (W * 0.3, y + 8), (W * 0.65, y - 4), (W + 20, y + 6)], lw=9,
                  ink=(1, 1, 1, 0.85 if time != "night" else 0.55), amp=3, seed=seed)
+
+
+def _evening(cr, name: str, time: str, weather: str, facts: dict, t: float, seed: int):
+    """The evening doing what evenings do, so a held picture is still a
+    living place (the operator: "more movement ... purposeful movement"):
+    at dusk the town's lamps are lit one window at a time and its hearths
+    send up smoke; at night the windows glow and the smoke still rises; at
+    dusk the birds go home across the sky. Nothing here moves for the sake
+    of moving — each is a thing the evening is actually doing."""
+    town = facts.get("town")
+    r = random.Random(seed * 13 + 5)
+    if town and time in ("dusk", "night"):
+        for k, (wx, wy) in enumerate(town["windows"]):
+            if r.random() < 0.35:
+                continue                        # not every house has a lamp lit
+            on = 0.0 if time == "night" else r.uniform(1.0, 11.0)
+            if t < on:
+                continue
+            k_in = min(1.0, (t - on) / 0.6)     # a lamp catching, not a switch
+            fl = 0.8 + 0.2 * (ink.vnoise(t, 6.0, seed + k) + 1) / 2
+            ink.glow(cr, wx, wy, 34, (1.0, 0.72, 0.35), 0.55 * k_in * fl)
+            cr.rectangle(wx - 10, wy - 22, 20, 44)
+            cr.set_source_rgba(1.0, 0.78, 0.42, 0.85 * k_in * fl)
+            cr.fill()
+        for k, (sx, sy) in enumerate(town["roofs"]):
+            if k % 2:
+                continue                        # supper is on in every other house
+            for j in range(6):
+                u = ((t / 9.0) + j / 6.0 + k * 0.13) % 1.0
+                px = sx + u * 70 + math.sin(t * 0.7 + j + k) * 8
+                py = sy - u * 190
+                al = (0.34 if time == "dusk" else 0.24) * math.sin(math.pi * u)
+                c = (0.82, 0.8, 0.8) if time == "dusk" else (0.6, 0.62, 0.7)
+                ink.glow(cr, px, py, 16 + 26 * u, c, al)
+    if time == "dusk" and weather in ("clear", "cloudy") and not SETTINGS[name].interior:
+        # a flock going home to roost: once across the sky, slowly
+        span = W + 600
+        x0 = (t * 70 + r.uniform(0, 400)) - 300
+        if x0 < span:
+            y0 = H * r.uniform(0.14, 0.26)
+            for b in range(7):
+                bx = x0 - abs(b - 3) * 46 - (b // 4) * 12
+                by = y0 + abs(b - 3) * 22 + math.sin(t * 3 + b) * 4
+                flap = math.sin(t * 7.0 + b * 1.3) * 7
+                ink.line(cr, [(bx - 14, by - flap), (bx, by + 3), (bx + 14, by - flap)], lw=3.2,
+                         ink=(0.18, 0.14, 0.2), amp=0)
 
 
 def glints(cr, facts: dict, time: str, t: float, seed: int):

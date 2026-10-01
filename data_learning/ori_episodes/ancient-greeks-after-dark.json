@@ -495,6 +495,12 @@
         "mood": "calm",
         "item": "basket",
         "at": "center_right"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [
@@ -1572,6 +1578,12 @@
         "pose": "stand",
         "action": "look_up",
         "mood": "calm",
+        "item": "torch"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
         "item": "torch"
        }
       ],

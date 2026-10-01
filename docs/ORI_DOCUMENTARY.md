@@ -684,6 +684,27 @@ only as a hand edit is not a rule. So:
   runner (HTTP 403), so the Art Institute carried the paintings. Sent to the
   operator for his own verdict; his eye, not the judge's, is the bar.
 
+- **The operator on that render: movement "a 5 out of 10 ... we need more
+  movement per cut ... not forced movement, purposeful movement."** Counted
+  in the Greek script: 15 of its 115 people "walked" on the spot for a whole
+  passage, 12 carried things nowhere, 17 slept, and nothing in the world
+  moved but water and flames. So:
+  - **People go places.** Someone walking crosses the frame on a lane behind
+    the others, walking in from beyond the edge at exactly the pace their
+    feet carry them (`scene._walkers`, `walker_x`; no foot slides). They are
+    no longer packed into a standing spot to march on it.
+  - **The words decide who moves** (`ori_author.mend_motion`). When a
+    passage says somebody walks, carries, crosses, passes, heads home or
+    makes their way, and nobody on screen is moving, a standing figure sets
+    off. Out of doors only, a passer-by with a torch (night) or basket
+    (earlier) goes through instead. "Empty", "nobody" and "all asleep" move
+    no one, and no stranger is walked through a room.
+  - **The evening happens** (`settings._evening`). At dusk the town's lamps
+    are lit one window at a time, at night they glow, smoke rises from the
+    hearths where supper is on, and at dusk a flock goes home to roost
+    across the sky. Each is a thing the evening is actually doing; none of
+    it is a camera move or a wobble.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

@@ -1539,6 +1539,63 @@ class ThePictureIsReadable(unittest.TestCase):
             ep = json.loads(f.read_text(encoding="utf-8"))
             self.assertEqual(A.mend_film(ep, log=lambda *_: None), [], f.name)
 
+    def test_movement_is_purposeful_people_go_places_and_the_evening_happens(self):
+        # the operator on the re-rendered Greek film: movement "a 5 out of 10
+        # ... we need more movement per cut ... not forced movement,
+        # purposeful movement". Fifteen of its people walked on the spot
+        import cairo
+        import numpy as np
+        import ori_author as A
+        from data_learning.doodle import people as P
+        from data_learning.doodle import settings as ST
+        S = self.S
+        spec = {"setting": "forum", "time": "dusk", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "stand", "action": "talk"},
+                         {"who": "man", "pose": "walk", "action": "carry", "item": "basket"}],
+                "props": ["brazier"]}
+        self.assertEqual(S.validate(spec, "ancient"), [])
+        lay = S.layout(spec, 5)
+        # a walker is not packed into a standing spot: they cross on a lane
+        self.assertEqual([f["pose"] for f in lay["people"]], ["stand"])
+        (w,) = lay["walkers"]
+        x0, x1 = S.walker_x(w, 0.0), S.walker_x(w, 12.0)
+        self.assertTrue(x0 < 0 or x0 > S.W, "a walker should walk IN from beyond the frame")
+        self.assertGreater(abs(x1 - x0), S.W * 0.5, "a walker barely moved in twelve seconds")
+        # at the pace their feet carry them: a planted foot moves back 2 x 0.62 R
+        R = P.R0 * w["s"] * P.WHO["man"]["size"]
+        self.assertAlmostEqual(w["v"], 2 * 2 * 0.62 * R / S.WALK_CYCLE, delta=0.05 * w["v"])
+        self.assertEqual(lay["collisions"], [])
+        # the evening: at dusk the town's lamps come on one window at a time
+        surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+        facts = ST.draw_still(cairo.Context(surf), "forum", "dusk", "clear", 5, "close", era="ancient")
+        self.assertTrue(facts["town"]["windows"] and facts["town"]["roofs"])
+
+        def windows_lit(time, t):
+            sc = S.Scene(dict(spec, time=time, cast=[spec["cast"][0]]), "ancient", 5)
+            a = np.frombuffer(sc.frame(t).get_data(), np.uint8).reshape(S.H, S.W, 4)
+            return sum(1 for (wx, wy) in sc.facts["town"]["windows"]
+                       if a[int(wy), int(wx), 2] > 200 and a[int(wy), int(wx), 0] < 150)
+        self.assertLess(windows_lit("dusk", 0.5), windows_lit("dusk", 12.0), "no lamp was lit at dusk")
+        self.assertGreater(windows_lit("night", 0.5), 0, "a town at night with every window dark")
+        # the words decide who moves: "carries ... home" sets a standing man
+        # walking; "the street is empty" moves nobody; no going-words, no one
+        go = {"say": "A man carries the last basket home along the street.",
+              "scene": dict(spec, cast=[{"who": "man", "pose": "stand", "action": "carry", "item": "basket"}])}
+        self.assertIn("walks", A.mend_motion(go, "ancient"))
+        self.assertEqual(go["scene"]["cast"][0]["pose"], "walk")
+        empty = {"say": "The square is empty now; nobody walks there.", "scene": dict(spec, cast=[])}
+        self.assertIsNone(A.mend_motion(empty, "ancient"))
+        still = {"say": "She sits by the fire and talks softly.", "scene": dict(spec, cast=[spec["cast"][0]])}
+        self.assertIsNone(A.mend_motion(still, "ancient"))
+        out = {"say": "Families drift home across the square with their baskets.",
+               "scene": dict(spec, time="night", cast=[spec["cast"][0]])}
+        self.assertIn("passes with a torch", A.mend_motion(out, "ancient"))
+        self.assertEqual(S.validate(out["scene"], "ancient"), [])
+        room = {"say": "Someone walks past the doorway.",
+                "scene": {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                          "cast": [], "props": ["oil_lamp"]}}
+        self.assertIsNone(A.mend_motion(room, "ancient"), "a stranger was walked through a room")
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

@@ -649,6 +649,50 @@ def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
     return None
 
 
+# words that say somebody is GOING somewhere
+MOTION_WORDS = re.compile(r"\b(walks?|walking|carr(?:y|ies|ying)|cross(?:es|ing)?|pass(?:es|ing)?|"
+                          r"heads? home|heading home|hurr(?:y|ies|ying)|drift(?:s|ing)? (?:home|away)|"
+                          r"stroll(?:s|ing)?|wander(?:s|ing)?|returns?|returning|arriv(?:e|es|ing)|"
+                          r"makes? (?:his|her|their|its) way|on (?:his|her|their) way|"
+                          r"comes? (?:home|in|back)|goes (?:home|out|by)|leav(?:e|es|ing) for|"
+                          r"rounds?\b|patrol)", re.I)
+STILL_WORDS = re.compile(r"\b(empty|deserted|nobody|no one|no-one|silent street|all asleep|everyone sleeps)\b", re.I)
+WALKS_WITH = ("carry", "hold", "idle", "wave", "point")
+
+
+def mend_motion(beat: dict, era: str) -> str | None:
+    """When the words say somebody is going somewhere and nobody in the
+    picture is, a standing person sets off (they cross the frame) — or, out
+    of doors, a passer-by does, carrying a torch at night or a basket before
+    it. Movement that is the words', never decoration: a passage whose words
+    move nobody is left alone, and an "empty" street stays empty."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    say = beat.get("say") or "" if isinstance(beat, dict) else ""
+    if not isinstance(sc, dict) or not MOTION_WORDS.search(say) or STILL_WORDS.search(say):
+        return None
+    cast = sc.setdefault("cast", [])
+    if any(isinstance(c, dict) and c.get("pose") == "walk" for c in cast):
+        return None
+    for c in cast:
+        if isinstance(c, dict) and c.get("pose") == "stand" and c.get("action", "idle") in WALKS_WITH:
+            c["pose"] = "walk"
+            c.pop("at", None)
+            if S.validate(sc, era):
+                c["pose"] = "stand"
+                continue
+            return f"the {c.get('who', 'person')} walks (the words move somebody)"
+    st = S.SETTINGS.get(sc.get("setting"))
+    if st is None or st.interior or len(cast) >= 3:
+        return None
+    who = ("man", "woman")[sum(map(ord, say[:40])) % 2]
+    item = "torch" if sc.get("time") == "night" else "basket"
+    cast.append({"who": who, "pose": "walk", "action": "carry", "item": item})
+    if S.validate(sc, era):
+        cast.pop()
+        return None
+    return f"a {who} passes with a {item} (the words move somebody)"
+
+
 def mend_fire(beat: dict) -> str | None:
     """A beat whose words bank the fire draws it banked (the medieval
     film's judge: "the narration says embers glow low under ash, and a full
@@ -1006,7 +1050,8 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             # the old order added a named table and then dropped it again)
             named = add_named_props(b, era, seeds=(1000 + j,))
             fire = mend_fire(b)
-            did = ", ".join(x for x in (placed, night, did, crowd, named, fire) if x)
+            moving = mend_motion(b, era)
+            did = ", ".join(x for x in (placed, night, did, crowd, named, fire, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:

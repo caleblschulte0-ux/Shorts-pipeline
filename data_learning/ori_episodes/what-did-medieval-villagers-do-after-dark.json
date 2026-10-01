@@ -695,6 +695,12 @@
         "action": "warm_hands",
         "mood": "content",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1025,6 +1031,12 @@
         "action": "look_up",
         "mood": "surprised",
         "at": "center_right"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [

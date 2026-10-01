@@ -101,7 +101,7 @@
        },
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
         "mood": "calm",
         "item": "bundle"
@@ -250,10 +250,9 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
-        "mood": "focused",
-        "at": "center_left"
+        "mood": "focused"
        },
        {
         "who": "man",
@@ -694,10 +693,9 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
-        "mood": "focused",
-        "at": "center"
+        "mood": "focused"
        }
       ],
       "props": [
@@ -717,7 +715,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "hold",
         "mood": "calm",
         "item": "torch"
@@ -794,11 +792,10 @@
       "cast": [
        {
         "who": "child",
-        "pose": "stand",
+        "pose": "walk",
         "action": "hold",
         "mood": "focused",
-        "item": "torch",
-        "at": "left"
+        "item": "torch"
        },
        {
         "who": "man",
@@ -1378,10 +1375,9 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "idle",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "woman",
@@ -1409,10 +1405,9 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "stand",
+        "pose": "walk",
         "action": "hold",
-        "mood": "calm",
-        "at": "center"
+        "mood": "calm"
        }
       ],
       "props": [
@@ -1833,6 +1828,12 @@
         "action": "look_up",
         "mood": "calm",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [

@@ -278,6 +278,12 @@
         "action": "hold",
         "mood": "focused",
         "item": "bundle"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -593,6 +599,12 @@
         "action": "hold",
         "item": "lantern",
         "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -692,6 +704,12 @@
         "item": "bread",
         "mood": "happy",
         "at": "right"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [],
@@ -720,6 +738,12 @@
         "action": "hug_self",
         "mood": "sleepy",
         "at": "center_left"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [],
@@ -797,6 +821,12 @@
         "pose": "sit",
         "action": "hug_self",
         "mood": "worried"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -945,6 +975,12 @@
         "action": "look_up",
         "mood": "calm",
         "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1057,6 +1093,12 @@
         "pose": "sit",
         "action": "look_up",
         "mood": "sleepy"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1281,6 +1323,12 @@
         "pose": "stand",
         "action": "warm_hands",
         "mood": "calm"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1299,11 +1347,10 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "surprised",
-        "item": "spear",
-        "at": "left"
+        "item": "spear"
        },
        {
         "who": "man",
@@ -1479,11 +1526,10 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "stand",
+        "pose": "walk",
         "action": "hold",
         "mood": "sleepy",
-        "item": "torch",
-        "at": "left"
+        "item": "torch"
        },
        {
         "who": "man",
@@ -1703,6 +1749,12 @@
         "pose": "lie",
         "action": "sleep",
         "mood": "content"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1800,7 +1852,14 @@
       "time": "night",
       "weather": "clear",
       "shot": "close",
-      "cast": [],
+      "cast": [
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
+       }
+      ],
       "props": [
        "reed_boat",
        "reeds"

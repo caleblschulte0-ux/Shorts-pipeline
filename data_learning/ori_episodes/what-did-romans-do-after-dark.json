@@ -371,11 +371,10 @@
        },
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
         "mood": "content",
-        "item": "bundle",
-        "at": "left"
+        "item": "bundle"
        }
       ],
       "props": [
@@ -400,6 +399,12 @@
         "mood": "focused",
         "item": "basket",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [
@@ -456,6 +461,12 @@
         "mood": "calm",
         "item": "basket",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "basket"
        }
       ],
       "props": [
@@ -731,7 +742,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "wave",
         "mood": "focused"
        },
@@ -759,7 +770,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
         "mood": "focused",
         "item": "bundle"
@@ -893,7 +904,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "worried"
        },
@@ -983,6 +994,12 @@
         "action": "sleep",
         "mood": "calm",
         "at": "right"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1391,6 +1408,12 @@
         "mood": "focused",
         "item": "bowl",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1707,6 +1730,12 @@
         "action": "idle",
         "mood": "calm",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1888,11 +1917,10 @@
       "cast": [
        {
         "who": "man",
-        "pose": "stand",
+        "pose": "walk",
         "action": "carry",
         "mood": "calm",
-        "item": "rod",
-        "at": "left"
+        "item": "rod"
        },
        {
         "who": "woman",
@@ -1916,7 +1944,14 @@
       "time": "night",
       "weather": "clear",
       "shot": "close",
-      "cast": [],
+      "cast": [
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
+       }
+      ],
       "props": [
        "reeds",
        "cart"

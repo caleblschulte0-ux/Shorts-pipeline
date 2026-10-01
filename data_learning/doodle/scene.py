@@ -403,6 +403,35 @@ SLOT_SETS = ([0.29, 0.71, 0.15, 0.85], [0.18, 0.82, 0.5, 0.34], [0.24, 0.76, 0.4
              [0.7, 0.86, 0.55, 0.95], [0.3, 0.14, 0.45, 0.05])
 
 
+WALK_LANE = 0.56         # a walker's scale against the shot's: across the way, behind the others
+WALK_CYCLE = 1.1         # seconds per stride cycle (people.skeleton's walk)
+
+
+def walker_x(w: dict, t: float) -> float:
+    """Where a walker is at local time t: they enter from beyond one edge
+    and keep going, at exactly the pace their feet carry them (a planted
+    foot moves back 2 x 0.62 R each half cycle, so nothing slides)."""
+    return w["x0"] + w["dir"] * w["v"] * t
+
+
+def _walkers(walking: list, s: float, gy: float, seed: int) -> list:
+    out = []
+    r = random.Random(seed * 31 + 7)
+    for i, c in enumerate(walking):
+        sw = s * WALK_LANE
+        R = people.R0 * sw * people.WHO[c["who"]]["size"]
+        facing = c.get("facing") or ("right" if r.random() < 0.5 else "left")
+        d = 1 if facing == "right" else -1
+        v = 2.48 * R / WALK_CYCLE
+        # just outside the frame, so they walk IN; a second walker follows
+        # a few paces behind the first
+        x0 = (-3.0 * R - i * 5.0 * R) if d > 0 else (W + 3.0 * R + i * 5.0 * R)
+        out.append(dict(who=c["who"], pose="walk", action=c.get("action", "idle"), mood=c.get("mood", "calm"),
+                        item=c.get("item"), x0=x0, dir=d, v=v, y=gy - 66 * s, s=sw, facing=facing,
+                        seed=seed * 17 + i * 211))
+    return out
+
+
 def layout(spec: dict, seed: int) -> dict:
     """Place every prop and person. Deterministic in (spec, seed). A shot
     too crowded to fit at its natural size tries the other standing spots,
@@ -447,6 +476,13 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             fire_adjacent: bool = True) -> dict:
     r = random.Random(seed)
     cast = [dict(c) for c in (spec.get("cast") or [])]
+    # someone WALKING is going somewhere: they cross the frame on a lane just
+    # behind the others instead of being packed into a standing spot and
+    # marching on it (the operator on the Greek film: "we need more movement
+    # ... not forced movement, purposeful movement" — fifteen of its people
+    # walked on the spot for a whole passage)
+    walking = [c for c in cast if c.get("pose") == "walk"]
+    cast = [c for c in cast if c.get("pose") != "walk"]
     pl = _prop_list(spec)
     shot = shot_of(spec)
     s = (2.05 if shot == "close" else 1.25) * shrink
@@ -770,7 +806,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     for f in figs:
         f.pop("_pot", None)
         f.pop("_bed", None)
-    lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked)
+    lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked,
+               walkers=_walkers(walking, s, gy, seed))
     lay["collisions"] = collisions(lay)
     return lay
 
@@ -880,6 +917,15 @@ class Scene:
             for p in lay["props"]:
                 if p["layer"] == layer and p["name"] not in STILL:
                     self._prop(cr, p, t)
+            if layer == "back":
+                # the walkers' lane is behind the furniture and the people
+                for w in lay.get("walkers") or []:
+                    x = walker_x(w, t)
+                    if -400 < x < W + 400:
+                        people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk",
+                                    action=w["action"], x=x, ground_y=w["y"], scale=w["s"], t=t,
+                                    facing=w["facing"], mood=w["mood"], item=w["item"],
+                                    cold=self.weather in ("frost", "snow"))
         for f in sorted(lay["people"], key=lambda f: f["y"]):
             people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
                         action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
