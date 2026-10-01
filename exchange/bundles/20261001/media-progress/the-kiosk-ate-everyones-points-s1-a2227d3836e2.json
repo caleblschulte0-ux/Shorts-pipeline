@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a6dbc46cacf811fad1b3bfa18e5d33021f17ede6b94a9a96f80997837ec9fb07",
+  "prompt_used": "An editorial illustration for a short-form video: frustrated customer service call. It accompanies the narration: \"blamed user error\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1E76w5P3B56hcZh84vmVfjn38AuMM38-J",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s1-a2227d3836e2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1E76w5P3B56hcZh84vmVfjn38AuMM38-J",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3e8e49145f2242db2627890db40e8abbf3d48144a2a22e52b3496fc47c21c826",
+    "bytes": 2058053,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-01T11:23:57.033Z"
+}
