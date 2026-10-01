@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260930",
+  "updated": "20261001",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -486,10 +486,16 @@
       "commit": "7363095"
     },
     "c8ca85c0ce21": {
-      "verdict": "doing",
-      "date": "20260817",
-      "because": "Confirmed: scripts/fetch_analytics.py:296-301 drops format/experiment_arm/hook identity for every trending row, so all 62 live trending analytics rows are format=unknown and build_retro cannot compare graph_race vs reddit_story at any maturity band. Accepted as the long-term direction (versioned attribution record); it's the lowest-ranked open item so it will sit until the acute bugs above are cleared, which is appropriate for its horizon.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261001",
+      "because": "picked up: carry format/topic through fetch_analytics trending rows + format_coverage in summary",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed: scripts/fetch_analytics.py:296-301 drops format/experiment_arm/hook identity for every trending row, so all 62 live trending analytics rows are format=unknown and build_retro cannot compare graph_race vs reddit_story at any maturity band. Accepted as the long-term direction (versioned attribution record); it's the lowest-ranked open item so it will sit until the acute bugs above are cleared, which is appropriate for its horizon."
+        }
+      ]
     },
     "66364106b455": {
       "verdict": "done",
