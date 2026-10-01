@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "remote-work-briefly-beat-office",
+  "title": "Remote Work Briefly Beat The Office. Then It Reversed.",
+  "hook": "2020 flipped it for a minute.",
+  "y_label": "Share of US paid workdays (%)",
+  "duration": 13,
+  "source": "WFH Research (Survey of Working Arrangements and Attitudes, Bloom/Barrero/Davis) share of US paid workdays done from home vs. in-office. Figures approximate as publicly reported.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Work from home",
+      "color": "#e67e22",
+      "icon": null,
+      "values": [
+        6,
+        58,
+        35,
+        30,
+        27,
+        26,
+        25
+      ]
+    },
+    {
+      "name": "In-office",
+      "color": "#34495e",
+      "icon": null,
+      "values": [
+        94,
+        42,
+        65,
+        70,
+        73,
+        74,
+        75
+      ]
+    }
+  ],
+  "hashtags": [
+    "remotework",
+    "wfh",
+    "futureofwork",
+    "office",
+    "pandemic",
+    "workplace",
+    "data",
+    "labormarket",
+    "careers",
+    "covid",
+    "facts",
+    "worklife"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

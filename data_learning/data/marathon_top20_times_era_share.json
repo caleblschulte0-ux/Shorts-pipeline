@@ -1,0 +1,20 @@
+{
+  "key": "marathon_top20_times_era_share",
+  "title": "The 20 fastest marathons ever run, by era",
+  "unit": "count",
+  "geography": "Global (men's elite marathon)",
+  "time_coverage": "through late 2023",
+  "source": {
+    "name": "Super shoes and marathon record progression",
+    "publisher": "Marathon Handbook / World Athletics record data",
+    "url": "https://marathonhandbook.com/super-shoe-records/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "As of late 2023, 15 of the all-time top 20 men's marathon times had been run since 2018, when carbon-plated 'super shoes' became widespread. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "Set since 2018", "value": 15},
+    {"label": "Set before 2018", "value": 5}
+  ],
+  "ascending": false
+}

@@ -1,0 +1,23 @@
+{
+  "key": "billionaire_wealth_by_year",
+  "title": "Combined net worth of the world's billionaires",
+  "unit": "trillion dollars",
+  "geography": "Global",
+  "time_coverage": "2015-2025",
+  "source": {
+    "name": "The World's Billionaires list",
+    "publisher": "Forbes",
+    "url": "https://www.forbes.com/sites/chasewithorn/2024/04/02/forbes-38th-annual-worlds-billionaires-list-facts-and-figures-2024/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Forbes' annual World's Billionaires combined net worth: $7.1T (2015), $9.1T (2018), $8.0T (2020, pandemic dip), $12.7T (2022), $14.2T (2024), over $16.1T (2025). Figures approximate as publicly reported.",
+  "points": [
+    {"label": "2015", "value": 7.1, "period": "2015"},
+    {"label": "2018", "value": 9.1, "period": "2018"},
+    {"label": "2020", "value": 8.0, "period": "2020"},
+    {"label": "2022", "value": 12.7, "period": "2022"},
+    {"label": "2024", "value": 14.2, "period": "2024"},
+    {"label": "2025", "value": 16.1, "period": "2025"}
+  ]
+}

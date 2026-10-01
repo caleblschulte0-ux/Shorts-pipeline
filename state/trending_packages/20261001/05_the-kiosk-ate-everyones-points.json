@@ -1,0 +1,78 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "the-kiosk-ate-everyones-points",
+  "title": "The Kiosk Ate My Points. I Built A Folder.",
+  "script": "Our neighborhood pizza chain made us redeem rewards only through a kiosk that glitched constantly, and support always blamed user error whenever it ate someone's points. Mine vanished the week I hit a free pizza. Instead of arguing at the counter, I started screenshotting every glitch, mine and four strangers' who hit the same error that same week. I built a shared folder, found the chain's own consumer complaints email buried in their privacy policy, and sent corporate a timeline with timestamps. Three weeks later the chain announced a loyalty audit, quietly restored six months of missing points to every account that had filed a ticket, and fired the vendor running the kiosks. I got my free pizza. It arrived a little cold, which felt about right. Forty-two strangers got theirs too, and none of them ever knew who started the folder.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "customerservice",
+    "pettyrevenge",
+    "corporate",
+    "consumerrights",
+    "reddit",
+    "truestory",
+    "loyaltyprogram",
+    "revenge",
+    "retail",
+    "karma",
+    "workstories"
+  ],
+  "shots": [
+    {
+      "phrase": "redeem rewards only through a kiosk",
+      "query": "restaurant kiosk screen"
+    },
+    {
+      "phrase": "blamed user error",
+      "query": "frustrated customer service call"
+    },
+    {
+      "phrase": "Mine vanished the week I hit a free pizza",
+      "query": "pizza box counter"
+    },
+    {
+      "phrase": "started screenshotting every glitch",
+      "query": "phone screenshot glitch error"
+    },
+    {
+      "phrase": "I built a shared folder",
+      "query": "shared folder documents desk"
+    },
+    {
+      "phrase": "sent corporate a timeline with timestamps",
+      "query": "email inbox laptop"
+    },
+    {
+      "phrase": "the chain announced a loyalty audit",
+      "query": "corporate office meeting"
+    },
+    {
+      "phrase": "fired the vendor running the kiosks",
+      "query": "technician removing kiosk"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "blamed user error",
+      "text": "USER ERROR?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "I built a shared folder",
+      "text": "RECEIPTS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "restored six months of missing points",
+      "text": "AUDITED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "fired the vendor running the kiosks",
+      "text": "VENDOR FIRED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

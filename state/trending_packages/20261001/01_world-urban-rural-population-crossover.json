@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "world-urban-rural-population-crossover",
+  "title": "World's Urban Population Just Passed Rural For Good",
+  "hook": "One line never looked back.",
+  "y_label": "World population (billions)",
+  "duration": 13,
+  "source": "UN DESA World Urbanization Prospects -- global urban and rural population estimates by year. Figures approximate as publicly reported.",
+  "years": [
+    1950,
+    1970,
+    1990,
+    2007,
+    2010,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Urban population",
+      "color": "#4a90e2",
+      "icon": null,
+      "values": [
+        0.75,
+        1.33,
+        2.29,
+        3.35,
+        3.57,
+        4.38,
+        4.66
+      ]
+    },
+    {
+      "name": "Rural population",
+      "color": "#bdc3c7",
+      "icon": null,
+      "values": [
+        1.79,
+        2.35,
+        3.04,
+        3.33,
+        3.42,
+        3.42,
+        3.42
+      ]
+    }
+  ],
+  "hashtags": [
+    "urbanization",
+    "population",
+    "demographics",
+    "cities",
+    "worldpopulation",
+    "data",
+    "unitednations",
+    "humanity",
+    "megacities",
+    "facts",
+    "world",
+    "statistics"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

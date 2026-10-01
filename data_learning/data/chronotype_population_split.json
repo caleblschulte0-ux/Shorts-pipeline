@@ -1,0 +1,20 @@
+{
+  "key": "chronotype_population_split",
+  "title": "Population share by sleep chronotype",
+  "unit": "percent",
+  "geography": "Global (pooled sleep research samples)",
+  "time_coverage": "pooled sleep-research estimate",
+  "source": {
+    "name": "Chronotype distribution studies",
+    "publisher": "Sleep/chronobiology research reviews (e.g. Roenneberg et al., Munich ChronoType Questionnaire studies)",
+    "url": "https://www.masterclass.com/classes/matthew-walker-teaches-the-science-of-better-sleep/chapters/night-owl-or-morning-lark",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Pooled chronotype research finds roughly 25-30% morning types, 25-30% evening types ('night owls'), and 40-50% intermediate types. Midpoints used here. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "Morning type", "value": 28},
+    {"label": "Evening type (night owl)", "value": 25},
+    {"label": "Intermediate", "value": 47}
+  ]
+}

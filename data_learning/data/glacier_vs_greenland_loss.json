@@ -1,0 +1,20 @@
+{
+  "key": "glacier_vs_greenland_loss",
+  "title": "Annual ice loss: mountain glaciers vs. the Greenland ice sheet",
+  "unit": "billion tonnes per year",
+  "geography": "Global",
+  "time_coverage": "2016-2025 average",
+  "source": {
+    "name": "Glacier Mass Balance Intercomparison Exercise (GlaMBIE)",
+    "publisher": "World Glacier Monitoring Service (WGMS), University of Zurich",
+    "url": "https://wgms.ch/sea-level-rise/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "GlaMBIE researchers report that recent mountain-glacier mass loss (about 390 billion tonnes/year) now runs about 18% larger than losses from the Greenland ice sheet over the same period. Greenland figure derived from that reported ratio; approximate as publicly reported.",
+  "points": [
+    {"label": "Mountain glaciers", "value": 390},
+    {"label": "Greenland ice sheet", "value": 330}
+  ],
+  "baseline": {"label": "Greenland ice sheet", "value": 330}
+}

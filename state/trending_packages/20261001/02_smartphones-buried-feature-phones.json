@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "smartphones-buried-feature-phones",
+  "title": "One Billion Smartphones Shipped. Feature Phones Never Recovered.",
+  "hook": "2013 ended one era fast.",
+  "y_label": "Global phone shipments (millions/year)",
+  "duration": 13,
+  "source": "Global smartphone and feature phone shipment estimates from IDC / Gartner, as compiled by Statista and industry press. Figures approximate as publicly reported.",
+  "years": [
+    2009,
+    2011,
+    2012,
+    2013,
+    2015,
+    2017
+  ],
+  "series": [
+    {
+      "name": "Smartphones",
+      "color": "#2ecc71",
+      "icon": null,
+      "values": [
+        172,
+        494,
+        725,
+        1004,
+        1244,
+        1470
+      ]
+    },
+    {
+      "name": "Feature phones",
+      "color": "#7f8c8d",
+      "icon": null,
+      "values": [
+        1150,
+        1100,
+        1020,
+        818,
+        550,
+        390
+      ]
+    }
+  ],
+  "hashtags": [
+    "smartphones",
+    "featurephones",
+    "tech",
+    "mobile",
+    "history",
+    "iphone",
+    "android",
+    "techhistory",
+    "gadgets",
+    "data",
+    "technology",
+    "facts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,20 @@
+{
+  "key": "glacier_loss_by_era",
+  "title": "Average annual glacier ice loss by period",
+  "unit": "billion tonnes",
+  "geography": "Global (excluding Greenland and Antarctic ice sheets)",
+  "time_coverage": "1976-2025",
+  "source": {
+    "name": "Glacier Mass Balance Intercomparison Exercise (GlaMBIE)",
+    "publisher": "World Glacier Monitoring Service (WGMS), University of Zurich",
+    "url": "https://wgms.ch/sea-level-rise/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "WGMS/GlaMBIE estimate average annual glacier ice loss (excluding the Greenland and Antarctic ice sheets) rose from under 100 billion tonnes/year in 1976-1995, to about 230 billion tonnes/year in 1996-2015, to about 390 billion tonnes/year in 2016-2025. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "1976-1995", "value": 85, "period": "1985"},
+    {"label": "1996-2015", "value": 230, "period": "2005"},
+    {"label": "2016-2025", "value": 390, "period": "2020"}
+  ]
+}

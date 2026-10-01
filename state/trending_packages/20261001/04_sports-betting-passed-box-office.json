@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "sports-betting-passed-box-office",
+  "title": "Sports Betting Just Passed The Box Office",
+  "hook": "One grew 30x. One never recovered.",
+  "y_label": "Annual US revenue (billions USD)",
+  "duration": 13,
+  "source": "US legal sports betting revenue from the American Gaming Association; US domestic movie theater box office revenue from Box Office Mojo / Comscore. Figures approximate as publicly reported.",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Sports betting revenue",
+      "color": "#27ae60",
+      "icon": null,
+      "values": [
+        0.43,
+        0.908,
+        1.5,
+        4.3,
+        7.5,
+        11.0,
+        13.7
+      ]
+    },
+    {
+      "name": "Movie box office",
+      "color": "#c0392b",
+      "icon": null,
+      "values": [
+        11.89,
+        11.36,
+        2.11,
+        4.48,
+        7.37,
+        8.91,
+        8.57
+      ]
+    }
+  ],
+  "hashtags": [
+    "sportsbetting",
+    "boxoffice",
+    "movies",
+    "gambling",
+    "entertainment",
+    "data",
+    "sportsbook",
+    "hollywood",
+    "economy",
+    "facts",
+    "sports",
+    "business"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
