@@ -1,0 +1,21 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261001T195126Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data walks along the timeline with both arms up and causes nothing. seg3:mid: three cloned Datas point at empty circles. seg2:mid: he walks on top of the $53B circle. seg4: he stands beside the scale holding a pole while the bats fall onto it without him.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:mid shows three identical Data clones, each pointing at an empty cyan ring, with no bars or fill. A big '90%' sits under the caption 'of northern long-eared', which is the species that lost 97%. The values only appear as text at seg3:end. This is the second bat-decline scene in a row, after seg2's bar chart.",
+  "root_cause": "A stock 'rows of pointing mascots' layout was used to show three percentages. The mascot is copied as row furniture instead of acting. The rings show nothing until the labels pop in, and the floating percentage is not synced to the narration.",
+  "repair_goal": "Replace it with one bespoke scene made of bats: three colonies hanging in a cave, starting as 100 bats each. Data turns off a lantern (or sweeps with a white fungus brush) and the colonies drop away until 3 / 10 / 10 bats remain. The 97% colony empties last and visibly the most. Put each label beside its colony, in ink, clear of the mascot. Cut seg2's duplicate bars so the decline is shown once."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

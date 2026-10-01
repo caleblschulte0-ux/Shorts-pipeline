@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261001T195126Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In the hook and seg0:start to seg0:end Data stands on the yellow block pointing at a pole. In seg2:start to seg2:end and seg3:start to seg3:end he only stands on top of a circle. In seg4 he leans on a stick beside the scale but never loads the blocks onto it.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_binding",
+  "visible_evidence": "Both circles are labelled 'Before 2016 (1988-2013)' and both read 8.3. The narration contrasts 8 seconds a year before super shoes with almost 30 seconds a year after, but the 'since 2016 ~30' value never appears. The kicker says 'BEFORE 2016 (1988-2013) TOPS THE LIST', which is the opposite of the claim.",
+  "root_cause": "The comparison machine was bound to the same data row twice, so the after-2016 series is missing. The kicker was generated from that wrong ranking.",
+  "repair_goal": "Bind the two sides to before-2016 (8.3 s/yr) and since-2016 (~30 s/yr) with distinct labels and units ('sec/yr'). Draw the gap as the subject's own physics: two runners or shoe-prints covering ground per year, the post-2016 one pulling ~3.6x further. Data should be the one driving the faster runner. Remove the inverted kicker."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

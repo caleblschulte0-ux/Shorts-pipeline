@@ -1,7 +1,18 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-01T14:41:00Z",
+ "updated": "2026-10-01T19:51:17Z",
  "open": [
+  {
+   "id": "bat-fungus-collapse__617a694d",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-01T19:51:17Z",
+   "why": [
+    "judge: A run of stock charts with a cheerleading mascot. The bat-loaded scale at the end is the only picture made of the story, and the opening has a dead timeline and a counter stuck at 1.",
+    "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
+   ],
+   "request": "exchange/rewrites/20261001/bat-fungus-collapse__617a694d.request.json",
+   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__617a694d.answer.json"
+  },
   {
    "id": "billionaire-count-record-2025__00739761",
    "slug": "billionaire-count-record-2025",
@@ -11,17 +22,6 @@
    ],
    "request": "exchange/rewrites/20261001/billionaire-count-record-2025__00739761.request.json",
    "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__00739761.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__a20ee6ed",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-01T14:40:59Z",
-   "why": [
-    "judge: A bat population collapse is told with four generic charts and a mascot that only poses, slides and gets cloned; nothing ever shows bats disappearing.",
-    "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
-   ],
-   "request": "exchange/rewrites/20261001/bat-fungus-collapse__a20ee6ed.request.json",
-   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__a20ee6ed.answer.json"
   },
   {
    "id": "oceanic-shark-collapse__7abc9718",
