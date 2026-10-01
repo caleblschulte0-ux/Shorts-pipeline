@@ -7,7 +7,7 @@
     },
     "fail": {
       "n": 16,
-      "median_vph": 0.045
+      "median_vph": 0.04
     },
     "wholesome": {
       "n": 14,
@@ -18,16 +18,16 @@
       "median_vph": 0.02
     },
     "win": {
-      "n": 8,
-      "median_vph": 0.045
+      "n": 9,
+      "median_vph": 0.05
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.075
+      "median_vph": 0.07
     },
     "jumpscare": {
       "n": 5,
-      "median_vph": 0.4
+      "median_vph": 0.39
     },
     "rage": {
       "n": 4,
@@ -39,13 +39,13 @@
     },
     "beef": {
       "n": 3,
-      "median_vph": 0.0
+      "median_vph": 0.01
     }
   },
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.8
+      "median_vph": 0.79
     },
     "story": {
       "n": 1,
