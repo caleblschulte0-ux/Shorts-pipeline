@@ -2344,6 +2344,22 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 34.2
+    },
+    "landline-extinction-event": {
+      "url": "https://youtube.com/shorts/uiM7zSWWNHE",
+      "title": "Landlines Peaked In 2006. They've Been Dying Since.",
+      "at": "2026-10-01T12:56:45.733320+00:00",
+      "publish_at": "2026-10-01T13:06:47Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 35 credits are required for this request.\",\"status",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 48.2
     }
   },
   "uploads": [
@@ -2823,6 +2839,15 @@
       "state": "posted",
       "slug": "night-owl-chronotype-rarity",
       "at": "2026-10-01T10:52:50.113515+00:00"
+    },
+    {
+      "claimed_at": "2026-10-01T12:56:35.272641+00:00",
+      "title": "Landlines Peaked In 2006. They've Been Dying Since.",
+      "publish_at": "2026-10-01T13:06:47Z",
+      "url": "https://youtube.com/shorts/uiM7zSWWNHE",
+      "state": "posted",
+      "slug": "landline-extinction-event",
+      "at": "2026-10-01T12:56:45.733320+00:00"
     }
   ]
 }
