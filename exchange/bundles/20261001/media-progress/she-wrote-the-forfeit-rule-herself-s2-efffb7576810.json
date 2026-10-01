@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s2-efffb7576810",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s2-efffb7576810",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "eafaf025e4d5c401c8968e3f3949ebc4247bc370845fdf48f9245d1ddab2da13",
+  "prompt_used": "An editorial illustration for a short-form video: paperwork clipboard rules. It accompanies the narration: \"add a clause to the league bylaws\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ru6gCxemJO0PNpLVim_E9VAL0ZydL6cf",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s2-efffb7576810.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ru6gCxemJO0PNpLVim_E9VAL0ZydL6cf",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a0b36094ce0cfba833a89f0bc49ff32c00480df55a55f4d7024a985f0e8f9e65",
+    "bytes": 1971878,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:25:13.388Z"
+}
