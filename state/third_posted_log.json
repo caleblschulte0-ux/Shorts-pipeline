@@ -10168,6 +10168,24 @@
       "kind": "twitch_clip",
       "ts": "2026-10-01T11:49:27.061664+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+    },
+    "rejected-beautifulhonestayeayedxcat-ovdrmz9dkvmr7gmw": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BeautifulHonestAyeayeDxCat-OVdRMZ9DkvMR7GmW",
+      "streamer": "lacy",
+      "title": "HE JUST SAID I LIKE SUCKI8NG DIH",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-01T12:14:11.179657+00:00"
+    },
+    "rejected-esteemeddreamypeachbcouch-tmwvfp1wf-mu0ruz": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/EsteemedDreamyPeachBCouch-tmwvfp1wf-Mu0RUz",
+      "streamer": "summit1g",
+      "title": "Summit1G Gets Sniped By A Boar And Can't Believe It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n; vision: The game character and the action are tiny and hard to see on a phone. The boar sniping Summit1G can't be seen at all.; vision: The facecam is a small thumbnail i",
+      "ts": "2026-10-01T12:20:24.443490+00:00"
     }
   }
 }

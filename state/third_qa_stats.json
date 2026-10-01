@@ -3,221 +3,6 @@
     {
       "date": "20260924",
       "dry_run": false,
-      "ts": "2026-09-24T13:58:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 105,
-        "with_retention": 83,
-        "with_curve": 14,
-        "fetched_at": "2026-09-24T12:29:36.818640+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260924-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Subject/players completely absent from the sharp region for ~3.5s-4.6s \u2014 frame shows only empty sky and rooftop with no ",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague one-word title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "routine 1v1 hoops, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Plaqueboymax Says It Don't Matter, Then Turns It Up"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.75,
-              "problems": [
-                "Subject/players completely absent from the sharp region for ~3.5s-4.6s \u2014 frame shows only empty sky and rooftop with no "
-              ]
-            }
-          },
-          "took_s": 243.7
-        },
-        {
-          "slug": "clip-20260924-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp region is only ~1/3 of canvas height (target ~3/4), leaving the driving action small and distant instead of fillin; vision: No person/reaction ever shown despite title promising Buddha's",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "recounts violent threat, life-changing m",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Got Goosebumps And Said This Changed Everything For Him"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.65,
-              "problems": [
-                "Sharp region is only ~1/3 of canvas height (target ~3/4), leaving the driving action small and distant instead of fillin",
-                "No person/reaction ever shown despite title promising Buddha's goosebumps reaction \u2014 content is entirely distant gamepla",
-                "Captions render as broken/ungrammatical fragments (e.g. \"IT'S THERE'S NO\", \"I PLAYING THE\") that don't read as coherent "
-              ]
-            }
-          },
-          "took_s": 552.3
-        },
-        {
-          "slug": "clip-20260924-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague, possibly funny moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "physical scuffle, real yelling, chaotic ",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Absolutely Loses It And Goes Off On Him"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 191.4
-        },
-        {
-          "slug": "clip-20260924-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260924",
-      "dry_run": false,
       "ts": "2026-09-24T15:45:19+00:00",
       "feedback": {
         "snapshot": true,
@@ -5580,6 +5365,152 @@
             }
           },
           "took_s": 120.4
+        },
+        {
+          "slug": "clip-20261001-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261001",
+      "dry_run": false,
+      "ts": "2026-10-01T12:20:24+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 119,
+        "with_retention": 103,
+        "with_curve": 15,
+        "fetched_at": "2026-10-01T08:46:17.788742+00:00"
+      },
+      "brain": {
+        "ok": 6,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261001-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261001-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261001-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n; vision: The game character and the action are tiny and hard to see on ",
+          "judges": {
+            "banger": {
+              "score": 0.68,
+              "why": "visible fail, boar snipe",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Death in WoW; hard to follow visually",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Summit1G Gets Sniped By A Boar And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n",
+                "The game character and the action are tiny and hard to see on a phone. The boar sniping Summit1G can't be seen at all.",
+                "The facecam is a small thumbnail inside the strip, so the reaction is hard to read.",
+                "Two sets of captions appear: small burned-in subtitles in the strip and large captions in the blur. The in-strip subtitl",
+                "The framing does not look cropped toward the action. It looks like a reposted full-screen game capture."
+              ]
+            }
+          },
+          "took_s": 320.6
+        },
+        {
+          "slug": "clip-20261001-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261001-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20261001-6",
