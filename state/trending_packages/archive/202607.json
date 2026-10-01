@@ -1,0 +1,544 @@
+{
+  "20260702": {
+    "01_lightning-strikes-man-survives-2026.json": {
+      "version": 1,
+      "slug": "lightning-strikes-man-survives-2026",
+      "title": "He Got Struck by Lightning and Walked Away",
+      "hashtags": [
+        "lightning",
+        "survived",
+        "weather",
+        "storm",
+        "crazy",
+        "science",
+        "viral",
+        "shocking",
+        "nature",
+        "wild",
+        "fyp",
+        "news"
+      ],
+      "script": "A man got struck by lightning and somehow walked away alive. He was crossing a parking lot when a bolt hit nearby and the current jumped through him, throwing him to the ground. Lightning carries up to a billion volts and is five times hotter than the surface of the sun, yet most people who are struck actually survive, because the charge flashes over the skin instead of stopping the heart. He walked away with burns shaped like branching lines across his back, called a lightning flower. Doctors say the fact that it was raining may have saved him. So why do some people survive a direct hit?",
+      "shots": [
+        {
+          "phrase": "A man got struck by lightning",
+          "query": "lightning strike",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+        },
+        {
+          "phrase": "a bolt hit nearby",
+          "query": "lightning bolt",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+        },
+        {
+          "phrase": "Lightning carries up to a billion volts",
+          "query": "lightning storm",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "five times hotter than the surface of the sun",
+          "query": "lightning sky",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+        },
+        {
+          "phrase": "most people who are struck actually survive",
+          "query": "storm clouds",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "burns shaped like branching lines",
+          "query": "lightning pattern",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "it was raining may have saved him",
+          "query": "rain storm",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+        },
+        {
+          "phrase": "survive a direct hit",
+          "query": "lightning",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Lightning_over_Oradea_Romania_cropped.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "struck by lightning",
+          "text": "STRUCK",
+          "color": "#ffd000"
+        },
+        {
+          "phrase": "a billion volts",
+          "text": "1 BILLION VOLTS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "hotter than the surface of the sun",
+          "text": "HOTTER THAN THE SUN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "walked away alive",
+          "text": "SURVIVED",
+          "color": "#30c0ff"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "02_meteor-lights-up-sky-daytime-2026.json": {
+      "version": 1,
+      "slug": "meteor-lights-up-sky-daytime-2026",
+      "title": "A Meteor Lit Up the Sky Like It Was Daytime",
+      "hashtags": [
+        "meteor",
+        "fireball",
+        "space",
+        "sky",
+        "astronomy",
+        "night",
+        "viral",
+        "science",
+        "cosmos",
+        "shocking",
+        "fyp",
+        "news"
+      ],
+      "script": "A meteor streaked across the night and lit up the whole sky like it was suddenly daytime. Cameras caught a blinding green fireball tearing overhead, casting shadows on the ground for a few seconds before it burned out. Most meteors are no bigger than a pebble; they just hit the atmosphere at over thirty thousand miles an hour, and the air in front of them compresses so hard it glows white-hot. Some ended with a sonic boom that rattled windows for miles. Scientists say a fireball this bright happens somewhere on Earth almost every night. So what are the odds a piece actually lands near you?",
+      "shots": [
+        {
+          "phrase": "A meteor streaked across the night",
+          "query": "meteor fireball",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+        },
+        {
+          "phrase": "a blinding green fireball tearing overhead",
+          "query": "green meteor",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+        },
+        {
+          "phrase": "casting shadows on the ground",
+          "query": "night sky meteor",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Most meteors are no bigger than a pebble",
+          "query": "meteor space",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "over thirty thousand miles an hour",
+          "query": "meteor streak",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+        },
+        {
+          "phrase": "a sonic boom that rattled windows",
+          "query": "night sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "almost every night",
+          "query": "shooting star",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+        },
+        {
+          "phrase": "a piece actually lands near you",
+          "query": "meteor",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Meteor.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "lit up the whole sky",
+          "text": "LIKE DAYTIME",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "blinding green fireball",
+          "text": "GREEN FIREBALL",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "thirty thousand miles an hour",
+          "text": "30,000 MPH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "sonic boom",
+          "text": "BOOM",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "03_great-white-circles-boat-2026.json": {
+      "version": 1,
+      "slug": "great-white-circles-boat-2026",
+      "title": "A Great White Circled Their Boat for Hours",
+      "hashtags": [
+        "greatwhite",
+        "shark",
+        "ocean",
+        "boat",
+        "scary",
+        "marine",
+        "viral",
+        "wild",
+        "predator",
+        "sea",
+        "fyp",
+        "news"
+      ],
+      "script": "A great white shark circled a small fishing boat for hours, and the people on board caught the whole thing on camera. The shark, easily longer than the boat itself, kept gliding past just under the surface, bumping the hull and rolling an eye up at the crew. Great whites do this to investigate; they have no hands, so they nudge and test things with their mouths to figure out what they are. It never attacked, but it wouldn't leave either, shadowing the boat until they finally started the engine. The crew said the scariest part was how silent it was. So what was it actually waiting for?",
+      "shots": [
+        {
+          "phrase": "A great white shark circled a small fishing boat",
+          "query": "great white shark",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+        },
+        {
+          "phrase": "longer than the boat itself",
+          "query": "shark boat",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+        },
+        {
+          "phrase": "gliding past just under the surface",
+          "query": "shark underwater",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "bumping the hull",
+          "query": "shark fin",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+        },
+        {
+          "phrase": "they nudge and test things with their mouths",
+          "query": "shark teeth",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "shadowing the boat",
+          "query": "shark ocean",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+        },
+        {
+          "phrase": "how silent it was",
+          "query": "ocean surface",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "waiting for",
+          "query": "great white",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Great_white_shark_south_africa.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "circled a small fishing boat",
+          "text": "CIRCLED FOR HOURS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "longer than the boat itself",
+          "text": "BIGGER THAN THE BOAT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "bumping the hull",
+          "text": "IT BUMPED THEM",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "wouldn't leave",
+          "text": "WOULDN'T LEAVE",
+          "color": "#30c0ff"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "04_bald-eagle-steals-catch-2026.json": {
+      "version": 1,
+      "slug": "bald-eagle-steals-catch-2026",
+      "title": "A Bald Eagle Swooped In and Stole His Fish",
+      "hashtags": [
+        "eagle",
+        "baldeagle",
+        "fishing",
+        "wildlife",
+        "bird",
+        "nature",
+        "viral",
+        "wild",
+        "america",
+        "funny",
+        "fyp",
+        "news"
+      ],
+      "script": "A fisherman reeled in his catch, and a bald eagle swooped down and stole it right off the line. The whole thing took about two seconds; the eagle dropped out of a tree, snatched the fish mid-air, and was gone before he could react. Bald eagles can dive at a hundred miles an hour and carry off prey nearly their own body weight, gripping with a force ten times stronger than a human hand. They're also notorious thieves, often robbing other birds instead of hunting themselves. The fisherman just stood there holding an empty line. So how do you even compete with that?",
+      "shots": [
+        {
+          "phrase": "a bald eagle swooped down and stole it",
+          "query": "bald eagle flying",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+        },
+        {
+          "phrase": "snatched the fish mid-air",
+          "query": "eagle catching fish",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+        },
+        {
+          "phrase": "dropped out of a tree",
+          "query": "eagle tree",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "dive at a hundred miles an hour",
+          "query": "eagle diving",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+        },
+        {
+          "phrase": "carry off prey nearly their own body weight",
+          "query": "eagle talons",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "notorious thieves",
+          "query": "bald eagle",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+        },
+        {
+          "phrase": "holding an empty line",
+          "query": "fishing rod",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "compete with that",
+          "query": "eagle",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Bald_eagle.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "stole it right off the line",
+          "text": "STOLEN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "about two seconds",
+          "text": "2 SECONDS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a hundred miles an hour",
+          "text": "100 MPH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "ten times stronger than a human hand",
+          "text": "10x YOUR GRIP",
+          "color": "#30c0ff"
+        }
+      ],
+      "music_vibe": "hype"
+    },
+    "05_twin-tornadoes-touch-down-2026.json": {
+      "version": 1,
+      "slug": "twin-tornadoes-touch-down-2026",
+      "title": "Two Tornadoes Touched Down at the Exact Same Time",
+      "hashtags": [
+        "tornado",
+        "storm",
+        "weather",
+        "twin",
+        "severeweather",
+        "viral",
+        "scary",
+        "nature",
+        "midwest",
+        "wild",
+        "fyp",
+        "news"
+      ],
+      "script": "Two tornadoes dropped out of the same storm at the exact same time and started spinning side by side. Drivers pulled over and filmed as the twin funnels tore across open fields, close enough that they looked like they might merge into one. It's rare but real; a single powerful storm can spin up multiple tornadoes at once when the winds inside it wrap around each other. Sometimes a smaller twister even orbits the bigger one before getting swallowed up. Forecasters call these the most dangerous storms because the second funnel often hides behind the first. So where are you supposed to run when there are two?",
+      "shots": [
+        {
+          "phrase": "Two tornadoes dropped out of the same storm",
+          "query": "tornado funnel",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+        },
+        {
+          "phrase": "started spinning side by side",
+          "query": "twin tornadoes",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+        },
+        {
+          "phrase": "the twin funnels tore across open fields",
+          "query": "tornado field",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "close enough that they looked like they might merge",
+          "query": "tornado storm",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+        },
+        {
+          "phrase": "wrap around each other",
+          "query": "storm clouds",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a smaller twister even orbits the bigger one",
+          "query": "tornado",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+        },
+        {
+          "phrase": "the second funnel often hides behind the first",
+          "query": "dark storm",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "run when there are two",
+          "query": "tornado",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tornado.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Two tornadoes",
+          "text": "TWIN TORNADOES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "at the exact same time",
+          "text": "AT ONCE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "might merge into one",
+          "text": "ALMOST MERGED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "most dangerous storms",
+          "text": "MOST DANGEROUS",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_humpback-breaches-next-to-kayaker-2026.json": {
+      "version": 1,
+      "slug": "humpback-breaches-next-to-kayaker-2026",
+      "title": "A Humpback Whale Breached Right Next to a Kayaker",
+      "hashtags": [
+        "whale",
+        "humpback",
+        "ocean",
+        "kayak",
+        "breach",
+        "marine",
+        "viral",
+        "wild",
+        "sea",
+        "nature",
+        "fyp",
+        "news"
+      ],
+      "script": "A humpback whale the size of a bus breached right next to a kayaker, and the video is terrifying. The paddler was floating quietly when forty tons of whale exploded out of the water just feet away, crashing back down in a wall of white spray that nearly flipped the kayak. Humpbacks breach by launching almost their entire body into the air, and nobody fully knows why; it might be to communicate, knock off parasites, or just play. The kayaker was fine, just soaked and shaking. Getting that close to something that big is a once-in-a-lifetime near miss. So what makes a fifty-foot animal want to jump?",
+      "shots": [
+        {
+          "phrase": "A humpback whale the size of a bus breached right next to a kayaker",
+          "query": "humpback whale breaching",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+        },
+        {
+          "phrase": "forty tons of whale exploded out of the water",
+          "query": "whale breach",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+        },
+        {
+          "phrase": "a wall of white spray",
+          "query": "whale splash",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "launching almost their entire body into the air",
+          "query": "humpback jumping",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+        },
+        {
+          "phrase": "knock off parasites, or just play",
+          "query": "whale ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "just soaked and shaking",
+          "query": "kayak ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a once-in-a-lifetime near miss",
+          "query": "humpback whale",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+        },
+        {
+          "phrase": "want to jump",
+          "query": "whale",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_whale.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the size of a bus",
+          "text": "SIZE OF A BUS",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "forty tons of whale",
+          "text": "40 TONS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "nearly flipped the kayak",
+          "text": "ALMOST FLIPPED HIM",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "once-in-a-lifetime",
+          "text": "ONCE IN A LIFETIME",
+          "color": "#30c0ff"
+        }
+      ],
+      "music_vibe": "epic"
+    }
+  }
+}

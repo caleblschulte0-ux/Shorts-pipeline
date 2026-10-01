@@ -1,19 +1,19 @@
 [
   {
-    "topic": "Dollar General Quietly Passed McDonald's",
-    "title": "Dollar General Quietly Passed McDonald's",
+    "topic": "World's Urban Population Just Passed Rural For Good",
+    "title": "World's Urban Population Just Passed Rural For Good",
     "format": "graph_race",
-    "publish_at": "2026-09-30T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame and the hook says 'tripled' when the data shows about 2.5x.",
-    "elapsed_seconds": 84.7,
-    "package_path": "state/trending_packages/20260930/01_graph-dollar-general-vs-mcdonalds.json",
+    "publish_at": "2026-10-01T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/4cg4k2W7WK0",
+    "error": null,
+    "elapsed_seconds": 104.0,
+    "package_path": "state/trending_packages/20261001/01_world-urban-rural-population-crossover.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-133435_dollar_general_quietly_passed_mcdonald_s.mp4",
+    "video_path": "output/daily_20261001-110446_world_s_urban_population_just_passed_rur.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 8.375,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -27,24 +27,104 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame and the hook says 'tripled' when the data shows about 2.5x.",
+      "blocked": false,
+      "reason": "",
       "score": 78
     },
-    "blocked": true
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261001-world-s-urban-population-just-passed-rural-for-g-de671260"
+    }
   },
   {
-    "topic": "Podcast Ads Grew 7x In One Decade",
-    "title": "Podcast Ads Grew 7x In One Decade",
+    "topic": "One Billion Smartphones Shipped. Feature Phones Never Recovered.",
+    "title": "One Billion Smartphones Shipped. Feature Phones Never Recovered.",
     "format": "graph_race",
-    "publish_at": "2026-09-30T14:30:00Z",
+    "publish_at": "2026-10-01T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/DZmA2IuJu-M",
+    "error": null,
+    "elapsed_seconds": 92.6,
+    "package_path": "state/trending_packages/20261001/02_smartphones-buried-feature-phones.json",
+    "source": "brain",
+    "video_path": "output/daily_20261001-110630_one_billion_smartphones_shipped__feature.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261001-one-billion-smartphones-shipped-feature-phones-n-92d8bb61"
+    }
+  },
+  {
+    "topic": "Remote Work Briefly Beat The Office. Then It Reversed.",
+    "title": "Remote Work Briefly Beat The Office. Then It Reversed.",
+    "format": "graph_race",
+    "publish_at": "2026-10-01T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/zA1JAH1apJo",
+    "error": null,
+    "elapsed_seconds": 100.4,
+    "package_path": "state/trending_packages/20261001/03_remote-work-briefly-beat-office.json",
+    "source": "brain",
+    "video_path": "output/daily_20261001-110803_remote_work_briefly_beat_the_office__the.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 75
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261001-remote-work-briefly-beat-the-office-then-it-reve-0eff4c94"
+    }
+  },
+  {
+    "topic": "Sports Betting Just Passed The Box Office",
+    "title": "Sports Betting Just Passed The Box Office",
+    "format": "graph_race",
+    "publish_at": "2026-10-01T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race crowns radio and squashes podcasts' 7x growth into a flat line at zero, so the video argues the opposite of its title.",
-    "elapsed_seconds": 101.0,
-    "package_path": "state/trending_packages/20260930/03_graph-podcast-vs-radio-ads.json",
+    "error": "showrunner_block: showrunner BLOCK: A clean race with a real overtake and a strong crash-then-cross story, but the source line is cut off in every frame and the tip labels collide at 2021.",
+    "elapsed_seconds": 81.8,
+    "package_path": "state/trending_packages/20261001/04_sports-betting-passed-box-office.json",
     "source": "brain",
-    "video_path": "output/daily_20260930-133600_podcast_ads_grew_7x_in_one_decade.mp4",
+    "video_path": "output/daily_20261001-110943_sports_betting_just_passed_the_box_offic.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,25 +142,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The race crowns radio and squashes podcasts' 7x growth into a flat line at zero, so the video argues the opposite of its title.",
-      "score": 66
+      "reason": "showrunner BLOCK: A clean race with a real overtake and a strong crash-then-cross story, but the source line is cut off in every frame and the tip labels collide at 2021.",
+      "score": 83
     },
     "blocked": true
   },
   {
-    "topic": "Couple describes relief at rescue after whale destroys their yacht",
-    "angle": "A massive sperm whale rams a New Zealand yacht, forcing a dramatic rescue that highlights the perils of ocean sailing.",
-    "publish_at": "2026-09-30T14:30:00Z",
+    "topic": "The Kiosk Ate My Points. I Built A Folder.",
+    "title": "The Kiosk Ate My Points. I Built A Folder.",
+    "format": "reddit",
+    "publish_at": "2026-10-01T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean Reddit card and readable captions, but after the hook it is 46 seconds of unrelated Minecraft with no picture of a single story beat, so the cement-mixer story is never shown, only read.",
-    "elapsed_seconds": 367.7,
-    "title": "Cement mixer wrecked my store, I got free tools",
-    "package_path": "state/trending_packages/20260930-133754_auto_couple_describes_relief_at_rescue_after_.json",
-    "video_path": "output/daily_20260930-133754_couple_describes_relief_at_rescue_after_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: A potentially satisfying revenge arc is told almost entirely by captions over gameplay. The few illustrations are a blank phone and an unrelated construction-worker emoji held over the ending, so the payoff never lands visually.",
+    "elapsed_seconds": 290.4,
+    "package_path": "state/trending_packages/20261001/05_the-kiosk-ate-everyones-points.json",
+    "source": "brain",
+    "video_path": "output/daily_20261001-111231_the_kiosk_ate_my_points__i_built_a_folde.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.533,
+      "duration": 47.533,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -91,7 +172,124 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -23.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A potentially satisfying revenge arc is told almost entirely by captions over gameplay. The few illustrations are a blank phone and an unrelated construction-worker emoji held over the ending, so the payoff never lands visually.",
+      "score": 53
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Wrote The Forfeit Rule. It Disqualified Her Own Kid.",
+    "title": "She Wrote The Forfeit Rule. It Disqualified Her Own Kid.",
+    "format": "reddit",
+    "publish_at": "2026-10-01T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The frames deviate from the specified structure. The prompt states that after the opening card, 'the TOP half is a story illustration and the BOTTOM half is gameplay with captions.' However, all provi",
+    "elapsed_seconds": 199.8,
+    "package_path": "state/trending_packages/20261001/06_she-wrote-the-forfeit-rule-herself.json",
+    "source": "brain",
+    "video_path": "output/daily_20261001-111721_she_wrote_the_forfeit_rule__it_disqualif.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.267,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -21.9
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The frames deviate from the specified structure. The prompt states that after the opening card, 'the TOP half is a story illustration and the BOTTOM half is gameplay with captions.' However, all provi"
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "Thief caught on camera stealing woman\u2019s grocery delivery in NE Portland - KGW",
+    "angle": "A grocery\u2011delivery driver\u2019s van was hijacked on camera, exposing a rise in porch\u2011piracy and prompting neighborhoods to rethink curbside security.",
+    "publish_at": "2026-10-01T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "unfit_for_fiction: the story still names the real news (thief) after 2 retries",
+    "elapsed_seconds": 15.6,
+    "unfit": true,
+    "backfill": true
+  },
+  {
+    "topic": "RAW: NE: NEAR MISS WITH SEMI-TRUCK CAUGHT ON CAMERA - KXLY.com",
+    "angle": "A semi\u2011truck barely missed a school bus on a rural highway, the close call captured live and fueling debate over truck\u2011driver fatigue regulations.",
+    "publish_at": "2026-10-01T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 In frame 3, the top half of the screen is dark background instead of the expected story illustration (hospital icon) as seen in frames 1 and 2.",
+    "elapsed_seconds": 283.0,
+    "title": "I Turned a Health Threat Into a Five-Star Review",
+    "package_path": "state/trending_packages/20261001-111956_auto_raw__ne__near_miss_with_semi_truck_caugh.json",
+    "video_path": "output/daily_20261001-111956_raw__ne__near_miss_with_semi_truck_caugh.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.733,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.2
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "In frame 3, the top half of the screen is dark background instead of the expected story illustration (hospital icon) as seen in frames 1 and 2."
+    },
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Caught On Camera Kitten Rescued From I 80 In Paterson - News12 | New Jersey",
+    "angle": "A tiny kitten stranded on a busy interstate was rescued by a passerby, the heart\u2011warming clip trending as a reminder of roadside wildlife hazards.",
+    "publish_at": "2026-10-01T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Gameplay and captions are smooth, but the story's climax (free pastry, health inspection, manager) has no illustrations at all. The two pictures that do appear are generic emoji, so the payback never shows on screen.",
+    "elapsed_seconds": 295.4,
+    "title": "I Turned a Coffee Rage Into a Free Pastry Payback",
+    "package_path": "state/trending_packages/20261001-112427_auto_caught_on_camera_kitten_rescued_from_i_8.json",
+    "video_path": "output/daily_20261001-112427_caught_on_camera_kitten_rescued_from_i_8.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 39.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.7
     },
     "qa": {
       "ok": true,
@@ -100,52 +298,10 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean Reddit card and readable captions, but after the hook it is 46 seconds of unrelated Minecraft with no picture of a single story beat, so the cement-mixer story is never shown, only read.",
-      "score": 57
+      "reason": "showrunner BLOCK: Gameplay and captions are smooth, but the story's climax (free pastry, health inspection, manager) has no illustrations at all. The two pictures that do appear are generic emoji, so the payback never shows on screen.",
+      "score": 61
     },
     "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Botswana condemned for slaughtering elephants for independence celebrations",
-    "angle": "Botswana authorizes the hunting of 23 elephants in a controversial tradition, sparking international outrage over wildlife protection.",
-    "publish_at": "2026-09-30T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/ibRYfimMM1k",
-    "error": null,
-    "elapsed_seconds": 401.0,
-    "title": "I Got Served When My Manager \u2018Forgot\u2019 My Tip",
-    "package_path": "state/trending_packages/20260930-134402_auto_botswana_condemned_for_slaughtering_elep.json",
-    "video_path": "output/daily_20260930-134402_botswana_condemned_for_slaughtering_elep.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 39.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20260930-i-got-served-when-my-manager-forgot-my-tip-805c37e5"
-    },
     "backfill": true
   }
 ]
