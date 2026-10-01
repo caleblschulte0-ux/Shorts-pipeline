@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3cb4bb6bdf90c85017beab5746b3959ab7b279269d82381459ddc7acf17858db",
+  "prompt_used": "An editorial illustration for a short-form video: restaurant kiosk screen. It accompanies the narration: \"redeem rewards only through a kiosk\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1mFsoAg7yXKyDK2C6bDq5UWDgW6bGxonw",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s0-51d380c13f4a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1mFsoAg7yXKyDK2C6bDq5UWDgW6bGxonw",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "61945818a4e832d071050f912338053d3a183f61929d5483cdb4194c66a55732",
+    "bytes": 1550254,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:23:18.559Z"
+}
