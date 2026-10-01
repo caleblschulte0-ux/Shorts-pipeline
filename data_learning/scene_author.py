@@ -177,19 +177,34 @@ GLANCE_AT = (0.12, 0.55)        # the hero must read EARLY, and mid-beat
 GLANCE_MODEL = os.environ.get("SCENE_GLANCE_MODEL", "sonnet")
 GLANCE_TIMEOUT = int(os.environ.get("SCENE_GLANCE_TIMEOUT", "150"))
 
-# The look is UNAIDED: the viewer names what they see before anyone tells
-# them what it is meant to be. A single question that said "is this
-# recognisably a casket?" got a yes on the casket the operator could not
-# recognise — the name in the question was the hint he never had.
-_LOOK = """You are a viewer glancing at two frames of a short vertical \
-animation about: {topic}. Every word and the mascot have been removed, so \
-only the picture is left. The frames are these image files — READ each with \
-the Read tool:
+# The look is UNAIDED, BLIND and at PHONE SIZE. Unaided: the viewer names
+# what they see before anyone says what it is meant to be — a question
+# that said "is this recognisably a casket?" got a yes on the casket the
+# operator could not recognise. Blind: the viewer is not told the subject
+# either — told "cremation", a plank box in a chapel is a coffin; the
+# operator read the title too and still could not tell. Phone size: the
+# frames go in at 270x480, how a Short is actually seen; at 1080x1920 the
+# same viewer read the posted casket "from its own shape" three times out
+# of three, and at phone size "from the setting" three out of three — "no
+# lid detail or handles, so it could also be a wooden crate or chest",
+# which is the operator's note word for word (2026-10-01). A hero that is
+# only recognisable from where it stands is refused.
+PHONE = (270, 480)
+
+_LOOK = """You are a viewer glancing at two small frames of a short vertical \
+animation. Every word and the mascot have been removed, so only the picture \
+is left, and you have not been told what it is about. The frames are these \
+image files — READ each with the Read tool:
 {listing}
 
 Answer as ONE JSON object, nothing else:
 {{"object": "<the main object, in 2-5 words, as you would name it to a \
 friend who asked what it was>",
+ "object_from": "<'its own shape' if the object's own silhouette and details \
+told you what it is on sight; 'the setting' if you worked it out from where \
+it is and what is around it; 'a guess' if neither>",
+ "tells": "<the 1-3 details of the object ITSELF that identify it, or what \
+is missing that would ('no lid detail or handles')>",
  "substance": "<the material that is rising, piling, pouring, burning or \
 moving between the frames, in 1-4 words — what it LOOKS like, not what it \
 might stand for; 'nothing' if none>",
@@ -241,8 +256,9 @@ def ask_glance(prompt: str, images: list[str]) -> dict | None:
 
 
 def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
-    """Render the scene at each `at` with every word and Data REMOVED, to
-    PNGs. What is left is what a viewer has to recognise unaided."""
+    """Render the scene at each `at` with every word and Data REMOVED, at
+    PHONE size, to PNGs. What is left is what a viewer has to recognise
+    unaided."""
     import cairo
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -268,6 +284,8 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
             surf.flush()
             p = out_dir / f"glance_u{int(u * 100):02d}.png"
             surf.write_to_png(str(p))
+            from PIL import Image
+            Image.open(p).resize(PHONE, Image.LANCZOS).save(p)   # as a Short is seen
             paths.append(str(p))
     finally:
         SS.text, SS.fit_readout = real_t, real_ro
@@ -275,7 +293,7 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
     return paths
 
 
-def glance(fn, pts, topic: str, log=print) -> list[str]:
+def glance(fn, pts, log=print) -> list[str]:
     """Problems a VIEWER has with the picture alone: the hero is not
     recognisable, the substance reads as something else, the cause could
     not produce the effect. The viewer describes the frames UNAIDED first;
@@ -292,14 +310,15 @@ def glance(fn, pts, topic: str, log=print) -> list[str]:
             return [f"crashed while rendering the glance frames: {e}"]
         listing = "\n".join(f"- at {int(u * 100)}% of the beat: {p}"
                              for u, p in zip(GLANCE_AT, frames))
-        seen = ask_glance(_LOOK.format(topic=topic or "the data", listing=listing),
-                          frames)
+        seen = ask_glance(_LOOK.format(listing=listing), frames)
     if not isinstance(seen, dict):
         log("[scene_author] no viewer for the glance — passed on code checks only")
         return []
     obj = str(seen.get("object") or "?").strip()
     sub = str(seen.get("substance") or "?").strip()
     chg = str(seen.get("change") or "?").strip()
+    frm = str(seen.get("object_from") or "").strip().lower()
+    tells = str(seen.get("tells") or "").strip()
     ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
                                    hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
                                    cause=decl["CAUSE"]), [])
@@ -313,6 +332,14 @@ def glance(fn, pts, topic: str, log=print) -> list[str]:
                         f"unaided, they called it {obj!r}. Draw it by its signature "
                         f"silhouette and its tells, big, before any effect "
                         f"touches it. {why}".rstrip())
+    elif frm and "own shape" not in frm:
+        # named right, but only from where it stands: the operator's casket
+        problems.append(f"the hero {decl['HERO']!r} is recognisable only from "
+                        f"its setting, not from its own shape — at phone size a "
+                        f"viewer said: {tells!r}. Give the object itself the "
+                        f"tells that name it at a glance (a casket: the six-sided "
+                        f"taper, the lid seam, the handles), big enough to read "
+                        f"small".rstrip())
     if ans.get("substance_fits") is False:
         problems.append(f"the substance reads as {sub!r}, not {decl['SUBSTANCE']!r} "
                         f"— a material keeps its own colour and form (ash is grey "
@@ -916,7 +943,7 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
             problems = verify(fn, pts, say, secs)
             if not problems:
                 # the code agrees; now a VIEWER has to (hero, substance, cause)
-                problems = glance(fn, pts, topic, log=log)
+                problems = glance(fn, pts, log=log)
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:

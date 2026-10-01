@@ -354,9 +354,10 @@ class AViewerHasToRecogniseIt(unittest.TestCase):
 
         def viewer(prompt, images):
             looks.append((prompt, list(images)))
-            if images:                       # the UNAIDED look: no hero named
-                assert "heat haze" not in prompt
-                return {"object": "a wooden crate", "substance": "blue liquid",
+            if images:                       # the UNAIDED, BLIND look
+                assert "heat haze" not in prompt and "cremation" not in prompt
+                return {"object": "a wooden crate", "object_from": "its own shape",
+                        "tells": "planks", "substance": "blue liquid",
                         "change": "the liquid rises"}
             if len(looks) == 2:              # the judgement on the first draft
                 return {"is_hero": False, "substance_fits": False,
@@ -372,14 +373,49 @@ class AViewerHasToRecogniseIt(unittest.TestCase):
         self.assertIn("'a wooden crate'", asks[1])
         self.assertIn("'blue liquid'", asks[1])
         self.assertIn("a rope cannot raise a liquid", asks[1])
-        # the look is unaided (subject only); the judgement holds it against
-        # the scene's own declarations
+        # the look is unaided and blind; the judgement holds it against the
+        # scene's own declarations
         self.assertEqual(len(looks), 4)
-        self.assertIn("cremation", looks[0][0])
         self.assertEqual(len(looks[0][1]), len(SA.GLANCE_AT))
         self.assertIn("a heat haze over a road", looks[1][0])
         self.assertIn("a wooden crate", looks[1][0])
         self.assertEqual(looks[1][1], [])
+
+    def test_a_hero_known_only_from_its_setting_is_refused(self):
+        """The posted casket: at phone size the blind viewer named it, and
+        said it had 'no lid detail or handles, so it could also be a wooden
+        crate or chest' — recognised from the chapel, not from itself."""
+        from data_learning import scene_author as SA
+        asks = []
+
+        def brain(prompt, model=None, timeout=None):
+            asks.append(prompt)
+            return GOOD_MIN
+
+        def viewer(prompt, images):
+            if images:
+                return {"object": "a coffin on a table",
+                        "object_from": "the setting" if len(asks) == 1 else "its own shape",
+                        "tells": "no lid detail or handles",
+                        "substance": "fire", "change": "it burns"}
+            return {"is_hero": True, "substance_fits": True,
+                    "cause_makes_sense": True, "why": ""}
+        with mock.patch.object(SA, "ask_brain", brain), \
+                mock.patch.object(SA, "ask_glance", viewer):
+            fn, _ = SA.author("t", "x", "y", self.PTS, log=lambda m: None)
+        self.assertIsNotNone(fn)
+        self.assertEqual(len(asks), 2)
+        self.assertIn("only from its setting", asks[1])
+        self.assertIn("no lid detail or handles", asks[1])
+
+    def test_the_viewer_sees_the_frames_at_phone_size(self):
+        from data_learning import scene_author as SA
+        from PIL import Image
+        import tempfile
+        fn = SA.compile_scene(GOOD_MIN)
+        with tempfile.TemporaryDirectory() as td:
+            for p in SA.glance_frames(fn, self.PTS, td):
+                self.assertEqual(Image.open(p).size, SA.PHONE)
 
     def test_no_viewer_passes_on_the_code_checks_and_says_so(self):
         from data_learning import scene_author as SA

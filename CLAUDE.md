@@ -253,8 +253,10 @@ constants blanked), never on the prose that explains it.
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
   of blue "ash" that read as water, a rope "pulling a liquid up"). Every
   scene declares `HERO:` / `SUBSTANCE:` / `CAUSE:` in its docstring, and
-  `scene_author.glance` shows two wordless, Data-less frames to a brain
-  that must agree with all three before the scene is used. Keep it: it is
+  `scene_author.glance` shows two wordless, Data-less, PHONE-SIZED frames
+  to a brain that is not told the subject; it must name the hero from the
+  object's own shape (not its setting) and agree with all three before the
+  scene is used. Keep it: it is
   the only check that sees what the code cannot. `docs/CHANNEL_LOOK.md`
   §"A VIEWER has to recognise it".
 

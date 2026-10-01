@@ -175,9 +175,15 @@ every teacher passes (`tests/test_subject_scenes.py`,
   every scene's docstring opens with `HERO:`, `SUBSTANCE:` and `CAUSE:`
   (refused without them), and after the code checks pass, the GLANCE
   (`scene_author.glance`) renders two frames with every word and Data
-  removed and asks a brain with no context but the subject to name the
-  object, the material, and whether the act would cause the change. A
-  "no" goes back to the drawing brain in the viewer's own words. The three
+  removed, at PHONE size (270×480, how a Short is seen), and asks a brain
+  that is NOT told the subject to name the object and say whether it knew
+  from the object's own shape or from the setting, then name the material
+  and what changes; a second, text-only call holds that against HERO /
+  SUBSTANCE / CAUSE. A hero known only from its setting is refused too:
+  at full size the viewer read the posted casket "from its own shape" 3/3,
+  at phone size "from the setting" 3/3 — "no lid detail or handles, so it
+  could also be a wooden crate" — which is the operator's note. A "no"
+  goes back to the drawing brain in the viewer's own words. The three
   rules behind it, in the prompt: **recognisable at a glance** (signature
   silhouette and tells, drawn whole before the effect, readable through
   it); **the substance is the subject's own material** in its own colour
