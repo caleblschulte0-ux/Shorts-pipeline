@@ -79,7 +79,10 @@ class EveryNameAMachinePassesMustRESOLVE(unittest.TestCase):
 
     def test_every_act_a_machine_asks_for_reaches_a_real_animator(self):
         names = _scene_host_act_literals()
-        self.assertGreaterEqual(len(names), 6, "the AST scan found nothing")
+        # Three, not six: since 2026-10-01 the agent machines put him ON the
+        # part through `place_agent` (tests/test_data_is_the_cause.py), and
+        # only the `self`/`patient` few still pose a reaction through here.
+        self.assertGreaterEqual(len(names), 3, "the AST scan found nothing")
         bad = {n: vs.scene_act(n) for n in names
                if vs.scene_act(n) not in md.ANIMATORS}
         self.assertEqual(bad, {}, f"acts that fall back to a carry pose: {bad}")

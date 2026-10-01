@@ -598,6 +598,253 @@ def scene_host(action: str, phase: float, insight=None, kind: str = ""):
     return img
 
 
+# ============================================================================
+# DATA IS THE CAUSE. Every machine declares its causal relation to him.
+#
+# Operator, 2026-10-01: "this jar of water raises up bit by bit, right? And
+# what's our guy do? Sits there and flails his arms like always. Why doesn't
+# he have a thing of water in his hands? And he's pouring water into it. And
+# he's the one that's making the water rise. ... let's say we're doing a race
+# car thing ... he would be the one driving the race car."
+#
+# Every `scene_host` role is a REACTION — point at it, strain beside it, cheer
+# at it. Forty machines placed him NEXT TO the thing that moves, and the judge
+# said what that looks like, 203 times since 2026-09-18: "stands with arms
+# out beside the draining tank doing nothing to it", "rides the fill edge",
+# "sits on the scale's 2025 pan, but his weight is not what tips it".
+#
+# So each machine names, here, which of three things is true of him:
+#
+#   ("agent", verb)   he CAUSES the motion: `place_agent` puts his hands on
+#                     the moving part (`mascot_director.AGENT_ACTS`), and the
+#                     machine draws the stream / rope / item from his hands.
+#   ("self", why)     he IS the moving part — the runner, the jumper.
+#   ("patient", why)  the data acts ON him and that effect is the claim — the
+#                     weight on his back, the tower that dwarfs him.
+#
+# There is no fourth state. "Beside it, reacting" is `decorative_mascot`, and
+# `tests/test_data_is_the_cause.py` holds every machine to one of these three
+# and MEASURES the agent ones: his anchor lands on pixels that move.
+# ============================================================================
+AGENCY: dict = {
+    "unit_figures": ("agent", "mark"),   # he stamps the figure that lights
+    "dot_field":    ("agent", "mark"),
+    "balance":      ("agent", "lift"),   # he hangs on the heavy pan: his weight tips it
+    "road":         ("agent", "travel"),
+    "tape":         ("agent", "draw"),   # he pulls the tape out
+    "bridge":       ("agent", "stack"),  # he lays the deck
+    "centre":       ("agent", "stack"),  # he raises each one to its height
+    "coaster":      ("agent", "travel"),
+    "thermometer":  ("agent", "heat"),   # he holds the flame under the bulb
+    "wheel":        ("agent", "sweep"),  # palms on the rim, from the ground
+    "darts":        ("agent", "drop"),   # he throws them
+    "queue":        ("patient", "the line grows behind him; he is the counter "
+                                "it is all waiting for, stamping"),
+    "bottleneck":   ("agent", "pinch"),
+    "leaky":        ("agent", "drain"),  # he opened the tap
+    "inout":        ("agent", "drain"),  # the inflow valve
+    "sorter":       ("agent", "turn"),   # the sorter's crank
+    "chain":        ("agent", "turn"),   # the line's drive
+    "spinner":      ("agent", "sweep"),  # he spins it
+    "doors":        ("agent", "draw"),   # he opens each door
+    "fan":          ("agent", "light"),  # the cone is his lamp
+    "gears":        ("agent", "turn"),
+    "slider":       ("agent", "sweep"),
+    "density":      ("agent", "drop"),   # he fills the square
+    "nest":         ("agent", "drop"),
+    "chairs":       ("agent", "draw"),   # he pulls the chair away
+    "hourglass":    ("agent", "flip"),
+    "trophies":     ("agent", "stack"),  # he sets each cup on the shelf
+    "basket":       ("agent", "drop"),
+    "tower":        ("agent", "stack"),
+    "funnel":       ("agent", "fill"),   # he pours them in at the top
+    "conveyor":     ("agent", "turn"),   # the belt's crank
+    "pipes":        ("agent", "drain"),  # the trunk's valve
+    "spotlight":    ("agent", "light"),
+    "staircase":    ("agent", "stack"),  # he builds the step he then climbs
+    "elevator":     ("agent", "lift"),   # on the rope that lowers the car
+    "gauge":        ("agent", "sweep"),  # palms on the needle
+    "timeline":     ("agent", "travel"),
+    "closing":      ("agent", "stack/travel"),  # bars: stacks; area: drives
+    "hole":         ("agent", "cut"),
+    "copies":       ("agent", "mark"),
+    "fill_vessel":  ("agent", "sweep"),  # charts: he pushes the arc's tip round
+    "race":         ("self", "the runners are him; the leader's distance is the data"),
+    "hurdle":       ("self", "the height of his jump is the number"),
+    "burden":       ("patient", "the weight on his back is the claim"),
+    "skyline":      ("patient", "he is the ruler the tallest tower dwarfs"),
+}
+
+#: Agent machines that put him on the part by other means than `place_agent`
+#: — the race draws every runner AS him with `scene_host`.
+AGENT_BY_OTHER_MEANS = {"race": "every runner is a scene_host sprite"}
+
+#: Every `place_agent` call this process has made: (kind, verb, at, box).
+#: The test reads it to check his anchor landed on the moving part.
+_AGENT_LOG: list = []
+_AGENT_CACHE: dict = {}
+
+
+def scene_agent(verb: str, phase: float, insight=None, kind: str = ""):
+    """(img, anchor_xy, tip_xy) for an AGENT act — Data with his hands on the
+    moving part — or (None, None, None) when no rig is available.
+
+    `anchor_xy` and `tip_xy` are in the returned image's own pixels, so a
+    caller can put the anchor exactly where the part is. Same clock as
+    `scene_host`: the beat's phase, not the build's reveal."""
+    from . import mascot_director as _md
+    act = _md.agent_act(verb)
+    if act is None:
+        return None, None, None
+    _bp = _BEAT_PHASE if _BEAT_PHASE is not None else charts.beat_phase()
+    if _bp is not None:
+        phase = _bp
+    key = (act, round(max(0.0, min(1.0, phase)) * 60) / 60)
+    hit = _AGENT_CACHE.get(key)
+    if hit is not None:
+        return hit
+    t = charts._perf_phase(key[1])
+    try:
+        import io
+        from PIL import Image as _PImage
+        svg = _md.compose_anim({"action": act, "prop": "none", "ground": False},
+                               t)
+        size = 300
+        img = _PImage.open(io.BytesIO(_md._rasterise(svg, size))).convert("RGBA")
+    except Exception:  # noqa: BLE001 — no rasteriser: no host, never a crash
+        return None, None, None
+    # rig -> raster: ANIM_VIEW is "-90 -60 520 520" drawn into a 300px square
+    sc = size / 520.0
+
+    def _px(pt):
+        return ((pt[0] + 90.0) * sc, (pt[1] + 60.0) * sc)
+    anchor = _px(_md.agent_point(verb, t))
+    tip = _px(_md.agent_point(verb, t, tip=True))
+    bb = img.getbbox()
+    if bb and (bb[2] - bb[0]) > 0 and (bb[3] - bb[1]) > 0:
+        img = img.crop(bb)
+        anchor = (anchor[0] - bb[0], anchor[1] - bb[1])
+        tip = (tip[0] - bb[0], tip[1] - bb[1])
+    img.info[HOST_MARK] = True
+    if len(_AGENT_CACHE) > 400:
+        _AGENT_CACHE.clear()
+    _AGENT_CACHE[key] = (img, anchor, tip)
+    return img, anchor, tip
+
+
+def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
+                at, height: float = 260, floor=None, hmin: float = 150,
+                hmax: float = 460, xlim=None, flip: bool = False):
+    """Composite Data DOING the verb, with the act's anchor ON ``at``.
+
+    ``at`` is where the machine says its moving part is — the rim he pours
+    over, the needle tip, the crank's axle. He is scaled to ``height`` and
+    placed so the anchor lands there. With a ``floor`` he is kept honest
+    about standing: if the part is above his reach he is scaled up to it
+    (within ``hmin``..``hmax``) and, past that, a LADDER is drawn from the
+    floor to his feet — a man pouring over a tall rim is on a ladder. If the
+    part is lower than his hands he is scaled down to it. ``xlim`` clamps
+    his left/right edges inside the frame.
+
+    Returns ``(box, tip_xy)`` — his bounding box on the canvas and where the
+    act's business end is (the bucket's lip, the stamp's face), for the
+    machine to draw the stream or the item from — or ``(None, None)``.
+
+    Every act works to his RIGHT; ``flip`` mirrors him for a part that is to
+    his left (a valve on the right wall of a bucket)."""
+    img, anchor, tip = scene_agent(verb, reveal, insight, kind)
+    _AGENT_LOG.append((kind, verb, (float(at[0]), float(at[1]))))
+    if img is None:
+        return None, None
+    ax, ay = anchor
+    if flip:
+        from PIL import ImageOps as _IO
+        key = ("flip", id(img))
+        m = _AGENT_CACHE.get(key)
+        if m is None:
+            m = _IO.mirror(img)
+            m.info[HOST_MARK] = True
+            _AGENT_CACHE[key] = m
+        img = m
+        ax = img.width - ax
+        tip = (img.width - tip[0], tip[1])
+    h = float(height)
+    if floor is not None:
+        # the height at which his feet are on the floor with the anchor at
+        # `at`: feet are the sprite's bottom edge
+        need = (float(floor) - float(at[1])) / max(1.0, (img.height - ay))
+        h_fit = need * img.height
+        if h_fit > 0:
+            h = max(hmin, min(hmax, h_fit))
+    s = h / max(1, img.height)
+    w = max(1, int(img.width * s))
+    hh = max(1, int(h))
+    x = at[0] - ax * s
+    y = at[1] - ay * s
+    if xlim is not None:
+        x = min(max(x, xlim[0]), xlim[1] - w)
+    x, y = int(round(x)), int(round(y))
+    feet = y + hh
+    if floor is not None and feet < float(floor) - 14:
+        draw_ladder(d, x + w // 2, feet, float(floor), w)
+    canvas.alpha_composite(_fit(img, w, hh), (x, y))
+    box = (x, y, x + w, y + hh)
+    _AGENT_LOG[-1] = (kind, verb, (float(at[0]), float(at[1])), box)
+    return box, (x + tip[0] * s, y + tip[1] * s)
+
+
+def draw_ladder(d, cx, top, floor, width):
+    """A plain stepladder from the floor up to his feet: two rails, rungs
+    every 56px, a top platform under him. Neutral ink — it is furniture, and
+    it is only ever drawn because the part he works is up there."""
+    hw = max(28, int(width * 0.22))
+    col = _rgba(TEXT, 150)
+    d.rounded_rectangle([cx - hw - 6, top - 6, cx + hw + 6, top + 10],
+                        radius=5, fill=_rgba(TEXT, 200))
+    for sx in (cx - hw, cx + hw):
+        d.line([(sx, top), (sx, floor)], fill=col, width=8)
+    y = top + 56
+    while y < floor - 20:
+        d.line([(cx - hw, y), (cx + hw, y)], fill=col, width=6)
+        y += 56
+
+
+def draw_lob(d, src, dst, t: float, color, r: int = 14):
+    """The thing he just threw, in the air between his hand and where it
+    lands: one item on a parabola, cycling with the beat."""
+    u = (t * 2.0) % 1.0
+    sx, sy = src
+    dx, dy = dst
+    x = sx + (dx - sx) * u
+    y = sy + (dy - sy) * u - 160.0 * u * (1.0 - u)
+    d.rounded_rectangle([x - r, y - r, x + r, y + r], radius=4,
+                        fill=_rgba(color, 235))
+
+
+def draw_stream(d, src, dst, color, t: float, width: int = 18):
+    """What he is pouring: a column from the bucket's lip to the surface,
+    swaying, with a splash where it lands. Drawn by the machine, which knows
+    where the surface is."""
+    sx, sy = src
+    dx, dy = dst
+    if dy <= sy + 6:
+        return
+    pts = []
+    n = max(2, int((dy - sy) / 14))
+    for k in range(n + 1):
+        u = k / n
+        x = sx + (dx - sx) * u + 5.0 * _math.sin(u * 9.0 + t * 40.0) * (1.0 - u)
+        pts.append((x, sy + (dy - sy) * u))
+    d.line(pts, fill=_rgba(color, 235), width=width, joint="curve")
+    d.line(pts, fill=_rgba(charts.CARD, 120), width=max(3, width // 4),
+           joint="curve")
+    for k in range(5):                    # the splash
+        a = (k / 5.0) * _math.pi + t * 7.0
+        r_ = 10 + 8 * ((k * 7) % 3)
+        px, py = dx + _math.cos(a) * r_ * 2.2, dy - abs(_math.sin(a)) * r_
+        d.ellipse([px - 5, py - 5, px + 5, py + 5], fill=_rgba(color, 200))
+
+
 # The camera push (`_push`) zooms the finished canvas to 1.04 and crops back,
 # which eats about 22px from each edge at full push. Anything drawn closer
 # than this to the frame edge WILL be cropped, and a cropped headline is the
@@ -1360,17 +1607,16 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     # He stands on the figure that just landed, so he ADVANCES along the block
     # as the count grows: contact for STRICT_CONTACT, and honest motion for the
     # whole build rather than a sprite parked in a corner.
-    host = scene_host("point", reveal, label, "unit_figures")
-    if host is not None:
-        mh = int(max(150, min(300, side * 1.7)))
-        mw = int(host.width * mh / host.height)
-        hx = int(min(max(cx_last + side * 0.55, 8), W - mw - 8))
-        hy = int(cy_last - side // 2 - mh + side * 0.30)
-        # NEVER ABOVE THE VALUE LINE. On a top-row figure his head reached
-        # the beat title ("the mascot covers the last letter of the title,
-        # leaving 'the vaping crackdow'", 2026-09-22). The value line sits at
-        # by0 + 58 in 60pt; he starts under it, among the figures if he must.
-        canvas.alpha_composite(_fit(host, mw, mh), (hx, max(by0 + 96, hy)))
+    # He STAMPS the figure that just landed, so he ADVANCES along the block
+    # as the count grows: contact for STRICT_CONTACT, honest motion for the
+    # whole build, and the count is his doing. NEVER ABOVE THE VALUE LINE:
+    # on a top-row figure his head reached the beat title ("the mascot
+    # covers the last letter of the title, leaving 'the vaping crackdow'",
+    # 2026-09-22) — the stamp lands on the figure's top, which keeps his
+    # head a stamp's height above it, and the row sits under by0 + 96.
+    place_agent(canvas, d, "mark", reveal, label, "unit_figures",
+                (cx_last, max(by0 + 96 + side * 0.4, cy_last - side * 0.5)),
+                height=int(max(150, min(300, side * 1.7))), xlim=(8, W - 8))
     return (value, "art", cx_last, cy_last)
 
 
@@ -1574,19 +1820,17 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # THE HOST RIDES THE HEAVY PAN. `render_scene` marks every scene
     # host_baked, which suppresses the travelling overlay — so an element that
     # draws no host ships a beat with none at all.
-    host = scene_host("cheer" if hi else "point", reveal, label,
-                      "balance")
-    if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        hx, hy = (lx, ly) if hi else (rx, ry)
-        # he rides ON TOP of the weights he is standing for, so they are
-        # never hidden behind him
-        _rows = (landed[0 if hi else 1] + 2) // 3
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(min(max(hx - mw // 2, 8), W - mw - 8)),
-             int(hy + 78 - mh - _rows * (_bh + 4))))
+    # HIS WEIGHT TIPS IT: he hangs off the heavy pan's underside, hauling it
+    # down. "He sits on the scale's 2025 pan, but his weight is not what tips
+    # it" (the judge, 2026-09-30) — riding on top of the weights was exactly
+    # that.
+    # Off the pan's OUTER edge, clear of the number and name printed under
+    # the pan's centre.
+    hx, hy = (lx, ly) if hi else (rx, ry)
+    _side = -1 if hi else 1
+    place_agent(canvas, d, "lift", reveal, label, "balance",
+                (hx + _side * (pan_w // 2 + 70), hy + 112), height=230,
+                xlim=(8, W - 8), flip=hi)
     return (value, "art", int(lx), int(ly + 98))
 
 
@@ -1688,16 +1932,12 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
                            _cx(box), box, min_size=26)
     d.text((_cx(box), bot + 40), _lt, font=_lf,
            fill=_rgba(TEXT, int(235 * na)), anchor="mm")
-    host = scene_host("point", reveal, label, "dot_field")
-    if host is not None and cx_last is not None:
-        mh = int(max(150, min(280, side * 2.2)))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(min(max(cx_last + side * 0.6, 8), W - mw - 8)),
-             int(max(by0 + 110, cy_last - side // 2 - mh + side * 0.3))))
     if cx_last is None:
         return None
+    # He STAMPS the unit that just lit — the "k in n" is counted out by him.
+    place_agent(canvas, d, "mark", reveal, label, "dot_field",
+                (cx_last, max(by0 + 110 + side * 0.4, cy_last - side * 0.5)),
+                height=int(max(150, min(280, side * 2.2))), xlim=(8, W - 8))
     return (value, "art", cx_last, cy_last)
 
 
@@ -1805,16 +2045,14 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
                             max(60, _room), min_size=18)
         d.text((_pts_x[_i], _axis_y + 40), _yt, font=_yf,
                fill=_rgba(TEXT, 185), anchor="mm")
-    host = scene_host("point", reveal, insight, "road")
-    if host is not None:
-        # no taller than the room between the road and the year labels:
-        # at 300px his head covered the last year (a_audit: "2022")
-        mh = int(max(180, min(300, road_y + 14 - (_axis_y + 66))))
-        mw = int(host.width * mh / host.height)
-        # He drives on the road at the RIGHT, clear of the year labels that
-        # now run under the axis across the middle of the frame.
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 70), int(road_y - mh + 14)))
+    # HE DRIVES. A car on the road at the RIGHT, clear of the year labels
+    # that run under the axis across the middle of the frame; no taller
+    # than the room between the road and those labels (at 300px his head
+    # covered the last year — a_audit: "2022").
+    place_agent(canvas, d, "travel", reveal, insight, "road",
+                (bx1 - 190, road_y + 78),
+                height=int(max(180, min(300, road_y + 14 - (_axis_y + 66)))),
+                xlim=(8, W - 8))
     d.text(((bx0 + bx1) // 2, by0 + 58), charts._ulabel(mid, unit, group=True),
            font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
     lo_l = getattr(items[0], "label", "")
@@ -1942,15 +2180,11 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((lo + hi) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("strain", reveal, insight, "tape")
-    if host is not None:
-        mh = int(min(340, max(0, _ground - (y + 150))))
-        if mh > 120:
-            mw = int(host.width * mh / host.height)
-            canvas.alpha_composite(
-                _fit(host, mw, mh),
-                (int(min(bx1 - mw - 20, max(bx0 + 20, x1 - mw // 2))),
-                 int(_ground - mh)))
+    # HE PULLS THE TAPE OUT: both hands on its end, hauling it to the right
+    # from the floor, so the span is measured because he measured it.
+    place_agent(canvas, d, "draw", reveal, insight, "tape",
+                (x1 + 6, y), height=min(340, max(150, _ground - (y + 60))),
+                floor=_ground, xlim=(8, W - 8))
     return (b, "art", x1, y)
 
 
@@ -2050,12 +2284,11 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, by0 + 90), "how far it still has to go",
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
     y = deck_y
-    host = scene_host("think", reveal, insight, "bridge")
-    if host is not None:
-        mh = 300
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(x0 + 6, edge - mw + 20)), int(y - mh)))
+    # HE LAYS THE DECK: from a ladder on the chasm floor, hands setting the
+    # deck's leading end — it reaches as far as it does because he built it.
+    place_agent(canvas, d, "stack", reveal, insight, "bridge",
+                (edge - 8, deck_y + 30), height=300, floor=_floor,
+                xlim=(8, W - 8))
     return (v, "art", edge, y)
 
 
@@ -2094,15 +2327,13 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
                font=_cf, fill=_rgba(TEXT, int(190 * a)), anchor="mm")
     med = vals[mid_i]
     mx = int(bx0 + 60 + mid_i * w + w / 2)
-    host = scene_host("point", reveal, insight, "centre")
-    if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        # he WALKS to the middle across the reveal
-        start = bx0 + 60
-        hx = start + (mx - start) * e
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(hx - mw // 2), int(bot - mh)))
+    # HE RAISES EACH ONE to its height, hands on top of the one rising now,
+    # so he walks the row left to right and the line-up is his doing.
+    _cur = max(0, min(n - 1, int(e * n)))
+    _ch = (bot - top) * (vals[_cur] / vmax) * min(1.0, max(0.0, e * n - _cur) * 2.0)
+    place_agent(canvas, d, "stack", reveal, insight, "centre",
+                (bx0 + 60 + _cur * w + 14, bot - _ch), height=230, floor=bot,
+                xlim=(8, W - 8))
     d.text(((bx0 + bx1) // 2, by0 + 58),
            f"middle:  {charts._ulabel(med, unit, group=True)}",
            font=_pil_font(66), fill=_rgba(color, 255), anchor="mm")
@@ -2142,13 +2373,10 @@ def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
         d.line(pts, fill=_rgba(color, 255), width=13, joint="curve")
         for x, y in pts[:-1]:                  # the rails' supports
             d.line([(x, y + 8), (x, bot + 30)], fill=_rgba(TEXT, 45), width=4)
-    host = scene_host("cheer" if ys[k_end] < ys[max(0, k_end - 1)]
-                      else "shock", reveal, insight, "reversal")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx_ - mw // 2), int(cy_ - mh + 12)))
+    # HE DRIVES THE CAR along the track: it is where it is because he took
+    # it there.
+    place_agent(canvas, d, "travel", reveal, insight, "coaster",
+                (cx_, cy_ + 4), height=200, xlim=(8, W - 8))
     head, sub = coaster_caption(items, vals, unit)
     d.text(((bx0 + bx1) // 2, by0 + 58), head,
            font=_pil_font(64), fill=_rgba(color, 255), anchor="mm")
@@ -2248,22 +2476,11 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
         d.text((cx, bot + 60), _rt, font=_rf,
                fill=_rgba(_look_hex(_look.ink_on(_look_rgb(color))), int(255 * e2)),
                anchor="mm")
-    host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
-                      reveal, insight, "thermometer")
-    if host is not None:
-        mh = 220
-        mw = int(host.width * mh / host.height)
-        # HE RIDES THE READING. On a bracket fixed to the meniscus, the heat
-        # lifts him: contact, cause and effect, and a big shape that moves on
-        # every frame of the climb. Parked at the foot of the tube he was a
-        # bystander, and the climb alone is too slow a change for the gate
-        # to see (a slow rise measured 72% held frames, 2026-09-24).
-        bx_ = cx + tube_w // 2 - 6
-        by_ = min(fy + 10, bot - 40)
-        d.rounded_rectangle([bx_, by_, bx_ + mw + 30, by_ + 16], radius=8,
-                            fill=_rgba(TEXT, 230))
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx_ + 22), int(by_ - mh + 6)))
+    # HE HEATS THE BULB: a flame under it, so the mercury climbs because of
+    # him. Riding the meniscus on a bracket (the previous version) was the
+    # data lifting a passenger.
+    place_agent(canvas, d, "heat", reveal, insight, "thermometer",
+                (cx - 100, bot + 30), height=240, xlim=(8, W - 8))
     _sf, _sl = fit_text(d, str(getattr(star, "label", "")), 44,
                         max(200, bx1 - bx0 - 60), min_size=26)
     d.text((cx, by0 + 58), _sl, font=_sf, fill=_rgba(TEXT, 230), anchor="mm")
@@ -2313,15 +2530,11 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
         big = 16 + 22 * ((v - lo) / span)
         d.ellipse([px - big, py - big, px + big, py + big],
                   fill=_rgba(color if v >= hi - 1e-9 else REST, 235))
-    host = scene_host("cheer", reveal, insight, "wheel")
-    if host is not None:
-        a = turn - _math.pi / 2
-        px = int(cx + _math.cos(a) * R)
-        py = int(cy + _math.sin(a) * R)
-        mh = 150
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(px - mw // 2), int(py - mh // 2)))
+    # HE TURNS THE WHEEL: palms on the rim at the bottom, from the ground,
+    # pushing it round. In a car he was a passenger the data carried.
+    place_agent(canvas, d, "sweep", reveal, insight, "wheel",
+                (cx + R * 0.40, cy + R * 0.90), height=250, floor=_gy + 18,
+                xlim=(8, W - 8))
     d.text((cx, by0 + 58),
            f"{charts._ulabel(lo, unit)} to {charts._ulabel(hi, unit)}, "
            f"every year", font=_pil_font(52), fill=_rgba(color, 255),
@@ -2370,6 +2583,12 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
     # filled and then held: a 0.908 duplicate ratio and a 47-frame frozen run.
     # A throw on a loop is also the honest reading — every one of them lands
     # in the same small group, which is the finding.
+    # HE THROWS THEM. The darts in the air leave his hand, to the right of
+    # the board (the act is mirrored so he faces it).
+    _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "darts",
+                             (cx + R + 30, cy - 40), height=220,
+                             xlim=(8, W - 8), flip=True)
+    _from = _tip if _tip is not None else (cx + R + 30, cy - 40)
     for k in range(2):
         t_ = (reveal * 1.6 + k * 0.5) % 1.0
         j = (k * 3) % max(1, len(vals))
@@ -2377,17 +2596,11 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         rad = R * 0.82 * abs(vals[j] - mean) / span
         tx = cx + _math.cos(ang) * rad
         ty = cy + _math.sin(ang) * rad
-        fx = tx + (bx1 - 40 - tx) * (1.0 - t_)
-        fy = ty - (ty - (by0 + 150)) * (1.0 - t_)
+        fx = tx + (_from[0] - tx) * (1.0 - t_)
+        fy = ty - (ty - _from[1]) * (1.0 - t_)
         r_ = 17 + 16 * (1.0 - t_)
         d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
                   fill=_rgba(_c.HIGHLIGHT, 235))
-    host = scene_host("think", reveal, insight, "darts")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx + R + 20), int(cy + R - mh)))
     d.text((cx, by0 + 58), "all within "
            f"{charts._ulabel(span, unit)}", font=_pil_font(58),
            fill=_rgba(color, 255), anchor="mm")
@@ -2445,12 +2658,16 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     wait_f = 1.0 + frac * 29.0
     n_wait = max(1, int(wait_f))
     arrive = wait_f - n_wait
-    host = scene_host("point", reveal, insight, "queue")
-    mh = 280
-    mw = int(host.width * mh / host.height) if host is not None else 170
+    # HE IS THE COUNTER: at the head of the line, stamping each arrival
+    # through, from the floor. The line is as long as it is because that is
+    # how fast he stamps. A pointing host beside a queue was a bystander.
     hx = bx0 + 60
-    if host is not None:
-        canvas.alpha_composite(_fit(host, mw, mh), (hx, ground - mh))
+    mw = 190
+    d.rounded_rectangle([hx + mw - 40, ground - 104, hx + mw + 60, ground],
+                        radius=8, fill=_rgba(TEXT, 120))
+    place_agent(canvas, d, "mark", reveal, insight, "queue",
+                (hx + mw + 10, ground - 104), height=280, floor=ground,
+                xlim=(8, W - 8))
     # THE CROWD IS SIZED TO FILL THE BOX AT ITS LARGEST, not to a fixed 96px.
     # `sz = 96` put 30 icons in five rows 650px tall inside a 1140px region and
     # left the top third of the frame bare — measured 33% void on 2026-09-09,
@@ -2581,12 +2798,13 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(WARN, int(255 * na)), anchor="rm")
         d.line([(int(cx - full / 2 - 32), wy), (int(cx - full / 2 - 8), wy)],
                fill=_rgba(WARN, int(255 * na)), width=6)
-    host = scene_host("strain", reveal, insight, "bottleneck")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 20), int(bot - mh)))
+    # HIS HANDS CLAMP THE PINCH: it narrows there because he is squeezing it.
+    # The "here" callout sits to the left of the pinch; he works it from the
+    # floor beside the pipe, below the callout.
+    _wv = full * (vals[worst] / vmax)
+    place_agent(canvas, d, "pinch", reveal, insight, "bottleneck",
+                (cx - _wv / 2 - 6, wy + 40), height=220, floor=bot,
+                xlim=(8, W - 8))
     lost = (max(drops) / vals[0] * 100.0) if (drops and vals[0]) else 0.0
     d.text((int((bx0 + bx1) / 2), bot + 60),
            f"{lost:.0f}% of them stop right there",
@@ -2649,13 +2867,11 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
     if fa > 0.0:
         d.text((cx, by1 - 140), f"only {frac * 100:.0f}% stay",
                font=_pil_font(48), fill=_rgba(TEXT, int(235 * fa)), anchor="mm")
-    host = scene_host("strain", reveal, insight, "leaky")
-    if host is not None:
-        mh = 220
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(bx0 + 12, cx - tw // 2 - mw - 20)),
-                                int(bot - mh)))
+    # HIS HAND ON THE TAP at the hole: it drains because he opened it. He
+    # stands to the right of the bucket, so the act is mirrored.
+    place_agent(canvas, d, "drain", reveal, insight, "leaky",
+                (hx + 4, hy), height=240, floor=bot, xlim=(8, W - 8),
+                flip=True)
     return (kept_v, "art", cx, wy)
 
 
@@ -2736,14 +2952,10 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
            f"{'left over' if surplus >= 0 else 'short'}",
            font=_pil_font(58), fill=_rgba(net_col, 255), anchor="mm")
-    host = scene_host("cheer" if surplus >= 0 else "strain", reveal,
-                      insight, "inout")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(bx0 + 16, cx - tw // 2 - mw - 24)),
-                                int(bot - mh - 60)))
+    # HIS HAND ON THE INFLOW VALVE: the water comes in because he opened it.
+    place_agent(canvas, d, "drain", reveal, insight, "inout",
+                (cx - tw // 2 - 16, top + 34), height=220, floor=bot,
+                xlim=(8, W - 8))
     return (abs(surplus), "art", cx, ly)
 
 
@@ -2806,12 +3018,11 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
         px = int(cx + (tgt - cx) * t_)
         py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
         particle(d, _st["particle"], px, py, 14, _rgba(_c.HIGHLIGHT, 225))
-    host = scene_host("point", reveal, insight, "sorter")
-    if host is not None:
-        mh = 210
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(chute_y - 150)))
+    # HE RUNS THE SORTER, by a crank beside the chute, standing on the
+    # bins: the stream drops because he turns it.
+    place_agent(canvas, d, "turn", reveal, insight, "sorter",
+                (cx + 176, chute_y - 36), height=220, floor=bin_top - 2,
+                xlim=(8, W - 8))
     return (vals[0], "art", centres[0], bin_top)
 
 
@@ -2901,14 +3112,10 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, by1 - 120),
            f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
            font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
-    host = scene_host("strain", reveal, insight, "chain")
-    if host is not None:
-        mh = 190
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(min(bx1 - mw - 16, max(bx0 + 16, wx - mw // 2))),
-             int(y + 190)))
+    # HE DRIVES THE LINE, by a crank at its head: the load moves down the
+    # chain because he turns it. Mirrored, so he stands outside the chain.
+    place_agent(canvas, d, "turn", reveal, insight, "chain",
+                (x0 - 36, y + 6), height=200, xlim=(8, W - 8), flip=True)
     return (vals[weak], "art", wx, y)
 
 
@@ -2972,13 +3179,10 @@ def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
     if k and n:
         d.text((cx, cy + r + 92), f"about {k} in {n}", font=_pil_font(46),
                fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal, insight, "spinner")
-    if host is not None:
-        mh = 210
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(min(bx1 - mw - 16, cx + r + 20)),
-                                int(cy - mh // 2)))
+    # PALMS ON THE RIM: it spins because he spun it.
+    place_agent(canvas, d, "sweep", reveal, insight, "spinner",
+                (cx - r * 0.66, cy + r * 0.72), height=240, floor=by1 - 20,
+                xlim=(8, W - 8))
     return (p * 100.0, "art", cx, cy)
 
 
@@ -3040,12 +3244,13 @@ def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(color, 255), anchor="mm")
     d.text(((bx0 + bx1) // 2, bot + 90), f"{p * 100:.1f}% chance",
            font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
-    host = scene_host("point", reveal, insight, "doors")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by1 - mh - 20)))
+    # HE OPENS EACH DOOR: his hand on the handle of the one swinging now.
+    _cur = min(n - 1, opened)
+    _dx = x0 + (_cur % cols) * cw
+    _dy = y0 + (_cur // cols) * ch
+    place_agent(canvas, d, "draw", reveal, insight, "doors",
+                (_dx + cw - 22, _dy + ch / 2), height=ch * 1.5,
+                xlim=(8, W - 8))
     return (float(n), "art", int(x0 + (lucky % cols) * cw + cw / 2),
             int(y0 + (lucky // cols) * ch + ch / 2))
 
@@ -3143,12 +3348,10 @@ def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
            fill=_rgba(TEXT, 190), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "the data stops here",
            font=_pil_font(52), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("point", reveal, insight, "fan")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by0 + 160)))
+    # THE CONE IS HIS LAMP, held at the last measured point: the projection
+    # is light he is casting forward, not a fact.
+    place_agent(canvas, d, "light", reveal, insight, "fan",
+                (xs[-2], ys[-2]), height=200, xlim=(8, W - 8))
     return (vals[-2], "art", int(xs[-2]), int(ys[-2]))
 
 
@@ -3207,12 +3410,12 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(42), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "they move together",
            font=_pil_font(56), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal, insight, "gears")
-    if host is not None:
-        mh = 200
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by0 + 150)))
+    # HE TURNS THE BIG GEAR, by a crank on its shaft below it, from the
+    # floor: they move together because he is driving one of them.
+    d.line([(ax, cy), (ax, cy + ra + 70)], fill=_rgba(TEXT, 120), width=12)
+    place_agent(canvas, d, "turn", reveal, insight, "gears",
+                (ax, cy + ra + 74), height=260, floor=by1 - 40,
+                xlim=(8, W - 8))
     return (a_v, "art", ax, cy)
 
 
@@ -3281,14 +3484,10 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, _say_y),
            f"{a_v / tot * 100:.0f}% one way, {b_v / tot * 100:.0f}% the other",
            font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
-    host = scene_host("strain", reveal, insight, "slider")
-    if host is not None:
-        mh = int(max(200, min(330, by1 - 20 - (_say_y + 50))))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(min(bx1 - mw - 16, max(bx0 + 16, hx - mw // 2))),
-             int(by1 - 20 - mh)))
+    # PALMS ON THE HANDLE, from the floor: it moves because he shoves it.
+    place_agent(canvas, d, "sweep", reveal, insight, "slider",
+                (hx - 18, cy + 20), height=300, floor=by1 - 20,
+                xlim=(8, W - 8))
     return (a_v, "art", int(hx), cy)
 
 
@@ -3341,18 +3540,18 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(color if i == 0 else REST, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("point", reveal, insight, "density")
-    if host is not None:
-        # He holds the whole foot of the frame. At 180px tucked in the corner
-        # there were 400px of nothing between the numbers and him — 25% void
-        # inside the box, measured 2026-09-09 — and the squares cannot grow to
-        # fill it, because they have to stay IDENTICAL and they are already at
-        # the width the frame allows.
-        mh = int(max(200, min(390, by1 - 30 - (top + side + 140))))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int((bx0 + bx1) // 2 - mw // 2),
-                                int(by1 - 30 - mh)))
+    # HE PACKS THE CROWDED SQUARE: throwing people in over its bottom edge
+    # from the floor, on a ladder. He holds the foot of the frame as before
+    # (25% void there, measured 2026-09-09) — now doing the thing the
+    # picture is about.
+    _sx = int(bx0 + gap)
+    _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "density",
+                             (_sx + side - 30, top + side + 4),
+                             height=int(max(200, min(390, by1 - 30 - (top + side + 140)))),
+                             floor=by1 - 30, xlim=(8, W - 8))
+    if _tip is not None:
+        draw_lob(d, _tip, (_sx + side * 0.5, top + side * 0.5),
+                 beat_clock(reveal), color)
     return (vals[0], "art", int(bx0 + gap + side // 2), top + side // 2)
 
 
@@ -3483,12 +3682,15 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
     d.text((cx, top + side + 78), f"{times_text(ratio)} times over",
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
-    host = scene_host("point", reveal, insight, "nest")
-    if host is not None:
-        mh = int(min(380, (by1 - by0) * 0.26))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 12), int(by1 - mh - 10)))
+    # HE FITS THEM IN: throwing the small one into the big one from beside
+    # its right edge, on a ladder from the floor — every tile that lands is
+    # one he threw.
+    _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "nest",
+                             (cx + side / 2 + 8, top + side * 0.55),
+                             height=int(min(380, (by1 - by0) * 0.26)),
+                             floor=by1 - 10, xlim=(8, W - 8), flip=True)
+    if _tip is not None:
+        draw_lob(d, _tip, (cx, top + side * 0.5), beat_clock(reveal), REST)
     return (big_v, "art", cx, top + side // 2)
 
 
@@ -3580,12 +3782,13 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     _f, _s = fit_text(d, _s, 42, (bx1 - bx0) - 60, min_size=26)
     d.text((cx, by1 - 170), _s, font=_f,
            fill=_rgba(color, int(250 * na)), anchor="mm")
-    host = scene_host("strain", reveal, insight, "chairs")
-    if host is not None:
-        mh = 180
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 16), int(seat_y - mh - 20)))
+    # HE IS PULLING THE LAST CHAIR AWAY: hands on its back, hauling it off
+    # to the right — the shortage is his doing, and the crowd is watching
+    # him do it.
+    _lx = sx0 + (chairs - 1) * cw_
+    place_agent(canvas, d, "draw", reveal, insight, "chairs",
+                (_lx + 34, seat_y - 60), height=200, floor=seat_y + 92,
+                xlim=(8, W - 8))
     return (seekers, "art", cx, int(seat_y))
 
 
@@ -3677,14 +3880,14 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "how long it takes",
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
-    host = scene_host("strain", reveal, insight, "hourglass")
-    if host is not None:
-        mh = 240
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by1 - mh - 20)))
     d.line([(bx0 + 30, by1 - 16), (bx1 - 30, by1 - 16)],
            fill=_rgba(TEXT, 90), width=8)
+    # HE TURNED IT OVER: both hands on the first glass's waist, from the
+    # floor, on a ladder — the sand runs because he flipped it.
+    _mx0 = bx0 + gap + gw / 2
+    place_agent(canvas, d, "flip", reveal, insight, "hourglass",
+                (_mx0 - gw * 0.12, top + gh / 2), height=260, floor=by1 - 16,
+                xlim=(8, W - 8))
     return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
 
 
@@ -3784,12 +3987,17 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(col, 245), anchor="rm")
     d.text(((bx0 + bx1) // 2, by0 + 90), "one cup, one title",
            font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
-    host = scene_host("cheer", reveal, insight, "trophies")
-    if host is not None:
-        mh = int(min(300, (by1 - by0) * 0.2))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 30), int(by1 - mh)))
+    # HE SETS EACH CUP ON THE SHELF: hands on the one arriving in the row
+    # being filled now, standing on the shelf below it.
+    _ri = max(0, min(n - 1, int(e * n)))
+    _rv = vals[_ri] * max(0.0, min(1.0, e * n - _ri))
+    _rk = max(0, min(int(_rv), int(vals[_ri]) - 1))
+    _ry = top + _ri * rowh
+    place_agent(canvas, d, "stack", reveal, insight, "trophies",
+                (x0 + (_rk % cols) * cell_w + cw * 0.5,
+                 _ry + 10 + (_rk // cols) * cell_h),
+                height=int(min(300, (by1 - by0) * 0.2)),
+                floor=_ry + rowh - 22, hmin=140, xlim=(8, W - 8))
     return (vals[0], "art", int(bx0 + 300), int(top + rowh * 0.4))
 
 
@@ -3813,7 +4021,9 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     # The baskets were 350px tall starting at y=470, so everything this
     # machine draws finished by y=930 and the bottom third of the frame was
     # bare — 32% void inside its own box, measured 2026-09-09.
-    bw = int(min(((bx1 - bx0) - 140) / n, 420))
+    # 340, not 420: the gap between the baskets is where he stands to fill
+    # the full one, and at 420 it was 53px wide.
+    bw = int(min(((bx1 - bx0) - 140) / n, 340))
     bh = int(min((by1 - by0) * 0.40, 430))
     top = max(by0 + 280, 430)
     gap = ((bx1 - bx0) - bw * n) / (n + 1)
@@ -3857,13 +4067,15 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
     say_y = min(by1 - 330, top + bh + 200)
     d.text(((bx0 + bx1) // 2, say_y), f"{lost:.0f}% less in the basket",
            font=_pil_font(42), fill=_rgba(WARN, int(240 * na)), anchor="mm")
-    host = scene_host("strain", reveal, insight, "basket")
-    if host is not None:
-        mh = int(min(300, by1 - 20 - (say_y + 60)))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int((bx0 + bx1) // 2 - mw // 2),
-                                int(by1 - 20 - mh)))
+    # HE FILLS THE BASKET: throwing the goods in over the full basket's rim
+    # from the floor beside it, on a ladder, since it is above his head.
+    _bx = int(bx0 + gap)
+    _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "basket",
+                             (_bx + bw - 24, top + 6), height=260,
+                             floor=by1 - 20, xlim=(8, W - 8), flip=True)
+    if _tip is not None:
+        draw_lob(d, _tip, (_bx + bw // 2, top + bh // 2), beat_clock(reveal),
+                 color)
     return (vals[0], "art", int(bx0 + gap + bw / 2), top + bh // 2)
 
 
@@ -3992,16 +4204,13 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         if a >= 1.0:
             landed = by
             landed_k = k + 1
-    host = scene_host("cheer", reveal, insight, "tower")
-    if host is not None:
-        mh = 190
-        mw = int(host.width * mh / host.height)
-        # ON WHAT HAS LANDED, at the corner: riding the block still in the
-        # air lifted him 3.5 block-heights above the stack and into the
-        # beat title (a_audit, close values). The next block drops beside
-        # him onto the stack, not through him.
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx + bw // 2 - mw * 0.6), int(landed - mh + 8)))
+    # HE STACKS IT. Hands on the top-left corner of what has landed, pressing
+    # the newest block home, standing on the floor beside the stack — on a
+    # ladder once the stack is taller than he can reach. Riding the stack up
+    # was the judge's "stands on top of the tallest bar and waves".
+    place_agent(canvas, d, "stack", reveal, insight, "tower",
+                (cx - bw // 2 + 26, landed), height=190, floor=bot,
+                xlim=(8, W - 8))
     # the header counts up WITH the stack: the answer arrives, it is not
     # printed on frame one ("the answer is printed before anything happens")
     # ...one BLOCK at a time, so every number it passes through is a whole
@@ -4246,12 +4455,17 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
             8.0, wv * 0.6)
         particle(d, _st["particle"], px, py, 10, _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal, insight, "funnel")
-    if host is not None and last_xy is not None:
-        mh = 190
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 30), int(bot - mh)))
+    # HE POURS THEM IN at the top, from a ladder on the floor beside the
+    # funnel; the stream from his bucket's lip is what falls through it.
+    if last_xy is not None:
+        _fcx = bx0 + 70 + full_w / 2
+        _w0 = full_w * (vals[0] / vmax)
+        _box, _tip = place_agent(canvas, d, "fill", reveal, insight, "funnel",
+                                 (_fcx - _w0 / 2 - 10, top - 30), height=220,
+                                 floor=bot, xlim=(8, W - 8))
+        if _tip is not None:
+            draw_stream(d, _tip, (_fcx - _w0 * 0.2, top + 24), charts.CARD,
+                        beat_clock(reveal), width=14)
     kept = (vals[-1] / vals[0] * 100.0) if vals[0] else 0.0
     d.text(((bx0 + bx1) // 2, bot + 48),
            f"{kept:.0f}% make it to the end", font=_pil_font(42),
@@ -4309,12 +4523,11 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
                             fill=_rgba(REST, 225),
                             outline=_rgba(charts.CARD, 255), width=3)
-    host = scene_host("strain", reveal, insight, "conveyor")
-    if host is not None:
-        mh = 300
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 50), int(ground - mh)))
+    # HE RUNS THE BELT: a crank on its end roller, from a ladder on the
+    # floor. The boxes arrive because he turns it.
+    place_agent(canvas, d, "turn", reveal, insight, "conveyor",
+                (bx1 - 44, belt_y + 26), height=300, floor=ground,
+                xlim=(8, W - 8))
     d.text(((bx0 + bx1) // 2, by0 + 58),
            charts._ulabel(v, unit, group=True), font=_pil_font(96),
            fill=_rgba(color, 255), anchor="mm")
@@ -4404,15 +4617,13 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                 py = split_y + (bot - split_y) * u
             particle(d, _st["particle"], px, py, 11,
                      _rgba(charts.CARD, 215))
-    host = scene_host("point", reveal, insight, "pipes")
-    if host is not None and last is not None:
-        # Beside the trunk, not inside it — a wide trunk with him in the middle
-        # read as a grey box the mascot was standing in.
-        mh = 190
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(cx + trunk_w // 2 + 24), int(top + 10)))
+    # HIS HAND ON THE TRUNK'S VALVE: the flow runs because he opened it.
+    # Beside the trunk, not inside it — a wide trunk with him in the middle
+    # read as a grey box the mascot was standing in.
+    if last is not None:
+        place_agent(canvas, d, "drain", reveal, insight, "pipes",
+                    (cx + trunk_w // 2 + 6, top + 70), height=190,
+                    xlim=(8, W - 8), flip=True)
     return (vals[0], "art", last[0], last[1]) if last else None
 
 
@@ -4509,20 +4720,10 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
            f"anywhere between {charts._ulabel(lo, unit)} and "
            f"{charts._ulabel(hi, unit)}",
            font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
-    host = scene_host("think", reveal, insight, "spotlight")
-    if host is not None:
-        # ...AND UNDER THE SUB-CAPTION, NOT THROUGH ITS TAIL. At 240 tall on
-        # the floor his head reached the "anywhere between ... and ..." line
-        # and covered its last value ("'$4.4' is behind the mascot's torso",
-        # coffee, 2026-09-22). The caption's bottom is at cy + lane + 124 +
-        # half a 38pt line; he starts below it.
-        _cap_bot = cy + lane + 124 + 22
-        mh = int(max(120, min(240, by1 - _cap_bot - 6)))
-        mw = int(host.width * mh / host.height)
-        # RIGHT of the centred sub-caption, standing on the floor of the box.
-        # On the left he stood on the words.
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 16), int(by1 - mh)))
+    # THE LANE IS HIS LAMP: he holds the light on it from its left end, so
+    # the marker wanders in a beam he is casting.
+    place_agent(canvas, d, "light", reveal, insight, "spotlight",
+                (cx - half * e - 12, cy), height=230, xlim=(8, W - 8))
     return (vals[-1], "art", mx, cy)
 
 
@@ -4756,15 +4957,18 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
                 # body covered its value (a_audit, close values). He hops
                 # up when the step arrives — one decisive move a step.
                 stand_xy = top_xy
-    host = scene_host("climb", reveal, insight, "staircase")
     top_xy = stand_xy or top_xy
-    if host is not None and top_xy is not None:
-        mh = int(min(STAIR_HOST_H, (bot - top) * 0.34))
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(
-            _fit(host, mw, mh),
-            (int(min(max(top_xy[0] - mw // 2, 8), W - mw - 8)),
-             int(top_xy[1] - mh)))      # feet ON the edge, not into the value
+    # HE BUILDS THE STAIR: hands setting the top of the newest step, from
+    # the ground on a ladder that grows with the climb. Standing on the last
+    # built step he was carried up by the data.
+    if top_xy is not None:
+        _cur = max(0, min(n - 1, int(shown)))
+        _h = (bot - top) * (0.12 + 0.88 * ((vals[_cur] - lo) / span)) * \
+            max(0.0, min(1.0, shown - _cur))
+        place_agent(canvas, d, "stack", reveal, insight, "staircase",
+                    (x0 + _cur * w + 12, bot - _h),
+                    height=int(min(STAIR_HOST_H, (bot - top) * 0.34)),
+                    floor=bot, xlim=(8, W - 8))
     return (vals[-1], "art", top_xy[0], top_xy[1]) if top_xy else None
 
 
@@ -4818,12 +5022,14 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
     ch = 150
     d.rounded_rectangle([sx0 + 16, cy - ch // 2, sx1 - 16, cy + ch // 2],
                         radius=14, fill=_rgba(color, 235))
-    host = scene_host("point", reveal, insight, "elevator")
-    if host is not None:
-        mh = ch - 18
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int((sx0 + sx1) / 2 - mw // 2), cy - mh // 2))
+    # HE LOWERS THE CAR, hand over hand on its rope from inside it: the lift
+    # goes down past the floors because he is paying the rope out.
+    _rx = int((sx0 + sx1) / 2) + 40
+    d.line([(_rx, top + 8), (_rx, cy - ch // 2)], fill=_rgba(TEXT, 140),
+           width=8)
+    place_agent(canvas, d, "lift", reveal, insight, "elevator",
+                (_rx, cy - ch // 2 + 8), height=ch - 18, hmin=ch - 18,
+                xlim=(8, W - 8))
     return (vals[-1], "art", int((sx0 + sx1) / 2), cy)
 
 
@@ -5292,15 +5498,10 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     _gf, _gl = fit_text(d, str(getattr(star, "label", "")), 42,
                         max(200, bx1 - bx0 - 60), min_size=24)
     d.text((cx, cy + 208), _gl, font=_gf, fill=_rgba(TEXT, 220), anchor="mm")
-    # He stands UNDER the dial reading it, at a size that occupies the lower
-    # band, rather than parked beside the arc as a sticker.
-    host = scene_host("point", reveal, insight, "gauge")
-    if host is not None:
-        mh = int(min(360, max(0, (by1 - (cy + 250))) * 0.92))
-        if mh > 120:
-            mw = int(host.width * mh / host.height)
-            canvas.alpha_composite(_fit(host, mw, mh),
-                                   (int(cx - mw // 2), int(by1 - mh - 30)))
+    # PALMS ON THE NEEDLE. It sweeps because he is pushing it round; under
+    # the dial reading it he was "standing under the dial pointing at it".
+    place_agent(canvas, d, "sweep", reveal, insight, "gauge",
+                (nx, ny), height=240, xlim=(8, W - 8))
     return (v, "art", int(nx), int(ny))
 
 
@@ -5800,15 +6001,16 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         d.line(pts, fill=_rgba(_c.HIGHLIGHT, 255), width=11, joint="curve")
     for rad, a in ((40, 55), (28, 120), (18, 255)):
         d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(_c.HIGHLIGHT, a))
-    # Data's act varies with the demonstration: he POINTS OUT the stacking bill
-    # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
-    host = scene_host("point" if bars else "cheer", r, insight, "closing")
-    mh = 268        # a strong presence, but not so big it collides with text
-    if host is not None:
-        mw = int(host.width * mh / host.height)
-        px = int(min(max(hx - mw / 2, 8), W - mw - 8))
-        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
-                               (px, int(hy - mh + 12)))
+    # Data's act varies with the demonstration: he STACKS the rising bill
+    # (bars) vs. DRIVES the climbing line (area) — a distinct bit per beat,
+    # and in both the picture moves because of him.
+    if bars:
+        place_agent(canvas, d, "stack", r, insight, "closing",
+                    (hx - bw / 2 + 16, hy), height=268, floor=pb,
+                    xlim=(8, W - 8))
+    else:
+        place_agent(canvas, d, "travel", r, insight, "closing",
+                    (hx, hy + 6), height=268, xlim=(8, W - 8))
     # Hero value shows the FINAL figure (fading in) — NOT a mid-count that could
     # read as e.g. "11.3%" when the script says 11.8% (a data-consistency flag).
     # The chart itself carries the motion; the number stays truthful throughout.
@@ -5882,15 +6084,10 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     d.line([(x0, axis_y), (mx, axis_y)], fill=_rgba(_c.HIGHLIGHT, 255), width=12)
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(_c.HIGHLIGHT, alpha))
-    # Data rides the dot along the axis (composited straight into the beat).
-    host = scene_host("cheer", reveal, insight, "timeline")
-    if host is not None:
-        from PIL import Image as _Im
-        mh = 250
-        mw = int(host.width * mh / host.height)
-        hx = int(min(max(mx - mw / 2, box[0]), box[2] - mw))
-        canvas.alpha_composite(host.resize((mw, mh), _Im.LANCZOS),
-                               (hx, int(axis_y - mh + 18)))
+    # Data DRIVES the dot along the axis (composited straight into the beat):
+    # the marker is where it is because he took it there.
+    place_agent(canvas, d, "travel", reveal, insight, "timeline",
+                (mx, axis_y + 8), height=250, xlim=(box[0], box[2]))
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.65))
     val = _fmt_stat(star.value, insight.unit)
     vb = d.textbbox((0, 0), val, font=num_font)
@@ -6390,12 +6587,13 @@ def draw_hole(d, canvas, box, insight, color, reveal, unit=""):
         pts.append((ox + cut, cy1))
         if len(pts) > 1:
             d.line(pts, fill=_rgba(TEXT, 230), width=5)
-    host = scene_host("shock", reveal, insight, "hole")
-    mh = int(min(600, (by1 - by0) * 0.41))
-    if host is not None:
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 40), int(by1 - mh - 20)))
+    # HE CUT IT: the saw at the foot of the crack, from the floor, so the
+    # piece comes away because he sawed it off. Shocked beside it he was a
+    # witness to his own picture.
+    place_agent(canvas, d, "cut", reveal, insight, "hole",
+                (ox + cut - 8, gy1 + 6),
+                height=int(min(600, (by1 - by0) * 0.41)), floor=by1 - 20,
+                xlim=(8, W - 8))
     # the words go on last, so nothing is drawn over them
     lab = _then_now(insight)
     if not gone:
@@ -6489,13 +6687,13 @@ def draw_copies(d, canvas, box, insight, color, reveal, unit=""):
                                    (cx, cy))
         if u >= 1.0:
             landed += 1
-    host = scene_host("point", reveal, insight, "copies")
-    # below the cups and their label, never beside the last one
-    mh = int(min(500, (by1 - by0) * 0.33))
-    if host is not None:
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 30), int(by1 - mh - 20)))
+    # HE STAMPS OUT THE COPIES: the stamp comes down on the one that just
+    # landed, from the floor below the row, so one becomes N by his hand.
+    _lk = max(0, min(n - 1, landed))
+    place_agent(canvas, d, "mark", reveal, insight, "copies",
+                (slots[_lk] + s * 0.5, y_now + 6),
+                height=int(min(500, (by1 - by0) * 0.33)), floor=by1 - 20,
+                xlim=(8, W - 8))
     # words last
     tl = f"{getattr(then_p, 'label', '')}  {charts._ulabel(a, unit, group=True)}"
     _f, _s = fit_text(d, tl, 48, W - (s + 100))

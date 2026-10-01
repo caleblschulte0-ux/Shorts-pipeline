@@ -3930,17 +3930,16 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             # quantity, and the accent stays on the value alone.
             _flow(d, _arc_pts(cx, cy, R, a0, a0 + sweep), f, SUBTLE,
                   r=wdt // 3, alpha=150)
-        # Data PERFORMS on the gauge: he rides the tip of the value arc UP as it
-        # fills — he's the reason the number climbs. (Composited straight into
-        # the demonstration; the traveling overlay is suppressed for this beat.)
-        host = _host_pose("cheer")
-        if host is not None:
-            mh = 210
-            mw = int(host.width * mh / host.height)
-            m = host.resize((mw, mh), Image.LANCZOS)
-            rad = math.radians(end)
-            tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
-            canvas.alpha_composite(m, (int(tx - mw / 2), int(ty - mh + 24)))
+        # Data PERFORMS on the gauge: palms on the tip of the value arc,
+        # pushing it round — he is the reason the number climbs. Riding the
+        # tip (a fixed cheer PNG) was the data carrying a sticker. Composited
+        # straight into the demonstration; the travelling overlay is
+        # suppressed for this beat.
+        from .viz_scene import place_agent as _place_agent
+        rad = math.radians(end)
+        tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
+        _place_agent(canvas, d, "sweep", r, insight, "fill_vessel",
+                     (tx, ty), height=210, xlim=(8, W - 8))
         # counting number in the centre
         num = fmt(count_up(star.value, eased))
         nb = d.textbbox((0, 0), num, font=num_font)
