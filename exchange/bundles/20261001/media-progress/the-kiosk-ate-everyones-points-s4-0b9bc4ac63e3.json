@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "08cff323b3c0d1f23ff23626d761b6511ffa3f75427424efc14a15bf48d492da",
+  "prompt_used": "An editorial illustration for a short-form video: shared folder documents desk. It accompanies the narration: \"I built a shared folder\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qXa4kqpkTz4lg3RWY4g10PtHBJCG-EFy",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qXa4kqpkTz4lg3RWY4g10PtHBJCG-EFy",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "89b01526b8258bae9d3f8d040da4ad931a9bce4a44b5a27e84be99dd084658ac",
+    "bytes": 1681787,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-01T11:24:22.047Z"
+}
