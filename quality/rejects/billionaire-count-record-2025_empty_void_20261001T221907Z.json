@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261001T221907Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start the top 60% of the frame is empty, with three small bars at the bottom left. In seg3:mid there is a large empty dark band between the title and the discs, and another under the labels.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_comparison",
+  "visible_evidence": "seg3:start, mid and end show two identical discs, both labelled '127%' and 'Billionaire wealth'. The narration says the S&P 500 grew 195%, but that number and its label appear nowhere. The scene looks the same through seg4 and the payoff.",
+  "root_cause": "The comparison machine got the billionaire series in both slots, so the S&P 500 value (195%) and its label were never bound. Because of that the video's central claim, that most of the growth is just stocks, is visually contradicted: the two discs are equal.",
+  "repair_goal": "Bind the second slot to 'S&P 500' = 195% so the two forms differ visibly in size (195 vs 127). Give the scene a subject-made picture, for example a stack of billionaire money next to a taller stock-ticker tower, where Data pours or stacks stock certificates to make the S&P side grow past the wealth side. Use dark ink for the numbers so they read on the teal."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -4262,6 +4262,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "scenes kept; numbers match narration"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-01",
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "escalation",
+   "franchise": "",
+   "notes": "Moon-shadow sweep vs a fixed pin; 7 vs 375 years"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-01",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "Dead zone vs 2035 goal, then fertilizer tripled"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-01",
+   "topic_category": "animals",
+   "hook_type": "stake",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "Spread map -> colony collapse -> farm pest bill"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-01",
+   "topic_category": "money",
+   "hook_type": "question",
+   "hook_text": "The government might be holding your money right now.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "70B held, 4.49B returned, 1 in 7 owed"
   }
  ]
 }

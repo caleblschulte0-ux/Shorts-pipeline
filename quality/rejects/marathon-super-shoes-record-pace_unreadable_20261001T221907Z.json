@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261001T221907Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid, seg4:end and payoff@-0.4: 'COMMENT BELOW' is printed on top of the 'think.' line of the CTA. seg4:start through seg4:end: Data covers the 'Set since 2018' label. seg3:end: a cyan ring overlaps the '15'.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_duplicate_bars",
+  "visible_evidence": "seg2:start/mid/end: both circles say '8.3' and both are labelled 'Before 2016 (1988-2013)'. The kicker reads 'BEFORE 2016 TOPS THE LIST'. The narration says it's almost 30 seconds a year since 2016, but no 30 appears anywhere.",
+  "root_cause": "The comparison pulled the same row twice, so the post-2016 value never appeared. The scene fell back to a generic bubble chart with no subject metaphor.",
+  "repair_goal": "Show both rates, 8 s/yr before 2016 and about 30 s/yr since, as two runners or two clocks shaving seconds. Data should make the shaving happen, and the post-2016 one should be visibly almost 4x faster, with correct, distinct labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

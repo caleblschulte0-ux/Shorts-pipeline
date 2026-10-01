@@ -1,17 +1,36 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-01T19:51:17Z",
+ "updated": "2026-10-01T22:18:59Z",
  "open": [
   {
-   "id": "bat-fungus-collapse__617a694d",
+   "id": "bat-fungus-collapse__8cadb9b4",
    "slug": "bat-fungus-collapse",
-   "filed": "2026-10-01T19:51:17Z",
+   "filed": "2026-10-01T22:18:59Z",
    "why": [
-    "judge: A run of stock charts with a cheerleading mascot. The bat-loaded scale at the end is the only picture made of the story, and the opening has a dead timeline and a counter stuck at 1.",
-    "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
+    "thesis: seg1 ('bat population decline') has no bridge to the headline (\"A Fungus Is Erasing North America's Bats\") — brain: no genuine bridge to the headline"
    ],
-   "request": "exchange/rewrites/20261001/bat-fungus-collapse__617a694d.request.json",
-   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__617a694d.answer.json"
+   "request": "exchange/rewrites/20261001/bat-fungus-collapse__8cadb9b4.request.json",
+   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__8cadb9b4.answer.json"
+  },
+  {
+   "id": "marathon-super-shoes-record-pace__87f99e40",
+   "slug": "marathon-super-shoes-record-pace",
+   "filed": "2026-10-01T22:18:59Z",
+   "why": [
+    "judge: Wrong data blocks this: the speed-up beat shows 8.3 twice under the same label and never shows the 30 s/yr claim, and the other beats are generic charts with a mascot standing beside them."
+   ],
+   "request": "exchange/rewrites/20261001/marathon-super-shoes-record-pace__87f99e40.request.json",
+   "answer_path": "exchange/rewrites/20261001/marathon-super-shoes-record-pace__87f99e40.answer.json"
+  },
+  {
+   "id": "unclaimed-money-states-hold__13b48f97",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-01T22:18:57Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261001/unclaimed-money-states-hold__13b48f97.request.json",
+   "answer_path": "exchange/rewrites/20261001/unclaimed-money-states-hold__13b48f97.answer.json"
   },
   {
    "id": "billionaire-count-record-2025__00739761",
@@ -32,16 +51,6 @@
    ],
    "request": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.request.json",
    "answer_path": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.answer.json"
-  },
-  {
-   "id": "marathon-super-shoes-record-pace__b6f8dadd",
-   "slug": "marathon-super-shoes-record-pace",
-   "filed": "2026-10-01T11:01:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a generic numeric claim without a verifiable, consequential hook."
-   ],
-   "request": "exchange/rewrites/20261001/marathon-super-shoes-record-pace__b6f8dadd.request.json",
-   "answer_path": "exchange/rewrites/20261001/marathon-super-shoes-record-pace__b6f8dadd.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__2a2910ca",
@@ -336,16 +345,6 @@
    ],
    "request": "exchange/rewrites/20261001/self-checkout-cashier-jobs__9dbf5d63.request.json",
    "answer_path": "exchange/rewrites/20261001/self-checkout-cashier-jobs__9dbf5d63.answer.json"
-  },
-  {
-   "id": "unclaimed-money-states-hold__0a1cacc5",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-01T11:01:16Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261001/unclaimed-money-states-hold__0a1cacc5.request.json",
-   "answer_path": "exchange/rewrites/20261001/unclaimed-money-states-hold__0a1cacc5.answer.json"
   },
   {
    "id": "third-interstellar-visitor__ce81b458",
