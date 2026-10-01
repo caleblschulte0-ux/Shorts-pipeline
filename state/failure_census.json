@@ -2,122 +2,172 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 20,
+   "count": 31,
    "stories": {
-    "the-biggest-lightest-workforce": 1,
-    "landline-extinction-event": 12,
-    "global-ewaste-crisis": 4,
-    "child-mortality-collapse": 3
+    "bat-fungus-collapse": 20,
+    "landline-extinction-event": 3,
+    "billionaire-count-record-2025": 3,
+    "kelp-forest-sea-star-collapse": 2,
+    "marathon-super-shoes-record-pace": 3
    },
    "timestamps": [
-    "2026-09-30T15:53:31+00:00",
-    "2026-09-30T16:00:49+00:00",
-    "2026-09-30T16:00:49+00:00",
-    "2026-09-30T16:00:49+00:00",
-    "2026-09-30T16:08:02+00:00",
-    "2026-09-30T16:14:09+00:00",
-    "2026-09-30T16:14:09+00:00",
-    "2026-09-30T16:14:09+00:00",
-    "2026-09-30T17:48:34+00:00",
-    "2026-09-30T17:59:54+00:00",
-    "2026-09-30T18:19:09+00:00",
-    "2026-09-30T18:28:01+00:00",
-    "2026-09-30T18:28:01+00:00",
-    "2026-09-30T18:35:56+00:00",
-    "2026-09-30T18:35:56+00:00",
-    "2026-09-30T18:42:55+00:00",
-    "2026-09-30T18:42:55+00:00",
-    "2026-09-30T18:49:06+00:00",
-    "2026-09-30T19:07:54+00:00",
-    "2026-09-30T19:21:31+00:00"
+    "2026-10-01T12:14:21+00:00",
+    "2026-10-01T12:21:15+00:00",
+    "2026-10-01T12:28:04+00:00",
+    "2026-10-01T12:28:04+00:00",
+    "2026-10-01T12:37:46+00:00",
+    "2026-10-01T12:47:22+00:00",
+    "2026-10-01T12:56:33+00:00",
+    "2026-10-01T13:05:01+00:00",
+    "2026-10-01T14:20:30+00:00",
+    "2026-10-01T14:20:30+00:00",
+    "2026-10-01T14:27:42+00:00",
+    "2026-10-01T14:27:42+00:00",
+    "2026-10-01T14:34:31+00:00",
+    "2026-10-01T14:34:31+00:00",
+    "2026-10-01T14:34:31+00:00",
+    "2026-10-01T14:40:54+00:00",
+    "2026-10-01T14:40:54+00:00",
+    "2026-10-01T18:52:09+00:00",
+    "2026-10-01T18:52:09+00:00",
+    "2026-10-01T19:00:57+00:00",
+    "2026-10-01T19:00:57+00:00",
+    "2026-10-01T19:09:40+00:00",
+    "2026-10-01T19:09:40+00:00",
+    "2026-10-01T19:09:40+00:00",
+    "2026-10-01T19:19:22+00:00",
+    "2026-10-01T19:42:13+00:00",
+    "2026-10-01T19:42:13+00:00",
+    "2026-10-01T19:51:10+00:00",
+    "2026-10-01T19:51:10+00:00",
+    "2026-10-01T22:08:45+00:00",
+    "2026-10-01T22:18:35+00:00"
    ],
    "examples": [
-    "decorative_mascot: In seg0:end Data stands on the 1997 bar, and in seg2:start he rides the 1993 bar top. In seg1:end and seg3:mid he stands at the end of a column with his arms up. He never does a set",
-    "decorative_mascot: Data stands off to the side waving at seg1:start/mid/end, and mostly poses at the end of a line or bar (seg0:mid, seg2:end). He only really acts in seg3, where he shoves the China b",
-    "dead_air: The hook line chart (hook@0.3 to seg0:end, about 6s) is almost the same frame the whole time. Only the mascot moves a little along a line that is already drawn. Measured held_s is 10.54 and "
+    "decorative_mascot: Across hook@0.3 to seg0:end Data walks along the timeline with his arms up but makes nothing happen. In seg1:mid he dances on the 2025 bar and in seg3:mid he walks on top of the $53",
+    "decorative_mascot: seg3:start to seg3:end: Data perches on top of the $53B bubble while it grows; he does not inflate it. seg4:start to seg4:end: he leans on a staff beside the left pan while blocks d",
+    "decorative_mascot: Data walks along the timeline with his arms up in hook@0.3 to seg0:end, dances on top of bars in seg1:mid and seg1:end, perches on a bubble in seg3:mid, and stands beside the scale "
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 14,
+   "count": 13,
    "stories": {
-    "the-biggest-lightest-workforce": 2,
-    "global-ewaste-crisis": 6,
-    "child-mortality-collapse": 5,
-    "landline-extinction-event": 1
+    "bat-fungus-collapse": 6,
+    "landline-extinction-event": 3,
+    "billionaire-count-record-2025": 3,
+    "marathon-super-shoes-record-pace": 1
    },
    "timestamps": [
-    "2026-09-30T15:46:27+00:00",
-    "2026-09-30T15:53:31+00:00",
-    "2026-09-30T17:48:34+00:00",
-    "2026-09-30T17:54:18+00:00",
-    "2026-09-30T17:59:54+00:00",
-    "2026-09-30T18:11:06+00:00",
-    "2026-09-30T18:19:09+00:00",
-    "2026-09-30T18:35:56+00:00",
-    "2026-09-30T19:07:54+00:00",
-    "2026-09-30T19:14:47+00:00",
-    "2026-09-30T19:21:31+00:00",
-    "2026-09-30T19:35:47+00:00",
-    "2026-09-30T19:49:19+00:00",
-    "2026-09-30T20:01:44+00:00"
+    "2026-10-01T12:14:21+00:00",
+    "2026-10-01T12:21:15+00:00",
+    "2026-10-01T12:37:46+00:00",
+    "2026-10-01T12:47:22+00:00",
+    "2026-10-01T12:56:33+00:00",
+    "2026-10-01T13:05:01+00:00",
+    "2026-10-01T14:20:30+00:00",
+    "2026-10-01T18:52:09+00:00",
+    "2026-10-01T19:00:57+00:00",
+    "2026-10-01T19:19:22+00:00",
+    "2026-10-01T19:51:10+00:00",
+    "2026-10-01T22:08:45+00:00",
+    "2026-10-01T22:18:35+00:00"
    ],
    "examples": [
-    "unreadable: In seg1:mid and seg1:end the 1990 value label is cut off by the left edge and reads \",322,587,072\" instead of \"2,322,587,072\". In seg2:end the 2014 55 and 2025 54.5 labels are crammed toge",
-    "unreadable: seg1:start and seg1:end: the 1990 value label runs off the left frame edge and reads '2,322,587,072' with its first digit clipped. seg1:end: the long 10-digit labels crowd each other over ",
-    "unreadable: At seg1:start every label and value is washed-out grey and the bars are invisible. At seg2:start the 'Properly recycled 22%' and 'Not properly recycled 78%' labels are dim grey on grey. At"
+    "unreadable: In seg1:end the '35' at the end of the 2025 bar is printed twice on top of itself in dark ink and is garbled. In seg1:mid Data's body partly covers that '35'. In seg4:mid and seg4:end Data",
+    "unreadable: seg3:mid: the big '53' caption sits on top of the 'Source: USGS / Boston University...' line. seg3:mid/end: '$53B' is drawn in dark ink with a smeared double outline on the blue bubble, so",
+    "unreadable: In seg3:mid and seg3:end the label is cut to 'United States o...', and China's '670M' is dark text on a pink bar with Data's body over it. In seg4:mid '45,711,188' is tiny and low-contrast"
+   ],
+   "recurred_after_fix": false
+  },
+  "bare_number": {
+   "count": 10,
+   "stories": {
+    "bat-fungus-collapse": 4,
+    "billionaire-count-record-2025": 3,
+    "kelp-forest-sea-star-collapse": 1,
+    "marathon-super-shoes-record-pace": 2
+   },
+   "timestamps": [
+    "2026-10-01T12:14:21+00:00",
+    "2026-10-01T12:21:15+00:00",
+    "2026-10-01T12:28:04+00:00",
+    "2026-10-01T13:05:01+00:00",
+    "2026-10-01T14:20:30+00:00",
+    "2026-10-01T14:40:54+00:00",
+    "2026-10-01T19:19:22+00:00",
+    "2026-10-01T19:42:13+00:00",
+    "2026-10-01T22:08:45+00:00",
+    "2026-10-01T22:18:35+00:00"
+   ],
+   "examples": [
+    "bare_number_card: seg2:start is three flat circles reading 97%, 90% and 90% with names under them. It is a number on a blob with no demonstration of a population disappearing.",
+    "bare_number_card: seg2:start: three circles of almost the same size labelled 97%, 90% and 90%, which are just numbers on blobs. The 7-point gap is never shown.",
+    "bare_number_card: In seg2:start each species is just a percentage in a flat circle (97%, 90%, 90%), and seg3:start/seg3:end are a big '$53B' printed inside a blue disc."
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 4,
+   "count": 8,
    "stories": {
-    "the-biggest-lightest-workforce": 1,
-    "landline-extinction-event": 1,
-    "global-ewaste-crisis": 2
+    "bat-fungus-collapse": 3,
+    "billionaire-count-record-2025": 3,
+    "marathon-super-shoes-record-pace": 2
    },
    "timestamps": [
-    "2026-09-30T15:53:31+00:00",
-    "2026-09-30T16:00:49+00:00",
-    "2026-09-30T17:59:54+00:00",
-    "2026-09-30T19:07:54+00:00"
+    "2026-10-01T12:14:21+00:00",
+    "2026-10-01T12:28:04+00:00",
+    "2026-10-01T13:05:01+00:00",
+    "2026-10-01T14:27:42+00:00",
+    "2026-10-01T19:19:22+00:00",
+    "2026-10-01T19:42:13+00:00",
+    "2026-10-01T22:08:45+00:00",
+    "2026-10-01T22:18:35+00:00"
    ],
    "examples": [
-    "empty_void: seg1:start: the upper half, and everything right of the single 1990 column, is empty dark gradient. seg3:start: the top 40% above three small bars is empty.",
-    "empty_void: At seg1:start the frame is almost empty: a small dot and pill in the middle, a faint polyline, and big blank dark areas above and below.",
-    "empty_void: hook@0.3\u2013seg0:mid: a tiny line fills the lower-left corner, and the whole right 'projected' half and the band between y\u2248500 and the captions are empty dark gradient."
+    "empty_void: In hook@0.3 to hook@2.2 and seg0:start one thin timeline line and a tiny '1' sit in the middle, and roughly 70% of the frame above and below them is empty dark gradient.",
+    "empty_void: In the hook and seg0 (hook@0.3 to seg0:end) a thin timeline sits at mid-height with a lone '1', leaving the top-middle and bottom third of the frame empty. In seg3:start the $3.7B dot floa",
+    "empty_void: seg2:start: three short bars sit in the bottom quarter, and the top half of the frame is empty dark gradient. In seg3:start the band between the header and the circles is empty, with the s"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 1,
+   "count": 6,
    "stories": {
-    "child-mortality-collapse": 1
+    "landline-extinction-event": 3,
+    "billionaire-count-record-2025": 3
    },
    "timestamps": [
-    "2026-09-30T18:11:06+00:00"
+    "2026-10-01T12:37:46+00:00",
+    "2026-10-01T12:47:22+00:00",
+    "2026-10-01T12:56:33+00:00",
+    "2026-10-01T13:05:01+00:00",
+    "2026-10-01T19:19:22+00:00",
+    "2026-10-01T22:18:35+00:00"
    ],
    "examples": [
-    "dead_air: The same tank shot runs from hook@0.3 to seg1:start (about 8.4s). Only the blue band creeps down a few pixels and Data keeps the same pointing pose, so the hook and seg0 look identical."
+    "dead_air: hook@0.3 through seg0:end (0.3s to 6.85s) show the same finished line chart with Data parked at its end. Only his sled shifts a few pixels, so about 5s passes with nothing meaningful changin",
+    "dead_air: seg0:start (2.0s) to seg0:end (6.85s) is the same finished line chart with Data parked at its tip. Only the captions change for about 4.8s. Code measured small motion, but nothing in the pic",
+    "dead_air: seg0:start (2.02s) through seg0:end (6.85s) look the same as hook@2.2: the line is already fully drawn and Data is parked at its end on the sled. For about 5s only the caption changes, and t"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
-   "min": 1,
-   "max": 3
-  },
-  "data_demo": {
-   "median": 2,
-   "min": 1,
-   "max": 3
-  },
-  "mascot": {
-   "median": 2,
+   "median": 1,
    "min": 1,
    "max": 2
+  },
+  "data_demo": {
+   "median": 1,
+   "min": 1,
+   "max": 2
+  },
+  "mascot": {
+   "median": 1,
+   "min": 1,
+   "max": 4
   },
   "craft": {
    "median": 1,
@@ -141,25 +191,25 @@
   }
  },
  "scores": [
-  65,
-  53,
-  39,
-  48,
-  39,
-  39,
-  52,
-  44,
-  53,
-  44,
-  40,
-  48,
-  52,
   57,
-  43,
-  56,
+  39,
+  39,
+  39,
+  39,
+  57,
+  57,
+  40,
+  39,
+  44,
+  44,
+  39,
+  44,
+  44,
   48,
-  66,
-  70,
-  70
+  40,
+  39,
+  44,
+  39,
+  35
  ]
 }
