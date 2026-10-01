@@ -1,0 +1,23 @@
+{
+  "key": "marathon_wr_progression",
+  "title": "Men's marathon world record time",
+  "unit": "minutes",
+  "geography": "Global (men's elite marathon)",
+  "time_coverage": "1998-2023",
+  "source": {
+    "name": "Marathon world record progression",
+    "publisher": "World Athletics (as compiled by Wikipedia's record-progression tables)",
+    "url": "https://en.wikipedia.org/wiki/Marathon_world_record_progression",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Men's marathon world record times, converted to decimal minutes: Ronaldo da Costa 2:06:05 (1998), Paul Tergat 2:04:55 (2003), Haile Gebrselassie 2:03:59 (2008), Dennis Kimetto 2:02:57 (2014), Eliud Kipchoge 2:01:39 (2018), Kelvin Kiptum 2:00:35 (2023).",
+  "points": [
+    {"label": "1998", "value": 126.08, "period": "1998"},
+    {"label": "2003", "value": 124.92, "period": "2003"},
+    {"label": "2008", "value": 123.98, "period": "2008"},
+    {"label": "2014", "value": 122.95, "period": "2014"},
+    {"label": "2018", "value": 121.65, "period": "2018"},
+    {"label": "2023", "value": 120.58, "period": "2023"}
+  ]
+}

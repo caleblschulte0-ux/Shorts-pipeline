@@ -1,0 +1,20 @@
+{
+  "key": "billionaire_wealth_vs_sp500_growth",
+  "title": "10-year growth: billionaire wealth vs. the S&P 500",
+  "unit": "percent",
+  "geography": "Global / US stock market",
+  "time_coverage": "2015-2025",
+  "source": {
+    "name": "Forbes World's Billionaires list and S&P 500 index levels",
+    "publisher": "Forbes; S&P Dow Jones Indices (S&P 500 level, Jan 2015 vs Jan 2025)",
+    "url": "https://fred.stlouisfed.org/data/SP500",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Forbes-tallied billionaire wealth grew from $7.1T (2015) to $16.1T (2025), about +127%. The S&P 500 index grew from about 2,028 (Jan 2015) to about 5,980 (Jan 2025), about +195%, over the same stretch. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "Billionaire wealth", "value": 127},
+    {"label": "S&P 500 index", "value": 195}
+  ],
+  "baseline": {"label": "Billionaire wealth", "value": 127}
+}

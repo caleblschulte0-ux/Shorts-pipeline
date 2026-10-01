@@ -1,0 +1,22 @@
+{
+  "key": "chronotype_lateness_by_age",
+  "title": "Natural sleep-timing lateness by age (free-day sleep midpoint)",
+  "unit": "hours after midnight",
+  "geography": "Global (large-scale chronotype survey)",
+  "time_coverage": "cross-sectional by age",
+  "source": {
+    "name": "A marker for the end of adolescence (chronotype-by-age study)",
+    "publisher": "Roenneberg et al., Current Biology (chronobiology research, ~25,000-person Munich ChronoType Questionnaire sample)",
+    "url": "https://www.masterclass.com/classes/matthew-walker-teaches-the-science-of-better-sleep/chapters/night-owl-or-morning-lark",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Large chronotype surveys find natural sleep timing (midpoint of sleep on free days) drifts later through childhood and adolescence, peaks in lateness around age 20, then shifts earlier for the rest of life. Values are the approximate sleep-midpoint clock hour after midnight by age band, as publicly reported.",
+  "points": [
+    {"label": "Age 10", "value": 4.3, "period": "10"},
+    {"label": "Age 20", "value": 5.2, "period": "20"},
+    {"label": "Age 30", "value": 4.6, "period": "30"},
+    {"label": "Age 50", "value": 4.0, "period": "50"},
+    {"label": "Age 70", "value": 3.3, "period": "70"}
+  ]
+}

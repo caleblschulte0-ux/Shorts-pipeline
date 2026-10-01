@@ -1,0 +1,20 @@
+{
+  "key": "chronotype_genetic_contribution",
+  "title": "What determines your chronotype: genetics vs. environment",
+  "unit": "percent",
+  "geography": "Global (twin / genome-wide association studies)",
+  "time_coverage": "pooled genetic-study estimate",
+  "source": {
+    "name": "Chronotype genome-wide association study",
+    "publisher": "Jones et al., genome-wide association analysis of ~700,000 individuals (as reported by sleep-genetics research summaries)",
+    "url": "https://saxena.mgh.harvard.edu/news/morning-or-night-person-it-depends-on-many-more-genes-than-we-thought/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "A genome-wide association analysis of 697,828 people identified 351 genetic loci influencing chronotype; twin studies estimate roughly 44% of differences in natural sleep timing are inherited, with the rest coming from environment and habits. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "Genetics", "value": 44},
+    {"label": "Environment & habits", "value": 56}
+  ],
+  "baseline": {"label": "Genetics", "value": 44}
+}

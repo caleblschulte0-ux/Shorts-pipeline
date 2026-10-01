@@ -29908,6 +29908,239 @@
     }
    ],
    "hook_was": "1.26 billion phone lines, once. Now 815 million."
+  },
+  {
+   "slug": "glacier-mass-loss-acceleration",
+   "title": "Glaciers Are Now Losing 390 Billion Tons Of Ice A Year",
+   "hook": "Glacier melting just hit a record pace.",
+   "closing": "Earth is basically shedding a mountain range of ice every single year now.",
+   "question": "Have you ever seen a glacier shrink in your own lifetime? Tell me below.",
+   "caption": "Glaciers are now losing 390 billion tons of ice a year -- more than Greenland's entire ice sheet. That melt has already raised sea levels 18mm since 2000, and it's accelerating. 👇",
+   "hashtags": [
+    "glaciers",
+    "climatechange",
+    "ice",
+    "sealevelrise",
+    "science",
+    "climatedata",
+    "nature",
+    "environment",
+    "wgms",
+    "didyouknow",
+    "earth",
+    "globalwarming",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "glacier_loss_by_era",
+     "params": {
+      "file": "glacier_loss_by_era.json"
+     },
+     "insight_type": "trend",
+     "topic": "glacier ice loss per year",
+     "role": "1 · THE PACE",
+     "say": "Glaciers used to lose about 85 billion tons of ice a year. Now it's 390 billion tons a year, and still climbing."
+    },
+    {
+     "source": "offline",
+     "key": "glacier_vs_greenland_loss",
+     "params": {
+      "file": "glacier_vs_greenland_loss.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "topic": "glacier ice loss vs Greenland ice sheet",
+     "role": "2 · BIGGER THAN GREENLAND",
+     "say": "That's already bigger than Greenland's whole ice sheet loses -- 390 billion tons from glaciers versus about 330 billion from Greenland."
+    },
+    {
+     "source": "offline",
+     "key": "glacier_sea_level_contribution",
+     "params": {
+      "file": "glacier_sea_level_contribution.json"
+     },
+     "insight_type": "trend",
+     "topic": "glacier melt and sea level rise",
+     "role": "3 · WHERE IT GOES",
+     "say": "All that melted glacier ice doesn't just vanish -- it's already pushed global sea levels up 18 millimeters since 2000."
+    }
+   ]
+  },
+  {
+   "slug": "marathon-super-shoes-record-pace",
+   "title": "Super Shoes Just Broke The Marathon World Record Again",
+   "hook": "The record just fell for the 5th time since 1998.",
+   "closing": "Somewhere, a shoe lab just shaved a few more seconds off human limits.",
+   "question": "Should carbon-plated super shoes even count toward a world record? Tell me what you think.",
+   "caption": "The marathon world record has fallen 5 times since 1998 -- but it's falling almost 4x faster since carbon-plated 'super shoes' showed up in 2016. 15 of the 20 fastest marathons ever were run after that. 👇",
+   "hashtags": [
+    "marathon",
+    "supershoes",
+    "running",
+    "worldrecord",
+    "sports",
+    "trackandfield",
+    "athletics",
+    "sportsscience",
+    "carbonplate",
+    "didyouknow",
+    "kipchoge",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "marathon_wr_progression",
+     "params": {
+      "file": "marathon_wr_progression.json"
+     },
+     "insight_type": "trend",
+     "topic": "marathon world record time",
+     "role": "1 · THE RECORD KEEPS FALLING",
+     "say": "The men's marathon world record dropped from 2 hours 6 minutes in 1998 to 2 hours flat by 2023."
+    },
+    {
+     "source": "offline",
+     "key": "marathon_improvement_rate_pre_post_shoes",
+     "params": {
+      "file": "marathon_improvement_rate_pre_post_shoes.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "topic": "marathon world record improvement rate super shoes",
+     "role": "2 · THE SHOES CHANGED THE MATH",
+     "say": "Before carbon-plated super shoes, the record fell about 8 seconds a year. Since 2016, it's almost 30 seconds a year."
+    },
+    {
+     "source": "offline",
+     "key": "marathon_top20_times_era_share",
+     "params": {
+      "file": "marathon_top20_times_era_share.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "topic": "marathon world record fastest times since super shoes",
+     "role": "3 · THE PROOF",
+     "say": "Of the 20 fastest marathons ever run, 15 of them happened after 2018 -- right when the shoes arrived."
+    }
+   ]
+  },
+  {
+   "slug": "night-owl-chronotype-rarity",
+   "title": "Only 1 In 4 People Are Actually Night Owls",
+   "hook": "Most 'night owls' aren't really night owls.",
+   "closing": "Your body already picked a side. Work just never bothered to ask it.",
+   "question": "Are you a real night owl, or just sleep-deprived? Tell me below.",
+   "caption": "Only about 1 in 4 people are genuine night owls -- genetics explain 44% of it. And everyone's internal clock drifts latest around age 20, then creeps earlier for the rest of life. 👇",
+   "hashtags": [
+    "chronotype",
+    "nightowl",
+    "sleep",
+    "sleepscience",
+    "biology",
+    "genetics",
+    "circadianrhythm",
+    "didyouknow",
+    "psychology",
+    "wellness",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "chronotype_population_split",
+     "params": {
+      "file": "chronotype_population_split.json"
+     },
+     "insight_type": "share",
+     "topic": "chronotype night owl population",
+     "role": "1 · WHO'S ACTUALLY AN OWL",
+     "say": "Only about 1 in 4 people are genuine night owls. Nearly half of us -- 47 percent -- are just somewhere in between."
+    },
+    {
+     "source": "offline",
+     "key": "chronotype_genetic_contribution",
+     "params": {
+      "file": "chronotype_genetic_contribution.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "topic": "chronotype genetics night owl",
+     "role": "2 · WHY THAT HAPPENS",
+     "say": "Twin studies found genetics explains 44 percent of when you naturally wake up. The rest is habit."
+    },
+    {
+     "source": "offline",
+     "key": "chronotype_lateness_by_age",
+     "params": {
+      "file": "chronotype_lateness_by_age.json"
+     },
+     "insight_type": "trend",
+     "topic": "chronotype night owl age",
+     "role": "3 · IT DOESN'T LAST",
+     "say": "Your internal clock drifts latest around age 20, then creeps earlier for the rest of your life."
+    }
+   ]
+  },
+  {
+   "slug": "billionaire-count-record-2025",
+   "title": "The World Now Has Over 3,000 Billionaires For The First Time",
+   "hook": "Billionaires just hit a record 3,028.",
+   "closing": "Turns out getting richer mostly just meant holding stocks while they went up.",
+   "question": "Would you still call that lucky, or just well-invested? Tell me below.",
+   "caption": "Forbes counted 3,028 billionaires in 2025, worth over $16.1 trillion combined -- up from 1,826 people and $7.1 trillion a decade ago. But the S&P 500 alone grew even faster. 👇",
+   "hashtags": [
+    "billionaires",
+    "forbes",
+    "wealth",
+    "money",
+    "finance",
+    "stockmarket",
+    "economy",
+    "richestpeople",
+    "didyouknow",
+    "sp500",
+    "investing",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "billionaire_count_by_year",
+     "params": {
+      "file": "billionaire_count_by_year.json"
+     },
+     "insight_type": "trend",
+     "topic": "billionaires record count",
+     "role": "1 · THE RECORD COUNT",
+     "say": "In 2015, Forbes counted 1,826 of the world's billionaires. By 2025, that hit 3,028 -- a new record."
+    },
+    {
+     "source": "offline",
+     "key": "billionaire_wealth_by_year",
+     "params": {
+      "file": "billionaire_wealth_by_year.json"
+     },
+     "insight_type": "trend",
+     "topic": "billionaires total wealth",
+     "role": "2 · THE RECORD WEALTH",
+     "say": "Their combined wealth more than doubled too, from $7.1 trillion in 2015 to over $16.1 trillion now."
+    },
+    {
+     "source": "offline",
+     "key": "billionaire_wealth_vs_sp500_growth",
+     "params": {
+      "file": "billionaire_wealth_vs_sp500_growth.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "topic": "billionaires wealth vs stock market",
+     "role": "3 · WHERE IT ACTUALLY CAME FROM",
+     "say": "That's a 127 percent jump -- but the S&P 500 alone grew 195 percent in that same stretch. Most of this is just stocks."
+    }
+   ]
   }
  ],
  "videos": [

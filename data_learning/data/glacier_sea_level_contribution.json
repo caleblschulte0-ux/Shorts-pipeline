@@ -1,0 +1,20 @@
+{
+  "key": "glacier_sea_level_contribution",
+  "title": "Cumulative sea-level rise caused by melting glaciers",
+  "unit": "millimeters",
+  "geography": "Global",
+  "time_coverage": "2000-2023",
+  "source": {
+    "name": "Glacier Mass Balance Intercomparison Exercise (GlaMBIE)",
+    "publisher": "World Glacier Monitoring Service (WGMS), University of Zurich",
+    "url": "https://wgms.ch/sea-level-rise/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "WGMS/GlaMBIE: glaciers lost 6,542 billion tonnes of ice between 2000 and 2023, contributing 18mm to global sea-level rise. Midpoint approximated as roughly linear given the reported acceleration; figures approximate as publicly reported.",
+  "points": [
+    {"label": "2000", "value": 0, "period": "2000"},
+    {"label": "2012", "value": 7, "period": "2012"},
+    {"label": "2023", "value": 18, "period": "2023"}
+  ]
+}

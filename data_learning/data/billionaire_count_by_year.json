@@ -1,0 +1,23 @@
+{
+  "key": "billionaire_count_by_year",
+  "title": "Number of billionaires worldwide",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2015-2025",
+  "source": {
+    "name": "The World's Billionaires list",
+    "publisher": "Forbes",
+    "url": "https://www.forbes.com/sites/chasewithorn/2024/04/02/forbes-38th-annual-worlds-billionaires-list-facts-and-figures-2024/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Forbes' annual World's Billionaires count: 1,826 (2015), 2,208 (2018), 2,095 (2020, pandemic dip), 2,668 (2022), 2,781 (2024), 3,028 (2025). Figures approximate as publicly reported.",
+  "points": [
+    {"label": "2015", "value": 1826, "period": "2015"},
+    {"label": "2018", "value": 2208, "period": "2018"},
+    {"label": "2020", "value": 2095, "period": "2020"},
+    {"label": "2022", "value": 2668, "period": "2022"},
+    {"label": "2024", "value": 2781, "period": "2024"},
+    {"label": "2025", "value": 3028, "period": "2025"}
+  ]
+}

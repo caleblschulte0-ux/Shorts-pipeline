@@ -1,0 +1,20 @@
+{
+  "key": "marathon_improvement_rate_pre_post_shoes",
+  "title": "Marathon world record: seconds shaved off per year",
+  "unit": "seconds per year",
+  "geography": "Global (men's elite marathon)",
+  "time_coverage": "1988-2023",
+  "source": {
+    "name": "Super shoes and marathon record progression",
+    "publisher": "Marathon Handbook / World Athletics record data",
+    "url": "https://marathonhandbook.com/super-shoe-records/",
+    "officiality": "secondary",
+    "access_date": "2026-10-01"
+  },
+  "notes": "Between 1988 and 2013 (pre carbon-plate 'super shoes'), the men's world record fell from 2:06:50 to 2:03:23 -- 207 seconds over 25 years, about 8.3 seconds/year. Since super shoes arrived in 2016, the record has fallen another 207 seconds (3:27) through Kiptum's 2023 run, about 29.6 seconds/year -- roughly 3.6x faster. Figures approximate as publicly reported.",
+  "points": [
+    {"label": "Before 2016 (1988-2013)", "value": 8.3},
+    {"label": "Since 2016 (super shoes)", "value": 29.6}
+  ],
+  "baseline": {"label": "Before 2016 (1988-2013)", "value": 8.3}
+}
