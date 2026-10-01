@@ -3,7 +3,7 @@
  "title": "What Did Romans Do After Dark? | Cozy History for Sleep",
  "thumbnail_text": "NO LIGHTS AFTER DARK?",
  "thumbnail_scene": {
-  "setting": "hut_inside",
+  "setting": "villa_inside",
   "time": "night",
   "weather": "clear",
   "shot": "close",
@@ -76,7 +76,7 @@
     {
      "say": "Inside a quiet home nearby, a woman sits close to a small flame, mending cloth with a bone needle. There is no other light. Just this one steady candle, cupped against the draft. Evening has always meant this kind of narrowing — the world shrinking down to the small circle a single flame can reach.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -129,7 +129,7 @@
     {
      "say": "In another home, a small fire glows in a shallow brazier, and a family has gathered close around it. An old man feeds it another scrap of kindling. A child leans in toward the warmth. This is probably how most evenings went — not lit brightly, but lit just enough, by people who knew exactly how much light they needed.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -191,7 +191,7 @@
     {
      "say": "Back inside, a family sits down to a simple evening meal by candlelight — bread, a little wine, whatever the day provided. There was no need for more. A meal like this, eaten slowly in a small pool of light, was probably how most nights in Rome actually ended, however grand the city looked by day.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -246,7 +246,7 @@
     {
      "say": "In a home nearby, an old woman speaks softly to a child curled beside her, the two of them lit by a brazier's glow and one small candle. We don't know exactly what stories were told on nights like this, only that they probably were — old, familiar, comforting, the kind repeated because they always worked.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -315,7 +315,7 @@
     {
      "say": "By now the whole household has settled — a man asleep, a woman resting close beside the last of the candlelight, a child already gone quiet under a blanket. Outside, the city has gone dark and still around them. This is where we begin: an ordinary Roman evening, closing gently, the same way evenings have always closed.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -356,7 +356,7 @@
     {
      "say": "The day's work is done, and the household gathers under one low roof. A man carries in the last tools, the fields' smell still on him. A small oil lamp is lit against the dark. Supper is near — plain, warm, and, for a family like this, ordinary.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -404,14 +404,15 @@
       ],
       "props": [
        "olive",
-       "basket"
+       "basket",
+       "table"
       ]
      }
     },
     {
      "say": "Inside, close to a small fire, a woman stirs a simple pot — grain, perhaps some greens, whatever the season allows. This is the cena, the main meal of a Roman day, and for most families it looked nothing like the grand feasts later writers remembered. It was small, warm, and eaten close together.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "wide",
@@ -467,7 +468,7 @@
     {
      "say": "Around a plain table, the family eats together — bread, olives, maybe a little cheese if the season allows it. This, historians think, is far closer to how most Romans actually ate most nights: simple food, eaten by hand, nothing like the couches and courses of the wealthy.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -636,7 +637,7 @@
     {
      "say": "The child has drifted off first, curled close to the last of the fire's warmth. The woman sits a moment longer, cup in hand, watching sleep settle gently over the room. It is a quiet, unremarkable end to an unremarkable evening — which, in its own way, is exactly the point.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -666,7 +667,7 @@
     {
      "say": "The lamp is trimmed low, its flame shrinking to one small, steady point of light. There is no need to put it out fully — just enough glow left to see by, if anyone stirs. This, too, is simply how an evening closed, without ceremony, for most families of ancient Rome.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -825,7 +826,8 @@
       ],
       "props": [
        "candle",
-       "brazier"
+       "brazier",
+       "cart"
       ],
       "variant": 2
      }
@@ -833,7 +835,7 @@
     {
      "say": "An old woman might sit up beside a restless child, murmuring that the sound was only carts, only deliveries, nothing to fear. It was a common scene, repeated in home after home—the rumble outside simply part of living in Rome, unwelcome but familiar.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -854,7 +856,7 @@
        }
       ],
       "props": [
-       "torch",
+       "candle",
        "brazier"
       ]
      }
@@ -904,7 +906,8 @@
       ],
       "props": [
        "torch",
-       "brazier"
+       "brazier",
+       "bed"
       ]
      }
     },
@@ -1150,7 +1153,7 @@
     {
      "say": "In a wealthier house nearby, a woman sits close to a small oil lamp, mending a torn hem by its low, steady light. The flame is precious after dark — oil is not cheap, and every household rations it carefully. Still, even here, nobody considers stepping outside once the lamps are lit.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1172,7 +1175,7 @@
     {
      "say": "By the hearth, an elder speaks quietly to a child curled close beside her. She tells him, gently, why the streets turn dangerous after sundown — not to frighten him, just to explain the family's oldest rule. He listens, warm and drowsy, already trusting the walls around him more than anything outside them.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1319,7 +1322,7 @@
     {
      "say": "In the villa, the child stirs briefly, half-woken by some sound outside. The elder beside her murmurs that it is only the watch passing by, nothing more, and settles the blanket back over her shoulder. The oil lamp gutters low, almost out, and the child sleeps again.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1349,7 +1352,7 @@
     {
      "say": "The candle finally burns down to nothing, and the little house goes dark and quiet. Outside, the watchman's steps fade into the distance, and Rome's long, careful night continues on, one lamp and one bolted door at a time, the way it will again tomorrow.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1424,7 +1427,7 @@
     {
      "say": "In a quiet house across town, a woman sits close to a small lamp, mending a torn seam by its light. Her daughter sits near her, eyes heavy, watching the needle rather than sleeping, while her husband dozes lightly in his chair nearby. The stitches continue anyway, small and careful, in and out, the only motion in the room.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1525,7 +1528,7 @@
     {
      "say": "Nearby, a child has fallen asleep on a low bed while her mother keeps sewing by the same small flame. The mother glances over now and then but does not stop her work. The needle moves quietly in and out, and the only other sound in the room is the child's slow, even breathing.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1715,7 +1718,7 @@
     {
      "say": "In a small hut at the edge of town, a mother banks the fire low and lays a blanket over her child, who is already drifting. The room smells of smoke and warm straw. Outside, the night presses close and quiet against the walls, and inside, everything that needed doing today has been done.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1825,7 +1828,7 @@
     {
      "say": "Back in the hut, the child has stopped stirring, one small hand still curled around the edge of the blanket. The mother sits beside her a little longer than she needs to, watching her breathe, before she banks the coals and lies down herself. The hut holds its warmth a long while after the fire is nearly out.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1854,7 +1857,7 @@
     {
      "say": "Across the city, the old woman finally lets the wool fall still in her lap. The candle beside her has burned down to almost nothing, its light no bigger now than a coin. She looks at it a moment, then leans back, and lets the dark come in around her the way it has come for everyone else tonight.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",

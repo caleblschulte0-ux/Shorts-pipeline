@@ -1132,7 +1132,7 @@ class ThePictureIsReadable(unittest.TestCase):
                 "scene": _scene(setting="cave_mouth")}
         self.assertIsNone(A.mend_place(cave, "stone_age"))
         # a move to satisfy a picture rule stays inside the class
-        indoors = [{"say": say, "scene": {"setting": "hut_inside", "time": "night", "weather": "clear",
+        indoors = [{"say": say, "scene": {"setting": "house_inside", "time": "night", "weather": "clear",
                                           "shot": "close", "cast": [{"who": "man", "pose": "sit", "action": "eat"}],
                                           "props": ["candle", "table"]}} for _ in range(8)]
         ep = {"slug": "a-test", "era": "ancient", "chapters": [{"title": "One", "beats": indoors}]}
@@ -1155,7 +1155,7 @@ class ThePictureIsReadable(unittest.TestCase):
                           if "deep night" in x], [])
         # the storyboard's own setting changes keep to the words' class too
         self.assertIsNone(SB._next_setting("forum", "ancient", say="the watchman crosses the square"))
-        self.assertEqual(SB._next_setting("hut_inside", "ancient", say="inside, by the table"), "villa_inside")
+        self.assertEqual(SB._next_setting("house_inside", "ancient", say="inside, by the table"), "villa_inside")
         self.assertIn(SB._next_setting("grassland", "ancient", say="the fire burned low"), ("forest", "riverbank",
                                                                                             "lakeshore", "seashore",
                                                                                             "mountains", "snowfield",
@@ -1169,8 +1169,10 @@ class ThePictureIsReadable(unittest.TestCase):
             ST.draw_still(cr, "villa_inside", time, "clear", 3)
             surf.flush()
             a = np.frombuffer(surf.get_data(), dtype=np.uint8).reshape(S.H, S.W, 4)[:, :, :3].astype(int)
-            return a[230:600].mean(axis=2).mean(axis=0).min()      # the darkest column: the doorway
-        self.assertLess(doorway("night"), doorway("day") - 40, "the doorway looks the same at night")
+            # how much of the wall's height is DARK: the doorway's opening,
+            # not its ink outline (which is black at any hour)
+            return int((a[300:800].mean(axis=2) < 90).sum())
+        self.assertGreater(doorway("night"), doorway("day") + 20000, "the doorway looks the same at night")
         # the glints stay after the light pass (before it, a night river
         # measures frozen) and are clipped away from whoever stands in front
         src = inspect.getsource(S.Scene.draw)
@@ -1297,7 +1299,7 @@ class ThePictureIsReadable(unittest.TestCase):
         say = " ".join(["the night goes quietly on"] * 8)
         sky = {"setting": "desert", "time": "night", "weather": "clear", "shot": "close", "cast": [],
                "props": ["campfire"]}
-        room = {"setting": "hut_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
+        room = {"setting": "mudbrick_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
                 "props": ["oil_lamp"]}
         import copy
         beats = [{"say": say, "scene": copy.deepcopy(sky if j in (2, 6, 9) else room)} for j in range(12)]
@@ -1475,6 +1477,67 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertEqual(beats[-1]["say"], say, "the ending was trimmed")
         self.assertTrue(all(OS._words(b["say"]) >= OS.BEAT_WORDS[0] for b in beats))
         self.assertTrue(all(b["say"].rstrip().endswith(".") for b in beats), "a sentence was cut in half")
+
+    def test_the_greek_film_was_slop_and_these_are_the_fixes(self):
+        # the operator watched the Greek film and called it "3/10 AI slop ...
+        # they need to be more entertaining to watch". What the frames showed
+        # and what each fix holds
+        import ori_author as A
+        from data_learning import ori_sleep as OS
+        from data_learning.doodle import ink
+        from data_learning.doodle import props as PR
+        from data_learning.doodle import settings as ST
+        S = self.S
+        # 1. a Stone Age hut is not a Greek, Egyptian or Victorian building
+        for era in ("ancient", "egypt", "victorian", "early_modern"):
+            self.assertNotIn(era, S.SETTINGS["hut_inside"].eras)
+            self.assertNotIn(era, PR.PROPS["hut"].eras)
+        self.assertIn("ancient", S.SETTINGS["house_inside"].eras)
+        sc = {"setting": "hut_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
+              "props": ["oil_lamp"]}
+        A.mend_scene(sc, "ancient")
+        self.assertIn(sc["setting"], ("villa_inside", "house_inside"))
+        self.assertEqual(S.validate(sc, "ancient"), [])
+        # 2. a rectangle stays a rectangle (four bare corners were smoothed
+        # into a curved "horizon" and an arch)
+        pts = ink.box(0, 0, 400, 100)
+        self.assertGreater(len(pts), 8)
+        self.assertTrue(all(abs(y) < 1e-9 for x, y in pts if 0 < x < 400 and y < 50))
+        # 3. diners sit AT the table, on something
+        dine = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "sit", "action": "eat"},
+                         {"who": "woman", "pose": "sit", "action": "drink"}],
+                "props": ["table", "oil_lamp"]}
+        lay = S.layout(dine, 11)
+        tb = next(p for p in lay["props"] if p["name"] == "table")
+        half = PR.PROPS["table"].width * tb["s"] / 2
+        for f in lay["people"]:
+            self.assertEqual(f["pose"], "sit_on")
+            self.assertLess(abs(f["x"] - tb["x"]), half + 260 * tb["s"], (f["x"], tb["x"]))
+        self.assertEqual(lay["collisions"], [])
+        # 4. a long passage is cut into shots of the same place; the camera
+        # never moves, the picture changes
+        b = OS.Beat(chapter=0, index=0, text="x", scene=dine, start=0.0, end=48.0)
+        b.lines = [(k * 8.0, k * 8.0 + 7.0, f"Sentence {k}.") for k in range(6)]
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        self.assertGreaterEqual(len(sh), 2)
+        self.assertTrue(all(x["end"] - x["start"] <= 24.0 for x in sh), [x["end"] - x["start"] for x in sh])
+        self.assertEqual(sh[0]["start"], 0.0); self.assertEqual(sh[-1]["end"], 48.0)
+        self.assertTrue(all(x["scene"]["setting"] == "villa_inside" for x in sh))
+        for x in sh:
+            self.assertEqual(S.validate(x["scene"], "ancient"), [])
+            self.assertEqual(S.layout(x["scene"], x["seed"])["collisions"], [])
+        short = OS.Beat(chapter=0, index=1, text="x", scene=dine, start=0.0, end=12.0, lines=[(0, 11, "One.")])
+        self.assertEqual(len(OS.shots({"slug": "t", "era": "ancient"}, [short])), 1)
+        # 5. a candle is a full motion source only in a pale room (measured)
+        dark = {"setting": "tavern_inside", "time": "night", "weather": "clear", "shot": "close", "cast": [],
+                "props": ["candle"]}
+        pale = dict(dark, setting="cottage_inside")
+        self.assertLess(S.motion_strength(dark), S.motion_strength(pale))
+        # 6. mend_film settles: a second pass over the shelf changes nothing
+        for f in sorted(OS.EPISODES.glob("*.json")):
+            ep = json.loads(f.read_text(encoding="utf-8"))
+            self.assertEqual(A.mend_film(ep, log=lambda *_: None), [], f.name)
 
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in

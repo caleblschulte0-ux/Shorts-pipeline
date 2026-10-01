@@ -1057,7 +1057,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 2
      }
@@ -1143,19 +1144,18 @@
         "pose": "sit",
         "action": "sew",
         "mood": "focused",
-        "item": "needle",
-        "at": "center"
+        "item": "needle"
        },
        {
         "who": "old_woman",
         "pose": "sit",
         "action": "idle",
-        "mood": "content",
-        "at": "left"
+        "mood": "content"
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 1
      }
@@ -1725,19 +1725,18 @@
         "who": "child",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy",
-        "at": "left"
+        "mood": "sleepy"
        },
        {
         "who": "woman",
         "pose": "crouch",
         "action": "hold",
-        "mood": "calm",
-        "at": "right"
+        "mood": "calm"
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 2
      }

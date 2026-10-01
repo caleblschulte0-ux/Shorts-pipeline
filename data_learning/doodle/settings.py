@@ -57,13 +57,14 @@ SETTINGS = {
     "snowfield": Setting("snow"),
     "cave_mouth": Setting("rock", eras=("stone_age",)),
     "cave_inside": Setting("rock", interior=True, eras=("stone_age",)),
-    "hut_inside": Setting("dirt", interior=True),
+    "hut_inside": Setting("dirt", interior=True, eras=("stone_age", "medieval")),
     "village": Setting("dirt", eras=("medieval",)),
     "field": Setting("dirt", eras=("medieval",)),
-    "cottage_inside": Setting("floor", interior=True, eras=("medieval",)),
+    "cottage_inside": Setting("floor", interior=True, eras=("medieval", "victorian", "early_modern")),
     "castle": Setting("grass", eras=("medieval",)),
     "forum": Setting("stone", eras=("ancient",)),                 # a town square: colonnade, town behind
     "villa_inside": Setting("floor", interior=True, eras=("ancient",)),
+    "house_inside": Setting("floor", interior=True, eras=("ancient",)),     # a plain whitewashed home
     "olive_grove": Setting("dirt", eras=("ancient",)),
     "street": Setting("cobbles", eras=("victorian",)),            # a gas-lit terrace street
     "parlour_inside": Setting("boards", interior=True, eras=("victorian",)),
@@ -285,26 +286,71 @@ def _interior(cr, name, seed, r, time: str = "night"):
             x = k * 90 + r.uniform(-10, 10)
             ink.line(cr, [(x, -10), (W / 2 + (x - W / 2) * 0.35, H * 0.55)], lw=6, ink=rgb("#5a4129"), amp=1, seed=k)
     elif name == "villa_inside":
-        wall = rgb("#d9b9a0")
+        # a Greek or Roman room: plastered walls with a painted dado, a
+        # doorway onto the courtyard at this hour, a niche with a jar. Drawn
+        # with straight edges (ink.box) — four bare corners were smoothed
+        # into a curved "horizon" and an arch with a blob in it, and the
+        # operator called the film "3/10 AI slop"
+        wall = rgb("#e2cdb0")
         cr.set_source_rgba(*wall)
         cr.paint()
-        # a painted dado in deep red with a pale band, the way villa walls were
-        ink.fill_stroke(cr, [(-10, H * 0.5), (W + 10, H * 0.5), (W + 10, H * 0.8), (-10, H * 0.8)], rgb("#8e3b34"),
-                        lw=0, amp=0)
-        ink.line(cr, [(-10, H * 0.5), (W + 10, H * 0.5)], lw=10, ink=rgb("#e8d9b8"), amp=0.6, seed=seed)
-        ink.line(cr, [(-10, H * 0.5 + 24), (W + 10, H * 0.5 + 24)], lw=3, ink=rgb("#e8d9b8"), amp=0.6, seed=seed + 1)
-        # a doorway to the courtyard, at this hour
+        top, bot = H * 0.5, H * GROUND_Y
+        ink.fill_stroke(cr, ink.box(-20, top, W + 20, bot + 10), rgb("#8e3b34"), lw=0, amp=0)
+        ink.line(cr, [(-10, top), (W + 10, top)], lw=12, ink=rgb("#efe2c6"), amp=0.4, seed=seed)
+        ink.line(cr, [(-10, top + 30), (W + 10, top + 30)], lw=4, ink=rgb("#efe2c6"), amp=0.4, seed=seed + 1)
+        # a meander band along the top of the wall
+        for k in range(0, W + 60, 60):
+            ink.line(cr, [(k, 150), (k, 120), (k + 40, 120), (k + 40, 140), (k + 20, 140)], lw=4,
+                     ink=rgb("#9a5a3c"), amp=0)
+        ink.line(cr, [(-10, 106), (W + 10, 106)], lw=5, ink=rgb("#9a5a3c"), amp=0.3, seed=seed + 2)
+        ink.line(cr, [(-10, 164), (W + 10, 164)], lw=5, ink=rgb("#9a5a3c"), amp=0.3, seed=seed + 3)
         sky, ground, tree = _outside(time)
-        dx = r.choice([380, 1000, 1500])
-        ink.fill_stroke(cr, [(dx - 120, H * 0.8), (dx - 120, 200), (dx + 120, 200), (dx + 120, H * 0.8)],
-                        rgb("#c9b08a"), lw=8, amp=0.8, seed=seed + 2)
-        ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, 220), (dx + 100, 220), (dx + 100, H * 0.8)],
-                        sky, lw=0, amp=0)
-        ink.fill_stroke(cr, [(dx - 100, H * 0.8), (dx - 100, H * 0.62), (dx + 100, H * 0.62), (dx + 100, H * 0.8)],
-                        ground, lw=0, amp=0)
-        ink.fill_stroke(cr, ink.blob_pts(dx + 30, H * 0.56, 50, 34, seed + 5, 0.12, 12), tree, lw=3,
-                        amp=1, seed=seed + 5)
-        ink.line(cr, [(dx + 30, H * 0.62), (dx + 30, H * 0.58)], lw=6, ink=rgb("#6f5a44"), amp=0)
+        dx = r.choice([300, 1620]) + r.uniform(-40, 40)
+        # the doorway: a stone frame, a lintel, the courtyard beyond
+        ink.fill_stroke(cr, ink.box(dx - 150, 250, dx + 150, bot), rgb("#cdb894"), lw=7, amp=0.6, seed=seed + 4)
+        ink.fill_stroke(cr, ink.box(dx - 115, 285, dx + 115, bot), sky, lw=5, amp=0, seed=seed + 5)
+        ink.fill_stroke(cr, ink.box(dx - 115, bot - 120, dx + 115, bot), ground, lw=0, amp=0)
+        # a courtyard column and a few stars through the door
+        ink.fill_stroke(cr, ink.box(dx + 30, 330, dx + 62, bot - 40), ink.mix(rgb("#d8d0c0"), sky, 0.55), lw=4,
+                        amp=0, seed=seed + 6)
+        if time in ("night", "dusk"):
+            for k in range(6):
+                ink.dot(cr, dx - 95 + r.uniform(0, 180), 300 + r.uniform(0, 140), 2.2, (1, 1, 0.9, 0.8))
+        ink.fill_stroke(cr, ink.box(dx - 170, 226, dx + 170, 262), rgb("#bfa77f"), lw=6, amp=0.4, seed=seed + 7)
+        # a wall niche holding a jar, on the other side of the room
+        nx = W - dx + r.uniform(-120, 120)
+        ink.fill_stroke(cr, ink.box(nx - 90, 300, nx + 90, 470), shade(wall, 0.72), lw=6, amp=0.5, seed=seed + 8)
+        ink.fill_stroke(cr, [(nx - 34, 466), (nx - 50, 420), (nx - 30, 360), (nx - 16, 336), (nx + 16, 336),
+                             (nx + 30, 360), (nx + 50, 420), (nx + 34, 466)], rgb("#b5643a"), lw=5, amp=0.4,
+                        seed=seed + 9, shadow=rgb("#8a4a2a"), shadow_dir=(1, 0))
+        ink.line(cr, [(nx - 40, 400), (nx + 40, 400)], lw=4, ink=rgb("#2a1c16"), amp=0)
+    elif name == "house_inside":
+        # a plain Greek or Roman house: whitewash, ceiling beams, a small
+        # high window with a shutter, a shelf of pots and a loom
+        wall = rgb("#ece3d0")
+        cr.set_source_rgba(*wall)
+        cr.paint()
+        bot = H * GROUND_Y
+        for k in range(5):
+            y = 40 + k * 4
+            ink.line(cr, [(-10, y), (W + 10, y)], lw=2, ink=shade(wall, 0.95), amp=0.4, seed=seed + k)
+        for x in range(-40, W + 80, 320):
+            ink.fill_stroke(cr, ink.box(x, -10, x + 46, 70), rgb("#7a5a3c"), lw=5, amp=0.5, seed=seed + x)
+        ink.fill_stroke(cr, ink.box(-20, 60, W + 20, 92), rgb("#6a4c32"), lw=5, amp=0.5, seed=seed + 1)
+        wx = r.choice([420, 1500]) + r.uniform(-60, 60)
+        ink.fill_stroke(cr, ink.box(wx - 80, 200, wx + 80, 330), _outside(time)[0], lw=8, amp=0.6, seed=seed + 2)
+        ink.fill_stroke(cr, ink.box(wx + 80, 200, wx + 150, 330), rgb("#7a5a3c"), lw=6, amp=0.5, seed=seed + 3)
+        # a shelf with pots on the far wall
+        sx = W - wx + r.uniform(-100, 100)
+        ink.fill_stroke(cr, ink.box(sx - 200, 380, sx + 200, 400), rgb("#6a4c32"), lw=5, amp=0.4, seed=seed + 4)
+        for k, (w_, h_, c) in enumerate(((40, 70, "#b5643a"), (30, 50, "#c9a36a"), (46, 80, "#9a5a3c"),
+                                         (28, 44, "#d8c39a"))):
+            px = sx - 150 + k * 100
+            ink.fill_stroke(cr, [(px - w_ * 0.6, 380), (px - w_, 380 - h_ * 0.6), (px - w_ * 0.5, 380 - h_),
+                                 (px + w_ * 0.5, 380 - h_), (px + w_, 380 - h_ * 0.6), (px + w_ * 0.6, 380)],
+                            rgb(c), lw=4, amp=0.4, seed=seed + 10 + k, shadow=shade(rgb(c)), shadow_dir=(1, 0))
+        # a skirting of beaten earth colour where the wall meets the floor
+        ink.fill_stroke(cr, ink.box(-20, bot - 40, W + 20, bot + 10), rgb("#cdb48e"), lw=0, amp=0)
     elif name == "mudbrick_inside":
         wall = rgb("#e4d3ac")
         cr.set_source_rgba(*wall)

@@ -638,6 +638,41 @@ only as a hand edit is not a rule. So:
   closing sentences from the longest middle beats of a film that is still a
   little over, rather than losing it.
 
+- **Run #26 re-run (ancient Greeks, 74, BLOCK), and the operator's verdict:
+  "3/10 AI slop ... they need to be more entertaining to watch."** The
+  judge's 74 was not the measure that mattered; he watched it. The frames
+  showed why. People were scattered across empty rooms, sat on nothing,
+  and faced the camera. The Greek room was a red band smoothed into a curved
+  "horizon", with an arch holding a blob. A Stone Age thatch hut stood in for
+  a Greek home 17 times, and thatched huts stood on Greek riverbanks. One
+  picture held for 35-55 seconds per passage. His direction (2026-10-01):
+  "throw in some" real paintings, with the camera DEAD STILL (his standing
+  ruling against camera movement holds, and paintings get drawn motion
+  instead), and make what we have more entertaining. Done so far:
+  - **Shots:** a passage longer than `SHOT_MAX` (16 s) is cut at its
+    sentence breaks into up to three shots of the same place (the scene,
+    the other shot size, a new arrangement), each checked valid and
+    collision-free (`ori_sleep.shots`). The median hold fell from 25 s to
+    14 s. The camera never moves; the picture changes.
+  - **Rooms:** `villa_inside` was redrawn with straight edges (`ink.box`):
+    a meander frieze, a stone doorframe onto the courtyard at this hour,
+    and a niche with a jar. A plain Greek `house_inside` was added
+    (whitewash, beams, a shuttered window, a shelf of pots). `hut_inside`
+    and the `hut` prop are now Stone Age and medieval only. `mend_scene`
+    moves a scene its era cannot draw into that era's own setting of the
+    same class, so the shelf was brought over in code.
+  - **People at a table:** anyone eating, drinking, talking or sewing is
+    seated beside it, on a stool.
+  - **Honest motion credit:** a candle counts fully only in a pale room
+    (measured: 0.26 against 0.52-0.61 in the cave, hut, parlour and
+    tavern).
+  - **Mends that settle:** collisions at the render's own seed are fixed by
+    another arrangement, not by dropping props; the named-prop mend runs
+    last with a comfort margin; the room-balance rule now counts progress.
+    A second `mend_film` pass over the shelf changes nothing.
+  - **Voice:** ElevenLabs is OFF (`config/ELEVENLABS_OFF`) on his word.
+    Kokoro narrates until he says otherwise.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

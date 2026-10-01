@@ -129,10 +129,10 @@
     {
      "say": "Back along the bank, two children are in no hurry to be called inside. They chase each other through the shallows, laughing, feet slapping the wet mud, while the reeds bend and rustle around them. For a little while longer, the water is still warm from the day's sun.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "dusk",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "child",
@@ -150,7 +150,8 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "candle"
       ],
       "variant": 2
      }
@@ -186,7 +187,7 @@
     {
      "say": "Inside, a family sits close around a small brazier, sharing bread and a simple meal by its glow. Nobody speaks in a hurry. The warmth gathers in the room the way it must have gathered in homes like this one for thousands of years, plain and steady and enough.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -237,7 +238,7 @@
     {
      "say": "By lamp light, an old woman mends a bit of linen, her needle moving slowly, unhurried by the hour. Beside her, a child yawns, eyes heavy, waiting to be sent to bed. The lamp gutters gently, and the room smells of warm oil and the last of the evening's bread.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -247,15 +248,13 @@
         "pose": "sit",
         "action": "sew",
         "mood": "focused",
-        "item": "needle",
-        "at": "left"
+        "item": "needle"
        },
        {
         "who": "child",
         "pose": "sit",
         "action": "yawn",
-        "mood": "sleepy",
-        "at": "right"
+        "mood": "sleepy"
        }
       ],
       "props": [
@@ -348,7 +347,7 @@
     {
      "say": "Inside the home, someone kneels beside a small clay lamp, tipping in a little oil until it pools soft and shining at the bottom. A twist of linen waits nearby, ready to become a wick. You can almost smell the oil, faint and warm. A child watches nearby, quiet with the wonder of it.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -381,7 +380,7 @@
       "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "woman",
@@ -400,7 +399,7 @@
     {
      "say": "In a simple reed-and-mud hut, a family draws close around one small lamp. Its light barely reaches the walls, but nobody minds; they only need it to reach each other. An elder speaks softly, unhurried, and the rest lean in to listen, faces gentle in the low, flickering glow.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -430,7 +429,7 @@
     {
      "say": "Outside, along the riverbank, the settlement has gone quiet and dim. Here and there a single small light glows behind a doorway, faint against the wide dark of the valley. Most households use their oil sparingly; a lamp left burning too long is oil that will not be there tomorrow.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -476,7 +475,7 @@
     {
      "say": "In another small hut, two children play quietly near the lamp, careful to stay within its reach. Their mother sits close by, watching more than working now that the light is low. Games slow down after dark; there is only so much a small flame will let you see.",
      "scene": {
-      "setting": "mudbrick_inside",
+      "setting": "nile_bank",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -504,7 +503,7 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "torch"
       ],
       "variant": 2
      }
@@ -534,7 +533,7 @@
     {
      "say": "Back inside the hut, a mother lifts the lamp gently, checking how much oil remains. There is only a little left, so she sets it down near where the family sits, close enough for all to share its small circle of light. Nothing here is wasted, not even the glow itself.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -563,7 +562,7 @@
     {
      "say": "Near the lamp, a child yawns, eyes growing heavy in its soft, wavering light. The flame dips and rises, dips and rises, and the small shadows on the walls seem to breathe along with it. Sleep is not far now, gentle as the light that watches over it.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -730,7 +729,7 @@
     {
      "say": "Once the meal is cleared, an elder settles in among the family and begins, as elders probably did most nights, with an old story about the gods. The children lean in, already a little drowsy from the day's warmth. These are less lessons than familiar songs, telling how the gods quarreled, and loved, and set the world in order.",
      "scene": {
-      "setting": "mudbrick_inside",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -751,7 +750,7 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "torch"
       ],
       "variant": 2
      }
@@ -759,7 +758,7 @@
     {
      "say": "Someone slips back inside for a moment to bank the oven for morning, and the little oil lamp throws a low, steady light across the mudbrick wall. Outside, the elder's voice carries on without pause. You think of how many nights this same story has been told in this same small room, by this same gentle light.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -893,7 +892,7 @@
     {
      "say": "Inside, the lamp is carried back to its place near the sleeping mats, its light small and steady against the dark. The last low words of the story drift in from outside and settle over the room like something familiar and safe. Sleep tonight comes not from silence but from a voice that has been telling the same gentle, old truths for as long as anyone can remember.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1102,7 +1101,7 @@
     {
      "say": "By the lamp inside, a child asks, quietly, whether the sun is afraid in the dark. The old woman shakes her head and says the sun is never truly lost, only resting inside the sky, safe as anything can be, until it is time to be born again.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1206,7 +1205,7 @@
     {
      "say": "Inside, near the lamp, the old woman finishes her telling as the children settle lower onto their mats. Every night, she says, is the same slow crossing, and every morning the same quiet return, the way it has always gone and always will.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1236,7 +1235,7 @@
       "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "child",
@@ -1369,7 +1368,7 @@
     {
      "say": "Somewhere past the walls, a dog begins to bark, sharp and sudden in the stillness. A guard straightens by his small fire, hand tightening on his spear, and listens. The barking trails into a few tired grumbles, then quiet again. He lets his shoulders drop. Only a jackal, probably.",
      "scene": {
-      "setting": "mudbrick_inside",
+      "setting": "nile_bank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1392,7 +1391,7 @@
     {
      "say": "In the small guard hut, off-duty watchmen doze by a low candle, its flame trembling with each breath of wind through the doorway. One stirs, feeds a stick to the little brazier, then settles back into sleep. Outside, footsteps pass slowly, unhurried, just another circuit of the walls.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1578,7 +1577,7 @@
     {
      "say": "Inside the mudbrick house, a woman leans close to the oil lamp, trimming its wick so the flame settles into a small, steady glow. The evening meal is long finished, and the room has grown quiet, ready now for sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1688,7 +1687,7 @@
     {
      "say": "In the hut, a man and woman lie down together on their mats, the brazier's last coals glowing dim and orange in the corner. She pulls a woven cover over her shoulder and closes her eyes, letting the warmth carry her toward sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "riverbank",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1764,7 +1763,7 @@
     {
      "say": "Across the village, in another home, a man and woman lie close together with their child curled between them, the family dog settled near their feet. The embers fade to almost nothing now, and the room grows dark and still around them.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1833,10 +1832,10 @@
     {
      "say": "In the quiet hut, a child sleeps curled small beneath a blanket, one hand resting near the family dog. Nothing moves now but the slow, even rise and fall of breathing, steady in the dark.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "child",
@@ -1849,7 +1848,8 @@
       "props": [
        "dog",
        "bed",
-       "brazier"
+       "brazier",
+       "candle"
       ],
       "variant": 1
      }

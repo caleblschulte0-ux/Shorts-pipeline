@@ -1123,7 +1123,9 @@ PROPS = {
     "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", ALL, base=pot_base),
     "tent": Prop(tent, 360, "back", STONE_AGE),
-    "hut": Prop(hut, 390, "back", ALL),
+    # a thatched hut is a Stone Age or medieval building; a Greek, Egyptian
+    # or Victorian film has its own (villa, mudbrick_house, cottage, terrace)
+    "hut": Prop(hut, 390, "back", ("stone_age", "medieval")),
     "cottage": Prop(cottage, 470, "back", ("medieval", "victorian", "early_modern"), base=cottage_base),
     "tree": Prop(tree, 300, "back", ALL, solid_width=110),
     "pine": Prop(pine, 280, "back", ALL, solid_width=110),

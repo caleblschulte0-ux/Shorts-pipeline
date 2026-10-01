@@ -340,7 +340,7 @@
     {
      "say": "Later, an old woman settles onto a bench near the fire and begins telling a story, voice low and easy. A child sits close, chin tilted up, listening to every word. Storytelling like this filled many Elizabethan evenings, long before there was anything else to do once the light was gone.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -359,7 +359,7 @@
        }
       ],
       "props": [
-       "campfire"
+       "hearth"
       ]
      }
     },
@@ -390,7 +390,7 @@
     {
      "say": "Inside the house, the child has stopped listening and drifted off, curled small on the bed near the fire's last glow. The woman sits beside them a moment longer, watching the flames settle low. It is the same, gentle ending to an evening as countless others across the city tonight.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -549,7 +549,7 @@
     {
      "say": "Inside a small house, a family bars their own door, dropping a wooden latch into place. It echoes the larger gesture at the gates — keeping trouble on the far side of a solid door. A single candle burns low on the table. A locked house is harder to rob, and a shut door keeps a stray spark from wandering in on the wind.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -594,9 +594,11 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -902,7 +904,7 @@
     {
      "say": "At home, a woman sits close to the hearth, mending something in her lap by its low light. She glances now and then toward the door, listening past the crackle of the fire for footsteps, or a boy's voice calling out that he's brought someone safely to the right lane.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1006,7 +1008,7 @@
     {
      "say": "Inside, the room is low-beamed and close, thick with woodsmoke, ale and melting tallow. A handful of tired faces sit around rough tables, catching the evening's last warmth before the watch comes to call the hour. The hearth throws long shadows up the walls, and the cold outside feels far away.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1078,7 +1080,7 @@
     {
      "say": "A woman sits close to the hearth, warming her hands before the last red coals, her shawl pulled tight against the draft under the door. She walked here from a cold house and will walk back to one soon, but for this hour the fire is hers.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1173,7 +1175,7 @@
     {
      "say": "The candlelight is kind to tired faces. It softens the lines of a long day's work, blurs the smoke and the noise into something gentle. Nobody here is young enough to mistake this for excitement — it is simply company, ordinary and a little worn.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1245,7 +1247,7 @@
     {
      "say": "The last cups are drained slowly, without much talk now, the way a good evening ends rather than stops. A few coins are set on the table, cloaks gathered from the backs of benches, everyone feeling the same small reluctance to step out into the cold.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1255,16 +1257,14 @@
         "pose": "sit_on",
         "action": "drink",
         "mood": "sleepy",
-        "item": "cup",
-        "at": "left"
+        "item": "cup"
        },
        {
         "who": "woman",
         "pose": "stand",
         "action": "gather",
         "mood": "calm",
-        "item": "bundle",
-        "at": "right"
+        "item": "bundle"
        }
       ],
       "props": [
@@ -1402,7 +1402,7 @@
     {
      "say": "Now comes the one candle. It is tallow, not wax — cheaper, smokier, a small brown flame that gutters when the door moves. Someone carries it from table to hearth to bed, and for a moment its little light is the only thing awake in the whole house.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1456,7 +1456,7 @@
     {
      "say": "By this small light, someone tells a story, low and unhurried, the same one maybe told a hundred nights before. It does not need to be new. A child listens with eyes half closed, and the story slows until the words themselves start to sound like breathing.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1569,7 +1569,7 @@
     {
      "say": "Back inside, someone kneels by the hearth one last time, feeding it enough wood to keep a coal alive until dawn. This is the last task of the day, done almost without thinking, the same small ritual as every night before it.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1591,7 +1591,7 @@
     {
      "say": "A child lies looking up at the dark beams overhead, watching the last light from the hearth move across them in slow, orange shapes. There is nothing frightening in it, only the familiar shift of shadow that means the fire is still there, still watching over the room.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1647,7 +1647,7 @@
     {
      "say": "Perhaps one person stays awake a little longer, watching the fire settle into ash without tending it further. She has watched it go this way a thousand nights before. Slowly the dark and the quiet close in around the house, gentle as a hand folding around a small, tired flame.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1688,7 +1688,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 1
      }
@@ -1890,7 +1891,7 @@
     {
      "say": "Across the city now, almost everyone has gone still — folded into beds, curled by dying fires, wrapped in whatever warmth they have. And wherever you are listening from, you can let yourself go still too, and rest, the way this whole quiet city is resting now.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",

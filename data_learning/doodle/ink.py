@@ -99,6 +99,19 @@ def smooth(cr, pts, closed: bool = True, tension: float = 0.5):
         cr.close_path()
 
 
+def box(x0, y0, x1, y1, step: float = 24.0) -> list:
+    """A rectangle as points every ~`step` px along each edge, so the curve
+    smoother keeps the edges straight. Four bare corners are smoothed into
+    a bulge: the Greek room's painted band came out as a curved horizon and
+    its door frame as an arch."""
+    pts = []
+    for (ax, ay), (bx, by) in (((x0, y0), (x1, y0)), ((x1, y0), (x1, y1)), ((x1, y1), (x0, y1)),
+                               ((x0, y1), (x0, y0))):
+        n = max(2, int(math.hypot(bx - ax, by - ay) / step))
+        pts += [(ax + (bx - ax) * i / n, ay + (by - ay) * i / n) for i in range(n)]
+    return pts
+
+
 def ellipse_pts(cx, cy, rx, ry, n: int = 28, rot: float = 0.0, start=0.0, end=2 * math.pi):
     pts = []
     full = abs(end - start - 2 * math.pi) < 1e-6

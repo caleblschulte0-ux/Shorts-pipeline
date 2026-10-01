@@ -3,7 +3,7 @@
  "title": "What Did Ancient Greeks Do After Dark? | Cozy History for Sleep",
  "thumbnail_text": "AFTER DARK?",
  "thumbnail_scene": {
-  "setting": "hut_inside",
+  "setting": "villa_inside",
   "time": "night",
   "weather": "clear",
   "shot": "close",
@@ -24,7 +24,7 @@
    }
   ],
   "props": [
-   "campfire",
+   "brazier",
    "pot",
    "basket"
   ]
@@ -67,8 +67,7 @@
        }
       ],
       "props": [
-       "campfire",
-       "hut"
+       "campfire"
       ],
       "variant": 1
      }
@@ -214,7 +213,7 @@
     {
      "say": "In a simple one-room home, a child crouches by the brazier, holding small hands to the warmth. An old woman feeds the fire a little more wood, and the coals brighten and settle. The walls are close and plain, but the room feels safe, lit by that one small fire.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -253,31 +252,27 @@
         "who": "child",
         "pose": "sit_on",
         "action": "eat",
-        "mood": "happy",
-        "at": "left"
+        "mood": "happy"
        },
        {
         "who": "man",
         "pose": "sit",
         "action": "eat",
         "mood": "content",
-        "item": "bread",
-        "at": "center_left"
+        "item": "bread"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "drink",
         "mood": "calm",
-        "item": "cup",
-        "at": "center_right"
+        "item": "cup"
        },
        {
         "who": "elder",
         "pose": "sit",
         "action": "talk",
-        "mood": "calm",
-        "at": "right"
+        "mood": "calm"
        }
       ],
       "props": [
@@ -290,7 +285,7 @@
     {
      "say": "Later, in another home, an old man sits near a candle and speaks softly to a sleepy child beside him. His words are unhurried, more sound than story just yet. The candle gutters gently, shadows moving on the walls. Outside, the town has gone fully dark; inside, everything has slowed to this one small light.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -323,7 +318,6 @@
       "cast": [],
       "props": [
        "reeds",
-       "hut",
        "torch"
       ]
      }
@@ -331,7 +325,7 @@
     {
      "say": "Back in the small house, the brazier has burned down to soft embers, glowing faintly orange in the dark. A man lies down on a low bed, and a woman sits beside him a moment, pulling her shawl close. The room is warm still, though the light has almost gone.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -386,7 +380,7 @@
     {
      "say": "Inside the house, a woman tips a thin stream of oil into a small clay lamp, feeding the wick until it holds a flame. A child sits near the table, watching the light steady and grow. Outside, the sky has gone the deep blue of true dusk, and the house is filling with a soft, low glow.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -496,13 +490,14 @@
        "tree",
        "basket",
        "bush"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
      "say": "Back inside, an old woman stirs a small pot over the coals while a girl sets bread on the table nearby. The lamp between them throws a warm, small circle of light, just enough to see hands and faces by. Whatever the day provided will be shared here tonight, simple as it is.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -691,7 +686,7 @@
     {
      "say": "Inside the last lit house, a woman tends the lamp down to a low, steady flame before letting it be. Across the room, someone has already drifted off, breath slow and even. The wick will burn a while longer yet, small and patient, before the house too goes dark and quiet.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -786,7 +781,7 @@
     {
      "say": "Inside, in the room kept for guests, low couches line the walls. The men settle onto them the way custom asks, reclining rather than sitting upright. A small lamp burns steady on its stand nearby. Cups are filled, and the talk begins slowly, easing into the evening rather than rushing to fill it.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -907,7 +902,7 @@
     {
      "say": "In another house nearby, an old woman sits up a little longer, warming her hands near a small lamp more from habit than real cold. A child sleeps close beside her, undisturbed by the light. She watches the flame a while before deciding it is time to let the house rest fully.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -949,7 +944,6 @@
        }
       ],
       "props": [
-       "hut",
        "dog",
        "torch"
       ]
@@ -1039,7 +1033,7 @@
     {
      "say": "Elsewhere in the house, through a low doorway, a different room holds its own quiet light. Women sit close together here, spindles turning in their hands, wool catching the lamp's glow. You can hear only the soft creak of thread pulled long, over and over, steady as breathing.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1137,7 +1131,7 @@
     {
      "say": "Across the city, in a much smaller room, a woman sits alone with her spindle and a single candle. The house around her is quiet, everyone else asleep. She works a little longer by its small light, the way the story often gets passed here too, in pieces, between chores.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1287,7 +1281,7 @@
     {
      "say": "In the humbler house, the old woman there tells her own small story to a child who is mostly asleep already. She does not mind. The words are as much for the quiet as for the listening, a way of keeping the candle company until it is time to let it go out.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1681,7 +1675,7 @@
     {
      "say": "Inside again, an elder sits close to a small oil lamp and speaks a few last quiet words to a child, low and unhurried, more sound than story now. The lamp's small flame is the only real light left in the room.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1733,7 +1727,7 @@
     {
      "say": "One more time you check the hearth, pushing ash gently over the reddest coals to bank them for the night. Covered this way, they will still be warm come morning, needing only a little breath and kindling to wake again.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1747,16 +1741,15 @@
        }
       ],
       "props": [
-       "campfire"
+       "brazier"
       ],
-      "fire": "low",
       "variant": 3
      }
     },
     {
      "say": "On a low bed near the wall, a child is already asleep, one arm loose over the edge of the blanket. An old woman sits close by a moment longer, watching the small steady breathing before covering the child more warmly and rising to find her own rest.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1786,7 +1779,7 @@
     {
      "say": "One by one through the house, the lamps are allowed to gutter and go dark. You lift the last small oil lamp close, watch its flame shrink to almost nothing, and let it go out gently, on its own.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1809,7 +1802,7 @@
     {
      "say": "In the near dark, the household settles onto its sleeping mats and low beds, blankets pulled close against the night's cool air. A dog is curled by the doorway, already still, and the only sound left is slow, even breathing.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1832,7 +1825,8 @@
       "props": [
        "bed",
        "dog",
-       "campfire"
+       "brazier",
+       "candle"
       ],
       "variant": 1
      }
@@ -1840,7 +1834,7 @@
     {
      "say": "Nearest the hearth, an elder lies down last of all, close enough to feel the last faint warmth of the banked coals. Even that small red glow is fading now, dimming toward morning, patient and unhurried in the dark.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1854,15 +1848,14 @@
        }
       ],
       "props": [
-       "campfire"
-      ],
-      "fire": "low"
+       "brazier"
+      ]
      }
     },
     {
      "say": "The whole small room is quiet now, full of slow breathing and the faint red glow of the banked fire. Outside, the city and its fields and its river are all just as still, everyone finally given over to sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1888,17 +1881,16 @@
       ],
       "props": [
        "bed",
-       "campfire",
-       "brazier"
+       "brazier",
+       "candle"
       ],
-      "fire": "low",
       "variant": 1
      }
     },
     {
      "say": "Let the embers hold their small red glow, and let your own eyes close now too, here in the quiet dark of an evening in ancient Greece, drifting off gently, the way the whole sleeping household already has.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1912,9 +1904,8 @@
        }
       ],
       "props": [
-       "campfire"
-      ],
-      "fire": "low"
+       "brazier"
+      ]
      }
     }
    ]

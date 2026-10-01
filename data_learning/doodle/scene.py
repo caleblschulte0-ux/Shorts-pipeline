@@ -72,12 +72,22 @@ def shot_of(spec: dict) -> str:
 # small orange shape on bright grass and barely registers.
 EARTH_FLOORS = ("cave_inside", "hut_inside")     # interiors where an open fire on the floor is the hearth
 STRONG_ACTIONS = ("chop", "wave")
+TABLE_ACTIONS = ("eat", "drink", "talk", "sew")     # done AT a table, so drawn beside it
+
+
+def _pname(p):
+    return p if isinstance(p, str) else (p or {}).get("name")
+
+
 BANKABLE = ("hearth", "campfire")        # drawn as banked embers when the scene says "fire": "low"
 FIRES = (None, "low")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 
 
-def _fire_strength(name, time, shot, interior):
+LAMP_ROOMS = ("cottage_inside", "villa_inside", "house_inside", "mudbrick_inside")
+
+
+def _fire_strength(name, time, shot, interior, setting=None):
     """Measured 2026-09-23 with the real probe (4 s clips, the fire alone):
     campfire night close 0.04, dusk close 0.17, night wide 0.39, dusk wide
     0.44, inside a cave 0.00/0.16; hearth 0.06/0.24; cauldron close 0.08-0.10,
@@ -101,8 +111,14 @@ def _fire_strength(name, time, shot, interior):
         return 1
     if name in ("candle", "oil_lamp"):
         # measured 2026-09-23: 0.26-0.28 inside (the flicker plays on a wall),
-        # 0.53 on open grass at night — a small flame needs a room around it
-        return 2 if interior else 0
+        # 0.53 on open grass at night — a small flame needs a room around it.
+        # And a PALE room: measured 2026-10-01, alone at night, close: 0.26
+        # in the cottage, both Greek rooms and the mudbrick house; 0.52-0.61
+        # in the cave, the hut, the parlour and the tavern, whose dark walls
+        # the flicker cannot play on
+        if not interior:
+            return 0
+        return 2 if setting in LAMP_ROOMS else 1
     if name == "gas_lamp":
         # measured 2026-09-23: 0.53 alone at night, but 0.19 with someone
         # walking under it, 0.17 with a held lantern, 0.33 in falling snow —
@@ -153,7 +169,7 @@ def motion_strength(spec: dict) -> int:
     for p in _prop_list(spec):
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
-            k = _fire_strength(p["name"], time, shot, st.interior)
+            k = _fire_strength(p["name"], time, shot, st.interior, spec.get("setting"))
             if spec.get("fire") == "low" and p["name"] in BANKABLE and not (st.interior and shot == "close"):
                 # measured 2026-09-25 (real probe, 4 s, the fire alone): banked
                 # hearth close 0.17, hut wide 0.54, campfire close outdoors 0.41
@@ -403,8 +419,9 @@ def layout(spec: dict, seed: int) -> dict:
     # and the plain slots second, so a cook keeps her natural size (the
     # test that held it) and a hand-warmer sits by the hearth wherever
     # both fit
-    adj = ((True, False) if any(isinstance(c, dict) and c.get("action") in FIRE_ACTIONS
-                                for c in spec.get("cast") or []) else (False,))
+    adj = ((True, False) if any(isinstance(c, dict) and (c.get("action") in FIRE_ACTIONS or (
+        c.get("action") in TABLE_ACTIONS and any(_pname(p) == "table" for p in spec.get("props") or [])))
+        for c in spec.get("cast") or []) else (False,))
     for k in SHRINK:
         for shift in FOCAL_SHIFTS:
             for slots in sets:
@@ -521,6 +538,14 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             break
     if focal is None and pl:
         focal = pl[0]
+    # people eating, drinking or talking sit AT the table, so the table is
+    # the thing the scene is arranged around (the Greek film's judge: "two
+    # diners float in a seated pose ... far from the table"); a lamp still
+    # goes ON it afterwards
+    table = next((p for p in pl if p["name"] == "table"), None)
+    if table is not None and any(c.get("action") in TABLE_ACTIONS for c in cast) and \
+            (focal is None or focal["name"] in ("candle", "oil_lamp", "table")):
+        focal = table
     # the fourth film's judge: "cave mouth on the left, a campfire in the
     # centre, one seated figure and a moon" repeated — so the focal thing
     # sits somewhere between 38% and 62% of the width, by seed
@@ -666,14 +691,20 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # landed 6 to 15 heads from the hearth while an idle child stood a head
     # away, and the storyboard editor's commonest note on the medieval film
     # was "sits away from the hearth" / "no hands held out to the fire"
-    at_fire = bool(fire_adjacent and focal and (PROPS[focal["name"]].light or PROPS[focal["name"]].living))
+    at_table = bool(fire_adjacent and focal and focal["name"] == "table")
+    anchor_actions = TABLE_ACTIONS if at_table else FIRE_ACTIONS
+    at_fire = at_table or bool(fire_adjacent and focal and (PROPS[focal["name"]].light or PROPS[focal["name"]].living))
     order = sorted(range(len(cast)),
-                   key=lambda i: 0 if (at_fire and cast[i].get("action") in FIRE_ACTIONS) else 1)
+                   key=lambda i: 0 if (at_fire and cast[i].get("action") in anchor_actions) else 1)
     figs: list = [None] * len(cast)
     for i in order:
         c = cast[i]
         R = people.R0 * s * people.WHO[c["who"]]["size"]
         pose = c.get("pose", "stand")
+        if at_table and pose == "sit" and c.get("action") in TABLE_ACTIONS:
+            # at a table you sit ON something: on the floor the diners'
+            # heads came below the table top
+            pose = c["pose"] = "sit_on"
         if c.get("at"):
             x = W * SLOTS[c["at"]]
             facing = c.get("facing") or ("right" if x < focal_x else "left")
@@ -682,7 +713,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # jumping to the far slot instead put a cook at the frame edge
             # with her pot outside it
             x = None
-            if at_fire and c.get("action") in FIRE_ACTIONS:
+            if at_fire and c.get("action") in anchor_actions:
                 # right beside the fire, on whichever side has room: the
                 # fire's own half-width plus this figure's, and a hand's gap
                 fp = placed[0]

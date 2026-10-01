@@ -80,7 +80,7 @@
     {
      "say": "Inside one of the terraced houses, the parlour glows with firelight. A woman sits close to the hearth, needle moving steadily through cloth, while a child plays quietly on the rug nearby. The clock on the shelf ticks softly, and the smell of coal smoke and warm bread drifts from the next room. Out on the street the rain goes on, but in here it barely reaches the ear.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -163,7 +163,7 @@
     {
      "say": "By candlelight in a quiet parlour, an elder settles into a chair to tell a story, voice low and unhurried. A child sits nearby, looking up, listening the way children do when a story is more interesting than sleep. The candle gutters gently, and the fire behind them settles lower, filling the room with its warm, orange hush.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -262,7 +262,7 @@
     {
      "say": "Back in the parlour, a child grows sleepy, yawning against the arm of a chair while a woman gathers a blanket close around small shoulders. The fire has burned down to a low, steady glow. Nothing more needs to happen tonight than this, the slow settling of a house, and a child drifting toward sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -315,7 +315,7 @@
     {
      "say": "And in one more parlour, an elder leans forward to feed the fire a last piece of coal, content to watch it catch. This is where our evening begins, not with anything happening, but with London, house by house, letting the day go. We will follow it further into the dark, from here.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -697,7 +697,7 @@
     {
      "say": "Inside one of these small homes, the family has gathered close around the hearth. The fire does two jobs tonight, warming the room and lighting it, since there is no other lamp lit yet. A pot hangs over the flames, and the smell of a simple supper fills the low room. The children sit near the warmth, waiting, while their mother stirs slowly, in no hurry at all.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -731,7 +731,7 @@
       ],
       "props": [
        "hearth",
-       "cauldron",
+       "pot",
        "table"
       ],
       "variant": 1
@@ -755,7 +755,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 4
      }
@@ -763,7 +764,7 @@
     {
      "say": "Back in the small terraced house, the father reads a little of the day's paper aloud by the firelight, his voice low and even, more for company than for news. The others listen without quite listening, the way people do near the end of a long day, letting the words drift past like the warmth from the fire. Nobody minds if he pauses tonight.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -853,7 +854,7 @@
     {
      "say": "In another front room nearby, an elderly woman has stopped even pretending to read, her book resting closed in her lap. The room has gone warm and heavy with the day, and her eyes keep drifting shut for a moment before opening again. She does not fight it. In houses like this, all across the city, the evening is beginning to soften into something closer to rest.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "parlour_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -898,7 +899,7 @@
     {
      "say": "Back inside, in a parlour warmed by its own small fire, two children play a quiet game on the floor near the hearth, moving little carved pieces between them without much talk. Their parents sit close by, half watching, half simply resting. Nothing about the evening asks to be hurried. The fire settles now and then with a soft shift of embers, and the game goes on a little longer.",
      "scene": {
-      "setting": "parlour_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -930,7 +931,7 @@
     {
      "say": "Here in this small room, the fire is banked low and the candle trimmed to its last inch. The day is done, supper eaten, and the house settles into its familiar hush, warm and dim, waiting for sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "parlour_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1024,7 +1025,7 @@
     {
      "say": "Step inside the gin palace and the darkness disappears entirely. Mirrors and polished glass catch every flame from the hearth, throwing light back a hundred times over. The room is loud and warm, full of talk and laughter, a bright little world tucked behind an ordinary street door.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1360,7 +1361,7 @@
     {
      "say": "In a poorer room nearby, a single candle burns close to its end. A child breathes evenly on a narrow bed while an old woman stays sitting up a while longer, watching the flame lean and steady. She will pinch it out soon, once she trusts the sleep will hold.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1453,16 +1454,14 @@
         "at": "center"
        }
       ],
-      "props": [
-       "barn"
-      ],
+      "props": [],
       "variant": 4
      }
     },
     {
      "say": "In another small room, an old woman sits by her hearth long after the household has gone up to bed, feeding it one last stick before she banks it low. She has never quite trusted sleep to come easily, and the fire, dimming steadily, keeps her company until it does.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1557,7 +1556,8 @@
        }
       ],
       "props": [
-       "candle"
+       "candle",
+       "hearth"
       ],
       "variant": 4
      }
@@ -1637,7 +1637,7 @@
     {
      "say": "In a small back room, a woman kneels before the hearth and banks the fire low, raking the embers into a careful heap that will hold its heat until morning. The room glows warm and orange a moment longer before it dims. She rests a hand on the mantel and lets herself feel, at last, how tired the whole day has made her.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1688,7 +1688,7 @@
     {
      "say": "In a small room upstairs, a child is already asleep, one arm flung above the pillow, breathing slow and even. A single candle burns low on the table beside the bed, its flame small and patient, watching over the quiet room until someone comes, gently, to pinch it out.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1757,7 +1757,7 @@
     {
      "say": "Elsewhere in the house, a man settles onto his bed, boots off, coat hung by the door, and lies back with one long, slow breath. The fire in the next room has gone to embers, its glow just reaching under the door, faint and orange, the last warmth of the day easing him toward sleep.",
      "scene": {
-      "setting": "hut_inside",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",

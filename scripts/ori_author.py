@@ -611,7 +611,7 @@ PROP_WORDS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", 
               "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs")}
 
 
-def add_named_props(beat: dict, era: str) -> str | None:
+def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
     """Add at most one prop the words name and the scene lacks, when it can
     stand there (the scene still validates and is not crowded)."""
     sc = beat.get("scene") if isinstance(beat, dict) else None
@@ -625,8 +625,24 @@ def add_named_props(beat: dict, era: str) -> str | None:
         before = list(sc.get("props") or [])
         sc["props"] = before + [prop]
         natural = 2.05 if S.shot_of(sc) == "close" else 1.25
-        lay = S.layout(sc, 1000) if not S.validate(sc, era) else None
-        if lay is None or lay["collisions"] or lay["scale"] < natural * CROWD_SHRINK - 1e-6:
+        ok = not S.validate(sc, era)
+        for sd in seeds if ok else ():
+            lay = S.layout(sc, sd)
+            # comfortably, not just: a scene added to right at the crowding
+            # line was uncrowded on the next pass and the prop added back on
+            # the one after
+            if lay["collisions"] or lay["scale"] < natural * (CROWD_SHRINK + 0.1) - 1e-6:
+                ok = False
+                break
+        if ok:
+            # and the place rules would keep it (a barn is named, but it
+            # does not stand in a street)
+            import copy as _copy
+            probe = _copy.deepcopy(beat)
+            drop_stray_animals(probe, era)
+            drop_out_of_place(probe, era)
+            ok = prop in [p if isinstance(p, str) else (p or {}).get("name") for p in probe["scene"]["props"]]
+        if not ok:
             sc["props"] = before
             continue
         return f"added the {prop} the words name"
@@ -668,6 +684,19 @@ def mend_scene(scene: dict, era: str) -> str | None:
     if not isinstance(scene, dict):
         return None
     did = []
+    st = S.SETTINGS.get(scene.get("setting"))
+    if st is not None and era not in st.eras:
+        # a room or a place the era cannot draw (a Stone Age hut in a Greek
+        # film, the operator's "3/10"): the era's own setting of that class
+        cls = next((c for c, names in PLACE_SETTINGS.items() if scene["setting"] in names
+                    and place_settings(c, era)), None)
+        opts = place_settings(cls, era) if cls else []
+        if st.interior:
+            opts = [n for n in opts if S.SETTINGS[n].interior] or opts
+        if opts:
+            old = scene["setting"]
+            scene["setting"] = opts[(sum(map(ord, json.dumps(scene.get("cast"), sort_keys=True)))) % len(opts)]
+            did.append(f"{old} -> {scene['setting']} (the era draws no {old})")
     # the cast: a held thing the kit does not draw is put down, a mood or a
     # pose it does not know becomes the plain one, a pose the action cannot
     # take becomes one it can (the second fresh-topic run: item 'candle')
@@ -962,6 +991,7 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
         return 0
     for j, b in enumerate(beats):
         if isinstance(b, dict) and isinstance(b.get("scene"), dict):
+            was = json.dumps(b["scene"], sort_keys=True)
             placed = mend_place(b, era, used=used)
             strays = drop_stray_animals(b, era) + drop_out_of_place(b, era)
             if strays:
@@ -970,11 +1000,15 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             if final and j >= len(beats) - max(1, len(beats) // 3) and b["scene"].get("time") != "night":
                 night = f"{b['scene'].get('time')} -> night (the film ends in the dark)"
                 b["scene"]["time"] = "night"
-            fire = mend_fire(b)
-            named = add_named_props(b, era)
             did = mend_scene(b["scene"], era)
             crowd = uncrowd_scene(b["scene"], era, seeds=(1000 + j,))
-            did = ", ".join(x for x in (placed, night, fire, named, did, crowd) if x)
+            # last, so nothing after them undoes what they did (run twice,
+            # the old order added a named table and then dropped it again)
+            named = add_named_props(b, era, seeds=(1000 + j,))
+            fire = mend_fire(b)
+            did = ", ".join(x for x in (placed, night, did, crowd, named, fire) if x)
+            if did and json.dumps(b["scene"], sort_keys=True) == was:
+                did = ""          # a prop dropped and put back: nothing changed
             if did:
                 n += 1
                 log(f"[ori_author] mended beat {j + 1}: {did}")
@@ -1173,7 +1207,7 @@ PLACE_WORDS = (
 )
 PLACE_WORDS_BY_CLASS = dict(PLACE_WORDS)
 PLACE_SETTINGS = {
-    "interior": ("hut_inside", "villa_inside", "cottage_inside", "parlour_inside", "mudbrick_inside",
+    "interior": ("hut_inside", "villa_inside", "house_inside", "cottage_inside", "parlour_inside", "mudbrick_inside",
                  "tavern_inside", "cave_inside"),
     "city": ("forum", "street", "market_square", "village", "castle", "harbour"),
     "river": ("riverbank", "nile_bank"), "lake": ("lakeshore",), "sea": ("seashore", "harbour"),
@@ -1530,7 +1564,9 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         the message stands."""
         total = 0
         for _i, x in problems():
-            m = re.search(r"would be (?:the picture at )?(\d+) of", x)
+            # "holds N of" too: the room-balance rule was never seen to
+            # improve, so a Greek film kept 8 of its 9 rooms in one villa
+            m = re.search(r"(?:would be (?:the picture at )?|holds )(\d+) of", x)
             total += 1 + (int(m.group(1)) if m else 0)
         return total
 
@@ -1736,6 +1772,10 @@ def mend_film(ep: dict, log=print) -> list[str]:
         first["scene"]["shot"] = "wide"
         mend_scene(first["scene"], ep["era"])
         notes.append("chapter 1 beat 1: the opening shot is wide")
+    if isinstance(ep.get("thumbnail_scene"), dict):
+        did = mend_scene(ep["thumbnail_scene"], ep["era"])
+        if did:
+            notes.append(f"thumbnail: {did}")
     home = film_home(ep)
     for i, c in enumerate(chs):
         for j, b in enumerate(c.get("beats") or []):
@@ -1746,6 +1786,27 @@ def mend_film(ep: dict, log=print) -> list[str]:
         mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)),
                    final=(i == len(chs) - 1), used=_place_tally(chs[:i]))
     notes += repair_film(ep, log=log)
+    # last: every scene laid out at the seed the RENDER draws it with, not
+    # only the rule's own (a grove at dusk drew a basket into a tree trunk
+    # at its render seed while every check passed at 1000+j)
+    from data_learning import ori_sleep as OS
+    n = 0
+    for i, c in enumerate(chs):
+        for j, b in enumerate(c.get("beats") or []):
+            sc = b.get("scene") if isinstance(b, dict) else None
+            if isinstance(sc, dict) and not S.validate(sc, ep["era"]):
+                seed = OS._scene_seed(ep.get("slug", ""), n, sc)
+                if S.layout(sc, seed)["collisions"]:
+                    # another arrangement of the same scene: nothing in it
+                    # changes, so this never fights the mends that add props
+                    for v in range(int(sc.get("variant") or 0) + 1, int(sc.get("variant") or 0) + 12):
+                        if not S.layout(sc, OS._scene_seed(ep.get("slug", ""), n, dict(sc, variant=v)))["collisions"]:
+                            sc["variant"] = v
+                            notes.append(f"chapter {i + 1}: beat {j + 1}: arrangement {v} (the render's own "
+                                         f"seed drew two things into each other)")
+                            log(f"[ori_author] {notes[-1]}")
+                            break
+            n += 1
     return notes
 
 

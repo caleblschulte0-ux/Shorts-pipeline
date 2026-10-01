@@ -308,7 +308,8 @@ def _render_chunk(args) -> str:
     def scene(i):
         sc = scenes.get(i)
         if sc is None:
-            sc = S.Scene(beats[i]["scene"], era, _scene_seed(slug, i, beats[i]["scene"]))
+            seed = beats[i].get("seed")
+            sc = S.Scene(beats[i]["scene"], era, seed if seed is not None else _scene_seed(slug, i, beats[i]["scene"]))
             scenes[i] = sc
             for j in list(scenes):
                 if j < i - 1:
@@ -384,8 +385,63 @@ def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     return out
 
 
+SHOT_MAX = 16.0      # seconds one picture may hold before the passage cuts to another shot of it
+SHOTS_MAX = 3        # at most this many shots per passage
+
+
+def _shot_variants(spec: dict, era: str, seed: int) -> list:
+    """Other shots of the same place and the same people: the other shot
+    size first (a wide establishing shot cuts in close, a close shot pulls
+    back), then a fresh arrangement. Only variants that are valid and lay
+    out with nothing touching are offered."""
+    from data_learning.doodle import scene as S
+    flip = dict(spec, shot="wide" if S.shot_of(spec) == "close" else "close")
+    flip.pop("variant", None)
+    tries = [(flip, seed + 1), (dict(spec), seed + 2), (flip, seed + 3), (dict(spec), seed + 4)]
+    out = []
+    for sp, sd in tries:
+        if S.validate(sp, era) or S.layout(sp, sd)["collisions"]:
+            continue
+        out.append((sp, sd))
+    return out
+
+
+def shots(ep: dict, beats: list[Beat]) -> list[dict]:
+    """The pictures the film shows. A passage long enough to hold one
+    picture past SHOT_MAX is cut, at its sentence breaks, into up to
+    SHOTS_MAX shots of the same place — the scene as written, then the
+    other shot size, then a new arrangement. The operator, on the Greek
+    film: "they need to be more entertaining to watch"; one picture held
+    for 35-55 seconds per passage was the dullest thing in it. The camera
+    never moves (his ruling): a shot CHANGES, it does not drift."""
+    out = []
+    for b in beats:
+        seed = _scene_seed(ep["slug"], b.index, b.scene)
+        dur = b.end - b.start
+        n = min(SHOTS_MAX, max(1, int(dur // SHOT_MAX) + (1 if dur % SHOT_MAX > SHOT_MAX / 2 else 0)))
+        variants = _shot_variants(b.scene, ep["era"], seed) if n > 1 and len(b.lines) > 1 else []
+        n = min(n, 1 + len(variants), len(b.lines))
+        if n <= 1:
+            out.append(dict(start=b.start, end=b.end, scene=b.scene, seed=seed))
+            continue
+        # cut at the sentence starts nearest each equal share of the passage
+        starts = [l[0] for l in b.lines[1:]]
+        cuts = []
+        for k in range(1, n):
+            want = b.start + dur * k / n
+            c = min(starts, key=lambda x: abs(x - want))
+            if c not in cuts and (not cuts or c > cuts[-1]):
+                cuts.append(c)
+        edges = [b.start] + cuts + [b.end]
+        pics = [(b.scene, seed)] + variants
+        for k in range(len(edges) - 1):
+            sp, sd = pics[k]
+            out.append(dict(start=edges[k], end=edges[k + 1], scene=sp, seed=sd))
+    return out
+
+
 def render_video(ep: dict, beats: list[Beat], out: Path, work: Path, workers: int) -> Path:
-    bl = [dict(start=b.start, end=b.end, scene=b.scene) for b in beats]
+    bl = shots(ep, beats)
     caps = _captions(ep, beats)
     n = len(bl)
     workers = max(1, min(workers, n))
