@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7cb7176442a38f1225068f17763f3de8f03eafa485bb459f215b104f352e4d02",
+  "prompt_used": "An editorial illustration for a short-form video: soccer schedule calendar. It accompanies the narration: \"Her son's team hit a bye-week conflict\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1F_sRCw8klNsXWb810n6mMDU-7qjFG-0c",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1F_sRCw8klNsXWb810n6mMDU-7qjFG-0c",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ab26251342f2672564ca251d48da21d0be9a71d11854bcf8e88b3c5c0757922e",
+    "bytes": 2083151,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-01T11:25:39.710Z"
+}
