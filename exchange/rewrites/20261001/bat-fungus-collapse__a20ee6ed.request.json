@@ -1,0 +1,165 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "bat-fungus-collapse__a20ee6ed",
+ "filed": "2026-10-01T14:40:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "bat-fungus-collapse",
+ "current": {
+  "title": "A Fungus Is Erasing North America's Bats",
+  "hook": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+  "closing": "97 percent of one species gone, and farmers pay the bill.",
+  "question": "Ever seen a bat near your home? Tell me below.",
+  "segments": [
+   {
+    "topic": "states with the bat fungus",
+    "say": "In 2006, a cold-loving fungus showed up in one New York cave. By 2018 it had reached 32 states. Today it's confirmed in 35."
+   },
+   {
+    "topic": "bat population decline",
+    "say": "That fungus is called white-nose syndrome, and it's brutal -- it's killed off 97 percent of northern long-eared bats and 90 percent of little brown bats in under a decade."
+   },
+   {
+    "topic": "value of bats to farmers",
+    "say": "Here's why that matters beyond the bats: they eat crop pests worth 3.7 to 53 billion dollars a year to US farmers -- a free service that's now disappearing."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "states with the bat fungus",
+   "say": "In 2006, a cold-loving fungus showed up in one New York cave. By 2018 it had reached 32 states. Today it's confirmed in 35.",
+   "role": "1 · THE SPREAD",
+   "data": {
+    "file": "wns_states_affected.json",
+    "unit": "index",
+    "title": "US states with confirmed white-nose syndrome in bats",
+    "points": [
+     {
+      "label": "2007",
+      "value": 1,
+      "period": "2007"
+     },
+     {
+      "label": "2018",
+      "value": 32,
+      "period": "2018"
+     },
+     {
+      "label": "2025",
+      "value": 35,
+      "period": "2025"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "bat population decline",
+   "say": "That fungus is called white-nose syndrome, and it's brutal -- it's killed off 97 percent of northern long-eared bats and 90 percent of little brown bats in under a decade.",
+   "role": "2 · THE DIE-OFF",
+   "data": {
+    "file": "wns_bat_species_decline.json",
+    "unit": "percent",
+    "title": "Population decline since white-nose syndrome arrived (percent)",
+    "points": [
+     {
+      "label": "Northern long-eared bat",
+      "value": 97
+     },
+     {
+      "label": "Little brown bat",
+      "value": 90
+     },
+     {
+      "label": "Tri-colored bat",
+      "value": 90
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "value of bats to farmers",
+   "say": "Here's why that matters beyond the bats: they eat crop pests worth 3.7 to 53 billion dollars a year to US farmers -- a free service that's now disappearing.",
+   "role": "3 · WHAT WE LOSE",
+   "data": {
+    "file": "wns_pest_control_value.json",
+    "unit": "billion dollars",
+    "title": "Annual value of bat pest control to US agriculture ($ billions)",
+    "points": [
+     {
+      "label": "High estimate",
+      "value": 53
+     },
+     {
+      "label": "Low estimate",
+      "value": 3.7
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A bat population collapse is told with four generic charts and a mascot that only poses, slides and gets cloned; nothing ever shows bats disappearing.",
+  "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
+ ],
+ "reasons": [
+  "judge: A bat population collapse is told with four generic charts and a mascot that only poses, slides and gets cloned; nothing ever shows bats disappearing.",
+  "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
+ ],
+ "judge": {
+  "ts": "2026-10-01T14:34:31+00:00",
+  "score": 44,
+  "one_line": "A bat population collapse is told with four generic charts and a mascot that only poses, slides and gets cloned; nothing ever shows bats disappearing.",
+  "problems": [
+   "The hook is a slow-building timeline with a '1' over an empty dark frame. There is no motion or image of dying bats to stop a scroll.",
+   "seg0 and seg1 show the same 1→32→35 states data twice, once as a timeline and once as bars.",
+   "seg2 uses a bar chart for a 97% die-off, then cuts to three cloned mascots pointing at empty cyan rings.",
+   "seg2:mid's caption reads '90%' under 'of northern long-eared', a species whose loss was 97%.",
+   "seg3 is a bubble with $53B written on it, with the mascot walking on top of it.",
+   "In seg4 the mascot covers the '$' and bar end of '$53B' on the scale, and the scale itself is a stock seesaw."
+  ],
+  "fixes": [
+   "Make the hook a cave roof packed with hanging bats. White fuzz spreads and they drop on the first frame, with '97% gone' landing at about 1.5s.",
+   "Merge seg0 and seg1 into one map beat. Data carries the fungus from one New York cave and the infection spreads state by state to 35.",
+   "Rebuild seg2 as colonies of 100 bats each that thin to 3 and 10 survivors. Data's lantern sweep causes the fall. Use one mascot and no empty rings.",
+   "Show the farm value as a field of crop pests the bats used to eat swarming back over crops. Data shovels pests onto the $53B pan, which then tips, instead of a bubble.",
+   "Keep the mascot and props clear of every number and label. Make the caption's percentage match the species it names."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__a20ee6ed.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

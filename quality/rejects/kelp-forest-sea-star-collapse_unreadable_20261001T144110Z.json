@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261001T144110Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3 through seg0:end: the left label is cut off as 'After the outb...' and is tiny. At seg4:mid/end the mascot covers the '100%' / 'Pre-2014 canopy' label and is clipped at the left edge.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end show 'Before 2014 100%' and 'Since 2014 10.1K%' as text next to two duplicate Datas (one pointing, one cheering) on plain lines. No urchins are visible, and nothing grows 100-fold.",
+  "root_cause": "A 10,000% population explosion, the most physical number in the story, was given a mascot-plus-label layout instead of a machine where the subject's own physics carries the number. The '10.1K%' format also reads as jargon rather than 'over 100 times more'.",
+  "repair_goal": "Make the explosion out of urchins. Data pours or breeds them out of a crate: one urchin grows into a carpet of 100 that spills over the reef floor and pushes off the frame edge, landing on 'over 100x'. Remove the duplicate mascot and give Data the act that causes the swarm."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

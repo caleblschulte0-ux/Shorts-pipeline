@@ -1,7 +1,28 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-01T13:05:23Z",
+ "updated": "2026-10-01T14:41:00Z",
  "open": [
+  {
+   "id": "billionaire-count-record-2025__00739761",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-01T14:41:00Z",
+   "why": [
+    "premise: brain: The premise relies on multiple numbers (3,000 and 1,200) instead of a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__00739761.request.json",
+   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__00739761.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__a20ee6ed",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-01T14:40:59Z",
+   "why": [
+    "judge: A bat population collapse is told with four generic charts and a mascot that only poses, slides and gets cloned; nothing ever shows bats disappearing.",
+    "thesis: seg1 ('bat population decline') shares no keyword with the headline (\"A Fungus Is Erasing North America's Bats\") — no checkable bridge to the thesis"
+   ],
+   "request": "exchange/rewrites/20261001/bat-fungus-collapse__a20ee6ed.request.json",
+   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__a20ee6ed.answer.json"
+  },
   {
    "id": "oceanic-shark-collapse__7abc9718",
    "slug": "oceanic-shark-collapse",
@@ -11,16 +32,6 @@
    ],
    "request": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.request.json",
    "answer_path": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.answer.json"
-  },
-  {
-   "id": "billionaire-count-record-2025__7f009eb1",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-01T11:51:35Z",
-   "why": [
-    "judge: The video's punchline comparison is broken: both discs read '127% Billionaire wealth' and the S&P 500's 195% never appears, while the rest is the same bar chart drawn three times."
-   ],
-   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.request.json",
-   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.answer.json"
   },
   {
    "id": "marathon-super-shoes-record-pace__b6f8dadd",
@@ -345,16 +356,6 @@
    ],
    "request": "exchange/rewrites/20261001/third-interstellar-visitor__ce81b458.request.json",
    "answer_path": "exchange/rewrites/20261001/third-interstellar-visitor__ce81b458.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__e6d39b2b",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-01T11:01:15Z",
-   "why": [
-    "thesis: seg1 ('bat population decline') has no bridge to the headline (\"A Fungus Is Erasing North America's Bats\") — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261001/bat-fungus-collapse__e6d39b2b.request.json",
-   "answer_path": "exchange/rewrites/20261001/bat-fungus-collapse__e6d39b2b.answer.json"
   },
   {
    "id": "clear-air-turbulence-increase__452b3b56",

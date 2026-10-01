@@ -1,0 +1,21 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261001T144110Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never causes the motion. In hook@0.3\u2013seg0:end he holds the same arms-up pose while sliding along the timeline. In seg1:mid/seg1:end he floats over the bars. In seg3 he only walks on top of the growing bubble. In seg2:mid he is cloned three times, each copy pointing at an empt",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start is a plain horizontal bar chart with bat icons used as slider knobs. seg2:mid then cuts to three cloned Data mascots, each pointing at an empty cyan ring, with a '90%' caption under the northern long-eared label. By seg2:end the three percentages are just text next to the clones.",
+  "root_cause": "The story is the death of 97% of a bat population, but the scene draws it as a share bar and fills the frame with copies of the mascot that do nothing. No picture is made of bats disappearing, and the mascot causes nothing.",
+  "repair_goal": "Draw each species as a colony of 100 bat silhouettes hanging in a cave roof. A white fungus creeps across them and they drop away until only 3 (northern long-eared) and 10 (little brown) remain. Data is the agent: he holds a lantern and sweeps it across the roof, and each bat lit by it falls. Use one mascot, never clones. Keep the percentage labels clear of the icons, and make the caption show the number of the species being named."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
