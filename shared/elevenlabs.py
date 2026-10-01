@@ -100,9 +100,16 @@ def budget() -> int:
         return MAX_CHARS_DEFAULT
 
 
+# the operator's off switch (2026-10-01: "don't worry about the voice yet,
+# you're just burning through my eleven labs key"). While this file exists
+# no channel spends a character; delete it to turn ElevenLabs back on.
+OFF = Path(__file__).resolve().parents[1] / "config" / "ELEVENLABS_OFF"
+
+
 def available(channel: str) -> bool:
-    """True when a key is set and the account has not refused this run."""
-    return key() is not None and _dead is None
+    """True when a key is set, the switch is on and the account has not
+    refused this run."""
+    return key() is not None and _dead is None and not OFF.exists()
 
 
 def can_afford(texts) -> bool:
@@ -143,7 +150,7 @@ def speak(text: str, channel: str, sr: int = SR, _opener=None):
     global _dead, _spent
     text = (text or "").strip()
     k = key()
-    if not text or k is None or _dead is not None:
+    if not text or k is None or _dead is not None or OFF.exists():
         return None
     if _spent + len(text) > budget():
         _log(f"character budget for the run spent ({budget():,}); falling back")

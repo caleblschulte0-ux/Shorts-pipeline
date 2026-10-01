@@ -57,10 +57,13 @@ class TheDoor(unittest.TestCase):
         os.environ.pop("ELEVENLABS_MAX_CHARS_PER_RUN", None)
         self.sleep = mock.patch.object(EL.time, "sleep", lambda s: None)
         self.sleep.start()
+        self.off = mock.patch.object(EL, "OFF", Path(tempfile.gettempdir()) / "no-such-elevenlabs-off")
+        self.off.start()
 
     def tearDown(self):
         self.env.stop()
         self.sleep.stop()
+        self.off.stop()
         EL._dead, EL._spent = None, 0
 
     def test_no_key_changes_nothing(self):
@@ -69,6 +72,19 @@ class TheDoor(unittest.TestCase):
             self.assertFalse(EL.available("curiosity"))
             self.assertIsNone(EL.speak("hello", "curiosity", _opener=lambda *a: calls.append(a)))
         self.assertEqual(calls, [])
+
+    def test_the_off_switch_spends_nothing(self):
+        calls = []
+        with tempfile.TemporaryDirectory() as td:
+            flag = Path(td) / "ELEVENLABS_OFF"
+            flag.write_text("off")
+            with mock.patch.object(EL, "OFF", flag):
+                self.assertFalse(EL.available("curiosity"))
+        self.assertTrue(EL.available("curiosity"))
+        self.assertEqual(calls, [])
+
+    def test_the_switch_is_off_in_the_repository_until_he_says(self):
+        self.assertTrue((REPO / "config" / "ELEVENLABS_OFF").exists())
 
     def test_the_operators_secret_name_works_too(self):
         with mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "", "ELEVEN_LABS_API_KEY": "his-key"}):
@@ -226,6 +242,7 @@ class TheSleepFilmKeepsOneVoice(unittest.TestCase):
                 pass
         with tempfile.TemporaryDirectory() as td, \
                 mock.patch.dict(os.environ, {"ELEVENLABS_API_KEY": "test-key"}), \
+                mock.patch.object(EL, "OFF", Path(td) / "no-off-switch"), \
                 mock.patch.object(EL, "speak", speak), mock.patch.object(OS, "Voice", Kokoro):
             EL._dead, EL._spent = None, 0
             meta = OS.render(T._episode(), Path(td) / "f.mp4", max_seconds=6, workers=1)
