@@ -1,0 +1,21 @@
+{
+ "slug": "landline-extinction-event",
+ "ts": "20261001T115142Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start, seg3:mid and seg3:end the label is cut off as 'United States o...'. In seg3:mid the '670M' value is dark text on the pink bar with the mascot over its right edge. In seg3:mid and seg3:end 'China 669825900' overlaps the map and has no separators. In seg4 '45,711,188' is tin",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 1,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg0:start, seg0:mid and seg0:end are the same frame: a finished pink line chart with the title '158M to 1.3B to 815M' and Data sitting still on a small orange raft at the line's right end. Only the caption changes, so the main 'peaked in 2006, then fell' beat is a static, already-drawn chart.",
+  "root_cause": "The hook's line chart is held through the whole first beat. The decline is never shown as something happening, and the mascot is placed on the line as a sticker instead of driving its fall.",
+  "repair_goal": "Make the 2006-to-2025 fall a physical event Data causes. For example, he cuts phone cords or unplugs landline handsets from a wall of 1.26B phones, and the count visibly drains to 815M as he works. The peak and the fall should play out during the beat, not sit as a finished line."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

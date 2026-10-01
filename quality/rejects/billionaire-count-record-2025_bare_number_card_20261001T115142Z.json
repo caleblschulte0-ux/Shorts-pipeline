@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261001T115142Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3:mid, seg3:end and seg4 each beat is a teal disc with '127%' printed on it. The discs only pulse in size, and the size encodes nothing.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start, seg3:mid and seg3:end show two identical teal discs, both reading '127%' and both labelled 'Billionaire wealth'. The narration says the S&P 500 grew 195%, but 195% never appears on screen.",
+  "root_cause": "The comparison composer filled both sides from the same series, so the S&P 500 value and label never reached the right-hand mark. The pulsing size of the discs encodes no value.",
+  "repair_goal": "Show billionaire wealth +127% against the S&P 500 +195% as two marks scaled to their values, with the S&P side visibly ahead and labelled correctly. Have Data push or pump the larger one so it outgrows the other, making the point that most of the gain is just stocks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

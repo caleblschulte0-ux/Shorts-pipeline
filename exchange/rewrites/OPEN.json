@@ -1,16 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-01T11:01:20Z",
+ "updated": "2026-10-01T11:51:35Z",
  "open": [
   {
-   "id": "billionaire-count-record-2025__7c909acf",
+   "id": "billionaire-count-record-2025__7f009eb1",
    "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-01T11:01:20Z",
+   "filed": "2026-10-01T11:51:35Z",
    "why": [
-    "judge: Three bar or timeline charts lead into a broken comparison: two identical '127% Billionaire wealth' circles, with the S&P's 195% never shown. The video's punchline is missing from the screen."
+    "judge: The video's punchline comparison is broken: both discs read '127% Billionaire wealth' and the S&P 500's 195% never appears, while the rest is the same bar chart drawn three times."
    ],
-   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__7c909acf.request.json",
-   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__7c909acf.answer.json"
+   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.request.json",
+   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.answer.json"
   },
   {
    "id": "marathon-super-shoes-record-pace__b6f8dadd",
