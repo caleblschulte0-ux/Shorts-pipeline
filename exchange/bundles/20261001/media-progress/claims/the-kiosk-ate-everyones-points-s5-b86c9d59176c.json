@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+  "worker": "daily-producer",
+  "worker_run_id": "daily-producer-20261001-0615",
+  "created_at": "2026-10-01T11:12:05.295Z",
+  "expires_at": "2026-10-01T11:27:05.295Z",
+  "lease_seconds": 900
+}
