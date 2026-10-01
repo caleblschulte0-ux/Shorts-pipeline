@@ -31,12 +31,6 @@
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 1/6; 2 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
-      },
-      {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
         "detail": "No doctor findings filed since 20260908 (22 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
@@ -51,6 +45,32 @@
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20261001",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 9,
+      "uploaded": 3,
+      "quarantined": 2,
+      "failed": 4,
+      "failed_by_stage": {
+        "showrunner_block": 3,
+        "infra_error": 1
+      },
+      "failed_by_format": {
+        "graph_race": 1,
+        "reddit": 1,
+        "unknown": 2
+      },
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/4cg4k2W7WK0",
+        "https://youtube.com/shorts/DZmA2IuJu-M",
+        "https://youtube.com/shorts/zA1JAH1apJo"
+      ]
+    },
     {
       "date": "20260930",
       "channel": "trending",
@@ -189,536 +209,9 @@
       "video_urls": [
         "https://youtube.com/shorts/AXCeqFH6j4U"
       ]
-    },
-    {
-      "date": "20260924",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 5,
-      "rendered_or_attempted": 5,
-      "uploaded": 6,
-      "quarantined": 0,
-      "failed": 4,
-      "failed_by_stage": {
-        "infra_error": 4
-      },
-      "failed_by_format": {
-        "unknown": 4
-      },
-      "status": "production_complete",
-      "video_urls": [
-        "https://youtube.com/shorts/h4Cyjizj29E"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-09-30T10:27:42+00:00",
-      "slug": "global-ewaste-crisis",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Four generic charts in a row: a slow line, bars, then the same stacked column twice, with Data parked beside them. The e-waste pile, the garbage trucks and the thrown-away mine are never shown.",
-      "auto_fails": [
-        "decorative_mascot: From hook@0.3 to seg0:end Data stands parked in the top-left corner doing the same point. In seg1:mid he stands on top of the 2019 bar. In seg2 and seg3 he only rides up beside the fill with his hands on his head. In seg4 he stands on the pan. He never does a setup, action and payoff tied to 62M tons, 78% or 1%.",
-        "empty_void: hook@0.3 to seg0:mid: a small line sparkline sits in the lower left and the whole right half past the red divider is empty until seg0:end. The band from about y=490 to 670 is dead space in every hook frame.",
-        "unreadable: seg3:mid: the key label 'Met by e-waste recycling 1%' is dim grey on navy and jammed against the top of the column, so you can hardly read it on a phone. seg1:mid: the mascot covers the 2019 bar. seg1:start and seg2:start: the value labels are near-invisible grey."
-      ],
-      "problems": [
-        "Hook (hook@0.3 to hook@2.2) is a slow line build in the lower-left corner with half the frame empty. Nothing happens in the first second to stop a scroll.",
-        "seg1 is a plain bar ranking. The script's '1.5 million garbage trucks' comparison is never shown.",
-        "seg2 and seg3 use an identical stacked-column template back to back, so the video looks like a slide deck.",
-        "seg3's 1% is a sliver you cannot see, and its label is dim, low-contrast text pushed against the column top (seg3:mid).",
-        "Data is decorative: he points from a corner through the whole hook, stands on a bar in seg1:mid, and rides the fill with his hands on his head in seg2 and seg3. There is no bit tied to any stat.",
-        "The mascot covers the 2019 bar in seg1:mid, and the value labels are near-invisible at seg1:start and seg2:start."
-      ],
-      "fixes": [
-        "Open on motion made of the subject: dead phones raining onto a pile that visibly grows, with 62M tons stamped on it inside the first second.",
-        "seg1: show the pile growing from 34M to 62M as garbage trucks lining up. Cut the bar ranking.",
-        "seg2: from 100 devices, 22 go to a recycling bin and 78 go to a dump, a fire or a ship, sorted on screen.",
-        "seg3: one gold chip pulled out of a heap of 100 while ore carts roll out of a mine. Data digs the chip out.",
-        "Give Data one real action per beat (tossing a phone onto the pile, sorting devices, digging) instead of standing beside the chart.",
-        "Render every value label in full-contrast ink and keep the mascot off the marks."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 128
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T10:40:41+00:00",
-      "slug": "child-mortality-collapse",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Four charts and a reused gauge tell a strong story (child deaths down 60%) with no demonstration, and the payoff lands on clipped spending numbers instead of the mortality result.",
-      "auto_fails": [
-        "decorative_mascot: Data mostly perches on the chart: he points from inside the gauge (hook@0.3 to seg1:start), stands on top of a bar (seg2:start, seg2:mid) and walks along a bar track (seg3:start, seg3:mid). None of it is a setup, action and payoff tied to the stat. The only real bit is the arms-up ride down the line in seg1.",
-        "dead_air: Two beats are identical: the hook gauge (hook@0.3) is the same picture through seg0:start, seg0:mid, seg0:end and seg1:start (0.3s to 8.67s). Only a slow sub-block drift happens while seg0's narration runs, and code measured held_s 12.67.",
-        "unreadable: In the closing, the year and value counter above the slats is sliced off at the top: \"2018 9.6\" at payoff@-1.8, then \"2023 10.1\" at seg4:end and payoff@-0.4 show only the lower half of the glyphs. In the hook@0.3 to seg1:start gauge, the \"2024 37.4\" and \"2017 40.9\" tick labels sit tight against the blue block and the frame edge."
-      ],
-      "problems": [
-        "The hook and seg0 are the same slowly sinking gauge for about 8.7s, so the 93.5 to 37.4 headline gets no picture of its own.",
-        "seg1, seg2 and seg3 are a stock line chart, a vertical bar chart and a horizontal bar chart. Nothing is made of the subject (kids, doses, money).",
-        "Data perches on bars or glides along tracks in seg2 and seg3 with no bit tied to the number.",
-        "In seg3 the 8.6 to 10.1 change is visually tiny, and the bars don't prove the claim.",
-        "The closing (seg4) reuses the spending data under a line about progress, and the counter \"2023 10.1\" is cut in half at the top.",
-        "\"what he's carrying\" is a vague caption that explains nothing."
-      ],
-      "fixes": [
-        "Open the hook on motion made of the subject, for example a crowd of 94 small figures where 56 step back to safety. Don't use an empty gauge.",
-        "Show the 60% drop in seg1 as kids saved: 93.5 per 1,000 thinning to 37.4 per 1,000, with Data doing a catch or rescue bit on the change.",
-        "Draw DPT coverage in seg2 as syringes or shields reaching a row of kids, 17 of 100 in 1980 up to 85 of 100 today, with Data giving the shot.",
-        "Draw seg3 as money flowing into the shot, or cut it. A +1.5-point GDP bar change doesn't read.",
-        "Land the closing on the mortality result, not spending. Keep every label fully in frame and fix the counter's clip rect.",
-        "Give Data a setup, action and payoff in each beat instead of perching."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 6.33,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T10:54:09+00:00",
-      "slug": "child-mortality-collapse",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a chart deck with Data parked on it: three stock charts, a mascot who mostly stands or perches, and a closing whose number readout is sliced in half and ends on spending instead of the 60% drop.",
-      "auto_fails": [
-        "decorative_mascot: Data stands in the same pointing pose inside the draining block from hook@0.3 to seg0:end, perches on bar tops in seg2:start/mid, and slides along the bar tracks in seg3. The only real bit is the closing carry (seg4:start), and it is tied to spending, not to child mortality.",
-        "unreadable: In seg4:end and payoff@-0.4 the value readout '2023 10.1' / '2018 9.6' is sliced through horizontally, so only the bottom half of the digits shows. In seg3:mid the Data sprite covers the 2005 bar where it meets its label."
-      ],
-      "problems": [
-        "seg4/payoff: the '2023 10.1' readout is clipped horizontally and unreadable",
-        "The hook opens on a titled vessel already half drained with Data standing still, so nothing happens in the first second",
-        "seg1, seg2 and seg3 are a line, columns and bars: the data is charted, never demonstrated",
-        "Data perches on bar tops (seg2) and slides along tracks (seg3) with no setup, action or payoff",
-        "The closing never lands the headline 93.5 to 37.4 / 60% number",
-        "'what he's carrying' is a vague label that says nothing"
-      ],
-      "fixes": [
-        "Remove the clipping mask on the closing value ticker, or lay it out below the headline block",
-        "Open the hook with motion: 93.5 children out of 1,000 visibly vanishing down to 37.4, with Data reacting",
-        "Replace the seg2 columns with a subject-made mechanic, e.g. a grid of 100 kids that fill with shield icons from 17 to 85",
-        "Give Data a bit tied to each stat: handing out shots in seg2, or pushing a coin stack in seg3",
-        "End on the 60% drop as a payoff, not on a spending stack"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 6.33,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T11:07:07+00:00",
-      "slug": "child-mortality-collapse",
-      "score": 40,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A chart slideshow: gauge, line, columns, bars. It opens on 8 seconds of a static-looking gauge and ends on a clipped health-spending stack instead of the 60% drop.",
-      "auto_fails": [
-        "unreadable: In seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 the tops of the blue year and value labels ('2018 9.6', '2023 10.1') are sliced off. At seg0:start the caption 'dying before' is faded almost into the background."
-      ],
-      "problems": [
-        "The hook (hook@0.3 to seg0:end) is a slow gauge with a title card that holds one layout for about 8s. It gives no reason to stay.",
-        "seg1, seg2 and seg3 are stock charts (line, columns, bars). None of them makes a child death or a vaccine visible.",
-        "In seg0 the mascot stands pointing inside a box for about 8s, and in seg3 he walks along the bars with no purpose.",
-        "The closing (seg4) is about health spending, not mortality, so the payoff never lands the 60% drop.",
-        "In seg4:mid through payoff@-0.4 the year and value labels have their tops sliced off.",
-        "In seg3:start the bars are near-empty with no values showing, and a 1.5-point rise from 8.6 to 10.1 on a stretched bar reads as no change."
-      ],
-      "fixes": [
-        "Open on motion that shows the stat. For example, 94 child figures with about 56 of them turning safe in the first 2 seconds.",
-        "Replace the seg0 gauge with a demonstration made of children, and give Data a setup, action and payoff. For example, he shields figures as the rate falls.",
-        "Show immunization as syringes or kids receiving a shot, filling from 17 of 100 to 85 of 100, instead of columns.",
-        "Tie spending to the outcome visually, or cut it. Do not end on it.",
-        "End on the 93.5 to 37.4 reveal. Measure and clamp every label inside the safe area, and drop the 'what he's carrying' caption."
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 6.33,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T11:21:21+00:00",
-      "slug": "rural-power-catch-up",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a chart deck with a dead hook: it never shows the 44% of homes still cooking over fire, the one thing the title promises.",
-      "auto_fails": [
-        "junk_imagery: hook@1.5\u2013seg0:end: a small, stray thumbnail of a green field with a winding road sits in the upper left beside the floating numbers. It does not depict electricity or cooking.",
-        "decorative_mascot: seg1:start\u2013seg1:end: Data stands on the bars, then cheers beside a lollipop chart. In seg3 he rides the line tip and in seg4 he walks around the gauge rim. None of it is a setup-action-payoff bit tied to fire vs. clean cooking.",
-        "bare_number_card: hook@0.3\u2013seg0:end: the opening is only the numbers 76.1/2014, 73.1/2010 and 68.4/2005 fading in on an empty gradient, with no demonstration.",
-        "empty_void: hook@0.8 and seg0:mid: about 80% of the frame is empty dark gradient, with only a few small numbers in the top-right and a tiny thumbnail.",
-        "unreadable: hook@0.3: the '76.1 2014' text is nearly invisible against the dark background. seg3:end: Data's head overlaps the '55.8' end label. seg4:end: the gauge counts to 55.8 while the closing is about the 44% gap, so the numbers read wrong."
-      ],
-      "problems": [
-        "The hook (0-3s) is faint unlabelled numbers on an empty gradient with an irrelevant green-field thumbnail, so there is no reason to stay.",
-        "The central claim (44% still cook over fire) is never demonstrated. There is no fire, stove, smoke or household picture anywhere.",
-        "seg1 and seg3 are plain bar, lollipop and line charts, and seg4 is a generic gauge.",
-        "seg2's 'power use behind the rural electricity gap' brick wall is a generic stack with a muddled title, and its link to cooking is unclear.",
-        "Data poses beside or on marks (cheering, riding the line tip, walking the gauge rim) but has no bit tied to the stats.",
-        "At seg3:end Data's head overlaps the 55.8 end label."
-      ],
-      "fixes": [
-        "Rebuild the hook as a split household: a light switches on (85% wired) next to a stove that is still an open fire (44%), with motion from frame 1.",
-        "Show the 44% as the subject itself: a row of 100 rural homes lights up to 85, and 44 of them still have smoke rising from their chimneys.",
-        "Give Data a real bit: he flips on a lamp, then tries to cook on it and gets smoked out by the fire beside it.",
-        "Remove the stock field thumbnail.",
-        "Keep Data clear of value labels.",
-        "End the payoff on the gap (85 wired vs. 56 clean cooking, a 29-point gap / 44% on fire), not on a gauge filling to 55.8."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T11:32:56+00:00",
-      "slug": "rural-power-catch-up",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The core idea (wired up but still cooking on fire) is never drawn: the opening is an empty void with junk stock thumbnails, and every later beat is a chart or stock machine with Data standing next to it.",
-      "auto_fails": [
-        "junk_imagery: hook@1.5, hook@2.2 and seg0:end show tiny stock thumbnails (a green field with a winding road, a silhouetted walker on a pink horizon with a watermark) floating in the void. They have nothing to do with electricity or cooking fuel.",
-        "decorative_mascot: Data is missing from the hook and seg0. From seg1:start to seg4:end he stands beside or rides the marks (arms up at the timeline tip, standing next to the brick wall in seg2:mid and seg2:end, perched on the gauge ring), with no setup->action->payoff tied to a stat.",
-        "bare_number_card: hook@0.8 through seg0:end is a column of bare numbers (76.1/2014, 73.1/2010, 68.4/2005) stacked on an empty gradient with no demonstration and no units.",
-        "empty_void: hook@0.3 to hook@2.2: roughly 90% of the frame is an empty dark gradient with one faint number in the top-right corner.",
-        "unreadable: At hook@0.3 the '76.1 2014' is nearly invisible against the background. At seg3:end the mascot sits on top of the '55.8' end label. At payoff@-1.8 the mascot overlaps the '6' of '51.6'. The seg1:start caption 'percent in 2000' is faded to low contrast."
-      ],
-      "problems": [
-        "Hook (0-2.2s) is a near-empty dark frame with one faint number and no subject, title or motion worth staying for.",
-        "seg0 shows unlabeled numbers in reverse chronological order and never shows the narrated 67%/85%, alongside irrelevant stock thumbnails of a road and a walker.",
-        "seg1 is a plain bar chart that changes layout mid-beat, and Data just raises his arms at the tip.",
-        "seg2's 'each block = 500' legend doesn't match the ~100-brick wall drawn for 3,558 kWh, so the unit is misleading, and the title 'power use behind the rural electricity gap' mislabels a global per-capita stat.",
-        "seg3's line chart never shows the 44% still on fire or charcoal, and the mascot covers the 55.8 end label at seg3:end.",
-        "The closing gauge repeats 55.8 with no 'still 44% on fire' payoff, and the mascot overlaps the digits at payoff@-1.8."
-      ],
-      "fixes": [
-        "Rebuild the hook as a full-frame village scene: bulbs switch on in 85% of houses while 44% of the chimneys keep smoking. Frame 1 must carry the contrast.",
-        "Delete the seg0 number column and the stock thumbnails. Show 67%\u219285% as houses lighting up, not as floating digits.",
-        "Make seg3 show the gap itself: of 100 rural stoves, 56 flip to clean flame and 44 stay as open fires, with Data fanning smoke away.",
-        "Fix seg2 so the brick count matches the stated unit (about 4 bricks becoming about 7), and retitle it as global per-person electricity use.",
-        "Give Data a setup->action->payoff in each beat, such as flipping a switch, trying to cook on a light bulb, or coughing at the smoke. Keep him clear of every value label.",
-        "End on the 44% of homes still cooking over fire, not on a repeated 55.8 gauge."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 143
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T11:43:15+00:00",
-      "slug": "rural-power-catch-up",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The first four seconds are a dark void of unlabeled floating numbers and junk stock thumbnails, and the video's core contrast (wired up but still cooking over fire) is never shown as a picture.",
-      "auto_fails": [
-        "junk_imagery: hook@2.2 / seg0:end: small stock thumbnails of a green winding-road landscape and a silhouetted man walking on a sunset road, with watermarks. They have nothing to do with rural electricity or cooking fuel.",
-        "decorative_mascot: seg1:mid/end, seg4:mid/end: Data stands with his arms raised or rides the chart marker along the line. At seg2:mid/end he stands beside a brick wall that builds itself; he never lays a brick. There is no setup->action->payoff tied to a stat.",
-        "bare_number_card: hook@0.3 through seg0:end: floating unlabeled numbers ('76.1 / 2014', '73.1 / 2010', '68.4 / 2005') on an empty gradient, with no demonstration.",
-        "empty_void: hook@0.3 to seg0:end: about 80% of the frame is empty dark gradient, with only a faint number in the top-right and tiny thumbnails.",
-        "unreadable: hook@0.3: '76.1 / 2014' is near-invisible dark teal on navy. seg0:start: the caption 'countryside got' is ghosted grey on dark. seg1:start: the caption 'percent in 2000' is faded. seg3:end: the '55.8' label is covered by the mascot."
-      ],
-      "problems": [
-        "The hook (0-4s) has no motion with a purpose: faint unlabeled numbers on an empty gradient.",
-        "Irrelevant watermarked stock thumbnails (a winding road, a man walking at sunset) appear in the hook/seg0.",
-        "Captions fade to near-invisible grey (seg0:start 'countryside got', seg1:start 'percent in 2000').",
-        "Data is decorative: arms raised, riding markers, standing beside a wall that builds itself.",
-        "seg3:end: the mascot covers the 55.8 end label.",
-        "The headline '44% cooking over fire' is never visualized. The closing gauge shows 55.8, the clean share, not the 44% on fire."
-      ],
-      "fixes": [
-        "Replace the hook with a full-frame contrast: a lit bulb over a smoking cookfire, with electricity 85% set against cooking 56%.",
-        "Delete the stock thumbnails and the floating number list.",
-        "Make the payoff show 44 of 100 homes still with smoke/fire rising, not a clean-fuel dial.",
-        "Give Data a real bit: fanning smoke away from a pot, or flipping the light switch and then coughing at the fire.",
-        "Keep the mascot clear of value labels, and keep caption opacity at full.",
-        "Retitle seg2 honestly as world electricity use per person."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 143
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T11:55:08+00:00",
-      "slug": "landline-extinction-event",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Three different visual systems stitched together. The landline decline, which is the whole story, is drawn as \"it never settled\" and a rising line, so the video never shows the collapse it's named for.",
-      "auto_fails": [
-        "unreadable: seg3:mid and seg3:end: the country label is cut to \"United States o...\", and dark \"670M\" sits on the pink bar partly behind Data. seg2:start: the mascot covers the 2009 bar."
-      ],
-      "problems": [
-        "seg0 header \"158M to 1.3B\" and caption \"up and down the whole way\" frame the story as growth. 815M, the actual end point, never appears on screen except in a caption.",
-        "seg1 range-slider machine asserts volatility (\"it never settled\"), which contradicts the peak-then-decline narration.",
-        "seg4 seesaw compares China to India alone, while the narration claims China beats the next four combined. The beam barely tilts for a 15x difference.",
-        "The closing line \"The phone didn't die...\" is printed over a China-vs-India broadband scale that has nothing to do with phones at home.",
-        "Inconsistent design languages: seg2:start and seg3 use a card-style ranked-bar template with kicker and source line, while the other scenes use a different type system.",
-        "seg3: \"United States o...\" is truncated, dark \"670M\" sits on the pink bar and is partly covered by the mascot, and the raw \"China 669825900\" map label has no separators."
-      ],
-      "fixes": [
-        "Rebuild seg0/seg1 around the decline: start at the 1.26B peak in 2006 and physically lose lines down to 815M, with the end number landing on screen.",
-        "Put all four challengers (US, Brazil, Japan, India) on the seg4 scale pan together against China, or stack their bricks, so \"more than the next four combined\" is literally weighed.",
-        "Pair the closing line with a phone or landline image (a silent handset), not the broadband scale.",
-        "Use the full name or \"USA\" instead of the truncated country label, put bar values in INK outside the bar, keep the mascot clear of values, and format the map label as \"670M\".",
-        "Use one visual language across all scenes: drop the card template in seg2:start and seg3."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T12:06:51+00:00",
-      "slug": "landline-extinction-event",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The hook headline says landlines went \"158M to 1.3B\" on a rising line, the opposite of the decline story. It holds for ~5.6s, then four stock bar charts follow with a mascot who just stands around.",
-      "auto_fails": [
-        "decorative_mascot: Data stands with his arms up on the chart line through hook@0.3 to seg0:end, drifts between the bars in seg1:mid, seg1:end and seg2:start, and stands on the pan in seg4. He never has a setup-action-payoff tied to the stat.",
-        "dead_air: The picture is the same from hook@0.3 to seg0:end (about 5.6s): one line chart with the same headline. Only the mascot twitches, so the hook and seg0 are two identical beats.",
-        "unreadable: In seg3:start, seg3:mid and seg3:end the second bar label is cut off as \"2. United States o...\". In seg3:end the mascot covers the end of the China bar, and its \"670M\" is dark text on pink. In seg3:mid the \"China 669825900\" label is printed over the map."
-      ],
-      "problems": [
-        "Hook/seg0: the headline \"158M to 1.3B\" and the mostly rising line contradict the 1.26B \u2192 815M decline. The frame is identical from 0.3s to 5.9s.",
-        "seg1: the year bars skip 2006, so the peak the title promises is never shown; 2015 at 1.1B reads as the top.",
-        "seg3: the \"United States o...\" label is cut off, the mascot covers the end of the China bar, and \"670M\" is dark text on pink.",
-        "seg4: the scale compares China with India alone, but the script claims China beats the next FOUR combined.",
-        "The mascot poses or drifts between bars in every scene with no bit tied to the data.",
-        "Every beat is a chart (bars, columns, bars); nothing is made of phones, lines or cables."
-      ],
-      "fixes": [
-        "Rebuild the hook around the drop from the 1.26B peak to 815M, for example phone cords being unplugged or a stack of landline handsets shrinking, with the headline \"1.26B \u2192 815M\".",
-        "Make seg0 differ from the hook and include 2006 in the landline series so the peak and the fall are visible.",
-        "Use the short label \"US\" instead of the truncated \"United States o...\", keep the mascot off the bar values, and put value labels in ink on the ground.",
-        "In seg4, load the US, Brazil, Japan and India together onto the right pan so China outweighing all four is visible.",
-        "Give Data a real setup-action-payoff, e.g. he hangs up a landline that then stops ringing, or he hauls broadband cable onto the scale."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T12:18:08+00:00",
-      "slug": "landline-extinction-event",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A stack of generic charts whose opening headline number ('158M to 1.3B') contradicts the peak-and-decline story, with a mascot who only perches.",
-      "auto_fails": [
-        "decorative_mascot: Data stands on the line tip from hook@0.8 to seg0:end, stands on bars and a lollipop stem in seg1 and seg2, and stands on China's pan in seg4 without ever tipping it. He has no setup, action or payoff tied to a stat, only changes of pose.",
-        "dead_air: hook@2.2, seg0:mid and seg0:end (1.7-5.9s) are the same finished line chart. Only Data's arms change, so nothing meaningful moves for about 4s. The code measured 11.67s of held frames in total.",
-        "unreadable: At seg3:mid Data covers the end of China's '670M' bar, and the label is dark text on pink. 'United States o...' is cut off. 'China 669825900' is printed over the map's China shape. Faded subtitle words ('815 million' at seg0:end, 'billion in 2006,' at seg1:start) almost disappear."
-      ],
-      "problems": [
-        "hook/seg0: the headline number '158M to 1.3B' and the caption 'up and down the whole way' misstate a story about a 1.26B peak falling to 815M; the x-axis is unlabeled",
-        "seg0: the finished chart holds for about 4s (1.7-5.9s) with only Data's arms moving",
-        "seg1: the landline bars skip 2006, the peak the whole title is about",
-        "seg3: Data covers China's '670M' label; 'United States o...' is cut off; 'China 669825900' overlaps the map",
-        "seg4: the seesaw weighs China against India alone, not against the next four combined as narrated, and the beam barely tilts for a 15x gap",
-        "Data stands on marks in every scene with no bit tied to a number"
-      ],
-      "fixes": [
-        "Rebuild the hook/seg0 visual on peak-to-now (1.26B to 815M) with labeled years, and make the loss physical (lines being unplugged or cut away) so something moves for the whole beat",
-        "Put 2006 into the seg1 series, or replace that scene, since it repeats the seg0 decline",
-        "Make seg2 prove 'seven times': seven 2005-sized blocks stacking up to the 2025 height",
-        "In seg3/seg4, stack the US, Brazil, Japan and India together on one pan against China, and let the beam slam down",
-        "Give Data an act tied to each stat (cutting phone cords, getting catapulted by the tipping scale) and keep him off the labels"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-09-30T12:07:12+00:00",
-      "slug": "dollar_general_quietly_passed_mcdonald_s",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean two-line race with a clear 2017 crossover and leaderboard swap, but the source footer is cut off and the hook's 'tripled' claim overstates the roughly 2.5x growth.",
-      "auto_fails": [
-        "unreadable: In every frame (hook@0.3, mid5, payoff@-0.4) the grey source footer is cut off at the right edge after 'McDonald's US', and it is too small and faint to read on a phone."
-      ],
-      "problems": [
-        "The source footer is truncated at the right edge and too small and faint to read on a phone (all frames).",
-        "The hook caption 'One tripled' is inaccurate: 7.9K to 20K is about 2.5x.",
-        "The year counter sits in a wide empty row on the left for the first half (hook@0.3 to mid2).",
-        "The overtake happens around mid3 and after that the video is just one line climbing, with little extra payoff beyond the '#1 Dollar General' banner."
-      ],
-      "fixes": [
-        "Wrap the source to two lines inside the safe area, or shorten it to 'Source: company 10-K reports', and raise its contrast.",
-        "Rewrite the hook to match the data, e.g. 'One grew 2.5x. One barely moved.'",
-        "Anchor the year counter consistently, or use the empty space for a running gap readout (e.g. '+6.4K stores').",
-        "Make the payoff land harder: show the final gap (20K vs 13.6K) as a clear, readable difference."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 25
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb"
-    },
     {
       "ts": "2026-09-30T12:08:57+00:00",
       "slug": "podcast_ads_grew_7x_in_one_decade",
@@ -2834,11 +2327,463 @@
       "model": "opus",
       "rubric_sha": "923d169cfb",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-01T10:22:35+00:00",
+      "slug": "cremation-overtakes-burial",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong, subject-built pictures with Data driving every scene. The state-comparison lantern shows states nobody names and has a text collision, and the hook's 5% label sits over a casket already burning well past 5%.",
+      "auto_fails": [
+        "unreadable: In seg3:end, '49.1 points apart' is printed over the 'Nevada' base plate and the mascot's feet. In seg3:start/mid, the 'Mississippi' marker label is tiny and pressed against the left frame edge."
+      ],
+      "problems": [
+        "Hook: the label stays at '5% chose cremation \u00b7 1970s' while the burn front sweeps past half the casket (hook@1.5\u20132.2), so picture and number disagree.",
+        "seg3: the lantern shows Alabama 38.1% and Utah 42.8% while the narration is about Nevada and Mississippi.",
+        "seg3:end: the '49.1 points apart' callout overprints the 'Nevada' nameplate and the mascot.",
+        "seg3: the 'Mississippi' marker label is tiny and at the left frame edge.",
+        "seg0:end: 'was 5% in the 1970s' sits on the flame tips.",
+        "seg4: the outro is boxed in a bordered panel, a UI-card look rather than full bleed."
+      ],
+      "fixes": [
+        "Hold the hook burn at the 5% mark while the label says 5%, then advance it with the number as it ticks toward 63%.",
+        "Make seg3 go Mississippi 32.8% to Nevada 81.9% as the voiceover says each one, with no unnamed states.",
+        "Move the gap callout clear of the nameplate, and enlarge the Mississippi marker and pull it inside the safe margin.",
+        "Lift the 'was 5%' subline clear of the flames.",
+        "Remove the panel border in the outro so the candles sit full bleed on the ground."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 139
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-01T10:39:29+00:00",
+      "slug": "night-owl-chronotype-rarity",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bespoke middle (moon light edge, lit tower, DNA clock), but the payoff is a bordered bedroom panel where Data and the picture do nothing to show the 1.9 h shift, and the window bar strikes through its subtitle.",
+      "auto_fails": [
+        "unreadable: In seg4:mid and payoff@-1.8 the window's horizontal bar runs straight through the subtitle 'the body's own mid-sleep', and in seg4:end it strikes through 'the shift start never asked'. In seg1:start the caption 'are genuine night' and the '28% morning type' label are low-contrast grey on dark navy."
+      ],
+      "problems": [
+        "seg4 closing is a bordered inset panel on a gradient (a UI widget) with a dark CTA band, not a full-bleed shot",
+        "seg4: the window's horizontal bar strikes through the subtitles 'the body's own mid-sleep' and 'the shift start never asked'",
+        "seg4: Data stands cheering beside the bed and causes nothing, and the 1.9 h shift is only text",
+        "seg2: Data stands under a dangling rope with his arms up; he does not pour or cause the genetics water level",
+        "seg3: the lower ~35% of the frame is empty dark ground, and the sun's movement does not clearly carry the 5.2 to 3.3 h drift",
+        "seg1:start: the caption and the '28% morning type' label are low-contrast grey on navy"
+      ],
+      "fixes": [
+        "Make the closing full-bleed with no panel. Have Data wind the wall clock (or a big bedside clock) back 1.9 h while the sleeper's wake time visibly moves earlier",
+        "Move the seg4 subtitles off the window bar onto clean ground at full ink contrast",
+        "seg2: have Data pour the DNA water into the clock from a jug so his pour causes the 44% level",
+        "seg3: draw a visible arc or timeline under the sun with the age ticks 20 / 30 / 70 so the drift reads without numbers, and use the empty lower ground for it",
+        "Fade captions and labels in faster so they are never caught at mid-grey"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 103
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-01T10:46:40+00:00",
+      "slug": "night-owl-chronotype-rarity",
+      "score": 62,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong subject-built middle beats, but the closing clock's age labels overlap and get clipped ('Age 7(', 'Ag 30') inside a boxed card while Data stands still.",
+      "auto_fails": [
+        "unreadable: In seg4:start the clock labels 'Age 30' and 'Age 20' print on top of each other ('Ag 30'). In seg4:mid and seg4:end the 'Age 70' label is cut by the sweep edge and the mascot and reads 'Age 7('. The labels are small, light grey on cream, and hard to read on a phone."
+      ],
+      "problems": [
+        "seg4: the 'Age 20' and 'Age 30' labels overlap (seg4:start), and 'Age 70' is clipped by the sweep and the mascot (seg4:mid, seg4:end).",
+        "seg4: the closing is a bordered card panel on a dark gradient with stacked captions above and below, a UI-widget layout instead of a full-bleed shot.",
+        "seg4: Data stands on the ladder with no action for the whole closing beat, and the final ~3s are almost identical frames.",
+        "seg2: Data cheers beside the clock instead of causing the 44% fill.",
+        "seg3: a sun sliding sideways is an unclear picture of 'earlier'. Its lower third is empty dark ground."
+      ],
+      "fixes": [
+        "Lay out the seg4 age labels with measured, non-overlapping boxes on leader lines outside the dial, or keep only the endpoints Age 20 and Age 70.",
+        "Render the closing full bleed with no card frame, with captions in the normal caption band.",
+        "Make Data push the clock hand from age 20 to age 70 in seg4 so the sweep is his act, and end on the sleeper bolting awake as the payoff.",
+        "In seg2, have Data pour the DNA water into the clock so he is the cause of the fill.",
+        "In seg3, have Data pull the sun up from the horizon earlier and earlier, so 'earlier' reads as dawn arriving sooner, and use the lower third for the age tick marks."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 103
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-01T10:52:41+00:00",
+      "slug": "night-owl-chronotype-rarity",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bespoke moon and window-tower scenes carry the opening. The second half sags: the sun drift doesn't show what age does to the body clock, and the closing sits inside a card with Data cheering beside the hand instead of turning it.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: the sun sliding sideways doesn't read as 'earlier'. Age appears only in subtitle text, and the lower ~40% of the frame is empty ground.",
+        "seg3: an unexplained second pale disc appears at right (seg3:mid, seg3:end).",
+        "seg4: the closing is framed as a panel with text bands above and below. It reads like a card or widget, not a full-bleed shot.",
+        "seg4: Data stands on the bed cheering beside the clock hand (seg4:start to seg4:end). He is not the one moving it.",
+        "seg2: Data mostly stands beside the clock (arms up, waving). Nothing shows his rope or cord raising the water.",
+        "The 1-in-4 / 25% stat is shown twice (hook/seg0 moon, then seg1 tower), so the second scene partly repeats the first."
+      ],
+      "fixes": [
+        "seg3: draw a clock-time track across the sky plus an age timeline on the empty ground. Data hauls the sun back along it, stamping age 20, 30, 50 and 70 as it moves.",
+        "seg3: remove the second disc, or make it clearly a marker of the age-20 position.",
+        "seg4: go full bleed with no framed panel. Data grips the clock hand and drags it back 1.9 h while the sleeper sits up, so he is the cause.",
+        "seg2: have Data visibly pour or pump the DNA water to 44% so he causes the fill.",
+        "seg1: open on the 47% intermediate floors instead of re-revealing 25%, so the beat adds new information.",
+        "Payoff: land '1.9 h earlier' on a hard beat with a snap (e.g. the alarm ringing) instead of a slow fade."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 103
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-01T11:00:58+00:00",
+      "slug": "billionaire-count-record-2025",
+      "score": 35,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "Three bar or timeline charts lead into a broken comparison: two identical '127% Billionaire wealth' circles, with the S&P's 195% never shown. The video's punchline is missing from the screen.",
+      "auto_fails": [
+        "decorative_mascot: In hook@1.5 through seg0:end and seg2:end, Data stands on a ladder pointing at a bar that is already built. He does not stack or push it. In seg1 he just stands on the timeline with his arms up, and in seg3:start through seg4:mid he stands on top of a circle doing nothing.",
+        "bare_number_card: seg3:start, mid and end show two teal circles, each just printed \"127%\" and labelled \"Billionaire wealth\". The S&P 500's 195% never appears, so the comparison the narration describes is never shown.",
+        "dead_air: The bar chart is finished by hook@1.5 and is unchanged at seg0:start, seg0:mid and seg0:end (t=1.5 to 5.9s). Only the mascot's face changes. The motion facts measure held_s 6.38 with the longest duplicate run at 4.25s.",
+        "empty_void: In seg2:start the bars sit in the bottom quarter and the top half of the frame is empty dark gradient. seg1 also leaves large empty bands above and below the timeline.",
+        "unreadable: In seg1:start, mid and end the axis labels \"2024\" and \"2025\" run together as \"20242025\". In seg3:start and seg4:start the white \"127%\" spills past the edge of the small teal circle and is hard to read."
+      ],
+      "problems": [
+        "seg3 and seg4: both comparison circles say 127% 'Billionaire wealth', the S&P 500's 195% never appears, and the payoff claim goes unshown.",
+        "The hook bar chart is the same picture as seg0 and stays fully built from 1.5s to 5.9s.",
+        "seg0, seg1 and seg2 are all plain bar or line charts of the same series. Nothing is demonstrated physically.",
+        "Data points from a ladder or stands on a circle. He never causes the motion.",
+        "The seg1 axis labels collide as '20242025'.",
+        "seg2:start leaves the upper half of the frame empty."
+      ],
+      "fixes": [
+        "Bind the S&P 500 value of 195% and its label to the second side of the seg3 comparison. Size the two sides by their values so the S&P side clearly dominates.",
+        "Make Data the agent: have him stack the billionaire count up to 3,028 and pump or pour the wealth up to $16.1T, instead of pointing at bars that are already finished.",
+        "Don't let seg0 repeat the hook chart. Start seg0 from 1,826 and build to the record.",
+        "Space or abbreviate the timeline ticks ('24, '25) so the labels don't collide.",
+        "Fill the frame in seg2. Start the composition higher, or scale it up."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 140
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "style_arm": "current"
+    },
+    {
+      "ts": "2026-10-01T11:06:19+00:00",
+      "slug": "world_s_urban_population_just_passed_rur",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean, correctly sourced two-line race with a well-marked 2007 crossover, but it opens slowly on the dullest part of the data.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.2s) shows two parallel stubs with a wide, unchanging gap and no visual tension.",
+        "The right half of the plot is empty black during the first ~2s while the lines draw in.",
+        "At mid4 (2009) the two value tags and the crossover ring stack on top of each other at the moment that matters most.",
+        "The payoff card '#1 Urban population' is small and only appears in the last ~0.5s. The 'for good' widening gap is never stated as a number (e.g. +1.3B)."
+      ],
+      "fixes": [
+        "Ease the timeline: compress 1950-1990 and slow down around 2000-2010 so the convergence is visible early and the crossover gets screen time.",
+        "Open with a brief flash of the crossover ring, or a 'Watch the blue line' cue, before rewinding to 1950.",
+        "Offset the Urban/Rural tags vertically at the crossover so they don't crowd the ring.",
+        "Land the payoff larger and earlier: show the final gap (4.7B vs 3.4B, +1.3B) for at least 1.5s."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-10-01T11:07:54+00:00",
+      "slug": "one_billion_smartphones_shipped__feature",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean two-line race whose 2013 crossover lands well, but the opening second is a mostly empty chart that is still being built.",
+      "auto_fails": [],
+      "problems": [
+        "The hook frames (0.3-2.2s) show short line stubs on an empty plot. The tagline card is all that holds attention.",
+        "The tagline '2013 ended one era fast' is gone after the hook, and the crossover is not highlighted at the moment it happens."
+      ],
+      "fixes": [
+        "Start the race already in motion, or zoomed tight on the closing gap, so the crossover is visibly on its way in the first second.",
+        "Add a punch-in or flash at the 2013 crossover to make it the climax of the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-10-01T11:09:32+00:00",
+      "slug": "remote_work_briefly_beat_the_office__the",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean, readable line race that shows the flip and the reversal, but the year counter lags the lines, the 2020 flip never gets its own callout, and the last 4s plateau into a dim, generic '#1 In-office' ending.",
+      "auto_fails": [],
+      "problems": [
+        "The year counter reads '2019' at hook@0.8 while the lines are already at 74/26 (heading toward 2020 values), so the time cue and the data disagree.",
+        "The headline moment, WFH overtaking in 2020 (hook@2.2), gets no callout. Only the later re-crossing is annotated (mid1).",
+        "mid4 to payoff@-0.4 is about 4s of near-flat creep (74%->75%) with almost no change.",
+        "The payoff '#1 In-office' is dim grey on black and does not land the 'then it reversed' punchline."
+      ],
+      "fixes": [
+        "Sync the year counter to each line's actual year position, or label the 2020 peak as 2020.",
+        "Add a callout at the 2020 peak: 'Remote wins: 58%'.",
+        "Speed through the 2022-2025 plateau so it takes about 1.5s.",
+        "End on a high-contrast payoff card: 'Peak 58% -> now 25%. The office took it back.'"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-10-01T11:11:05+00:00",
+      "slug": "sports_betting_just_passed_the_box_offic",
+      "score": 83,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean race with a real overtake and a strong crash-then-cross story, but the source line is cut off in every frame and the tip labels collide at 2021.",
+      "auto_fails": [
+        "unreadable: In every frame, including hook@0.3 and payoff@-0.4, the source line reads 'US legal sports betting revenue from the American Gaming' and is cut off mid-name (Association is missing). In mid3 (2021) the two tip labels 'Movie box office 4.5B' and 'Sports betting revenue 4.3B' are stacked almost on top of each other at the tips."
+      ],
+      "problems": [
+        "The source line is truncated at 'American Gaming' in every frame.",
+        "The tip labels for the two series overlap at the 2021 convergence (mid3).",
+        "The hook frame is a slow start: the lines barely move in the first 2s, so the drama comes later."
+      ],
+      "fixes": [
+        "Wrap or shorten the source line so the full attribution fits inside the frame.",
+        "Add vertical collision avoidance for tip labels when the series values are close.",
+        "Open closer to the 2020 crash, or speed up the 2018-2019 stretch so frame 1 already shows a dramatic move."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-10-01T11:15:55+00:00",
+      "slug": "the_kiosk_ate_my_points__i_built_a_folde",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "A potentially satisfying revenge arc is told almost entirely by captions over gameplay. The few illustrations are a blank phone and an unrelated construction-worker emoji held over the ending, so the payoff never lands visually.",
+      "auto_fails": [
+        "junk_imagery: mid4/mid5/payoff@-1.8/payoff@-0.4: a generic construction-worker emoji in a hard hat stands for 'fired the vendor running the kiosks'. It has nothing to do with a kiosk, a vendor or loyalty points, and it stays on screen for the last ~10s."
+      ],
+      "problems": [
+        "The ending (mid4 to payoff@-0.4, ~10s) holds one construction-worker emoji with no link to kiosks, vendors or points.",
+        "Key beats (points vanishing at the free pizza, shared folder, timeline to corporate, loyalty audit) have no illustration. mid1 and mid3 are bare gameplay.",
+        "mid2's phone icon is a blank blue rectangle and shows no glitch or screenshot.",
+        "mid0 is mostly a near-black frame under the post card. It's a weak, dark opening after the hook.",
+        "The payoff 'fired the vendor' has no visual win moment, and the last caption, 'FOLDER.', lands over the same reused emoji."
+      ],
+      "fixes": [
+        "Draw the kiosk and its 'points: 0' screen for seg0 to seg2, so the points visibly vanish right when the free pizza unlocks.",
+        "For seg3/seg4, show a phone camera snapping glitch screenshots that drop into a shared folder whose file count climbs as strangers join.",
+        "For seg5/seg6, show a timestamped timeline document flying to a corporate HQ, followed by a 'LOYALTY AUDIT' announcement.",
+        "For seg7, show the kiosk unplugged or a vendor contract stamped TERMINATED, and give the closing its own distinct image.",
+        "Brighten or replace the dim gameplay segment behind mid0 so the first seconds after the hook aren't a near-black frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.098,
+        "sampled": 143
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
+    },
+    {
+      "ts": "2026-10-01T11:29:20+00:00",
+      "slug": "caught_on_camera_kitten_rescued_from_i_8",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Gameplay and captions are smooth, but the story's climax (free pastry, health inspection, manager) has no illustrations at all. The two pictures that do appear are generic emoji, so the payback never shows on screen.",
+      "auto_fails": [],
+      "problems": [
+        "The illustration track is nearly empty: from mid2 to mid5 (16-37s) every frame is gameplay only, with nothing showing the story beats.",
+        "The illustrations that do appear are generic flat emoji: a person face at mid1 and a door at payoff. Neither shows coffee, a refund, a pastry or an inspection.",
+        "The caption 'AND NOW SPISHOP' (mid4) looks like a mistranscription and breaks comprehension.",
+        "The hook is just the post card over gameplay. No caption or image says what happened in the first 2s.",
+        "The payoff lands on a static door icon and 'HIS EGO DRENCHED.', which is a flat close for a revenge story."
+      ],
+      "fixes": [
+        "Render an illustration for every segment: a slammed coffee cup, a refund demand at the counter, a free pastry handed over, an inspector with a clipboard, a manager walking over, doors shutting. Each should cut in on its own narration line.",
+        "Replace the generic emoji with story-specific objects. The angry customer needs a coffee cup, not a neutral smiling face.",
+        "Fix the caption/TTS alignment so 'SPISHOP' shows the intended word.",
+        "Start the hook with a caption line and an image of the coffee slam from frame 1, not the post card alone.",
+        "Give the payoff motion: the door slamming on the customer, or the pastry being handed over with a reaction."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 119
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb"
     }
   ],
   "recent_commits": [
-    "ee1a08f 2026-10-01 claim: mailbox verdicts 2026-10-01T04:47Z [skip ci]",
-    "69ed669 2026-10-01 exchange: phase A bundle for 20261001 [skip ci]"
+    "61f5e19 2026-10-01 deadman: repaired 2026-10-01 [skip ci]",
+    "01faae1 2026-10-01 deadman: repaired 2026-10-01 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2856,10 +2801,11 @@
         "2026-09-27": 11,
         "2026-09-28": 10,
         "2026-09-29": 6,
-        "2026-09-30": 5
+        "2026-09-30": 5,
+        "2026-10-01": 3
       },
-      "total_posted": 396,
-      "attempted": 396,
+      "total_posted": 399,
+      "attempted": 399,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -2876,10 +2822,10 @@
         "2026-09-27": 2,
         "2026-09-29": 1,
         "2026-09-30": 3,
-        "2026-10-01": 1
+        "2026-10-01": 3
       },
-      "total_posted": 285,
-      "attempted": 285,
+      "total_posted": 287,
+      "attempted": 287,
       "rejected_or_pending": 0
     },
     "third": {
@@ -2900,8 +2846,8 @@
         "2026-10-01": 1
       },
       "total_posted": 338,
-      "attempted": 739,
-      "rejected_or_pending": 401
+      "attempted": 742,
+      "rejected_or_pending": 404
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2915,63 +2861,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 88,
+      "videos": 89,
       "top_by_vph": [
         {
           "title": "The World Made 62 Million Tons Of E-Waste",
-          "vph": 74.41,
-          "views": 134
+          "vph": 21.34,
+          "views": 320
         },
         {
           "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
-          "vph": 40.64,
-          "views": 260
+          "vph": 19.8,
+          "views": 388
+        },
+        {
+          "title": "Child Mortality Fell 60% Since 1990",
+          "vph": 3.89,
+          "views": 35
         },
         {
           "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
-          "vph": 2.89,
+          "vph": 2.78,
           "views": 972
         },
         {
           "title": "Why Is America Growing 4 Times More 100-Year-Olds?",
-          "vph": 2.14,
+          "vph": 2.01,
           "views": 432
-        },
-        {
-          "title": "Wild Tigers Just Did Something They Haven't In 100 Years",
-          "vph": 1.88,
-          "views": 448
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 113,
+      "videos": 119,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 4.37,
+          "vph": 4.16,
           "views": 1356
         },
         {
+          "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let",
+          "vph": 2.73,
+          "views": 39
+        },
+        {
+          "title": "Xqc Chases Jean Paul Down While Chat Screams Send It",
+          "vph": 1.21,
+          "views": 19
+        },
+        {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 1.09,
-          "views": 154
+          "vph": 1.01,
+          "views": 159
         },
         {
           "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 0.99,
-          "views": 110
-        },
-        {
-          "title": "Chat Could Not Handle This Caseoh Moment",
           "vph": 0.87,
-          "views": 222
-        },
-        {
-          "title": "Fuslie Leaks The Jackbox Room Code And Ruins The Game",
-          "vph": 0.78,
-          "views": 74
+          "views": 110
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -3111,7 +3057,7 @@
       "title": "Trending analytics loses the format identity needed to manage its mix",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "66d90578bc9b",
