@@ -1,16 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-01T11:01:20Z",
+ "updated": "2026-10-01T13:05:23Z",
  "open": [
   {
-   "id": "billionaire-count-record-2025__7c909acf",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-01T11:01:20Z",
+   "id": "oceanic-shark-collapse__7abc9718",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-10-01T13:05:23Z",
    "why": [
-    "judge: Three bar or timeline charts lead into a broken comparison: two identical '127% Billionaire wealth' circles, with the S&P's 195% never shown. The video's punchline is missing from the screen."
+    "premise: brain: The premise presents a shocking statistic but does not invert a viewer's existing expectation, failing the required reversal criterion."
    ],
-   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__7c909acf.request.json",
-   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__7c909acf.answer.json"
+   "request": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.request.json",
+   "answer_path": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.answer.json"
+  },
+  {
+   "id": "billionaire-count-record-2025__7f009eb1",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-01T11:51:35Z",
+   "why": [
+    "judge: The video's punchline comparison is broken: both discs read '127% Billionaire wealth' and the S&P 500's 195% never appears, while the rest is the same bar chart drawn three times."
+   ],
+   "request": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.request.json",
+   "answer_path": "exchange/rewrites/20261001/billionaire-count-record-2025__7f009eb1.answer.json"
   },
   {
    "id": "marathon-super-shoes-record-pace__b6f8dadd",
@@ -919,16 +929,6 @@
    ],
    "request": "exchange/rewrites/20260926/passport-ownership-surge__6574af21.request.json",
    "answer_path": "exchange/rewrites/20260926/passport-ownership-surge__6574af21.answer.json"
-  },
-  {
-   "id": "oceanic-shark-collapse__7abc9718",
-   "slug": "oceanic-shark-collapse",
-   "filed": "2026-09-25T13:01:05Z",
-   "why": [
-    "premise: brain: The premise states a statistic without subverting a viewer expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.request.json",
-   "answer_path": "exchange/rewrites/20260925/oceanic-shark-collapse__7abc9718.answer.json"
   },
   {
    "id": "python-mammal-collapse__4e32af3f",

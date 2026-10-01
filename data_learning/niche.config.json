@@ -24928,7 +24928,7 @@
   {
    "slug": "bat-fungus-collapse",
    "title": "A Fungus Is Erasing North America's Bats",
-   "hook": "One fungus, one New York cave, 35 states of dead bats.",
+   "hook": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
    "closing": "97 percent of one species gone, and farmers pay the bill.",
    "question": "Ever seen a bat near your home? Tell me below.",
    "caption": "Since 2006, a cold-loving fungus called white-nose syndrome has spread from a single New York cave to 35 states, killing over 90% of three major bat species. Bats aren't just creepy -- they save US farmers an estimated $3.7 billion a year eating crop pests. Ever seen a bat near your home? 👇",
@@ -24996,7 +24996,8 @@
       "code": "bat = subject_image('bat flying silhouette')\nfield = subject_image('farm crop field aerial photo')\ncx, cy = (RX0 + RX1) // 2, RBOT - 260\nif field is not None:\n    paste(field, RX0, RTOP + 40, RX1 - RX0, 420)\nradius = 300\nlo, hi = min(values), max(values)\ncur = lerp(lo, hi, clamp(reveal * 1.1))\nfrac = clamp((cur - lo) / max(1e-6, hi - lo))\nang0, ang1 = 200, 340\nd.arc([cx-radius, cy-radius, cx+radius, cy+radius], ang0, ang1, fill=rgba(TEXT,140), width=14)\nang = ang0 + (ang1 - ang0) * frac\nrad = math.radians(ang)\nnx, ny = cx + radius * math.cos(rad), cy + radius * math.sin(rad)\nif bat is not None:\n    paste(bat, int(nx)-40, int(ny)-40, 80, 80)\nd.line([cx, cy, nx, ny], fill=rgba(WARN,230), width=8)\ntext(f'${cur:,.1f}B / YEAR', cx, cy + 60, size=42, color=WARN, center=True)\ntext(f'low ${lo:.1f}B', RX0 + 60, cy + 40, size=24, color=TEXT)\ntext(f'high ${hi:.0f}B', RX1 - 200, cy + 40, size=24, color=TEXT)"
      }
     }
-   ]
+   ],
+   "hook_was": "One fungus, one New York cave, 35 states of dead bats."
   },
   {
    "slug": "cremation-overtakes-burial",
@@ -25144,7 +25145,7 @@
      "scene": {
       "mechanic": "vault-drain-trickle",
       "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
-      "code": "vault = subject_image('bank vault door photo')\ncx = (RX0 + RX1) // 2\ntot, ret = values[0], values[1]\nvx0, vx1 = RX0 + 120, RX1 - 120\nvy0, vy1 = RTOP + 330, RTOP + 930\nif vault is not None:\n    paste(vault, vx0, vy0, vx1 - vx0, vy1 - vy0)\nd.rounded_rectangle([vx0, vy0, vx1, vy1], radius=24, outline=rgba(WARN, 230), width=8, fill=rgba(REST, 60))\nlvl = clamp(reveal * 1.6)\ntop = vy1 - int((vy1 - vy0 - 20) * lvl)\nd.rectangle([vx0 + 12, top, vx1 - 12, vy1 - 12], fill=rgba(HIGHLIGHT, 200))\nfor k in range(14):\n    t = (reveal * 3.0 + k / 14.0) % 1.0\n    bx = RX0 + 80 + (k * 197) % (RX1 - RX0 - 200)\n    by = int(lerp(RTOP + 20, top, t))\n    d.rounded_rectangle([bx, by, bx + 90, by + 44], radius=6, fill=rgba(HIGHLIGHT, 230), outline=rgba(TEXT, 200), width=3)\n    d.text((bx + 30, by + 6), '$', fill=rgba(TEXT, 255), font=font(30))\ntext(f'{fmt(tot)} HELD', cx, vy0 - 70, size=56, color=WARN, center=True)\nshare = ret / tot\nfor k in range(4):\n    t = (reveal * 2.5 + k / 4.0) % 1.0\n    ox = cx - 40 + (k % 2) * 40\n    oy = int(lerp(vy1, vy1 + 420, t))\n    d.rounded_rectangle([ox, oy, ox + 80, oy + 40], radius=6, fill=rgba(HIGHLIGHT, 255))\ntext(f'ONLY {fmt(ret)} RETURNED', cx, vy1 + 480, size=52, color=HIGHLIGHT, center=True)\ntext(f'{share * 100:.1f}% A YEAR', cx, vy1 + 560, size=40, color=TEXT, center=True)\n"
+      "code": "vault = subject_image('bank vault door photo')\ncash = subject_image('stack of cash dollars')\ncx = (RX0 + RX1) // 2\nvy, vh, vw = RTOP + 140, 520, 560\nif vault is not None:\n    paste(vault, cx - vw // 2, vy, vw, vh)\ntot, ret = values[0], values[1]\nfill_frac = clamp(reveal * 1.2)\nif cash is not None:\n    fill_image(cash, fill_frac, cx - vw // 2 + 30, vy + 20, vw - 60, vh - 60, direction='up')\nfor k in range(8):\n    ph = (reveal * 3.0 + k / 8.0) % 1.0\n    bx = cx - vw // 2 + 60 + int(((k * 37) % 10) / 10.0 * (vw - 160))\n    by = RTOP + 10 + int(ph * (vh * 0.9))\n    if cash is not None:\n        paste(cash, bx, by, 60, 40)\n    else:\n        d.rounded_rectangle([bx, by, bx + 60, by + 34], radius=6, fill=rgba(HIGHLIGHT, 200))\ntext(f'${tot:.0f}B HELD', cx, vy - 50, size=44, color=WARN, center=True)\ndrain_frac = clamp(ret / tot) * clamp((reveal - 0.4) * 1.8)\ndx0, dy0 = cx - 20, vy + vh\ndlen = 120 + int(500 * drain_frac)\nd.rectangle([dx0, dy0, dx0 + 40, dy0 + dlen], fill=rgba(HIGHLIGHT, 60))\nfor k in range(5):\n    ph = (reveal * 4.0 + k / 5.0) % 1.0\n    py = dy0 + int(ph * dlen)\n    d.ellipse([dx0 + 4, py, dx0 + 36, py + 32], fill=rgba(HIGHLIGHT, 230))\ntext(f'${ret:.2f}B RETURNED', cx, dy0 + dlen + 40, size=40, color=HIGHLIGHT, center=True)\n"
      }
     },
     {
@@ -25160,7 +25161,7 @@
      "scene": {
       "mechanic": "crowd-glow-share",
       "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
-      "code": "person = subject_image('person silhouette icon')\nshare = values[0] / 100.0\ncols, rows = 7, 4\ncw = (RX1 - RX0) // cols\nch = (RBOT - RTOP - 260) // rows\nlit_total = max(1, round(cols * rows * share))\nlit_idx = [3, 10, 17, 24][:lit_total]\nsweep = (reveal * 3.0) % 1.0\nsx = RX0 + int((RX1 - RX0) * sweep)\nn_done = int(clamp(reveal * 1.3) * len(lit_idx) + 0.999)\nfor r in range(rows):\n    for c in range(cols):\n        i = r * cols + c\n        x = RX0 + c * cw + cw // 2\n        y = RTOP + 120 + r * ch\n        lit = i in lit_idx[:n_done]\n        near = abs(x - sx) < cw\n        col = HIGHLIGHT if lit else (TEXT if near else REST)\n        a = 255 if lit else (200 if near else 90)\n        if person is not None and lit:\n            paste(person, x - cw // 3, y, int(cw * 0.6), int(ch * 0.8))\n        d.ellipse([x - 20, y, x + 20, y + 40], fill=rgba(col, a))\n        d.rounded_rectangle([x - 30, y + 46, x + 30, y + int(ch * 0.7)], radius=16, fill=rgba(col, a))\n        if lit:\n            bob = int(14 * math.sin(reveal * 18 + i))\n            d.rounded_rectangle([x - 26, y - 44 + bob, x + 26, y - 8 + bob], radius=5, fill=rgba(HIGHLIGHT, 255))\nd.rectangle([sx - 6, RTOP + 80, sx + 6, RBOT - 140], fill=rgba(HIGHLIGHT, 160))\ntext('1 IN 7 AMERICANS', (RX0 + RX1) // 2, RBOT - 120, size=56, color=HIGHLIGHT, center=True)\ntext(f'{values[0]:.0f}% HAVE MONEY WAITING', (RX0 + RX1) // 2, RBOT - 50, size=40, color=TEXT, center=True)\n"
+      "code": "person = subject_image('person silhouette icon')\ncash = subject_image('dollar bill icon')\nshare = values[0] / 100.0\ncols, rows = 7, 4\ncw = (RX1 - RX0) // cols\nch = (RBOT - RTOP - 220) // rows\ntotal = cols * rows\nlit_total = max(1, round(total * share))\nstep = max(1, total // lit_total)\nscan = clamp(reveal * 1.15)\nsx = RX0 + (RX1 - RX0) * ((reveal * 4.0) % 1.0)\nd.rectangle([sx - 30, RTOP + 20, sx + 30, RTOP + 60 + rows * ch], fill=rgba(HIGHLIGHT, 70))\nidx = 0\nfor r in range(rows):\n    for c in range(cols):\n        idx += 1\n        x = RX0 + c * cw + cw // 2\n        y = RTOP + 60 + r * ch\n        lit = (idx % step == 1) and (c / cols) < scan\n        if person is not None:\n            paste(person, x - cw // 3, y, int(cw * 0.6), int(ch * 0.8))\n            if lit:\n                d.rounded_rectangle([x - cw // 3, y, x + cw // 3, y + int(ch * 0.8)], radius=14, fill=rgba(HIGHLIGHT, 110))\n        else:\n            d.ellipse([x - 28, y, x + 28, y + 80], fill=rgba(HIGHLIGHT if lit else TEXT, 230 if lit else 90))\n        if lit:\n            for k in range(3):\n                ph = (reveal * 5.0 + k / 3.0 + idx * 0.13) % 1.0\n                by = y + int(ch * 0.5) - int(ph * ch * 0.9)\n                if cash is not None:\n                    paste(cash, x - 22, by, 44, 44)\n                else:\n                    d.rounded_rectangle([x - 22, by, x + 22, by + 26], radius=4, fill=rgba(HIGHLIGHT, int(255 * (1 - ph))))\ntext(f'{values[0]:.1f}% HAVE MONEY WAITING', (RX0 + RX1) // 2, RBOT - 50, size=40, color=WARN, center=True)\n"
      }
     }
    ]
@@ -30106,7 +30107,7 @@
   {
    "slug": "billionaire-count-record-2025",
    "title": "The World Now Has Over 3,000 Billionaires For The First Time",
-   "hook": "Billionaires swallowed the planet: 1,826 in 2015, 3,028 now.",
+   "hook": "Your world just minted 1,200 more billionaires than it had in 2015.",
    "closing": "Turns out getting richer mostly just meant holding stocks while they went up.",
    "question": "Would you still call that lucky, or just well-invested? Tell me below.",
    "caption": "Forbes counted 3,028 billionaires in 2025, worth over $16.1 trillion combined -- up from 1,826 people and $7.1 trillion a decade ago. But the S&P 500 alone grew even faster. 👇",

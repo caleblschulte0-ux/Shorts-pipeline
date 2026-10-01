@@ -1,0 +1,21 @@
+{
+ "slug": "landline-extinction-event",
+ "ts": "20261001T130532Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:start (2.02s) through seg0:end (6.85s) look the same as hook@2.2: the line is already fully drawn and Data is parked at its end on the sled. For about 5s only the caption changes, and the measured micro-motion does not make it meaningful. The landline story is then told again as bars ",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "dead_air",
+  "visible_evidence": "seg0:start, seg0:mid and seg0:end are the same finished line chart with Data parked at the right end of the line on a sled. Only the caption changes for about 5 seconds, and seg1 then re-shows the same landline series as horizontal bars.",
+  "root_cause": "The hook's line-ride animation finishes by about 2s and the window keeps holding its final state for the rest of the hook narration. No second action is scheduled, so the beat duplicates the following one's data instead of adding to it.",
+  "repair_goal": "Make seg0 keep happening: have Data ride the line from the 2006 peak down to 815M in step with the narration, so his descent is what draws the falling segment and the counter ticks from 1.26B to 815M as he slides. Or cut seg0 short and hand straight into seg1 so the landline series is not shown twice."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

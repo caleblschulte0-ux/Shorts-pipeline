@@ -1,0 +1,16 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261001T130532Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In the hook and seg0 (hook@0.3 to seg0:end) a thin timeline sits at mid-height with a lone '1', leaving the top-middle and bottom third of the frame empty. In seg3:start the $3.7B dot floats alone on the right with nothing around it.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start shows three flat circles labelled 97% / 90% / 90%. seg2:mid then cuts to three rows, each with its own copy of Data, plus two stray cyan rings sitting on a divider line. At seg2:end the percentages are text at the end of each row with nothing being lost.",
+  "root_cause": "The collapse is drawn as a ranking chart of percentages with the mascot cloned per row, so nothing on screen shows 97% of a population disappearing. The story's most brutal number has no physics.",
+  "repair_goal": "Make the colony itself the picture: a cave ceiling packed with roosting bats, 100 per species, that empties as white fuzz spreads across them until only 3 of 100 northern long-eared bats remain (10 for the others). Data is the one sweeping or counting the survivors, with one mascot and no stray rings, and the 97% is readable as the gap left on the ceiling."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261001T130532Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg3 and seg4 (seg3:start through seg4:end): Data stands perched on top of the left circle and only bobs. He does nothing to the 127% vs 195% comparison. In seg0 and seg2 he climbs a ladder and points at the newest bar, which is a gesture beside the data, not the cause of its moti",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start, seg3:mid and seg3:end show two identical teal circles, both labelled '127%' and both captioned 'Billionaire wealth'. The narration says the S&P 500 grew 195%. The comparison that carries the whole story is never shown, and the visual contradicts the script.",
+  "root_cause": "The comparison machine got the same series bound to both sides, so the S&P 500 value (195%) and its label were never passed in. Because the sides are identical, the scene states the opposite of the claim.",
+  "repair_goal": "Draw the two growths side by side with the correct data: billionaire wealth +127% next to the S&P 500 +195%, sized by value with the S&P visibly larger and labelled 'S&P 500'. Ideally they race or fill to their values, with Data driving the S&P side past the billionaires to land 'most of this is just stocks'. Fix the payoff carry-over (seg4) the same way."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
