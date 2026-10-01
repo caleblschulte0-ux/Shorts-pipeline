@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s7-f20334931f8a",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s7-f20334931f8a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d4a1d15814b05ad7f79a3aca743db83eda21dbbada670254b7c35c23758e0d81",
+  "prompt_used": "An editorial illustration for a short-form video: youth soccer trophy tournament. It accompanies the narration: \"disqualified from the tournament\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JZ3XQOE76qJHhjsIhyATXPjLT0qGchd3",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s7-f20334931f8a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JZ3XQOE76qJHhjsIhyATXPjLT0qGchd3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8baa413209f8a5159f296ae762d33d64b8df5152a602240e22386e59d67816f3",
+    "bytes": 2060044,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-01T11:25:55.236Z"
+}
