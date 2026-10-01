@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s4-47e4422dc079",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s4-47e4422dc079",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a299b54d1bc45b89700a4799fe9c0af4e73124ab002c2d29c47a4d96cd8d76fc",
+  "prompt_used": "An editorial illustration for a short-form video: typing laptop email. It accompanies the narration: \"I added her clause exactly as dictated\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1fiaBYGAHQ09IJwJxYRX565aVjsTmdWwZ",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s4-47e4422dc079.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1fiaBYGAHQ09IJwJxYRX565aVjsTmdWwZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "04d3e8697a0e6fbd6139f216ea91bf0601758128600252de4b1aa1acb11459cd",
+    "bytes": 1783090,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-01T11:25:31.104Z"
+}
