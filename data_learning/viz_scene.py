@@ -1817,8 +1817,11 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         # edge", "the seesaw's own values off the left edge". A name too
         # long for one readable line wraps to two instead of shrinking
         # into illegibility.
+        # no wider than the pan: he hangs off its outer edge, and a huge
+        # number reached under him (a_audit: "347,198", 2026-10-01)
         _nf, _nt = fit_centred(d, charts._ulabel(shown_v, unit, group=True),
-                               72, px, box, min_size=36)
+                               72, px, (px - 120, box[1], px + 120, box[3]),
+                               min_size=30)
         d.text((px, py + 168), _nt, font=_nf, fill=_rgba(col, int(255 * na)),
                anchor="mm")
         for k, (_lf, _lt) in enumerate(fit_centred_lines(d, str(lab), 44, px,
@@ -2195,15 +2198,16 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
         d.line([(_px, y + 22), (_px, _ground)], fill=_rgba(_c, 150), width=10)
         d.rounded_rectangle([_px - 40, _ground - 14, _px + 40, _ground + 14],
                             radius=10, fill=_rgba(_c, 190))
-        _f, _t = fit_text(d, _spans[k][0], 40, int(bx1 - bx0 - 60), 26,
-                          wrap=False)
+        _room = int(lo - 18 - bx0 - 8) if _px == lo else int(hi - 24 - bx0 - 8)
+        _f, _t = fit_text(d, _spans[k][0], 40, max(80, _room), 22, wrap=False)
         if _px == lo:
             d.text((int(lo - 18), y - 62), _t, font=_f,
                    fill=_rgba(legible(_c), int(255 * _al)), anchor="rm")
         elif x1 >= hi - 2:
-            d.text((int(hi - 24), y - 50), _t, font=_f,
-                   fill=_rgba(legible(_c), int(255 * _al)), anchor="rm")
-    d.text(((lo + hi) // 2, y - 170),
+            # a close pair's far reading goes a row up, clear of the near one
+            d.text((int(hi - 24), y - 50 if hi - lo > 300 else y - 118), _t,
+                   font=_f, fill=_rgba(legible(_c), int(255 * _al)), anchor="rm")
+    d.text(((lo + hi) // 2, y - 236),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
     # HE PULLS THE TAPE OUT: both hands on its end, hauling it to the right
@@ -2289,11 +2293,11 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
                       _rgba(WARN, 240), anchor="rd", min_size=28)
     d.line([((far_x + x1) // 2, _tb[3] + 10), ((far_x + x1) // 2, deck_y - 34)],
            fill=_rgba(WARN, 150), width=4)
-    # ABOVE the deck's start. He lays the deck from a ladder in the chasm
-    # under its leading end, so under the deck is where he is now (a_audit:
-    # "76", 2026-10-01); above its start he never is.
-    d.text((x0 + 14, deck_y - 64), charts._ulabel(v, unit), font=_pil_font(46),
-           fill=_rgba(color, 245), anchor="lm")
+    # AHEAD of the deck's leading edge, above it. He lays the deck from a
+    # ladder in the chasm under that edge with his body behind it, so the
+    # one place he never is, is just past it (a_audit: "76", 2026-10-01).
+    d.text((int(edge) + 16, deck_y - 60), charts._ulabel(v, unit),
+           font=_pil_font(46), fill=_rgba(color, 245), anchor="lm")
     na = max(0.0, min(1.0, (reveal - 0.4) / 0.3))
     # the measured gap, drawn across the gap
     if far_x - edge > 40:
@@ -2508,23 +2512,27 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     # foot. Riding the meniscus on a bracket (the previous version) was the
     # data lifting a passenger; a waved torch was too small a motion for
     # the gate (82% held, 2026-10-01). The flame and the lob are big.
+    # A FIRE FLICKERS: five tongues whose tips move a visible distance every
+    # frame (two harmonics, fast), big enough for the gate's 90px blocks to
+    # see — three slow tongues measured 70% held (2026-10-01).
     _fx, _fy = cx - 150, bot + 150
     _t = beat_clock(reveal)
-    for k in range(3):
-        _ph = (_t * 9.0 + k * 0.37) % 1.0
-        _fh = 90 + 70 * _math.sin(_ph * _math.pi)
-        _fw = 44 + 14 * k
-        d.polygon([(_fx - _fw, _fy), (_fx - _fw * 0.4, _fy - _fh * 0.55),
-                   (_fx + 10 * (k - 1), _fy - _fh), (_fx + _fw * 0.45, _fy - _fh * 0.5),
-                   (_fx + _fw, _fy)],
-                  fill=_rgba(WARN if k < 2 else charts.CARD, 235 - 50 * k))
-    d.rounded_rectangle([_fx - 70, _fy - 4, _fx + 70, _fy + 16], radius=6,
+    for k in range(5):
+        _ph = _t * 31.0 + k * 2.1
+        _fh = 120 + 90 * (0.5 + 0.5 * _math.sin(_ph)) + 40 * _math.sin(_ph * 2.3 + k)
+        _fw = 56 + 12 * (k % 3)
+        _ox = (k - 2) * 26 + 10 * _math.sin(_ph * 0.7)
+        d.polygon([(_fx + _ox - _fw, _fy), (_fx + _ox - _fw * 0.45, _fy - _fh * 0.5),
+                   (_fx + _ox + 8 * _math.sin(_ph), _fy - _fh),
+                   (_fx + _ox + _fw * 0.45, _fy - _fh * 0.5), (_fx + _ox + _fw, _fy)],
+                  fill=_rgba(WARN if k % 2 == 0 else charts.CARD, 235 - 30 * (k % 3)))
+    d.rounded_rectangle([_fx - 90, _fy - 4, _fx + 90, _fy + 16], radius=6,
                         fill=_rgba(TEXT, 200))
     _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "thermometer",
                              (_fx - 160, _fy - 110), height=260,
                              floor=by1 - 10, xlim=(8, W - 8), ceil=by0 + 120)
     if _tip is not None:
-        draw_lob(d, _tip, (_fx, _fy - 30), _t, TEXT, r=16)
+        draw_lob(d, _tip, (_fx, _fy - 40), _t, TEXT, r=22)
     _sf, _sl = fit_text(d, str(getattr(star, "label", "")), 44,
                         max(200, bx1 - bx0 - 60), min_size=26)
     d.text((cx, by0 + 58), _sl, font=_sf, fill=_rgba(TEXT, 230), anchor="mm")
@@ -2971,7 +2979,8 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
                   fill=_rgba(net_col, 240))
     lab_f = _pil_font(34)
 
-    def _pipe(y, x_out, thick, col, lab, val, right, label_at=None):
+    def _pipe(y, x_out, thick, col, lab, val, right, label_at=None,
+              max_w=None):
         """One pipe, as wide as its flow, with product moving along it.
         ``label_at`` puts the label somewhere other than along the pipe."""
         th = max(14, int(thick))
@@ -2988,10 +2997,12 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
         txt = f"{lab}  {charts._ulabel(val, unit, group=True)}"
         tx = min(x_in, x_out) if not right else max(x_in, x_out)
         # never sliced: fitted to the frame (it printed "Prevention & man")
-        _lf, txt = fit_text(d, txt, 34, int(bx1 - bx0 - 60), min_size=24,
-                            wrap=False)
+        _lf, txt = fit_text(d, txt, 34, int(max_w or (bx1 - bx0 - 60)),
+                            min_size=24, wrap=False)
         if label_at is not None:
             tx, ty, anc = label_at
+            _lf, txt = fit_text(d, txt, 34, int(max_w), min_size=24)  # may wrap
+            ty -= 14                                   # "la": from the ascender
         else:
             ty, anc = y - th // 2 - 34, ("lm" if not right else "rm")
         d.text((tx, ty), txt, font=_lf, fill=_rgba(col, 245), anchor=anc)
@@ -2999,7 +3010,8 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
     # the inflow's label sits INSIDE the tank at the inlet: along the pipe
     # is where he stands to open its valve (a_audit: "Inflow 1,840")
     _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, REST, in_lab, inflow, False,
-          label_at=(cx - tw // 2 + 26, top + 34 + 23 + 36, "lm"))
+          label_at=(cx - tw // 2 + 26, top + 34 + 23 + 36, "la"),
+          max_w=tw - 60)
     _pipe(bot - 46, bx1 - 30, 46 * outflow / vmax, WARN, out_lab, outflow, True)
     d.text((cx, by0 + 66),
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
@@ -3109,7 +3121,11 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     lw = slot * 1.22                      # overlap, so the links interlock
     span = slot * n
     x0 = cx - span / 2 + CHAIN_LANE / 2
-    y = int((by0 + by1) / 2) + 30
+    # at 0.42 of the box: the names above the links are the first ink, and
+    # at mid-height a third of the box above them was empty; the band
+    # under the values is his — he drives the line from a ladder on the
+    # floor at its head
+    y = int(by0 + (by1 - by0) * 0.42)
     order = list(range(0, n, 2)) + list(range(1, n, 2))   # evens under odds
     for i in order:
         v = vals[i]
@@ -3141,8 +3157,10 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
                             max(70, int(slot) - 14), min_size=20)
         d.text((mx, y - 160), _ct, font=_cf,
                fill=_rgba(TEXT, int(225 * a)), anchor="mm")
-        d.text((mx, y + 166), charts._ulabel(vals[i], unit, group=True),
-               font=_pil_font(38), fill=_rgba(col, int(242 * a)), anchor="mm")
+        _vf, _vt = fit_text(d, charts._ulabel(vals[i], unit, group=True), 38,
+                            max(70, int(slot) - 14), min_size=20, wrap=False)
+        d.text((mx, y + 166), _vt, font=_vf, fill=_rgba(col, int(242 * a)),
+               anchor="mm")
     # THE LOAD ON THE CHAIN. Links that appear and then hold measured at a
     # 49-frame frozen run; more to the point, a chain with nothing moving
     # through it is a diagram of a chain rather than a picture of a
@@ -3167,13 +3185,18 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
                fill=_rgba(WARN, int(255 * wa)), anchor="mm")
         d.line([(wx, y - 218), (wx, y - 172)], fill=_rgba(WARN, int(255 * wa)),
                width=7)
-    d.text((cx, by1 - 120),
-           f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
-           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    # the sentence goes at the TOP like every other machine's caption: at
+    # the foot it left the top third of the box empty (head 0.28, measured
+    # 2026-10-01), and the foot is where he works the line from
+    _wf, _wt = fit_text(d, f"the whole line runs at "
+                           f"{charts._ulabel(vals[weak], unit, group=True)}",
+                        42, (bx1 - bx0) - 60, min_size=26, wrap=False)
+    d.text((cx, by0 + 90), _wt, font=_wf, fill=_rgba(TEXT, 225), anchor="mm")
     # HE DRIVES THE LINE, by a crank at its head: the load moves down the
     # chain because he turns it. Mirrored, so he stands outside the chain.
     place_agent(canvas, d, "turn", reveal, insight, "chain",
-                (x0 - 50, y + 6), height=330, xlim=(8, W - 8))
+                (x0 - 50, y + 6), height=330, floor=by1 - 170,
+                xlim=(8, W - 8), ceil=by0 + 120)
     return (vals[weak], "art", wx, y)
 
 
@@ -5033,7 +5056,7 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
         _h = (bot - top) * (0.12 + 0.88 * ((vals[_cur] - lo) / span)) * \
             max(0.0, min(1.0, shown - _cur))
         place_agent(canvas, d, "stack", reveal, insight, "staircase",
-                    (x0 + _cur * w + w - 12, bot - _h),
+                    (x0 + _cur * w + w + 22, bot - _h),
                     height=int(min(STAIR_HOST_H, (bot - top) * 0.34)),
                     floor=bot, xlim=(8, W - 8), ceil=by0 + 120, flip=True)
     return (vals[-1], "art", top_xy[0], top_xy[1]) if top_xy else None
@@ -5519,7 +5542,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     # ...AND THE DIAL IS THE PICTURE. He used to stand under it and fill the
     # lower band; now he is on the needle, so the dial itself takes the
     # frame — a bigger radius, lower, with the number under it.
-    cy = int(by0 + (by1 - by0) * 0.60)
+    cy = int(by0 + (by1 - by0) * 0.52)
     R = int(min((bx1 - bx0) * 0.47, (by1 - by0) * 0.42))
     a0, sweep = 200.0, 140.0                    # a car-style dial, open at the top
     d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
@@ -5563,11 +5586,14 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
     d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
     shown = v                    # the needle sweeps; the number is the data's
-    d.text((cx, cy + 118), charts._ulabel(shown, unit, group=True),
-           font=_pil_font(104), fill=_rgba(color, 255), anchor="mm")
+    # down in the dial's opening, so the lower band of the box is the
+    # reading and not air (tail 25% with it at cy + 118)
+    d.text((cx, cy + int(R * 0.56)), charts._ulabel(shown, unit, group=True),
+           font=_pil_font(120), fill=_rgba(color, 255), anchor="mm")
     _gf, _gl = fit_text(d, str(getattr(star, "label", "")), 42,
                         max(200, bx1 - bx0 - 60), min_size=24)
-    d.text((cx, cy + 208), _gl, font=_gf, fill=_rgba(TEXT, 220), anchor="mm")
+    d.text((cx, cy + int(R * 0.56) + 104), _gl, font=_gf, fill=_rgba(TEXT, 220),
+           anchor="mm")
     # PALMS ON THE NEEDLE. It sweeps because he is pushing it round; under
     # the dial reading it he was "standing under the dial pointing at it".
     place_agent(canvas, d, "sweep", reveal, insight, "gauge",
