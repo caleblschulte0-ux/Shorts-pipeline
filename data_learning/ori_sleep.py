@@ -10,7 +10,10 @@ Day?" and "Why You Wouldn't Last a Day in Medieval Times" sit at 2.6M and
 4.3M views. Nearly every one of them is AI painting slideshows. His art rule
 was the hand-drawn cartoon look of History with Dave and Deep Epoch — so
 every picture here is DRAWN BY CODE (`data_learning/doodle`), none is
-generated, and nothing in it looks like AI.
+generated, and nothing in it looks like AI. Since 2026-10-01 ("throw in
+some" real paintings, camera dead still) a few passages a film open on a
+public-domain painting from a museum collection, held still by candlelight
+(`data_learning/ori_paintings.py`) — real art, credited, never generated.
 
 Input: `data_learning/ori_episodes/<slug>.json` (contract: `validate()`).
 Every narrated beat carries the scene it sits over. Output, next to the mp4:
@@ -307,6 +310,10 @@ def _render_chunk(args) -> str:
 
     def scene(i):
         sc = scenes.get(i)
+        if sc is None and beats[i].get("painting"):
+            from data_learning.ori_paintings import PaintingScene
+            sc = PaintingScene(Path(beats[i]["painting"]), int(beats[i].get("seed") or 0))
+            scenes[i] = sc
         if sc is None:
             seed = beats[i].get("seed")
             sc = S.Scene(beats[i]["scene"], era, seed if seed is not None else _scene_seed(slug, i, beats[i]["scene"]))
@@ -406,7 +413,7 @@ def _shot_variants(spec: dict, era: str, seed: int) -> list:
     return out
 
 
-def shots(ep: dict, beats: list[Beat]) -> list[dict]:
+def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[dict]:
     """The pictures the film shows. A passage long enough to hold one
     picture past SHOT_MAX is cut, at its sentence breaks, into up to
     SHOTS_MAX shots of the same place — the scene as written, then the
@@ -415,9 +422,20 @@ def shots(ep: dict, beats: list[Beat]) -> list[dict]:
     for 35-55 seconds per passage was the dullest thing in it. The camera
     never moves (his ruling): a shot CHANGES, it does not drift."""
     out = []
+    paints = paintings or {}
     for b in beats:
         seed = _scene_seed(ep["slug"], b.index, b.scene)
         dur = b.end - b.start
+        if b.index in paints and len(b.lines) > 1:
+            # a passage with a painting opens on it, held still with its
+            # candle, then cuts to the drawn place for the rest
+            starts = [l[0] for l in b.lines[1:]]
+            cut = min(starts, key=lambda x: abs(x - (b.start + min(SHOT_MAX, dur / 2))))
+            out.append(dict(start=b.start, end=cut, scene=b.scene, seed=seed, painting=str(paints[b.index])))
+            rest = Beat(chapter=b.chapter, index=b.index, text=b.text, scene=b.scene, start=cut, end=b.end,
+                        lines=[l for l in b.lines if l[0] >= cut])
+            out += shots(ep, [rest])
+            continue
         n = min(SHOTS_MAX, max(1, int(dur // SHOT_MAX) + (1 if dur % SHOT_MAX > SHOT_MAX / 2 else 0)))
         variants = _shot_variants(b.scene, ep["era"], seed) if n > 1 and len(b.lines) > 1 else []
         n = min(n, 1 + len(variants), len(b.lines))
@@ -440,8 +458,23 @@ def shots(ep: dict, beats: list[Beat]) -> list[dict]:
     return out
 
 
+def painting_files(ep: dict, beats: list[Beat]) -> dict:
+    """{beat index: image path} for the passages the script gave a painting,
+    fetched now; a painting that cannot be fetched is simply not shown."""
+    from data_learning import ori_paintings as P
+    flat = [b for c in ep["chapters"] for b in c["beats"]]
+    out = {}
+    for bt in beats:
+        p = flat[bt.index].get("painting") if bt.index < len(flat) else None
+        if isinstance(p, dict):
+            path = P.fetch(p)
+            if path is not None:
+                out[bt.index] = path
+    return out
+
+
 def render_video(ep: dict, beats: list[Beat], out: Path, work: Path, workers: int) -> Path:
-    bl = shots(ep, beats)
+    bl = shots(ep, beats, painting_files(ep, beats))
     caps = _captions(ep, beats)
     n = len(bl)
     workers = max(1, min(workers, n))

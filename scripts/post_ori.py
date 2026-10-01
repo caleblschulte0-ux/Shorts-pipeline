@@ -46,6 +46,8 @@ BASE_TAGS = ["history for sleep", "sleep story", "relaxing history", "bedtime st
              "history", "fall asleep", "cozy"]
 DRAWN = ("Every picture in this film is drawn from scratch for this channel — "
          "no AI-generated images.")
+DRAWN_WITH_PAINTINGS = ("Every drawing in this film is made from scratch for this channel, and the "
+                        "paintings are public-domain works credited above — no AI-generated images.")
 
 
 def _ts(sec: float) -> str:
@@ -72,7 +74,10 @@ def description(ep: dict, meta: dict) -> str:
     if ep.get("sources"):
         parts.append("Sources:\n" + "\n".join(
             f"- {s['name']}: {s['url']}" for s in ep["sources"]))
-    parts.append(DRAWN)
+    from data_learning import ori_paintings as P
+    credit = P.credits(ep)
+    parts.append(credit)
+    parts.append(DRAWN_WITH_PAINTINGS if credit else DRAWN)
     parts.append(ATTRIBUTION)
     parts.append(" ".join("#" + t.replace(" ", "") for t in tags(ep)[:5]))
     return "\n\n".join(p for p in parts if p)[:5000]
@@ -199,6 +204,14 @@ def main() -> int:
         (OS.EPISODES / f"{ep['slug']}.json").write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n",
                                                         encoding="utf-8")
         print(f"[post_ori] mend_film changed {len(notes)} scene(s)", flush=True)
+    # some real paintings (the operator, 2026-10-01): chosen once per script,
+    # where a public-domain painting's title says what a passage says
+    if not ep.get("paintings_checked"):
+        from data_learning import ori_paintings as P
+        P.pick_for_film(ep)
+        ep["paintings_checked"] = True
+        (OS.EPISODES / f"{ep['slug']}.json").write_text(json.dumps(ep, indent=1, ensure_ascii=False) + "\n",
+                                                        encoding="utf-8")
     if SB.judge_available():
         rep = SB.polish(ep, write=True)
         print(f"[ori] storyboard: {json.dumps({k: v for k, v in rep.items() if k != 'notes'})}", flush=True)
