@@ -2994,7 +2994,7 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
             r_ = max(6, min(10, th // 3))
             d.ellipse([px - r_, y - r_, px + r_, y + r_],
                       fill=_rgba(charts.CARD, 215))
-        txt = f"{lab}  {charts._ulabel(val, unit, group=True)}"
+        txt = full = f"{lab}  {charts._ulabel(val, unit, group=True)}"
         tx = min(x_in, x_out) if not right else max(x_in, x_out)
         # never sliced: fitted to the frame (it printed "Prevention & man")
         _lf, txt = fit_text(d, txt, 34, int(max_w or (bx1 - bx0 - 60)),
@@ -3003,7 +3003,9 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
             tx, ty, anc = label_at
             # may wrap, and may go small: "Greater Los Angeles metro 1,840"
             # ellipsised at 24pt in two lines (a_audit, 2026-10-01)
-            _lf, txt = fit_text(d, txt, 34, int(max_w), min_size=20)
+            # ...from the FULL text: the single-line fit above had already
+            # ellipsised it, and the wrap then wrapped the ellipsis
+            _lf, txt = fit_text(d, full, 34, int(max_w), min_size=20)
             ty -= 14                                   # "la": from the ascender
         else:
             ty, anc = y - th // 2 - 34, ("lm" if not right else "rm")
