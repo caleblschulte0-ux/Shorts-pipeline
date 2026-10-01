@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20260930",
-  "generated_at": "2026-09-30T23:31:03Z",
+  "generated_at": "2026-10-01T00:31:03Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 6.76,
+          "days": 6.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 5.76,
+          "days": 5.8,
           "samples": 0,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1447,10 +1447,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "b5f7544",
-    "commits_since": "2026-09-29",
+    "head": "51c9e9a",
+    "commits_since": "2026-09-30",
     "commit_count": 50,
     "commits": [
+      "51c9e9a claim: mailbox verdicts 2026-09-30T23:47Z [skip ci]",
+      "fcb7f5b retro: brief + triage for 20260930 [skip ci]",
       "b5f7544 self-repair 2026-09-30: a source credit is read at full size, whole (trending + explainer) (#496)",
       "be67cfd claim: mailbox verdicts 2026-09-30T22:47Z [skip ci]",
       "f1cae6a explainer: update posted log + analytics [skip ci]",
@@ -1488,9 +1490,7 @@
       "104002f explainer: update posted log + analytics [skip ci]",
       "e0aa04a daily: 2026-09-30 report + state [skip ci]",
       "02aa92b trending: posted i_got_served_when_my_manager__forgot__my [skip ci]",
-      "3f04835 trending: claim upload slot i_got_served_when_my_manager__forgot__my [skip ci]",
-      "7498c45 claim: mailbox verdicts 2026-09-30T13:49Z [skip ci]",
-      "5ba1468 third: analytics [skip ci]"
+      "3f04835 trending: claim upload slot i_got_served_when_my_manager__forgot__my [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
