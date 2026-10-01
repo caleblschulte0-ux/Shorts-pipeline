@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s6-06943a8dfec1",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s6-06943a8dfec1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "93d6ba2912183cccc2fca0dd5470047a677a74ee23a455f3c2b02cbbdabeb55c",
+  "prompt_used": "An editorial illustration for a short-form video: corporate office meeting. It accompanies the narration: \"the chain announced a loyalty audit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1kfdPkLNuOOnj8PdcuVxpeqOBFXxPRI3f",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s6-06943a8dfec1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1kfdPkLNuOOnj8PdcuVxpeqOBFXxPRI3f",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c23241cb0bd10770316a1b3aa50900afdce4ad00cf855ea15ef7dfff69367f8d",
+    "bytes": 1899074,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-01T11:24:38.299Z"
+}
