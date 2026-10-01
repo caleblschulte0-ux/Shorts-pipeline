@@ -10186,6 +10186,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n; vision: The game character and the action are tiny and hard to see on a phone. The boar sniping Summit1G can't be seen at all.; vision: The facecam is a small thumbnail i",
       "ts": "2026-10-01T12:20:24.443490+00:00"
+    },
+    "clip-20261001-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/knut/clip/VastElatedBeeShadyLulu-jo2YHtkdqCFbQF7F",
+      "story_key": null,
+      "streamer": "knut",
+      "title": "Knut: Starship Super Heavy Launch: All 33 Engines Light And The Window Starts Shaking",
+      "kind": "twitch_clip",
+      "ts": "2026-10-01T17:56:37.714681+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

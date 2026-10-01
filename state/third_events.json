@@ -2142,6 +2142,116 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-01"
+    },
+    "brucedropemoff-kaicenat-silky-call-reggie-2026w40": {
+      "event_id": "brucedropemoff-kaicenat-silky-call-reggie-2026w40",
+      "people": [
+        "brucedropemoff",
+        "kaicenat",
+        "silky"
+      ],
+      "actions": [
+        "call",
+        "reggie",
+        "says",
+        "speak"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-01",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/silky/clip/CallousJollyCattleYouDontSay-tytSA6clVDCLZHZ4",
+        "https://www.twitch.tv/brucedropemoff/clip/UnsightlyObliviousWasabiJonCarnage-KfozZOaQn0XlB9Wk",
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-01"
+    },
+    "xqc-about-along-2026w40": {
+      "event_id": "xqc-about-along-2026w40",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "along",
+        "charact",
+        "offic"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-01",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
+        "https://www.twitch.tv/xqc/clip/ArborealAffluentBarracudaBudBlast-9mOxGn1zFXdAnrBi",
+        "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-01"
+    },
+    "sodapoppin-boss-crit-2026w36": {
+      "event_id": "sodapoppin-boss-crit-2026w36",
+      "people": [
+        "sodapoppin"
+      ],
+      "actions": [
+        "boss",
+        "crit",
+        "darkest",
+        "dungeon"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-01",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/sodapoppin/clip/TrappedMiniatureFloofCharlietheUnicorn-VXXKeg7AsAZg7Wte",
+        "https://www.twitch.tv/sodapoppin/clip/FurryDeliciousPuppyDatSheffy-lqjO0iH6nc_uvehE"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-01"
+    },
+    "summit1g-broken-pika-2026w40": {
+      "event_id": "summit1g-broken-pika-2026w40",
+      "people": [
+        "summit1g"
+      ],
+      "actions": [
+        "broken",
+        "pika",
+        "summit",
+        "totem"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-01",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/summit1g/clip/KitschyGlutenFreeMonitorKippa-Hs9NRjt0GM12EF7B",
+        "https://www.twitch.tv/summit1g/clip/TsundereLightKiwiPupper-zvqXinm1NAS17hns",
+        "https://www.twitch.tv/summit1g/clip/LitigiousPuzzledBubbleteaBibleThump-cwcXZpeo_27fJDBi"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-01"
+    },
+    "stableronaldo-accident-green-2026w36": {
+      "event_id": "stableronaldo-accident-green-2026w36",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "accident",
+        "green",
+        "hits",
+        "roulette"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-01",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/SmilingEsteemedWeaselPeanutButterJellyTime-LP8byvNUSndhU5nU",
+        "https://www.twitch.tv/stableronaldo/clip/HardDrabOryxThunBeast-RAbyEsVzjZx8mH45"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-01"
     }
   }
 }
