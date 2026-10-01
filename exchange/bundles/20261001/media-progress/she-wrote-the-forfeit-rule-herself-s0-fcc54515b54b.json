@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5811370689e83b7c67ffd07009d39239e1721b091fdddf59f05c24c0cea0fbdc",
+  "prompt_used": "An editorial illustration for a short-form video: youth soccer field parents. It accompanies the narration: \"team mom on our rec soccer league\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1fMtRJpxhH4qdOj2tOfoFdPCW-3jAl9VG",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1fMtRJpxhH4qdOj2tOfoFdPCW-3jAl9VG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "61f83e01f484add4648b279a5a9c9c2914dd2615a732a00532b26d40fb53d75e",
+    "bytes": 2225538,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:24:55.424Z"
+}
