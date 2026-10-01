@@ -3001,7 +3001,9 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
                             min_size=24, wrap=False)
         if label_at is not None:
             tx, ty, anc = label_at
-            _lf, txt = fit_text(d, txt, 34, int(max_w), min_size=24)  # may wrap
+            # may wrap, and may go small: "Greater Los Angeles metro 1,840"
+            # ellipsised at 24pt in two lines (a_audit, 2026-10-01)
+            _lf, txt = fit_text(d, txt, 34, int(max_w), min_size=20)
             ty -= 14                                   # "la": from the ascender
         else:
             ty, anc = y - th // 2 - 34, ("lm" if not right else "rm")
@@ -3011,7 +3013,7 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
     # is where he stands to open its valve (a_audit: "Inflow 1,840")
     _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, REST, in_lab, inflow, False,
           label_at=(cx - tw // 2 + 26, top + 34 + 23 + 36, "la"),
-          max_w=tw - 60)
+          max_w=tw - 40)
     _pipe(bot - 46, bx1 - 30, 46 * outflow / vmax, WARN, out_lab, outflow, True)
     d.text((cx, by0 + 66),
            f"{charts._ulabel(abs(surplus), unit, group=True)} "
