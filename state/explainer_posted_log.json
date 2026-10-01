@@ -2300,6 +2300,32 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 47.2
+    },
+    "cremation-overtakes-burial": {
+      "url": "https://youtube.com/shorts/Ah7-rGe6bmc",
+      "title": "Cremation Just Became the New American Normal",
+      "at": "2026-10-01T10:25:21.282808+00:00",
+      "publish_at": "2026-10-01T11:05:48Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 35 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "scene+scene+geo_us",
+      "narrative_score": 83,
+      "duration_s": 46.4,
+      "hook": "shock_stat",
+      "topic_category": "society",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:cremation-crowd-ignite",
+        "scene:object-rows",
+        "viz:geo_us"
+      ]
     }
   },
   "uploads": [
@@ -2761,6 +2787,15 @@
       "state": "posted",
       "slug": "child-mortality-collapse",
       "at": "2026-09-30T20:01:53.689901+00:00"
+    },
+    {
+      "claimed_at": "2026-10-01T10:25:12.068309+00:00",
+      "title": "Cremation Just Became the New American Normal",
+      "publish_at": "2026-10-01T11:05:48Z",
+      "url": "https://youtube.com/shorts/Ah7-rGe6bmc",
+      "state": "posted",
+      "slug": "cremation-overtakes-burial",
+      "at": "2026-10-01T10:25:21.282808+00:00"
     }
   ]
 }
