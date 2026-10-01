@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s7-0c6b887208b4",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s7-0c6b887208b4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "78b4ca73730d2e90b1df5f18641ba49c64adda4e8b118eb09364604261b3d7bc",
+  "prompt_used": "An editorial illustration for a short-form video: technician removing kiosk. It accompanies the narration: \"fired the vendor running the kiosks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18q9K3UDWFDu0bsIGVNZxE6d02oOpTU4Y",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s7-0c6b887208b4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18q9K3UDWFDu0bsIGVNZxE6d02oOpTU4Y",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "220c251d94d70ca0914e38c585c1838d59d4db8bbe6b79e30a44f9e8a2efd6f6",
+    "bytes": 1897765,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:24:46.715Z"
+}
