@@ -308,7 +308,14 @@ def _entries(log: dict) -> list[dict]:
             out.append({"url": e.get("video_url"),
                         "ident": e.get("catalog_id"),
                         "posted_at": e.get("posted_at"),
-                        "title": e.get("title")})
+                        "publish_at": e.get("publish_at"),
+                        "title": e.get("title"),
+                        # Registered format, written at upload time. Dropping
+                        # it left every trending row format=unknown in
+                        # build_retro (doctor c8ca85c0ce21), so the registry's
+                        # graph_race / reddit_story mix could not be compared.
+                        "format": e.get("format"),
+                        "topic": e.get("topic")})
     return out
 
 
@@ -705,6 +712,13 @@ def build_snapshot(posted_log: Path, channel: str = "",
                            for x in by_struct.values()) >= 25,
     }
     summary["pending_scheduled"] = len(pending)
+    # Attribution coverage made visible: how many rows carry a format. A
+    # strategy call off a cohort split is only as good as this number.
+    n_fmt = sum(1 for v in videos if v.get("format"))
+    summary["format_coverage"] = {
+        "with_format": n_fmt, "total": len(videos),
+        "fraction": round(n_fmt / len(videos), 3) if videos else None,
+    }
 
     snap = {
         "fetched_at": datetime.now(timezone.utc).isoformat(),
