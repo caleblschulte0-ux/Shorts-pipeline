@@ -11,7 +11,7 @@
     },
     "wholesome": {
       "n": 14,
-      "median_vph": 0.145
+      "median_vph": 0.135
     },
     "drama": {
       "n": 10,
@@ -23,15 +23,15 @@
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.085
+      "median_vph": 0.075
     },
     "jumpscare": {
       "n": 5,
-      "median_vph": 0.44
+      "median_vph": 0.4
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.34
+      "median_vph": 0.3
     },
     "clutch": {
       "n": 3,
@@ -45,11 +45,11 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.87
+      "median_vph": 0.81
     },
     "story": {
       "n": 1,
-      "median_vph": 0.04
+      "median_vph": 0.03
     }
   }
 }
