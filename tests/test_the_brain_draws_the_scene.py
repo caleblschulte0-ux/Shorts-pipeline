@@ -41,6 +41,10 @@ def _teacher_as_brain(fn):
 
 GOOD_MIN = '''
 def scene(cr, t, u, pts, host):
+    """HERO: a heat haze over a road
+    SUBSTANCE: hot air
+    CAUSE: Data strains against the heat as it shimmers
+    """
     rows = by_time([(str(l), float(v)) for l, v in pts])
     vgrad(cr, [(0.0, (30, 30, 60)), (1.0, (10, 10, 20))], 0, H)
     heat_shimmer(cr, t, 600, 1500, a=0.3)
@@ -193,6 +197,12 @@ class TheVerifierRefusesBadScenes(unittest.TestCase):
 
 @unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
 class TheAuthorLoop(unittest.TestCase):
+    def setUp(self):
+        from data_learning import scene_author as SA
+        p = mock.patch.object(SA, "ask_glance", return_value=None)
+        p.start()
+        self.addCleanup(p.stop)
+
     def test_a_refusal_is_sent_back_and_a_fix_is_accepted(self):
         from data_learning import scene_author as SA
         bad = GOOD_MIN.replace('fit_readout(cr, f"{val:.1f}", lab, 80, 520)',
@@ -293,3 +303,88 @@ class TheRendererAsksOnlyWhenNoTeacherExists(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+class AViewerHasToRecogniseIt(unittest.TestCase):
+    """Operator, 2026-10-01, on the cremation video: a casket he "couldn't
+    tell was a coffin until I watched it more than once", an urn of blue
+    "ash" that read as "the water pouring one ... out of place", and a
+    lantern where Data "pulls a liquid up with a rope — makes no sense".
+    The code checks passed all three. So every scene says what its hero,
+    substance and cause are, and a VIEWER who sees two frames with every
+    word and Data removed has to agree, or the scene goes back."""
+    PTS = [["2019", 1.05], ["2025", 4.41]]
+
+    def test_a_scene_that_does_not_say_what_it_shows_is_refused(self):
+        from data_learning import scene_author as SA
+        code = GOOD_MIN.replace("    SUBSTANCE: hot air\n", "")
+        probs = SA.verify(SA.compile_scene(code), self.PTS)
+        self.assertTrue(any("SUBSTANCE" in p and "docstring" in p for p in probs), probs)
+
+    def test_the_teachers_all_declare(self):
+        from data_learning import scene_author as SA, subject_scenes as SS
+        for fns in SS.TEACHERS.values():
+            for fn in fns:
+                self.assertEqual(set(SA.declared(fn)), set(SA.DECLARE), fn.__name__)
+        self.assertEqual(set(SA.declared(SS.amazon_bill_grows)), set(SA.DECLARE))
+
+    def test_the_viewer_sees_no_words_and_no_data(self):
+        from data_learning import scene_author as SA, subject_scenes as SS
+        import tempfile
+        fn = SA.compile_scene(GOOD_MIN)
+        hosts = []
+        with mock.patch.object(SS, "text", side_effect=AssertionError("a word was drawn")), \
+                mock.patch.object(SS, "fit_readout", side_effect=AssertionError("a readout was drawn")):
+            with tempfile.TemporaryDirectory() as td:
+                paths = SA.glance_frames(fn, self.PTS, td)
+                self.assertEqual(len(paths), len(SA.GLANCE_AT))
+                for p in paths:
+                    self.assertTrue(Path(p).stat().st_size > 1000)
+            # and the kit is put back afterwards
+            self.assertIs(fn.__globals__["text"], SS.text)
+
+    def test_the_viewers_objection_goes_back_to_the_brain_in_their_words(self):
+        from data_learning import scene_author as SA
+        asks, looks = [], []
+
+        def brain(prompt, model=None, timeout=None):
+            asks.append(prompt)
+            return GOOD_MIN
+
+        def viewer(prompt, images):
+            looks.append(prompt)
+            if len(looks) == 1:
+                return {"object": "a wooden crate", "is_hero": False,
+                        "substance": "blue liquid", "substance_fits": False,
+                        "cause_makes_sense": False,
+                        "why": "a rope cannot raise a liquid"}
+            return {"object": "a casket", "is_hero": True, "substance": "flame",
+                    "substance_fits": True, "cause_makes_sense": True, "why": ""}
+        with mock.patch.object(SA, "ask_brain", brain), \
+                mock.patch.object(SA, "ask_glance", viewer):
+            fn, code = SA.author("t", "cremation", "say", self.PTS, log=lambda m: None)
+        self.assertIsNotNone(fn)
+        self.assertEqual(len(asks), 2)
+        self.assertIn("'a wooden crate'", asks[1])
+        self.assertIn("'blue liquid'", asks[1])
+        self.assertIn("a rope cannot raise a liquid", asks[1])
+        # the viewer was told the scene's own declarations and the subject
+        self.assertIn("a heat haze over a road", looks[0])
+        self.assertIn("cremation", looks[0])
+
+    def test_no_viewer_passes_on_the_code_checks_and_says_so(self):
+        from data_learning import scene_author as SA
+        lines = []
+        with mock.patch.object(SA, "ask_brain", return_value=GOOD_MIN), \
+                mock.patch.object(SA, "ask_glance", return_value=None):
+            fn, _ = SA.author("t", "x", "y", self.PTS, log=lines.append)
+        self.assertIsNotNone(fn)
+        self.assertTrue(any("no viewer" in ln for ln in lines), lines)
+
+    def test_the_brain_is_told_the_three_rules_and_the_declaration(self):
+        from data_learning import scene_author as SA
+        prompt = SA.build_prompt("t", "x", "y", self.PTS, "")
+        for needle in ("RECOGNISABLE AT A GLANCE", "SUBJECT'S OWN MATERIAL",
+                       "REAL PHYSICS", "HERO:", "SUBSTANCE:", "CAUSE:"):
+            self.assertIn(needle, prompt)

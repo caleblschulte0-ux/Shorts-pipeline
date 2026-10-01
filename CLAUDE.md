@@ -249,6 +249,15 @@ that was visible in a shipped frame — which is why they are tests and not a
 style guide, and why a source-reading test here asserts on CODE (AST, string
 constants blanked), never on the prose that explains it.
 
+- **A brain-drawn subject scene has to pass a VIEWER, not just the code**
+  (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
+  of blue "ash" that read as water, a rope "pulling a liquid up"). Every
+  scene declares `HERO:` / `SUBSTANCE:` / `CAUSE:` in its docstring, and
+  `scene_author.glance` shows two wordless, Data-less frames to a brain
+  that must agree with all three before the scene is used. Keep it: it is
+  the only check that sees what the code cannot. `docs/CHANNEL_LOOK.md`
+  §"A VIEWER has to recognise it".
+
 ## `config/channel_registry.json` is the ONLY place channel policy lives
 
 How many videos a channel ships, in which formats, which formats are retired,

@@ -165,6 +165,27 @@ every teacher passes (`tests/test_subject_scenes.py`,
   each ring thinner — "fewer trees fall, the bill still grows"), full bleed,
   with the line on its sky and no bordered card. Payoff went 1/2 → 2/2 on
   the same story.
+- **A VIEWER has to recognise it** (operator, 2026-10-01, on the cremation
+  video — three scenes the code checks had passed). The casket: *"should
+  be more easily identifiable on first glance ... I can't really tell that
+  this is a coffin until I watched it more than once"*. The urn Data filled
+  with accent-blue "ash": *"the water pouring one ... out of place, should
+  have been a crematorium or fire that Data was throwing fuel on"*. The
+  lantern: *"pulling a liquid up with a rope? That makes no sense"*. So
+  every scene's docstring opens with `HERO:`, `SUBSTANCE:` and `CAUSE:`
+  (refused without them), and after the code checks pass, the GLANCE
+  (`scene_author.glance`) renders two frames with every word and Data
+  removed and asks a brain with no context but the subject to name the
+  object, the material, and whether the act would cause the change. A
+  "no" goes back to the drawing brain in the viewer's own words. The three
+  rules behind it, in the prompt: **recognisable at a glance** (signature
+  silhouette and tells, drawn whole before the effect, readable through
+  it); **the substance is the subject's own material** in its own colour
+  and form (ash is grey, fire is flame; the accent marks the share, never
+  recolours the stuff — a cremation share grows as fire he feeds, not as
+  water he pours); **the cause is real physics** (pouring fills, a rope
+  lifts a solid, a bellows fans a flame). No viewer available is logged
+  and passed on the code checks, never silent.
 
 **The channel aims at 90, not at the pass bar.** `quality.target` in the
 registry: a cut that ships below it is still repaired — for this arm the
