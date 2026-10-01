@@ -6103,7 +6103,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
     if bars:
         place_agent(canvas, d, "stack", r, insight, "closing",
                     (hx - bw / 2 + 16, hy), height=268, floor=pb,
-                    xlim=(8, W - 8), ceil=box[1] + 120)
+                    xlim=(8, W - 8), ceil=pt - 60)
     else:
         place_agent(canvas, d, "travel", r, insight, "closing",
                     (hx, hy + 6), height=268, xlim=(8, W - 8))
