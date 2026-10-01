@@ -20,7 +20,24 @@
   "shots": [
     {
       "phrase": "redeem rewards only through a kiosk",
-      "query": "restaurant kiosk screen"
+      "query": "restaurant kiosk screen",
+      "pin_query": "kiosk",
+      "pin_context": "self-service touchscreen restaurant ordering",
+      "news_query": "kiosk",
+      "news_angle": "The kiosk repeatedly ate customers' loyalty points, prompting the narrator to document the glitches.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Quiosco_modernista_Gran_Canaria.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "self-service touchscreen restaurant ordering",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "kiosk",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Quiosco_modernista_Gran_Canaria.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-10-01T16:41:32Z",
+        "width": 0
+      }
     },
     {
       "phrase": "blamed user error",

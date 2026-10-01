@@ -370,8 +370,8 @@
           "shot_index": 0,
           "phrase": "redeem rewards only through a kiosk",
           "query": "restaurant kiosk screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
@@ -425,20 +425,20 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 1,
+        "missing": 7,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
         "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
         "the-kiosk-ate-everyones-points-s2-899f0f2e500c",
         "the-kiosk-ate-everyones-points-s3-c168a96796c4",
         "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3",
         "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
         "the-kiosk-ate-everyones-points-s6-06943a8dfec1",
-        "the-kiosk-ate-everyones-points-s7-0c6b887208b4"
+        "the-kiosk-ate-everyones-points-s7-0c6b887208b4",
+        "the-kiosk-ate-everyones-points-s0-51d380c13f4a"
       ]
     },
     {
@@ -523,32 +523,6 @@
     }
   ],
   "requests": [
-    {
-      "request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
-      "safe_request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
-      "drive_filename": "20261001__the-kiosk-ate-everyones-points-s0-51d380c13f4a.png",
-      "prompt_sha256": "3cb4bb6bdf90c85017beab5746b3959ab7b279269d82381459ddc7acf17858db",
-      "checkpoint_path": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s0-51d380c13f4a.json",
-      "slug": "the-kiosk-ate-everyones-points",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: restaurant kiosk screen. It accompanies the narration: \"redeem rewards only through a kiosk\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
       "safe_request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
@@ -730,6 +704,32 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+      "safe_request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+      "drive_filename": "20261001__the-kiosk-ate-everyones-points-s0-51d380c13f4a.png",
+      "prompt_sha256": "3cb4bb6bdf90c85017beab5746b3959ab7b279269d82381459ddc7acf17858db",
+      "checkpoint_path": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s0-51d380c13f4a.json",
+      "slug": "the-kiosk-ate-everyones-points",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: restaurant kiosk screen. It accompanies the narration: \"redeem rewards only through a kiosk\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "resolution unverified (no width/height reported)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b",
