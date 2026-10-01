@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-10-01T12:31:12+00:00",
+ "date": "20261001",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261001/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b.json",
+  "she-wrote-the-forfeit-rule-herself-s1-da82889fc60f.json",
+  "she-wrote-the-forfeit-rule-herself-s2-efffb7576810.json",
+  "she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35.json",
+  "she-wrote-the-forfeit-rule-herself-s4-47e4422dc079.json",
+  "she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d.json",
+  "she-wrote-the-forfeit-rule-herself-s6-817c996d92ed.json",
+  "she-wrote-the-forfeit-rule-herself-s7-f20334931f8a.json",
+  "the-kiosk-ate-everyones-points-s0-51d380c13f4a.json",
+  "the-kiosk-ate-everyones-points-s1-a2227d3836e2.json",
+  "the-kiosk-ate-everyones-points-s2-899f0f2e500c.json",
+  "the-kiosk-ate-everyones-points-s3-c168a96796c4.json",
+  "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3.json",
+  "the-kiosk-ate-everyones-points-s5-b86c9d59176c.json",
+  "the-kiosk-ate-everyones-points-s6-06943a8dfec1.json",
+  "the-kiosk-ate-everyones-points-s7-0c6b887208b4.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
