@@ -363,7 +363,8 @@ class TheBrainKnowsWhatItCanCompose(unittest.TestCase):
 class TheHostIsOnIt(unittest.TestCase):
     def test_the_balance_bakes_a_host_too(self):
         import inspect
-        self.assertIn("scene_host", inspect.getsource(vs.draw_balance))
+        # he is baked ON the thing he counts out (`place_agent`, 2026-10-01)
+        self.assertIn("place_agent", inspect.getsource(vs.draw_balance))
 
     def test_the_scene_host_is_animated_not_a_sticker(self):
         """Every scene element reached for `charts._host_pose`, which loads ONE
@@ -380,7 +381,8 @@ class TheHostIsOnIt(unittest.TestCase):
 
     def test_the_dot_field_bakes_a_host_too(self):
         import inspect
-        self.assertIn("scene_host", inspect.getsource(vs.draw_dot_field))
+        # he is baked ON the thing he counts out (`place_agent`, 2026-10-01)
+        self.assertIn("place_agent", inspect.getsource(vs.draw_dot_field))
 
     def test_the_element_bakes_a_host(self):
         """`render_scene` sets host_baked for EVERY scene, which suppresses the
@@ -388,7 +390,8 @@ class TheHostIsOnIt(unittest.TestCase):
         no host at all. The first version of this did, and a hostless beat is
         what the showrunner records as the mascot missing."""
         import inspect
-        self.assertIn("scene_host", inspect.getsource(vs.draw_unit_figures))
+        # he is baked ON the thing he counts out (`place_agent`, 2026-10-01)
+        self.assertIn("place_agent", inspect.getsource(vs.draw_unit_figures))
 
     def test_scene_anchors_cannot_crash_the_overlay(self):
         """A full-frame scene returns 4-tuples, not the label dicts the card

@@ -1340,7 +1340,10 @@ class OneMascotPerFrame(unittest.TestCase):
 
     def _bakes(self, fn):
         import inspect
-        return "scene_host(" in inspect.getsource(fn)
+        src = inspect.getsource(fn)
+        # since 2026-10-01 most machines put him ON the part (`place_agent`,
+        # tests/test_data_is_the_cause.py); either way he is baked
+        return "scene_host(" in src or "place_agent(" in src
 
     def _real(self):
         extra = {"balance": vs.draw_balance, "race_track": vs.draw_race,

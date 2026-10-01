@@ -123,6 +123,22 @@ beats reuse the same act (two "sitting" beats can be totally different:
 spooning soup off a can vs. gripping a bird mid-flight). Add new acts as
 `POSE_PRESETS` entries; never regress him to one static reused pose.
 
+**He is the CAUSE of the data's motion, not a reaction to it** (operator,
+2026-10-01, on a tank filling while Data sat on a raft: *"Why doesn't he have
+a thing of water in his hands? And he's pouring water into it. And he's the
+one that's making the water rise ... a race car thing ... he would be the one
+driving the race car."* — the principle, not the example). The jar fills
+because he pours, the tower rises because he stacks, the needle sweeps
+because he pushes it. `mascot_director.AGENT_ACTS` is the vocabulary (acts
+keyed on the moving part's VERB, each with the anchor his hands are at),
+`viz_scene.place_agent` puts that anchor on the part (on a ladder when it is
+above his reach), and `viz_scene.AGENCY` makes every machine say which of
+three things he is to it — agent, the moving part itself, or the thing the
+data acts on. Point/strain/cheer beside the part is `decorative_mascot`, 203
+auto-fails in a fortnight. `tests/test_data_is_the_cause.py` MEASURES it:
+his anchor has to land on pixels that move. Docs: `docs/DATA_MACHINES.md`
+§"Data is the CAUSE".
+
 The RIG (how he is drawn) lives in `scripts/build_mascot_svg.py` and is the
 single source of truth; `assets/mascot/host/*.svg|png` are generated from it
 (`python scripts/build_mascot_svg.py --png`). Changing it changes the

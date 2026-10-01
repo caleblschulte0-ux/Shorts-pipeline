@@ -1515,6 +1515,454 @@ def _a_stack_tiles(t, _prop):
     return (arms, lower, "", "", eyes, mouth, bob, tilt)
 
 
+# =========================================================================
+# AGENT ACTS — Data is the CAUSE of the data's motion.
+#
+# Operator, 2026-10-01, watching a tank fill while Data sat on a raft on the
+# water: "this jar of water raises up bit by bit, right? And what's our guy
+# do? Sits there and flails his arms like always. Why doesn't he have a thing
+# of water in his hands? And he's pouring water into it. And he's the one
+# that's making the water rise." The judge had said the same thing the night
+# before: "He sits on the scale's 2025 pan, but his weight is not what tips
+# it" (the-biggest-lightest-workforce, 2026-09-30).
+#
+# Every role in `viz_scene.SCENE_ROLES` is a REACTION to the picture — point
+# at it, strain beside it, cheer at it. None of them touches the thing that
+# moves. These acts do: each one is keyed on a VERB — what the data's moving
+# part DOES (fill, stack, turn, lift, drain ...) — and puts his hands on the
+# part that does it, at a declared ANCHOR the machine positions on the part.
+# The jar fills because he pours; the car moves because he drives; the tower
+# rises because he sets the block.
+#
+# An agent act is a 3-zone bit on `_zone`: he gets hold of the thing, works
+# it, and lets go. The payoff is DONE, never a cheer — an agent act must be
+# honest over bad news too, and "finished pouring" is.
+#
+#   AGENT_ACTS[verb] = (animator name, anchor (x, y) in rig coords)
+#   AGENT_TIP[verb](t) = where the business end is at phase t, for a machine
+#       that draws from it (the stream leaves the bucket's lip, not his hand)
+# =========================================================================
+def _agent_arms(lh, rh):
+    return (R.arm(*R.SHL, int(lh[0]), int(lh[1]), lh[2])
+            + R.arm(*R.SHR, int(rh[0]), int(rh[1]), rh[2]))
+
+
+def _pour_geom(t):
+    """(grip, tilt_deg, lip) for the bucket: held by its left wall at the
+    grip, tipped clockwise so the far rim drops — that corner is the lip."""
+    z, s = _zone(t)
+    if z == 0:
+        a = 70.0 * s * s
+    elif z == 1:
+        a = 70.0 + 12.0 * math.sin(s * math.pi)      # steady pour, a nudge
+    else:
+        a = 70.0 * (1.0 - s)
+    gx, gy = 262.0, 200.0
+    rad = math.radians(a)
+    dx, dy = 80.0, -32.0                              # far rim corner, untipped
+    lip = (gx + dx * math.cos(rad) - dy * math.sin(rad),
+           gy + dx * math.sin(rad) + dy * math.cos(rad))
+    return (gx, gy), a, lip
+
+
+def _bucket(gx, gy, a, full):
+    body = (f'<path d="M{gx+6},{gy-32} L{gx+80},{gy-32} L{gx+72},{gy+34} '
+            f'L{gx+14},{gy+34} Z" fill="#7FA6C9" stroke="{OUT}" '
+            f'stroke-width="6" stroke-linejoin="round"/>'
+            f'<ellipse cx="{gx+43}" cy="{gy-32}" rx="37" ry="9" fill="#9CC0DF" '
+            f'stroke="{OUT}" stroke-width="5"/>')
+    if full > 0.05:
+        body += (f'<ellipse cx="{gx+43}" cy="{gy-32}" rx="{30*full:.0f}" '
+                 f'ry="{6*full:.0f}" fill="#4FA3E8"/>')
+    return f'<g transform="rotate({a:.1f} {gx} {gy})">{body}</g>'
+
+
+def _a_pour(t, _prop):
+    """POUR: both hands on a bucket's wall, tipped over the vessel. The level
+    rises because he is pouring. Setup lifts it, the pour is the effort, the
+    payoff rights the empty bucket and he looks at what he filled."""
+    z, s = _zone(t)
+    (gx, gy), a, _lip = _pour_geom(t)
+    if z == 0:
+        lh = [gx - 10, gy + 40 - s * 30, -8]; rh = [gx + 6, gy + 44 - s * 36, 10]
+        lower = _braced_legs(crouch=0.25 - s * 0.15); expr = "think"
+        bob = 4.0 - s * 4.0
+    elif z == 1:
+        lh = [gx - 10, gy + 10, -8]; rh = [gx + 6, gy + 8, 10]
+        lower = _braced_legs(crouch=0.1, sway=4); expr = "strain"
+        bob = 0.0
+    else:
+        lh = [gx - 10, gy + 10 + s * 30, -8]; rh = [gx + 6, gy + 8 + s * 36, 10]
+        lower = _braced_legs(crouch=0.1 + s * 0.1); expr = "happy"
+        bob = s * 3.0
+    full = 1.0 if z == 0 else (1.0 - s) if z == 1 else 0.0
+    eyes, mouth = _expr(expr, look=(4, 3))
+    return (_agent_arms(lh, rh), lower, "", _bucket(gx, gy, a, full),
+            eyes, mouth, bob)
+
+
+def _a_place(t, _prop):
+    """PLACE: both hands set the piece that just arrived into place and press
+    it home — the pile rises because he stacks it. Hands at chest, reach to
+    the anchor, press, stand back."""
+    z, s = _zone(t)
+    P = (300.0, 300.0)
+    if z == 0:
+        lh = [_lp(150, P[0] - 26, s), _lp(236, P[1], s), -10]
+        rh = [_lp(204, P[0] + 10, s), _lp(236, P[1] + 4, s), 10]
+        lower = _braced_legs(crouch=0.15 + s * 0.35); expr = "think"
+        bob = 2.0 + s * 6.0
+    elif z == 1:
+        press = (1.0 - math.cos(s * math.pi * 2.0)) * 0.5
+        lh = [P[0] - 26, P[1] - press * 10, -10]; rh = [P[0] + 10, P[1] + 4 - press * 10, 10]
+        lower = _braced_legs(crouch=0.5 + press * 0.25, sway=5); expr = "strain"
+        bob = 8.0 + press * 6.0
+    else:
+        lh = [_lp(P[0] - 26, 150, s), _lp(P[1], 250, s), -10]
+        rh = [_lp(P[0] + 10, 236, s), _lp(P[1] + 4, 170, s), 10]
+        lower = _braced_legs(crouch=0.5 - s * 0.45); expr = "happy"
+        bob = 8.0 - s * 8.0
+    eyes, mouth = _expr(expr, look=(4, 4))
+    return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, bob)
+
+
+def _a_drive(t, _prop):
+    """DRIVE: seated in a car, both hands on the wheel, turning it. The thing
+    travels because he is driving it. Anchor is the ground under the wheels."""
+    z, s = _zone(t)
+    wx, wy = 246.0, 232.0
+    turn = (math.sin(t * math.pi * 2.0) * 16.0 if z == 1
+            else (0.0 if z == 0 else 0.0))
+    rad = math.radians(turn)
+    # hands on the rim at ten-to-two, turning with the wheel
+    r_ = 30.0
+    lh = [wx - r_ * math.cos(rad + 0.6), wy - r_ * math.sin(rad + 0.6), -12]
+    rh = [wx + r_ * math.cos(rad - 0.6) * 0.3 + 14, wy - r_ * math.sin(rad - 0.6) - 4, 12]
+    car = (f'<path d="M60,330 L84,282 L132,268 L300,268 L340,300 L350,340 '
+           f'L60,340 Z" fill="#E8B04A" stroke="{OUT}" stroke-width="7" '
+           f'stroke-linejoin="round"/>'
+           f'<rect x="150" y="238" width="118" height="34" rx="8" fill="#9ED6F0" '
+           f'stroke="{OUT}" stroke-width="5"/>'
+           + _wheel(110, 352, t * 360.0) + _wheel(296, 352, t * 360.0)
+           + f'<g transform="rotate({turn:.1f} {wx} {wy})">'
+           f'<circle cx="{wx}" cy="{wy}" r="{r_}" fill="none" stroke="{OUT}" '
+           f'stroke-width="9"/><line x1="{wx-r_}" y1="{wy}" x2="{wx+r_}" '
+           f'y2="{wy}" stroke="{OUT}" stroke-width="7"/></g>')
+    expr = "happy" if z != 1 else "think"
+    eyes, mouth = _expr(expr, look=(5, 0))
+    bob = -2.0 * abs(math.sin(t * math.pi * 6.0)) if z == 1 else 0.0
+    return (_agent_arms(lh, rh), R.lower_ride(), car, "", eyes, mouth, bob)
+
+
+def _a_crank(t, _prop):
+    """CRANK: right hand on a handle going round an axle; the wheel turns
+    because he turns it. The left hand braces on the hip."""
+    z, s = _zone(t)
+    ax, ay, r_ = 300.0, 240.0, 42.0
+    if z == 0:
+        ang = -0.6 * (1.0 - s)                        # reaching for the handle
+        reach = s
+    elif z == 1:
+        ang = s * math.pi * 4.0                       # two full turns
+        reach = 1.0
+    else:
+        ang = 0.0
+        reach = 1.0 - s                               # letting go
+    hx = ax + r_ * math.cos(ang) if reach >= 1.0 else _lp(230.0, ax + r_, reach)
+    hy = ay + r_ * math.sin(ang) if reach >= 1.0 else _lp(250.0, ay, reach)
+    lh = [112, 282, -6]; rh = [hx, hy, 8]
+    crank = (f'<rect x="{ax-20}" y="{ay+40}" width="40" height="80" rx="6" '
+             f'fill="#4B5A68" stroke="{OUT}" stroke-width="6"/>'
+             f'<circle cx="{ax}" cy="{ay}" r="18" fill="#9AA6AD" stroke="{OUT}" '
+             f'stroke-width="6"/>'
+             f'<line x1="{ax}" y1="{ay}" x2="{ax + r_*math.cos(ang):.0f}" '
+             f'y2="{ay + r_*math.sin(ang):.0f}" stroke="{OUT}" stroke-width="12" '
+             f'stroke-linecap="round"/>')
+    lower = _braced_legs(crouch=0.15 + (0.1 * abs(math.sin(ang)) if z == 1 else 0.0),
+                         sway=4)
+    expr = "strain" if z == 1 else ("think" if z == 0 else "happy")
+    eyes, mouth = _expr(expr, look=(5, 2))
+    return (_agent_arms(lh, rh), lower, crank, "", eyes, mouth, 0.0)
+
+
+def _a_haul(t, _prop):
+    """HAUL: hand over hand on a rope that runs up out of the frame. The load
+    rises (or the car is let down) because he is on the rope."""
+    z, s = _zone(t)
+    rx = 300.0
+    if z == 0:
+        top, low = _lp(230, 130, s), _lp(250, 196, s)
+        expr = "think"
+    elif z == 1:
+        cyc = (s * 2.0) % 1.0                          # two hand-over-hands
+        top = 130 + 66 * cyc
+        low = 196 - 66 * cyc if cyc < 0.5 else 196 + 66 * (1.0 - cyc) - 66 * 0.5
+        top, low = min(top, low), max(top, low)
+        expr = "strain"
+    else:
+        top, low = _lp(130, 196, s), _lp(196, 250, s)
+        expr = "happy"
+    lh = [rx - 6, top, -8]; rh = [rx + 6, low, 8]
+    rope = (f'<line x1="{rx}" y1="-60" x2="{rx}" y2="330" stroke="#B88A4A" '
+            f'stroke-width="10" stroke-linecap="round"/>'
+            f'<line x1="{rx}" y1="-60" x2="{rx}" y2="330" stroke="{OUT}" '
+            f'stroke-width="3" stroke-dasharray="6 10"/>')
+    lower = _braced_legs(crouch=0.25 if z == 1 else 0.1, sway=3)
+    eyes, mouth = _expr(expr, look=(3, -5))
+    return (_agent_arms(lh, rh), lower, rope, "", eyes, mouth, 0.0)
+
+
+def _a_pull(t, _prop):
+    """PULL: both hands on the thing at his LEFT, leaning back and hauling it
+    toward him. The tape pays out, the door swings, because he pulls."""
+    z, s = _zone(t)
+    if z == 0:
+        lh = [_lp(140, 86, s), _lp(250, 222, s), -6]; rh = [_lp(196, 94, s), _lp(250, 246, s), 6]
+        lower = _braced_legs(crouch=0.1 + s * 0.3); expr = "think"
+        tilt = 0.0
+    elif z == 1:
+        heave = (1.0 - math.cos(s * math.pi * 2.0)) * 0.5
+        lh = [86 + heave * 24, 222, -6]; rh = [94 + heave * 24, 246, 6]
+        lower = _braced_legs(crouch=0.4 + heave * 0.3, sway=8); expr = "strain"
+        tilt = -8.0 * heave
+    else:
+        lh = [_lp(86, 150, s), _lp(222, 250, s), -6]; rh = [_lp(94, 204, s), _lp(246, 250, s), 6]
+        lower = _braced_legs(crouch=0.4 - s * 0.3); expr = "happy"
+        tilt = 0.0
+    eyes, mouth = _expr(expr, look=(-5, 1))
+    return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, 0.0, tilt)
+
+
+def _a_shove(t, _prop):
+    """SHOVE: both palms flat on the thing at his right, driving it forward.
+    The needle sweeps, the handle slides, because he pushes."""
+    z, s = _zone(t)
+    px, py = 304.0, 240.0
+    if z == 0:
+        lh = [_lp(150, px - 8, s), _lp(236, py - 12, s), -6]
+        rh = [_lp(200, px, s), _lp(240, py + 18, s), 6]
+        lower = _braced_legs(crouch=0.1 + s * 0.3); expr = "think"
+    elif z == 1:
+        drive = (1.0 - math.cos(s * math.pi * 2.0)) * 0.5
+        lh = [px - 8, py - 12, -6]; rh = [px, py + 18, 6]
+        lower = _braced_legs(crouch=0.5 - drive * 0.3, sway=4 + drive * 10)
+        expr = "strain"
+    else:
+        lh = [_lp(px - 8, 150, s), _lp(py - 12, 250, s), -6]
+        rh = [_lp(px, 236, s), _lp(py + 18, 170, s), 6]
+        lower = _braced_legs(crouch=0.2 - s * 0.15); expr = "happy"
+    eyes, mouth = _expr(expr, look=(5, 1))
+    return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, 0.0)
+
+
+def _a_tap(t, _prop):
+    """TAP: right hand on a valve wheel, turning it open. It drains, or the
+    flow starts, because he opened it."""
+    z, s = _zone(t)
+    vx, vy = 300.0, 200.0
+    ang = 0.0 if z == 0 else (s * 540.0 if z == 1 else 540.0)
+    rad = math.radians(ang)
+    reach = s if z == 0 else 1.0
+    hx = _lp(220.0, vx + 24.0 * math.cos(rad), reach)
+    hy = _lp(250.0, vy + 24.0 * math.sin(rad), reach)
+    lh = [128, 282, -6]; rh = [hx, hy, 8]
+    valve = (f'<rect x="{vx-10}" y="{vy+28}" width="20" height="70" '
+             f'fill="#4B5A68" stroke="{OUT}" stroke-width="5"/>'
+             f'<g transform="rotate({ang:.0f} {vx} {vy})">'
+             f'<circle cx="{vx}" cy="{vy}" r="30" fill="none" stroke="#C8403A" '
+             f'stroke-width="10"/><circle cx="{vx}" cy="{vy}" r="30" fill="none" '
+             f'stroke="{OUT}" stroke-width="3"/>'
+             f'<line x1="{vx-30}" y1="{vy}" x2="{vx+30}" y2="{vy}" stroke="{OUT}" '
+             f'stroke-width="6"/><line x1="{vx}" y1="{vy-30}" x2="{vx}" '
+             f'y2="{vy+30}" stroke="{OUT}" stroke-width="6"/></g>')
+    expr = "strain" if z == 1 else ("think" if z == 0 else "happy")
+    eyes, mouth = _expr(expr, look=(5, 0))
+    return (_agent_arms(lh, rh), _braced_legs(crouch=0.15, sway=3), valve, "",
+            eyes, mouth, 0.0)
+
+
+def _a_squeeze(t, _prop):
+    """SQUEEZE: one hand above and one below the pinch, clamping. It narrows
+    because he is pressing it shut."""
+    z, s = _zone(t)
+    cx_, cy_ = 300.0, 240.0
+    if z == 0:
+        gap = _lp(70, 46, s); expr = "think"
+    elif z == 1:
+        gap = 46 - 18 * (1.0 - math.cos(s * math.pi * 2.0)) * 0.5; expr = "strain"
+    else:
+        gap = _lp(28, 70, s); expr = "happy"
+    lh = [cx_ - 4, cy_ - gap, -12]; rh = [cx_ + 4, cy_ + gap, 12]
+    lower = _braced_legs(crouch=0.3 if z == 1 else 0.15, sway=6)
+    eyes, mouth = _expr(expr, look=(5, 2))
+    return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, 0.0)
+
+
+def _toss_hand(t):
+    """Where the throwing hand is: wound back, then flung to the release
+    point, then relaxed. The item leaves at the release point."""
+    z, s = _zone(t)
+    back, rel, rest = (120.0, 150.0), (312.0, 150.0), (236.0, 250.0)
+    if z == 0:
+        return _lp(rest[0], back[0], s), _lp(rest[1], back[1], s)
+    if z == 1:
+        u = (s * 2.0) % 1.0                            # two throws
+        k = u * u if u < 0.5 else 1.0 - ((u - 0.5) * 2.0) * 0.6
+        return _lp(back[0], rel[0], min(1.0, k * 2.0)), _lp(back[1], rel[1], min(1.0, k * 2.0))
+    return _lp(rel[0], rest[0], s), _lp(rel[1], rest[1], s)
+
+
+def _a_toss(t, _prop):
+    """TOSS: the throwing arm winds back and flings. The things land in the
+    bin, the basket, the square, because he threw them there."""
+    z, s = _zone(t)
+    hx, hy = _toss_hand(t)
+    lh = [128, 270, -8]; rh = [hx, hy, 10]
+    item = ""
+    if z == 1 and (s * 2.0) % 1.0 < 0.5:               # in hand, pre-release
+        item = (f'<rect x="{hx-14:.0f}" y="{hy-30:.0f}" width="28" height="28" '
+                f'rx="5" fill="#F2A23C" stroke="{OUT}" stroke-width="5"/>')
+    lower = _braced_legs(crouch=0.2 if z == 1 else 0.1, sway=6 if z == 1 else 0)
+    expr = "strain" if z == 1 else ("think" if z == 0 else "happy")
+    eyes, mouth = _expr(expr, look=(5, -2))
+    return (_agent_arms(lh, rh), lower, "", item, eyes, mouth, 0.0)
+
+
+def _a_tip(t, _prop):
+    """TIP: both hands gripping the thing at his right and rolling it over —
+    the sand runs because he turned the glass."""
+    z, s = _zone(t)
+    gx, gy = 296.0, 250.0
+    if z == 0:
+        lh = [_lp(150, gx - 6, s), _lp(236, gy - 22, s), -8]
+        rh = [_lp(200, gx + 6, s), _lp(240, gy + 22, s), 8]
+        expr = "think"
+    elif z == 1:
+        roll = math.sin(min(1.0, s * 2.0) * math.pi)   # the flip, then hold
+        lh = [gx - 6 + roll * 20, gy - 22 + roll * 30, -8]
+        rh = [gx + 6 - roll * 20, gy + 22 - roll * 30, 8]
+        expr = "strain" if s < 0.5 else "think"
+    else:
+        lh = [_lp(gx - 6, 150, s), _lp(gy - 22, 250, s), -8]
+        rh = [_lp(gx + 6, 200, s), _lp(gy + 22, 250, s), 8]
+        expr = "happy"
+    lower = _braced_legs(crouch=0.2, sway=4)
+    eyes, mouth = _expr(expr, look=(5, 2))
+    return (_agent_arms(lh, rh), lower, "", "", eyes, mouth, 0.0)
+
+
+def _a_beam(t, _prop):
+    """BEAM: a lamp in both hands, aimed. The lane is lit, the cone is cast,
+    because he is holding the light on it."""
+    z, s = _zone(t)
+    lx_, ly_ = 290.0, 180.0
+    if z == 0:
+        lh = [_lp(150, lx_ - 30, s), _lp(236, ly_ + 10, s), -8]
+        rh = [_lp(200, lx_ - 8, s), _lp(240, ly_ + 18, s), 8]
+        expr = "think"
+    elif z == 1:
+        sweep = 6.0 * math.sin(s * math.pi * 2.0)
+        lh = [lx_ - 30, ly_ + 10 + sweep, -8]; rh = [lx_ - 8, ly_ + 18 + sweep, 8]
+        expr = "think"
+    else:
+        lh = [lx_ - 30, ly_ + 10, -8]; rh = [lx_ - 8, ly_ + 18, 8]
+        expr = "happy"
+    lamp = (f'<rect x="{lx_-30}" y="{ly_-14}" width="46" height="30" rx="7" '
+            f'fill="#4B5A68" stroke="{OUT}" stroke-width="5"/>'
+            f'<path d="M{lx_+16},{ly_-20} L{lx_+30},{ly_-26} L{lx_+30},{ly_+28} '
+            f'L{lx_+16},{ly_+22} Z" fill="#FFE07A" stroke="{OUT}" stroke-width="5" '
+            f'stroke-linejoin="round"/>')
+    eyes, mouth = _expr(expr, look=(5, -1))
+    return (_agent_arms(lh, rh), _braced_legs(crouch=0.12), "", lamp, eyes,
+            mouth, 0.0)
+
+
+def _stamp_hand(t):
+    z, s = _zone(t)
+    sx, sy = 296.0, 262.0
+    if z == 0:
+        return _lp(200.0, sx, s), _lp(240.0, sy - 90, s)
+    if z == 1:
+        u = (s * 2.0) % 1.0
+        drop = u * u * 4.0 if u < 0.5 else 1.0 - (u - 0.5) * 2.0
+        return sx, sy - 90 + 90 * min(1.0, drop)
+    return _lp(sx, 236.0, s), _lp(sy, 250.0, s)
+
+
+def _a_stamp(t, _prop):
+    """STAMP: a stamp lifted and slammed. The figure lights, the copy lands,
+    because he stamped it."""
+    z, s = _zone(t)
+    hx, hy = _stamp_hand(t)
+    lh = [128, 282, -6]; rh = [hx, hy, 8]
+    stamp = (f'<rect x="{hx-9:.0f}" y="{hy-6:.0f}" width="18" height="30" rx="4" '
+             f'fill="#4B5A68" stroke="{OUT}" stroke-width="5"/>'
+             f'<rect x="{hx-26:.0f}" y="{hy+22:.0f}" width="52" height="16" rx="4" '
+             f'fill="#C8403A" stroke="{OUT}" stroke-width="5"/>')
+    lower = _braced_legs(crouch=0.3 if z == 1 else 0.12, sway=4)
+    expr = "strain" if z == 1 else ("think" if z == 0 else "happy")
+    eyes, mouth = _expr(expr, look=(5, 4))
+    return (_agent_arms(lh, rh), lower, "", stamp, eyes, mouth, 0.0)
+
+
+def _a_cut(t, _prop):
+    """CUT: both hands on a saw handle, stroking. The piece comes away because
+    he cut it."""
+    z, s = _zone(t)
+    hx0, hy = 296.0, 250.0
+    stroke = (math.sin(s * math.pi * 6.0) * 22.0) if z == 1 else 0.0
+    reach = s if z == 0 else (1.0 - s if z == 2 else 1.0)
+    hx = _lp(220.0, hx0, reach) + stroke
+    lh = [hx - 10, hy - 10, -8]; rh = [hx + 8, hy + 12, 8]
+    saw = (f'<rect x="{hx-16:.0f}" y="{hy-22:.0f}" width="26" height="44" rx="6" '
+           f'fill="#B88A4A" stroke="{OUT}" stroke-width="5"/>'
+           f'<path d="M{hx+10:.0f},{hy-12:.0f} L{hx+100:.0f},{hy-8:.0f} '
+           f'L{hx+100:.0f},{hy+6:.0f} L{hx+10:.0f},{hy+14:.0f} Z" fill="#C9D3DA" '
+           f'stroke="{OUT}" stroke-width="4"/>')
+    lower = _braced_legs(crouch=0.3 if z == 1 else 0.12, sway=6)
+    expr = "strain" if z == 1 else ("think" if z == 0 else "happy")
+    eyes, mouth = _expr(expr, look=(5, 3))
+    return (_agent_arms(lh, rh), lower, "", saw, eyes, mouth, 0.0)
+
+
+#: verb -> (animator, anchor). The ANCHOR is the rig point a machine puts ON
+#: the moving part: the bucket grip over the rim, the palms on the needle,
+#: the crank's axle on the wheel. `viz_scene.place_agent` scales and places
+#: him so this point lands where the machine says the part is.
+AGENT_ACTS: dict[str, tuple[str, tuple[float, float]]] = {
+    "fill":    ("pour",    (262.0, 200.0)),
+    "stack":   ("place",   (300.0, 300.0)),
+    "travel":  ("drive",   (200.0, 362.0)),
+    "turn":    ("crank",   (300.0, 240.0)),
+    "lift":    ("haul",    (300.0, 120.0)),
+    "draw":    ("pull",    (90.0, 234.0)),
+    "sweep":   ("shove",   (304.0, 240.0)),
+    "drain":   ("tap",     (300.0, 200.0)),
+    "pinch":   ("squeeze", (300.0, 240.0)),
+    "drop":    ("toss",    (312.0, 150.0)),
+    "flip":    ("tip",     (296.0, 250.0)),
+    "light":   ("beam",    (320.0, 180.0)),
+    "mark":    ("stamp",   (296.0, 300.0)),
+    "cut":     ("cut",     (296.0, 250.0)),
+    # he IS the moving part: the runner in the lane, the jumper at the bar
+    "run":     ("race_sprint", (170.0, 356.0)),
+}
+
+#: verb -> where the business end is at phase t, when it is not the anchor:
+#: the stream leaves the bucket's LIP, the item leaves the HAND.
+AGENT_TIP = {
+    "fill": lambda t: _pour_geom(t)[2],
+    "drop": _toss_hand,
+    "mark": lambda t: (_stamp_hand(t)[0], _stamp_hand(t)[1] + 38.0),
+}
+
+
+def agent_act(verb: str) -> str:
+    """The animator for a verb, or None — never a silent carry pose."""
+    act = AGENT_ACTS.get(verb)
+    return act[0] if act else None
+
+
 ANIMATORS = {
     "juggle": _a_juggle, "push": _a_push, "ride": _a_ride,
     "stagger_under": _a_stagger, "carry": _a_carry, "hold_up": _a_hold_up,
@@ -1547,6 +1995,11 @@ ANIMATORS = {
     "transform_reveal": _a_transform_reveal,
     "fail_recover": _a_fail_recover,
     "stack_tiles": _a_stack_tiles,
+    # AGENT acts — he CAUSES the data's motion (see AGENT_ACTS):
+    "pour": _a_pour, "place": _a_place, "drive": _a_drive, "crank": _a_crank,
+    "haul": _a_haul, "pull": _a_pull, "shove": _a_shove, "tap": _a_tap,
+    "squeeze": _a_squeeze, "toss": _a_toss, "tip": _a_tip,
+    "beam": _a_beam, "stamp": _a_stamp, "cut": _a_cut,
 }
 
 # =========================================================================
@@ -1980,6 +2433,32 @@ def _a_pose(t, spec):
 def compose_anim(spec: dict, t: float) -> str:
     """Animated scene-mascot SVG at phase t in [0,1): Data moving + a grounded
     environment. Seamless because every animator is periodic in t."""
+    return _compose_parts(spec, t)[0]
+
+
+def agent_point(verb: str, t: float, tip: bool = False):
+    """The anchor (or, with ``tip``, the business end) of an agent act at
+    phase t, in RIG coordinates, AFTER the whole-body bob/tilt `compose_anim`
+    applies — so it is exactly where the pixel is. None for an unknown verb:
+    a machine that asks for a verb this table does not have gets no host and
+    the test says so, not a carry pose at the wrong spot."""
+    act = AGENT_ACTS.get(verb)
+    if not act:
+        return None
+    name, anchor = act
+    px, py = (AGENT_TIP[verb](t) if (tip and verb in AGENT_TIP) else anchor)
+    _svg, bob, tilt = _compose_parts({"action": name, "prop": "none",
+                                      "ground": False}, t)
+    rad = math.radians(tilt)
+    ox, oy = 170.0, 210.0                       # compose_anim's pivot
+    dx, dy = px - ox, py - oy
+    return (ox + dx * math.cos(rad) - dy * math.sin(rad),
+            oy + dx * math.sin(rad) + dy * math.cos(rad) + bob)
+
+
+def _compose_parts(spec: dict, t: float):
+    """(svg, bob, tilt) — the SVG plus the whole-body transform it applied,
+    so a contact point can be put through the same transform."""
     prop_name = spec.get("prop", "price_tag")
     action = spec.get("action", "present")
     text = spec.get("text", "")
@@ -2035,7 +2514,8 @@ def compose_anim(spec: dict, t: float) -> str:
     inner = env + (f'<g transform="translate(0,{bob:.1f}) '
                    f'rotate({tilt:.1f},170,210)">{masc}</g>')
 
-    return R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}")
+    return (R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}"),
+            bob, tilt)
 
 
 def render_frames(spec: dict, size: int, n: int = 20) -> list[bytes]:

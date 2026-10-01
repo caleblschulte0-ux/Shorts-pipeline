@@ -205,13 +205,23 @@ def pil_surface(img):
     """A PIL RGBA image as a premultiplied cairo surface."""
     img = img.convert("RGBA")
     w, h = img.size
-    raw = bytearray(img.tobytes("raw", "BGRA"))
-    for i in range(0, len(raw), 4):          # premultiply
-        a = raw[i + 3]
-        if a < 255:
-            raw[i] = raw[i] * a // 255
-            raw[i + 1] = raw[i + 1] * a // 255
-            raw[i + 2] = raw[i + 2] * a // 255
+    try:
+        # the same premultiply (`c * a // 255`), vectorised: the per-pixel
+        # Python loop was 1.5 s on a full frame (2026-10-01)
+        import numpy as _np
+        px = _np.frombuffer(img.tobytes("raw", "BGRA"), dtype=_np.uint8)
+        px = px.reshape(-1, 4).astype(_np.uint16)
+        a_ = px[:, 3:4]
+        px[:, :3] = px[:, :3] * a_ // 255
+        raw = bytearray(px.astype(_np.uint8).tobytes())
+    except Exception:  # noqa: BLE001 — no numpy: the loop
+        raw = bytearray(img.tobytes("raw", "BGRA"))
+        for i in range(0, len(raw), 4):          # premultiply
+            a = raw[i + 3]
+            if a < 255:
+                raw[i] = raw[i] * a // 255
+                raw[i + 1] = raw[i + 1] * a // 255
+                raw[i + 2] = raw[i + 2] * a // 255
     stride = cairo.ImageSurface.format_stride_for_width(cairo.FORMAT_ARGB32, w)
     if stride != w * 4:
         buf = bytearray(stride * h)
@@ -668,6 +678,76 @@ def _host(cr, role, phase, insight, kind, cx, foot_y, height):
     return (x, y, x + img.width, y + img.height)
 
 
+def _agent(cr, verb, phase, insight, kind, at, height, floor=None,
+           flip=False):
+    """Data DOING the verb, his anchor on ``at`` — the world's own
+    `place_agent`. Plans with the scene kit's placer and paints only the
+    SPRITE (and his ladder, in cairo): a full-frame PIL layer per frame went
+    through `pil_surface` at 1.5 s a frame. Returns (box, tip) or
+    (None, None)."""
+    try:
+        from data_learning import viz_scene as vs
+        _prev = getattr(vs, "_BEAT_PHASE", None)
+        vs._BEAT_PHASE = phase
+        try:
+            plan = vs.plan_agent(verb, phase, insight, kind, at, height=height,
+                                 floor=floor, xlim=(30, W - 30), flip=flip)
+        finally:
+            vs._BEAT_PHASE = _prev
+    except Exception:  # noqa: BLE001 — no rig available: no host, not a crash
+        return None, None
+    if plan is None:
+        return None, None
+    sprite, (x, y), box, tip, ladder = plan
+    if ladder is not None:
+        lcx, feet, floor_y, lw = ladder
+        hw = max(28, int(lw * 0.22))
+        cr.set_source_rgba(*_c(look.INK, 0.78))
+        cr.rectangle(lcx - hw - 6, feet - 6, 2 * hw + 12, 16)
+        cr.fill()
+        cr.set_source_rgba(*_c(look.INK, 0.59))
+        cr.set_line_width(8)
+        for sx in (lcx - hw, lcx + hw):
+            cr.move_to(sx, feet)
+            cr.line_to(sx, floor_y)
+        cr.stroke()
+        cr.set_line_width(6)
+        yy = feet + 56
+        while yy < floor_y - 20:
+            cr.move_to(lcx - hw, yy)
+            cr.line_to(lcx + hw, yy)
+            yy += 56
+        cr.stroke()
+    glow(cr, (box[0] + box[2]) / 2, box[3] - 6, (box[2] - box[0]) * 0.55,
+         (0, 0, 0), 0.35)
+    cr.set_source_surface(pil_surface(sprite), x, y)
+    cr.paint()
+    return box, tip
+
+
+def _cairo_stream(cr, src, dst, rgb, t):
+    """What he pours, in the world: a swaying column to the surface."""
+    sx, sy = src
+    dx, dy = dst
+    if dy <= sy + 6:
+        return
+    n = max(2, int((dy - sy) / 14))
+    cr.set_source_rgba(*_c(rgb, 0.95))
+    cr.set_line_width(16)
+    cr.set_line_cap(cairo.LINE_CAP_ROUND)
+    cr.move_to(sx, sy)
+    for k in range(1, n + 1):
+        u = k / n
+        cr.line_to(sx + (dx - sx) * u + 5.0 * math.sin(u * 9.0 + t * 40.0) * (1 - u),
+                   sy + (dy - sy) * u)
+    cr.stroke()
+    for k in range(5):
+        a = (k / 5.0) * math.pi + t * 7.0
+        r_ = 10 + 8 * ((k * 7) % 3)
+        glow(cr, dx + math.cos(a) * r_ * 2.2, dy - abs(math.sin(a)) * r_, 9,
+             rgb, 0.8)
+
+
 # ----------------------------------------------------------------- data ---
 
 
@@ -784,13 +864,15 @@ def draw_columns(cr, insight, world, t, reveal, phase):
         anchors.append({"value": float(p.value), "cx": x + cw / 2, "cy": vtop,
                         "w": 160.0, "h": 70.0, "measured": False})
         if is_sub:
-            lead = (x + cw / 2, base - h - cw * 0.22 * 0.55)
-    # he RIDES the leader's roof up as it rises, then celebrates on top
-    return lead, anchors, ("climb" if reveal < 0.6 else "cheer")
+            lead = (x + 22, base - h)
+    # HE BUILDS THE SUBJECT'S COLUMN: hands on its top-left corner as it
+    # rises, from a ladder on the ground. Riding its roof up he was "standing
+    # on top of the tallest bar", carried by the number.
+    return lead, anchors, ("agent", "stack", {"floor": base})
 
 
 def draw_ridge(cr, insight, world, t, reveal, phase):
-    """TREND: the series is the crest of a ridge; Data walks it to 'now'."""
+    """TREND: the series is the crest of a ridge; Data drives it to 'now'."""
     items = _items(insight)
     if len(items) < 3:
         return None
@@ -855,7 +937,9 @@ def draw_ridge(cr, insight, world, t, reveal, phase):
         lab = str(getattr(items[j], "period", None) or items[j].label)
         text(cr, lab, clamp(pts[j][0], 60, W - 60), base + 60, 32, look.INK,
              anchor="center", alpha=seg(reveal, 0.05, 0.3))
-    return (hx, hy), anchors, ("ride" if reveal < 0.95 else "cheer")
+    # HE DRIVES THE CREST: a car along the ridge to 'now' — the series is
+    # a road he is taking, not a rail he is carried along.
+    return (hx, hy + 6), anchors, ("agent", "travel", {}), 190
 
 
 def _share_value(insight):
@@ -921,14 +1005,16 @@ def draw_tank(cr, insight, world, t, reveal, phase):
     cr.line_to(x1, base)
     cr.line_to(x1, top)
     cr.stroke()
+    # Ticks on the RIGHT wall: the left is where he stands, on his ladder,
+    # and the rails ran through "75%".
     for q in range(1, 4):
         y = base - (base - top) * q / 4
         cr.set_source_rgba(*_c(look.INK_3, 0.9))
         cr.set_line_width(3)
-        cr.move_to(x0, y)
-        cr.line_to(x0 + 30, y)
+        cr.move_to(x1 - 30, y)
+        cr.line_to(x1, y)
         cr.stroke()
-        text(cr, f"{q * 25}%", x0 - 14, y + 10, 26, look.INK_2, anchor="right")
+        text(cr, f"{q * 25}%", x1 + 14, y + 10, 26, look.INK_2, anchor="left")
     rest = [x for x in _items(insight) if x is not p]
     if rest and frac < 0.93:
         rl = str(rest[0].label) if len(rest) == 1 else "the rest"
@@ -944,22 +1030,20 @@ def draw_tank(cr, insight, world, t, reveal, phase):
     for li, ln in enumerate(lines):
         text(cr, ln, W / 2, GROUND_Y + 70 + li * (sz + 8), sz, look.INK_2,
              anchor="center", alpha=seg(reveal, 0.1, 0.4))
-    # Data RIDES THE LEVEL on a raft floating on the liquid, so the rising
-    # number is what lifts him. (A ledge bolted to the glass read as a
-    # diving board he never used — the judge, 2026-09-23.)
-    rx = x0 + 120
-    ry = ly + 7 * math.sin(rx / 38 + t * 3.0) - 6
-    _wf = look.world(world)["form"]
-    cr.set_source_rgba(*_c(_wf[0]))
-    cr.rectangle(rx - 80, ry - 6, 160, 14)
-    cr.fill()
-    cr.set_source_rgba(*_c(_wf[1]))
-    cr.rectangle(rx - 80, ry + 8, 160, 8)
-    cr.fill()
     anchors = [{"value": float(p.value), "cx": W / 2, "cy": STAGE_TOP + 130,
                 "w": 300.0, "h": 120.0, "measured": False}]
-    # he HAULS the level up (straining on the ledge as it rises), then cheers
-    return (rx, ry - 6), anchors, ("strain" if reveal < 0.5 else "cheer"), 170
+    # HE FILLS IT. On a ladder at the tank's left rim, pouring from a bucket
+    # — the level rises because he is pouring, and the stream lands on the
+    # surface. He used to ride the level on a raft (operator, 2026-10-01:
+    # "sits there and flails his arms like always. Why doesn't he have a
+    # thing of water in his hands? ... he's the one that's making the water
+    # rise"), and before that stood on a ledge "he never used" (the judge,
+    # 2026-09-23).
+    return ((x0 + 56, top - 26), anchors,
+            ("agent", "fill", {"floor": GROUND_Y,
+                               "stream_to": (x0 + 150, ly + 4),
+                               "stream_rgb": _mix(lit, (255, 255, 255), 0.5)}),
+            230)
 
 
 #: What the claim is -> how it is drawn in a world. Claims not here fall back
@@ -1026,8 +1110,20 @@ def render_build(insight, out_dir: Path, name: str, frames: int = 90,
             if got is None:
                 return None, []
             (hx, hy), anc, role = got[:3]
-            _host(cr, role, phase, insight, kind, hx, hy + 4,
-                  got[3] if len(got) > 3 else HOST_H)
+            hgt = got[3] if len(got) > 3 else HOST_H
+            if isinstance(role, tuple) and role and role[0] == "agent":
+                # DATA IS THE CAUSE: the drawing names the verb and where
+                # its moving part is; he is placed with his hands on it.
+                _verb = role[1]
+                _opts = role[2] if len(role) > 2 else {}
+                _box, _tip = _agent(cr, _verb, phase, insight, kind, (hx, hy),
+                                    hgt, floor=_opts.get("floor"),
+                                    flip=_opts.get("flip", False))
+                if _tip is not None and _opts.get("stream_to") is not None:
+                    _cairo_stream(cr, _tip, _opts["stream_to"],
+                                  _opts.get("stream_rgb", look.INK), t)
+            else:
+                _host(cr, role, phase, insight, kind, hx, hy + 4, hgt)
             world_air(cr, world, t)
         if f == frames - 1:
             anchors = anc

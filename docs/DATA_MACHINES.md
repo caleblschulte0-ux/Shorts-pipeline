@@ -509,6 +509,55 @@ the line.
   pictures — building them would have grown the registry without growing what
   the channel can say.
 
+## Data is the CAUSE of the motion (`viz_scene.AGENCY`)
+
+Operator, 2026-10-01, watching a tank fill while Data sat on a raft on the
+water: *"this jar of water raises up bit by bit, right? And what's our guy
+do? Sits there and flails his arms like always. Why doesn't he have a thing
+of water in his hands? And he's pouring water into it. And he's the one
+that's making the water rise. ... let's say we're doing a race car thing ...
+he would be the one driving the race car."* The judge had been saying the
+same thing for a fortnight — 203 `decorative_mascot` auto-fails since
+2026-09-18: *"stands with arms out beside the draining tank doing nothing to
+it"*, *"He sits on the scale's 2025 pan, but his weight is not what tips
+it"*, *"rides the fill edge"*.
+
+Every `scene_host` role (point, strain, think, shock, cheer, climb) is a
+REACTION to the picture. Forty machines placed him next to the thing that
+moves and had him react to it. So there is a second vocabulary:
+
+- **`mascot_director.AGENT_ACTS`** — acts keyed on the VERB of the data's
+  moving part (`fill` → pour, `stack` → place, `turn` → crank, `lift` →
+  haul, `drain` → tap, `sweep` → shove, `drop` → toss, `travel` → drive,
+  `pinch`, `draw`, `flip`, `light`, `mark`, `cut`). Each puts his
+  hands on the part at a declared **anchor** in rig coordinates, and some
+  declare a **tip** (the bucket's lip, the thrown item) for a machine to
+  draw the stream or the lob from. The payoff of an agent act is DONE, never
+  a cheer, so it is honest over bad news without going through `tone`.
+- **`viz_scene.place_agent(canvas, d, verb, reveal, insight, kind, at,
+  floor=…)`** — composites him so the anchor lands on `at`, the point the
+  machine says its part is. With a `floor` he is scaled to reach it and,
+  past his reach, stands on a **ladder** from the floor to his feet — a man
+  pouring over a tall rim is on a ladder. The illustrated arm's drawings
+  return `("agent", verb, {...})` and `render_build` does the same through
+  `_agent`.
+- **`viz_scene.AGENCY`** — every machine declares ONE of three relations:
+  `("agent", verb)` he causes the motion; `("self", why)` he IS the moving
+  part (the runner, the jumper); `("patient", why)` the data acts on him and
+  that effect is the claim (the weight on his back, the tower that dwarfs
+  him). There is no fourth state; "beside it, reacting" is the defect.
+
+`tests/test_data_is_the_cause.py` holds it three ways, because a vocabulary
+test alone caught nothing the last time one rotted: the table is complete in
+both directions and the exceptions are few; every agent machine really calls
+`place_agent` with its declared verb and never asks `scene_host` for a
+reaction; and — MEASURED — each agent machine is rendered twice without him,
+the regions that changed are found, and the anchor it handed `place_agent`
+must be on or beside one (above/below it, in its x-range, for what flows).
+That last check is what moved the conveyor's crank from the floor to the
+belt's roller and the wheel's from a box at its foot to palms on the rim:
+both were "a crank somewhere near the picture" until the frames said so.
+
 ## Adding one
 
 1. **A relationship, or none.** If an existing one already says it, you are
@@ -538,6 +587,13 @@ the line.
    another. `label[:12]` shipped "1990 (pre-vacc" to the channel.
 8. **Add it to the measured motion case list** and run it. Not the source
    pattern — the frames.
+   **And say what Data is to it** in `AGENCY`. Name the VERB of its moving
+   part, call `place_agent` with his anchor ON that part (and `floor=` so
+   he stands on the ground or a ladder), and run
+   `tests/test_data_is_the_cause.py`: it measures whether the anchor is on
+   pixels that move. `self` and `patient` need a sentence of why, and there
+   are five of them in forty — a sixth had better be a better reason than
+   "the part was awkward to reach".
 9. **Offline only.** No network, no generated imagery. The image provider
    returns HTTP 500 at 54–89s a call; a machine that depends on it is a
    machine that is not there on the day it is needed.

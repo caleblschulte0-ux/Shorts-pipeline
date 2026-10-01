@@ -123,7 +123,7 @@ class TheClimberNeverStandsOnANumber(unittest.TestCase):
         top = max(by0 + vs.STAIR_HOST_H + 30, 340)
         bot = by1 - 120
         n = len(self.STEPS)
-        w = (bx1 - bx0 - 160) / n
+        w = (bx1 - bx0 - 160 - vs.STAIR_LANE) / n
         vals = [v for _, v in self.STEPS]
         lo, hi = min(vals), max(vals)
         sprite = Image.new("RGBA", (200, 300), (255, 0, 255, 255))
@@ -309,7 +309,13 @@ class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
     def _host_rows(self, draw, box, *args, **kw):
         sprite = Image.new("RGBA", (200, 300), (255, 0, 255, 255))
         img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
-        with mock.patch.object(vs, "scene_host", return_value=sprite):
+        # a magenta stand-in whichever way the machine bakes him: a reaction
+        # role (`scene_host`) or hands on the part (`scene_agent`, with its
+        # anchor two thirds down and the tip beside it)
+        with mock.patch.object(vs, "scene_host", return_value=sprite), \
+                mock.patch.object(vs, "scene_agent",
+                                  return_value=(sprite, (150.0, 200.0),
+                                                (170.0, 200.0))):
             draw(ImageDraw.Draw(img), img, box, *args, **kw)
         px = np.asarray(img)
         m = (px[:, :, 0] > 200) & (px[:, :, 1] < 60) & (px[:, :, 2] > 200)
@@ -338,7 +344,11 @@ class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
         cap_bot = cy + lane + 124 + 22
         r = self._host_rows(vs.draw_spotlight, box, safe, charts.HIGHLIGHT, 0.9, "dollars")
         self.assertIsNotNone(r)
-        self.assertGreaterEqual(r[0], cap_bot)
+        # Since 2026-10-01 he holds the lamp ABOVE the lane's left end, so he
+        # is clear of its words from above; under the sub-caption is the other
+        # honest place. Either way, not through the lo label or the caption.
+        lo_label_top = cy + lane + 56 - 24
+        self.assertTrue(r[1] < lo_label_top or r[0] >= cap_bot, r)
 
     def test_the_dot_field_label_is_fitted(self):
         src = (_REPO / "data_learning" / "viz_scene.py").read_text()
