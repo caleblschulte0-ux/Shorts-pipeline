@@ -353,14 +353,17 @@ class AViewerHasToRecogniseIt(unittest.TestCase):
             return GOOD_MIN
 
         def viewer(prompt, images):
-            looks.append(prompt)
-            if len(looks) == 1:
-                return {"object": "a wooden crate", "is_hero": False,
-                        "substance": "blue liquid", "substance_fits": False,
+            looks.append((prompt, list(images)))
+            if images:                       # the UNAIDED look: no hero named
+                assert "heat haze" not in prompt
+                return {"object": "a wooden crate", "substance": "blue liquid",
+                        "change": "the liquid rises"}
+            if len(looks) == 2:              # the judgement on the first draft
+                return {"is_hero": False, "substance_fits": False,
                         "cause_makes_sense": False,
                         "why": "a rope cannot raise a liquid"}
-            return {"object": "a casket", "is_hero": True, "substance": "flame",
-                    "substance_fits": True, "cause_makes_sense": True, "why": ""}
+            return {"is_hero": True, "substance_fits": True,
+                    "cause_makes_sense": True, "why": ""}
         with mock.patch.object(SA, "ask_brain", brain), \
                 mock.patch.object(SA, "ask_glance", viewer):
             fn, code = SA.author("t", "cremation", "say", self.PTS, log=lambda m: None)
@@ -369,9 +372,14 @@ class AViewerHasToRecogniseIt(unittest.TestCase):
         self.assertIn("'a wooden crate'", asks[1])
         self.assertIn("'blue liquid'", asks[1])
         self.assertIn("a rope cannot raise a liquid", asks[1])
-        # the viewer was told the scene's own declarations and the subject
-        self.assertIn("a heat haze over a road", looks[0])
-        self.assertIn("cremation", looks[0])
+        # the look is unaided (subject only); the judgement holds it against
+        # the scene's own declarations
+        self.assertEqual(len(looks), 4)
+        self.assertIn("cremation", looks[0][0])
+        self.assertEqual(len(looks[0][1]), len(SA.GLANCE_AT))
+        self.assertIn("a heat haze over a road", looks[1][0])
+        self.assertIn("a wooden crate", looks[1][0])
+        self.assertEqual(looks[1][1], [])
 
     def test_no_viewer_passes_on_the_code_checks_and_says_so(self):
         from data_learning import scene_author as SA

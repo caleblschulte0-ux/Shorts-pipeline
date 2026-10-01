@@ -177,7 +177,11 @@ GLANCE_AT = (0.12, 0.55)        # the hero must read EARLY, and mid-beat
 GLANCE_MODEL = os.environ.get("SCENE_GLANCE_MODEL", "sonnet")
 GLANCE_TIMEOUT = int(os.environ.get("SCENE_GLANCE_TIMEOUT", "150"))
 
-_GLANCE = """You are a viewer glancing at two frames of a short vertical \
+# The look is UNAIDED: the viewer names what they see before anyone tells
+# them what it is meant to be. A single question that said "is this
+# recognisably a casket?" got a yes on the casket the operator could not
+# recognise — the name in the question was the hint he never had.
+_LOOK = """You are a viewer glancing at two frames of a short vertical \
 animation about: {topic}. Every word and the mascot have been removed, so \
 only the picture is left. The frames are these image files — READ each with \
 the Read tool:
@@ -185,17 +189,33 @@ the Read tool:
 
 Answer as ONE JSON object, nothing else:
 {{"object": "<the main object, in 2-5 words, as you would name it to a \
-friend>",
- "is_hero": <true if that object is recognisably "{hero}" at a glance, \
-without being told; false if you would not have named it that>,
+friend who asked what it was>",
  "substance": "<the material that is rising, piling, pouring, burning or \
-moving, in 1-4 words — 'nothing' if none>",
- "substance_fits": <true if it reads as "{substance}" AND belongs to the \
-subject; false if it reads as something else (blue liquid in a glass is \
-water, whatever it is called)>,
- "cause_makes_sense": <true if "{cause}" would physically produce what the \
-frames show; false if the act could not cause the change (a rope cannot \
-raise a liquid; a bellows does not fill a jar)>,
+moving between the frames, in 1-4 words — what it LOOKS like, not what it \
+might stand for; 'nothing' if none>",
+ "change": "<what happens between the first frame and the second, one \
+sentence>"}}"""
+
+_JUDGE = """A viewer saw two frames of an animated scene with every word \
+and the mascot removed, and described it unaided:
+  object: {object}
+  substance: {substance}
+  change: {change}
+
+The scene's author says it shows:
+  HERO: {hero}
+  SUBSTANCE: {substance_said}
+  CAUSE: {cause}
+
+Answer as ONE JSON object, nothing else:
+{{"is_hero": <true only if the viewer's object IS the author's hero — the \
+same thing under another name counts (coffin/casket), a different thing \
+does not (crate/casket, tank/urn)>,
+ "substance_fits": <true only if the viewer's substance IS the author's — \
+blue liquid is not ash, a glowing fill is not embers>,
+ "cause_makes_sense": <true only if the author's CAUSE would physically \
+produce the viewer's change — a rope cannot raise a liquid; a bellows does \
+not fill a jar>,
  "why": "<one sentence on anything you answered false>"}}"""
 
 
@@ -206,8 +226,11 @@ def ask_glance(prompt: str, images: list[str]) -> dict | None:
         return None
     from scripts import showrunner_review as sr
     try:
-        proc = subprocess.run(["claude", "-p", prompt, "--model", GLANCE_MODEL,
-                               "--allowedTools", "Read", "--output-format", "text"],
+        cmd = ["claude", "-p", prompt, "--model", GLANCE_MODEL,
+               "--output-format", "text"]
+        if images:
+            cmd[-2:-2] = ["--allowedTools", "Read"]
+        proc = subprocess.run(cmd,
                               capture_output=True, text=True,
                               timeout=max(30.0, min(GLANCE_TIMEOUT, _remaining())))
         if proc.returncode != 0:
@@ -255,9 +278,10 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
 def glance(fn, pts, topic: str, log=print) -> list[str]:
     """Problems a VIEWER has with the picture alone: the hero is not
     recognisable, the substance reads as something else, the cause could
-    not produce the effect. Empty when the viewer agrees with the scene's
-    own HERO / SUBSTANCE / CAUSE — or when no viewer is available, which
-    is logged, never silent."""
+    not produce the effect. The viewer describes the frames UNAIDED first;
+    only then is that description held against the scene's own HERO /
+    SUBSTANCE / CAUSE. Empty when they agree — or when no viewer is
+    available, which is logged, never silent."""
     decl = declared(fn)
     if any(not decl.get(k) for k in DECLARE):
         return declaration_problems(fn)
@@ -268,10 +292,17 @@ def glance(fn, pts, topic: str, log=print) -> list[str]:
             return [f"crashed while rendering the glance frames: {e}"]
         listing = "\n".join(f"- at {int(u * 100)}% of the beat: {p}"
                              for u, p in zip(GLANCE_AT, frames))
-        ans = ask_glance(_GLANCE.format(topic=topic or "the data", listing=listing,
-                                        hero=decl["HERO"],
-                                        substance=decl["SUBSTANCE"],
-                                        cause=decl["CAUSE"]), frames)
+        seen = ask_glance(_LOOK.format(topic=topic or "the data", listing=listing),
+                          frames)
+    if not isinstance(seen, dict):
+        log("[scene_author] no viewer for the glance — passed on code checks only")
+        return []
+    obj = str(seen.get("object") or "?").strip()
+    sub = str(seen.get("substance") or "?").strip()
+    chg = str(seen.get("change") or "?").strip()
+    ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
+                                   hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
+                                   cause=decl["CAUSE"]), [])
     if not isinstance(ans, dict):
         log("[scene_author] no viewer for the glance — passed on code checks only")
         return []
@@ -279,19 +310,18 @@ def glance(fn, pts, topic: str, log=print) -> list[str]:
     problems = []
     if ans.get("is_hero") is False:
         problems.append(f"a viewer could not tell the hero is {decl['HERO']!r} — "
-                        f"they saw {str(ans.get('object') or '?')!r}. Draw it by "
-                        f"its signature silhouette and its tells, big, before "
-                        f"any effect touches it. {why}".rstrip())
+                        f"unaided, they called it {obj!r}. Draw it by its signature "
+                        f"silhouette and its tells, big, before any effect "
+                        f"touches it. {why}".rstrip())
     if ans.get("substance_fits") is False:
-        problems.append(f"the substance reads as {str(ans.get('substance') or '?')!r}, "
-                        f"not {decl['SUBSTANCE']!r} — a material keeps its own "
-                        f"colour and form (ash is grey dust, fire is flame, water "
-                        f"is blue); the accent marks the share, it never recolours "
-                        f"the stuff. {why}".rstrip())
+        problems.append(f"the substance reads as {sub!r}, not {decl['SUBSTANCE']!r} "
+                        f"— a material keeps its own colour and form (ash is grey "
+                        f"dust, fire is flame, water is blue); the accent marks "
+                        f"the share, it never recolours the stuff. {why}".rstrip())
     if ans.get("cause_makes_sense") is False:
-        problems.append(f"{decl['CAUSE']!r} could not cause what the frames show — "
-                        f"Data's act must be the one that would really produce "
-                        f"the change (pouring fills, hauling lifts a solid, "
+        problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
+                        f"({chg!r}) — Data's act must be the one that would really "
+                        f"produce the change (pouring fills, hauling lifts a solid, "
                         f"feeding grows a fire). {why}".rstrip())
     return problems
 
