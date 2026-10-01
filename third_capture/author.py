@@ -375,9 +375,37 @@ def _norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]", "", s.lower())
 
 
+def anchor_streamer(title: str, streamer: str) -> str:
+    """Make sure the title NAMES the streamer — the channel is ~89% YouTube
+    search, and a title without the name people type is invisible to it.
+
+    Anchors the right streamer WITHOUT double-naming: a near-miss spelling
+    ('stablernaldo') is corrected in place, not prefixed; a title that never
+    says the name gets "Name: " in front. Lifted verbatim out of
+    `_postprocess` so the story arm can use the same rule instead of
+    shipping nameless titles (all four stories through 2026-10-01 did)."""
+    import difflib
+    if not streamer:
+        return title
+    pretty = streamer.strip("_").title()
+    fixed_words = []
+    matched = False
+    for word in title.split():
+        if _norm(word) == _norm(streamer) or \
+                difflib.SequenceMatcher(
+                    None, _norm(word), _norm(streamer)).ratio() > 0.8:
+            fixed_words.append(pretty)
+            matched = True
+        else:
+            fixed_words.append(word)
+    title = " ".join(fixed_words)
+    if not matched:
+        title = f"{pretty}: {title}"
+    return title
+
+
 def _postprocess(out: dict, streamer: str, context: str,
                  clip_dur: float = 0.0) -> dict | None:
-    import difflib
     title = str(out.get("title", "")).strip()
     hook = str(out.get("hook", "")).strip().upper()
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
@@ -405,22 +433,7 @@ def _postprocess(out: dict, streamer: str, context: str,
             print(f"::warning::[author] rejected — invented sensitive "
                   f"theme {w!r} not present in the clip", flush=True)
             return None
-    # anchor the right streamer WITHOUT double-naming: a near-miss
-    # spelling ('stablernaldo') is corrected in place, not prefixed
-    pretty = streamer.strip("_").title()
-    fixed_words = []
-    matched = False
-    for word in title.split():
-        if _norm(word) == _norm(streamer) or \
-                difflib.SequenceMatcher(
-                    None, _norm(word), _norm(streamer)).ratio() > 0.8:
-            fixed_words.append(pretty)
-            matched = True
-        else:
-            fixed_words.append(word)
-    title = " ".join(fixed_words)
-    if not matched:
-        title = f"{pretty}: {title}"
+    title = anchor_streamer(title, streamer)
     caption = scrub_text(str(out.get("caption", "")).strip()[:180])
     # Comment-bait CTA (feed-engagement lever): a take-provoking question,
     # scrubbed and length-capped. Empty when the model omits it — the
