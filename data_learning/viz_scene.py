@@ -1820,8 +1820,8 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         # no wider than the pan: he hangs off its outer edge, and a huge
         # number reached under him (a_audit: "347,198", 2026-10-01)
         _nf, _nt = fit_centred(d, charts._ulabel(shown_v, unit, group=True),
-                               72, px, (px - 120, box[1], px + 120, box[3]),
-                               min_size=30)
+                               72, px, (px - 100, box[1], px + 100, box[3]),
+                               min_size=28)
         d.text((px, py + 168), _nt, font=_nf, fill=_rgba(col, int(255 * na)),
                anchor="mm")
         for k, (_lf, _lt) in enumerate(fit_centred_lines(d, str(lab), 44, px,
@@ -1840,7 +1840,7 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     hx, hy = (lx, ly) if hi else (rx, ry)
     _side = -1 if hi else 1
     place_agent(canvas, d, "lift", reveal, label, "balance",
-                (hx + _side * (pan_w // 2 + 70), hy + 112), height=230,
+                (hx + _side * (pan_w // 2 + 84), hy + 112), height=230,
                 xlim=(8, W - 8), flip=hi)
     return (value, "art", int(lx), int(ly + 98))
 
@@ -2515,13 +2515,13 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     # A FIRE FLICKERS: five tongues whose tips move a visible distance every
     # frame (two harmonics, fast), big enough for the gate's 90px blocks to
     # see — three slow tongues measured 70% held (2026-10-01).
-    _fx, _fy = cx - 150, bot + 150
+    _fx, _fy = cx - 205, bot + 150     # clear of the bulb's reading
     _t = beat_clock(reveal)
     for k in range(5):
         _ph = _t * 31.0 + k * 2.1
         _fh = 120 + 90 * (0.5 + 0.5 * _math.sin(_ph)) + 40 * _math.sin(_ph * 2.3 + k)
-        _fw = 56 + 12 * (k % 3)
-        _ox = (k - 2) * 26 + 10 * _math.sin(_ph * 0.7)
+        _fw = 48 + 10 * (k % 3)
+        _ox = (k - 2) * 22 + 8 * _math.sin(_ph * 0.7)
         d.polygon([(_fx + _ox - _fw, _fy), (_fx + _ox - _fw * 0.45, _fy - _fh * 0.5),
                    (_fx + _ox + 8 * _math.sin(_ph), _fy - _fh),
                    (_fx + _ox + _fw * 0.45, _fy - _fh * 0.5), (_fx + _ox + _fw, _fy)],
@@ -2529,7 +2529,7 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     d.rounded_rectangle([_fx - 90, _fy - 4, _fx + 90, _fy + 16], radius=6,
                         fill=_rgba(TEXT, 200))
     _box, _tip = place_agent(canvas, d, "drop", reveal, insight, "thermometer",
-                             (_fx - 160, _fy - 110), height=260,
+                             (_fx - 150, _fy - 110), height=260,
                              floor=by1 - 10, xlim=(8, W - 8), ceil=by0 + 120)
     if _tip is not None:
         draw_lob(d, _tip, (_fx, _fy - 40), _t, TEXT, r=22)
