@@ -1,0 +1,21 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261001T191952Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook and seg0 (hook@0.3 to seg0:mid) are a thin timeline line with a small mascot, and the top and bottom thirds of the frame are empty; seg3:start is a small bubble and a tiny $3.7B dot on a dark field.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_fallback_mislabeled",
+  "visible_evidence": "seg1:start to seg1:end: a decorative, empty US map sits above three plain horizontal bars ranked by YEAR, with the kicker '2007 LEADS THE MAP' when 2007 is actually the smallest (1). The '35' value label garbles into a doubled ghost at seg1:end, and Data just stands on the bar tip.",
+  "root_cause": "A 'spread over time' story was classified as a rank and drawn as ranked bars, so the map that should carry the spread is unused backdrop and the auto-kicker names the wrong leader.",
+  "repair_goal": "Make the map the machine: Data carries or sprays the fungus cave to cave and fills states on the US map, 1 in 2006, 32 by 2018, 35 today, with a live state counter. Remove the ranked bars and the wrong kicker, and render each value label once, crisply, clear of the mascot."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

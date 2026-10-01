@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261001T191952Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg3:start through seg4:end Data just stands on top of the left circle and does nothing tied to the 127% vs 195% claim. Earlier, on the ladder (seg0:mid, seg2:end), he only points at the finished bar; he never builds or raises it.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start, seg3:mid and seg3:end show two identical teal discs, both labelled '127%' and both captioned 'Billionaire wealth'. The narration says the S&P 500 grew 195%, but no disc says 195% or 'S&P 500', so the comparison the whole video hangs on shows as a tie.",
+  "root_cause": "The comparison composer filled both slots from the same series, the billionaire wealth row, instead of using the S&P 500 row for the second slot. It also draws the claim as two scaling discs rather than a demonstration of one outgrowing the other.",
+  "repair_goal": "Show the S&P 500 at 195% beside billionaire wealth at 127% with correct labels on each. Draw it as the market physically carrying the fortune: a rising S&P tide or elevator that lifts a billionaire money-pile up to 127%, while the market itself keeps climbing to 195%. Data should be the one cranking the market lift, so the viewer sees that most of the gain is just the stock market."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
