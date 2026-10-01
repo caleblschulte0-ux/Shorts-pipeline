@@ -6,11 +6,11 @@
     "publish_at": "2026-10-01T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a clean, well-paced two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame.",
-    "elapsed_seconds": 88.9,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest race chart with a real 2020 cliff and crossover payoff, held back by a source line clipped in every frame and a slow first two seconds.",
+    "elapsed_seconds": 115.6,
     "package_path": "state/trending_packages/20261001/04_sports-betting-passed-box-office.json",
     "source": "brain",
-    "video_path": "output/daily_20261001-113523_sports_betting_just_passed_the_box_offic.mp4",
+    "video_path": "output/daily_20261001-120031_sports_betting_just_passed_the_box_offic.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,7 +28,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a clean, well-paced two-line race with a clear crossover payoff, but the source footer is cut off at the frame edge in every frame.",
+      "reason": "showrunner BLOCK: A clean, honest race chart with a real 2020 cliff and crossover payoff, held back by a source line clipped in every frame and a slow first two seconds.",
       "score": 78
     },
     "blocked": true
@@ -40,14 +40,14 @@
     "publish_at": "2026-10-01T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The shot illustrations are generic, mostly irrelevant emoji (a chair, a blank phone, a hard-hat worker) that never show the kiosk/points/folder story, and the payoff ends on a static worker emoji under 'FOLDER.'",
-    "elapsed_seconds": 296.8,
+    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown: generic keyword icons (cart, blank phone, construction worker), whole middle beats with no illustration over near-black gameplay, and an ending held on an unrelated worker emoji.",
+    "elapsed_seconds": 310.6,
     "package_path": "state/trending_packages/20261001/05_the-kiosk-ate-everyones-points.json",
     "source": "brain",
-    "video_path": "output/daily_20261001-113758_the_kiosk_ate_my_points__i_built_a_folde.mp4",
+    "video_path": "output/daily_20261001-120257_the_kiosk_ate_my_points__i_built_a_folde.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.3,
+      "duration": 49.1,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,35 +58,34 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The shot illustrations are generic, mostly irrelevant emoji (a chair, a blank phone, a hard-hat worker) that never show the kiosk/points/folder story, and the payoff ends on a static worker emoji under 'FOLDER.'",
+      "reason": "showrunner BLOCK: The story beats are never shown: generic keyword icons (cart, blank phone, construction worker), whole middle beats with no illustration over near-black gameplay, and an ending held on an unrelated worker emoji.",
       "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "She Wrote The Forfeit Rule. It Disqualified Her Own Kid.",
-    "title": "She Wrote The Forfeit Rule. It Disqualified Her Own Kid.",
-    "format": "reddit",
+    "topic": "Couple describes relief at rescue after whale destroys their yacht",
+    "angle": "A giant sperm whale collided with a yacht 500 miles off New Zealand, forcing a dramatic rescue and highlighting ocean\u2011size dangers.",
     "publish_at": "2026-10-01T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable gameplay-and-captions reddit story, but no beat is illustrated, so the 'her own rule disqualified her kid' twist is only told, never shown.",
-    "elapsed_seconds": 263.3,
-    "package_path": "state/trending_packages/20261001/06_she-wrote-the-forfeit-rule-herself.json",
-    "source": "brain",
-    "video_path": "output/daily_20261001-114239_she_wrote_the_forfeit_rule__it_disqualif.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The whole video is Reddit-card-plus-gameplay with captions: none of the story's beats (drill, refund, neon burst, security cameras) is ever illustrated, so the narrative is told but never shown.",
+    "elapsed_seconds": 274.5,
+    "title": "I Fixed a Drill Then Served a Free One with a Surprise",
+    "package_path": "state/trending_packages/20261001-120757_auto_couple_describes_relief_at_rescue_after_.json",
+    "video_path": "output/daily_20261001-120757_couple_describes_relief_at_rescue_after_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.067,
+      "duration": 46.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,7 +96,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -23.5
     },
     "qa": {
       "ok": true,
@@ -106,106 +105,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable gameplay-and-captions reddit story, but no beat is illustrated, so the 'her own rule disqualified her kid' twist is only told, never shown.",
-      "score": 65
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Wow! Near-miss with semi-truck caught on camera - WRAL",
-    "angle": "A semi\u2011truck barely missed a car in a dramatic near\u2011miss captured on video, highlighting dangerous highway chaos.",
-    "publish_at": "2026-10-01T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/MZsufZYz8Eo",
-    "error": null,
-    "elapsed_seconds": 202.1,
-    "title": "I Caught a Tip-Jar Thief on Camera and Turned the Tables",
-    "package_path": "state/trending_packages/20261001-114628_auto_wow__near_miss_with_semi_truck_caught_on.json",
-    "video_path": "output/daily_20261001-114628_wow__near_miss_with_semi_truck_caught_on.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.667,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261001-i-caught-a-tip-jar-thief-on-camera-and-turned-th-764a9778"
-    },
-    "backfill": true
-  },
-  {
-    "topic": "Sharks can hear nearly 250 feet away and pinpoint the source",
-    "angle": "Researchers found blacktip sharks can hear low\u2011frequency sounds from 250\u202ffeet away, revealing how they hunt near coastlines.",
-    "publish_at": "2026-10-01T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Story pictures appear in only 2 of 6 mid frames; the rest is blurry gameplay, and the payoff ends on bare gameplay with no caption and nothing showing the punchline.",
-    "elapsed_seconds": 299.4,
-    "title": "Entitled Customer Demands Free Latte and Gets a Lesson",
-    "package_path": "state/trending_packages/20261001-114949_auto_sharks_can_hear_nearly_250_feet_away_and.json",
-    "video_path": "output/daily_20261001-114949_sharks_can_hear_nearly_250_feet_away_and.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 52.567,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Story pictures appear in only 2 of 6 mid frames; the rest is blurry gameplay, and the payoff ends on bare gameplay with no caption and nothing showing the punchline.",
-      "score": 53
+      "reason": "showrunner BLOCK: The whole video is Reddit-card-plus-gameplay with captions: none of the story's beats (drill, refund, neon burst, security cameras) is ever illustrated, so the narrative is told but never shown.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "Caught On Camera Kitten Rescued From I 80 In Paterson - News12 | New Jersey",
-    "angle": "A kitten rescued from I\u201180 traffic was captured on camera, turning a busy highway into a rescue scene.",
-    "publish_at": "2026-10-01T16:00:00Z",
+    "topic": "RAW: NE: NEAR MISS WITH SEMI-TRUCK CAUGHT ON CAMERA - KXLY.com",
+    "angle": "A heart\u2011stopping near\u2011miss between a semi\u2011truck and a car was captured live, sparking a flood of shares and safety debates.",
+    "publish_at": "2026-10-01T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a caption track over washed-out gameplay: not one story beat (croissant, review, inspection, closure, promotion) is shown on screen, so the narrative rests entirely on the voiceover.",
-    "elapsed_seconds": 197.4,
-    "title": "I Turned an Entitled Customer\u2019s Threat Into a Free Promotion",
-    "package_path": "state/trending_packages/20261001-115456_auto_caught_on_camera_kitten_rescued_from_i_8.json",
-    "video_path": "output/daily_20261001-115456_caught_on_camera_kitten_rescued_from_i_8.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Only gameplay and captions tell the story. The single illustration is a blank phone icon reused three times, so none of the cafe beats (latte, note, tip jar, viral post) is ever shown.",
+    "elapsed_seconds": 263.9,
+    "title": "I gave the entitled cafe customer a free latte and she filmed the chaos",
+    "package_path": "state/trending_packages/20261001-121226_auto_raw__ne__near_miss_with_semi_truck_caugh.json",
+    "video_path": "output/daily_20261001-121226_raw__ne__near_miss_with_semi_truck_caugh.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.2,
+      "duration": 48.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -216,17 +135,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.2
+      "loudness_lufs": -23.1
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: This is a caption track over washed-out gameplay: not one story beat (croissant, review, inspection, closure, promotion) is shown on screen, so the narrative rests entirely on the voiceover.",
-      "score": 61
+      "reason": "showrunner BLOCK: Only gameplay and captions tell the story. The single illustration is a blank phone icon reused three times, so none of the cafe beats (latte, note, tip jar, viral post) is ever shown.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
