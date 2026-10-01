@@ -3016,21 +3016,19 @@ def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
             r_ = max(6, min(10, th // 3))
             d.ellipse([px - r_, y - r_, px + r_, y + r_],
                       fill=_rgba(charts.CARD, 215))
-        txt = full = f"{lab}  {charts._ulabel(val, unit, group=True)}"
+        txt = f"{lab}  {charts._ulabel(val, unit, group=True)}"
         tx = min(x_in, x_out) if not right else max(x_in, x_out)
-        # never sliced: fitted to the frame (it printed "Prevention & man")
-        _lf, txt = fit_text(d, txt, 34, int(max_w or (bx1 - bx0 - 60)),
-                            min_size=24, wrap=False)
         if label_at is not None:
+            # inside the tank: may wrap, and may go small ("Greater Los
+            # Angeles metro 1,840" at 24pt in two lines, a_audit 2026-10-01)
             tx, ty, anc = label_at
-            # may wrap, and may go small: "Greater Los Angeles metro 1,840"
-            # ellipsised at 24pt in two lines (a_audit, 2026-10-01)
-            # ...from the FULL text: the single-line fit above had already
-            # ellipsised it, and the wrap then wrapped the ellipsis
-            _lf, txt = fit_text(d, full, 34, int(max_w), min_size=20)
             ty -= 14                                   # "la": from the ascender
+            _lf, txt = fit_text(d, txt, 34, int(max_w), min_size=20)
         else:
             ty, anc = y - th // 2 - 34, ("lm" if not right else "rm")
+            # never sliced: fitted to the frame (it printed "Prevention & man")
+            _lf, txt = fit_text(d, txt, 34, int(max_w or (bx1 - bx0 - 60)),
+                                min_size=24, wrap=False)
         d.text((tx, ty), txt, font=_lf, fill=_rgba(col, 245), anchor=anc)
 
     # the inflow's label sits INSIDE the tank at the inlet: along the pipe
