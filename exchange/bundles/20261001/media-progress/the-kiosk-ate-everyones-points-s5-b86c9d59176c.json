@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "70cfdc4637e51a102624361e574ed06b8952f2189cdff91c2ec505e6f6539bd7",
+  "prompt_used": "An editorial illustration for a short-form video: email inbox laptop. It accompanies the narration: \"sent corporate a timeline with timestamps\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1bGovz_p_A-GDRhmTg3DIa04pGFob28ma",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s5-b86c9d59176c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1bGovz_p_A-GDRhmTg3DIa04pGFob28ma",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2327ae5395721573a11dbd8886d46aec40cc952e7c1b56ddd30bb856cd498e95",
+    "bytes": 1713466,
+    "format": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-10-01T11:24:30.919Z"
+}
