@@ -1,0 +1,126 @@
+{
+  "date": "20261001",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s0-51d380c13f4a.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s1-a2227d3836e2.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s2-899f0f2e500c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s2-899f0f2e500c.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s3-c168a96796c4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s3-c168a96796c4.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s5-b86c9d59176c.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s6-06943a8dfec1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s6-06943a8dfec1.png"
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s7-0c6b887208b4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/the-kiosk-ate-everyones-points-s7-0c6b887208b4.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s1-da82889fc60f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s1-da82889fc60f.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s2-efffb7576810",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s2-efffb7576810.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s4-47e4422dc079",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s4-47e4422dc079.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s6-817c996d92ed",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s6-817c996d92ed.png"
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s7-f20334931f8a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-wrote-the-forfeit-rule-herself-s7-f20334931f8a.png"
+    }
+  ]
+}
