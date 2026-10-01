@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "she-wrote-the-forfeit-rule-herself-s1-da82889fc60f",
+  "safe_request_id": "she-wrote-the-forfeit-rule-herself-s1-da82889fc60f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "71498900a6c823569d24eddeeb97180ceeb99980e77a77018ad2b45a4f0e77a8",
+  "prompt_used": "An editorial illustration for a short-form video: parent confronting volunteer. It accompanies the narration: \"cornered me, the volunteer scheduler, at pickup\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ua2O9ibJtf3anhnHSd58gk9wCcnj1wrl",
+    "filename": "20261001__she-wrote-the-forfeit-rule-herself-s1-da82889fc60f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ua2O9ibJtf3anhnHSd58gk9wCcnj1wrl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "cb1d52eebf880a77e1f3735c03b0faa584ae56c5195f6ecc7564a8890cc119a9",
+    "bytes": 2077760,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-01T11:25:03.649Z"
+}
