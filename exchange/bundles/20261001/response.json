@@ -1,0 +1,452 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261001",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 6,
+    "registry_sha256": "4a82b0708b353716e68a202cc812cceb8dfb1849ece3d56356d67040593db284",
+    "source_commit": "8a035c1649bdbdb8b79ce737b5e64b5dee3304c2",
+    "production_date": "20261001",
+    "bundle_sha256": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06"
+  },
+  "packages": [
+    {
+      "slug": "world-urban-rural-population-crossover",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title states the permanent global population crossover before the chart reveals its timing."
+    },
+    {
+      "slug": "smartphones-buried-feature-phones",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title leads with the billion-unit milestone and lands the feature-phone collapse."
+    },
+    {
+      "slug": "remote-work-briefly-beat-office",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the reversal is already the hook, and the chart supplies the visual proof."
+    },
+    {
+      "slug": "sports-betting-passed-box-office",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title makes the unexpected spending crossover immediately legible."
+    },
+    {
+      "slug": "the-kiosk-ate-everyones-points",
+      "script": "Our neighborhood pizza chain made us redeem rewards only through a kiosk that glitched constantly, then support blamed user error whenever it ate points. Mine vanished the week I hit a free pizza. So I started screenshotting every glitch—mine and four strangers'—that same week. I built a shared folder, found the chain's consumer complaints email in its privacy policy, and sent corporate a timeline with timestamps. Three weeks later, the chain announced a loyalty audit. It restored six months of missing points to every account with a ticket and fired the vendor running the kiosks. I got my free pizza, slightly cold, which felt appropriate. Forty-two strangers got theirs too. None knew who started the folder. The kiosk's final reward was paperwork.",
+      "editor_note": "Cut the setup to 133 words, preserved every protected fact and visual phrase, and replaced the soft ending with a dry paperwork callback."
+    },
+    {
+      "slug": "she-wrote-the-forfeit-rule-herself",
+      "script": "A team mom on our rec soccer league decided only other teams should forfeit over scheduling conflicts. She cornered me, the volunteer scheduler, at pickup and demanded I add a clause to the league bylaws letting any coach formally challenge a forfeit within 48 hours for irregular scheduling influence. She copied the league president to ensure I complied. Fine. I added her clause exactly as dictated. Her son's team hit a bye-week conflict two rounds later. The opposing coach, copied on her original email, filed the exact challenge she had demanded. The league upheld it. Nobody raised a voice. Her son's team was disqualified from the tournament by the rule she wrote herself. At the banquet, she explained to twelve nine year olds why mom's rule beat them. The strictest referee was her own inbox.",
+      "editor_note": "Compressed the original to 127 words while preserving every number, entity, shot phrase, and punch phrase; the ending now lands on her email trail."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s0-51d380c13f4a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1mFsoAg7yXKyDK2C6bDq5UWDgW6bGxonw",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s0-51d380c13f4a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1mFsoAg7yXKyDK2C6bDq5UWDgW6bGxonw",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "61945818a4e832d071050f912338053d3a183f61929d5483cdb4194c66a55732",
+        "bytes": 1550254,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s0-51d380c13f4a.json",
+        "verified_at": "2026-10-01T11:23:18.559Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s1-a2227d3836e2",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1E76w5P3B56hcZh84vmVfjn38AuMM38-J",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s1-a2227d3836e2.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1E76w5P3B56hcZh84vmVfjn38AuMM38-J",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3e8e49145f2242db2627890db40e8abbf3d48144a2a22e52b3496fc47c21c826",
+        "bytes": 2058053,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s1-a2227d3836e2.json",
+        "verified_at": "2026-10-01T11:23:57.033Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s2-899f0f2e500c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1okHOs3n81P6MTTfc-2QmUi2LYurOQbmJ",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s2-899f0f2e500c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1okHOs3n81P6MTTfc-2QmUi2LYurOQbmJ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ad22c0094936eb9c9e14f8a436c43d5960f22089100f72e319a7ec40371e7de3",
+        "bytes": 2416401,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s2-899f0f2e500c.json",
+        "verified_at": "2026-10-01T11:24:05.406Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s3-c168a96796c4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IZ35e7fX40KBtfxpmgpYS6xlf6lgb4-8",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s3-c168a96796c4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IZ35e7fX40KBtfxpmgpYS6xlf6lgb4-8",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ad6e31579122391ac67ff6a550e21a6b77bce596cbad57b814e0492febc61f82",
+        "bytes": 2208626,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s3-c168a96796c4.json",
+        "verified_at": "2026-10-01T11:24:14.090Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qXa4kqpkTz4lg3RWY4g10PtHBJCG-EFy",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qXa4kqpkTz4lg3RWY4g10PtHBJCG-EFy",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "89b01526b8258bae9d3f8d040da4ad931a9bce4a44b5a27e84be99dd084658ac",
+        "bytes": 1681787,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s4-0b9bc4ac63e3.json",
+        "verified_at": "2026-10-01T11:24:22.047Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s5-b86c9d59176c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1bGovz_p_A-GDRhmTg3DIa04pGFob28ma",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s5-b86c9d59176c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1bGovz_p_A-GDRhmTg3DIa04pGFob28ma",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2327ae5395721573a11dbd8886d46aec40cc952e7c1b56ddd30bb856cd498e95",
+        "bytes": 1713466,
+        "format": "png",
+        "width": 1374,
+        "height": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s5-b86c9d59176c.json",
+        "verified_at": "2026-10-01T11:24:30.919Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s6-06943a8dfec1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1kfdPkLNuOOnj8PdcuVxpeqOBFXxPRI3f",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s6-06943a8dfec1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1kfdPkLNuOOnj8PdcuVxpeqOBFXxPRI3f",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c23241cb0bd10770316a1b3aa50900afdce4ad00cf855ea15ef7dfff69367f8d",
+        "bytes": 1899074,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s6-06943a8dfec1.json",
+        "verified_at": "2026-10-01T11:24:38.299Z"
+      }
+    },
+    {
+      "request_id": "the-kiosk-ate-everyones-points-s7-0c6b887208b4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "18q9K3UDWFDu0bsIGVNZxE6d02oOpTU4Y",
+        "filename": "20261001__the-kiosk-ate-everyones-points-s7-0c6b887208b4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=18q9K3UDWFDu0bsIGVNZxE6d02oOpTU4Y",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "220c251d94d70ca0914e38c585c1838d59d4db8bbe6b79e30a44f9e8a2efd6f6",
+        "bytes": 1897765,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/the-kiosk-ate-everyones-points-s7-0c6b887208b4.json",
+        "verified_at": "2026-10-01T11:24:46.715Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1fMtRJpxhH4qdOj2tOfoFdPCW-3jAl9VG",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1fMtRJpxhH4qdOj2tOfoFdPCW-3jAl9VG",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "61f83e01f484add4648b279a5a9c9c2914dd2615a732a00532b26d40fb53d75e",
+        "bytes": 2225538,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s0-fcc54515b54b.json",
+        "verified_at": "2026-10-01T11:24:55.424Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s1-da82889fc60f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Ua2O9ibJtf3anhnHSd58gk9wCcnj1wrl",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s1-da82889fc60f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ua2O9ibJtf3anhnHSd58gk9wCcnj1wrl",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "cb1d52eebf880a77e1f3735c03b0faa584ae56c5195f6ecc7564a8890cc119a9",
+        "bytes": 2077760,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s1-da82889fc60f.json",
+        "verified_at": "2026-10-01T11:25:03.649Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s2-efffb7576810",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Ru6gCxemJO0PNpLVim_E9VAL0ZydL6cf",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s2-efffb7576810.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ru6gCxemJO0PNpLVim_E9VAL0ZydL6cf",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a0b36094ce0cfba833a89f0bc49ff32c00480df55a55f4d7024a985f0e8f9e65",
+        "bytes": 1971878,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s2-efffb7576810.json",
+        "verified_at": "2026-10-01T11:25:13.388Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gHi4GYHzkGQK4WSXCjtEbzZsnRZGWA_o",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gHi4GYHzkGQK4WSXCjtEbzZsnRZGWA_o",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d97900118f958e1bb583899643641d75667406a904d71d784ea9a6594987dcfb",
+        "bytes": 1694345,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s3-6498a6c52d35.json",
+        "verified_at": "2026-10-01T11:25:23.024Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s4-47e4422dc079",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1fiaBYGAHQ09IJwJxYRX565aVjsTmdWwZ",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s4-47e4422dc079.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1fiaBYGAHQ09IJwJxYRX565aVjsTmdWwZ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "04d3e8697a0e6fbd6139f216ea91bf0601758128600252de4b1aa1acb11459cd",
+        "bytes": 1783090,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s4-47e4422dc079.json",
+        "verified_at": "2026-10-01T11:25:31.104Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1F_sRCw8klNsXWb810n6mMDU-7qjFG-0c",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1F_sRCw8klNsXWb810n6mMDU-7qjFG-0c",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ab26251342f2672564ca251d48da21d0be9a71d11854bcf8e88b3c5c0757922e",
+        "bytes": 2083151,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s5-4eea1650b95d.json",
+        "verified_at": "2026-10-01T11:25:39.710Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s6-817c996d92ed",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1et36L9IZf3b4gEPKKLmTg1i3VFAoGma0",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s6-817c996d92ed.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1et36L9IZf3b4gEPKKLmTg1i3VFAoGma0",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1fec96ed2f832a3da248f462524a955f0a4d97f5a2c01f9bfb713d3b3090c2d7",
+        "bytes": 1791051,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s6-817c996d92ed.json",
+        "verified_at": "2026-10-01T11:25:47.356Z"
+      }
+    },
+    {
+      "request_id": "she-wrote-the-forfeit-rule-herself-s7-f20334931f8a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1JZ3XQOE76qJHhjsIhyATXPjLT0qGchd3",
+        "filename": "20261001__she-wrote-the-forfeit-rule-herself-s7-f20334931f8a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1JZ3XQOE76qJHhjsIhyATXPjLT0qGchd3",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8baa413209f8a5159f296ae762d33d64b8df5152a602240e22386e59d67816f3",
+        "bytes": 2060044,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261001/media-progress/she-wrote-the-forfeit-rule-herself-s7-f20334931f8a.json",
+        "verified_at": "2026-10-01T11:25:55.236Z"
+      }
+    }
+  ]
+}
