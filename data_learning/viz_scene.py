@@ -732,34 +732,20 @@ def scene_agent(verb: str, phase: float, insight=None, kind: str = ""):
     return img, anchor, tip
 
 
-def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
-                at, height: float = 260, floor=None, hmin: float = 150,
-                hmax: float = 460, xlim=None, flip: bool = False,
-                ceil=None):
-    """Composite Data DOING the verb, with the act's anchor ON ``at``.
-
-    ``at`` is where the machine says its moving part is — the rim he pours
-    over, the needle tip, the crank's axle. He is scaled to ``height`` and
-    placed so the anchor lands there. With a ``floor`` he is kept honest
-    about standing: if the part is above his reach he is scaled up to it
-    (within ``hmin``..``hmax``) and, past that, a LADDER is drawn from the
-    floor to his feet — a man pouring over a tall rim is on a ladder. If the
-    part is lower than his hands he is scaled down to it. ``height`` is his
-    size, and with a floor it is the MOST he grows to reach: a part further
-    up gets the ladder, not a giant. ``ceil`` is a y his head may not pass
-    (the box top, under the title): he is scaled down to keep under it.
-    ``xlim`` clamps his left/right edges inside the frame.
-
-    Returns ``(box, tip_xy)`` — his bounding box on the canvas and where the
-    act's business end is (the bucket's lip, the stamp's face), for the
-    machine to draw the stream or the item from — or ``(None, None)``.
-
-    Every act works to his RIGHT; ``flip`` mirrors him for a part that is to
-    his left (a valve on the right wall of a bucket)."""
+def plan_agent(verb: str, reveal: float, insight, kind: str, at,
+               height: float = 260, floor=None, hmin: float = 150,
+               hmax: float = 460, xlim=None, flip: bool = False, ceil=None):
+    """Everything `place_agent` decides, WITHOUT drawing: the scaled sprite,
+    where it goes, his box, the act's tip on the canvas, and the ladder to
+    draw under him (``(cx, feet_y, floor_y, width)`` or None). The scene kit
+    composites the result onto a PIL canvas; the illustrated world paints
+    the same sprite with cairo — a full-frame PIL layer per frame cost that
+    arm 1.5 s a frame through `pil_surface` (2026-10-01). Returns None when
+    no rig is available (the call is still logged for the tests)."""
     img, anchor, tip = scene_agent(verb, reveal, insight, kind)
     _AGENT_LOG.append((kind, verb, (float(at[0]), float(at[1]))))
     if img is None:
-        return None, None
+        return None
     ax, ay = anchor
     if flip:
         from PIL import ImageOps as _IO
@@ -792,12 +778,48 @@ def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
         x = min(max(x, xlim[0]), xlim[1] - w)
     x, y = int(round(x)), int(round(y))
     feet = y + hh
+    ladder = None
     if floor is not None and feet < float(floor) - 14:
-        draw_ladder(d, x + w // 2, feet, float(floor), w)
-    canvas.alpha_composite(_fit(img, w, hh), (x, y))
+        ladder = (x + w // 2, feet, float(floor), w)
     box = (x, y, x + w, y + hh)
     _AGENT_LOG[-1] = (kind, verb, (float(at[0]), float(at[1])), box)
-    return box, (x + tip[0] * s, y + tip[1] * s)
+    return _fit(img, w, hh), (x, y), box, (x + tip[0] * s, y + tip[1] * s), ladder
+
+
+def place_agent(canvas, d, verb: str, reveal: float, insight, kind: str,
+                at, height: float = 260, floor=None, hmin: float = 150,
+                hmax: float = 460, xlim=None, flip: bool = False,
+                ceil=None):
+    """Composite Data DOING the verb, with the act's anchor ON ``at``.
+
+    ``at`` is where the machine says its moving part is — the rim he pours
+    over, the needle tip, the crank's axle. He is scaled to ``height`` and
+    placed so the anchor lands there. With a ``floor`` he is kept honest
+    about standing: if the part is above his reach he is scaled up to it
+    (within ``hmin``..``hmax``) and, past that, a LADDER is drawn from the
+    floor to his feet — a man pouring over a tall rim is on a ladder. If the
+    part is lower than his hands he is scaled down to it. ``height`` is his
+    size, and with a floor it is the MOST he grows to reach: a part further
+    up gets the ladder, not a giant. ``ceil`` is a y his head may not pass
+    (the box top, under the title): he is scaled down to keep under it.
+    ``xlim`` clamps his left/right edges inside the frame.
+
+    Returns ``(box, tip_xy)`` — his bounding box on the canvas and where the
+    act's business end is (the bucket's lip, the stamp's face), for the
+    machine to draw the stream or the item from — or ``(None, None)``.
+
+    Every act works to his RIGHT; ``flip`` mirrors him for a part that is to
+    his left (a valve on the right wall of a bucket)."""
+    plan = plan_agent(verb, reveal, insight, kind, at, height=height,
+                      floor=floor, hmin=hmin, hmax=hmax, xlim=xlim, flip=flip,
+                      ceil=ceil)
+    if plan is None:
+        return None, None
+    sprite, (x, y), box, tip, ladder = plan
+    if ladder is not None:
+        draw_ladder(d, *ladder)
+    canvas.alpha_composite(sprite, (x, y))
+    return box, tip
 
 
 def draw_ladder(d, cx, top, floor, width):

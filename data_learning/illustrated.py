@@ -205,13 +205,23 @@ def pil_surface(img):
     """A PIL RGBA image as a premultiplied cairo surface."""
     img = img.convert("RGBA")
     w, h = img.size
-    raw = bytearray(img.tobytes("raw", "BGRA"))
-    for i in range(0, len(raw), 4):          # premultiply
-        a = raw[i + 3]
-        if a < 255:
-            raw[i] = raw[i] * a // 255
-            raw[i + 1] = raw[i + 1] * a // 255
-            raw[i + 2] = raw[i + 2] * a // 255
+    try:
+        # the same premultiply (`c * a // 255`), vectorised: the per-pixel
+        # Python loop was 1.5 s on a full frame (2026-10-01)
+        import numpy as _np
+        px = _np.frombuffer(img.tobytes("raw", "BGRA"), dtype=_np.uint8)
+        px = px.reshape(-1, 4).astype(_np.uint16)
+        a_ = px[:, 3:4]
+        px[:, :3] = px[:, :3] * a_ // 255
+        raw = bytearray(px.astype(_np.uint8).tobytes())
+    except Exception:  # noqa: BLE001 — no numpy: the loop
+        raw = bytearray(img.tobytes("raw", "BGRA"))
+        for i in range(0, len(raw), 4):          # premultiply
+            a = raw[i + 3]
+            if a < 255:
+                raw[i] = raw[i] * a // 255
+                raw[i + 1] = raw[i + 1] * a // 255
+                raw[i + 2] = raw[i + 2] * a // 255
     stride = cairo.ImageSurface.format_stride_for_width(cairo.FORMAT_ARGB32, w)
     if stride != w * 4:
         buf = bytearray(stride * h)
@@ -671,28 +681,46 @@ def _host(cr, role, phase, insight, kind, cx, foot_y, height):
 def _agent(cr, verb, phase, insight, kind, at, height, floor=None,
            flip=False):
     """Data DOING the verb, his anchor on ``at`` — the world's own
-    `place_agent`. Draws onto a PIL layer with the scene kit's placer (ladder
-    and all), then paints that layer. Returns (box, tip) or (None, None)."""
+    `place_agent`. Plans with the scene kit's placer and paints only the
+    SPRITE (and his ladder, in cairo): a full-frame PIL layer per frame went
+    through `pil_surface` at 1.5 s a frame. Returns (box, tip) or
+    (None, None)."""
     try:
-        from PIL import Image as _PI, ImageDraw as _PD
         from data_learning import viz_scene as vs
-        layer = _PI.new("RGBA", (W, H), (0, 0, 0, 0))
-        d = _PD.Draw(layer)
         _prev = getattr(vs, "_BEAT_PHASE", None)
         vs._BEAT_PHASE = phase
         try:
-            box, tip = vs.place_agent(layer, d, verb, phase, insight, kind, at,
-                                      height=height, floor=floor,
-                                      xlim=(30, W - 30), flip=flip)
+            plan = vs.plan_agent(verb, phase, insight, kind, at, height=height,
+                                 floor=floor, xlim=(30, W - 30), flip=flip)
         finally:
             vs._BEAT_PHASE = _prev
     except Exception:  # noqa: BLE001 — no rig available: no host, not a crash
         return None, None
-    if box is None:
+    if plan is None:
         return None, None
+    sprite, (x, y), box, tip, ladder = plan
+    if ladder is not None:
+        lcx, feet, floor_y, lw = ladder
+        hw = max(28, int(lw * 0.22))
+        cr.set_source_rgba(*_c(look.INK, 0.78))
+        cr.rectangle(lcx - hw - 6, feet - 6, 2 * hw + 12, 16)
+        cr.fill()
+        cr.set_source_rgba(*_c(look.INK, 0.59))
+        cr.set_line_width(8)
+        for sx in (lcx - hw, lcx + hw):
+            cr.move_to(sx, feet)
+            cr.line_to(sx, floor_y)
+        cr.stroke()
+        cr.set_line_width(6)
+        yy = feet + 56
+        while yy < floor_y - 20:
+            cr.move_to(lcx - hw, yy)
+            cr.line_to(lcx + hw, yy)
+            yy += 56
+        cr.stroke()
     glow(cr, (box[0] + box[2]) / 2, box[3] - 6, (box[2] - box[0]) * 0.55,
          (0, 0, 0), 0.35)
-    cr.set_source_surface(pil_surface(layer), 0, 0)
+    cr.set_source_surface(pil_surface(sprite), x, y)
     cr.paint()
     return box, tip
 
