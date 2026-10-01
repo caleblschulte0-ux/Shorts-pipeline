@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261001",
+  "bundle": {
+    "identity": "6628b056b383ee6b8987eba968c90e5c51742262aecb5734f581a90df3cd5f06",
+    "path": "exchange/bundles/20261001/bundle.json"
+  },
+  "request_id": "the-kiosk-ate-everyones-points-s2-899f0f2e500c",
+  "safe_request_id": "the-kiosk-ate-everyones-points-s2-899f0f2e500c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "adec106e89650ba2d3e36c5d7185d8626294eb0da3be817a65028741d582df3b",
+  "prompt_used": "An editorial illustration for a short-form video: pizza box counter. It accompanies the narration: \"Mine vanished the week I hit a free pizza\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1okHOs3n81P6MTTfc-2QmUi2LYurOQbmJ",
+    "filename": "20261001__the-kiosk-ate-everyones-points-s2-899f0f2e500c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1okHOs3n81P6MTTfc-2QmUi2LYurOQbmJ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ad22c0094936eb9c9e14f8a436c43d5960f22089100f72e319a7ec40371e7de3",
+    "bytes": 2416401,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-01T11:24:05.406Z"
+}
