@@ -10188,14 +10188,31 @@
       "ts": "2026-10-01T12:20:24.443490+00:00"
     },
     "clip-20261001-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/knut/clip/VastElatedBeeShadyLulu-jo2YHtkdqCFbQF7F",
-      "story_key": null,
-      "streamer": "knut",
+      "url": "https://youtube.com/shorts/M1nzY1uaE2w",
       "title": "Knut: Starship Super Heavy Launch: All 33 Engines Light And The Window Starts Shaking",
       "kind": "twitch_clip",
-      "ts": "2026-10-01T17:56:37.714681+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-01T17:56:48.321559+00:00",
+      "uploaded_at": "2026-10-01T17:56:48.321578+00:00",
+      "publish_at": "2026-10-02T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261001-knut-starship-super-heavy-launch-all-33-engines--cd635d70"
+      },
+      "source_url": "https://www.twitch.tv/knut/clip/VastElatedBeeShadyLulu-jo2YHtkdqCFbQF7F",
+      "streamer": "knut",
+      "series": "wholesome",
+      "hook": "THE WINDOW STARTS SHAKING",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2474,
+      "banger": 0.62,
+      "cut": {
+        "start": 31.0,
+        "end": 56.0
+      },
+      "director_cut": true
     }
   }
 }
