@@ -1,0 +1,25 @@
+{
+ "key": "permafrost_vs_atmosphere_carbon",
+ "title": "Carbon stored in permafrost vs. the atmosphere",
+ "unit": "billion",
+ "geography": "Global",
+ "time_coverage": "Current estimate",
+ "source": {
+  "name": "NOAA Arctic Report Card / NSIDC permafrost carbon synthesis",
+  "publisher": "NOAA / National Snow and Ice Data Center",
+  "url": "https://arctic.noaa.gov/Report-Card",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Billions of metric tons of carbon (not CO2-equivalent). Permafrost figure is the commonly cited frozen-soil carbon pool estimate.",
+ "points": [
+  {
+   "label": "Earth's whole atmosphere",
+   "value": 870
+  },
+  {
+   "label": "Frozen in permafrost soil",
+   "value": 1700
+  }
+ ]
+}

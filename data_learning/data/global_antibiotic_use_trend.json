@@ -1,0 +1,42 @@
+{
+ "key": "global_antibiotic_use_trend",
+ "title": "Global human antibiotic consumption",
+ "unit": "billion",
+ "geography": "Global",
+ "time_coverage": "2000-2018",
+ "source": {
+  "name": "Global trends in antibiotic consumption (Klein et al., PNAS / CDDEP)",
+  "publisher": "Center for Disease Dynamics, Economics & Policy",
+  "url": "https://cddep.org/projects/resistancemap/",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Measured in billions of defined daily doses (DDDs). 2018 figure approximate, extrapolated from the reported growth rate.",
+ "points": [
+  {
+   "label": "2000",
+   "value": 21.1,
+   "period": "2000"
+  },
+  {
+   "label": "2005",
+   "value": 24.0,
+   "period": "2005"
+  },
+  {
+   "label": "2010",
+   "value": 28.1,
+   "period": "2010"
+  },
+  {
+   "label": "2015",
+   "value": 34.8,
+   "period": "2015"
+  },
+  {
+   "label": "2018",
+   "value": 40.0,
+   "period": "2018"
+  }
+ ]
+}

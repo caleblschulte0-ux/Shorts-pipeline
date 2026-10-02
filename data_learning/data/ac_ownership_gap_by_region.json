@@ -1,0 +1,25 @@
+{
+ "key": "ac_ownership_gap_by_region",
+ "title": "Air conditioning ownership: hottest regions vs. wealthy cooling markets",
+ "unit": "percent",
+ "geography": "Global",
+ "time_coverage": "2018 estimate",
+ "source": {
+  "name": "The Future of Cooling",
+  "publisher": "International Energy Agency (IEA)",
+  "url": "https://www.iea.org/reports/the-future-of-cooling",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Share of households with air conditioning. 'Hottest regions' covers roughly 2.8 billion people in the hottest parts of the world.",
+ "points": [
+  {
+   "label": "Hottest regions (2.8B people)",
+   "value": 9
+  },
+  {
+   "label": "US / Japan / South Korea",
+   "value": 90
+  }
+ ]
+}

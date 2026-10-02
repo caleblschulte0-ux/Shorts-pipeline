@@ -30164,6 +30164,239 @@
     }
    ],
    "hook_was": "Billionaires just hit a record 3,028."
+  },
+  {
+   "slug": "space-debris-collision-risk",
+   "title": "Why NASA Tracks 1 Million Pieces Of Space Junk",
+   "hook": "There's over a million pieces of junk flying around Earth right now.",
+   "closing": "The sky got crowded. Nobody sent anything up there to clean it.",
+   "question": "Does it freak you out that space is this cluttered? Tell me below.",
+   "caption": "NASA tracks 45,000 objects bigger than 10 centimeters orbiting Earth right now — and that's the small slice we can actually see. Here's why space got this crowded, and why one collision could make it worse. Does this surprise you? 👇",
+   "hashtags": [
+    "spacejunk",
+    "spacedebris",
+    "nasa",
+    "esa",
+    "orbit",
+    "satellites",
+    "kessler",
+    "space",
+    "sciencefacts",
+    "didyouknow",
+    "astronomy",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "space_tracked_objects_trend",
+     "params": {
+      "file": "space_tracked_objects_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE PILE-UP",
+     "topic": "space junk tracked in Earth orbit",
+     "say": "Back in 1980, NASA tracked about 5,000 objects in orbit. Today that number is 45,000, and it keeps climbing every year."
+    },
+    {
+     "source": "offline",
+     "key": "space_debris_by_size_rank",
+     "params": {
+      "file": "space_debris_by_size_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "2 · WHAT WE CAN'T SEE",
+     "topic": "the full scale of space debris by size",
+     "say": "But those 45,000 are just the ones bigger than 10 centimeters. Shrink to under a centimeter, and the estimate jumps to 130 million pieces — untrackable, and still moving at 17,500 miles an hour."
+    },
+    {
+     "source": "offline",
+     "key": "space_conjunction_screenings_trend",
+     "params": {
+      "file": "space_conjunction_screenings_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE RISK COMPOUNDS",
+     "topic": "collision-risk screenings around Earth",
+     "say": "So Space Command now runs 50,000 collision-risk screenings a day, up from 500 back in 2005. Every impact creates more debris, which creates more risk — that's the problem compounding on itself."
+    }
+   ]
+  },
+  {
+   "slug": "antibiotic-resistance-deaths",
+   "title": "Drug-Resistant Infections Now Kill More Than HIV And Malaria",
+   "hook": "1.27 million people died from a resistant infection in 2019 alone.",
+   "closing": "The drugs that saved last century are quietly losing this one.",
+   "question": "Do you finish every antibiotic prescription you're given? Tell me below.",
+   "caption": "In 2019, antibiotic-resistant infections killed 1.27 million people — more than HIV/AIDS and malaria combined. Here's how overusing antibiotics got us here, and why some places are hit so much harder than others. Did you know this? 👇",
+   "hashtags": [
+    "antibioticresistance",
+    "superbugs",
+    "amr",
+    "publichealth",
+    "health",
+    "medicine",
+    "science",
+    "who",
+    "globalhealth",
+    "data",
+    "sciencefacts",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "amr_deaths_vs_hiv_malaria_2019",
+     "params": {
+      "file": "amr_deaths_vs_hiv_malaria_2019.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "1 · THE BIGGER KILLER",
+     "topic": "deaths from resistant infections, HIV and malaria",
+     "say": "In 2019, malaria killed 640,000 people. HIV and AIDS killed 690,000. Drug-resistant infections killed 1.27 million — more than both."
+    },
+    {
+     "source": "offline",
+     "key": "global_antibiotic_use_trend",
+     "params": {
+      "file": "global_antibiotic_use_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHY IT HAPPENED",
+     "topic": "why drug-resistant infections keep rising: antibiotic overuse",
+     "say": "Here's why: the world used 21.1 billion doses of antibiotics in 2000. By 2018 that was up near 40 billion. Every extra dose gives bacteria another chance to evolve past the drug."
+    },
+    {
+     "source": "offline",
+     "key": "amr_death_rate_by_region",
+     "params": {
+      "file": "amr_death_rate_by_region.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "3 · WHERE IT HITS HARDEST",
+     "topic": "regional death rate from resistant infections",
+     "say": "And it isn't even. Western Europe loses about 4.6 people per 100,000 to resistant infections. Sub-Saharan Africa loses 23.5 — five times as many, with far less access to backup drugs."
+    }
+   ]
+  },
+  {
+   "slug": "permafrost-thaw",
+   "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+   "hook": "It's held 1.7 trillion tons of carbon frozen for thousands of years.",
+   "closing": "It took millennia to freeze. It's unfreezing in decades.",
+   "question": "Did you know the ground itself could leak carbon? Tell me below.",
+   "caption": "Arctic permafrost has held carbon frozen in place for thousands of years — 1.7 trillion tons of it, nearly double what's in the whole atmosphere. It's now warming fast enough to start letting that carbon go. Here's the mechanism. Did this surprise you? 👇",
+   "hashtags": [
+    "permafrost",
+    "arctic",
+    "climatechange",
+    "climatedata",
+    "carbon",
+    "noaa",
+    "science",
+    "globalwarming",
+    "earth",
+    "data",
+    "sciencefacts",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "permafrost_ground_temp_trend",
+     "params": {
+      "file": "permafrost_ground_temp_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE WARMING",
+     "topic": "Arctic permafrost ground temperature",
+     "say": "Arctic permafrost sat about 8 degrees below freezing in 1983. By 2023 it had warmed to just over 2 below -- ground frozen for millennia doesn't warm that fast on its own."
+    },
+    {
+     "source": "offline",
+     "key": "permafrost_vs_atmosphere_carbon",
+     "params": {
+      "file": "permafrost_vs_atmosphere_carbon.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "2 · WHAT'S INSIDE IT",
+     "topic": "carbon locked in permafrost versus the atmosphere",
+     "say": "Here's what's at stake: the whole atmosphere holds about 870 billion tons of carbon. Permafrost alone holds 1.7 trillion — almost double — frozen in place since before the last ice age ended."
+    },
+    {
+     "source": "offline",
+     "key": "permafrost_carbon_release_projection",
+     "params": {
+      "file": "permafrost_carbon_release_projection.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHAT COULD LEAK OUT",
+     "topic": "projected carbon release from thawing permafrost",
+     "say": "Scientists project that thaw could release 150 billion tons of that carbon by 2100 under a high-warming path. That's carbon the climate math never counted on moving."
+    }
+   ]
+  },
+  {
+   "slug": "air-conditioning-access-gap",
+   "title": "Only 1 In 10 People In The Hottest Places Own An AC",
+   "hook": "2.8 billion people live where it's dangerously hot. Most can't cool down.",
+   "closing": "The hottest places on Earth can least afford to cool off.",
+   "question": "Could you survive a heatwave without AC? Tell me below.",
+   "caption": "2.8 billion people live in the hottest parts of the world, and only about 1 in 10 of them own an air conditioner — versus 9 in 10 in the US, Japan and South Korea. Here's the gap, and why it's about to get more expensive to close. Did you know this? 👇",
+   "hashtags": [
+    "airconditioning",
+    "climate",
+    "energyaccess",
+    "heat",
+    "iea",
+    "globalinequality",
+    "energy",
+    "science",
+    "data",
+    "didyouknow",
+    "sciencefacts",
+    "worldbank"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ac_ownership_gap_by_region",
+     "params": {
+      "file": "ac_ownership_gap_by_region.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "1 · THE GAP",
+     "topic": "AC ownership among people in the hottest places",
+     "say": "In the hottest parts of the world, only about 9% of homes have an air conditioner. In the US, Japan and South Korea, it is 90%."
+    },
+    {
+     "source": "offline",
+     "key": "global_ac_stock_trend",
+     "params": {
+      "file": "global_ac_stock_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE DEMAND IS COMING ANYWAY",
+     "topic": "AC demand growing across the hottest places",
+     "say": "And demand is exploding regardless: the world had 1.6 billion AC units in 2018. The IEA projects 5.6 billion by 2050, mostly in places that don't have reliable power grids yet."
+    },
+    {
+     "source": "offline",
+     "key": "cooling_electricity_demand_index",
+     "params": {
+      "file": "cooling_electricity_demand_index.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE BILL THAT FOLLOWS",
+     "topic": "the electricity bill for cooling the hottest places",
+     "say": "So the electricity bill for staying cool is projected to triple by 2050. The places catching up on AC are the same places that'll feel that power squeeze hardest."
+    }
+   ]
   }
  ],
  "videos": [

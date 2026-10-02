@@ -1,0 +1,37 @@
+{
+ "key": "permafrost_carbon_release_projection",
+ "title": "Projected cumulative carbon release from thawing permafrost",
+ "unit": "billion",
+ "geography": "Global (Arctic permafrost zone)",
+ "time_coverage": "2030-2100 projection",
+ "source": {
+  "name": "IPCC AR6 permafrost-carbon feedback range; NOAA Arctic Report Card",
+  "publisher": "IPCC / NOAA",
+  "url": "https://arctic.noaa.gov/Report-Card",
+  "officiality": "secondary",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Projection under a high-emissions pathway, billions of metric tons of carbon cumulatively released. A projection, not a measurement.",
+ "points": [
+  {
+   "label": "2030",
+   "value": 10,
+   "period": "2030"
+  },
+  {
+   "label": "2050",
+   "value": 40,
+   "period": "2050"
+  },
+  {
+   "label": "2080",
+   "value": 90,
+   "period": "2080"
+  },
+  {
+   "label": "2100",
+   "value": 150,
+   "period": "2100"
+  }
+ ]
+}

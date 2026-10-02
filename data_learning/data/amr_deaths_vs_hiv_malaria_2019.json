@@ -1,0 +1,29 @@
+{
+ "key": "amr_deaths_vs_hiv_malaria_2019",
+ "title": "Global deaths in 2019: resistant infections vs. HIV/AIDS vs. malaria",
+ "unit": "million",
+ "geography": "Global",
+ "time_coverage": "2019",
+ "source": {
+  "name": "Global Research on Antimicrobial Resistance (GRAM) project, The Lancet",
+  "publisher": "Lancet / University of Oxford",
+  "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0/fulltext",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Deaths directly attributable to antimicrobial resistance (AMR), 2019, compared with UNAIDS and WHO totals for the same year.",
+ "points": [
+  {
+   "label": "Malaria",
+   "value": 0.64
+  },
+  {
+   "label": "HIV/AIDS",
+   "value": 0.69
+  },
+  {
+   "label": "Resistant infections (AMR)",
+   "value": 1.27
+  }
+ ]
+}
