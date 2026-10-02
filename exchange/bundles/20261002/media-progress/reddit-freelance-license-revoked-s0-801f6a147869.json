@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s0-801f6a147869",
+  "safe_request_id": "reddit-freelance-license-revoked-s0-801f6a147869",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "543d058e8e5fe1ce6e485571f6ee985fffc79fecd7d3daa6d0fb7d2e18c48423",
+  "prompt_used": "An editorial illustration for a short-form video: graphic designer laptop logo. It accompanies the narration: \"designed a full brand package for a startup founder\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qDHQnUDL92Ybl_wQsOsbzmRHKu9rH5mx",
+    "filename": "20261002__reddit-freelance-license-revoked-s0-801f6a147869.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qDHQnUDL92Ybl_wQsOsbzmRHKu9rH5mx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "fa53ed2dbd2dccbcc05266e4b4dccbe8e2a5fdf658a1837cbd12ad44720fa787",
+    "bytes": 1805991,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-02T11:27:26.849Z"
+}
