@@ -2098,7 +2098,7 @@
         "https://www.twitch.tv/buddha/clip/AbstruseDeadHumanHassaanChop-W2ZGmRFFilq1iuPK"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-02"
+      "last_updated": "2026-10-01"
     },
     "xqc-charact-last-2026w40": {
       "event_id": "xqc-charact-last-2026w40",
@@ -2208,7 +2208,7 @@
         "https://www.twitch.tv/sodapoppin/clip/FurryDeliciousPuppyDatSheffy-lqjO0iH6nc_uvehE"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-02"
+      "last_updated": "2026-10-01"
     },
     "summit1g-broken-pika-2026w40": {
       "event_id": "summit1g-broken-pika-2026w40",
@@ -2252,72 +2252,6 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-01"
-    },
-    "fanum-kaicenat-call-cenat-2026w40": {
-      "event_id": "fanum-kaicenat-call-cenat-2026w40",
-      "people": [
-        "fanum",
-        "kaicenat"
-      ],
-      "actions": [
-        "call",
-        "cenat",
-        "reggie",
-        "says"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-02",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
-        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
-        "https://www.twitch.tv/fanum/clip/ObedientBlatantSkirretAMPEnergyCherry-VnPWCcrj34-bG4Yi"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-02"
-    },
-    "brucedropemoff-about-backside-2026w39": {
-      "event_id": "brucedropemoff-about-backside-2026w39",
-      "people": [
-        "brucedropemoff"
-      ],
-      "actions": [
-        "about",
-        "backside",
-        "jacket",
-        "twitch"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-02",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/brucedropemoff/clip/CrunchyStylishFoxCoolCat-fv6P7e1Yv9_Ofywc",
-        "https://www.twitch.tv/brucedropemoff/clip/FitClearBadgerSquadGoals-1AQDOGRtIE0vf0wS"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-02"
-    },
-    "xqc-along-charact-2026w40": {
-      "event_id": "xqc-along-charact-2026w40",
-      "people": [
-        "xqc"
-      ],
-      "actions": [
-        "along",
-        "charact",
-        "night",
-        "police"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-02",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
-        "https://www.twitch.tv/xqc/clip/ArborealAffluentBarracudaBudBlast-9mOxGn1zFXdAnrBi",
-        "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-02"
     }
   }
 }

@@ -10393,6 +10393,34 @@
         "end": 21.0
       },
       "director_cut": true
+    },
+    "rejected-elatedtangiblenarwhalnotatk-rqyr2e0hnwowxljl": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ElatedTangibleNarwhalNotATK-rQYr2E0HNWOwXLJl",
+      "streamer": "buddha",
+      "title": "Harry and goldie use the casino computers",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (GTA RP characters at computers, no event)",
+      "ts": "2026-10-02T12:23:05.573364+00:00"
+    },
+    "rejected-superscrumptiousnoodlebirb-_f8vchlcjqnr-b5j": {
+      "source_url": "https://www.twitch.tv/buddha/clip/SuperScrumptiousNoodleBIRB-_F8VCHLCJqNr-B5J",
+      "streamer": "buddha",
+      "title": "2 cooked 14hr Andys try to navigate the ray mond situation",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (GTA RP planning talk, nothing visible ha)",
+      "ts": "2026-10-02T12:23:59.973217+00:00"
+    },
+    "clip-20261002-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/MagnificentCallousVulturePMSTwin-V00vKcvqR1K_XR-e",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Gets Told Someone Took 7 Pizzas For Her And Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-02T12:25:58.890691+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
