@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s6-b4bba12046ba",
+  "safe_request_id": "reddit-freelance-license-revoked-s6-b4bba12046ba",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "65b4bfabc0d332e28f269b054111107965d890f5a47c7440370dfa2d9920dc7e",
+  "prompt_used": "An editorial illustration for a short-form video: bank transfer confirmation phone. It accompanies the narration: \"He paid the full invoice plus a reinstatement fee\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "17FiHJzGBcTdg1pCY2yHzj1cjdSHuw-Pq",
+    "filename": "20261002__reddit-freelance-license-revoked-s6-b4bba12046ba.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=17FiHJzGBcTdg1pCY2yHzj1cjdSHuw-Pq",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "dba461f98a8244cbe8cedb89c4be7c617a07fe4f4a4d3d2c755c30d2482f9a98",
+    "bytes": 1866912,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-02T11:27:34.581Z"
+}
