@@ -118,7 +118,7 @@ class ThePaintingIsHeldStill(unittest.TestCase):
         sh = OS.shots({"slug": "t", "era": "ancient"}, [b], {4: Path("/tmp/x.jpg")})
         self.assertTrue(sh[0].get("painting"))
         self.assertEqual(sh[0]["start"], 10.0)
-        self.assertLessEqual(sh[0]["end"] - sh[0]["start"], OS.SHOT_MAX + 8)
+        self.assertEqual(sh[0]["end"], b.lines[1][0], "a painting holds its passage's first sentence")
         self.assertTrue(all(not x.get("painting") for x in sh[1:]))
         self.assertEqual(sh[-1]["end"], 50.0)
 

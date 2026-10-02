@@ -65,7 +65,7 @@ SPEED = 0.82
 SENTENCE_GAP = 0.7           # a breath between sentences — sleep narration is slow
 BEAT_GAP = 1.9               # a longer rest when the picture changes
 CHAPTER_GAP = 6.0            # music alone between chapters
-XFADE = 1.2                  # scenes dissolve into each other; nothing cuts
+XFADE = 0.6                  # scenes dissolve quickly into each other: a shot is a sentence long
 MIN_WORDS, MAX_WORDS = 2400, 4000       # ~18 to ~30 minutes at this pace
 # Measured in CI, 2026-09-24 (run #15): 19,611 words narrated to 149.1 min —
 # 131 words a minute WITH the gaps. The operator's ruling that evening, on
@@ -392,69 +392,207 @@ def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     return out
 
 
-SHOT_MAX = 16.0      # seconds one picture may hold before the passage cuts to another shot of it
-SHOTS_MAX = 3        # at most this many shots per passage
+SHOT_TARGET = 7.0    # seconds: a shot is one sentence, two when they are short together
+SHOT_LONGEST = 8.0   # two sentences longer than this together are two shots
+SHOT_SHORT = 3.5     # a sentence shorter than this shares its shot with the next
+
+# words that say WHO a sentence is about, so the shot is of them
+WHO_WORDS = {
+    "girl": r"\b(girls?|daughters?)\b",
+    "child": r"\b(child|children|boys?|sons?|baby|little ones?|kids?)\b",
+    "old_woman": r"\b(grandmother|old woman|grandma)\b",
+    "elder": r"\b(old man|old men|elders?|grandfather|grey|gray)\b",
+    "woman": r"\b(she|her|woman|women|mother|wife|sister|wives)\b",
+    "man": r"\b(he|him|his|man|men|father|husband|brother|watchman|fisherman|keeper|guard)\b",
+}
+LIGHT_WORDS = r"\b(fire|flames?|lamps?|embers?|candles?|hearth|brazier|coals?|glow|wick|torch(?:es)?|light)\b"
+MOVE_WORDS = r"\b(walks?|walking|carr(?:y|ies|ying)|cross(?:es|ing)?|pass(?:es|ing)?|heads?|hurr(?:y|ies)|" \
+             r"returns?|comes?|goes|leaves?|strolls?|wanders?|makes? (?:his|her|their) way)\b"
+TABLE_ACTIONS = ("eat", "drink", "talk", "sew")
+INSERT_ZOOM = 1.9    # a close-up of the fire or the lamp: framed in, held still
+SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 
 
-def _shot_variants(spec: dict, era: str, seed: int) -> list:
-    """Other shots of the same place and the same people: the other shot
-    size first (a wide establishing shot cuts in close, a close shot pulls
-    back), then a fresh arrangement. Only variants that are valid and lay
-    out with nothing touching are offered."""
+def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
+    """Every shot this place and these people can give, each checked valid
+    and with nothing drawn into anything: `est` (wide, everyone), `two`
+    (close, everyone), `single:<i>` (close on one person, with the light and
+    the furniture they are using), `insert` (close on the fire or the lamp,
+    nobody), `pan` (the camera going with whoever is walking), `arr` (the
+    same picture, arranged again)."""
     from data_learning.doodle import scene as S
-    flip = dict(spec, shot="wide" if S.shot_of(spec) == "close" else "close")
-    flip.pop("variant", None)
-    tries = [(flip, seed + 1), (dict(spec), seed + 2), (flip, seed + 3), (dict(spec), seed + 4)]
-    out = []
-    for sp, sd in tries:
-        if S.validate(sp, era) or S.layout(sp, sd)["collisions"]:
+    from data_learning.doodle.props import PROPS
+    cast = [c for c in spec.get("cast") or [] if isinstance(c, dict)]
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in spec.get("props") or []]
+    lights = [n for n in names if n in PROPS and (PROPS[n].light or PROPS[n].living)]
+
+    def clean(sp):
+        sp = dict(sp)
+        sp.pop("variant", None)
+        return sp
+    cands = {"est": (clean(dict(spec, shot="wide")), seed + 1),
+             "two": (clean(dict(spec, shot="close")), seed + 2),
+             "arr": (clean(dict(spec)), seed + 3)}
+    for i, c in enumerate(cast):
+        if c.get("pose") == "walk":
+            cands["pan"] = (clean(dict(spec, shot="close", cast=[dict(c, pose="walk")], pan=True,
+                                       pan_s=round(dur, 2))), seed + 9)
             continue
-        out.append((sp, sd))
+        keep = list(lights)
+        if c.get("action") in TABLE_ACTIONS and "table" in names:
+            keep.append("table")
+        if c.get("pose") == "lie" and "bed" in names:
+            keep.append("bed")
+        cands[f"single:{i}"] = (clean(dict(spec, shot="close", cast=[c], props=keep)), seed + 11 + i)
+    if lights and cast:
+        cands["insert"] = (clean(dict(spec, shot="close", cast=[], props=lights[:2])), seed + 7)
+    if S.SETTINGS.get(spec.get("setting")) is not None and S.SETTINGS[spec["setting"]].interior:
+        cands.pop("est", None)          # a wide room is small people in an empty wall
+    out = {}
+    for name, (sp, sd) in cands.items():
+        if S.validate(sp, era):
+            continue
+        lay = S.layout(sp, sd)
+        if lay["collisions"]:
+            continue
+        # close-ups are FRAMED in on what they are of, and held still
+        if name == "insert":
+            p = next((q for q in lay["props"] if q["name"] in lights), None)
+            if p is None:
+                continue
+            ph = PROPS[p["name"]].height * p["s"]
+            sp = dict(sp, frame=[round(p["x"], 1), round(p["y"] - ph * 0.6, 1), INSERT_ZOOM])
+        elif name.startswith("single:") and lay["people"]:
+            f = lay["people"][0]
+            from data_learning.doodle import people as P
+            R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
+            sp = dict(sp, frame=[round(f["x"] + (R if f["facing"] == "right" else -R), 1),
+                                 round(f["y"] - 3.2 * R, 1), SINGLE_ZOOM])
+        out[name] = (sp, sd)
     return out
 
 
+SHOT_SPLIT = 8.0     # a sentence longer than this is cut at a comma into two shots
+
+
+def _clauses(ln):
+    """A long sentence as clauses at its commas, timed by their words (the
+    voice reads at an even pace within a sentence)."""
+    t0, t1, sent = ln
+    if t1 - t0 <= SHOT_SPLIT:
+        return [ln]
+    parts = [p.strip() for p in re.split(r"(?<=[,;:—])\s+", sent) if p.strip()]
+    if len(parts) < 2:
+        return [ln]
+    n = sum(len(p.split()) for p in parts)
+    # the comma nearest the middle, or the two nearest the thirds when long
+    k = 3 if t1 - t0 > 2 * SHOT_SPLIT and len(parts) >= 3 else 2
+    cum, acc = [], 0
+    for p in parts[:-1]:
+        acc += len(p.split())
+        cum.append(acc / n)
+    cuts = sorted({min(range(len(cum)), key=lambda i: abs(cum[i] - q / k)) for q in range(1, k)})
+    out, prev = [], 0
+    for c in cuts + [len(parts) - 1]:
+        text = " ".join(parts[prev:c + 1])
+        out.append(text)
+        prev = c + 1
+    res, t = [], t0
+    for text in out:
+        d = (t1 - t0) * len(text.split()) / n
+        res.append((t, t + d, text))
+        t += d
+    return res
+
+
+def _groups(lines: list, start: float, end: float) -> list[tuple[float, float, str]]:
+    """The passage's sentences as shots: one sentence a shot, a long one cut
+    at a comma, two together only when both are short."""
+    lines = [c for ln in lines for c in _clauses(ln)]
+    groups, cur = [], []
+    for ln in lines:
+        if cur:
+            span = ln[1] - cur[0][0]
+            if len(cur) >= 2 or (cur[-1][1] - cur[0][0]) >= SHOT_SHORT or span > SHOT_LONGEST:
+                groups.append(cur)
+                cur = []
+        cur.append(ln)
+    if cur:
+        groups.append(cur)
+    edges = [start] + [g[0][0] for g in groups[1:]] + [end]
+    return [(edges[k], edges[k + 1], " ".join(x[2] for x in g)) for k, g in enumerate(groups)]
+
+
+def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) -> str:
+    """The shot that shows what this sentence is about."""
+    import re as _re
+    low = text.lower()
+
+    def ok(name):
+        return name in opts and name != last
+    if first and ok("est"):
+        return "est"
+    if _re.search(MOVE_WORDS, low) and ok("pan"):
+        return "pan"
+    for who, pat in WHO_WORDS.items():
+        if _re.search(pat, low):
+            for name, (sp, _sd) in opts.items():
+                if name.startswith("single:") and ok(name) and sp["cast"][0].get("who") == who:
+                    return name
+    if _re.search(LIGHT_WORDS, low) and ok("insert"):
+        return "insert"
+    order = ["two", "est"] + sorted(n for n in opts if n.startswith("single:")) + ["arr", "insert", "pan"]
+    fresh = [n for n in order if ok(n) and n not in used[-3:]]
+    if fresh:
+        return fresh[0]
+    rest = [n for n in order if ok(n)]
+    return rest[0] if rest else next(iter(opts))
+
+
 def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[dict]:
-    """The pictures the film shows. A passage long enough to hold one
-    picture past SHOT_MAX is cut, at its sentence breaks, into up to
-    SHOTS_MAX shots of the same place — the scene as written, then the
-    other shot size, then a new arrangement. The operator, on the Greek
-    film: "they need to be more entertaining to watch"; one picture held
-    for 35-55 seconds per passage was the dullest thing in it. The camera
-    never moves (his ruling): a shot CHANGES, it does not drift."""
+    """The pictures the film shows: one shot a sentence, two when they are
+    short together. The operator, 2026-10-02: "All of our scenes are too
+    long ... they should be one, two sentences tops. You display the
+    sentence that we're talking about, and then new scene to display the
+    next couple sentences" — and "if we're gonna have somebody walking,
+    have the scene pan and have them actually walk across it". So each
+    shot is chosen by what its words are about: the place when a passage
+    opens, whoever is walking (followed by the camera), the person the
+    sentence names, the fire or lamp it names, and otherwise the next
+    angle on the place that has not just been seen."""
     out = []
     paints = paintings or {}
+    prev_setting = None
     for b in beats:
         seed = _scene_seed(ep["slug"], b.index, b.scene)
-        dur = b.end - b.start
-        if b.index in paints and len(b.lines) > 1:
-            # a passage with a painting opens on it, held still with its
-            # candle, then cuts to the drawn place for the rest
-            starts = [l[0] for l in b.lines[1:]]
-            cut = min(starts, key=lambda x: abs(x - (b.start + min(SHOT_MAX, dur / 2))))
+        lines = list(b.lines)
+        start = b.start
+        if b.index in paints and len(lines) > 1:
+            # a passage with a painting opens on it for its first sentence
+            cut = lines[1][0]
             out.append(dict(start=b.start, end=cut, scene=b.scene, seed=seed, painting=str(paints[b.index])))
-            rest = Beat(chapter=b.chapter, index=b.index, text=b.text, scene=b.scene, start=cut, end=b.end,
-                        lines=[l for l in b.lines if l[0] >= cut])
-            out += shots(ep, [rest])
+            lines, start = lines[1:], cut
+        groups = _groups(lines, start, b.end) if lines else [(start, b.end, b.text)]
+        if len(groups) == 1:
+            out.append(dict(start=groups[0][0], end=groups[0][1], scene=b.scene, seed=seed))
+            prev_setting = (b.scene or {}).get("setting")
             continue
-        n = min(SHOTS_MAX, max(1, int(dur // SHOT_MAX) + (1 if dur % SHOT_MAX > SHOT_MAX / 2 else 0)))
-        variants = _shot_variants(b.scene, ep["era"], seed) if n > 1 and len(b.lines) > 1 else []
-        n = min(n, 1 + len(variants), len(b.lines))
-        if n <= 1:
-            out.append(dict(start=b.start, end=b.end, scene=b.scene, seed=seed))
+        opts = coverage(b.scene, ep["era"], seed, dur=max(g[1] - g[0] for g in groups))
+        if not opts:
+            out.append(dict(start=start, end=b.end, scene=b.scene, seed=seed))
+            prev_setting = (b.scene or {}).get("setting")
             continue
-        # cut at the sentence starts nearest each equal share of the passage
-        starts = [l[0] for l in b.lines[1:]]
-        cuts = []
-        for k in range(1, n):
-            want = b.start + dur * k / n
-            c = min(starts, key=lambda x: abs(x - want))
-            if c not in cuts and (not cuts or c > cuts[-1]):
-                cuts.append(c)
-        edges = [b.start] + cuts + [b.end]
-        pics = [(b.scene, seed)] + variants
-        for k in range(len(edges) - 1):
-            sp, sd = pics[k]
-            out.append(dict(start=edges[k], end=edges[k + 1], scene=sp, seed=sd))
+        last, used = None, []
+        for k, (t0, t1, text) in enumerate(groups):
+            first = k == 0 and (b.scene or {}).get("setting") != prev_setting
+            name = _choose(opts, text, last, first, used)
+            sp, sd = opts[name]
+            if name == "pan":
+                sp = dict(sp, pan_s=round(t1 - t0 + XFADE, 2))
+            out.append(dict(start=t0, end=t1, scene=sp, seed=sd, shot=name))
+            last = name
+            used.append(name)
+        prev_setting = (b.scene or {}).get("setting")
     return out
 
 

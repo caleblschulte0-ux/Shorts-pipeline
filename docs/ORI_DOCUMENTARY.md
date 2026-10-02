@@ -716,6 +716,28 @@ only as a hand edit is not a rule. So:
   still no symposium couches, beached boats or stream. Sent to the operator
   for his verdict on the movement.
 
+- **The operator on that one, 2026-10-02:** *"Pretty much all [it] is right
+  now is just people moving their fucking arms ... If we're gonna have
+  somebody walking, have the scene pan and have them actually walk across
+  it for a second ... All of our scenes are too long ... they should be
+  one, two sentences tops. You display the sentence that we're talking
+  about, and then new scene ... a lot more motion. Shorter clips."*
+  - **A shot a sentence** (`ori_sleep.shots`). A passage is cut at its
+    sentence breaks, and a sentence over 8 s at a comma. Two sentences
+    share a shot only when both are short. The Greek script went from 68
+    pictures to 273 shots, median 6.2 s, longest 11 s.
+  - **Each shot shows what its sentence is about** (`coverage`, `_choose`).
+    The place when a passage opens somewhere new (never a wide room:
+    small people on an empty wall), whoever is walking, the person the
+    sentence names (she, the child, the old man...) framed in on them, the
+    fire or lamp it names as a held close-up, otherwise the next angle not
+    just seen. No shot repeats the one before it.
+  - **The pan, by his ruling.** A walker is followed: the camera travels
+    one way, eased, while they stroll across at the pace of their own
+    stride (`Scene.camera`, `PAN_ZOOM`, `PAN_PACE`). A pan without a walker
+    is refused by `validate`. Every other shot holds still, including the
+    framed close-ups. Dissolves are 0.6 s now, down from 1.2.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

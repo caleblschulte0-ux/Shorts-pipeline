@@ -165,6 +165,8 @@ def motion_strength(spec: dict) -> int:
         score += 2
     if spec.get("weather") == "snow":
         score += 1                  # measured: 1.0 alone (too small for the probe), 0.33 with a lamp
+    if spec.get("pan") and any(isinstance(c, dict) and c.get("pose") == "walk" for c in spec.get("cast") or []):
+        score += 2              # the camera travels with somebody walking: every pixel moves
     lit = any(PROPS.get(p.get("name")) is not None and PROPS[p["name"]].light for p in _prop_list(spec))
     for p in _prop_list(spec):
         pr = PROPS.get(p.get("name"))
@@ -225,6 +227,14 @@ def validate(spec, era: str) -> list[str]:
         bad.append(f"weather {spec.get('weather')!r} is not one of {WEATHER}")
     if st is not None and st.interior and spec.get("weather", "clear") not in ("clear",):
         bad.append("an interior scene has no weather — use weather 'clear'")
+    fr = spec.get("frame")
+    if fr is not None and not (isinstance(fr, (list, tuple)) and len(fr) == 3
+                               and all(isinstance(v, (int, float)) for v in fr) and 1.0 <= fr[2] <= 2.5):
+        bad.append("frame must be [centre x, centre y, zoom 1.0-2.5]")
+    if spec.get("pan") not in (None, False, True):
+        bad.append("pan must be true or false")
+    elif spec.get("pan") and not any(isinstance(c, dict) and c.get("pose") == "walk" for c in spec.get("cast") or []):
+        bad.append("a pan follows somebody walking: pan needs a walker in the cast")
     if spec.get("fire") not in FIRES:
         bad.append(f"fire {spec.get('fire')!r} is not one of {FIRES}")
     if spec.get("shot", "close") not in SHOTS:
@@ -403,6 +413,9 @@ SLOT_SETS = ([0.29, 0.71, 0.15, 0.85], [0.18, 0.82, 0.5, 0.34], [0.24, 0.76, 0.4
              [0.7, 0.86, 0.55, 0.95], [0.3, 0.14, 0.45, 0.05])
 
 
+PAN_ZOOM = 1.35         # a tracking shot frames the world a little closer, so it has room to travel
+PAN_DEFAULT_S = 6.0
+PAN_PACE = 0.75         # an evening stroll: the stride cycle and the travel slowed together
 WALK_LANE = 0.56         # a walker's scale against the shot's: across the way, behind the others
 WALK_CYCLE = 1.1         # seconds per stride cycle (people.skeleton's walk)
 
@@ -414,10 +427,21 @@ def walker_x(w: dict, t: float) -> float:
     return w["x0"] + w["dir"] * w["v"] * t
 
 
-def _walkers(walking: list, s: float, gy: float, seed: int) -> list:
+def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False) -> list:
     out = []
     r = random.Random(seed * 31 + 7)
     for i, c in enumerate(walking):
+        if pan:
+            # the tracking shot's subject: full size, in front, already in
+            # the picture and walking — the camera goes with them
+            R = people.R0 * s * people.WHO[c["who"]]["size"]
+            facing = c.get("facing") or ("right" if r.random() < 0.5 else "left")
+            d = 1 if facing == "right" else -1
+            out.append(dict(who=c["who"], pose="walk", action=c.get("action", "idle"), mood=c.get("mood", "calm"),
+                            item=c.get("item"), x0=(W * 0.25 if d > 0 else W * 0.75) - d * i * 4.5 * R, dir=d,
+                            v=2.48 * R / WALK_CYCLE * PAN_PACE, y=gy + 30 * s, s=s, facing=facing,
+                            seed=seed * 17 + i * 211, front=True, pace=PAN_PACE))
+            continue
         sw = s * WALK_LANE
         R = people.R0 * sw * people.WHO[c["who"]]["size"]
         facing = c.get("facing") or ("right" if r.random() < 0.5 else "left")
@@ -807,7 +831,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         f.pop("_pot", None)
         f.pop("_bed", None)
     lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked,
-               walkers=_walkers(walking, s, gy, seed))
+               walkers=_walkers(walking, s, gy, seed, pan=bool(spec.get("pan"))))
     lay["collisions"] = collisions(lay)
     return lay
 
@@ -919,13 +943,18 @@ class Scene:
                     self._prop(cr, p, t)
             if layer == "back":
                 # the walkers' lane is behind the furniture and the people
-                for w in lay.get("walkers") or []:
+                for w in [w for w in lay.get("walkers") or [] if not w.get("front")]:
                     x = walker_x(w, t)
                     if -400 < x < W + 400:
                         people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk",
                                     action=w["action"], x=x, ground_y=w["y"], scale=w["s"], t=t,
                                     facing=w["facing"], mood=w["mood"], item=w["item"],
                                     cold=self.weather in ("frost", "snow"))
+        for w in [w for w in lay.get("walkers") or [] if w.get("front")]:
+            people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk", action=w["action"],
+                        x=walker_x(w, t), ground_y=w["y"], scale=w["s"], t=t * w.get("pace", 1.0), facing=w["facing"],
+                        mood=w["mood"],
+                        item=w["item"], cold=self.weather in ("frost", "snow"))
         for f in sorted(lay["people"], key=lambda f: f["y"]):
             people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
                         action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
@@ -977,9 +1006,43 @@ class Scene:
                 merged.append((lo, hi, top, bot))
         return merged
 
+    def camera(self, t: float) -> tuple[float, float, float]:
+        """(zoom, x offset, y offset) of the camera at local time t. Still,
+        unless the shot follows somebody walking — the operator, 2026-10-02:
+        "If we're gonna have somebody walking, have the scene pan and have
+        them actually walk across it". Then it travels ONE way, at a steady
+        pace eased in and out, with the walker; never a drift, a bob or a
+        shake (shared/camera_float.py), and never without a walker."""
+        fr = self.spec.get("frame")
+        if fr and not self.spec.get("pan"):
+            # a held close-up: framed in on its subject, and it does not move
+            cx, cy, k = fr
+            ox = min(max(cx * k - W / 2, 0.0), (k - 1) * W)
+            oy = min(max(cy * k - H / 2, 0.0), (k - 1) * H)
+            return float(k), ox, oy
+        if not self.spec.get("pan"):
+            return 1.0, 0.0, 0.0
+        walkers = [w for w in self.lay.get("walkers") or [] if w.get("front")]
+        if not walkers:
+            return 1.0, 0.0, 0.0
+        k = PAN_ZOOM
+        dur = max(1.0, float(self.spec.get("pan_s") or PAN_DEFAULT_S))
+        u = min(1.0, max(0.0, t / dur))
+        w = walkers[0]
+        # keep the walker framed: they go from a third of the way in to two
+        # thirds across while the camera travels with them, as far as the
+        # world goes (a long shot lets them walk on ahead at the end)
+        target = (0.32 + 0.36 * u) * W if w["dir"] > 0 else (0.68 - 0.36 * u) * W
+        ox = k * walker_x(w, t) - target
+        return k, min(max(ox, 0.0), (k - 1) * W), (k - 1) * H * 0.7
+
     def frame(self, t: float, surf: cairo.ImageSurface | None = None) -> cairo.ImageSurface:
         surf = surf or cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(surf)
+        k, ox, oy = self.camera(t)
+        if k != 1.0:
+            cr.translate(-ox, -oy)
+            cr.scale(k, k)
         self.draw(cr, t)
         surf.flush()
         return surf

@@ -1596,6 +1596,57 @@ class ThePictureIsReadable(unittest.TestCase):
                           "cast": [], "props": ["oil_lamp"]}}
         self.assertIsNone(A.mend_motion(room, "ancient"), "a stranger was walked through a room")
 
+    def test_a_shot_is_a_sentence_and_a_walker_is_followed(self):
+        # the operator, 2026-10-02: "All of our scenes are too long ... one,
+        # two sentences tops. You display the sentence that we're talking
+        # about, and then new scene" and "if we're gonna have somebody
+        # walking, have the scene pan and have them actually walk across it"
+        from data_learning import ori_sleep as OS
+        S = self.S
+        scene = {"setting": "forum", "time": "dusk", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "woman", "pose": "sit_on", "action": "talk"},
+                          {"who": "man", "pose": "walk", "action": "carry", "item": "basket"}],
+                 "props": ["brazier"]}
+        sents = ["In the square the stalls are closing for the night.",
+                 "A man walks home across the stones with his basket, past the column and the well, "
+                 "past the last of the sellers, and on toward the street where his supper waits.",
+                 "The fire in the brazier burns low.", "She talks quietly.", "The light fades."]
+        b = OS.Beat(chapter=0, index=0, text=" ".join(sents), scene=scene, start=0.0)
+        t = 0.0
+        for x in sents:
+            d = len(x.split()) / 2.3
+            b.lines.append((t, t + d, x))
+            t += d + 0.7
+        b.end = t
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        self.assertGreaterEqual(len(sh), 4)
+        self.assertTrue(all(x["end"] - x["start"] <= OS.SHOT_LONGEST + 3.0 for x in sh),
+                        [round(x["end"] - x["start"], 1) for x in sh])
+        self.assertEqual(sh[0]["start"], 0.0); self.assertEqual(sh[-1]["end"], b.end)
+        names = [x.get("shot") for x in sh]
+        # the sentence about walking is the walker, followed by the camera;
+        # the one about the fire is the fire; no shot repeats the last
+        walk_shot = next(x for x in sh if "walks home" in " ".join(
+            l[2] for l in b.lines if x["start"] <= l[0] < x["end"]) or x.get("shot") == "pan")
+        self.assertEqual(walk_shot.get("shot"), "pan")
+        self.assertIn("insert", names)
+        self.assertTrue(all(a != c for a, c in zip(names, names[1:])), names)
+        for x in sh:
+            self.assertEqual(S.validate(x["scene"], "ancient"), [], x.get("shot"))
+            sc = S.Scene(x["scene"], "ancient", x["seed"])
+            cams = [sc.camera(u) for u in (0.0, 1.0, 3.0)]
+            if x.get("shot") == "pan":
+                xs = [c[1] for c in cams]
+                self.assertTrue(xs[0] < xs[1] < xs[2] or xs[0] > xs[1] > xs[2], f"the pan does not travel: {xs}")
+                w = [w for w in sc.lay["walkers"] if w.get("front")][0]
+                k = cams[2][0]
+                screen = [k * S.walker_x(w, u) - c[1] for u, c in zip((0.0, 1.0, 3.0), cams)]
+                self.assertTrue(all(0 < v < S.W for v in screen), f"the walker left the frame: {screen}")
+            else:
+                self.assertEqual(cams[0], cams[2], f"{x.get('shot')}: the camera moved without a walker")
+        # a pan without a walker is refused
+        self.assertTrue(S.validate(dict(scene, pan=True, cast=[scene["cast"][0]]), "ancient"))
+
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in
         # this scene moves enough" and the author gave up. The smallest valid

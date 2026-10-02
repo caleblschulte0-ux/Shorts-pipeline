@@ -271,7 +271,7 @@ and the takeover went on asking for a retired format with everything green.
   showrunner. Scripts live in `data_learning/ori_episodes/`, written by
   `scripts/ori_author.py`; `scripts/post_ori.py` publishes. Every scene
   must contain something that REALLY moves — strengths measured with the
-  gate's own probe, never a camera trick. The registry entry stays
+  gate's own probe, never a camera trick. One camera move exists, by his ruling of 2026-10-02: *"If we're gonna have somebody walking, have the scene pan and have them actually walk across it"* — a pan travels one way with a walker (`Scene.camera`), and nothing else ever moves the camera; a close-up is framed in and held still. Same day: *"scenes are too long ... one, two sentences tops"* — `ori_sleep.shots` cuts a passage into a shot a sentence, each showing what that sentence is about. The registry entry stays
   disabled on purpose (it describes the retired pro queue) — the path is
   in `ON_BUT_GATED`, like long-form. The judge's notes on the first three
   films became rules with tests (a real-width layout that keeps a sleeper
