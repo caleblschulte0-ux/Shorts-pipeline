@@ -34,6 +34,8 @@ import os
 import re
 import shutil
 import subprocess
+import tempfile
+from pathlib import Path
 
 from data_learning import subject_scenes as SS
 
@@ -124,6 +126,231 @@ def compile_scene(code: str):
         raise Refused("scene is not callable")
     fn.__name__ = "brain_scene"
     return fn
+
+
+# --------------------------------------------- what the scene says it shows
+
+#: The three lines every scene's docstring opens with. They are what the
+#: GLANCE (below) checks the picture against — a scene that cannot say what
+#: its hero is, what its substance is and what Data does to make the number
+#: move has not decided, and the viewer will not be able to either.
+DECLARE = ("HERO", "SUBSTANCE", "CAUSE")
+_DECL = re.compile(r"^\s*(HERO|SUBSTANCE|CAUSE)\s*:\s*(.+?)\s*$", re.M)
+
+
+def declared(fn) -> dict:
+    """{HERO, SUBSTANCE, CAUSE} from the scene's docstring, each a short
+    phrase; a missing line is a missing key."""
+    doc = getattr(fn, "__doc__", None) or ""
+    out = {}
+    for m in _DECL.finditer(doc):
+        out.setdefault(m.group(1), m.group(2).rstrip("."))
+    return out
+
+
+def declaration_problems(fn) -> list[str]:
+    missing = [k for k in DECLARE if not declared(fn).get(k)]
+    if missing:
+        return [f"the docstring must open with {', '.join(k + ':' for k in DECLARE)}"
+                f" lines (missing {', '.join(missing)}) — the thing the number "
+                f"is about, the material that moves, and the act of Data's that "
+                f"moves it"]
+    return []
+
+
+# -------------------------------------------------------------- the GLANCE
+#
+# Operator, 2026-10-01, on the cremation video: the casket "should be more
+# easily identifiable on first glance — I can't really tell that this is a
+# coffin until I watched it more than once"; the urn Data filled with blue
+# "ash" read as "the water pouring one ... out of place, should have been a
+# crematorium or fire that Data was throwing fuel on"; and the lantern
+# where he "pulls a liquid up with a rope ... makes no sense". None of that
+# is measurable from the code — the code checks passed all three — so a
+# VIEWER looks at the frame: two frames of the scene, stripped of every
+# word and of Data, and a brain with no context but the subject has to name
+# the object, say what the material is, and say whether the act would
+# really cause the change. The scene's own HERO / SUBSTANCE / CAUSE lines
+# are what its answers are held against.
+
+GLANCE_AT = (0.12, 0.55)        # the hero must read EARLY, and mid-beat
+GLANCE_MODEL = os.environ.get("SCENE_GLANCE_MODEL", "sonnet")
+GLANCE_TIMEOUT = int(os.environ.get("SCENE_GLANCE_TIMEOUT", "150"))
+
+# The look is UNAIDED, BLIND and at PHONE SIZE. Unaided: the viewer names
+# what they see before anyone says what it is meant to be — a question
+# that said "is this recognisably a casket?" got a yes on the casket the
+# operator could not recognise. Blind: the viewer is not told the subject
+# either — told "cremation", a plank box in a chapel is a coffin; the
+# operator read the title too and still could not tell. Phone size: the
+# frames go in at 270x480, how a Short is actually seen; at 1080x1920 the
+# same viewer read the posted casket "from its own shape" three times out
+# of three, and at phone size "from the setting" three out of three — "no
+# lid detail or handles, so it could also be a wooden crate or chest",
+# which is the operator's note word for word (2026-10-01). A hero that is
+# only recognisable from where it stands is refused.
+PHONE = (270, 480)
+
+_LOOK = """You are a viewer glancing at two small frames of a short vertical \
+animation. Every word and the mascot have been removed, so only the picture \
+is left, and you have not been told what it is about. The frames are these \
+image files — READ each with the Read tool:
+{listing}
+
+Answer as ONE JSON object, nothing else:
+{{"object": "<the main object, in 2-5 words, as you would name it to a \
+friend who asked what it was>",
+ "object_from": "<'its own shape' if the object's own silhouette and details \
+told you what it is on sight; 'the setting' if you worked it out from where \
+it is and what is around it; 'a guess' if neither>",
+ "tells": "<the 1-3 details of the object ITSELF that identify it, or what \
+is missing that would ('no lid detail or handles')>",
+ "substance": "<the material that is rising, piling, pouring, burning or \
+moving between the frames, in 1-4 words — what it LOOKS like, not what it \
+might stand for; 'nothing' if none>",
+ "change": "<what happens between the first frame and the second, one \
+sentence>"}}"""
+
+_JUDGE = """A viewer saw two frames of an animated scene with every word \
+and the mascot removed, and described it unaided:
+  object: {object}
+  substance: {substance}
+  change: {change}
+
+The scene's author says it shows:
+  HERO: {hero}
+  SUBSTANCE: {substance_said}
+  CAUSE: {cause}
+
+Answer as ONE JSON object, nothing else:
+{{"is_hero": <true only if the viewer's object IS the author's hero — the \
+same thing under another name counts (coffin/casket), a different thing \
+does not (crate/casket, tank/urn)>,
+ "substance_fits": <true only if the viewer's substance IS the author's — \
+blue liquid is not ash, a glowing fill is not embers>,
+ "cause_makes_sense": <true only if the author's CAUSE would physically \
+produce the viewer's change — a rope cannot raise a liquid; a bellows does \
+not fill a jar>,
+ "why": "<one sentence on anything you answered false>"}}"""
+
+
+def ask_glance(prompt: str, images: list[str]) -> dict | None:
+    """The viewer's answers, or None when no brain can look (the caller
+    then passes the scene on its code checks and logs that it did)."""
+    if not shutil.which("claude"):
+        return None
+    from scripts import showrunner_review as sr
+    try:
+        cmd = ["claude", "-p", prompt, "--model", GLANCE_MODEL,
+               "--output-format", "text"]
+        if images:
+            cmd[-2:-2] = ["--allowedTools", "Read"]
+        proc = subprocess.run(cmd,
+                              capture_output=True, text=True,
+                              timeout=max(30.0, min(GLANCE_TIMEOUT, _remaining())))
+        if proc.returncode != 0:
+            return None
+        return sr.parse_judge_json(proc.stdout or "")
+    except Exception:  # noqa: BLE001 — a viewer who cannot look is not a verdict
+        return None
+
+
+def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
+    """Render the scene at each `at` with every word and Data REMOVED, at
+    PHONE size, to PNGs. What is left is what a viewer has to recognise
+    unaided."""
+    import cairo
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    real_t, real_ro = SS.text, SS.fit_readout
+    g = fn.__globals__
+
+    def no_text(cr, s, *a, **k):
+        return None
+
+    def no_readout(cr, big, small, *a, **k):
+        return None
+
+    def no_host(role, x, fy, h, pace=False):
+        return None
+    paths = []
+    try:
+        SS.text, SS.fit_readout = no_text, no_readout
+        g["text"], g["fit_readout"] = no_text, no_readout
+        for u in at:
+            surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+            cr = cairo.Context(surf)
+            fn(cr, 3.0 + u * 10, u, pts, no_host)
+            surf.flush()
+            p = out_dir / f"glance_u{int(u * 100):02d}.png"
+            surf.write_to_png(str(p))
+            from PIL import Image
+            Image.open(p).resize(PHONE, Image.LANCZOS).save(p)   # as a Short is seen
+            paths.append(str(p))
+    finally:
+        SS.text, SS.fit_readout = real_t, real_ro
+        g["text"], g["fit_readout"] = real_t, real_ro
+    return paths
+
+
+def glance(fn, pts, log=print) -> list[str]:
+    """Problems a VIEWER has with the picture alone: the hero is not
+    recognisable, the substance reads as something else, the cause could
+    not produce the effect. The viewer describes the frames UNAIDED first;
+    only then is that description held against the scene's own HERO /
+    SUBSTANCE / CAUSE. Empty when they agree — or when no viewer is
+    available, which is logged, never silent."""
+    decl = declared(fn)
+    if any(not decl.get(k) for k in DECLARE):
+        return declaration_problems(fn)
+    with tempfile.TemporaryDirectory(prefix="glance_") as td:
+        try:
+            frames = glance_frames(fn, pts, td)
+        except Exception as e:  # noqa: BLE001
+            return [f"crashed while rendering the glance frames: {e}"]
+        listing = "\n".join(f"- at {int(u * 100)}% of the beat: {p}"
+                             for u, p in zip(GLANCE_AT, frames))
+        seen = ask_glance(_LOOK.format(listing=listing), frames)
+    if not isinstance(seen, dict):
+        log("[scene_author] no viewer for the glance — passed on code checks only")
+        return []
+    obj = str(seen.get("object") or "?").strip()
+    sub = str(seen.get("substance") or "?").strip()
+    chg = str(seen.get("change") or "?").strip()
+    frm = str(seen.get("object_from") or "").strip().lower()
+    tells = str(seen.get("tells") or "").strip()
+    ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
+                                   hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
+                                   cause=decl["CAUSE"]), [])
+    if not isinstance(ans, dict):
+        log("[scene_author] no viewer for the glance — passed on code checks only")
+        return []
+    why = str(ans.get("why") or "").strip()
+    problems = []
+    if ans.get("is_hero") is False:
+        problems.append(f"a viewer could not tell the hero is {decl['HERO']!r} — "
+                        f"unaided, they called it {obj!r}. Draw it by its signature "
+                        f"silhouette and its tells, big, before any effect "
+                        f"touches it. {why}".rstrip())
+    elif frm and "own shape" not in frm:
+        # named right, but only from where it stands: the operator's casket
+        problems.append(f"the hero {decl['HERO']!r} is recognisable only from "
+                        f"its setting, not from its own shape — at phone size a "
+                        f"viewer said: {tells!r}. Give the object itself the "
+                        f"tells that name it at a glance (a casket: the six-sided "
+                        f"taper, the lid seam, the handles), big enough to read "
+                        f"small".rstrip())
+    if ans.get("substance_fits") is False:
+        problems.append(f"the substance reads as {sub!r}, not {decl['SUBSTANCE']!r} "
+                        f"— a material keeps its own colour and form (ash is grey "
+                        f"dust, fire is flame, water is blue); the accent marks "
+                        f"the share, it never recolours the stuff. {why}".rstrip())
+    if ans.get("cause_makes_sense") is False:
+        problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
+                        f"({chg!r}) — Data's act must be the one that would really "
+                        f"produce the change (pouring fills, hauling lifts a solid, "
+                        f"feeding grows a fire). {why}".rstrip())
+    return problems
 
 
 # ------------------------------------------------------------- verification
@@ -462,6 +689,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         final = list(texts)
     except Exception as e:  # noqa: BLE001
         return [f"crashed: {type(e).__name__}: {str(e)[:160]}"]
+    problems += declaration_problems(fn)
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
@@ -575,6 +803,32 @@ the frame or more), centred in the upper-middle, the first thing the eye \
 lands on. If the idea is a vape cloud turning into a nicotine pouch, that \
 cloud and that pouch fill the frame — Data and the setting support it, \
 they never shrink it into a corner.
+8. RECOGNISABLE AT A GLANCE. The hero must read as itself to someone who \
+has not been told — by its SIGNATURE SILHOUETTE and its tells (a casket: \
+the six-sided taper, the lid seam, the handles, the flowers on it; a \
+lantern: the ring, the panes, the flame) — drawn whole BEFORE the data's \
+effect touches it, and still readable through the effect (a burning \
+casket is still casket-shaped). A plain box with plank lines was "a \
+coffin I couldn't tell was a coffin until I watched it more than once".
+9. THE SUBSTANCE IS THE SUBJECT'S OWN MATERIAL. What rises, piles, pours \
+or burns is the thing the number is made of, in that thing's own colour \
+and form: ash is grey dust, fire is flame, water is blue, coins are gold. \
+The accent marks the SHARE; it never recolours the stuff — a blue "ash" \
+in a glass is water, and a cremation share that fills as water was "out \
+of place — it should have been a crematorium or fire that Data throws \
+fuel on". When the subject has a fire, the share GROWS AS FIRE he feeds.
+10. THE CAUSE IS REAL PHYSICS. Data's act is the act that would actually \
+produce the change: pouring fills, hauling a rope lifts a SOLID, a bellows \
+fans a flame, feeding grows a fire. A rope that raises a liquid "makes no \
+sense". If a viewer could not predict the result from the act, pick \
+another act.
+Open the docstring of scene() with three lines, exactly this shape — a \
+viewer who sees two of your frames with every word and Data removed will \
+be asked whether they agree with each one, and the scene is refused if \
+they do not:
+    HERO: <the object the number is about, 2-5 words>
+    SUBSTANCE: <the material that moves, 1-4 words>
+    CAUSE: <what Data does that makes it move, one line>
 HOW TO SHOW A SHARE (the showrunner's most repeated note on this look): a \
 percentage is ONE WHOLE, split. Draw the whole once — one field, one ship's \
 cargo, one crowd, one plate — and cut it at the true proportion, both parts \
@@ -687,6 +941,9 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
         try:
             fn = compile_scene(code)
             problems = verify(fn, pts, say, secs)
+            if not problems:
+                # the code agrees; now a VIEWER has to (hero, substance, cause)
+                problems = glance(fn, pts, log=log)
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
@@ -735,6 +992,7 @@ def _about(code_or_fn) -> str:
         tree = ast.parse(src)
         fns = [n for n in tree.body if isinstance(n, ast.FunctionDef)]
         doc = ast.get_docstring(fns[-1]) if fns else None
+        doc = _DECL.sub("", doc) if doc else doc     # the prose, not the labels
         return " ".join((doc or src[:300]).split())[:400]
     except Exception:  # noqa: BLE001
         return "(unreadable)"

@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 6,
-  "revision_note": "Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
+  "revision": 7,
+  "revision_note": "2026-10-02: no_repeat_subject_days added to defaults (operator: 'why do we keep reposting the same videos? ... those landline videos' \u2014 the mobile-vs-landline race shipped under four different titles across two channels). Revision 6 note, kept: Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -30,6 +30,8 @@
     "format": "YYYYMMDD"
   },
   "defaults": {
+    "no_repeat_subject_days": 120,
+    "no_repeat_subject_note": "A story is a REPEAT for this many days whichever data channel it lands on and whatever its new title says (shared/near_duplicate.py: near-duplicate title, two shared subject nouns, or the brain says it is the same story). Per-channel override: the same key on the channel.",
     "failure_policy": {
       "on_missing_registry": "fail_closed",
       "on_short_slate": "chatgpt_takeover_authoring",

@@ -167,6 +167,14 @@ class DuplicateUpload(RuntimeError):
     """The title is already posted (or claimed mid-upload) on this channel."""
 
 
+class ClaimNotDurable(RuntimeError):
+    """The upload claim could not be pushed to main, so a queued or later run
+    could not see it: the upload is REFUSED. A duplicate is worse than a gap
+    (operator, 2026-10-02: "why do we keep reposting the same videos?" —
+    seven trending titles were live twice, every one from a run that decided
+    on a ledger the other run's upload had not reached)."""
+
+
 def _norm(s) -> str:
     return (s or "").strip().casefold()
 
@@ -206,15 +214,20 @@ def _refresh_log_from_origin() -> None:
               f"local ledger", flush=True)
 
 
-def _persist_log_now(why: str) -> None:
+def _persist_log_now(why: str) -> bool:
     """Push the posted log IMMEDIATELY (CI only). Never raises: the upload
-    has already happened, and the end-of-run persist still runs."""
+    may already have happened, and the end-of-run persist still runs.
+    Returns whether the record is now on the remote — off CI there is no
+    remote to share, so True; on CI a failed push is False, and a CLAIM
+    that comes back False refuses its upload (`ClaimNotDurable`)."""
     if not os.environ.get("GITHUB_ACTIONS"):
-        return
+        return True
     import subprocess as _sp
     script = REPO / "scripts" / "ci_commit_state.sh"
     if not script.exists():
-        return
+        print("[posted-log] WARNING: scripts/ci_commit_state.sh is missing — "
+              "nothing can be persisted mid-run", flush=True)
+        return False
     try:
         # RELATIVE path: ci_commit_state.sh mirrors it with `cp --parents`
         # on a push race, and an absolute one restores to the wrong place.
@@ -225,8 +238,11 @@ def _persist_log_now(why: str) -> None:
             print(f"[posted-log] WARNING: could not persist now "
                   f"(rc={r.returncode}); the end-of-run persist must catch "
                   f"it: {(r.stderr or r.stdout)[-200:]}", flush=True)
+            return False
+        return True
     except Exception as exc:                          # noqa: BLE001
         print(f"[posted-log] WARNING: persist raised: {exc}", flush=True)
+        return False
 
 
 def _open_claim(log: dict, title: str, topic: str):
@@ -268,7 +284,20 @@ def _guarded_upload(*, title: str, topic: str, fmt, publish_at,
              "claimed_at": now_s, "state": "uploading", "url": None}
     log.setdefault("uploads", []).append(claim)
     save_log(log)
-    _persist_log_now(f"claim upload slot {claim['slug']}")
+    if not _persist_log_now(f"claim upload slot {claim['slug']}"):
+        # The claim is not on main, so nothing else can see it: do NOT
+        # upload. Release it locally so the next run starts clean.
+        log = load_log()
+        log["uploads"] = [u for u in log.get("uploads") or []
+                          if not (u.get("claimed_at") == now_s
+                                  and u.get("slug") == claim["slug"]
+                                  and not u.get("url"))]
+        save_log(log)
+        raise ClaimNotDurable(
+            f"the upload claim for {title!r} could not be pushed to main — "
+            f"refusing to upload: a queued run could not see it, and a "
+            f"duplicate is worse than a gap. It will be retried by the next "
+            f"run.")
     try:
         url = do_upload()
     except BaseException as exc:
@@ -949,6 +978,32 @@ def most_recent_package_dir() -> Path | None:
     return max(candidates, key=lambda p: p.name)
 
 
+def _not_the_same_story(pkgs: list[dict]) -> list[dict]:
+    """Drop every package that tells a story a data channel already told
+    inside the repeat window — by near-duplicate title, shared subject
+    nouns, or the brain's reading (shared/near_duplicate.py). Promotion
+    runs the same check; this is the renderer refusing what slipped past
+    it (2026-10-02, "those landline videos": four titles, one story)."""
+    try:
+        from shared import near_duplicate as _nd
+        corpus = _nd.posted_corpus(root=REPO)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[run_trending_daily] subject corpus unavailable ({exc}) — "
+              f"exact-title guard only", flush=True)
+        return pkgs
+    keep = []
+    for p in pkgs:
+        hit = _nd.subject_duplicate_of(p, corpus)
+        if hit:
+            other, how = hit
+            print(f"[run_trending_daily] NOT RENDERING {p.get('slug')!r}: the "
+                  f"same story as {other!r} ({how}) — a new title over the "
+                  f"same comparison is a repeat", flush=True)
+            continue
+        keep.append(p)
+    return keep
+
+
 def posted_titles() -> set[str]:
     """Every title this channel has already uploaded.
 
@@ -1017,6 +1072,7 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
             print(f"[run_trending_daily] {d.name}: dropped {dropped} "
                   f"package(s) already in the posted log — refusing to "
                   f"re-upload", flush=True)
+        fresh = _not_the_same_story(fresh)
         # RENDERING ELIGIBILITY. A retired format still RENDERS — its
         # renderer is kept so already-posted videos stay reproducible, and
         # refusing here would throw away a whole day over a policy change
@@ -1440,7 +1496,7 @@ def _failure_stage(error: str | None) -> str:
         return "showrunner_block"
     if error.startswith("quarantined:"):
         return "quarantined"
-    if error.startswith("DuplicateUpload:"):
+    if error.startswith(("DuplicateUpload:", "ClaimNotDurable:")):
         return "duplicate_refused"
     return "infra_error"
 

@@ -227,6 +227,22 @@ MEDIA_CONTRACT = {
 }
 
 
+def _do_not_repeat(channel: str) -> list[str]:
+    """Every title the DATA channels posted inside the repeat window, plus
+    the last few authored days' titles — the subjects a slate may not tell
+    again. Six days of one channel's package directories let the landline
+    race ship four times (2026-10-02)."""
+    out = list(_recent_titles(channel))
+    try:
+        from shared import near_duplicate as _nd
+        for t in _nd.corpus_titles(_nd.posted_corpus(root=ROOT)):
+            if t not in out:
+                out.append(t)
+    except Exception as exc:  # noqa: BLE001 — the brief still goes out
+        print(f"[authoring_brief] posted corpus unavailable: {exc}")
+    return out
+
+
 def _recent_titles(channel: str, days: int = RECENT_DAYS) -> list[str]:
     """Titles from the last few authored days — a takeover slate must not
     repeat what the channel just posted."""
@@ -352,8 +368,14 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
         "hard_rules": [
             f"Write EXACTLY {total} package(s) in the mix above — "
             f"{', '.join(f'{n} x {f}' for f, n in need.items() if n)}.",
-            "Every package a DIFFERENT topic. None may repeat a title in "
-            "`do_not_repeat`.",
+            "Every package a DIFFERENT topic — and NOT A STORY THE FAMILY "
+            "OF CHANNELS HAS ALREADY TOLD. `do_not_repeat` lists every video "
+            "posted on the data channels in the repeat window. A new title "
+            "over the same comparison IS a repeat (mobile vs fixed lines is "
+            "the landline video again; wind-and-solar vs coal is the solar "
+            "video again). The validator refuses one that repeats a subject, "
+            "not just a title, and a refused package is a slot you wrote "
+            "for nothing.",
             "Real, verifiable stories only for news-based formats — "
             "wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. "
             "r/nottheonion and r/FloridaMan carry satire reposts.",
@@ -372,7 +394,7 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
             "length as `years`. These are mechanically checked on our side "
             "and a failure means that package is dropped from the slate.",
         ],
-        "do_not_repeat": _recent_titles(channel),
+        "do_not_repeat": _do_not_repeat(channel),
         "levity": {
             "rule": ("Land ONE dry aside per script where the subject "
                      "allows it. This channel has never made anyone laugh "
@@ -402,7 +424,8 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
 
 
 def validate_authored(pkg: dict, *, known_titles: set[str] | None = None,
-                      channel: str = "trending") -> list[str]:
+                      channel: str = "trending", corpus=None,
+                      brain: bool = True) -> list[str]:
     """Problems that disqualify a ChatGPT-authored package from promotion.
 
     Deliberately the SAME structural gate (`shared/package_schema.py`) every
@@ -428,6 +451,22 @@ def validate_authored(pkg: dict, *, known_titles: set[str] | None = None,
     title = (pkg.get("title") or "").strip()
     if known_titles and title and title in known_titles:
         problems.append(f"title repeats a recently posted video: {title!r}")
+    # THE SAME STORY UNDER NEW WORDS (2026-10-02, "those landline videos").
+    # An exact-title check let the mobile-vs-landline race ship four times
+    # under four titles. The corpus is every data channel's uploads inside
+    # the registry's no_repeat_subject_days; the measures are the near-
+    # duplicate title, two shared subject nouns, and the brain's reading.
+    if corpus is None:
+        from shared import near_duplicate as _nd
+        corpus = _nd.posted_corpus(root=ROOT)
+    if corpus:
+        from shared import near_duplicate as _nd
+        hit = _nd.subject_duplicate_of(pkg, corpus, brain=brain)
+        if hit:
+            other, how = hit
+            problems.append(f"same story as a video already posted "
+                            f"({how}): {other!r} — a new title over the "
+                            f"same comparison is a repeat")
     return problems
 
 

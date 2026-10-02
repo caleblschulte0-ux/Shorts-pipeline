@@ -288,7 +288,8 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
                  "segments": [{"say": "1.05 4.41 2019 2025"}]}
         ins = mock.Mock(items=[mock.Mock(label="2019", value=1.05),
                                mock.Mock(label="2025", value=4.41)], unit="")
-        with mock.patch.object(SA, "ask_brain", brain):
+        with mock.patch.object(SA, "ask_brain", brain), \
+                mock.patch.object(SA, "ask_glance", return_value=None):
             got = SA.scene_for_bookend(story, "hook", [ins], log=lambda m: None)
         self.assertIsNotNone(got)
         self.assertIn("THIS IS THE HOOK", asked["p"])
@@ -305,7 +306,8 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         story = {"title": "t", "closing": "The bill still grows.",
                  "segments": [{"say": "x"}]}
         ins = mock.Mock(items=[mock.Mock(label="2019", value=1.0)], unit="")
-        with mock.patch.object(SA, "ask_brain", brain):
+        with mock.patch.object(SA, "ask_brain", brain), \
+                mock.patch.object(SA, "ask_glance", return_value=None):
             self.assertIsNone(SA.scene_for_closing(story, [ins], log=lambda m: None))
         self.assertIn("THIS IS THE CLOSING", asked["p"])
         self.assertIn("The bill still grows.", asked["p"])

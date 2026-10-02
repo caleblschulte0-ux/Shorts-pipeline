@@ -132,6 +132,8 @@ def ingest(date: str, channel: str = "trending", *, target: int = 6,
     known_titles.discard("")
     taken_slugs = {(p.get("slug") or "") for p in have}
     posted = posted_titles(args.channel)
+    from shared import near_duplicate as _nd
+    corpus = _nd.posted_corpus(root=ROOT)        # every data channel, the window
 
     day = ROOT / PACKAGE_DIRS[args.channel] / str(args.date)
     room = max(0, args.target - len(have))
@@ -139,7 +141,8 @@ def ingest(date: str, channel: str = "trending", *, target: int = 6,
 
     for origin, pkg in candidates:
         slug = brief.safe_slug(pkg.get("slug") or "")
-        problems = brief.validate_authored(pkg, known_titles=known_titles)
+        problems = brief.validate_authored(pkg, known_titles=known_titles,
+                                           corpus=corpus)
         if slug in taken_slugs:
             problems.append(f"slug already in today's slate: {slug}")
         hit = posted.get((pkg.get("title") or "").strip().casefold())

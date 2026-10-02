@@ -102,6 +102,20 @@ class TestBrief(unittest.TestCase):
         req = brief.build_request("20260801", "trending")
         self.assertIsInstance(req["do_not_repeat"], list)
 
+    def test_do_not_repeat_spans_the_data_channels_for_the_whole_window(self):
+        """2026-10-02, "those landline videos": six days of one channel's
+        package directories let the race ship four times."""
+        req = brief.build_request("20260801", "trending")
+        posted = json.loads((ROOT / "state/posted_log.json").read_text())["posted"]
+        explainer = json.loads((ROOT / "state/explainer_posted_log.json").read_text())["posted"]
+        recent_tr = [e["title"] for e in posted if e.get("posted_at", "") >= "2026-09-20"]
+        recent_ex = [e["title"] for e in explainer.values() if e.get("at", "") >= "2026-09-20"]
+        for t in recent_tr[-5:] + recent_ex[-5:]:
+            self.assertIn(t, req["do_not_repeat"], t)
+        rule = " ".join(req["hard_rules"])
+        self.assertIn("NOT A STORY THE FAMILY OF CHANNELS HAS ALREADY TOLD", rule)
+        self.assertIn("landline", rule)
+
 
 class TestBundleMode(unittest.TestCase):
     def test_normal_day_is_punch_up_mode(self):
@@ -225,6 +239,34 @@ class TestIngest(IngestTestCase):
         problems = " ".join(report["rejected"][0]["problems"])
         self.assertIn("already POSTED", problems)
         self.assertIn("U2J2nQdOo-c", problems)
+
+    def test_the_same_story_under_a_new_title_is_not_promoted(self):
+        """The landline race, fourth telling: a different title, a sibling
+        ITU series — refused at promotion because a data channel already
+        told it inside the window."""
+        new = graph_pkg(slug="cord-lost")
+        new["title"] = "The Cord Lost The World"
+        new["hook"] = "Mobile lines buried landlines."
+        new["series"][0]["name"] = "Mobile cellular"
+        new["series"][1]["name"] = "Fixed telephone"
+        (self.tmp / "state" / "explainer_posted_log.json").write_text(json.dumps(
+            {"posted": {"mobile-broadband": {
+                "title": "Mobile Broadband Left Fixed Lines Behind",
+                "at": "2026-09-26T12:59:32+00:00", "state": "posted",
+                "url": "https://youtube.com/shorts/MljwI_YJqj8"}}}))
+        self.write_response([new, reddit_pkg(slug="new-tale")])
+        from datetime import datetime, timezone
+        from shared import near_duplicate as nd
+        real = nd.posted_corpus
+        with unittest.mock.patch.object(
+                nd, "posted_corpus",
+                lambda **kw: real(**dict(kw, now=datetime(2026, 10, 2, tzinfo=timezone.utc)))), \
+                unittest.mock.patch("shared.script_generator._call_llm", return_value="NONE"):
+            report = ing.ingest("20260801", "trending", target=6)
+        self.assertEqual([p for p in report["promoted"]].__len__(), 1)
+        problems = " ".join(report["rejected"][0]["problems"])
+        self.assertIn("same story", problems)
+        self.assertIn("Mobile Broadband Left Fixed Lines Behind", problems)
 
     def test_duplicate_slug_within_one_response_is_caught(self):
         self.write_response([reddit_pkg(slug="same-slug-twice"), reddit_pkg(slug="same-slug-twice")])
@@ -352,10 +394,16 @@ class TestSubscriptionIsFullyDead(unittest.TestCase):
         """Phase A never ran, so there is no bundle. ChatGPT authored the
         slate anyway (its instructions say to). Phase B used to exit 2 here
         and throw the whole day away."""
+        # This runs against the REAL posted logs (cwd=ROOT), and the
+        # fixture's "Streaming Overtook Cable" IS a story the channel has
+        # posted — the subject guard refuses it, correctly. A race nobody
+        # has told stands in for it.
+        race = graph_pkg(slug="rescued-lamps", title="Lamps Overtook Candles At Home")
+        race["series"][0]["name"], race["series"][1]["name"] = "Lamps", "Candles"
         (self.bundle / "response.json").write_text(json.dumps(
             {"authored": [reddit_pkg(slug="rescued-lunch-thief"),
                           text_card_pkg(slug="rescued-shrinkflation"),
-                          graph_pkg(slug="rescued-streaming")]}))
+                          race]}))
         out = self._phase_b()
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         self.assertIn("NO BUNDLE", out.stdout)

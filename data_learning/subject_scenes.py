@@ -342,7 +342,10 @@ def forest_floor(cr):
 
 
 def amazon_clearing(cr, t, u, pts, host):
-    """Deforestation by year: the forest stands; each year a batch of trees
+    """HERO: a standing rainforest
+    SUBSTANCE: trees
+    CAUSE: Data runs the treeline ahead of the saws that fell one tree per 1,000 km²
+    Deforestation by year: the forest stands; each year a batch of trees
     topples — one tree per 1,000 km² cleared that year — while the readout
     names the year and the km². Data runs the treeline ahead of the saws."""
     pts = by_time([(str(l), float(v)) for l, v in pts])
@@ -392,7 +395,10 @@ def amazon_clearing(cr, t, u, pts, host):
 
 
 def amazon_bill_grows(cr, t, u, pts, host):
-    """THE CLOSING — "Fewer trees fall each year. The bill still grows."
+    """HERO: a scar of cleared land in the forest
+    SUBSTANCE: bare earth
+    CAUSE: the scar's rim advances a ring per year and shoves Data outward
+    THE CLOSING — "Fewer trees fall each year. The bill still grows."
     The scar from the France and pasture beats, seen again, growing one RING
     per year like a tree's rings, each ring as thick as that year's clearing.
     The rings get thinner (fewer trees fall) and the scar still grows (the
@@ -495,7 +501,10 @@ def scar_path(cr, k=1.0):
 
 
 def amazon_vs_france(cr, t, u, pts, host):
-    """750,000 km² lost vs France: France drops onto the cleared land with a
+    """HERO: a map of France dropped on cleared land
+    SUBSTANCE: land
+    CAUSE: France falls onto the clearing and Data measures the land left uncovered
+    750,000 km² lost vs France: France drops onto the cleared land with a
     thud, and the land left uncovered is measured — the difference."""
     (la, lost), (lf, fra) = [(str(l), float(v)) for l, v in pts[:2]]
     if fra > lost:
@@ -582,7 +591,10 @@ def amazon_vs_france(cr, t, u, pts, host):
 
 
 def amazon_where_it_goes(cr, t, u, pts, host):
-    """What the cleared land becomes: grass spreads across that share of the
+    """HERO: a scar of cleared land
+    SUBSTANCE: pasture grass
+    CAUSE: Data rides the lead cow in as grass spreads over the cattle's share
+    What the cleared land becomes: grass spreads across that share of the
     SAME scar France fell onto, a few cattle wander in to graze it, and the
     rest of the scar goes to a logging truck and its pile. The share is the
     AREA of land — the cattle are life, not a count. Data rides the lead cow."""
@@ -750,7 +762,10 @@ def sack(cr, x, y, s=1.0, a=1.0, label=True):
 
 
 def coffee_climb(cr, t, u, pts, host):
-    """The price of a pound of coffee, by year: a pound of beans on one pan
+    """HERO: a brass balance scale with a pound of coffee
+    SUBSTANCE: coins
+    CAUSE: Data stacks a coin per 25 cents on the money pan, which sinks
+    The price of a pound of coffee, by year: a pound of beans on one pan
     of a brass scale, and the money on the other — one coin per 25 cents,
     piling up as the years tick. The pile IS the price."""
     rows = by_time([(str(l), float(v)) for l, v in pts])
@@ -865,7 +880,10 @@ def coffee_climb(cr, t, u, pts, host):
 
 
 def coffee_drought(cr, t, u, pts, host):
-    """Brazil's crop forecast cut by drought: sacks stacked at the farm gate,
+    """HERO: sacks of coffee stacked at a farm gate
+    SUBSTANCE: coffee sacks
+    CAUSE: the drought cracks the ground and the lost share of the pile crumbles to dust as Data strains to hold it
+    Brazil's crop forecast cut by drought: sacks stacked at the farm gate,
     the ground cracking, and the lost share of the pile crumbling to dust —
     the gap between the two estimates."""
     rows = [(str(l), float(v)) for l, v in pts[:2]]
@@ -1013,7 +1031,10 @@ def traffic(cr, t):
 
 
 def heat_by_city(cr, t, u, pts, host):
-    """Added heat by city: a street thermometer on a lamppost; the city name
+    """HERO: a street thermometer on a lamppost
+    SUBSTANCE: mercury
+    CAUSE: Data climbs the lamppost and the mercury rises to each city's added degrees
+    Added heat by city: a street thermometer on a lamppost; the city name
     changes and the mercury rises to that city's added degrees. Coolest to
     hottest, so it lands on the top city whatever order the data came in."""
     rows = sorted(((str(l), float(v)) for l, v in pts), key=lambda r: r[1])
@@ -1064,7 +1085,10 @@ def heat_by_city(cr, t, u, pts, host):
 
 
 def heat_share(cr, t, u, pts, host):
-    """Who lives in the hottest blocks: one street, the hot share of it
+    """HERO: one city street, half treeless
+    SUBSTANCE: shade trees
+    CAUSE: Data walks from the hot treeless share into the shade
+    Who lives in the hottest blocks: one street, the hot share of it
     treeless and glowing, the rest shaded by trees. Data walks from the heat
     into the shade."""
     rows = [(str(l), float(v)) for l, v in pts]
@@ -1102,7 +1126,10 @@ def heat_share(cr, t, u, pts, host):
 
 
 def heat_redlining(cr, t, u, pts, host):
-    """The 1930s map: a paper city map with the redlined zone outlined in
+    """HERO: a paper city map with a redlined zone
+    SUBSTANCE: heat shimmer
+    CAUSE: Data traces the redlined zone and heat rises off exactly those blocks
+    The 1930s map: a paper city map with the redlined zone outlined in
     red, and heat rising off exactly that zone today — the redlined blocks'
     added degrees against their neighbours'."""
     rows = [(str(l), float(v)) for l, v in pts]

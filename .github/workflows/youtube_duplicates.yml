@@ -1,0 +1,48 @@
+name: YouTube duplicates
+
+# Lists — and only on an explicit DELETE — removes videos a channel has
+# uploaded twice (scripts/youtube_duplicates.py). Manual only: a cleanup
+# that runs itself is the next incident. No cron, so the clock does not
+# cover it (tests/test_the_clock_does_not_trust_cron.py: manual-only).
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'Which token: trending (default), explainer, third'
+        required: false
+        default: 'trending'
+        type: choice
+        options: [trending, explainer, third]
+      confirm:
+        description: 'Type DELETE to remove the extra copies; anything else is a dry run'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  duplicates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+      - name: List duplicates (and delete only on DELETE)
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          set -e
+          ch="${{ github.event.inputs.channel }}"
+          [ "$ch" = "trending" ] && ch=""
+          if [ "${{ github.event.inputs.confirm }}" = "DELETE" ]; then
+            python scripts/youtube_duplicates.py --channel "$ch" --delete --yes
+          else
+            python scripts/youtube_duplicates.py --channel "$ch"
+          fi

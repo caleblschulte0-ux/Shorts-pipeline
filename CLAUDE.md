@@ -249,6 +249,17 @@ that was visible in a shipped frame — which is why they are tests and not a
 style guide, and why a source-reading test here asserts on CODE (AST, string
 constants blanked), never on the prose that explains it.
 
+- **A brain-drawn subject scene has to pass a VIEWER, not just the code**
+  (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
+  of blue "ash" that read as water, a rope "pulling a liquid up"). Every
+  scene declares `HERO:` / `SUBSTANCE:` / `CAUSE:` in its docstring, and
+  `scene_author.glance` shows two wordless, Data-less, PHONE-SIZED frames
+  to a brain that is not told the subject; it must name the hero from the
+  object's own shape (not its setting) and agree with all three before the
+  scene is used. Keep it: it is
+  the only check that sees what the code cannot. `docs/CHANNEL_LOOK.md`
+  §"A VIEWER has to recognise it".
+
 ## `config/channel_registry.json` is the ONLY place channel policy lives
 
 How many videos a channel ships, in which formats, which formats are retired,
@@ -681,6 +692,25 @@ A reviewer (ChatGPT) reads it and writes proposals into
   `preview-renders` orphan branch or artifacts.
 - Posted logs (`state/*_posted_log.json`) are sacred append-only dedupe
   state — losing an entry means a duplicate upload.
+- **An upload is claimed ON MAIN before the API call, or it does not
+  happen** (2026-10-02, operator: *"why do we keep reposting the same
+  videos?"* — seven trending titles were live twice). Both channels push
+  a claim before `videos.insert`; if that push fails the upload is
+  REFUSED (`ClaimNotDurable`), never attempted on a ledger a queued run
+  cannot see. What those days left on the channel is listed and, only on
+  an explicit DELETE, removed by `scripts/youtube_duplicates.py` (the
+  manual-only "YouTube duplicates" workflow). Run it dry after any day
+  with two daily runs.
+- **The same STORY under a new title is a repeat too** (same ruling:
+  *"those landline videos"* — mobile-vs-fixed-lines shipped as four titles
+  on two channels). `shared/near_duplicate.py` is the ONE guard: the
+  explainer's near-duplicate title check (moved there, held equivalent),
+  two shared subject nouns, and a text brain shown the posted titles
+  ("the same story, or NONE"; fails open and says so). The corpus is
+  every DATA channel's uploads inside the registry's
+  `no_repeat_subject_days`; it runs at promotion, in the brief's
+  `do_not_repeat`, at the renderer's package load and before an
+  explainer render. Refusals name the video they repeat.
 - Do NOT open PRs from `claude/*` branches casually: `auto-merge.yml`
   squash-merges any non-draft `claude/*` PR with no review.
 - **A session that keeps working on one branch must REBASE before every PR.**
