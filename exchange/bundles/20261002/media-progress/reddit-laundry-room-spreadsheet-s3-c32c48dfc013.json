@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-laundry-room-spreadsheet-s3-c32c48dfc013",
+  "safe_request_id": "reddit-laundry-room-spreadsheet-s3-c32c48dfc013",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fd1fde5cae27ece724fa12a702525c25633edbfef7df30840f7520da46ea3654",
+  "prompt_used": "An editorial illustration for a short-form video: notebook spreadsheet laptop. It accompanies the narration: \"I started logging timestamps instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+    "filename": "20261002__reddit-laundry-room-spreadsheet-s3-c32c48dfc013.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3668d704c4bc10fab0c1e6f79438d4efb6ea8a2b2f364e082ba6d9dcb04bee42",
+    "bytes": 1353542,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-10-02T11:27:22.190Z"
+}
