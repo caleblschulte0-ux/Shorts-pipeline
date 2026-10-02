@@ -10296,13 +10296,85 @@
       "ts": "2026-10-02T12:10:15.045909+00:00"
     },
     "clip-20261002-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/HilariousLachrymoseCookieRlyTho-WIy2eOgL6OHYE3Sk",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/68nxSBuMNvI",
       "title": "Stableronaldo Pulls Off The Best Negotiation In History Over An M4",
       "kind": "twitch_clip",
-      "ts": "2026-10-02T12:13:31.489554+00:00",
+      "ts": "2026-10-02T12:13:37.429623+00:00",
+      "uploaded_at": "2026-10-02T12:13:37.429643+00:00",
+      "publish_at": "2026-10-02T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261002-stableronaldo-pulls-off-the-best-negotiation-in--5737ceb8"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HilariousLachrymoseCookieRlyTho-WIy2eOgL6OHYE3Sk",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE WANTED AN M4 FOR HOW MUCH",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2972,
+      "banger": 0.5,
+      "cut": {
+        "start": 7.2,
+        "end": 25.8
+      },
+      "director_cut": true
+    },
+    "rejected-elatedglamorousyogurtbcouch-5-w0hwoqmuy_fnoh": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ElatedGlamorousYogurtBCouch-5-w0HwOQMUY_FNoH",
+      "streamer": "jynxzi",
+      "title": "Limited edition water",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP roleplay, no clear payoff)",
+      "ts": "2026-10-02T12:14:22.675458+00:00"
+    },
+    "rejected-swissgeniusheronphilosoraptor-__okxka_y395yuef": {
+      "source_url": "https://www.twitch.tv/forsen/clip/SwissGeniusHeronPhilosoraptor-__OKXKA_y395YUeF",
+      "streamer": "forsen",
+      "title": "OMEGALUL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Terraria inventory talk, nothing happens)",
+      "ts": "2026-10-02T12:15:01.818353+00:00"
+    },
+    "rejected-inspiringcourteouslattebudblast-1jy5dz9bxeribrhc": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/InspiringCourteousLatteBudBlast-1JY5dZ9bXeriBRhc",
+      "streamer": "sodapoppin",
+      "title": "sodapoppin batchest",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer chatter about news photo, no ev)",
+      "ts": "2026-10-02T12:15:25.413491+00:00"
+    },
+    "rejected-tardydiligentfriseedancingbanana-d4ztbtps8utfk682": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/TardyDiligentFriseeDancingBanana-d4ZTbTps8uTFk682",
+      "streamer": "caseoh_",
+      "title": "I WAS HERE!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static game screen, shouting, no visible)",
+      "ts": "2026-10-02T12:16:30.148445+00:00"
+    },
+    "rejected-wrongbadduriancharlietheunicorn-dno0rutsmc3nhy7w": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/WrongBadDurianCharlietheUnicorn-dNO0rUTSMC3nhY7W",
+      "streamer": "stableronaldo",
+      "title": "flip iff",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Esports finals, inside-baseball, no clea)",
+      "ts": "2026-10-02T12:17:28.197400+00:00"
+    },
+    "clip-20261002-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LuckySilkySwanWutFace-LaUTYQtC2xaxR9V2",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Reads Chat's Wild Chocolate Question And Loses Five In A Row",
+      "kind": "twitch_clip",
+      "ts": "2026-10-02T12:19:15.991799+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
