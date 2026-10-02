@@ -1,0 +1,116 @@
+{
+  "date": "20261002",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 14,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "required": true,
+    "checked": 14,
+    "ok": 14,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s0-87739f6c0598",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s0-87739f6c0598.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s1-dd5b12eed669",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s1-dd5b12eed669.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s3-c32c48dfc013",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s3-c32c48dfc013.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s4-624393d6aee6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s4-624393d6aee6.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s5-67b4ba73dc23",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s5-67b4ba73dc23.png"
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s6-231523697033",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-laundry-room-spreadsheet-s6-231523697033.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s0-801f6a147869",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s0-801f6a147869.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s1-34f357a3547b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s1-34f357a3547b.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s2-5dff9ec8a00d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s2-5dff9ec8a00d.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s3-d6217bfd32f6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s3-d6217bfd32f6.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s4-76f220681fa4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s4-76f220681fa4.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s5-b6d63e9a0666",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s5-b6d63e9a0666.png"
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s6-b4bba12046ba",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-freelance-license-revoked-s6-b4bba12046ba.png"
+    }
+  ]
+}

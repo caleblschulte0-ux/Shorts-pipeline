@@ -2,7 +2,7 @@
   "subreddit": "pettyrevenge",
   "slug": "reddit-laundry-room-spreadsheet",
   "title": "She Hogged The Washers. I Built A Spreadsheet.",
-  "script": "Our apartment building had exactly two washers for forty units, and one neighbor treated them like private property, leaving her clothes inside for hours and rewashing anyone else's load the moment she felt like it. Management ignored every complaint, so I started logging timestamps instead: when she loaded, when the cycle actually finished, how long the wet clothes sat untouched afterward. After three weeks I had a spreadsheet nobody could argue with. I posted it anonymously in the building group chat, described only by behavior and floor, and let the other thirty-nine tenants connect the dots themselves. Within a week, management installed a sign-up sheet with strict thirty-minute pickup windows, backed by a small posted fine. She was the first person fined, three days after the sheet went up, loudly insisting the rule was unfair to the one person it was obviously written for. I still do my laundry at midnight most weeks. I just always get a machine now.",
+  "script": "Our apartment building had exactly two washers for forty units, and one neighbor kept leaving her clothes inside for hours. Management ignored every complaint. So I started logging timestamps instead: load time, cycle finish, and how long the wet clothes sat. After three weeks, the spreadsheet was airtight. I posted it anonymously in the building group chat and let the other thirty-nine tenants connect the dots. Within a week, management installed a sign-up sheet with strict thirty-minute pickup windows and a small fine. She was the first person fined, three days later, then called the rule unfair to the one person it was obviously written for. I still do laundry at midnight most weeks, but now I always get a machine. The spin cycle needed receipts.",
   "hashtags": [
     "pettyrevenge",
     "apartmentliving",
@@ -20,31 +20,66 @@
   "shots": [
     {
       "phrase": "exactly two washers for forty units",
-      "query": "apartment laundry room"
+      "query": "apartment laundry room",
+      "image_url": "https://drive.google.com/uc?export=download&id=1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+      "media_origin": "chatgpt",
+      "media_file_id": "1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+      "media_sha256": "92a503d42d1ad09d37bb315f924e1efb24f29551b57cef39ba63bcc09b2cdba8",
+      "media_bytes": 2161776
     },
     {
       "phrase": "leaving her clothes inside for hours",
-      "query": "washing machine clothes pile"
+      "query": "washing machine clothes pile",
+      "image_url": "https://drive.google.com/uc?export=download&id=1FLvtr42eL4AyoKPFv40UHoqiRnOefi2W",
+      "media_origin": "chatgpt",
+      "media_file_id": "1FLvtr42eL4AyoKPFv40UHoqiRnOefi2W",
+      "media_sha256": "2a253bc2a4b9962d21c5f522b2cbd628e3e3c06c17aa7234b1fcfd340c222394",
+      "media_bytes": 2359063
     },
     {
       "phrase": "Management ignored every complaint",
-      "query": "apartment office front desk"
+      "query": "apartment office front desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=10qUNxjISUh0kDaCza1Ra6DRTAZeAF5xt",
+      "media_origin": "chatgpt",
+      "media_file_id": "10qUNxjISUh0kDaCza1Ra6DRTAZeAF5xt",
+      "media_sha256": "4ea862366d70ed83844aaf1a4c6d4899812b2b9528f826a16bf8732943bdf1ab",
+      "media_bytes": 1701526
     },
     {
       "phrase": "I started logging timestamps instead",
-      "query": "notebook spreadsheet laptop"
+      "query": "notebook spreadsheet laptop",
+      "image_url": "https://drive.google.com/uc?export=download&id=13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+      "media_origin": "chatgpt",
+      "media_file_id": "13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+      "media_sha256": "3668d704c4bc10fab0c1e6f79438d4efb6ea8a2b2f364e082ba6d9dcb04bee42",
+      "media_bytes": 1353542
     },
     {
       "phrase": "posted it anonymously in the building group chat",
-      "query": "phone group chat messages"
+      "query": "phone group chat messages",
+      "image_url": "https://drive.google.com/uc?export=download&id=1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+      "media_origin": "chatgpt",
+      "media_file_id": "1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+      "media_sha256": "e9630253f4a7c3eb6aaf675ae6c667c5b97ad0d05382f6187cbd9df8f02b50ce",
+      "media_bytes": 1603869
     },
     {
       "phrase": "installed a sign-up sheet with strict thirty-minute pickup windows",
-      "query": "clipboard sign-up sheet wall"
+      "query": "clipboard sign-up sheet wall",
+      "image_url": "https://drive.google.com/uc?export=download&id=1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+      "media_origin": "chatgpt",
+      "media_file_id": "1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+      "media_sha256": "00e8b266547c910006294099e1785c7dd769c140be1e440ad203f6b3aa06733a",
+      "media_bytes": 2275358
     },
     {
       "phrase": "She was the first person fined",
-      "query": "past due notice envelope"
+      "query": "past due notice envelope",
+      "image_url": "https://drive.google.com/uc?export=download&id=1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+      "media_origin": "chatgpt",
+      "media_file_id": "1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+      "media_sha256": "bf11760397283ddb2549a5bb39de2392288e3f0212f91c4900e057ffb90f6a4f",
+      "media_bytes": 2256720
     }
   ],
   "punches": [
@@ -70,5 +105,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }
