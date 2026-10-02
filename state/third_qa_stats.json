@@ -3,146 +3,6 @@
     {
       "date": "20260924",
       "dry_run": false,
-      "ts": "2026-09-24T23:39:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 105,
-        "with_retention": 83,
-        "with_curve": 14,
-        "fetched_at": "2026-09-24T15:57:11.861401+00:00"
-      },
-      "brain": {
-        "ok": 7,
-        "fail": 1
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260924-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "garbage title, unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "vague birthday recitation bit, unclear p",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Gets Called A Murderer, Then A 'Seat Sniffer'"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 183.6
-        },
-        {
-          "slug": "clip-20260924-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260924",
-      "dry_run": false,
       "ts": "2026-09-24T23:52:31+00:00",
       "feedback": {
         "snapshot": true,
@@ -5717,6 +5577,58 @@
             }
           },
           "took_s": 113.3
+        }
+      ]
+    },
+    {
+      "date": "20261002",
+      "dry_run": false,
+      "ts": "2026-10-02T16:38:19+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 124,
+        "with_retention": 103,
+        "with_curve": 15,
+        "fetched_at": "2026-10-02T14:54:05.467917+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261002-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261002-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261002-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261002-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261002-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261002-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
