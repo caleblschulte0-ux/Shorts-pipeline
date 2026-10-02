@@ -3,15 +3,15 @@
   "content_series": {
     "chaos": {
       "n": 40,
-      "median_vph": 0.015
+      "median_vph": 0.02
     },
     "fail": {
-      "n": 16,
-      "median_vph": 0.04
+      "n": 17,
+      "median_vph": 0.03
     },
     "wholesome": {
       "n": 14,
-      "median_vph": 0.13
+      "median_vph": 0.12
     },
     "drama": {
       "n": 10,
@@ -23,15 +23,15 @@
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.07
+      "median_vph": 0.06
     },
     "jumpscare": {
       "n": 5,
-      "median_vph": 0.39
+      "median_vph": 0.36
     },
     "rage": {
       "n": 4,
-      "median_vph": 0.295
+      "median_vph": 0.275
     },
     "clutch": {
       "n": 3,
@@ -39,13 +39,13 @@
     },
     "beef": {
       "n": 3,
-      "median_vph": 0.01
+      "median_vph": 0.0
     }
   },
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.79
+      "median_vph": 0.74
     },
     "story": {
       "n": 1,
