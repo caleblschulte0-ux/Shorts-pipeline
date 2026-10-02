@@ -1508,10 +1508,17 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     continue
 
                 lead = led["beats"][0].get("streamer") or cluster["who"][0]
+                # NAME THE STREAMER. The director writes a story title
+                # ("Her Stalker Bought a New PC Just to Keep Harassing Her")
+                # and every story through 2026-10-01 shipped without the
+                # name people type — on a channel ~89% YouTube search. That
+                # one held 98.7% of the people who found it, and 5 found it.
+                # Same rule the clip titles use, from the same function.
+                _st = author.anchor_streamer(
+                    edl["title"] or f"The Full {who.title()} Story", lead)
                 led.update({
-                    "authored_title": edl["title"] or
-                    f"The Full {who.title()} Story",
-                    "clip_title": edl["title"] or who,
+                    "authored_title": _st,
+                    "clip_title": _st,
                     "authored_caption": author.scrub_text(
                         f"The full story, beginning to end: "
                         f"{edl['premise']}"),
@@ -1556,7 +1563,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
             attempt: int = 1) -> dict:
     slug = pkg["slug"]
     result = {"slug": slug, "ok": False}
-    _JUDGES.clear()          # verdicts are per-slot
+    # Verdicts are per-slot — but a RETRY is the same slot. The story runs on
+    # attempt 1 only, so clearing everything on attempt 2 erased the whole
+    # story deliberation whenever the fallback clip then failed: on
+    # 2026-10-01 the arm ran 24 minutes, tried six candidates, rendered one,
+    # and state/third_qa_stats.json recorded none of it.
+    _story_record = _JUDGES.get("story_director") if attempt > 1 else None
+    _JUDGES.clear()
+    if _story_record:
+        _JUDGES["story_director"] = _story_record
     if slug in log["posted"]:
         result.update(ok=True, skipped="already posted")
         return result
