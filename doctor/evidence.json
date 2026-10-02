@@ -2833,9 +2833,10 @@
       "style_arm": "current"
     }
   ],
+  "showrunner_recurrence": {},
   "recent_commits": [
-    "abab562 2026-10-02 claim: mailbox verdicts 2026-10-02T04:48Z [skip ci]",
-    "b22d73b 2026-10-02 claim: mailbox verdicts 2026-10-02T03:48Z [skip ci]"
+    "3d7d9cf 2026-10-02 explainer: posted space-debris-collision-risk [skip ci]",
+    "6b49908 2026-10-02 claim: mailbox verdicts 2026-10-02T10:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2872,10 +2873,11 @@
         "2026-09-27": 2,
         "2026-09-29": 1,
         "2026-09-30": 3,
-        "2026-10-01": 4
+        "2026-10-01": 4,
+        "2026-10-02": 1
       },
-      "total_posted": 288,
-      "attempted": 288,
+      "total_posted": 289,
+      "attempted": 289,
       "rejected_or_pending": 0
     },
     "third": {
@@ -2942,32 +2944,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 120,
+      "videos": 124,
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 4.04,
+          "vph": 3.87,
           "views": 1356
         },
         {
           "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let",
-          "vph": 2.18,
-          "views": 51
+          "vph": 1.75,
+          "views": 67
+        },
+        {
+          "title": "Xqc Gets Captured And Chat Can't Believe It",
+          "vph": 1.33,
+          "views": 19
+        },
+        {
+          "title": "Xqc Gets Pulled Over In NoPixel And Tells The Cop This Is The Last You",
+          "vph": 1.02,
+          "views": 16
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 0.96,
+          "vph": 0.89,
           "views": 160
-        },
-        {
-          "title": "Xqc Chases Jean Paul Down While Chat Screams Send It",
-          "vph": 0.84,
-          "views": 21
-        },
-        {
-          "title": "Cinna Explains Why He Thinks Capped Is The GOAT",
-          "vph": 0.81,
-          "views": 110
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -3075,18 +3077,11 @@
       "ruling": "in_progress"
     },
     {
-      "signature": "90428377a85b",
-      "title": "Test a sub-40-second explainer cut without changing cadence",
-      "horizon": "strategy",
-      "severity": "medium",
-      "ruling": "doing"
-    },
-    {
       "signature": "8dc00d1eadd0",
       "title": "Showrunner memory drops the scene diagnosis needed to detect recurrences",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "ab49431193c5",
@@ -3670,6 +3665,13 @@
       "date": "20260909",
       "because": "Fixed and shipped. _temporal_evidence now carries an explicit measured flag; temporal_unmeasured() names the unknown state and fails closed on an unrecognised shape; review_video raises on it BEFORE the vision call, so showrunner_gate applies its existing publish-holds/preview-skips rule instead of the probe failure being laundered into neutral evidence. A milestone import failure raises for the same reason \u2014 measured cadence with no floor is an unapplied gate. The code floor's own 'never block blind' contract is deliberately unchanged and has tests saying so. tests/test_temporal_probe_is_measured.py covers all four cases the finding named; 7 of its 12 tests fail against the unfixed file.",
       "revisit_after": null
+    },
+    {
+      "signature": "90428377a85b",
+      "verdict": "later",
+      "date": "20261002",
+      "because": "Needs experiment-arm tagging across story + analytics metadata and touches the protected DIRECTOR rubric; too large for one triage session. Take it as its own scoped build.",
+      "revisit_after": "20261101"
     },
     {
       "signature": "4490f7560fed",
