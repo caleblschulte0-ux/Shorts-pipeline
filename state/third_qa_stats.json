@@ -3,155 +3,6 @@
     {
       "date": "20260924",
       "dry_run": false,
-      "ts": "2026-09-24T15:56:58+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 105,
-        "with_retention": 83,
-        "with_curve": 14,
-        "fetched_at": "2026-09-24T15:45:29.288524+00:00"
-      },
-      "brain": {
-        "ok": 8,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:disguisedtoast": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260924-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l; vision: Sharp region across most of the clip is a thin, low-contrast s",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "vague setup talk, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha And The Brickbois Photo Goes Wrong When Martin Gets Thrown Out"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.65,
-              "problems": [
-                "From ~9.4s to the end the sharp region shows only a tiny, extremely dark overhead view of small objects/tokens on what l",
-                "Sharp region across most of the clip is a thin, low-contrast strip rather than filling ~3/4 of the canvas \u2014 the subject ",
-                "3.6s frame is a near-blank dark/blue blur with no discernible subject, reading like a broken or empty frame"
-              ]
-            }
-          },
-          "took_s": 277.5
-        },
-        {
-          "slug": "clip-20260924-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260924",
-      "dry_run": false,
       "ts": "2026-09-24T23:39:11+00:00",
       "feedback": {
         "snapshot": true,
@@ -5499,6 +5350,373 @@
           "slug": "clip-20261001-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261002",
+      "dry_run": false,
+      "ts": "2026-10-02T12:19:21+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 124,
+        "with_retention": 103,
+        "with_curve": 15,
+        "fetched_at": "2026-10-02T08:46:15.115880+00:00"
+      },
+      "brain": {
+        "ok": 48,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261002-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat addresses and then catches Reggie lying about a 2:32 AM call, and Fanum speaks about Reggie on his own stream ",
+                    "shape": "multi_streamer",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Xqc gets captured in NoPixel, is released on bail pending charges, then gets pulled over and tells the cop it's the last",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Buddha and Lang get shut out, then run from the whole PD when the chop spot is stormed, and Mista C ends up looking out ",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 158,
+                "candidates": 260,
+                "pool": 1349,
+                "pool_with_vod": 1249,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  2,
+                  2,
+                  3,
+                  5,
+                  2,
+                  2,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:fanum+kaicenat/fanum-kaicenat-call-cenat-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not support the scout's premise. Fanum's clip never mentions Reggie, Kai, or any call. He sa"
+                },
+                {
+                  "cluster": "brucedropemoff@vod2884983868/brucedropemoff-about-backside-2",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips are unrelated moments from the same broadcast, about 7 minutes apart. The first is a slur-laden"
+                },
+                {
+                  "cluster": "scout:xqc/xqc-along-charact-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scout's arc of arrest, then bail, then a new police run-in. Clip 1 is a chase o"
+                },
+                {
+                  "cluster": "sodapoppin@vod2883882123",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
+                },
+                {
+                  "cluster": "scout:buddha/buddha-available-buddha-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not support the scout's premise. Clip 1 (5h10m) is a blackjack-table test where the dealer s"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "calls shot, outcome unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Costcodle guess lands, but mostly talkin",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Northernlion Guesses The Price Of Trident Gum And Says The Internet Can't Handle It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Game UI is tiny and mostly empty white space beside the facecam, so the framing is loose",
+                "Hook card at 1.7s overlaps the top of the face",
+                "Duplicate captions: the burned-in source subtitle and the overlay caption both show"
+              ]
+            }
+          },
+          "took_s": 166.3
+        },
+        {
+          "slug": "clip-20261002-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (GTA RP heist, insider, driving, unclear )",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "heist plan success, RP context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "GTA RP heist, insider, driving, unclear ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 33.6
+        },
+        {
+          "slug": "clip-20261002-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague, possible physical moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Friendly-fire argument, shot tire, real ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Can't Believe He Got Shot In The Tire After This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Two caption layers run at once (big caption plus smaller word-by-word line) and they sometimes show different text",
+                "Caption text sits over the car in several frames, but the car is not a face and the action stays readable",
+                "Auto-censored '*******' shows in the captions",
+                "The gameplay has no visible streamer or face, but the car is a clear subject and is framed well"
+              ]
+            }
+          },
+          "took_s": 203.2
+        },
+        {
+          "slug": "clip-20261002-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "intriguing title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "IRL car haggle ends in handshake deal",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Pulls Off The Best Negotiation In History Over An M4"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Frame at 9.4s is a motion-blurred, near-empty frame with no clear subject",
+                "Brief motion blur at 5.7s and 8.2s, likely from camera movement",
+                "Captions sit over the shirt and torso, but they don't cover any faces"
+              ]
+            }
+          },
+          "took_s": 163.8
+        },
+        {
+          "slug": "clip-20261002-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Streamer chatter about news photo, no ev)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Streamer chatter about news photo, no ev",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 23.6
+        },
+        {
+          "slug": "clip-20261002-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "crude chat question, no clear visible ev",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Reads Chat's Wild Chocolate Question And Loses Five In A Row"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Frames at 0.8s and 14.6s show a mostly black middle panel with only a tiny facecam, probably a source scene change but i",
+                "The middle panel is a tiny full-screen capture of the stream, so the subject is small there, though the top panel keeps ",
+                "Captions are doubled: burned-in source subtitles plus the big caption under the picture",
+                "The hook card sits over the top of the face in the first frame at 0.8s",
+                "The chocolate line in the caption is crude, a mild brand-safety risk"
+              ]
+            }
+          },
+          "took_s": 113.3
         }
       ]
     }
