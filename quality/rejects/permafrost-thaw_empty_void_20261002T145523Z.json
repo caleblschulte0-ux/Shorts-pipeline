@@ -1,0 +1,16 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261002T145523Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:start the upper ~60% of the frame is empty gradient above two small bars at the bottom. In seg2:mid and seg2:end everything below the 1700B row is empty, down to the captions.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start shows a stacked column with a low-contrast permafrost label. It then cuts at seg2:mid and seg2:end to two text rows reading 870B and 1700B, each with an idle duplicate mascot and a decorative dotted line on the right.",
+  "root_cause": "The comparison of the whole atmosphere against almost double that amount in permafrost was handed to a text-row layout, not a machine that shows the volume. Data is cloned as a prop instead of doing anything.",
+  "repair_goal": "Draw the 1.7-trillion-ton permafrost store as a frozen block, about twice the size of an 870B atmosphere vessel, so the 'almost double' is visible without reading. Data should cause it, for example by hacking the frozen carbon out with a pick until it fills a second atmosphere-sized volume. Keep a single mascot and put every label in high-contrast ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

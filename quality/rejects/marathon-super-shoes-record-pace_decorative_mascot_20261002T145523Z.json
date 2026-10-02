@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261002T145523Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start-end and seg3:start-end show Data just perching on top of a growing bubble; at hook@0.3-seg0:end he rides a shrinking block holding a stick that does nothing; at seg4 he leans on a pole beside the scale and does not load the bricks.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data",
+  "visible_evidence": "seg2:start, mid and end show two identical yellow bubbles, both labelled '8.3' and both captioned 'Before 2016 (1988-2013)'. The 'since 2016 ~30 s/yr' side never appears, and the kicker reads 'BEFORE 2016 (1988-2013) TOPS THE LIST' while the narration says the after-2016 rate is almost 4x faster.",
+  "root_cause": "The comparison machine was fed the same data row twice (the before-2016 row duplicated into the after-2016 slot), so the scene contradicts its own narration. Bubble area is also a weak way to show a rate of improvement.",
+  "repair_goal": "Bind the second item to the post-2016 rate (~30 s/yr, labelled 'Since 2016') so the two values differ and 30 is visibly ~3.6x larger than 8.3. Better: show the rate as speed, for example two clocks or runners where the super-shoe era sheds seconds visibly faster, with Data pushing the faster one. Fix the kicker so the larger value tops the list."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

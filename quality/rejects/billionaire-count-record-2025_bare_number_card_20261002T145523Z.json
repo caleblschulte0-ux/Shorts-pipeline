@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261002T145523Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start through seg4:end is two plain teal circles, each with \"127%\" on it. There is no demonstration, only a number on a blob.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Both circles read \"127%\" and both are labelled \"Billionaire wealth\". The S&P 500's 195%, which the narration is about, never appears (seg3:start, seg3:mid, seg3:end), and the same broken pair stays on screen through seg4.",
+  "root_cause": "The comparison machine got the billionaire series twice instead of billionaire vs S&P 500. Two equal circles also can't show the 127% vs 195% gap, which is the point of the story.",
+  "repair_goal": "Show billionaire wealth at +127% beside the S&P 500 at +195%, labelled correctly, as a physical race or fill in which the S&P visibly overtakes. Data should push or drive the S&P side so the gap is something the viewer sees, not reads. The closing should then land on that gap instead of repeating the circles."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
