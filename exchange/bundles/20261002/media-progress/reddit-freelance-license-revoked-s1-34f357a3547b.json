@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s1-34f357a3547b",
+  "safe_request_id": "reddit-freelance-license-revoked-s1-34f357a3547b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ad06392c867f3e1dd51571afa025124d2cfa697f872f6a893ba422e965e647c1",
+  "prompt_used": "An editorial illustration for a short-form video: unpaid invoice phone. It accompanies the narration: \"ghosted on the final invoice\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1wByCPOaktitXkfpplXHRY-5LHr6H834x",
+    "filename": "20261002__reddit-freelance-license-revoked-s1-34f357a3547b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1wByCPOaktitXkfpplXHRY-5LHr6H834x",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "fe49fa5f3068586ba21e61ef35f18649fc169e83416106416c505a7bbff9b324",
+    "bytes": 1766168,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-02T11:27:28.432Z"
+}
