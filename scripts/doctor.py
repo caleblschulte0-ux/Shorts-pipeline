@@ -526,6 +526,17 @@ def evidence_pack() -> dict:
     except OSError:
         pass
     pack["showrunner_recent"] = recent
+    # Recurrence census by failure fingerprint (ledger schema 2).
+    census: dict = {}
+    for r in recent:
+        fp = r.get("fingerprint")
+        if fp:
+            c = census.setdefault(fp, {"count": 0, "days": set()})
+            c["count"] += 1
+            c["days"].add(str(r.get("ts", ""))[:10])
+    pack["showrunner_recurrence"] = {
+        fp: {"count": c["count"], "days": sorted(c["days"])}
+        for fp, c in sorted(census.items(), key=lambda kv: -kv[1]["count"])}
 
     try:
         out = subprocess.run(
