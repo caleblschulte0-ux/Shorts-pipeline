@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s3-d6217bfd32f6",
+  "safe_request_id": "reddit-freelance-license-revoked-s3-d6217bfd32f6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4cec93b944b5a4d7f0412d32f0ecaa7ce36bee76342c4a5ce1588342aee434e6",
+  "prompt_used": "An editorial illustration for a short-form video: email inbox laptop desk. It accompanies the narration: \"filed infringement reports directly with his web host\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1O7SMyqhbW1y8t-UdaqKU7nI0Mv4f6Kvi",
+    "filename": "20261002__reddit-freelance-license-revoked-s3-d6217bfd32f6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1O7SMyqhbW1y8t-UdaqKU7nI0Mv4f6Kvi",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d90396adc1d9372b75b9872d5f11e8244b0d641cbfdd2d69d0b71d96d4146e00",
+    "bytes": 1820446,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-02T11:27:31.139Z"
+}
