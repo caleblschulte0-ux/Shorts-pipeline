@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-laundry-room-spreadsheet-s5-67b4ba73dc23",
+  "safe_request_id": "reddit-laundry-room-spreadsheet-s5-67b4ba73dc23",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "99f3e01b2d2b73c0f4cb4a9aac455c9ef4141a6e4a8e230ff7f966918cb2cdb2",
+  "prompt_used": "An editorial illustration for a short-form video: clipboard sign-up sheet wall. It accompanies the narration: \"installed a sign-up sheet with strict thirty-minute pickup windows\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+    "filename": "20261002__reddit-laundry-room-spreadsheet-s5-67b4ba73dc23.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "00e8b266547c910006294099e1785c7dd769c140be1e440ad203f6b3aa06733a",
+    "bytes": 2275358,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-02T11:27:24.491Z"
+}
