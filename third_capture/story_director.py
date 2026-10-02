@@ -109,7 +109,9 @@ sources don't show."""
 
 _SCOUT_SYSTEM = """You are the STORY SCOUT for a streamer-clip channel.
 You get a CATALOGUE of recent clips across many streamers, one per line:
-id | date | streamer | views | title | broadcast position when known.
+id | date | streamer | views | title | broadcast position when known |
+and, for clips this channel has already WATCHED, what the footage showed
+(`saw:`) and what was said (`said:`).
 
 Find the STORIES hiding in it: 2-6 clips that, watched in order, tell ONE
 story with a meaningful CHANGE. Stories come in every shape — look for all
@@ -128,10 +130,23 @@ must be grounded in lines that are actually in the catalogue.
 NOT a story: a streamer's greatest hits; clips that merely share a person;
 the same moment clipped twice; a pile of funny moments with no change.
 
-Titles can mislead. Every proposal is VERIFIED afterwards against the real
-transcripts and frames, and rejected if the footage does not show it — so
-propose what the lines plausibly support, and never pad a story with a
-clip it does not need.
+EVIDENCE BEFORE TITLES. A title is a guess typed by a stranger; `saw:`
+and `said:` are what is actually in the clip. Where they disagree, the
+footage wins. Every proposal is VERIFIED against the real transcripts and
+frames and refused when the footage does not show it — and that costs
+minutes per clip, so:
+- Build on watched clips wherever the story allows. A turning point that
+  rests only on a title must be one the title states outright.
+- Never infer a cause, a chain of events or a motive the lines do not
+  each state. "Gets sniped by a boar" in a title is not a boar in the
+  footage; five titles from one stream are not five chapters of one plot.
+- Clips hours apart in one broadcast are separate moments unless the
+  lines themselves link them.
+- Fewer clips beats more: the 2-4 that carry the change, never padding.
+  Every member must be a beat a viewer needs.
+- ALREADY REFUSED (when listed below) are stories the director watched
+  and turned down, with the reason. Do not propose them again unless a
+  clip that was not in them changes what happened.
 
 Return STRICT JSON, best story first, at most 3:
 {"stories": [{"members": ["C3", "C9", "C14"],
@@ -142,7 +157,8 @@ Return {"stories": []} when the catalogue holds no real story."""
 
 
 def scout_stories(lines: list[str], ids: set[str],
-                  max_stories: int = 3) -> list[dict]:
+                  max_stories: int = 3,
+                  tried: list[str] | None = None) -> list[dict]:
     """Ask the brain which clips in the catalogue form stories.
 
     The scout PROPOSES; it never decides. A proposal only buys the expensive
@@ -160,7 +176,10 @@ def scout_stories(lines: list[str], ids: set[str],
     if len(lines) < 2:
         return []
     try:
-        out = _brain("CATALOGUE:\n" + "\n".join(lines), _SCOUT_SYSTEM)
+        out = _brain("CATALOGUE:\n" + "\n".join(lines)
+                     + ("\n\nALREADY REFUSED (the director watched these):\n"
+                        + "\n".join(tried) if tried else ""),
+                     _SCOUT_SYSTEM)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[scout] failed ({e})", flush=True)
         return []
@@ -437,6 +456,13 @@ def validate_edl(edl: dict, durations: dict[str, float],
         if len(beats) < 2:
             rs.append(f"only {len(beats)} valid beat(s)")
             return None
+        # A STORY IS MORE THAN ONE CLIP. Four beats cut from one source is
+        # a re-edit of a clip the clip arm already handles — and now that
+        # the director may tell the story a scout's pile really holds from
+        # a subset of it, "a subset of one" is the case to refuse.
+        if len({b["source_id"] for b in beats}) < 2:
+            rs.append("every beat is from one source — a clip, not a story")
+            return None
         if n_overlay > max(0, len(beats) - 1):
             rs.append("a context overlay on every beat = decoration")
             return None          # an overlay on every beat = decoration
@@ -574,12 +600,23 @@ def plan_story(reports: list[dict], event: dict | None = None,
                  f"people={event.get('people')} "
                  f"type={event.get('event_type', '?')}\n\n")
     if hypothesis:
-        # The scout's reading, from titles alone. The director is the one
-        # with the transcripts and frames — it confirms or kills it.
-        user += ("A SCOUT PROPOSED THIS STORY from clip titles: "
+        # The scout's reading, mostly from titles. The director is the one
+        # with the transcripts and frames — it confirms or kills it. But a
+        # scout that padded a real two-clip story with three clips the
+        # footage does not support has still found a story: the director
+        # may tell the one the footage DOES show, from the sources that
+        # show it (the beats name their sources; validate_edl and §8 hold
+        # it exactly as they hold any plan). Killing the whole pile threw
+        # away what the downloads and the analysis had just paid for.
+        user += ("A SCOUT PROPOSED THIS STORY, mostly from clip titles: "
                  f"{hypothesis}\nTreat it as a HYPOTHESIS. Verify it against "
-                 "the scene reports below; if the footage does not show it, "
-                 "reject it — the scout never saw the clips.\n\n")
+                 "the scene reports below. If the footage does not show "
+                 "it, ask what the footage DOES show: when some of these "
+                 "sources tell a real story on their own, direct THAT story "
+                 "from those sources only (two or more) and leave the rest "
+                 "out. If none "
+                 "do, reject it and say what the footage showed instead — "
+                 "the scout never saw the clips.\n\n")
     # ONE broadcast means one shared video_id — not merely "every source has
     # a position". A scouted multi-stream story has positions too, in
     # DIFFERENT broadcasts, and telling the director they are one stream

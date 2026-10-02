@@ -276,7 +276,8 @@ def from_discovery(pool: list[dict]) -> list[dict]:
 
 
 def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
-                    max_history: int = 160) -> tuple[list[str], dict]:
+                    max_history: int = 160,
+                    memory: dict | None = None) -> tuple[list[str], dict]:
     """The story scout's reading material: one line per clip.
 
     Two halves, because a story needs both. FRESH — the discovery sweep's
@@ -286,6 +287,12 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
     which carry OUR authored titles ("Jynxzi Is Finally Allowed Back Into
     NoPixel After 3 Years") and are where last week's chapter of it lives.
     A clip in both keeps the authored title and the discovery metadata.
+
+    TITLES ARE GUESSES; `memory` IS EVIDENCE. With a clip memory
+    (`clip_memory.load()`), every clip the pipeline has already transcribed
+    or analysed carries what it SHOWS and what is SAID next to its title.
+    The scout built all three of 2026-10-01's proposals from titles the
+    footage did not bear out, while the run held the footage for each one.
 
     Returns (lines, {id: clip}). Ids are short (C1, C2, ...) so the brain
     answers with tokens it cannot misspell into a different clip. Pure and
@@ -324,8 +331,13 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
     # on 2026-09-22 were "?", "truth bomb", "LMAOOO").
     posted = sorted((c for c in rest if c.get("posted")),
                     key=lambda c: str(c.get("date", "")), reverse=True)
+    from third_capture import clip_memory
+    mem = memory or clip_memory.empty()
+    # a "?" title we have WATCHED is not noise — its footage line says what
+    # it is
     extra = sorted((c for c in rest if not c.get("posted")
-                    and len(str(c.get("title", "")).split()) >= 3),
+                    and (len(str(c.get("title", "")).split()) >= 3
+                         or clip_memory.evidence(mem, c["source_url"]))),
                    key=lambda c: str(c.get("date", "")), reverse=True)
     history = (posted + extra)[:max_history]
     chosen = sorted(fresh + history,
@@ -346,9 +358,10 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
             o = int(float(c["vod_offset"]))
             pos = f" | vod={c['video_id']}@{o // 3600}:{(o % 3600) // 60:02d}"
         title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
+        ev = clip_memory.evidence(mem, c["source_url"])
         lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
                      f"{c.get('channel', '?')} | {_views(c.get('views'))} | "
-                     f"{title}{pos}")
+                     f"{title}{pos}" + (f" | {ev}" if ev else ""))
     return lines, ids
 
 def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,

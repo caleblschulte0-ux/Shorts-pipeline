@@ -205,6 +205,49 @@ Also fixed on the way: the director was told "THESE SOURCES ARE ONE
 BROADCAST" whenever every source had a position — a multi-stream story has
 positions too, in different broadcasts. It keys on one shared `video_id`.
 
+### The scout reads footage, not just titles (2026-10-02)
+
+On 2026-10-01 the scout proposed three stories — xQc captured → revenge →
+bail, Summit1g sniped by a boar → loses a duel, a Kai Cenat superhero-names
+run — and the director refused all three for the same reason: *"The boar
+snipe never appears"*, *"no clip shows a capture, a revenge or a release on
+bail"*. The scout had built them from titles strangers typed. Every one of
+those clips had just been downloaded, transcribed and looked at, and the run
+threw that away; the next day's scout would have proposed the same three.
+
+`third_capture/clip_memory.py` → `state/third_clip_memory.json` keeps it:
+
+- **What each clip contains.** Every clip the clip arm transcribes records
+  what is `said`; every clip the story arm analyses records what it `saw`
+  (the scene analyst's observable summary — taken from the clip itself,
+  before any VOD expansion) and who is in it. `build_catalogue(...,
+  memory=)` prints them next to the title, and a junk-titled clip we have
+  watched is no longer dropped from the catalogue.
+- **What the director refused.** Only an editorial "not a story", with its
+  reason. The scout is shown them (`ALREADY REFUSED`), and a candidate that
+  retells one is skipped before any download (`already_refused` in the
+  record) — unless it holds a clip the refused one did not, because the
+  missing clip may be the payoff that arrived today.
+
+The scout prompt now says it plainly: **evidence before titles** — the
+footage wins, never infer a cause or a chain the lines do not each state,
+clips hours apart in one broadcast are separate moments unless the lines
+link them, and 2-4 clips that carry the change beat a padded six.
+
+And the director, handed a padded proposal, may now tell **the story the
+footage does show** from the sources that show it, instead of refusing the
+whole pile after the analysis was paid for. `validate_edl` gained the rule
+that makes that safe: beats from **two or more sources**, or it is a re-edit
+of one clip, not a story. That is a stronger gate, not a weaker one; §8 and
+every other validator rule are unchanged.
+
+The memory is learning state, not dedupe state — it loads tolerantly, ages
+out past 40 days and is capped (400 clips, 60 refusals) so a full file stays
+under the 256KB `state/` limit, which the test measures at every field's cap.
+`judges.story_director.supply` records `catalogue_watched` (how many lines
+carried evidence) and `refused_shown`. Held by
+`tests/test_the_scout_reads_footage.py`.
+
 ## VOD arcs — one-broadcast stories (2026-09-22)
 
 Between 2026-09-16 and 09-22 the story arm ran 7 times, considered 21

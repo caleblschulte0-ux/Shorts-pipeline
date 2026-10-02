@@ -198,6 +198,38 @@ def _audit_dupes(log: dict) -> list:
 # mid-run). None = not yet computed; {} = computed, nothing usable.
 _PRIOR_CACHE: dict | None = None
 _STORY_POOL: list | None = None   # run-wide wide-sweep discovery cache
+_CLIP_MEMORY: dict | None = None  # what this channel has watched (lazy)
+
+
+def _memory() -> dict:
+    """The run's clip memory (third_capture/clip_memory.py), loaded once."""
+    global _CLIP_MEMORY
+    if _CLIP_MEMORY is None:
+        from third_capture import clip_memory
+        _CLIP_MEMORY = clip_memory.load()
+    return _CLIP_MEMORY
+
+
+def _remember_clip(source_url: str, **fields) -> None:
+    """Keep what a clip turned out to contain. Every clip the run downloads
+    and transcribes is evidence the story scout can read tomorrow instead
+    of a stranger's title; it used to die with the runner. Never raises."""
+    try:
+        from third_capture import clip_memory
+        clip_memory.note_clip(_memory(), source_url, **fields)
+        clip_memory.save(_memory())
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[clip-memory] {e}", flush=True)
+
+
+def _remember_refused(member_urls: list[str], premise: str, why: str) -> None:
+    try:
+        from third_capture import clip_memory
+        clip_memory.note_story_tried(_memory(), member_urls,
+                                     premise=premise, why=why)
+        clip_memory.save(_memory())
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[clip-memory] {e}", flush=True)
 
 
 def _learned_prior() -> dict:
@@ -740,7 +772,8 @@ def _checkpoint_log(why: str) -> None:
              # race ci_commit_state hard-resets to origin and restores only
              # the paths it was GIVEN — anything else this run had already
              # written would be silently reverted mid-flight.
-             "state/third_posted_log.json", "state/third_events.json"],
+             "state/third_posted_log.json", "state/third_events.json",
+             "state/third_clip_memory.json"],
             cwd=str(REPO), timeout=120, check=False)
     except Exception as e:  # noqa: BLE001
         print(f"[checkpoint] {why}: {e}", flush=True)
@@ -1188,9 +1221,21 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # lookback window — every clip posted, the discovery sweep, one line
         # each — and proposes stories. It proposes; `plan_story` decides,
         # with the transcripts and frames in front of it and §8 unchanged.
-        cat_lines, cat_ids = storyline.build_catalogue(corpus)
+        # The catalogue carries what the footage SHOWED for every clip this
+        # channel has already watched, and the scout is told which stories
+        # the director has already refused and why (clip_memory.py) — on
+        # 2026-10-01 it proposed three stories from titles, all three were
+        # refused because the footage said otherwise, and nothing stopped it
+        # proposing the same three the next day.
+        from third_capture import clip_memory
+        cat_lines, cat_ids = storyline.build_catalogue(corpus,
+                                                       memory=_memory())
+        _refused = clip_memory.tried_lines(
+            _memory(), {storyline.clip_key(c["source_url"]): cid
+                        for cid, c in cat_ids.items()})
         scouted = []
-        for st in story_director.scout_stories(cat_lines, set(cat_ids)):
+        for st in story_director.scout_stories(cat_lines, set(cat_ids),
+                                               tried=_refused):
             members = [cat_ids[m] for m in st["members"]]
             # story order as the scout gave it, stable across a date
             members = sorted(members, key=lambda c: str(c.get("date", "")))
@@ -1238,6 +1283,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         try:
             _JUDGES.setdefault("story_director", {})["supply"] = {
                 "catalogue": len(cat_lines),
+                # how much of what the scout read was evidence, not titles
+                "catalogue_watched": sum(1 for ln in cat_lines
+                                         if "| saw: " in ln
+                                         or '| said: "' in ln),
+                "refused_shown": len(_refused),
                 "scouted": [{"premise": x["premise"][:120],
                              "shape": x["shape"], "n": len(x["clips"])}
                             for x in scouted],
@@ -1299,6 +1349,17 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 print(f"[story] {who}: near-duplicate of a shipped story"
                       " — skipped", flush=True)
                 continue
+            # The director already watched this and said no. Re-analysing it
+            # costs minutes of downloads, whisper and vision to hear the same
+            # answer. A candidate holding a clip the refused one did not is
+            # a new hypothesis and goes ahead (already_tried says so).
+            _was = clip_memory.already_tried(_memory(), urls)
+            if _was:
+                print(f"[story] {who}: refused on {_was.get('d', '?')} — "
+                      f"{_was.get('why', '')[:80]} — skipped", flush=True)
+                _story_verdict(who, "already_refused",
+                               f"{_was.get('d', '?')}: {_was.get('why', '')}")
+                continue
 
             # ---- multimodal scene analysis (§7), with VOD context
             # expansion (§6) for sources the analysis marks incomplete
@@ -1322,6 +1383,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     snip_dir, whisper_model=wmodel)
                 if not rep:
                     continue
+                # remember the CLIP's own report, before any VOD expansion
+                # widens it to minutes the clip does not contain
+                _remember_clip(c["source_url"], day=c.get("date", ""),
+                               channel=c.get("channel", ""),
+                               saw=rep.get("summary", ""),
+                               said=clip_memory.said_from_words(
+                                   rep.get("words")),
+                               people=rep.get("people") or ())
                 # §6 expansion triggers: mid-sentence start, missing
                 # payoff, or flagged missing context — and helix gave us
                 # the VOD coordinates
@@ -1428,6 +1497,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     _story_verdict(elbl,
                                    "not_a_story" if rej.get("editorial")
                                    else "plan_rejected", why)
+                    if rej.get("editorial"):
+                        # only the director's "no" — a malformed plan says
+                        # nothing about whether the story is there
+                        _remember_refused(sub_urls,
+                                          cluster.get("premise") or who,
+                                          why)
                     continue
                 plan_urls = [b["source_id"] for b in edl["beats"]]
                 if storyline.story_key(plan_urls) in shipped or \
@@ -1960,6 +2035,10 @@ def process(pkg: dict, pkg_path: Path | None, *,
             has_cut = spec.get("start") or spec.get("end")
             words = None if has_cut else \
                 clip_edit.transcribe_words(info["path"], wmodel)
+            if words is not None:
+                from third_capture import clip_memory
+                _remember_clip(info["url"], channel=streamer,
+                               said=clip_memory.said_from_words(words))
             meta = None
             if words is not None:
                 try:
