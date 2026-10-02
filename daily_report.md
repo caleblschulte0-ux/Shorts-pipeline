@@ -1,42 +1,26 @@
 # Daily Trending Shorts — 2026-10-02
 
-> **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **9**
-- succeeded: **3**
-- quarantined (off-topic imagery): **2**
+- queued: **5**
+- succeeded: **1**
+- quarantined (off-topic imagery): **0**
 - failed: **4**
 
 ## Posted
-- **Solar Jobs Passed Coal Mining Jobs. By A Lot.**
-  - topic: Solar Jobs Passed Coal Mining Jobs. By A Lot.
+- **He Ghosted My Invoice. The License Didn't Care.**
+  - topic: He Ghosted My Invoice. The License Didn't Care.
   - publishes: `2026-10-02T13:00:00Z`
-  - https://youtube.com/shorts/OKY_mW-qn7k
-  - took: 130.0s
-- **Money Sent Home Just Buried Foreign Aid**
-  - topic: Money Sent Home Just Buried Foreign Aid
-  - publishes: `2026-10-02T14:30:00Z`
-  - https://youtube.com/shorts/3FK7bVY3UNg
-  - took: 119.3s
-- **America Bought More E-Bikes Than Electric Cars**
-  - topic: America Bought More E-Bikes Than Electric Cars
-  - publishes: `2026-10-02T16:00:00Z`
-  - https://youtube.com/shorts/-Zb02Talt70
-  - took: 132.9s
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **Butterflies use optical illusions to dodge predators**
-  - quarantined: vision QA: broken — Frame 2 shows only gameplay filling the entire vertical space, missing the expected story illustration in the top half as described for each frame's structure.
-- **Near miss with semi-truck caught on camera - KIRO 7 News Seattle**
-  - quarantined: vision QA: broken — short
+  - https://youtube.com/shorts/1urBT1JOeUc
+  - took: 308.4s
 
 ## Failed
 - **Jet Engines Now Fly 20x Longer Between Overhauls**
-  - error: `showrunner_block: showrunner BLOCK: A clean, smooth two-line graph race. The key crossover moment is announced in unreadable micro-text, and the '20x' payoff is never landed.`
+  - error: `showrunner_block: showrunner BLOCK: A clean, moving line race. But the payoff names a '#1' winner instead of landing the 20x scale, and the crossover note is too small to read on a phone.`
 - **She Hogged The Washers. I Built A Spreadsheet.**
-  - error: `showrunner_block: showrunner BLOCK: The story beats (two washers, the timestamp spreadsheet, the sign-up sheet, the fine) are never shown: the pictures are a microscope and a frozen generic person emoji over gameplay, so the payoff falls flat.`
-- **He Ghosted My Invoice. The License Didn't Care.**
-  - error: `showrunner_block: showrunner BLOCK: The gameplay and captions are fine, but the illustration panel freezes on one generic globe icon for the last ~30s, so the revenge never visibly lands.`
+  - error: `showrunner_block: showrunner BLOCK: After one decent stock photo, the story's whole second half is a single frozen placeholder emoji, so the petty-revenge payoff (the spreadsheet, the sign-up sheet, the fine) is never shown.`
 - **Bear caught on camera slamming into car while cub crosses road - KHOU**
-  - error: `showrunner_block: showrunner BLOCK: Almost the whole story plays over bare parkour gameplay with captions. Only one generic emoji illustration appears, so none of the narrative beats (receipt, note, QR code, payoff) are shown.`
+  - error: `showrunner_block: showrunner BLOCK: Generic emoji panels on only two beats, blown-out yellow gameplay in the hook and faded captions leave the story beats undemonstrated and partly unreadable.`
+- **Meet '89 Backpack', the chunky bear who won Fat Bear Week**
+  - error: `showrunner_block: showrunner BLOCK: Gameplay with captions and no story illustrations until a blank placeholder phone at the end. The cause and effect is never shown, and the payoff lands on an empty icon.`
 
