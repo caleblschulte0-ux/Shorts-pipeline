@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-laundry-room-spreadsheet-s4-624393d6aee6",
+  "safe_request_id": "reddit-laundry-room-spreadsheet-s4-624393d6aee6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f3e3256fa0f5e8c19b5f333d6720a973d48a17a853f8146328c4f3cfe4bc525f",
+  "prompt_used": "An editorial illustration for a short-form video: phone group chat messages. It accompanies the narration: \"posted it anonymously in the building group chat\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+    "filename": "20261002__reddit-laundry-room-spreadsheet-s4-624393d6aee6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e9630253f4a7c3eb6aaf675ae6c667c5b97ad0d05382f6187cbd9df8f02b50ce",
+    "bytes": 1603869,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-02T11:27:23.340Z"
+}
