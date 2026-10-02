@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-laundry-room-spreadsheet-s0-87739f6c0598",
+  "safe_request_id": "reddit-laundry-room-spreadsheet-s0-87739f6c0598",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "34a2602a7bbb06f37371651833e0c94cccdf1d2aa8acd77304ec0f7b1c749db4",
+  "prompt_used": "An editorial illustration for a short-form video: apartment laundry room. It accompanies the narration: \"exactly two washers for forty units\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+    "filename": "20261002__reddit-laundry-room-spreadsheet-s0-87739f6c0598.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "92a503d42d1ad09d37bb315f924e1efb24f29551b57cef39ba63bcc09b2cdba8",
+    "bytes": 2161776,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-02T11:27:19.165Z"
+}
