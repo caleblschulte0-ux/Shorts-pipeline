@@ -225,7 +225,8 @@ class TheSlotUsesTheScoutFirst(unittest.TestCase):
         self.assertIn('spec.get("story_max_clusters", 6)', self.body)
 
     def test_the_catalogue_is_built_from_the_whole_corpus(self):
-        self.assertIn("storyline.build_catalogue(corpus)", self.body)
+        # the whole corpus — plus, since 2026-10-02, what was watched
+        self.assertIn("storyline.build_catalogue(corpus,", self.body)
 
     def test_a_scouted_story_is_not_resplit_by_the_week_window(self):
         i_scouted = self.body.index("elif is_scouted:\n                # The scout's grouping")

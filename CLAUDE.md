@@ -476,6 +476,15 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   the transcripts and frames, §8 unchanged. What it proposed is recorded
   per slot in `judges.story_director.supply` in `state/third_qa_stats.json`
   — read that before tuning anything.
+- **The scout reads what the clips SHOWED, not just their titles**
+  (2026-10-02: all three of the 10-01 proposals were refused because "the
+  boar snipe never appears" — built from titles, while the run held the
+  footage). `third_capture/clip_memory.py` keeps what every transcribed or
+  analysed clip says and shows, and every story the director refused with
+  its reason; the catalogue prints the evidence beside the title, the scout
+  is told what was refused, a retold refusal is skipped before download.
+  The director may tell the smaller story a padded proposal really holds —
+  from two or more sources, which `validate_edl` now enforces.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
