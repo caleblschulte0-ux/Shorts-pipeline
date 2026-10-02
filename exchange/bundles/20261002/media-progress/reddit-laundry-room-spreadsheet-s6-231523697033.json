@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-laundry-room-spreadsheet-s6-231523697033",
+  "safe_request_id": "reddit-laundry-room-spreadsheet-s6-231523697033",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "536a7753c0d1efc31edfeb0c6dba6ff5d8bac01c0063ad385acbee0cdefebb35",
+  "prompt_used": "An editorial illustration for a short-form video: past due notice envelope. It accompanies the narration: \"She was the first person fined\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+    "filename": "20261002__reddit-laundry-room-spreadsheet-s6-231523697033.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bf11760397283ddb2549a5bb39de2392288e3f0212f91c4900e057ffb90f6a4f",
+    "bytes": 2256720,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-02T11:27:25.705Z"
+}
