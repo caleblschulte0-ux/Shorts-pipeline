@@ -1,0 +1,407 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261002",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 6,
+    "registry_sha256": "4a82b0708b353716e68a202cc812cceb8dfb1849ece3d56356d67040593db284",
+    "source_commit": "dbed80ac2df0d5e61724fbec4fcbcc21aafaa063",
+    "production_date": "20261002",
+    "bundle_sha256": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3"
+  },
+  "packages": [
+    {
+      "slug": "solar-jobs-passed-coal-mining-jobs",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title makes the labor-market crossover immediate, while the chart supplies the scale."
+    },
+    {
+      "slug": "remittances-passed-foreign-aid",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title states the surprising capital-flow crossover cleanly and leaves the chart to prove it."
+    },
+    {
+      "slug": "jet-engines-fly-longer-between-overhauls",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the 20x durability leap is already the strongest hook and the timeline makes it credible."
+    },
+    {
+      "slug": "ebikes-passed-electric-cars",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the familiar electric-car benchmark makes the e-bike sales crossover instantly legible."
+    },
+    {
+      "slug": "reddit-laundry-room-spreadsheet",
+      "script": "Our apartment building had exactly two washers for forty units, and one neighbor kept leaving her clothes inside for hours. Management ignored every complaint. So I started logging timestamps instead: load time, cycle finish, and how long the wet clothes sat. After three weeks, the spreadsheet was airtight. I posted it anonymously in the building group chat and let the other thirty-nine tenants connect the dots. Within a week, management installed a sign-up sheet with strict thirty-minute pickup windows and a small fine. She was the first person fined, three days later, then called the rule unfair to the one person it was obviously written for. I still do laundry at midnight most weeks, but now I always get a machine. The spin cycle needed receipts.",
+      "editor_note": "Compressed the story to 126 words, preserved every protected fact and visual phrase, and ended on a laundry-specific receipts callback."
+    },
+    {
+      "slug": "reddit-freelance-license-revoked",
+      "script": "I designed a full brand package for a startup founder who ghosted on the final invoice, then used my logo for two months while calling the work incomplete. My contract had one clause he missed: unpaid work reverts to a revocable license, and nonpayment past thirty days triggers automatic revocation. I sent one email confirming the lapse, then filed infringement reports directly with his web host and payment processor, attaching timestamped proof. His site went dark within a week, while he was running paid ads for a product launch teased for a month. He paid the full invoice plus a reinstatement fee for my written release—more than double what he owed. No apology, just a wire transfer and a new logo order from someone with better sense. The contract did excellent follow-up.",
+      "editor_note": "Cut the story to 132 words, preserved every protected fact and visual phrase, and sharpened the payoff around the contract enforcing itself."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "reddit-freelance-license-revoked-s0-801f6a147869",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qDHQnUDL92Ybl_wQsOsbzmRHKu9rH5mx",
+        "filename": "20261002__reddit-freelance-license-revoked-s0-801f6a147869.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qDHQnUDL92Ybl_wQsOsbzmRHKu9rH5mx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fa53ed2dbd2dccbcc05266e4b4dccbe8e2a5fdf658a1837cbd12ad44720fa787",
+        "bytes": 1805991,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s0-801f6a147869.json",
+        "verified_at": "2026-10-02T11:27:26.849Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s1-34f357a3547b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1wByCPOaktitXkfpplXHRY-5LHr6H834x",
+        "filename": "20261002__reddit-freelance-license-revoked-s1-34f357a3547b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1wByCPOaktitXkfpplXHRY-5LHr6H834x",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fe49fa5f3068586ba21e61ef35f18649fc169e83416106416c505a7bbff9b324",
+        "bytes": 1766168,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s1-34f357a3547b.json",
+        "verified_at": "2026-10-02T11:27:28.432Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s2-5dff9ec8a00d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1UmTJXAxdggh-7pIzsVhsUD3TT0nQRP_O",
+        "filename": "20261002__reddit-freelance-license-revoked-s2-5dff9ec8a00d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1UmTJXAxdggh-7pIzsVhsUD3TT0nQRP_O",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "af35c01db24f7affece6ea5143ce1fff3371cb148548e3d8c10a2bf7be4fe2bd",
+        "bytes": 1994217,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s2-5dff9ec8a00d.json",
+        "verified_at": "2026-10-02T11:27:29.787Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s3-d6217bfd32f6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1O7SMyqhbW1y8t-UdaqKU7nI0Mv4f6Kvi",
+        "filename": "20261002__reddit-freelance-license-revoked-s3-d6217bfd32f6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1O7SMyqhbW1y8t-UdaqKU7nI0Mv4f6Kvi",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d90396adc1d9372b75b9872d5f11e8244b0d641cbfdd2d69d0b71d96d4146e00",
+        "bytes": 1820446,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s3-d6217bfd32f6.json",
+        "verified_at": "2026-10-02T11:27:31.139Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s4-76f220681fa4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1irL0cKNsJZx-xMtQ0PKtq31dxloJFcC0",
+        "filename": "20261002__reddit-freelance-license-revoked-s4-76f220681fa4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1irL0cKNsJZx-xMtQ0PKtq31dxloJFcC0",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c9cdd1a9ead07cbfa0e438d123d7b3e764dbc2e8736130934c0d8ff129dd4a26",
+        "bytes": 1469562,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s4-76f220681fa4.json",
+        "verified_at": "2026-10-02T11:27:32.231Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s5-b6d63e9a0666",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "177gCEsXQdET5sLLXkSZDBDR35C0kmwyr",
+        "filename": "20261002__reddit-freelance-license-revoked-s5-b6d63e9a0666.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=177gCEsXQdET5sLLXkSZDBDR35C0kmwyr",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "095f2e0521ba766acf8a9171ea86a1e46e111fb684d59b307fac3d6bcca989fe",
+        "bytes": 1651913,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s5-b6d63e9a0666.json",
+        "verified_at": "2026-10-02T11:27:33.572Z"
+      }
+    },
+    {
+      "request_id": "reddit-freelance-license-revoked-s6-b4bba12046ba",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "17FiHJzGBcTdg1pCY2yHzj1cjdSHuw-Pq",
+        "filename": "20261002__reddit-freelance-license-revoked-s6-b4bba12046ba.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=17FiHJzGBcTdg1pCY2yHzj1cjdSHuw-Pq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "dba461f98a8244cbe8cedb89c4be7c617a07fe4f4a4d3d2c755c30d2482f9a98",
+        "bytes": 1866912,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-freelance-license-revoked-s6-b4bba12046ba.json",
+        "verified_at": "2026-10-02T11:27:34.581Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s0-87739f6c0598",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s0-87739f6c0598.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1GXQPmbsD5ur3gMasMBV86yu4rhdsoUPD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "92a503d42d1ad09d37bb315f924e1efb24f29551b57cef39ba63bcc09b2cdba8",
+        "bytes": 2161776,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s0-87739f6c0598.json",
+        "verified_at": "2026-10-02T11:27:19.165Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s1-dd5b12eed669",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1FLvtr42eL4AyoKPFv40UHoqiRnOefi2W",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s1-dd5b12eed669.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1FLvtr42eL4AyoKPFv40UHoqiRnOefi2W",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2a253bc2a4b9962d21c5f522b2cbd628e3e3c06c17aa7234b1fcfd340c222394",
+        "bytes": 2359063,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s1-dd5b12eed669.json",
+        "verified_at": "2026-10-02T11:27:20.104Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10qUNxjISUh0kDaCza1Ra6DRTAZeAF5xt",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10qUNxjISUh0kDaCza1Ra6DRTAZeAF5xt",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4ea862366d70ed83844aaf1a4c6d4899812b2b9528f826a16bf8732943bdf1ab",
+        "bytes": 1701526,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f.json",
+        "verified_at": "2026-10-02T11:27:21.230Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s3-c32c48dfc013",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s3-c32c48dfc013.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=13B9VhxenRJxmY-Gamx26f0GUWAW1kKIN",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3668d704c4bc10fab0c1e6f79438d4efb6ea8a2b2f364e082ba6d9dcb04bee42",
+        "bytes": 1353542,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s3-c32c48dfc013.json",
+        "verified_at": "2026-10-02T11:27:22.190Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s4-624393d6aee6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s4-624393d6aee6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1x5HxkupgC7WbwHE8u5Cmy2vTTL4OXurq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e9630253f4a7c3eb6aaf675ae6c667c5b97ad0d05382f6187cbd9df8f02b50ce",
+        "bytes": 1603869,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s4-624393d6aee6.json",
+        "verified_at": "2026-10-02T11:27:23.340Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s5-67b4ba73dc23",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s5-67b4ba73dc23.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1D1_LomJvnRwUUPPEUcNIGK4G0V7SSV4W",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "00e8b266547c910006294099e1785c7dd769c140be1e440ad203f6b3aa06733a",
+        "bytes": 2275358,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s5-67b4ba73dc23.json",
+        "verified_at": "2026-10-02T11:27:24.491Z"
+      }
+    },
+    {
+      "request_id": "reddit-laundry-room-spreadsheet-s6-231523697033",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+        "filename": "20261002__reddit-laundry-room-spreadsheet-s6-231523697033.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-WF2YOz4-s4sLQf7dQgj1NWBW7qzcOw2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "bf11760397283ddb2549a5bb39de2392288e3f0212f91c4900e057ffb90f6a4f",
+        "bytes": 2256720,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261002/media-progress/reddit-laundry-room-spreadsheet-s6-231523697033.json",
+        "verified_at": "2026-10-02T11:27:25.705Z"
+      }
+    }
+  ]
+}
+
