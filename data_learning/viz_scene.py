@@ -485,7 +485,13 @@ SCENE_ROLES: dict = {
 #: `_host_pose` miss returns None exactly like a deliberate omission. Neither
 #: substitute is as good as the animated pose; both are better than an empty
 #: frame, and `duck` really does read as bracing.
-_ROLE_PNG = {"strain": "duck", "climb": "cheer", "hoist_stack": "cheer"}
+_ROLE_PNG = {"strain": "duck", "climb": "cheer", "hoist_stack": "cheer",
+             # the tool acts (mascot_director.TOOL_ACTS) brace into the work
+             "swing_pick": "duck", "chop": "duck", "hammer": "duck", "dig": "duck",
+             "pump": "duck", "broom": "duck", "paddle": "duck", "cut": "duck",
+             "pour": "duck", "haul": "duck", "shove": "duck", "crank": "duck",
+             "stamp": "duck", "place": "duck", "tap": "duck", "toss": "duck",
+             "squeeze": "duck"}
 
 
 def scene_act(role: str, insight=None, kind: str = "") -> str:

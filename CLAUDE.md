@@ -139,6 +139,16 @@ auto-fails in a fortnight. `tests/test_data_is_the_cause.py` MEASURES it:
 his anchor has to land on pixels that move. Docs: `docs/DATA_MACHINES.md`
 §"Data is the CAUSE".
 
+**Work is done WITH THE TOOL, in one arc** (operator, 2026-10-02: Data
+"breaking the iceberg ... just flailing his arms around. Give him like a
+pick axe"). `mascot_director.TOOL_ACTS` (swing_pick, chop, hammer, dig,
+pump, broom, paddle, plus the agent acts) are one-shot wind-up → strike →
+hold, no sine anywhere; a subject scene lands one per `beat=` and the
+verifier refuses a `CAUSE:` whose verb has a tool when Data performs it
+empty-handed (`VERB_TOOLS`, `scene_author.tool_problems`). `strain` is
+for bearing a load, never for doing work. Add a tool act with its verb,
+its anchor at the business end, and the test that it RESOLVES.
+
 The RIG (how he is drawn) lives in `scripts/build_mascot_svg.py` and is the
 single source of truth; `assets/mascot/host/*.svg|png` are generated from it
 (`python scripts/build_mascot_svg.py --png`). Changing it changes the
