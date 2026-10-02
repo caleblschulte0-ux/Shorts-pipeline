@@ -1,0 +1,16 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261002T131334Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:start the top 60% of the frame is empty dark gradient, with two small bars at the bottom left. In seg2:mid the bottom third is empty under the two rows.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "broken_chart_bare_numbers",
+  "visible_evidence": "At seg1:start to seg1:end a horizontal bar chart titled 'HIGHEST IN 2023' has five completely empty tracks (no fill on any bar), so the scene is only the values -8, -6.5, -5, -3.5 and -2.3 printed on the right. Data floats between rows and covers the 2010 track.",
+  "root_cause": "The bars encode negative temperatures from a zero baseline, so every bar length comes out as nothing or invisible. The scene also repeats seg0's warming series as a chart instead of showing ground thawing. The mascot has no anchor on a moving part.",
+  "repair_goal": "Replace it with a bespoke frozen-ground cross-section: a column of permafrost whose ice line visibly retreats and whose thermometer rises from -8 to -2.3 \u00b0C as the years tick 1983 to 2023. Data drives the warming by turning a heat dial or chipping the ice, with his hands on the moving part. Drop the empty bar chart entirely."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

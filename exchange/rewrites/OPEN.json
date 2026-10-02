@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-02T11:31:49Z",
+ "updated": "2026-10-02T13:13:22Z",
  "open": [
+  {
+   "id": "us-height-ranking-fall__dfb4fa2e",
+   "slug": "us-height-ranking-fall",
+   "filed": "2026-10-02T13:13:22Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261002/us-height-ranking-fall__dfb4fa2e.request.json",
+   "answer_path": "exchange/rewrites/20261002/us-height-ranking-fall__dfb4fa2e.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__a6d6cd11",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-10-02T13:13:19Z",
+   "why": [
+    "premise: brain: It lacks a single verifiable number, offering only a vague age range."
+   ],
+   "request": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.request.json",
+   "answer_path": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.answer.json"
+  },
   {
    "id": "billionaire-count-record-2025__00739761",
    "slug": "billionaire-count-record-2025",
@@ -751,16 +771,6 @@
    "answer_path": "exchange/rewrites/20261001/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
-   "id": "us-height-ranking-fall__dfb4fa2e",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-10-01T11:01:17Z",
-   "why": [
-    "premise: brain: It lacks a verifiable number and does not clearly invert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261001/us-height-ranking-fall__dfb4fa2e.request.json",
-   "answer_path": "exchange/rewrites/20261001/us-height-ranking-fall__dfb4fa2e.answer.json"
-  },
-  {
    "id": "gulf-dead-zone-growth__59c7e706",
    "slug": "gulf-dead-zone-growth",
    "filed": "2026-10-01T11:01:14Z",
@@ -769,16 +779,6 @@
    ],
    "request": "exchange/rewrites/20261001/gulf-dead-zone-growth__59c7e706.request.json",
    "answer_path": "exchange/rewrites/20261001/gulf-dead-zone-growth__59c7e706.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__a6d6cd11",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-10-01T11:01:12Z",
-   "why": [
-    "premise: brain: It lacks a single verifiable number, only a vague age range, so it doesn't meet the required criterion."
-   ],
-   "request": "exchange/rewrites/20261001/muscle-loss-after-30__a6d6cd11.request.json",
-   "answer_path": "exchange/rewrites/20261001/muscle-loss-after-30__a6d6cd11.answer.json"
   },
   {
    "id": "child-mortality-collapse__3105e565",

@@ -1,0 +1,16 @@
+{
+ "slug": "glacier-mass-loss-acceleration",
+ "ts": "20261002T131334Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:start through seg1:end Data waves and then clutches his head on the cliff top while the ice recedes on its own. In seg2:start to seg2:end he stands on the shelf with his hands on his head, apart from the seesaw. In seg3:mid and seg3:end he stands on the wall while the wate",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start to seg2:end show a generic seesaw with two cube icons labelled 'Mountain glaciers' and 'Greenland ice sheet'. It tilts slightly under '+60B tonnes'. Data stands well to the left on the ice shelf with his hands on his head and never touches the seesaw.",
+  "root_cause": "The comparison used a stock balance machine with ice-cube icons swapped in, and Data was placed as a bystander rather than as the cause of the tilt.",
+  "repair_goal": "Make Data the agent. He drops or pushes the 390B glacier load onto one side so it outweighs the 330B Greenland side, with his hands on the load at the moment of the tilt. Better still, replace the seesaw with two melting ice masses whose meltwater runoff visibly differs by the 60B gap."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

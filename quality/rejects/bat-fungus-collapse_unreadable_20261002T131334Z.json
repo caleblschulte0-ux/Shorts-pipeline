@@ -1,0 +1,21 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261002T131334Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid / seg4:end: Data's body covers the 'H' of 'High estimate' and crowds the '$53B' label. seg3:mid: '$53B' is drawn as doubled, outline-garbled dark text on the blue bubble. seg1:mid: Data covers the 2018 bar.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "contradictory_data_and_cloned_mascot",
+  "visible_evidence": "seg2:mid shows three copies of Data in a ranking, two empty cyan ellipses where values should be, and a big '90%' overlay sitting directly under the caption 'of northern long-eared', which is the 97% species. seg2:start is a plain bar chart with bat icons sliding along the bars.",
+  "root_cause": "The scene switches from a bar chart to a clone-the-mascot ranking template with no subject in it. The caption and number overlay are out of sync with the narration, so the headline 97% is never shown as a loss.",
+  "repair_goal": "Draw the loss as a colony that is MADE OF bats. For example, a cave ceiling of 100 roosting bats where Data plucks or sweeps away 97 (northern long-eared) and then 90 (little brown), leaving 3 and 10 hanging. Show one Data acting as the cause, and keep each % label tied to its own species."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

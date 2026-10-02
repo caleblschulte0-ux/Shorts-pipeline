@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261002T131334Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg1:start-end is a big number (15.9 -> 79.5 -> 126) on a ring with no unit. seg2 is two blobs that both say 8.3, which is a number on a blob and demonstrates nothing.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: the two yellow circles are both labelled 'Before 2016 (1988-2013)' and both show 8.3. The narration says 'almost 30 seconds' a year since 2016, but no ~30 value appears anywhere. The header says 'BEFORE 2016 TOPS THE LIST', which is the opposite of the claim.",
+  "root_cause": "The second category (since-2016 rate, ~30 s/yr) was replaced by a duplicate of the first row. The picture is a generic bubble pair, not a mechanic made of the subject.",
+  "repair_goal": "Show two runners or two clocks racing: 'pre-2016: 8 s/yr' against 'since 2016: ~30 s/yr', where the record line drops nearly 4x faster on the super-shoe side. Data should strap on the carbon shoe that triggers the faster drop. Both labels have to be distinct and correct."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
