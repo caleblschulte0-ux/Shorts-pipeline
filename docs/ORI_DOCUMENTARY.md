@@ -770,6 +770,21 @@ only as a hand edit is not a rule. So:
   Still open from its notes: a harbour with
   boats on the sand, a spring with a jar, and a frame caught mid-dissolve.
 
+- **The Greek film with people at the fire (74, BLOCK; Kokoro; longest
+  still 0.67 s).** No more empty lamp shots, and craft and data_demo each rose
+  from 1 to 2. Its notes now are about MATCHING:
+  - a single of the man "breaking bread" leaves the table, bread and cup
+    behind;
+  - "sellers packing baskets" shows the woman at the cauldron;
+  - the harbour boats and the stream are never drawn;
+  - "a woman sets down her spindle" shows a man asleep on a terrace;
+  - the brazier reads as "a modern kettle grill on three legs";
+  - one seated-figure-and-lamp interior carries six passages;
+  - a figure is cut by the left edge.
+  Next: a period bronze brazier; a close-up keeps whatever its sentence's
+  action uses (table, bread, cup, spindle); a harbour with beached boats; a
+  stream; varied interiors.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
