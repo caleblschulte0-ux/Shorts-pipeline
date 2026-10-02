@@ -1,0 +1,42 @@
+{
+ "key": "permafrost_ground_temp_trend",
+ "title": "Arctic permafrost ground temperature (borehole depth)",
+ "unit": "number",
+ "geography": "Arctic (North Slope, Alaska monitoring sites)",
+ "time_coverage": "1983-2023",
+ "source": {
+  "name": "Global Terrestrial Network for Permafrost (GTN-P) borehole monitoring",
+  "publisher": "GTN-P / USGS",
+  "url": "https://gtnp.arcticportal.org/",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Degrees Celsius at depth; representative trend from long-running North Slope boreholes. Rounded to the nearest 0.5C.",
+ "points": [
+  {
+   "label": "1983",
+   "value": -8.0,
+   "period": "1983"
+  },
+  {
+   "label": "2000",
+   "value": -6.5,
+   "period": "2000"
+  },
+  {
+   "label": "2010",
+   "value": -5.0,
+   "period": "2010"
+  },
+  {
+   "label": "2016",
+   "value": -3.5,
+   "period": "2016"
+  },
+  {
+   "label": "2023",
+   "value": -2.3,
+   "period": "2023"
+  }
+ ]
+}

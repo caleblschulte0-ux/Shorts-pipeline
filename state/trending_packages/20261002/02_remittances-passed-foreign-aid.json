@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "remittances-passed-foreign-aid",
+  "title": "Money Sent Home Just Buried Foreign Aid",
+  "hook": "Immigrants quietly out-fund every government combined.",
+  "y_label": "Flows to developing countries ($ billions/year)",
+  "duration": 13,
+  "source": "World Bank / KNOMAD Migration and Development Briefs -- remittances vs official development assistance (ODA) to low- and middle-income countries. Figures approximate as publicly reported.",
+  "years": [
+    1990,
+    1995,
+    2000,
+    2005,
+    2010,
+    2015,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Remittances",
+      "color": "#50c878",
+      "icon": null,
+      "values": [
+        31,
+        58,
+        85,
+        192,
+        325,
+        432,
+        656
+      ]
+    },
+    {
+      "name": "Foreign aid (ODA)",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        55,
+        59,
+        50,
+        108,
+        128,
+        135,
+        224
+      ]
+    }
+  ],
+  "hashtags": [
+    "remittances",
+    "foreignaid",
+    "worldbank",
+    "globaleconomy",
+    "migration",
+    "economics",
+    "data",
+    "development",
+    "money",
+    "finance",
+    "facts",
+    "world"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "solar-jobs-passed-coal-mining-jobs",
+  "title": "Solar Jobs Passed Coal Mining Jobs. By A Lot.",
+  "hook": "One of these jobs barely existed in 2005.",
+  "y_label": "US energy jobs (thousands)",
+  "duration": 13,
+  "source": "US DOE U.S. Energy and Employment Report; Bureau of Labor Statistics -- solar workforce vs coal mining employment. Figures approximate as publicly reported.",
+  "years": [
+    2005,
+    2008,
+    2010,
+    2012,
+    2014,
+    2016,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Solar jobs",
+      "color": "#f5c242",
+      "icon": null,
+      "values": [
+        15,
+        40,
+        93,
+        119,
+        174,
+        374,
+        270
+      ]
+    },
+    {
+      "name": "Coal mining jobs",
+      "color": "#5a5a5a",
+      "icon": null,
+      "values": [
+        110,
+        86,
+        87,
+        90,
+        76,
+        53,
+        42
+      ]
+    }
+  ],
+  "hashtags": [
+    "solarenergy",
+    "coal",
+    "energyjobs",
+    "renewableenergy",
+    "jobs",
+    "energy",
+    "data",
+    "cleanenergy",
+    "economy",
+    "climate",
+    "facts",
+    "us"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

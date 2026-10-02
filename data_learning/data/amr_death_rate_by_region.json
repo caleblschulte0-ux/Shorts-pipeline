@@ -1,0 +1,29 @@
+{
+ "key": "amr_death_rate_by_region",
+ "title": "AMR-attributable death rate by region, 2019",
+ "unit": "number",
+ "geography": "Global (by region)",
+ "time_coverage": "2019",
+ "source": {
+  "name": "Global Research on Antimicrobial Resistance (GRAM) project, The Lancet",
+  "publisher": "Lancet / University of Oxford",
+  "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(21)02724-0/fulltext",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Deaths directly attributable to AMR per 100,000 people, 2019 regional estimates.",
+ "points": [
+  {
+   "label": "Western Europe",
+   "value": 4.6
+  },
+  {
+   "label": "South Asia",
+   "value": 21.6
+  },
+  {
+   "label": "Sub-Saharan Africa",
+   "value": 23.5
+  }
+ ]
+}

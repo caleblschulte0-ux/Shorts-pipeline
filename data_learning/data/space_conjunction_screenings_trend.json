@@ -1,0 +1,37 @@
+{
+ "key": "space_conjunction_screenings_trend",
+ "title": "Collision-risk screenings processed per day",
+ "unit": "thousand",
+ "geography": "Global (US Space Command space domain awareness)",
+ "time_coverage": "2005-2024 (selected years)",
+ "source": {
+  "name": "US Space Command public statements on space domain awareness",
+  "publisher": "United States Space Command",
+  "url": "https://www.spacecom.mil/",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Approximate daily conjunction-assessment screenings as publicly described by Space Command officials.",
+ "points": [
+  {
+   "label": "2005",
+   "value": 0.5,
+   "period": "2005"
+  },
+  {
+   "label": "2015",
+   "value": 5,
+   "period": "2015"
+  },
+  {
+   "label": "2020",
+   "value": 15,
+   "period": "2020"
+  },
+  {
+   "label": "2024",
+   "value": 50,
+   "period": "2024"
+  }
+ ]
+}

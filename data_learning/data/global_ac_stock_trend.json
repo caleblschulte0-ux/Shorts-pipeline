@@ -1,0 +1,47 @@
+{
+ "key": "global_ac_stock_trend",
+ "title": "Air conditioning units installed worldwide",
+ "unit": "billion",
+ "geography": "Global",
+ "time_coverage": "1990-2050 (2030/2050 projected)",
+ "source": {
+  "name": "The Future of Cooling",
+  "publisher": "International Energy Agency (IEA)",
+  "url": "https://www.iea.org/reports/the-future-of-cooling",
+  "officiality": "official",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Historical through 2018; 2030 and 2050 figures are IEA's central projection, not measurements.",
+ "points": [
+  {
+   "label": "1990",
+   "value": 0.5,
+   "period": "1990"
+  },
+  {
+   "label": "2000",
+   "value": 0.9,
+   "period": "2000"
+  },
+  {
+   "label": "2010",
+   "value": 1.2,
+   "period": "2010"
+  },
+  {
+   "label": "2018",
+   "value": 1.6,
+   "period": "2018"
+  },
+  {
+   "label": "2030",
+   "value": 2.3,
+   "period": "2030"
+  },
+  {
+   "label": "2050",
+   "value": 5.6,
+   "period": "2050"
+  }
+ ]
+}

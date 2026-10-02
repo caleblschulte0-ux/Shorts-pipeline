@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "ebikes-passed-electric-cars",
+  "title": "America Bought More E-Bikes Than Electric Cars",
+  "hook": "For two years running, the bike won.",
+  "y_label": "US annual sales (thousand units)",
+  "duration": 13,
+  "source": "NPD Group retail data; US Dept. of Energy Transportation Fact of the Week; BloombergNEF -- e-bike volume vs electric + plug-in hybrid car sales. Figures approximate as publicly reported.",
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "series": [
+    {
+      "name": "E-bikes",
+      "color": "#50c878",
+      "icon": null,
+      "values": [
+        170,
+        240,
+        290,
+        400,
+        463,
+        790,
+        1100
+      ]
+    },
+    {
+      "name": "Electric cars",
+      "color": "#4a90e2",
+      "icon": null,
+      "values": [
+        160,
+        200,
+        361,
+        330,
+        295,
+        652,
+        990
+      ]
+    }
+  ],
+  "hashtags": [
+    "ebike",
+    "electricvehicles",
+    "micromobility",
+    "ev",
+    "bikes",
+    "sustainability",
+    "data",
+    "transportation",
+    "facts",
+    "cars",
+    "didyouknow",
+    "us"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

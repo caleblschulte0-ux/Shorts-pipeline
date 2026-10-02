@@ -1,0 +1,32 @@
+{
+ "key": "cooling_electricity_demand_index",
+ "title": "Electricity demand for space cooling (index, 2016=100)",
+ "unit": "index",
+ "geography": "Global",
+ "time_coverage": "2016-2050 (projected)",
+ "source": {
+  "name": "The Future of Cooling",
+  "publisher": "International Energy Agency (IEA)",
+  "url": "https://www.iea.org/reports/the-future-of-cooling",
+  "officiality": "secondary",
+  "access_date": "2026-10-02"
+ },
+ "notes": "Indexed to 2016=100; IEA projects cooling electricity demand roughly triples by 2050 under its central scenario.",
+ "points": [
+  {
+   "label": "2016",
+   "value": 100,
+   "period": "2016"
+  },
+  {
+   "label": "2030",
+   "value": 150,
+   "period": "2030"
+  },
+  {
+   "label": "2050",
+   "value": 310,
+   "period": "2050"
+  }
+ ]
+}
