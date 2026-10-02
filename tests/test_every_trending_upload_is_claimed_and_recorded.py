@@ -318,6 +318,7 @@ class TheRendererRefusesTheSameStory(unittest.TestCase):
     def test_a_subject_repeat_is_dropped_at_load(self):
         from shared import near_duplicate as nd
         pkgs = [{"slug": "cord", "title": "The Cord Lost The World",
+                 "hook": "Mobile lines buried landlines.",
                  "series": [{"name": "Mobile cellular"}, {"name": "Fixed telephone"}]},
                 {"slug": "butter", "title": "Butter Beat Margarine. Nobody Announced It."}]
         corpus = [{"title": "Mobile Lines Buried Landlines Worldwide"}]
