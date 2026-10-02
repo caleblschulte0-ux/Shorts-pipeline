@@ -93,6 +93,29 @@ class PostedLogDurability(unittest.TestCase):
                                                      stderr="push rejected")):
             ps._persist_posted_log_now(Path("state/x.json"), "y")  # must not raise
 
+    def test_a_claim_that_did_not_reach_main_refuses_the_upload(self):
+        """2026-10-02: a claim nobody else can see protects nobody. The
+        claim call's result is checked, and a False skips the upload and
+        releases the claim — the next run retries the story."""
+        i = _SRC.index('why="claim upload slot"')
+        window = _SRC[i - 120:i + 1200]
+        self.assertIn("if not _persist_posted_log_now(", window)
+        self.assertIn("ClaimNotDurable", window)
+        self.assertIn("continue", window)
+        # the claim is released before skipping
+        self.assertIn('log["posted"].pop(slug, None)', window)
+
+    def test_the_persist_says_whether_the_record_reached_the_remote(self):
+        import subprocess as _sp
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": ""}):
+            self.assertTrue(ps._persist_posted_log_now(Path("state/x.json"), "y"))
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}), \
+                mock.patch.object(_sp, "run", return_value=mock.Mock(returncode=1, stdout="", stderr="no")):
+            self.assertFalse(ps._persist_posted_log_now(Path("state/x.json"), "y"))
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}), \
+                mock.patch.object(_sp, "run", return_value=mock.Mock(returncode=0, stdout="pushed", stderr="")):
+            self.assertTrue(ps._persist_posted_log_now(Path("state/x.json"), "y"))
+
     def test_the_brain_step_is_capped_to_the_runs_own_slate(self):
         """The 09:32 run handed the director 74 slugs for a 4-video run. That
         is 70 stories of stale direction inside the window a reclaimed runner

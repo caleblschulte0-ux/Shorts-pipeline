@@ -47,11 +47,15 @@ class LogCase(unittest.TestCase):
         self.log_path = self.tmp / "posted_log.json"
         self.log_path.write_text(json.dumps({"posted": []}))
         self.persisted: list[dict] = []
+        self.real_persist = rtd._persist_log_now
         p1 = mock.patch.object(rtd, "LOG_PATH", self.log_path)
+        # the fake persist "reaches the remote" (True): a claim that does not
+        # refuses its upload, which AClaimNobodyCanSeeProtectsNobody covers
         p2 = mock.patch.object(
             rtd, "_persist_log_now",
-            lambda why: self.persisted.append(
-                {"why": why, "log": json.loads(self.log_path.read_text())}))
+            lambda why: (self.persisted.append(
+                {"why": why, "log": json.loads(self.log_path.read_text())}),
+                True)[1])
         # Off CI by default: in Actions GITHUB_ACTIONS is set, and the
         # origin refresh would merge the REAL main ledger (381 entries) into
         # this test's empty log. A test that exercises the refresh sets it.
@@ -146,6 +150,47 @@ class TheUploadIsClaimedThenRecorded(LogCase):
             title="T3", topic="t3", fmt=None, publish_at=None,
             do_upload=lambda: "https://youtube.com/shorts/ok"),
             "https://youtube.com/shorts/ok")
+
+
+class AClaimNobodyCanSeeProtectsNobody(LogCase):
+    """2026-10-02, operator: "why do we keep reposting the same videos?" The
+    claim-then-post guard only works if the claim is ON MAIN before the API
+    call. A claim whose push failed was a warning, and the upload went ahead
+    on a ledger no queued run could see. Now it refuses."""
+
+    def test_a_claim_that_did_not_reach_main_refuses_the_upload(self):
+        uploaded = []
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}), \
+                mock.patch.object(rtd, "_refresh_log_from_origin", lambda: None), \
+                mock.patch.object(rtd, "_persist_log_now", lambda why: False):
+            with self.assertRaises(rtd.ClaimNotDurable):
+                rtd._guarded_upload(title="T1", topic="topic one", fmt="reddit",
+                                    publish_at=None,
+                                    do_upload=lambda: uploaded.append(1) or "u")
+        self.assertEqual(uploaded, [])
+        # released locally: nothing posted, no open claim left behind
+        log = self.log()
+        self.assertEqual(log["posted"], [])
+        self.assertEqual([u for u in log.get("uploads", []) if not u.get("url")], [])
+
+    def test_it_is_its_own_failure_stage_not_an_infra_error(self):
+        self.assertEqual(rtd._failure_stage("ClaimNotDurable: x"), "duplicate_refused")
+
+    def test_off_ci_there_is_no_remote_and_the_claim_counts(self):
+        # the fixture clears GITHUB_ACTIONS; the real persist must say True
+        self.assertTrue(self.real_persist("x"))
+
+    def test_on_ci_a_failed_push_is_false_and_a_good_one_true(self):
+        import subprocess as _sp
+        real_path = rtd.REPO / "state" / "posted_log.json"   # the push is faked
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}), \
+                mock.patch.object(rtd, "LOG_PATH", real_path), \
+                mock.patch.object(_sp, "run", return_value=mock.Mock(returncode=1, stderr="x", stdout="")):
+            self.assertFalse(self.real_persist("x"))
+        with mock.patch.dict("os.environ", {"GITHUB_ACTIONS": "true"}), \
+                mock.patch.object(rtd, "LOG_PATH", real_path), \
+                mock.patch.object(_sp, "run", return_value=mock.Mock(returncode=0, stderr="", stdout="pushed")):
+            self.assertTrue(self.real_persist("x"))
 
 
 class ABackfillUploadReachesThePostedLog(LogCase):

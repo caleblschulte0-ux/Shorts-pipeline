@@ -306,7 +306,7 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
 
 
 def _persist_posted_log_now(log_path: Path, slug: str,
-                            why: str = "posted") -> None:
+                            why: str = "posted") -> bool:
     """Push the posted log to git IMMEDIATELY. Best effort.
 
     Called TWICE per upload now: once to claim the slot before the API call,
@@ -325,17 +325,21 @@ def _persist_posted_log_now(log_path: Path, slug: str,
     means a duplicate upload". This closes the window from "the rest of the
     run" to "one upload".
 
-    Never raises. The upload already happened; failing here must not abort the
-    run or mask the URL we just printed. The end-of-run persist still runs and
-    is now a no-op in the happy path.
+    Never raises. After an upload, failing here must not abort the run or
+    mask the URL we just printed. Returns whether the record reached the
+    remote: off CI there is no remote to share (True); on CI a failed push
+    is False, and the CLAIM call site refuses to upload on False — a claim
+    nobody else can see protects nobody (2026-10-02).
     """
     import os as _os
     import subprocess as _sp
     if not _os.environ.get("GITHUB_ACTIONS"):
-        return
+        return True
     script = REPO / "scripts" / "ci_commit_state.sh"
     if not script.exists():
-        return
+        print(f"[{slug}] WARNING: scripts/ci_commit_state.sh is missing — "
+              f"nothing can be persisted mid-run", flush=True)
+        return False
     try:
         r = _sp.run(["bash", str(script),
                      f"explainer: {why} {slug} [skip ci]", str(log_path)],
@@ -344,14 +348,17 @@ def _persist_posted_log_now(log_path: Path, slug: str,
             print(f"[{slug}] WARNING: could not persist the posted log now "
                   f"(rc={r.returncode}); the end-of-run persist must catch it: "
                   f"{(r.stderr or r.stdout)[-200:]}", flush=True)
-        elif "union-merging" in (r.stdout or ""):
+            return False
+        if "union-merging" in (r.stdout or ""):
             # A lost push race used to be invisible here (rc=0 after the
             # retry) — and it used to cost the run every other uncommitted
             # artifact. Say it happened, so a missing verdict can be traced.
             print(f"[{slug}] posted-log push raced main and was union-merged; "
                   f"the run's other artifacts were kept", flush=True)
+        return True
     except Exception as e:  # noqa: BLE001 — never break a run over bookkeeping
         print(f"[{slug}] WARNING: posted-log persist raised: {e}", flush=True)
+        return False
 
 
 # --------------------------------------------------------------------------
@@ -1034,7 +1041,22 @@ def main() -> int:
         log["posted"][slug] = _claim
         log.setdefault("uploads", []).append(dict(_claim, slug=slug))
         _save_log(log, args.log)
-        _persist_posted_log_now(args.log, slug, why="claim upload slot")
+        if not _persist_posted_log_now(args.log, slug, why="claim upload slot"):
+            # A CLAIM NOBODY ELSE CAN SEE PROTECTS NOBODY. If it did not
+            # reach main, a queued run would decide on a ledger without it
+            # and post this story again — so this run does not post it at
+            # all. Released locally; the next run retries it.
+            log["posted"].pop(slug, None)
+            log["uploads"] = [u for u in (log.get("uploads") or [])
+                              if not (u.get("slug") == slug
+                                      and u.get("url") is None)]
+            _save_log(log, args.log)
+            print(f"[{slug}] ClaimNotDurable: the upload claim could not be "
+                  f"pushed to main — refusing to upload (a duplicate is worse "
+                  f"than a gap); the next run retries it", flush=True)
+            results.append({"slug": slug, "ok": False,
+                            "error": "ClaimNotDurable: claim not pushed"})
+            continue
         try:
             res = uploader.upload(
                 file_path=out,

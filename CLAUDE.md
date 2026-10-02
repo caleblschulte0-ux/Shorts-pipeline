@@ -681,6 +681,15 @@ A reviewer (ChatGPT) reads it and writes proposals into
   `preview-renders` orphan branch or artifacts.
 - Posted logs (`state/*_posted_log.json`) are sacred append-only dedupe
   state — losing an entry means a duplicate upload.
+- **An upload is claimed ON MAIN before the API call, or it does not
+  happen** (2026-10-02, operator: *"why do we keep reposting the same
+  videos?"* — seven trending titles were live twice). Both channels push
+  a claim before `videos.insert`; if that push fails the upload is
+  REFUSED (`ClaimNotDurable`), never attempted on a ledger a queued run
+  cannot see. What those days left on the channel is listed and, only on
+  an explicit DELETE, removed by `scripts/youtube_duplicates.py` (the
+  manual-only "YouTube duplicates" workflow). Run it dry after any day
+  with two daily runs.
 - Do NOT open PRs from `claude/*` branches casually: `auto-merge.yml`
   squash-merges any non-draft `claude/*` PR with no review.
 - **A session that keeps working on one branch must REBASE before every PR.**
