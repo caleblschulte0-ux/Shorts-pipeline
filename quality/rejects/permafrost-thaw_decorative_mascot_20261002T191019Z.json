@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261002T191019Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3-seg0:end Data just walks along the axis with his arms up, and in seg1:mid/seg1:end he hops between empty bars. Nothing he does warms the ground. Only in seg3:mid/end is he on a ladder at the top of the bar, which reads as a real bit.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:end shows the pink label 'Frozen in permafrost soil 1700B' drawn straight over the white 'Earth's whole atmosphere 870B' at the same y, so neither can be read. In seg2:mid the two posts are thin lines barely taller than each other, even though 1700 is almost double 870.",
+  "root_cause": "Both series labels are anchored at the same left-side height instead of each sitting on its own post. The posts are also hairline poles that never show the near-doubling, so the scene relies on text, and that text collides.",
+  "repair_goal": "Put each label directly above its own post, with no shared baseline, and keep them at least one line-height apart. Make the two quantities volumes whose heights really sit at 870 vs 1700, for example a frozen soil block twice as tall as an atmosphere block, so the near-doubling is visible without reading. Have Data pull the measuring tape from the top of one to the top of the other while the gap label lands."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-02T14:55:17Z",
+ "updated": "2026-10-02T19:10:11Z",
  "open": [
+  {
+   "id": "billionaire-count-record-2025__452c83e8",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-02T19:10:11Z",
+   "why": [
+    "judge: The payoff comparison is broken: both circles say '127% Billionaire wealth' while the voiceover says the S&P grew 195%, so the video's whole point is shown wrong."
+   ],
+   "request": "exchange/rewrites/20261002/billionaire-count-record-2025__452c83e8.request.json",
+   "answer_path": "exchange/rewrites/20261002/billionaire-count-record-2025__452c83e8.answer.json"
+  },
   {
    "id": "permafrost-thaw__a94a08e2",
    "slug": "permafrost-thaw",
@@ -11,6 +21,16 @@
    ],
    "request": "exchange/rewrites/20261002/permafrost-thaw__a94a08e2.request.json",
    "answer_path": "exchange/rewrites/20261002/permafrost-thaw__a94a08e2.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-10-02T14:01:42Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague hook rather than a single, verifiable numerical claim."
+   ],
+   "request": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "us-height-ranking-fall__dfb4fa2e",
@@ -31,16 +51,6 @@
    ],
    "request": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.answer.json"
-  },
-  {
-   "id": "billionaire-count-record-2025__00739761",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-02T11:31:49Z",
-   "why": [
-    "judge: The payoff comparison is broken: both discs say \"127% Billionaire wealth\" and the S&P's 195% never appears, so the video's whole point is missing on screen."
-   ],
-   "request": "exchange/rewrites/20261002/billionaire-count-record-2025__00739761.request.json",
-   "answer_path": "exchange/rewrites/20261002/billionaire-count-record-2025__00739761.answer.json"
   },
   {
    "id": "glacier-mass-loss-acceleration__c13b15b7",
@@ -759,16 +769,6 @@
    ],
    "request": "exchange/rewrites/20261001/landline-extinction-event__f48f5d4d.request.json",
    "answer_path": "exchange/rewrites/20261001/landline-extinction-event__f48f5d4d.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-10-01T11:01:17Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on vague wording rather than a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261001/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20261001/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "gulf-dead-zone-growth__59c7e706",

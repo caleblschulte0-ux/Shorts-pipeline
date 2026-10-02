@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261002T191019Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2 to seg4:end: Data stands on a ladder pointing at a bar, then just perches on top of the left circle (seg3:mid, seg4:mid). He causes nothing; he points or stands beside the data.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 4,
+  "failure_class": "wrong_data_mislabeled_comparison",
+  "visible_evidence": "From seg3:start to seg4:end, both circles read '127%' and both are labelled 'Billionaire wealth', while the narration says 'the S&P 500 alone grew 195 percent'. The S&P figure never appears, so the comparison the whole video builds to shows two identical circles.",
+  "root_cause": "The comparison machine drew the first series twice. The second item (S&P 500, 195%) was not bound, or it fell back to series 0, so the label and value were duplicated.",
+  "repair_goal": "Draw the two growths side by side with their real values: billionaire wealth 127% vs S&P 500 195%, each with its own label, and the S&P mark visibly larger. Data should push or pump the S&P mark past the billionaire one so the punchline (it's just stocks) can be seen. Use white ink for the value text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
