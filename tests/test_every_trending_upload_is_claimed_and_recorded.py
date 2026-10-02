@@ -309,3 +309,24 @@ class TheWorkflowChecksOutTheTip(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheRendererRefusesTheSameStory(unittest.TestCase):
+    """2026-10-02: a package that tells a story a data channel already told
+    inside the window is not rendered, and the log names the video."""
+
+    def test_a_subject_repeat_is_dropped_at_load(self):
+        from shared import near_duplicate as nd
+        pkgs = [{"slug": "cord", "title": "The Cord Lost The World",
+                 "series": [{"name": "Mobile cellular"}, {"name": "Fixed telephone"}]},
+                {"slug": "butter", "title": "Butter Beat Margarine. Nobody Announced It."}]
+        corpus = [{"title": "Mobile Lines Buried Landlines Worldwide"}]
+        with mock.patch.object(nd, "posted_corpus", return_value=corpus), \
+                mock.patch("shared.script_generator._call_llm", return_value="NONE"):
+            kept = rtd._not_the_same_story(pkgs)
+        self.assertEqual([p["slug"] for p in kept], ["butter"])
+
+    def test_load_prewritten_packages_runs_it(self):
+        import inspect
+        src = inspect.getsource(rtd.load_prewritten_packages)
+        self.assertIn("_not_the_same_story(fresh)", src)

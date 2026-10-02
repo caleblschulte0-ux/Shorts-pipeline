@@ -701,6 +701,16 @@ A reviewer (ChatGPT) reads it and writes proposals into
   an explicit DELETE, removed by `scripts/youtube_duplicates.py` (the
   manual-only "YouTube duplicates" workflow). Run it dry after any day
   with two daily runs.
+- **The same STORY under a new title is a repeat too** (same ruling:
+  *"those landline videos"* — mobile-vs-fixed-lines shipped as four titles
+  on two channels). `shared/near_duplicate.py` is the ONE guard: the
+  explainer's near-duplicate title check (moved there, held equivalent),
+  two shared subject nouns, and a text brain shown the posted titles
+  ("the same story, or NONE"; fails open and says so). The corpus is
+  every DATA channel's uploads inside the registry's
+  `no_repeat_subject_days`; it runs at promotion, in the brief's
+  `do_not_repeat`, at the renderer's package load and before an
+  explainer render. Refusals name the video they repeat.
 - Do NOT open PRs from `claude/*` branches casually: `auto-merge.yml`
   squash-merges any non-draft `claude/*` PR with no review.
 - **A session that keeps working on one branch must REBASE before every PR.**

@@ -978,6 +978,32 @@ def most_recent_package_dir() -> Path | None:
     return max(candidates, key=lambda p: p.name)
 
 
+def _not_the_same_story(pkgs: list[dict]) -> list[dict]:
+    """Drop every package that tells a story a data channel already told
+    inside the repeat window — by near-duplicate title, shared subject
+    nouns, or the brain's reading (shared/near_duplicate.py). Promotion
+    runs the same check; this is the renderer refusing what slipped past
+    it (2026-10-02, "those landline videos": four titles, one story)."""
+    try:
+        from shared import near_duplicate as _nd
+        corpus = _nd.posted_corpus(root=REPO)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[run_trending_daily] subject corpus unavailable ({exc}) — "
+              f"exact-title guard only", flush=True)
+        return pkgs
+    keep = []
+    for p in pkgs:
+        hit = _nd.subject_duplicate_of(p, corpus)
+        if hit:
+            other, how = hit
+            print(f"[run_trending_daily] NOT RENDERING {p.get('slug')!r}: the "
+                  f"same story as {other!r} ({how}) — a new title over the "
+                  f"same comparison is a repeat", flush=True)
+            continue
+        keep.append(p)
+    return keep
+
+
 def posted_titles() -> set[str]:
     """Every title this channel has already uploaded.
 
@@ -1046,6 +1072,7 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
             print(f"[run_trending_daily] {d.name}: dropped {dropped} "
                   f"package(s) already in the posted log — refusing to "
                   f"re-upload", flush=True)
+        fresh = _not_the_same_story(fresh)
         # RENDERING ELIGIBILITY. A retired format still RENDERS — its
         # renderer is kept so already-posted videos stay reproducible, and
         # refusing here would throw away a whole day over a policy change

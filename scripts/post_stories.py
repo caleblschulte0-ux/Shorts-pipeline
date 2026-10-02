@@ -392,40 +392,12 @@ def _persist_posted_log_now(log_path: Path, slug: str,
 # is genuinely different. The error costs are not symmetric: a false refusal
 # costs one video from a queue that holds hundreds, a false accept costs
 # channel standing.
-_DUP_SEQ = 0.75
-_DUP_JACCARD = 0.60
-_DUP_STOP = frozenset(
-    "the a an of in on to for is are and or its it how why what when we you "
-    "your our new most all than that this has have was were be been at by "
-    "with from about into over under more less just now still".split())
-
-
-def _sig_words(title: str) -> set:
-    words = re.sub(r"[^a-z0-9 ]", " ", (title or "").lower()).split()
-    return {w for w in words if w not in _DUP_STOP and len(w) > 2}
-
-
-def duplicate_of(title: str, posted_titles) -> str | None:
-    """The already-posted title this one repeats, or None.
-
-    Returns the OTHER title rather than a bool so the hold can name it — a
-    refusal that says which video it collided with is actionable; one that says
-    "too similar" sends someone reading the whole log.
-    """
-    if not (title or "").strip():
-        return None
-    mine = _sig_words(title)
-    for other in posted_titles:
-        if not (other or "").strip():
-            continue
-        if difflib.SequenceMatcher(None, title.lower(),
-                                   other.lower()).ratio() >= _DUP_SEQ:
-            return other
-        theirs = _sig_words(other)
-        union = mine | theirs
-        if union and len(mine & theirs) / len(union) >= _DUP_JACCARD:
-            return other
-    return None
+# The guard itself moved to shared/near_duplicate.py (2026-10-02) so the
+# trending channel runs the SAME one; these names stay for the callers and
+# the tests, and tests/test_near_duplicate.py holds the shared copy to the
+# original's behaviour.
+from shared.near_duplicate import (_DUP_JACCARD, _DUP_SEQ, _DUP_STOP,  # noqa: E402,F401
+                                   duplicate_of, sig_words as _sig_words)
 
 
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
@@ -706,9 +678,16 @@ def main() -> int:
         # become un-true later in the run, and a repeat is the one refusal that
         # protects the CHANNEL rather than the video.
         if not args.force:
+            # ...on ANY data channel: trending told the landline story three
+            # times before this channel told it a fourth (2026-10-02)
+            try:
+                from shared import near_duplicate as _nd
+                _others = _nd.corpus_titles(_nd.posted_corpus(root=REPO))
+            except Exception:  # noqa: BLE001
+                _others = []
             _dup = duplicate_of(
                 sc.get("title") or slug,
-                [e.get("title") for e in log["posted"].values()])
+                [e.get("title") for e in log["posted"].values()] + _others)
             if _dup:
                 print(f"[{slug}] NOT POSTING — too close to a video already "
                       f"up: {_dup!r}. The story is fine; the PACKAGING "
@@ -770,6 +749,29 @@ def main() -> int:
                 results.append({"slug": slug, "ok": False,
                                 "error": "editorial_hold",
                                 "reasons": pre["reasons"]})
+                continue
+        # THE SAME STORY BY THE BRAIN'S READING, across the data channels —
+        # one text call per story that is about to render, after the gate
+        # (the word measures ran before the budget). "Landlines Peaked In
+        # 2006" was the fourth telling of a race trending had already run
+        # three times (2026-10-02). Fails open when no backend answers.
+        if not args.force and not args.dry_run:
+            try:
+                from shared import near_duplicate as _nd
+                _cand = {"title": sc.get("title"), "hook": sc.get("hook"),
+                         "topic": " / ".join((g.get("topic") or "")
+                                             for g in sc.get("segments", [])[:3])}
+                _same = _nd.brain_duplicate_of(
+                    _cand, _nd.corpus_titles(_nd.posted_corpus(root=REPO)))
+            except Exception:  # noqa: BLE001
+                _same = None
+            if _same:
+                print(f"[{slug}] NOT POSTING — the same story as a video "
+                      f"already up on a data channel: {_same!r} (the brain's "
+                      f"reading). A new title over the same comparison is a "
+                      f"repeat.", flush=True)
+                results.append({"slug": slug, "ok": False,
+                                "error": "duplicate_hold", "duplicate_of": _same})
                 continue
         attempts += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
