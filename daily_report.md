@@ -1,19 +1,42 @@
-# Daily Trending Shorts — 2026-10-01
+# Daily Trending Shorts — 2026-10-02
 
-> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **4**
-- succeeded: **0**
-- quarantined (off-topic imagery): **0**
+- queued: **9**
+- succeeded: **3**
+- quarantined (off-topic imagery): **2**
 - failed: **4**
 
+## Posted
+- **Solar Jobs Passed Coal Mining Jobs. By A Lot.**
+  - topic: Solar Jobs Passed Coal Mining Jobs. By A Lot.
+  - publishes: `2026-10-02T13:00:00Z`
+  - https://youtube.com/shorts/OKY_mW-qn7k
+  - took: 130.0s
+- **Money Sent Home Just Buried Foreign Aid**
+  - topic: Money Sent Home Just Buried Foreign Aid
+  - publishes: `2026-10-02T14:30:00Z`
+  - https://youtube.com/shorts/3FK7bVY3UNg
+  - took: 119.3s
+- **America Bought More E-Bikes Than Electric Cars**
+  - topic: America Bought More E-Bikes Than Electric Cars
+  - publishes: `2026-10-02T16:00:00Z`
+  - https://youtube.com/shorts/-Zb02Talt70
+  - took: 132.9s
+
+## Quarantined (off-topic imagery — fix & re-author)
+- **Butterflies use optical illusions to dodge predators**
+  - quarantined: vision QA: broken — Frame 2 shows only gameplay filling the entire vertical space, missing the expected story illustration in the top half as described for each frame's structure.
+- **Near miss with semi-truck caught on camera - KIRO 7 News Seattle**
+  - quarantined: vision QA: broken — short
+
 ## Failed
-- **Sports Betting Just Passed The Box Office**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest race chart with a real 2020 cliff and crossover payoff, held back by a source line clipped in every frame and a slow first two seconds.`
-- **The Kiosk Ate My Points. I Built A Folder.**
-  - error: `showrunner_block: showrunner BLOCK: The story beats are never shown: generic keyword icons (cart, blank phone, construction worker), whole middle beats with no illustration over near-black gameplay, and an ending held on an unrelated worker emoji.`
-- **Couple describes relief at rescue after whale destroys their yacht**
-  - error: `showrunner_block: showrunner BLOCK: The whole video is Reddit-card-plus-gameplay with captions: none of the story's beats (drill, refund, neon burst, security cameras) is ever illustrated, so the narrative is told but never shown.`
-- **RAW: NE: NEAR MISS WITH SEMI-TRUCK CAUGHT ON CAMERA - KXLY.com**
-  - error: `showrunner_block: showrunner BLOCK: Only gameplay and captions tell the story. The single illustration is a blank phone icon reused three times, so none of the cafe beats (latte, note, tip jar, viral post) is ever shown.`
+- **Jet Engines Now Fly 20x Longer Between Overhauls**
+  - error: `showrunner_block: showrunner BLOCK: A clean, smooth two-line graph race. The key crossover moment is announced in unreadable micro-text, and the '20x' payoff is never landed.`
+- **She Hogged The Washers. I Built A Spreadsheet.**
+  - error: `showrunner_block: showrunner BLOCK: The story beats (two washers, the timestamp spreadsheet, the sign-up sheet, the fine) are never shown: the pictures are a microscope and a frozen generic person emoji over gameplay, so the payoff falls flat.`
+- **He Ghosted My Invoice. The License Didn't Care.**
+  - error: `showrunner_block: showrunner BLOCK: The gameplay and captions are fine, but the illustration panel freezes on one generic globe icon for the last ~30s, so the revenge never visibly lands.`
+- **Bear caught on camera slamming into car while cub crosses road - KHOU**
+  - error: `showrunner_block: showrunner BLOCK: Almost the whole story plays over bare parkour gameplay with captions. Only one generic emoji illustration appears, so none of the narrative beats (receipt, note, QR code, payoff) are shown.`
 

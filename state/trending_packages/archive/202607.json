@@ -540,5 +540,756 @@
       ],
       "music_vibe": "epic"
     }
+  },
+  "20260703": {
+    "01_neil-the-seal-tasmania-2026.json": {
+      "version": 1,
+      "slug": "neil-the-seal-tasmania-2026",
+      "title": "Neil the Seal Is Wrecking Cars Again",
+      "script": "Neil the seal is BACK! Every year, this 2,200-pound elephant seal drags himself onto the beaches of southern Tasmania \u2014 and every year the damage report gets weirder. He's flattened traffic cones, snapped fence posts, and this season he picked a new target: headbutting parked Toyotas. Wildlife officers insist it's not aggression, it's practice \u2014 young male elephant seals need to spar for dominance, and with no other seals his age around, Neil just picks a car instead. He's turned into a full-blown local celebrity, tracked online like a rockstar on tour. Officials are now begging fans to keep their distance and let him nap in peace. So who's going to tell Neil no?",
+      "shots": [
+        {
+          "phrase": "Neil the seal is BACK",
+          "query": "elephant seal beach",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "this 2,200-pound elephant seal",
+          "query": "elephant seal closeup",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "beaches of southern Tasmania",
+          "query": "tasmania coastline",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the damage report gets weirder",
+          "query": "wrecked yard fence",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "flattened traffic cones",
+          "query": "traffic cones road",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "snapped fence posts",
+          "query": "broken fence post",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "headbutting parked Toyotas",
+          "query": "dented car door",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "young male elephant seals need to spar for dominance",
+          "query": "seals fighting beach",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Neil just picks a car instead",
+          "query": "parked car street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "turned into a full-blown local celebrity",
+          "query": "crowd phones cameras",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "tracked online like a rockstar on tour",
+          "query": "social media phone screen",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "begging fans to keep their distance",
+          "query": "warning sign beach",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "let him nap in peace",
+          "query": "seal sleeping sand",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who's going to tell Neil no",
+          "query": "seal close up eyes",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "this 2,200-pound elephant seal",
+          "text": "2,200 LBS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "flattened traffic cones",
+          "text": "FLATTENED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "snapped fence posts",
+          "text": "FENCE GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "headbutting parked Toyotas",
+          "text": "CAR VS SEAL",
+          "color": "#ffe24a"
+        },
+        {
+          "phrase": "spar for dominance",
+          "text": "PRACTICE MODE",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "full-blown local celebrity",
+          "text": "CELEBRITY STATUS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "keep their distance",
+          "text": "BACK OFF",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "neiltheseal",
+        "tasmania",
+        "elephantseal",
+        "australia",
+        "wildlife",
+        "seal",
+        "viral",
+        "animals",
+        "wildanimals",
+        "funnyanimals",
+        "oceanlife",
+        "naturenews",
+        "shorts",
+        "news"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "02_pierce-county-goat-chase-2026.json": {
+      "version": 1,
+      "slug": "pierce-county-goat-chase-2026",
+      "title": "A Goat Led Deputies on a 20-Minute Chase",
+      "script": "One goat. Twenty minutes. Chaos! Tuesday afternoon, a loose goat started weaving through traffic near Pacific Lutheran University in Washington state \u2014 dodging cars like it had somewhere to be. Deputies and animal control raced in, but the goat had other plans, leading them on a full sprint through yards and parking lots. One deputy tried speaking what he called goat language to calm it down. The goat was not impressed. It took nearly twenty minutes before officers finally cornered the runaway on an outdoor staircase, boxed in with nowhere left to run. It's now resting at a local rescue farm while officials try to track down its owner. So who loses a goat and doesn't notice?",
+      "shots": [
+        {
+          "phrase": "One goat. Twenty minutes. Chaos!",
+          "query": "goat running road",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "a loose goat started weaving through traffic",
+          "query": "traffic street cars",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "near Pacific Lutheran University in Washington state",
+          "query": "university campus building",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "dodging cars like it had somewhere to be",
+          "query": "goat dodging cars",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Deputies and animal control raced in",
+          "query": "police car lights",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "leading them on a full sprint through yards and parking lots",
+          "query": "goat running yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "speaking what he called goat language",
+          "query": "sheriff deputy talking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "The goat was not impressed",
+          "query": "goat staring camera",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "cornered the runaway on an outdoor staircase",
+          "query": "outdoor staircase",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "boxed in with nowhere left to run",
+          "query": "goat cornered fence",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "resting at a local rescue farm",
+          "query": "farm animal rescue",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "track down its owner",
+          "query": "missing pet flyer",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "who loses a goat and doesn't notice",
+          "query": "goat close up face",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "a loose goat started weaving through traffic",
+          "text": "LOOSE GOAT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "full sprint through yards and parking lots",
+          "text": "20 MIN CHASE",
+          "color": "#ffe24a"
+        },
+        {
+          "phrase": "goat language",
+          "text": "GOAT TALK",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "The goat was not impressed",
+          "text": "NOT IMPRESSED",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "cornered the runaway on an outdoor staircase",
+          "text": "CORNERED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "track down its owner",
+          "text": "OWNER: MISSING",
+          "color": "#ffaa30"
+        }
+      ],
+      "hashtags": [
+        "goat",
+        "piercecounty",
+        "washingtonstate",
+        "animalcontrol",
+        "viral",
+        "funny",
+        "police",
+        "deputies",
+        "wildlifechase",
+        "funnyanimals",
+        "shorts",
+        "news",
+        "quirky",
+        "trending"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto"
+    },
+    "03_corolla-apples-wild-horses-2026.json": {
+      "version": 1,
+      "slug": "corolla-apples-wild-horses-2026",
+      "title": "Apples Kept Washing Up. That Was the Problem.",
+      "script": "Are These Apples Deadly? Tuesday morning, loose apples started washing ashore on the sand in Corolla, North Carolina \u2014 hundreds of them, scattered like they'd fallen off a ship. Then came the oranges too. It looked harmless, almost funny, until the Corolla Wild Horse Fund got the call: apples can kill their wild horses, causing choking and deadly colic if the herd finds them first. Local families, deputies, and volunteer turtle patrols dropped everything and raced the clock, bagging up the fruit handful by handful before the horses could. It's not even the strangest thing to wash up here \u2014 a few years back it was bags of Doritos. So what nearly poisoned Corolla's wild horses?",
+      "shots": [
+        {
+          "phrase": "Are These Apples Deadly?",
+          "query": "apples on sand",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "loose apples started washing ashore on the sand in Corolla, North Carolina",
+          "query": "beach debris fruit",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "hundreds of them, scattered like they'd fallen off a ship",
+          "query": "cargo ship ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Then came the oranges too",
+          "query": "orange fruit beach",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Corolla Wild Horse Fund got the call",
+          "query": "phone call emergency",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "apples can kill their wild horses",
+          "query": "wild horses grazing",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "choking and deadly colic",
+          "query": "veterinarian animal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "deputies, and volunteer turtle patrols dropped everything",
+          "query": "volunteers beach cleanup",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "raced the clock",
+          "query": "clock ticking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "bagging up the fruit handful by handful",
+          "query": "bag of apples",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "before the horses could",
+          "query": "wild horse herd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a few years back it was bags of Doritos",
+          "query": "chips bag beach",
+          "mascot_pose": "laugh"
+        },
+        {
+          "phrase": "nearly poisoned Corolla's wild horses",
+          "query": "wild horse close up",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "apples can kill their wild horses",
+          "text": "CAN KILL HORSES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "choking and deadly colic",
+          "text": "DEADLY COLIC",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "raced the clock",
+          "text": "RACE AGAINST TIME",
+          "color": "#ffe24a"
+        },
+        {
+          "phrase": "hundreds of them",
+          "text": "HUNDREDS OF APPLES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "bags of Doritos",
+          "text": "DORITOS. SERIOUSLY.",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "Wild Horse Fund got the call",
+          "text": "EMERGENCY CALL",
+          "color": "#ffffff"
+        }
+      ],
+      "hashtags": [
+        "corolla",
+        "outerbanks",
+        "wildhorses",
+        "bankerhorse",
+        "northcarolina",
+        "beachcleanup",
+        "animalrescue",
+        "wildlife",
+        "viral",
+        "quirky",
+        "weirdnews",
+        "naturenews",
+        "shorts",
+        "news"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "04_lulus-law-shark-alert-2026.json": {
+      "version": 1,
+      "slug": "lulus-law-shark-alert-2026",
+      "title": "A Shark Bite Just Rewrote Federal Law",
+      "script": "A Shark Attack Changed Law! In 2024, Lulu Gribbin was swimming off Walton County, Florida when a shark attacked \u2014 she lost her hand and part of her leg. Ninety minutes earlier, four miles away, another woman named Elisabeth Foley had already been bitten. Nobody warned Lulu. There was no way to. Now there is: President Trump just signed Lulu's Law, forcing the FCC to treat shark attacks like Amber Alerts \u2014 instant, geofenced warnings blasted straight to phones near the beach where it happened. Regulators have 180 days to get the system live. Lulu and Elisabeth both survived, rebuilt their lives, and pushed this through Congress themselves. So why did it take two bites to build one warning system?",
+      "shots": [
+        {
+          "phrase": "A Shark Attack Changed Law!",
+          "query": "shark fin ocean",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Lulu Gribbin was swimming off Walton County, Florida",
+          "query": "florida beach coastline",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "she lost her hand and part of her leg",
+          "query": "hospital recovery",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "another woman named Elisabeth Foley had already been bitten",
+          "query": "empty beach danger",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Nobody warned Lulu",
+          "query": "beach warning sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "President Trump just signed Lulu's Law",
+          "query": "capitol building congress",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "forcing the FCC to treat shark attacks like Amber Alerts",
+          "query": "phone alert notification",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "instant, geofenced warnings blasted straight to phones",
+          "query": "cell tower signal",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "180 days to get the system live",
+          "query": "calendar countdown",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Lulu and Elisabeth both survived",
+          "query": "survivors smiling",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "pushed this through Congress themselves",
+          "query": "congress building dc",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "why did it take two bites to build one warning system",
+          "query": "beach lifeguard tower",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "she lost her hand and part of her leg",
+          "text": "LOST HER HAND",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "already been bitten",
+          "text": "2ND BITE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Lulu's Law",
+          "text": "LULU'S LAW",
+          "color": "#ffe24a"
+        },
+        {
+          "phrase": "Amber Alerts",
+          "text": "LIKE AMBER ALERTS",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "180 days",
+          "text": "180 DAYS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "both survived",
+          "text": "BOTH SURVIVED",
+          "color": "#50ff80"
+        }
+      ],
+      "hashtags": [
+        "lulugribbin",
+        "sharkattack",
+        "sharkalert",
+        "florida",
+        "waltoncounty",
+        "fcc",
+        "emergencyalert",
+        "sharks",
+        "beachsafety",
+        "congress",
+        "viral",
+        "news",
+        "safety",
+        "shorts"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "05_venezuela-earthquake-rescue-2026.json": {
+      "version": 1,
+      "slug": "venezuela-earthquake-rescue-2026",
+      "title": "Buried for 8 Days. He Walked Out Alive.",
+      "script": "Buried Alive For Eight Days? When Venezuela's twin earthquakes leveled a shopping mall in La Guaira, the whole parking structure came down \u2014 except one thing: a tiny security booth, and the guard still inside it. Hernan Gil Flores spent eight days trapped in that pocket of space while 29 feet of concrete crushed everything around him. Rescuers lowered water and nutrients down a narrow shaft just to keep him alive, talking to him through a telescopic camera while international crews from Chile, Costa Rica, the U.S., Portugal, and Mexico spent three straight days tunneling toward him. On day eight, they pulled him out alive, in what officials called a miracle. More than 2,300 people didn't make it. So what are the odds a security booth saves your life?",
+      "shots": [
+        {
+          "phrase": "Buried Alive For Eight Days?",
+          "query": "collapsed building rubble",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Venezuela's twin earthquakes leveled a shopping mall in La Guaira",
+          "query": "earthquake damage city",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the whole parking structure came down",
+          "query": "concrete rubble pile",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a tiny security booth, and the guard still inside it",
+          "query": "security guard booth",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Hernan Gil Flores spent eight days trapped",
+          "query": "rescue crews digging",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "29 feet of concrete crushed everything around him",
+          "query": "concrete rubble pile",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "Rescuers lowered water and nutrients down a narrow shaft",
+          "query": "narrow rescue shaft",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "talking to him through a telescopic camera",
+          "query": "rescue camera equipment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "international crews from Chile, Costa Rica, the U.S., Portugal, and Mexico",
+          "query": "international rescue team",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "three straight days tunneling toward him",
+          "query": "tunneling excavation",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "they pulled him out alive",
+          "query": "survivor rescued cheering",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "officials called a miracle",
+          "query": "rescue crews cheering",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "More than 2,300 people didn't make it",
+          "query": "memorial candles vigil",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "odds a security booth saves your life",
+          "query": "disaster aftermath city",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Hernan Gil Flores spent eight days trapped",
+          "text": "8 DAYS TRAPPED",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "29 feet of concrete",
+          "text": "29 FT OF RUBBLE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "three straight days tunneling",
+          "text": "3 DAYS DIGGING",
+          "color": "#ffe24a"
+        },
+        {
+          "phrase": "they pulled him out alive",
+          "text": "PULLED OUT ALIVE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "officials called a miracle",
+          "text": "MIRACLE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "More than 2,300 people didn't make it",
+          "text": "2,300 DEAD",
+          "color": "#ff3030"
+        }
+      ],
+      "hashtags": [
+        "venezuela",
+        "laguaira",
+        "earthquake",
+        "miraclerescue",
+        "survivor",
+        "rescue",
+        "disaster",
+        "breakingnews",
+        "naturaldisaster",
+        "worldnews",
+        "viral",
+        "shorts",
+        "news"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto"
+    },
+    "06_kyiv-worst-night-strike-2026.json": {
+      "version": 1,
+      "slug": "kyiv-worst-night-strike-2026",
+      "title": "Kyiv Just Survived Its Worst Night in Months",
+      "script": "Kyiv's Worst Night In Months? For eleven straight hours, Russia hit Ukraine's capital with almost 500 drones and more than 70 missiles \u2014 nearly half of them ballistic. At least 21 people were killed. In the Darnytskyi district, a nine-story apartment building partially collapsed with residents still inside, and a second building nearby was blown apart from the first floor to the sixth. Around 130 buildings across the city took damage in a single night. Officials are calling it one of the largest strikes of the entire war \u2014 the deadliest attack on the capital since May, when a similar strike brought down another apartment block and killed 24. Rescue crews are still digging through the wreckage for survivors. So how many more worst nights does one city get?",
+      "shots": [
+        {
+          "phrase": "Kyiv's Worst Night In Months?",
+          "query": "kyiv skyline city",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "Russia hit Ukraine's capital with almost 500 drones and more than 70 missiles",
+          "query": "drone attack night sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "nearly half of them ballistic",
+          "query": "missile explosion night",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "At least 21 people were killed",
+          "query": "apartment building damage",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "In the Darnytskyi district",
+          "query": "collapsed building rubble",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a nine-story apartment building partially collapsed with residents still inside",
+          "query": "rescue crews search",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "blown apart from the first floor to the sixth",
+          "query": "city destruction aftermath",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Around 130 buildings across the city took damage",
+          "query": "emergency workers night",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "one of the largest strikes of the entire war",
+          "query": "war damage street",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the deadliest attack on the capital since May",
+          "query": "ukraine flag building",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "killed 24",
+          "query": "firefighters rubble search",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Rescue crews are still digging through the wreckage",
+          "query": "night sky explosions",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "how many more worst nights does one city get",
+          "query": "city under attack",
+          "mascot_pose": "think"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "almost 500 drones and more than 70 missiles",
+          "text": "500 DRONES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "At least 21 people were killed",
+          "text": "21 KILLED",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "Around 130 buildings across the city took damage",
+          "text": "130 BUILDINGS HIT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "one of the largest strikes of the entire war",
+          "text": "LARGEST STRIKE YET",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "killed 24",
+          "text": "MAY: 24 KILLED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "still digging through the wreckage",
+          "text": "STILL SEARCHING",
+          "color": "#30c0ff"
+        }
+      ],
+      "hashtags": [
+        "kyiv",
+        "ukraine",
+        "russia",
+        "warnews",
+        "worldnews",
+        "drones",
+        "missiles",
+        "breakingnews",
+        "ukrainewar",
+        "europe",
+        "geopolitics",
+        "shorts",
+        "news"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto"
+    }
   }
 }

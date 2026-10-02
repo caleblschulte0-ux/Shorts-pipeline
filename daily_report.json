@@ -1,16 +1,92 @@
 [
   {
-    "topic": "Sports Betting Just Passed The Box Office",
-    "title": "Sports Betting Just Passed The Box Office",
+    "topic": "Solar Jobs Passed Coal Mining Jobs. By A Lot.",
+    "title": "Solar Jobs Passed Coal Mining Jobs. By A Lot.",
     "format": "graph_race",
-    "publish_at": "2026-10-01T13:00:00Z",
+    "publish_at": "2026-10-02T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OKY_mW-qn7k",
+    "error": null,
+    "elapsed_seconds": 130.0,
+    "package_path": "state/trending_packages/20261002/01_solar-jobs-passed-coal-mining-jobs.json",
+    "source": "brain",
+    "video_path": "output/daily_20261002-113600_solar_jobs_passed_coal_mining_jobs__by_a.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 79
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261002-solar-jobs-passed-coal-mining-jobs-by-a-lot-2d99b455"
+    }
+  },
+  {
+    "topic": "Money Sent Home Just Buried Foreign Aid",
+    "title": "Money Sent Home Just Buried Foreign Aid",
+    "format": "graph_race",
+    "publish_at": "2026-10-02T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/3FK7bVY3UNg",
+    "error": null,
+    "elapsed_seconds": 119.3,
+    "package_path": "state/trending_packages/20261002/02_remittances-passed-foreign-aid.json",
+    "source": "brain",
+    "video_path": "output/daily_20261002-113810_money_sent_home_just_buried_foreign_aid.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 83
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261002-money-sent-home-just-buried-foreign-aid-0fd94ac6"
+    }
+  },
+  {
+    "topic": "Jet Engines Now Fly 20x Longer Between Overhauls",
+    "title": "Jet Engines Now Fly 20x Longer Between Overhauls",
+    "format": "graph_race",
+    "publish_at": "2026-10-02T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest race chart with a real 2020 cliff and crossover payoff, held back by a source line clipped in every frame and a slow first two seconds.",
-    "elapsed_seconds": 115.6,
-    "package_path": "state/trending_packages/20261001/04_sports-betting-passed-box-office.json",
+    "error": "showrunner_block: showrunner BLOCK: A clean, smooth two-line graph race. The key crossover moment is announced in unreadable micro-text, and the '20x' payoff is never landed.",
+    "elapsed_seconds": 112.1,
+    "package_path": "state/trending_packages/20261002/03_jet-engines-fly-longer-between-overhauls.json",
     "source": "brain",
-    "video_path": "output/daily_20261001-120031_sports_betting_just_passed_the_box_offic.mp4",
+    "video_path": "output/daily_20261002-114010_jet_engines_now_fly_20x_longer_between_o.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +104,138 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest race chart with a real 2020 cliff and crossover payoff, held back by a source line clipped in every frame and a slow first two seconds.",
-      "score": 78
+      "reason": "showrunner BLOCK: A clean, smooth two-line graph race. The key crossover moment is announced in unreadable micro-text, and the '20x' payoff is never landed.",
+      "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "The Kiosk Ate My Points. I Built A Folder.",
-    "title": "The Kiosk Ate My Points. I Built A Folder.",
+    "topic": "America Bought More E-Bikes Than Electric Cars",
+    "title": "America Bought More E-Bikes Than Electric Cars",
+    "format": "graph_race",
+    "publish_at": "2026-10-02T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/-Zb02Talt70",
+    "error": null,
+    "elapsed_seconds": 132.9,
+    "package_path": "state/trending_packages/20261002/04_ebikes-passed-electric-cars.json",
+    "source": "brain",
+    "video_path": "output/daily_20261002-114202_america_bought_more_e_bikes_than_electri.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261002-america-bought-more-e-bikes-than-electric-cars-a2126e0d"
+    }
+  },
+  {
+    "topic": "She Hogged The Washers. I Built A Spreadsheet.",
+    "title": "She Hogged The Washers. I Built A Spreadsheet.",
     "format": "reddit",
-    "publish_at": "2026-10-01T13:00:00Z",
+    "publish_at": "2026-10-02T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are never shown: generic keyword icons (cart, blank phone, construction worker), whole middle beats with no illustration over near-black gameplay, and an ending held on an unrelated worker emoji.",
-    "elapsed_seconds": 310.6,
-    "package_path": "state/trending_packages/20261001/05_the-kiosk-ate-everyones-points.json",
+    "error": "showrunner_block: showrunner BLOCK: The story beats (two washers, the timestamp spreadsheet, the sign-up sheet, the fine) are never shown: the pictures are a microscope and a frozen generic person emoji over gameplay, so the payoff falls flat.",
+    "elapsed_seconds": 303.4,
+    "package_path": "state/trending_packages/20261002/05_reddit-laundry-room-spreadsheet.json",
     "source": "brain",
-    "video_path": "output/daily_20261001-120257_the_kiosk_ate_my_points__i_built_a_folde.mp4",
+    "video_path": "output/daily_20261002-114528_she_hogged_the_washers__i_built_a_spread.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 55.6,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story beats (two washers, the timestamp spreadsheet, the sign-up sheet, the fine) are never shown: the pictures are a microscope and a frozen generic person emoji over gameplay, so the payoff falls flat.",
+      "score": 53
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Ghosted My Invoice. The License Didn't Care.",
+    "title": "He Ghosted My Invoice. The License Didn't Care.",
+    "format": "reddit",
+    "publish_at": "2026-10-02T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions are fine, but the illustration panel freezes on one generic globe icon for the last ~30s, so the revenge never visibly lands.",
+    "elapsed_seconds": 431.4,
+    "package_path": "state/trending_packages/20261002/06_reddit-freelance-license-revoked.json",
+    "source": "brain",
+    "video_path": "output/daily_20261002-115032_he_ghosted_my_invoice__the_license_didn_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.467,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The gameplay and captions are fine, but the illustration panel freezes on one generic globe icon for the last ~30s, so the revenge never visibly lands.",
+      "score": 57
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Bear caught on camera slamming into car while cub crosses road - KHOU",
+    "angle": "A massive bear barrels into a car as its cub darts across the road, sparking viral footage and safety warnings for drivers near wildlife corridors.",
+    "publish_at": "2026-10-02T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Almost the whole story plays over bare parkour gameplay with captions. Only one generic emoji illustration appears, so none of the narrative beats (receipt, note, QR code, payoff) are shown.",
+    "elapsed_seconds": 214.3,
+    "title": "I Served an Entitled Critic and Got Him to Pay",
+    "package_path": "state/trending_packages/20261002-115646_auto_bear_caught_on_camera_slamming_into_car_.json",
+    "video_path": "output/daily_20261002-115646_bear_caught_on_camera_slamming_into_car_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 49.1,
@@ -58,45 +249,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are never shown: generic keyword icons (cart, blank phone, construction worker), whole middle beats with no illustration over near-black gameplay, and an ending held on an unrelated worker emoji.",
-      "score": 53
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Couple describes relief at rescue after whale destroys their yacht",
-    "angle": "A giant sperm whale collided with a yacht 500 miles off New Zealand, forcing a dramatic rescue and highlighting ocean\u2011size dangers.",
-    "publish_at": "2026-10-01T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The whole video is Reddit-card-plus-gameplay with captions: none of the story's beats (drill, refund, neon burst, security cameras) is ever illustrated, so the narrative is told but never shown.",
-    "elapsed_seconds": 274.5,
-    "title": "I Fixed a Drill Then Served a Free One with a Surprise",
-    "package_path": "state/trending_packages/20261001-120757_auto_couple_describes_relief_at_rescue_after_.json",
-    "video_path": "output/daily_20261001-120757_couple_describes_relief_at_rescue_after_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.567,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.5
+      "loudness_lufs": -24.9
     },
     "qa": {
       "ok": true,
@@ -105,26 +258,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The whole video is Reddit-card-plus-gameplay with captions: none of the story's beats (drill, refund, neon burst, security cameras) is ever illustrated, so the narrative is told but never shown.",
-      "score": 57
+      "reason": "showrunner BLOCK: Almost the whole story plays over bare parkour gameplay with captions. Only one generic emoji illustration appears, so none of the narrative beats (receipt, note, QR code, payoff) are shown.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "RAW: NE: NEAR MISS WITH SEMI-TRUCK CAUGHT ON CAMERA - KXLY.com",
-    "angle": "A heart\u2011stopping near\u2011miss between a semi\u2011truck and a car was captured live, sparking a flood of shares and safety debates.",
-    "publish_at": "2026-10-01T14:30:00Z",
+    "topic": "Butterflies use optical illusions to dodge predators",
+    "angle": "Scientists reveal that certain butterflies create shimmering patterns that trick predators' eyes, a natural optical illusion that could inspire new camouflage tech.",
+    "publish_at": "2026-10-02T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Only gameplay and captions tell the story. The single illustration is a blank phone icon reused three times, so none of the cafe beats (latte, note, tip jar, viral post) is ever shown.",
-    "elapsed_seconds": 263.9,
-    "title": "I gave the entitled cafe customer a free latte and she filmed the chaos",
-    "package_path": "state/trending_packages/20261001-121226_auto_raw__ne__near_miss_with_semi_truck_caugh.json",
-    "video_path": "output/daily_20261001-121226_raw__ne__near_miss_with_semi_truck_caugh.mp4",
+    "error": "quarantined: vision QA: broken \u2014 Frame 2 shows only gameplay filling the entire vertical space, missing the expected story illustration in the top half as described for each frame's structure.",
+    "elapsed_seconds": 200.5,
+    "title": "I turned a wifi\u2011glitch complaint into a haunted cafe prank",
+    "package_path": "state/trending_packages/20261002-120024_auto_butterflies_use_optical_illusions_to_dod.json",
+    "video_path": "output/daily_20261002-120024_butterflies_use_optical_illusions_to_dod.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.033,
+      "duration": 43.467,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -135,19 +288,48 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.1
+      "loudness_lufs": -23.2
     },
     "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "ok": false,
+      "verdict": "broken",
+      "reason": "Frame 2 shows only gameplay filling the entire vertical space, missing the expected story illustration in the top half as described for each frame's structure."
     },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Only gameplay and captions tell the story. The single illustration is a blank phone icon reused three times, so none of the cafe beats (latte, note, tip jar, viral post) is ever shown.",
-      "score": 57
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "Near miss with semi-truck caught on camera - KIRO 7 News Seattle",
+    "angle": "A semi\u2011truck skids inches from a commuter lane, captured on dashcam, raising alarm over highway safety and the need for better driver\u2011assist tech.",
+    "publish_at": "2026-10-02T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 short",
+    "elapsed_seconds": 190.6,
+    "title": "The Broken Vending Machine Got Me a Free Lunch",
+    "package_path": "state/trending_packages/20261002-120343_auto_near_miss_with_semi_truck_caught_on_came.json",
+    "video_path": "output/daily_20261002-120343_near_miss_with_semi_truck_caught_on_came.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.067,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.4
     },
-    "blocked": true,
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "short"
+    },
+    "quarantined": true,
     "backfill": true
   }
 ]
