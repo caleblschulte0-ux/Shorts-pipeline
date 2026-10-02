@@ -133,13 +133,20 @@ def reconcile(log: dict) -> int:
     return 3
 
 
+MIN_FILM_S = 15 * 60       # 2,400 words is ~18 minutes; a little slack for a fast read
+
+
 def technical_floor(out: Path, meta: dict, cfg: dict) -> list[str]:
     bad = []
     if not out.exists():
         return ["no rendered video on disk"]
     dur = float(meta.get("duration") or 0)
-    if dur < float(cfg.get("min_seconds", 4800)):
-        bad.append(f"{dur:.0f}s is under the {cfg.get('min_seconds')}s sleep-film floor")
+    # the operator, 2026-09-24: "shoot for like 20-30 mins". The floor is the
+    # shortest script the author may write (MIN_WORDS at 131 words a minute
+    # measured), not the 80 minutes of the retired long format
+    floor = float(cfg.get("min_seconds", MIN_FILM_S))
+    if dur < floor:
+        bad.append(f"{dur:.0f}s is under the {floor:.0f}s sleep-film floor")
     thumb = out.with_suffix(".jpg")
     try:
         from PIL import Image

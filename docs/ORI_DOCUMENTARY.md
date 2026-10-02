@@ -748,6 +748,28 @@ only as a hand edit is not a rule. So:
   person now only frames in when a moving light (or water) stays in the
   picture, so a crop cannot freeze a shot the same way.
 
+- **The short-shot Greek film (70, BLOCK; Kokoro; longest still 1.0 s).**
+  The freeze was fixed, and 4,916 frames were sampled with no hold over a
+  second. The judge: *"about a third of the shots drop the people their
+  sentence describes and show an empty floor with a lamp instead"*
+  (craft 1, data_demo 1). "A man breaks bread ... a woman lifts a cup" was
+  a lamp on a bare floor, and the market sellers became a cauldron in an
+  empty yard. The cause was the shot planner itself: the `insert` close-up
+  was the light ALONE, and it was 45 of the 273 shots. Fixed:
+  - the fire/lamp close-up is the light AND whoever is at it (someone
+    warming, tending, eating or talking first), framed so both are in the
+    picture and the head is never cut;
+  - a sentence that names two people is the shot of both;
+  - a test runs the whole shelf Greek script and fails if any shot whose
+    sentence names someone has nobody in it.
+  - The technical floor still said 4,800 s (80 minutes, the retired long
+    format) against his 20-30 minute ruling; it is 15 minutes now.
+  - A brazier banks like a hearth when the words say embers (only where
+    something else in the picture still moves: a banked brazier counts for
+    little). 17 shelf passages re-mended.
+  Still open from its notes: a harbour with
+  boats on the sand, a spring with a jar, and a frame caught mid-dissolve.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

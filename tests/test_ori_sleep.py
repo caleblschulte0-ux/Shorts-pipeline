@@ -1630,6 +1630,15 @@ class ThePictureIsReadable(unittest.TestCase):
             l[2] for l in b.lines if x["start"] <= l[0] < x["end"]) or x.get("shot") == "pan")
         self.assertEqual(walk_shot.get("shot"), "pan")
         self.assertIn("insert", names)
+        # the close-up on the fire is of the fire AND whoever is at it: the
+        # Greek film's 45 lamp-on-an-empty-floor shots were "junk imagery"
+        for x in sh:
+            if x.get("shot") == "insert":
+                self.assertTrue(x["scene"]["cast"], "a close-up of a light with nobody at it")
+                sc = S.Scene(x["scene"], "ancient", x["seed"])
+                k, ox, oy = sc.camera(0.0)
+                f = sc.lay["people"][0]
+                self.assertTrue(0 < k * f["x"] - ox < S.W, "the person is framed out of their own close-up")
         self.assertTrue(all(a != c for a, c in zip(names, names[1:])), names)
         for x in sh:
             self.assertEqual(S.validate(x["scene"], "ancient"), [], x.get("shot"))
@@ -1646,6 +1655,72 @@ class ThePictureIsReadable(unittest.TestCase):
                 self.assertEqual(cams[0], cams[2], f"{x.get('shot')}: the camera moved without a walker")
         # a pan without a walker is refused
         self.assertTrue(S.validate(dict(scene, pan=True, cast=[scene["cast"][0]]), "ancient"))
+
+    def test_a_sentence_about_people_is_never_a_shot_of_nobody(self):
+        # run twenty six, 2026-10-02: 70, "about a third of the shots drop
+        # the people their sentence describes and show an empty floor with a
+        # lamp instead"; "a man breaks bread ... and a woman lifts a cup" was
+        # a lamp on a bare floor. Every shot of the shelf's Greek script whose
+        # sentence names someone has someone in it, and two named people are
+        # one shot of both
+        import re as _re
+        from data_learning import ori_sleep as OS
+        ep = OS.load("ancient-greeks-after-dark")
+        beats, t, i = [], 0.0, 0
+        for ci, ch in enumerate(ep["chapters"]):
+            for bt in ch["beats"]:
+                b = OS.Beat(chapter=ci, index=i, text=bt["say"], scene=bt["scene"], start=t)
+                for x in OS.sentences(bt["say"]):
+                    d = len(x.split()) / 2.3
+                    b.lines.append((t, t + d, x))
+                    t += d + 0.7
+                b.end = t
+                t += 1.9
+                beats.append(b)
+                i += 1
+        sh = OS.shots(ep, beats)
+        person = _re.compile(r"\b(he|she|they|man|men|woman|women|child|children|people|sellers?|guests?|"
+                             r"someone|family|girl|boy|mother|father)\b")
+        for x in sh:
+            text = " ".join(l[2] for b in beats for l in b.lines if x["start"] <= l[0] < x["end"]).lower()
+            if person.search(text) and (b := next(bb for bb in beats if bb.start <= x["start"] <= bb.end)).scene.get("cast"):
+                self.assertTrue(x["scene"].get("cast"), f"{x.get('shot')}: nobody in a shot of {text[:60]!r}")
+        both = OS._choose({"two": ({"cast": [{"who": "man"}, {"who": "woman"}]}, 1),
+                           "single:0": ({"cast": [{"who": "man"}]}, 2),
+                           "single:1": ({"cast": [{"who": "woman"}]}, 3)},
+                          "At the table, a man breaks bread and a woman lifts a cup.", None, False, [])
+        self.assertEqual(both, "two")
+        one = OS._choose({"two": ({"cast": [{"who": "man"}, {"who": "child"}]}, 1),
+                          "single:1": ({"cast": [{"who": "child"}]}, 3)},
+                         "A child holds her small hands to the warmth.", None, False, [])
+        self.assertEqual(one, "single:1")
+
+    def test_a_brazier_banks_down_when_the_words_say_embers(self):
+        # the judge, twice on the Greek film: "the brazier has burned down to
+        # soft embers" was drawn as a full blaze. A brazier banks like a hearth,
+        # counts for little on its own, and still never holds a frame
+        import numpy as np
+        S = self.S
+        self.assertIn("brazier", S.BANKABLE)
+        sp = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close", "fire": "low",
+              "cast": [{"who": "old_woman", "pose": "sit_on", "action": "warm_hands"}], "props": ["brazier"]}
+        self.assertTrue(S.validate(sp, "ancient"), "a banked brazier alone carried a scene")
+        sp["props"] = ["brazier", "torch"]
+        self.assertEqual(S.validate(sp, "ancient"), [])
+        sc = S.Scene(sp, "ancient", 7)
+        self.assertTrue(sc.low_fire)
+        fr = [np.frombuffer(sc.frame(i / 30).get_data(), np.uint8).reshape(S.H, S.W, 4)[:, :, :3].astype(int)
+              for i in range(60)]
+        run = best = 0
+        for a, b in zip(fr, fr[1:]):
+            run = run + 1 if np.abs(a - b).max() < 6 else 0
+            best = max(best, run)
+        self.assertLess(best, 12)
+
+    def test_the_length_floor_is_his_twenty_to_thirty_minutes(self):
+        import post_ori
+        self.assertLessEqual(post_ori.MIN_FILM_S, 20 * 60)
+        self.assertGreaterEqual(post_ori.MIN_FILM_S, 10 * 60)
 
     def test_a_scene_where_nothing_moves_is_mended_before_the_brain_is_asked_again(self):
         # the first fresh-topic run: chapter 1 rejected twice for "nothing in

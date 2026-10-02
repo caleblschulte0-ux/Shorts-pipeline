@@ -79,7 +79,7 @@ def _pname(p):
     return p if isinstance(p, str) else (p or {}).get("name")
 
 
-BANKABLE = ("hearth", "campfire")        # drawn as banked embers when the scene says "fire": "low"
+BANKABLE = ("hearth", "campfire", "brazier")   # drawn as banked embers when the scene says "fire": "low"
 FIRES = (None, "low")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 
@@ -172,7 +172,8 @@ def motion_strength(spec: dict) -> int:
         pr = PROPS.get(p.get("name"))
         if pr is not None and pr.living:
             k = _fire_strength(p["name"], time, shot, st.interior, spec.get("setting"))
-            if spec.get("fire") == "low" and p["name"] in BANKABLE and not (st.interior and shot == "close"):
+            if spec.get("fire") == "low" and p["name"] in BANKABLE and \
+                    (p["name"] == "brazier" or not (st.interior and shot == "close")):
                 # measured 2026-09-25 (real probe, 4 s, the fire alone): banked
                 # hearth close 0.17, hut wide 0.54, campfire close outdoors 0.41
                 k = min(k, 1)
@@ -924,8 +925,9 @@ class Scene:
     def _prop(self, cr, p, t):
         if self.low_fire and p["name"] in BANKABLE:
             from .props import banked
-            banked(cr, p["x"], p["y"] - (12 * p["s"] if p["name"] == "hearth" else 0), p["s"], t, p["seed"],
-                   size=62.0 if p["name"] == "hearth" else 78.0)
+            lift = {"hearth": 12.0, "brazier": 90.0}.get(p["name"], 0.0)   # the brazier's embers sit in its bowl
+            banked(cr, p["x"], p["y"] - lift * p["s"], p["s"], t, p["seed"],
+                   size={"hearth": 62.0, "brazier": 50.0}.get(p["name"], 78.0))
             return
         PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])
 

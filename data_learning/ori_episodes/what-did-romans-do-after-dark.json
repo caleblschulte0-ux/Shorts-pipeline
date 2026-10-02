@@ -286,7 +286,8 @@
        "temple",
        "torch",
        "brazier"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -443,7 +444,8 @@
        "pot",
        "bench",
        "candle"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -642,7 +644,8 @@
        "brazier",
        "torch"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1444,7 +1447,8 @@
        "brazier",
        "stall",
        "torch"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1683,7 +1687,8 @@
        "torch",
        "brazier"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     }
    ]
@@ -1713,7 +1718,8 @@
        "cart",
        "brazier",
        "torch"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1904,7 +1910,8 @@
        "candle",
        "brazier"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {

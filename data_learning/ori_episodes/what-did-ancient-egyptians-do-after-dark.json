@@ -1104,7 +1104,8 @@
       "props": [
        "brazier"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1760,7 +1761,8 @@
       "props": [
        "brazier"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {

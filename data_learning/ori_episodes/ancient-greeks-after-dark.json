@@ -101,7 +101,8 @@
        "brazier",
        "pot",
        "oil_lamp"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -244,7 +245,8 @@
        "brazier",
        "oil_lamp"
       ],
-      "variant": 5
+      "variant": 5,
+      "fire": "low"
      }
     },
     {
@@ -356,8 +358,10 @@
       ],
       "props": [
        "bed",
-       "candle"
-      ]
+       "candle",
+       "brazier"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -556,7 +560,8 @@
        "brazier",
        "pot",
        "oil_lamp"
-      ]
+      ],
+      "fire": "low"
      }
     },
     {
@@ -729,7 +734,8 @@
        "brazier",
        "torch"
       ],
-      "variant": 6
+      "variant": 6,
+      "fire": "low"
      }
     },
     {
@@ -1067,7 +1073,8 @@
        "cauldron",
        "torch",
        "column",
-       "amphora"
+       "amphora",
+       "stall"
       ],
       "variant": 5
      }
@@ -1111,7 +1118,8 @@
        "amphora",
        "brazier"
       ],
-      "variant": 4
+      "variant": 4,
+      "fire": "low"
      }
     }
    ]
@@ -1302,7 +1310,8 @@
        "basket",
        "torch"
       ],
-      "variant": 2
+      "variant": 2,
+      "fire": "low"
      }
     },
     {
@@ -1749,7 +1758,8 @@
        "brazier",
        "oil_lamp"
       ],
-      "variant": 3
+      "variant": 3,
+      "fire": "low"
      }
     },
     {
@@ -2029,7 +2039,8 @@
        "brazier",
        "candle"
       ],
-      "variant": 8
+      "variant": 8,
+      "fire": "low"
      }
     },
     {

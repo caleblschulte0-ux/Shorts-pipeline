@@ -409,7 +409,8 @@ LIGHT_WORDS = r"\b(fire|flames?|lamps?|embers?|candles?|hearth|brazier|coals?|gl
 MOVE_WORDS = r"\b(walks?|walking|carr(?:y|ies|ying)|cross(?:es|ing)?|pass(?:es|ing)?|heads?|hurr(?:y|ies)|" \
              r"returns?|comes?|goes|leaves?|strolls?|wanders?|makes? (?:his|her|their) way)\b"
 TABLE_ACTIONS = ("eat", "drink", "talk", "sew")
-INSERT_ZOOM = 1.9    # a close-up of the fire or the lamp: framed in, held still
+INSERT_ZOOM = 1.6    # a close-up of the fire or the lamp AND whoever is at it: framed in, held still
+FIRE_ACTIONS = ("warm_hands", "feed_fire", "stir", "sew", "eat", "drink", "talk", "hold")
 SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 
 
@@ -417,8 +418,10 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
     """Every shot this place and these people can give, each checked valid
     and with nothing drawn into anything: `est` (wide, everyone), `two`
     (close, everyone), `single:<i>` (close on one person, with the light and
-    the furniture they are using), `insert` (close on the fire or the lamp,
-    nobody), `pan` (the camera going with whoever is walking), `arr` (the
+    the furniture they are using), `insert` (close on the fire or the lamp
+    and the person at it — never the light alone: the Greek film's 45
+    lamp-on-an-empty-floor shots were a third of what the judge called
+    "junk imagery", 2026-10-02), `pan` (the camera going with whoever is walking), `arr` (the
     same picture, arranged again)."""
     from data_learning.doodle import scene as S
     from data_learning.doodle.props import PROPS
@@ -444,8 +447,10 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
         if c.get("pose") == "lie" and "bed" in names:
             keep.append("bed")
         cands[f"single:{i}"] = (clean(dict(spec, shot="close", cast=[c], props=keep)), seed + 11 + i)
-    if lights and cast:
-        cands["insert"] = (clean(dict(spec, shot="close", cast=[], props=lights[:2])), seed + 7)
+    still = [c for c in cast if c.get("pose") != "walk"]
+    if lights and still:
+        at = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
+        cands["insert"] = (clean(dict(spec, shot="close", cast=[at], props=lights[:2])), seed + 7)
     if S.SETTINGS.get(spec.get("setting")) is not None and S.SETTINGS[spec["setting"]].interior:
         cands.pop("est", None)          # a wide room is small people in an empty wall
     out = {}
@@ -458,10 +463,19 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
         # close-ups are FRAMED in on what they are of, and held still
         if name == "insert":
             p = next((q for q in lay["props"] if q["name"] in lights), None)
-            if p is None:
+            if p is None or not lay["people"]:
                 continue
+            f = lay["people"][0]
             ph = PROPS[p["name"]].height * p["s"]
-            sp = dict(sp, frame=[round(p["x"], 1), round(p["y"] - ph * 0.6, 1), INSERT_ZOOM])
+            # framed on the light and the person together, both inside
+            span = abs(f["x"] - p["x"]) + 260.0
+            k = round(max(1.0, min(INSERT_ZOOM, S.W / span)), 2)
+            from data_learning.doodle import people as P
+            R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
+            # high enough that the head is never cut: the person's middle
+            # and the flame, whichever is higher
+            cy = min(p["y"] - ph * 0.6, f["y"] - 2.4 * R)
+            sp = dict(sp, frame=[round((f["x"] + p["x"]) / 2, 1), round(cy, 1), k])
         elif name.startswith("single:") and lay["people"]:
             f = lay["people"][0]
             from data_learning.doodle import people as P
@@ -542,6 +556,17 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) ->
         return "est"
     if _re.search(MOVE_WORDS, low) and ok("pan"):
         return "pan"
+    # a sentence about two people is a shot of both of them
+    # (counted by the nouns: "a child holds her hands out" is one person)
+    nouns = _re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    nouns = _re.sub(r"\b(old wom[ae]n|grandmother|grandma)\b", " gm ", nouns)
+    named = {w for w, pat in WHO_WORDS.items() if _re.search(pat, nouns)}
+    if "old_woman" in nouns or " gm " in nouns:
+        named.add("old_woman")
+    if len(named) >= 2:
+        for name in ("two", "arr", "est"):
+            if ok(name) and len(opts[name][0].get("cast") or []) >= 2:
+                return name
     for who, pat in WHO_WORDS.items():
         if _re.search(pat, low):
             for name, (sp, _sd) in opts.items():

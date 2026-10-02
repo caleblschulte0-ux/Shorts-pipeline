@@ -608,7 +608,8 @@ LOW_FIRE_WORDS = ("ember", "banked", "bank the", "banks the", "under ash", "bene
 # things the words name that the kit can draw: a market square whose words
 # say "the stalls stand empty and shuttered" had none (the medieval film)
 PROP_WORDS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", "carts", "wagon"),
-              "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs")}
+              "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs"),
+              "brazier": ("brazier",)}
 
 
 def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
@@ -693,7 +694,7 @@ def mend_motion(beat: dict, era: str) -> str | None:
     return f"a {who} passes with a {item} (the words move somebody)"
 
 
-def mend_fire(beat: dict) -> str | None:
+def mend_fire(beat: dict, era: str = "ancient") -> str | None:
     """A beat whose words bank the fire draws it banked (the medieval
     film's judge: "the narration says embers glow low under ash, and a full
     fire is drawn"); one whose words do not, draws it burning."""
@@ -708,6 +709,12 @@ def mend_fire(beat: dict) -> str | None:
     low = any(w in (beat.get("say") or "").lower() for w in LOW_FIRE_WORDS)
     if low and sc.get("fire") != "low":
         sc["fire"] = "low"
+        burning = {k: v for k, v in sc.items() if k != "fire"}
+        if S.validate(sc, era) and not S.validate(burning, era):
+            # banked, nothing else in the picture would move: it burns
+            # rather than freeze (a banked brazier counts for little)
+            sc.pop("fire")
+            return None
         return "the fire is banked (the words say so)"
     if not low and sc.get("fire") == "low":
         sc.pop("fire")
@@ -1049,7 +1056,7 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             # last, so nothing after them undoes what they did (run twice,
             # the old order added a named table and then dropped it again)
             named = add_named_props(b, era, seeds=(1000 + j,))
-            fire = mend_fire(b)
+            fire = mend_fire(b, era)
             moving = mend_motion(b, era)
             did = ", ".join(x for x in (placed, night, did, crowd, named, fire, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was:
