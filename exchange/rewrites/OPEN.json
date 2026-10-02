@@ -1,23 +1,23 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-02T13:13:22Z",
+ "updated": "2026-10-02T14:01:42Z",
  "open": [
   {
-   "id": "us-height-ranking-fall__dfb4fa2e",
-   "slug": "us-height-ranking-fall",
-   "filed": "2026-10-02T13:13:22Z",
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-10-02T14:01:42Z",
    "why": [
-    "premise: brain: The premise lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague hook rather than a single, verifiable numerical claim."
    ],
-   "request": "exchange/rewrites/20261002/us-height-ranking-fall__dfb4fa2e.request.json",
-   "answer_path": "exchange/rewrites/20261002/us-height-ranking-fall__dfb4fa2e.answer.json"
+   "request": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "muscle-loss-after-30__a6d6cd11",
    "slug": "muscle-loss-after-30",
-   "filed": "2026-10-02T13:13:19Z",
+   "filed": "2026-10-02T14:01:40Z",
    "why": [
-    "premise: brain: It lacks a single verifiable number, offering only a vague age range."
+    "premise: brain: It lacks a single, specific verifiable number, offering only a vague age range."
    ],
    "request": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20261002/muscle-loss-after-30__a6d6cd11.answer.json"
@@ -761,14 +761,14 @@
    "answer_path": "exchange/rewrites/20261001/landline-extinction-event__f48f5d4d.answer.json"
   },
   {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
+   "id": "us-height-ranking-fall__dfb4fa2e",
+   "slug": "us-height-ranking-fall",
    "filed": "2026-10-01T11:01:17Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on vague wording rather than a single, verifiable numeric claim."
+    "premise: brain: It lacks a verifiable number and does not clearly invert a specific viewer expectation."
    ],
-   "request": "exchange/rewrites/20261001/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20261001/lab-grown-diamond-price-collapse__147039f2.answer.json"
+   "request": "exchange/rewrites/20261001/us-height-ranking-fall__dfb4fa2e.request.json",
+   "answer_path": "exchange/rewrites/20261001/us-height-ranking-fall__dfb4fa2e.answer.json"
   },
   {
    "id": "gulf-dead-zone-growth__59c7e706",

@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261002T140152Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid and seg1:end: the x-axis labels \"2024\" and \"2025\" run together as \"20242025\". seg3:mid: the \"127%\" text gets ghosted and blurred as the circle swells.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Two identical teal circles, both labelled \"127%\" and both captioned \"Billionaire wealth\", while the narration says the S&P 500 grew 195 percent. The stock market side of the 'vs stock market' title never appears, and Data just perches on the left circle.",
+  "root_cause": "The comparison composer filled both slots from the same series, so the S&P 195% value and its label never reached the render. The picture is a number on a blob with no machine.",
+  "repair_goal": "Show the 127% billionaire wealth growth against the 195% S&P 500 growth as two quantities visibly different in size, labelled correctly. Have Data be the cause: for example, he pours or stacks the S&P side past the billionaire side, so the viewer sees the stock market outgrew billionaire wealth without reading a label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

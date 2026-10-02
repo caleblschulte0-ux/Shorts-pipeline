@@ -2396,6 +2396,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 39.7
+    },
+    "antibiotic-resistance-deaths": {
+      "url": "https://youtube.com/shorts/btpYW-JfG8w",
+      "title": "Drug-Resistant Infections Now Kill More Than HIV And Malaria",
+      "at": "2026-10-02T11:31:34.840192+00:00",
+      "publish_at": "2026-10-02T17:13:09Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 39 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 56.7
     }
   },
   "uploads": [
@@ -2902,6 +2920,15 @@
       "state": "posted",
       "slug": "glacier-mass-loss-acceleration",
       "at": "2026-10-02T12:43:03.782350+00:00"
+    },
+    {
+      "claimed_at": "2026-10-02T11:31:27.766783+00:00",
+      "title": "Drug-Resistant Infections Now Kill More Than HIV And Malaria",
+      "publish_at": "2026-10-02T17:13:09Z",
+      "url": "https://youtube.com/shorts/btpYW-JfG8w",
+      "state": "posted",
+      "slug": "antibiotic-resistance-deaths",
+      "at": "2026-10-02T11:31:34.840192+00:00"
     }
   ]
 }

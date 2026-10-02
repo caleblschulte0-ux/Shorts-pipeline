@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261002T140152Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid Data hovers between the 2000 and 2010 rows, and in seg1:end he perches above 1983, touching nothing. In seg4:start through seg4:end he stands beside the scale holding a stick while the bricks drop in by themselves.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_asserts_nothing",
+  "visible_evidence": "seg1:start to seg1:end show five horizontal tracks (1983 to 2023) that never fill. The values -8 to -2.3 are just text in a right-hand column, and Data floats between rows. It repeats seg0's temperature data with less motion.",
+  "root_cause": "The bar renderer drew negative temperatures as zero-length bars on a 0-based axis, so no mark carries the warming. The mascot has no anchor on any moving part.",
+  "repair_goal": "Replace seg1 with one bespoke picture of the ground warming: a cross-section of frozen soil with a thermometer column that Data pushes from -8 up to -2.3 as the ice layer visibly shrinks and turns to mud. It must not repeat seg0's data, and the 0\u00b0C line should be drawn so 'just 2 below' reads at a glance."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

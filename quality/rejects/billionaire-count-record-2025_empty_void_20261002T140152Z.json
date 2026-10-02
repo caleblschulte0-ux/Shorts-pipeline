@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261002T140152Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start: three small bars sit at the bottom and the top two-thirds of the frame is empty dark gradient. seg3:start: two small circles float in a large empty field.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Two identical teal circles, both labelled \"127%\" and both captioned \"Billionaire wealth\", while the narration says the S&P 500 grew 195 percent. The stock market side of the 'vs stock market' title never appears, and Data just perches on the left circle.",
+  "root_cause": "The comparison composer filled both slots from the same series, so the S&P 195% value and its label never reached the render. The picture is a number on a blob with no machine.",
+  "repair_goal": "Show the 127% billionaire wealth growth against the 195% S&P 500 growth as two quantities visibly different in size, labelled correctly. Have Data be the cause: for example, he pours or stacks the S&P side past the billionaire side, so the viewer sees the stock market outgrew billionaire wealth without reading a label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
