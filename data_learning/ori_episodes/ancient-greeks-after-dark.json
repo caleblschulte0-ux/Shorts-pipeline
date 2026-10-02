@@ -59,7 +59,7 @@
       "shot": "wide",
       "cast": [
        {
-        "who": "old_woman",
+        "who": "woman",
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "calm",
@@ -67,9 +67,11 @@
        }
       ],
       "props": [
-       "campfire"
+       "brazier",
+       "amphora",
+       "column"
       ],
-      "variant": 7
+      "variant": 1
      }
     },
     {
@@ -123,7 +125,7 @@
        "cauldron",
        "stall"
       ],
-      "variant": 5
+      "variant": 7
      }
     },
     {
@@ -140,7 +142,7 @@
         "action": "gather",
         "mood": "focused",
         "item": "bundle",
-        "at": "left"
+        "at": "center_right"
        },
        {
         "who": "girl",
@@ -148,20 +150,20 @@
         "action": "carry",
         "mood": "calm",
         "item": "basket",
-        "at": "center_right"
+        "at": "center_left"
        }
       ],
       "props": [
        "reeds"
       ],
-      "variant": 3
+      "variant": 5
      }
     },
     {
      "say": "Among the olive trees, a man splits kindling for the evening fire, the axe falling in slow, familiar strokes. Grey-green leaves stir faintly overhead. He stacks the wood in a neat pile beside a low stone wall, one more small task before the household turns toward night.",
      "scene": {
       "setting": "forest",
-      "time": "day",
+      "time": "dusk",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -174,8 +176,12 @@
         "at": "center"
        }
       ],
-      "props": [],
-      "variant": 5
+      "props": [
+       "olive",
+       "woodpile",
+       "campfire"
+      ],
+      "variant": 3
      }
     },
     {
@@ -196,16 +202,17 @@
        },
        {
         "who": "elder",
-        "pose": "stand",
+        "pose": "walk",
         "action": "point",
         "mood": "calm",
         "at": "center_right"
        }
       ],
       "props": [
-       "reeds"
+       "reeds",
+       "rock"
       ],
-      "variant": 5
+      "variant": 3
      }
     },
     {
@@ -233,9 +240,10 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "woodpile"
       ],
-      "variant": 6
+      "variant": 2
      }
     },
     {
@@ -370,10 +378,9 @@
        "campfire",
        "reeds",
        "villa",
-       "temple",
        "torch"
       ],
-      "variant": 3,
+      "variant": 5,
       "fire": "low"
      }
     }
@@ -385,7 +392,7 @@
     {
      "say": "Inside the house, a woman tips a thin stream of oil into a small clay lamp, feeding the wick until it holds a flame. A child sits near the table, watching the light steady and grow. Outside, the sky has gone the deep blue of true dusk, and the house is filling with a soft, low glow.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -410,7 +417,7 @@
        "oil_lamp",
        "candle"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -424,7 +431,7 @@
        {
         "who": "man",
         "pose": "crouch",
-        "action": "feed_fire",
+        "action": "hold",
         "mood": "calm",
         "item": "lantern",
         "at": "center_left"
@@ -435,7 +442,7 @@
        "brazier",
        "torch"
       ],
-      "variant": 3
+      "variant": 5
      }
     },
     {
@@ -444,27 +451,39 @@
       "setting": "seashore",
       "time": "dusk",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
         "pose": "walk",
         "action": "carry",
-        "mood": "content",
+        "mood": "calm",
         "item": "basket",
-        "at": "left"
+        "at": "center_left"
        },
        {
         "who": "man",
         "pose": "walk",
         "action": "carry",
-        "mood": "calm",
+        "mood": "content",
         "item": "fish",
-        "at": "right"
+        "at": "center"
+       },
+       {
+        "who": "elder",
+        "pose": "walk",
+        "action": "carry",
+        "mood": "sleepy",
+        "item": "basket",
+        "at": "center_right"
        }
       ],
-      "props": [],
-      "variant": 6
+      "props": [
+       "basket",
+       "rock",
+       "reeds"
+      ],
+      "variant": 4
      }
     },
     {
@@ -510,28 +529,29 @@
     {
      "say": "Back inside, an old woman stirs a small pot over the coals while a girl sets bread on the table nearby. The lamp between them throws a warm, small circle of light, just enough to see hands and faces by. Whatever the day provided will be shared here tonight, simple as it is.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "stir",
         "mood": "content",
-        "item": "stick"
+        "item": "stick",
+        "at": "center_left"
        },
        {
         "who": "girl",
         "pose": "stand",
-        "action": "hold",
+        "action": "carry",
         "mood": "calm",
-        "item": "bread"
+        "item": "bread",
+        "at": "center_right"
        }
       ],
       "props": [
-       "table",
        "brazier",
        "pot",
        "oil_lamp"
@@ -570,21 +590,21 @@
     {
      "say": "At the table, a man breaks bread and passes it across, and a woman lifts a cup of watered wine. Olives sit in a small bowl between them, along with whatever else the day allowed. The lamp burns low and steady, and neither of them is in any hurry to finish.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
+        "pose": "sit",
         "action": "hold",
         "mood": "content",
         "item": "bread"
        },
        {
         "who": "woman",
-        "pose": "stand",
+        "pose": "sit",
         "action": "drink",
         "mood": "calm",
         "item": "cup"
@@ -652,7 +672,7 @@
        }
       ],
       "props": [],
-      "variant": 7
+      "variant": 10
      }
     },
     {
@@ -666,17 +686,16 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "fish",
+        "action": "look_up",
         "mood": "calm",
         "item": "rod",
-        "at": "center_left"
+        "at": "center"
        }
       ],
       "props": [
-       "reeds",
        "torch"
       ],
-      "variant": 3
+      "variant": 5
      }
     },
     {
@@ -685,7 +704,7 @@
       "setting": "forum",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
@@ -693,13 +712,22 @@
         "action": "carry",
         "mood": "calm",
         "item": "lantern",
-        "at": "center"
+        "at": "center_left"
+       },
+       {
+        "who": "elder",
+        "pose": "crouch",
+        "action": "feed_fire",
+        "mood": "sleepy",
+        "at": "right"
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "torch",
+       "column"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -804,21 +832,21 @@
        "cauldron",
        "stall"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
      "say": "Inside, in the room kept for guests, low couches line the walls. The men settle onto them the way custom asks, reclining rather than sitting upright. A small lamp burns steady on its stand nearby. Cups are filled, and the talk begins slowly, easing into the evening rather than rushing to fill it.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
       "cast": [
        {
         "who": "man",
-        "pose": "lie",
-        "action": "idle",
+        "pose": "sit_on",
+        "action": "drink",
         "mood": "content",
         "item": "cup",
         "at": "left"
@@ -828,11 +856,14 @@
         "pose": "sit_on",
         "action": "talk",
         "mood": "calm",
+        "item": "cup",
         "at": "right"
        }
       ],
       "props": [
-       "oil_lamp"
+       "bench",
+       "oil_lamp",
+       "candle"
       ],
       "variant": 3
      }
@@ -855,10 +886,9 @@
        }
       ],
       "props": [
-       "torch",
-       "brazier"
+       "torch"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -887,7 +917,7 @@
        "torch",
        "brazier"
       ],
-      "variant": 3
+      "variant": 4
      }
     },
     {
@@ -947,20 +977,21 @@
         "who": "old_woman",
         "pose": "sit_on",
         "action": "warm_hands",
-        "mood": "sleepy"
+        "mood": "sleepy",
+        "at": "center_left"
        },
        {
         "who": "child",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy"
+        "mood": "sleepy",
+        "at": "center_right"
        }
       ],
       "props": [
-       "oil_lamp",
-       "bed"
+       "oil_lamp"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -982,7 +1013,7 @@
       "props": [
        "torch"
       ],
-      "variant": 1
+      "variant": 3
      },
      "painting": {
       "source": "The Metropolitan Museum of Art",
@@ -1026,7 +1057,7 @@
        "oil_lamp",
        "candle"
       ],
-      "variant": 3
+      "variant": 6
      }
     },
     {
@@ -1035,7 +1066,7 @@
       "setting": "forum",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "man",
@@ -1043,15 +1074,17 @@
         "action": "carry",
         "mood": "calm",
         "item": "torch",
-        "at": "center"
+        "at": "center_right"
        }
       ],
       "props": [
        "cauldron",
        "torch",
+       "column",
+       "amphora",
        "stall"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1075,7 +1108,7 @@
        "oil_lamp",
        "brazier"
       ],
-      "variant": 4
+      "variant": 7
      }
     }
    ]
@@ -1094,17 +1127,17 @@
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "hold",
+        "action": "sew",
         "mood": "focused",
-        "item": "stick",
+        "item": "needle",
         "at": "center_left"
        },
        {
         "who": "old_woman",
         "pose": "sit_on",
-        "action": "hold",
+        "action": "sew",
         "mood": "calm",
-        "item": "stick",
+        "item": "bundle",
         "at": "center_right"
        }
       ],
@@ -1113,7 +1146,7 @@
        "candle",
        "brazier"
       ],
-      "variant": 4
+      "variant": 3
      }
     },
     {
@@ -1143,7 +1176,7 @@
        "oil_lamp",
        "candle"
       ],
-      "variant": 4
+      "variant": 7
      }
     },
     {
@@ -1180,7 +1213,7 @@
        "oil_lamp",
        "candle"
       ],
-      "variant": 5
+      "variant": 6
      }
     },
     {
@@ -1195,14 +1228,21 @@
         "who": "woman",
         "pose": "sit_on",
         "action": "sew",
-        "mood": "content",
-        "item": "needle",
-        "at": "center"
+        "mood": "focused",
+        "item": "stick"
+       },
+       {
+        "who": "elder",
+        "pose": "lie",
+        "action": "sleep",
+        "mood": "sleepy"
        }
       ],
       "props": [
-       "candle"
-      ]
+       "candle",
+       "bed"
+      ],
+      "variant": 1
      }
     },
     {
@@ -1247,7 +1287,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "crouch",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "calm"
        },
@@ -1264,7 +1304,7 @@
        "torch",
        "basket"
       ],
-      "variant": 5
+      "variant": 4
      }
     },
     {
@@ -1279,22 +1319,20 @@
         "who": "woman",
         "pose": "sit_on",
         "action": "talk",
-        "mood": "calm",
-        "at": "center_left"
+        "mood": "calm"
        },
        {
         "who": "old_woman",
         "pose": "sit_on",
         "action": "talk",
-        "mood": "content",
-        "at": "center_right"
+        "mood": "content"
        }
       ],
       "props": [
        "oil_lamp",
        "candle"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1332,7 +1370,7 @@
        "oil_lamp",
        "candle"
       ],
-      "variant": 8
+      "variant": 11
      }
     },
     {
@@ -1418,10 +1456,9 @@
        }
       ],
       "props": [
-       "torch",
-       "column"
+       "torch"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1438,7 +1475,7 @@
         "action": "feed_fire",
         "mood": "focused",
         "item": "stick",
-        "at": "center"
+        "at": "center_left"
        }
       ],
       "props": [
@@ -1446,7 +1483,7 @@
        "column",
        "torch"
       ],
-      "variant": 6
+      "variant": 8
      }
     },
     {
@@ -1460,18 +1497,17 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "idle",
+        "action": "fish",
         "mood": "calm",
-        "at": "center"
+        "item": "rod",
+        "at": "center_right"
        }
       ],
       "props": [
-       "cart",
-       "barrel",
-       "basket",
-       "torch"
+       "rock",
+       "reeds"
       ],
-      "variant": 3
+      "variant": 4
      }
     },
     {
@@ -1481,20 +1517,14 @@
       "time": "night",
       "weather": "clear",
       "shot": "close",
-      "cast": [
-       {
-        "who": "child",
-        "pose": "crouch",
-        "action": "warm_hands",
-        "mood": "calm",
-        "at": "right"
-       }
-      ],
+      "cast": [],
       "props": [
+       "dog",
+       "brazier",
        "torch",
-       "brazier"
+       "stall"
       ],
-      "variant": 5
+      "variant": 4
      }
     },
     {
@@ -1515,10 +1545,10 @@
        }
       ],
       "props": [
-       "cart",
-       "torch"
+       "torch",
+       "cart"
       ],
-      "variant": 3
+      "variant": 5
      }
     },
     {
@@ -1532,18 +1562,18 @@
        {
         "who": "woman",
         "pose": "crouch",
-        "action": "gather",
+        "action": "hold",
         "mood": "calm",
         "item": "basket",
         "at": "center"
        }
       ],
       "props": [
-       "reeds",
        "amphora",
-       "rock"
+       "reeds",
+       "torch"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1556,22 +1586,24 @@
       "cast": [
        {
         "who": "man",
-        "pose": "walk",
+        "pose": "stand",
         "action": "wave",
         "mood": "happy",
-        "item": "torch"
+        "item": "torch",
+        "at": "center_left"
        },
        {
         "who": "woman",
         "pose": "stand",
-        "action": "wave",
-        "mood": "content"
+        "action": "idle",
+        "mood": "sleepy",
+        "at": "center"
        }
       ],
       "props": [
        "torch"
       ],
-      "variant": 3
+      "variant": 1
      }
     },
     {
@@ -1580,14 +1612,15 @@
       "setting": "mountains",
       "time": "night",
       "weather": "clear",
-      "shot": "wide",
+      "shot": "close",
       "cast": [
        {
         "who": "elder",
         "pose": "stand",
         "action": "look_up",
         "mood": "calm",
-        "item": "torch"
+        "item": "torch",
+        "at": "center_left"
        },
        {
         "who": "woman",
@@ -1597,9 +1630,11 @@
        }
       ],
       "props": [
-       "torch"
+       "torch",
+       "column",
+       "brazier"
       ],
-      "variant": 2
+      "variant": 3
      }
     },
     {
@@ -1633,7 +1668,7 @@
       "shot": "wide",
       "cast": [],
       "props": [],
-      "variant": 3
+      "variant": 4
      }
     },
     {
@@ -1646,17 +1681,16 @@
       "cast": [
        {
         "who": "man",
-        "pose": "crouch",
-        "action": "feed_fire",
+        "pose": "sit",
+        "action": "yawn",
         "mood": "sleepy",
         "at": "center"
        }
       ],
       "props": [
-       "brazier",
-       "torch"
+       "brazier"
       ],
-      "variant": 2
+      "variant": 1
      }
     }
    ]
@@ -1677,12 +1711,12 @@
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "content",
+        "item": "stick",
         "at": "center"
        }
       ],
       "props": [
        "brazier",
-       "woodpile",
        "oil_lamp"
       ],
       "variant": 1
@@ -1720,7 +1754,7 @@
        "oil_lamp",
        "table"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1750,7 +1784,7 @@
       "props": [
        "campfire"
       ],
-      "variant": 6
+      "variant": 9
      }
     },
     {
@@ -1802,7 +1836,7 @@
       "props": [
        "oil_lamp"
       ],
-      "variant": 7
+      "variant": 8
      }
     },
     {
@@ -1824,7 +1858,7 @@
       "props": [
        "brazier"
       ],
-      "variant": 8
+      "variant": 11
      }
     },
     {
@@ -1877,7 +1911,7 @@
       "props": [
        "oil_lamp"
       ],
-      "variant": 9
+      "variant": 12
      }
     },
     {
@@ -1905,11 +1939,10 @@
       ],
       "props": [
        "bed",
-       "dog",
        "brazier",
        "candle"
       ],
-      "variant": 2
+      "variant": 4
      }
     },
     {
@@ -1931,7 +1964,7 @@
       "props": [
        "brazier"
       ],
-      "variant": 1
+      "variant": 3
      }
     },
     {
@@ -1965,7 +1998,7 @@
        "brazier",
        "candle"
       ],
-      "variant": 3
+      "variant": 5
      }
     },
     {
@@ -1987,7 +2020,7 @@
       "props": [
        "brazier"
       ],
-      "variant": 6
+      "variant": 8
      }
     }
    ]
