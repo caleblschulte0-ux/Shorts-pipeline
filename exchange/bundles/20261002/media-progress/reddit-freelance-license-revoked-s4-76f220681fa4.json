@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s4-76f220681fa4",
+  "safe_request_id": "reddit-freelance-license-revoked-s4-76f220681fa4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d0528d052825519db8a12b68893b79a65e520968a34171da47c416f04f17c7ac",
+  "prompt_used": "An editorial illustration for a short-form video: website error page screen. It accompanies the narration: \"His site went dark within a week\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1irL0cKNsJZx-xMtQ0PKtq31dxloJFcC0",
+    "filename": "20261002__reddit-freelance-license-revoked-s4-76f220681fa4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1irL0cKNsJZx-xMtQ0PKtq31dxloJFcC0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c9cdd1a9ead07cbfa0e438d123d7b3e764dbc2e8736130934c0d8ff129dd4a26",
+    "bytes": 1469562,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-02T11:27:32.231Z"
+}
