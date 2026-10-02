@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261001",
+  "updated": "20261002",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -270,10 +270,16 @@
       ]
     },
     "8dc00d1eadd0": {
-      "verdict": "doing",
-      "date": "20260813",
-      "because": "Confirmed: append_ledger() persists only dimensions/one_line/auto_fails/motion/judge/model/rubric_sha and drops checks, weakest_scene, problems, fixes, temporal and format/package lineage, so the ledger can't detect recurring failure classes across days. Legitimate long-term direction (ledger schema versioning + migration) but too large for a single session; accepted as doing, to be picked up as a dedicated build, not bundled into a smaller fix.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261002",
+      "because": "picked up: ledger schema 2 + fingerprint recurrence census",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260813",
+          "because": "Confirmed: append_ledger() persists only dimensions/one_line/auto_fails/motion/judge/model/rubric_sha and drops checks, weakest_scene, problems, fixes, temporal and format/package lineage, so the ledger can't detect recurring failure classes across days. Legitimate long-term direction (ledger schema versioning + migration) but too large for a single session; accepted as doing, to be picked up as a dedicated build, not bundled into a smaller fix."
+        }
+      ]
     },
     "71d8f01ef635": {
       "verdict": "done",
@@ -1034,10 +1040,17 @@
       ]
     },
     "90428377a85b": {
-      "verdict": "doing",
-      "date": "20260827",
-      "because": "Reproduced independently against today's state/analytics_explainer/latest.json (35 usable-for-retention videos vs the report's 34): estimated-runtime<=40s videos median retention ~46.8% vs ~28.2% for longer videos, with comparable median views (83 vs 87.5) -- the gap survives an independent re-check and isn't a views artifact. Registry cadence/count/quality bar are untouched, matched-experiment design is sound, and it respects the retro briefs' 'too young to judge' caution. Accepted as a direction; queued behind the higher-ranked fixes -- building this means designing the experiment-arm tagging in the story/analytics metadata first, which is its own scoped task.",
-      "history": []
+      "verdict": "later",
+      "date": "20261002",
+      "because": "Needs experiment-arm tagging across story + analytics metadata and touches the protected DIRECTOR rubric; too large for one triage session. Take it as its own scoped build.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260827",
+          "because": "Reproduced independently against today's state/analytics_explainer/latest.json (35 usable-for-retention videos vs the report's 34): estimated-runtime<=40s videos median retention ~46.8% vs ~28.2% for longer videos, with comparable median views (83 vs 87.5) -- the gap survives an independent re-check and isn't a views artifact. Registry cadence/count/quality bar are untouched, matched-experiment design is sound, and it respects the retro briefs' 'too young to judge' caution. Accepted as a direction; queued behind the higher-ranked fixes -- building this means designing the experiment-arm tagging in the story/analytics metadata first, which is its own scoped task."
+        }
+      ],
+      "revisit_after": "20261101"
     },
     "4490f7560fed": {
       "verdict": "later",

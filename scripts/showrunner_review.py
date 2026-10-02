@@ -1092,6 +1092,23 @@ def should_block(verdict: dict) -> bool:
 LEDGER = REPO / "state" / "showrunner_verdicts.jsonl"
 
 
+def _checks_hit(checks) -> list:
+    """Names of the hard checks the verdict raised (present or failed)."""
+    if not isinstance(checks, dict):
+        return []
+    return sorted(k for k, v in checks.items()
+                  if isinstance(v, dict) and (v.get("present") or v.get("fail")))
+
+
+def failure_fingerprint(fmt, checks_hit, failure_class) -> str:
+    """Deterministic recurrence key: format + hard checks + failure_class,
+    never model prose. Empty when the verdict named no failure."""
+    if not checks_hit and not failure_class:
+        return ""
+    return "|".join([str(fmt or "?"), "+".join(checks_hit or []) or "-",
+                     str(failure_class or "-")])
+
+
 def append_ledger(slug: str, verdict: dict) -> None:
     """Append a compact, durable record of the gate's verdict. This is the
     showrunner's memory — a permanent trail of what it judged and why, so its
@@ -1119,6 +1136,23 @@ def append_ledger(slug: str, verdict: dict) -> None:
                "judge": verdict.get("judge", "unknown"),   # ACTUAL backend used
                "model": os.environ.get("SHOWRUNNER_MODEL", "opus"),
                "rubric_sha": _rubric_sha()}
+        # Schema 2 (doctor 8dc00d1eadd0): the structured diagnosis, so
+        # recurrences can be grouped by cause instead of by model prose.
+        # Additive only — every field above is unchanged.
+        rec["schema"] = 2
+        rec["format"] = slug.split(":", 1)[0] if ":" in slug else None
+        rec["checks_hit"] = _checks_hit(verdict.get("checks"))
+        ws = verdict.get("weakest_scene")
+        if isinstance(ws, dict):
+            rec["weakest_scene"] = {
+                k: (str(ws[k])[:300] if k != "index" else ws[k])
+                for k in ("id", "index", "failure_class", "visible_evidence",
+                          "root_cause", "repair_goal") if k in ws}
+        if verdict.get("temporal"):
+            rec["temporal"] = verdict["temporal"]
+        rec["fingerprint"] = failure_fingerprint(
+            rec["format"], rec["checks_hit"],
+            (rec.get("weakest_scene") or {}).get("failure_class"))
         if verdict.get("style_arm"):          # the A/B look, when recorded
             rec["style_arm"] = verdict["style_arm"]
         with LEDGER.open("a") as fh:

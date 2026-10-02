@@ -115,6 +115,33 @@ class TestTheLedgerKeepsTheDiagnosis(unittest.TestCase):
             finally:
                 sr.LEDGER = saved
 
+    def test_schema2_keeps_the_structured_diagnosis(self):
+        import showrunner_review as sr
+        with tempfile.TemporaryDirectory() as td:
+            saved = sr.LEDGER
+            sr.LEDGER = Path(td) / "verdicts.jsonl"
+            try:
+                v = {"score": 30, "verdict": "block",
+                     "checks": {"dead_air": {"present": True, "evidence": "x"},
+                                "junk_imagery": {"present": False}},
+                     "weakest_scene": {"id": "seg2", "index": 2,
+                                       "failure_class": "static_still",
+                                       "repair_goal": "animate it"},
+                     "temporal": {"still_s": 11}}
+                sr.append_ledger("reddit_story:clock", v)
+                sr.append_ledger("reddit_story:other", v)
+                a, b = [json.loads(l) for l in sr.LEDGER.read_text().splitlines()]
+                self.assertEqual(a["schema"], 2)
+                self.assertEqual(a["checks_hit"], ["dead_air"])
+                self.assertEqual(a["weakest_scene"]["failure_class"], "static_still")
+                self.assertEqual(a["temporal"], {"still_s": 11})
+                self.assertEqual(a["fingerprint"],
+                                 "reddit_story|dead_air|static_still")
+                self.assertEqual(a["fingerprint"], b["fingerprint"])
+            finally:
+                sr.LEDGER = saved
+
+
     def test_a_chatty_verdict_is_bounded(self):
         import showrunner_review as sr
         with tempfile.TemporaryDirectory() as td:
