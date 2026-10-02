@@ -1,0 +1,35 @@
+{
+ "checked_at": "2026-10-02T12:31:07+00:00",
+ "date": "20261002",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261002/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-freelance-license-revoked-s0-801f6a147869.json",
+  "reddit-freelance-license-revoked-s1-34f357a3547b.json",
+  "reddit-freelance-license-revoked-s2-5dff9ec8a00d.json",
+  "reddit-freelance-license-revoked-s3-d6217bfd32f6.json",
+  "reddit-freelance-license-revoked-s4-76f220681fa4.json",
+  "reddit-freelance-license-revoked-s5-b6d63e9a0666.json",
+  "reddit-freelance-license-revoked-s6-b4bba12046ba.json",
+  "reddit-laundry-room-spreadsheet-s0-87739f6c0598.json",
+  "reddit-laundry-room-spreadsheet-s1-dd5b12eed669.json",
+  "reddit-laundry-room-spreadsheet-s2-4ddf7fe75e1f.json",
+  "reddit-laundry-room-spreadsheet-s3-c32c48dfc013.json",
+  "reddit-laundry-room-spreadsheet-s4-624393d6aee6.json",
+  "reddit-laundry-room-spreadsheet-s5-67b4ba73dc23.json",
+  "reddit-laundry-room-spreadsheet-s6-231523697033.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 14 image(s)"
+}
