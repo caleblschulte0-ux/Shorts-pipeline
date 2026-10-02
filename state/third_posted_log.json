@@ -10215,13 +10215,58 @@
       "director_cut": true
     },
     "clip-20261002-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/northernlion/clip/SlickPoorChimpanzeeANELE-HW-sgtr9W_t9E5xB",
-      "story_key": null,
-      "streamer": "northernlion",
+      "url": "https://youtube.com/shorts/ShL9s5SkIiU",
       "title": "Northernlion Guesses The Price Of Trident Gum And Says The Internet Can't Handle It",
       "kind": "twitch_clip",
-      "ts": "2026-10-02T12:01:43.492237+00:00",
+      "ts": "2026-10-02T12:01:53.504584+00:00",
+      "uploaded_at": "2026-10-02T12:01:53.504601+00:00",
+      "publish_at": "2026-10-02T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261002-northernlion-guesses-the-price-of-trident-gum-an-500f60ee"
+      },
+      "source_url": "https://www.twitch.tv/northernlion/clip/SlickPoorChimpanzeeANELE-HW-sgtr9W_t9E5xB",
+      "streamer": "northernlion",
+      "series": "chaos",
+      "hook": "HE CALLS HIS SHOT ON GUM",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 22138,
+      "banger": 0.55,
+      "cut": {
+        "start": 14.9,
+        "end": 58.3
+      },
+      "director_cut": true
+    },
+    "rejected-horriblemistydugongnomnom-f5xveuf39nys4__y": {
+      "source_url": "https://www.twitch.tv/xqc/clip/HorribleMistyDugongNomNom-F5XVEuf39nYs4__y",
+      "streamer": "xqc",
+      "title": "JP goes 8/8 on the CARGO BOX Doakes",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (GTA RP hacking minigame, insider, no pay)",
+      "ts": "2026-10-02T12:02:41.353822+00:00"
+    },
+    "rejected-tubularbetterlocustceilingcat-y8vpebrcj_cu8pkw": {
+      "source_url": "https://www.twitch.tv/cinna/clip/TubularBetterLocustCeilingCat-y8VPebRCJ_Cu8pKW",
+      "streamer": "cinna",
+      "title": "4Head's Plan Worked after the DM's Paleto Bank Heist",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP heist, insider, driving, unclear )",
+      "ts": "2026-10-02T12:04:39.355691+00:00"
+    },
+    "clip-20261002-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/PlumpSpotlessBadgerKreygasm-tWq-u1KSD7dCh0K4",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Can't Believe He Got Shot In The Tire After This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-02T12:09:19.827154+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
