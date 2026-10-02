@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261002",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "request_id": "reddit-freelance-license-revoked-s5-b6d63e9a0666",
+  "safe_request_id": "reddit-freelance-license-revoked-s5-b6d63e9a0666",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "456a6d98c09488e051a552a56deda851972cbd189d5a9f6c4d2e906a11d79ee7",
+  "prompt_used": "An editorial illustration for a short-form video: startup office launch screen. It accompanies the narration: \"running paid ads for a product launch\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "177gCEsXQdET5sLLXkSZDBDR35C0kmwyr",
+    "filename": "20261002__reddit-freelance-license-revoked-s5-b6d63e9a0666.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=177gCEsXQdET5sLLXkSZDBDR35C0kmwyr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "095f2e0521ba766acf8a9171ea86a1e46e111fb684d59b307fac3d6bcca989fe",
+    "bytes": 1651913,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-02T11:27:33.572Z"
+}
