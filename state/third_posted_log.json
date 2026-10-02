@@ -10260,13 +10260,49 @@
       "ts": "2026-10-02T12:04:39.355691+00:00"
     },
     "clip-20261002-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/PlumpSpotlessBadgerKreygasm-tWq-u1KSD7dCh0K4",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/6wpYxI7efhI",
       "title": "Xqc Can't Believe He Got Shot In The Tire After This",
       "kind": "twitch_clip",
-      "ts": "2026-10-02T12:09:19.827154+00:00",
+      "ts": "2026-10-02T12:09:29.692019+00:00",
+      "uploaded_at": "2026-10-02T12:09:29.692036+00:00",
+      "publish_at": "2026-10-02T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261002-xqc-can-t-believe-he-got-shot-in-the-tire-after--44b8f775"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/PlumpSpotlessBadgerKreygasm-tWq-u1KSD7dCh0K4",
+      "streamer": "xqc",
+      "series": "beef",
+      "hook": "HE SHOT MY TIRE",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2397,
+      "banger": 0.5,
+      "cut": {
+        "start": 19.5,
+        "end": 41.5
+      },
+      "director_cut": true
+    },
+    "rejected-muddyconsideratefinchcheffrank-ee9gy2s8bjwgswk9": {
+      "source_url": "https://www.twitch.tv/xqc/clip/MuddyConsiderateFinchChefFrank-Ee9GY2S8BjwGSwK9",
+      "streamer": "xqc",
+      "title": "hasan clip 465",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Talking-head commentary, no visible even)",
+      "ts": "2026-10-02T12:10:15.045909+00:00"
+    },
+    "clip-20261002-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HilariousLachrymoseCookieRlyTho-WIy2eOgL6OHYE3Sk",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Pulls Off The Best Negotiation In History Over An M4",
+      "kind": "twitch_clip",
+      "ts": "2026-10-02T12:13:31.489554+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
