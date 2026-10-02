@@ -360,12 +360,19 @@ class PaintingScene:
         cx, cy = self.candle
         PR.candle_base(cr, cx, cy, 2.2, t, self.seed)
         PR.candle(cr, cx, cy, 2.2, t, self.seed)
+        # the halo right round the flame flickers hardest, as a real one does
+        from data_learning.doodle import ink as _ink
+        q = (_ink.vnoise(t, 21.0, self.seed + 5) + 1) / 2
+        _ink.glow(cr, cx, cy - 175, 230, (1.0, 0.78, 0.42), 0.18 + 0.5 * q)
         # the candle's light on the picture, flickering as a flame does (the
         # same value noise, at the same rate, as firelight in the drawn
         # rooms): bright near the candle, the far side of the frame in shade
         from data_learning.doodle import ink
         lx, ly = self.light
-        k = (ink.vnoise(t, 8.0, self.seed + 3) + 1) / 2
+        # a candle's light never holds still: two value noises, one fast,
+        # so no stretch of frames can repeat (the Greek film's painting held
+        # 47 identical frames on one slow wave and the gate blocked it)
+        k = 0.65 * (ink.vnoise(t, 8.0, self.seed + 3) + 1) / 2 + 0.35 * (ink.vnoise(t, 17.0, self.seed + 9) + 1) / 2
         reach = W * (0.62 + 0.10 * k)
         g = cairo.RadialGradient(lx, ly, 30, lx, ly, reach)
         g.add_color_stop_rgba(0.0, 1.0, 0.80, 0.50, 0.08 + 0.42 * k)

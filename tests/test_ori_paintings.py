@@ -96,13 +96,13 @@ class ThePaintingIsHeldStill(unittest.TestCase):
             pr = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgr0",
                                    "-s", f"{P.W}x{P.H}", "-r", "24", "-i", "-", "-c:v", "libx264", "-preset",
                                    "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", str(mp4)], stdin=subprocess.PIPE)
-            for i in range(96):
+            for i in range(24 * 12):        # a whole sentence, and then some
                 sc.frame(i / 24, surf)
                 pr.stdin.write(bytes(surf.get_data()))
             pr.stdin.close()
             pr.wait()
             ev = SR._temporal_evidence(mp4, Path(td))
-        self.assertLess(ev["max_dup_run"], 45, ev)
+        self.assertLess(ev["max_dup_run"], 12, ev)
         self.assertLessEqual(ev["duplicate_ratio"], 0.6, ev)
         # still: nothing in the drawing scales, translates or crops by time
         src = inspect.getsource(P.PaintingScene.frame)

@@ -466,8 +466,16 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
             f = lay["people"][0]
             from data_learning.doodle import people as P
             R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
-            sp = dict(sp, frame=[round(f["x"] + (R if f["facing"] == "right" else -R), 1),
-                                 round(f["y"] - 3.2 * R, 1), SINGLE_ZOOM])
+            fr = [round(f["x"] + (R if f["facing"] == "right" else -R), 1), round(f["y"] - 3.2 * R, 1), SINGLE_ZOOM]
+            # framed in only if what moves stays in the picture: a close-up
+            # that crops the flame out is a held frame (the Greek film's
+            # painting held 47 identical frames and the gate blocked it)
+            k = SINGLE_ZOOM
+            x0 = min(max(fr[0] * k - S.W / 2, 0.0), (k - 1) * S.W) / k
+            x1 = x0 + S.W / k
+            if any(x0 + 40 < q["x"] < x1 - 40 for q in lay["props"] if q["name"] in lights) or \
+                    S.SETTINGS[sp["setting"]].water:
+                sp = dict(sp, frame=fr)
         out[name] = (sp, sd)
     return out
 

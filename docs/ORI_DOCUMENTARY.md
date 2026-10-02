@@ -738,6 +738,16 @@ only as a hand edit is not a rule. So:
     is refused by `validate`. Every other shot holds still, including the
     framed close-ups. Dissolves are 0.6 s now, down from 1.2.
 
+- **The first render with sentence-length shots (9, BLOCK before the
+  watch).** The gate's frozen-frame check found 47 identical frames at
+  13:08: the Symposium painting, held for a whole sentence, moved only by a
+  slow candle-light wave across the whole picture. The probe had passed it
+  over 4 s, but not over a real sentence. A fast-flickering halo round the
+  flame now does what a real candle does, and the painting test probes 12 s
+  and demands a run under 12 frames (measured 6-10). A framed close-up of a
+  person now only frames in when a moving light (or water) stays in the
+  picture, so a crop cannot freeze a shot the same way.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
