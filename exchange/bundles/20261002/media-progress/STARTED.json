@@ -1,0 +1,12 @@
+{
+  "schema": "chatgpt-media-started/v1",
+  "date": "20261002",
+  "worker": "daily-producer",
+  "started_at": "2026-10-02T11:14:25.842Z",
+  "status": "bundle_ready",
+  "bundle": {
+    "identity": "2d622150ec0f36d425b563b6b7615c58ab8bf419b9a98005e590171f4c9befc3",
+    "path": "exchange/bundles/20261002/bundle.json"
+  },
+  "source_commit": "dbed80ac2df0d5e61724fbec4fcbcc21aafaa063"
+}
