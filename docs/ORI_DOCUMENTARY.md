@@ -705,6 +705,17 @@ only as a hand edit is not a rule. So:
     across the sky. Each is a thing the evening is actually doing; none of
     it is a camera move or a wobble.
 
+- **The Greek film with purposeful movement (78, BLOCK; Kokoro).** Same
+  score; "shows the words" (data_demo) rose from 2 to 3, and the longest
+  still stretch anywhere in the film is 1.0 s. Still wrong, from the judge
+  and from looking at the frames: back props in sea and city scenes are
+  placed on the horizon line, so a hay cart floats over the sea and a cart
+  hangs over the forum colonnade; a brazier blazes where the words say
+  embers (`mend_fire` covers the hearth and the campfire, not the brazier);
+  a sunset after the moonlit chapters runs time backwards; and there are
+  still no symposium couches, beached boats or stream. Sent to the operator
+  for his verdict on the movement.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
