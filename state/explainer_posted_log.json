@@ -2360,6 +2360,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 48.2
+    },
+    "space-debris-collision-risk": {
+      "url": "https://youtube.com/shorts/Bv6FThlldXM",
+      "title": "Why NASA Tracks 1 Million Pieces Of Space Junk",
+      "at": "2026-10-02T10:55:43.396983+00:00",
+      "publish_at": "2026-10-02T11:13:09Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 39 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 75,
+      "duration_s": 51.4
     }
   },
   "uploads": [
@@ -2848,6 +2866,15 @@
       "state": "posted",
       "slug": "landline-extinction-event",
       "at": "2026-10-01T12:56:45.733320+00:00"
+    },
+    {
+      "claimed_at": "2026-10-02T10:55:37.360641+00:00",
+      "title": "Why NASA Tracks 1 Million Pieces Of Space Junk",
+      "publish_at": "2026-10-02T11:13:09Z",
+      "url": "https://youtube.com/shorts/Bv6FThlldXM",
+      "state": "posted",
+      "slug": "space-debris-collision-risk",
+      "at": "2026-10-02T10:55:43.396983+00:00"
     }
   ]
 }
