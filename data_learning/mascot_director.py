@@ -743,9 +743,14 @@ def _a_ride(t, prop):
 
 
 def _a_stagger(t, prop):
-    wob = _s(t, 0) * 6
-    arms = R.arm(*R.SHL, int(120 + wob), 70, -14) + R.arm(*R.SHR, int(220 + wob), 70, 14)
-    front = prop(int(170 + wob), 40)
+    """STAGGER under a load: knees buckle ONCE, he holds it there. The
+    continuous sine wobble it had was arms waving all beat — the "tweaker"
+    the operator named (2026-10-02)."""
+    z, sv = _zone(t)
+    sag = (sv * sv * 6.0) if z == 0 else (6.0 if z == 1 else 6.0 - 4.0 * sv)
+    arms = R.arm(*R.SHL, int(120 + sag), int(70 + sag), -14) + \
+        R.arm(*R.SHR, int(220 - sag), int(70 + sag), 14)
+    front = prop(170, int(40 + sag))
     return (arms, R.lower_seated(), "", front,
             R.eye_closed(R.LEX) + R.eye_closed(R.REX), R.mouth_line(), 0.0)
 
@@ -1925,6 +1930,289 @@ def _a_cut(t, _prop):
     return (_agent_arms(lh, rh), lower, "", saw, eyes, mouth, 0.0)
 
 
+# ------------------------------------------------------------ TOOL ACTS
+# Operator, 2026-10-02: "data's movements are like tweaker ... there is one
+# scene where he is breaking the iceberg and he is just flailing his arms
+# around. Give him like a pick axe and have it feel like he is breaking the
+# ice." A brain scene could only ask for `strain`, and `strain` resolved to
+# a brace or a stagger — arms, no tool, no contact. Every act of WORK is
+# now done with the tool the job needs, in ONE arc (wind up → strike →
+# hold), the tool's business end landing where the thing is. A scene lands
+# one strike per `beat` and the thing changes on the strike.
+
+def _handle(g, ang_deg, length, lh_off=-22.0, rh_off=22.0):
+    """A wooden handle held at grip `g`, pointing `ang_deg` (0 = +x, 90 =
+    down); returns (lh, rh, head_xy, svg) with both hands on the handle."""
+    rad = math.radians(ang_deg)
+    dx, dy = math.cos(rad), math.sin(rad)
+    hx, hy = g[0] + dx * length, g[1] + dy * length
+    bx, by = g[0] - dx * 34.0, g[1] - dy * 34.0              # butt end
+    lh = [g[0] + dx * lh_off, g[1] + dy * lh_off, -8]
+    rh = [g[0] + dx * rh_off, g[1] + dy * rh_off, 8]
+    svg = (f'<line x1="{bx:.0f}" y1="{by:.0f}" x2="{hx:.0f}" y2="{hy:.0f}" '
+           f'stroke="{OUT}" stroke-width="16" stroke-linecap="round"/>'
+           f'<line x1="{bx:.0f}" y1="{by:.0f}" x2="{hx:.0f}" y2="{hy:.0f}" '
+           f'stroke="#B88A4A" stroke-width="10" stroke-linecap="round"/>')
+    return lh, rh, (hx, hy), svg, (dx, dy)
+
+
+def _head_pick(hx, hy, dx, dy):
+    px, py = -dy, dx                                          # across the handle
+    return (f'<path d="M{hx-px*46:.0f},{hy-py*46:.0f} Q{hx+dx*22:.0f},{hy+dy*22:.0f} '
+            f'{hx+px*46:.0f},{hy+py*46:.0f} L{hx+px*40:.0f},{hy+py*40-14:.0f} '
+            f'Q{hx+dx*6:.0f},{hy+dy*6-6:.0f} {hx-px*40:.0f},{hy-py*40-14:.0f} Z" '
+            f'fill="#AEB7C2" stroke="{OUT}" stroke-width="5" stroke-linejoin="round"/>')
+
+
+def _head_axe(hx, hy, dx, dy):
+    px, py = -dy, dx
+    return (f'<path d="M{hx-dx*10:.0f},{hy-dy*10:.0f} L{hx+px*44+dx*6:.0f},{hy+py*44+dy*6:.0f} '
+            f'L{hx+px*40+dx*34:.0f},{hy+py*40+dy*34:.0f} L{hx+dx*26:.0f},{hy+dy*26:.0f} Z" '
+            f'fill="#AEB7C2" stroke="{OUT}" stroke-width="5" stroke-linejoin="round"/>')
+
+
+def _head_mallet(hx, hy, dx, dy):
+    px, py = -dy, dx
+    return (f'<polygon points="{hx-px*30-dx*12:.0f},{hy-py*30-dy*12:.0f} '
+            f'{hx+px*30-dx*12:.0f},{hy+py*30-dy*12:.0f} '
+            f'{hx+px*30+dx*22:.0f},{hy+py*30+dy*22:.0f} '
+            f'{hx-px*30+dx*22:.0f},{hy-py*30+dy*22:.0f}" '
+            f'fill="#5A5F6B" stroke="{OUT}" stroke-width="5" stroke-linejoin="round"/>')
+
+
+def _head_shovel(hx, hy, dx, dy):
+    px, py = -dy, dx
+    return (f'<path d="M{hx-px*26:.0f},{hy-py*26:.0f} L{hx+px*26:.0f},{hy+py*26:.0f} '
+            f'L{hx+px*18+dx*52:.0f},{hy+py*18+dy*52:.0f} Q{hx+dx*64:.0f},{hy+dy*64:.0f} '
+            f'{hx-px*18+dx*52:.0f},{hy-py*18+dy*52:.0f} Z" '
+            f'fill="#AEB7C2" stroke="{OUT}" stroke-width="5" stroke-linejoin="round"/>')
+
+
+def _head_broom(hx, hy, dx, dy):
+    px, py = -dy, dx
+    return (f'<path d="M{hx-px*12:.0f},{hy-py*12:.0f} L{hx+px*12:.0f},{hy+py*12:.0f} '
+            f'L{hx+px*40+dx*58:.0f},{hy+py*40+dy*58:.0f} L{hx-px*40+dx*58:.0f},'
+            f'{hy-py*40+dy*58:.0f} Z" fill="#D9B45A" stroke="{OUT}" stroke-width="5" '
+            f'stroke-linejoin="round"/>')
+
+
+def _head_paddle(hx, hy, dx, dy):
+    ang = math.degrees(math.atan2(dy, dx))
+    return (f'<ellipse cx="{hx+dx*30:.0f}" cy="{hy+dy*30:.0f}" rx="40" ry="22" '
+            f'transform="rotate({ang:.0f} {hx+dx*30:.0f} {hy+dy*30:.0f})" '
+            f'fill="#B88A4A" stroke="{OUT}" stroke-width="5"/>')
+
+
+def _swing(t, head, wind=(190.0, 236.0, -110.0), hit=(248.0, 232.0, 36.0),
+           length=118.0, recoil=12.0):
+    """ONE swing: wind up (grip and angle from `wind`), strike (ease-in to
+    `hit`), hold with a small recoil. No oscillation anywhere — a strike is
+    a strike."""
+    z, s = _zone(t)
+    wx, wy, wa = wind
+    kx, ky, ka = hit
+    if z == 0:                                     # wind up: raise, look at the spot
+        e = s * s * (3 - 2 * s)
+        g = (_lp(190.0, wx, e), _lp(236.0, wy, e)); ang = _lp(-40.0, wa, e)
+        lower = _braced_legs(crouch=0.1 + 0.1 * e, sway=4 + 6 * e)
+        expr, bob, tilt = "think", 0.0, -6.0 * e
+    elif z == 1:                                   # strike: fast, whole body
+        e = s * s
+        g = (_lp(wx, kx, e), _lp(wy, ky, e)); ang = _lp(wa, ka, e)
+        lower = _braced_legs(crouch=0.1 + 0.5 * e, sway=10)
+        expr, bob, tilt = "strain", 6.0 * e, -6.0 + 18.0 * e
+    else:                                          # hold the hit, ease the recoil
+        r = recoil * (1.0 - s) * s * 4.0 * 0.5    # one small bounce, then still
+        g = (kx, ky - r); ang = ka - r * 0.6
+        lower = _braced_legs(crouch=0.6 - 0.25 * s, sway=10 - 4 * s)
+        expr, bob, tilt = ("strain" if s < 0.4 else "happy"), 6.0 - 4.0 * s, 12.0 - 8.0 * s
+    lh, rh, (hx, hy), handle, (dx, dy) = _handle(g, ang, length)
+    eyes, mouth = _expr(expr, look=(6, 4))
+    return (_agent_arms(lh, rh), lower, "", handle + head(hx, hy, dx, dy),
+            eyes, mouth, bob, tilt)
+
+
+def _a_swing_pick(t, _prop):
+    """SWING A PICKAXE: over the shoulder, down into the thing, hold. The
+    ice cracks because the pick landed."""
+    return _swing(t, _head_pick)
+
+
+def _a_chop(t, _prop):
+    """CHOP with an axe: back and up, a diagonal swing into the trunk."""
+    return _swing(t, _head_axe, wind=(176.0, 200.0, -150.0), hit=(252.0, 240.0, 20.0),
+                  length=112.0)
+
+
+def _a_hammer(t, _prop):
+    """A SLEDGEHAMMER: straight up, straight down, the head stays down."""
+    return _swing(t, _head_mallet, wind=(200.0, 250.0, -92.0), hit=(236.0, 236.0, 62.0),
+                  length=110.0, recoil=6.0)
+
+
+def _a_dig(t, _prop):
+    """DIG with a shovel: blade in, lever down on the handle, lift and tip
+    the load aside. The hole is there because he dug it."""
+    z, s = _zone(t)
+    if z == 0:                                     # set the blade
+        e = s * s * (3 - 2 * s)
+        g = (_lp(196.0, 226.0, e), _lp(230.0, 236.0, e)); ang = _lp(40.0, 62.0, e)
+        lower = _braced_legs(crouch=0.15 + 0.2 * e, sway=6)
+        expr, bob, tilt = "think", 0.0, 6.0 * e
+    elif z == 1:                                   # lever and lift
+        e = s * s
+        g = (_lp(226.0, 206.0, e), _lp(236.0, 196.0, e)); ang = _lp(62.0, -8.0, e)
+        lower = _braced_legs(crouch=0.35 - 0.2 * e, sway=8)
+        expr, bob, tilt = "strain", 4.0 - 4.0 * e, 6.0 - 14.0 * e
+    else:                                          # tip it aside, stand
+        e = s
+        g = (_lp(206.0, 216.0, e), _lp(196.0, 220.0, e)); ang = _lp(-8.0, 24.0, e)
+        lower = _braced_legs(crouch=0.15, sway=6)
+        expr, bob, tilt = "happy", 0.0, -8.0 + 8.0 * e
+    lh, rh, (hx, hy), handle, (dx, dy) = _handle(g, ang, 112.0)
+    eyes, mouth = _expr(expr, look=(6, 6))
+    return (_agent_arms(lh, rh), lower, "", handle + _head_shovel(hx, hy, dx, dy),
+            eyes, mouth, bob, tilt)
+
+
+def _a_pump(t, _prop):
+    """PUMP A BELLOWS at the fire: boards wide, one long squeeze, hold them
+    shut while the flame takes."""
+    z, s = _zone(t)
+    if z == 0:
+        gap = _lp(18.0, 54.0, s * s * (3 - 2 * s)); expr = "think"; crouch = 0.15
+    elif z == 1:
+        gap = _lp(54.0, 10.0, s * s); expr = "strain"; crouch = 0.3
+    else:
+        gap = _lp(10.0, 16.0, s); expr = "happy"; crouch = 0.2
+    cx, cy = 262.0, 220.0                          # the bellows' hinge, nozzle to +x
+    lh = [cx - 30, cy - gap, -8]; rh = [cx - 30, cy + gap, 8]
+    bell = (f'<path d="M{cx-44:.0f},{cy-gap-10:.0f} L{cx+28:.0f},{cy-12:.0f} '
+            f'L{cx+28:.0f},{cy+12:.0f} L{cx-44:.0f},{cy+gap+10:.0f} Z" fill="#B0603A" '
+            f'stroke="{OUT}" stroke-width="5" stroke-linejoin="round"/>'
+            f'<rect x="{cx-50:.0f}" y="{cy-gap-16:.0f}" width="26" height="12" rx="4" '
+            f'fill="#B88A4A" stroke="{OUT}" stroke-width="4"/>'
+            f'<rect x="{cx-50:.0f}" y="{cy+gap+4:.0f}" width="26" height="12" rx="4" '
+            f'fill="#B88A4A" stroke="{OUT}" stroke-width="4"/>'
+            f'<rect x="{cx+28:.0f}" y="{cy-7:.0f}" width="46" height="14" rx="5" '
+            f'fill="#C9A227" stroke="{OUT}" stroke-width="4"/>')
+    lower = _braced_legs(crouch=crouch, sway=6)
+    eyes, mouth = _expr(expr, look=(6, 2))
+    return (_agent_arms(lh, rh), lower, "", bell, eyes, mouth, 0.0)
+
+
+def _a_broom(t, _prop):
+    """SWEEP with a broom: one long stroke across the floor, the pile moves
+    because the bristles pushed it."""
+    z, s = _zone(t)
+    if z == 0:
+        e = s * s * (3 - 2 * s)
+        g = (_lp(196.0, 150.0, e), 236.0); ang = 62.0; expr = "think"
+    elif z == 1:
+        e = s * s * (3 - 2 * s)
+        g = (_lp(150.0, 262.0, e), 236.0 + 6.0 * math.sin(e * math.pi)); ang = _lp(62.0, 58.0, e)
+        expr = "strain"
+    else:
+        g = (_lp(262.0, 250.0, s), 236.0); ang = 60.0; expr = "happy"
+    lh, rh, (hx, hy), handle, (dx, dy) = _handle(g, ang, 150.0)
+    lower = _braced_legs(crouch=0.2, sway=10)
+    eyes, mouth = _expr(expr, look=(6, 8))
+    return (_agent_arms(lh, rh), lower, "", handle + _head_broom(hx, hy, dx, dy),
+            eyes, mouth, 0.0, (4.0 if z == 1 else 0.0))
+
+
+def _a_paddle(t, _prop):
+    """ROW: reach forward with the paddle, one long pull, feather it back."""
+    z, s = _zone(t)
+    if z == 0:
+        e = s * s * (3 - 2 * s)
+        g = (_lp(200.0, 262.0, e), _lp(230.0, 206.0, e)); ang = _lp(70.0, 56.0, e); expr = "think"
+    elif z == 1:
+        e = s * s * (3 - 2 * s)
+        g = (_lp(262.0, 150.0, e), _lp(206.0, 246.0, e)); ang = _lp(56.0, 112.0, e); expr = "strain"
+    else:
+        g = (_lp(150.0, 196.0, s), _lp(246.0, 220.0, s)); ang = _lp(112.0, 80.0, s); expr = "happy"
+    lh, rh, (hx, hy), handle, (dx, dy) = _handle(g, ang, 130.0)
+    lower = R.lower_seated() if hasattr(R, "lower_seated") else _braced_legs(crouch=0.3)
+    eyes, mouth = _expr(expr, look=(6, 6))
+    return (_agent_arms(lh, rh), lower, "", handle + _head_paddle(hx, hy, dx, dy),
+            eyes, mouth, 0.0, (-6.0 if z == 1 else 0.0))
+
+
+#: Every act of WORK, with the tool it is done with — the vocabulary a brain
+#: scene performs from (scene_author.ROLES) and the verifier holds a CAUSE
+#: to. `strain` is for BEARING a load; it is not in here on purpose.
+TOOL_ACTS: dict[str, str] = {
+    "swing_pick": "a pickaxe", "chop": "an axe", "hammer": "a sledgehammer",
+    "dig": "a shovel", "pump": "a bellows", "broom": "a broom",
+    "paddle": "a paddle", "cut": "a saw", "pour": "a bucket",
+    "haul": "a rope, hand over hand", "shove": "both hands flat on it",
+    "crank": "a crank handle", "stamp": "a stamp", "place": "the next block",
+    "tap": "a valve", "toss": "the thing thrown", "squeeze": "both hands, squeezing",
+}
+
+#: The verb a CAUSE line uses -> the tool act that does it. A scene whose
+#: CAUSE says "breaks" and whose Data never swings is refused: that is the
+#: flail (scene_author.tool_problems).
+VERB_TOOLS: dict[str, str] = {
+    "break": "swing_pick", "crack": "swing_pick", "mine": "swing_pick",
+    "carve": "swing_pick", "pick": "swing_pick", "shatter": "hammer",
+    "smash": "hammer", "hammer": "hammer", "nail": "hammer", "pound": "hammer",
+    "chop": "chop", "fell": "chop", "axe": "chop", "hack": "chop",
+    "cut": "cut", "saw": "cut", "slice": "cut",
+    "dig": "dig", "shovel": "dig", "excavate": "dig", "bury": "dig",
+    "pump": "pump", "fan": "pump", "blow": "pump", "stoke": "pump",
+    "sweep": "broom", "brush": "broom",
+    "row": "paddle", "paddle": "paddle",
+    "pour": "pour", "fill": "pour", "tip": "pour", "water": "pour",
+    "haul": "haul", "hoist": "haul", "winch": "haul",
+    "push": "shove", "shove": "shove",
+    "crank": "crank", "wind": "crank", "turn": "crank",
+    "stamp": "stamp", "stack": "place", "pile": "place", "lay": "place",
+    "open": "tap", "drain": "tap", "throw": "toss", "toss": "toss",
+    "squeeze": "squeeze", "crush": "squeeze",
+}
+
+
+_AUX = frozenset("is are was were be been being keeps keep kept starts start "
+                 "started begins begin began then just still also now slowly "
+                 "quickly to and".split())
+_CLAUSE_END = frozenset("that which as while so until because when where".split())
+
+
+def tool_for_cause(cause: str) -> tuple[str, str] | None:
+    """(verb, tool act) for the work DATA does in a CAUSE line, or None.
+
+    Only Data's own verbs count — the first word after "Data"/"he" (past any
+    auxiliary) and the one after each "and" in that clause. "Data runs the
+    treeline ahead of the saws that fell one tree" names saws and felling,
+    and he does neither: he runs. None then means no tool is required."""
+    words = re.findall(r"[a-z']+", (cause or "").lower())
+    out = None
+    i = 0
+    while i < len(words) and words[i] not in ("data", "he", "he's", "data's"):
+        i += 1
+    i += 1
+    expect_verb = True
+    while i < len(words):
+        w = words[i]
+        if w in _CLAUSE_END or w == ",":
+            break
+        if expect_verb:
+            if w in _AUX and w != "and":
+                i += 1
+                continue
+            for cut in (0, 1, 2, 3, 4):           # breaks, chopping, hammered
+                form = w[:len(w) - cut] if cut else w
+                if len(form) >= 3 and form in VERB_TOOLS:
+                    return form, VERB_TOOLS[form]
+            expect_verb = False
+        elif w == "and":
+            expect_verb = True
+        i += 1
+    return out
+
+
 #: verb -> (animator, anchor). The ANCHOR is the rig point a machine puts ON
 #: the moving part: the bucket grip over the rim, the palms on the needle,
 #: the crank's axle on the wheel. `viz_scene.place_agent` scales and places
@@ -1944,6 +2232,15 @@ AGENT_ACTS: dict[str, tuple[str, tuple[float, float]]] = {
     "light":   ("beam",    (320.0, 180.0)),
     "mark":    ("stamp",   (296.0, 300.0)),
     "cut":     ("cut",     (296.0, 250.0)),
+    # TOOL acts (2026-10-02): the anchor is the tool's business end where
+    # the strike lands, so a machine can put the pick ON the ice
+    "break":   ("swing_pick", (343.0, 301.0)),
+    "chop":    ("chop",    (357.0, 278.0)),
+    "smash":   ("hammer",  (288.0, 333.0)),
+    "dig":     ("dig",     (317.0, 213.0)),
+    "fan":     ("pump",    (336.0, 220.0)),
+    "brush":   ("broom",   (320.0, 374.0)),
+    "row":     ("paddle",  (146.0, 366.0)),
     # he IS the moving part: the runner in the lane, the jumper at the bar
     "run":     ("race_sprint", (170.0, 356.0)),
 }
@@ -2000,6 +2297,9 @@ ANIMATORS = {
     "haul": _a_haul, "pull": _a_pull, "shove": _a_shove, "tap": _a_tap,
     "squeeze": _a_squeeze, "toss": _a_toss, "tip": _a_tip,
     "beam": _a_beam, "stamp": _a_stamp, "cut": _a_cut,
+    # TOOL acts — work done WITH the tool, one arc, no flail (2026-10-02):
+    "swing_pick": _a_swing_pick, "chop": _a_chop, "hammer": _a_hammer,
+    "dig": _a_dig, "pump": _a_pump, "broom": _a_broom, "paddle": _a_paddle,
 }
 
 # =========================================================================

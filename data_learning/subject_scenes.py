@@ -764,7 +764,7 @@ def sack(cr, x, y, s=1.0, a=1.0, label=True):
 def coffee_climb(cr, t, u, pts, host):
     """HERO: a brass balance scale with a pound of coffee
     SUBSTANCE: coins
-    CAUSE: Data stacks a coin per 25 cents on the money pan, which sinks
+    CAUSE: Data carries a coin per 25 cents to the money pan, which sinks under them
     The price of a pound of coffee, by year: a pound of beans on one pan
     of a brass scale, and the money on the other — one coin per 25 cents,
     piling up as the years tick. The pile IS the price."""
@@ -1304,9 +1304,11 @@ def caption_scrim(cr):
 ACT_S = 1.1
 
 
-def act_phase(clock: dict, role: str, f: int, fps: int = 30) -> float:
+def act_phase(clock: dict, role, f: int, fps: int = 30) -> float:
     """The act's clock 0..1 at frame f: it restarts when `role` changes and
-    holds at 1 once the act has played."""
+    holds at 1 once the act has played. `role` may be a (role, beat) pair:
+    a scene advances `beat` each time the thing changes, and the act plays
+    again — one pick swing per crack, never a wobble (2026-10-02)."""
     if clock.get("role") != role:
         clock["role"], clock["start"] = role, f
     return min(1.0, (f - clock["start"]) / (ACT_S * fps))
@@ -1317,9 +1319,9 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
     for f in range(frames):
         cr = cairo.Context(surf)
 
-        def host(role, x, fy, h, pace=False, _cr=cr, _f=f):
-            place_host(_cr, role, act_phase(clock, role, _f), insight, x, fy, h,
-                       _f / 30.0, pace)
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+            place_host(_cr, role, act_phase(clock, (role, int(beat)), _f),
+                       insight, x, fy, h, _f / 30.0, pace)
         with I.text_layer(cr):          # labels are painted last, on top
             scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
         caption_scrim(cr)

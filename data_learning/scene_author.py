@@ -78,7 +78,12 @@ SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                            "iter", "map", "filter", "set", "frozenset", "format",
                            "ValueError", "IndexError", "KeyError",
                            "ZeroDivisionError", "Exception")}
-ROLES = ("point", "cheer", "strain", "climb", "shock", "think", "hold_up")
+#: The seven stances, plus every TOOL act (mascot_director.TOOL_ACTS): work
+#: is done WITH the tool the job needs — operator, 2026-10-02: "give him
+#: like a pick axe and have it feel like he is breaking the ice".
+from data_learning.mascot_director import TOOL_ACTS, tool_for_cause  # noqa: E402
+STANCES = ("point", "cheer", "strain", "climb", "shock", "think", "hold_up")
+ROLES = STANCES + tuple(TOOL_ACTS)
 
 
 def kit_globals() -> dict:
@@ -271,7 +276,7 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
     def no_readout(cr, big, small, *a, **k):
         return None
 
-    def no_host(role, x, fy, h, pace=False):
+    def no_host(role, x, fy, h, pace=False, beat=0):
         return None
     paths = []
     try:
@@ -518,8 +523,9 @@ def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
         cr = cairo.Context(surf)
         t = f / 30.0
         fn(cr, t, f / max(1, total - 1), pts,
-           lambda role, x, fy, h, pace=False, _cr=cr, _f=f, _t=t: SS.place_host(
-               _cr, role, SS.act_phase(clock, role, _f), None, x, fy, h, _t, pace))
+           lambda role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, _t=t: SS.place_host(
+               _cr, role, SS.act_phase(clock, (role, int(beat)), _f), None, x, fy, h,
+               _t, pace))
         surf.flush()
         im = Image.frombuffer("RGBA", (SS.W, SS.H), bytes(surf.get_data()),
                               "raw", "BGRA", 0, 1)
@@ -568,7 +574,7 @@ MIN_TRAVEL = 150.0
 #: waves"), and the teachers the judge praised (riding the mercury, pushing
 #: the rim) were 71-100% physical acts while the ones it called "just waves"
 #: were 0%. point / cheer / shock / think are the setup and the reaction.
-ACT_ROLES = ("strain", "climb", "hold_up")
+ACT_ROLES = ("strain", "climb", "hold_up") + tuple(TOOL_ACTS)
 MIN_ACT = 0.5
 
 
@@ -582,7 +588,7 @@ def bit_problems(fn, pts) -> list[str]:
     for k in range(11):
         u = k / 10
         fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
-           lambda role, x, fy, h, pace=False: calls.append((role, x, fy)))
+           lambda role, x, fy, h, pace=False, beat=0: calls.append((role, x, fy)))
     if not calls:
         return []                        # "host not called" is reported above
     out = []
@@ -601,6 +607,33 @@ def bit_problems(fn, pts) -> list[str]:
                    f"{max(max(xs) - min(xs), max(ys) - min(ys)):.0f}px) — his "
                    f"place should follow what he is doing, >= {MIN_TRAVEL:.0f}px")
     return out
+
+
+def tool_problems(fn, pts, decl: dict) -> list[str]:
+    """The CAUSE names work; does Data do it WITH THE TOOL? "Breaking the
+    iceberg ... just flailing his arms around" (operator, 2026-10-02): the
+    scene said `strain`, which is a brace with empty hands. A CAUSE whose
+    verb has a tool act (mascot_director.VERB_TOOLS) must perform that act
+    (or another tool act) for part of the beat."""
+    need = tool_for_cause(decl.get("CAUSE", ""))
+    if not need:
+        return []
+    verb, act = need
+    import cairo
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    roles = []
+    for k in range(11):
+        u = k / 10
+        fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
+           lambda role, x, fy, h, pace=False, beat=0: roles.append(role))
+    used = [r for r in roles if r in TOOL_ACTS]
+    if used:
+        return []
+    performing = sorted({r for r in roles if r in ("strain", "climb", "hold_up")}) or sorted(set(roles))
+    return [f"CAUSE says Data {verb}s, but he performs {performing} — empty hands "
+            f"read as flailing. Do the work with the tool: host({act!r}, x, "
+            f"foot_y, h, beat=k) ({TOOL_ACTS[act]}), and advance beat= each time "
+            f"the thing changes so one swing lands per change"]
 
 
 #: A number has to stay up long enough to READ. Brain hooks cycled a value
@@ -655,7 +688,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         fn.__globals__["text"] = spy
         SS.text = spy
         fn.__globals__["fit_readout"] = ro_spy
-        def host(role, x, fy, h, pace=False):
+        def host(role, x, fy, h, pace=False, beat=0):
             hosts.append((role, x, fy, h))
             # Where Data can be while he performs: his body, widened by his
             # walk and lifted by his step when he paces.
@@ -690,6 +723,8 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     except Exception as e:  # noqa: BLE001
         return [f"crashed: {type(e).__name__}: {str(e)[:160]}"]
     problems += declaration_problems(fn)
+    if not declaration_problems(fn):
+        problems += tool_problems(fn, pts, declared(fn))
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
@@ -762,8 +797,12 @@ function:
 
 cr is a pycairo Context for the whole frame; t is seconds since the beat began; \
 u is the beat's progress 0..1; pts is the beat's sourced data as [(label, value)]; \
-host(role, x, foot_y, height, pace=False) draws the mascot Data standing with his \
-feet at (x, foot_y). role is one of {roles}.
+host(role, x, foot_y, height, pace=False, beat=0) draws the mascot Data standing \
+with his feet at (x, foot_y). role is a STANCE — {stances} — or a TOOL ACT:
+{tools}
+An act plays ONCE (wind up, do it, hold) when the role changes; pass beat=k \
+and advance k each time the thing changes, and it plays again — one swing of \
+the pick per crack.
 
 THE RULES — every one is checked by code before your scene is used:
 1. The frame IS THE SUBJECT, never a chart. Draw the thing the story is about \
@@ -822,6 +861,16 @@ produce the change: pouring fills, hauling a rope lifts a SOLID, a bellows \
 fans a flame, feeding grows a fire. A rope that raises a liquid "makes no \
 sense". If a viewer could not predict the result from the act, pick \
 another act.
+11. PURPOSEFUL MOVEMENT, NEVER FLAILING. Work is done WITH THE TOOL the job \
+needs, and the tool's business end lands on the thing: breaking ice is \
+swing_pick with the pick on the ice, felling is chop into the trunk, a hole \
+is dig, a fire is pump at its base, a pile moved is broom. `strain` is for \
+BEARING a load (a wall, a weight), never for doing work — "he is breaking \
+the iceberg and he is just flailing his arms around" is what strain looks \
+like on a job. Your CAUSE line names the verb; the verifier knows which \
+tool that verb takes and refuses a scene that does the work empty-handed. \
+Time the change to the strike: the crack appears on the beat the pick \
+lands, not while he winds up.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -894,7 +943,9 @@ current code:
 def build_prompt(title, topic, say, pts, unit, brief=""):
     teachers = "\n\n".join(inspect.getsource(f) for f in
                            (SS.amazon_where_it_goes, SS.coffee_drought))
-    return _PROMPT.format(roles=", ".join(ROLES), kit=", ".join(KIT_NAMES),
+    tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
+    return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
+                          kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
                           teachers=teachers, title=title, topic=topic, say=say,

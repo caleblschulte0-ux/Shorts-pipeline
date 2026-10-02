@@ -138,18 +138,26 @@ class EveryVerbResolvesToAnActWithAnAnchor(unittest.TestCase):
         hand's reach — not a point in empty air the machine then pins to the
         part. Checked against the animator's own wrist coordinates."""
         import re
+        # A TOOL act's anchor is the tool's BUSINESS END at the moment it
+        # lands (2026-10-02: the pick on the ice) — a handle's length from
+        # the hands, measured when the strike has landed, not mid-swing.
+        tools = ("swing_pick", "chop", "hammer", "dig", "pump", "broom", "paddle")
         for verb, (act, (ax, ay)) in md.AGENT_ACTS.items():
             if verb in ("travel", "run", "lift"):
                 continue          # wheels on the ground / feet / the rope
+            phase, reach = (0.98, 230.0) if act in tools else (0.5, 100.0)
             svg = md.compose_anim({"action": act, "prop": "none",
-                                   "ground": False}, 0.5)
+                                   "ground": False}, phase)
             # every arm ends at its wrist: `Q... wx,wy"` in `limb()`
             wrists = _wrists(svg)
             self.assertTrue(wrists, verb)
             near = min(((wx - ax) ** 2 + (wy - ay) ** 2) ** 0.5
                        for wx, wy in wrists)
-            self.assertLess(near, 100.0, f"{verb}: anchor {near:.0f}px from "
+            self.assertLess(near, reach, f"{verb}: anchor {near:.0f}px from "
                                          f"the nearest hand")
+            if act in tools:
+                self.assertGreater(near, 40.0, f"{verb}: a tool anchor sits on "
+                                               f"the tool's head, not in the hand")
 
     def test_the_acts_are_different_pictures(self):
         import io

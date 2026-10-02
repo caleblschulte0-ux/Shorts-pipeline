@@ -129,6 +129,20 @@ every teacher passes (`tests/test_subject_scenes.py`,
   that is his own, not pacing (`bit_problems`). The rubric asks for
   "setup → action → payoff"; the story whose teachers failed this is the
   one the judge called decorative.
+- **Work is done WITH THE TOOL, in one arc** (operator, 2026-10-02: *"data's
+  movements are like tweaker ... he is breaking the iceberg and he is just
+  flailing his arms around. Give him like a pick axe and have it feel like
+  he is breaking the ice"*). A brain scene could only ask for `strain`,
+  which is a brace with empty hands. `mascot_director.TOOL_ACTS` is the
+  vocabulary of work — swing_pick, chop, hammer, dig, pump, broom, paddle,
+  and the agent acts (pour, haul, cut, place, …) — each ONE arc (wind up,
+  strike, hold) with no periodic term and the tool's business end as its
+  anchor. A scene passes `beat=k` to `host(...)` and advances k each time
+  the thing changes, so one swing lands per crack. `VERB_TOOLS` maps the
+  verb in a scene's `CAUSE:` line to the act, and `scene_author.tool_problems`
+  refuses a scene whose CAUSE names work Data does empty-handed, naming
+  the tool. `strain` is for bearing a load. Held by
+  `tests/test_data_has_a_tool_in_his_hands.py`.
 - **Data performs more than he presents** — at least half the beat in a
   physical act (strain, climb, hold_up) done to the thing the number is made
   of; point/cheer/shock/think are the setup and the reaction. On the first
