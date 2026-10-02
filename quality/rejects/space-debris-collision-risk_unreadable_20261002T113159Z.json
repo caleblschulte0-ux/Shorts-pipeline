@@ -1,0 +1,16 @@
+{
+ "slug": "space-debris-collision-risk",
+ "ts": "20261002T113159Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:end: '\u00d7100 since 2005' is dark slate on dark navy and nearly disappears. seg4:mid and payoff@-1.8: '100x since 2005 / and none of it cleaned up' sits on top of the building windows and the ladder. seg0:end: 'objects tracked in orbit \u00b7 2024' and 'and still climbing' sit on top of the",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "In payoff@-1.8 and seg4:end the payoff line '100x since 2005 / and none of it cleaned up' sits on top of the building facades, windows and ladder, and fades in semi-transparent. The scene is also a bordered inset panel squeezed between the closing text and the CTA, and it repeats the screenings numbers (0.5k to 50k) already shown in seg3.",
+  "root_cause": "The closing composer places the multiplier annotation inside the lower building band with no clear ground. It wraps the machine in a card panel instead of full bleed, and reuses seg3's dataset rather than landing a new payoff.",
+  "repair_goal": "Move the '100x since 2005' line onto clear sky above the orbit tangle (or into the headline block) in solid ink. Remove the inset card so the broom-and-orbits scene runs full bleed. Make the closing beat land the payoff (Data's broom unable to clear the growing tangle) instead of replaying seg3's screening numbers."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

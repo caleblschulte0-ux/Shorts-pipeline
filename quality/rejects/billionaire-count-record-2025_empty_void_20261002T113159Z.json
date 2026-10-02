@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261002T113159Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start the top 60% of the frame is empty and three small bars sit at the bottom left. In seg3:start the band between the title and the discs is empty.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_duplicate_series",
+  "visible_evidence": "In seg3:start to seg3:end both discs read \"127%\" and both are labelled \"Billionaire wealth\". The title says \"wealth vs stock market\" and the narration says \"the S&P 500 alone grew 195 percent\", but no 195% and no S&P disc appear anywhere. The two discs are identical, so the comparison claims a tie and contradicts the script.",
+  "root_cause": "The comparison machine got the billionaire series twice instead of billionaire wealth and the S&P 500. Its second operand label and value fell back to the first series.",
+  "repair_goal": "Draw two different quantities: billionaire wealth +127% and the S&P 500 +195%, labelled \"Billionaire wealth\" and \"S&P 500\". Their sizes should be proportional so the S&P side is visibly about 1.5x bigger. Data should cause the motion, for example by pumping or inflating the S&P side past the billionaire side, so the beat lands the claim that most of this is just stocks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "antibiotic-resistance-deaths",
+ "ts": "20261002T113159Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never makes the data move. He waves beside the scale while the weights settle on their own (seg1:start, seg1:mid). He waves from a ladder while pills fall from a cork on their own (seg2:start, seg2:mid). He cheers on top of the pile (seg3:mid) and stands on the wall while it ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "false_share_claim",
+  "visible_evidence": "seg2:start to seg2:end stack three regional death RATES (4.6, 21.6 and 23.5 per 100,000) into one bottle labelled '9% of the bottle', '43% of the bottle' and '47% of the bottle'. Meanwhile Data waves from a ladder beside the bottle while pills drop from a cork on their own.",
+  "root_cause": "The scene was classified as a 'share' relationship, but these are per-capita rates, not parts of one whole, so the percentages are invented. The mascot was placed as a bystander, not as the cause of the fill.",
+  "repair_goal": "Redraw it as a comparison of rates: for example, two figures of the same population size, with Sub-Saharan Africa losing 5x as many as Western Europe, so the 'five times' is visible without any percent-of-whole label. Have Data be the one doing it: he tips the pills or empties the reserve-drug shelf that Africa lacks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
