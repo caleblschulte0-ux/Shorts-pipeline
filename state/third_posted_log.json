@@ -10657,6 +10657,43 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-cooperativeelatedphoneunsane-sakypega_kqtikq9": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CooperativeElatedPhoneUnSane-SaKYPeGa_KqtIKq9",
+      "streamer": "xqc",
+      "title": "Dee's Casino Performance left Jean Paul scaroused",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP club performance, insider, risqu\u00e9)",
+      "ts": "2026-10-03T11:34:01.213639+00:00"
+    },
+    "rejected-singlesmokykududoggo-x8r1vjdvcc0-fqf4": {
+      "source_url": "https://www.twitch.tv/silky/clip/SingleSmokyKuduDoggo-X8R1VjDvcc0-FQF4",
+      "streamer": "silky",
+      "title": "Silky Responds To Plaqueboymax Saying This About Slayr! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (insider streamer chatter, no visible eve)",
+      "ts": "2026-10-03T11:34:50.474681+00:00"
+    },
+    "rejected-resilientsquarecakeklappa-iaf_id6h7xh05ukp": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ResilientSquareCakeKlappa-IaF_iD6H7xh05uKp",
+      "streamer": "caseoh_",
+      "title": "Caseoh crashout, failing to a simple mind game",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static Wordle screen, no visible reactio)",
+      "ts": "2026-10-03T11:45:32.372434+00:00"
+    },
+    "clip-20261003-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/YawningApatheticZebraLeeroyJenkins-eiAqW17LW-IkVAqa",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Comforts Shxrk And Tells Him He Played Great After This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-03T11:47:33.430852+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
