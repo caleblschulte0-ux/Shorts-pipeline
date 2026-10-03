@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "she-threatened-a-1-star-review-s3-19215d36a702",
+  "safe_request_id": "she-threatened-a-1-star-review-s3-19215d36a702",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7a5d9a5c669f9e527d42caa84e24ffd2c1351c4aa98b4067f8b94ff5fd8b69f5",
+  "prompt_used": "An editorial illustration for a short-form video: security camera ceiling. It accompanies the narration: \"check the kitchen cameras first\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+    "filename": "20261003__she-threatened-a-1-star-review-s3-19215d36a702.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4fa17bcf0c1cf4d4b6a353c00c2a9eb947c5c55b159dcda4d1b05a780ae14607",
+    "bytes": 1555640,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-03T11:28:00.749Z"
+}
