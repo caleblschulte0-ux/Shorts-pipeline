@@ -1,0 +1,20 @@
+{
+  "key": "podcast_vs_tv_reach_young_adults",
+  "title": "Weekly reach among 18-34 year-olds: podcasts vs. live TV",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "The Infinite Dial 2025",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/the-infinite-dial-2025/",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Edison Research's 2025 Infinite Dial study found weekly podcast reach among 18-34 year-olds (52%) equal to weekly live-TV reach for the same age group (52%) -- the first time podcasts have matched television with this audience.",
+  "points": [
+    {"label": "Podcasts (weekly, 18-34)", "value": 52},
+    {"label": "Live TV (weekly, 18-34)", "value": 52}
+  ],
+  "baseline": {"label": "Live TV (weekly, 18-34)", "value": 52}
+}

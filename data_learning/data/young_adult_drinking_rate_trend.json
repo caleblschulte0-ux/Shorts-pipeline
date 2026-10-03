@@ -1,0 +1,20 @@
+{
+  "key": "young_adult_drinking_rate_trend",
+  "title": "U.S. 18-34 year-olds who say they drink alcohol",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "~2003-2025",
+  "source": {
+    "name": "Gallup Consumption Habits poll",
+    "publisher": "Gallup",
+    "url": "https://news.gallup.com/poll/693362/drinking-rate-new-low-alcohol-concerns-surge.aspx",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Gallup's long-running annual survey: the 18-34 drinking rate declined roughly 10-20 points over two decades (from about 72%), then fell sharply in the most recent reports, from 59% in 2023 to 50% in 2025 -- an all-time low for the series.",
+  "points": [
+    {"label": "~20 years ago", "value": 72, "period": "2003"},
+    {"label": "2023", "value": 59, "period": "2023"},
+    {"label": "2025", "value": 50, "period": "2025"}
+  ]
+}

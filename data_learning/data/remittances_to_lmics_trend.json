@@ -1,0 +1,23 @@
+{
+  "key": "remittances_to_lmics_trend",
+  "title": "Remittances sent to low- and middle-income countries",
+  "unit": "billion dollars",
+  "geography": "Low- and middle-income countries (worldwide)",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues/brief/migration-remittances-data",
+    "officiality": "official",
+    "access_date": "2026-10-03"
+  },
+  "notes": "World Bank Migration and Development Brief figures: remittances to low- and middle-income countries barely dipped during the 2020 pandemic and have set a new record almost every year since, reaching an estimated $685 billion in 2024.",
+  "points": [
+    {"label": "2016", "value": 435, "period": "2016"},
+    {"label": "2019", "value": 548, "period": "2019"},
+    {"label": "2020", "value": 542, "period": "2020"},
+    {"label": "2022", "value": 647, "period": "2022"},
+    {"label": "2023", "value": 656, "period": "2023"},
+    {"label": "2024", "value": 685, "period": "2024"}
+  ]
+}

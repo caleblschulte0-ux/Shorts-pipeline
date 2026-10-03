@@ -1,0 +1,19 @@
+{
+  "key": "whale_populations_recovered_count",
+  "title": "Humpback whale distinct population segments, recovery status",
+  "unit": "populations",
+  "geography": "Worldwide",
+  "time_coverage": "2016 ESA status review",
+  "source": {
+    "name": "Endangered Species Act status review of the humpback whale",
+    "publisher": "NOAA Fisheries / National Marine Fisheries Service",
+    "url": "https://www.fisheries.noaa.gov/species/humpback-whale",
+    "officiality": "official",
+    "access_date": "2026-10-03"
+  },
+  "notes": "NOAA's 2016 review split humpback whales into 14 distinct population segments worldwide. 10 were found to be healthy enough to be removed from the endangered species list; 4 remain listed as endangered or threatened.",
+  "points": [
+    {"label": "Fully recovered, delisted", "value": 10},
+    {"label": "Still listed endangered/threatened", "value": 4}
+  ]
+}

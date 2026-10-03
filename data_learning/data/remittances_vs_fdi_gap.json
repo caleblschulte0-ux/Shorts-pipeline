@@ -1,0 +1,19 @@
+{
+  "key": "remittances_vs_fdi_gap",
+  "title": "Remittances to poorer countries vs. the gap over foreign investment",
+  "unit": "billion dollars",
+  "geography": "Low- and middle-income countries (worldwide)",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues/brief/migration-remittances-data",
+    "officiality": "official",
+    "access_date": "2026-10-03"
+  },
+  "notes": "The World Bank reports remittances to low- and middle-income countries ($656 billion in 2023) exceeded foreign direct investment (FDI) into those same countries by more than $270 billion that year -- migrants' money outpacing what companies invested.",
+  "points": [
+    {"label": "Remittances to LMICs", "value": 656},
+    {"label": "Amount more than FDI", "value": 270}
+  ]
+}

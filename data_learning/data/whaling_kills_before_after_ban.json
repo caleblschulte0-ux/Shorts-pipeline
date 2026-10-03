@@ -1,0 +1,19 @@
+{
+  "key": "whaling_kills_before_after_ban",
+  "title": "Large whales killed by commercial whaling",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "1900-1999 vs since the 1986 moratorium",
+  "source": {
+    "name": "Historical whaling catch database",
+    "publisher": "International Whaling Commission, via Rocha et al. (2014), 'Emptying the Oceans', Marine Fisheries Review",
+    "url": "https://iwc.int",
+    "officiality": "secondary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "An estimated 2.9 million large whales were killed by industrial commercial whaling 1900-1999, per the IWC's historical catch database as compiled in Rocha, Clapham & Ivashchenko (2014). The global moratorium on commercial whaling took effect in 1986; legal commercial whale kills under it are recorded as zero.",
+  "points": [
+    {"label": "Killed, 1900-1999", "value": 2.9},
+    {"label": "Killed under the 1986 ban", "value": 0}
+  ]
+}

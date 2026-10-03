@@ -1,0 +1,23 @@
+{
+  "key": "remittances_top_recipients",
+  "title": "Top remittance-receiving countries",
+  "unit": "billion dollars",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues/brief/migration-remittances-data",
+    "officiality": "official",
+    "access_date": "2026-10-03"
+  },
+  "notes": "World Bank's 2023 ranking of remittance inflows by country: India led by a wide margin, followed by Mexico, China, the Philippines and Pakistan.",
+  "points": [
+    {"label": "India", "value": 120},
+    {"label": "Mexico", "value": 66},
+    {"label": "China", "value": 50},
+    {"label": "Philippines", "value": 39},
+    {"label": "Pakistan", "value": 27}
+  ],
+  "ascending": false
+}

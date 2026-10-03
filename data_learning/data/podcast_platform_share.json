@@ -1,0 +1,21 @@
+{
+  "key": "podcast_platform_share",
+  "title": "Platform weekly podcast listeners name as their primary way to listen",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "The Infinite Dial 2025",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/the-infinite-dial-2025/",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Among weekly podcast consumers, Edison Research's 2025 Infinite Dial found YouTube named as the primary podcast platform by 39%, ahead of Spotify (20%) and Apple Podcasts (11%) -- the first time a video-first platform has led podcast listening.",
+  "points": [
+    {"label": "YouTube", "value": 39},
+    {"label": "Spotify", "value": 20},
+    {"label": "Apple Podcasts", "value": 11}
+  ],
+  "ascending": false
+}
