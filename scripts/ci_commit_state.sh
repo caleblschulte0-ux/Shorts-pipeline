@@ -42,6 +42,22 @@ if ! git commit -m "$MSG"; then
   exit 1
 fi
 
+# WHAT THIS RUN CHANGED — the only files a lost race may carry back.
+#
+# A caller may name a whole DIRECTORY (`daily.yml` passes `state/`). The race
+# handler used to back up every file under it and copy the lot over fresh
+# main, so a run that checked out at 09:00 and lost a race at 11:55 reverted
+# every file under state/ that ANY other workflow had written in between. On
+# 2026-10-03 the daily persist did exactly that to the third channel: its
+# 11:47 run record vanished from third_qa_stats.json, 131 lines of
+# third_clip_memory.json and 65 of third_events.json were rolled back, and
+# the commit said "daily: report + state". Our files are the ones in the
+# commit we just made plus anything still dirty; the rest is main's.
+OURS=$(mktemp)
+{ git diff-tree --no-commit-id --name-only -r HEAD 2>/dev/null
+  git diff --name-only 2>/dev/null
+  git diff --cached --name-only 2>/dev/null; } | sort -u > "$OURS"
+
 for attempt in 1 2 3 4 5; do
   if git push origin "HEAD:$BRANCH"; then
     echo "[persist] pushed on attempt $attempt"
@@ -64,7 +80,7 @@ for attempt in 1 2 3 4 5; do
   # So: back up every modified tracked file too, and restore it. Only the
   # given paths are committed here; the rest stay dirty for the caller's
   # own persist, exactly as if the push had simply succeeded.
-  { printf '%s\n' "$@"
+  { cat "$OURS"
     git diff --name-only 2>/dev/null
     git diff --cached --name-only 2>/dev/null; } | sort -u | while read -r p; do
     [ -n "$p" ] && [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
