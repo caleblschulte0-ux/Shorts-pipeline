@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "she-threatened-a-1-star-review-s1-12e96575e667",
+  "safe_request_id": "she-threatened-a-1-star-review-s1-12e96575e667",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "167cb9d6baa0637206fdb2fcb477d02f95f124efe481919550bbc8efbb6a4b18",
+  "prompt_used": "An editorial illustration for a short-form video: cash register receipt. It accompanies the narration: \"demanded a full refund plus a free meal\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+    "filename": "20261003__she-threatened-a-1-star-review-s1-12e96575e667.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f9cebed734d3dff5cd8d3017e18fc2cf74dc1bc362b6eaa2603b0381d4d1b239",
+    "bytes": 2105528,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-03T11:27:59.020Z"
+}
