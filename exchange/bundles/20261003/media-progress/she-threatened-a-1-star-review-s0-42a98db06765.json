@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "she-threatened-a-1-star-review-s0-42a98db06765",
+  "safe_request_id": "she-threatened-a-1-star-review-s0-42a98db06765",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1fe2b1ca3370b9caf67989d5b2159613a290b6c7fa5bf413ac5c4bbaf4eb281e",
+  "prompt_used": "An editorial illustration for a short-form video: fast food counter sandwich. It accompanies the narration: \"stormed up to my register holding a half-eaten sandwich\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+    "filename": "20261003__she-threatened-a-1-star-review-s0-42a98db06765.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d785ba4238b049a173a91fb4b35969e773b27c37107cd7662b3847e679099630",
+    "bytes": 1937795,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-03T11:27:57.840Z"
+}
