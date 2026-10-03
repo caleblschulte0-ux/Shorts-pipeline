@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s2-dc96db806e13",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s2-dc96db806e13",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "993390153586f19a6d9f0a9f3d8887cec630430b1705e0608d48df6787541fff",
+  "prompt_used": "An editorial illustration for a short-form video: powerpoint presentation screen. It accompanies the narration: \"opened the deck under his own name\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s2-dc96db806e13.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "bc5cc655d116485f205015959e693474de5935f563afde47273d8be993197ae3",
+    "bytes": 1674072,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-03T11:27:51.812Z"
+}
