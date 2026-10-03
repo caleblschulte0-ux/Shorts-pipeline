@@ -65,7 +65,7 @@ def _review(publish, score, fix="cut the dead air"):
 
 class _Harness(unittest.TestCase):
     def run_attempt(self, reviews, *, preflight=lambda p: [],
-                    spec_extra=None):
+                    spec_extra=None, cluster=None, plan=None):
         rt = _load_rt()
         self.rt = rt
         tmp = Path(self.enterContext(tempfile.TemporaryDirectory()))
@@ -93,7 +93,8 @@ class _Harness(unittest.TestCase):
             mock.patch.object(clip_qa, "review", return_value={
                 "verdict": "pass", "problems": [], "vision": {}}),
             mock.patch.object(storyline, "find_vod_arcs",
-                              return_value=[json.loads(json.dumps(CLUSTER))]),
+                              return_value=[json.loads(json.dumps(
+                                  cluster or CLUSTER))]),
             mock.patch.object(storyline, "find_clusters", return_value=[]),
             mock.patch.object(story_director, "scout_stories",
                               return_value=[]),
@@ -101,7 +102,8 @@ class _Harness(unittest.TestCase):
                               side_effect=lambda src, meta, *a, **k:
                               _report(meta["source_url"])),
             mock.patch.object(story_director, "plan_story",
-                              return_value=dict(EDL)),
+                              return_value=(dict(EDL) if plan is None
+                                            else plan)),
             mock.patch.object(story_director, "review_rough_cut",
                               side_effect=list(reviews)),
             mock.patch.object(story_director, "revise_edl",
@@ -168,6 +170,52 @@ class StarvationSaysWhy(_Harness):
         self.assertIsNotNone(
             clip_memory.already_tried(self.rt._CLIP_MEMORY, URLS),
             "clips too short today are too short tomorrow")
+
+
+class ARefusalCoversTheWholeCandidate(_Harness):
+    """2026-10-03: a broadcast arc with one clip that could not be read was
+    refused in story slot 1 and downloaded, analysed and refused AGAIN in
+    slot 2 — the refusal had remembered only the clips that were read, so
+    the unreadable one made the same arc look new."""
+
+    def test_an_unreadable_member_does_not_make_the_arc_new(self):
+        dead = "https://www.twitch.tv/soda/clip/Dead"
+        cl = json.loads(json.dumps(CLUSTER))
+        cl["clips"].append({"source_url": dead, "title": "x",
+                            "channel": "soda", "date": "2026-10-02",
+                            "video_id": "v1", "vod_offset": 300.0})
+        calls = {"n": 0}
+
+        def pf(path):
+            calls["n"] += 1
+            return ["source only 3.0s"] if calls["n"] == 3 else []
+        with mock.patch.object(story_director, "last_rejection",
+                               return_value={"why": "director judged: not a "
+                                             "story — unrelated moments",
+                                             "editorial": True}):
+            self.run_attempt([], cluster=cl, preflight=pf, plan=False)
+        self.assertIsNotNone(
+            clip_memory.already_tried(self.rt._CLIP_MEMORY, URLS + [dead]),
+            "the same arc, dead clip included, is the same refused arc")
+
+
+class TheReviserSeesWhatTheDirectorSaw(unittest.TestCase):
+    def test_every_source_transcript_reaches_the_revision(self):
+        seen = {}
+
+        def brain(user, system, **kw):
+            seen["user"] = user
+            return None
+        reps = [{"source_id": f"s{i}", "channel": "kai", "duration_s": 60,
+                 "summary": "x", "transcript_lines":
+                 ("filler " * 900) + f"LINE-FROM-SOURCE-{i}"}
+                for i in range(3)]
+        with mock.patch.object(story_director, "_brain", side_effect=brain):
+            story_director.revise_edl(
+                dict(EDL), [{"type": "missing_context", "at": 0.0,
+                             "fix": "open on the accusation"}], reps)
+        for i in range(3):
+            self.assertIn(f"LINE-FROM-SOURCE-{i}", seen["user"])
 
 
 class TwoStoryAttemptsADay(unittest.TestCase):

@@ -1490,6 +1490,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 if len(sub) < 2:
                     continue      # a lone source is not a story
                 sub_urls = [r["source_id"] for r in sub]
+                # What a refusal covers. When the whole candidate went to the
+                # director as ONE event, the refusal is of the candidate —
+                # including the clip that could not be read. Remembering only
+                # the analysed ones made a three-clip arc with one dead clip
+                # look like a "new hypothesis" to the next slot: on
+                # 2026-10-03 the same brucedropemoff pair was downloaded,
+                # analysed and refused in both story slots.
+                _refuse_urls = urls if len(_subs) == 1 else sub_urls
                 # event record keyed on a SEMANTIC fingerprint (people +
                 # actions + week) of THIS event's sources only
                 event = _upsert_event(events, cluster["who"], sub, sub_urls)
@@ -1520,7 +1528,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     if rej.get("editorial"):
                         # only the director's "no" — a malformed plan says
                         # nothing about whether the story is there
-                        _remember_refused(sub_urls,
+                        _remember_refused(_refuse_urls,
                                           cluster.get("premise") or who,
                                           why)
                     continue
@@ -1606,7 +1614,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                       if _render_failed else "")
                                    + (f" — {_crit}" if _crit else ""))
                     _remember_refused(
-                        sub_urls, edl.get("premise") or who,
+                        _refuse_urls, edl.get("premise") or who,
                         f"rendered; critic scored {_scores[-1]} after "
                         f"{revision_count} revision(s)"
                         + (f" — {_crit}" if _crit else ""))
