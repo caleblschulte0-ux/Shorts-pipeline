@@ -352,8 +352,9 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
   `tests/test_captions.py`, which holds that against the original
   implementations); `funnel/feeds.py` backs `scripts/discover_topic.py`;
   `funnel/article_extract.py` fills `topic.snippets` so the writer works
-  from the real article instead of a headline. `engines/svg_motion.py` is
-  `experimental` with a decision date — it has no consumer and says so.
+  from the real article instead of a headline. `engines/svg_motion.py` sat
+  `experimental` and consumerless past two decision dates and was DELETED
+  on 2026-10-03 — the deadline test did its job.
 - **The engine registry has to tell the truth.** `active` + not `gated`
   means something really imports it; `tests/test_engine_registry_honesty.py`
   checks the metadata against the code in both directions, because it was
@@ -506,6 +507,12 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   is told what was refused, a retold refusal is skipped before download.
   The director may tell the smaller story a padded proposal really holds —
   from two or more sources, which `validate_edl` now enforces.
+- **A rendered story is REPAIRED before it is dropped** (operator,
+  2026-10-03: *"Post a story."*). Up to `story_revisions` (2) repairs from
+  the critic's own problems, same `publish` bar; two story slots a day;
+  and every way a candidate dies is a recorded verdict with its reason —
+  the two stories that reached a render that week died with nothing
+  written down.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and

@@ -123,7 +123,8 @@ def _story_verdict(label: str, outcome: str, why: str) -> None:
         _JUDGES.setdefault("story_director", {}).setdefault(
             "clusters", []).append(
                 {"cluster": str(label)[:60], "outcome": outcome,
-                 "why": str(why)[:140]})
+                 # 300: a critic's three named problems do not fit in 140
+                 "why": str(why)[:300]})
     except Exception:  # noqa: BLE001
         pass
 
@@ -1365,6 +1366,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # expansion (§6) for sources the analysis marks incomplete
             snip_dir = work / "story_scenes"
             reports = []
+            # WHY each source could not be read. "starved" was 48 of the 59
+            # verdicts recorded through 2026-10-02 and said only "<2
+            # analyzable sources (0)" — the same sodapoppin broadcast starved
+            # on 09-29 and again on 10-02 and nothing could say whether the
+            # clips were gone, too short, or the analyst was down.
+            _lost: list[str] = []
             for c in cluster["clips"][:6]:
                 try:
                     info = clip_edit.download(c["source_url"], snip_dir)
@@ -1372,16 +1379,20 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     print(f"::warning::[story] download failed "
                           f"{c.get('title', '?')[:40]!r} "
                           f"({type(e).__name__})", flush=True)
+                    _lost.append(f"download:{type(e).__name__}")
                     continue
                 src = Path(info["path"])
                 if not src.is_absolute():
                     src = REPO / src
-                if clip_qa.preflight(src):
+                _pf = clip_qa.preflight(src)
+                if _pf:
+                    _lost.append("preflight:" + "; ".join(_pf)[:60])
                     continue
                 rep = scene_analysis.analyze_source(
                     src, {**c, "source_url": c["source_url"]},
                     snip_dir, whisper_model=wmodel)
                 if not rep:
+                    _lost.append("analysis:none")
                     continue
                 # remember the CLIP's own report, before any VOD expansion
                 # widens it to minutes the clip does not contain
@@ -1425,7 +1436,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
                 _story_verdict(who, "starved",
                                f"<2 analyzable sources ({len(reports)}) — "
-                               "scene analysis could not read the clips")
+                               + ("; ".join(_lost)[:110] or
+                                  "scene analysis could not read the clips"))
+                # Clips that FAIL PREFLIGHT fail it tomorrow too (too short,
+                # no audio, wrong shape) — remember the candidate so it stops
+                # costing a slot every day. A download or analysis failure
+                # may be transient and is retried.
+                if _lost and all(x.startswith("preflight:") for x in _lost):
+                    _remember_refused(urls, cluster.get("premise") or who,
+                                      "sources fail preflight: "
+                                      + "; ".join(_lost)[:120])
                 continue
 
             # ---- semantic subclustering (reviewer #8): the people cluster
@@ -1530,32 +1550,66 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 review = story_director.review_rough_cut(
                     edl, tlines, str(sheet) if sheet_ok else None,
                     led["duration_s"])
-                if not review["publish"] and review["problems"]:
+                # REPAIR, THEN RE-JUDGE — up to `story_revisions` times.
+                # The playbook allowed ONE revision. On 2026-10-01 and 10-02
+                # the only two stories the director accepted were rendered,
+                # revised once, scored 54 and 52, and thrown away — and the
+                # critic's problems were never even recorded. Operator,
+                # 2026-10-03: "Post a story." Same answer the explainer got
+                # ("make a system that makes better videos"): keep repairing
+                # what the critic names, same critic, same `publish` bar.
+                # Nothing here can ship a cut the critic did not pass.
+                _scores = [review["story_score"]]
+                _render_failed = False
+                max_rev = int(spec.get("story_revisions", 2))
+                while (not review["publish"] and review["problems"]
+                       and revision_count < max_rev
+                       and not _deadline_passed()):
                     edl2 = story_director.revise_edl(
                         edl, review["problems"], sub)
-                    if edl2:
-                        revision_count = 1
-                        try:
-                            led = story_mod.render_story(
-                                edl2, src_map, out_mp4, story_work)
-                            edl = edl2
-                            tlines = scene_analysis._dialogue_lines(
-                                led["final_words"])
-                            sheet_ok = clip_qa.contact_sheet(
-                                out_mp4, sheet) is not None
-                            review = story_director.review_rough_cut(
-                                edl, tlines,
-                                str(sheet) if sheet_ok else None,
-                                led["duration_s"])
-                        except Exception as e:  # noqa: BLE001
-                            print(f"::warning::[story] {elbl}: revision "
-                                  f"render failed ({e})", flush=True)
-                            continue
-                if not review["publish"]:
+                    if not edl2:
+                        break
+                    revision_count += 1
+                    try:
+                        led = story_mod.render_story(
+                            edl2, src_map, out_mp4, story_work)
+                        edl = edl2
+                        tlines = scene_analysis._dialogue_lines(
+                            led["final_words"])
+                        sheet_ok = clip_qa.contact_sheet(
+                            out_mp4, sheet) is not None
+                        review = story_director.review_rough_cut(
+                            edl, tlines,
+                            str(sheet) if sheet_ok else None,
+                            led["duration_s"])
+                        _scores.append(review["story_score"])
+                    except Exception as e:  # noqa: BLE001
+                        print(f"::warning::[story] {elbl}: revision "
+                              f"render failed ({e})", flush=True)
+                        _render_failed = True
+                        break
+                _crit = "; ".join(
+                    f"@{p['at']:.0f}s {p['type']}: {p['fix']}"
+                    for p in review["problems"][:3])
+                if _render_failed or not review["publish"]:
                     print(f"[story] {elbl}: narrative review failed after "
                           f"{revision_count} revision(s) "
-                          f"(score={review['story_score']}) — abandoned",
-                          flush=True)
+                          f"(scores={_scores}) — abandoned"
+                          + (f" — {_crit}" if _crit else ""), flush=True)
+                    # RECORD WHAT THE CRITIC SAID. Both of the 2026-10-0x
+                    # renders died here with nothing in the durable record —
+                    # not the score, not one of the problems it named.
+                    _story_verdict(elbl, "narrative_failed",
+                                   f"scores {_scores} after "
+                                   f"{revision_count} revision(s)"
+                                   + (" (revision render failed)"
+                                      if _render_failed else "")
+                                   + (f" — {_crit}" if _crit else ""))
+                    _remember_refused(
+                        sub_urls, edl.get("premise") or who,
+                        f"rendered; critic scored {_scores[-1]} after "
+                        f"{revision_count} revision(s)"
+                        + (f" — {_crit}" if _crit else ""))
                     continue
 
                 # ---- dedupe on the ACTUAL rendered members + duration band
@@ -1563,12 +1617,17 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 if skey in shipped or \
                         storyline.near_dup(led["member_keys"],
                                            shipped_members):
+                    _story_verdict(elbl, "already_shipped",
+                                   "rendered cut retells a shipped story")
                     continue
                 if not (s_min <= led["duration_s"] <= s_max):
                     print(f"::warning::[story] {elbl}: "
                           f"{led['duration_s']:.0f}s outside "
                           f"{s_min:.0f}-{s_max:.0f}s — next event",
                           flush=True)
+                    _story_verdict(elbl, "duration",
+                                   f"{led['duration_s']:.0f}s outside "
+                                   f"{s_min:.0f}-{s_max:.0f}s")
                     continue
 
                 # ---- mechanical QA (§20 floor; coherence judged above)
@@ -1580,6 +1639,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     print(f"::warning::[story] {elbl}: QA failed "
                           f"({'; '.join(hard)[:140]}) — next event",
                           flush=True)
+                    _story_verdict(elbl, "qa_failed",
+                                   "; ".join(hard)[:140])
                     continue
 
                 lead = led["beats"][0].get("streamer") or cluster["who"][0]

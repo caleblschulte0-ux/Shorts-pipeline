@@ -1,5 +1,6 @@
 """Tests for the 2026-07-30 capability sprint: video_qa, captions, feeds,
-article_extract, svg_motion. Everything runs offline — video fixtures are
+article_extract. (svg_motion was deleted 2026-10-03 — consumerless past its
+second decision date; see docs/ENGINE_REGISTRY.md.) Everything runs offline — video fixtures are
 synthesized with ffmpeg at test time, feed/article fixtures are inline.
 
     python -m unittest tests.test_capabilities -v
@@ -199,47 +200,6 @@ class TestArticleExtract(unittest.TestCase):
     def test_never_raises(self):
         from funnel import article_extract
         self.assertIsNone(article_extract.extract("::::bad url::::"))
-
-
-class TestSvgMotion(unittest.TestCase):
-    def test_helpers(self):
-        from engines.svg_motion import ease, interp, seg
-        self.assertEqual(ease.linear(-1), 0.0)
-        self.assertEqual(ease.linear(2), 1.0)
-        self.assertAlmostEqual(ease.out_cubic(1.0), 1.0)
-        self.assertEqual(interp(10, 20, 0.5), 15)
-        self.assertEqual(seg(0.5, 0.0, 0.5), 1.0)
-        self.assertEqual(seg(0.0, 0.5, 1.0), 0.0)
-
-    def test_frame_fns_emit_svg(self):
-        from engines.svg_motion import title_card, stat_pop
-        for fn in (title_card("T&T", "<sub>"), stat_pop("87%", "of filers")):
-            for t in (0.0, 0.5, 1.0):
-                svg = fn(t)
-                self.assertIn("<svg", svg)
-                self.assertNotIn("<sub>", svg)   # escaped
-                self.assertNotIn("T&T", svg)     # escaped
-
-    def test_render_if_available(self):
-        from engines import svg_motion
-        if not svg_motion.available():
-            self.skipTest("cairosvg/ffmpeg unavailable")
-        out = svg_motion.maybe_svg_motion(
-            svg_motion.title_card("TEST", "sprint"), TMP / "card.mp4",
-            duration=1.0, fps=12, width=270, height=480)
-        self.assertIsNotNone(out)
-        probe = subprocess.run(
-            ["ffprobe", "-v", "quiet", "-show_entries",
-             "format=duration", "-of", "csv=p=0", str(out)],
-            capture_output=True, text=True)
-        self.assertAlmostEqual(float(probe.stdout.strip()), 1.0, delta=0.2)
-
-    def test_bad_frame_fn_returns_none(self):
-        from engines import svg_motion
-        if not svg_motion.available():
-            self.skipTest("cairosvg/ffmpeg unavailable")
-        self.assertIsNone(svg_motion.maybe_svg_motion(
-            lambda t: "not svg", TMP / "x.mp4", duration=0.5, fps=6))
 
 
 if __name__ == "__main__":

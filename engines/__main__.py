@@ -6,7 +6,6 @@
     python -m engines install <engine>
     python -m engines demo kenburns --image X --out Y [--duration 4]
     python -m engines demo parallax --image X --out Y [--duration 4]
-    python -m engines demo svg-motion --out Y [--duration 3]
 
 `list`, `info`, and `doctor` are offline and fast — safe for any Claude
 session to run as discovery. Only `install` touches the network.
@@ -113,13 +112,6 @@ def _cmd_demo(args) -> int:
         if pl:
             print(f"plan: {pl}")
         result = maybe_harmonize(args.image, args.out)
-    elif args.engine == "svg-motion":
-        from engines.svg_motion import maybe_svg_motion, title_card
-        result = maybe_svg_motion(
-            title_card("SVG MOTION", "engines demo", width=args.width,
-                       height=args.height),
-            args.out, duration=args.duration, fps=30,
-            width=args.width, height=args.height)
     elif args.engine == "chartrace":
         import json
         from pathlib import Path
@@ -132,7 +124,7 @@ def _cmd_demo(args) -> int:
                                   size=(args.width, args.height))
     else:
         print(f"no demo for {args.engine!r} (choices: kenburns, parallax, "
-              "lookmatch, svg-motion, render_qa, chartrace)")
+              "lookmatch, render_qa, chartrace)")
         return 2
     if result is None:
         print("demo failed (see messages above)")
@@ -154,9 +146,8 @@ def main(argv=None) -> int:
     sp.add_argument("engine")
     sp = sub.add_parser("demo")
     sp.add_argument("engine", choices=["kenburns", "parallax", "lookmatch",
-                                       "svg-motion", "render_qa", "chartrace"])
-    # render engines need --image/--out (svg-motion only --out, chartrace
-    # --spec/--out); the analysis engine takes --video. Validated
+                                       "render_qa", "chartrace"])
+    # render engines need --image/--out (chartrace --spec/--out); the analysis engine takes --video. Validated
     # per-engine in _cmd_demo.
     sp.add_argument("--image")
     sp.add_argument("--out")

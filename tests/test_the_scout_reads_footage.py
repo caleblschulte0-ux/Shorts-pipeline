@@ -281,8 +281,12 @@ class TheRunRemembers(unittest.TestCase):
 
     def test_a_refusal_is_remembered_only_when_editorial(self):
         body = self.fns["_story_attempt"]
-        i = body.index("_remember_refused(")
-        self.assertIn('if rej.get("editorial"):', body[i - 200:i])
+        # the director's refusal: remembered only under the editorial branch
+        i = body.index('if rej.get("editorial"):')
+        self.assertIn("_remember_refused(sub_urls", body[i:i + 300])
+        j = body.index('"not_a_story" if rej.get("editorial")')
+        self.assertNotIn("_remember_refused(", body[j - 600:i],
+                         "a malformed plan must not be remembered")
 
     def test_the_clip_arm_remembers_what_was_said(self):
         body = self.fns["process"]
