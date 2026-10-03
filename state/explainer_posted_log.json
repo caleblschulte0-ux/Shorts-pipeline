@@ -2432,6 +2432,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 43.6
+    },
+    "podcast-listening-boom-2026": {
+      "claimed_at": "2026-10-03T14:10:36.764266+00:00",
+      "title": "58% Of Americans Now Listen To A Podcast Every Month",
+      "publish_at": "2026-10-03T20:00:23Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -2956,6 +2963,14 @@
       "state": "posted",
       "slug": "air-conditioning-access-gap",
       "at": "2026-10-03T13:43:43.445551+00:00"
+    },
+    {
+      "claimed_at": "2026-10-03T14:10:36.764266+00:00",
+      "title": "58% Of Americans Now Listen To A Podcast Every Month",
+      "publish_at": "2026-10-03T20:00:23Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "podcast-listening-boom-2026"
     }
   ]
 }
