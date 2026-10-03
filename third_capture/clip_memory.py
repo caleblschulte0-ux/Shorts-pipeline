@@ -72,9 +72,10 @@ def empty() -> dict:
     return {"clips": {}, "stories_tried": []}
 
 
-def load(path: Path | str = PATH) -> dict:
+def load(path: Path | str | None = None) -> dict:
     from shared.fsutil import load_json
-    mem = load_json(path, None)
+    # PATH is read at CALL time so a test can point the module elsewhere
+    mem = load_json(path or PATH, None)
     if not isinstance(mem, dict):
         return empty()
     if not isinstance(mem.get("clips"), dict):
@@ -197,11 +198,11 @@ def prune(mem: dict, today: date | None = None) -> dict:
     return {"clips": clips, "stories_tried": tried[-MAX_STORIES:]}
 
 
-def save(mem: dict, path: Path | str = PATH,
+def save(mem: dict, path: Path | str | None = None,
          today: date | None = None) -> None:
     try:
         from shared.fsutil import write_json_if_changed
-        write_json_if_changed(path, prune(mem, today), indent=1,
+        write_json_if_changed(path or PATH, prune(mem, today), indent=1,
                               sort_keys=True)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[clip-memory] save failed ({e})", flush=True)

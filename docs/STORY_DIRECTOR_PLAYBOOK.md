@@ -225,11 +225,21 @@ publish/story_score verdict.
 
 ## 19. Automatic Revision Loop
 
-Permit ONE controlled revision (adjust boundaries, remove repetition,
-extend a reaction, add/remove an overlay, change a transition, rebalance
-audio, remove an effect). After it: narrative review again, mechanical
-QA, publish only if both pass. If still confusing, abandon and use a
-normal clip.
+Permit up to `story_revisions` (default 2) controlled revisions (adjust
+boundaries, remove repetition, extend a reaction, add/remove an overlay,
+change a transition, rebalance audio, remove an effect), each fed the
+critic's latest timestamped problems and each followed by narrative review
+again. Then mechanical QA; publish only if both pass. If still confusing,
+abandon and use a normal clip.
+
+*Amended 2026-10-03 (operator: "Post a story").* This section said ONE.
+The only two stories the director accepted that week were rendered,
+revised once, scored 54 and 52, and dropped — with the critic's problems
+recorded nowhere. Repairing again is the same answer the explainer got
+("make a system that makes better videos"): same critic, same `publish`
+bar, more repair. A dropped story's scores and the critic's problems are
+now written to the record (`narrative_failed`), and the member set is
+remembered so the next slot does not re-render it.
 
 ## 20. Story-Specific QA
 
@@ -245,7 +255,7 @@ than cosmetics.
 Abandon to a normal clip when: no recoverable setup; no payoff; the
 event cannot be verified; sources cannot download; the story requires
 invented narration; the timeline confuses; fewer than two meaningful
-beats survive; narrative QA still fails after one revision. **Do not
+beats survive; narrative QA still fails after the permitted revisions (§19). **Do not
 force the story slot to produce a story. A good standalone clip is
 better than a fake narrative.**
 
@@ -257,6 +267,13 @@ narrative_score. When analytics allow, measure opening retention, drop
 at source switches and overlays, completion through payoff, replays,
 comments, shares, search traffic, and performance by structure. Do not
 increase story volume until ~20-25 mature story posts provide evidence.
+
+*Amended 2026-10-03 (operator: "Post a story", after four stories in
+three months).* Story ATTEMPTS go from one slot a day to two
+(`story_count` in `state/third_packages/default_clip.json`). This raises
+attempts, not the bar: every attempt meets the same director, critic and
+QA, and a slot with no story still falls back to a normal clip. Posted
+story volume is whatever survives those gates.
 
 ## 23. Implementation Sequence
 

@@ -248,6 +248,31 @@ under the 256KB `state/` limit, which the test measures at every field's cap.
 carried evidence) and `refused_shown`. Held by
 `tests/test_the_scout_reads_footage.py`.
 
+### Repair before drop, two attempts a day, and every death recorded (2026-10-03)
+
+Operator: *"Post a story."* Four stories had shipped in three months. The
+record from the last 30 runs: 59 candidate verdicts, 48 `starved` (no
+reason given), 7 `not_a_story`, 4 `plan_rejected` — and missing entirely,
+the two stories that DID get through the director (sodapoppin, 10-01 and
+10-02), rendered, revised once, scored 54 and 52 by the narrative critic
+and dropped silently.
+
+- **Up to `story_revisions` (default 2) repairs**, each from the critic's
+  latest problems, same critic, same `publish` bar (playbook §19 amended).
+  A high score without `publish` is still a no.
+- **Every way a story dies is a verdict**: `narrative_failed` (all scores
+  plus the critic's first three problems), `qa_failed`, `duration`,
+  `already_shipped`. `starved` now names each source's failure —
+  `download:<error>`, `preflight:<reason>`, `analysis:none` — and a
+  candidate whose clips all fail PREFLIGHT is remembered, because a clip
+  too short today is too short tomorrow.
+- **Two story slots a day** (`story_count: 2`, playbook §22 amended). The
+  second slot's scout is shown everything the first one refused, and
+  `already_tried` skips it, so it spends its time on new candidates.
+
+Held by `tests/test_a_story_is_repaired_before_it_is_dropped.py`, which
+drives the real `_story_attempt`.
+
 ## VOD arcs — one-broadcast stories (2026-09-22)
 
 Between 2026-09-16 and 09-22 the story arm ran 7 times, considered 21
