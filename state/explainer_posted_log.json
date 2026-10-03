@@ -2414,6 +2414,24 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 56.7
+    },
+    "air-conditioning-access-gap": {
+      "url": "https://youtube.com/shorts/wBFnefFelpM",
+      "title": "Only 1 In 10 People In The Hottest Places Own An AC",
+      "at": "2026-10-03T13:43:43.445551+00:00",
+      "publish_at": "2026-10-03T14:00:23Z",
+      "state": "posted",
+      "experiment_arm": "superlative_topic",
+      "actual_structure": "superlative_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 43.6
     }
   },
   "uploads": [
@@ -2929,6 +2947,15 @@
       "state": "posted",
       "slug": "antibiotic-resistance-deaths",
       "at": "2026-10-02T11:31:34.840192+00:00"
+    },
+    {
+      "claimed_at": "2026-10-03T13:43:38.147747+00:00",
+      "title": "Only 1 In 10 People In The Hottest Places Own An AC",
+      "publish_at": "2026-10-03T14:00:23Z",
+      "url": "https://youtube.com/shorts/wBFnefFelpM",
+      "state": "posted",
+      "slug": "air-conditioning-access-gap",
+      "at": "2026-10-03T13:43:43.445551+00:00"
     }
   ]
 }
