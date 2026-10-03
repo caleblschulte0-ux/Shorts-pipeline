@@ -6,19 +6,43 @@
   "y_label": "Share of European airline seats (%)",
   "duration": 13,
   "source": "EUROCONTROL / CEPS research report citing European Commission data -- low-cost carrier vs legacy full-service carrier share of European airline seat capacity. Figures approximate as publicly reported.",
-  "years": [2000, 2005, 2008, 2010, 2012, 2015, 2019],
+  "years": [
+    2000,
+    2005,
+    2008,
+    2010,
+    2012,
+    2015,
+    2019
+  ],
   "series": [
     {
       "name": "Budget airlines",
       "color": "#f5c242",
       "icon": null,
-      "values": [6, 20, 30, 39, 44.8, 48, 53]
+      "values": [
+        6,
+        20,
+        30,
+        39,
+        44.8,
+        48,
+        53
+      ]
     },
     {
       "name": "Legacy carriers",
       "color": "#888888",
       "icon": null,
-      "values": [80, 65, 55, 48, 42.4, 40, 36]
+      "values": [
+        80,
+        65,
+        55,
+        48,
+        42.4,
+        40,
+        36
+      ]
     }
   ],
   "hashtags": [

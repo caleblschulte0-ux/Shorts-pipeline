@@ -6,19 +6,40 @@
   "y_label": "Encyclopedia articles (thousands)",
   "duration": 13,
   "source": "Wikipedia article-count statistics (Wikimedia Foundation) vs Encyclopaedia Britannica's own published article counts (print and online editions). Figures approximate as publicly reported.",
-  "years": [2001, 2004, 2007, 2010, 2015, 2023],
+  "years": [
+    2001,
+    2004,
+    2007,
+    2010,
+    2015,
+    2023
+  ],
   "series": [
     {
       "name": "Wikipedia (English)",
       "color": "#4a90e2",
       "icon": null,
-      "values": [20, 300, 1800, 3500, 5000, 6700]
+      "values": [
+        20,
+        300,
+        1800,
+        3500,
+        5000,
+        6700
+      ]
     },
     {
       "name": "Britannica",
       "color": "#888888",
       "icon": null,
-      "values": [65, 65, 65, 65, 120, 120]
+      "values": [
+        65,
+        65,
+        65,
+        65,
+        120,
+        120
+      ]
     }
   ],
   "hashtags": [

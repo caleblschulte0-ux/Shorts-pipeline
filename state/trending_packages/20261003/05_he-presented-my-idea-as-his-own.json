@@ -18,20 +18,60 @@
     "meetings"
   ],
   "shots": [
-    {"phrase": "building a pitch deck for a client renewal", "query": "laptop presentation slides"},
-    {"phrase": "grabbed my files off the shared drive", "query": "office desk computer"},
-    {"phrase": "opened the deck under his own name", "query": "powerpoint presentation screen"},
-    {"phrase": "He presented it line by line, confident, smiling", "query": "businessman presenting conference room"},
-    {"phrase": "asked a follow-up about the churn model on slide nine", "query": "data chart spreadsheet screen"},
-    {"phrase": "He froze", "query": "nervous man silence"},
-    {"phrase": "I raised my hand and answered it in under a minute", "query": "hand raised meeting"},
-    {"phrase": "the account was reassigned to me, full credit, full commission", "query": "handshake office deal"}
+    {
+      "phrase": "building a pitch deck for a client renewal",
+      "query": "laptop presentation slides"
+    },
+    {
+      "phrase": "grabbed my files off the shared drive",
+      "query": "office desk computer"
+    },
+    {
+      "phrase": "opened the deck under his own name",
+      "query": "powerpoint presentation screen"
+    },
+    {
+      "phrase": "He presented it line by line, confident, smiling",
+      "query": "businessman presenting conference room"
+    },
+    {
+      "phrase": "asked a follow-up about the churn model on slide nine",
+      "query": "data chart spreadsheet screen"
+    },
+    {
+      "phrase": "He froze",
+      "query": "nervous man silence"
+    },
+    {
+      "phrase": "I raised my hand and answered it in under a minute",
+      "query": "hand raised meeting"
+    },
+    {
+      "phrase": "the account was reassigned to me, full credit, full commission",
+      "query": "handshake office deal"
+    }
   ],
   "punches": [
-    {"phrase": "grabbed my files off the shared drive", "text": "STOLEN", "color": "#ffaa30"},
-    {"phrase": "He froze", "text": "FROZE", "color": "#ff3030"},
-    {"phrase": "answered it in under a minute", "text": "NAILED IT", "color": "#50ff80"},
-    {"phrase": "the account was reassigned to me", "text": "REASSIGNED", "color": "#50ff80"}
+    {
+      "phrase": "grabbed my files off the shared drive",
+      "text": "STOLEN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "He froze",
+      "text": "FROZE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "answered it in under a minute",
+      "text": "NAILED IT",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "the account was reassigned to me",
+      "text": "REASSIGNED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"

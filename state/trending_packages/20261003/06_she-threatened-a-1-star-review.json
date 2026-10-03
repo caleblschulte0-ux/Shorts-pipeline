@@ -18,20 +18,60 @@
     "restaurant"
   ],
   "shots": [
-    {"phrase": "stormed up to my register holding a half-eaten sandwich", "query": "fast food counter sandwich"},
-    {"phrase": "demanded a full refund plus a free meal", "query": "cash register receipt"},
-    {"phrase": "post a one-star review with photos", "query": "phone camera reviewing"},
-    {"phrase": "check the kitchen cameras first", "query": "security camera ceiling"},
-    {"phrase": "pulling a hair from her own ponytail", "query": "woman ponytail hair"},
-    {"phrase": "tucking it under the lettuce", "query": "sandwich lettuce closeup"},
-    {"phrase": "I printed a single frame", "query": "receipt printer counter"},
-    {"phrase": "left without the refund, the free meal, or the review", "query": "customer walking out door"}
+    {
+      "phrase": "stormed up to my register holding a half-eaten sandwich",
+      "query": "fast food counter sandwich"
+    },
+    {
+      "phrase": "demanded a full refund plus a free meal",
+      "query": "cash register receipt"
+    },
+    {
+      "phrase": "post a one-star review with photos",
+      "query": "phone camera reviewing"
+    },
+    {
+      "phrase": "check the kitchen cameras first",
+      "query": "security camera ceiling"
+    },
+    {
+      "phrase": "pulling a hair from her own ponytail",
+      "query": "woman ponytail hair"
+    },
+    {
+      "phrase": "tucking it under the lettuce",
+      "query": "sandwich lettuce closeup"
+    },
+    {
+      "phrase": "I printed a single frame",
+      "query": "receipt printer counter"
+    },
+    {
+      "phrase": "left without the refund, the free meal, or the review",
+      "query": "customer walking out door"
+    }
   ],
   "punches": [
-    {"phrase": "demanded a full refund plus a free meal", "text": "DEMANDED", "color": "#ffaa30"},
-    {"phrase": "post a one-star review with photos", "text": "THREATENED", "color": "#ff3030"},
-    {"phrase": "pulling a hair from her own ponytail", "text": "CAUGHT ON CAMERA", "color": "#ff3030"},
-    {"phrase": "left without the refund, the free meal, or the review", "text": "NOTHING", "color": "#50ff80"}
+    {
+      "phrase": "demanded a full refund plus a free meal",
+      "text": "DEMANDED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "post a one-star review with photos",
+      "text": "THREATENED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "pulling a hair from her own ponytail",
+      "text": "CAUGHT ON CAMERA",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "left without the refund, the free meal, or the review",
+      "text": "NOTHING",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
