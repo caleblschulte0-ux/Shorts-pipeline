@@ -818,6 +818,15 @@ only as a hand edit is not a rule. So:
     where there is ground behind the people, and the cast's own walkers
     cross at the people's depth indoors and by water.
 
+- **The first full render with happenings (9, BLOCK before the watch;
+  Kokoro).** 61 identical frames at 3:50: a candle blown out (`snuff`) in a
+  wide room where it was the only thing alive. A happening that takes
+  something away (a lamp out, somebody leaving) is now planned only where
+  the picture still passes the motion rule without it
+  (`happen._alive_without`, the same `is_living` that validate asks). The
+  test renders a lamp going out and measures the frames after it. Somebody
+  may also walk over to blow the lamp out, not only whoever sits beside it.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

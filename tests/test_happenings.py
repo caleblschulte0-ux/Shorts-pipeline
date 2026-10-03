@@ -123,6 +123,29 @@ class Happenings(unittest.TestCase):
                 self.assertTrue(w.get("near"), f"a walker on the far lane in {setting}")
             self.assertFalse(HP.fits("passer", sp))
 
+    def test_a_lamp_goes_out_only_where_something_else_still_moves(self):
+        # the Greek film with happenings, blocked at 3:50 before the watch:
+        # a candle blown out in a wide room where it was the only thing
+        # alive, then 61 identical frames
+        one = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+               "cast": [{"who": "elder", "pose": "sit_on", "action": "idle"},
+                        {"who": "woman", "pose": "stand", "action": "idle"},
+                        {"who": "child", "pose": "sit_on", "action": "idle"}], "props": ["candle"]}
+        self.assertEqual(S.validate(one, "ancient"), [])
+        sc = S.Scene(dict(one, happen=["snuff"], happen_s=7.0), "ancient", 4)
+        self.assertEqual(sc.acts, [], "the room's only living light was put out")
+        # where it is planned, what is left still moves: measured after it
+        two = dict(LAMP_ROOM, time="night", happen=["snuff"], happen_s=7.0)
+        sc = S.Scene(two, "ancient", 4)
+        self.assertEqual([a["kind"] for a in sc.acts], ["snuff"])
+        t0 = sc.acts[0]["lamp"]["t"] + 1.0
+        fr = [_px(sc, t0 + i / 30) for i in range(70)]
+        run = best = 0
+        for a, b in zip(fr, fr[1:]):
+            run = run + 1 if np.abs(a - b).max() < 6 else 0
+            best = max(best, run)
+        self.assertLess(best, 45, "frozen after the lamp went out")
+
     def test_nobody_walks_in_on_a_sleeping_house(self):
         sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
               "cast": [{"who": "man", "pose": "lie", "action": "sleep"}], "props": ["candle", "bed"]}

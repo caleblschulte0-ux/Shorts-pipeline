@@ -258,6 +258,8 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
             return None                    # the only person in the picture does not walk out of it
         gi = figs[r.randrange(len(figs))]
         f = lay["people"][gi]
+        if not _alive_without(spec, person=f):
+            return None              # whoever walks out must not take the picture's life with them
         R = _R(f["who"], f["s"])
         side = -1 if f["x"] - x0 < x1 - f["x"] else 1
         out = (x0 - 3.5 * R) if side < 0 else (x1 + 3.5 * R)
@@ -279,6 +281,12 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         if not lamps:
             return None
         lp = lamps[0]
+        if kind == "snuff" and not _alive_without(spec, prop=lp["name"]):
+            # the Greek film with happenings, blocked at 3:50: a candle blown
+            # out in a wide room where it was the only thing alive, and 61
+            # identical frames after it. A lamp goes out only where something
+            # else in the picture still moves
+            return None
         dx, dy, _sz = FLAME_AT[lp["name"]]
         fx, fy = lp["x"] + dx * lp["s"], lp["y"] + dy * lp["s"]
         # whoever is nearest leans in; if nobody is near, somebody comes
@@ -297,8 +305,6 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
                            (t_act - 0.8, f["x"], f["pose"], "idle", face),
                            (dur + 5, f["x"], f["pose"], f["action"] if kind == "light" else "idle", face)])
         else:
-            if kind == "snuff":
-                return None
             who = r.choice(who_pool)
             R = _R(who, s)
             ext = _extent_fn("stand", R)
@@ -427,6 +433,30 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
 
 
 YARDS = ("village", "farmyard", "forum", "market_square", "street", "field", "olive_grove")
+
+
+def _alive_without(spec: dict, prop: str | None = None, person: dict | None = None) -> bool:
+    """Whether the picture still passes the measured motion rule
+    (scene.is_living, what validate asks) once this light is out or this
+    person has gone."""
+    from .scene import is_living
+    sp = dict(spec)
+    sp.pop("happen", None)
+    if prop is not None:
+        names = list(sp.get("props") or [])
+        for i, p in enumerate(names):
+            if (p if isinstance(p, str) else (p or {}).get("name")) == prop:
+                names.pop(i)
+                break
+        sp["props"] = names
+    if person is not None:
+        cast = list(sp.get("cast") or [])
+        for i, c in enumerate(cast):
+            if isinstance(c, dict) and c.get("who") == person["who"] and c.get("pose") == person["pose"]:
+                cast.pop(i)
+                break
+        sp["cast"] = cast
+    return is_living(sp)
 
 
 def _far_lane(spec: dict) -> bool:
