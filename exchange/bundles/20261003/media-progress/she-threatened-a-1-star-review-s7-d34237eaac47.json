@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "she-threatened-a-1-star-review-s7-d34237eaac47",
+  "safe_request_id": "she-threatened-a-1-star-review-s7-d34237eaac47",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e45bc339b23711c1e53bddaaaf08b05cd236d7f11ab55ae16cb5117643d55349",
+  "prompt_used": "An editorial illustration for a short-form video: customer walking out door. It accompanies the narration: \"left without the refund, the free meal, or the review\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+    "filename": "20261003__she-threatened-a-1-star-review-s7-d34237eaac47.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "853188cf63d9252e82acf18c57134fdef2b9542aa812c9b0c514d9a8502fd43d",
+    "bytes": 1745491,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-03T11:28:04.782Z"
+}
