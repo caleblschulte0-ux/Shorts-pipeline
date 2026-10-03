@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-10-03T12:30:55+00:00",
+ "date": "20261003",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261003/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "he-presented-my-idea-as-his-own-s0-8f824e72105c.json",
+  "he-presented-my-idea-as-his-own-s1-7789e45c7742.json",
+  "he-presented-my-idea-as-his-own-s2-dc96db806e13.json",
+  "he-presented-my-idea-as-his-own-s3-09fde7705e6e.json",
+  "he-presented-my-idea-as-his-own-s4-497e9fdc1b4e.json",
+  "he-presented-my-idea-as-his-own-s5-ccb0c102fa89.json",
+  "he-presented-my-idea-as-his-own-s6-6febb2ec17a1.json",
+  "he-presented-my-idea-as-his-own-s7-d744604bbb2f.json",
+  "she-threatened-a-1-star-review-s0-42a98db06765.json",
+  "she-threatened-a-1-star-review-s1-12e96575e667.json",
+  "she-threatened-a-1-star-review-s2-1cff4cf06fb1.json",
+  "she-threatened-a-1-star-review-s3-19215d36a702.json",
+  "she-threatened-a-1-star-review-s4-d139bac9cbb8.json",
+  "she-threatened-a-1-star-review-s5-661d859764c8.json",
+  "she-threatened-a-1-star-review-s6-849a7bb66ff5.json",
+  "she-threatened-a-1-star-review-s7-d34237eaac47.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
