@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261003T191304Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid and payoff@-0.4: 'COMMENT BELOW' covers the word 'think.' in the question text. seg4:start: Data's body covers 'Set since 2018' ('Set' is overlapped). seg1:mid: the gauge reads '79.5' next to a fixed '1998' label, so it is unclear what the number is.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "Two identical yellow circles both labelled '8.3' and both captioned 'Before 2016 (1988-2013)', growing in sync while the narration says 'almost 30 seconds a year'. The kicker 'BEFORE 2016 (1988-2013) TOPS THE LIST' is wrong.",
+  "root_cause": "The post-2016 series was never bound. The second category copied the first row's label and value, and the scene fell back to a generic bubble comparison.",
+  "repair_goal": "Show 8 s/yr (1988-2013) against ~30 s/yr (2016+) as speed. For example, two clocks or a finish-line tape being shaved: the pre-shoe tape is trimmed slowly and the super-shoe tape is cut nearly 4x faster, with Data wearing the shoes and doing the cutting. Use two distinct, correct labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

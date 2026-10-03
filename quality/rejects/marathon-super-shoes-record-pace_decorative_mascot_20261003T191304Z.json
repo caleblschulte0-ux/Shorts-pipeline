@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261003T191304Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start-end and seg3:start-end: Data just stands on top of the bubble while it grows, with no action causing it. seg4:mid: he stands under the left pan holding a stick and does not load the blocks.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "Two identical yellow circles both labelled '8.3' and both captioned 'Before 2016 (1988-2013)', growing in sync while the narration says 'almost 30 seconds a year'. The kicker 'BEFORE 2016 (1988-2013) TOPS THE LIST' is wrong.",
+  "root_cause": "The post-2016 series was never bound. The second category copied the first row's label and value, and the scene fell back to a generic bubble comparison.",
+  "repair_goal": "Show 8 s/yr (1988-2013) against ~30 s/yr (2016+) as speed. For example, two clocks or a finish-line tape being shaved: the pre-shoe tape is trimmed slowly and the super-shoe tape is cut nearly 4x faster, with Data wearing the shoes and doing the cutting. Use two distinct, correct labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

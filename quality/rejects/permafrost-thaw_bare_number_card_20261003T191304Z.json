@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261003T191304Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg2:mid and seg2:end, '870B' and '1700B' are big numbers beside two standing Data figures in otherwise empty rows. Nothing shows that 1.7 trillion is about double 870B.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start shows a stacked column whose permafrost label is low-contrast and unreadable. seg2:mid and seg2:end switch to two rows, each with a standing Data and a big number ('870B', '1700B'). The rows are the same size, so nothing shows that permafrost holds almost double.",
+  "root_cause": "The 'almost double' share or ratio claim fell back to a chart, then to a number card with mascot stand-ins. Nothing physical carries the 2x ratio, and the label colour has too little contrast against its fill.",
+  "repair_goal": "Draw the ratio as material Data handles: one block of atmosphere carbon (870B) next to a frozen permafrost vault holding about twice as many identical carbon blocks. Data hacks the ice open with a pick, block by block, until the second stack visibly doubles the first. Put all labels in INK on the ground, never on the fill, and keep Data clear of them."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

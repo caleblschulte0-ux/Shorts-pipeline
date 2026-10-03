@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261003T191304Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start and seg1:end the axis labels '2024' and '2025' run together as '20242025'. In seg3:start and seg4:start a white '127%' sits over a small teal circle and disappears into it. At seg3:end and seg4:mid the dark '127%' on teal is low contrast. Both circles carry the same label '",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bound",
+  "visible_evidence": "seg3:start to seg3:end show two identical circles, both labelled 'Billionaire wealth' and both '127%', while the narration says 'the S&P 500 alone grew 195 percent'. The S&P side is a duplicate of the billionaire side.",
+  "root_cause": "The comparison machine filled both slots with the same series. The 195% S&P value and its label never got to the second mark, so the video's central claim is drawn as a tie.",
+  "repair_goal": "Bind the second mark to the S&P 500 at 195%, labelled 'S&P 500', and make it visibly bigger than billionaire wealth at 127%. Show it as a race or a stack where the stock market clearly outruns the billionaires, with Data driving that growth. Keep every label in high-contrast ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
