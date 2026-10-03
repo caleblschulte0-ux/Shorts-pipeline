@@ -520,6 +520,43 @@ def read_response(date: str) -> dict | None:
         return None
 
 
+RESPONSE_SCHEMA = "chatgpt-exchange-response/v1"
+RESPONSE_TERMINAL_STATUS = {"fulfilled", "partial", "blocked", "failed"}
+RESPONSE_KEYS = {"schema", "date", "status", "contract", "blocked", "media",
+                 "results", "packages", "authored", "authored_explainer",
+                 "curiosity", "punchup", "notes", "summary", "alarm_ack"}
+
+
+def response_envelope_problems(response, date: str) -> list[str]:
+    """REPORT-ONLY (doctor ab49431193c5, first slice): everything wrong with
+    the response's envelope — schema, production date, terminal status, the
+    frozen-contract declaration, unknown top-level keys, section types.
+    Phase B records these in its report and does NOT refuse on them yet: the
+    live worker's fields were never required, so a hard gate would hold a
+    day. Promote to refusal once the report shows live responses clean."""
+    if not isinstance(response, dict):
+        return ["response is not a JSON object"]
+    out: list[str] = []
+    if response.get("schema") != RESPONSE_SCHEMA:
+        out.append(f"schema {response.get('schema')!r} != {RESPONSE_SCHEMA!r}")
+    if str(response.get("date") or "") != str(date):
+        out.append(f"date {response.get('date')!r} != {date!r}")
+    status = response.get("status")
+    if status not in RESPONSE_TERMINAL_STATUS:
+        out.append(f"status {status!r} is not one of "
+                   f"{sorted(RESPONSE_TERMINAL_STATUS)}")
+    if not isinstance(response.get("contract"), dict):
+        out.append("contract declaration missing or not an object")
+    for k in sorted(set(response) - RESPONSE_KEYS):
+        out.append(f"unknown top-level key {k!r}")
+    for k in ("media", "results", "packages", "authored",
+              "authored_explainer", "curiosity", "punchup"):
+        if k in response and not isinstance(response[k], (list, dict)):
+            out.append(f"section {k!r} is {type(response[k]).__name__}, "
+                       f"expected list/object")
+    return out
+
+
 def response_index(response: dict | None) -> dict:
     """Normalize a response into {request_id: entry} and {slug: rewrite}."""
     media: dict[str, dict] = {}
