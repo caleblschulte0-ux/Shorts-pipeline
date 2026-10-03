@@ -1,0 +1,22 @@
+{
+  "key": "podcast_monthly_reach_trend",
+  "title": "Americans (12+) who listened to a podcast in the last month",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual)",
+  "source": {
+    "name": "The Infinite Dial",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/the-infinite-dial-2026/",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Edison Research's annual Infinite Dial survey tracks U.S. monthly podcast reach (age 12+) every year. It has climbed every year on record, reaching a new high in each of the last several reports.",
+  "points": [
+    {"label": "2019", "value": 33, "period": "2019"},
+    {"label": "2021", "value": 41, "period": "2021"},
+    {"label": "2024", "value": 47, "period": "2024"},
+    {"label": "2025", "value": 55, "period": "2025"},
+    {"label": "2026", "value": 58, "period": "2026"}
+  ]
+}

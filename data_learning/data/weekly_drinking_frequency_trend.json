@@ -1,0 +1,20 @@
+{
+  "key": "weekly_drinking_frequency_trend",
+  "title": "Young drinkers who had a drink in the past week",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2001-2025",
+  "source": {
+    "name": "Gallup Consumption Habits poll",
+    "publisher": "Gallup",
+    "url": "https://news.gallup.com/poll/509690/young-adults-drinking-less-prior-decades.aspx",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Among young adults who drink at all, the share who had an alcoholic drink within the past 7 days fell from 67% (2001-2003 average) to 64% (2011-2013 average) to 61% (recent surveys) -- the ones who still drink are also drinking less often.",
+  "points": [
+    {"label": "2001-2003", "value": 67, "period": "2002"},
+    {"label": "2011-2013", "value": 64, "period": "2012"},
+    {"label": "Recent", "value": 61, "period": "2025"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "teen_drinking_rate_then_now",
+  "title": "18-20 year-olds who say they drink, then vs. now",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "~20 years ago vs. recent",
+  "source": {
+    "name": "Gallup Consumption Habits poll",
+    "publisher": "Gallup",
+    "url": "https://news.gallup.com/poll/509690/young-adults-drinking-less-prior-decades.aspx",
+    "officiality": "primary",
+    "access_date": "2026-10-03"
+  },
+  "notes": "Gallup reports the share of 18-20 year-olds who drink fell from nearly 70% two decades ago to around 35% in recent surveys -- the steepest drop of any age group measured, while 21-25 year-olds' drinking rate held closer to 80% (though the amount they drink fell).",
+  "points": [
+    {"label": "~20 years ago", "value": 70},
+    {"label": "Now", "value": 35}
+  ],
+  "baseline": {"label": "~20 years ago", "value": 70}
+}

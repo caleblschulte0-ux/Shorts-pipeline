@@ -1,0 +1,38 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "he-presented-my-idea-as-his-own",
+  "title": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
+  "script": "I spent three weeks building a pitch deck for a client renewal, color-coded slides, backup data, the works. The morning of the meeting, my coworker grabbed my files off the shared drive and opened the deck under his own name before I even walked in. He presented it line by line, confident, smiling, taking full credit while I sat in the back row. Then the client asked a follow-up about the churn model on slide nine. He froze. I had built that slide from a dataset only I could access, and he had never actually opened the methodology tab. Thirty seconds of dead silence later, I raised my hand and answered it in under a minute, citing the exact spreadsheet. The client thanked me by name. My manager pulled him aside after the meeting, and within the week the account was reassigned to me, full credit, full commission.",
+  "hashtags": [
+    "prorevenge",
+    "workplace",
+    "officepolitics",
+    "credittheft",
+    "corporate",
+    "revenge",
+    "karma",
+    "truestory",
+    "reddit",
+    "coworkers",
+    "career",
+    "meetings"
+  ],
+  "shots": [
+    {"phrase": "building a pitch deck for a client renewal", "query": "laptop presentation slides"},
+    {"phrase": "grabbed my files off the shared drive", "query": "office desk computer"},
+    {"phrase": "opened the deck under his own name", "query": "powerpoint presentation screen"},
+    {"phrase": "He presented it line by line, confident, smiling", "query": "businessman presenting conference room"},
+    {"phrase": "asked a follow-up about the churn model on slide nine", "query": "data chart spreadsheet screen"},
+    {"phrase": "He froze", "query": "nervous man silence"},
+    {"phrase": "I raised my hand and answered it in under a minute", "query": "hand raised meeting"},
+    {"phrase": "the account was reassigned to me, full credit, full commission", "query": "handshake office deal"}
+  ],
+  "punches": [
+    {"phrase": "grabbed my files off the shared drive", "text": "STOLEN", "color": "#ffaa30"},
+    {"phrase": "He froze", "text": "FROZE", "color": "#ff3030"},
+    {"phrase": "answered it in under a minute", "text": "NAILED IT", "color": "#50ff80"},
+    {"phrase": "the account was reassigned to me", "text": "REASSIGNED", "color": "#50ff80"}
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

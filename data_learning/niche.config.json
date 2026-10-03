@@ -30407,7 +30407,246 @@
     }
    ]
   }
- ],
+,
+  {
+   "slug": "humpback-whale-recovery",
+   "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+   "hook": "Commercial whaling killed 2.9 million whales. Then something incredible happened.",
+   "closing": "Turns out the ocean can heal -- if you just stop killing it.",
+   "question": "Did you know whales almost went extinct? Tell me below.",
+   "caption": "Commercial whaling killed an estimated 2.9 million whales in the 20th century alone, crashing one humpback population to just 450 animals. Since the 1986 whaling ban, that same population has rebuilt itself to about 25,000 -- and 10 of 14 tracked humpback populations worldwide are now fully recovered. Did you know whales almost went extinct?",
+   "hashtags": [
+    "whales",
+    "humpbackwhale",
+    "ocean",
+    "marinebiology",
+    "conservation",
+    "wildlife",
+    "nature",
+    "oceanconservation",
+    "sciencefacts",
+    "biodiversity",
+    "naturefacts",
+    "dataviz",
+    "endangeredspecies",
+    "noaa"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "whale_population_recovery_south_atlantic",
+     "params": {
+      "file": "whale_population_recovery_south_atlantic.json"
+     },
+     "insight_type": "trend",
+     "role": "1 \u00b7 THE CRASH AND THE COMEBACK",
+     "topic": "humpback whale population crash and recovery",
+     "say": "In the 1950s, hunters had wiped the South Atlantic's humpback whales down to just 450. After whaling was banned, that same population climbed back to about 25,000 today."
+    },
+    {
+     "source": "offline",
+     "key": "whale_populations_recovered_count",
+     "params": {
+      "file": "whale_populations_recovered_count.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 \u00b7 IT'S NOT JUST ONE GROUP",
+     "topic": "how many humpback whale populations have recovered",
+     "say": "Humpback whales came off the endangered species list in 2016. Out of all the populations scientists track worldwide, 10 have now fully recovered -- only 4 are still rebuilding."
+    },
+    {
+     "source": "offline",
+     "key": "whaling_kills_before_after_ban",
+     "params": {
+      "file": "whaling_kills_before_after_ban.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 \u00b7 WHAT ACTUALLY FIXED IT",
+     "topic": "whale kills before and after the whaling ban",
+     "say": "Commercial whalers killed nearly 2.9 million whales in the 20th century. Since the 1986 ban, that number has dropped to zero, and whales used the time to recover."
+    }
+   ]
+  },
+  {
+   "slug": "podcast-listening-boom-2026",
+   "title": "58% Of Americans Now Listen To A Podcast Every Month",
+   "hook": "Think podcasts are a niche thing? Not anymore.",
+   "closing": "Even your 'podcast guy' is probably just watching YouTube.",
+   "question": "Do you listen to podcasts, or just watch them? Tell me below.",
+   "caption": "Monthly podcast listening in the U.S. has climbed from 33% in 2019 to 58% today, and among 18-34 year-olds podcasts now reach as many people weekly as live TV does. The twist: the #1 way people actually listen isn't audio at all -- it's YouTube, ahead of Spotify and Apple Podcasts. What's your go-to podcast app?",
+   "hashtags": [
+    "podcasts",
+    "podcasting",
+    "youtube",
+    "spotify",
+    "mediaconsumption",
+    "streaming",
+    "dataviz",
+    "tech",
+    "digitalmedia",
+    "contentcreation",
+    "statistics",
+    "popculture",
+    "mediatrends"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "podcast_monthly_reach_trend",
+     "params": {
+      "file": "podcast_monthly_reach_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 \u00b7 THE RISE",
+     "topic": "how many Americans listen to podcasts every month",
+     "say": "Back in 2019, just 33% of Americans listened to a podcast every month. That number has climbed every year since, and this year it hit 58%."
+    },
+    {
+     "source": "offline",
+     "key": "podcast_vs_tv_reach_young_adults",
+     "params": {
+      "file": "podcast_vs_tv_reach_young_adults.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 \u00b7 WHO IT'S REACHING",
+     "topic": "podcasts reaching young Americans as much as TV",
+     "say": "Among 18 to 34 year-olds, podcasts now reach 52% of people every week -- exactly the same as live TV. A niche hobby just tied the king of media."
+    },
+    {
+     "source": "offline",
+     "key": "podcast_platform_share",
+     "params": {
+      "file": "podcast_platform_share.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 \u00b7 WHERE THEY ACTUALLY LISTEN",
+     "topic": "where people actually listen to podcasts",
+     "say": "The top way people now listen to podcasts is YouTube, at 39% -- ahead of Spotify's 20% and Apple Podcasts' 11%. The 'audio' app isn't even leading anymore."
+    }
+   ]
+  },
+  {
+   "slug": "genz-drinking-decline",
+   "title": "Gen Z Broke A 20-Year Drinking Habit",
+   "hook": "You've been told Gen Z parties harder than ever. The data says otherwise.",
+   "closing": "Sober isn't the exception anymore -- it's becoming the norm.",
+   "question": "Do you drink less than your parents did? Tell me why.",
+   "caption": "Only 50% of 18-34 year-old Americans now say they drink alcohol, down from 72% two decades ago -- and the youngest adults (18-20) cut their drinking rate from 70% to just 35%. Even the ones who still drink are doing it less often. Do you drink less than your parents did?",
+   "hashtags": [
+    "genz",
+    "alcohol",
+    "sobercurious",
+    "drinkingculture",
+    "millennials",
+    "healthtrends",
+    "wellness",
+    "youthculture",
+    "gallup",
+    "dataviz",
+    "psychology",
+    "lifestyle",
+    "sobriety"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "young_adult_drinking_rate_trend",
+     "params": {
+      "file": "young_adult_drinking_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 \u00b7 THE DROP",
+     "topic": "Gen Z and millennial drinking rate falling",
+     "say": "Twenty years ago, 72% of 18 to 34 year-olds said they drank alcohol. That number fell to 59% by 2023, and now it's down to 50%."
+    },
+    {
+     "source": "offline",
+     "key": "teen_drinking_rate_then_now",
+     "params": {
+      "file": "teen_drinking_rate_then_now.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 \u00b7 THE YOUNGEST DROPPED IT FASTEST",
+     "topic": "Gen Z's drinking habit at the youngest ages",
+     "say": "Among the youngest group -- 18 to 20 year-olds -- 70% said they drank two decades ago. Today it's just 35%."
+    },
+    {
+     "source": "offline",
+     "key": "weekly_drinking_frequency_trend",
+     "params": {
+      "file": "weekly_drinking_frequency_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 \u00b7 EVEN THE ONES WHO STILL DRINK",
+     "topic": "Gen Z drinking less often too",
+     "say": "Even the Gen Z and millennials who do drink are doing it less often. Weekly drinking among young adults fell from 67% in the early 2000s to 61% today."
+    }
+   ]
+  },
+  {
+   "slug": "global-remittances-record-2023",
+   "title": "Migrants Sent Home A Record $685 Billion In 2024",
+   "hook": "If you've ever sent money home to family, you're part of a $685 billion trend.",
+   "closing": "The biggest foreign aid program isn't run by a government at all.",
+   "question": "Have you or your family ever sent money home? Tell me below.",
+   "caption": "Migrants sent an estimated $685 billion home to lower-income countries in 2024, more than the amount foreign companies invested there -- a gap of over $270 billion in 2023 alone. India alone received $120 billion. Turns out love moves more money than any government program. What's your remittance story?",
+   "hashtags": [
+    "remittances",
+    "migration",
+    "worldbank",
+    "globaleconomy",
+    "migrants",
+    "immigration",
+    "diaspora",
+    "economics",
+    "dataviz",
+    "globaldevelopment",
+    "finance",
+    "internationalfinance"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "remittances_to_lmics_trend",
+     "params": {
+      "file": "remittances_to_lmics_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 \u00b7 HOW MUCH MONEY MOVES THIS WAY",
+     "topic": "how much money migrants have sent home every year",
+     "say": "By 2024, migrants were sending $685 billion a year to lower-income countries -- and that number barely dipped even during the pandemic."
+    },
+    {
+     "source": "offline",
+     "key": "remittances_top_recipients",
+     "params": {
+      "file": "remittances_top_recipients.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 \u00b7 WHERE IT ACTUALLY GOES",
+     "topic": "which countries receive the most money sent home",
+     "say": "India alone received $120 billion sent home by its migrants in one year -- more than Mexico, China, the Philippines and Pakistan combined receive individually."
+    },
+    {
+     "source": "offline",
+     "key": "remittances_vs_fdi_gap",
+     "params": {
+      "file": "remittances_vs_fdi_gap.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 \u00b7 BIGGER THAN BUSINESS INVESTMENT",
+     "topic": "money sent home vs money companies invest",
+     "say": "In 2023, remittances to poorer countries hit $656 billion -- more than foreign companies invested there. The gap was over $270 billion in favor of migrants' money."
+    }
+   ]
+  } ],
  "videos": [
   {
    "slug": "lowest-unemployment-states",
