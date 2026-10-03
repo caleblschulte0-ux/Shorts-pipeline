@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s6-6febb2ec17a1",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s6-6febb2ec17a1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ff203e0aee925316d5e4b857231c4daf75a94e06bfacfcbab202211303c2ad36",
+  "prompt_used": "An editorial illustration for a short-form video: hand raised meeting. It accompanies the narration: \"I raised my hand and answered it in under a minute\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s6-6febb2ec17a1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9f7bd4ededecf6b94f9c85ccfcc855def59e375f5425e4a0c39e5d69baf3a4e3",
+    "bytes": 1857150,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-03T11:27:55.751Z"
+}
