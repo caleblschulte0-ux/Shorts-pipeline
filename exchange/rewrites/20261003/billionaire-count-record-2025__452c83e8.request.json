@@ -1,0 +1,197 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "billionaire-count-record-2025__452c83e8",
+ "filed": "2026-10-03T10:20:02Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "billionaire-count-record-2025",
+ "current": {
+  "title": "The World Now Has Over 3,000 Billionaires For The First Time",
+  "hook": "Billionaires exploded from 1,826 to 3,028 while you were busy paying rent.",
+  "closing": "Turns out getting richer mostly just meant holding stocks while they went up.",
+  "question": "Would you still call that lucky, or just well-invested? Tell me below.",
+  "segments": [
+   {
+    "topic": "billionaires record count",
+    "say": "In 2015, Forbes counted 1,826 of the world's billionaires. By 2025, that hit 3,028 -- a new record."
+   },
+   {
+    "topic": "billionaires total wealth",
+    "say": "Their combined wealth more than doubled too, from $7.1 trillion in 2015 to over $16.1 trillion now."
+   },
+   {
+    "topic": "billionaires wealth vs stock market",
+    "say": "That's a 127 percent jump -- but the S&P 500 alone grew 195 percent in that same stretch. Most of this is just stocks."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "billionaires record count",
+   "say": "In 2015, Forbes counted 1,826 of the world's billionaires. By 2025, that hit 3,028 -- a new record.",
+   "role": "1 · THE RECORD COUNT",
+   "data": {
+    "file": "billionaire_count_by_year.json",
+    "unit": "count",
+    "title": "Number of billionaires worldwide",
+    "points": [
+     {
+      "label": "2015",
+      "value": 1826,
+      "period": "2015"
+     },
+     {
+      "label": "2018",
+      "value": 2208,
+      "period": "2018"
+     },
+     {
+      "label": "2020",
+      "value": 2095,
+      "period": "2020"
+     },
+     {
+      "label": "2022",
+      "value": 2668,
+      "period": "2022"
+     },
+     {
+      "label": "2024",
+      "value": 2781,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 3028,
+      "period": "2025"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "billionaires total wealth",
+   "say": "Their combined wealth more than doubled too, from $7.1 trillion in 2015 to over $16.1 trillion now.",
+   "role": "2 · THE RECORD WEALTH",
+   "data": {
+    "file": "billionaire_wealth_by_year.json",
+    "unit": "trillion dollars",
+    "title": "Combined net worth of the world's billionaires",
+    "points": [
+     {
+      "label": "2015",
+      "value": 7.1,
+      "period": "2015"
+     },
+     {
+      "label": "2018",
+      "value": 9.1,
+      "period": "2018"
+     },
+     {
+      "label": "2020",
+      "value": 8.0,
+      "period": "2020"
+     },
+     {
+      "label": "2022",
+      "value": 12.7,
+      "period": "2022"
+     },
+     {
+      "label": "2024",
+      "value": 14.2,
+      "period": "2024"
+     },
+     {
+      "label": "2025",
+      "value": 16.1,
+      "period": "2025"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "billionaires wealth vs stock market",
+   "say": "That's a 127 percent jump -- but the S&P 500 alone grew 195 percent in that same stretch. Most of this is just stocks.",
+   "role": "3 · WHERE IT ACTUALLY CAME FROM",
+   "data": {
+    "file": "billionaire_wealth_vs_sp500_growth.json",
+    "unit": "percent",
+    "title": "10-year growth: billionaire wealth vs. the S&P 500",
+    "points": [
+     {
+      "label": "Billionaire wealth",
+      "value": 127
+     },
+     {
+      "label": "Billionaire wealth",
+      "value": 127
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Three plain bar charts lead into a payoff scene with the wrong data: both circles say 127% billionaire wealth, so the S&P 195% punchline is never shown."
+ ],
+ "reasons": [
+  "judge: Three plain bar charts lead into a payoff scene with the wrong data: both circles say 127% billionaire wealth, so the S&P 195% punchline is never shown."
+ ],
+ "judge": {
+  "ts": "2026-10-03T10:18:28+00:00",
+  "score": 40,
+  "one_line": "Three plain bar charts lead into a payoff scene with the wrong data: both circles say 127% billionaire wealth, so the S&P 195% punchline is never shown.",
+  "problems": [
+   "seg3/seg4 show '127% Billionaire wealth' twice. The S&P 500 195% value is missing, so the claim 'most of this is just stocks' is never shown and the visual contradicts the narration.",
+   "The seg3 kicker 'BILLIONAIRE WEALTH TOPS THE LIST' states the opposite of the story.",
+   "seg0, seg1 and seg2 are the same bar chart drawn three times. The count is shown twice, as bars and then as a lollipop timeline.",
+   "Axis labels '2024' and '2025' collide into '20242025' in seg1.",
+   "Data only points from a ladder or stands on a circle. He never causes the growth.",
+   "seg2:start has a large empty upper frame. The seg3 circles are small in a mostly blank frame."
+  ],
+  "fixes": [
+   "Bind the comparison scene to two series, billionaire wealth at 127% and the S&P 500 at 195%, with correct labels and an accent on the S&P winner.",
+   "Rewrite the kicker to match the claim, for example 'THE MARKET OUTGREW THE BILLIONAIRES'.",
+   "Replace the duplicate seg1 timeline with a bespoke picture, for example a crowd of billionaire figures filling a room from 1,826 to 3,028, with Data opening the door to let them in.",
+   "Make Data the cause in the wealth scene, for example stacking gold bars or pumping a vault up to $16.1T.",
+   "Thin out the axis ticks or rotate the labels so adjacent years never collide.",
+   "Give the closing card new motion or a callback, not the frozen comparison circles."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261003/billionaire-count-record-2025__452c83e8.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

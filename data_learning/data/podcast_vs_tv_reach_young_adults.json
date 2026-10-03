@@ -13,8 +13,13 @@
   },
   "notes": "Edison Research's 2025 Infinite Dial study found weekly podcast reach among 18-34 year-olds (52%) equal to weekly live-TV reach for the same age group (52%) -- the first time podcasts have matched television with this audience.",
   "points": [
-    {"label": "Podcasts (weekly, 18-34)", "value": 52},
-    {"label": "Live TV (weekly, 18-34)", "value": 52}
-  ],
-  "baseline": {"label": "Live TV (weekly, 18-34)", "value": 52}
+    {
+      "label": "Live TV (weekly, 18-34)",
+      "value": 52
+    },
+    {
+      "label": "Podcasts (weekly, 18-34)",
+      "value": 52
+    }
+  ]
 }

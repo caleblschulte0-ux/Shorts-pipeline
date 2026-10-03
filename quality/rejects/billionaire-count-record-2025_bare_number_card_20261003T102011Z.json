@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261003T102011Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start/mid/end and seg4 are two identical teal circles, each labelled '127% Billionaire wealth'. That is a number on a blob with nothing demonstrated, and the 195% S&P comparison the narration describes is never drawn.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Two identical circles both read '127% Billionaire wealth' while the narration says the S&P grew 195%. The kicker reads 'BILLIONAIRE WEALTH TOPS THE LIST', which is the opposite of the claim.",
+  "root_cause": "The comparison machine bound the same series to both sides and dropped the S&P 500 value. The circle is a generic size blob with no subject physics.",
+  "repair_goal": "Show two growth stacks side by side: billionaire wealth at 127% and the S&P 500 at 195%, labelled correctly, with the S&P side visibly winning. Data should be the one pushing the S&P stack past the billionaires to land the 'it's just stocks' point. Fix the kicker so it matches the claim."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

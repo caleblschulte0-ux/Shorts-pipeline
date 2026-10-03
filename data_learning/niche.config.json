@@ -30406,8 +30406,7 @@
      "say": "So the electricity bill for staying cool is projected to triple by 2050. The places catching up on AC are the same places that'll feel that power squeeze hardest."
     }
    ]
-  }
-,
+  },
   {
    "slug": "humpback-whale-recovery",
    "title": "Humpback Whales Went From 450 To 25,000 In One Region",
@@ -30439,7 +30438,7 @@
       "file": "whale_population_recovery_south_atlantic.json"
      },
      "insight_type": "trend",
-     "role": "1 \u00b7 THE CRASH AND THE COMEBACK",
+     "role": "1 · THE CRASH AND THE COMEBACK",
      "topic": "humpback whale population crash and recovery",
      "say": "In the 1950s, hunters had wiped the South Atlantic's humpback whales down to just 450. After whaling was banned, that same population climbed back to about 25,000 today."
     },
@@ -30451,7 +30450,7 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "role": "2 \u00b7 IT'S NOT JUST ONE GROUP",
+     "role": "2 · IT'S NOT JUST ONE GROUP",
      "topic": "how many humpback whale populations have recovered",
      "say": "Humpback whales came off the endangered species list in 2016. Out of all the populations scientists track worldwide, 10 have now fully recovered -- only 4 are still rebuilding."
     },
@@ -30463,7 +30462,7 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "role": "3 \u00b7 WHAT ACTUALLY FIXED IT",
+     "role": "3 · WHAT ACTUALLY FIXED IT",
      "topic": "whale kills before and after the whaling ban",
      "say": "Commercial whalers killed nearly 2.9 million whales in the 20th century. Since the 1986 ban, that number has dropped to zero, and whales used the time to recover."
     }
@@ -30499,7 +30498,7 @@
       "file": "podcast_monthly_reach_trend.json"
      },
      "insight_type": "trend",
-     "role": "1 \u00b7 THE RISE",
+     "role": "1 · THE RISE",
      "topic": "how many Americans listen to podcasts every month",
      "say": "Back in 2019, just 33% of Americans listened to a podcast every month. That number has climbed every year since, and this year it hit 58%."
     },
@@ -30509,11 +30508,12 @@
      "params": {
       "file": "podcast_vs_tv_reach_young_adults.json"
      },
-     "insight_type": "comparison",
+     "insight_type": "rank",
      "use_baseline": true,
-     "role": "2 \u00b7 WHO IT'S REACHING",
+     "role": "2 · WHO IT'S REACHING",
      "topic": "podcasts reaching young Americans as much as TV",
-     "say": "Among 18 to 34 year-olds, podcasts now reach 52% of people every week -- exactly the same as live TV. A niche hobby just tied the king of media."
+     "say": "Among 18 to 34 year-olds, podcasts now reach 52% of people every week -- exactly the same as live TV. A niche hobby just tied the king of media.",
+     "ascending": false
     },
     {
      "source": "offline",
@@ -30523,7 +30523,7 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "role": "3 \u00b7 WHERE THEY ACTUALLY LISTEN",
+     "role": "3 · WHERE THEY ACTUALLY LISTEN",
      "topic": "where people actually listen to podcasts",
      "say": "The top way people now listen to podcasts is YouTube, at 39% -- ahead of Spotify's 20% and Apple Podcasts' 11%. The 'audio' app isn't even leading anymore."
     }
@@ -30559,7 +30559,7 @@
       "file": "young_adult_drinking_rate_trend.json"
      },
      "insight_type": "trend",
-     "role": "1 \u00b7 THE DROP",
+     "role": "1 · THE DROP",
      "topic": "Gen Z and millennial drinking rate falling",
      "say": "Twenty years ago, 72% of 18 to 34 year-olds said they drank alcohol. That number fell to 59% by 2023, and now it's down to 50%."
     },
@@ -30569,11 +30569,12 @@
      "params": {
       "file": "teen_drinking_rate_then_now.json"
      },
-     "insight_type": "comparison",
+     "insight_type": "rank",
      "use_baseline": true,
-     "role": "2 \u00b7 THE YOUNGEST DROPPED IT FASTEST",
+     "role": "2 · THE YOUNGEST DROPPED IT FASTEST",
      "topic": "Gen Z's drinking habit at the youngest ages",
-     "say": "Among the youngest group -- 18 to 20 year-olds -- 70% said they drank two decades ago. Today it's just 35%."
+     "say": "Among the youngest group -- 18 to 20 year-olds -- 70% said they drank two decades ago. Today it's just 35%.",
+     "ascending": false
     },
     {
      "source": "offline",
@@ -30582,7 +30583,7 @@
       "file": "weekly_drinking_frequency_trend.json"
      },
      "insight_type": "trend",
-     "role": "3 \u00b7 EVEN THE ONES WHO STILL DRINK",
+     "role": "3 · EVEN THE ONES WHO STILL DRINK",
      "topic": "Gen Z drinking less often too",
      "say": "Even the Gen Z and millennials who do drink are doing it less often. Weekly drinking among young adults fell from 67% in the early 2000s to 61% today."
     }
@@ -30617,7 +30618,7 @@
       "file": "remittances_to_lmics_trend.json"
      },
      "insight_type": "trend",
-     "role": "1 \u00b7 HOW MUCH MONEY MOVES THIS WAY",
+     "role": "1 · HOW MUCH MONEY MOVES THIS WAY",
      "topic": "how much money migrants have sent home every year",
      "say": "By 2024, migrants were sending $685 billion a year to lower-income countries -- and that number barely dipped even during the pandemic."
     },
@@ -30629,7 +30630,7 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "role": "2 \u00b7 WHERE IT ACTUALLY GOES",
+     "role": "2 · WHERE IT ACTUALLY GOES",
      "topic": "which countries receive the most money sent home",
      "say": "India alone received $120 billion sent home by its migrants in one year -- more than Mexico, China, the Philippines and Pakistan combined receive individually."
     },
@@ -30641,12 +30642,13 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "role": "3 \u00b7 BIGGER THAN BUSINESS INVESTMENT",
+     "role": "3 · BIGGER THAN BUSINESS INVESTMENT",
      "topic": "money sent home vs money companies invest",
      "say": "In 2023, remittances to poorer countries hit $656 billion -- more than foreign companies invested there. The gap was over $270 billion in favor of migrants' money."
     }
    ]
-  } ],
+  }
+ ],
  "videos": [
   {
    "slug": "lowest-unemployment-states",
