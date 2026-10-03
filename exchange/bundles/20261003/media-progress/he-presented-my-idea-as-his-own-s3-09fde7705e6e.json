@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s3-09fde7705e6e",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s3-09fde7705e6e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8e26b6fe5d466e7ed01733859b3e7f534e1fe0979f2fec1e3de9a9fffb4c4987",
+  "prompt_used": "An editorial illustration for a short-form video: businessman presenting conference room. It accompanies the narration: \"He presented it line by line, confident, smiling\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s3-09fde7705e6e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "fabd41a12ee0aeced4e44ec99ae80f1abf54fd6b535a4a5923223bb497917ae7",
+    "bytes": 1591639,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-03T11:27:52.812Z"
+}
