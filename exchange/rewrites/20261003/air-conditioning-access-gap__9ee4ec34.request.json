@@ -1,0 +1,162 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "air-conditioning-access-gap__9ee4ec34",
+ "filed": "2026-10-03T11:44:24Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "air-conditioning-access-gap",
+ "current": {
+  "title": "Only 1 In 10 People In The Hottest Places Own An AC",
+  "hook": "2.8 billion people live where it's dangerously hot. Most can't cool down.",
+  "closing": "The hottest places on Earth can least afford to cool off.",
+  "question": "Could you survive a heatwave without AC? Tell me below.",
+  "segments": [
+   {
+    "topic": "AC ownership among people in the hottest places",
+    "say": "In the hottest parts of the world, only about 9% of homes have an air conditioner. In the US, Japan and South Korea, it is 90%."
+   },
+   {
+    "topic": "AC demand growing across the hottest places",
+    "say": "And demand is exploding regardless: the world had 1.6 billion AC units in 2018. The IEA projects 5.6 billion by 2050, mostly in places that don't have reliable power grids yet."
+   },
+   {
+    "topic": "the electricity bill for cooling the hottest places",
+    "say": "So the electricity bill for staying cool is projected to triple by 2050. The places catching up on AC are the same places that'll feel that power squeeze hardest."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "AC ownership among people in the hottest places",
+   "say": "In the hottest parts of the world, only about 9% of homes have an air conditioner. In the US, Japan and South Korea, it is 90%.",
+   "role": "1 · THE GAP",
+   "data": {
+    "file": "ac_ownership_gap_by_region.json",
+    "unit": "percent",
+    "title": "Air conditioning ownership: hottest regions vs. wealthy cooling markets",
+    "points": [
+     {
+      "label": "Hottest regions (2.8B people)",
+      "value": 9
+     },
+     {
+      "label": "US / Japan / South Korea",
+      "value": 90
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "AC demand growing across the hottest places",
+   "say": "And demand is exploding regardless: the world had 1.6 billion AC units in 2018. The IEA projects 5.6 billion by 2050, mostly in places that don't have reliable power grids yet.",
+   "role": "2 · THE DEMAND IS COMING ANYWAY",
+   "data": {
+    "file": "global_ac_stock_trend.json",
+    "unit": "billion",
+    "title": "Air conditioning units installed worldwide",
+    "points": [
+     {
+      "label": "1990",
+      "value": 0.5,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 0.9,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 1.2,
+      "period": "2010"
+     },
+     {
+      "label": "2018",
+      "value": 1.6,
+      "period": "2018"
+     },
+     {
+      "label": "2030",
+      "value": 2.3,
+      "period": "2030"
+     },
+     {
+      "label": "2050",
+      "value": 5.6,
+      "period": "2050"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 2,
+   "topic": "the electricity bill for cooling the hottest places",
+   "say": "So the electricity bill for staying cool is projected to triple by 2050. The places catching up on AC are the same places that'll feel that power squeeze hardest.",
+   "role": "3 · THE BILL THAT FOLLOWS",
+   "data": {
+    "file": "cooling_electricity_demand_index.json",
+    "unit": "index",
+    "title": "Electricity demand for space cooling (index, 2016=100)",
+    "points": [
+     {
+      "label": "2016",
+      "value": 100,
+      "period": "2016"
+     },
+     {
+      "label": "2030",
+      "value": 150,
+      "period": "2030"
+     },
+     {
+      "label": "2050",
+      "value": 310,
+      "period": "2050"
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It relies on multiple numbers rather than a single verifiable figure, failing the one-number requirement."
+ ],
+ "reasons": [
+  "premise: brain: It relies on multiple numbers rather than a single verifiable figure, failing the one-number requirement."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261003/air-conditioning-access-gap__9ee4ec34.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
