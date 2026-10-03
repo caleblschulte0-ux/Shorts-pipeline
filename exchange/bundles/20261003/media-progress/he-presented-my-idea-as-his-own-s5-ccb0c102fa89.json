@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s5-ccb0c102fa89",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s5-ccb0c102fa89",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c7eb71ffbb37b15294542c5ba7afecfcd5f6c9f85957b0c21ab49b08c8d88fd3",
+  "prompt_used": "An editorial illustration for a short-form video: nervous man silence. It accompanies the narration: \"He froze\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s5-ccb0c102fa89.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "af18151f85d929d336b756d84ce430c9dc835fd92939db45c80b7afcb27fe9a3",
+    "bytes": 1917092,
+    "format": "png",
+    "width": 940,
+    "height": 1672
+  },
+  "verified_at": "2026-10-03T11:27:54.761Z"
+}
