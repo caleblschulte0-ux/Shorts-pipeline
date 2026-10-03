@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260924",
-      "dry_run": false,
-      "ts": "2026-09-24T23:52:31+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 86,
-        "with_curve": 13,
-        "fetched_at": "2026-09-24T23:39:19.325176+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260924-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260924-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20260925",
       "dry_run": false,
       "ts": "2026-09-25T12:33:14+00:00",
@@ -5629,6 +5577,443 @@
           "slug": "clip-20261002-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261003",
+      "dry_run": false,
+      "ts": "2026-10-03T03:57:14+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 124,
+        "with_retention": 103,
+        "with_curve": 15,
+        "fetched_at": "2026-10-02T16:38:29.791972+00:00"
+      },
+      "brain": {
+        "ok": 38,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261003-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "chat ragebait lands, visible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Bike crash into pillar, incapacitated, l",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Gets Ragebaited By Chatty And Totally Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture fills only about 60-65% of the canvas in several frames, so the framing is a little loose.",
+                "In the last third (26-41s) the shot is a close view of a curb and pillar. The player is barely visible and the person is",
+                "The hook card at 1.8s sits close to the top edge, and the 'OH' overlay at 23s lands on the bike."
+              ]
+            }
+          },
+          "took_s": 397.4
+        },
+        {
+          "slug": "clip-20261003-2",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.7s \u2014 too short to edit",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown event",
+              "blind": false
+            }
+          },
+          "took_s": 14.7
+        },
+        {
+          "slug": "clip-20261003-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "Visible kiss moment, but names unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Visible surprise kiss, shocked chat reac",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "3.4s frame is motion-blurred (camera whip), which looks natural for the footage",
+                "caption 'HE'S KISSING' at 0.5s duplicates the hook card, but it covers the table and not a face"
+              ]
+            }
+          },
+          "took_s": 136.2
+        },
+        {
+          "slug": "clip-20261003-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "Ear cleaning, visible but unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Ear cleaning, real gross-out and pain re",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Extraemily: Emily Can't Stop Laughing While Cleaning Keem's Ear And It Hurts"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Hook card at 2.2s sits on the top-left of the facecam crop, though it doesn't cover the face",
+                "Bottom third is only blurred padding with captions, so the sharp picture fills a bit less than the target",
+                "Facecam crop is slightly off-centre in a few frames (e.g. 50.5s), with the subject partly cut at the edge"
+              ]
+            }
+          },
+          "took_s": 343.8
+        },
+        {
+          "slug": "clip-20261003-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (IRL event wandering, no clear payoff, re)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 7,
+                "refused_shown": 0,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat addresses the Reggie situation on stream, catches Reggie lying about the 2:32 AM call, and Reggie threatens hi",
+                    "shape": "one_stream",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Buddha and Lang are caught up in a police raid on the chop spot, and then Mista C looks out for his son Lang.",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Sodapoppin plays a poker hand against Tyler1's 'lock in' tell and then thinks it was rigged.",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 158,
+                "candidates": 265,
+                "pool": 1332,
+                "pool_with_vod": 1222,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  3,
+                  5,
+                  2,
+                  5,
+                  2,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:kaicenat/kaicenat-call-cenat-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58, 46, 58] after 2 revision(s) \u2014 @0s missing_context: The opening never says who Reggie is or what the falling-out is about. The only setup is a brief overlay, 'REGGIE SAYS KAI LEFT HIM ON READ', which fades out. Start with Kai stating the accusation, or; @0s pacing: The first 16s is a vagu"
+                },
+                {
+                  "cluster": "brucedropemoff@vod2884983868/brucedropemoff-check-jacket-202",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips are unrelated moments from the same broadcast, about seven minutes apart, with no meaningful change linking them. The first is a hostile rant about Somali people, and its audio contains "
+                },
+                {
+                  "cluster": "scout:buddha/buddha-buddha-casino-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scout's story. Clip 1 (5:10) is Buddha setting up a casino table test: he explains it, then says the dealer reports the game is 'not available in my region'. There is no "
+                },
+                {
+                  "cluster": "kaicenat@vod2884438305/kaicenat-about-aura-2026w39",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips are seven minutes apart on one broadcast and do not form a setup, escalation and payoff. The first is an axe throw followed by a celebration, and the throw's landing is never shown. The "
+                },
+                {
+                  "cluster": "scout:sodapoppin/sodapoppin-champ-poker-2026w39",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scouted story. Clip 1 (8h36m) is Sodapoppin and a companion laughing while commentary mentions a Tyler1 'lock in', the cards coming in and a 'lottery' remark. It never sh"
+                },
+                {
+                  "cluster": "stableronaldo@vod2864388285/stableronaldo-green-hits-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips come from the same broadcast but are not shown to be one arc. Clip 1 is a roulette bet with a 'black he dies' caption, where an avatar is shot. Its outcome for stableronaldo is unclear: "
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "IRL event wandering, no clear payoff, re",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 35.5
+        },
+        {
+          "slug": "clip-20261003-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 19,
+                "refused_shown": 3,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat catches Reggie lying about a 2:32 AM call, and Fanum then speaks about Reggie and says he had to distance hims",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Chatty ragebaits Kalita and then Cinna in repeated moments on the same Cinna stream, and Cinna loses it.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 158,
+                "candidates": 262,
+                "pool": 1332,
+                "pool_with_vod": 1222,
+                "arc_sizes": [
+                  3,
+                  2,
+                  2,
+                  3,
+                  5,
+                  2,
+                  5,
+                  2,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:fanum+kaicenat/fanum-kaicenat-about-call-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not support the scout's story. Kai Cenat's clip (2026-10-01) is a self-contained monologue. He reads Reggie's 2:32 AM text, says the call-history screenshot shows the call came after "
+                },
+                {
+                  "cluster": "brucedropemoff@vod2884983868/brucedropemoff-about-backside-2",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two sources are not a developing event. The first clip opens mid-rant: the streamer says something derogatory about an ethnic group, using slurs, over a vertical Twitch video, then asks what is ha"
+                },
+                {
+                  "cluster": "scout:cinna/cinna-charact-chas-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scouted story. The 'chat ragebaits Kalita and then Cinna, and Cinna loses it' premise never appears or is heard in any of the three clips. All three reports list the rage"
+                },
+                {
+                  "cluster": "kaicenat@vod2884438305",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips are seven minutes apart on one broadcast and do not form a setup, escalation and payoff. The first is an axe throw "
+                },
+                {
+                  "cluster": "stableronaldo@vod2864388285",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips come from the same broadcast but are not shown to be one arc. Clip 1 is a roulette bet with a 'black he dies' capti"
+                },
+                {
+                  "cluster": "kaicenat@vod2859079447/kaicenat-black-mask-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The three clips are consecutive moments from one stream: Kai and Rakai in superhero costumes singing in a car, then one of them saying 'I'm nervous, man', then both on a bridge. They show a mood and a"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "routine gameplay death, vague",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "Visible death, streamer's shocked hands-",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Panics And Has To Run Away After This Death"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.55,
+              "problems": [
+                "gameplay panel is small and very dark, and the bottom ~40% of the canvas is mostly empty blurred padding",
+                "source stream caption 'gotta resituate' is clipped at the facecam edge in a few frames",
+                "payoff (Game Over screen) is legible but small"
+              ]
+            }
+          },
+          "took_s": 149.6
         }
       ]
     }

@@ -10632,14 +10632,31 @@
       "ts": "2026-10-03T03:54:45.074108+00:00"
     },
     "clip-20261003-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/ArtsyPrettiestTardigradeCoolStoryBro-2cGQJ656kxnsxJcr",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/S5cXeIiY5nc",
       "title": "Jynxzi Panics And Has To Run Away After This Death",
       "kind": "twitch_clip",
-      "ts": "2026-10-03T03:57:04.325815+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-03T03:57:14.687187+00:00",
+      "uploaded_at": "2026-10-03T03:57:14.687203+00:00",
+      "publish_at": "2026-10-04T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261003-jynxzi-panics-and-has-to-run-away-after-this-dea-4a50f32f"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ArtsyPrettiestTardigradeCoolStoryBro-2cGQJ656kxnsxJcr",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "HE HAS TO GET AWAY",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2418,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
