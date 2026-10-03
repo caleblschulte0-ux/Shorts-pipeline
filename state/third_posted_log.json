@@ -10470,13 +10470,67 @@
       "ts": "2026-10-03T03:01:04.581837+00:00"
     },
     "clip-20261003-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/SuspiciousPoorDumplingsFutureMan-6QeW-v9wT8hh5xSu",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/qC3LzK0bUBE",
       "title": "Cinna Gets Ragebaited By Chatty And Totally Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-10-03T03:07:31.259182+00:00",
+      "ts": "2026-10-03T03:07:42.024341+00:00",
+      "uploaded_at": "2026-10-03T03:07:42.024359+00:00",
+      "publish_at": "2026-10-03T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261003-cinna-gets-ragebaited-by-chatty-and-totally-lose-8745c65a"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/SuspiciousPoorDumplingsFutureMan-6QeW-v9wT8hh5xSu",
+      "streamer": "cinna",
+      "series": "rage",
+      "hook": "CHATTY RAGEBAITED HIM PERFECTLY",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2907,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-jazzyresolutesalamanderbudstar-jqedie51zhfs7_wd": {
+      "source_url": "https://www.twitch.tv/agent00/clip/JazzyResoluteSalamanderBudStar-jqEdie51zhFS7_WD",
+      "streamer": "agent00",
+      "title": "Are you just reading chat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Two sitting, talking; nothing happens)",
+      "ts": "2026-10-03T03:08:08.339335+00:00"
+    },
+    "rejected-gloriousadorablejalapenossssss-yzfzpmyv5mfftmvx": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/GloriousAdorableJalapenoSSSsss-yZFZPMyv5MFFTMvx",
+      "streamer": "jasontheween",
+      "title": "camera what ????",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Talking head, no visible event)",
+      "ts": "2026-10-03T03:08:39.290599+00:00"
+    },
+    "rejected-spineysneakyemudxabomb-o6nyyye1x2x7wtiv": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/SpineySneakyEmuDxAbomb-o6NYYYE1X2x7wTIv",
+      "streamer": "plaqueboymax",
+      "title": "cuffem",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.7s \u2014 too short to edit",
+      "ts": "2026-10-03T03:08:53.979043+00:00"
+    },
+    "clip-20261003-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/AssiduousCovertWebCopyThis-D4w-wFKZ_c1IeEcL",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
+      "kind": "twitch_clip",
+      "ts": "2026-10-03T03:11:03.442383+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
