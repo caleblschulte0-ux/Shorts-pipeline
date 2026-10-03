@@ -221,52 +221,6 @@
   ],
   "showrunner_recent": [
     {
-      "ts": "2026-10-01T12:21:15+00:00",
-      "slug": "bat-fungus-collapse",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A string of stock charts (timeline, bars, circles, bubbles, seesaw) with Data perched or dancing beside them; the 97% die-off, the story's heart, is three nearly equal circles.",
-      "auto_fails": [
-        "decorative_mascot: seg3:start to seg3:end: Data perches on top of the $53B bubble while it grows; he does not inflate it. seg4:start to seg4:end: he leans on a staff beside the left pan while blocks drop onto it from nowhere; he is not the one stacking them. seg1: he dances across the bars without driving them.",
-        "bare_number_card: seg2:start: three circles of almost the same size labelled 97%, 90% and 90%, which are just numbers on blobs. The 7-point gap is never shown.",
-        "unreadable: seg3:mid: the big '53' caption sits on top of the 'Source: USGS / Boston University...' line. seg3:mid/end: '$53B' is drawn in dark ink with a smeared double outline on the blue bubble, so it is hard to read. seg4:mid/end: Data's body and staff cover the 'H' of 'High estimate' and crowd '$53B'. seg2:start: the 'Northern long-eared bat' label is tiny."
-      ],
-      "problems": [
-        "The hook is a slow timeline build whose counter reads '1' for 2+ seconds, while the caption already says '97 percent' over a states chart. Words and picture don't match.",
-        "seg1 repeats seg0's 1/32/35 data as plain bars, wasting about 10 seconds.",
-        "seg2 shows 97%/90%/90% as same-size circles, then mascot clones and stray empty outline circles. The '90%' caption appears under 'northern long-eared', which is 97%.",
-        "seg3: Data stands on top of the bubble without causing its growth. The '$53B' text is smeared dark-on-blue, and the '53' caption collides with the source line.",
-        "seg4: blocks fall onto the scale on their own while Data leans on a staff and covers the 'High estimate' label.",
-        "The mascot never causes the data's motion in any scene."
-      ],
-      "fixes": [
-        "Rebuild seg2 as a bat colony made of 100 silhouettes per species that drop as Data's UV light reveals white-nose, leaving 3 vs 10 hanging.",
-        "Cut seg1, or make the spread bespoke: a US map where Data carries a spore lantern state to state as the count ticks 1 \u2192 32 \u2192 35 in sync.",
-        "Start the hook mid-action, with the fungus already spreading from one cave and the counter running, and caption only the hook line.",
-        "seg4: Data hauls the crop-value blocks onto the pan himself (AGENT_ACTS stack). Move him off the labels.",
-        "seg3: draw '$53B' in ink with proper contrast, and keep caption numbers clear of the source line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "style_arm": "current"
-    },
-    {
       "ts": "2026-10-01T12:28:04+00:00",
       "slug": "bat-fungus-collapse",
       "score": 39,
@@ -4061,6 +4015,85 @@
       },
       "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|unreadable",
       "style_arm": "current"
+    },
+    {
+      "ts": "2026-10-03T10:18:28+00:00",
+      "slug": "billionaire-count-record-2025",
+      "score": 40,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "Three plain bar charts lead into a payoff scene with the wrong data: both circles say 127% billionaire wealth, so the S&P 195% punchline is never shown.",
+      "auto_fails": [
+        "decorative_mascot: In hook@1.5 to seg0:end Data stands on a ladder and points at a bar the code already grew. In seg3:start to seg4:end he just stands on top of a circle. He never causes any number to change.",
+        "bare_number_card: seg3:start/mid/end and seg4 are two identical teal circles, each labelled '127% Billionaire wealth'. That is a number on a blob with nothing demonstrated, and the 195% S&P comparison the narration describes is never drawn.",
+        "dead_air: seg3 and seg4 (t=30 to 46s) show the same two-circle layout. The circles only scale up and down, and the mascot barely moves, so the two beats look the same for about 15s.",
+        "empty_void: seg2:start leaves the top two-thirds of the frame empty above three small bars. In seg3:start the circles are small and most of the frame is blank.",
+        "unreadable: On the seg1 axis the last two labels collide into '20242025' (seg1:start, mid and end). The caption stacks 'counted 1,826 of' over a large '1,826' (seg1:start)."
+      ],
+      "problems": [
+        "seg3/seg4 show '127% Billionaire wealth' twice. The S&P 500 195% value is missing, so the claim 'most of this is just stocks' is never shown and the visual contradicts the narration.",
+        "The seg3 kicker 'BILLIONAIRE WEALTH TOPS THE LIST' states the opposite of the story.",
+        "seg0, seg1 and seg2 are the same bar chart drawn three times. The count is shown twice, as bars and then as a lollipop timeline.",
+        "Axis labels '2024' and '2025' collide into '20242025' in seg1.",
+        "Data only points from a ladder or stands on a circle. He never causes the growth.",
+        "seg2:start has a large empty upper frame. The seg3 circles are small in a mostly blank frame."
+      ],
+      "fixes": [
+        "Bind the comparison scene to two series, billionaire wealth at 127% and the S&P 500 at 195%, with correct labels and an accent on the S&P winner.",
+        "Rewrite the kicker to match the claim, for example 'THE MARKET OUTGREW THE BILLIONAIRES'.",
+        "Replace the duplicate seg1 timeline with a bespoke picture, for example a crowd of billionaire figures filling a room from 1,826 to 3,028, with Data opening the door to let them in.",
+        "Make Data the cause in the wealth scene, for example stacking gold bars or pumping a vault up to $16.1T.",
+        "Thin out the axis ticks or rotate the labels so adjacent years never collide.",
+        "Give the closing card new motion or a callback, not the frozen comparison circles."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 139
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "dead_air",
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "wrong_data_bare_number_card",
+        "visible_evidence": "Two identical circles both read '127% Billionaire wealth' while the narration says the S&P grew 195%. The kicker reads 'BILLIONAIRE WEALTH TOPS THE LIST', which is the opposite of the claim.",
+        "root_cause": "The comparison machine bound the same series to both sides and dropped the S&P 500 value. The circle is a generic size blob with no subject physics.",
+        "repair_goal": "Show two growth stacks side by side: billionaire wealth at 127% and the S&P 500 at 195%, labelled correctly, with the S&P side visibly winning. Data should be the one pushing the S&P stack past the billionaires to land the 'it's just stocks' point. Fix the kicker so it matches the claim."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.308,
+        "effective_fps": 16.6,
+        "max_dup_run": 23,
+        "measured": true,
+        "judder_ratio": 0.03,
+        "judder_fps": 23.3,
+        "held_s": 5.92,
+        "max_dup_at_s": 4.67,
+        "duration_s": 46.25
+      },
+      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|wrong_data_bare_number_card",
+      "style_arm": "current"
     }
   ],
   "showrunner_recurrence": {
@@ -4092,6 +4125,13 @@
       "count": 2,
       "days": [
         "2026-10-02"
+      ]
+    },
+    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|wrong_data_bare_number_card": {
+      "count": 2,
+      "days": [
+        "2026-10-02",
+        "2026-10-03"
       ]
     },
     "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|wrong_data_duplicate_series": {
@@ -4226,12 +4266,6 @@
         "2026-10-02"
       ]
     },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|wrong_data_bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-02"
-      ]
-    },
     "?|bare_number_card+decorative_mascot+empty_void+unreadable|broken_chart_no_demonstration": {
       "count": 1,
       "days": [
@@ -4276,8 +4310,8 @@
     }
   },
   "recent_commits": [
-    "7610976 2026-10-02 Third: the story reviser sees every transcript; a refusal covers the whole arc (#507)",
-    "b63bf54 2026-10-03 claim: mailbox verdicts 2026-10-03T04:47Z [skip ci]"
+    "65f4d68 2026-10-03 explainer: update posted log + analytics [skip ci]",
+    "63918ab 2026-10-03 watchdog: phase A readiness 20261003 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4357,28 +4391,28 @@
       "videos": 95,
       "top_by_vph": [
         {
-          "title": "Glaciers Are Now Losing 390 Billion Tons Of Ice A Year",
-          "vph": 8.56,
-          "views": 55
-        },
-        {
           "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
-          "vph": 8.0,
+          "vph": 6.19,
           "views": 414
         },
         {
           "title": "The World Made 62 Million Tons Of E-Waste",
-          "vph": 7.57,
-          "views": 357
+          "vph": 5.76,
+          "views": 359
+        },
+        {
+          "title": "Glaciers Are Now Losing 390 Billion Tons Of Ice A Year",
+          "vph": 5.33,
+          "views": 115
         },
         {
           "title": "Cremation Just Became the New American Normal",
-          "vph": 6.67,
-          "views": 214
+          "vph": 5.17,
+          "views": 244
         },
         {
           "title": "For 70 Years, Fusion Lost Energy. Not Anymore.",
-          "vph": 2.54,
+          "vph": 2.45,
           "views": 972
         }
       ],
@@ -4389,28 +4423,28 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 3.67,
+          "vph": 3.62,
           "views": 1356
         },
         {
-          "title": "Xqc Gets Captured And Chat Can't Believe It",
-          "vph": 1.35,
-          "views": 45
-        },
-        {
           "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let",
-          "vph": 1.34,
+          "vph": 1.24,
           "views": 77
         },
         {
+          "title": "Xqc Gets Captured And Chat Can't Believe It",
+          "vph": 1.18,
+          "views": 45
+        },
+        {
           "title": "Xqc Gets Pulled Over In NoPixel And Tells The Cop This Is The Last You",
-          "vph": 0.97,
-          "views": 34
+          "vph": 0.91,
+          "views": 36
         },
         {
           "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 0.8,
-          "views": 160
+          "vph": 0.79,
+          "views": 161
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -4529,7 +4563,7 @@
       "title": "The versioned exchange response schema is not enforced",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "825a41037aae",
