@@ -2434,11 +2434,22 @@
       "duration_s": 43.6
     },
     "podcast-listening-boom-2026": {
-      "claimed_at": "2026-10-03T14:10:36.764266+00:00",
+      "url": "https://youtube.com/shorts/o7m5vXmt5KQ",
       "title": "58% Of Americans Now Listen To A Podcast Every Month",
+      "at": "2026-10-03T14:10:44.864839+00:00",
       "publish_at": "2026-10-03T20:00:23Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 45.3
     }
   },
   "uploads": [
@@ -2968,9 +2979,10 @@
       "claimed_at": "2026-10-03T14:10:36.764266+00:00",
       "title": "58% Of Americans Now Listen To A Podcast Every Month",
       "publish_at": "2026-10-03T20:00:23Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "podcast-listening-boom-2026"
+      "url": "https://youtube.com/shorts/o7m5vXmt5KQ",
+      "state": "posted",
+      "slug": "podcast-listening-boom-2026",
+      "at": "2026-10-03T14:10:44.864839+00:00"
     }
   ]
 }
