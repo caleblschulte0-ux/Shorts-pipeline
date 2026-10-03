@@ -2,143 +2,170 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 30,
+   "count": 28,
    "stories": {
-    "glacier-mass-loss-acceleration": 4,
-    "marathon-super-shoes-record-pace": 2,
-    "permafrost-thaw": 21,
-    "billionaire-count-record-2025": 3
+    "permafrost-thaw": 14,
+    "genz-drinking-decline": 2,
+    "kelp-forest-sea-star-collapse": 2,
+    "marathon-super-shoes-record-pace": 3,
+    "billionaire-count-record-2025": 4,
+    "bat-fungus-collapse": 3
    },
    "timestamps": [
-    "2026-10-02T12:28:48+00:00",
-    "2026-10-02T12:35:53+00:00",
-    "2026-10-02T12:42:56+00:00",
-    "2026-10-02T12:42:56+00:00",
-    "2026-10-02T12:50:41+00:00",
-    "2026-10-02T12:57:51+00:00",
-    "2026-10-02T12:57:51+00:00",
-    "2026-10-02T13:05:37+00:00",
-    "2026-10-02T13:05:37+00:00",
-    "2026-10-02T13:13:17+00:00",
-    "2026-10-02T13:13:17+00:00",
-    "2026-10-02T13:13:17+00:00",
-    "2026-10-02T13:43:06+00:00",
-    "2026-10-02T13:49:27+00:00",
-    "2026-10-02T13:49:27+00:00",
-    "2026-10-02T13:49:27+00:00",
-    "2026-10-02T13:55:34+00:00",
-    "2026-10-02T14:01:39+00:00",
-    "2026-10-02T14:01:39+00:00",
-    "2026-10-02T14:22:42+00:00",
-    "2026-10-02T14:32:47+00:00",
-    "2026-10-02T14:39:55+00:00",
-    "2026-10-02T14:47:34+00:00",
-    "2026-10-02T14:55:12+00:00",
-    "2026-10-02T14:55:12+00:00",
-    "2026-10-02T18:56:56+00:00",
-    "2026-10-02T19:05:53+00:00",
-    "2026-10-02T19:05:53+00:00",
-    "2026-10-02T19:10:09+00:00",
-    "2026-10-02T19:10:09+00:00"
+    "2026-10-03T14:47:17+00:00",
+    "2026-10-03T14:54:08+00:00",
+    "2026-10-03T15:05:45+00:00",
+    "2026-10-03T15:05:45+00:00",
+    "2026-10-03T17:52:46+00:00",
+    "2026-10-03T18:01:12+00:00",
+    "2026-10-03T18:11:08+00:00",
+    "2026-10-03T18:11:08+00:00",
+    "2026-10-03T18:39:50+00:00",
+    "2026-10-03T18:50:00+00:00",
+    "2026-10-03T18:57:16+00:00",
+    "2026-10-03T18:57:16+00:00",
+    "2026-10-03T18:57:16+00:00",
+    "2026-10-03T19:05:01+00:00",
+    "2026-10-03T19:05:01+00:00",
+    "2026-10-03T19:05:01+00:00",
+    "2026-10-03T19:12:48+00:00",
+    "2026-10-03T20:09:48+00:00",
+    "2026-10-03T20:18:38+00:00",
+    "2026-10-03T20:27:26+00:00",
+    "2026-10-03T20:35:43+00:00",
+    "2026-10-03T20:43:58+00:00",
+    "2026-10-03T20:53:53+00:00",
+    "2026-10-03T21:00:57+00:00",
+    "2026-10-03T21:07:44+00:00",
+    "2026-10-03T21:07:44+00:00",
+    "2026-10-03T21:14:39+00:00",
+    "2026-10-03T21:14:39+00:00"
    ],
    "examples": [
-    "decorative_mascot: Data holds a plank beside the waterfall without driving it (hook@0.8, seg0:end), waves from the cliff top (seg1:start, seg1:mid), cheers on a block (seg2:end), waves on the seawall ",
-    "decorative_mascot: seg1:start/mid Data just waves from the glacier edge while the ice retreats by itself; seg3:start/mid/end he stands on the sea wall waving while the water rises without him; seg4 he",
-    "decorative_mascot: In seg1:start through seg1:end Data waves and then clutches his head on the cliff top while the ice recedes on its own. In seg2:start to seg2:end he stands on the shelf with his han"
+    "decorative_mascot: hook@0.3 to seg0:end: Data walks along the axis with his arms raised and causes nothing. seg1:start to seg1:end: he floats between empty bar rows (2023, then 2010, then on top of 19",
+    "decorative_mascot: hook@0.3 to seg0:end: Data walks the baseline with both arms up and causes nothing. seg1:mid and seg1:end: he floats beside empty bar tracks. seg4:start to seg4:end: he stands besid",
+    "decorative_mascot: Data mostly just stands beside or on the marks. In hook@0.3 to seg0:end he points at the rows. In seg2:start to seg2:end he idles on top of a circle. In seg4:start to payoff@-0.4 he"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 15,
+   "count": 17,
    "stories": {
-    "glacier-mass-loss-acceleration": 2,
-    "marathon-super-shoes-record-pace": 2,
-    "permafrost-thaw": 8,
-    "billionaire-count-record-2025": 3
+    "permafrost-thaw": 6,
+    "kelp-forest-sea-star-collapse": 2,
+    "marathon-super-shoes-record-pace": 3,
+    "billionaire-count-record-2025": 3,
+    "bat-fungus-collapse": 3
    },
    "timestamps": [
-    "2026-10-02T12:28:48+00:00",
-    "2026-10-02T12:35:53+00:00",
-    "2026-10-02T12:50:41+00:00",
-    "2026-10-02T13:05:37+00:00",
-    "2026-10-02T13:43:06+00:00",
-    "2026-10-02T13:55:34+00:00",
-    "2026-10-02T14:22:42+00:00",
-    "2026-10-02T14:32:47+00:00",
-    "2026-10-02T14:39:55+00:00",
-    "2026-10-02T14:47:34+00:00",
-    "2026-10-02T14:55:12+00:00",
-    "2026-10-02T18:56:56+00:00",
-    "2026-10-02T19:01:34+00:00",
-    "2026-10-02T19:05:53+00:00",
-    "2026-10-02T19:10:09+00:00"
+    "2026-10-03T14:47:17+00:00",
+    "2026-10-03T14:54:08+00:00",
+    "2026-10-03T17:52:46+00:00",
+    "2026-10-03T18:01:12+00:00",
+    "2026-10-03T18:11:08+00:00",
+    "2026-10-03T18:39:50+00:00",
+    "2026-10-03T18:50:00+00:00",
+    "2026-10-03T19:05:01+00:00",
+    "2026-10-03T19:12:48+00:00",
+    "2026-10-03T20:09:48+00:00",
+    "2026-10-03T20:18:38+00:00",
+    "2026-10-03T20:27:26+00:00",
+    "2026-10-03T20:35:43+00:00",
+    "2026-10-03T20:43:58+00:00",
+    "2026-10-03T20:53:53+00:00",
+    "2026-10-03T21:00:57+00:00",
+    "2026-10-03T21:14:39+00:00"
    ],
    "examples": [
-    "unreadable: seg1:end: Data's body covers the sub-label, so 'ice lost a year \u00b7 2016-2025' reads 'ice lost a yea 2016-2025'. seg2:end: Data's head collides with 'more than the greenland ice sheet' and h",
-    "unreadable: seg1:end Data's raised arms cover the subtitle ('ice lost a yea\u2026 2016-2025'); seg2:end Data stands on the label 'Mountain glaciers' and his head runs into the line 'more than the greenland",
-    "unreadable: payoff@-1.8 and seg4:end: 'COMMENT BELOW' sits on top of 'think.' so both are garbled. seg4:start: Data's body covers 'Set since 2018' ('Set\u00b7since'). seg2:mid: the '8.3' outlined text on y"
+    "unreadable: seg2:end: 'Frozen in permafrost soil 1700B' is printed over 'Earth's whole atmosphere 870B' and neither can be read. seg4:start/mid: Data covers the 'B' of '150B'. The bottom CTA and 'Sour",
+    "unreadable: seg2:end: 'Frozen in permafrost soil 1700B' is printed directly over 'Earth's whole atmosphere 870B', so both are illegible. seg4:start: the CTA 'COMMENT BELOW' crowds the caption block, a",
+    "unreadable: 'After the outb...' is truncated and tiny at the left of hook@0.3 through seg0:end. In seg4:mid/end Data's body covers the start of '100%' and 'Pre-2014 canopy', and he is clipped by the l"
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
-   "count": 8,
+   "count": 14,
    "stories": {
-    "marathon-super-shoes-record-pace": 2,
-    "billionaire-count-record-2025": 3,
-    "permafrost-thaw": 3
+    "permafrost-thaw": 5,
+    "genz-drinking-decline": 1,
+    "kelp-forest-sea-star-collapse": 2,
+    "marathon-super-shoes-record-pace": 3,
+    "billionaire-count-record-2025": 3
    },
    "timestamps": [
-    "2026-10-02T12:50:41+00:00",
-    "2026-10-02T13:43:06+00:00",
-    "2026-10-02T14:22:42+00:00",
-    "2026-10-02T14:32:47+00:00",
-    "2026-10-02T14:39:55+00:00",
-    "2026-10-02T14:47:34+00:00",
-    "2026-10-02T18:56:56+00:00",
-    "2026-10-02T19:10:09+00:00"
+    "2026-10-03T14:47:17+00:00",
+    "2026-10-03T14:54:08+00:00",
+    "2026-10-03T15:05:45+00:00",
+    "2026-10-03T17:52:46+00:00",
+    "2026-10-03T18:01:12+00:00",
+    "2026-10-03T18:11:08+00:00",
+    "2026-10-03T18:39:50+00:00",
+    "2026-10-03T18:50:00+00:00",
+    "2026-10-03T19:12:48+00:00",
+    "2026-10-03T20:35:43+00:00",
+    "2026-10-03T20:43:58+00:00",
+    "2026-10-03T20:53:53+00:00",
+    "2026-10-03T21:00:57+00:00",
+    "2026-10-03T21:07:44+00:00"
    ],
    "examples": [
-    "bare_number_card: seg1:start-end is a big number (15.9 -> 79.5 -> 126) on a ring with no unit. seg2 is two blobs that both say 8.3, which is a number on a blob and demonstrates nothing.",
-    "bare_number_card: seg3:mid and seg3:end: two teal discs that each just say \"127%\". The circles swell, but the size encodes nothing, and the 195% S&P figure is never shown at all.",
-    "bare_number_card: seg1:start-end is a big number ('15.9' to '79.5' to '126', tagged '1998') inside a ring gauge, which is a number on a dial and not a demonstration of the record falling; seg2 is two "
+    "bare_number_card: seg2:start shows '870B' and '1700B' as large numbers beside two Data poses, with nothing demonstrating the amounts.",
+    "bare_number_card: seg2:start is just '870B' and '1700B' set as big type over two thin rules. Nothing shows the comparison, and two copies of Data stand there as decoration.",
+    "bare_number_card: seg2:mid and seg2:end are just two big yellow discs that both say 70%. The 35% 'today' value never appears, so the beat's main point is never shown."
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 7,
+   "count": 14,
    "stories": {
-    "marathon-super-shoes-record-pace": 2,
-    "permafrost-thaw": 3,
-    "billionaire-count-record-2025": 2
+    "permafrost-thaw": 4,
+    "genz-drinking-decline": 1,
+    "kelp-forest-sea-star-collapse": 2,
+    "marathon-super-shoes-record-pace": 3,
+    "billionaire-count-record-2025": 2,
+    "bat-fungus-collapse": 2
    },
    "timestamps": [
-    "2026-10-02T12:50:41+00:00",
-    "2026-10-02T13:13:17+00:00",
-    "2026-10-02T13:43:06+00:00",
-    "2026-10-02T14:22:42+00:00",
-    "2026-10-02T14:32:47+00:00",
-    "2026-10-02T14:39:55+00:00",
-    "2026-10-02T14:55:12+00:00"
+    "2026-10-03T14:54:08+00:00",
+    "2026-10-03T15:05:45+00:00",
+    "2026-10-03T17:52:46+00:00",
+    "2026-10-03T18:01:12+00:00",
+    "2026-10-03T18:11:08+00:00",
+    "2026-10-03T18:39:50+00:00",
+    "2026-10-03T18:50:00+00:00",
+    "2026-10-03T18:57:16+00:00",
+    "2026-10-03T20:18:38+00:00",
+    "2026-10-03T20:27:26+00:00",
+    "2026-10-03T20:35:43+00:00",
+    "2026-10-03T20:43:58+00:00",
+    "2026-10-03T21:00:57+00:00",
+    "2026-10-03T21:07:44+00:00"
    ],
    "examples": [
-    "empty_void: seg1:mid: the ring takes up the top third and the bottom half of the frame is empty dark gradient. seg2:start has a large empty area above and below two small circles.",
-    "empty_void: In seg3:start the top 60% of the frame is empty dark gradient, with two small bars at the bottom left. In seg2:mid the bottom third is empty under the two rows.",
-    "empty_void: seg2:start: three small bars sit at the bottom and the top two-thirds of the frame is empty dark gradient. seg3:start: two small circles float in a large empty field."
+    "empty_void: seg3:start: the top 60% of the frame is empty dark gradient, with two small bars and a tiny Data at the bottom. hook@0.3 to seg0:mid: the chart uses a thin strip and leaves the whole lower",
+    "empty_void: The top half of the frame is empty dark space in seg2:start (only two small discs sit at mid-height). seg4:start has only a closing caption above towers that fill the bottom third.",
+    "empty_void: In seg3:start the 100% bubble and a tiny 4% dot float in a mostly empty dark frame. In seg2 the lower third under both rows is blank."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 2,
+   "count": 5,
    "stories": {
-    "billionaire-count-record-2025": 2
+    "kelp-forest-sea-star-collapse": 2,
+    "billionaire-count-record-2025": 2,
+    "permafrost-thaw": 1
    },
    "timestamps": [
-    "2026-10-02T14:32:47+00:00",
-    "2026-10-02T18:56:56+00:00"
+    "2026-10-03T17:52:46+00:00",
+    "2026-10-03T18:50:00+00:00",
+    "2026-10-03T20:35:43+00:00",
+    "2026-10-03T20:53:53+00:00",
+    "2026-10-03T21:00:57+00:00"
    ],
    "examples": [
-    "dead_air: seg4 shows the same two \"127%\" circles as seg3 with only the size changed (seg3:end compared with seg4:mid). seg0 also repeats the finished hook chart almost frame for frame (hook@1.5, seg0:",
-    "dead_air: seg0:start, hook@2.2, seg0:mid and seg0:end show the same finished bar chart with Data pointing at 3,028 for about 4s. Measured max_dup_run is 23 at 4.67s, and held_s is 6.33."
+    "dead_air: hook@0.8 through seg0:end (0.8-4.2s) and on to the fade at seg1:start (7.5s) show the same ruler frame with only Data's arms changing. Code measured a 5.29s hold at 13.96s, which falls in se",
+    "dead_air: seg0:start, seg0:mid and seg0:end show the same finished bar chart with Data pointing, about 4s of hold after the hook built that same chart. seg3 and seg4 run about 15s on the same two circ",
+    "dead_air: The hook scene (hook@0.3 to seg0:end, about 4s) is the same ruler-on-a-ladder frame and barely changes. seg1 and seg3 are the same circle-pair composition, so two beats look identical."
    ],
    "recurred_after_fix": false
   }
@@ -152,7 +179,7 @@
   "data_demo": {
    "median": 1,
    "min": 1,
-   "max": 3
+   "max": 2
   },
   "mascot": {
    "median": 1,
@@ -162,12 +189,12 @@
   "craft": {
    "median": 1,
    "min": 1,
-   "max": 2
+   "max": 1
   },
   "pace": {
    "median": 1,
    "min": 1,
-   "max": 2
+   "max": 1
   },
   "payoff": {
    "median": 1,
@@ -181,25 +208,25 @@
   }
  },
  "scores": [
-  57,
-  61,
-  57,
+  39,
   39,
   44,
   39,
   39,
   40,
   39,
-  48,
-  48,
-  39,
-  35,
-  39,
-  39,
-  39,
-  35,
+  40,
   48,
   39,
-  52
+  48,
+  39,
+  44,
+  44,
+  39,
+  39,
+  40,
+  48,
+  48,
+  39
  ]
 }
