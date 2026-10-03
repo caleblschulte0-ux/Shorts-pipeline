@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s7-d744604bbb2f",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s7-d744604bbb2f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1c66bcc246cfa4578e2bc015b01d669252e94fd0b6356c81a4cd5464fa2c82cf",
+  "prompt_used": "An editorial illustration for a short-form video: handshake office deal. It accompanies the narration: \"the account was reassigned to me, full credit, full commission\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s7-d744604bbb2f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "367fb54fe864eb7012408e00c4ec924e37ffef17a4652f8f9193a07ca6891c57",
+    "bytes": 1869844,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-03T11:27:56.654Z"
+}
