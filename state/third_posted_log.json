@@ -10459,6 +10459,25 @@
         "end": 25.1
       },
       "director_cut": true
+    },
+    "rejected-amusedbillowingelkritzmitz-xmxq33tmodq0wap1": {
+      "source_url": "https://www.twitch.tv/agent00/clip/AmusedBillowingElkRitzMitz-XMxq33tmODQ0WAp1",
+      "streamer": "agent00",
+      "title": "Agent likes the mics Emily uses",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Mic-advice talk, no observable event)",
+      "ts": "2026-10-03T03:01:04.581837+00:00"
+    },
+    "clip-20261003-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/SuspiciousPoorDumplingsFutureMan-6QeW-v9wT8hh5xSu",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Gets Ragebaited By Chatty And Totally Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-03T03:07:31.259182+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
