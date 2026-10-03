@@ -283,7 +283,7 @@ class TheRunRemembers(unittest.TestCase):
         body = self.fns["_story_attempt"]
         # the director's refusal: remembered only under the editorial branch
         i = body.index('if rej.get("editorial"):')
-        self.assertIn("_remember_refused(sub_urls", body[i:i + 300])
+        self.assertIn("_remember_refused(_refuse_urls", body[i:i + 300])
         j = body.index('"not_a_story" if rej.get("editorial")')
         self.assertNotIn("_remember_refused(", body[j - 600:i],
                          "a malformed plan must not be remembered")

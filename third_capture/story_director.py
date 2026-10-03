@@ -709,8 +709,13 @@ def revise_edl(edl: dict, problems: list[dict],
             "CRITIC PROBLEMS (timestamped):\n"
             + "\n".join(f"- at {p['at']:.1f}s [{p['type']}]: {p['fix']}"
                         for p in problems)
-            + "\n\nSCENE REPORTS (for reference):\n"
-            + _fmt_reports(reports)[:4000])
+            # THE WHOLE REPORTS, as the director planned from. `[:4000]` cut
+            # every source's transcript but the first: on 2026-10-03 the
+            # critic asked for "Kai stating the accusation" at the opening
+            # and the reviser could not see the line it was asked to use —
+            # the cut scored 58, 46, 58 and was dropped.
+            + "\n\nSCENE REPORTS (the same ones you planned from):\n"
+            + _fmt_reports(reports))
     out = _brain(user, _REVISE_SYSTEM)
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
