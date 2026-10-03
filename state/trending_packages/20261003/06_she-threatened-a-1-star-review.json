@@ -1,0 +1,38 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "she-threatened-a-1-star-review",
+  "title": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
+  "script": "A woman stormed up to my register holding a half-eaten sandwich and demanded a full refund plus a free meal, insisting she found a hair in it before she had even taken two bites. I offered a standard refund, which she rejected, then she pulled out her phone and said she would post a one-star review with photos unless I personally comped her next five visits. I told her I needed to check the kitchen cameras first, since policy requires footage before any goodwill comp over ten dollars. She agreed, smirking, clearly expecting me to cave. The footage showed her pulling a hair from her own ponytail and tucking it under the lettuce thirty seconds before calling me over -- she didn't even wait for her fries to get cold. I printed a single frame, slid it across the counter, and asked if she still wanted to leave that review. She left without the refund, the free meal, or the review.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "customerservice",
+    "retail",
+    "entitled",
+    "karma",
+    "truestory",
+    "reddit",
+    "foodservice",
+    "workplace",
+    "revenge",
+    "pettyrevenge",
+    "restaurant"
+  ],
+  "shots": [
+    {"phrase": "stormed up to my register holding a half-eaten sandwich", "query": "fast food counter sandwich"},
+    {"phrase": "demanded a full refund plus a free meal", "query": "cash register receipt"},
+    {"phrase": "post a one-star review with photos", "query": "phone camera reviewing"},
+    {"phrase": "check the kitchen cameras first", "query": "security camera ceiling"},
+    {"phrase": "pulling a hair from her own ponytail", "query": "woman ponytail hair"},
+    {"phrase": "tucking it under the lettuce", "query": "sandwich lettuce closeup"},
+    {"phrase": "I printed a single frame", "query": "receipt printer counter"},
+    {"phrase": "left without the refund, the free meal, or the review", "query": "customer walking out door"}
+  ],
+  "punches": [
+    {"phrase": "demanded a full refund plus a free meal", "text": "DEMANDED", "color": "#ffaa30"},
+    {"phrase": "post a one-star review with photos", "text": "THREATENED", "color": "#ff3030"},
+    {"phrase": "pulling a hair from her own ponytail", "text": "CAUGHT ON CAMERA", "color": "#ff3030"},
+    {"phrase": "left without the refund, the free meal, or the review", "text": "NOTHING", "color": "#50ff80"}
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
