@@ -582,6 +582,85 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) ->
     return rest[0] if rest else next(iter(opts))
 
 
+# what a sentence says HAPPENS, in the words people use for it
+HAPPEN_WORDS = {
+    "snuff": r"\b(blows? out|blew out|puts? out the (?:lamp|light|candle)|snuffs?|pinch(?:es)? out)\b",
+    "light": r"\b(lights? (?:a|the|her|his|their) (?:lamp|candle|wick)|lamps? (?:are|is) lit|kindles?|lighting)\b",
+    "feed": r"\b(adds? (?:a |another |more )?(?:log|wood|branch|stick)s?|feeds? the fire|stoke[sd]?|"
+            r"tends? the fire|kindling|another log)\b",
+    "serve": r"\b(pass(?:es)?|hands?|serves?|brings?|offers?|pours?|shares?)\b.{0,40}\b(bread|wine|cup|bowl|"
+             r"food|water|stew|porridge|figs|olives|cheese|meal)\b",
+    "leave": r"\b(leaves?|goes (?:home|out|off|to bed)|heads? (?:home|out|off|to bed)|sets? off|departs?|"
+             r"slips? away|says? goodnight|retires?)\b",
+    "arrive": r"\b(arrives?|comes? (?:home|in|back)|returns?|enters?|joins?|steps? in|gathers?|drifts? in)\b",
+    "passer": r"\b(watchman|walks? (?:home|past|by)|passes by|goes by|footsteps|on (?:his|her|their) way)\b",
+    "child": r"\b(child|children|little ones?|boy|girl|son|daughter)\b.{0,30}\b(runs?|hurr(?:y|ies)|"
+             r"climbs?|curls? up|snuggles?|leans?)\b",
+    "dog": r"\b(dogs?|hounds?)\b",
+    "cat": r"\b(cats?|kittens?)\b",
+    "hens": r"\b(hens?|chickens?|geese|ducks?)\b",
+    "birds": r"\b(birds?|swallows?|starlings?|gulls?|flocks?)\b",
+    "bats": r"\b(bats?)\b",
+    "fish": r"\b(fish|fishes|fishing|nets?)\b",
+    "mouse": r"\b(mouse|mice|rats?)\b",
+    "moth": r"\b(moths?|insects?|gnats?)\b",
+}
+# what fills a shot when its words name nothing that happens: a person
+# coming or going or doing something to the fire or the light, and
+# something alive crossing the picture
+FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer")
+FILL_LIFE = ("dog", "birds", "fish", "cat", "hens", "bats", "mouse", "moth")
+SMALL_LIFE = ("mouse", "moth")
+HAPPEN_MIN = 2           # the operator, 2026-10-03: "more needs to be happening per scene. Significantly more."
+
+
+def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = ()) -> list[str]:
+    """What happens in this shot: whatever its words say happens, then a
+    person coming, going or tending the fire or the light, and something
+    alive crossing — every one checked to fit this picture, never the same
+    people-happening twice running."""
+    from data_learning.doodle import scene as S, happen as HP
+    if not spec or not spec.get("setting"):
+        return []
+    lay = S.layout(spec, seed)
+    low = (text or "").lower()
+    want = [k for k, pat in HAPPEN_WORDS.items() if re.search(pat, low)]
+    r = random.Random(seed * 13 + 5)
+    people_fill = list(FILL_PEOPLE)
+    r.shuffle(people_fill)
+    life_fill = list(FILL_LIFE)
+    r.shuffle(life_fill)
+    # the lamp is lit as night falls and put out at bedtime: as filler only
+    # then (the words can ask for either at any time)
+    if spec.get("time") not in ("dusk", "night"):
+        people_fill.remove("light")
+    if spec.get("time") != "night" or not re.search(r"\b(sleep|asleep|bed|rest|goodnight|dark|quiet)\b", low):
+        people_fill.remove("snuff")       # a lamp blown out while the talk is just starting is the wrong evening
+    people_fill = [k for k in people_fill if k not in prev] + [k for k in people_fill if k in prev]
+    life_fill = [k for k in life_fill if k not in prev] + [k for k in life_fill if k in prev]
+    # the small ones only when nothing bigger fits
+    life_fill = [k for k in life_fill if k not in SMALL_LIFE] + [k for k in life_fill if k in SMALL_LIFE]
+    order = want + [k for k in people_fill if k not in want] + [k for k in life_fill if k not in want]
+    from data_learning.doodle.settings import SETTINGS
+    facts = {"water": (SETTINGS[spec["setting"]].water, 0, 0)} if SETTINGS[spec["setting"]].water else {}
+    got: list[str] = []
+    for k in order:
+        if len(got) >= max(HAPPEN_MIN, len(want)) and k not in want:
+            # enough: one person and one living thing, unless the words asked for more
+            if any(g in HP.PEOPLE_KINDS for g in got) and any(g in HP.ANIMAL_KINDS for g in got):
+                break
+            if k in HP.PEOPLE_KINDS and any(g in HP.PEOPLE_KINDS for g in got):
+                continue
+            if k in HP.ANIMAL_KINDS and any(g in HP.ANIMAL_KINDS for g in got):
+                continue
+        acts = HP.plan(got + [k], spec, lay, seed, dur, facts or None)
+        if len(acts) == len(got) + 1:
+            got.append(k)
+        if len(got) >= 4:
+            break
+    return got
+
+
 def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[dict]:
     """The pictures the film shows: one shot a sentence, two when they are
     short together. The operator, 2026-10-02: "All of our scenes are too
@@ -608,11 +687,13 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
         groups = _groups(lines, start, b.end) if lines else [(start, b.end, b.text)]
         if len(groups) == 1:
             out.append(dict(start=groups[0][0], end=groups[0][1], scene=b.scene, seed=seed))
+            _happen(out[-1], ep["era"], groups[0][2], out)
             prev_setting = (b.scene or {}).get("setting")
             continue
         opts = coverage(b.scene, ep["era"], seed, dur=max(g[1] - g[0] for g in groups))
         if not opts:
             out.append(dict(start=start, end=b.end, scene=b.scene, seed=seed))
+            _happen(out[-1], ep["era"], b.text, out)
             prev_setting = (b.scene or {}).get("setting")
             continue
         last, used = None, []
@@ -623,10 +704,24 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
             if name == "pan":
                 sp = dict(sp, pan_s=round(t1 - t0 + XFADE, 2))
             out.append(dict(start=t0, end=t1, scene=sp, seed=sd, shot=name))
+            _happen(out[-1], ep["era"], text, out)
             last = name
             used.append(name)
         prev_setting = (b.scene or {}).get("setting")
     return out
+
+
+def _happen(shot: dict, era: str, text: str, so_far: list) -> None:
+    """Give a shot its happenings, in place: the shot lasts as long as it is
+    on screen plus the dissolve into the next."""
+    sp = shot.get("scene")
+    if not sp or shot.get("painting"):
+        return
+    dur = round(shot["end"] - shot["start"] + XFADE, 2)
+    prev = tuple(k for x in so_far[-4:-1] for k in ((x.get("scene") or {}).get("happen") or ()))
+    kinds = happenings(sp, era, shot["seed"], text, dur, prev)
+    if kinds:
+        shot["scene"] = dict(sp, happen=kinds, happen_s=dur)
 
 
 def painting_files(ep: dict, beats: list[Beat]) -> dict:

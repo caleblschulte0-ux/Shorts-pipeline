@@ -182,6 +182,18 @@ def skeleton(pose: str, R: float, t: float, phase: float = 0.0) -> dict:
     return dict(hip=hip, neck=neck, head=head, legs=legs, lean=lean)
 
 
+def _blend(a: dict, b: dict, u: float) -> dict:
+    """A body part way from one pose to the next, eased: every joint goes in
+    a straight line, which is how a doodle stands up."""
+    u = u * u * (3 - 2 * u)
+
+    def mix(p, q):
+        return (p[0] + (q[0] - p[0]) * u, p[1] + (q[1] - p[1]) * u)
+    return dict(hip=mix(a["hip"], b["hip"]), neck=mix(a["neck"], b["neck"]), head=mix(a["head"], b["head"]),
+                legs=[tuple(mix(p, q) for p, q in zip(la, lb)) for la, lb in zip(a["legs"], b["legs"])],
+                lean=a["lean"] + (b["lean"] - a["lean"]) * u)
+
+
 def head_of(sk: dict, R: float, action: str) -> tuple[float, float]:
     """Where the head is drawn for an action: tipped back and up when the
     figure looks up, so the whole silhouette says it, not just the eyes."""
@@ -510,8 +522,16 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
 
 def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
          x: float, ground_y: float, scale: float, t: float, facing: str = "right",
-         mood: str = "calm", item: str | None = None, dim: float = 0.0, cold: bool = False):
-    """Draw one person with feet at (x, ground_y)."""
+         mood: str = "calm", item: str | None = None, dim: float = 0.0, cold: bool = False,
+         pose_to: str | None = None, blend: float = 0.0, reach: tuple | None = None,
+         reach_back: tuple | None = None, gait: float | None = None):
+    """Draw one person with feet at (x, ground_y).
+
+    For the happenings (`happen.py`): `pose_to` and `blend` put the body part
+    way between two poses (standing up, sitting down, crouching to the fire);
+    `reach`/`reach_back` send a hand to a point given RELATIVE to the feet in
+    the picture's own x direction (handing a cup across, lighting a wick);
+    `gait` is the walk cycle's own clock, so feet that travel never slide."""
     lk = look(who, era, seed)
     R = R0 * scale * lk["size"]
     ph = (seed % 97) * 0.37
@@ -528,9 +548,18 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         cr.restore()
         return
 
-    sk = skeleton(pose, R, t, ph)
+    sk = skeleton(pose, R, t if gait is None else gait, ph)
+    if pose_to is not None and pose_to != "lie" and blend > 0.0:
+        sk = _blend(sk, skeleton(pose_to, R, t if gait is None else gait, ph), min(1.0, blend))
+        if blend >= 0.5:
+            pose = pose_to
     sk["head"] = head_of(sk, R, action)
     front, back = hand_targets(action, sk, R, t, ph)
+    sx = -1.0 if facing == "left" else 1.0
+    if reach is not None:
+        front = (reach[0] * sx, reach[1])
+    if reach_back is not None:
+        back = (reach_back[0] * sx, reach_back[1])
     nx, ny = sk["neck"]
     if held in LOW_HELD and front[1] < ny + 0.5 * R:
         # a light is carried low: a gesture that lifts the hand goes to the
@@ -695,8 +724,8 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         _item(cr, held, h[0], h[1], R, t, lw)
     ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
-    if action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish", "hug_self", "knap", "eat",
-                  "drink", "play"):
+    if reach_back is not None or action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish",
+                                            "hug_self", "knap", "eat", "drink", "play"):
         e2, h2 = _ik(*sh_b, *back, ua, la, bend)
         ink.fill_stroke(cr, ink.ellipse_pts(h2[0], h2[1], 0.16 * R, 0.15 * R, 12), HEAD,
                         lw=lw * 0.6, amp=0)

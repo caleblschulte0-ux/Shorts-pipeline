@@ -232,6 +232,11 @@ def validate(spec, era: str) -> list[str]:
     if fr is not None and not (isinstance(fr, (list, tuple)) and len(fr) == 3
                                and all(isinstance(v, (int, float)) for v in fr) and 1.0 <= fr[2] <= 2.5):
         bad.append("frame must be [centre x, centre y, zoom 1.0-2.5]")
+    hp = spec.get("happen")
+    if hp is not None:
+        from .happen import KINDS as _HK
+        if not isinstance(hp, list) or any(k not in _HK for k in hp):
+            bad.append(f"happen must be a list of {list(_HK)}")
     if spec.get("pan") not in (None, False, True):
         bad.append("pan must be true or false")
     elif spec.get("pan") and not any(isinstance(c, dict) and c.get("pose") == "walk" for c in spec.get("cast") or []):
@@ -428,7 +433,11 @@ def walker_x(w: dict, t: float) -> float:
     return w["x0"] + w["dir"] * w["v"] * t
 
 
-def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False) -> list:
+def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False, far: bool = True) -> list:
+    """`far`: the picture has ground behind the people. Indoors it is the
+    wall and by the water it is the water — a walker there floated up the
+    plaster or strolled across the river — so they cross at the people's
+    own depth instead, drawn among them."""
     out = []
     r = random.Random(seed * 31 + 7)
     for i, c in enumerate(walking):
@@ -443,7 +452,7 @@ def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False) -
                             v=2.48 * R / WALK_CYCLE * PAN_PACE, y=gy + 30 * s, s=s, facing=facing,
                             seed=seed * 17 + i * 211, front=True, pace=PAN_PACE))
             continue
-        sw = s * WALK_LANE
+        sw = s * (WALK_LANE if far else 0.9)
         R = people.R0 * sw * people.WHO[c["who"]]["size"]
         facing = c.get("facing") or ("right" if r.random() < 0.5 else "left")
         d = 1 if facing == "right" else -1
@@ -452,8 +461,8 @@ def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False) -
         # a few paces behind the first
         x0 = (-3.0 * R - i * 5.0 * R) if d > 0 else (W + 3.0 * R + i * 5.0 * R)
         out.append(dict(who=c["who"], pose="walk", action=c.get("action", "idle"), mood=c.get("mood", "calm"),
-                        item=c.get("item"), x0=x0, dir=d, v=v, y=gy - 66 * s, s=sw, facing=facing,
-                        seed=seed * 17 + i * 211))
+                        item=c.get("item"), x0=x0, dir=d, v=v, y=(gy - 66 * s) if far else (gy + 28 * s),
+                        s=sw, facing=facing, seed=seed * 17 + i * 211, near=not far))
     return out
 
 
@@ -832,7 +841,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         f.pop("_pot", None)
         f.pop("_bed", None)
     lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked,
-               walkers=_walkers(walking, s, gy, seed, pan=bool(spec.get("pan"))))
+               walkers=_walkers(walking, s, gy, seed, pan=bool(spec.get("pan")),
+                                far=not (SETTINGS[spec["setting"]].interior or SETTINGS[spec["setting"]].water)))
     lay["collisions"] = collisions(lay)
     return lay
 
@@ -865,15 +875,22 @@ class Scene:
                     pr.base(cr, p["x"], p["y"], p["s"], 0.0, p["seed"])
         ink.paper(cr, W, H)
         self.still.flush()
+        # what HAPPENS in the shot (happen.py): people come and go, the fire
+        # is fed, a lamp is lit, a dog trots in
+        from . import happen
+        self.acts = happen.plan(list(spec.get("happen") or []), spec, self.lay, seed,
+                                float(spec.get("happen_s") or 6.0), self.facts)
+        self.owned = {a["owns"] for a in self.acts if a.get("owns") is not None}
+        self.lamp_props = {a["lamp"]["prop"] for a in self.acts if a.get("lamp")}
         self._lightmaps = {}
         self.lights = []
-        for p in self.lay["props"]:
+        for i, p in enumerate(self.lay["props"]):
             pr = PROPS[p["name"]]
             if pr.light:
-                self.lights.append((p["x"], p["y"] - pr.height * p["s"], 1.0 * p["s"], p["seed"]))
+                self.lights.append((p["x"], p["y"] - pr.height * p["s"], 1.0 * p["s"], p["seed"], i))
         for f in self.lay["people"]:
             if f["item"] in LIGHT_ITEMS:
-                self.lights.append((f["x"], f["y"] - 230 * f["s"], 0.7 * f["s"], f["seed"]))
+                self.lights.append((f["x"], f["y"] - 230 * f["s"], 0.7 * f["s"], f["seed"], None))
         interior = SETTINGS[self.setting].interior
         base = settings.AMBIENT[self.time]
         if interior:
@@ -885,20 +902,29 @@ class Scene:
 
     LIGHT_LEVELS = 24
 
-    def _lightmap(self, level: int) -> cairo.ImageSurface:
+    LAMP_STEPS = 8
+
+    def _lightmap(self, level: int, lamps: tuple = ()) -> cairo.ImageSurface:
         """The light over the whole frame at one of LIGHT_LEVELS flicker
         strengths, drawn once and reused: ambient everywhere, warm pools
-        around every fire, torch and candle."""
-        lm = self._lightmaps.get(level)
+        around every fire, torch and candle. `lamps` is ((prop, step), ...)
+        for a lamp being lit or put out, in LAMP_STEPS steps of brightness."""
+        key = (level, lamps)
+        lm = self._lightmaps.get(key)
         if lm is not None:
             return lm
+        dim = dict(lamps)
         lm = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(lm)
         cr.set_source_rgb(*self.ambient_light)
         cr.paint()
         cr.set_operator(cairo.OPERATOR_ADD)
         fl = 0.68 + 0.64 * level / (self.LIGHT_LEVELS - 1)
-        for (x, y, k, sd) in self.lights:
+        for (x, y, k, sd, pi) in self.lights:
+            if pi in dim:
+                k = k * dim[pi] / self.LAMP_STEPS
+                if k <= 0:
+                    continue
             rad = 560 * k * fl
             g = cairo.RadialGradient(x, y, 0, x, y, rad)
             g.add_color_stop_rgba(0, 0.48 * fl, 0.34 * fl, 0.19 * fl, 1.0)
@@ -908,7 +934,7 @@ class Scene:
             cr.arc(x, y, rad, 0, 2 * math.pi)
             cr.fill()
         lm.flush()
-        self._lightmaps[level] = lm
+        self._lightmaps[key] = lm
         return lm
 
     def _light(self, cr, t):
@@ -917,12 +943,25 @@ class Scene:
             level = max(0, min(self.LIGHT_LEVELS - 1, int(u * self.LIGHT_LEVELS)))
         else:
             level = 0
+        lamps = ()
+        if self.lamp_props:
+            from . import happen
+            lamps = tuple((pi, int(round((happen.lamp_level(self.acts, pi, t) or 0.0) * self.LAMP_STEPS)))
+                          for pi in sorted(self.lamp_props))
         cr.set_operator(cairo.OPERATOR_MULTIPLY)
-        cr.set_source_surface(self._lightmap(level), 0, 0)
+        cr.set_source_surface(self._lightmap(level, lamps), 0, 0)
         cr.paint()
         cr.set_operator(cairo.OPERATOR_OVER)
 
     def _prop(self, cr, p, t):
+        if self.lamp_props:
+            pi = self.lay["props"].index(p)
+            if pi in self.lamp_props:
+                from . import happen
+                dx, dy, _ = happen.FLAME_AT[p["name"]]
+                happen.lamp_flame(cr, p["name"], p["x"] + dx * p["s"], p["y"] + dy * p["s"], p["s"], t,
+                                  p["seed"], happen.lamp_level(self.acts, pi, t))
+                return
         if self.low_fire and p["name"] in BANKABLE:
             from .props import banked
             lift = {"hearth": 12.0, "brazier": 90.0}.get(p["name"], 0.0)   # the brazier's embers sit in its bowl
@@ -945,26 +984,69 @@ class Scene:
                     self._prop(cr, p, t)
             if layer == "back":
                 # the walkers' lane is behind the furniture and the people
-                for w in [w for w in lay.get("walkers") or [] if not w.get("front")]:
+                for w in [w for w in lay.get("walkers") or [] if not w.get("front") and not w.get("near")]:
                     x = walker_x(w, t)
                     if -400 < x < W + 400:
                         people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk",
                                     action=w["action"], x=x, ground_y=w["y"], scale=w["s"], t=t,
                                     facing=w["facing"], mood=w["mood"], item=w["item"],
                                     cold=self.weather in ("frost", "snow"))
+                # and whatever a happening sends by on the far side
+                from . import happen as _hp
+                for a in self.acts:
+                    if a.get("behind"):
+                        if a["kind"] in _hp.PEOPLE_KINDS:
+                            _hp.person(cr, a, self.era, t, self, cold=self.weather in ("frost", "snow"))
+                        else:
+                            _hp.animal(cr, a, t)
         for w in [w for w in lay.get("walkers") or [] if w.get("front")]:
             people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk", action=w["action"],
                         x=walker_x(w, t), ground_y=w["y"], scale=w["s"], t=t * w.get("pace", 1.0), facing=w["facing"],
                         mood=w["mood"],
                         item=w["item"], cold=self.weather in ("frost", "snow"))
-        for f in sorted(lay["people"], key=lambda f: f["y"]):
-            people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
-                        action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
-                        facing=f["facing"], mood=f["mood"], item=f["item"],
-                        cold=self.weather in ("frost", "snow"))
+        from . import happen
+        cold = self.weather in ("frost", "snow")
+        for a in self.acts:
+            if a["kind"] in ("birds", "bats", "fish"):
+                happen.animal(cr, a, t)
+            if a.get("flare"):
+                happen.flare(cr, a, t)
+        ov = happen.owned_overrides(self.acts, t) if self.acts else {}
+        # everybody on the ground — the people placed, the ones a happening
+        # moves, and the animals — drawn back to front
+        ground = [(f["y"], 0, i) for i, f in enumerate(lay["people"]) if i not in self.owned]
+        ground += [(a["y"], 1, j) for j, a in enumerate(self.acts)
+                   if a["kind"] not in ("birds", "bats", "fish", "mouse", "moth") and not a.get("behind")]
+        ground += [(w["y"], 2, j) for j, w in enumerate(lay.get("walkers") or []) if w.get("near")]
+        for _y, src, i in sorted(ground):
+            if src == 2:
+                w = lay["walkers"][i]
+                x = walker_x(w, t)
+                if -400 < x < W + 400:
+                    people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk", action=w["action"],
+                                x=x, ground_y=w["y"], scale=w["s"], t=t, facing=w["facing"], mood=w["mood"],
+                                item=w["item"], cold=cold)
+                continue
+            if src == 0:
+                f = lay["people"][i]
+                if i in ov:
+                    happen.draw_person_override(cr, f, self.era, t, ov[i], cold=cold)
+                    continue
+                people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
+                            action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
+                            facing=f["facing"], mood=f["mood"], item=f["item"], cold=cold)
+            else:
+                a = self.acts[i]
+                if a["kind"] in happen.PEOPLE_KINDS:
+                    happen.person(cr, a, self.era, t, self, cold=cold)
+                else:
+                    happen.animal(cr, a, t)
         for p in lay["props"]:
             if p["layer"] == "front" and p["name"] not in STILL:
                 self._prop(cr, p, t)
+        for a in self.acts:
+            if a["kind"] in ("mouse", "moth"):
+                happen.animal(cr, a, t)
         if self.weather == "rain":
             settings._rain(cr, t, self.seed)
         elif self.weather == "snow":

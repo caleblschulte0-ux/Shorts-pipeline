@@ -785,6 +785,39 @@ only as a hand edit is not a rule. So:
   action uses (table, bread, cup, spindle); a harbour with beached boats; a
   stream; varied interiors.
 
+- **The operator on that one, 2026-10-03:** *"sure, you're doing more cuts,
+  but at the end of the day, it's still just stick figures moving their
+  arms. Like, more needs to be happening per scene. Significantly more."*
+  **Happenings** (`data_learning/doodle/happen.py`) give every shot events
+  that move something across the picture or change its light. Each is worked
+  out against that picture's own layout, so it fits or is not planned:
+  - **arrive:** somebody walks in from the edge and sits down;
+  - **leave:** somebody gets up and walks out;
+  - **feed:** somebody brings wood or reaches in with a stick, and the fire
+    flares and throws sparks;
+  - **serve:** somebody brings bread or a cup and hands it across, then the
+    other eats or drinks;
+  - **light / snuff:** a lamp is lit or blown out, and the room brightens or
+    dims in steps;
+  - **child:** a child runs to a parent and sits close;
+  - **passer:** out of doors, somebody goes by on the far side, a lantern in
+    hand after dark;
+  - **animals:** a dog trots in and curls up by the fire; a cat; hens
+    pecking; birds or bats across the sky; a fish jumping; a mouse along the
+    floor; a moth round a flame.
+  `ori_sleep.happenings` takes what the words say first (adds a log, lights
+  the lamp, a dog), then fills to at least one person-happening and one
+  living thing that fit. The Greek script comes out at 2-3 in every one of
+  its 273 shots.
+  - Bodies blend between poses (standing up, sitting down) and hands reach a
+    given point (`people.draw(pose_to, blend, reach)`); walking feet are
+    clocked from the distance actually travelled, so they never slide.
+  - The first sample found three faults: a dog trotting across a man in bed;
+    walkers indoors floating up the wall; walkers by the river strolling on
+    the water. Animals now never cross a person, the far lane exists only
+    where there is ground behind the people, and the cast's own walkers
+    cross at the people's depth indoors and by water.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
