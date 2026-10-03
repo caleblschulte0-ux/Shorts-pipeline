@@ -2,7 +2,7 @@
   "subreddit": "ProRevenge",
   "slug": "he-presented-my-idea-as-his-own",
   "title": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
-  "script": "I spent three weeks building a pitch deck for a client renewal, color-coded slides, backup data, the works. The morning of the meeting, my coworker grabbed my files off the shared drive and opened the deck under his own name before I even walked in. He presented it line by line, confident, smiling, taking full credit while I sat in the back row. Then the client asked a follow-up about the churn model on slide nine. He froze. I had built that slide from a dataset only I could access, and he had never actually opened the methodology tab. Thirty seconds of dead silence later, I raised my hand and answered it in under a minute, citing the exact spreadsheet. The client thanked me by name. My manager pulled him aside after the meeting, and within the week the account was reassigned to me, full credit, full commission.",
+  "script": "I spent three weeks building a pitch deck for a client renewal, color-coded, backed by data, the works. That morning, my coworker grabbed my files off the shared drive and opened the deck under his own name before I arrived. He presented it line by line, confident, smiling, while I sat behind him. Then the client asked a follow-up about the churn model on slide nine. He froze. The dataset was mine, and he had never opened the methodology tab. After thirty seconds, I raised my hand and answered it in under a minute, citing the exact spreadsheet. The client thanked me by name. My manager pulled him aside, and within the week the account was reassigned to me, full credit, full commission. He stole the deck; the questions returned it.",
   "hashtags": [
     "prorevenge",
     "workplace",
@@ -20,35 +20,75 @@
   "shots": [
     {
       "phrase": "building a pitch deck for a client renewal",
-      "query": "laptop presentation slides"
+      "query": "laptop presentation slides",
+      "image_url": "https://drive.google.com/uc?export=download&id=12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+      "media_origin": "chatgpt",
+      "media_file_id": "12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+      "media_sha256": "a0fb8cfa7b885cf582008ee12e7a41f8dab4727e65e20449dc0031999ff9131d",
+      "media_bytes": 1626548
     },
     {
       "phrase": "grabbed my files off the shared drive",
-      "query": "office desk computer"
+      "query": "office desk computer",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+      "media_sha256": "b93d16d3fad1ed80610baf4048f65a995c422523db2af6fa596bc5351fe5e40a",
+      "media_bytes": 1648776
     },
     {
       "phrase": "opened the deck under his own name",
-      "query": "powerpoint presentation screen"
+      "query": "powerpoint presentation screen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+      "media_origin": "chatgpt",
+      "media_file_id": "1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+      "media_sha256": "bc5cc655d116485f205015959e693474de5935f563afde47273d8be993197ae3",
+      "media_bytes": 1674072
     },
     {
       "phrase": "He presented it line by line, confident, smiling",
-      "query": "businessman presenting conference room"
+      "query": "businessman presenting conference room",
+      "image_url": "https://drive.google.com/uc?export=download&id=1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+      "media_origin": "chatgpt",
+      "media_file_id": "1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+      "media_sha256": "fabd41a12ee0aeced4e44ec99ae80f1abf54fd6b535a4a5923223bb497917ae7",
+      "media_bytes": 1591639
     },
     {
       "phrase": "asked a follow-up about the churn model on slide nine",
-      "query": "data chart spreadsheet screen"
+      "query": "data chart spreadsheet screen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1fYmlUaD5AFvSL9yAaMHi5gFjYu2ysB-u",
+      "media_origin": "chatgpt",
+      "media_file_id": "1fYmlUaD5AFvSL9yAaMHi5gFjYu2ysB-u",
+      "media_sha256": "956e0e7d44f0042747e895c13e868a82b3e54413f67d22dcdc5c713f57cfb104",
+      "media_bytes": 1581218
     },
     {
       "phrase": "He froze",
-      "query": "nervous man silence"
+      "query": "nervous man silence",
+      "image_url": "https://drive.google.com/uc?export=download&id=1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+      "media_origin": "chatgpt",
+      "media_file_id": "1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+      "media_sha256": "af18151f85d929d336b756d84ce430c9dc835fd92939db45c80b7afcb27fe9a3",
+      "media_bytes": 1917092
     },
     {
       "phrase": "I raised my hand and answered it in under a minute",
-      "query": "hand raised meeting"
+      "query": "hand raised meeting",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+      "media_sha256": "9f7bd4ededecf6b94f9c85ccfcc855def59e375f5425e4a0c39e5d69baf3a4e3",
+      "media_bytes": 1857150
     },
     {
       "phrase": "the account was reassigned to me, full credit, full commission",
-      "query": "handshake office deal"
+      "query": "handshake office deal",
+      "image_url": "https://drive.google.com/uc?export=download&id=1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+      "media_origin": "chatgpt",
+      "media_file_id": "1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+      "media_sha256": "367fb54fe864eb7012408e00c4ec924e37ffef17a4652f8f9193a07ca6891c57",
+      "media_bytes": 1869844
     }
   ],
   "punches": [
@@ -74,5 +114,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }

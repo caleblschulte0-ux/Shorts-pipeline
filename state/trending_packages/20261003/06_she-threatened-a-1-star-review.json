@@ -2,7 +2,7 @@
   "subreddit": "TalesFromTheCustomer",
   "slug": "she-threatened-a-1-star-review",
   "title": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
-  "script": "A woman stormed up to my register holding a half-eaten sandwich and demanded a full refund plus a free meal, insisting she found a hair in it before she had even taken two bites. I offered a standard refund, which she rejected, then she pulled out her phone and said she would post a one-star review with photos unless I personally comped her next five visits. I told her I needed to check the kitchen cameras first, since policy requires footage before any goodwill comp over ten dollars. She agreed, smirking, clearly expecting me to cave. The footage showed her pulling a hair from her own ponytail and tucking it under the lettuce thirty seconds before calling me over -- she didn't even wait for her fries to get cold. I printed a single frame, slid it across the counter, and asked if she still wanted to leave that review. She left without the refund, the free meal, or the review.",
+  "script": "A woman stormed up to my register holding a half-eaten sandwich and demanded a full refund plus a free meal, claiming she found a hair before two bites. I offered a standard refund. She refused, raised her phone, and threatened to post a one-star review with photos unless I comped her next five visits. I said policy required me to check the kitchen cameras first for any goodwill comp over ten dollars. She agreed, smirking. The footage showed her pulling a hair from her own ponytail, then tucking it under the lettuce thirty seconds before calling me over. I printed a single frame, slid it across the counter, and asked whether she still wanted to post. She left without the refund, the free meal, or the review. Turns out the camera had the strongest review.",
   "hashtags": [
     "talesfromthecustomer",
     "customerservice",
@@ -20,35 +20,75 @@
   "shots": [
     {
       "phrase": "stormed up to my register holding a half-eaten sandwich",
-      "query": "fast food counter sandwich"
+      "query": "fast food counter sandwich",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+      "media_sha256": "d785ba4238b049a173a91fb4b35969e773b27c37107cd7662b3847e679099630",
+      "media_bytes": 1937795
     },
     {
       "phrase": "demanded a full refund plus a free meal",
-      "query": "cash register receipt"
+      "query": "cash register receipt",
+      "image_url": "https://drive.google.com/uc?export=download&id=1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+      "media_origin": "chatgpt",
+      "media_file_id": "1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+      "media_sha256": "f9cebed734d3dff5cd8d3017e18fc2cf74dc1bc362b6eaa2603b0381d4d1b239",
+      "media_bytes": 2105528
     },
     {
       "phrase": "post a one-star review with photos",
-      "query": "phone camera reviewing"
+      "query": "phone camera reviewing",
+      "image_url": "https://drive.google.com/uc?export=download&id=1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+      "media_origin": "chatgpt",
+      "media_file_id": "1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+      "media_sha256": "5bc0cd37e5642298b450365aa6939343554d3103786c2447e6306c9c7d8dc5ae",
+      "media_bytes": 1839730
     },
     {
       "phrase": "check the kitchen cameras first",
-      "query": "security camera ceiling"
+      "query": "security camera ceiling",
+      "image_url": "https://drive.google.com/uc?export=download&id=1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+      "media_origin": "chatgpt",
+      "media_file_id": "1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+      "media_sha256": "4fa17bcf0c1cf4d4b6a353c00c2a9eb947c5c55b159dcda4d1b05a780ae14607",
+      "media_bytes": 1555640
     },
     {
       "phrase": "pulling a hair from her own ponytail",
-      "query": "woman ponytail hair"
+      "query": "woman ponytail hair",
+      "image_url": "https://drive.google.com/uc?export=download&id=1kn-p1a8z4mRaYJZHeVFKR8l-Ht8iQuMM",
+      "media_origin": "chatgpt",
+      "media_file_id": "1kn-p1a8z4mRaYJZHeVFKR8l-Ht8iQuMM",
+      "media_sha256": "29590fffaaa520f2341c9b1197bb70a2f56e966da021593bec855506887990ae",
+      "media_bytes": 2217402
     },
     {
       "phrase": "tucking it under the lettuce",
-      "query": "sandwich lettuce closeup"
+      "query": "sandwich lettuce closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Vl9jHbFkFDvVQVluCnDAkDgCm06W-BEq",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Vl9jHbFkFDvVQVluCnDAkDgCm06W-BEq",
+      "media_sha256": "cc84846e2184ab268eb3b95d5acd40af90cf50100178f809db772ac5672853ea",
+      "media_bytes": 2204419
     },
     {
       "phrase": "I printed a single frame",
-      "query": "receipt printer counter"
+      "query": "receipt printer counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1rx8yqoc4eKmGA5QrGNu_OAA_5UZC0qnj",
+      "media_origin": "chatgpt",
+      "media_file_id": "1rx8yqoc4eKmGA5QrGNu_OAA_5UZC0qnj",
+      "media_sha256": "1d7d5204ce477b4f824e4f2536dda52a572def3468115d29fb433ae711d91877",
+      "media_bytes": 1871980
     },
     {
       "phrase": "left without the refund, the free meal, or the review",
-      "query": "customer walking out door"
+      "query": "customer walking out door",
+      "image_url": "https://drive.google.com/uc?export=download&id=1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+      "media_origin": "chatgpt",
+      "media_file_id": "1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+      "media_sha256": "853188cf63d9252e82acf18c57134fdef2b9542aa812c9b0c514d9a8502fd43d",
+      "media_bytes": 1745491
     }
   ],
   "punches": [
@@ -74,5 +114,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }
