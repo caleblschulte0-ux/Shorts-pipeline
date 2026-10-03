@@ -4322,6 +4322,66 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "70B held, 4.49B returned, 1 in 7 owed"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-03",
+   "topic_category": "space",
+   "hook_type": "paradox",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "1.5yr global vs 375yr one spot; Carbondale 2017/2024"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-03",
+   "topic_category": "environment",
+   "hook_type": "stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "escalate",
+   "franchise": "",
+   "notes": "8,776 sq mi 2017; 3,745 avg vs 1,900 goal"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-03",
+   "topic_category": "nature",
+   "hook_type": "stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "97% northern long-eared gone; $3.7-53B pest value"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-03",
+   "topic_category": "money",
+   "hook_type": "question",
+   "hook_text": "The government might be holding your money right now.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "70B held, 4.49B returned"
   }
  ]
 }

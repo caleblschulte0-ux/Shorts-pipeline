@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "marathon-super-shoes-record-pace__87f99e40",
- "filed": "2026-10-03T14:10:56Z",
+ "filed": "2026-10-03T15:05:55Z",
  "status": "open",
  "channel": "explainer",
  "slug": "marathon-super-shoes-record-pace",
@@ -116,31 +116,12 @@
   }
  ],
  "held_for": [
-  "judge: The data is broken: seg2 shows the same 8.3 twice where the 30 s/yr jump should be, seg1 counts a falling record upward, and Data perches on generic charts instead of doing anything."
+  "premise: brain: The claim hinges on an unverified 2‑hour marathon time, which lacks verifiable evidence and does not convincingly reverse a clear viewer expectation."
  ],
  "reasons": [
-  "judge: The data is broken: seg2 shows the same 8.3 twice where the 30 s/yr jump should be, seg1 counts a falling record upward, and Data perches on generic charts instead of doing anything."
+  "premise: brain: The claim hinges on an unverified 2‑hour marathon time, which lacks verifiable evidence and does not convincingly reverse a clear viewer expectation."
  ],
- "judge": {
-  "ts": "2026-10-03T13:09:21+00:00",
-  "score": 39,
-  "one_line": "The data is broken: seg2 shows the same 8.3 twice where the 30 s/yr jump should be, seg1 counts a falling record upward, and Data perches on generic charts instead of doing anything.",
-  "problems": [
-   "seg2: both bubbles are '8.3 / Before 2016 (1988-2013)'. The post-2016 ~30 s/yr rate is missing, so the video's central claim is never shown.",
-   "seg1: the ring gauge counts up 15.9 → 79.5 → 126 under '1998' with no units, which reads as the record getting slower.",
-   "Hook and seg0 reuse one tall tube chart for about 4s, with a slowly sinking block and an empty lower frame.",
-   "Data is decorative. He rides a pole in seg0, then stands on bubbles with his arms up in seg2 and seg3 and causes nothing.",
-   "payoff: 'COMMENT BELOW' overlaps the CTA text 'think.', and Data covers the 'Set since 2018' label.",
-   "Nothing in the video is made of running, shoes or a race. Every picture is a generic chart or a seesaw."
-  ],
-  "fixes": [
-   "Fix the seg2 data binding so the second category is 'Since 2016' at ~30 s/yr, and draw it as two runners or clocks where one drops 3.6x faster.",
-   "Replace the seg1 gauge with a falling clock: 2:06 ticking down to 2:00, or a finish line moving toward the runner, with units shown.",
-   "Open with motion that is made of the subject, such as a carbon-plated shoe striking the track and the record clock dropping. Do not use a static tube.",
-   "Make Data the cause: he laces the shoe, pushes the clock hand down, or stacks the 15 records onto the scale himself.",
-   "Move the CTA's 'COMMENT BELOW' below the question text, and keep Data clear of the labels."
-  ]
- },
+ "judge": null,
  "prior_rejection": [],
  "rules": [
   "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",

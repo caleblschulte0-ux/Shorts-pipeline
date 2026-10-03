@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261003T150606Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end: 'Frozen in permafrost soil 1700B' is printed directly over 'Earth's whole atmosphere 870B', so both are illegible. seg4:start: the CTA 'COMMENT BELOW' crowds the caption block, and '150B' collides with Data at seg4:mid.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_overlap_and_bare_number",
+  "visible_evidence": "seg2:start shows two big numbers (870B, 1700B) with two duplicate Data figures. seg2:end prints the 1700B label on top of the 870B label so neither reads, and '830B apart' floats unanchored.",
+  "root_cause": "The two-post ruler machine puts both value labels at the same y because the posts end at nearly the same height. The opener is a plain number card with the mascot drawn twice, and the posts never show 1700 as about twice 870.",
+  "repair_goal": "Show the permafrost store as visibly about twice the atmosphere's, made of the subject: for example a frozen soil block holding two atmosphere-sized volumes of carbon, with Data hacking it open with a pick. Give each label its own non-overlapping row, draw Data once, and drop the opening number card."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

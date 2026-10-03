@@ -1,13 +1,23 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-03T14:10:57Z",
+ "updated": "2026-10-03T15:05:56Z",
  "open": [
+  {
+   "id": "genz-drinking-decline__19749d00",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-03T15:05:56Z",
+   "why": [
+    "judge: This is a run of generic charts, and the key 70%→35% beat shows 70% twice, so the video's biggest number never appears."
+   ],
+   "request": "exchange/rewrites/20261003/genz-drinking-decline__19749d00.request.json",
+   "answer_path": "exchange/rewrites/20261003/genz-drinking-decline__19749d00.answer.json"
+  },
   {
    "id": "marathon-super-shoes-record-pace__87f99e40",
    "slug": "marathon-super-shoes-record-pace",
-   "filed": "2026-10-03T14:10:56Z",
+   "filed": "2026-10-03T15:05:55Z",
    "why": [
-    "judge: The data is broken: seg2 shows the same 8.3 twice where the 30 s/yr jump should be, seg1 counts a falling record upward, and Data perches on generic charts instead of doing anything."
+    "premise: brain: The claim hinges on an unverified 2‑hour marathon time, which lacks verifiable evidence and does not convincingly reverse a clear viewer expectation."
    ],
    "request": "exchange/rewrites/20261003/marathon-super-shoes-record-pace__87f99e40.request.json",
    "answer_path": "exchange/rewrites/20261003/marathon-super-shoes-record-pace__87f99e40.answer.json"

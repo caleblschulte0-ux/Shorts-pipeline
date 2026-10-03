@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261003T150606Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: hook@1.5, hook@2.2, seg0:mid and seg0:end are nearly the same frame: a finished bar chart with Data pointing from the ladder. Measured max_dup_run is 23 at 4.67s, and seg3 repeats in seg4.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_comparison",
+  "visible_evidence": "In seg3:start/mid/end both circles read \"127%\" and both are labelled \"Billionaire wealth\". The narration says the S&P 500 grew 195%, but that number and an S&P label never appear, and the two circles grow to the same size.",
+  "root_cause": "The comparison machine bound the same series (billionaire wealth, 127%) to both sides. The second entity, the S&P 500 at 195%, was dropped, so the scene draws a comparison of a value with itself and contradicts the claim it is there to prove.",
+  "repair_goal": "Bind the right side to S&P 500 = 195% with its own label, and scale the two forms to the values so the S&P side is clearly bigger. Put the ink-colored value inside a form that is large enough for it. Have Data push or pump the S&P side as it overtakes, so the payoff \"most of this is just stocks\" can be seen."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

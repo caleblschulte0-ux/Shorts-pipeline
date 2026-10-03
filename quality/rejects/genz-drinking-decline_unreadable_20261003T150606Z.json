@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261003T150606Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:end the mascot's head covers the '72%' label (it reads '72%' only partly). In seg2:end a cyan ellipse is drawn over '70%' in the left disc.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "data_error_bare_number",
+  "visible_evidence": "In seg2:start, seg2:mid and seg2:end both discs say 70% and both are labelled '~20 years ago'. The script says the figure fell from 70% to 35%, but the second disc never shows 35% or 'Today'. A stray cyan ellipse also covers the left '70%' (seg2:end).",
+  "root_cause": "The comparison machine bound the same data point to both sides instead of past vs. today. The highlight overlay was placed on top of the value label.",
+  "repair_goal": "Rebuild the 18-20-year-old beat as a then-vs-now comparison: 70% '~20 years ago' against 35% 'Today', with the second form visibly half the first. Remove the ellipse from the label and give Data a causal act, such as him draining or halving the second form."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
