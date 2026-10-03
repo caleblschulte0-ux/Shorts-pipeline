@@ -10524,13 +10524,49 @@
       "ts": "2026-10-03T03:08:53.979043+00:00"
     },
     "clip-20261003-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/AssiduousCovertWebCopyThis-D4w-wFKZ_c1IeEcL",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/Lq01D3HtSC4",
       "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
       "kind": "twitch_clip",
-      "ts": "2026-10-03T03:11:03.442383+00:00",
+      "ts": "2026-10-03T03:11:10.149198+00:00",
+      "uploaded_at": "2026-10-03T03:11:10.149213+00:00",
+      "publish_at": "2026-10-03T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261003-lacy-reacts-as-chip-and-heinz-kiss-in-front-of-e-a42dc68d"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/AssiduousCovertWebCopyThis-D4w-wFKZ_c1IeEcL",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "HE'S ACTUALLY KISSING HIM",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1964,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 18.0
+      },
+      "director_cut": true
+    },
+    "rejected-wisesouroilkappa-dza5sbxxlrw5hgrj": {
+      "source_url": "https://www.twitch.tv/lacy/clip/WiseSourOilKappa-dza5sBxXlrw5HGrj",
+      "streamer": "lacy",
+      "title": "Lacy Speaks On The Situation With Rakai! \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking head, sensitive topic, no visibl)",
+      "ts": "2026-10-03T03:12:06.566020+00:00"
+    },
+    "clip-20261003-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/extraemily/clip/CorrectJoyousGoshawkKippa-We0kT3h2Pkig0aJw",
+      "story_key": null,
+      "streamer": "extraemily",
+      "title": "Extraemily: Emily Can't Stop Laughing While Cleaning Keem's Ear And It Hurts",
+      "kind": "twitch_clip",
+      "ts": "2026-10-03T03:17:40.916842+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
