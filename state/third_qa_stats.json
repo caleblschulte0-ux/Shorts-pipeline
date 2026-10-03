@@ -3,6 +3,267 @@
     {
       "date": "20260925",
       "dry_run": false,
+      "ts": "2026-09-25T12:33:14+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 106,
+        "with_retention": 85,
+        "with_curve": 13,
+        "fetched_at": "2026-09-25T08:46:22.683963+00:00"
+      },
+      "brain": {
+        "ok": 50,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260925-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (static browsing, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "garbage title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "static browsing, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 74.7
+        },
+        {
+          "slug": "clip-20260925-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.68,
+              "why": "jumpscare, visible startle reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "visible panic, chaotic reaction, real fe",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Gets Jumpscared By Jean Paul And Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.65,
+              "problems": [
+                "0.4s: 'STUPID' overlay text overlaps/garbles with the hook card text, hard to read",
+                "7.2s-8.7s: frame goes very dark/empty with the two figures small and hard to make out, momentum drops at the end"
+              ]
+            }
+          },
+          "took_s": 149.7
+        },
+        {
+          "slug": "clip-20260925-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.10 < 0.35 (explicit nudity, inappropriate for chann)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction title, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.1,
+              "why": "explicit nudity, inappropriate for chann",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 82.3
+        },
+        {
+          "slug": "clip-20260925-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (menu browsing, no real event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "menu browsing, no real event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 77.0
+        },
+        {
+          "slug": "clip-20260925-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: sharp region is a thin horizontal strip (roughly 1/5 of the canvas height), far below the ~75% target \u2014 streamer webcam ; vision: framing reads as reposted/uncropped rather than edited \u2014 actio",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "just a name, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague reaction, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Zackrawrr On Adin Ross Being Totally Okay With This"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "sharp region is a thin horizontal strip (roughly 1/5 of the canvas height), far below the ~75% target \u2014 streamer webcam ",
+                "framing reads as reposted/uncropped rather than edited \u2014 action is lost in a sea of blurred padding above and below"
+              ]
+            }
+          },
+          "took_s": 136.6
+        },
+        {
+          "slug": "clip-20260925-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "panicked reaction, vague context",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Panics And Accidentally Leaks His Own IP"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": []
+            }
+          },
+          "took_s": 252.0
+        }
+      ]
+    },
+    {
+      "date": "20260925",
+      "dry_run": false,
       "ts": "2026-09-25T13:05:00+00:00",
       "feedback": {
         "snapshot": true,
@@ -5753,238 +6014,6 @@
             }
           },
           "took_s": 149.6
-        }
-      ]
-    },
-    {
-      "date": "20261003",
-      "dry_run": false,
-      "ts": "2026-10-03T11:47:45+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 125,
-        "with_retention": 104,
-        "with_curve": 15,
-        "fetched_at": "2026-10-03T08:46:05.925530+00:00"
-      },
-      "brain": {
-        "ok": 16,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261003-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261003-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (insider streamer chatter, no visible eve)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "streamer beef response, insider-ish",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "insider streamer chatter, no visible eve",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 17.8
-        },
-        {
-          "slug": "clip-20261003-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261003-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261003-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 280,
-                "catalogue_watched": 25,
-                "refused_shown": 4,
-                "scouted": [
-                  {
-                    "premise": "Buddha is promised his coin will pump beyond the multiverse, then loses $800 when Tony rugpulls him live, and xQc reacts",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  }
-                ],
-                "vod_arcs": 152,
-                "candidates": 255,
-                "pool": 1327,
-                "pool_with_vod": 1210,
-                "arc_sizes": [
-                  3,
-                  2,
-                  2,
-                  5,
-                  2,
-                  5,
-                  2,
-                  3,
-                  6,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:buddha+xqc/buddha-xqc-buddha-coin-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the scout's story. (1) The promise: the 09-10 clip has only one fragmentary line at 161-167s ('Don't say nothing else if you don't add to it...'). It never mentions a coin pu"
-                },
-                {
-                  "cluster": "brucedropemoff@vod2884983868/brucedropemoff-arrow-basketball",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The two sources are consecutive moments from one stream but do not form a story. The first is a reaction compilation that ends on an unresolved challenge ('so y'all think I can't grab rim'), and the '"
-                },
-                {
-                  "cluster": "kaicenat@vod2884438305",
-                  "outcome": "already_refused",
-                  "why": "2026-10-03: director judged: not a story \u2014 The two clips are seven minutes apart on one broadcast and do not form a setup, escalation and payoff. The first is an axe throw "
-                },
-                {
-                  "cluster": "stableronaldo@vod2864388285",
-                  "outcome": "already_refused",
-                  "why": "2026-10-03: director judged: not a story \u2014 The two clips come from the same broadcast but are not shown to be one arc. Clip 1 is a roulette bet with a 'black he dies' capti"
-                },
-                {
-                  "cluster": "sodapoppin@vod2888128304",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg fra"
-                },
-                {
-                  "cluster": "ohnepixel@vod2866885554/ohnepixel-bodycam-glitch-2026w37",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The two clips show the same bodycam-style glitch (static and corrupted-video screens) during tactical-shooter rounds, but there is no change between them. Clip one is a hallway sweep with no engagemen"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "comfort moment, unclear context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Comforting a losing player; sincere but ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Comforts Shxrk And Tells Him He Played Great After This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "Around 16.9s the framing drifts: both people are cropped at the edges with empty floor between them. It is brief and min",
-                "The caption text is at times not in sync with the words shown."
-              ]
-            }
-          },
-          "took_s": 133.0
-        },
-        {
-          "slug": "clip-20261003-6",
-          "ok": true,
-          "skipped": "already posted"
         }
       ]
     }

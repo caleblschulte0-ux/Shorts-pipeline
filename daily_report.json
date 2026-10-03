@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Jet Engines Now Fly 20x Longer Between Overhauls",
-    "title": "Jet Engines Now Fly 20x Longer Between Overhauls",
+    "topic": "Mobile Gaming Passed Console And PC Combined",
+    "title": "Mobile Gaming Passed Console And PC Combined",
     "format": "graph_race",
-    "publish_at": "2026-10-02T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, moving line race. But the payoff names a '#1' winner instead of landing the 20x scale, and the crossover note is too small to read on a phone.",
-    "elapsed_seconds": 92.3,
-    "package_path": "state/trending_packages/20261002/03_jet-engines-fly-longer-between-overhauls.json",
+    "publish_at": "2026-10-03T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/hcozz3wYTNs",
+    "error": null,
+    "elapsed_seconds": 93.3,
+    "package_path": "state/trending_packages/20261003/01_mobile-gaming-passed-console-pc-combined.json",
     "source": "brain",
-    "video_path": "output/daily_20261002-121028_jet_engines_now_fly_20x_longer_between_o.mp4",
+    "video_path": "output/daily_20261003-113459_mobile_gaming_passed_console_and_pc_comb.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,27 +27,31 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean, moving line race. But the payoff names a '#1' winner instead of landing the 20x scale, and the crossover note is too small to read on a phone.",
-      "score": 74
+      "blocked": false,
+      "reason": "",
+      "score": 78
     },
-    "blocked": true
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261003-mobile-gaming-passed-console-and-pc-combined-10520913"
+    }
   },
   {
-    "topic": "She Hogged The Washers. I Built A Spreadsheet.",
-    "title": "She Hogged The Washers. I Built A Spreadsheet.",
-    "format": "reddit",
-    "publish_at": "2026-10-02T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: After one decent stock photo, the story's whole second half is a single frozen placeholder emoji, so the petty-revenge payoff (the spreadsheet, the sign-up sheet, the fine) is never shown.",
-    "elapsed_seconds": 244.6,
-    "package_path": "state/trending_packages/20261002/05_reddit-laundry-room-spreadsheet.json",
+    "topic": "Pickleball Quietly Buried Racquetball",
+    "title": "Pickleball Quietly Buried Racquetball",
+    "format": "graph_race",
+    "publish_at": "2026-10-03T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/lpc6Mu9M4Ws",
+    "error": null,
+    "elapsed_seconds": 75.9,
+    "package_path": "state/trending_packages/20261003/02_pickleball-buried-racquetball.json",
     "source": "brain",
-    "video_path": "output/daily_20261002-121201_she_hogged_the_washers__i_built_a_spread.mp4",
+    "video_path": "output/daily_20261003-113633_pickleball_quietly_buried_racquetball.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.5,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,35 +62,34 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: After one decent stock photo, the story's whole second half is a single frozen placeholder emoji, so the petty-revenge payoff (the spreadsheet, the sign-up sheet, the fine) is never shown.",
-      "score": 49
+      "blocked": false,
+      "reason": "",
+      "score": 78
     },
-    "blocked": true
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261003-pickleball-quietly-buried-racquetball-ca070f14"
+    }
   },
   {
-    "topic": "He Ghosted My Invoice. The License Didn't Care.",
-    "title": "He Ghosted My Invoice. The License Didn't Care.",
-    "format": "reddit",
-    "publish_at": "2026-10-02T13:00:00Z",
+    "topic": "Budget Airlines Passed Legacy Carriers In Europe",
+    "title": "Budget Airlines Passed Legacy Carriers In Europe",
+    "format": "graph_race",
+    "publish_at": "2026-10-03T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/1urBT1JOeUc",
+    "video_url": "https://youtube.com/shorts/dCNxyZ6QCBA",
     "error": null,
-    "elapsed_seconds": 308.4,
-    "package_path": "state/trending_packages/20261002/06_reddit-freelance-license-revoked.json",
+    "elapsed_seconds": 74.9,
+    "package_path": "state/trending_packages/20261003/03_budget-airlines-passed-legacy-carriers-europe.json",
     "source": "brain",
-    "video_path": "output/daily_20261002-121606_he_ghosted_my_invoice__the_license_didn_.mp4",
+    "video_path": "output/daily_20261003-113748_budget_airlines_passed_legacy_carriers_i.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.9,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,12 +100,45 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -25.2
     },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 91
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261003-budget-airlines-passed-legacy-carriers-in-europe-ffa37437"
+    }
+  },
+  {
+    "topic": "Wikipedia Passed Britannica. By A Lot.",
+    "title": "Wikipedia Passed Britannica. By A Lot.",
+    "format": "graph_race",
+    "publish_at": "2026-10-03T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Q56v6qoORlY",
+    "error": null,
+    "elapsed_seconds": 86.5,
+    "package_path": "state/trending_packages/20261003/04_wikipedia-passed-britannica.json",
+    "source": "brain",
+    "video_path": "output/daily_20261003-113903_wikipedia_passed_britannica__by_a_lot_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": false,
@@ -112,23 +148,24 @@
     "channel": "default",
     "logged": true,
     "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261002-he-ghosted-my-invoice-the-license-didn-t-care-402d68bf"
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261003-wikipedia-passed-britannica-by-a-lot-7cfa0ecc"
     }
   },
   {
-    "topic": "Bear caught on camera slamming into car while cub crosses road - KHOU",
-    "angle": "A massive bear barrels into a vehicle as its cub darts across, highlighting dangerous wildlife\u2011road encounters.",
-    "publish_at": "2026-10-02T14:30:00Z",
+    "topic": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
+    "title": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
+    "format": "reddit",
+    "publish_at": "2026-10-03T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Generic emoji panels on only two beats, blown-out yellow gameplay in the hook and faded captions leave the story beats undemonstrated and partly unreadable.",
-    "elapsed_seconds": 353.5,
-    "title": "I swapped an exploding drill for a refund",
-    "package_path": "state/trending_packages/20261002-122134_auto_bear_caught_on_camera_slamming_into_car_.json",
-    "video_path": "output/daily_20261002-122134_bear_caught_on_camera_slamming_into_car_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The hook card is clean, but after one laptop shot the story is never illustrated: 40 seconds of bare gameplay and captions, and the payoff is a dim fade with no picture of the moment.",
+    "elapsed_seconds": 280.9,
+    "package_path": "state/trending_packages/20261003/05_he-presented-my-idea-as-his-own.json",
+    "source": "brain",
+    "video_path": "output/daily_20261003-114155_he_presented_my_idea_as_his_own__he_coul.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 40.933,
+      "duration": 46.267,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -139,35 +176,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -25.7
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "The frames show relevant visual content and captions. Although the 'story illustration' in frames 2 and 3 is also Minecraft gameplay, it is not corrupt, garbled, a placeholder, or unsafe."
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Generic emoji panels on only two beats, blown-out yellow gameplay in the hook and faded captions leave the story beats undemonstrated and partly unreadable.",
+      "reason": "showrunner BLOCK: The hook card is clean, but after one laptop shot the story is never illustrated: 40 seconds of bare gameplay and captions, and the payoff is a dim fade with no picture of the moment.",
       "score": 57
     },
-    "blocked": true,
-    "backfill": true
+    "blocked": true
   },
   {
-    "topic": "Meet '89 Backpack', the chunky bear who won Fat Bear Week",
-    "angle": "The chubby '89 Backpack' clinches Fat Bear Week, a quirky contest that fuels wildlife tourism and conservation buzz.",
-    "publish_at": "2026-10-02T16:00:00Z",
+    "topic": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
+    "title": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
+    "format": "reddit",
+    "publish_at": "2026-10-03T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Gameplay with captions and no story illustrations until a blank placeholder phone at the end. The cause and effect is never shown, and the payoff lands on an empty icon.",
-    "elapsed_seconds": 286.1,
-    "title": "I Served an Entitled Customer My Own Sweet Revenge",
-    "package_path": "state/trending_packages/20261002-122728_auto_meet__89_backpack___the_chunky_bear_who_.json",
-    "video_path": "output/daily_20261002-122728_meet__89_backpack___the_chunky_bear_who_.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions run cleanly, but the story's key beats (the planted hair, the camera frame that catches her) are shown as a blank phone and a plate icon floating in a dark void.",
+    "elapsed_seconds": 324.3,
+    "package_path": "state/trending_packages/20261003/06_she-threatened-a-1-star-review.json",
+    "source": "brain",
+    "video_path": "output/daily_20261003-114636_she_threatened_a_1_star_review__the_foot.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 34.733,
+      "duration": 48.933,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -178,7 +215,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -28.6
+      "loudness_lufs": -24.9
     },
     "qa": {
       "ok": true,
@@ -187,8 +224,59 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Gameplay with captions and no story illustrations until a blank placeholder phone at the end. The cause and effect is never shown, and the payoff lands on an empty icon.",
-      "score": 57
+      "reason": "showrunner BLOCK: The gameplay and captions run cleanly, but the story's key beats (the planted hair, the camera frame that catches her) are shown as a blank phone and a plate icon floating in a dark void.",
+      "score": 62
+    },
+    "blocked": true
+  },
+  {
+    "topic": "This giant stick insect fooled scientists for decades",
+    "angle": "A massive Australian stick insect, dubbed \u2018the living fossil\u2019, finally gets identified, reshaping entomology\u2019s timeline.",
+    "publish_at": "2026-10-03T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['regular who always complains', 'free latte', 'swapped the espresso with decaf', 'manager called me over, thanked me', 'difficult customer']",
+    "elapsed_seconds": 67.0,
+    "title": "I Served a Free Latte and Got a Promotion",
+    "package_path": "state/trending_packages/20261003-115051_auto_this_giant_stick_insect_fooled_scientist.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "WATCH: Florida man seen walking raccoon on leash - foxnews.com",
+    "angle": "A Florida resident\u2019s bizarre leash\u2011walk with a raccoon sparks a viral debate on wildlife safety and local ordinances.",
+    "publish_at": "2026-10-03T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: This is a working Reddit-story shell, but there are no story illustrations: every beat is generic Minecraft gameplay plus captions, so the twist and payoff are only read, never seen.",
+    "elapsed_seconds": 204.6,
+    "title": "I Served a Free Espresso and Got Paid",
+    "package_path": "state/trending_packages/20261003-115200_auto_watch__florida_man_seen_walking_raccoon_.json",
+    "video_path": "output/daily_20261003-115200_watch__florida_man_seen_walking_raccoon_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a working Reddit-story shell, but there are no story illustrations: every beat is generic Minecraft gameplay plus captions, so the twist and payoff are only read, never seen.",
+      "score": 61
     },
     "blocked": true,
     "backfill": true
