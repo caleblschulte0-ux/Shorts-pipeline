@@ -65,37 +65,19 @@ result or `None`, never raising into a caller; engines never write outside
 | **chart_race** | animated multi-series chart race (eased timeline, y-camera zoom, spread tip labels, per-series icons, leaderboard, hook overlay) — silent mp4, caller muxes audio; `assess()` enforces the big-numbers data bar | trending `graph_race` format (`make_graph_race.py`) | registered module engine (`engines/chart_race.py`), `maybe_chart_race` contract, matplotlib+ffmpeg only |
 | **series_icons** (funnel) | resolve a country flag / brand LOGO for a named data series (keyless: flagcdn + Commons/Wikipedia logo search; news photos rejected), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
 
-### svg_motion (added 2026-07-30 — capability sprint)
+### svg_motion — DELETED 2026-10-03
 
-> **STATUS 2026-08-01: demoted `active` -> `experimental`, decision date
-> 2026-09-01, RE-DATED 2026-09-02 -> 2026-10-02.** It has no consumer. It
-> was built for animated cards and `text_card` — the card format it would
-> have served — was retired the next day. Claiming `active` was the exact
-> lie rule zero is about. Adopt it (a `graph_race` stat pop and the
-> `reddit_story` post card are the live candidates) or delete it by the
-> decision date. The 2026-09-01 date passed with neither evaluated; it was
-> re-dated once, with this reason recorded, rather than deleting untried,
-> working code on a technicality — see `engines/__init__.py`'s registry
-> entry. Do not re-date it again without doing the evaluation.
-
-Animated vector renders: the caller supplies `frame_fn(t) -> svg` (t∈[0,1]),
-the engine rasterizes every frame via cairosvg and assembles with ffmpeg.
-Born from the ChatGPT-integration experiments: animated SVG proved to be a
-strong vertical format and something every LLM brain here authors well —
-this owns the capability in-repo, no external service. **SMIL/CSS animation
-is NOT evaluated** — motion comes only from per-frame interpolation
-(`ease`/`interp`/`seg` helpers; built-ins `title_card`, `stat_pop`).
-
-| Field | `svg_motion` |
-|---|---|
-| status | active |
-| deps | cairosvg (pip), ffmpeg |
-| cpu_ok / est. runtime | yes / ~5–15 s per 3 s 1080×1920@30fps card |
-| license | cairosvg LGPL-3 (unmodified dynamic import — commercial OK) |
-| health check | `python -m engines doctor svg_motion` |
-| fallback | `None` → caller keeps its static card / skips the beat |
-| sample | `python -m engines demo svg-motion --out /tmp/card.mp4` |
-| tests | `python -m unittest tests.test_capabilities` (render + escape + helper coverage) |
+Added 2026-07-30 for animated cards; `text_card`, the format it would have
+served, was retired the next day. Demoted `active` -> `experimental` on
+2026-08-01 with a decision date, re-dated once (2026-09-01 -> 2026-10-02)
+with the instruction "do not re-date it again without doing the
+evaluation". The second date passed with no consumer and no evaluation, and
+`tests/test_engine_registry_honesty.py` turned every PR red, as designed. It
+was deleted rather than re-dated a second time: two months consumerless is
+the answer the deadline was asking for. The module (per-frame SVG -> PNG ->
+mp4 via cairosvg, `title_card`/`stat_pop` built-ins) is recoverable from
+git history at the commit before its deletion if a real consumer — a
+`graph_race` stat pop or the `reddit_story` post card — ever wants it.
 
 ### New in the original engines change
 

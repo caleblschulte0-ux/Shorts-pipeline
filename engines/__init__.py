@@ -153,7 +153,8 @@ REGISTRY: dict[str, dict] = {
         #
         # RE-DATED 2026-09-16 (with reason, same clock test_engine_registry
         # _honesty.py names — "adopt, demote, or re-date with a reason"; see
-        # svg_motion below for the identical precedent from 2026-09-02): the
+        # svg_motion's identical precedent from 2026-09-02 — and its end: it
+        # was DELETED on 2026-10-03 when its re-dated deadline passed too): the
         # 2026-09-15 deadline passed with no session having actually run the
         # trial. It expired as an unrelated CI-red blocker on that day's
         # trending+explainer content PR (auto-merge.yml's own `tests` job
@@ -166,50 +167,6 @@ REGISTRY: dict[str, dict] = {
         "trial": "preview render of one explainer story with parallax on "
                  "its photo beats (kenburns as the A side); adopt on a "
                  "showrunner score no worse than the A cut, else demote.",
-    },
-    "svg_motion": {
-        "kind": "module",
-        # NOT active: it has no consumer. It was built for animated cards and
-        # `text_card` — the card format it would have served — was retired
-        # the following day. Calling it "active" was the lie rule zero is
-        # about; `experimental` is the registry's own state for "built, not
-        # yet earning its slot". Adopt it (a graph_race stat pop and the
-        # reddit_story post card are the live candidates) or delete it.
-        # RE-DATED 2026-09-02 (with reason, per test_engine_registry_honesty's
-        # own "adopt, demote, or re-date with a reason" clock): the original
-        # 2026-09-01 deadline passed with no session having actually
-        # evaluated either candidate integration — the daily authoring
-        # routine hit this expiry as an unrelated CI-red blocker on its
-        # content PR and is not the right context to rush a real adopt-vs-
-        # delete call on working, tested, zero-risk code. Extending 30 days
-        # to leave room for a session with the bandwidth to actually build
-        # the stat-pop or post-card integration (or, failing that, delete it
-        # for real next time) rather than deleting on a technicality.
-        "status": "experimental",
-        "decision_date": "2026-10-02",
-        "problem": "Animated vector graphics (title cards, stat pops, "
-                   "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
-                   "Born from the ChatGPT-integration finding that animated "
-                   "SVG is a strong vertical format and LLM brains author "
-                   "SVG text well — this owns the capability in-repo with "
-                   "no external service. NOTE: SMIL/CSS animation is NOT "
-                   "evaluated; motion comes from the frame_fn(t) "
-                   "interpolation contract.",
-        "headless": True,
-        "control": "python (engines.svg_motion.maybe_svg_motion; built-ins "
-                   "title_card, stat_pop; ease/interp/seg helpers) / CLI demo",
-        "reusable": True,
-        "license": "cairosvg LGPL-3 (unmodified library use, dynamic import "
-                   "— commercial OK), ffmpeg subprocess",
-        "commercial_use": True,
-        "cpu_ok": True,
-        "est_runtime": "~5-15 s for a 3 s 1080x1920@30fps card",
-        "deps": ["cairosvg (pip)", "ffmpeg on PATH"],
-        "fallback": "None -> caller keeps its static card / skips the beat",
-        "consumers": [],
-        "failure_modes": ["cairosvg missing -> available() False",
-                          "frame_fn returns invalid SVG -> None"],
-        "sample": "python -m engines demo svg-motion --out /tmp/card.mp4",
     },
     "chart_race": {
         "kind": "module",

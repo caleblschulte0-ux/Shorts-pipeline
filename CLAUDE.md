@@ -352,8 +352,9 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
   `tests/test_captions.py`, which holds that against the original
   implementations); `funnel/feeds.py` backs `scripts/discover_topic.py`;
   `funnel/article_extract.py` fills `topic.snippets` so the writer works
-  from the real article instead of a headline. `engines/svg_motion.py` is
-  `experimental` with a decision date — it has no consumer and says so.
+  from the real article instead of a headline. `engines/svg_motion.py` sat
+  `experimental` and consumerless past two decision dates and was DELETED
+  on 2026-10-03 — the deadline test did its job.
 - **The engine registry has to tell the truth.** `active` + not `gated`
   means something really imports it; `tests/test_engine_registry_honesty.py`
   checks the metadata against the code in both directions, because it was
