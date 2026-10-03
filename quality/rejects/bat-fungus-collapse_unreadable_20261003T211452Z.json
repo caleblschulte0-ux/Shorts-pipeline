@@ -1,0 +1,25 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261003T211452Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start Data's arm covers the left edge of the '$53B' label. In payoff@-1.8, seg4:end and payoff@-0.4 the rope cuts through 'High estimate' so it reads 'H|gh'. In seg2:mid the caption '90%' sits under 'of northern long-eared', which is 97%, so the screen contradicts itself.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:mid shows three cloned Data figures, one per bat-species row, pointing at empty cyan circles beside a dotted ruler. At the same moment the caption shows '90%' while the narration is about northern long-eared bats (97%). The kill rates appear only as text labels in seg2:end. Just before, seg2:start showed a plain bar chart with bat icons.",
+  "root_cause": "The scene fell back to a ranking/bar layout and dropped Data in as a pointer copied per row. Nothing in the picture is made of bats dying, so 97% and 90% are asserted by labels instead of being shown.",
+  "repair_goal": "Make the decline physical. Show a cave ceiling roost of 100 bats per species, with Data sweeping them away with a broom (or snuffing them out) until 3 remain for northern long-eared and 10 remain for little brown. The empty roost should carry the number. Keep one Data acting as the cause, and make the caption match the species on screen."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

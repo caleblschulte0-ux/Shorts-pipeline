@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261003T211452Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0 (1.72s to 5.83s) is the hook's finished bar chart held almost unchanged; only Data's arm moves (seg0:start, seg0:mid, seg0:end). The hook and seg0 are effectively the same beat. seg3 and seg4 are the same two-circle picture.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Two identical teal circles, both labelled \"127%\" and \"Billionaire wealth\" (seg3:start, seg3:mid, seg3:end). The narration says \"the S&P 500 alone grew 195 percent\", but no 195 and no S&P label appear on screen.",
+  "root_cause": "The comparison composer filled both sides from the same series. The stock-market side never got its own value or label, so the video's punchline ends up contradicting itself.",
+  "repair_goal": "Show billionaire wealth at +127% beside the S&P 500 at +195% as a physical comparison. For example, two stacks of money or two rising stock tickers where the S&P stack visibly towers over the billionaire one, with Data stacking the bricks or pumping the S&P stack up. Each side needs its own correct label and value."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

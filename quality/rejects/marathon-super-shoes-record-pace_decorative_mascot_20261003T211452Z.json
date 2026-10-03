@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261003T211452Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start/mid/end and seg3:start/mid/end: Data just stands on top of a growing bubble with his arms up. In seg4:mid he stands beside the scale holding a stick and never loads a single block onto it. Nothing he does causes any number.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_binding",
+  "visible_evidence": "seg2:start/mid/end show two identical yellow circles, both '8.3' and both labelled 'Before 2016 (1988-2013)', while the narration says 'almost 30 seconds a year' since 2016. The header reads 'BEFORE 2016 (1988-2013) TOPS THE LIST', which inverts the claim.",
+  "root_cause": "The rate comparison bound the pre-2016 row to both slots, so the post-shoe rate (~30 s/yr) was never drawn. A rank-style headline was also generated over a two-value rate contrast.",
+  "repair_goal": "Draw the two rates as speed: two runners or record clocks, one shaving 8 s per year and one shaving ~30 s per year, labelled 'Before 2016' and 'Since 2016'. The post-2016 one should visibly pull away. Data should be the one pushing the faster runner or swapping on the super shoe that sets it off. Remove the 'TOPS THE LIST' header."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

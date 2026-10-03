@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261003T211452Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3 to seg0:end Data walks along the axis with his arms up while the bars grow behind him. In seg1:mid and seg1:end he hops between rows of an empty bar chart. In seg3:mid and seg3:end he stands on a ladder beside the 2100 bar. In seg4:start to payoff@-0.4 he stands beside",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start shows two big numbers, 870B and 1700B, each next to a dancing Data. By seg2:end it has become two plain poles with a ruler and a ladder, and the two value labels are printed on top of each other above the ruler.",
+  "root_cause": "The 'almost double' claim falls back to number text plus a generic gap-measuring machine. Nothing is made of carbon, ice or soil. The label layout never checks where the two value labels overlap.",
+  "repair_goal": "Show 1.7 trillion tons of frozen carbon as a physical mass, such as a block of permafrost cut into carbon cubes, beside the atmosphere's 870B as a smaller cloud or mass. The permafrost should visibly hold almost twice as much. Data should physically cause the comparison, for example by sawing or hauling the frozen block next to the atmosphere pile. Every label needs its own clear space."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

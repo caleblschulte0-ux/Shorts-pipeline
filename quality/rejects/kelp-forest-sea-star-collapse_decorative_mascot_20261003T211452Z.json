@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261003T211452Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data waves on top of the 100% circle in seg1:mid and seg3:mid, cheers beside 10.1K% in seg2:mid, and stands at the edge of the scale in seg4:mid. He never causes the sea stars dying, the urchins multiplying or the kelp shrinking.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:mid: one huge yellow circle labelled '100%' 'Before 2013', a tiny '1%' dot 'After the outbreak', and Data perched on top. seg3 later reuses the exact same layout for kelp.",
+  "root_cause": "The sea-star collapse falls back to a generic proportional-circle chart. Nothing in it is made of sea stars, and Data plays no part in the loss.",
+  "repair_goal": "Draw a reef floor covered in 100 sunflower sea stars. As the narration runs, the wasting disease melts them away until about 1 is left, and the count drops visibly. Data acts on it, for example sweeping the dissolved stars away with a broom or collecting the survivor in a jar, so the 99% loss is seen rather than read. Don't reuse the circle-pair layout from seg3."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
