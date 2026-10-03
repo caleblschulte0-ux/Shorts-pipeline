@@ -779,6 +779,8 @@ def main() -> int:
            for rid, problems in _auth_refused.items()])
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
+              "envelope_problems": (xb.response_envelope_problems(
+                  response, args.date) if response is not None else []),
               "authored": {"promoted": len(authored.get("promoted") or []),
                            "rejected": len(authored.get("rejected") or []),
                            "other_channels": authored.get("other_channels",

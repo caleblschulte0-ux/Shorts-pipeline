@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261002",
+  "updated": "20261003",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -335,10 +335,16 @@
       ]
     },
     "ab49431193c5": {
-      "verdict": "doing",
-      "date": "20260814",
-      "because": "Verified: response_index() never reads schema/date/status/contract, contract_problems() explicitly tolerates a missing contract by design (pinned by test_a_silent_response_is_tolerated), and ingest_authored.py consumes authored/explainer/curiosity sections with no envelope check. This is a real latent gap (no incident yet -- the Aug 13 bundle correctly declares the envelope) and genuinely spans 5 files needing a new typed validator plus a phased rollout so the live scheduled worker isn't broken by a hard requirement it doesn't yet emit. Agree long_term is the right horizon; queuing as doing so it's on the backlog, but it is not a one-session build -- a smaller first slice (require schema+date only, defer status/contract) would be the way to start it when picked up.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261003",
+      "because": "picked up: first slice, report-only envelope validator in Phase B report",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified: response_index() never reads schema/date/status/contract, contract_problems() explicitly tolerates a missing contract by design (pinned by test_a_silent_response_is_tolerated), and ingest_authored.py consumes authored/explainer/curiosity sections with no envelope check. This is a real latent gap (no incident yet -- the Aug 13 bundle correctly declares the envelope) and genuinely spans 5 files needing a new typed validator plus a phased rollout so the live scheduled worker isn't broken by a hard requirement it doesn't yet emit. Agree long_term is the right horizon; queuing as doing so it's on the backlog, but it is not a one-session build -- a smaller first slice (require schema+date only, defer status/contract) would be the way to start it when picked up."
+        }
+      ]
     },
     "5ac409690185": {
       "verdict": "done",
