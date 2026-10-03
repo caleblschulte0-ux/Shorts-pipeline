@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261003T141104Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg0:mid and seg0:end a narrow tube chart fills the middle third, and the lower 40% of the frame is empty dark gradient. In seg2:start the bubbles are tiny in a mostly empty frame.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_duplicate_categories",
+  "visible_evidence": "From seg2:start to seg2:end there are two identical yellow bubbles, both '8.3' and both labelled 'Before 2016 (1988-2013)'. The narration says 'almost 30 seconds' a year since 2016, and that value is not on screen. Data stands on the left bubble with his arms raised.",
+  "root_cause": "The second category was resolved to the same row as the first, so the 'since 2016' value of ~30 s/yr never reached the scene. The picture shows that nothing changed, the opposite of the claim.",
+  "repair_goal": "Show the two rates as speed: two record clocks or runners, one shaving 8.3 s/yr and one shaving ~30 s/yr, with the second visibly pulling away 3.6x faster. Label them 'Before 2016' and 'Since 2016 (super shoes)'. Data should be the cause, for example lacing on a super shoe that kicks the second runner forward."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

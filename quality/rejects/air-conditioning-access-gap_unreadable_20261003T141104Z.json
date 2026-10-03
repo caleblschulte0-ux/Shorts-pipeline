@@ -1,0 +1,16 @@
+{
+ "slug": "air-conditioning-access-gap",
+ "ts": "20261003T141104Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end the grey '3.5\u00d7 the 2018 bill / by 2050' sits on an orange sky and almost disappears at phone size.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "claim_mismatch",
+  "visible_evidence": "seg3:start to seg3:end show AC UNIT counts (0.9B, 1.6B, 5.6B) as gold coins poured into a jar labelled 'to keep the hottest places cool'. A faint '3.5\u00d7 the 2018 bill' then appears, but the narration says the bill triples. seg4 then repeats the same 0.9/1.6/5.6 billion numbers with a furnace.",
+  "root_cause": "The scene mixes two different claims: the global number of AC units, and the electricity bill in the hottest places. It draws a unit count as money and attaches a multiplier the narration does not say.",
+  "repair_goal": "Show the 1.6B-to-5.6B AC unit count as AC units (or as power draw on the pylons that Data has to feed), with a label that says 'AC units worldwide'. Show the bill separately, matching the narration's 'triple', with high-contrast ink text. Don't repeat the same numbers in seg4."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-03T12:44:38Z",
+ "updated": "2026-10-03T14:10:57Z",
  "open": [
+  {
+   "id": "marathon-super-shoes-record-pace__87f99e40",
+   "slug": "marathon-super-shoes-record-pace",
+   "filed": "2026-10-03T14:10:56Z",
+   "why": [
+    "judge: The data is broken: seg2 shows the same 8.3 twice where the 30 s/yr jump should be, seg1 counts a falling record upward, and Data perches on generic charts instead of doing anything."
+   ],
+   "request": "exchange/rewrites/20261003/marathon-super-shoes-record-pace__87f99e40.request.json",
+   "answer_path": "exchange/rewrites/20261003/marathon-super-shoes-record-pace__87f99e40.answer.json"
+  },
   {
    "id": "permafrost-thaw__a94a08e2",
    "slug": "permafrost-thaw",
@@ -780,16 +790,6 @@
    ],
    "request": "exchange/rewrites/20261002/glacier-mass-loss-acceleration__c13b15b7.request.json",
    "answer_path": "exchange/rewrites/20261002/glacier-mass-loss-acceleration__c13b15b7.answer.json"
-  },
-  {
-   "id": "marathon-super-shoes-record-pace__87f99e40",
-   "slug": "marathon-super-shoes-record-pace",
-   "filed": "2026-10-02T11:31:49Z",
-   "why": [
-    "premise: brain: The claim hinges on a sensational number (2‑hour marathon) without a clear reversal of a specific viewer expectation and lacks verifiable grounding."
-   ],
-   "request": "exchange/rewrites/20261002/marathon-super-shoes-record-pace__87f99e40.request.json",
-   "answer_path": "exchange/rewrites/20261002/marathon-super-shoes-record-pace__87f99e40.answer.json"
   },
   {
    "id": "north-american-bird-collapse__d68a21d9",
