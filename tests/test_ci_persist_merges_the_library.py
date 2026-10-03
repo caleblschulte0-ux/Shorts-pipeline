@@ -197,6 +197,40 @@ class AMidRunPushRaceKeepsTheRunsOtherArtifacts(unittest.TestCase):
             self.assertIn("state/scene_plans/p.json", status)
             self.assertNotIn("posted_log", status, "the given path was committed")
 
+    def test_a_directory_persist_does_not_revert_what_it_never_touched(self):
+        """2026-10-03 11:55 UTC: daily.yml persisted `state/` (a directory),
+        lost the race, and copied its whole stale state/ over fresh main —
+        the third channel's 11:47 run record, its clip memory and its story
+        events went back to the 09:00 checkout. Only the files the run
+        CHANGED may be carried back over main."""
+        with tempfile.TemporaryDirectory() as tds:
+            td = Path(tds)
+            bare = self._seed(td)
+            run = td / "run"; other = td / "other"
+            for d in (run, other):
+                subprocess.run(["git", "clone", "-q", str(bare), str(d)], check=True)
+                _git(d, "config", "user.email", "t@t"); _git(d, "config", "user.name", "t")
+            # another channel's run lands its state on main
+            (other / "state" / "scene_plans" / "p.json").write_text('{"v": "main-wrote-this"}')
+            (other / "state" / "third_clip_memory.json").write_text('{"clips": {"k": 1}}')
+            _git(other, "add", "."); _git(other, "commit", "-qm", "third run")
+            _git(other, "push", "-q", "origin", "main")
+            # the stale daily run changes only its own report, persists state/
+            (run / "state" / "daily_report.json").write_text('{"day": 1}')
+            r = subprocess.run(["bash", "scripts/ci_commit_state.sh", "daily",
+                                "state/"],
+                               cwd=run, capture_output=True, text=True,
+                               env={**__import__("os").environ, "CI_COMMIT_BRANCH": "main"})
+            self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+            self.assertIn("union-merging", r.stdout)
+            _git(run, "fetch", "-q", "origin")
+            self.assertEqual(json.loads(_git(run, "show", "origin/main:state/daily_report.json")),
+                             {"day": 1}, "the run's own file reached main")
+            self.assertEqual(json.loads(_git(run, "show", "origin/main:state/scene_plans/p.json")),
+                             {"v": "main-wrote-this"}, "a file the run never touched was reverted")
+            self.assertEqual(json.loads(_git(run, "show", "origin/main:state/third_clip_memory.json")),
+                             {"clips": {"k": 1}}, "another channel's new file was deleted")
+
     def test_the_line_union_never_drops_or_reorders(self):
         got = M.merge_jsonl('{"a":1}\n{"b":2}\n', '{"a":1}\n{"c":3}\n\n')
         self.assertEqual(got, '{"a":1}\n{"b":2}\n{"c":3}\n')
