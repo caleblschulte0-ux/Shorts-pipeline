@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s1-7789e45c7742",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s1-7789e45c7742",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f76da569f844cb1112059909485dcda0222d1541beb31ba728c14fb2dfe92333",
+  "prompt_used": "An editorial illustration for a short-form video: office desk computer. It accompanies the narration: \"grabbed my files off the shared drive\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s1-7789e45c7742.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b93d16d3fad1ed80610baf4048f65a995c422523db2af6fa596bc5351fe5e40a",
+    "bytes": 1648776,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-10-03T11:27:50.675Z"
+}
