@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "she-threatened-a-1-star-review-s2-1cff4cf06fb1",
+  "safe_request_id": "she-threatened-a-1-star-review-s2-1cff4cf06fb1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7c0eb01a5c90a8f986ab9254828dd7287c58826e98015a5edb9ad9e0039f4bb7",
+  "prompt_used": "An editorial illustration for a short-form video: phone camera reviewing. It accompanies the narration: \"post a one-star review with photos\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+    "filename": "20261003__she-threatened-a-1-star-review-s2-1cff4cf06fb1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5bc0cd37e5642298b450365aa6939343554d3103786c2447e6306c9c7d8dc5ae",
+    "bytes": 1839730,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-03T11:27:59.850Z"
+}
