@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261003T181149Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:start/mid/end is two Datas, each next to a big number ('100%' and '10.1K%') on a line. There are no urchins and no demonstration of the explosion, only the number text sliding sideways.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two copies of Data stand on two lines, with 'Before 2014 100%' and 'Since 2014 10.1K%' as text. The only motion is the second number and Data sliding right. There are no urchins and no kelp.",
+  "root_cause": "The 10,000% urchin explosion was routed to a generic two-row comparison template. The subject (urchins multiplying without their predator) never appears, and the number is carried by the text label alone.",
+  "repair_goal": "Draw the seafloor with a handful of purple urchins in the 'before' state. Then show them multiplying to about 100 times the count until they carpet the frame. Data, as the cause, pulls a sunflower sea star off the reef so the urchins pour in. End on the carpet with a readable 'over 10,000%' label (not '10.1K%')."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

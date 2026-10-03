@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261003T181149Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:start-end shows two identical yellow circles, each reading 8.3 and each labelled 'Before 2016 (1988-2013)'. It is a big number on a blob that demonstrates nothing, and the second value (~30 s/yr since 2016) never appears.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "data_error_bare_number",
+  "visible_evidence": "Two identical 8.3 circles, both labelled 'Before 2016 (1988-2013)'. The narration says 'almost 30 seconds' but no 30 is ever drawn, and the kicker reads 'BEFORE 2016 TOPS THE LIST', which inverts the story.",
+  "root_cause": "The comparison lost its second series: the post-2016 value was dropped or duplicated from the first row, and the generic bubble chart rendered the duplicate without a check.",
+  "repair_goal": "Show 8 s/yr before 2016 against ~30 s/yr since 2016 as a race: two runners or two clocks shedding seconds, with the post-2016 one visibly shedding nearly 4x as fast. Use correct, distinct labels, and have Data push the faster clock hand."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
