@@ -10738,6 +10738,33 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (GTA RP chatter, no visible event)",
       "ts": "2026-10-03T12:02:46.551513+00:00"
+    },
+    "rejected-transparentplumplarkunsane-cx4xym6wcrzvrqqf": {
+      "source_url": "https://www.twitch.tv/buddha/clip/TransparentPlumpLarkUnSane-CX4XYM6WcRzVRqqf",
+      "streamer": "buddha",
+      "title": "Buddha looks for Joe Caine",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP walking around casino, no payoff)",
+      "ts": "2026-10-03T15:11:01.893071+00:00"
+    },
+    "rejected-adorableelatedlemurnerfblueblaster-xxrlz884pdlb2ijs": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AdorableElatedLemurNerfBlueBlaster-xxrlz884pdLB2Ijs",
+      "streamer": "xqc",
+      "title": "ABSOLUTE CHAOS",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark GTA RP club crowd, no clear event)",
+      "ts": "2026-10-03T15:12:05.916103+00:00"
+    },
+    "rejected-manlyinnocentpterodactylthunbeast-qotwte7dj_4-o7cp": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ManlyInnocentPterodactylThunBeast-qOtWTe7DJ_4-o7cp",
+      "streamer": "caseoh_",
+      "title": "omg",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Sausage game, then dashboard; no payoff)",
+      "ts": "2026-10-03T15:12:47.687075+00:00"
     }
   }
 }
