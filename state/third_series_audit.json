@@ -23,7 +23,7 @@
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.055
+      "median_vph": 0.05
     },
     "jumpscare": {
       "n": 5,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.69
+      "median_vph": 0.68
     },
     "story": {
       "n": 1,
