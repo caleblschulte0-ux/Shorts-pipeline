@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261003T124445Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:start the bars and mascot sit in the bottom quarter and the top 60% of the frame is empty gradient. In hook@0.3 to seg0:start the top of the frame is empty above a flat axis.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:end the pink 'Frozen in permafrost soil 1700B' label sits directly over the white 'Earth's whole atmosphere 870B' label at the same height. The second pole's label never gets its own position, so the beat's main comparison is illegible.",
+  "root_cause": "Both pole labels are anchored at the same y position at the left of the frame. When the second pole reaches nearly the same height, the layout has nothing to stop the two labels colliding.",
+  "repair_goal": "Put each label at the top of its own pole, or stack them with measured vertical separation so they cannot overlap. Better: draw the permafrost store as a frozen ground mass about twice the size of the atmosphere's carbon, so 'almost double' can be seen without reading any label. Have Data do the work, for example hauling the second block up the ladder."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

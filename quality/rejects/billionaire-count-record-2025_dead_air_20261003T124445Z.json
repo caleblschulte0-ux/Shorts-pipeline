@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261003T124445Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:start (1.72s), seg0:mid (3.77s) and seg0:end (5.83s) show the same finished bar chart with only small mascot arm changes, which matches the measured 5.92s hold at 4.67s. seg3 and seg4 also show the same two-circle frame for about 15s.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start, seg3:mid and seg3:end show two identical teal circles, both labelled '127%' and 'Billionaire wealth'. The S&P 500's 195% never appears, though the narration says '195 percent'. Data idles on top of the left circle.",
+  "root_cause": "The comparison scene bound the same series to both sides, so the second entity (S&P 500 at 195%) was dropped. The picture is a generic circle-size comparison with no subject form.",
+  "repair_goal": "Show billionaire wealth at +127% against the S&P 500 at +195% as two visibly different magnitudes with correct labels. For example, a stock-ticker line or a stack of stock certificates climbs past a pile of billionaire money, and Data pushes the S&P stack up to the higher mark. The second side must read 'S&P 500 195%'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

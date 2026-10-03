@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-03T10:20:03Z",
+ "updated": "2026-10-03T12:44:38Z",
  "open": [
+  {
+   "id": "permafrost-thaw__a94a08e2",
+   "slug": "permafrost-thaw",
+   "filed": "2026-10-03T12:44:38Z",
+   "why": [
+    "judge: This is a chart deck with a mascot walking past it: the permafrost and the thaw never appear, seg1 is an empty bar table, and seg2 ends with overlapping, unreadable labels."
+   ],
+   "request": "exchange/rewrites/20261003/permafrost-thaw__a94a08e2.request.json",
+   "answer_path": "exchange/rewrites/20261003/permafrost-thaw__a94a08e2.answer.json"
+  },
+  {
+   "id": "oceanic-shark-collapse__7abc9718",
+   "slug": "oceanic-shark-collapse",
+   "filed": "2026-10-03T12:44:37Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a common viewer expectation despite citing a single verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261003/oceanic-shark-collapse__7abc9718.request.json",
+   "answer_path": "exchange/rewrites/20261003/oceanic-shark-collapse__7abc9718.answer.json"
+  },
+  {
+   "id": "kelp-forest-sea-star-collapse__88acf100",
+   "slug": "kelp-forest-sea-star-collapse",
+   "filed": "2026-10-03T11:44:24Z",
+   "why": [
+    "premise: brain: The premise relies on multiple percentages (96% and 99%) rather than a single consequential number, violating the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261003/kelp-forest-sea-star-collapse__88acf100.request.json",
+   "answer_path": "exchange/rewrites/20261003/kelp-forest-sea-star-collapse__88acf100.answer.json"
+  },
+  {
+   "id": "air-conditioning-access-gap__9ee4ec34",
+   "slug": "air-conditioning-access-gap",
+   "filed": "2026-10-03T11:44:24Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers rather than a single verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261003/air-conditioning-access-gap__9ee4ec34.request.json",
+   "answer_path": "exchange/rewrites/20261003/air-conditioning-access-gap__9ee4ec34.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__147039f2",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-10-03T11:44:22Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on vague comparison rather than a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261003/lab-grown-diamond-price-collapse__147039f2.request.json",
+   "answer_path": "exchange/rewrites/20261003/lab-grown-diamond-price-collapse__147039f2.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__8cadb9b4",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-03T11:44:21Z",
+   "why": [
+    "thesis: seg1 ('bat population decline') has no bridge to the headline (\"A Fungus Is Erasing North America's Bats\") — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261003/bat-fungus-collapse__8cadb9b4.request.json",
+   "answer_path": "exchange/rewrites/20261003/bat-fungus-collapse__8cadb9b4.answer.json"
+  },
   {
    "id": "global-remittances-record-2023__5fd648c7",
    "slug": "global-remittances-record-2023",
@@ -712,26 +772,6 @@
    "answer_path": "exchange/rewrites/20261003/sand-mining-crisis__eb97e4fb.answer.json"
   },
   {
-   "id": "permafrost-thaw__a94a08e2",
-   "slug": "permafrost-thaw",
-   "filed": "2026-10-02T14:55:17Z",
-   "why": [
-    "judge: A permafrost story told almost entirely as stock charts. The key 'almost double' comparison falls back to two numbers on a card, and Data mostly stands near the data instead of causing it."
-   ],
-   "request": "exchange/rewrites/20261002/permafrost-thaw__a94a08e2.request.json",
-   "answer_path": "exchange/rewrites/20261002/permafrost-thaw__a94a08e2.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-10-02T14:01:42Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague hook rather than a single, verifiable numerical claim."
-   ],
-   "request": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20261002/lab-grown-diamond-price-collapse__147039f2.answer.json"
-  },
-  {
    "id": "glacier-mass-loss-acceleration__c13b15b7",
    "slug": "glacier-mass-loss-acceleration",
    "filed": "2026-10-02T11:31:49Z",
@@ -752,16 +792,6 @@
    "answer_path": "exchange/rewrites/20261002/marathon-super-shoes-record-pace__87f99e40.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__88acf100",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-10-02T11:31:48Z",
-   "why": [
-    "premise: brain: Uses multiple percentages and lacks a single consequential number that flips a viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261002/kelp-forest-sea-star-collapse__88acf100.request.json",
-   "answer_path": "exchange/rewrites/20261002/kelp-forest-sea-star-collapse__88acf100.answer.json"
-  },
-  {
    "id": "north-american-bird-collapse__d68a21d9",
    "slug": "north-american-bird-collapse",
    "filed": "2026-10-02T11:31:46Z",
@@ -770,26 +800,6 @@
    ],
    "request": "exchange/rewrites/20261002/north-american-bird-collapse__d68a21d9.request.json",
    "answer_path": "exchange/rewrites/20261002/north-american-bird-collapse__d68a21d9.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__8cadb9b4",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-02T11:31:45Z",
-   "why": [
-    "thesis: seg1 ('bat population decline') has no bridge to the headline (\"A Fungus Is Erasing North America's Bats\") — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261002/bat-fungus-collapse__8cadb9b4.request.json",
-   "answer_path": "exchange/rewrites/20261002/bat-fungus-collapse__8cadb9b4.answer.json"
-  },
-  {
-   "id": "oceanic-shark-collapse__7abc9718",
-   "slug": "oceanic-shark-collapse",
-   "filed": "2026-10-01T13:05:23Z",
-   "why": [
-    "premise: brain: The premise presents a shocking statistic but does not invert a viewer's existing expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.request.json",
-   "answer_path": "exchange/rewrites/20261001/oceanic-shark-collapse__7abc9718.answer.json"
   },
   {
    "id": "landline-extinction-event__f48f5d4d",
