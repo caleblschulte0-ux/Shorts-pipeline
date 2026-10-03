@@ -1,4 +1,123 @@
-{
-  "skipped": true,
-  "recent_posts": 4
-}
+[
+  {
+    "topic": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
+    "title": "He Presented My Idea As His Own. He Couldn't Answer One Question.",
+    "format": "reddit",
+    "publish_at": "2026-10-03T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/91wwX0hLb4I",
+    "error": null,
+    "elapsed_seconds": 317.4,
+    "package_path": "state/trending_packages/20261003/05_he-presented-my-idea-as-his-own.json",
+    "source": "brain",
+    "video_path": "output/daily_20261003-120352_he_presented_my_idea_as_his_own__he_coul.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default",
+    "logged": true,
+    "crossposts": {
+      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261003-he-presented-my-idea-as-his-own-he-couldn-t-answ-032ddacc"
+    }
+  },
+  {
+    "topic": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
+    "title": "She Threatened A 1-Star Review. The Footage Told A Different Story.",
+    "format": "reddit",
+    "publish_at": "2026-10-03T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story's whole payoff (she planted the hair, the printed frame exposes her) is never shown: the reveal plays over bare gameplay and the ending is a plate emoji.",
+    "elapsed_seconds": 410.5,
+    "package_path": "state/trending_packages/20261003/06_she-threatened-a-1-star-review.json",
+    "source": "brain",
+    "video_path": "output/daily_20261003-120910_she_threatened_a_1_star_review__the_foot.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.933,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story's whole payoff (she planted the hair, the printed frame exposes her) is never shown: the reveal plays over bare gameplay and the ending is a plate emoji.",
+      "score": 58
+    },
+    "blocked": true
+  },
+  {
+    "topic": "WATCH: Florida man seen walking raccoon on leash - Fox News",
+    "angle": "A Florida man sparked a viral frenzy by strolling a leash\u2011bound raccoon through a downtown park, raising questions about wildlife safety and local ordinances.",
+    "publish_at": "2026-10-03T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A bare Reddit-card-over-parkour story: five of six beats have no illustration at all, and the one overlay is a generic building icon, so nothing about the pastry or tip-jar scheme is ever shown.",
+    "elapsed_seconds": 325.1,
+    "title": "I turned my boss's free pastry promotion scam on its head",
+    "package_path": "state/trending_packages/20261003-121622_auto_watch__florida_man_seen_walking_raccoon_.json",
+    "video_path": "output/daily_20261003-121622_watch__florida_man_seen_walking_raccoon_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A bare Reddit-card-over-parkour story: five of six beats have no illustration at all, and the one overlay is a generic building icon, so nothing about the pastry or tip-jar scheme is ever shown.",
+      "score": 61
+    },
+    "blocked": true,
+    "backfill": true
+  }
+]
