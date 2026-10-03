@@ -10711,6 +10711,33 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-realdullplumageralpherz-cf87bthutusshfsd": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RealDullPlumageRalpherZ-Cf87BthutUSShFSD",
+      "streamer": "jynxzi",
+      "title": "worst clipfarm ever",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Minecraft talk, nothing observable happe)",
+      "ts": "2026-10-03T12:01:46.408350+00:00"
+    },
+    "rejected-abstemiouscrowdedcasetteeagleeye-kx4az0brgvxaw1ip": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AbstemiousCrowdedCasetteEagleEye-kx4AZ0BRgVxAW1IP",
+      "streamer": "kaicenat",
+      "title": "nahh ubscred cuz u know u finna get exposed",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer talking, no visible event)",
+      "ts": "2026-10-03T12:02:12.743201+00:00"
+    },
+    "rejected-sparklysneakystorkkevinturtle-ndbs5ebzgq9mldns": {
+      "source_url": "https://www.twitch.tv/cinna/clip/SparklySneakyStorkKevinTurtle-nDbs5eBZGQ9mLdnS",
+      "streamer": "cinna",
+      "title": "She Admitted It",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP chatter, no visible event)",
+      "ts": "2026-10-03T12:02:46.551513+00:00"
     }
   }
 }
