@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261003",
+  "bundle": {
+    "identity": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0",
+    "path": "exchange/bundles/20261003/bundle.json"
+  },
+  "request_id": "he-presented-my-idea-as-his-own-s0-8f824e72105c",
+  "safe_request_id": "he-presented-my-idea-as-his-own-s0-8f824e72105c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ddf0b87885592acbe7507b3083ec17030e208b553682eb3cb11940f45c3ff32f",
+  "prompt_used": "An editorial illustration for a short-form video: laptop presentation slides. It accompanies the narration: \"building a pitch deck for a client renewal\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+    "filename": "20261003__he-presented-my-idea-as-his-own-s0-8f824e72105c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a0fb8cfa7b885cf582008ee12e7a41f8dab4727e65e20449dc0031999ff9131d",
+    "bytes": 1626548,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-03T11:27:49.562Z"
+}
