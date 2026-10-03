@@ -827,6 +827,20 @@ only as a hand edit is not a rule. So:
   test renders a lamp going out and measures the frames after it. Somebody
   may also walk over to blow the lamp out, not only whoever sits beside it.
 
+- **The Greek film with happenings (74, BLOCK; Kokoro; longest still
+  0.67 s).** No motion complaint this time (temporal_craft 2, pace 2), but
+  no gain in score either. Every note is about matching the words:
+  - "boats pulled up on the sand" shows three people by the sea;
+  - a stream is drawn as the open sea again;
+  - "a child asleep on a low bed" shows three adults awake;
+  - no table, bread or cup for the meal; no couches for the symposium;
+  - an indoor spindle line is drawn as an outdoor rooftop;
+  - pillar candles and a kettle-grill brazier are out of period.
+  Its own fix: make every place-setting noun in a sentence a REQUIRED prop
+  for that shot, and refuse a backdrop without it.
+  Seen on my own look: the mouse turns up in too many interiors, and a cart
+  floats over the forum (a back prop at the horizon).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
