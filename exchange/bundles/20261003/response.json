@@ -1,0 +1,452 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261003",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 7,
+    "registry_sha256": "9414de6fe8e5f9478aede832241005a45a78610ef4167c5269998c10de90c460",
+    "source_commit": "c3caa1aabbd8ff9abdcbcc690772208287e31c26",
+    "production_date": "20261003",
+    "bundle_sha256": "017530da6f0ada8f224c107da5dd82d7afff703212e9e2e9730a40e47aa559f0"
+  },
+  "packages": [
+    {
+      "slug": "mobile-gaming-passed-console-pc-combined",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the platform crossover is instantly legible, and the chart carries the scale without extra narration."
+    },
+    {
+      "slug": "pickleball-buried-racquetball",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the title gives the rivalry and outcome cleanly while the timeline supplies the surprise."
+    },
+    {
+      "slug": "budget-airlines-passed-legacy-carriers-europe",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the carrier crossover is clear, specific to Europe, and best proven directly by the chart."
+    },
+    {
+      "slug": "wikipedia-passed-britannica",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the familiar encyclopedia matchup and emphatic title create an immediate, chart-supported hook."
+    },
+    {
+      "slug": "he-presented-my-idea-as-his-own",
+      "script": "I spent three weeks building a pitch deck for a client renewal, color-coded, backed by data, the works. That morning, my coworker grabbed my files off the shared drive and opened the deck under his own name before I arrived. He presented it line by line, confident, smiling, while I sat behind him. Then the client asked a follow-up about the churn model on slide nine. He froze. The dataset was mine, and he had never opened the methodology tab. After thirty seconds, I raised my hand and answered it in under a minute, citing the exact spreadsheet. The client thanked me by name. My manager pulled him aside, and within the week the account was reassigned to me, full credit, full commission. He stole the deck; the questions returned it.",
+      "editor_note": "Compressed the story to 124 words, preserved every protected fact and visual phrase, and sharpened the payoff around the stolen work proving its owner."
+    },
+    {
+      "slug": "she-threatened-a-1-star-review",
+      "script": "A woman stormed up to my register holding a half-eaten sandwich and demanded a full refund plus a free meal, claiming she found a hair before two bites. I offered a standard refund. She refused, raised her phone, and threatened to post a one-star review with photos unless I comped her next five visits. I said policy required me to check the kitchen cameras first for any goodwill comp over ten dollars. She agreed, smirking. The footage showed her pulling a hair from her own ponytail, then tucking it under the lettuce thirty seconds before calling me over. I printed a single frame, slid it across the counter, and asked whether she still wanted to post. She left without the refund, the free meal, or the review. Turns out the camera had the strongest review.",
+      "editor_note": "Compressed the story to 135 words, preserved every protected fact and visual phrase, and gave the camera reveal a concise review callback."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s0-8f824e72105c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s0-8f824e72105c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=12zWkdVIsZSMNeqgd1JguYN5TJEUYGbLa",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a0fb8cfa7b885cf582008ee12e7a41f8dab4727e65e20449dc0031999ff9131d",
+        "bytes": 1626548,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s0-8f824e72105c.json",
+        "verified_at": "2026-10-03T11:27:49.562Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s1-7789e45c7742",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s1-7789e45c7742.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ifz_MV-ayXmPnfF8dfIaveiLiJQIaffG",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b93d16d3fad1ed80610baf4048f65a995c422523db2af6fa596bc5351fe5e40a",
+        "bytes": 1648776,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s1-7789e45c7742.json",
+        "verified_at": "2026-10-03T11:27:50.675Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s2-dc96db806e13",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s2-dc96db806e13.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gQKaAueCBRvuVTIU8QvtqKoLixtjqGw-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "bc5cc655d116485f205015959e693474de5935f563afde47273d8be993197ae3",
+        "bytes": 1674072,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s2-dc96db806e13.json",
+        "verified_at": "2026-10-03T11:27:51.812Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s3-09fde7705e6e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s3-09fde7705e6e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1z-89IdUkNK1raz4rZDDNBaTii6LFUjCs",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fabd41a12ee0aeced4e44ec99ae80f1abf54fd6b535a4a5923223bb497917ae7",
+        "bytes": 1591639,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s3-09fde7705e6e.json",
+        "verified_at": "2026-10-03T11:27:52.812Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s4-497e9fdc1b4e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1fYmlUaD5AFvSL9yAaMHi5gFjYu2ysB-u",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s4-497e9fdc1b4e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1fYmlUaD5AFvSL9yAaMHi5gFjYu2ysB-u",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "956e0e7d44f0042747e895c13e868a82b3e54413f67d22dcdc5c713f57cfb104",
+        "bytes": 1581218,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s4-497e9fdc1b4e.json",
+        "verified_at": "2026-10-03T11:27:53.735Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s5-ccb0c102fa89",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s5-ccb0c102fa89.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ZQUrfd94yNVZudLES4vB7dCpRXcG7ljW",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "af18151f85d929d336b756d84ce430c9dc835fd92939db45c80b7afcb27fe9a3",
+        "bytes": 1917092,
+        "format": "png",
+        "width": 940,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s5-ccb0c102fa89.json",
+        "verified_at": "2026-10-03T11:27:54.761Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s6-6febb2ec17a1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s6-6febb2ec17a1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Yp9ieL6atr-kXrg8CA95LdWX5t1nzeV7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9f7bd4ededecf6b94f9c85ccfcc855def59e375f5425e4a0c39e5d69baf3a4e3",
+        "bytes": 1857150,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s6-6febb2ec17a1.json",
+        "verified_at": "2026-10-03T11:27:55.751Z"
+      }
+    },
+    {
+      "request_id": "he-presented-my-idea-as-his-own-s7-d744604bbb2f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+        "filename": "20261003__he-presented-my-idea-as-his-own-s7-d744604bbb2f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1meM523CmGug642dK3LT2AEiG2JYcUR3a",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "367fb54fe864eb7012408e00c4ec924e37ffef17a4652f8f9193a07ca6891c57",
+        "bytes": 1869844,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/he-presented-my-idea-as-his-own-s7-d744604bbb2f.json",
+        "verified_at": "2026-10-03T11:27:56.654Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s0-42a98db06765",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+        "filename": "20261003__she-threatened-a-1-star-review-s0-42a98db06765.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Gu2cGjSPwyNz4SOZbMeQEuJJcfb9aXdH",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d785ba4238b049a173a91fb4b35969e773b27c37107cd7662b3847e679099630",
+        "bytes": 1937795,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s0-42a98db06765.json",
+        "verified_at": "2026-10-03T11:27:57.840Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s1-12e96575e667",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+        "filename": "20261003__she-threatened-a-1-star-review-s1-12e96575e667.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rdjHZueQHeFHd8DJCDtQjZKyPXbe44OQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f9cebed734d3dff5cd8d3017e18fc2cf74dc1bc362b6eaa2603b0381d4d1b239",
+        "bytes": 2105528,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s1-12e96575e667.json",
+        "verified_at": "2026-10-03T11:27:59.020Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s2-1cff4cf06fb1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+        "filename": "20261003__she-threatened-a-1-star-review-s2-1cff4cf06fb1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1jROHQ3JU3LWYiTyd3dyp2JQxwYa7FR8b",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5bc0cd37e5642298b450365aa6939343554d3103786c2447e6306c9c7d8dc5ae",
+        "bytes": 1839730,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s2-1cff4cf06fb1.json",
+        "verified_at": "2026-10-03T11:27:59.850Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s3-19215d36a702",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+        "filename": "20261003__she-threatened-a-1-star-review-s3-19215d36a702.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1L3xPj20ALDHzAtyRC9uhgYHLAqV3y37f",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4fa17bcf0c1cf4d4b6a353c00c2a9eb947c5c55b159dcda4d1b05a780ae14607",
+        "bytes": 1555640,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s3-19215d36a702.json",
+        "verified_at": "2026-10-03T11:28:00.749Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s4-d139bac9cbb8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1kn-p1a8z4mRaYJZHeVFKR8l-Ht8iQuMM",
+        "filename": "20261003__she-threatened-a-1-star-review-s4-d139bac9cbb8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1kn-p1a8z4mRaYJZHeVFKR8l-Ht8iQuMM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "29590fffaaa520f2341c9b1197bb70a2f56e966da021593bec855506887990ae",
+        "bytes": 2217402,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s4-d139bac9cbb8.json",
+        "verified_at": "2026-10-03T11:28:01.676Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s5-661d859764c8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Vl9jHbFkFDvVQVluCnDAkDgCm06W-BEq",
+        "filename": "20261003__she-threatened-a-1-star-review-s5-661d859764c8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Vl9jHbFkFDvVQVluCnDAkDgCm06W-BEq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "cc84846e2184ab268eb3b95d5acd40af90cf50100178f809db772ac5672853ea",
+        "bytes": 2204419,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s5-661d859764c8.json",
+        "verified_at": "2026-10-03T11:28:02.741Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s6-849a7bb66ff5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rx8yqoc4eKmGA5QrGNu_OAA_5UZC0qnj",
+        "filename": "20261003__she-threatened-a-1-star-review-s6-849a7bb66ff5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rx8yqoc4eKmGA5QrGNu_OAA_5UZC0qnj",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1d7d5204ce477b4f824e4f2536dda52a572def3468115d29fb433ae711d91877",
+        "bytes": 1871980,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s6-849a7bb66ff5.json",
+        "verified_at": "2026-10-03T11:28:03.822Z"
+      }
+    },
+    {
+      "request_id": "she-threatened-a-1-star-review-s7-d34237eaac47",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+        "filename": "20261003__she-threatened-a-1-star-review-s7-d34237eaac47.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1VhRL9TcjZGdnBEYM7wRkjqFN8jQGZ2_m",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "853188cf63d9252e82acf18c57134fdef2b9542aa812c9b0c514d9a8502fd43d",
+        "bytes": 1745491,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261003/media-progress/she-threatened-a-1-star-review-s7-d34237eaac47.json",
+        "verified_at": "2026-10-03T11:28:04.782Z"
+      }
+    }
+  ]
+}
