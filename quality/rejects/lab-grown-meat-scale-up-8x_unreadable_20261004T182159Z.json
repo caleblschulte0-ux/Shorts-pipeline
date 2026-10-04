@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T182159Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3 to seg0:end: Data's body covers the '4' of '400,000' ('00,000' shows). seg1:end: the '50000' label is overprinted by a cyan ring and '400000' is crossed by an ellipse. seg3:end: the '5' is garbled by an overlapping ring ('6'-like glyph). seg4:start: the '2.5 times over' caption ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_mismatch_and_broken_machine",
+  "visible_evidence": "seg4:start through seg4:end show a square tray with one or two grey blocks, a '2' in the centre, and 'Today = 2.5x 2023 / 2.5 times over' under the closing line 'Data would still rather have a sandwich.' Data stands on a ladder and points. The tray never fills to 2.5 and a thin teal bar slides across. Nothing pays off the sandwich line or the 8x scale-up.",
+  "root_cause": "The closing beat re-drew the minor approvals stat (2 to 5) as a generic fill-the-box machine instead of landing the story's payoff (400k is a rounding error against 50B). The fill animation does not reach its value, and the sandwich gag has no picture.",
+  "repair_goal": "Rebuild the closing beat as the punchline. Data holds one sandwich up next to the vast 50-billion-pound chicken mass, or the 400k plant shrinks to a crumb beside it. The fill/scale must visibly complete, the number must be readable, and the mascot must act out the sandwich line."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

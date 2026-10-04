@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261004T182159Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg1:end is a big '126' over '1998' inside a dotted ring. The ring is a gauge with no meaning: it counts 15.9\u219279.5\u2192126 for one fixed year, which is a bare count-up card. seg2's two '8.3' circles are bare number blobs too.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_duplicate_series",
+  "visible_evidence": "seg2:start, mid and end show two identical yellow circles. Both say '8.3' and both are labelled 'Before 2016 (1988-2013)'. The narration says 'since 2016, it's almost 30 seconds a year', but no 30 appears anywhere, and the kicker reads 'BEFORE 2016 (1988-2013) TOPS THE LIST' even though that is the smaller rate.",
+  "root_cause": "The comparison machine was fed the same category twice: the post-2016 row (~30 s/yr) was dropped or overwritten by the pre-2016 row. The scene's central claim is missing and the picture contradicts the narration.",
+  "repair_goal": "Draw two different rates, 8.3 s/yr (1988-2013) and ~30 s/yr (since 2016), as a physical contrast made of the subject. For example, two runners or shoe-stamped clocks, where the super-shoe one strips seconds off 3.6x faster. Data should be the cause, e.g. lacing the carbon shoe that triggers the faster drop. Fix the kicker so the larger post-2016 rate is the highlighted subject."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

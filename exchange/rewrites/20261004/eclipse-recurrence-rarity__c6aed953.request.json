@@ -1,0 +1,149 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "eclipse-recurrence-rarity__c6aed953",
+ "filed": "2026-10-04T18:21:46Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "eclipse-recurrence-rarity",
+ "current": {
+  "title": "One Town Saw Two Total Eclipses In 7 Years (3 Charts)",
+  "hook": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+  "closing": "After 2024, Carbondale's next one is centuries out. But chasers already booked 2044 -- and 2045 comes right after.",
+  "question": "Have you ever seen a total solar eclipse? Tell me below.",
+  "segments": [
+   {
+    "topic": "how often total eclipses happen, globally vs one spot",
+    "say": "Somewhere on Earth, a total eclipse happens every 1.5 years. But for one exact spot, the average wait is 375 years."
+   },
+   {
+    "topic": "years between total eclipses at the same spot, by luck",
+    "say": "One town in Illinois got hit twice in just 7 years. The global average is 375. Unlucky spots wait over 1,000."
+   },
+   {
+    "topic": "years between total eclipses crossing the US",
+    "say": "That's why chasers follow it around the globe. The US waited 38 years, then just 7, now 20 more until 2044, then 2045 right after."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how often total eclipses happen, globally vs one spot",
+   "say": "Somewhere on Earth, a total eclipse happens every 1.5 years. But for one exact spot, the average wait is 375 years.",
+   "role": "1 · THE PARADOX",
+   "data": {
+    "file": "eclipse_global_vs_single_spot_frequency.json",
+    "unit": "years",
+    "title": "How often a total solar eclipse occurs, somewhere vs one spot (years)",
+    "points": [
+     {
+      "label": "Somewhere on Earth",
+      "value": 1.5
+     },
+     {
+      "label": "One specific spot",
+      "value": 375
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "years between total eclipses at the same spot, by luck",
+   "say": "One town in Illinois got hit twice in just 7 years. The global average is 375. Unlucky spots wait over 1,000.",
+   "role": "2 · THE FLUKE",
+   "data": {
+    "file": "eclipse_wait_years_by_luck.json",
+    "unit": "years",
+    "title": "Years between total eclipses at the same spot, by luck",
+    "points": [
+     {
+      "label": "Carbondale, IL (2017 & 2024)",
+      "value": 7
+     },
+     {
+      "label": "Global average",
+      "value": 375
+     },
+     {
+      "label": "Unluckiest spots",
+      "value": 1000
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "years between total eclipses crossing the US",
+   "say": "That's why chasers follow it around the globe. The US waited 38 years, then just 7, now 20 more until 2044, then 2045 right after.",
+   "role": "3 · WHY CHASERS TRAVEL",
+   "data": {
+    "file": "us_total_eclipse_crossing_gaps.json",
+    "unit": "years",
+    "title": "Years until the next total eclipse to cross the contiguous US",
+    "points": [
+     {
+      "label": "1979",
+      "value": 38,
+      "period": "1979"
+     },
+     {
+      "label": "2017",
+      "value": 7,
+      "period": "2017"
+     },
+     {
+      "label": "2024",
+      "value": 20,
+      "period": "2024"
+     },
+     {
+      "label": "2044",
+      "value": 1,
+      "period": "2044"
+     }
+    ],
+    "n_points": 4
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The claim does not clearly overturn a common viewer expectation and hinges on a vague odds figure rather than a single, verifiable numeric fact."
+ ],
+ "reasons": [
+  "premise: brain: The claim does not clearly overturn a common viewer expectation and hinges on a vague odds figure rather than a single, verifiable numeric fact."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261004/eclipse-recurrence-rarity__c6aed953.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

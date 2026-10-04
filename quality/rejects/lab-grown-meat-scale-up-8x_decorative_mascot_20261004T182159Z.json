@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T182159Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:start/mid/end Data only rides on top of the growing 400000 bubble with his hands on his head. In seg2:mid/end he perches on top of the bar, and in seg3:start/mid/end he stands on the '2' circle. He causes nothing in those beats. Only hook/seg0 shows him loading blocks onto",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_mismatch_and_broken_machine",
+  "visible_evidence": "seg4:start through seg4:end show a square tray with one or two grey blocks, a '2' in the centre, and 'Today = 2.5x 2023 / 2.5 times over' under the closing line 'Data would still rather have a sandwich.' Data stands on a ladder and points. The tray never fills to 2.5 and a thin teal bar slides across. Nothing pays off the sandwich line or the 8x scale-up.",
+  "root_cause": "The closing beat re-drew the minor approvals stat (2 to 5) as a generic fill-the-box machine instead of landing the story's payoff (400k is a rounding error against 50B). The fill animation does not reach its value, and the sandwich gag has no picture.",
+  "repair_goal": "Rebuild the closing beat as the punchline. Data holds one sandwich up next to the vast 50-billion-pound chicken mass, or the 400k plant shrinks to a crumb beside it. The fill/scale must visibly complete, the number must be readable, and the mascot must act out the sandwich line."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
