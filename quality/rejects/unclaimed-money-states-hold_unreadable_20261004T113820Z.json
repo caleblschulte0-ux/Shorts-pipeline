@@ -1,0 +1,16 @@
+{
+ "slug": "unclaimed-money-states-hold",
+ "ts": "20261004T113820Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:end: Data's held prop covers the California bar's $15B value label. seg4:start: the white '85.7%' spills over the edge of the small circle. payoff@-0.4: the dark outlined '85.7%' on teal reads muddy. seg3:start: the 14% and 86% labels are near-invisible grey on navy.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "chart_with_perched_mascot",
+  "visible_evidence": "seg4:start to payoff@-0.4: two plain circles (85.7% vs 14.3%) grow under a seven-line wall of caption text at the top. Data stands on top of the big circle doing nothing, a CTA block crowds the bottom, and the circles repeat the 14% that seg3 just showed.",
+  "root_cause": "The closing beat falls back to a bubble chart and reprints the closing narration as on-screen text, so the payoff restates a number instead of landing the 'one in seven of YOU' turn. The mascot has no verb.",
+  "repair_goal": "Land 'one in seven of you is owed': draw a crowd of 7 figures where Data walks up and hands an envelope of cash to one of them, which lights up in the accent colour. Drop the repeated paragraph of text, keep one short line, and keep the accent on the 1-in-7 rather than the 86%."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

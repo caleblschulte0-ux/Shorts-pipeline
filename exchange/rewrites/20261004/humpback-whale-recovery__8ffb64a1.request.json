@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "humpback-whale-recovery__8ffb64a1",
+ "filed": "2026-10-04T11:38:09Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "humpback-whale-recovery",
+ "current": {
+  "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+  "hook": "Commercial whaling killed 2.9 million whales. Then something incredible happened.",
+  "closing": "Turns out the ocean can heal -- if you just stop killing it.",
+  "question": "Did you know whales almost went extinct? Tell me below.",
+  "segments": [
+   {
+    "topic": "humpback whale population crash and recovery",
+    "say": "In the 1950s, hunters had wiped the South Atlantic's humpback whales down to just 450. After whaling was banned, that same population climbed back to about 25,000 today."
+   },
+   {
+    "topic": "how many humpback whale populations have recovered",
+    "say": "Humpback whales came off the endangered species list in 2016. Out of all the populations scientists track worldwide, 10 have now fully recovered -- only 4 are still rebuilding."
+   },
+   {
+    "topic": "whale kills before and after the whaling ban",
+    "say": "Commercial whalers killed nearly 2.9 million whales in the 20th century. Since the 1986 ban, that number has dropped to zero, and whales used the time to recover."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "humpback whale population crash and recovery",
+   "say": "In the 1950s, hunters had wiped the South Atlantic's humpback whales down to just 450. After whaling was banned, that same population climbed back to about 25,000 today.",
+   "role": "1 · THE CRASH AND THE COMEBACK",
+   "data": {
+    "file": "whale_population_recovery_south_atlantic.json",
+    "unit": "whales",
+    "title": "Western South Atlantic humpback whale population",
+    "points": [
+     {
+      "label": "Mid-1950s",
+      "value": 450,
+      "period": "1955"
+     },
+     {
+      "label": "2000 (growth-adjusted estimate)",
+      "value": 3871,
+      "period": "2000"
+     },
+     {
+      "label": "Today",
+      "value": 25000,
+      "period": "2025"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "how many humpback whale populations have recovered",
+   "say": "Humpback whales came off the endangered species list in 2016. Out of all the populations scientists track worldwide, 10 have now fully recovered -- only 4 are still rebuilding.",
+   "role": "2 · IT'S NOT JUST ONE GROUP",
+   "data": {
+    "file": "whale_populations_recovered_count.json",
+    "unit": "populations",
+    "title": "Humpback whale distinct population segments, recovery status",
+    "points": [
+     {
+      "label": "Fully recovered, delisted",
+      "value": 10
+     },
+     {
+      "label": "Still listed endangered/threatened",
+      "value": 4
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "whale kills before and after the whaling ban",
+   "say": "Commercial whalers killed nearly 2.9 million whales in the 20th century. Since the 1986 ban, that number has dropped to zero, and whales used the time to recover.",
+   "role": "3 · WHAT ACTUALLY FIXED IT",
+   "data": {
+    "file": "whaling_kills_before_after_ban.json",
+    "unit": "million",
+    "title": "Large whales killed by commercial whaling",
+    "points": [
+     {
+      "label": "Killed, 1900-1999",
+      "value": 2.9
+     },
+     {
+      "label": "Killed under the 1986 ban",
+      "value": 0
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise relies on two numbers (450 and 25,000) instead of a single consequential, verifiable figure."
+ ],
+ "reasons": [
+  "premise: brain: The premise relies on two numbers (450 and 25,000) instead of a single consequential, verifiable figure."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261004/humpback-whale-recovery__8ffb64a1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

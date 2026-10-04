@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261004T113820Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The axis labels in seg1:mid and seg1:end collide as '20242025'. The white '127%' on the light-teal small disc in seg3:start and seg4:start is low-contrast.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Both discs read '127%' and both are labelled 'Billionaire wealth' (seg3:start, seg3:mid, seg3:end). The S&P 500's 195%, which the narration says over '195 percent in', is never drawn, so the comparison the whole video builds toward shows two identical circles.",
+  "root_cause": "The comparison machine filled both sides from the same series, so the second entity (S&P 500, 195%) got the first entity's value and label. The picture is also a generic pair of discs that grow without saying anything.",
+  "repair_goal": "Draw the comparison correctly: billionaire wealth at +127% beside the S&P 500 at +195%, labelled with their real names, with the S&P visibly overtaking the billionaire pile. Data should be the one driving the race or pumping the S&P side up, so the punchline 'most of this is just stocks' can be seen without reading."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

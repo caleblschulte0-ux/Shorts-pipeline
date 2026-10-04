@@ -1,0 +1,21 @@
+{
+ "slug": "octopus-nine-brains",
+ "ts": "20261004T113820Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:start the frame is a dark field with faint gridlines. The only content is a short pink pill and a grey dot near the bottom, so roughly the top 60% of the frame is empty.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_parked_mascot",
+  "visible_evidence": "In seg3:start through seg3:end a plain pink bar grows to 3,600 beside a grey stub of 1. Data perches on the bar's cap and only rides it up. The upper frame is empty in seg3:start, and the 'VS' label floats with nothing around it.",
+  "root_cause": "The severed-arm-reacts-for-an-hour claim fell back to a two-bar comparison chart. Nothing in the picture is made of the subject: no severed arm, no clock, no touch. Data is placed on the chart instead of causing anything.",
+  "repair_goal": "Draw a severed octopus arm on the ground that keeps twitching and curling while Data pokes it with a feather or probe tool. Beside it, have Data wind a stopwatch or wall clock forward through 60 minutes so the arm is still reacting as the clock passes 3,600 s. Data's action, poking and winding, must drive the motion. Keep every label fully inside the frame."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

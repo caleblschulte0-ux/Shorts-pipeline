@@ -4382,6 +4382,78 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "70B held, 4.49B returned"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-04",
+   "video_id": "",
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "words_first_10s": 22,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "franchise": "The Odds Of...",
+   "notes": "shadow band sweeps a fixed pin; lights only on the rare pass"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-04",
+   "video_id": "",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "words_first_10s": 21,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Hidden Costs",
+   "notes": "stain vs goal ring on Gulf map, then tripled farm tiles"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-04",
+   "video_id": "",
+   "topic_category": "animals",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "words_first_10s": 24,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Vanishing Species",
+   "notes": "bat colonies drop to the floor as the fungus tolls"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-04",
+   "video_id": "",
+   "topic_category": "money",
+   "hook_type": "question",
+   "hook_text": "Is the government holding YOUR money? 70 billion dollars says maybe.",
+   "words_first_10s": 19,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "Hidden Money",
+   "notes": "vault full, thin trickle returned; 1-in-7 crowd lights up"
   }
  ]
 }
