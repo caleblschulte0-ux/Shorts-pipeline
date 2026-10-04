@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s3-c1facc23b584",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d0e287f2b9723ffecc958bfb63a6d54cb8bc78a0bd38da48a44e58d9a5af0723",
+  "prompt_used": "An editorial illustration for a short-form video: angry customer pointing. It accompanies the narration: \"she would report me to my manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+    "filename": "20261004__she-swore-i-worked-there-s3-c1facc23b584.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4b44480f9fa8014068e693556a6f73931cf39935cbcb34561e4488fd9cd5e021",
+    "bytes": 2385974,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-04T11:27:24.830Z"
+}
