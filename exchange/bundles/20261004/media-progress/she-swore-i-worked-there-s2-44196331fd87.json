@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s2-44196331fd87",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "885e0c60377dc7a1a5653be9693308236d4c629cbe50b071e4fdf4a38cdec0c4",
+  "prompt_used": "An editorial illustration for a short-form video: customer declining conversation. It accompanies the narration: \"I told her twice that I didn't work there\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+    "filename": "20261004__she-swore-i-worked-there-s2-44196331fd87.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "77d85feca2a12d28fb922e92bcb9cd254e9cd695de6b4545d2d0477276eccde0",
+    "bytes": 2559875,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-04T11:27:23.764Z"
+}
