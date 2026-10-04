@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s7-63e610ee6a9e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5b85b0a14efe8cc2916b5e4ba080290fb45e92fd190e801fb5a2e069dcc3ea60",
+  "prompt_used": "An editorial illustration for a short-form video: empty shopping cart. It accompanies the narration: \"I still don't own a single can of that paint\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+    "filename": "20261004__she-swore-i-worked-there-s7-63e610ee6a9e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "dbd7bfe9ed809c62c00254fae7ba7561013f3dcd884e7d881400c1a18eec4342",
+    "bytes": 2038281,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-04T11:27:29.402Z"
+}
