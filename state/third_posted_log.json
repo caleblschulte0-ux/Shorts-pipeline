@@ -10776,13 +10776,58 @@
       "ts": "2026-10-04T11:33:34.932883+00:00"
     },
     "clip-20261004-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/DeadSquareCheetahAMPEnergy--XV2svdHIZm7SV_P",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/4AXmD10V6Fs",
       "title": "Stableronaldo Completely Loses It And Begs Someone To Kill Him",
       "kind": "twitch_clip",
-      "ts": "2026-10-04T11:35:47.691989+00:00",
+      "ts": "2026-10-04T11:35:57.613643+00:00",
+      "uploaded_at": "2026-10-04T11:35:57.613662+00:00",
+      "publish_at": "2026-10-04T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261004-stableronaldo-completely-loses-it-and-begs-someo-1a5261f1"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DeadSquareCheetahAMPEnergy--XV2svdHIZm7SV_P",
+      "streamer": "stableronaldo",
+      "series": "rage",
+      "hook": "RON COMPLETELY LOST IT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2141,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.8,
+        "end": 15.0
+      },
+      "director_cut": true
+    },
+    "rejected-singlespunkygoblintebowing-1ifb82vc8j7akd7u": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SingleSpunkyGoblinTebowing-1Ifb82VC8j7AKd7U",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Reacts As Lazer Falls In Front Of Everyone",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "black screen 0.8s at 6.0s; vision: Sharp region is a thin strip (about a third of the canvas height) with the subjects small and far away, so the framing f; vision: Frames from about 4.7s to 5.5s are blown out to nearly pure white, with no visible subject or action.; vision: From 6.4s to the end (ab",
+      "ts": "2026-10-04T11:38:28.284697+00:00"
+    },
+    "rejected-wittyproductiveteatakenrg-ylkt4diannkz7qk5": {
+      "source_url": "https://www.twitch.tv/buddha/clip/WittyProductiveTeaTakeNRG-ylkt4DiaNNKz7qK5",
+      "streamer": "buddha",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (RP banking talk, insider, no visible eve)",
+      "ts": "2026-10-04T11:56:27.420651+00:00"
+    },
+    "clip-20261004-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/FriendlyColdbloodedStarlingOSkomodo-WA-4eLF1skazvevR",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Realizes Something Is Wrong When She Suddenly Can't Hear Anything",
+      "kind": "twitch_clip",
+      "ts": "2026-10-04T11:57:36.645778+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

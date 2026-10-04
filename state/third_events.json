@@ -2337,10 +2337,11 @@
         "https://www.twitch.tv/kaicenat/clip/AbstemiousCrowdedCasetteEagleEye-kx4AZ0BRgVxAW1IP",
         "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
         "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
-        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL"
+        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+        "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-03"
+      "last_updated": "2026-10-04"
     },
     "brucedropemoff-check-jacket-2026w39": {
       "event_id": "brucedropemoff-check-jacket-2026w39",
@@ -2578,6 +2579,74 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-03"
+    },
+    "shroud-about-bann-2026w37": {
+      "event_id": "shroud-about-bann-2026w37",
+      "people": [
+        "shroud"
+      ],
+      "actions": [
+        "about",
+        "bann",
+        "shroud",
+        "wardog"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/shroud/clip/BoxyDeadMangoWTRuck-KL4uTxb-PpRj5v4k",
+        "https://www.twitch.tv/shroud/clip/PiercingRealMosquitoHotPokket-zJo00ZiWNByiM5bw"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-04"
+    },
+    "stableronaldo-about-great-2026w40": {
+      "event_id": "stableronaldo-about-great-2026w40",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "about",
+        "great",
+        "shxrk",
+        "stableronaldo"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/DependableInexpensiveGiraffePlanking-ghFIyzkDlQzIwgqx",
+        "https://www.twitch.tv/stableronaldo/clip/HilariousLachrymoseCookieRlyTho-WIy2eOgL6OHYE3Sk",
+        "https://www.twitch.tv/stableronaldo/clip/YawningApatheticZebraLeeroyJenkins-eiAqW17LW-IkVAqa"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-04"
+    },
+    "kaicenat-about-cenat-2026w40": {
+      "event_id": "kaicenat-about-cenat-2026w40",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "cenat",
+        "reggie",
+        "says"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/PuzzledPowerfulFrogSwiftRage-9wauUcUVSroaEnsX",
+        "https://www.twitch.tv/kaicenat/clip/AbstemiousCrowdedCasetteEagleEye-kx4AZ0BRgVxAW1IP",
+        "https://www.twitch.tv/kaicenat/clip/BlightedVenomousEmuYee-ym_0lzlyKD0HuujY",
+        "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
+        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-04"
     }
   }
 }
