@@ -1,0 +1,452 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261004",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 7,
+    "registry_sha256": "9414de6fe8e5f9478aede832241005a45a78610ef4167c5269998c10de90c460",
+    "source_commit": "0d0239d4423bfcabb3b5f2cab8f098c33736be61",
+    "production_date": "20261004",
+    "bundle_sha256": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587"
+  },
+  "packages": [
+    {
+      "slug": "chess-engines-passed-every-human",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the human-versus-engine crossover is instantly clear, and the chart makes the continued climb the payoff."
+    },
+    {
+      "slug": "lego-passed-mattel-in-revenue",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the LEGO and Mattel matchup is familiar, specific, and best proven by the revenue crossover on screen."
+    },
+    {
+      "slug": "vinyl-buried-cd-sales",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the format reversal is legible at a glance and the blunt title gives the chart a clean destination."
+    },
+    {
+      "slug": "spacex-passed-the-rest-of-the-world",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the combined-world comparison supplies its own scale and the chart carries the evidence without extra narration."
+    },
+    {
+      "slug": "it-made-everything-a-ticket",
+      "script": "I complied when our new IT director declared every single request, no matter how small, must go through the ticket system, with no verbal exceptions. I filed a ticket when my monitor flickered. I filed another after his own badge reader jammed. Then I filed a ticket about the ticket system being slow. Within two weeks, the queue had over six hundred open items. Executives needing a two minute fix were stuck waiting behind a backlog his own rule created. He quietly started fixing things off the books, until I reminded him, politely, that verbal requests were against policy. Regional finally asked why simple fixes were taking three weeks. He had no good answer, because the answer was his memo. Turns out bureaucracy works fastest when it circles back to its author.",
+      "editor_note": "Compressed the story to 132 words, preserved every protected fact and shot phrase, and made the policy loop back on its author."
+    },
+    {
+      "slug": "she-swore-i-worked-there",
+      "script": "I was shopping for paint in the same green jacket the store's employees wear when a woman marched over, demanding I find her a specific shade of touch-up paint. I told her twice that I didn't work there. She talked over me and said she would report me to my manager. A real employee walked over to help, but she claimed I had been rude and tried to get him in trouble too. He asked the front desk to check the camera near the paint aisle. The footage showed me calmly explaining myself twice while she ignored me. Store security walked her out for harassing staff, and the employee thanked me for staying calm. I still don't own a single can of that paint; unpaid customer service came with the jacket.",
+      "editor_note": "Compressed the story to 131 words, preserved every protected fact and shot phrase, and sharpened the jacket-as-unpaid-customer-service kicker."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "it-made-everything-a-ticket-s0-741e99bb4a8c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1SB-eD3L52Yq9Xloh5Fjls89vaF8T2Vrj",
+        "filename": "20261004__it-made-everything-a-ticket-s0-741e99bb4a8c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1SB-eD3L52Yq9Xloh5Fjls89vaF8T2Vrj",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ed7388c8cec501134c864cd2af933cb7ef39bc75fcea9fd01f9fc7695ccb3901",
+        "bytes": 1997501,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s0-741e99bb4a8c.json",
+        "verified_at": "2026-10-04T11:27:12.907Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s1-c3d87fd0cea4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1sVJp7J3lQEPRiLU8lFzS4VJebQXQfL5q",
+        "filename": "20261004__it-made-everything-a-ticket-s1-c3d87fd0cea4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1sVJp7J3lQEPRiLU8lFzS4VJebQXQfL5q",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "451682afde14f189de4606aaf84aeb765b21d14f1ddcaff15bc2918d69e6be32",
+        "bytes": 1900786,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s1-c3d87fd0cea4.json",
+        "verified_at": "2026-10-04T11:27:14.102Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s2-087b82dabc57",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1oxIqLxKafYum_tOTWuKMkDuaM2Vcwyqs",
+        "filename": "20261004__it-made-everything-a-ticket-s2-087b82dabc57.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1oxIqLxKafYum_tOTWuKMkDuaM2Vcwyqs",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e5ac7d64540feb2455ef564ff788f9612a257d3910652fd0e0a0c7c95329eb9d",
+        "bytes": 1855098,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s2-087b82dabc57.json",
+        "verified_at": "2026-10-04T11:27:15.245Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s3-ea8bd40dc203",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rs8mGUPYTtAvOF_B910VsBDWrz7RbrX8",
+        "filename": "20261004__it-made-everything-a-ticket-s3-ea8bd40dc203.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rs8mGUPYTtAvOF_B910VsBDWrz7RbrX8",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4ded85c0f4cc9759fcab595c2a56e409271184273f70d6f3438b5aac5cbb4fa8",
+        "bytes": 1645762,
+        "format": "png",
+        "width": 1374,
+        "height": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s3-ea8bd40dc203.json",
+        "verified_at": "2026-10-04T11:27:16.173Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s4-9ebc8b9eb7c4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IhEi3vfp2uXmfj9ZdBtwjOU-M9UpAgUo",
+        "filename": "20261004__it-made-everything-a-ticket-s4-9ebc8b9eb7c4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IhEi3vfp2uXmfj9ZdBtwjOU-M9UpAgUo",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c955590a4bc761a0e3ba8dc578b701b4ccc66a48a40b47226f5b7666f43db7cb",
+        "bytes": 1956581,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s4-9ebc8b9eb7c4.json",
+        "verified_at": "2026-10-04T11:27:17.173Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s5-4f0a2ebda63c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1nTUrCBECD5_C_IoJMzykUVewaV4a-0lp",
+        "filename": "20261004__it-made-everything-a-ticket-s5-4f0a2ebda63c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1nTUrCBECD5_C_IoJMzykUVewaV4a-0lp",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "aa77889e1aef14fc01cff06d5d892d48f470cb51b081ff9d251c13f498e7419d",
+        "bytes": 2060505,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s5-4f0a2ebda63c.json",
+        "verified_at": "2026-10-04T11:27:18.182Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s6-251231bc3a00",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "131w2Es38Ysaq0GvdoAr1chk_93pQhAiP",
+        "filename": "20261004__it-made-everything-a-ticket-s6-251231bc3a00.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=131w2Es38Ysaq0GvdoAr1chk_93pQhAiP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e00e878aef458fe7650c96ffbefcad7094ab7d11dad76ca3bb3f84b9feb0173f",
+        "bytes": 1722924,
+        "format": "png",
+        "width": 1370,
+        "height": 1148
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s6-251231bc3a00.json",
+        "verified_at": "2026-10-04T11:27:19.276Z"
+      }
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s7-770fc7b462b1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1CwKFB_lpbGpY2zrPZbTvQ1_7nyiGvh_9",
+        "filename": "20261004__it-made-everything-a-ticket-s7-770fc7b462b1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1CwKFB_lpbGpY2zrPZbTvQ1_7nyiGvh_9",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "72fa008a8de91f0f06f1b25a48aec111aa964223e34defc0eb59df9f2ccc27e6",
+        "bytes": 1768692,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/it-made-everything-a-ticket-s7-770fc7b462b1.json",
+        "verified_at": "2026-10-04T11:27:20.374Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s0-9c59338cce55",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+        "filename": "20261004__she-swore-i-worked-there-s0-9c59338cce55.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "af140e7a4ad5d5810ddd82aa0ffb9dfcefbde24fa12a01cd6fada967cf69a0d6",
+        "bytes": 2014843,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s0-9c59338cce55.json",
+        "verified_at": "2026-10-04T11:27:21.414Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s1-77fec617ad70",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+        "filename": "20261004__she-swore-i-worked-there-s1-77fec617ad70.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "117c58be60018a7ea3fcfc2591ab1b1f700f133626f5e5eaec9cc12333cb1550",
+        "bytes": 2263112,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s1-77fec617ad70.json",
+        "verified_at": "2026-10-04T11:27:22.592Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s2-44196331fd87",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+        "filename": "20261004__she-swore-i-worked-there-s2-44196331fd87.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "77d85feca2a12d28fb922e92bcb9cd254e9cd695de6b4545d2d0477276eccde0",
+        "bytes": 2559875,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s2-44196331fd87.json",
+        "verified_at": "2026-10-04T11:27:23.764Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s3-c1facc23b584",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+        "filename": "20261004__she-swore-i-worked-there-s3-c1facc23b584.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4b44480f9fa8014068e693556a6f73931cf39935cbcb34561e4488fd9cd5e021",
+        "bytes": 2385974,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s3-c1facc23b584.json",
+        "verified_at": "2026-10-04T11:27:24.830Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s4-cdd23f0fce34",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1EOR-rjHgITIgN_eH6LwkTKR8Fdzdjg2R",
+        "filename": "20261004__she-swore-i-worked-there-s4-cdd23f0fce34.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1EOR-rjHgITIgN_eH6LwkTKR8Fdzdjg2R",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "476dec4f7f448eccae617ec4de0aa09754b7acdb0475422465b711b72260eaf8",
+        "bytes": 1896773,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s4-cdd23f0fce34.json",
+        "verified_at": "2026-10-04T11:27:25.813Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s5-cfb74f36ed4b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+        "filename": "20261004__she-swore-i-worked-there-s5-cfb74f36ed4b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "dd1acbeba3bdaeacdfff4340600439c507d0ec2f825ca0624eb822bdac572711",
+        "bytes": 1816697,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s5-cfb74f36ed4b.json",
+        "verified_at": "2026-10-04T11:27:26.925Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s6-aea22628ccfd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1_v2Bru3ZSLpeaQbllLCSu9qE4gFbhqu6",
+        "filename": "20261004__she-swore-i-worked-there-s6-aea22628ccfd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1_v2Bru3ZSLpeaQbllLCSu9qE4gFbhqu6",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "93cc10cefb4f154444a1dca6e41a54137098f409e1e5587559bcd778e53427d8",
+        "bytes": 2057019,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s6-aea22628ccfd.json",
+        "verified_at": "2026-10-04T11:27:27.878Z"
+      }
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s7-63e610ee6a9e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+        "filename": "20261004__she-swore-i-worked-there-s7-63e610ee6a9e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "dbd7bfe9ed809c62c00254fae7ba7561013f3dcd884e7d881400c1a18eec4342",
+        "bytes": 2038281,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261004/media-progress/she-swore-i-worked-there-s7-63e610ee6a9e.json",
+        "verified_at": "2026-10-04T11:27:29.402Z"
+      }
+    }
+  ]
+}
