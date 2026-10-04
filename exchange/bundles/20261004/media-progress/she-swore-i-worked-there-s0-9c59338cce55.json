@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s0-9c59338cce55",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6c284185a997620cc567c03dc588e16adf319270f9a4168d018602703480db4b",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store paint aisle. It accompanies the narration: \"shopping for paint in the same green jacket\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+    "filename": "20261004__she-swore-i-worked-there-s0-9c59338cce55.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "af140e7a4ad5d5810ddd82aa0ffb9dfcefbde24fa12a01cd6fada967cf69a0d6",
+    "bytes": 2014843,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-04T11:27:21.414Z"
+}
