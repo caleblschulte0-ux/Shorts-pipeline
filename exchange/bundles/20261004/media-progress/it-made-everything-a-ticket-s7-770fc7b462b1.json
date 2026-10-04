@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s7-770fc7b462b1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2b6e85e35425820c710979eaea788029fedf1f1116347cfe9e6d6217d37714b5",
+  "prompt_used": "An editorial illustration for a short-form video: conference room meeting. It accompanies the narration: \"Regional finally asked why simple fixes were taking three weeks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CwKFB_lpbGpY2zrPZbTvQ1_7nyiGvh_9",
+    "filename": "20261004__it-made-everything-a-ticket-s7-770fc7b462b1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CwKFB_lpbGpY2zrPZbTvQ1_7nyiGvh_9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "72fa008a8de91f0f06f1b25a48aec111aa964223e34defc0eb59df9f2ccc27e6",
+    "bytes": 1768692,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-04T11:27:20.374Z"
+}
