@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261003",
-  "generated_at": "2026-10-03T23:31:06Z",
+  "generated_at": "2026-10-04T00:30:55Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 9.76,
+          "days": 9.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 8.76,
+          "days": 8.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1651,10 +1651,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "68ea2ad",
-    "commits_since": "2026-10-02",
+    "head": "4913375",
+    "commits_since": "2026-10-03",
     "commit_count": 50,
     "commits": [
+      "4913375 claim: mailbox verdicts 2026-10-03T23:47Z [skip ci]",
+      "b7bccd8 retro: brief + triage for 20261003 [skip ci]",
       "68ea2ad claim: mailbox verdicts 2026-10-03T23:15Z [skip ci]",
       "ca49fac claim: mailbox verdicts 2026-10-03T22:47Z [skip ci]",
       "5a96c8c claim: mailbox verdicts 2026-10-03T21:47Z [skip ci]",
@@ -1692,9 +1694,7 @@
       "fceb3a4 claim: mailbox verdicts 2026-10-03T12:48Z [skip ci]",
       "897d5d1 explainer: update posted log + analytics [skip ci]",
       "8d35136 daily: 2026-10-03 report + state [skip ci]",
-      "5b05a34 watchdog: chatgpt task verdicts 20261003 [skip ci]",
-      "9d23601 daily: 2026-10-03 report + state [skip ci]",
-      "6096945 trending: posted he_presented_my_idea_as_his_own__he_coul [skip ci]"
+      "5b05a34 watchdog: chatgpt task verdicts 20261003 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
