@@ -1,0 +1,177 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "quantum-computers-5-to-1121-qubits__1b611ade",
+ "filed": "2026-10-04T14:21:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "quantum-computers-5-to-1121-qubits",
+ "current": {
+  "title": "Quantum Computers Went From 5 Qubits To 1,121",
+  "hook": "This number just broke every chart.",
+  "closing": "Data's still waiting for his quantum laptop.",
+  "question": "Would you trust a quantum computer with your passwords? Tell me below.",
+  "segments": [
+   {
+    "topic": "the jump in qubits IBM's quantum computers can hold",
+    "say": "IBM's first public quantum computer in 2016 had just 5 qubits. By 2023 its Condor chip hit 1,121 qubits -- over 200 times more."
+   },
+   {
+    "topic": "why each qubit doubles a quantum computer's power",
+    "say": "Here's why that number matters so much: every extra qubit doubles what's representable. Just 20 of them already pass 1,048,576 possible states at once."
+   },
+   {
+    "topic": "which company's quantum chip has the most qubits",
+    "say": "IBM's Condor chip has 1,121 qubits. Google's newest chip, Willow, has 105 -- by that one measure, IBM is the current leader."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "the jump in qubits IBM's quantum computers can hold",
+   "say": "IBM's first public quantum computer in 2016 had just 5 qubits. By 2023 its Condor chip hit 1,121 qubits -- over 200 times more.",
+   "role": "1 · THE JUMP",
+   "data": {
+    "file": "qubit_count_ibm_roadmap.json",
+    "unit": "qubits",
+    "title": "IBM quantum processor qubit count by generation",
+    "points": [
+     {
+      "label": "2016 (IBM Q)",
+      "value": 5,
+      "period": "2016"
+     },
+     {
+      "label": "2019 (Q System One)",
+      "value": 20,
+      "period": "2019"
+     },
+     {
+      "label": "2021 (Eagle)",
+      "value": 127,
+      "period": "2021"
+     },
+     {
+      "label": "2022 (Osprey)",
+      "value": 433,
+      "period": "2022"
+     },
+     {
+      "label": "2023 (Condor)",
+      "value": 1121,
+      "period": "2023"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "why each qubit doubles a quantum computer's power",
+   "say": "Here's why that number matters so much: every extra qubit doubles what's representable. Just 20 of them already pass 1,048,576 possible states at once.",
+   "role": "2 · WHY IT MATTERS",
+   "data": {
+    "file": "qubit_doubling_demo.json",
+    "unit": "possible states (2^n)",
+    "title": "Possible states representable by n qubits (2^n)",
+    "points": [
+     {
+      "label": "1 qubit",
+      "value": 2
+     },
+     {
+      "label": "5 qubits",
+      "value": 32
+     },
+     {
+      "label": "10 qubits",
+      "value": 1024
+     },
+     {
+      "label": "20 qubits",
+      "value": 1048576
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "which company's quantum chip has the most qubits",
+   "say": "IBM's Condor chip has 1,121 qubits. Google's newest chip, Willow, has 105 -- by that one measure, IBM is the current leader.",
+   "role": "3 · THE RACE",
+   "data": {
+    "file": "quantum_qubits_ibm_vs_google.json",
+    "unit": "qubits",
+    "title": "Largest superconducting quantum chip by company (qubit count)",
+    "points": [
+     {
+      "label": "Google (Willow)",
+      "value": 105
+     },
+     {
+      "label": "IBM (Condor)",
+      "value": 1121
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Mostly a chart deck: bubbles, bars, a seesaw that hardly tips for a million-to-two gap, and a closing that is two numbers overlapping their labels, with Data a bystander throughout."
+ ],
+ "reasons": [
+  "judge: Mostly a chart deck: bubbles, bars, a seesaw that hardly tips for a million-to-two gap, and a closing that is two numbers overlapping their labels, with Data a bystander throughout."
+ ],
+ "judge": {
+  "ts": "2026-10-04T14:07:20+00:00",
+  "score": 48,
+  "one_line": "Mostly a chart deck: bubbles, bars, a seesaw that hardly tips for a million-to-two gap, and a closing that is two numbers overlapping their labels, with Data a bystander throughout.",
+  "problems": [
+   "seg4: '1.12K' is drawn over 'IBM (Condor)', and the closing is a bare two-number card with two identical Datas.",
+   "seg1: the eagle clip-art on the Eagle row is a literal pun on the chip name and covers the label.",
+   "seg1:end: the '4 times over' 2x2 grid is a weak picture of 4x, and Data stands on a ladder beside it doing nothing.",
+   "seg2: the seesaw tilts only gently for 1,048,576 vs 2, and Data is cut off at the left edge and covers the '1' of 1,048,576.",
+   "Hook/seg0: it opens on an already-built bubble chart with the voice line 'this number just broke every chart', which is not much reason to stay.",
+   "Data never causes any motion: he cheers, stands, or rides in every scene."
+  ],
+  "fixes": [
+   "Rebuild the closing as a physical comparison Data performs, such as stacking qubit tiles into towers of 1,121 vs 105. Measure the label and value widths so they cannot overlap.",
+   "Remove the eagle icon from the bar row.",
+   "Make the doubling literal: Data adds one qubit at a time and the pile of possible states doubles each time. The seesaw arm should slam to its stop for 1M vs 2.",
+   "Keep Data and every number fully inside the frame and off the labels.",
+   "Open on motion: for example, a 5-qubit chip that explodes into 1,121 as Data flips a switch."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261004/quantum-computers-5-to-1121-qubits__1b611ade.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

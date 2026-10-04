@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261004T142208Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data poses next to the numbers but never causes anything. In the hook he is copied three times beside static percentages. In seg1:end he cheers on top of a bar. In seg2:mid he walks on top of a circle. In seg3:mid he hangs off the line. In seg4:mid he stands at the base of a build",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "seg2:start/mid/end show two identical yellow circles. Both say '70%' and both are labelled '~20 years ago', while the narration says 'Today it's just 35%'. A cyan ellipse partly covers the left '70%'.",
+  "root_cause": "The comparison machine was fed the same data point twice: the 35% 'today' value was dropped and the label was duplicated. So the scene's single most dramatic number, a halving, is never shown.",
+  "repair_goal": "Draw 70% (two decades ago) against 35% (today) for 18-20 year-olds as a physical halving. For example, Data pours out half of a full glass so its level visibly drops from 70 to 35, or he pops half of the crowd of drinkers. Use correct distinct labels, keep the mascot clear of the numbers, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

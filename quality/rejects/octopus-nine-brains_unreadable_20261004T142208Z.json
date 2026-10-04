@@ -1,0 +1,21 @@
+{
+ "slug": "octopus-nine-brains",
+ "ts": "20261004T142208Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3 to seg0:end: the mascot covers the '3' of '320M' so it reads '20M'. seg2:end: 'Suckers on one arm' is tiny and overlaps 'Suckers across all 8 arms'. seg4:mid/end: 'How long a severed arm keeps reacting' is cut off at both frame edges and the mascot covers 'arm'. seg4:start: the ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_fallback_decorative_mascot",
+  "visible_evidence": "seg3:start/mid/end is a plain two-bar chart, 3,600 vs 1, with a mostly empty frame. Data perches on top of the bar and does nothing. Nothing in it shows an arm, a severed arm or an hour.",
+  "root_cause": "The 'severed arm reacts for an hour' claim fell back to a generic bar chart instead of a machine made of the subject, and the mascot was placed on the bar as a sticker.",
+  "repair_goal": "Draw a severed octopus arm that keeps curling and grabbing while a large clock hand sweeps a full hour (3,600 ticks). Data should be the cause, for example winding the clock or poking the arm with a probe so it flinches, and the arm's twitching should carry the duration. Keep every label fully inside the frame and clear of Data."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

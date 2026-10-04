@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261004T142208Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end has the cyan circle mark drawn right over the '70%' label. In hook@0.3 the captions 'Your twenty-something' glow-bleed. In seg1:end Data's head covers the '72%' label. In seg0:end the caption 'drank, now' is grey on dark and very low contrast.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "seg2:start/mid/end show two identical yellow circles. Both say '70%' and both are labelled '~20 years ago', while the narration says 'Today it's just 35%'. A cyan ellipse partly covers the left '70%'.",
+  "root_cause": "The comparison machine was fed the same data point twice: the 35% 'today' value was dropped and the label was duplicated. So the scene's single most dramatic number, a halving, is never shown.",
+  "repair_goal": "Draw 70% (two decades ago) against 35% (today) for 18-20 year-olds as a physical halving. For example, Data pours out half of a full glass so its level visibly drops from 70 to 35, or he pops half of the crowd of drinkers. Use correct distinct labels, keep the mascot clear of the numbers, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

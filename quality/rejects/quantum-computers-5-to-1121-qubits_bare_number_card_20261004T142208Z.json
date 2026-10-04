@@ -1,0 +1,21 @@
+{
+ "slug": "quantum-computers-5-to-1121-qubits",
+ "ts": "20261004T142208Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg4:start to seg4:end: the closing is just '1.12K' and '105' beside two copies of Data on bare lines. Nothing demonstrates the gap.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg4:start shows '1.12K' overlapping the 'IBM (Condor)' label. All of seg4 is two numbers on thin lines with two identical Datas pointing and a dotted rail on the right that measures nothing.",
+  "root_cause": "The closing reuses a generic two-row value layout with a duplicated mascot instead of a picture of 1,121 vs 105. The count-up animation places the value without measuring the label's width, so they collide.",
+  "repair_goal": "Make the closing show the 10x gap physically. For example, Data stacks 1,121 qubit tiles into a tower next to Google's 105-tile stub, using one Data who does the stacking. Lay out the label and value columns so they never overlap at any frame of the count-up."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

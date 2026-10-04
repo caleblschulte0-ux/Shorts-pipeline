@@ -1,0 +1,25 @@
+{
+ "slug": "bat-fungus-collapse",
+ "ts": "20261004T142208Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:mid and seg3:end the '$53B' is dark text on a mid-blue circle and is hard to read. In seg4:mid and payoff@-0.4 Data covers the '$53B'/'High estimate' label ('Hgh estimate'). In hook@0.3 the caption 'Your bats' and the faded '97 percent' are low-contrast. In seg2:start the 'Little",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end show a blue circle labelled '$53B' that grows next to a small '$3.7B' dot, under the title 'value of bats to farmers'. Data walks on top of the circle and nothing else happens.",
+  "root_cause": "The relationship fell back to a generic proportional-area bubble. Nothing in the picture is made of bats, pests or crops, so the money has no physical cause and Data has nothing to do.",
+  "repair_goal": "Make the subject carry the number. Show the crop-pest bill as a growing heap or swarm of pests reaching a field, held back only by bats. Data clears the bats out with a tool, the pests pour in, and the bill stacks to $53B against a small $3.7B stack. Labels in ink on the ground, never covered by Data."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

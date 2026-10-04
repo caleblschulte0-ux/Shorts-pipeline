@@ -1,0 +1,21 @@
+{
+ "slug": "octopus-nine-brains",
+ "ts": "20261004T142208Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg4:start to seg4:end is a giant pink '3,600' counter on a ring of suckers. The number is the whole picture, and seg3 is a plain two-bar chart, 3,600 vs 1.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_fallback_decorative_mascot",
+  "visible_evidence": "seg3:start/mid/end is a plain two-bar chart, 3,600 vs 1, with a mostly empty frame. Data perches on top of the bar and does nothing. Nothing in it shows an arm, a severed arm or an hour.",
+  "root_cause": "The 'severed arm reacts for an hour' claim fell back to a generic bar chart instead of a machine made of the subject, and the mascot was placed on the bar as a sticker.",
+  "repair_goal": "Draw a severed octopus arm that keeps curling and grabbing while a large clock hand sweeps a full hour (3,600 ticks). Data should be the cause, for example winding the clock or poking the arm with a probe so it flinches, and the arm's twitching should carry the duration. Keep every label fully inside the frame and clear of Data."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

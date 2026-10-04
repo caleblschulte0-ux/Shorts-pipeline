@@ -1,0 +1,152 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "octopus-nine-brains__5964f9a4",
+ "filed": "2026-10-04T14:22:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "octopus-nine-brains",
+ "current": {
+  "title": "The Octopus Has 9 Brains. Here's Where They Are.",
+  "hook": "Your brain has one boss. An octopus has 320 million neurons running its arms — without asking.",
+  "closing": "Data counted his own brains. Still just the one.",
+  "question": "Would you want a second brain in each arm? Tell me below.",
+  "segments": [
+   {
+    "topic": "where most of an octopus's neurons actually are",
+    "say": "An octopus runs on about 500 million neurons -- but only 180 million of them sit in its central brain. The other 320 million are out in its arms."
+   },
+   {
+    "topic": "how many independent sensors an octopus's arms have",
+    "say": "That's because every one of its 280 suckers per arm is its own touch-and-taste sensor -- 2,240 of them across all eight arms, each wired straight into that arm's own nerves."
+   },
+   {
+    "topic": "why a severed octopus arm keeps reacting",
+    "say": "And that control is so independent, a severed arm keeps reacting to touch and pain for up to 3,600 seconds after it's cut off -- a full hour, with no brain attached at all."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "where most of an octopus's neurons actually are",
+   "say": "An octopus runs on about 500 million neurons -- but only 180 million of them sit in its central brain. The other 320 million are out in its arms.",
+   "role": "1 · WHERE THE BRAIN IS",
+   "data": {
+    "file": "octopus_neurons_brain_vs_arms.json",
+    "unit": "million neurons",
+    "title": "Octopus neurons: central brain vs arms combined",
+    "points": [
+     {
+      "label": "Central brain",
+      "value": 180
+     },
+     {
+      "label": "Arms (combined)",
+      "value": 320
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "how many independent sensors an octopus's arms have",
+   "say": "That's because every one of its 280 suckers per arm is its own touch-and-taste sensor -- 2,240 of them across all eight arms, each wired straight into that arm's own nerves.",
+   "role": "2 · WHY",
+   "data": {
+    "file": "octopus_suckers_per_arm_vs_total.json",
+    "unit": "suckers",
+    "title": "Octopus suckers: per arm vs total across all eight arms",
+    "points": [
+     {
+      "label": "Suckers on one arm",
+      "value": 280
+     },
+     {
+      "label": "Suckers across all 8 arms",
+      "value": 2240
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "why a severed octopus arm keeps reacting",
+   "say": "And that control is so independent, a severed arm keeps reacting to touch and pain for up to 3,600 seconds after it's cut off -- a full hour, with no brain attached at all.",
+   "role": "3 · HOW INDEPENDENT",
+   "data": {
+    "file": "octopus_severed_arm_reaction_time.json",
+    "unit": "seconds",
+    "title": "Octopus arm reaction speed vs how long a severed arm keeps reacting",
+    "points": [
+     {
+      "label": "How fast an arm reacts to a pinch",
+      "value": 1
+     },
+     {
+      "label": "How long a severed arm keeps reacting",
+      "value": 3600
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Mostly stock machines and bar charts with Data as a sticker, and labels the mascot covers or the frame cuts off. Nothing makes you feel an octopus's distributed brain."
+ ],
+ "reasons": [
+  "judge: Mostly stock machines and bar charts with Data as a sticker, and labels the mascot covers or the frame cuts off. Nothing makes you feel an octopus's distributed brain."
+ ],
+ "judge": {
+  "ts": "2026-10-04T14:21:53+00:00",
+  "score": 44,
+  "one_line": "Mostly stock machines and bar charts with Data as a sticker, and labels the mascot covers or the frame cuts off. Nothing makes you feel an octopus's distributed brain.",
+  "problems": [
+   "From the hook through seg0, the mascot covers the '3' of '320M', so the hook's key number reads as '20M'.",
+   "The hook is a slow balance-scale build under a static title, with no immediate reason to stay.",
+   "In seg1, two copies of Data stand on chart lines and point. That is decorative, not a bit.",
+   "In seg2:end, 'Suckers on one arm' is tiny and printed over 'Suckers across all 8 arms'.",
+   "seg3 falls back to a bar chart and leaves most of the frame empty.",
+   "In seg4, the label is cut off at both edges ('How long a severed arm keeps reacting'), and Data covers both the label and the counter's digits."
+  ],
+  "fixes": [
+   "Keep Data and any other mark clear of the value labels, and fit every label within the frame's safe width.",
+   "Open on motion that is made of the subject: eight arms each lighting up their own neuron cluster while the central brain stays small.",
+   "Replace the seg3 bar chart with a severed arm twitching against an hour-long clock that Data drives.",
+   "In seg2, draw 8 arms with 280 suckers each, filling up to 2,240, with Data placing or counting them.",
+   "Act out the closing: Data counts brains on the octopus, then taps his own head and finds one."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261004/octopus-nine-brains__5964f9a4.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
