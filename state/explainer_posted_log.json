@@ -2484,6 +2484,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 48.1
+    },
+    "lab-grown-meat-scale-up-8x": {
+      "claimed_at": "2026-10-04T20:57:34.020830+00:00",
+      "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+      "publish_at": "2026-10-04T21:20:29Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3035,6 +3042,14 @@
       "state": "posted",
       "slug": "octopus-nine-brains",
       "at": "2026-10-04T16:36:09.348594+00:00"
+    },
+    {
+      "claimed_at": "2026-10-04T20:57:34.020830+00:00",
+      "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+      "publish_at": "2026-10-04T21:20:29Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "lab-grown-meat-scale-up-8x"
     }
   ]
 }
