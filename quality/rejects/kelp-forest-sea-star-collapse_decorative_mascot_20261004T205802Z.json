@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261004T205802Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid and seg3:end Data just stands on top of a circle. In seg2:start-end he appears twice as a row icon, pointing or cheering next to the number. In seg4:mid he stands beside the scale while the blocks move by themselves. He causes nothing anywhere.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start-end: two text rows, 'Before 2014 100%' and 'Since 2014 10.1K%', each with a copy of Data pointing or cheering, over a plain dark background and a dotted rail. No urchin and no visible growth anywhere.",
+  "root_cause": "The urchin explosion was handled as a labelled-value row with the mascot as a reaction icon. The picture is not made of the subject, so the 100x jump is only stated in text.",
+  "repair_goal": "Show the urchin population as a sea floor that fills up: Data shakes urchins out of a sack (or opens a floodgate) and a carpet of purple spiny urchins multiplies from a handful to about 100x and covers the whole floor. He is the cause of the growth. Keep every label inside the frame and clear of Data."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

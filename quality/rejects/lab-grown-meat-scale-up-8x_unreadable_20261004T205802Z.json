@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T205802Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:end the headline '0.0008%' and its line '1 lb for every 125,000 lb of chicken' are ghost-grey on the tan gradient and barely visible. The '400,000 lb' marker on the pile is also small and pale. On a phone at arm's length the key 'rounding error' line disappears.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:end: the line that pays off this beat ('0.0008%' / '1 lb for every 125,000 lb of chicken') is faded almost to the background colour. The 400,000 lb lab-meat mote on the drumstick pile is a tiny pale circle that is hard to find. At seg2:start Data pours a blue jug onto the chicken pile, which does not tie to anything.",
+  "root_cause": "The comparison stat is drawn in a low-alpha REST tone on a mid-tone gradient (or held mid-fade). The lab-meat speck is not given the accent, so the 'rounding error' contrast has no visual anchor. The mascot act was reused from the tank pour without a reason in this scene.",
+  "repair_goal": "Bring '0.0008%' and its explanation in at full ink contrast and hold them readable for at least 1.5s. Draw the 400,000 lb lab-meat speck in the story's accent with a clear callout so the eye finds it against the 50-billion-lb pile. Give Data a cause act here, such as placing the tiny lab-meat nugget on top of the mountain with tongs, instead of pouring a jug."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

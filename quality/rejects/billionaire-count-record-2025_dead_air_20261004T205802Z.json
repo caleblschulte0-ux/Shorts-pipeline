@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261004T205802Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:start, seg0:mid and seg0:end repeat the finished hook bar chart almost frame for frame. Only Data's face changes. That is two beats that look the same (held_s 5.92, max_dup_run 23 at 4.67s).",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 4,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end and seg4 show two identical circles, each '127%' and 'Billionaire wealth'. The title says 'vs stock market' but no S&P 195% circle appears.",
+  "root_cause": "The comparison was built with the same series in both slots, so the S&P 500 value of 195% never reached the right-hand circle. A circle-size comparison is also a bare-number shape.",
+  "repair_goal": "Show billionaire wealth +127% against the S&P 500 +195% as two growths of different size that the viewer can see. For example, Data stacks a 127 tower next to a taller 195 stock-ticker tower. Label the right side 'S&P 500 195%' and use dark ink on the teal fills."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
