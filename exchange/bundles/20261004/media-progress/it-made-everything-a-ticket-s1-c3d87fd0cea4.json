@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s1-c3d87fd0cea4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e162da71db175c27e708afaf6de42d64b4c7ac8898bc26a6b2e7027c04fd1ead",
+  "prompt_used": "An editorial illustration for a short-form video: computer monitor desk. It accompanies the narration: \"I filed a ticket when my monitor flickered\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1sVJp7J3lQEPRiLU8lFzS4VJebQXQfL5q",
+    "filename": "20261004__it-made-everything-a-ticket-s1-c3d87fd0cea4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1sVJp7J3lQEPRiLU8lFzS4VJebQXQfL5q",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "451682afde14f189de4606aaf84aeb765b21d14f1ddcaff15bc2918d69e6be32",
+    "bytes": 1900786,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-04T11:27:14.102Z"
+}
