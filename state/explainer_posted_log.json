@@ -2468,6 +2468,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 41.8
+    },
+    "octopus-nine-brains": {
+      "claimed_at": "2026-10-04T16:35:57.970018+00:00",
+      "title": "The Octopus Has 9 Brains. Here's Where They Are.",
+      "publish_at": "2026-10-04T15:36:50Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3010,6 +3017,14 @@
       "state": "posted",
       "slug": "creator-economy-250-billion",
       "at": "2026-10-04T11:14:34.485410+00:00"
+    },
+    {
+      "claimed_at": "2026-10-04T16:35:57.970018+00:00",
+      "title": "The Octopus Has 9 Brains. Here's Where They Are.",
+      "publish_at": "2026-10-04T15:36:50Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "octopus-nine-brains"
     }
   ]
 }
