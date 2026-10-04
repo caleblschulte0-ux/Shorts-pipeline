@@ -1,0 +1,21 @@
+{
+ "slug": "octopus-nine-brains",
+ "ts": "20261004T124917Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg3:start through seg3:end Data just perches on top of the pink bar as it grows. In seg1:mid two copies of him stand on lines cheering and pointing. In hook@0.3 to seg0:end he hangs at the left frame edge holding a pole, doing nothing to the scale. Only the seg2 ladder climb i",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "In seg2:start the scene opens as a plain bar chart (2,240 vs 280). It then cuts to a ladder-and-posts gap. By seg2:end the label 'Suckers on one arm' is printed in tiny pink text on top of 'Suckers across all 8 arms 2,240'. A stray empty cyan ellipse floats top-left in seg2:mid. The '1,960 apart' callout reframes the claim as a difference, which the narration never makes.",
+  "root_cause": "The beat changes machine partway through (bars, then a gap ruler), and the gap machine places both category labels at the same anchor without measuring them. An unused decorative ellipse is left in the composition. Nothing here is made of suckers or arms.",
+  "repair_goal": "Make one continuous, subject-built scene: a single octopus arm lined with 280 suckers, then 8 arms fanning out so the suckers multiply to 2,240, with Data tapping or lighting the suckers as they count up. Show one readable label per value with no overlaps, remove the stray ellipse, and drop the '1,960 apart' framing."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

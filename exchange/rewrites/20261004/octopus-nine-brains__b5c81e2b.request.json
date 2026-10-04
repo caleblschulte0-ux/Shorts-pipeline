@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "octopus-nine-brains__b5c81e2b",
- "filed": "2026-10-04T11:38:10Z",
+ "filed": "2026-10-04T12:49:09Z",
  "status": "open",
  "channel": "explainer",
  "slug": "octopus-nine-brains",
@@ -94,28 +94,29 @@
   }
  ],
  "held_for": [
-  "judge: The octopus story never shows an octopus until the last beat. It runs as a scale, shelves, a ruler and a bar chart with a parked mascot, and several labels are covered or cut off."
+  "judge: A three-fact octopus story told mostly with stock bars and scales, with overlapping and edge-clipped labels and a mascot who perches instead of causing anything."
  ],
  "reasons": [
-  "judge: The octopus story never shows an octopus until the last beat. It runs as a scale, shelves, a ruler and a bar chart with a parked mascot, and several labels are covered or cut off."
+  "judge: A three-fact octopus story told mostly with stock bars and scales, with overlapping and edge-clipped labels and a mascot who perches instead of causing anything."
  ],
  "judge": {
-  "ts": "2026-10-04T11:37:55+00:00",
-  "score": 52,
-  "one_line": "The octopus story never shows an octopus until the last beat. It runs as a scale, shelves, a ruler and a bar chart with a parked mascot, and several labels are covered or cut off.",
+  "ts": "2026-10-04T12:48:50+00:00",
+  "score": 44,
+  "one_line": "A three-fact octopus story told mostly with stock bars and scales, with overlapping and edge-clipped labels and a mascot who perches instead of causing anything.",
   "problems": [
-   "hook/seg0: Data's body covers part of '320M', and he stands beside the scale while bricks fall with no action from him.",
-   "seg1: two static Datas point at shelf labels, which is decorative and duplicates the seg0 comparison.",
-   "seg2:end: the 'Suckers on one arm' label is printed under the 2,240 label and cannot be read. The ruler metaphor says nothing about suckers as sensors.",
-   "seg3: a plain bar chart (3,600 vs 1) with the upper frame mostly empty. Data only rides the bar.",
-   "seg4: the label 'How long a severed arm keeps reacting' is clipped at both frame edges and covered by Data. The closing line, the CTA and the gauge are stacked on top of each other."
+   "The hook (hook@0.3 to hook@2.2) is a slow balance scale with small blocks and no octopus. Nothing in the first two seconds gives a reason to stay.",
+   "Data is clipped by the left frame edge and covers the '3' of '320M' throughout seg0.",
+   "In seg2:end the labels 'Suckers on one arm' and 'Suckers across all 8 arms 2,240' are printed on top of each other, and a stray cyan ellipse floats in seg2:mid.",
+   "seg2 and seg3 fall back to plain bar charts, and seg3 never says that 3,600 is seconds or what the '1' measures.",
+   "In seg3 Data just stands on top of the growing bar and does nothing.",
+   "In seg4 the label 'How long a severed arm keeps reacting' is cut off at both frame edges, and Data overlaps the label text at seg4:end."
   ],
   "fixes": [
-   "seg3: replace the bars with a twitching severed arm and a clock that Data winds through an hour while he pokes the arm with a probe.",
-   "seg0: draw the neuron split as an octopus body, with 180M glowing in the head and 320M in the arms. Have Data load neurons into the arms himself.",
-   "seg2: show 280 suckers lighting up along one arm, then copied ×8 to 2,240. Fix the overlapping labels.",
-   "seg4: keep the label inside safe margins, move Data off the text, and give him a tool-driven act that winds the gauge.",
-   "seg1: cut it or merge it into seg0, because it repeats the same comparison with no new demonstration."
+   "Open on an octopus whose arms light up with neurons while the head stays dim, so the 320M vs 180M split is visible in frame 1.",
+   "Keep Data inside the safe area and away from value labels.",
+   "Rebuild seg2 as arms covered in suckers multiplying from 280 on one arm to 2,240 across eight, with Data lighting them up. Use one measured, non-overlapping label per value and remove the stray ellipse.",
+   "Rebuild seg3 as a severed arm twitching beside a clock that Data winds forward to a full hour, with the units on screen.",
+   "Fit the seg4 label inside the frame (wrap or shrink it to measured width) and keep Data off the text."
   ]
  },
  "prior_rejection": [],

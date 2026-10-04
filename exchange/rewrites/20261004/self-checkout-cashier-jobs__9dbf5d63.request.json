@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "self-checkout-cashier-jobs__9dbf5d63",
- "filed": "2026-10-04T11:38:04Z",
+ "filed": "2026-10-04T12:49:01Z",
  "status": "open",
  "channel": "explainer",
  "slug": "self-checkout-cashier-jobs",
@@ -101,10 +101,10 @@
   }
  ],
  "held_for": [
-  "premise: brain: The premise lacks a single consequential, verifiable number to anchor the claim."
+  "premise: brain: The premise lacks a single consequential, verifiable number and does not clearly reverse a specific viewer expectation."
  ],
  "reasons": [
-  "premise: brain: The premise lacks a single consequential, verifiable number to anchor the claim."
+  "premise: brain: The premise lacks a single consequential, verifiable number and does not clearly reverse a specific viewer expectation."
  ],
  "judge": null,
  "prior_rejection": [],

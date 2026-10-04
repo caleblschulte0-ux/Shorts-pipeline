@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261004T124917Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0 and seg2 Data climbs a ladder and points at the last bar (seg0:mid, seg2:end) but does not stack or raise it. In seg1 he walks along the axis with his arms up. In seg3 and seg4 he just stands on top of a circle (seg3:mid, seg4:mid). None of it causes the data to move.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_binding",
+  "visible_evidence": "The narration says 'the S&P 500 alone grew 195 percent', but both circles show '127%' and both are labelled 'Billionaire wealth' (seg3:mid, seg3:end). The comparison the whole video builds to is missing, and the same wrong picture carries on through seg4.",
+  "root_cause": "The second comparison item is filled with the first item's value and label instead of the S&P 500 row (195%, 'S&P 500'). The picture is also a generic pair of circles rather than anything showing growth.",
+  "repair_goal": "Bind the second item to S&P 500 = 195% and label it. Then draw the comparison as a race where the S&P climbs visibly higher than billionaire wealth, with Data pushing or carrying the S&P mark past the billionaire one, so the viewer sees that most of the gain came from stocks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

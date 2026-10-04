@@ -1,7 +1,7 @@
 {
  "schema": "shorts-rewrite-request/v1",
  "id": "billionaire-count-record-2025__452c83e8",
- "filed": "2026-10-04T11:38:09Z",
+ "filed": "2026-10-04T12:49:07Z",
  "status": "open",
  "channel": "explainer",
  "slug": "billionaire-count-record-2025",
@@ -138,30 +138,29 @@
   }
  ],
  "held_for": [
-  "judge: The payoff comparison is broken: both discs say '127% Billionaire wealth', the S&P's 195% never appears, and the rest is a recycled bar chart with Data pointing from a ladder."
+  "judge: The payoff comparison is broken: both circles say 127% 'Billionaire wealth' where the S&P 500 should show 195%, after three plain bar charts that repeat the hook."
  ],
  "reasons": [
-  "judge: The payoff comparison is broken: both discs say '127% Billionaire wealth', the S&P's 195% never appears, and the rest is a recycled bar chart with Data pointing from a ladder."
+  "judge: The payoff comparison is broken: both circles say 127% 'Billionaire wealth' where the S&P 500 should show 195%, after three plain bar charts that repeat the hook."
  ],
  "judge": {
-  "ts": "2026-10-04T10:35:49+00:00",
+  "ts": "2026-10-04T12:03:14+00:00",
   "score": 40,
-  "one_line": "The payoff comparison is broken: both discs say '127% Billionaire wealth', the S&P's 195% never appears, and the rest is a recycled bar chart with Data pointing from a ladder.",
+  "one_line": "The payoff comparison is broken: both circles say 127% 'Billionaire wealth' where the S&P 500 should show 195%, after three plain bar charts that repeat the hook.",
   "problems": [
-   "seg3/seg4: both circles show 127% and 'Billionaire wealth'. The S&P 500 at 195% is missing, which removes the video's whole punchline.",
-   "seg0 repeats the hook's finished bar chart for about 4s with only the mascot's face changing (measured 5.9s hold).",
-   "seg1 axis labels '2024' and '2025' overlap into '20242025'.",
-   "seg0, seg1 and seg2 are three bar or line charts of the same shape; nothing is made of billionaires or money.",
-   "Data only points from a ladder or perches on a disc. He never causes any of the motion.",
-   "seg2:start leaves a large empty upper frame."
+   "seg3 and seg4: the second circle should be S&P 500 at 195% but repeats 127% 'Billionaire wealth', so the punchline isn't shown at all.",
+   "seg0 replays the finished bar chart from the hook, so the first ~6s is the same frame.",
+   "seg0, seg1 and seg2 are generic bar or lollipop charts. Nothing is made of the subject (billionaires, money).",
+   "Data never causes any motion: he points from a ladder, walks along an axis with his arms up, or stands on a circle.",
+   "seg1: the year labels '2024' and '2025' collide into '20242025'.",
+   "seg2 and seg3: large empty areas above and around small marks."
   ],
   "fixes": [
-   "Rebuild seg3 as billionaire wealth (+127%) against the S&P 500 (+195%) with correct labels, so the stock market visibly outgrows the billionaire pile.",
-   "Cut or replace seg0's hold. Don't reuse the hook chart. Move straight to a new picture of the count growing (e.g. 1,826 figures crowding to 3,028 as Data packs them in).",
-   "Show 'more than doubled' physically: Data stacking a $7.1T pile into a $16.1T one, not bars.",
-   "Fix the timeline's label spacing so 2024 and 2025 don't collide.",
-   "Make Data the cause of each motion (stacking, pumping, driving), not a pointer beside it.",
-   "Make the closing echo a corrected seg3 comparison rather than the duplicated discs."
+   "Bind the second comparison item to the S&P 500 row (195%, label 'S&P 500') and draw it so it visibly beats the 127%.",
+   "Replace the repeated bar chart with a scene made of the subject, for example a crowd of billionaire figures growing from 1,826 to 3,028, or a money stack that more than doubles from $7.1T to $16.1T.",
+   "Make Data the cause: he stacks the bars or coins, or drives the S&P racer past the billionaire one.",
+   "Space the timeline ticks so adjacent years can't overlap.",
+   "Scale the marks up to fill the frame and make each beat visually different from the hook."
   ]
  },
  "prior_rejection": [],

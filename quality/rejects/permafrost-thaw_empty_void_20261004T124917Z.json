@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261004T124917Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start: two small bars sit in the bottom-left and the top ~60% of the frame is empty dark gradient. seg1:start\u2013end: five empty bar tracks with nothing filled.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 1,
+  "failure_class": "broken_chart",
+  "visible_evidence": "seg0:start\u2013end (t=9\u201316s): a ranked bar chart of 1983\u20132023 permafrost temperatures in which every bar has zero length. Only empty tracks and right-hand labels (-8, -6.5, -5, -3.5, -2.3) appear, and Data hops between the empty rows. It repeats the same five numbers the hook chart had just shown.",
+  "root_cause": "Negative temperature values were sent to a rank-bar composer that draws magnitude from a zero baseline, so every bar collapses. The scene also restates the hook's data instead of adding a new demonstration.",
+  "repair_goal": "Replace it with a bespoke thaw scene made of the subject: a cross-section of frozen ground, or a thermometer driven into the permafrost, whose ice level or mercury climbs from -8\u00b0C to -2.3\u00b0C as Data hacks or drills at the ice with a tool. Show the 0\u00b0C thaw line visibly close, and put \u00b0C units on every label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

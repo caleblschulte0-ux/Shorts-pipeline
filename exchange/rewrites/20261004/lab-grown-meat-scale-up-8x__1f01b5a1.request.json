@@ -1,0 +1,133 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "lab-grown-meat-scale-up-8x__1f01b5a1",
+ "filed": "2026-10-04T12:49:08Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "lab-grown-meat-scale-up-8x",
+ "current": {
+  "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+  "hook": "One plant alone will make 400,000 pounds a year.",
+  "closing": "Data would still rather have a sandwich.",
+  "question": "Would you actually try cultivated meat? Tell me below.",
+  "segments": [
+   {
+    "topic": "how much lab-grown meat capacity is about to scale up",
+    "say": "Right now, the largest cultivated-meat plant makes 50,000 pounds of meat a year. Its next facility is built for 400,000 -- eight times more."
+   },
+   {
+    "topic": "how lab-grown meat compares to the traditional chicken industry",
+    "say": "Here's the catch: even that upgraded plant is a rounding error next to the 50 billion pounds of chicken America's traditional industry makes every year."
+   },
+   {
+    "topic": "how many lab-grown meat companies are approved",
+    "say": "Part of why it's speeding up: the US has gone from 2 approved cultivated-meat companies in 2023 to 5 today, each one a green light for more capacity."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how much lab-grown meat capacity is about to scale up",
+   "say": "Right now, the largest cultivated-meat plant makes 50,000 pounds of meat a year. Its next facility is built for 400,000 -- eight times more.",
+   "role": "1 · THE UPGRADE",
+   "data": {
+    "file": "cultivated_meat_capacity.json",
+    "unit": "pounds/year",
+    "title": "Cultivated-meat facility capacity, today vs next-generation plant",
+    "points": [
+     {
+      "label": "Today's plant",
+      "value": 50000
+     },
+     {
+      "label": "Next plant (planned)",
+      "value": 400000
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "how lab-grown meat compares to the traditional chicken industry",
+   "say": "Here's the catch: even that upgraded plant is a rounding error next to the 50 billion pounds of chicken America's traditional industry makes every year.",
+   "role": "2 · THE CATCH",
+   "data": {
+    "file": "cultivated_meat_vs_chicken_industry.json",
+    "unit": "pounds/year",
+    "title": "Planned cultivated-meat capacity vs the traditional US chicken industry",
+    "points": [
+     {
+      "label": "Cultivated meat (planned, next plant)",
+      "value": 400000
+     },
+     {
+      "label": "Traditional US chicken industry",
+      "value": 50000000000
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "how many lab-grown meat companies are approved",
+   "say": "Part of why it's speeding up: the US has gone from 2 approved cultivated-meat companies in 2023 to 5 today, each one a green light for more capacity.",
+   "role": "3 · WHY NOW",
+   "data": {
+    "file": "cultivated_meat_approved_companies.json",
+    "unit": "companies",
+    "title": "US FDA/USDA-approved cultivated-meat companies",
+    "points": [
+     {
+      "label": "2023",
+      "value": 2
+     },
+     {
+      "label": "Today",
+      "value": 5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not clearly reverse a single viewer expectation and relies on multiple numbers rather than one consequential, verifiable figure."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not clearly reverse a single viewer expectation and relies on multiple numbers rather than one consequential, verifiable figure."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261004/lab-grown-meat-scale-up-8x__1f01b5a1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
