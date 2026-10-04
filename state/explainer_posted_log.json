@@ -2486,11 +2486,22 @@
       "duration_s": 48.1
     },
     "lab-grown-meat-scale-up-8x": {
-      "claimed_at": "2026-10-04T20:57:34.020830+00:00",
+      "url": "https://youtube.com/shorts/OS2L_MIJP6k",
       "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+      "at": "2026-10-04T20:57:43.490015+00:00",
       "publish_at": "2026-10-04T21:20:29Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 32 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 40.8
     }
   },
   "uploads": [
@@ -3047,9 +3058,10 @@
       "claimed_at": "2026-10-04T20:57:34.020830+00:00",
       "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
       "publish_at": "2026-10-04T21:20:29Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "lab-grown-meat-scale-up-8x"
+      "url": "https://youtube.com/shorts/OS2L_MIJP6k",
+      "state": "posted",
+      "slug": "lab-grown-meat-scale-up-8x",
+      "at": "2026-10-04T20:57:43.490015+00:00"
     }
   ]
 }
