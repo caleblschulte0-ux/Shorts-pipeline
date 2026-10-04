@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s2-087b82dabc57",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "490c285c0afac6e5447dc1bd0127b93f0a3bbceff1c9f41f9e0471aa0c4915d3",
+  "prompt_used": "An editorial illustration for a short-form video: office door badge reader. It accompanies the narration: \"his own badge reader jammed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1oxIqLxKafYum_tOTWuKMkDuaM2Vcwyqs",
+    "filename": "20261004__it-made-everything-a-ticket-s2-087b82dabc57.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1oxIqLxKafYum_tOTWuKMkDuaM2Vcwyqs",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e5ac7d64540feb2455ef564ff788f9612a257d3910652fd0e0a0c7c95329eb9d",
+    "bytes": 1855098,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-04T11:27:15.245Z"
+}
