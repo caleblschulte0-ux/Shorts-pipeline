@@ -3,215 +3,6 @@
     {
       "date": "20260927",
       "dry_run": false,
-      "ts": "2026-09-27T12:37:37+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 115,
-        "with_retention": 91,
-        "with_curve": 13,
-        "fetched_at": "2026-09-27T08:46:02.423450+00:00"
-      },
-      "brain": {
-        "ok": 4,
-        "fail": 1
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260927-1",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 1.5
-        },
-        {
-          "slug": "clip-20260927-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260927-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260927-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260927-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260927-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 280,
-                "scouted": [],
-                "vod_arcs": 178,
-                "candidates": 275,
-                "pool": 1355,
-                "pool_with_vod": 1288,
-                "arc_sizes": [
-                  6,
-                  2,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  2,
-                  2,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "sodapoppin@vod2863459276/sodapoppin-aloud-command-2026w36",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The clips consist of continuous frantic commentary without a clear meaningful change, escalation, or payoff; "
-                },
-                {
-                  "cluster": "stableronaldo@vod2864388285/stableronaldo-about-accident-202",
-                  "outcome": "plan_rejected",
-                  "why": "hook too short (2 words)"
-                },
-                {
-                  "cluster": "ohnepixel@vod2861551488/ohnepixel-asks-delete-2026w36",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The clips lack a clear meaningful change or narrative progression; they are disjointed statements without set"
-                },
-                {
-                  "cluster": "emiru@vod2878603244/emiru-cold-describ-2026w38",
-                  "outcome": "plan_rejected",
-                  "why": "director unreachable"
-                },
-                {
-                  "cluster": "emiru@vod2860987916/emiru-about-caught-2026w36",
-                  "outcome": "plan_rejected",
-                  "why": "director unreachable"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 902.7
-        }
-      ]
-    },
-    {
-      "date": "20260927",
-      "dry_run": false,
       "ts": "2026-09-27T12:42:23+00:00",
       "feedback": {
         "snapshot": true,
@@ -6209,6 +6000,204 @@
             }
           },
           "took_s": 109.2
+        }
+      ]
+    },
+    {
+      "date": "20261004",
+      "dry_run": false,
+      "ts": "2026-10-04T12:26:12+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 125,
+        "with_retention": 109,
+        "with_curve": 15,
+        "fetched_at": "2026-10-04T08:46:18.007180+00:00"
+      },
+      "brain": {
+        "ok": 18,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261004-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261004-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture fills only about a third of the 9:16 canvas, a thin strip in the middle, not the roughly three quarter; vision: The subjects (players behind a wall) are tiny and far away in ",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear gameplay event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA RP hands-up standoff, inside-basebal",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Buddha Begs Not To Lose His Bird Before The Cops Come"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "The sharp picture fills only about a third of the 9:16 canvas, a thin strip in the middle, not the roughly three quarter",
+                "The subjects (players behind a wall) are tiny and far away in most frames, so they are hard to read on a phone.",
+                "The first ~7s (frames at 1.3s, 4.0s and 6.6s) show a GTA inventory menu with tiny unreadable UI. It is a dull, confusing",
+                "Captions sit in the blurred padding and, in the 1.3s frame, in the sharp strip as well. The hook text and the burned-in ",
+                "The framing looks like a reposted wide gameplay capture, not an edited and cropped clip."
+              ]
+            }
+          },
+          "took_s": 350.8
+        },
+        {
+          "slug": "clip-20261004-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261004-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261004-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp picture is a thin strip, about a quarter of the canvas height. The full stream layout, chat panel included, is let; vision: For roughly the first 14s the frame shows only an empty chair ",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "fit check, generic",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Empty chair, grand entrance, chat reacts",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Pokimane Does A Fit Check And Makes A Grand Entrance"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "Sharp picture is a thin strip, about a quarter of the canvas height. The full stream layout, chat panel included, is let",
+                "For roughly the first 14s the frame shows only an empty chair and no person. The hook card sits over blurred padding whi",
+                "When Pokimane appears she is small and far away, with the chat panel taking about a third of the picture width. She is h",
+                "The caption 'SORRY.' stays unchanged from about 3s to 18s, so it looks stuck or out of sync with the audio.",
+                "The blurred top and bottom padding is the vast majority of the canvas, so the clip looks reposted rather than edited."
+              ]
+            }
+          },
+          "took_s": 238.9
+        },
+        {
+          "slug": "clip-20261004-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }

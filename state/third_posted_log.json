@@ -10936,6 +10936,60 @@
         "end": 25.1
       },
       "director_cut": true
+    },
+    "rejected-enchantingaveragecurrydaesuppy-v1rozmjji1z_yrlw": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/EnchantingAverageCurryDAESuppy-V1rOzmJJI1Z_yrLW",
+      "streamer": "sodapoppin",
+      "title": "SODA wants this deleted",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW gameplay, insider, unclear payoff)",
+      "ts": "2026-10-04T12:13:59.902009+00:00"
+    },
+    "rejected-apatheticsmoggycrabschocolaterain-qpcssnzigcj1kaab": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ApatheticSmoggyCrabsChocolateRain-QPcsSnziGCj1kaAB",
+      "streamer": "forsen",
+      "title": "lost to H2O",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Inventory menus, dark death screen, no p)",
+      "ts": "2026-10-04T12:14:40.304947+00:00"
+    },
+    "rejected-impossiblegloriouscucumberkapow-cxmo7tuy3j7sf2vo": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ImpossibleGloriousCucumberKAPOW-CxmO7tUy3j7Sf2vO",
+      "streamer": "buddha",
+      "title": "Buddha Begs Not To Lose His Bird Before The Cops Come",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture fills only about a third of the 9:16 canvas, a thin strip in the middle, not the roughly three quarter; vision: The subjects (players behind a wall) are tiny and far away in most frames, so they are hard to read on a phone.; vision: The first ~7s (frames at 1.3s, 4.0s and 6",
+      "ts": "2026-10-04T12:20:31.070504+00:00"
+    },
+    "rejected-spunkystrangepuddingblargnaut-gnqeuu1qhw_hl8iu": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/SpunkyStrangePuddingBlargNaut-GnqeUU1Qhw_Hl8Iu",
+      "streamer": "pokimane",
+      "title": "fit check",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (outfit showcase, no real event)",
+      "ts": "2026-10-04T12:21:24.587961+00:00"
+    },
+    "rejected-fitsupertrolloptimizeprime-xrhjwm2idgvttmeo": {
+      "source_url": "https://www.twitch.tv/sypherpk/clip/FitSuperTrollOptimizePrime-xRhJwm2iDGvTTmEo",
+      "streamer": "sypherpk",
+      "title": "Cleann af",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Routine Fortnite building, streamer dead)",
+      "ts": "2026-10-04T12:22:13.272220+00:00"
+    },
+    "rejected-wonderfulyummydonkeypipehype-lp3qghagkyve6bsh": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/WonderfulYummyDonkeyPipeHype-lp3qghagKYvE6BSh",
+      "streamer": "pokimane",
+      "title": "Pokimane Does A Fit Check And Makes A Grand Entrance",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin strip, about a quarter of the canvas height. The full stream layout, chat panel included, is let; vision: For roughly the first 14s the frame shows only an empty chair and no person. The hook card sits over blurred padding whi; vision: When Pokimane appears she is sma",
+      "ts": "2026-10-04T12:26:12.218974+00:00"
     }
   }
 }
