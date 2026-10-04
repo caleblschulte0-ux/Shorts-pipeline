@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s1-77fec617ad70",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ee4e37a32b9e606e032f67bc2a7da7240bba9c5e8c69d20b3a5bab9a063b7d28",
+  "prompt_used": "An editorial illustration for a short-form video: paint cans shelf store. It accompanies the narration: \"demanding I find her a specific shade of touch-up paint\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+    "filename": "20261004__she-swore-i-worked-there-s1-77fec617ad70.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "117c58be60018a7ea3fcfc2591ab1b1f700f133626f5e5eaec9cc12333cb1550",
+    "bytes": 2263112,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-04T11:27:22.592Z"
+}
