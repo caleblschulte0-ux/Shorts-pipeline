@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s3-ea8bd40dc203",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "60b10b5360beb49e971c4ca54fbc8d16196c159815da7f3653b22ed7a9b1e359",
+  "prompt_used": "An editorial illustration for a short-form video: help desk software screen. It accompanies the narration: \"a ticket about the ticket system being slow\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1rs8mGUPYTtAvOF_B910VsBDWrz7RbrX8",
+    "filename": "20261004__it-made-everything-a-ticket-s3-ea8bd40dc203.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1rs8mGUPYTtAvOF_B910VsBDWrz7RbrX8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4ded85c0f4cc9759fcab595c2a56e409271184273f70d6f3438b5aac5cbb4fa8",
+    "bytes": 1645762,
+    "format": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-10-04T11:27:16.173Z"
+}
