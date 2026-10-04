@@ -1,0 +1,25 @@
+{
+  "key": "quantum_qubits_ibm_vs_google",
+  "title": "Largest superconducting quantum chip by company (qubit count)",
+  "unit": "qubits",
+  "geography": "Global",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "Company technical disclosures",
+    "publisher": "IBM / Google Quantum AI",
+    "url": "https://quantumai.google/static/site-assets/downloads/willow-spec-sheet.pdf",
+    "officiality": "primary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "IBM Condor (2023) vs Google Willow (Dec 2024), by raw qubit count only -- not an overall capability ranking (coherence/error rates differ).",
+  "points": [
+    {
+      "label": "Google (Willow)",
+      "value": 105
+    },
+    {
+      "label": "IBM (Condor)",
+      "value": 1121
+    }
+  ]
+}

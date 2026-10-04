@@ -1,0 +1,27 @@
+{
+  "key": "creator_economy_size",
+  "title": "Global creator economy market size, actual vs projected",
+  "unit": "$ billions",
+  "geography": "Global",
+  "time_coverage": "2023 vs 2027 (projected)",
+  "source": {
+    "name": "Creator economy market sizing",
+    "publisher": "Goldman Sachs Research",
+    "url": "https://www.goldmansachs.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Goldman Sachs estimated the global creator economy at $250 billion in 2023, projecting growth to $480 billion by 2027.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 250,
+      "period": "2023"
+    },
+    {
+      "label": "2027 (projected)",
+      "value": 480,
+      "period": "2027"
+    }
+  ]
+}

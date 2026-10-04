@@ -1,0 +1,33 @@
+{
+  "key": "qubit_doubling_demo",
+  "title": "Possible states representable by n qubits (2^n)",
+  "unit": "possible states (2^n)",
+  "geography": "N/A",
+  "time_coverage": "N/A (mathematical demonstration)",
+  "source": {
+    "name": "Quantum computing fundamentals (2^n state space)",
+    "publisher": "IBM / general quantum computing literature",
+    "url": "https://www.ibm.com/quantum/roadmap",
+    "officiality": "secondary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Illustrative demonstration of exponential doubling: each additional qubit doubles the number of simultaneously representable states (2^n). Not a specific chip's measured capacity.",
+  "points": [
+    {
+      "label": "1 qubit",
+      "value": 2
+    },
+    {
+      "label": "5 qubits",
+      "value": 32
+    },
+    {
+      "label": "10 qubits",
+      "value": 1024
+    },
+    {
+      "label": "20 qubits",
+      "value": 1048576
+    }
+  ]
+}

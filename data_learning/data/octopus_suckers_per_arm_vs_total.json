@@ -1,0 +1,25 @@
+{
+  "key": "octopus_suckers_per_arm_vs_total",
+  "title": "Octopus suckers: per arm vs total across all eight arms",
+  "unit": "suckers",
+  "geography": "N/A (common octopus, Octopus vulgaris)",
+  "time_coverage": "current",
+  "source": {
+    "name": "Octopus arm nervous system research",
+    "publisher": "University of Chicago (Nature Communications, Jan 2025)",
+    "url": "https://www.sci.news/biology/segmented-nervous-system-octopus-arms-13585.html",
+    "officiality": "primary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Each arm carries about 280 suckers, each wired as its own independent touch-and-taste sensor; across all eight arms that totals roughly 2,240 suckers.",
+  "points": [
+    {
+      "label": "Suckers on one arm",
+      "value": 280
+    },
+    {
+      "label": "Suckers across all 8 arms",
+      "value": 2240
+    }
+  ]
+}

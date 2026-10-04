@@ -1,0 +1,25 @@
+{
+  "key": "octopus_severed_arm_reaction_time",
+  "title": "Octopus arm reaction speed vs how long a severed arm keeps reacting",
+  "unit": "seconds",
+  "geography": "N/A (common octopus, Octopus vulgaris)",
+  "time_coverage": "current",
+  "source": {
+    "name": "Octopus arm autonomy studies (as reported)",
+    "publisher": "Research coverage of severed-arm reflex studies",
+    "url": "https://gizmodo.com/detatched-octopus-arms-show-independent-awareness-1209041248",
+    "officiality": "secondary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "A pinched arm recoils within about 1 second. Separately, researchers found a fully severed arm keeps reacting to touch and pain for up to an hour (3,600 seconds) with no brain attached at all.",
+  "points": [
+    {
+      "label": "How fast an arm reacts to a pinch",
+      "value": 1
+    },
+    {
+      "label": "How long a severed arm keeps reacting",
+      "value": 3600
+    }
+  ]
+}

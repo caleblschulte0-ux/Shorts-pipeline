@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "lego-passed-mattel-in-revenue",
+  "title": "LEGO Quietly Passed Mattel In Revenue",
+  "hook": "The toy box won.",
+  "y_label": "Annual revenue ($ billions)",
+  "duration": 13,
+  "source": "LEGO Group annual financial highlights and Mattel annual filings/10-K -- LEGO Group vs Mattel total annual revenue. Figures approximate as publicly reported.",
+  "years": [
+    2010,
+    2015,
+    2018,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "LEGO Group",
+      "color": "#f5c242",
+      "icon": null,
+      "values": [
+        2.4,
+        5.3,
+        6.0,
+        6.5,
+        9.8
+      ]
+    },
+    {
+      "name": "Mattel",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        5.85,
+        5.70,
+        4.70,
+        4.58,
+        5.44
+      ]
+    }
+  ],
+  "hashtags": [
+    "lego",
+    "mattel",
+    "toys",
+    "toyindustry",
+    "business",
+    "revenue",
+    "data",
+    "didyouknow",
+    "facts",
+    "economy",
+    "trending",
+    "barbie"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
