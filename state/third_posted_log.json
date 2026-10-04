@@ -10765,6 +10765,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (Sausage game, then dashboard; no payoff)",
       "ts": "2026-10-03T15:12:47.687075+00:00"
+    },
+    "rejected-funnyadorabledeerelegiggle-r09ihpj14q_vcmyk": {
+      "source_url": "https://www.twitch.tv/agent00/clip/FunnyAdorableDeerEleGiggle-r09IHpj14q_vCMYK",
+      "streamer": "agent00",
+      "title": "Agent's 80 nuggets trauma during ER marathon",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Car storytelling, no visible event, insi)",
+      "ts": "2026-10-04T11:33:34.932883+00:00"
+    },
+    "clip-20261004-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DeadSquareCheetahAMPEnergy--XV2svdHIZm7SV_P",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Completely Loses It And Begs Someone To Kill Him",
+      "kind": "twitch_clip",
+      "ts": "2026-10-04T11:35:47.691989+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
