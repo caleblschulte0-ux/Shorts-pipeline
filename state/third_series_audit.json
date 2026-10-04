@@ -19,7 +19,7 @@
     },
     "win": {
       "n": 9,
-      "median_vph": 0.04
+      "median_vph": 0.03
     },
     "argument": {
       "n": 6,
@@ -27,7 +27,7 @@
     },
     "jumpscare": {
       "n": 4,
-      "median_vph": 0.31
+      "median_vph": 0.305
     },
     "rage": {
       "n": 4,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.64
+      "median_vph": 0.63
     },
     "story": {
       "n": 1,
