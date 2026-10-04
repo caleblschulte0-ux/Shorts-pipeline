@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "she-swore-i-worked-there-s5-cfb74f36ed4b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7a06b798e6206c648d1d353dc17c00094babfafc073c32016299d09b366f680e",
+  "prompt_used": "An editorial illustration for a short-form video: security camera store ceiling. It accompanies the narration: \"check the camera near the paint aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+    "filename": "20261004__she-swore-i-worked-there-s5-cfb74f36ed4b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "dd1acbeba3bdaeacdfff4340600439c507d0ec2f825ca0624eb822bdac572711",
+    "bytes": 1816697,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-04T11:27:26.925Z"
+}
