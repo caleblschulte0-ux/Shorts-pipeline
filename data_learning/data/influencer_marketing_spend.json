@@ -1,0 +1,27 @@
+{
+  "key": "influencer_marketing_spend",
+  "title": "Influencer marketing spend, year over year",
+  "unit": "$ billions",
+  "geography": "Global",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "Influencer marketing spend tracking",
+    "publisher": "Industry market research (as reported)",
+    "url": "https://explodingtopics.com/blog/creator-economy-market-size",
+    "officiality": "secondary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Influencer marketing spend hit $32.55 billion in 2025, reported as a 35.6% increase over 2024 (implying ~$24.0 billion in 2024).",
+  "points": [
+    {
+      "label": "2024",
+      "value": 24.0,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 32.55,
+      "period": "2025"
+    }
+  ]
+}

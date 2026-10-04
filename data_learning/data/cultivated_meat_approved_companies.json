@@ -1,0 +1,25 @@
+{
+  "key": "cultivated_meat_approved_companies",
+  "title": "US FDA/USDA-approved cultivated-meat companies",
+  "unit": "companies",
+  "geography": "United States",
+  "time_coverage": "2023 vs current",
+  "source": {
+    "name": "FDA/USDA regulatory approvals",
+    "publisher": "U.S. FDA / USDA",
+    "url": "https://www.fda.gov",
+    "officiality": "official",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Upside Foods and GOOD Meat (Eat Just) were first approved in 2022-2023; additional companies have since cleared FDA pre-market consultation, bringing the total to 5.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 2
+    },
+    {
+      "label": "Today",
+      "value": 5
+    }
+  ]
+}

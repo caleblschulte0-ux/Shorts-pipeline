@@ -1,0 +1,25 @@
+{
+  "key": "cultivated_meat_capacity",
+  "title": "Cultivated-meat facility capacity, today vs next-generation plant",
+  "unit": "pounds/year",
+  "geography": "United States",
+  "time_coverage": "2023 vs planned expansion",
+  "source": {
+    "name": "Company production disclosures",
+    "publisher": "Upside Foods",
+    "url": "https://en.wikipedia.org/wiki/Upside_Foods",
+    "officiality": "primary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Upside Foods' EPIC facility currently produces ~50,000 lbs/year; the company's next planned facility is designed for ~400,000 lbs/year.",
+  "points": [
+    {
+      "label": "Today's plant",
+      "value": 50000
+    },
+    {
+      "label": "Next plant (planned)",
+      "value": 400000
+    }
+  ]
+}

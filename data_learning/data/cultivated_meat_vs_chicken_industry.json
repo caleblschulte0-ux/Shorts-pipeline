@@ -1,0 +1,25 @@
+{
+  "key": "cultivated_meat_vs_chicken_industry",
+  "title": "Planned cultivated-meat capacity vs the traditional US chicken industry",
+  "unit": "pounds/year",
+  "geography": "United States",
+  "time_coverage": "current",
+  "source": {
+    "name": "Poultry production statistics",
+    "publisher": "USDA / industry reporting",
+    "url": "https://www.usda.gov",
+    "officiality": "official",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Traditional US chicken industry produces roughly 50 billion pounds of chicken per year; cultivated meat's planned next-generation capacity (400,000 lbs/year) is a tiny fraction of that scale.",
+  "points": [
+    {
+      "label": "Cultivated meat (planned, next plant)",
+      "value": 400000
+    },
+    {
+      "label": "Traditional US chicken industry",
+      "value": 50000000000
+    }
+  ]
+}

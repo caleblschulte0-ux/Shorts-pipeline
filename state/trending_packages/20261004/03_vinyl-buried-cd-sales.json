@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "vinyl-buried-cd-sales",
+  "title": "Vinyl Quietly Buried The CD",
+  "hook": "The format everyone killed, won.",
+  "y_label": "US recorded music revenue ($ millions)",
+  "duration": 13,
+  "source": "RIAA year-end and mid-year revenue statistics -- US vinyl record vs CD revenue. Figures approximate as publicly reported.",
+  "years": [
+    2010,
+    2015,
+    2019,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "CD",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        1500,
+        1013,
+        247,
+        531.1,
+        537
+      ]
+    },
+    {
+      "name": "Vinyl",
+      "color": "#f5c242",
+      "icon": null,
+      "values": [
+        30,
+        222,
+        224,
+        596.2,
+        1400
+      ]
+    }
+  ],
+  "hashtags": [
+    "vinyl",
+    "cd",
+    "music",
+    "riaa",
+    "records",
+    "musicindustry",
+    "data",
+    "didyouknow",
+    "facts",
+    "nostalgia",
+    "trending",
+    "90s"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

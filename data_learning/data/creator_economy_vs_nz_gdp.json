@@ -1,0 +1,25 @@
+{
+  "key": "creator_economy_vs_nz_gdp",
+  "title": "Creator economy size vs New Zealand's entire GDP",
+  "unit": "$ billions",
+  "geography": "Global vs New Zealand",
+  "time_coverage": "2023",
+  "source": {
+    "name": "National accounts",
+    "publisher": "IMF / World Bank",
+    "url": "https://data.worldbank.org/country/new-zealand",
+    "officiality": "official",
+    "access_date": "2026-10-04"
+  },
+  "notes": "New Zealand's 2023 nominal GDP was approximately $256 billion (IMF/World Bank); the creator economy's 2023 estimated size ($250B, Goldman Sachs) is roughly the same scale.",
+  "points": [
+    {
+      "label": "Creator economy (2023)",
+      "value": 250
+    },
+    {
+      "label": "New Zealand's entire economy (2023)",
+      "value": 256
+    }
+  ]
+}

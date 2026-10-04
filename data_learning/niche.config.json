@@ -30648,6 +30648,234 @@
      "say": "In 2023, remittances to poorer countries hit $656 billion -- more than foreign companies invested there. The gap was over $270 billion in favor of migrants' money."
     }
    ]
+  },
+  {
+   "slug": "quantum-computers-5-to-1121-qubits",
+   "title": "Quantum Computers Went From 5 Qubits To 1,121",
+   "hook": "This number just broke every chart.",
+   "closing": "Data's still waiting for his quantum laptop.",
+   "question": "Would you trust a quantum computer with your passwords? Tell me below.",
+   "caption": "IBM's first public quantum computer had 5 qubits. Its newest has 1,121. Here's why that number matters more than it sounds 👇",
+   "hashtags": [
+    "quantumcomputing",
+    "ibm",
+    "technology",
+    "qubits",
+    "futuretech",
+    "computerscience",
+    "data",
+    "didyouknow",
+    "facts",
+    "science",
+    "innovation",
+    "tech"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "qubit_count_ibm_roadmap",
+     "params": {
+      "file": "qubit_count_ibm_roadmap.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE JUMP",
+     "topic": "the jump in qubits IBM's quantum computers can hold",
+     "say": "IBM's first public quantum computer in 2016 had just 5 qubits. By 2023 its Condor chip hit 1,121 qubits -- over 200 times more."
+    },
+    {
+     "source": "offline",
+     "key": "qubit_doubling_demo",
+     "params": {
+      "file": "qubit_doubling_demo.json"
+     },
+     "insight_type": "rank",
+     "role": "2 · WHY IT MATTERS",
+     "topic": "why each qubit doubles a quantum computer's power",
+     "say": "Here's why that number matters so much: every extra qubit doubles what's representable. Just 20 of them already pass 1,048,576 possible states at once."
+    },
+    {
+     "source": "offline",
+     "key": "quantum_qubits_ibm_vs_google",
+     "params": {
+      "file": "quantum_qubits_ibm_vs_google.json"
+     },
+     "insight_type": "rank",
+     "role": "3 · THE RACE",
+     "topic": "which company's quantum chip has the most qubits",
+     "say": "IBM's Condor chip has 1,121 qubits. Google's newest chip, Willow, has 105 -- by that one measure, IBM is the current leader."
+    }
+   ]
+  },
+  {
+   "slug": "lab-grown-meat-scale-up-8x",
+   "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+   "hook": "One plant alone will make 400,000 pounds a year.",
+   "closing": "Data would still rather have a sandwich.",
+   "question": "Would you actually try cultivated meat? Tell me below.",
+   "caption": "Lab-grown meat's biggest plant is about to make 8 times more than it does now. It's still a rounding error next to traditional chicken -- here's the real scale 👇",
+   "hashtags": [
+    "labgrownmeat",
+    "cultivatedmeat",
+    "foodtech",
+    "futurefood",
+    "biotech",
+    "science",
+    "data",
+    "didyouknow",
+    "facts",
+    "sustainability",
+    "innovation",
+    "food"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cultivated_meat_capacity",
+     "params": {
+      "file": "cultivated_meat_capacity.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE UPGRADE",
+     "topic": "how much lab-grown meat capacity is about to scale up",
+     "say": "Right now, the largest cultivated-meat plant makes 50,000 pounds of meat a year. Its next facility is built for 400,000 -- eight times more."
+    },
+    {
+     "source": "offline",
+     "key": "cultivated_meat_vs_chicken_industry",
+     "params": {
+      "file": "cultivated_meat_vs_chicken_industry.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE CATCH",
+     "topic": "how lab-grown meat compares to the traditional chicken industry",
+     "say": "Here's the catch: even that upgraded plant is a rounding error next to the 50 billion pounds of chicken America's traditional industry makes every year."
+    },
+    {
+     "source": "offline",
+     "key": "cultivated_meat_approved_companies",
+     "params": {
+      "file": "cultivated_meat_approved_companies.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHY NOW",
+     "topic": "how many lab-grown meat companies are approved",
+     "say": "Part of why it's speeding up: the US has gone from 2 approved cultivated-meat companies in 2023 to 5 today, each one a green light for more capacity."
+    }
+   ]
+  },
+  {
+   "slug": "creator-economy-250-billion",
+   "title": "The Creator Economy Just Topped 250 Billion Dollars",
+   "hook": "That's bigger than most countries' economies.",
+   "closing": "Data's still working on his subscriber count.",
+   "question": "Would you ever try to make content full-time? Tell me below.",
+   "caption": "The creator economy just hit 250 billion dollars -- roughly the size of an entire country's GDP. Here's where all that money is actually coming from 👇",
+   "hashtags": [
+    "creatoreconomy",
+    "influencers",
+    "socialmedia",
+    "contentcreator",
+    "businessnews",
+    "data",
+    "didyouknow",
+    "facts",
+    "economy",
+    "finance",
+    "digitalmedia",
+    "trending"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "creator_economy_size",
+     "params": {
+      "file": "creator_economy_size.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE NUMBER",
+     "topic": "how big the creator economy got",
+     "say": "Goldman Sachs puts the creator economy at 250 billion dollars in 2023 -- and projects it'll hit 480 billion by 2027."
+    },
+    {
+     "source": "offline",
+     "key": "creator_economy_vs_nz_gdp",
+     "params": {
+      "file": "creator_economy_vs_nz_gdp.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SCALE",
+     "topic": "how the creator economy compares to a whole country's economy",
+     "say": "For scale, 250 billion dollars is now roughly the size of an entire country's economy -- New Zealand's GDP is about 256 billion."
+    },
+    {
+     "source": "offline",
+     "key": "influencer_marketing_spend",
+     "params": {
+      "file": "influencer_marketing_spend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHY IT'S GROWING",
+     "topic": "why the creator economy keeps growing",
+     "say": "Part of why: influencer marketing alone hit 32.55 billion dollars in 2025, up 35.6 percent from the year before."
+    }
+   ]
+  },
+  {
+   "slug": "octopus-nine-brains",
+   "title": "The Octopus Has 9 Brains. Here's Where They Are.",
+   "hook": "Most of its brain isn't even in its head.",
+   "closing": "Data counted his own brains. Still just the one.",
+   "question": "Would you want a second brain in each arm? Tell me below.",
+   "caption": "An octopus has 9 brains, and most of its neurons aren't even in its head. Here's what that actually buys it 👇",
+   "hashtags": [
+    "octopus",
+    "marinebiology",
+    "animals",
+    "nature",
+    "science",
+    "neuroscience",
+    "data",
+    "didyouknow",
+    "facts",
+    "ocean",
+    "wildlife",
+    "biology"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "octopus_neurons_brain_vs_arms",
+     "params": {
+      "file": "octopus_neurons_brain_vs_arms.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · WHERE THE BRAIN IS",
+     "topic": "where most of an octopus's neurons actually are",
+     "say": "An octopus runs on about 500 million neurons -- but only 180 million of them sit in its central brain. The other 320 million are out in its arms."
+    },
+    {
+     "source": "offline",
+     "key": "octopus_suckers_per_arm_vs_total",
+     "params": {
+      "file": "octopus_suckers_per_arm_vs_total.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY",
+     "topic": "how many independent sensors an octopus's arms have",
+     "say": "That's because every one of its 280 suckers per arm is its own touch-and-taste sensor -- 2,240 of them across all eight arms, each wired straight into that arm's own nerves."
+    },
+    {
+     "source": "offline",
+     "key": "octopus_severed_arm_reaction_time",
+     "params": {
+      "file": "octopus_severed_arm_reaction_time.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · HOW INDEPENDENT",
+     "topic": "why a severed octopus arm keeps reacting",
+     "say": "And that control is so independent, a severed arm keeps reacting to touch and pain for up to 3,600 seconds after it's cut off -- a full hour, with no brain attached at all."
+    }
+   ]
   }
  ],
  "videos": [

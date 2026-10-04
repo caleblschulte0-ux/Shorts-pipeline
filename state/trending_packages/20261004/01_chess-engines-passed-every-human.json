@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "chess-engines-passed-every-human",
+  "title": "Chess Engines Passed Every Human. Then Kept Climbing.",
+  "hook": "Humans peaked. Machines didn't.",
+  "y_label": "Elo rating",
+  "duration": 13,
+  "source": "CCRL / TCEC computer chess rating lists (engine Elo, estimated) vs FIDE historical peak ratings (human Elo). Figures approximate as publicly reported.",
+  "years": [
+    1972,
+    1997,
+    2008,
+    2017,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Best human Elo (ever, to date)",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        2785,
+        2805,
+        2851,
+        2882,
+        2882
+      ]
+    },
+    {
+      "name": "Best chess engine Elo (estimated)",
+      "color": "#4a90e2",
+      "icon": null,
+      "values": [
+        1500,
+        2700,
+        3200,
+        3400,
+        3700
+      ]
+    }
+  ],
+  "hashtags": [
+    "chess",
+    "chessengine",
+    "ai",
+    "stockfish",
+    "artificialintelligence",
+    "elo",
+    "data",
+    "didyouknow",
+    "facts",
+    "technology",
+    "trending",
+    "chesstok"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

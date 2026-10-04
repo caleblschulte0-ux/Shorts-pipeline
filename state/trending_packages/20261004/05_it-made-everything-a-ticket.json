@@ -1,0 +1,78 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "it-made-everything-a-ticket",
+  "title": "He Said Every Request Needs A Ticket. I Made Everything A Ticket.",
+  "script": "Our new IT director got tired of people pinging him directly for small fixes, so he sent out a memo: every single request, no matter how small, must go through the ticket system, no verbal exceptions, or it simply would not get done. I complied completely. I filed a ticket when my monitor flickered. I filed a ticket when his own badge reader jammed because of a policy he wrote. I filed a ticket about the ticket system being slow to load tickets. Within two weeks the queue had over six hundred open items, and executives who wanted a two minute fix were stuck waiting behind a backlog his own rule created. He tried quietly fixing things off the books again, and I reminded him, politely, that verbal requests were against policy. Regional finally asked why simple fixes were taking three weeks. He had no good answer, because the answer was him.",
+  "hashtags": [
+    "maliciouscompliance",
+    "itdepartment",
+    "corporate",
+    "officepolitics",
+    "workplace",
+    "revenge",
+    "karma",
+    "truestory",
+    "reddit",
+    "ticketsystem",
+    "management",
+    "pettyrevenge"
+  ],
+  "shots": [
+    {
+      "phrase": "every single request, no matter how small, must go through the ticket system",
+      "query": "office memo email screen"
+    },
+    {
+      "phrase": "I filed a ticket when my monitor flickered",
+      "query": "computer monitor desk"
+    },
+    {
+      "phrase": "his own badge reader jammed",
+      "query": "office door badge reader"
+    },
+    {
+      "phrase": "a ticket about the ticket system being slow",
+      "query": "help desk software screen"
+    },
+    {
+      "phrase": "the queue had over six hundred open items",
+      "query": "overflowing inbox notifications"
+    },
+    {
+      "phrase": "stuck waiting behind a backlog his own rule created",
+      "query": "office hallway waiting"
+    },
+    {
+      "phrase": "I reminded him, politely, that verbal requests were against policy",
+      "query": "office conversation desk"
+    },
+    {
+      "phrase": "Regional finally asked why simple fixes were taking three weeks",
+      "query": "conference room meeting"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no verbal exceptions",
+      "text": "NO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "over six hundred open items",
+      "text": "600+ TICKETS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "I reminded him, politely, that verbal requests were against policy",
+      "text": "YOUR RULE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "He had no good answer, because the answer was him",
+      "text": "BUSTED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "spacex-passed-the-rest-of-the-world",
+  "title": "SpaceX Passed The Rest Of The World Combined",
+  "hook": "One company. Every other country.",
+  "y_label": "Orbital launches per year",
+  "duration": 13,
+  "source": "BryceTech / FAA orbital launch logs -- SpaceX launches vs the rest of the world's orbital launches combined. Figures approximate as publicly reported.",
+  "years": [
+    2018,
+    2020,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "SpaceX",
+      "color": "#4a90e2",
+      "icon": "SpaceX",
+      "values": [
+        21,
+        25,
+        61,
+        96,
+        134
+      ]
+    },
+    {
+      "name": "Rest of world",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        90,
+        88,
+        125,
+        127,
+        127
+      ]
+    }
+  ],
+  "hashtags": [
+    "spacex",
+    "rockets",
+    "launches",
+    "space",
+    "elonmusk",
+    "nasa",
+    "data",
+    "didyouknow",
+    "facts",
+    "science",
+    "trending",
+    "spaceflight"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,25 @@
+{
+  "key": "octopus_neurons_brain_vs_arms",
+  "title": "Octopus neurons: central brain vs arms combined",
+  "unit": "million neurons",
+  "geography": "N/A (common octopus, Octopus vulgaris)",
+  "time_coverage": "current",
+  "source": {
+    "name": "Octopus neuroanatomy research (as reported)",
+    "publisher": "Neuroscience research coverage (e.g. Science/Nature-adjacent reporting)",
+    "url": "https://sites.nd.edu/biomechanics-in-the-wild/2021/04/07/nine-brains-are-better-than-one-an-octopus-nervous-system/",
+    "officiality": "secondary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "An octopus has roughly 500 million neurons total: about 180 million in its central donut-shaped brain, and about 320 million spread across its eight arms (roughly 40 million per arm).",
+  "points": [
+    {
+      "label": "Central brain",
+      "value": 180
+    },
+    {
+      "label": "Arms (combined)",
+      "value": 320
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "key": "qubit_count_ibm_roadmap",
+  "title": "IBM quantum processor qubit count by generation",
+  "unit": "qubits",
+  "geography": "Global",
+  "time_coverage": "2016-2023",
+  "source": {
+    "name": "IBM Quantum hardware roadmap",
+    "publisher": "IBM",
+    "url": "https://www.ibm.com/quantum/roadmap",
+    "officiality": "primary",
+    "access_date": "2026-10-04"
+  },
+  "notes": "Milestone chips: IBM Q (2016, 5 qubits), Q System One (2019, 20), Eagle (2021, 127), Osprey (2022, 433), Condor (2023, 1,121). Figures as publicly announced by IBM.",
+  "points": [
+    {
+      "label": "2016 (IBM Q)",
+      "value": 5,
+      "period": "2016"
+    },
+    {
+      "label": "2019 (Q System One)",
+      "value": 20,
+      "period": "2019"
+    },
+    {
+      "label": "2021 (Eagle)",
+      "value": 127,
+      "period": "2021"
+    },
+    {
+      "label": "2022 (Osprey)",
+      "value": 433,
+      "period": "2022"
+    },
+    {
+      "label": "2023 (Condor)",
+      "value": 1121,
+      "period": "2023"
+    }
+  ]
+}
