@@ -1,0 +1,127 @@
+{
+  "date": "20261004",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "it-made-everything-a-ticket-s0-741e99bb4a8c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s0-741e99bb4a8c.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s1-c3d87fd0cea4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s1-c3d87fd0cea4.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s2-087b82dabc57",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s2-087b82dabc57.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s3-ea8bd40dc203",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s3-ea8bd40dc203.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s4-9ebc8b9eb7c4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s4-9ebc8b9eb7c4.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s5-4f0a2ebda63c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s5-4f0a2ebda63c.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s6-251231bc3a00",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s6-251231bc3a00.png"
+    },
+    {
+      "request_id": "it-made-everything-a-ticket-s7-770fc7b462b1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/it-made-everything-a-ticket-s7-770fc7b462b1.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s0-9c59338cce55",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s0-9c59338cce55.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s1-77fec617ad70",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s1-77fec617ad70.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s2-44196331fd87",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s2-44196331fd87.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s3-c1facc23b584",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s3-c1facc23b584.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s4-cdd23f0fce34",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s4-cdd23f0fce34.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s5-cfb74f36ed4b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s5-cfb74f36ed4b.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s6-aea22628ccfd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s6-aea22628ccfd.png"
+    },
+    {
+      "request_id": "she-swore-i-worked-there-s7-63e610ee6a9e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-swore-i-worked-there-s7-63e610ee6a9e.png"
+    }
+  ]
+}

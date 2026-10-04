@@ -2,7 +2,7 @@
   "subreddit": "IDontWorkHereLady",
   "slug": "she-swore-i-worked-there",
   "title": "She Swore I Worked There Because Of My Jacket. Security Had Other Plans.",
-  "script": "I was shopping for paint in the same green jacket the store's employees happen to wear, and a woman marched up demanding I find her a specific shade of touch-up paint right now. I told her twice that I didn't work there and was just a customer, but she talked over me both times and said she would report me to my manager for being unhelpful. A real employee walked over to help, and she immediately pointed at me and claimed I had been rude to her first, trying to get him in trouble too. He asked the front desk to check the camera near the paint aisle, just to be thorough. The footage showed me calmly saying I didn't work there, twice, while she ignored me and kept talking. Store security walked her out for harassing staff, and the real employee thanked me for staying so calm. I still don't own a single can of that paint.",
+  "script": "I was shopping for paint in the same green jacket the store's employees wear when a woman marched over, demanding I find her a specific shade of touch-up paint. I told her twice that I didn't work there. She talked over me and said she would report me to my manager. A real employee walked over to help, but she claimed I had been rude and tried to get him in trouble too. He asked the front desk to check the camera near the paint aisle. The footage showed me calmly explaining myself twice while she ignored me. Store security walked her out for harassing staff, and the employee thanked me for staying calm. I still don't own a single can of that paint; unpaid customer service came with the jacket.",
   "hashtags": [
     "idontworkherelady",
     "retail",
@@ -20,35 +20,75 @@
   "shots": [
     {
       "phrase": "shopping for paint in the same green jacket",
-      "query": "hardware store paint aisle"
+      "query": "hardware store paint aisle",
+      "image_url": "https://drive.google.com/uc?export=download&id=1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+      "media_origin": "chatgpt",
+      "media_file_id": "1w4RTRN65cLCNFKqFyzgNAiSsLiC5_QVD",
+      "media_sha256": "af140e7a4ad5d5810ddd82aa0ffb9dfcefbde24fa12a01cd6fada967cf69a0d6",
+      "media_bytes": 2014843
     },
     {
       "phrase": "demanding I find her a specific shade of touch-up paint",
-      "query": "paint cans shelf store"
+      "query": "paint cans shelf store",
+      "image_url": "https://drive.google.com/uc?export=download&id=1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+      "media_origin": "chatgpt",
+      "media_file_id": "1LfVxQQjOn5VVe5JUOKou9cHkF-XKVYE4",
+      "media_sha256": "117c58be60018a7ea3fcfc2591ab1b1f700f133626f5e5eaec9cc12333cb1550",
+      "media_bytes": 2263112
     },
     {
       "phrase": "I told her twice that I didn't work there",
-      "query": "customer declining conversation"
+      "query": "customer declining conversation",
+      "image_url": "https://drive.google.com/uc?export=download&id=1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+      "media_origin": "chatgpt",
+      "media_file_id": "1L-24gJkMbkmHGbD2FXJGULYvyDIP4Dpm",
+      "media_sha256": "77d85feca2a12d28fb922e92bcb9cd254e9cd695de6b4545d2d0477276eccde0",
+      "media_bytes": 2559875
     },
     {
       "phrase": "she would report me to my manager",
-      "query": "angry customer pointing"
+      "query": "angry customer pointing",
+      "image_url": "https://drive.google.com/uc?export=download&id=1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1khdRd6O7qm8gL3vaj5z0qj5ycR5c6Al1",
+      "media_sha256": "4b44480f9fa8014068e693556a6f73931cf39935cbcb34561e4488fd9cd5e021",
+      "media_bytes": 2385974
     },
     {
       "phrase": "A real employee walked over to help",
-      "query": "store employee apron helping"
+      "query": "store employee apron helping",
+      "image_url": "https://drive.google.com/uc?export=download&id=1EOR-rjHgITIgN_eH6LwkTKR8Fdzdjg2R",
+      "media_origin": "chatgpt",
+      "media_file_id": "1EOR-rjHgITIgN_eH6LwkTKR8Fdzdjg2R",
+      "media_sha256": "476dec4f7f448eccae617ec4de0aa09754b7acdb0475422465b711b72260eaf8",
+      "media_bytes": 1896773
     },
     {
       "phrase": "check the camera near the paint aisle",
-      "query": "security camera store ceiling"
+      "query": "security camera store ceiling",
+      "image_url": "https://drive.google.com/uc?export=download&id=1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+      "media_origin": "chatgpt",
+      "media_file_id": "1mhDDx34i55TCDAj957A97d0Trxy_b-cF",
+      "media_sha256": "dd1acbeba3bdaeacdfff4340600439c507d0ec2f825ca0624eb822bdac572711",
+      "media_bytes": 1816697
     },
     {
       "phrase": "Store security walked her out",
-      "query": "security guard escorting"
+      "query": "security guard escorting",
+      "image_url": "https://drive.google.com/uc?export=download&id=1_v2Bru3ZSLpeaQbllLCSu9qE4gFbhqu6",
+      "media_origin": "chatgpt",
+      "media_file_id": "1_v2Bru3ZSLpeaQbllLCSu9qE4gFbhqu6",
+      "media_sha256": "93cc10cefb4f154444a1dca6e41a54137098f409e1e5587559bcd778e53427d8",
+      "media_bytes": 2057019
     },
     {
       "phrase": "I still don't own a single can of that paint",
-      "query": "empty shopping cart"
+      "query": "empty shopping cart",
+      "image_url": "https://drive.google.com/uc?export=download&id=1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+      "media_origin": "chatgpt",
+      "media_file_id": "1QoQdCMNeOw47Z4skGfmYwHBqN2ztEIYL",
+      "media_sha256": "dbd7bfe9ed809c62c00254fae7ba7561013f3dcd884e7d881400c1a18eec4342",
+      "media_bytes": 2038281
     }
   ],
   "punches": [
@@ -74,5 +114,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }
