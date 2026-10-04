@@ -10911,14 +10911,31 @@
       "ts": "2026-10-04T12:09:14.168190+00:00"
     },
     "clip-20261004-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/BlueNaiveStrawberryAMPEnergyCherry-GIdc1wKKVzGOZZlg",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/IqiSscuV9uQ",
       "title": "Lacy Can't Believe Her Own Bare Moment Is Number One Show In The World",
       "kind": "twitch_clip",
-      "ts": "2026-10-04T12:10:57.066022+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-04T12:11:03.375059+00:00",
+      "uploaded_at": "2026-10-04T12:11:03.375076+00:00",
+      "publish_at": "2026-10-05T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261004-lacy-can-t-believe-her-own-bare-moment-is-number-75a0080e"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/BlueNaiveStrawberryAMPEnergyCherry-GIdc1wKKVzGOZZlg",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "SHE THOUGHT THEY'D CUT IT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2184,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.5,
+        "end": 25.1
+      },
+      "director_cut": true
     }
   }
 }

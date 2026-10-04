@@ -1,158 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260926",
-      "dry_run": false,
-      "ts": "2026-09-26T15:04:07+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 110,
-        "with_retention": 88,
-        "with_curve": 14,
-        "fetched_at": "2026-09-26T13:18:27.907072+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260926-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260926-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260926-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260926-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260926-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "reaction but unclear what to",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "visible reaction to a drop/fail moment",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Zackrawrr Can't Believe Bonnie Said THE Word In Her Olympus Interview"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "sharp region is only about half the canvas height (streamer cam + reddit post + game strip) rather than filling ~3/4, so"
-              ]
-            }
-          },
-          "took_s": 205.2
-        },
-        {
-          "slug": "clip-20260926-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20260927",
       "dry_run": false,
       "ts": "2026-09-27T12:37:37+00:00",
@@ -5893,6 +5741,474 @@
           "slug": "clip-20261003-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261004",
+      "dry_run": false,
+      "ts": "2026-10-04T12:11:03+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 125,
+        "with_retention": 109,
+        "with_curve": 15,
+        "fetched_at": "2026-10-04T08:46:18.007180+00:00"
+      },
+      "brain": {
+        "ok": 42,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261004-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "crashout implies visible meltdown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Fortnite elimination, visible rage, chat",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Completely Loses It And Begs Someone To Kill Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The 'KILL ME' burst overlay at 4.4s covers the gameplay action, but only briefly",
+                "The gameplay strip is small and the in-game HUD is hard to read on a phone, though the facecam above it is clear"
+              ]
+            }
+          },
+          "took_s": 142.7
+        },
+        {
+          "slug": "clip-20261004-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: black screen 0.8s at 6.0s; vision: Sharp region is a thin strip (about a third of the canvas height) with the subjects small and far away, so the framing f; vision: Frames from about 4.7s to 5.5s are ",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "fall implies fail, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Chase, overexposed, black end, unclear f",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Reacts As Lazer Falls In Front Of Everyone"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "black screen 0.8s at 6.0s"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.93,
+              "problems": [
+                "Sharp region is a thin strip (about a third of the canvas height) with the subjects small and far away, so the framing f",
+                "Frames from about 4.7s to 5.5s are blown out to nearly pure white, with no visible subject or action.",
+                "From 6.4s to the end (about 4s) the picture is black or a tiny filmstrip UI with empty boxes, which looks like a broken ",
+                "No fall is visible: the 'LAZER JUST FELL' hook card is shown, but the footage never shows him falling.",
+                "The hook text fades into the white background around 3.0s and becomes illegible."
+              ]
+            }
+          },
+          "took_s": 77.3
+        },
+        {
+          "slug": "clip-20261004-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 35,
+                "refused_shown": 3,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat tells viewers he is scared for someone he knows, then reads Reggie's 2:32 AM text and call log line by line, a",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Stableronaldo wins Game 11 after a Clix moment, then negotiates an M4 in the next minute, then comforts Shxrk and tells ",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 154,
+                "candidates": 255,
+                "pool": 1307,
+                "pool_with_vod": 1193,
+                "arc_sizes": [
+                  2,
+                  6,
+                  5,
+                  2,
+                  2,
+                  6,
+                  2,
+                  2,
+                  5,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:kaicenat/kaicenat-call-cenat-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't support the scout's premise, and it doesn't hold a story on its own. All three clips show Kai Cenat reacting, and none shows what Reggie actually did. Clip 1 shows Kai reading Regg"
+                },
+                {
+                  "cluster": "shroud@vod2870437527/shroud-about-bann-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 Clip 1 shows Shroud hitting an ACCESS DENIED screen with a permanent ban for cheating. Clip 2 is from the same broadcast about nine minutes later and shows him in the main menu, skipping the tutorial "
+                },
+                {
+                  "cluster": "scout:stableronaldo/stableronaldo-about-great-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show a meaningful change across these clips. The scout's three clips are not one minute apart: the broadcast offsets are 4h21m, 5h22m and 5h28m, so the Game 11 clip is about an ho"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-about-cenat-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [48, 38, 42] after 2 revision(s) \u2014 @0s missing_context: The opening never says what Reggie is accused of or what the dispute is. Add a setup beat or overlay that states the claim, for example what Reggie said happened and what he asked Kai for. 'Reggie goi; @4s confusing: Cut 'Y'all don't eve"
+                },
+                {
+                  "cluster": "sodapoppin@vod2888128304",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: sources fail preflight: preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
+                },
+                {
+                  "cluster": "ohnepixel@vod2866885554",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips show the same bodycam-style glitch (static and corrupted-video screens) during tactical-shooter rounds, but there i"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "blindfolded guide gag, unclear payoff",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Realizes Something Is Wrong When She Suddenly Can't Hear Anything"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "At 4.4s the frame is mostly the back of someone's head, so the subject is briefly lost",
+                "Burned-in source captions sit beside the added captions, which makes the text a little busy",
+                "The hook text at the top is small and gets slightly lost against the ceiling and lamp"
+              ]
+            }
+          },
+          "took_s": 79.7
+        },
+        {
+          "slug": "clip-20261004-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 42,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Mista C questions Lang about how long he has known Raymond and calls the friendship a problem, then the pair try to work",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Lang takes a total loss after the Gazino opening, and Buddha then offers to put $20 grand in.",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 154,
+                "candidates": 253,
+                "pool": 1307,
+                "pool_with_vod": 1193,
+                "arc_sizes": [
+                  2,
+                  6,
+                  5,
+                  2,
+                  2,
+                  6,
+                  2,
+                  2,
+                  5,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:buddha/buddha-casino-charact-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't show the scout's story. (1) The clips are about 29 minutes apart on the broadcast (13h04m vs 13h33m), not 30 seconds. (2) In C186 the Raymond moment is only a farewell and small ta"
+                },
+                {
+                  "cluster": "shroud@vod2870437527",
+                  "outcome": "already_refused",
+                  "why": "2026-10-04: director judged: not a story \u2014 Clip 1 shows Shroud hitting an ACCESS DENIED screen with a permanent ban for cheating. Clip 2 is from the same broadcast about ni"
+                },
+                {
+                  "cluster": "scout:buddha",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092",
+                  "outcome": "already_refused",
+                  "why": "2026-10-04: rendered; critic scored 42 after 2 revision(s) \u2014 @0s missing_context: The opening never says what Reggie is accused of or what the dispute is. Add a setup beat "
+                },
+                {
+                  "cluster": "sodapoppin@vod2888128304",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: sources fail preflight: preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
+                },
+                {
+                  "cluster": "ohnepixel@vod2866885554",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips show the same bodycam-style glitch (static and corrupted-video screens) during tactical-shooter rounds, but there i"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, big views, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA RP casino, unclear complaint, no pay",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Wants This Guy Fired And Says He's Filing A Complaint"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Two caption layers show at once (a centered pop-up caption plus a lower subtitle with different text), which looks clutt",
+                "The picture is mostly a third-person game view of a character from behind, so the 'xqc' subject is hard to read",
+                "The sharp region is a bit short, and the top of the frame has dead black space"
+              ]
+            }
+          },
+          "took_s": 99.0
+        },
+        {
+          "slug": "clip-20261004-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Static pause menu, unclear grief event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague grief title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Static pause menu, unclear grief event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 16.0
+        },
+        {
+          "slug": "clip-20261004-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Streamer reacts to Netflix butt exposure",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Can't Believe Her Own Bare Moment Is Number One Show In The World"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Frames from about 12.7s onward are noticeably dark and dim",
+                "The hook text sits over the lower part of the speaker's face at 0.8s",
+                "Burned-in captions repeat in the blurred padding and look muddy"
+              ]
+            }
+          },
+          "took_s": 109.2
         }
       ]
     }
