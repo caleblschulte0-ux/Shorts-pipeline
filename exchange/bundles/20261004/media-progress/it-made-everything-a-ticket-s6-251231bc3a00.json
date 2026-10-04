@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s6-251231bc3a00",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4868995f951932fcf92d6954dc0d01d9e400a9982b6d9b2a2ab9069b47d742c8",
+  "prompt_used": "An editorial illustration for a short-form video: office conversation desk. It accompanies the narration: \"I reminded him, politely, that verbal requests were against policy\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "131w2Es38Ysaq0GvdoAr1chk_93pQhAiP",
+    "filename": "20261004__it-made-everything-a-ticket-s6-251231bc3a00.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=131w2Es38Ysaq0GvdoAr1chk_93pQhAiP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e00e878aef458fe7650c96ffbefcad7094ab7d11dad76ca3bb3f84b9feb0173f",
+    "bytes": 1722924,
+    "format": "png",
+    "width": 1370,
+    "height": 1148
+  },
+  "verified_at": "2026-10-04T11:27:19.276Z"
+}
