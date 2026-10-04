@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261004T163628Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start-end and seg3:start-end: Data only stands on top of a swelling circle. In seg0/hook he rides a falling block holding a pole, but it reads as a weak bit, and in seg4 he just stands beside the scale's pan instead of loading the bricks.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "seg2:start/mid/end show two identical yellow circles, both labelled '8.3' and both captioned 'Before 2016 (1988-2013)', while the narration says the record now falls almost 30 seconds a year since 2016. The post-2016 value is missing and duplicated, and the header reads 'BEFORE 2016 TOPS THE LIST', which is the opposite of the claim.",
+  "root_cause": "The comparison machine was given the same row twice (or the second series was lost), so it rendered a duplicate, and the 'tops the list' template inverted the claim. On top of that, the demonstration is just inflating circles with Data perched on one.",
+  "repair_goal": "Show 8.3 s/yr (1988-2013) against ~30 s/yr (2016+) with correct labels and a header that says the post-shoe era is faster. Make the rate visible: for example two runners or a stopwatch hand, where the post-2016 one sheds seconds about 3.6x faster, with Data driving the faster one (or stamping a carbon plate onto the shoe) so it accelerates."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

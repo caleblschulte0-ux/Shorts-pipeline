@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261004T163628Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start: the top 60% of the frame is empty gradient above two small bars. In seg1 the bar tracks carry no fill, so the whole panel is empty lines.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_chart_dead_air",
+  "visible_evidence": "seg1:start to seg1:end show a 'Highest in 2023' bar chart whose five bars are all empty, equal-length dark tracks. Only the -8 to -2.3 labels change, and Data wanders between rows.",
+  "root_cause": "Negative temperatures were mapped to bar lengths with no fill or baseline, so every bar renders at zero. The scene also repeats seg0's -8 to -2.3 data, so seg1 adds no new picture.",
+  "repair_goal": "Replace seg1 with a bespoke thaw picture. For example, a cross-section of frozen ground with a thermometer whose ice line falls from -8 to -2.3 as Data chips or melts it with a tool, so the warming is visible as the ground softening. Do not repeat seg0's chart."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

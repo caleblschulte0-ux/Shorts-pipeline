@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261004T163628Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:start-end: two yellow discs, each just '70%' printed on it, with no demonstration. The 70%\u219235% halving the narration describes never shows up.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two identical yellow discs, BOTH labelled '70%' and BOTH captioned '~20 years ago', under the kicker '~20 YEARS AGO TOPS THE LIST'. The narration says 70% then and 35% today, so the scene shows the opposite of the claim: no change.",
+  "root_cause": "The two-point comparison machine was fed the same datum twice (the 'today 35%' value was dropped or duplicated), and the kicker template filled in a rank phrase that has nothing to do with a then-vs-now halving. The discs only scale, so nothing demonstrates the number.",
+  "repair_goal": "Redraw seg2 as a then-vs-now halving of 18-20 year-olds who drink: 70% (two decades ago) next to 35% (today), with the second visibly half the first. For example, a row of 10 drink glasses where Data tips out/empties 3.5 of the 7 full ones, so the 35% lands as him physically halving them. Correct labels ('~20 years ago' vs 'Today'), a kicker that says 'HALVED', and no mascot or ring covering any number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

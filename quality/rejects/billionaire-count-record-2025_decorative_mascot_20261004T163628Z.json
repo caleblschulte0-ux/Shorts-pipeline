@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261004T163628Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@1.5 and seg0:end Data stands on a ladder pointing at a bar that is already built. In seg1:mid and seg1:end he stands with his arms raised while the bars rise without him. In seg3:start through payoff@-0.4 he just stands on top of the left circle. He never causes anything t",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_comparison",
+  "visible_evidence": "seg3:start, mid and end show two identical teal circles, both reading '127%' and both labelled 'Billionaire wealth'. Meanwhile the narration says 'the S&P 500 alone grew 195 percent'. The comparison that carries the payoff is never shown, and the same broken picture is held through seg4 to the end.",
+  "root_cause": "The comparison machine took the same series for both sides. The S&P 500 value (195%) and its label never reached the second circle.",
+  "repair_goal": "Draw billionaire wealth at +127% against the S&P 500 at +195% as two quantities growing side by side. For example, two piles or vessels that Data fills, with the S&P one clearly overtaking. Label them 'Billionaire wealth +127%' and 'S&P 500 +195%' in ink with high contrast. Hold the right picture into the closing so the punchline 'most of this is just stocks' is visible."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T163628Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only stands on top of the data marks: on the 400000 circle at seg1:mid, on the chicken bar at seg2:mid/end and on the '2' circle at seg3:start/mid/end. He doesn't cause anything. In the hook he holds a pole beside the pan and doesn't load it. Only in seg4 does he reach for th",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_and_decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end shows two plain circles labelled 2 and 5 with Data standing on the '2' circle doing nothing. At seg3:end a ring overlay garbles the '5' into an unreadable glyph, and the top third of the frame is empty.",
+  "root_cause": "The relationship fell back to a generic two-bubble size comparison. The highlight ring is drawn on top of the value text, and the mascot is placed on a mark instead of doing anything that grows the count.",
+  "repair_goal": "Show 2 companies turning into 5 as five green-light gates or approval stamps that Data opens or stamps one at a time (2 already lit, 3 he lights). Keep the count as clean text that no ring or overlay ever covers."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

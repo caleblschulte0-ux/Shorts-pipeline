@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T163628Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:end a cyan ring is drawn over the '5' and it reads as a garbled '6'. At seg1:end a ring cuts through '50000'. In the hook (hook@0.3, seg0:start) Data covers the first digit of '400,000'. The '50000000000' at seg2:mid is an unformatted 11-digit string you can't read at a glance on",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_and_decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end shows two plain circles labelled 2 and 5 with Data standing on the '2' circle doing nothing. At seg3:end a ring overlay garbles the '5' into an unreadable glyph, and the top third of the frame is empty.",
+  "root_cause": "The relationship fell back to a generic two-bubble size comparison. The highlight ring is drawn on top of the value text, and the mascot is placed on a mark instead of doing anything that grows the count.",
+  "repair_goal": "Show 2 companies turning into 5 as five green-light gates or approval stamps that Data opens or stamps one at a time (2 already lit, 3 he lights). Keep the count as clean text that no ring or overlay ever covers."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

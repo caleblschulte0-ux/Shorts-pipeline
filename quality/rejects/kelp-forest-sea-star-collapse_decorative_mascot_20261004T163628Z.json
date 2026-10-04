@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261004T163628Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid and seg1:end Data just stands on top of the 100% bubble, and in seg3:mid and seg3:end he stands on the kelp bubble, doing nothing to the data. In seg4:mid he leans on the side of the scale while the blocks stack themselves.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:mid shows two rows, 'Before 2014 100%' and 'Since 2014 10.1K%', with Data standing next to each. Nothing is drawn as urchins or as anything growing 100-fold.",
+  "root_cause": "A two-row label comparison was used where a demonstration of a 10,000% population explosion was needed. The mascot is a reaction sticker beside the numbers.",
+  "repair_goal": "Draw the seafloor with urchins multiplying from a handful to a carpet about 100x denser, with Data actively releasing or herding them. Make the swarm itself carry the 10,000% so a viewer sees the explosion without reading the number."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

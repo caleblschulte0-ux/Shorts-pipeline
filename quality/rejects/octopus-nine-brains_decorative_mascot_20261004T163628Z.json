@@ -1,0 +1,21 @@
+{
+ "slug": "octopus-nine-brains",
+ "ts": "20261004T163628Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data is pinned to the left edge holding a stick in hook@0.3 through seg0:end and never drops the blocks that tip the scale. In seg1 two copies of him stand on podium lines pointing or cheering. In seg3:mid he perches on top of the bar, and in seg4 he stands below the gauge. Nothin",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg4:start through payoff@-0.4: a giant pink '3,600' ticks up inside a horseshoe of dots. The label 'How long a severed arm keeps reacting' runs off both frame edges. The closing line sits above as a static caption, and Data stands at the bottom of the ring doing nothing.",
+  "root_cause": "The closing reuses a generic odometer gauge with a full-width label set wider than the frame. The payoff 'a full hour, with no brain attached' is never shown as a severed arm still moving while a clock runs, and the mascot has no act tied to it.",
+  "repair_goal": "Show a severed octopus arm on its own, curling and responding while a clock face that Data winds sweeps a full 60 minutes. Keep every label inside the frame margins and clear of the mascot. Land on the 'still just the one' gag with Data tapping his single head."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
