@@ -10821,13 +10821,49 @@
       "ts": "2026-10-04T11:56:27.420651+00:00"
     },
     "clip-20261004-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/FriendlyColdbloodedStarlingOSkomodo-WA-4eLF1skazvevR",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/lWLI8Koj2xY",
       "title": "Lacy Realizes Something Is Wrong When She Suddenly Can't Hear Anything",
       "kind": "twitch_clip",
-      "ts": "2026-10-04T11:57:36.645778+00:00",
+      "ts": "2026-10-04T11:57:47.149569+00:00",
+      "uploaded_at": "2026-10-04T11:57:47.149590+00:00",
+      "publish_at": "2026-10-04T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261004-lacy-realizes-something-is-wrong-when-she-sudden-81234e14"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/FriendlyColdbloodedStarlingOSkomodo-WA-4eLF1skazvevR",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "I CAN'T HEAR A THING",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2130,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 7.0
+      },
+      "director_cut": true
+    },
+    "rejected-neighborlyhotmonitorkippa-6uveimqjr-pb1ahz": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/NeighborlyHotMonitorKippa-6UVEImqjR-pB1aHz",
+      "streamer": "ironmouse",
+      "title": "Special announcement",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.12 < 0.35 (Event ticket announcement, insider, no m)",
+      "ts": "2026-10-04T12:04:53.986946+00:00"
+    },
+    "clip-20261004-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/AbrasiveEsteemedSeahorseDBstyle-AQK13VBio_zKsRSX",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Wants This Guy Fired And Says He's Filing A Complaint",
+      "kind": "twitch_clip",
+      "ts": "2026-10-04T12:06:55.003278+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

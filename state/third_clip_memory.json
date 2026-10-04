@@ -20,9 +20,9 @@
    "ch": "buddha",
    "d": "2026-10-01",
    "said": "gots know each other. Yes, sir Yes indeed How long you guys know each other? see we're not",
-   "saw": "Outside a casino, Mista C questions Mista Lang about how long he has known Raymond. He suggests the friendship is a problem because Raymond ",
+   "saw": "Outside a casino, a top-hatted man in a white suit asks how long a younger man has known Raymond, says someone who has known him only a shor",
    "who": [
-    "Mista C (man in whit",
+    "Mista C (white top h",
     "Mista Lang (man in b",
     "Raymond (addressed b"
    ]
@@ -36,6 +36,11 @@
    "ch": "agent00",
    "d": "2026-10-03",
    "said": "If you guys are into streaming and you want to get a microphone do not get the DJI's just"
+  },
+  "antediluviancolorfulauberginesquadgoals-jl9m56hozepj9f-2": {
+   "ch": "jasontheween",
+   "d": "2026-10-04",
+   "said": "build over there. Yo stop! What the fuck? Nah, nah, nah, I just got grieved. No, no, no, h"
   },
   "antediluvianuglyudoncoolstorybro-o4qhhux2gbh49nk0": {
    "ch": "sodapoppin",
@@ -320,6 +325,11 @@
     "Twitch chat (scrolli"
    ]
   },
+  "neighborlyhotmonitorkippa-6uveimqjr-pb1ahz": {
+   "ch": "ironmouse",
+   "d": "2026-10-04",
+   "said": "is Special Announcement! tickets aren't available yet. I was given the permission to show"
+  },
   "obedientblatantskirretampenergycherry-vnpwccrj34-bg4yi": {
    "ch": "fanum",
    "d": "2026-10-02",
@@ -425,6 +435,16 @@
    "d": "2026-10-03",
    "said": "I go, oh my God, Ron, you're so right. I wanna be a lesbian so bad. I wanna be a lesbian s"
   },
+  "superscrumptiousnoodlebirb-_f8vchlcjqnr-b5j": {
+   "ch": "buddha",
+   "d": "2026-10-02",
+   "said": "don't fucking know what's going on here. All I know is that she has not quit her job as an",
+   "saw": "Two characters stand close together in a casino and whisper about a woman who is still a police officer, whether they need blackmail on her,",
+   "who": [
+    "Buddha (white top ha",
+    "a second character i"
+   ]
+  },
   "suspiciouspoordumplingsfutureman-6qew-v9wt8hh5xsu": {
    "ch": "cinna",
    "d": "2026-10-03",
@@ -479,7 +499,13 @@
   "wittyproductiveteatakenrg-ylkt4diannkz7qk5": {
    "ch": "buddha",
    "d": "2026-10-04",
-   "said": "I'm kidding. I'll put 20 grand in there. I put 20 grand in there right now. I just I just"
+   "said": "I'm kidding. I'll put 20 grand in there. I put 20 grand in there right now. I just I just",
+   "saw": "Buddha's character uses an in-game phone banking app to move money between accounts (balances shown as $39,182, $75,757 and $59,182), says h",
+   "who": [
+    "Buddha (streamer, pl",
+    "a character in a whi",
+    "a woman in a red top"
+   ]
   },
   "wrongdarkharedaesuppy-9wmqo93k2bu7u1dq": {
    "ch": "caseoh_",
@@ -667,6 +693,24 @@
    ],
    "premise": "Kai Cenat says his friend Reggie is going through something, challenges Reggie's claims that he has proof, then puts up ",
    "why": "rendered; critic scored 42 after 2 revision(s) \u2014 @0s missing_context: The opening never says what Reggie is accused of or what the dispute is. Add a setup beat "
+  },
+  {
+   "d": "2026-10-04",
+   "members": [
+    "abstrusedeadhumanhassaanchop-w2zgmrffilq1iupk",
+    "superscrumptiousnoodlebirb-_f8vchlcjqnr-b5j"
+   ],
+   "premise": "Mista C questions Lang about how long he has known Raymond and calls the friendship a problem, then the pair try to work",
+   "why": "director judged: not a story \u2014 The footage doesn't show the scout's story. (1) The clips are about 29 minutes apart on the broadcast (13h04m vs 13h33m), not 30 "
+  },
+  {
+   "d": "2026-10-04",
+   "members": [
+    "coyagreeabledunlinaliens-848olmy9sdn5sqsj",
+    "wittyproductiveteatakenrg-ylkt4diannkz7qk5"
+   ],
+   "premise": "Lang takes a total loss after the Gazino opening, and Buddha then offers to put $20 grand in.",
+   "why": "sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
   }
  ]
 }
