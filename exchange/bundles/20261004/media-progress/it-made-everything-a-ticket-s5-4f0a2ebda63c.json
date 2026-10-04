@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s5-4f0a2ebda63c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a0fb80e6a397b8b8b7d0b10aa2305ad8b3da489c5fe6280ba9b3c8ef79d0fe5f",
+  "prompt_used": "An editorial illustration for a short-form video: office hallway waiting. It accompanies the narration: \"stuck waiting behind a backlog his own rule created\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1nTUrCBECD5_C_IoJMzykUVewaV4a-0lp",
+    "filename": "20261004__it-made-everything-a-ticket-s5-4f0a2ebda63c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1nTUrCBECD5_C_IoJMzykUVewaV4a-0lp",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "aa77889e1aef14fc01cff06d5d892d48f470cb51b081ff9d251c13f498e7419d",
+    "bytes": 2060505,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-04T11:27:18.182Z"
+}
