@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261004T195905Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data cheers above a bar (seg1:mid), stands on a circle (seg2:mid), slides down the line (seg3:mid) and waves at the bottom of a building (seg4:mid). None of these moves causes the drop. The hook has three copies of him pointing at the numbers (hook@0.3).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "Two identical yellow circles, both labeled '70%' and both captioned '~20 years ago' (seg2:mid, seg2:end). The narration says 'Today it's just 35%'. A stray cyan ellipse sits over the left label.",
+  "root_cause": "The comparison machine got the same data point twice, so the 'today' value (35%) never reached the scene. The circles are a generic size comparison, not a depiction of drinkers.",
+  "repair_goal": "Show 70% (~20 years ago) against 35% (today) as a scene that halves visibly. For example, a row of 10 young people where 7 hold drinks, then Data takes half the drinks away until only 3.5 remain. Remove the ellipse overlay and give each label its correct year."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

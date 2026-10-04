@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261004T195905Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg2:start to seg2:end the scene is two plain yellow circles, each printed '70%', that just grow. Nothing is demonstrated, and the 35% never appears.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number",
+  "visible_evidence": "Two identical yellow circles, both labeled '70%' and both captioned '~20 years ago' (seg2:mid, seg2:end). The narration says 'Today it's just 35%'. A stray cyan ellipse sits over the left label.",
+  "root_cause": "The comparison machine got the same data point twice, so the 'today' value (35%) never reached the scene. The circles are a generic size comparison, not a depiction of drinkers.",
+  "repair_goal": "Show 70% (~20 years ago) against 35% (today) as a scene that halves visibly. For example, a row of 10 young people where 7 hold drinks, then Data takes half the drinks away until only 3.5 remain. Remove the ellipse overlay and give each label its correct year."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

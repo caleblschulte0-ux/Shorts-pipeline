@@ -1,0 +1,21 @@
+{
+ "slug": "lab-grown-meat-scale-up-8x",
+ "ts": "20261004T195905Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start the cultivated side is an empty grid with a tiny grey stub, and in seg0:end about 40% of the lower frame under the scale is bare dark gradient.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start-end: two plain circles, '2' (2023) and '5' (Today), grow in size. Data stands idly on top of the '2' circle. At seg3:end a stray ellipse outline is drawn over the '5' and garbles it into a '6'-like glyph.",
+  "root_cause": "The approvals-count claim fell back to a proportional-bubble chart. The highlight ring is drawn over the numeral instead of around the mark, and the mascot has no agent role.",
+  "repair_goal": "Show approvals as subject-made objects: Data stamps five green-light approval stamps (or flips five traffic lights to green) onto a row of company doors, two lit in 2023 and three more lit for today. Each count should land with his stamp, numerals stay clear of every ring or overlay, and no circle chart is used."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

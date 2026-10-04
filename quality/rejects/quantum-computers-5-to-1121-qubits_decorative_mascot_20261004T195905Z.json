@@ -1,0 +1,21 @@
+{
+ "slug": "quantum-computers-5-to-1121-qubits",
+ "ts": "20261004T195905Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook through seg0:end: Data stands above the '5' bubble and waves his arms. seg1:mid: he is parked over the 2016 label. seg1:end: he stands on a ladder beside the grid. seg2: he leans on a pole at the frame edge while the blocks fall by themselves. seg3: he stands on top of the gr",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg1:start-mid: a generic bar chart with a stock eagle clip-art on the 2021 bar and Data covering the 2016 label. The '2019 (Q System One)' label floats off-axis above its bar. seg1:end cuts to a '4x' tile card that ignores the 5 to 1,121 (over 200x) claim the narration makes.",
+  "root_cause": "The beat fell back to a rank bar chart and decorated a row with an icon matched to the chip's codename. The ratio card picked the wrong pair (2016 vs 2019) instead of the claim's endpoints, and Data has no part tied to any moving part.",
+  "repair_goal": "Draw 5 vs 1,121 as qubits, using the subject's own form: 5 glowing qubit dots on a tiny 2016 chip, then Data placing or soldering qubits so a Condor-sized chip tiles out to 1,121 (about 224 times the first chip). Remove the eagle icon. Keep every label clear of Data and of the other marks."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
