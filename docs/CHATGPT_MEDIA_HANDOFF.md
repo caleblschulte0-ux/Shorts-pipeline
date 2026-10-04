@@ -1,13 +1,20 @@
 # ChatGPT media handoff — the landing zone
 
+> **SUPERSEDED — HISTORICAL. DO NOT PASTE ANYTHING FROM THIS FILE INTO A TASK.**
+> This was the first connectivity experiment (a `media-dropbox` branch that no
+> renderer consumes). The live contract is the two-worker exchange: the media
+> worker and finalizer in `doctor/PROMPTS.md` sections 4-5 (via the router in
+> section 6), and `docs/EXCHANGE_PIPELINE.md` (bundle, Drive, checkpoints,
+> `DONE`). Work written to `media-dropbox` is never rendered.
+> `scripts/check_media_dropbox.py` is kept only as a diagnostic.
+
 ChatGPT (no API key, running as a **scheduled task** with a GitHub connector)
-generates images/animations for the day's videos and pushes them back here.
-This doc is the contract. It is the only file a ChatGPT task needs to read.
+generated images/animations for the day's videos and pushed them back here.
+This doc was the contract for that experiment.
 
-**Status: CONNECTIVITY TEST.** Nothing here is wired into a channel renderer
-yet. The first job is to prove ChatGPT can (a) read a request out of this repo
-and (b) push finished assets back into it. Everything else waits on that.
-
+**Status: HISTORICAL CONNECTIVITY TEST.** Nothing here is wired into a channel
+renderer. The first job was to prove ChatGPT can (a) read a request out of this
+repo and (b) push finished assets back into it.
 ---
 
 ## The loop
