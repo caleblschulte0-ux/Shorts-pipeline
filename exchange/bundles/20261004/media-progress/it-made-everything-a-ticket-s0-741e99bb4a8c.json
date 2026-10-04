@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s0-741e99bb4a8c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0a7b2e50690eaa223e9350a9da8e15950859f52ba5eb1efcaa1f861fec3e1bf0",
+  "prompt_used": "An editorial illustration for a short-form video: office memo email screen. It accompanies the narration: \"every single request, no matter how small, must go through the ticket system\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1SB-eD3L52Yq9Xloh5Fjls89vaF8T2Vrj",
+    "filename": "20261004__it-made-everything-a-ticket-s0-741e99bb4a8c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1SB-eD3L52Yq9Xloh5Fjls89vaF8T2Vrj",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ed7388c8cec501134c864cd2af933cb7ef39bc75fcea9fd01f9fc7695ccb3901",
+    "bytes": 1997501,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-04T11:27:12.907Z"
+}
