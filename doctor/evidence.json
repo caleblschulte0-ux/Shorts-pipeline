@@ -4870,8 +4870,8 @@
     }
   },
   "recent_commits": [
-    "6dc008b 2026-10-04 claim: mailbox verdicts 2026-10-04T04:47Z [skip ci]",
-    "a0fe635 2026-10-04 claim: mailbox verdicts 2026-10-04T03:48Z [skip ci]"
+    "16a0fd6 2026-10-04 claim: mailbox verdicts 2026-10-04T10:47Z [skip ci]",
+    "8b7be5d 2026-10-04 watchdog: phase A readiness 20261004 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4981,29 +4981,29 @@
       "videos": 125,
       "top_by_vph": [
         {
-          "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 3.56,
-          "views": 1356
-        },
-        {
-          "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let",
-          "vph": 1.12,
-          "views": 77
-        },
-        {
-          "title": "Xqc Gets Captured And Chat Can't Believe It",
-          "vph": 1.12,
+          "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
+          "vph": 3.92,
           "views": 50
         },
         {
-          "title": "Xqc Gets Pulled Over In NoPixel And Tells The Cop This Is The Last You",
-          "vph": 0.8,
-          "views": 37
+          "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
+          "vph": 3.4,
+          "views": 1356
         },
         {
-          "title": "Buddha Gets So Hyped Carmella Is Back On The Server",
-          "vph": 0.76,
-          "views": 161
+          "title": "Cinna Gets Ragebaited By Chatty And Totally Loses It",
+          "vph": 2.03,
+          "views": 32
+        },
+        {
+          "title": "Xqc Gets Captured And Chat Can't Believe It",
+          "vph": 0.95,
+          "views": 59
+        },
+        {
+          "title": "Jasontheween Begs For Forgiveness After The Fight, But Nobody Will Let",
+          "vph": 0.89,
+          "views": 77
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -5129,7 +5129,7 @@
       "title": "Superseded task contracts remain publishable as current instructions",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "c8ca85c0ce21",
