@@ -10990,6 +10990,25 @@
       "rejected_by": "qa",
       "rejected_why": "vision: Sharp picture is a thin strip, about a quarter of the canvas height. The full stream layout, chat panel included, is let; vision: For roughly the first 14s the frame shows only an empty chair and no person. The hook card sits over blurred padding whi; vision: When Pokimane appears she is sma",
       "ts": "2026-10-04T12:26:12.218974+00:00"
+    },
+    "rejected-bravevainalbatrosssoonerlater-udfajav-gnaxxjem": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BraveVainAlbatrossSoonerLater-uDFAJaV-GNaXxJEm",
+      "streamer": "ohnepixel",
+      "title": "TIC TAC UFO FIRST ON LIVESTREAM",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching space stream; no visible event)",
+      "ts": "2026-10-04T15:49:11.532663+00:00"
+    },
+    "clip-20261004-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SuaveTemperedClintmullinsKappaPride-o3hgm4H5__zOZnUJ",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Screams 'My Neck!' After A 2v1 Goes Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-10-04T15:51:28.855532+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
