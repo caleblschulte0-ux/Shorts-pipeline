@@ -6,11 +6,11 @@
     "publish_at": "2026-10-04T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, readable chess race whose crossover lands, but the closing banner is cut off at the frame edge and the crossover callout is too small to read on a phone.",
-    "elapsed_seconds": 84.4,
+    "error": "showrunner_block: showrunner BLOCK: A clean two-line race with a clear crossover, but the payoff caption is cut off at both frame edges and the crossover callout is too small to read on a phone.",
+    "elapsed_seconds": 69.5,
     "package_path": "state/trending_packages/20261004/01_chess-engines-passed-every-human.json",
     "source": "brain",
-    "video_path": "output/daily_20261004-113313_chess_engines_passed_every_human__then_k.mp4",
+    "video_path": "output/daily_20261004-120241_chess_engines_passed_every_human__then_k.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,140 +28,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, readable chess race whose crossover lands, but the closing banner is cut off at the frame edge and the crossover callout is too small to read on a phone.",
+      "reason": "showrunner BLOCK: A clean two-line race with a clear crossover, but the payoff caption is cut off at both frame edges and the crossover callout is too small to read on a phone.",
       "score": 74
     },
     "blocked": true
-  },
-  {
-    "topic": "LEGO Quietly Passed Mattel In Revenue",
-    "title": "LEGO Quietly Passed Mattel In Revenue",
-    "format": "graph_race",
-    "publish_at": "2026-10-04T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Q2tpntS0Apk",
-    "error": null,
-    "elapsed_seconds": 85.8,
-    "package_path": "state/trending_packages/20261004/02_lego-passed-mattel-in-revenue.json",
-    "source": "brain",
-    "video_path": "output/daily_20261004-113437_lego_quietly_passed_mattel_in_revenue.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 91
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261004-lego-quietly-passed-mattel-in-revenue-2d3667ac"
-    }
-  },
-  {
-    "topic": "Vinyl Quietly Buried The CD",
-    "title": "Vinyl Quietly Buried The CD",
-    "format": "graph_race",
-    "publish_at": "2026-10-04T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Zhi95BqWXVw",
-    "error": null,
-    "elapsed_seconds": 115.3,
-    "package_path": "state/trending_packages/20261004/03_vinyl-buried-cd-sales.json",
-    "source": "brain",
-    "video_path": "output/daily_20261004-113603_vinyl_quietly_buried_the_cd.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261004-vinyl-quietly-buried-the-cd-bb970922"
-    }
-  },
-  {
-    "topic": "SpaceX Passed The Rest Of The World Combined",
-    "title": "SpaceX Passed The Rest Of The World Combined",
-    "format": "graph_race",
-    "publish_at": "2026-10-04T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Zz2BjLr5PHM",
-    "error": null,
-    "elapsed_seconds": 110.4,
-    "package_path": "state/trending_packages/20261004/04_spacex-passed-the-rest-of-the-world.json",
-    "source": "brain",
-    "video_path": "output/daily_20261004-113758_spacex_passed_the_rest_of_the_world_comb.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261004-spacex-passed-the-rest-of-the-world-combined-9cd6eb66"
-    }
   },
   {
     "topic": "He Said Every Request Needs A Ticket. I Made Everything A Ticket.",
     "title": "He Said Every Request Needs A Ticket. I Made Everything A Ticket.",
     "format": "reddit",
-    "publish_at": "2026-10-04T17:30:00Z",
+    "publish_at": "2026-10-04T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The illustrations are irrelevant stock icons (a music note twice, a microscope) that never show the ticket story, and the back half is plain dark gameplay with captions.",
-    "elapsed_seconds": 364.7,
+    "error": "quarantined: vision QA: broken \u2014 Frame 3 is missing the story illustration in the top half; it's a dark background where a visual element is expected based on the pattern of other frames and the description.",
+    "elapsed_seconds": 182.6,
     "package_path": "state/trending_packages/20261004/05_it-made-everything-a-ticket.json",
     "source": "brain",
-    "video_path": "output/daily_20261004-114115_he_said_every_request_needs_a_ticket__i_.mp4",
+    "video_path": "output/daily_20261004-120352_he_said_every_request_needs_a_ticket__i_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.567,
+      "duration": 46.833,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -172,77 +58,29 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
+      "loudness_lufs": -22.9
     },
     "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
+      "ok": false,
+      "verdict": "broken",
+      "reason": "Frame 3 is missing the story illustration in the top half; it's a dark background where a visual element is expected based on the pattern of other frames and the description."
     },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The illustrations are irrelevant stock icons (a music note twice, a microscope) that never show the ticket story, and the back half is plain dark gameplay with captions.",
-      "score": 61
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Swore I Worked There Because Of My Jacket. Security Had Other Plans.",
-    "title": "She Swore I Worked There Because Of My Jacket. Security Had Other Plans.",
-    "format": "reddit",
-    "publish_at": "2026-10-04T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/sbadlGZC1cU",
-    "error": null,
-    "elapsed_seconds": 311.7,
-    "package_path": "state/trending_packages/20261004/06_she-swore-i-worked-there.json",
-    "source": "brain",
-    "video_path": "output/daily_20261004-114718_she_swore_i_worked_there_because_of_my_j.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 47.4,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261004-she-swore-i-worked-there-because-of-my-jacket-se-84d6364b"
-    }
+    "quarantined": true
   },
   {
     "topic": "I'm a wildlife cameraman but 'special' rare sightings can still take me by surprise",
-    "angle": "Cameraman Dan Abbott captured a surprise humpback whale breaching off the Welsh coast, a species rarely seen that far north.",
-    "publish_at": "2026-10-04T19:00:00Z",
+    "angle": "Cameraman Dan Abbot captures a surprise humpback whale breach off the Welsh coast, a rarity that could boost tourism.",
+    "publish_at": "2026-10-04T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The illustrations don't show the story: an unrelated alarm clock, then one blank phone icon repeated for 18s, and an ending with no captions and no payoff.",
-    "elapsed_seconds": 271.6,
-    "title": "I Turned a Customer's Mistake Into My Own Promotion",
-    "package_path": "state/trending_packages/20261004-115116_auto_i_m_a_wildlife_cameraman_but__special__r.json",
-    "video_path": "output/daily_20261004-115116_i_m_a_wildlife_cameraman_but__special__r.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The story's whole hook, a giant neon-green bird crashing through airport glass, is never shown. Viewers get an unrelated stock drone and one generic AI plane image held across two beats.",
+    "elapsed_seconds": 249.8,
+    "title": "I Filmed a Giant Bird Crash at the Airport and Got Paid",
+    "package_path": "state/trending_packages/20261004-120723_auto_i_m_a_wildlife_cameraman_but__special__r.json",
+    "video_path": "output/daily_20261004-120723_i_m_a_wildlife_cameraman_but__special__r.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.7,
+      "duration": 47.2,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -253,35 +91,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.6
+      "loudness_lufs": -23.8
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The illustrations don't show the story: an unrelated alarm clock, then one blank phone icon repeated for 18s, and an ending with no captions and no payoff.",
+      "reason": "showrunner BLOCK: The story's whole hook, a giant neon-green bird crashing through airport glass, is never shown. Viewers get an unrelated stock drone and one generic AI plane image held across two beats.",
       "score": 53
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "97-million-year-old fossils reveal the earliest known animal \u201cGPS\u201d",
-    "angle": "Newly unearthed 97\u2011million\u2011year\u2011old fossils show ancient marine creatures used Earth\u2019s magnetic field like a built\u2011in GPS.",
-    "publish_at": "2026-10-04T20:30:00Z",
+    "topic": "what is going on with ceiling fans",
+    "angle": "Bizarre new ceiling\u2011fan designs that double as LED light shows are flooding the market, sparking safety concerns.",
+    "publish_at": "2026-10-04T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: About 15s of bare gameplay runs before any story illustration. After that there is one generic receipt icon, and the video closes on an off-topic, watermarked 'NO TIP' stock image, so the payoff never lands.",
-    "elapsed_seconds": 263.0,
-    "title": "I gave the rude cafe customer a free espresso",
-    "package_path": "state/trending_packages/20261004-115550_auto_97_million_year_old_fossils_reveal_the_e.json",
-    "video_path": "output/daily_20261004-115550_97_million_year_old_fossils_reveal_the_e.mp4",
+    "error": "showrunner_block: showrunner BLOCK: About 45s of washed-out parkour gameplay with captions and no story illustration until the last two seconds: the revenge plot is told, not shown.",
+    "elapsed_seconds": 218.4,
+    "title": "My Boss Took Credit For My Work, So I Let Him Present It",
+    "package_path": "state/trending_packages/20261004-121126_auto_what_is_going_on_with_ceiling_fans.json",
+    "video_path": "output/daily_20261004-121126_what_is_going_on_with_ceiling_fans.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 43.0,
+      "duration": 50.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -292,17 +130,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -22.7
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: About 15s of bare gameplay runs before any story illustration. After that there is one generic receipt icon, and the video closes on an off-topic, watermarked 'NO TIP' stock image, so the payoff never lands.",
-      "score": 53
+      "reason": "showrunner BLOCK: About 45s of washed-out parkour gameplay with captions and no story illustration until the last two seconds: the revenge plot is told, not shown.",
+      "score": 57
     },
     "blocked": true,
     "backfill": true
