@@ -1,0 +1,31 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261004",
+  "bundle": {
+    "identity": "8ff415ab1620f93a4d21a4246d621e25134b6d14bf91865d73d974a7f4590587",
+    "path": "exchange/bundles/20261004/bundle.json"
+  },
+  "safe_request_id": "it-made-everything-a-ticket-s4-9ebc8b9eb7c4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "bda632dfdb33d610ed6bff7e623199ed002621e2db1318b570bd31d53fa589de",
+  "prompt_used": "An editorial illustration for a short-form video: overflowing inbox notifications. It accompanies the narration: \"the queue had over six hundred open items\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily-producer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1IhEi3vfp2uXmfj9ZdBtwjOU-M9UpAgUo",
+    "filename": "20261004__it-made-everything-a-ticket-s4-9ebc8b9eb7c4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1IhEi3vfp2uXmfj9ZdBtwjOU-M9UpAgUo",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c955590a4bc761a0e3ba8dc578b701b4ccc66a48a40b47226f5b7666f43db7cb",
+    "bytes": 1956581,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-04T11:27:17.173Z"
+}
