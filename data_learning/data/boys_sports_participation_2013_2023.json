@@ -1,0 +1,27 @@
+{
+  "key": "boys_sports_participation_2013_2023",
+  "title": "Share of boys ages 6-17 who play a team sport regularly",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2013 vs. 2023",
+  "source": {
+    "name": "Sports & Fitness Industry Association participation data, via Project Play",
+    "publisher": "Aspen Institute Project Play",
+    "url": "https://projectplay.org/state-of-play-2024-participation-trends",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "In 2013, half of American boys ages 6-17 played a team sport on a regular basis. By 2023, that share had fallen to 41%, even as girls' participation rose over the same period.",
+  "points": [
+    {
+      "label": "2013",
+      "value": 50,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 41,
+      "period": "2023"
+    }
+  ]
+}

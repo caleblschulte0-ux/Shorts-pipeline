@@ -1,0 +1,27 @@
+{
+  "key": "vertical_farming_vc_funding",
+  "title": "Venture capital raised by vertical/indoor farming startups",
+  "unit": "billion dollars",
+  "geography": "Global",
+  "time_coverage": "2018-2022 vs. 2022-2024",
+  "source": {
+    "name": "Indoor agriculture venture funding tracking",
+    "publisher": "AgFunder / industry press (PitchBook, TechCrunch coverage)",
+    "url": "https://pitchbook.com/news/articles/bowery-farming-collapse-leaf-eating-pathogen-failed-acquisition",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Vertical farming startups raised close to $8 billion globally between 2018 and 2022. Since 2022, the sector has failed to raise even $1 billion total, as a wave of bankruptcies (AppHarvest, Bowery Farming, Plenty) hit the industry.",
+  "points": [
+    {
+      "label": "2018-2022",
+      "value": 8,
+      "period": "2018-2022"
+    },
+    {
+      "label": "2022-2024",
+      "value": 1,
+      "period": "2022-2024"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "key": "nobel_chemistry_under40_share",
+  "title": "Share of chemistry Nobel laureates who were under 40 at the time",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "20th century vs. 21st century",
+  "source": {
+    "name": "Age dynamics in scientific creativity / Nobel laureate age studies",
+    "publisher": "PNAS; Lindau Nobel Laureate Meetings",
+    "url": "https://www.lindau-nobel.org/geniuses-are-getting-older/",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "66% of 20th-century chemistry Nobel laureates were under 40 when they did their prize-winning work. In the 21st century, that share has been 0%.",
+  "points": [
+    {
+      "label": "20th century",
+      "value": 66,
+      "period": "1901-2000"
+    },
+    {
+      "label": "21st century",
+      "value": 0,
+      "period": "2001-present"
+    }
+  ]
+}

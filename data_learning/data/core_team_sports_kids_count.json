@@ -1,0 +1,27 @@
+{
+  "key": "core_team_sports_kids_count",
+  "title": "Kids ages 6-17 who play a team sport on a core, regular basis",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2019 vs. 2022",
+  "source": {
+    "name": "Sports & Fitness Industry Association core-participation tracking",
+    "publisher": "Sports & Fitness Industry Association (SFIA)",
+    "url": "https://projectplay.org/state-of-play-2023/participation",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Core (regular) team-sports participation among kids ages 6-17 fell 6% between 2019 and 2022, a decline of about 1.2 million kids. Figure derived from the reported percentage and headcount drop.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 20.0,
+      "period": "2019"
+    },
+    {
+      "label": "2022",
+      "value": 18.8,
+      "period": "2022"
+    }
+  ]
+}

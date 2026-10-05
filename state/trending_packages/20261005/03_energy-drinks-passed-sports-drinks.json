@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "energy-drinks-passed-sports-drinks",
+  "title": "Energy Drinks Passed Sports Drinks. By A Lot.",
+  "hook": "One of these drinks is eating the other's future.",
+  "y_label": "U.S. retail sales ($ billions)",
+  "duration": 13,
+  "source": "Beverage industry retail-sales tracking (Beverage Digest / Statista / trade press) -- U.S. energy drink sales vs. sports drink sales. 2024 figures approximate as publicly reported (energy drinks ~$25B, sports drinks ~$9.5B); earlier years approximate.",
+  "years": [
+    2003,
+    2008,
+    2013,
+    2018,
+    2021,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Energy drinks",
+      "color": "#50ff80",
+      "icon": null,
+      "values": [
+        1.0,
+        3.3,
+        9.0,
+        15.7,
+        19.4,
+        25.0
+      ]
+    },
+    {
+      "name": "Sports drinks",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        5.0,
+        6.5,
+        7.0,
+        7.8,
+        8.5,
+        9.5
+      ]
+    }
+  ],
+  "hashtags": [
+    "energydrinks",
+    "sportsdrinks",
+    "redbull",
+    "monster",
+    "beverages",
+    "consumertrends",
+    "data",
+    "didyouknow",
+    "facts",
+    "economy",
+    "trending",
+    "marketing"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

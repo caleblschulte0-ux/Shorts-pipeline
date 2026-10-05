@@ -1,0 +1,27 @@
+{
+  "key": "us_secondhand_market_size",
+  "title": "U.S. secondhand apparel market size, current vs. projected",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2023 vs. 2029 (projected)",
+  "source": {
+    "name": "ThredUp Resale Report",
+    "publisher": "ThredUp / GlobalData",
+    "url": "https://cf-assets-tup.thredup.com/resale_report/2025/ThredUp_Resale_Report_2025.pdf",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "ThredUp sized the U.S. secondhand apparel market at approximately $43 billion in 2023, projecting growth to $74 billion by 2029.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 43,
+      "period": "2023"
+    },
+    {
+      "label": "2029 (projected)",
+      "value": 74,
+      "period": "2029"
+    }
+  ]
+}

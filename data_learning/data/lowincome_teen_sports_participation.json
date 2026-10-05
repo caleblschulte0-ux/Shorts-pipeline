@@ -1,0 +1,27 @@
+{
+  "key": "lowincome_teen_sports_participation",
+  "title": "Share of teens (13-17) from households under $25k who play sports regularly",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2012 vs. 2022",
+  "source": {
+    "name": "Sports & Fitness Industry Association participation data, via Project Play",
+    "publisher": "Aspen Institute Project Play",
+    "url": "https://projectplay.org/state-of-play-2024-participation-trends",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Regular sports participation among teens ages 13-17 from households earning under $25,000 fell from 38% in 2012 to 27% in 2022 -- a steeper drop than among higher-income teens.",
+  "points": [
+    {
+      "label": "2012",
+      "value": 38,
+      "period": "2012"
+    },
+    {
+      "label": "2022",
+      "value": 27,
+      "period": "2022"
+    }
+  ]
+}
