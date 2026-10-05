@@ -1,0 +1,99 @@
+name: Story backtest
+
+# Runs the third channel's REAL story arm — scout, VOD arcs, scene analysis,
+# director, renderer, critic, repairs — over today's discovery pool and the
+# channel's month of posts, and keeps every cut it renders with its plan and
+# verdict as an artifact. Uploads nothing and writes no repo state
+# (scripts/story_backtest.py). Operator, 2026-10-05: "to test it you need to
+# be back testing and showing me what it's coming up with."
+#
+# Manual only. It carries no YouTube credentials, so it cannot publish.
+
+on:
+  workflow_dispatch:
+    inputs:
+      attempts:
+        description: 'Story attempts (each examines up to max_clusters candidates)'
+        required: false
+        default: '4'
+      max_clusters:
+        description: 'Candidates per attempt'
+        required: false
+        default: '6'
+
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    concurrency:
+      group: story-backtest
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — a judge must be present
+        run: |
+          # Every cut is judged by the critic; with no brain the backtest
+          # would render and fail closed on everything and show nothing.
+          if [ -z "${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}" ] && [ -z "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "::error::neither CLAUDE_CODE_OAUTH_TOKEN nor GEMINI_API_KEY is set — no critic, nothing to show"; exit 1
+          fi
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+
+      - name: Install python deps
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5"
+
+      - name: Install Claude CLI (the brain)
+        run: npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude-code install failed — falls to Gemini/Groq"
+
+      - name: Cache transcripts + whisper weights
+        uses: actions/cache@v4
+        with:
+          path: |
+            cache/transcripts/
+            ~/.cache/whisper
+          key: translation-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            translation-cache-v1-
+
+      - name: Backtest
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+          THIRD_BUDGET_MIN: '170'
+        run: |
+          python scripts/story_backtest.py \
+            --attempts "${{ inputs.attempts || '4' }}" \
+            --max-clusters "${{ inputs.max_clusters || '6' }}" \
+            --out backtest
+
+      - name: Keep every cut
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: story-backtest-${{ github.run_id }}
+          path: backtest/
+          retention-days: 14
+          if-no-files-found: warn

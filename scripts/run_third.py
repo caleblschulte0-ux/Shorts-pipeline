@@ -113,6 +113,44 @@ def _any_judgment() -> bool:
     return False
 
 
+def _backtest_keep(label: str, rev: int, mp4: Path, edl: dict,
+                   review: dict, sources: list[dict]) -> None:
+    """Keep a rendered story cut for the BACKTEST (scripts/story_backtest.py).
+
+    No-op unless STORY_BACKTEST_DIR is set. Every cut the critic sees —
+    the first render and each repair, passed or failed — is copied out with
+    its plan and the verdict, so the operator can WATCH what the story arm
+    makes instead of waiting a day per attempt to find out (2026-10-05:
+    "to test it you need to be back testing and showing me what it's coming
+    up with"). Never raises: observability must not fail a story."""
+    import os as _os
+    root = _os.environ.get("STORY_BACKTEST_DIR")
+    if not root:
+        return
+    try:
+        import re as _re
+        import shutil as _sh
+        d = Path(root)
+        d.mkdir(parents=True, exist_ok=True)
+        stem = (_re.sub(r"[^a-z0-9]+", "-", str(label).lower()).strip("-")
+                [:60] + f"__r{rev}")
+        if Path(mp4).exists():
+            _sh.copy2(mp4, d / f"{stem}.mp4")
+        rec = {"label": label, "revision": rev, "review": review,
+               "edl": {k: edl.get(k) for k in
+                       ("title", "premise", "central_question", "structure",
+                        "hook_overlay", "beats", "narration")},
+               "sources": [{"url": r.get("source_id"),
+                            "channel": r.get("channel"),
+                            "date": r.get("date"),
+                            "summary": r.get("summary")}
+                           for r in sources]}
+        (d / f"{stem}.json").write_text(json.dumps(rec, indent=1,
+                                                   default=str))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[backtest] keep failed ({e})", flush=True)
+
+
 def _story_verdict(label: str, outcome: str, why: str) -> None:
     """One cluster's fate at the story director's hands. Appends (a slot
     considers several clusters), so the record shows the whole deliberation
@@ -1558,6 +1596,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 review = story_director.review_rough_cut(
                     edl, tlines, str(sheet) if sheet_ok else None,
                     led["duration_s"])
+                _backtest_keep(elbl, 0, out_mp4, edl, review, sub)
                 # REPAIR, THEN RE-JUDGE — up to `story_revisions` times.
                 # The playbook allowed ONE revision. On 2026-10-01 and 10-02
                 # the only two stories the director accepted were rendered,
@@ -1604,6 +1643,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             str(sheet) if sheet_ok else None,
                             led["duration_s"])
                         _scores.append(review["story_score"])
+                        _backtest_keep(elbl, revision_count, out_mp4, edl,
+                                       review, sub)
                     except Exception as e:  # noqa: BLE001
                         print(f"::warning::[story] {elbl}: revision "
                               f"render failed ({e})", flush=True)
