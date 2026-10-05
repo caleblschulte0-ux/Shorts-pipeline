@@ -3,335 +3,6 @@
     {
       "date": "20260927",
       "dry_run": false,
-      "ts": "2026-09-27T13:52:32+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 115,
-        "with_retention": 91,
-        "with_curve": 13,
-        "fetched_at": "2026-09-27T12:42:32.815827+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 20
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260927-1",
-          "ok": false,
-          "error": "RuntimeError: preflight: source too dark (avg luma 19/255) \u2014 unwatchable IRL/night footage",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            }
-          },
-          "took_s": 9.0
-        },
-        {
-          "slug": "clip-20260927-2",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Forsen Has The Whole Stream Reacting",
-              "raw": "forsen scream",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 84.9
-        },
-        {
-          "slug": "clip-20260927-3",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Forsen Has The Whole Stream Reacting",
-              "raw": "forsen scream",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 67.8
-        },
-        {
-          "slug": "clip-20260927-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Forsen Has The Whole Stream Reacting",
-              "raw": "forsen scream",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 67.8
-        },
-        {
-          "slug": "clip-20260927-5",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Forsen Has The Whole Stream Reacting",
-              "raw": "forsen scream",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 67.6
-        },
-        {
-          "slug": "clip-20260927-6",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 280,
-                "scouted": [],
-                "vod_arcs": 179,
-                "candidates": 274,
-                "pool": 1355,
-                "pool_with_vod": 1287,
-                "arc_sizes": [
-                  6,
-                  2,
-                  2,
-                  2,
-                  4,
-                  3,
-                  3,
-                  2,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "kaicenat@vod2859079447/kaicenat-apologiz-consider-2026w36",
-                  "outcome": "plan_rejected",
-                  "why": "director unreachable"
-                },
-                {
-                  "cluster": "sodapoppin@vod2863459276",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "stableronaldo@vod2864388285",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "ohnepixel@vod2861551488",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "emiru@vod2878603244",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "why": "no transcript and no frames \u2014 nothing to judge",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Forsen Has The Whole Stream Reacting",
-              "raw": "forsen scream",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 789.1
-        }
-      ]
-    },
-    {
-      "date": "20260927",
-      "dry_run": false,
       "ts": "2026-09-27T15:52:04+00:00",
       "feedback": {
         "snapshot": true,
@@ -6226,6 +5897,386 @@
           "slug": "clip-20261004-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261005",
+      "dry_run": false,
+      "ts": "2026-10-05T12:35:02+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 124,
+        "with_retention": 109,
+        "with_curve": 14,
+        "fetched_at": "2026-10-05T08:46:17.111302+00:00"
+      },
+      "brain": {
+        "ok": 37,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261005-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "getaway driver, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA RP driving; character clinging to ca",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Panics After Kalita Dub Becomes The Getaway Driver For The First Time"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Hook card text sits over the top of the road and is cut off at the right edge near 'GETAWAY', but it is readable and cov",
+                "No visible captions or other overlays, so it is a bare gameplay clip, though the framing is consistent"
+              ]
+            }
+          },
+          "took_s": 274.2
+        },
+        {
+          "slug": "clip-20261005-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "Big bet hits, visible win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Blackjack double wins 120K, visible payo",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Makes An Insane Call And Hits For 120K"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The dealer's head is cropped off in most frames, though the cards and table action stay readable",
+                "The hook card is only partly legible at 2.9s because it is fading",
+                "The captions sit over the player's cards and hand area, but the key action is still visible"
+              ]
+            }
+          },
+          "took_s": 189.6
+        },
+        {
+          "slug": "clip-20261005-3",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.8s \u2014 too short to edit",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, 'caught' may hide payoff",
+              "blind": false
+            }
+          },
+          "took_s": 13.3
+        },
+        {
+          "slug": "clip-20261005-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "closeup",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 44,
+                "refused_shown": 2,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat dissects Reggie's claimed 2:32 AM call, exposing the lie, then the stream ends with a GG.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "xQc watches Tony lose on a bad slot, then makes an insane call and hits for 120K.",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 154,
+                "candidates": 256,
+                "pool": 1316,
+                "pool_with_vod": 1221,
+                "arc_sizes": [
+                  6,
+                  2,
+                  4,
+                  2,
+                  6,
+                  5,
+                  2,
+                  2,
+                  6,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:kaicenat/kaicenat-about-call-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scouted story. The 13:12 clip has Kai reading texts and call history to dispute Reggie's 2:32 AM claim, then retelling the call. It opens mid-sentence and ends mid-retell"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-about-cenat-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [42, 48, 48] after 2 revision(s) \u2014 @4s repetition: 'You kept talking about proof, right?' plays at the end of clip 1 and then again twice at the start of clip 2, so it lands about three times in a row. Cut clip 1 off before the proof line, or start cl; @14s confusing: The line stops mid-sente"
+                },
+                {
+                  "cluster": "scout:xqc/xqc-asks-call-2026w41",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not support the scout's premise. The scout said the clips were about a minute apart, but the scene reports put them over an hour apart in the same broadcast: clip 1 at 9h44m03s and cl"
+                },
+                {
+                  "cluster": "shroud@vod2870437527/shroud-acces-bann-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The sources don't form a setup -> escalation -> payoff arc. The first clip shows an 'Access Denied' permanent-ban screen for cheating, but it opens mid-sentence, the cause is unknown, and the outcome "
+                },
+                {
+                  "cluster": "sodapoppin@vod2888128304",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: sources fail preflight: preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
+                },
+                {
+                  "cluster": "caseoh@vod2887743618/caseoh-dark-hallway-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips are about 1.5 minutes apart in the same broadcast and don't show a meaningful change. The first is CaseOh taunting a monster ('Can't get me idiot', 'I'm terrified') and then the screen g"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague tease, unknown payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Shows polar bear photo; unclear context,",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Frames at 10.8s and 15.8s crop her face half out at the left edge while the phone screen is shown (minor)",
+                "Hook card stays over her hair/forehead area, but does not cover her face"
+              ]
+            }
+          },
+          "took_s": 179.6
+        },
+        {
+          "slug": "clip-20261005-5",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 48,
+                "refused_shown": 5,
+                "scouted": [
+                  {
+                    "premise": "Cinna panics as Kalita Dub accidentally becomes the getaway driver for the first time, then Kalita slithers out of an ar",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "After the Paleto bank heist plan works, Cinna crashes his motorcycle and is incapacitated, then loses it when chat rageb",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Dee's casino performance leaves Jean Paul rattled, and xQc's stream then devolves into absolute chaos as people push eac",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 154,
+                "candidates": 256,
+                "pool": 1316,
+                "pool_with_vod": 1221,
+                "arc_sizes": [
+                  6,
+                  2,
+                  4,
+                  2,
+                  6,
+                  5,
+                  2,
+                  2,
+                  6,
+                  2
+                ]
+              }
+            }
+          },
+          "took_s": 1307.4
+        },
+        {
+          "slug": "clip-20261005-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "Vague reaction, unknown trigger",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Horror monster chase, streamer visibly s",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Says 'Heck No' And The Whole Moment Falls Apart"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Hook text 'HE SAID HECK NO' sits over the lower face and beard in the first ~3s",
+                "Gameplay panel is small and very dark, so the creature is hard to read on a phone",
+                "About a third of the canvas at the bottom is blurred, dark padding, so the sharp picture fills less than ideal"
+              ]
+            }
+          },
+          "took_s": 88.7
         }
       ]
     }

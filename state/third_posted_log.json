@@ -11198,14 +11198,31 @@
       "replay_count": 0
     },
     "clip-20261005-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/SparklyFairRatTBTacoLeft-10mLZLdWr0rj_REX",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/k7i3JGI6MY0",
       "title": "Caseoh Says 'Heck No' And The Whole Moment Falls Apart",
       "kind": "twitch_clip",
-      "ts": "2026-10-05T12:34:53.219698+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-05T12:35:02.861161+00:00",
+      "uploaded_at": "2026-10-05T12:35:02.861179+00:00",
+      "publish_at": "2026-10-06T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261005-caseoh-says-heck-no-and-the-whole-moment-falls-a-1514aba5"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SparklyFairRatTBTacoLeft-10mLZLdWr0rj_REX",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "HE SAID HECK NO",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 18351,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 6.53
+      },
+      "director_cut": true
     }
   }
 }
