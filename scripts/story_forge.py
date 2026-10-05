@@ -357,12 +357,12 @@ def _say(ds: dict) -> str:
             move = (f"{x:.1f} times higher" if x >= 1.15
                     else f"down to {abs(x)*100:.0f} percent of that"
                     if x <= 0.87 else "barely moved")
-            return (f"In {a['label']}, {ds['title'].lower()} was "
-                    f"{_fmt(a['value'])}{u}. By {b['label']}: "
+            # inside the pace budget (shared/pacing.py): one sentence, the
+            # two numbers and the move
+            return (f"{a['label']}: {_fmt(a['value'])}{u}. {b['label']}: "
                     f"{_fmt(b['value'])}{u} — {move}.")
-    return (f"{p[0]['label']} leads at {_fmt(p[0]['value'])}{u}. "
-            f"{p[1]['label']} is {_fmt(p[1]['value'])}{u}. "
-            f"{p[-1]['label']} — {_fmt(p[-1]['value'])}{u}.")
+    return (f"{p[0]['label']} leads at {_fmt(p[0]['value'])}{u}; "
+            f"{p[-1]['label']} is {_fmt(p[-1]['value'])}{u}.")
 
 
 def _fallback_words(dss: list[dict]) -> dict:
@@ -430,6 +430,9 @@ def _hook_doctrine() -> str:
 
 # One doctrine for every hook, new or re-hooked (shared/hook_doctrine.py).
 _HOOK_DOCTRINE = _hook_doctrine()
+
+
+from shared import pacing as _pace  # noqa: E402 — the beat budget, from the registry
 
 
 def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
@@ -638,7 +641,8 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
             "[{...}]}]} where says AND scenes each have exactly "
             f"{len(dss)} entries, one per dataset in order. Each say speaks "
-            "that dataset's actual numbers in spoken English (~22 words).\n\n"
+            "that dataset's actual numbers in spoken English.\n\n"
+            + _pace.rule() + "\n\n"
             "SAY THE NUMBER THE PICTURE SHOWS. Each say line is spoken OVER "
             "its own beat's chart, so the LOUDEST number in it must be one "
             "that chart can show: a value from that dataset, a difference "
@@ -717,6 +721,12 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
                                "shock, one number from the data")
         except Exception:  # noqa: BLE001
             pass
+        # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").
+        # The budget is the registry's; a line over it is fed back, not banked.
+        reasons += [f"pace: {r}" for r in _pace.problems(
+            {"hook": w.get("hook"), "closing": w.get("closing"),
+             "question": w.get("question"),
+             "segments": [{"say": x} for x in (w.get("says") or [])]})]
         if v["ok"] and not reasons:
             return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
         last = "; ".join(reasons)[:300]

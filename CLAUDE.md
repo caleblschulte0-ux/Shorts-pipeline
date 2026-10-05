@@ -83,6 +83,22 @@ is better videos, never a weaker gate.
   [hook, beat 0, …, closing] — not beats (`scene_repair.judged_window`).
   Rules every subject scene meets are in `docs/CHANNEL_LOOK.md`.
 
+- **A beat is about 8 seconds, and the budget is the registry's**
+  (operator, 2026-10-05: *"15 seconds per beat is far too long"* — posted
+  beats ran 26 words at 130 spoken words a minute). `pacing` under the
+  explainer's format in `config/channel_registry.json`, read by
+  `shared/pacing.py`: a SAY is one sentence of at most `say_words`, with
+  caps for hook, closing and question, and `tempo` is the narration's
+  playback rate. The forge writes to it and feeds an over-length draft
+  back; the takeover brief and the rewrite mailbox state it; the editorial
+  gate HOLDS a story over it as a `pace:` word reason (so the mailbox asks
+  for a rewrite); `post_stories` has the brain `tighten()` a queued story
+  BEFORE the gate, validated by the mailbox's own rules and persisted once;
+  the renderer retimes every line per engine and writes `beat_s` to the
+  sidecar, which the posted log carries as `beat_s_max`. Never write a word
+  count anywhere else. Held by
+  `tests/test_fifteen_seconds_a_beat_is_too_long.py`.
+
 - **The judge of last resort is a MAILBOX ChatGPT answers**
   (`docs/REVIEW_MAILBOX.md`, ruling 2026-09-21). When neither the headless
   brain nor Gemini can watch a render on a publish run, the gate still

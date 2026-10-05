@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 7,
-  "revision_note": "2026-10-02: no_repeat_subject_days added to defaults (operator: 'why do we keep reposting the same videos? ... those landline videos' \u2014 the mobile-vs-landline race shipped under four different titles across two channels). Revision 6 note, kept: Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
+  "revision": 8,
+  "revision_note": "2026-10-05: explainer pacing added (operator: '15 seconds per beat is far too long' \u2014 26 words a beat spoken at 130 words a minute). Revision 7 note, kept: 2026-10-02: no_repeat_subject_days added to defaults (operator: 'why do we keep reposting the same videos? ... those landline videos' \u2014 the mobile-vs-landline race shipped under four different titles across two channels). Revision 6 note, kept: Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -59,7 +59,9 @@
   "channels": {
     "trending": {
       "id": "trending",
-      "tiktok": {"handle": "ballerbro2.1"},
+      "tiktok": {
+        "handle": "ballerbro2.1"
+      },
       "enabled": true,
       "display_name": "Trending / daily shorts",
       "cadence": {
@@ -223,7 +225,9 @@
     },
     "explainer": {
       "id": "explainer",
-      "tiktok": {"handle": "shortexplainer1"},
+      "tiktok": {
+        "handle": "shortexplainer1"
+      },
       "enabled": true,
       "display_name": "Explainer (data stories)",
       "cadence": {
@@ -260,6 +264,15 @@
             "current": 0.5,
             "illustrated": 0.5,
             "note": "A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. Raised 0 -> 0.5 on 2026-09-23 after the operator saw a 74 and ruled 'Don't ask if you can post a 74. Make a system that makes better videos': on the same judge that day the current look's one explainer story scored 43 (blocked, nothing posted) while illustrated renders scored 57-77 and the polish loop took one to 77 SHIP. A video whose every scene cannot be drawn and verified renders in the current look (one video, one look), and the retro compares the arms."
+          },
+          "pacing": {
+            "beat_max_s": 8,
+            "say_words": 16,
+            "hook_words": 14,
+            "closing_words": 10,
+            "question_words": 8,
+            "tempo": 1.12,
+            "note": "Operator 2026-10-05: '15 seconds per beat is far too long.' Posted beats ran 26 words at 130 spoken words a minute. A SAY is one sentence of at most say_words; the hook, closing and question have their own caps; tempo is the narration's playback rate over the engine's natural pace (shared/pacing.py). The forge writes to it, the takeover brief and the rewrite mailbox state it, the editorial gate HOLDS a story over it (a word reason, so the mailbox asks for a rewrite), and post_stories has the brain tighten a queued story before the gate sees it."
           },
           "quality": {
             "target": 90,
@@ -398,7 +411,9 @@
     },
     "third": {
       "id": "third",
-      "tiktok": {"handle": "third.brain.down"},
+      "tiktok": {
+        "handle": "third.brain.down"
+      },
       "enabled": true,
       "display_name": "Third channel (Proof Mode / clips)",
       "cadence": {

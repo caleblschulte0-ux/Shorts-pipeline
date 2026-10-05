@@ -261,6 +261,12 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
         if _st.get("style_arm") == "illustrated":
             facts["illustrated_beats"] = len(_st.get("illustrated_beats") or [])
             facts["fallback_beats"] = len(_st.get("fallback_beats") or [])
+        # how long each beat WAS on screen (the renderer's narration windows:
+        # hook, beats, closing) — the measure behind the pacing budget
+        _bs = _st.get("beat_s") or []
+        if len(_bs) >= 3:
+            facts["beat_s_max"] = max(_bs[1:-1])
+            facts["beat_s"] = _bs
     except Exception:  # noqa: BLE001
         pass
     try:
@@ -741,6 +747,17 @@ def main() -> int:
         # can never publish — synthetic numbers, or a searchable-noun premise —
         # is HELD before we spend a render on it. Previews (--dry-run) still
         # render so the result can be eyeballed, but the verdict is printed.
+        # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").
+        # The gate below holds a story over the registry's beat budget; the
+        # brain gets to tighten it first — validated like any rewrite (the
+        # numbers derivable, no new entity, the gate still passes) and
+        # persisted to the config the renderer re-reads, once.
+        try:
+            from shared import pacing as _pacing
+            _pacing.tighten(sc, config_path=args.config,
+                            log=lambda m: print(f"[{slug}] {m}", flush=True))
+        except Exception as _pe:  # noqa: BLE001 — the gate still decides
+            print(f"[{slug}] pace tighten skipped: {_pe}", flush=True)
         pre = _eg.pre_render_verdict(sc)
         if not pre["ok"]:
             print(f"[{slug}] EDITORIAL HOLD (pre-render): "

@@ -603,7 +603,8 @@ def explainer_word_request(date: str) -> dict | None:
             "mechanically and rejects the whole rewrite if you do.",
             "Return one `says` entry per segment, in the same order and the "
             "same count. Each speaks that segment's actual numbers in "
-            "natural English, ~22 words.",
+            "natural English.",
+            _pacing_rule(),
             "The title must name the surprise, not describe the dataset. "
             "'Congo, Dem. Rep. Beats Everyone On Male primary school age "
             "children out-of-school' is the failure this exists to fix.",
@@ -613,6 +614,12 @@ def explainer_word_request(date: str) -> dict | None:
                                "response.json, one object per slug with "
                                "title / hook / says / closing / question"},
     }
+
+
+def _pacing_rule() -> str:
+    """The explainer's beat budget, from the registry (shared/pacing.py)."""
+    from shared import pacing
+    return pacing.rule()
 
 
 def curiosity_queue_request(date: str) -> dict | None:
