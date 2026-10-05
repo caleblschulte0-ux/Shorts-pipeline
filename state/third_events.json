@@ -2643,10 +2643,11 @@
         "https://www.twitch.tv/kaicenat/clip/BlightedVenomousEmuYee-ym_0lzlyKD0HuujY",
         "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
         "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
-        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL"
+        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+        "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-04"
+      "last_updated": "2026-10-05"
     },
     "buddha-casino-charact-2026w40": {
       "event_id": "buddha-casino-charact-2026w40",
@@ -2668,6 +2669,90 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-04"
+    },
+    "kaicenat-about-call-2026w40": {
+      "event_id": "kaicenat-about-call-2026w40",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "call",
+        "cenat",
+        "reggie"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
+        "https://www.twitch.tv/kaicenat/clip/PuzzledPowerfulFrogSwiftRage-9wauUcUVSroaEnsX"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-05"
+    },
+    "xqc-asks-call-2026w41": {
+      "event_id": "xqc-asks-call-2026w41",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "asks",
+        "call",
+        "hand",
+        "payout"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+        "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-05"
+    },
+    "shroud-acces-bann-2026w37": {
+      "event_id": "shroud-acces-bann-2026w37",
+      "people": [
+        "shroud"
+      ],
+      "actions": [
+        "acces",
+        "bann",
+        "shroud",
+        "wardog"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/shroud/clip/BoxyDeadMangoWTRuck-KL4uTxb-PpRj5v4k",
+        "https://www.twitch.tv/shroud/clip/PiercingRealMosquitoHotPokket-zJo00ZiWNByiM5bw"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-05"
+    },
+    "caseoh-dark-hallway-2026w40": {
+      "event_id": "caseoh-dark-hallway-2026w40",
+      "people": [
+        "caseoh"
+      ],
+      "actions": [
+        "dark",
+        "hallway",
+        "horror",
+        "tall"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/caseoh_/clip/SillyResilientCarabeefDoritosChip-TlzaE_TtOCY7wFID",
+        "https://www.twitch.tv/caseoh_/clip/SparklyFairRatTBTacoLeft-10mLZLdWr0rj_REX"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-05"
     }
   }
 }

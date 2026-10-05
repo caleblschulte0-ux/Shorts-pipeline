@@ -11073,13 +11073,76 @@
       "ts": "2026-10-05T11:40:14.135992+00:00"
     },
     "clip-20261005-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/k0uehb7WhaQ",
       "title": "Xqc Makes An Insane Call And Hits For 120K",
       "kind": "twitch_clip",
-      "ts": "2026-10-05T11:43:13.106861+00:00",
+      "ts": "2026-10-05T11:43:23.735057+00:00",
+      "uploaded_at": "2026-10-05T11:43:23.735079+00:00",
+      "publish_at": "2026-10-05T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261005-xqc-makes-an-insane-call-and-hits-for-120k-95529c0c"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+      "streamer": "xqc",
+      "series": "win",
+      "hook": "HE CALLED IT AND HIT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8131,
+      "banger": 0.72,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-fineslipperypeafowlrlytho-1ebm2czztq5vtpv0": {
+      "source_url": "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+      "streamer": "xqc",
+      "title": "Tony losing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (slot gambling, unclear stakes, repetitiv)",
+      "ts": "2026-10-05T11:44:08.075137+00:00"
+    },
+    "rejected-intelligentnicestinkbugwoofer-lpuaaopruxhcdiwo": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/IntelligentNiceStinkbugWoofer-LpUAaOprUxhcDiwO",
+      "streamer": "jynxzi",
+      "title": "MOSH PIT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark RP nightclub, nothing clear happens)",
+      "ts": "2026-10-05T11:46:17.995790+00:00"
+    },
+    "rejected-thoughtfulcovertshieldpoooound-gdooywmrwczn45vh": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ThoughtfulCovertShieldPoooound-GDoOYWmRwCzN45Vh",
+      "streamer": "ohnepixel",
+      "title": "caught",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.8s \u2014 too short to edit",
+      "ts": "2026-10-05T11:46:31.250550+00:00"
+    },
+    "rejected-calmblindingponyfunrun-w-6rxhbdl2gd4h-0": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/CalmBlindingPonyFunRun-W-6RXHbDL2gD4H-0",
+      "streamer": "ohnepixel",
+      "title": "THE WHAT?????",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (static menu, plant selection, nothing ha)",
+      "ts": "2026-10-05T12:07:52.770132+00:00"
+    },
+    "clip-20261005-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alinity/clip/FastUninterestedHorseDAESuppy-cBCapKemlHoOjYTj",
+      "story_key": null,
+      "streamer": "alinity",
+      "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
+      "kind": "twitch_clip",
+      "ts": "2026-10-05T12:10:39.593338+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
