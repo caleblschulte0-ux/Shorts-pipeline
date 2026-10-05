@@ -2521,44 +2521,41 @@
       "narrative_score": 79,
       "duration_s": 44.5
     },
-    "nobel-prize-discovery-age": {
-      "url": "https://youtube.com/shorts/MDcG9aN82Sk",
-      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
-      "at": "2026-10-05T14:27:24.435249+00:00",
-      "publish_at": "2026-10-05T19:55:07Z",
-      "state": "posted",
-      "experiment_arm": "other_topic",
-      "actual_structure": "other_topic",
-      "style_arm": "current",
-      "tts": "speechify",
-      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
-      "n_beats": 3,
-      "story_structure": "auto+auto+auto",
-      "narrative_score": 57,
-      "duration_s": 37.4
-    },
-    "youth-sports-dropout": {
-      "url": "https://youtube.com/shorts/MhCjGLsygc0",
-      "title": "Only 41% Of American Boys Still Play Sports Regularly",
-      "at": "2026-10-05T14:45:17.205723+00:00",
-      "publish_at": "2026-10-06T01:55:07Z",
-      "state": "posted",
-      "experiment_arm": "other_topic",
-      "actual_structure": "other_topic",
-      "style_arm": "current",
-      "tts": "speechify",
-      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
-      "n_beats": 3,
-      "story_structure": "auto+auto+auto",
-      "narrative_score": 61,
-      "duration_s": 30.0
-    },
     "americans-stopped-moving": {
-      "claimed_at": "2026-10-05T16:08:13.749406+00:00",
+      "url": "https://youtube.com/shorts/SPZ9Kgv7vV0",
       "title": "Americans Stopped Moving. Here's Why.",
+      "at": "2026-10-05T16:08:24.246346+00:00",
       "publish_at": "2026-10-05T16:12:57Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 28 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.2,
+      "beat_s": [
+        3.76,
+        6.0,
+        5.02,
+        6.2,
+        4.56
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 66,
+      "duration_s": 25.4,
+      "hook": "shock_stat",
+      "topic_category": "records",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:moving-truck-thin-out",
+        "mechanic:keychain-rate-scale",
+        "mechanic:permit-stack-rise"
+      ],
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -3121,33 +3118,6 @@
       "at": "2026-10-04T20:57:43.490015+00:00"
     },
     {
-      "claimed_at": "2026-10-05T14:18:47.140908+00:00",
-      "title": "Quantum Computers Went From 5 Qubits To 1,121",
-      "publish_at": "2026-10-05T13:55:07Z",
-      "url": "https://youtube.com/shorts/3jncJb6kxu4",
-      "state": "posted",
-      "slug": "quantum-computers-5-to-1121-qubits",
-      "at": "2026-10-05T14:18:57.750653+00:00"
-    },
-    {
-      "claimed_at": "2026-10-05T14:27:18.746804+00:00",
-      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
-      "publish_at": "2026-10-05T19:55:07Z",
-      "url": "https://youtube.com/shorts/MDcG9aN82Sk",
-      "state": "posted",
-      "slug": "nobel-prize-discovery-age",
-      "at": "2026-10-05T14:27:24.435249+00:00"
-    },
-    {
-      "claimed_at": "2026-10-05T14:45:07.004427+00:00",
-      "title": "Only 41% Of American Boys Still Play Sports Regularly",
-      "publish_at": "2026-10-06T01:55:07Z",
-      "url": "https://youtube.com/shorts/MhCjGLsygc0",
-      "state": "posted",
-      "slug": "youth-sports-dropout",
-      "at": "2026-10-05T14:45:17.205723+00:00"
-    },
-    {
       "claimed_at": "2026-10-05T12:33:16.064926+00:00",
       "title": "Quantum Computers Went From 5 Qubits To 1,121",
       "publish_at": "2026-10-05T12:56:21Z",
@@ -3160,9 +3130,10 @@
       "claimed_at": "2026-10-05T16:08:13.749406+00:00",
       "title": "Americans Stopped Moving. Here's Why.",
       "publish_at": "2026-10-05T16:12:57Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "americans-stopped-moving"
+      "url": "https://youtube.com/shorts/SPZ9Kgv7vV0",
+      "state": "posted",
+      "slug": "americans-stopped-moving",
+      "at": "2026-10-05T16:08:24.246346+00:00"
     }
   ]
 }
