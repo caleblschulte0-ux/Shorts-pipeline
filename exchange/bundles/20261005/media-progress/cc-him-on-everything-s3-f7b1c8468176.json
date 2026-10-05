@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s3-f7b1c8468176",
+  "safe_request_id": "cc-him-on-everything-s3-f7b1c8468176",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e687518a971a56f862e12707da4bca13ba51f502cf99f17d1b0204d2e83e9c52",
+  "prompt_used": "An editorial illustration for a short-form video: overflowing email notifications phone. It accompanies the narration: \"his inbox had over eleven hundred unread messages\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QuPibEbZ72S0ni5Y6CjTHEfyDVDHBpSN",
+    "filename": "20261005__cc-him-on-everything-s3-f7b1c8468176.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QuPibEbZ72S0ni5Y6CjTHEfyDVDHBpSN",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1fc785cbb7e5f9401d049ecfa1a6ed4483af238b9630baf15629b0483d2e546a",
+    "bytes": 1793279,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:11.222Z"
+}
