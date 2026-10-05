@@ -346,3 +346,19 @@ not") and nothing in the code could say no.
 
 Code only adds blocks here; the critic's own "no" is untouched. Held by
 `tests/test_a_story_is_repaired_before_it_is_dropped.py`.
+### A story beat is framed like a clip (2026-10-05)
+
+The first story in eleven days ("Cinna Crew Ditched Her Mid-Chase") shipped
+with every beat the whole 16:9 stream — facecam, HUD, sub counter — fitted
+into 1080x607 with two thirds of the screen blurred padding: 31.6% of the
+canvas, the look `shot_plan.py` itself calls "the single loudest 'reposted
+clip' signal a Short can carry". The clip arm had used the shot plan for
+weeks; `story.py` never called it.
+
+`story._extract_segment` now cuts each beat at source geometry and runs
+`shot_plan.build` with the SOURCE's analysis (`_source_analysis`, once per
+file, so every beat and every repair re-render from one clip shares one
+framing). Re-rendered from the two real Cinna clips: beat 0 an action crop,
+beats 1-3 the stacked facecam-over-full-width-gameplay layout. Blur-fill is
+the fallback when no plan applies; each beat's `layout` is in the ledger.
+Held by `tests/test_a_story_beat_is_framed_like_a_clip.py` (real ffmpeg).
