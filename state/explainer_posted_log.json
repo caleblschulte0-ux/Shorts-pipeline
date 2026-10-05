@@ -2558,11 +2558,38 @@
       "scene_changes_before_5s": 2
     },
     "diabetes-quietly-doubled": {
-      "claimed_at": "2026-10-05T18:34:09.651694+00:00",
+      "url": "https://youtube.com/shorts/28X8XCjhVZs",
       "title": "Diabetes Quietly Became A Global Epidemic",
+      "at": "2026-10-05T18:34:21.615188+00:00",
       "publish_at": "2026-10-05T18:42:40Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 6.39,
+      "beat_s": [
+        4.37,
+        6.39,
+        6.39,
+        5.55,
+        4.76
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 27.3,
+      "hook": "shock_stat",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:hundred-body-crowd-double",
+        "mechanic:pill-bottle-treatment-duel",
+        "mechanic:clinic-window-light-row"
+      ],
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -3146,9 +3173,10 @@
       "claimed_at": "2026-10-05T18:34:09.651694+00:00",
       "title": "Diabetes Quietly Became A Global Epidemic",
       "publish_at": "2026-10-05T18:42:40Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "diabetes-quietly-doubled"
+      "url": "https://youtube.com/shorts/28X8XCjhVZs",
+      "state": "posted",
+      "slug": "diabetes-quietly-doubled",
+      "at": "2026-10-05T18:34:21.615188+00:00"
     }
   ]
 }
