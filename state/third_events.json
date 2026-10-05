@@ -2753,6 +2753,29 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-05"
+    },
+    "cinna-charact-cinna-2026w41": {
+      "event_id": "cinna-charact-cinna-2026w41",
+      "people": [
+        "cinna"
+      ],
+      "actions": [
+        "charact",
+        "cinna",
+        "kalita",
+        "panic"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/cinna/clip/LovelyCrepuscularSalamanderKeepo-dQSCakfYd7MNOgbp",
+        "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ"
+      ],
+      "published_versions": [
+        "story-ada222f23b5ae7c9"
+      ],
+      "last_updated": "2026-10-05"
     }
   }
 }
